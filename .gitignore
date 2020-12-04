@@ -1,0 +1,12 @@
+# Exclude these files from the git repo
+.sass-cache/
+#.codekit-config.json
+#config.codekit
+#config.codekit3
+edac_log.txt
+ 
+# Hidden system files
+*.DS_Store
+*[Tt]humbs.db
+*.Trashes
+prepros-6.config
