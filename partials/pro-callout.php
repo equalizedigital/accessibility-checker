@@ -1,0 +1,18 @@
+<div class="edac-pro-callout">
+    <img class="edac-pro-callout-icon" src="<?php echo plugin_dir_url( __DIR__ ); ?>assets/images/edac-emblem.png" alt="Equalize Digital">
+    <h4 class="edac-pro-callout-title">Upgrade to Accessibility Checker Pro</h4>
+    <div>
+        <ul class="edac-pro-callout-list">
+            <li>Scan all post types</li>
+            <li>Admin columns to see accessibility status at a glance</li>
+            <li>Centralized list of all open issues</li>
+            <li>Ignore log</li>
+            <li>Rename simplified summary</li>
+            <li>User restrictions on ignoring issues</li>
+            <li>Accessibility Statement draft</li>
+            <li>Email support</li>
+            <li>...and more</li>
+        </ul>
+    </div>
+    <a class="edac-pro-callout-button" href="https://products.equalizedigital.com/#pricing" target="_blank">Get Accessibility Checker Pro</a>
+</div>
