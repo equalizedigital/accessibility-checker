@@ -137,6 +137,7 @@ add_action( 'wp_ajax_edac_readability_ajax', 'edac_readability_ajax' );
 add_action( 'wp_ajax_edac_insert_ignore_data', 'edac_insert_ignore_data' );
 add_action( 'wp_ajax_edac_update_simplified_summary', 'edac_update_simplified_summary' );
 add_filter( 'the_content', 'edac_output_simplified_summary' );
+add_filter( 'wp_footer', 'edac_output_accessibility_statement' );
 add_filter( 'pre_delete_post', 'edac_delete_post', 10, 3 );
 add_action( 'admin_init', 'edac_activation_redirect' );
 
@@ -990,8 +991,44 @@ function edac_simplified_summary_markup($post){
 	}
 
 	if($simplified_summary){
-		return '<div class="ac-simplified-summary"><h2>'.$simplified_summary_heading.'</h2><p>'.sanitize_text_field($simplified_summary).'</p></div>';
+		return '<div class="edac-simplified-summary"><h2>'.$simplified_summary_heading.'</h2><p>'.sanitize_text_field($simplified_summary).'</p></div>';
 	}else{
 		return;
+	}
+}
+
+/**
+ * Get simplified summary
+ *
+ * @param void
+ * @return string
+ */
+function edac_get_accessibility_statement(){
+	$statement = '';
+	$add_footer_statement = get_option( 'edac_add_footer_accessibility_statement');
+	$include_statement_link = get_option( 'edac_include_accessibility_statement_link');
+	$policy_page = get_option( 'edac_accessibility_policy_page');
+
+	if($add_footer_statement && $include_statement_link){
+		$statement .= get_bloginfo('name').' '.__('uses','edac').' <a href="https://a11ychecker.com/" target="_blank">'.__('Accessibility Checker','edac').'</a> '.__('to monitor our website\'s accessibility. ','edac');
+	}
+
+	if($add_footer_statement && $policy_page){
+		$statement .= __('Read our ','edac').'<a href="'.get_page_link($policy_page).'">'.__('Accessibility Policy','edac').'</a>.';
+	}
+
+	return $statement;
+}
+
+/**
+ * Output simplified summary
+ *
+ * @param string $content
+ * @return string
+ */
+function edac_output_accessibility_statement(){
+	$statement = edac_get_accessibility_statement();
+	if(!empty($statement)){
+		echo '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>'.$statement.'</small></p>';
 	}
 }

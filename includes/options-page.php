@@ -51,10 +51,18 @@ function edac_register_setting() {
 		'edac_general_cb',
 		'edac_settings'
 	);
+
 	add_settings_section(
 		'edac_simplified_summary',
 		__( 'Simplified Summary Settings', 'edac' ),
 		'edac_simplified_summary_cb',
+		'edac_settings'
+	);
+
+	add_settings_section(
+		'edac_footer_accessibility_statement',
+		__( 'Footer Accessibility Statement', 'edac' ),
+		'edac_footer_accessibility_statement_cb',
 		'edac_settings'
 	);
 
@@ -70,7 +78,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edac_authorization',
-		__( 'Password Protection Login', 'edac' ),
+		__( 'Password Protection Login', 'edac' ),	
 		'edac_authorization_cb',
 		'edac_settings',
 		'edac_general',
@@ -95,6 +103,42 @@ function edac_register_setting() {
 		array( 'label_for' => 'edac_simplified_summary_position' )
 	);
 
+	add_settings_field(
+		'edac_add_footer_accessibility_statement',
+		__( 'Add Footer Accessibility Statement', 'edac' ),
+		'edac_add_footer_accessibility_statement_cb',
+		'edac_settings',
+		'edac_footer_accessibility_statement',
+		array( 'label_for' => 'edac_add_footer_accessibility_statement' )
+	);
+
+	add_settings_field(
+		'edac_include_accessibility_statement_link',
+		__( 'Include Link to Accessibility Policy', 'edac' ),
+		'edac_include_accessibility_statement_link_cb',
+		'edac_settings',
+		'edac_footer_accessibility_statement',
+		array( 'label_for' => 'edac_include_accessibility_statement_link' )
+	);
+
+	add_settings_field(
+		'edac_accessibility_policy_page',
+		__( 'Accessibility Policy page', 'edac' ),
+		'edac_accessibility_policy_page_cb',
+		'edac_settings',
+		'edac_footer_accessibility_statement',
+		array( 'label_for' => 'edac_add_accessibility_policy_page' )
+	);
+
+	add_settings_field(
+		'edac_accessibility_statement_preview',
+		__( 'Accessibility Statement Preview', 'edac' ),
+		'edac_accessibility_statement_preview_cb',
+		'edac_settings',
+		'edac_footer_accessibility_statement',
+		array( 'label_for' => 'edac_accessibility_statement_preview' )
+	);
+
 	// Register settings
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types');
 	register_setting( 'edac_settings', 'edac_authorization_password', 'edac_sanitize_authorization_password');
@@ -113,6 +157,9 @@ function edac_register_setting() {
 			'default' => 'after',
 		]
 	);
+	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', 'edac_sanitize_add_footer_accessibility_statement');
+	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', 'edac_sanitize_include_accessibility_statement_link');
+	register_setting( 'edac_settings', 'edac_accessibility_policy_page', 'edac_sanitize_accessibility_policy_page');
 	
 }
 
@@ -134,6 +181,13 @@ function edac_general_cb(){
  */
 function edac_simplified_summary_cb(){
 	echo '<p>' . __( 'Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post\'s or page\'s edit screen. <a href="https://a11ychecker.com/help3265" target="_blank">Learn more about simplified summaries and readability requirements.', 'edac' ) . '</a></p>';
+}
+
+/**
+ * Render the text for the footer accessiblity statement section
+ */
+function edac_footer_accessibility_statement_cb(){
+	echo '<p>' . __( 'Are you thinking "Wow, this plugin is amazing" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you\'re using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website.', 'edac' ) . '</a></p>';
 }
 
 /**
@@ -285,4 +339,103 @@ function edac_sanitize_authorization_username( $username ) {
  */
 function edac_sanitize_authorization_password( $password ) {
 	return sanitize_text_field($password);
+}
+
+/**
+ * Render the checkbox input field for add footer accessibility statement option
+ */
+function edac_add_footer_accessibility_statement_cb(){
+
+	$option = get_option( 'edac_add_footer_accessibility_statement') ?: false;
+
+	?>
+	<fieldset>
+		<label>
+			<input type="checkbox" name="<?php echo 'edac_add_footer_accessibility_statement'; ?>" value="<?php echo '1'; ?>" <?php checked( $option, 1 ); ?>>
+			<?php _e( 'Add Footer Accessibility Statement', 'edac' ); ?>
+		</label>
+	</fieldset>
+	<?php
+
+}
+
+/**
+ * Sanitize add footer accessibility statement values before being saved to database
+ */
+function edac_sanitize_add_footer_accessibility_statement( $option ) {
+	if($option == 1){
+		return $option;
+	}
+}
+
+/**
+ * Render the checkbox input field for add footer accessibility statement option
+ */
+function edac_include_accessibility_statement_link_cb(){
+
+	$option = get_option( 'edac_include_accessibility_statement_link') ?: false;
+	$disabled = get_option( 'edac_add_footer_accessibility_statement') ?: false;
+
+	?>
+	<fieldset>
+		<label>
+			<input type="checkbox" name="<?php echo 'edac_include_accessibility_statement_link'; ?>" value="<?php echo '1'; ?>" <?php checked( $option, 1 ); disabled( $disabled, false ); ?>>
+			<?php _e( 'Include Link to Accessibility Policy', 'edac' ); ?>
+		</label>
+	</fieldset>
+	<?php
+
+}
+
+/**
+ * Sanitize add footer accessibility statement values before being saved to database
+ */
+function edac_sanitize_include_accessibility_statement_link( $option ) {
+	if($option == 1){
+		return $option;
+	}
+}
+
+/**
+ * Render the select field for accessibility policy page option
+ */
+function edac_accessibility_policy_page_cb(){
+
+	$selected_option = get_option( 'edac_accessibility_policy_page');
+	?>
+
+	<select name="edac_accessibility_policy_page"> 
+		<option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+		<?php 
+		$pages = get_pages();
+		foreach ( $pages as $page ) {
+
+
+			$option = '<option value="' . $page->ID . '"'.selected( $selected_option, $page->ID ).'>';
+			$option .= $page->post_title;
+			$option .= '</option>';
+			echo $option;
+		}
+		?>
+	</select>
+	<?php
+
+}
+
+/**
+ * Sanitize accessibility policy page values before being saved to database
+ */
+function edac_sanitize_accessibility_policy_page( $page ) {
+	if(get_page_link( $page )){
+		return $page;
+	}
+}
+
+/**
+ * Render the accessibility statement preview
+ */
+function edac_accessibility_statement_preview_cb(){
+	
+	echo edac_get_accessibility_statement();
+
 }

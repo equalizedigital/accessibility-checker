@@ -30,17 +30,23 @@
    */
 
   $(function () {
+
+    // Accessibility Statement disable
+    $("input[type=checkbox][name=edac_add_footer_accessibility_statement]").change(function() {
+      if(this.checked) {
+        $("input[type=checkbox][name=edac_include_accessibility_statement_link]").prop('disabled',false);
+      }else{
+        $("input[type=checkbox][name=edac_include_accessibility_statement_link]").prop('disabled',true);
+        $("input[type=checkbox][name=edac_include_accessibility_statement_link]").prop('checked',false);
+      }
+      //
+    });
+
     // Show Simplified Summary code on options page
-    if (
-      $(
-        "input[type=radio][name=edac_simplified_summary_position]:checked"
-      ).val() == "none"
-    ) {
+    if ($("input[type=radio][name=edac_simplified_summary_position]:checked").val() == "none") {
       $("#ac-simplified-summary-option-code").show();
     }
-    $(
-      "input[type=radio][name=edac_simplified_summary_position]"
-    ).change(function () {
+    $("input[type=radio][name=edac_simplified_summary_position]").change(function () {
       if (this.value == "none") {
         $("#ac-simplified-summary-option-code").show();
       } else {
