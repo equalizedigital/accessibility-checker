@@ -138,7 +138,7 @@ support and are ideal for individuals or teams who need more hands-on assistance
 3. Expanded error example 'Image Empty Alternative Text' showing the code for 7 items that caused the error to be flagged.
 4. Ignore comment box and button to ignore the error.
 5. Example of an ignored error, including the username and date/time the error was ignored. Ignored errors and warnings can be reopened if ignored incorrectly.
-6. Accessibility Checker Readibility Tab checks the grade level of the content and allows for the insertion of a simplified summary to meet WCAG AAA accessibility.
+6. Accessibility Checker Readability Tab checks the grade level of the content and allows for the insertion of a simplified summary to meet WCAG AAA accessibility.
 7. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 
