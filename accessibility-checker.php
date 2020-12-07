@@ -1009,11 +1009,11 @@ function edac_get_accessibility_statement(){
 	$include_statement_link = get_option( 'edac_include_accessibility_statement_link');
 	$policy_page = get_option( 'edac_accessibility_policy_page');
 
-	if($add_footer_statement && $include_statement_link){
+	if($add_footer_statement){
 		$statement .= get_bloginfo('name').' '.__('uses','edac').' <a href="https://a11ychecker.com/" target="_blank">'.__('Accessibility Checker','edac').'</a> '.__('to monitor our website\'s accessibility. ','edac');
 	}
 
-	if($add_footer_statement && $policy_page){
+	if($include_statement_link && $policy_page){
 		$statement .= __('Read our ','edac').'<a href="'.get_page_link($policy_page).'">'.__('Accessibility Policy','edac').'</a>.';
 	}
 
