@@ -593,3 +593,6 @@
     .edac-pro-callout-button:hover, .edac-pro-callout-button:focus {
       color: #fff !important;
       background-color: #072446; }
+  .edac-pro-callout-activate {
+    margin-top: 30px;
+    display: block; }
