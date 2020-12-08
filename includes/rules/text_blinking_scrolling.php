@@ -58,7 +58,7 @@ function edac_rule_text_blinking_scrolling($content, $post)
 		 */
 		foreach ($dom_styles->find('link[rel="stylesheet"]') as $stylesheet){
 			$stylesheet_url = $stylesheet->href;
-			$styles = file_get_contents($stylesheet_url);
+			$styles = @file_get_contents($stylesheet_url);
 			$errors = array_merge(ac_css_text_decoration_blink_check($content, $styles),$errors);
 		}
 	}

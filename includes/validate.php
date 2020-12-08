@@ -69,8 +69,9 @@ function edac_validate($post_ID, $post)
 		return;
 
 	// check if post has content
-	if (empty($post->post_content))
+	if (empty($post->post_content) && !get_transient( 'edacp_license_valid' ))
 		return;
+		
 
 	if(EDAC_DEBUG == true) edac_log('Post Saved: ' . $post_ID);
 
@@ -158,7 +159,7 @@ function edac_get_content($post)
 	$the_content = $post->post_content;
 	$the_content = do_blocks($the_content);
 	$the_content = do_shortcode($the_content);
-	$content['the_content'] = $the_content;
+	$content['the_content'] = !empty($the_content) ? $the_content : ' ';
 
 	// the_content_html
 	$content['the_content_html'] = str_get_html($the_content);
@@ -197,6 +198,11 @@ function edac_get_content($post)
 	} */
 
 	if(EDAC_DEBUG == true) edac_log('edac_get_content: '.(microtime(true) - $time));
+
+	// filter content
+	if(has_filter('edac_get_content')) {
+		$content = apply_filters('edac_get_content', $content);
+	}
 
 	return $content;
 }
