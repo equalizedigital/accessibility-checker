@@ -473,7 +473,7 @@ function edac_register_rules(){
 	// missing_title
 	array_push($rules, [
 		'title' => 'Missing Title',
-		'info_url'  => '#',
+		'info_url'  => 'https://a11ychecker.com/help4431',
 		'slug'  => 'missing_title',
 		'rule_type' => 'error',
 	]);
