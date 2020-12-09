@@ -86,6 +86,15 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
+		'edac_delete_data',
+		__( 'Delete Data', 'edac' ),	
+		'edac_delete_data_cb',
+		'edac_settings',
+		'edac_general',
+		array( 'label_for' => 'edac_delete_data' )
+	);
+
+	add_settings_field(
 		'edac_simplified_summary_prompt',
 		__( 'Prompt for Simplified Summary', 'edac' ),
 		'edac_simplified_summary_prompt_cb',
@@ -143,6 +152,7 @@ function edac_register_setting() {
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types');
 	register_setting( 'edac_settings', 'edac_authorization_password', 'edac_sanitize_authorization_password');
 	register_setting( 'edac_settings', 'edac_authorization_username', 'edac_sanitize_authorization_username');
+	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_delete_data');
 	register_setting( 'edac_settings', 'edac_simplified_summary_prompt', 
 		[
 			'type' => 'string',
@@ -438,4 +448,31 @@ function edac_accessibility_statement_preview_cb(){
 	
 	echo edac_get_accessibility_statement();
 
+}
+
+/**
+ * Render the checkbox input field for delete data option
+ */
+function edac_delete_data_cb(){
+
+	$option = get_option( 'edac_delete_data') ?: false;
+
+	?>
+	<fieldset>
+		<label>
+			<input type="checkbox" name="<?php echo 'edac_delete_data'; ?>" value="<?php echo '1'; ?>" <?php checked( $option, 1 ); ?>>
+			<?php _e( 'Delete all Accessibility Checker data when the plugin is uninstalled.', 'edac' ); ?>
+		</label>
+	</fieldset>
+	<?php
+
+}
+
+/**
+ * Sanitize delete data values before being saved to database
+ */
+function edac_sanitize_delete_data_cb( $option ) {
+	if($option == 1){
+		return $option;
+	}
 }

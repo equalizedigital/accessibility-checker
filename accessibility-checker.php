@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Freemius
  */
-if ( ! function_exists( 'edac_fs' ) ) {
+/* if ( ! function_exists( 'edac_fs' ) ) {
     // Create a helper function for easy SDK access.
     function edac_fs() {
         global $edac_fs;
@@ -61,7 +61,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
     edac_fs();
     // Signal that SDK was initiated.
     do_action( 'edac_fs_loaded' );
-}
+} */
 
 /**
  * Currently plugin version.
