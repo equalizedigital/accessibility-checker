@@ -137,3 +137,4 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 = 1.0.0 =
 * Everything is new and shiny.
 * We think it's awesome you want to make your website more accessible.
+* Check for giphy and tenor animated gifs
