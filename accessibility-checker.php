@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Freemius
  */
-/* if ( ! function_exists( 'edac_fs' ) ) {
+if ( ! function_exists( 'edac_fs' ) ) {
     // Create a helper function for easy SDK access.
     function edac_fs() {
         global $edac_fs;
@@ -61,7 +61,7 @@ if ( ! defined( 'WPINC' ) ) {
     edac_fs();
     // Signal that SDK was initiated.
     do_action( 'edac_fs_loaded' );
-} */
+}
 
 /**
  * Currently plugin version.
@@ -79,7 +79,6 @@ define( 'EDAC_DEBUG', false );
  */
 register_activation_hook( __FILE__, 'edac_activation');
 register_deactivation_hook( __FILE__, 'edac_deactivation' );
-register_uninstall_hook( __FILE__, 'edac_uninstall');
 
 /**
  * Define file path and basename
@@ -112,7 +111,6 @@ use DaveChild\TextStatistics as TS;
  */
 require_once(plugin_dir_path( __FILE__ ).'includes/activation.php');
 require_once(plugin_dir_path( __FILE__ ).'includes/deactivation.php');
-require_once(plugin_dir_path( __FILE__ ).'includes/uninstall.php');
 require_once(plugin_dir_path( __FILE__ ).'includes/helper-functions.php');
 require_once(plugin_dir_path( __FILE__ ).'includes/enqueue-scripts.php');
 require_once(plugin_dir_path( __FILE__ ).'includes/meta-boxes.php');
