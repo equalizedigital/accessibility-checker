@@ -124,6 +124,16 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.2 =
+* use uninstall.php instead of register_uninstall_hook
+* add option to delete all data on uninstall
+
+= 1.0.1 =
+* update requires version
+* fix tooltip links
+* add filter to get_content function
+* update post empty logic
+
+= 1.0.0 =
 * Everything is new and shiny.
 * We think it's awesome you want to make your website more accessible.
