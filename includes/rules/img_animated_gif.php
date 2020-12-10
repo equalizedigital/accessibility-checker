@@ -49,9 +49,11 @@ function edac_rule_img_animated_gif($content, $post)
 }
 
 function edac_img_gif_is_animated($filename)
-{
-	if (!($fh = @fopen($filename, 'rb')))
-		return false;
+{	
+	$fh = @fopen($filename, 'rb');
+	if(!$fh) return false;
+	/* if (!($fh = @fopen($filename, 'rb')))
+		return false; */
 	$count = 0;
 	//an animated gif contains multiple "frames", with each frame having a
 	//header made up of:
