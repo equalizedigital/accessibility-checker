@@ -67,17 +67,35 @@ function edac_rule_possible_heading($content, $post){
 
 			if (isset($element) && $element->innertext != "" && strlen($element->innertext) < 50) {
 
-				if(
-					preg_match('(bold|bolder|700|800|900)', stristr($element->getAttribute('style'), 'font-weight:')) === 1 ||
-					preg_match('(italic|oblique)', stristr($element->getAttribute('style'), 'font-style:')) === 1 ||
-					$element->find('b') ||
-					$element->find('strong') ||
-					$element->find('i') ||
-					$element->find('em')
-				){
-					$errors[] = $element;
+				// parse inline styles and run logic
+				$styles = $element->getAttribute('style');
+				$css_array = edac_parse_css($styles);
+				if ($css_array) {
+					foreach ($css_array as $rules) {
+
+						if (array_key_exists('font-size', $rules)) {
+			
+							if(preg_match('(rem|em|%|inherit)', $rules['font-size']) === 1) { continue; } 
+			
+							if($rules['font-size'] >= 20){
+								$errors[] = $element;
+							}elseif($rules['font-size'] >= 16){
+
+								if(
+									preg_match('(bold|bolder|700|800|900)', stristr($element->getAttribute('style'), 'font-weight:')) === 1 ||
+									preg_match('(italic|oblique)', stristr($element->getAttribute('style'), 'font-style:')) === 1 ||
+									$element->find('b') ||
+									$element->find('strong') ||
+									$element->find('i') ||
+									$element->find('em')
+								){
+									$errors[] = $element;
+								}
+
+							}
+						}
+					}
 				}
-				
 			}
 		}
 	}
