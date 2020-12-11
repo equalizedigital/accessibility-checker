@@ -13,11 +13,12 @@ function edac_rule_image_map_missing_alt_text($content, $post){
 		$areas = $map->find('area');
 
 		foreach ($areas as $area){
-			if (isset($area) and ($area->getAttribute('alt') == "")){
 
-				$error_code = $area;
+			$alt = str_replace(' ', '', $area->getAttribute('alt'));
 
-				$errors[] = $error_code;
+			if (isset($alt) && ($alt == "")){
+
+				$errors[] = $area;
 
 			}
 
