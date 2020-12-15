@@ -125,6 +125,7 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 == Changelog ==
 
 = 1.0.3 =
+* Minor bug fixes to activation redirect and quick edit post updating
 * Image map missing alternative text error if only a space is present
 
 = 1.0.2 =
