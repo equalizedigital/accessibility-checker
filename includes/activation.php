@@ -40,19 +40,5 @@ function edac_activation(){
 		( isset( $_POST['checked'] ) && count( $_POST['checked'] ) > 1 ) ) {
 		return;
 	}
-	add_option( 'edac_activation_redirect', wp_get_current_user()->ID );
 	
-}
-
-/**
- * Redirects the user after plugin activation.
- */
-function edac_activation_redirect(){
-	// Make sure it's the correct user
-	if ( intval( get_option( 'edac_activation_redirect', false ) ) === wp_get_current_user()->ID ) {
-		// Make sure we don't redirect again after this one
-		delete_option( 'edac_activation_redirect' );
-		wp_safe_redirect( admin_url( '/admin.php?page=accessibility_checker' ) );
-		exit;
-	}
 }

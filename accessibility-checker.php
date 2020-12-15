@@ -137,7 +137,6 @@ add_action( 'wp_ajax_edac_update_simplified_summary', 'edac_update_simplified_su
 add_filter( 'the_content', 'edac_output_simplified_summary' );
 add_filter( 'wp_footer', 'edac_output_accessibility_statement' );
 add_filter( 'pre_delete_post', 'edac_delete_post', 10, 3 );
-add_action( 'admin_init', 'edac_activation_redirect' );
 
 /**
  * Register Rules
