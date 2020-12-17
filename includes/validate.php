@@ -69,8 +69,8 @@ function edac_validate($post_ID, $post)
 	}
 
 	// check if user can edit post
-	if (!current_user_can('edit_pages'))
-		return;
+	/* if (!current_user_can('edit_pages'))
+		return; */
 
 	// check if post has content
 	if (empty($post->post_content) && !get_transient( 'edacp_license_valid' ))
@@ -166,7 +166,7 @@ function edac_get_content($post)
 	$content['the_content'] = !empty($the_content) ? $the_content : ' ';
 
 	// the_content_html
-	$content['the_content_html'] = str_get_html($the_content);
+	$content['the_content_html'] = !empty($the_content) ? str_get_html($the_content) : ' ';
 	
 	// file_html
 	if($post->post_status == 'publish'){
@@ -183,9 +183,9 @@ function edac_get_content($post)
 		
 		try{
 			if($context){
-				$content['file_html'] = file_get_html(get_the_permalink($post->post_ID), false, $context);
+				$content['file_html'] = file_get_html(get_the_permalink($post->ID), false, $context);
 			}else{
-				$content['file_html'] = file_get_html(get_the_permalink($post->post_ID));
+				$content['file_html'] = file_get_html(get_the_permalink($post->ID));
 			}
 		} catch (Exception $e){
 			$content['file_html'] = null;
