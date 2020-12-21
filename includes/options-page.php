@@ -436,7 +436,11 @@ function edac_accessibility_policy_page_cb(){
  * Sanitize accessibility policy page values before being saved to database
  */
 function edac_sanitize_accessibility_policy_page( $page ) {
-	if(get_page_link( $page )){
+	if($page){
+		if(get_page_link( $page )){
+			return $page;
+		}
+	}else{
 		return $page;
 	}
 }
