@@ -124,6 +124,9 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
+= 1.0.4 =
+* Update policy page sanitize logic to allow for undefined value
+
 = 1.0.3 =
 * Minor bug fixes to activation redirect and quick edit post updating
 * Image map missing alternative text error if only a space is present
