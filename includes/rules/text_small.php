@@ -20,7 +20,7 @@ function edac_rule_text_small($content, $post){
 	 * check for inline font-size styles
 	 * <p style="font-size: 10px;">test</p>
 	 */
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$elements = $dom->find('*');
 	if ($elements) {
 		foreach ($elements as $element) {
@@ -54,8 +54,8 @@ function edac_rule_text_small($content, $post){
 	 * check for font-size styles within style tags
 	 * <style></style>
 	 */
-	if($content['file_html']){
-		$dom = $content['file_html'];
+	if($content){
+		$dom = $content;
 
 		$styles = $dom->find('style');
 
@@ -89,7 +89,7 @@ function edac_rule_text_small($content, $post){
  */
 function ac_css_small_text_check($content, $styles){
 
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$errors = [];
 	$error_code = '';
 	$css_array = edac_parse_css($styles);

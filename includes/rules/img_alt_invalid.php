@@ -3,7 +3,7 @@
 function edac_rule_img_alt_invalid($content, $post){
 
 	// rule vars
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$starts_with_keywords = ['graphic of','bullet','image of'];
 	$ends_with_keywords = ['image','graphic'];
 	$image_extensions = ['.apng','.bmp','.gif','.ico','.cur','.jpg','.jpeg','.jfif','.pjpeg','.pjp','.png','.svg','.tif','.tiff','.webp'];

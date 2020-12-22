@@ -3,7 +3,7 @@
 function edac_rule_img_alt_missing($content, $post){
 	
 	// rule vars
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$tags = array('img', 'input');
 	$errors = [];
 	
@@ -58,7 +58,7 @@ function ac_img_alt_ignore_plugin_issues($content){
 //check if image is inside a caption and has valid alt text
 function ac_img_alt_ignore_inside_valid_caption($image_code, $content){
 		
-	$dom = $content['the_content_html'];
+	$dom = $content;
 		
 	// captions inside figure tags (html5)
 	$figures = $dom->find('figure');

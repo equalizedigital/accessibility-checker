@@ -8,8 +8,8 @@
  * @return array
  */
 function edac_rule_incorrect_heading_order($content, $post){
-
-	$dom = $content['the_content_html'];
+	
+	$dom = str_get_html($post->post_content);
 	$starting_heading_level = 1;
 	$errors = [];
 	$elements = $dom->find('h1,h2,h3,h4,h5,h6');

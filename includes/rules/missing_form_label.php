@@ -3,7 +3,7 @@
 function edac_rule_missing_form_label($content, $post){
     
     // rule vars
-    $dom = $content['the_content_html'];
+    $dom = $content;
     
     $labels = $dom->find('label');
 

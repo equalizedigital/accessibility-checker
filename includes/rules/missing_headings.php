@@ -3,7 +3,7 @@
 function edac_rule_missing_headings($content, $post){
 
 	// rule vars
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$h1 = count($dom->find('h1'));
 	$h2 = count($dom->find('h2'));
 	$h3 = count($dom->find('h3'));

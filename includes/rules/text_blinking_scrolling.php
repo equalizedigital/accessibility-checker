@@ -2,7 +2,7 @@
 
 function edac_rule_text_blinking_scrolling($content, $post)
 {
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$errors = [];
 
 	/**
@@ -42,8 +42,8 @@ function edac_rule_text_blinking_scrolling($content, $post)
 	 * check for styles within style tags
 	 * <style></style>
 	 */
-	if($content['file_html']){
-		$dom_styles = $content['file_html'];
+	if($content){
+		$dom_styles = $content;
 		$styles = $dom_styles->find('style');
 
 		if ($styles) {
@@ -69,7 +69,7 @@ function edac_rule_text_blinking_scrolling($content, $post)
 
 function ac_css_text_decoration_blink_check($content, $styles){
 
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$errors = [];
 	$error_code = '';
 	$css_array = edac_parse_css($styles);

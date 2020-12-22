@@ -2,7 +2,7 @@
 
 function edac_rule_aria_hidden($content, $post){
 
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$errors = [];
 	$elements = $dom->find('[aria-hidden="true"]');
 
