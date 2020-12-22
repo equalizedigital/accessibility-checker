@@ -124,7 +124,7 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
-= 1.0.4 =
+= 1.0.5 =
 * On post validate check that the post is published.
 
 = 1.0.4 =
