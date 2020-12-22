@@ -59,6 +59,10 @@ function edac_save_post($post_ID, $post, $update)
  */
 function edac_validate($post_ID, $post)
 {
+	// check if post is published
+	if($post->post_status != 'publish')
+		return;
+
 	// check post type
 	$post_types = get_option('edac_post_types');
 	if (!in_array($post->post_type, $post_types))

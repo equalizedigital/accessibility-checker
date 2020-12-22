@@ -125,6 +125,9 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 == Changelog ==
 
 = 1.0.4 =
+* On post validate check that the post is published.
+
+= 1.0.4 =
 * Update policy page sanitize logic to allow for undefined value
 
 = 1.0.3 =
