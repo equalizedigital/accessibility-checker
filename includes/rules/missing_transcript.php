@@ -2,6 +2,8 @@
 
 function edac_rule_missing_transcript($content, $post){
 
+	if(empty($post->post_content)) return [];
+
 	$dom = edac_str_get_html($post->post_content);
 	$errors = [];
 	 //edac_log(get_oembed_response_data( $post, 500) );

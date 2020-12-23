@@ -59,10 +59,6 @@ function edac_save_post($post_ID, $post, $update)
  */
 function edac_validate($post_ID, $post)
 {
-	// check if post is published
-	/* if($post->post_status != 'publish')
-		return; */
-
 	// check post type
 	$post_types = get_option('edac_post_types');
 	if (!in_array($post->post_type, $post_types))
@@ -75,11 +71,6 @@ function edac_validate($post_ID, $post)
 	// check if user can edit post
 	if (!current_user_can('edit_pages'))
 		return;
-
-	// check if post has content
-	if (empty($post->post_content) && !get_transient( 'edacp_license_valid' ))
-		return;
-		
 
 	if(EDAC_DEBUG == true) edac_log('Post Saved: ' . $post_ID);
 
@@ -166,7 +157,7 @@ function edac_get_content($post)
 	$password = get_option('edac_authorization_password');
 
 	// set transient to get html from draft posts
-	set_transient('edac_public_draft',true);
+	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
 
 	// http authorization
 	if($username && $password){
@@ -183,7 +174,7 @@ function edac_get_content($post)
 			$content = file_get_html(get_the_permalink($post->post_ID));
 		}
 	} catch (Exception $e){
-		$content = null;
+		$content = [];
 	}
 	
 	// done getting html, delete transient

@@ -8,7 +8,9 @@
  * @return array
  */
 function edac_rule_incorrect_heading_order($content, $post){
-	
+
+	if(empty($post->post_content)) return [];
+
 	$dom = str_get_html($post->post_content);
 	$starting_heading_level = 1;
 	$errors = [];
