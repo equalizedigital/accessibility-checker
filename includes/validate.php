@@ -98,12 +98,14 @@ function edac_validate($post_ID, $post)
 	if ($rules) {
 		foreach ($rules as $rule) {
 			if ($rule['slug']) {
+				//edacp_insert_log_data($post_ID, $rule['slug'], 'rule check started');
 				if(EDAC_DEBUG == true){
 					$rule_process_time = microtime(true);
 				}
 				$errors = call_user_func('edac_rule_' . $rule['slug'], $content, $post);
 
 				if ($errors && is_array($errors)) {
+					//edacp_insert_log_data($post_ID, $rule['slug'], count($errors).' issues found');
 					foreach ($errors as $error) {
 						edac_insert_rule_data($post, $rule['slug'], $rule['rule_type'], $object = $error);
 					}
@@ -112,6 +114,7 @@ function edac_validate($post_ID, $post)
 					$time_elapsed_secs = microtime(true) - $rule_process_time;
 					$rule_performance_results[$rule['slug']] = $time_elapsed_secs;
 				}
+				//edacp_insert_log_data($post_ID, $rule['slug'], 'rule check completed');
 			}
 		}
 		if(EDAC_DEBUG == true){
