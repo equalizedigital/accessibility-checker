@@ -7,7 +7,7 @@ function edac_rule_color_contrast_failure($content, $post)
 	$errors = [];
 
 	$elements = $dom->find('*');
-	foreach ($elements as $element) {
+	/* foreach ($elements as $element) {
 
 		if (isset($element) and stristr($element->getAttribute('style'), 'color:') and $element->innertext != "") {
 			$foreground = "";
@@ -55,7 +55,7 @@ function edac_rule_color_contrast_failure($content, $post)
 				}
 			}
 		}
-	}
+	} */
 	
 	/*
 	 * check for styles within style tags
@@ -75,11 +75,13 @@ function edac_rule_color_contrast_failure($content, $post)
 		/*
 		* check for styles from file
 		*/
-		foreach ($dom_styles->find('link[rel="stylesheet"]') as $stylesheet){
+		/* foreach ($dom_styles->find('link[rel="stylesheet"]') as $stylesheet){
 			$stylesheet_url = $stylesheet->href;
+			edac_log($stylesheet_url);
+			edac_log('------');
 			$styles = @file_get_contents($stylesheet_url);
 			$errors = array_merge(ac_check_contrast($content, $styles),$errors);
-		}
+		} */
 	}
 
 	return $errors;
@@ -124,11 +126,15 @@ function ac_check_contrast($content, $styles)
 				foreach ($rules as $key => $value) {
 					$error_code .= $key . ': ' . $value . '; ';
 				}
-				$error_code .= '}';
+				/* $error_code .= '}';
 
-				//edac_log($error_code);
+				edac_log($element.'
+				
+				
+				'); */
 
 				$elements = $dom->find($element);
+				
 				if($elements){
 					foreach ($elements as $element) {
 						$errors[] = $element->outertext.' '.$error_code;
