@@ -628,6 +628,9 @@ function edac_summary($post_id){
 	$query = "SELECT count(*) FROM ".$wpdb->prefix."accessibility_checker where siteid = %d and postid = %d and rule = %s and ignre = %d";
 	$summary['contrast_errors'] = intval($wpdb->get_var($wpdb->prepare($query, get_current_blog_id(), $post_id, 'color_contrast_failure', 0)));
 
+	// remove color contrast from errors count
+	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
+
 	// reading grade level
 	$content_post = get_post($post_id);
 	
