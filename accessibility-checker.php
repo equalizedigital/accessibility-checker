@@ -212,7 +212,7 @@ function edac_register_rules(){
 
 	// missing_headings
 	array_push($rules, [
-		'title' => 'Missing Headings',
+		'title' => 'Missing Subheadings',
 		'info_url'  => 'https://a11ychecker.com/help1967',
 		'slug'  => 'missing_headings',
 		'rule_type' => 'warning',
