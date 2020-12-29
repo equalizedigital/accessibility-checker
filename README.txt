@@ -124,6 +124,12 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
+= 1.0.6 =
+* Check full page for issues
+* Check draft posts
+* Remove color contrast from error count
+* Update missing heading and heading order checks
+
 = 1.0.5 =
 * On post validate check that the post is published.
 
