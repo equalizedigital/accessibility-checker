@@ -83,6 +83,9 @@ function edac_validate($post_ID, $post)
 
 	if(EDAC_DEBUG == true) edac_log('Post Saved: ' . $post_ID);
 
+	//
+	edacp_insert_log_data('Post ID '.$post_ID);
+
 	// apply filters to content
 	$content = edac_get_content($post);
 	
@@ -98,14 +101,14 @@ function edac_validate($post_ID, $post)
 	if ($rules) {
 		foreach ($rules as $rule) {
 			if ($rule['slug']) {
-				//edacp_insert_log_data($post_ID, $rule['slug'], 'rule check started');
+				edacp_insert_log_data($rule['slug'].' rule check started for post `'.$post_ID.'`...');
 				if(EDAC_DEBUG == true){
 					$rule_process_time = microtime(true);
 				}
 				$errors = call_user_func('edac_rule_' . $rule['slug'], $content, $post);
 
 				if ($errors && is_array($errors)) {
-					//edacp_insert_log_data($post_ID, $rule['slug'], count($errors).' issues found');
+					edacp_insert_log_data($rule['slug'].' '.count($errors).' issues found for post `'.$post_ID.'`...');
 					foreach ($errors as $error) {
 						edac_insert_rule_data($post, $rule['slug'], $rule['rule_type'], $object = $error);
 					}
@@ -114,7 +117,7 @@ function edac_validate($post_ID, $post)
 					$time_elapsed_secs = microtime(true) - $rule_process_time;
 					$rule_performance_results[$rule['slug']] = $time_elapsed_secs;
 				}
-				//edacp_insert_log_data($post_ID, $rule['slug'], 'rule check completed');
+				edacp_insert_log_data($rule['slug'].' rule check completed for post `'.$post_ID.'`...');
 			}
 		}
 		if(EDAC_DEBUG == true){
@@ -131,6 +134,9 @@ function edac_validate($post_ID, $post)
 
 	// set post meta checked
 	add_post_meta($post_ID, '_edac_post_checked', true, true);
+
+	//
+	edacp_insert_log_data('---');
 }
 
 /**
