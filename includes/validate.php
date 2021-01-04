@@ -76,7 +76,9 @@ function edac_validate($post_ID, $post)
 
 	// apply filters to content
 	$content = edac_get_content($post);
-	
+	if ( ! $content ) {
+		return;
+	}
 	// set record check flag on previous error records
 	edac_remove_corrected_posts($post_ID, $post->post_type, $pre = 1);
 
@@ -146,12 +148,12 @@ function edac_remove_corrected_posts($post_ID, $type, $pre = 1)
 /**
  * Get content
  *
- * @param array $post
- * @return array
+ * @param  WP_Post $post
+ * @return simple_html_dom | bool
  */
 function edac_get_content($post)
 {
-	$content = [];
+	$content = false;
 	$context = '';
 	$username = get_option('edac_authorization_username');
 	$password = get_option('edac_authorization_password');
@@ -174,7 +176,7 @@ function edac_get_content($post)
 			$content = file_get_html(get_the_permalink($post->post_ID));
 		}
 	} catch (Exception $e){
-		$content = [];
+		$content = false;
 	}
 	
 	// done getting html, delete transient
