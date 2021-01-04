@@ -863,7 +863,7 @@ function edac_readability_ajax(){
 			if($post_grade_failed){
 				$html .='<p class="edac-readability-list-item-description">Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below.</p>';
 			}elseif($post_grade == 0){
-				$html .='<p class="edac-readability-list-item-description">Your post does not contain enough content to calculate it\'s reading level.</p>';
+				$html .='<p class="edac-readability-list-item-description">Your post does not contain enough content to calculate its reading level.</p>';
 			}else{
 				$html .= '<p class="edac-readability-list-item-description">A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page.</p>';
 			}
