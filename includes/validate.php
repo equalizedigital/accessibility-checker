@@ -12,7 +12,7 @@ function edac_post_on_load()
 		global $post;
 		$checked = get_post_meta($post->ID, '_edac_post_checked', true);
 		if ($checked == false) {
-			edac_validate($post->ID, $post);
+			edac_validate($post->ID, $post, $action = 'load');
 		}
 	}
 }
@@ -47,7 +47,7 @@ function edac_save_post($post_ID, $post, $update)
 	if (wp_verify_nonce($_POST['_inline_edit'], 'inlineeditnonce'))
 		return;
 
-	edac_validate($post_ID, $post);
+	edac_validate($post_ID, $post, $action = 'save');
 }
 
 /**
@@ -57,17 +57,18 @@ function edac_save_post($post_ID, $post, $update)
  * @param array $post
  * @return void
  */
-function edac_validate($post_ID, $post)
+function edac_validate($post_ID, $post, $action)
 {	
 	// check post type
 	$post_types = get_option('edac_post_types');
 	if (!in_array($post->post_type, $post_types))
 		return;
 
-	do_action( 'edac_before_validate', $post_ID);
+	do_action( 'edac_before_validate', $post_ID, $action);
 
 	// apply filters to content
 	$content = edac_get_content($post);
+	do_action( 'edac_after_get_content',$post_ID, $content, $action);
 	if ( ! $content ) {
 		return;
 	}
@@ -84,14 +85,14 @@ function edac_validate($post_ID, $post)
 		foreach ($rules as $rule) {
 			
 			if ($rule['slug']) {
-				do_action( 'edac_before_rule', $post_ID, $rule);
+				do_action( 'edac_before_rule', $post_ID, $rule, $action);
 				if(EDAC_DEBUG == true){
 					$rule_process_time = microtime(true);
 				}
 				$errors = call_user_func('edac_rule_' . $rule['slug'], $content, $post);
 
 				if ($errors && is_array($errors)) {
-					do_action( 'edac_rule_errors', $post_ID, $rule, $errors);
+					do_action( 'edac_rule_errors', $post_ID, $rule, $errors, $action);
 					foreach ($errors as $error) {
 						edac_insert_rule_data($post, $rule['slug'], $rule['rule_type'], $object = $error);
 					}
@@ -100,7 +101,7 @@ function edac_validate($post_ID, $post)
 					$time_elapsed_secs = microtime(true) - $rule_process_time;
 					$rule_performance_results[$rule['slug']] = $time_elapsed_secs;
 				}
-				do_action( 'edac_after_rule', $post_ID, $rule);
+				do_action( 'edac_after_rule', $post_ID, $rule, $action);
 			}
 		}
 		if(EDAC_DEBUG == true){
@@ -120,7 +121,7 @@ function edac_validate($post_ID, $post)
 
 	//
 	//edacp_insert_log_data('---');
-	do_action( 'edac_after_validate', $post_ID);
+	do_action( 'edac_after_validate', $post_ID, $action);
 }
 
 /**
@@ -180,8 +181,6 @@ function edac_get_content($post)
 	
 	// done getting html, delete transient
 	delete_transient('edac_public_draft');
-	
-	do_action( 'edac_after_get_content',$post->post_ID, $content);
 
 	return $content;
 }
