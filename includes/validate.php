@@ -76,18 +76,15 @@ function edac_validate($post_ID, $post)
 	/* if (!current_user_can('edit_pages'))
 		return; */
 
-	// check if post has content
-	if (empty($post->post_content) && !get_transient( 'edacp_license_valid' ))
-		return;
-		
-
 	if(EDAC_DEBUG == true) edac_log('Post Saved: ' . $post_ID);
 
 	do_action( 'edac_before_validate', $post_ID);
 
 	// apply filters to content
 	$content = edac_get_content($post);
-	
+	if ( ! $content ) {
+		return;
+	}
 	// set record check flag on previous error records
 	edac_remove_corrected_posts($post_ID, $post->post_type, $pre = 1);
 
@@ -99,6 +96,7 @@ function edac_validate($post_ID, $post)
 	}
 	if ($rules) {
 		foreach ($rules as $rule) {
+			
 			if ($rule['slug']) {
 				do_action( 'edac_before_rule', $post_ID, $rule);
 				if(EDAC_DEBUG == true){
@@ -163,63 +161,58 @@ function edac_remove_corrected_posts($post_ID, $type, $pre = 1)
 /**
  * Get content
  *
- * @param array $post
- * @return array
+ * @param  WP_Post $post
+ * @return simple_html_dom | bool
  */
 function edac_get_content($post)
 {
-	if(EDAC_DEBUG == true) $time = microtime(true);
+	$content = false;
+	$context = '';
+	$username = get_option('edac_authorization_username');
+	$password = get_option('edac_authorization_password');
 
-	$content = [];
+	// set transient to get html from draft posts
+	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
 
-	// the_content
-	$the_content = $post->post_content;
-	$the_content = do_blocks($the_content);
-	$the_content = do_shortcode($the_content);
-	$content['the_content'] = !empty($the_content) ? $the_content : ' ';
-
-	// the_content_html
-	$content['the_content_html'] = !empty($the_content) ? str_get_html($the_content) : ' ';
+	// http authorization
+	if($username && $password){
+		$context = stream_context_create(array(
+			'http' => array(
+				'header'  => "Authorization: Basic " . base64_encode("$username:$password")
+			)
+		));
+	}
+	try{
+		if($context){
+			$content = file_get_html(get_the_permalink($post->post_ID), false, $context);
+		}else{
+			$content = file_get_html(get_the_permalink($post->post_ID));
+		}
+	} catch (Exception $e){
+		$content = false;
+	}
 	
-	// file_html
-	if($post->post_status == 'publish'){
-		$username = get_option('edac_authorization_username');
-		$password = get_option('edac_authorization_password');
-		$context = '';
-		if($username && $password){
-			$context = stream_context_create(array(
-				'http' => array(
-					'header'  => "Authorization: Basic " . base64_encode("$username:$password")
-				)
-			));
-		}
-		
-		try{
-			if($context){
-				$content['file_html'] = file_get_html(get_the_permalink($post->ID), false, $context);
-			}else{
-				$content['file_html'] = file_get_html(get_the_permalink($post->ID));
-			}
-		} catch (Exception $e){
-			$content['file_html'] = null;
-		}
-	}else{
-		$content['file_html'] = null;
-	}
-
-	// file_styles
-	/* $content['file_styles'] = '';
-	foreach($content['file_html']->find('link[rel="stylesheet"]') as $stylesheet){
-		$stylesheet_url = $stylesheet->href;
-		$content['file_styles'] .= file_get_contents($stylesheet_url);
-	} */
-
-	if(EDAC_DEBUG == true) edac_log('edac_get_content: '.(microtime(true) - $time));
-
-	// filter content
-	if(has_filter('edac_get_content')) {
-		$content = apply_filters('edac_get_content', $content);
-	}
+	// done getting html, delete transient
+	delete_transient('edac_public_draft');
 
 	return $content;
 }
+
+/**
+ * Set drafts post_status to publish momentarily while getting page html
+ *
+ * @param array $query
+ * @return void
+ */
+function edac_show_draft_posts( $query ) {
+
+    if ( is_admin() || is_feed() )
+		return;
+		
+	if(get_transient('edac_public_draft') == false)
+		return;
+	
+	$query->set( 'post_status', array( 'publish', 'draft', 'pending', 'auto-draft' ) );
+}
+
+add_action( 'pre_get_posts', 'edac_show_draft_posts' );

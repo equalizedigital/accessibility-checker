@@ -8,7 +8,7 @@
 
 function edac_rule_possible_heading($content, $post){
 
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$errors = [];
 
 	/*
@@ -104,8 +104,8 @@ function edac_rule_possible_heading($content, $post){
 	 * check for styles within style tags
 	 * <style></style>
 	 */
-	if($content['file_html']){
-		$dom_styles = $content['file_html'];
+	if($content){
+		$dom_styles = $content;
 		$styles = $dom_styles->find('style');
 
 		if ($styles) {
@@ -131,7 +131,7 @@ function edac_rule_possible_heading($content, $post){
 
 function ac_css_font_size_weight_check($content, $styles){
 
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$errors = [];
 	$error_code = '';
 	$css_array = edac_parse_css($styles);

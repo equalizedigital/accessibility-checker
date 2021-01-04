@@ -3,7 +3,7 @@
 function edac_rule_link_non_html_file($content, $post){
 	
 	// rule vars
-    $dom = $content['the_content_html'];
+    $dom = $content;
     $file_extensions = ['.rtf', '.wpd', '.ods', '.odt', '.odp', '.sxw', '.sxc', '.sxd', '.sxi', '.pages', '.key'];
     $errors = [];
 

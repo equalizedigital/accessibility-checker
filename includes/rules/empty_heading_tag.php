@@ -3,7 +3,7 @@
 function edac_rule_empty_heading_tag($content, $post){
     
     // rule vars
-    $dom = $content['the_content_html'];
+    $dom = $content;
     $errors = [];
 
     // Loop heading 1 - 6

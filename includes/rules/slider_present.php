@@ -32,7 +32,7 @@
  */
 function edac_rule_slider_present($content, $post)
 {
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$errors = [];
 
 	$elements = $dom->find('.slider, .carousel, .owl-carousel, .soliloquy-container, .n2-section-smartslider, .metaslider, .master-slider, [data-layerslider-uid], .rev_slider, .royalSlider, .wonderpluginslider, .meteor-slides, .flexslider, .slick-slider, .swiper-container, .flickity-slider, .spacegallery, .blueimp-gallery, .seq-active, .siema, .keen-slider, [data-jssor-slider], .bxslider, .glide--slider');

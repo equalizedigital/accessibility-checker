@@ -3,7 +3,7 @@
 function edac_rule_image_map_missing_alt_text($content, $post){
 	
 	// rule vars
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$maps = $dom->find('map');
 	$errors = [];
 

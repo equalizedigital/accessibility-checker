@@ -10,7 +10,7 @@
  */
 function edac_rule_empty_link($content, $post)
 {
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$errors = [];
 
 	$links = $dom->find('a');

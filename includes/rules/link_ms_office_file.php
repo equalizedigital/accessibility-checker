@@ -3,7 +3,7 @@
 function edac_rule_link_ms_office_file($content, $post){
 	
 	// rule vars
-    $dom = $content['the_content_html'];
+    $dom = $content;
     $file_extensions = ['.doc','.docx','.xls','.xlsx','.ppt','.pptx','.pps','.ppsx'];
     $errors = [];
 

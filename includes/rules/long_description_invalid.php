@@ -3,7 +3,7 @@
 function edac_rule_long_description_invalid($content, $post){
 
     // rule vars
-	$dom = $content['the_content_html'];
+	$dom = $content;
     $images = $dom->find('img');
     $image_extensions = ['.apng','.bmp','.gif','.ico','.cur','.jpg','.jpeg','.jfif','.pjpeg','.pjp','.png','.svg','.tif','.tiff','.webp'];
     $errors = [];

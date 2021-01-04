@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.0.3
+ * Version:           1.0.7
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -67,7 +67,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
  * Currently plugin version.
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'EDAC_VERSION', '1.0.3' );
+define( 'EDAC_VERSION', '1.0.7' );
 
 /**
  * Enable EDAC_DEBUG mode
@@ -212,7 +212,7 @@ function edac_register_rules(){
 
 	// missing_headings
 	array_push($rules, [
-		'title' => 'Missing Headings',
+		'title' => 'Missing Subheadings',
 		'info_url'  => 'https://a11ychecker.com/help1967',
 		'slug'  => 'missing_headings',
 		'rule_type' => 'warning',
@@ -628,6 +628,9 @@ function edac_summary($post_id){
 	$query = "SELECT count(*) FROM ".$wpdb->prefix."accessibility_checker where siteid = %d and postid = %d and rule = %s and ignre = %d";
 	$summary['contrast_errors'] = intval($wpdb->get_var($wpdb->prepare($query, get_current_blog_id(), $post_id, 'color_contrast_failure', 0)));
 
+	// remove color contrast from errors count
+	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
+
 	// reading grade level
 	$content_post = get_post($post_id);
 	
@@ -860,7 +863,7 @@ function edac_readability_ajax(){
 			if($post_grade_failed){
 				$html .='<p class="edac-readability-list-item-description">Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below.</p>';
 			}elseif($post_grade == 0){
-				$html .='<p class="edac-readability-list-item-description">Your post does not contain enough content to calculate it\'s reading level.</p>';
+				$html .='<p class="edac-readability-list-item-description">Your post does not contain enough content to calculate its reading level.</p>';
 			}else{
 				$html .= '<p class="edac-readability-list-item-description">A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page.</p>';
 			}

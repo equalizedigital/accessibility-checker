@@ -3,7 +3,7 @@
 function edac_rule_link_pdf($content, $post){
 	
 	// rule vars
-    $dom = $content['the_content_html'];
+    $dom = $content;
     $errors = [];
 
     $as = $dom->find('a');

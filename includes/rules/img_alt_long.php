@@ -3,7 +3,7 @@
 function edac_rule_img_alt_long($content, $post){
 		
 	// rule vars
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$errors = [];
 
 	$images = $dom->find('img');

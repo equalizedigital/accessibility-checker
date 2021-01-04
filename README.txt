@@ -124,6 +124,22 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
+= 1.0.7 =
+* Ensure checks are not run if content not retrieved
+* Minor text fixes
+
+= 1.0.6 =
+* Check full page for issues
+* Check draft posts
+* Remove color contrast from error count
+* Update missing heading and heading order checks
+
+= 1.0.5 =
+* On post validate check that the post is published.
+
+= 1.0.4 =
+* Update policy page sanitize logic to allow for undefined value
+
 = 1.0.3 =
 * Minor bug fixes to activation redirect and quick edit post updating
 * Image map missing alternative text error if only a space is present

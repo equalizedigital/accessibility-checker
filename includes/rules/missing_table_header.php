@@ -3,7 +3,7 @@
 function edac_rule_missing_table_header($content, $post){
     
     // rule vars
-    $dom = $content['the_content_html'];
+    $dom = $content;
     $errors = [];
 
     $tables = $dom->find('table');

@@ -3,7 +3,7 @@
 function edac_rule_tab_order_modified($content, $post){
 	
 	// rule vars
-	$dom = $content['the_content_html'];
+	$dom = $content;
 	$tags = array('a','input','select','textarea','button','datalist', 'output', 'area');
 	$errors = [];
 	

@@ -2,9 +2,9 @@
 
 function edac_rule_missing_lang_attr($content, $post)
 {
-	if(!$content['file_html']) return;
+	if(!$content) return;
 
-	$dom = $content['file_html'];
+	$dom = $content;
 	$errors = [];
 	
 	$elements = $dom->find('html');

@@ -3,7 +3,7 @@
 function edac_rule_text_justified($content, $post){
 
 	// rule vars
-	$content = $content['the_content'];
+	$content = $content;
 	$fontsearchpatterns = array();
 	$fontsearchpatterns[] = "|(text-)?align:\s?justify|i";
 	$errors = [];
