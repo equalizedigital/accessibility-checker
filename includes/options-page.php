@@ -298,7 +298,9 @@ function edac_post_types_cb(){
 			?>
 			
 		</fieldset>
-		<p class="edac-description"><?php echo __('To check content other than posts and pages, please ','edac'); ?><a href="https://products.equalizedigital.com/" target="_blank"><?php echo __('upgrade to pro','edac'); ?></a>.</p>
+		<?php if (get_transient( 'edacp_license_valid' ) == false){ ?>
+			<p class="edac-description"><?php echo __('To check content other than posts and pages, please ','edac'); ?><a href="https://products.equalizedigital.com/" target="_blank"><?php echo __('upgrade to pro','edac'); ?></a>.</p>
+		<?php } ?>
 	<?php
 
 }
