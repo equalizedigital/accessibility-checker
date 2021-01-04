@@ -195,6 +195,8 @@ function edac_get_content($post)
 	// done getting html, delete transient
 	delete_transient('edac_public_draft');
 
+	do_action( 'edac_content',$post->post_ID, $content);
+
 	return $content;
 }
 
