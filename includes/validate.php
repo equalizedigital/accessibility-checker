@@ -59,24 +59,10 @@ function edac_save_post($post_ID, $post, $update)
  */
 function edac_validate($post_ID, $post)
 {	
-	// check if post is published
-	if($post->post_status != 'publish')
-		return;
-
 	// check post type
 	$post_types = get_option('edac_post_types');
 	if (!in_array($post->post_type, $post_types))
 		return;
-
-	// remove error records if post no longer exists
-	if (get_post_status($post_ID) == false) {
-	}
-
-	// check if user can edit post
-	/* if (!current_user_can('edit_pages'))
-		return; */
-
-	if(EDAC_DEBUG == true) edac_log('Post Saved: ' . $post_ID);
 
 	do_action( 'edac_before_validate', $post_ID);
 
@@ -184,9 +170,9 @@ function edac_get_content($post)
 	}
 	try{
 		if($context){
-			$content = file_get_html(get_the_permalink($post->post_ID), false, $context);
+			$content = file_get_html(get_the_permalink($post->ID), false, $context);
 		}else{
-			$content = file_get_html(get_the_permalink($post->post_ID));
+			$content = file_get_html(get_the_permalink($post->ID));
 		}
 	} catch (Exception $e){
 		$content = false;
@@ -194,8 +180,8 @@ function edac_get_content($post)
 	
 	// done getting html, delete transient
 	delete_transient('edac_public_draft');
-
-	do_action( 'edac_content',$post->post_ID, $content);
+	
+	do_action( 'edac_after_get_content',$post->post_ID, $content);
 
 	return $content;
 }
@@ -216,5 +202,3 @@ function edac_show_draft_posts( $query ) {
 	
 	$query->set( 'post_status', array( 'publish', 'draft', 'pending', 'auto-draft' ) );
 }
-
-add_action( 'pre_get_posts', 'edac_show_draft_posts' );
