@@ -124,6 +124,10 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
+= 1.0.7 =
+* Ensure checks are not run if content not retrieved
+* Minor text fixes
+
 = 1.0.6 =
 * Check full page for issues
 * Check draft posts
