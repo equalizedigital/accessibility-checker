@@ -124,6 +124,10 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
+= 1.0.8 =
+* Added support for fullsite scan
+* Added actions for log
+
 = 1.0.7 =
 * Ensure checks are not run if content not retrieved
 * Minor text fixes
