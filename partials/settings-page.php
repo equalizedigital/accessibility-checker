@@ -34,7 +34,7 @@ $tab = (array_search($tab, array_column($settings_tab_items, 'slug')) !== FALSE)
 			$label = $settings_tab_item['label'];
 			?>
 			<a href="?page=accessibility_checker_settings<?php echo $query_var; ?>" class="nav-tab <?php if($tab===$slug):?>nav-tab-active<?php endif; ?>"><?php echo $label; ?></a>
-			<?
+			<?php
 		}
 		echo '</nav>';
 	}	
