@@ -79,19 +79,9 @@ function edac_css_underlined_text_check($content, $styles){
 		foreach ($css_array as $element => $rules) {
 			if (array_key_exists('text-decoration', $rules)) {
 
-				//edac_log(strtolower($rules['text-decoration']));
+				if(stristr(strtolower($rules['text-decoration']), 'underline')){
 
-				//edac_log(strpos($rules['text-decoration'],'text-decoration'));
-				if(strpos($rules['text-decoration'],'text-decoration') == true){
-					edac_log('FOUND');
-				}
-
-				//if(preg_match('(rem|em|%|inherit)', $rules['font-size']) === 1) { continue; } 
-
-				//if($rules['font-size'] <= 10){
-
-
-					/* $error_code = $element . '{ ';
+					$error_code = $element . '{ ';
 					foreach ($rules as $key => $value) {
 						$error_code .= $key . ': ' . $value . '; ';
 					}
@@ -100,14 +90,12 @@ function edac_css_underlined_text_check($content, $styles){
 					$elements = $dom->find($element);
 					if($elements){
 						foreach ($elements as $element) {
-							if($element->tag == 'p'){
+							if($element->tag != 'a'){
 								$errors[] = $element->outertext.' '.$error_code;
 							}
 						}
-					} */
-
-
-				//}
+					}
+				}
 			}
 		}
 	}
