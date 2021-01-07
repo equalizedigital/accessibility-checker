@@ -32,7 +32,7 @@
   $(function () {
 
     // Accessibility Statement disable
-    $("input[type=checkbox][name=edac_add_footer_accessibility_statement]").change(function() {
+    $("input[type=checkbox][name=edac_add_footer_accessibility_statement]").on('change',function () {
       if(this.checked) {
         $("input[type=checkbox][name=edac_include_accessibility_statement_link]").prop('disabled',false);
       }else{
@@ -46,7 +46,7 @@
     if ($("input[type=radio][name=edac_simplified_summary_position]:checked").val() == "none") {
       $("#ac-simplified-summary-option-code").show();
     }
-    $("input[type=radio][name=edac_simplified_summary_position]").change(function () {
+    $("input[type=radio][name=edac_simplified_summary_position]").on('load',function () {
       if (this.value == "none") {
         $("#ac-simplified-summary-option-code").show();
       } else {
@@ -55,7 +55,7 @@
     });
   });
 
-  $(window).load(function () {
+  $(window).on('load',function () {
     /**
      * Tabs
      */
