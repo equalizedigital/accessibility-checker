@@ -124,6 +124,9 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
+= 1.0.9 =
+* Updates to missing title check
+
 = 1.0.8 =
 * Added support for fullsite scan
 * Added actions for log
