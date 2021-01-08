@@ -37,10 +37,11 @@ function edac_rule_text_small($content, $post){
 
 								preg_match_all('!\d+!', $absolute_fontsize_errorcode, $matches);
 
-								if(implode(' ',$matches[0]) <= 10){
-
+								if(
+									stristr($absolute_fontsize_errorcode, 'px') == 'px' && implode(' ',$matches[0]) <= 10
+									|| stristr($absolute_fontsize_errorcode, 'pt') == 'pt' && implode(' ',$matches[0]) <= 13
+								){
 									$errors[] = $element;
-
 								}
 							}
 						}
@@ -97,15 +98,10 @@ function ac_css_small_text_check($content, $styles){
 	if ($css_array) {
 		foreach ($css_array as $element => $rules) {
 			if (array_key_exists('font-size', $rules)) {
+				
+				$value = str_replace('.', '', preg_replace('/\d/', '', $rules['font-size'] ));
 
-				//if(preg_match('(rem|em|%|inherit)', $rules['font-size']) === 1) { continue; } 
-				edac_log($rules['font-size']);
-				//edac_log($element);
-				if($element == 'body'){
-					edac_log($rules['font-size']);
-				}
-
-				if($rules['font-size'] <= 10){
+				if($value == 'px' && $rules['font-size'] <= 10 || $value == 'pt' && $rules['font-size'] <= 13){
 
 					$error_code = $element . '{ ';
 					foreach ($rules as $key => $value) {
@@ -129,38 +125,3 @@ function ac_css_small_text_check($content, $styles){
 	return $errors;
 
 }
-
-/*
-<absolute-size> values
-font-size: xx-small;
-font-size: x-small;
-font-size: small;
-font-size: medium;
-font-size: large;
-font-size: x-large;
-font-size: xx-large;
-font-size: xxx-large;
-
-<relative-size> values
-font-size: smaller;
-font-size: larger;
-
-<length> values
-font-size: 12px;
-font-size: 0.8em;
-
-<percentage> values
-font-size: 80%;
-
-Global values
-font-size: inherit;
-font-size: initial;
-font-size: unset;
-
-
-em and ex = font size of parent
-rem = html font size
-% = relative to parent font size
-
-font-size: 62.5%; font-size 1em = 10px on default browser settings
-*/
