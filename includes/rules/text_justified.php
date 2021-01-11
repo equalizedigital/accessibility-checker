@@ -1,34 +1,112 @@
 <?php
 
+/**
+ * Check for justified text
+ *
+ * @param string $content
+ * @param array $post
+ * @return array
+ */
 function edac_rule_text_justified($content, $post){
 
 	// rule vars
-	$content = $content;
 	$fontsearchpatterns = array();
 	$fontsearchpatterns[] = "|(text-)?align:\s?justify|i";
 	$errors = [];
 
-	foreach($fontsearchpatterns as $key => $pattern){
+	/*
+	 * check for justify font-size styles
+	 * < class="text-align: justify">test</>
+	 */
+	$dom = $content;
+	$elements = $dom->find('*');
+	if ($elements) {
+		foreach ($elements as $element) {
 
-		if(preg_match_all($pattern, $content, $matches,PREG_OFFSET_CAPTURE)){
-			$matchsize = sizeof($matches[0]);
-			
-			for($i=0; $i < $matchsize; $i++){
-				
-				if(isset($matches[0][$i][0]) and $matches[0][$i][0] != ""){
-					
-					$text_justified_errorcode = htmlspecialchars($matches[0][$i][0]).__(' (char #: ','edac').$matches[0][$i][1].')';
+			if (isset($element) && stristr($element->getAttribute('style'), 'text-align:') && $element->innertext != "") {
 
-					if($text_justified_errorcode){
-						$errors[] = $text_justified_errorcode;
+				foreach ($fontsearchpatterns as $pattern) {
+					if (preg_match_all($pattern, $element, $matches, PREG_PATTERN_ORDER)) {
+						$matchsize = sizeof($matches);
+						for ($i = 0; $i < $matchsize; $i++) {
+							if (isset($matches[0][$i]) and $matches[0][$i] != "") {
+								$errors[] = $element;
+							}
+						}
 					}
-
 				}
-
 			}
-
 		}
-
 	}
+
+	/*
+	 * check for text-align: justify styles within style tags
+	 * <style></style>
+	 */
+	if($content){
+		$dom = $content;
+
+		$styles = $dom->find('style');
+
+		if ($styles) {
+			foreach ($styles as $style) {
+				$errors = array_merge(edac_css_justified_text_check($content, $style->innertext),$errors);
+			}
+		}
+		
+
+		/*
+		* check for text-align: justify styles from file
+		*/
+		foreach ($dom->find('link[rel="stylesheet"]') as $stylesheet){
+			$stylesheet_url = $stylesheet->href;
+			$styles = @file_get_contents($stylesheet_url);
+			$errors = array_merge(edac_css_justified_text_check($content, $styles),$errors);
+		}
+	}
+
 	return $errors;
-} 
+}
+
+/**
+ * Check for text-align: justify in css files
+ *
+ * @param $content
+ * @param $styles
+ * @return array
+ */
+function edac_css_justified_text_check($content, $styles){
+
+	$dom = $content;
+	$errors = [];
+	$error_code = '';
+	$css_array = edac_parse_css($styles);
+
+	if ($css_array) {
+		foreach ($css_array as $element => $rules) {
+			if (array_key_exists('text-align', $rules)) {
+				
+				$value = preg_replace('/\d/', '', $rules['text-align'] );
+
+				if($value == 'justify'){
+
+					$error_code = $element . '{ ';
+					foreach ($rules as $key => $value) {
+						$error_code .= $key . ': ' . $value . '; ';
+					}
+					$error_code .= '}';
+
+					$elements = $dom->find($element);
+					if($elements){
+						foreach ($elements as $element) {
+							$errors[] = $element->outertext.' '.$error_code;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return $errors;
+
+}
