@@ -1,18 +1,12 @@
 <?php
 
 function edac_rule_missing_lang_attr($content, $post)
-{
-	if(!$content) return;
-
-	$dom = $content;
+{	
 	$errors = [];
-	
-	$elements = $dom->find('html');
-	if($elements){
-		foreach ($elements as $element) {	
-			if($element->getAttribute('lang') != "" || $element->getAttribute('xml:lang') != "") continue;
-			$errors[] = edac_simple_dom_remove_child($element);
-		}
+	$elements = $content->find('html');
+	if($elements[0]){
+		if($elements[0]->getAttribute('lang') != "" || $elements[0]->getAttribute('xml:lang') != "") return;		
+		$errors[] = edac_simple_dom_remove_child($elements[0]);
 	}
 	return $errors;
 }
