@@ -72,6 +72,10 @@ if ( ! defined( 'EDAC_VERSION' ) ) {
 	define( 'EDAC_VERSION', '1.0.11' );
 }
 
+if ( ! defined( 'EDAC_DB_VERSION' ) ) {
+	define( 'EDAC_DB_VERSION', '1.0.0' );
+}
+
 // Plugin Folder Path
 if ( ! defined( 'EDAC_PLUGIN_DIR' ) ) {
 	define( 'EDAC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );

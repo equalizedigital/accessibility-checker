@@ -116,25 +116,38 @@ function edac_tools_sysinfo_get() {
 	//$return .= 'Admin AJAX:               ' . ( edac_test_ajax_works() ? 'Accessible' : 'Inaccessible' ) . "\n";
 	$return .= 'WP_DEBUG:                 ' . ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Not set' ) . "\n";
 	$return .= 'Memory Limit:             ' . WP_MEMORY_LIMIT . "\n";
-	$return .= 'Registered Post Stati: ' . implode( ', ', get_post_stati() ) . "\n";
+	$return .= 'Registered Post Stati:    ' . implode( ', ', get_post_stati() ) . "\n";
 
 	$return  = apply_filters( 'edac_sysinfo_after_wordpress_config', $return );
 
 	// EDAC configuration
-	$return .= "\n" . '-- EDAC Configuration' . "\n\n";
+	$return .= "\n" . '-- Accessibility Checker Configuration' . "\n\n";
 	$return .= 'Version:                  ' . EDAC_VERSION . "\n";
-	$return .= 'Upgraded From:            ' . get_option( 'edac_version_upgraded_from', 'None' ) . "\n";
-	//$return .= 'Test Mode:                ' . ( edac_is_test_mode() ? "Enabled\n" : "Disabled\n" );
-	//$return .= 'AJAX:                     ' . ( ! edac_is_ajax_disabled() ? "Enabled\n" : "Disabled\n" );
-	//$return .= 'Guest Checkout:           ' . ( edac_no_guest_checkout() ? "Disabled\n" : "Enabled\n" );
-	//$return .= 'Symlinks:                 ' . ( apply_filters( 'edac_symlink_file_downloads', edac_get_option( 'symlink_file_downloads', false ) ) && function_exists( 'symlink' ) ? "Enabled\n" : "Disabled\n" );
-	//$return .= 'Download Method:          ' . ucfirst( edac_get_file_download_method() ) . "\n";
-	//$return .= 'Currency Code:            ' . edac_get_currency() . "\n";
-	//$return .= 'Currency Position:        ' . edac_get_option( 'currency_position', 'before' ) . "\n";
-	//$return .= 'Decimal Separator:        ' . edac_get_option( 'decimal_separator', '.' ) . "\n";
-	//$return .= 'Thousands Separator:      ' . edac_get_option( 'thousands_separator', ',' ) . "\n";
-	//$return .= 'Upgrades Completed:       ' . implode( ',', edac_get_completed_upgrades() ) . "\n";
-	//$return .= 'Download Link Expiration: ' . edac_get_option( 'download_link_expiration' ) . " hour(s)\n";
+	$return .= 'Database Version:         ' . get_option('edac_db_version') . "\n";
+	$return .= 'Policy Page:              ' . ( get_option('edac_accessibility_policy_page') ? get_permalink(get_option('edac_accessibility_policy_page'))."\n" : "Not Set\n" );
+	$return .= 'Activation Date:          ' . get_option('edac_activation_date') . "\n";
+	$return .= 'Footer Statement:         ' . ( get_option('edac_add_footer_accessibility_statement') ? "Enabled\n" : "Disabled\n" );
+	$return .= 'Authorization Username:   ' . ( get_option('edac_authorization_username') ? get_option('edac_authorization_username')."\n" : "Not Set\n" );
+	$return .= 'Authorization Password:   ' . ( get_option('edac_authorization_password') ? get_option('edac_authorization_password')."\n" : "Not Set\n" );
+	$return .= 'Delete Data:              ' . ( get_option('edac_delete_data') ? "Enabled\n" : "Disabled\n" );
+	$return .= 'Include Statement Link:   ' . ( get_option('edac_include_accessibility_statement_link') ? "Enabled\n" : "Disabled\n" );
+	$return .= 'Post Types:               ' . implode(', ', get_option('edac_post_types'))."\n";
+	$return .= 'Simplified Sum Position:  ' . get_option('edac_simplified_summary_position')."\n";
+	$return .= 'Simplified Sum Prompt:    ' . get_option('edac_simplified_summary_prompt')."\n";
+
+	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php')){
+		
+		$return .= "\n" . '-- Accessibility Checker Pro Configuration' . "\n\n";
+		$return .= 'Version:                  ' . EDACP_VERSION . "\n";
+		$return .= 'Database Version:         ' . get_option('edacp_db_version') . "\n";
+		$return .= 'License Status:           ' . get_option('edacp_license_status') . "\n";
+		$return .= 'Scan ID:                  ' . get_transient( 'edacp_scan_id' ) . "\n";
+		$return .= 'Scan Total:               ' . get_transient( 'edacp_scan_total' ) . "\n";
+		$return .= 'Simplified Sum Heading:   ' . get_option('edacp_simplified_summary_heading')."\n";
+		$return .= 'Background Scan Schedule: ' . get_option('edacp_background_scan_schedule') . "\n";
+		$return .= 'Ignore Permissions:       ' . ( get_option('edacp_ignore_user_roles') ? implode(', ', get_option('edacp_ignore_user_roles'))."\n" : "None\n" );
+
+	}
 
 	$return  = apply_filters( 'edac_sysinfo_after_edac_config', $return );
 
