@@ -114,7 +114,7 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Remote Post:              ' . $WP_REMOTE_POST . "\n";
 	$return .= 'Table Prefix:             ' . 'Length: ' . strlen( $wpdb->prefix ) . '   Status: ' . ( strlen( $wpdb->prefix ) > 16 ? 'ERROR: Too long' : 'Acceptable' ) . "\n";
 	//$return .= 'Admin AJAX:               ' . ( edac_test_ajax_works() ? 'Accessible' : 'Inaccessible' ) . "\n";
-	$return .= 'WP_DEBUG:                 ' . ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Not set' ) . "\n";
+	$return .= 'WP_DEBUG:                 ' . ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Unset' ) . "\n";
 	$return .= 'Memory Limit:             ' . WP_MEMORY_LIMIT . "\n";
 	$return .= 'Registered Post Stati:    ' . implode( ', ', get_post_stati() ) . "\n";
 
@@ -124,11 +124,11 @@ function edac_tools_sysinfo_get() {
 	$return .= "\n" . '-- Accessibility Checker Configuration' . "\n\n";
 	$return .= 'Version:                  ' . EDAC_VERSION . "\n";
 	$return .= 'Database Version:         ' . get_option('edac_db_version') . "\n";
-	$return .= 'Policy Page:              ' . ( get_option('edac_accessibility_policy_page') ? get_permalink(get_option('edac_accessibility_policy_page'))."\n" : "Not Set\n" );
+	$return .= 'Policy Page:              ' . ( get_option('edac_accessibility_policy_page') ? get_permalink(get_option('edac_accessibility_policy_page'))."\n" : "Unset\n" );
 	$return .= 'Activation Date:          ' . get_option('edac_activation_date') . "\n";
 	$return .= 'Footer Statement:         ' . ( get_option('edac_add_footer_accessibility_statement') ? "Enabled\n" : "Disabled\n" );
-	$return .= 'Authorization Username:   ' . ( get_option('edac_authorization_username') ? get_option('edac_authorization_username')."\n" : "Not Set\n" );
-	$return .= 'Authorization Password:   ' . ( get_option('edac_authorization_password') ? get_option('edac_authorization_password')."\n" : "Not Set\n" );
+	$return .= 'Authorization Username:   ' . ( get_option('edac_authorization_username') ? get_option('edac_authorization_username')."\n" : "Unset\n" );
+	$return .= 'Authorization Password:   ' . ( get_option('edac_authorization_password') ? get_option('edac_authorization_password')."\n" : "Unset\n" );
 	$return .= 'Delete Data:              ' . ( get_option('edac_delete_data') ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Include Statement Link:   ' . ( get_option('edac_include_accessibility_statement_link') ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Post Types:               ' . implode(', ', get_option('edac_post_types'))."\n";
