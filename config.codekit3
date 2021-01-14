@@ -1684,6 +1684,14 @@
 		"oAP": "/includes/activation.php",
 		"oF": 0
 		},
+	"/includes/classes/browser.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/includes/classes/browser.php",
+		"oF": 0
+		},
 	"/includes/classes/class_edac_dom.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -2127,6 +2135,14 @@
 		"oAP": "/includes/simplehtmldom/simple_html_dom.php",
 		"oF": 0
 		},
+	"/includes/system-info.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/includes/system-info.php",
+		"oF": 0
+		},
 	"/includes/TextStatistics/Maths.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -2199,14 +2215,6 @@
 		"oAP": "/includes/TextStatistics/TextStatistics.php",
 		"oF": 0
 		},
-	"/includes/uninstall.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/includes/uninstall.php",
-		"oF": 0
-		},
 	"/includes/validate.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -2261,6 +2269,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/README.txt",
+		"oF": 0
+		},
+	"/uninstall.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/uninstall.php",
 		"oF": 0
 		}
 	},
