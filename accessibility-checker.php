@@ -64,15 +64,37 @@ if ( ! function_exists( 'edac_fs' ) ) {
 }
 
 /**
- * Currently plugin version.
- * Rename this for your plugin and update it as you release new versions.
+ * Setup constants.
  */
-define( 'EDAC_VERSION', '1.0.11' );
 
-/**
- * Enable EDAC_DEBUG mode
- */
-define( 'EDAC_DEBUG', false );
+// Current plugin version
+if ( ! defined( 'EDAC_VERSION' ) ) {
+	define( 'EDAC_VERSION', '1.0.11' );
+}
+
+if ( ! defined( 'EDAC_DB_VERSION' ) ) {
+	define( 'EDAC_DB_VERSION', '1.0.0' );
+}
+
+// Plugin Folder Path
+if ( ! defined( 'EDAC_PLUGIN_DIR' ) ) {
+	define( 'EDAC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+}
+
+// Plugin Folder URL
+if ( ! defined( 'EDAC_PLUGIN_URL' ) ) {
+	define( 'EDAC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+}
+
+// Plugin Root File
+if ( ! defined( 'EDAC_PLUGIN_FILE' ) ) {
+	define( 'EDAC_PLUGIN_FILE', __FILE__ );
+}
+
+// Enable EDAC_DEBUG mode
+if ( ! defined( 'EDAC_DEBUG' ) ) {
+	define( 'EDAC_DEBUG', false );
+}
 
 /**
  * Plugin Activation & Deactivation
@@ -118,6 +140,7 @@ require_once(plugin_dir_path( __FILE__ ).'includes/options-page.php');
 require_once(plugin_dir_path( __FILE__ ).'includes/validate.php');
 require_once(plugin_dir_path( __FILE__ ).'includes/insert.php');
 require_once(plugin_dir_path( __FILE__ ).'includes/purge.php');
+require_once(plugin_dir_path( __FILE__ ).'includes/system-info.php');
 
 /**
  * Filters and Actions
@@ -138,6 +161,8 @@ add_filter( 'the_content', 'edac_output_simplified_summary' );
 add_filter( 'wp_footer', 'edac_output_accessibility_statement' );
 add_filter( 'pre_delete_post', 'edac_delete_post', 10, 3 );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
+add_action( 'admin_init', 'edac_process_actions' );
+add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
 
 /**
  * Register Rules

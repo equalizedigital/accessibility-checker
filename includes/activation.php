@@ -2,7 +2,6 @@
 
 function edac_activation(){
 	global $wpdb;
-	$plugin_name_db_version = '1.0';
 	$table_name = $wpdb->prefix . "accessibility_checker"; 
 	$charset_collate = $wpdb->get_charset_collate();
 
@@ -28,7 +27,7 @@ function edac_activation(){
 	dbDelta( $sql );
 	
 	// set options
-	add_option( 'edac_db_version', $plugin_name_db_version );
+	add_option( 'edac_db_version', EDAC_DB_VERSION );
 	add_option( 'edac_activation_date', date('Y-m-d H:i:s') );
 	add_option( 'edac_post_types', ['post','page']);
 	add_option( 'edac_simplified_summary_position', 'after');

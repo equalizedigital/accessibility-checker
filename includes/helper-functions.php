@@ -283,3 +283,19 @@ function edac_post_types(){
 	return $post_types;
 
 }
+
+/**
+ * Processes all EDAC actions sent via POST and GET by looking for the 'edac-action'
+ * request and running do_action() to call the function
+ *
+ * @return void
+ */
+function edac_process_actions() {
+	if ( isset( $_POST['edac-action'] ) ) {
+		do_action( 'edac_' . $_POST['edac-action'], $_POST );
+	}
+
+	if ( isset( $_GET['edac-action'] ) ) {
+		do_action( 'edac_' . $_GET['edac-action'], $_GET );
+	}
+}
