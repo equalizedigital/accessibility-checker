@@ -25,15 +25,15 @@ function edac_rule_incorrect_heading_order($content, $post){
 			if(!$previous || $current == $previous) goto end;
 
 			if(
-				$current < $previous
-				|| $current != $previous+1
+				$current > $previous
+				&& $current != $previous+1
 			){
 				$errors[] = $element->outertext;
-			}else{
-				$previous = $current;
 			}
 
 			end:
+			
+			$previous = $current;
 		}
 	}
 

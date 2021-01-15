@@ -124,6 +124,9 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
+= 1.0.12 =
+* Improved accuracy of skipped heading level
+
 = 1.0.11 =
 * Added informative error code to text justified and check within CSS
 * Update missing language attribute to only check the first html tag
