@@ -17,14 +17,6 @@
 		"oAP": "/.gitignore",
 		"oF": 0
 		},
-	"/accessibility-checker.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/accessibility-checker.php",
-		"oF": 0
-		},
 	"/assets/css/accessibility-checker-admin.css": {
 		"aP": 1,
 		"bl": 0,
@@ -1684,6 +1676,14 @@
 		"oAP": "/includes/activation.php",
 		"oF": 0
 		},
+	"/includes/classes/browser.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/includes/classes/browser.php",
+		"oF": 0
+		},
 	"/includes/classes/class_edac_dom.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -1730,14 +1730,6 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/includes/meta-boxes.php",
-		"oF": 0
-		},
-	"/includes/options-page.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/includes/options-page.php",
 		"oF": 0
 		},
 	"/includes/purge.php": {
@@ -2199,14 +2191,6 @@
 		"oAP": "/includes/TextStatistics/TextStatistics.php",
 		"oF": 0
 		},
-	"/includes/uninstall.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/includes/uninstall.php",
-		"oF": 0
-		},
 	"/includes/validate.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -2261,6 +2245,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/README.txt",
+		"oF": 0
+		},
+	"/uninstall.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/uninstall.php",
 		"oF": 0
 		}
 	},
