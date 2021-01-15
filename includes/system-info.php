@@ -124,7 +124,7 @@ function edac_tools_sysinfo_get() {
 	$return .= "\n" . '-- Accessibility Checker Configuration' . "\n\n";
 	$return .= 'Version:                  ' . EDAC_VERSION . "\n";
 	$return .= 'Database Version:         ' . get_option('edac_db_version') . "\n";
-	$return .= 'Policy Page:              ' . ( get_option('edac_accessibility_policy_page') ? get_permalink(get_option('edac_accessibility_policy_page'))."\n" : "Unset\n" );
+	$return .= 'Policy Page:              ' . ( get_option('edac_accessibility_policy_page') ? get_option('edac_accessibility_policy_page')."\n" : "Unset\n" );
 	$return .= 'Activation Date:          ' . get_option('edac_activation_date') . "\n";
 	$return .= 'Footer Statement:         ' . ( get_option('edac_add_footer_accessibility_statement') ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Authorization Username:   ' . ( get_option('edac_authorization_username') ? get_option('edac_authorization_username')."\n" : "Unset\n" );

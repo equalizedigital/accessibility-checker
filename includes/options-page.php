@@ -136,7 +136,7 @@ function edac_register_setting() {
 		'edac_accessibility_policy_page_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
-		array( 'label_for' => 'edac_add_accessibility_policy_page' )
+		array( 'label_for' => 'edac_accessibility_policy_page' )
 	);
 
 	add_settings_field(
@@ -413,25 +413,13 @@ function edac_sanitize_include_accessibility_statement_link( $option ) {
  */
 function edac_accessibility_policy_page_cb(){
 
-	$selected_option = get_option( 'edac_accessibility_policy_page');
+	$policy_page = get_option( 'edac_accessibility_policy_page');
+	$policy_page = is_numeric($policy_page) ? get_page_link($policy_page) : $policy_page;
 	?>
 
-	<select name="edac_accessibility_policy_page"> 
-		<option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
-		<?php 
-		$pages = get_pages();
-		foreach ( $pages as $page ) {
-
-
-			$option = '<option value="' . $page->ID . '"'.selected( $selected_option, $page->ID ).'>';
-			$option .= $page->post_title;
-			$option .= '</option>';
-			echo $option;
-		}
-		?>
-	</select>
+	<input style="width: 100%;" type="text" name="edac_accessibility_policy_page" id="edac_accessibility_policy_page" value="<?php echo $policy_page; ?>">
+	
 	<?php
-
 }
 
 /**
@@ -439,11 +427,7 @@ function edac_accessibility_policy_page_cb(){
  */
 function edac_sanitize_accessibility_policy_page( $page ) {
 	if($page){
-		if(get_page_link( $page )){
-			return $page;
-		}
-	}else{
-		return $page;
+		return esc_url($page);
 	}
 }
 
