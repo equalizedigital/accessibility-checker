@@ -1684,14 +1684,6 @@
 		"oAP": "/includes/activation.php",
 		"oF": 0
 		},
-	"/includes/classes/browser.php": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/includes/classes/browser.php",
-		"oF": 0
-		},
 	"/includes/classes/class_edac_dom.php": {
 		"cB": 0,
 		"ft": 8192,
