@@ -17,6 +17,14 @@
 		"oAP": "/.gitignore",
 		"oF": 0
 		},
+	"/accessibility-checker.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/accessibility-checker.php",
+		"oF": 0
+		},
 	"/assets/css/accessibility-checker-admin.css": {
 		"aP": 1,
 		"bl": 0,
@@ -1732,6 +1740,14 @@
 		"oAP": "/includes/meta-boxes.php",
 		"oF": 0
 		},
+	"/includes/options-page.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/includes/options-page.php",
+		"oF": 0
+		},
 	"/includes/purge.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -2117,6 +2133,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/includes/simplehtmldom/simple_html_dom.php",
+		"oF": 0
+		},
+	"/includes/system-info.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/includes/system-info.php",
 		"oF": 0
 		},
 	"/includes/TextStatistics/Maths.php": {
