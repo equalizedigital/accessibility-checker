@@ -135,11 +135,14 @@
             }
           });
 
+          // Title arrow button on click
+          $(".edac-details-rule-title-arrow").click(function (e) {
+            e.preventDefault();
+          });
+
           // Ignore on click
           $(".edac-details-rule-records-record-actions-ignore").click(function (e) {
-            /* console.log(
-              $(this).parent().next(".edac-details-rule-records-record-ignore")
-            ); */
+            e.preventDefault();
             $(this).parent().next(".edac-details-rule-records-record-ignore").slideToggle();
           });
 
@@ -239,6 +242,7 @@
      */
     function ignore_submit(){
       $(".edac-details-rule-records-record-ignore-submit").click(function (e) {
+        e.preventDefault();
         var id = $(this).attr("data-id");
         var ignore_action = $(this).attr("data-action");
         var ignore_type = $(this).attr("data-type");
