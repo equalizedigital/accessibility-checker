@@ -124,6 +124,9 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
+= 1.0.13 =
+* Prevent page refresh when using classic editor
+
 = 1.0.12 =
 * Improved accuracy of skipped heading level
 
