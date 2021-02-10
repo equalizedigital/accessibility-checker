@@ -638,6 +638,18 @@
     margin-top: 30px;
     max-width: 500px;
   }
+  &-system-info{
+    textarea{
+      width: 100%;
+      background: none;
+      font-family: Menlo, Monaco, monospace;
+      display: block;
+      overflow: auto;
+      white-space: pre;
+      width: 800px;
+      height: 400px;
+    }
+  }
 }
 
 .edac-welcome{

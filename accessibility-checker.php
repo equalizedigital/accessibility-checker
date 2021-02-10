@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.0.13
+ * Version:           1.1.0
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -64,15 +64,38 @@ if ( ! function_exists( 'edac_fs' ) ) {
 }
 
 /**
- * Currently plugin version.
- * Rename this for your plugin and update it as you release new versions.
+ * Setup constants.
  */
-define( 'EDAC_VERSION', '1.0.13' );
 
-/**
- * Enable EDAC_DEBUG mode
- */
-define( 'EDAC_DEBUG', false );
+// Current plugin version
+if ( ! defined( 'EDAC_VERSION' ) ) {
+	define( 'EDAC_VERSION', '1.1.0' );
+}
+
+// Current database version
+if ( ! defined( 'EDAC_DB_VERSION' ) ) {
+	define( 'EDAC_DB_VERSION', '1.0.0' );
+}
+
+// Plugin Folder Path
+if ( ! defined( 'EDAC_PLUGIN_DIR' ) ) {
+	define( 'EDAC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+}
+
+// Plugin Folder URL
+if ( ! defined( 'EDAC_PLUGIN_URL' ) ) {
+	define( 'EDAC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+}
+
+// Plugin Root File
+if ( ! defined( 'EDAC_PLUGIN_FILE' ) ) {
+	define( 'EDAC_PLUGIN_FILE', __FILE__ );
+}
+
+// Enable EDAC_DEBUG mode
+if ( ! defined( 'EDAC_DEBUG' ) ) {
+	define( 'EDAC_DEBUG', false );
+}
 
 /**
  * Plugin Activation & Deactivation
@@ -118,6 +141,7 @@ require_once(plugin_dir_path( __FILE__ ).'includes/options-page.php');
 require_once(plugin_dir_path( __FILE__ ).'includes/validate.php');
 require_once(plugin_dir_path( __FILE__ ).'includes/insert.php');
 require_once(plugin_dir_path( __FILE__ ).'includes/purge.php');
+require_once(plugin_dir_path( __FILE__ ).'includes/system-info.php');
 
 /**
  * Filters and Actions
@@ -138,6 +162,8 @@ add_filter( 'the_content', 'edac_output_simplified_summary' );
 add_filter( 'wp_footer', 'edac_output_accessibility_statement' );
 add_filter( 'pre_delete_post', 'edac_delete_post', 10, 3 );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
+add_action( 'admin_init', 'edac_process_actions' );
+add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
 
 /**
  * Register Rules
@@ -999,7 +1025,7 @@ function edac_simplified_summary_markup($post){
 }
 
 /**
- * Get simplified summary
+ * Get accessibility statement
  *
  * @param void
  * @return string
@@ -1009,13 +1035,14 @@ function edac_get_accessibility_statement(){
 	$add_footer_statement = get_option( 'edac_add_footer_accessibility_statement');
 	$include_statement_link = get_option( 'edac_include_accessibility_statement_link');
 	$policy_page = get_option( 'edac_accessibility_policy_page');
+	$policy_page = is_numeric($policy_page) ? get_page_link($policy_page) : $policy_page;
 
 	if($add_footer_statement){
 		$statement .= get_bloginfo('name').' '.__('uses','edac').' <a href="https://a11ychecker.com/" target="_blank">'.__('Accessibility Checker','edac').'</a> '.__('to monitor our website\'s accessibility. ','edac');
 	}
 
 	if($include_statement_link && $policy_page){
-		$statement .= __('Read our ','edac').'<a href="'.get_page_link($policy_page).'">'.__('Accessibility Policy','edac').'</a>.';
+		$statement .= __('Read our ','edac').'<a href="'.$policy_page.'">'.__('Accessibility Policy','edac').'</a>.';
 	}
 
 	return $statement;

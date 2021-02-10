@@ -3,6 +3,7 @@
 $settings_tab_items = [
 	['slug' => '', 'label' => 'General','order' => 1],
 	['slug' => 'license', 'label' => 'License','order' => 3],
+	['slug' => 'system_info', 'label' => 'System Info','order' => 4],
 ];
 // filter settings tab items
 if(has_filter('edac_filter_settings_tab_items')) {
@@ -66,6 +67,15 @@ $tab = (array_search($tab, array_column($settings_tab_items, 'slug')) !== FALSE)
 				include('pro-callout.php');
 			}
 		} ?>
+
+		<?php if($tab == 'system_info'){ ?>
+			<h2><?php _e('System Info'); ?></h2>
+			
+			<div class="edac-settings-system-info">
+				<?php edac_sysinfo_display(); ?>
+			</div>
+			
+		<?php } ?>
 
 		<?php do_action('edac_settings_tab_content', $tab); ?>
 		
