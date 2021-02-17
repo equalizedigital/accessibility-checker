@@ -14,12 +14,12 @@ function edac_rule_link_ambiguous_text($content, $post){
 
 		if($a->plaintext){
 			$text = strtolower($a->plaintext);
-			$error = ac_check_ambiguous_phrase($text);
+			$error = edac_check_ambiguous_phrase($text);
 		}else{
 			$images = $a->find('img');
 			foreach ($images as $image){
 				$alt = strtolower($image->getAttribute('alt'));
-				$error = ac_check_ambiguous_phrase($alt);
+				$error = edac_check_ambiguous_phrase($alt);
 				if($error == true){
 					break;
 				}
@@ -33,7 +33,7 @@ function edac_rule_link_ambiguous_text($content, $post){
 	return $errors;
 }
 
-function ac_check_ambiguous_phrase($text){
+function edac_check_ambiguous_phrase($text){
 
 	$ambiguous_phrases = ['click here','here','go here','more','more...','details','more details','link','this page','continue','continue reading','read more','open','download','button','keep reading'];
 
