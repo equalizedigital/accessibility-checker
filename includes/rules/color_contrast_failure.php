@@ -6,6 +6,9 @@
  * @param string $content
  * @param array $post
  * @return array
+ * 
+ * WCAG 2.0 level AA requires a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text.
+ * Large text is defined as 14 point (typically 18.66px) and bold or larger, or 18 point (typically 24px) or larger.
  */
 function edac_rule_color_contrast_failure($content, $post)
 {	
@@ -54,6 +57,52 @@ function edac_rule_color_contrast_failure($content, $post)
 
 				edac_log('foreground: '.$foreground);
 				edac_log('background: '.$background);
+				// get font size
+				if (stristr($element->getAttribute('style'), 'font-size:')) {
+
+					$font_size = null;
+					$fontsearchpatterns[] = "|font\-size:\s?([\d]+)pt|i";
+					$fontsearchpatterns[] = "|font\-size:\s?([\d]+)px|i";
+					$fontsearchpatterns[] = "|font:\s?[\w\s\d*\s]*([\d]+)pt|i";
+					$fontsearchpatterns[] = "|font:\s?[\w\s\d*\s]*([\d]+)px|i";
+
+					// Get font size
+					foreach ($fontsearchpatterns as $pattern) {
+						if (preg_match_all($pattern, $element, $matches, PREG_PATTERN_ORDER)) {
+							$matchsize = sizeof($matches);
+							for ($i = 0; $i < $matchsize; $i++) {
+								if (isset($matches[0][$i]) and $matches[0][$i] != "") {
+									$absolute_fontsize_errorcode = htmlspecialchars($matches[0][$i]);
+
+									preg_match_all('!\d+!', $absolute_fontsize_errorcode, $matches);
+
+									edac_log($absolute_fontsize_errorcode);
+
+									if(stristr($absolute_fontsize_errorcode, 'px') == 'px'){
+										$font_size = implode(' ',$matches[0]) * 0.75;
+									}
+
+									if(stristr($absolute_fontsize_errorcode, 'pt') == 'pt'){
+										$font_size = implode(' ',$matches[0]);
+									}
+									edac_log($font_size);
+
+									/* if(
+										stristr($absolute_fontsize_errorcode, 'px') == 'px' && implode(' ',$matches[0]) <= 10
+										|| stristr($absolute_fontsize_errorcode, 'pt') == 'pt' && implode(' ',$matches[0]) <= 13
+									){
+										$errors[] = $element;
+									} */
+								}
+							}
+						}
+					}
+					//ratio
+					// 1 px = 0.75 point; 1 point = 1.333333 px
+					//18.66px
+
+					edac_log('test');
+				}
 
 				if ($foreground != "" and $background != "initial" and $background != "inherit" and $background != "transparent") {
 
