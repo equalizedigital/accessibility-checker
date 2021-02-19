@@ -36,11 +36,10 @@ function edac_rule_color_contrast_failure($content, $post)
 			// if no background color is set assume white
 			$assumedbackground = '#ffffff';
 			if (!isset($rules) and $assumedbackground != "") $rules['background'] = $assumedbackground;
-
-			edac_log($rules);
-
-			// reverse array if background color is before background
+			
 			if (isset($rules)) {
+
+				// reverse array if background color is before background
 				if (strpos($element->getAttribute('style'), 'background-color:') > strpos($element->getAttribute('style'), 'background:'))
 					$rules = array_reverse($rules);
 
@@ -55,18 +54,19 @@ function edac_rule_color_contrast_failure($content, $post)
 
 				if (isset($matches[1][0]) and $matches[1][0] != "") $foreground = $matches[1][0];
 
-				edac_log('foreground: '.$foreground);
-				edac_log('background: '.$background);
 				// get font size
+				$font_size = null;
+
 				if (stristr($element->getAttribute('style'), 'font-size:')) {
 
-					$font_size = null;
+					
 					$fontsearchpatterns[] = "|font\-size:\s?([\d]+)pt|i";
 					$fontsearchpatterns[] = "|font\-size:\s?([\d]+)px|i";
 					$fontsearchpatterns[] = "|font:\s?[\w\s\d*\s]*([\d]+)pt|i";
 					$fontsearchpatterns[] = "|font:\s?[\w\s\d*\s]*([\d]+)px|i";
 
 					// Get font size
+					// 1 px = 0.75 point; 1 point = 1.333333 px
 					foreach ($fontsearchpatterns as $pattern) {
 						if (preg_match_all($pattern, $element, $matches, PREG_PATTERN_ORDER)) {
 							$matchsize = sizeof($matches);
@@ -75,9 +75,8 @@ function edac_rule_color_contrast_failure($content, $post)
 									$absolute_fontsize_errorcode = htmlspecialchars($matches[0][$i]);
 
 									preg_match_all('!\d+!', $absolute_fontsize_errorcode, $matches);
-
-									edac_log($absolute_fontsize_errorcode);
-
+									
+									// convert pixels to points
 									if(stristr($absolute_fontsize_errorcode, 'px') == 'px'){
 										$font_size = implode(' ',$matches[0]) * 0.75;
 									}
@@ -85,30 +84,34 @@ function edac_rule_color_contrast_failure($content, $post)
 									if(stristr($absolute_fontsize_errorcode, 'pt') == 'pt'){
 										$font_size = implode(' ',$matches[0]);
 									}
-									edac_log($font_size);
 
-									/* if(
-										stristr($absolute_fontsize_errorcode, 'px') == 'px' && implode(' ',$matches[0]) <= 10
-										|| stristr($absolute_fontsize_errorcode, 'pt') == 'pt' && implode(' ',$matches[0]) <= 13
-									){
-										$errors[] = $element;
-									} */
 								}
 							}
 						}
 					}
-					//ratio
-					// 1 px = 0.75 point; 1 point = 1.333333 px
-					//18.66px
+	
+				}
 
-					edac_log('test');
+				// get font weight
+				$font_bold = false;
+
+				if(
+					preg_match('(bold|bolder|700|800|900)', stristr($element->getAttribute('style'), 'font-weight:')) === 1 ||
+					$element->find('b') ||
+					$element->find('strong')
+				){
+					$font_bold = true;
+				}
+
+				// ratio
+				$ratio = 4.5;
+				if(($font_size >= 14 && $font_bold == true) || $font_size >= 18){
+					$ratio = 3;
 				}
 
 				if ($foreground != "" and $background != "initial" and $background != "inherit" and $background != "transparent") {
 
-					if (edac_coldiff($foreground, $background)) {
-
-						//edac_log($element->outertext);
+					if (edac_coldiff($foreground, $background, $ratio)) {
 
 						$errors[] = $element->outertext;
 					}
@@ -177,16 +180,63 @@ function edac_check_contrast($content, $styles)
 
 			// if background color not set exit	
 			if ($background == "initial" or $background == "inherit" or $background == "transparent" or $background == "" or $foreground == "") goto a;
+			
+			// get font size
+			$font_size = 0;
 
-			if (edac_coldiff($foreground, $background)) {
+			if (array_key_exists('font-size', $rules)) {
+				
+				$value = str_replace('.', '', preg_replace('/\d/', '', $rules['font-size'] ));
+
+				if($value == 'px'){
+					$font_size = $rules['font-size']* 0.75;
+				}
+
+				if($value == 'pt'){
+					$font_size = $rules['font-size'];
+				}
+			}
+
+			// get font weight
+			$font_bold = false;
+
+			if(array_key_exists('font-weight', $rules)){
+				if(
+					$rules['font-weight'] == 'bold' ||
+					$rules['font-weight'] == 'bolder' ||
+					$rules['font-weight'] == '700' ||
+					$rules['font-weight'] == '800' ||
+					$rules['font-weight'] == '900'
+				){
+					$font_bold = true;
+				}
+			}
+
+			// check for bold or strong tags within element
+			$bold_elements = $dom->find($element);
+			if($bold_elements){
+				foreach ($bold_elements as $bold_element) {
+					if($bold_element->find('b') || $bold_element->find('strong')){
+						$font_bold = true;
+					}
+				}
+			}
+			
+			// ratio
+			$ratio = 4.5;
+			if(($font_size >= 14 && $font_bold == true) || $font_size >= 18){
+				$ratio = 3;
+			}
+
+			if (edac_coldiff($foreground, $background, $ratio)) {
 
 				$error_code = $element . '{';
 				foreach ($rules as $key => $value) {
 					$error_code .= $key . ': ' . $value . '; ';
 				}
+				$error_code .= '}';
 
 				$elements = $dom->find($element);
-				
 				if($elements){
 					foreach ($elements as $element) {
 						$errors[] = $element->outertext.' '.$error_code;
@@ -241,7 +291,7 @@ function edac_deteremine_hierarchy($rules)
 /**
  * check the color contrast
  */
-function edac_coldiff($foreground, $background)
+function edac_coldiff($foreground, $background, $ratio)
 {
 
 	//convert color names to hex
@@ -255,12 +305,8 @@ function edac_coldiff($foreground, $background)
 	$dif = edac_test_color_diff($color1, $color2);
 
 	// failed
-	if ($dif < 4.5) {
-
-		//echo $foreground.'<br />';
-		//echo $background.'<br />';
-		//echo $dif.'<br />';
-		if ($dif < 4.5)  return 1;
+	if ($dif < $ratio) {
+		if ($dif < $ratio)  return 1;
 	}
 
 	return 0;
