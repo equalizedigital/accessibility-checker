@@ -101,7 +101,7 @@ Accessibility Checker does not make your website accessible, but it is a valuabl
 
 = Does Accessibility Checker scan all of my content? =
 
-Accessibility Checker Free scans anything contained in [the_content](https://developer.wordpress.org/reference/functions/the_content/) on your blog posts or pages. It does not scan your header, footer, or sidebar. There is no limit to the number of pages or posts that you can scan with Accessibility Checker Free or the number of times any one page or post can be scanned. Accessibility Checker Free is perfect for making sure the content you have included on your posts or pages is accessible. 
+Accessibility Checker Free scans blog posts and pages, including the header, content area, sidebar, and footer on those pages. There is no limit to the number of pages or posts that you can scan with Accessibility Checker or the number of times any one page or post can be scanned. So, if your website only contains standard posts and pages, then YES, Accessibility Checker will scan all of your content. If you have custom post types (such as a portfolio, team member pages, or WooCommerce products), the free version of the plugin will not scan these posts.
 
 For a full-site scan or to check custom post types for accessibility, please upgrade to [Accessibility Checker Pro](https://a11ychecker.com).
 
