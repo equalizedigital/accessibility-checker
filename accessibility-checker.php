@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -69,7 +69,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 // Current plugin version
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.1.0' );
+	define( 'EDAC_VERSION', '1.1.1' );
 }
 
 // Current database version
@@ -871,8 +871,11 @@ function edac_readability_ajax(){
 	$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
 	$content_post = get_post($post_id);
 	$content = $content_post->post_content;
-	$content = wp_filter_nohtml_kses($content);
 	$content = apply_filters('the_content', $content);
+	if(has_filter('edac_filter_readability_content')) {
+		$content = apply_filters('edac_filter_readability_content', $content, $post_id);
+	}
+	$content = wp_filter_nohtml_kses($content);
 	$content = str_replace(']]>', ']]&gt;', $content);
 	$textStatistics = new TS\TextStatistics;
 	$post_grade = floor($textStatistics->fleschKincaidGradeLevel($content));
