@@ -42,7 +42,48 @@ function edac_compare_strings($string1, $string2)
  * @return array
  */
 function edac_parse_css($css)
-{
+{	
+
+	// css variables
+	/*
+	Examples:
+	--font-size-xs: calc(var(--font-size-sm) / var(--font-scale));
+	--font-size-lg: calc(var(--font-size-md) * var(--font-scale));
+	--spacing-md: var(--spacing-base);
+	--transition: var(--transition-property) var(--transition-duration) var(--transition-timing-function);
+	--content-sidebar-gap: calc(var(--column-gap) * 3);
+	var(--content-order, 0);
+	--alignfull-margin-right: calc(var(--side-spacing) * -1);
+	*/
+	$css_variables = [];
+	if (preg_match_all('/--(.*?);/', $css, $matches, PREG_PATTERN_ORDER)) {
+		//edac_log($matches);
+		$matchsize = sizeof($matches);
+		for ($i = 0; $i < $matchsize; $i++) {
+			if (isset($matches[0][$i]) and $matches[0][$i] != "") {
+
+				//edac_log($matches[0][$i]);
+
+				$match = str_replace(' ', '', $matches[1][$i]);
+				
+				if(!strpos($match,'{')){
+					$match = explode(':',$match);
+
+					$css_variables[$match[0]] = $match[1];
+					//sedac_log($match);
+				}
+
+			}
+		}
+	}
+	if($css_variables){
+		edac_log($css_variables);
+		foreach ($css_variables as $key => $value) {
+			$css = str_replace('var(--'.$key.')',$value,$css);
+		}
+	}
+
+
 	$css = preg_replace("%/\*(?:(?!\*/).)*\*/%s", " ", $css);
 	$css_array = array(); // master array to hold all values
 	$element = explode('}', $css);
