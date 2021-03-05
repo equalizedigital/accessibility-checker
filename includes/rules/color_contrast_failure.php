@@ -713,10 +713,12 @@ function edac_replace_css_variables($value, $css_array){
 		$value = str_replace('var(','',$value);
 		$value = str_replace(')','',$value);
 
+		//edac_log($value);
+
+		//edac_log($css_array[':root']);
+
 		$value = $css_array[':root'][$value];
 
-		edac_log($value);	
-		
 		return $value;
 
 	}else{
