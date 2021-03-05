@@ -55,7 +55,7 @@ function edac_parse_css($css)
 	var(--content-order, 0);
 	--alignfull-margin-right: calc(var(--side-spacing) * -1);
 	*/
-	$css_variables = [];
+	/* $css_variables = [];
 	if (preg_match_all('/--(.*?);/', $css, $matches, PREG_PATTERN_ORDER)) {
 		//edac_log($matches);
 		$matchsize = sizeof($matches);
@@ -81,7 +81,7 @@ function edac_parse_css($css)
 		foreach ($css_variables as $key => $value) {
 			$css = str_replace('var(--'.$key.')',$value,$css);
 		}
-	}
+	} */
 
 
 	$css = preg_replace("%/\*(?:(?!\*/).)*\*/%s", " ", $css);

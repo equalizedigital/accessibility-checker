@@ -162,6 +162,7 @@ function edac_check_contrast($content, $styles)
 	$error_code = '';
 	$css_array = edac_parse_css($styles);
 
+
 	foreach ($css_array as $element => $rules) {
 
 		if (array_key_exists('color', $rules)) {
@@ -227,6 +228,12 @@ function edac_check_contrast($content, $styles)
 			if(($font_size >= 14 && $font_bold == true) || $font_size >= 18){
 				$ratio = 3;
 			}
+
+			//edac_log($background);
+			//edac_log($foreground);
+			// replace CSS variables
+			$background = edac_replace_css_variables($background, $css_array);
+			$foreground = edac_replace_css_variables($foreground, $css_array);
 
 			if (edac_coldiff($foreground, $background, $ratio)) {
 
@@ -697,4 +704,24 @@ function edac_check_color_match2($background_rule)
 		}
 	}
 	return "";
+}
+
+function edac_replace_css_variables($value, $css_array){
+
+	if(stripos($value,'var(--') !== false){
+
+		$value = str_replace('var(','',$value);
+		$value = str_replace(')','',$value);
+
+		$value = $css_array[':root'][$value];
+
+		edac_log($value);	
+		
+		return $value;
+
+	}else{
+		return $value;
+	}
+
+
 }
