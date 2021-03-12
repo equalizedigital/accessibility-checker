@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev, philwebs, roadwarriorwp
 Tags: accessibility, accessible, wcag, ada, a11y, section 508, audit, readability, content analysis
 Requires at least: 5.0.0
-Tested up to: 5.6.2
-Stable tag: 5.6
+Tested up to: 5.7
+Stable tag: 5.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,9 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 
 == Changelog ==
+
+= 1.1.2 =
+* Improve legacy PHP compatibility
 
 = 1.1.1 =
 * Added filter for readability score content

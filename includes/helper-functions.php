@@ -82,7 +82,7 @@ function edac_parse_css($css)
  *
  * @return bool
  */
-function edac_check_plugin_installed( $plugin_slug ): bool {
+function edac_check_plugin_installed( $plugin_slug ) {
 	$installed_plugins = get_plugins();
 
 	return array_key_exists( $plugin_slug, $installed_plugins ) || in_array( $plugin_slug, $installed_plugins, true );
@@ -95,7 +95,7 @@ function edac_check_plugin_installed( $plugin_slug ): bool {
  *
  * @return bool
  */
-function edac_check_plugin_active( $plugin_slug ): bool {
+function edac_check_plugin_active( $plugin_slug ) {
 	if ( is_plugin_active( $plugin_slug ) ) {
 		return true;
 	}
