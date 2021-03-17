@@ -94,7 +94,7 @@ if ( ! defined( 'EDAC_PLUGIN_FILE' ) ) {
 
 // Enable EDAC_DEBUG mode
 if ( ! defined( 'EDAC_DEBUG' ) ) {
-	define( 'EDAC_DEBUG', false );
+	define( 'EDAC_DEBUG', true );
 }
 
 /**

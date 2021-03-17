@@ -17,6 +17,14 @@
 		"oAP": "/.gitignore",
 		"oF": 0
 		},
+	"/accessibility-checker.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/accessibility-checker.php",
+		"oF": 0
+		},
 	"/assets/css/accessibility-checker-admin.css": {
 		"aP": 1,
 		"bl": 0,
@@ -235,6 +243,28 @@
 		"opt": 0,
 		"oT": 1,
 		"q": 100
+		},
+	"/assets/js/accessibility-checker-admin-min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/assets/js/accessibility-checker-admin-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/assets/js/accessibility-checker-admin.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/assets/js/accessibility-checker-admin-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
 		},
 	"/assets/sass/_helpers.scss": {
 		"aP": 0,
@@ -2231,6 +2261,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/partials/welcome-page.php",
+		"oF": 0
+		},
+	"/README.txt": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/README.txt",
 		"oF": 0
 		},
 	"/uninstall.php": {

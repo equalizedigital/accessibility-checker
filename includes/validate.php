@@ -182,6 +182,34 @@ function edac_get_content($post)
 	// done getting html, delete transient
 	delete_transient('edac_public_draft');
 
+
+	// test combined css
+	if($content){
+	$styles = $content->find('style');
+	$styles = implode('',$styles);
+	edac_log($styles);
+
+	/* if ($styles) {
+		foreach ($styles as $style) {
+			$errors = array_merge(ac_css_small_text_check($content, $style->innertext),$errors);
+		}
+	} */
+	
+	$styles = $content->find('link[rel="stylesheet"]');
+	$styles = implode('',$styles);
+	edac_log($styles);
+	}
+
+	/*
+	* check for font-size styles from file
+	*/
+	/* foreach ($dom->find('link[rel="stylesheet"]') as $stylesheet){
+		$stylesheet_url = $stylesheet->href;
+		$styles = @file_get_contents($stylesheet_url);
+		$errors = array_merge(ac_css_small_text_check($content, $styles),$errors);
+	} */
+
+
 	return $content;
 }
 
