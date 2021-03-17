@@ -383,7 +383,8 @@
             border-bottom: solid 1px #e2e4e7;
             border-right: solid 1px #e2e4e7; }
           #edac-meta-box #edac-tabs .edac-details-rule-records-record-object {
-            text-align: left; }
+            text-align: left;
+            word-break: break-word; }
           #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions {
             border-right: none; }
             #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore {
