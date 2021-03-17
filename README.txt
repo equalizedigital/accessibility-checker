@@ -124,6 +124,9 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
+= 1.1.3 =
+* Code object word break
+
 = 1.1.2 =
 * Improve legacy PHP compatibility
 
