@@ -13,7 +13,7 @@
 function edac_rule_color_contrast_failure($content, $post)
 {	
 	// check links in content for style tags
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 
 	$elements = $dom->find('*');
@@ -124,25 +124,26 @@ function edac_rule_color_contrast_failure($content, $post)
 	 * check for styles within style tags
 	 * <style></style>
 	 */
-	if($content){
-		$dom_styles = $content;
+	if($content['css_parsed']){
+		/* $dom_styles = $content;
 		$styles = $dom_styles->find('style');
-
 		if ($styles) {
 			foreach ($styles as $style) {
 				$errors = array_merge(edac_check_contrast($content, $style->innertext),$errors);
 			}
-		}
+		} */
 		
 
 		/*
 		* check for styles from file
 		*/
-		foreach ($dom_styles->find('link[rel="stylesheet"]') as $stylesheet){
+		/* foreach ($dom_styles->find('link[rel="stylesheet"]') as $stylesheet){
 			$stylesheet_url = $stylesheet->href;
 			$styles = @file_get_contents($stylesheet_url);
 			$errors = array_merge(edac_check_contrast($content, $styles),$errors);
-		}
+		} */
+
+		$errors = array_merge(edac_check_contrast($content, $content['css_parsed']),$errors);
 	}
 
 	return $errors;

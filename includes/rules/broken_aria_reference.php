@@ -3,7 +3,7 @@
 function edac_rule_broken_aria_reference($content, $post){
     
     // rule vars
-    $dom = $content;
+    $dom = $content['html'];
     $errors = [];
     $labelledby_elements = $dom->find( '[aria-labelledby]' );
 

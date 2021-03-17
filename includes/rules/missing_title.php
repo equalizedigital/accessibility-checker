@@ -10,8 +10,8 @@
 function edac_rule_missing_title($content, $post){
 
 	$the_title = get_the_title( $post->ID );
-	$title = $content->find('title',0);
-	$meta_title = $content->find('meta[property="og:title"]',0);
+	$title = $content['html']->find('title',0);
+	$meta_title = $content['html']->find('meta[property="og:title"]',0);
 	$error = [];
 
 	if(!$the_title || $the_title == '' || $the_title == 'Untitled' || strlen($the_title) <= 1){

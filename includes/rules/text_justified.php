@@ -18,7 +18,7 @@ function edac_rule_text_justified($content, $post){
 	 * check for justify font-size styles
 	 * < class="text-align: justify">test</>
 	 */
-	$dom = $content;
+	$dom = $content['html'];
 	$elements = $dom->find('*');
 	if ($elements) {
 		foreach ($elements as $element) {

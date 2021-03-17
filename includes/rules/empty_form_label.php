@@ -3,7 +3,7 @@
 function edac_rule_empty_form_label($content, $post){
     
     // rule vars
-    $dom = $content;
+    $dom = $content['html'];
     $labels = $dom->find('label');
     $errors = [];
 

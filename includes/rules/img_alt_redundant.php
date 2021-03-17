@@ -2,7 +2,7 @@
 
 function edac_rule_img_alt_redundant($content, $post){
 	
-	$content = $content;
+	$content = $content['html'];
 	$dom = $content;
 	$errors = [];
 

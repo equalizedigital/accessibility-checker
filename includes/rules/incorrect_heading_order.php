@@ -11,7 +11,7 @@ function edac_rule_incorrect_heading_order($content, $post){
 
 	if(empty($post->post_content)) return [];
 
-	$dom = $content;
+	$dom = $content['html'];
 	$starting_heading_level = 1;
 	$errors = [];
 	$elements = $dom->find('h1,h2,h3,h4,h5,h6');

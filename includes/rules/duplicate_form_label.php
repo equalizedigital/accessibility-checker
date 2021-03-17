@@ -3,7 +3,7 @@
 function edac_rule_duplicate_form_label($content, $post){
     
     // rule vars
-    $dom = $content;
+    $dom = $content['html'];
     $errors = [];
 
     $labels = $dom->find('label');

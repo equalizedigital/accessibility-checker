@@ -3,6 +3,7 @@
 function edac_rule_underlined_text($content, $post){
 	
 	$errors = [];
+	//$content = $content['html'];
 	$elements = $content->find('u');
 
 	/*

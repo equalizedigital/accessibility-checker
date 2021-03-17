@@ -12,7 +12,7 @@
  */
 function edac_rule_img_animated_gif($content, $post)
 {
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 
 	// check for image gifs

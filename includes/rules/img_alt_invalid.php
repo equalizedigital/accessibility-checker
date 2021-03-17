@@ -3,7 +3,7 @@
 function edac_rule_img_alt_invalid($content, $post){
 
 	// rule vars
-	$dom = $content;
+	$dom = $content['html'];
 	$starts_with_keywords = ['graphic of','bullet','image of'];
 	$ends_with_keywords = ['image','graphic'];
 	$image_extensions = ['.apng','.bmp','.gif','.ico','.cur','.jpg','.jpeg','.jfif','.pjpeg','.pjp','.png','.svg','.tif','.tiff','.webp'];
@@ -22,7 +22,7 @@ function edac_rule_img_alt_invalid($content, $post){
 				if(ac_img_alt_ignore_plugin_issues($image_code)) goto img_alt_invalid_bottom;
 				
 				// ignore images with captions
-				if(ac_img_alt_ignore_inside_valid_caption($image_code, $content)) goto img_alt_invalid_bottom;
+				if(ac_img_alt_ignore_inside_valid_caption($image_code, $dom)) goto img_alt_invalid_bottom;
 				
 				// check if alt contains only whitespace
 				if(strlen($alt) > 0 && ctype_space($alt) == true){

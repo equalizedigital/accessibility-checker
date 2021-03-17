@@ -2,7 +2,7 @@
 
 function edac_rule_broken_skip_anchor_link($content, $post){
 
-    $dom = $content;
+    $dom = $content['html'];
     $errors = [];
     $anchor_elements = $dom->find( 'a' );
 

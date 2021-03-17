@@ -15,7 +15,7 @@
  */
 function edac_rule_empty_button($content, $post)
 {
-	$dom = $content;
+	$dom = $content['html'];
 	$buttons = $dom->find('button, [role=button]');
 	$inputs = $dom->find('input[type=button], input[type=submit], input[type=reset]');
 	$errors = [];

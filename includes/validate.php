@@ -69,7 +69,7 @@ function edac_validate($post_ID, $post, $action)
 	// apply filters to content
 	$content = edac_get_content($post);
 	do_action( 'edac_after_get_content',$post_ID, $content, $action);
-	if ( ! $content ) {
+	if ( ! $content['html'] ) {
 		return;
 	}
 	// set record check flag on previous error records
@@ -153,7 +153,8 @@ function edac_remove_corrected_posts($post_ID, $type, $pre = 1)
  */
 function edac_get_content($post)
 {
-	$content = false;
+	$content = [];
+	$content['html'] = false;
 	$context = '';
 	$username = get_option('edac_authorization_username');
 	$password = get_option('edac_authorization_password');
@@ -171,44 +172,43 @@ function edac_get_content($post)
 	}
 	try{
 		if($context){
-			$content = file_get_html(get_the_permalink($post->ID), false, $context);
+			$content['html'] = file_get_html(get_the_permalink($post->ID), false, $context);
 		}else{
-			$content = file_get_html(get_the_permalink($post->ID));
+			$content['html'] = file_get_html(get_the_permalink($post->ID));
 		}
 	} catch (Exception $e){
-		$content = false;
+		$content['html'] = false;
 	}
 	
 	// done getting html, delete transient
 	delete_transient('edac_public_draft');
 
 
-	// test combined css
-	if($content){
-	$styles = $content->find('style');
-	$styles = implode('',$styles);
-	edac_log($styles);
+	// get styles and parse
+	if($content['html']){
 
-	/* if ($styles) {
-		foreach ($styles as $style) {
-			$errors = array_merge(ac_css_small_text_check($content, $style->innertext),$errors);
+		$content['css'] = '';
+
+		// css from style tags
+		$style_tag_styles = $content['html']->find('style');
+		if($style_tag_styles){
+			foreach ($style_tag_styles as $style) {
+				$content['css'] .= $style->innertext;
+			}
 		}
-	} */
-	
-	$styles = $content->find('link[rel="stylesheet"]');
-	$styles = implode('',$styles);
-	edac_log($styles);
+
+		// css from files
+		$style_files = $content['html']->find('link[rel="stylesheet"]');
+		foreach ($style_files as $stylesheet){
+			$stylesheet_url = $stylesheet->href;
+			$styles = @file_get_contents($stylesheet_url);
+			if($styles){
+				$content['css'] .= $styles;
+			}
+		}
+
+		$content['css_parsed'] = edac_parse_css($content['css']);
 	}
-
-	/*
-	* check for font-size styles from file
-	*/
-	/* foreach ($dom->find('link[rel="stylesheet"]') as $stylesheet){
-		$stylesheet_url = $stylesheet->href;
-		$styles = @file_get_contents($stylesheet_url);
-		$errors = array_merge(ac_css_small_text_check($content, $styles),$errors);
-	} */
-
 
 	return $content;
 }

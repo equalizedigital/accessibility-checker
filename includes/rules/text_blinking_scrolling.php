@@ -2,7 +2,7 @@
 
 function edac_rule_text_blinking_scrolling($content, $post)
 {
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 
 	/**

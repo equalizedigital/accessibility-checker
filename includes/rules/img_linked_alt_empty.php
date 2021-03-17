@@ -3,7 +3,7 @@
 function edac_rule_img_linked_alt_empty($content, $post){
 	
 	// rule vars
-    $dom = $content;
+    $dom = $content['html'];
     $errors = [];
 
     $as = $dom->find('a');

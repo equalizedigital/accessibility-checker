@@ -30,7 +30,7 @@
 function edac_rule_link_ambiguous_text($content, $post){
 
 	// rule vars
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 
 	// get and loop through anchor links

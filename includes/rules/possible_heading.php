@@ -8,7 +8,7 @@
 
 function edac_rule_possible_heading($content, $post){
 
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 
 	/*

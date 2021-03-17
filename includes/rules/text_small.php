@@ -20,7 +20,7 @@ function edac_rule_text_small($content, $post){
 	 * check for inline font-size styles
 	 * <p style="font-size: 10px;">test</p>
 	 */
-	$dom = $content;
+	$dom = $content['html'];
 	$elements = $dom->find('*');
 	if ($elements) {
 		foreach ($elements as $element) {
