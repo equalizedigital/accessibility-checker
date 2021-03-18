@@ -94,7 +94,7 @@ if ( ! defined( 'EDAC_PLUGIN_FILE' ) ) {
 
 // Enable EDAC_DEBUG mode
 if ( ! defined( 'EDAC_DEBUG' ) ) {
-	define( 'EDAC_DEBUG', true );
+	define( 'EDAC_DEBUG', false );
 }
 
 /**
@@ -246,12 +246,12 @@ function edac_register_rules(){
 	]);
 
 	// text_justified
-	/* array_push($rules, [
+	array_push($rules, [
 		'title' => 'Text Justified',
 		'info_url'  => 'https://a11ychecker.com/help1980',
 		'slug'  => 'text_justified',
 		'rule_type' => 'warning',
-	]); */
+	]);
 
 	// link_blank
 	array_push($rules, [
@@ -382,12 +382,12 @@ function edac_register_rules(){
 	]);
 
 	// underlined_text
-	/* array_push($rules, [
+	array_push($rules, [
 		'title' => 'Underlined Text',
 		'info_url'  => 'https://a11ychecker.com/help1978',
 		'slug'  => 'underlined_text',
 		'rule_type' => 'warning',
-	]); */
+	]);
 
 	// broken_skip_link
 	array_push($rules, [
@@ -414,37 +414,37 @@ function edac_register_rules(){
 	]);
 
 	// text_small
-	/* array_push($rules, [
+	array_push($rules, [
 		'title' => 'Text Too Small',
 		'info_url'  => 'https://a11ychecker.com/help1975',
 		'slug'  => 'text_small',
 		'rule_type' => 'warning',
-	]); */
+	]);
 
 	// possible_heading
-	/* array_push($rules, [
+	array_push($rules, [
 		'title' => 'Possible Heading',
 		'info_url'  => 'https://a11ychecker.com/help1969',
 		'slug'  => 'possible_heading',
 		'rule_type' => 'warning',
-	]); */
+	]);
 
 	// text_blinking_scrolling
-	/* array_push($rules, [
+	array_push($rules, [
 		'title' => 'Blinking or Scrolling Content',
 		'info_url'  => 'https://a11ychecker.com/help1965',
 		'slug'  => 'text_blinking_scrolling',
 		'rule_type' => 'error',
-	]); */
+	]);
 
 	// color_contrast_failure
-	/* array_push($rules, [
+	array_push($rules, [
 		'title' => 'Insufficient Color Contrast',
 		'info_url'  => 'https://a11ychecker.com/help1983',
 		'slug'  => 'color_contrast_failure',
 		'rule_type' => 'error',
 	]);
- */
+
 	// missing transcript
 	array_push($rules, [
 		'title' => 'Missing Transcript',

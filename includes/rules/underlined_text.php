@@ -3,8 +3,7 @@
 function edac_rule_underlined_text($content, $post){
 	
 	$errors = [];
-	//$content = $content['html'];
-	$elements = $content->find('u');
+	$elements = $content['html']->find('u');
 
 	/*
 	 * check for html elements
@@ -20,7 +19,7 @@ function edac_rule_underlined_text($content, $post){
 	 * check for inline styles
 	 * <p style="text-decoration: underline;">test</p>
 	 */
-	$elements = $content->find('*');
+	$elements = $content['html']->find('*');
 	if ($elements) {
 		foreach ($elements as $element) {
 			if (
@@ -34,30 +33,10 @@ function edac_rule_underlined_text($content, $post){
 		}
 	}
 
-	/*
-	 * check for underline styles within style tags
-	 * <style></style>
-	 */
-	$styles = $content->find('style');
-
-	if ($styles) {
-		foreach ($styles as $style) {
-			$errors = array_merge(edac_css_underlined_text_check($content, $style->innertext),$errors);
-		}
+	// check styles
+	if($content['css_parsed']){
+		$errors = array_merge(edac_css_underlined_text_check($content),$errors);
 	}
-	
-
-	/*
-	* check for underline styles from file
-	*/
-	foreach ($content->find('link[rel="stylesheet"]') as $stylesheet){
-		$stylesheet_url = $stylesheet->href;
-		$styles = @file_get_contents($stylesheet_url);
-		$errors = array_merge(edac_css_underlined_text_check($content, $styles),$errors);
-	}
-
-	
-	
 
 	return $errors;
 }
@@ -69,12 +48,12 @@ function edac_rule_underlined_text($content, $post){
  * @param $styles
  * @return array
  */
-function edac_css_underlined_text_check($content, $styles){
+function edac_css_underlined_text_check($content){
 
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 	$error_code = '';
-	$css_array = edac_parse_css($styles);
+	$css_array = $content['css_parsed'];
 
 	if ($css_array) {
 		foreach ($css_array as $element => $rules) {

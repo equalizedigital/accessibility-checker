@@ -100,41 +100,21 @@ function edac_rule_possible_heading($content, $post){
 		}
 	}
 
-	/*
-	 * check for styles within style tags
-	 * <style></style>
-	 */
-	if($content){
-		$dom_styles = $content;
-		$styles = $dom_styles->find('style');
-
-		if ($styles) {
-			foreach ($styles as $style) {
-				$errors = array_merge(ac_css_font_size_weight_check($content, $style->innertext),$errors);
-			}
-		}
-		
-
-		/*
-		* check for styles from file
-		*/
-		foreach ($dom_styles->find('link[rel="stylesheet"]') as $stylesheet){
-			$stylesheet_url = $stylesheet->href;
-			$styles = @file_get_contents($stylesheet_url);
-			$errors = array_merge(ac_css_font_size_weight_check($content, $styles),$errors);
-		}
+	// check styles
+	if($content['css_parsed']){
+		$errors = array_merge(ac_css_font_size_weight_check($content),$errors);
 	}
 
 	return $errors;
 
 }
 
-function ac_css_font_size_weight_check($content, $styles){
+function ac_css_font_size_weight_check($content){
 
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 	$error_code = '';
-	$css_array = edac_parse_css($styles);
+	$css_array = $content['css_parsed'];
 
 	if ($css_array) {
 		foreach ($css_array as $element => $rules) {

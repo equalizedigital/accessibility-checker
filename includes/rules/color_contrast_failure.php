@@ -120,30 +120,9 @@ function edac_rule_color_contrast_failure($content, $post)
 		}
 	}
 	
-	/*
-	 * check for styles within style tags
-	 * <style></style>
-	 */
+	// check styles
 	if($content['css_parsed']){
-		/* $dom_styles = $content;
-		$styles = $dom_styles->find('style');
-		if ($styles) {
-			foreach ($styles as $style) {
-				$errors = array_merge(edac_check_contrast($content, $style->innertext),$errors);
-			}
-		} */
-		
-
-		/*
-		* check for styles from file
-		*/
-		/* foreach ($dom_styles->find('link[rel="stylesheet"]') as $stylesheet){
-			$stylesheet_url = $stylesheet->href;
-			$styles = @file_get_contents($stylesheet_url);
-			$errors = array_merge(edac_check_contrast($content, $styles),$errors);
-		} */
-
-		$errors = array_merge(edac_check_contrast($content, $content['css_parsed']),$errors);
+		$errors = array_merge(edac_check_contrast($content),$errors);
 	}
 
 	return $errors;
@@ -156,13 +135,12 @@ function edac_rule_color_contrast_failure($content, $post)
  * @param string $styles
  * @return array
  */
-function edac_check_contrast($content, $styles)
+function edac_check_contrast($content)
 {
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 	$error_code = '';
-	$css_array = edac_parse_css($styles);
-
+	$css_array = $content['css_parsed'];
 
 	foreach ($css_array as $element => $rules) {
 
@@ -230,11 +208,15 @@ function edac_check_contrast($content, $styles)
 				$ratio = 3;
 			}
 
-			//edac_log($background);
-			//edac_log($foreground);
+			/* edac_log('--');
+			edac_log($background);
+			edac_log($foreground); */
 			// replace CSS variables
 			$background = edac_replace_css_variables($background, $css_array);
 			$foreground = edac_replace_css_variables($foreground, $css_array);
+			/* edac_log($background);
+			edac_log($foreground);
+			edac_log('--'); */
 
 			if (edac_coldiff($foreground, $background, $ratio)) {
 
@@ -707,18 +689,32 @@ function edac_check_color_match2($background_rule)
 	return "";
 }
 
+/**
+ * Undocumented function
+ *
+ * @param [type] $value
+ * @param [type] $css_array
+ * @return void
+ * 
+ * color: var(--my-var, red); Red if --my-var is not defined
+ * background-color: var(--my-var, var(--my-background, pink)); pink if --my-var and --my-background are not defined
+ */
 function edac_replace_css_variables($value, $css_array){
 
 	if(stripos($value,'var(--') !== false){
 
+		edac_log('BEFORE: '.$value);
+
 		$value = str_replace('var(','',$value);
 		$value = str_replace(')','',$value);
 
-		//edac_log($value);
+		edac_log('AFTER: '.$value);
 
 		//edac_log($css_array[':root']);
 
 		$value = $css_array[':root'][$value];
+
+		edac_log('FOUND: '.$value);
 
 		return $value;
 
