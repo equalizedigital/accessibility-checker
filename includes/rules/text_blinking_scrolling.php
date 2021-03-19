@@ -57,6 +57,10 @@ function ac_css_text_decoration_blink_check($content){
 	if ($css_array) {
 		foreach ($css_array as $element => $rules) {
 			if (array_key_exists('text-decoration', $rules)) {
+				
+				// replace CSS variables
+				$rules['text-decoration'] = edac_replace_css_variables($rules['text-decoration'], $css_array);
+
 				if($rules['text-decoration'] == 'blink' || $rules['text-decoration'] == 'Blink') {
 					$error_code = $element . '{ ';
 					foreach ($rules as $key => $value) {

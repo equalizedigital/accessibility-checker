@@ -12,7 +12,6 @@
  */
 function edac_rule_color_contrast_failure($content, $post)
 {	
-	//edac_log($content['css_parsed']);
 	// check links in content for style tags
 	$dom = $content['html'];
 	$errors = [];
@@ -210,8 +209,8 @@ function edac_check_contrast($content)
 			}
 
 			// replace CSS variables
-			//$background = edac_replace_css_variables($background, $css_array);
-			//$foreground = edac_replace_css_variables($foreground, $css_array);
+			$background = edac_replace_css_variables($background, $css_array);
+			$foreground = edac_replace_css_variables($foreground, $css_array);
 
 			if (edac_coldiff($foreground, $background, $ratio)) {
 
@@ -685,34 +684,42 @@ function edac_check_color_match2($background_rule)
 }
 
 /**
- * Undocumented function
+ * Replace CSS Variables with Value
  *
- * @param [type] $value
- * @param [type] $css_array
+ * @param string $value
+ * @param array $css_array
  * @return void
  * 
- * color: var(--my-var, red); Red if --my-var is not defined
- * background-color: var(--my-var, var(--my-background, pink)); pink if --my-var and --my-background are not defined
  */
-/* function edac_replace_css_variables($value, $css_array){
+function edac_replace_css_variables($value, $css_array){
 
 	if(stripos($value,'var(--') !== false){
 
-		edac_log('BEFORE: '.$value);
-
+		// replace strings
 		$value = str_replace('var(','',$value);
 		$value = str_replace(')','',$value);
+		$value = str_replace('calc(','',$value);
 
-		edac_log('AFTER: '.$value);
+		// explode and loop through css vars
+		$values = explode(',',$value);
+		foreach ($values as $value) {
 
-		$value = $css_array[':root'][$value];
+			//check if is a css variable
+			if(substr( $value, 0, 2 ) === "--"){
+				$found_value = $css_array[':root'][$value];
 
-		edac_log('FOUND: '.$value);
+				// if value found break loop
+				if($found_value) break;
+			}else{
 
-		return $value;
+				// if not a variable return value.
+				$found_value = $value;
+			}
+		}
+
+		return $found_value;
 
 	}else{
 		return $value;
 	}
-
-} */
+}

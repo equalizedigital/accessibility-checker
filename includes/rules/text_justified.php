@@ -64,6 +64,9 @@ function edac_css_justified_text_check($content){
 	if ($css_array) {
 		foreach ($css_array as $element => $rules) {
 			if (array_key_exists('text-align', $rules)) {
+
+				// replace CSS variables
+				$rules['text-align'] = edac_replace_css_variables($rules['text-align'], $css_array);
 				
 				$value = preg_replace('/\d/', '', $rules['text-align'] );
 

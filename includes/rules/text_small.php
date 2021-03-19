@@ -77,6 +77,9 @@ function ac_css_small_text_check($content){
 	if ($css_array) {
 		foreach ($css_array as $element => $rules) {
 			if (array_key_exists('font-size', $rules)) {
+
+				// replace CSS variables
+				$rules['font-size'] = edac_replace_css_variables($rules['font-size'], $css_array);
 				
 				$value = str_replace('.', '', preg_replace('/\d/', '', $rules['font-size'] ));
 

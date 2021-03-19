@@ -59,6 +59,9 @@ function edac_css_underlined_text_check($content){
 		foreach ($css_array as $element => $rules) {
 			if (array_key_exists('text-decoration', $rules)) {
 
+				// replace CSS variables
+				$rules['text-decoration'] = edac_replace_css_variables($rules['text-decoration'], $css_array);
+
 				if(stristr(strtolower($rules['text-decoration']), 'underline')){
 
 					$error_code = $element . '{ ';

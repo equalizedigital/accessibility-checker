@@ -121,7 +121,12 @@ function ac_css_font_size_weight_check($content){
 
 			if (array_key_exists('font-size', $rules)) {
 
-				if(preg_match('(rem|em|%|inherit)', $rules['font-size']) === 1) { continue; } 
+				// replace CSS variables
+				$rules['font-size'] = edac_replace_css_variables($rules['font-size'], $css_array);
+				$rules['font-weight'] = edac_replace_css_variables($rules['font-weight'], $css_array);
+				$rules['font-weight'] = edac_replace_css_variables($rules['font-style'], $css_array);
+
+				if(preg_match('(rem|em|%|inherit)', $rules['font-size']) === 1) { continue; }
 
 				if($rules['font-size'] >= 20){
 					goto save_error;
