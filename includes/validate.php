@@ -172,9 +172,9 @@ function edac_get_content($post)
 	}
 	try{
 		if($context){
-			$content['html'] = file_get_html(get_the_permalink($post->ID), false, $context);
+			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time(), false, $context);
 		}else{
-			$content['html'] = file_get_html(get_the_permalink($post->ID));
+			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time());
 		}
 	} catch (Exception $e){
 		$content['html'] = false;
@@ -201,7 +201,7 @@ function edac_get_content($post)
 		$style_files = $content['html']->find('link[rel="stylesheet"]');
 		foreach ($style_files as $stylesheet){
 			$stylesheet_url = $stylesheet->href;
-			$styles = @file_get_contents($stylesheet_url);
+			$styles = @file_get_contents($stylesheet_url.'?c='.time());
 			if($styles){
 				$content['css'] .= $styles;
 			}
