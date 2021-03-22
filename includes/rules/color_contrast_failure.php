@@ -165,6 +165,8 @@ function edac_check_contrast($content)
 			$font_size = 0;
 
 			if (array_key_exists('font-size', $rules)) {
+
+				$rules['font-size'] = edac_replace_css_variables($rules['font-size'], $css_array);
 				
 				$value = str_replace('.', '', preg_replace('/\d/', '', $rules['font-size'] ));
 
@@ -181,6 +183,9 @@ function edac_check_contrast($content)
 			$font_bold = false;
 
 			if(array_key_exists('font-weight', $rules)){
+
+				$rules['font-weight'] = edac_replace_css_variables($rules['font-weight'], $css_array);
+
 				if(
 					$rules['font-weight'] == 'bold' ||
 					$rules['font-weight'] == 'bolder' ||
