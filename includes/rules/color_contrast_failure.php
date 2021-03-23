@@ -162,7 +162,7 @@ function edac_check_contrast($content)
 
 			
 			// if background color not set exit	
-			//if ($background == "initial" or $background == "inherit" or $background == "transparent" or $background == "" or $foreground == "") goto a;
+			if ($background == "initial" or $background == "inherit" or $background == "transparent" or $background == "" or $foreground == "") goto a;
 			
 			// get font size
 			$font_size = 0;
