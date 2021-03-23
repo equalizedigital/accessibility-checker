@@ -147,19 +147,22 @@ function edac_check_contrast($content)
 		if (array_key_exists('color', $rules)) {
 
 			$background = "";
-			$foreground = $rules['color'];
+			$foreground = edac_replace_css_variables($rules['color'], $css_array);
 
 			// determin which rule has preference if both background and background-color are present
 			$preference = edac_deteremine_hierarchy($rules);
 
 			if (array_key_exists('background', $rules) and $preference == 'background')
+				$rules['background'] = edac_replace_css_variables($rules['background'], $css_array);
 				$background = edac_check_color_match2($rules['background']);
 
 			if (array_key_exists('background-color', $rules) and $preference == 'background-color')
+				$rules['background-color'] = edac_replace_css_variables($rules['background-color'], $css_array);
 				$background = $rules['background-color'];
 
+			
 			// if background color not set exit	
-			if ($background == "initial" or $background == "inherit" or $background == "transparent" or $background == "" or $foreground == "") goto a;
+			//if ($background == "initial" or $background == "inherit" or $background == "transparent" or $background == "" or $foreground == "") goto a;
 			
 			// get font size
 			$font_size = 0;
@@ -168,14 +171,15 @@ function edac_check_contrast($content)
 
 				$rules['font-size'] = edac_replace_css_variables($rules['font-size'], $css_array);
 				
-				$value = str_replace('.', '', preg_replace('/\d/', '', $rules['font-size'] ));
+				$unit = str_replace('.', '', preg_replace('/\d/', '', $rules['font-size'] ));
+				$value = str_replace($unit,'',$rules['font-size']);
 
-				if($value == 'px'){
-					$font_size = $rules['font-size']* 0.75;
+				if($unit == 'px'){
+					$font_size = $value* 0.75;
 				}
 
-				if($value == 'pt'){
-					$font_size = $rules['font-size'];
+				if($unit == 'pt'){
+					$font_size = $value;
 				}
 			}
 
@@ -212,10 +216,6 @@ function edac_check_contrast($content)
 			if(($font_size >= 14 && $font_bold == true) || $font_size >= 18){
 				$ratio = 3;
 			}
-
-			// replace CSS variables
-			$background = edac_replace_css_variables($background, $css_array);
-			$foreground = edac_replace_css_variables($foreground, $css_array);
 
 			if (edac_coldiff($foreground, $background, $ratio)) {
 
