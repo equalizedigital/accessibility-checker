@@ -86,7 +86,7 @@
      */
     function edac_summary_ajax() {
       //var post_id = wp.data.select("core/editor").getCurrentPostId();
-      var post_id = ac_script_vars.postID;
+      var post_id = edac_script_vars.postID;
 
       if (post_id == null) {
         return;
@@ -94,7 +94,7 @@
 
       jQuery.post(
         ajaxurl,
-        { action: "edac_summary_ajax", post_id: post_id },
+        { action: "edac_summary_ajax", post_id: post_id, nonce: edac_script_vars.nonce},
         function (response) {
           var data = response;
           data = JSON.parse(data);
@@ -108,7 +108,7 @@
      */
     function edac_details_ajax() {
       //var post_id = wp.data.select("core/editor").getCurrentPostId();
-      var post_id = ac_script_vars.postID;
+      var post_id = edac_script_vars.postID;
 
       if (post_id == null) {
         return;
@@ -116,7 +116,7 @@
 
       jQuery.post(
         ajaxurl,
-        { action: "edac_details_ajax", post_id: post_id },
+        { action: "edac_details_ajax", post_id: post_id, nonce: edac_script_vars.nonce },
         function (response) {
           var data = response;
           data = JSON.parse(data);
@@ -158,7 +158,7 @@
      */
     function edac_readability_ajax() {
       //var post_id = wp.data.select("core/editor").getCurrentPostId();
-      var post_id = ac_script_vars.postID;
+      var post_id = edac_script_vars.postID;
 
       if (post_id == null) {
         return;
@@ -166,7 +166,7 @@
 
       jQuery.post(
         ajaxurl,
-        { action: "edac_readability_ajax", post_id: post_id },
+        { action: "edac_readability_ajax", post_id: post_id, nonce: edac_script_vars.nonce},
         function (response) {
           var data = response;
           data = JSON.parse(data);
@@ -186,6 +186,7 @@
                 action: "edac_update_simplified_summary",
                 post_id: post_id,
                 summary: summary,
+                nonce: edac_script_vars.nonce
               },
               function (response) {
                 var data = response;
@@ -259,6 +260,7 @@
             comment: comment,
             ignore_action: ignore_action,
             ignore_type: ignore_type,
+            nonce: edac_script_vars.nonce
           },
           function (response) {
             var data = response;

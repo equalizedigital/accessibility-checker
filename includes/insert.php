@@ -67,6 +67,11 @@ function edac_insert_rule_data($post, $rule, $ruletype, $object){
  * @return void
  */
 function edac_insert_ignore_data(){
+
+	// nonce security
+	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+		die( __( 'Permission Denied.', 'edac' ) );
+	}
 	
 	global $wpdb;
 	$table_name = $wpdb->prefix . "accessibility_checker";

@@ -529,6 +529,11 @@ if($rules){
  */
 function edac_summary_ajax(){
 
+	// nonce security
+	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+		die( __( 'Permission Denied.', 'edac' ) );
+	}
+
 	if(!isset($_REQUEST['post_id'])) die();
 
 	$post_id = intval($_REQUEST['post_id']);
@@ -686,6 +691,11 @@ function edac_summary($post_id){
  * @return void
  */
 function edac_details_ajax(){
+
+	// nonce security
+	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+		die( __( 'Permission Denied.', 'edac' ) );
+	}
 
 	if(!isset($_REQUEST['post_id'])) die();
 	
@@ -872,6 +882,11 @@ function edac_details_ajax(){
  */
 function edac_readability_ajax(){
 
+	// nonce security
+	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+		die( __( 'Permission Denied.', 'edac' ) );
+	}
+
 	if(!isset($_REQUEST['post_id'])) die();
 
 	$post_id = intval($_REQUEST['post_id']);
@@ -966,6 +981,11 @@ function edac_readability_ajax(){
  * @return void
  */
 function edac_update_simplified_summary(){
+
+	// nonce security
+	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+		die( __( 'Permission Denied.', 'edac' ) );
+	}
 
 	if(!isset($_REQUEST['post_id']) || !isset($_REQUEST['summary'])) die();
 
