@@ -65,12 +65,18 @@ function edac_insert_rule_data($post, $rule, $ruletype, $object){
  * Insert ignore data into database
  *
  * @return void
+ * 
+ *  - '-1' means that nonce could not be varified
+ *  - '-2' means that there isn't any ignore data to return
  */
 function edac_insert_ignore_data(){
 
 	// nonce security
 	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
-		die( __( 'Permission Denied.', 'edac' ) );
+			
+		$error = new WP_Error( '-1', 'Permission Denied' );
+		wp_send_json_error( $error );
+
 	}
 	
 	global $wpdb;
@@ -96,7 +102,15 @@ function edac_insert_ignore_data(){
 
 	}
 
-	print json_encode(['id' => $id, 'action' => $action, 'type' => $type, 'user' => $ignre_username, 'date' => $ignre_date_formatted]);
-	die();
+	$data = ['id' => $id, 'action' => $action, 'type' => $type, 'user' => $ignre_username, 'date' => $ignre_date_formatted];
+
+	if( !$data ){
+
+		$error = new WP_Error( '-2', 'No ignore data to return' );
+		wp_send_json_error( $error );
+	
+	}
+	
+	wp_send_json_success( json_encode($data) );
 
 }
