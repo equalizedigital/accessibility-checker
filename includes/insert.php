@@ -11,49 +11,63 @@
  */
 function edac_insert_rule_data($post, $rule, $ruletype, $object){
 
-	$postid = $post->ID;
-	$ignre = 0; // This will need a function to check if should be ignored
-	$siteid = get_current_blog_id();
-	$type = $post->post_type;
-	$user = get_current_user_id();
-	$object = esc_attr($object);
-
-	if($type == 'revision'){
-		return;
-	}
-
 	global $wpdb;
 	$table_name = $wpdb->prefix . "accessibility_checker";
+
+	// set up rule data array
+	$rule_data = [
+		'postid' => $post->ID,
+		'siteid' => get_current_blog_id(),
+		'type' => $post->post_type,
+		'rule' => $rule,
+		'ruletype' => $ruletype,
+		'object' => esc_attr($object),
+		'recordcheck' => 1,
+		'user' => $object,
+		'ignre' => 0,
+		'ignre_user' => null,
+		'ignre_comment' => null,
+	];
+
+	// return if revision
+	if($rule_data['type'] == 'revision'){
+		return;
+	}
 	
 	// Check if exists
-	$results = $wpdb->get_results( $wpdb->prepare( 'SELECT postid, ignre FROM '.$table_name.' where type = %s and postid = %d and rule = %s and object = %s and siteid = %d', $type, $postid, $rule, $object, $siteid), ARRAY_A );	
+	$results = $wpdb->get_results( 
+		$wpdb->prepare( 
+			'SELECT postid, ignre FROM '.$table_name.' where type = %s and postid = %d and rule = %s and object = %s and siteid = %d', $rule_data['type'], $rule_data['postid'], $rule_data['rule'], $rule_data['object'], $rule_data['siteid']
+		), ARRAY_A 
+	);	
 
 	// Loop existing records
 	if($results){
 		foreach ($results as $row){
 
 			// if being ignored, don't overwrite value
-			if($row['ignre'] == 1)  $ignre = 1;
+			if($row['ignre'] == 1) $rule_data['ignre'] = 1;
 
 			// update existing record
-			$wpdb->query( $wpdb->prepare( 'UPDATE '.$table_name.' SET recordcheck = %d, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s', 1, $ignre, $siteid, $postid, $rule, $object, $type) );
+			$wpdb->query( 
+				$wpdb->prepare( 
+					'UPDATE '.$table_name.' SET recordcheck = %d, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s', 1, $rule_data['ignre'], $rule_data['siteid'], $rule_data['postid'], $rule_data['rule'], $rule_data['object'], $rule_data['type']
+				) 
+			);
 
 		}
 	}
 
 	// Insert new records
 	if(!$results){
-		$wpdb->insert($table_name, array(
-			'postid' => $postid,
-			'ignre' => $ignre,
-			'siteid' => $siteid,
-			'type' => $type,
-			'rule' => $rule,
-			'ruletype' => $ruletype,
-			'object' => $object,
-			'recordcheck' => 1,
-			'user' => $user,
-		));
+
+		// filter post types
+		if(has_filter('edac_filter_insert_rule_data')) {
+			$rule_data = apply_filters('edac_filter_post_types', $rule_data);
+		}
+
+		// insert
+		$wpdb->insert($table_name, $rule_data);
 
 		// Return insert id or error
 		return $wpdb->insert_id;
