@@ -23,9 +23,10 @@ function edac_insert_rule_data($post, $rule, $ruletype, $object){
 		'ruletype' => $ruletype,
 		'object' => esc_attr($object),
 		'recordcheck' => 1,
-		'user' => $object,
+		'user' => get_current_user_id(),
 		'ignre' => 0,
 		'ignre_user' => null,
+		'ignre_date' => null,
 		'ignre_comment' => null,
 	];
 
@@ -63,7 +64,7 @@ function edac_insert_rule_data($post, $rule, $ruletype, $object){
 
 		// filter post types
 		if(has_filter('edac_filter_insert_rule_data')) {
-			$rule_data = apply_filters('edac_filter_post_types', $rule_data);
+			$rule_data = apply_filters('edac_filter_insert_rule_data', $rule_data);
 		}
 
 		// insert
