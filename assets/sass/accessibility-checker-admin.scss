@@ -459,6 +459,9 @@
           &-passed {
             background-color: $color-green;
           }
+          &-ignore{
+            background-color: $color-blue-dark;
+          }
         }
         &-count-error {
           &.active {

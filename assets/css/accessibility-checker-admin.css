@@ -353,6 +353,8 @@
         margin-right: 5px; }
         #edac-meta-box #edac-tabs .edac-details-rule-count-passed {
           background-color: #006600; }
+        #edac-meta-box #edac-tabs .edac-details-rule-count-ignore {
+          background-color: #072446; }
       #edac-meta-box #edac-tabs .edac-details-rule-count-error.active {
         background-color: #b30f0f; }
       #edac-meta-box #edac-tabs .edac-details-rule-count-warning.active {
