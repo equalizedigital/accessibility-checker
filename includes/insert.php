@@ -28,6 +28,7 @@ function edac_insert_rule_data($post, $rule, $ruletype, $object){
 		'ignre_user' => null,
 		'ignre_date' => null,
 		'ignre_comment' => null,
+		'ignre_global' => 0,
 	];
 
 	// return if revision
@@ -95,18 +96,19 @@ function edac_insert_ignore_data(){
 	$ignre_date = ($action == 'enable') ? date('Y-m-d H:i:s') : '';
 	$ignre_date_formatted = ($action == 'enable') ? date("F j, Y g:i a", strtotime($ignre_date)) : '';
 	$ignre_comment = $_REQUEST['comment'] ? esc_html($_REQUEST['comment']) : '';
+	$ignore_global = $_REQUEST['ignore_global'] ? esc_html($_REQUEST['ignore_global']) : 0;
 
 	if($action == 'enable'){
 
-		$wpdb->query( $wpdb->prepare( 'UPDATE '.$table_name.' SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s WHERE siteid = %d and id = %d', 1, $ignre_user, $ignre_date, $ignre_comment, $siteid, $id) );
+		$wpdb->query( $wpdb->prepare( 'UPDATE '.$table_name.' SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', 1, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id) );
 
 	}elseif($action == 'disable'){
 
-		$wpdb->query( $wpdb->prepare( 'UPDATE '.$table_name.' SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s WHERE siteid = %d and id = %d', 0, NULL, NULL, NULL, $siteid, $id) );
+		$wpdb->query( $wpdb->prepare( 'UPDATE '.$table_name.' SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', 0, NULL, NULL, NULL, 0, $siteid, $id) );
 
 	}
 
-	print json_encode(['id' => $id, 'action' => $action, 'type' => $type, 'user' => $ignre_username, 'date' => $ignre_date_formatted]);
+	print json_encode(['id' => $id, 'action' => $action, 'type' => $type, 'user' => $ignre_username, 'date' => $ignre_date_formatted, 'ignore_global' => $ignore_global]);
 	die();
 
 }
