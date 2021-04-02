@@ -74,7 +74,7 @@ if ( ! defined( 'EDAC_VERSION' ) ) {
 
 // Current database version
 if ( ! defined( 'EDAC_DB_VERSION' ) ) {
-	define( 'EDAC_DB_VERSION', '1.0.0' );
+	define( 'EDAC_DB_VERSION', '1.0.1' );
 }
 
 // Plugin Folder Path
@@ -148,6 +148,7 @@ require_once(plugin_dir_path( __FILE__ ).'includes/system-info.php');
  */
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
+add_action( 'admin_init', 'edac_update_database', 10 );
 add_action( 'add_meta_boxes', 'edac_register_meta_boxes' );
 add_action( 'admin_menu','edac_add_options_page' );
 add_action( 'admin_init', 'edac_register_setting' );
@@ -164,6 +165,52 @@ add_filter( 'pre_delete_post', 'edac_delete_post', 10, 3 );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 add_action( 'admin_init', 'edac_process_actions' );
 add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
+
+/**
+ * Create/Update database
+ *
+ * @return void
+ */
+function edac_update_database(){
+
+	if(get_option('edac_db_version') == EDAC_DB_VERSION) return;
+
+	global $wpdb;
+	
+	$table_name = $wpdb->prefix . "accessibility_checker";
+	$charset_collate = $wpdb->get_charset_collate();
+	$sql = "CREATE TABLE $table_name (
+		id bigint(20) NOT NULL AUTO_INCREMENT,
+		postid bigint(20) NOT NULL,
+		siteid text NOT NULL,
+		type text NOT NULL,
+		rule text NOT NULL,
+		ruletype text NOT NULL,
+		object mediumtext NOT NULL,
+		recordcheck mediumint(9) NOT NULL,
+		created timestamp NOT NULL default CURRENT_TIMESTAMP,
+		user bigint(20) NOT NULL,
+		ignre mediumint(9) NOT NULL,
+		ignre_global mediumint(9) NOT NULL,
+		ignre_user bigint(20) NULL,
+		ignre_date timestamp NULL,
+		ignre_comment mediumtext NULL,
+		UNIQUE KEY id (id)
+	  ) $charset_collate;";
+
+	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+	dbDelta( $sql );
+	
+	// Update database version option
+	$option_name = 'edac_db_version' ;
+	$new_value = EDAC_DB_VERSION;
+	if ( get_option( $option_name ) !== false ) {
+		update_option( $option_name, $new_value );
+	} else {
+		add_option( $option_name, $new_value);
+	}
+
+}
 
 /**
  * Register Rules
