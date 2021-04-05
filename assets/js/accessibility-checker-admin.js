@@ -254,6 +254,7 @@
      * Ignore Submit on click
      */
     function ignore_submit(){
+      
       $(".edac-details-rule-records-record-ignore-submit").click(function (e) {
         e.preventDefault();
 
@@ -264,7 +265,7 @@
           ".edac-details-rule-records-record-ignore-comment",
           $(this).parent()
         ).val();
-
+        
         $.ajax({
 
           url: ajaxurl,
