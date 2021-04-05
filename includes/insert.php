@@ -96,7 +96,7 @@ function edac_insert_ignore_data(){
 	$ignre_date = ($action == 'enable') ? date('Y-m-d H:i:s') : '';
 	$ignre_date_formatted = ($action == 'enable') ? date("F j, Y g:i a", strtotime($ignre_date)) : '';
 	$ignre_comment = $_REQUEST['comment'] ? esc_html($_REQUEST['comment']) : '';
-	$ignore_global = $_REQUEST['ignore_global'] ? esc_html($_REQUEST['ignore_global']) : 0;
+	$ignore_global = isset($_REQUEST['ignore_global']) ? esc_html($_REQUEST['ignore_global']) : 0;
 
 	if($action == 'enable'){
 

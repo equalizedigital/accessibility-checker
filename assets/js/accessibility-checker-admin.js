@@ -302,6 +302,22 @@
             count.toString();
             $(".edac-details-rule-count", rule).html(count);
 
+            // Update ignore rule count
+            var count_ignore = parseInt($(".edac-details-rule-count-ignore", rule).html());
+            console.log(count_ignore);
+            if (data["action"] == "enable") {
+              count_ignore++;
+            } else if (data["action"] == "disable") {
+              count_ignore--;
+            }
+            if (count_ignore == 0) {
+              $(".edac-details-rule-count-ignore", rule).hide();
+            } else {
+              $(".edac-details-rule-count-ignore", rule).show();
+            }
+            count_ignore.toString();
+            $(".edac-details-rule-count-ignore", rule).html(count_ignore);
+
             // refresh page on ignore or unignore in pro
             if($('body').hasClass('accessibility-checker_page_accessibility_checker_issues') || $('body').hasClass('accessibility-checker_page_accessibility_checker_ignored')){
               location.reload(true);

@@ -460,6 +460,7 @@
             background-color: $color-green;
           }
           &-ignore{
+            @extend .edac-details-rule-count;
             background-color: $color-blue-dark;
           }
         }
@@ -556,6 +557,15 @@
                 &:hover {
                   cursor: pointer;
                 }
+              }
+              &-global{
+                color: $color-white;
+                background-color: $color-blue-dark;
+                border: none;
+                border-radius: 5px;
+                padding: 5px 10px;
+                text-transform: capitalize;
+                text-decoration: none;
               }
             }
           }

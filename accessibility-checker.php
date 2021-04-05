@@ -814,10 +814,20 @@ function edac_details_ajax(){
 			$ignore_permission = apply_filters('edac_ignore_permission', $ignore_permission);
 		}
 		foreach ($rules as $rule) {
-			$results = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM '.$table_name.' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid), ARRAY_A );			
+			$results = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM '.$table_name.' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid), ARRAY_A );			
 			$count_classes = ($rule['rule_type'] == 'error') ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
 			$count_classes .= ($rule['count'] != 0) ? ' active' : '';
-			$count_ignored = (is_array($results)) ? count(array_column($results, 'ignre')) : 0;
+			
+			$count_ignored = 0;
+			$ignores = array_column($results, 'ignre');
+			if($ignores){
+				foreach ($ignores as $ignore) {
+					if($ignore == 1){
+						$count_ignored++;
+					}
+				}
+			}
+			
 			$expand_rule = count($wpdb->get_results( $wpdb->prepare( 'SELECT id FROM '.$table_name.' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid), ARRAY_A ));
 
 			$tool_tip_link = $rule['info_url'].'?utm_source=accessibility-checker&utm_medium=software&utm_term='.esc_html($rule['slug']).'&utm_content=content-analysis&utm_campaign=wordpress-general&php_version='.PHP_VERSION.'&platform=wordpress&platform_version='.$wp_version.'&software=free&software_version='.EDAC_VERSION.'&days_active='.$days_active.'';
@@ -828,7 +838,7 @@ function edac_details_ajax(){
 
 					$html .= '<span class="edac-details-rule-count'.$count_classes.'">'.$rule['count'].'</span>';
 					if($count_ignored > 0){
-						$html .= '<span class="edac-details-rule-count edac-details-rule-count-ignore">'.$count_ignored.'</span>';
+						$html .= '<span class="edac-details-rule-count-ignore">'.$count_ignored.'</span>';
 					}
 					$html .= esc_html($rule['title']);
 					$html .= '<a href="'.$tool_tip_link.'" class="edac-details-rule-information" target="_blank"><span class="dashicons dashicons-info"></span></a>';
@@ -867,6 +877,7 @@ function edac_details_ajax(){
 							$ignore_submit_label = $ignore ? 'Stop Ignoring' : 'Ignore This '.$ignore_type;
 							$ignore_submit_icon = $ignore ? 'dashicons-visibility' : 'dashicons-hidden';
 							$ignore_comment_disabled = $ignore ? 'disabled' : '';
+							$ignore_global = intval($row['ignre_global']);
 
 							$html .= '<div id="edac-details-rule-records-record-'.$id.'" class="edac-details-rule-records-record">';
 
@@ -893,7 +904,11 @@ function edac_details_ajax(){
 									$html .= ($ignore_permission == true || !empty($ignore_comment)) ? '<label for="edac-details-rule-records-record-ignore-comment-'.$id.'">Comment</label><br>' : '';
 									$html .= ($ignore_permission == true || !empty($ignore_comment)) ? '<textarea rows="4" class="edac-details-rule-records-record-ignore-comment" id="edac-details-rule-records-record-ignore-comment-'.$id.'" '.$ignore_comment_disabled.'>'.$ignore_comment.'</textarea>' : '';
 
-									$html .= ($ignore_permission == true) ? '<button class="edac-details-rule-records-record-ignore-submit" data-id='.$id.' data-action='.$ignore_action.' data-type='.$ignore_type.'><span class="dashicons '.$ignore_submit_icon.'"></span> <span class="edac-details-rule-records-record-ignore-submit-label">'.$ignore_submit_label.'<span></button>' : '';
+									if($ignore_global){
+										$html .= ($ignore_permission == true) ? '<a href="'.admin_url('admin.php?page=accessibility_checker_ignored&tab=global').'" class="edac-details-rule-records-record-ignore-global">Manage Globally Ignored</a>' : '';
+									}else{
+										$html .= ($ignore_permission == true) ? '<button class="edac-details-rule-records-record-ignore-submit" data-id='.$id.' data-action='.$ignore_action.' data-type='.$ignore_type.'><span class="dashicons '.$ignore_submit_icon.'"></span> <span class="edac-details-rule-records-record-ignore-submit-label">'.$ignore_submit_label.'<span></button>' : '';
+									}
 
 									$html .= ($ignore_permission == false && $ignore == false) ? __('Your user account doesn\'t have permission to ignore this issue.','edac') : '';
 
