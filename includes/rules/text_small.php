@@ -20,7 +20,7 @@ function edac_rule_text_small($content, $post){
 	 * check for inline font-size styles
 	 * <p style="font-size: 10px;">test</p>
 	 */
-	$dom = $content;
+	$dom = $content['html'];
 	$elements = $dom->find('*');
 	if ($elements) {
 		foreach ($elements as $element) {
@@ -51,30 +51,9 @@ function edac_rule_text_small($content, $post){
 		}
 	}
 
-	/*
-	 * check for font-size styles within style tags
-	 * <style></style>
-	 */
-	if($content){
-		$dom = $content;
-
-		$styles = $dom->find('style');
-
-		if ($styles) {
-			foreach ($styles as $style) {
-				$errors = array_merge(ac_css_small_text_check($content, $style->innertext),$errors);
-			}
-		}
-		
-
-		/*
-		* check for font-size styles from file
-		*/
-		foreach ($dom->find('link[rel="stylesheet"]') as $stylesheet){
-			$stylesheet_url = $stylesheet->href;
-			$styles = @file_get_contents($stylesheet_url);
-			$errors = array_merge(ac_css_small_text_check($content, $styles),$errors);
-		}
+	// check styles
+	if($content['css_parsed']){
+		$errors = array_merge(ac_css_small_text_check($content),$errors);
 	}
 
 	return $errors;
@@ -88,16 +67,19 @@ function edac_rule_text_small($content, $post){
  * @param $styles
  * @return array
  */
-function ac_css_small_text_check($content, $styles){
+function ac_css_small_text_check($content){
 
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 	$error_code = '';
-	$css_array = edac_parse_css($styles);
+	$css_array = $content['css_parsed'];
 
 	if ($css_array) {
 		foreach ($css_array as $element => $rules) {
 			if (array_key_exists('font-size', $rules)) {
+
+				// replace CSS variables
+				$rules['font-size'] = edac_replace_css_variables($rules['font-size'], $css_array);
 				
 				$value = str_replace('.', '', preg_replace('/\d/', '', $rules['font-size'] ));
 

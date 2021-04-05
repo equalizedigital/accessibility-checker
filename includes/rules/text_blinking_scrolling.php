@@ -2,7 +2,7 @@
 
 function edac_rule_text_blinking_scrolling($content, $post)
 {
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 
 	/**
@@ -38,45 +38,29 @@ function edac_rule_text_blinking_scrolling($content, $post)
 		}
 	}
 
-	/**
-	 * check for styles within style tags
-	 * <style></style>
-	 */
-	if($content){
-		$dom_styles = $content;
-		$styles = $dom_styles->find('style');
-
-		if ($styles) {
-			foreach ($styles as $style) {
-				$errors = array_merge(ac_css_text_decoration_blink_check($content, $style->innertext),$errors);
-			}
-		}
-		
-
-		/**
-		 * check for styles from file
-		 */
-		foreach ($dom_styles->find('link[rel="stylesheet"]') as $stylesheet){
-			$stylesheet_url = $stylesheet->href;
-			$styles = @file_get_contents($stylesheet_url);
-			$errors = array_merge(ac_css_text_decoration_blink_check($content, $styles),$errors);
-		}
+	// check styles
+	if($content['css_parsed']){
+		$errors = array_merge(ac_css_text_decoration_blink_check($content),$errors);
 	}
 
 	return $errors;
 
 }
 
-function ac_css_text_decoration_blink_check($content, $styles){
+function ac_css_text_decoration_blink_check($content){
 
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 	$error_code = '';
-	$css_array = edac_parse_css($styles);
+	$css_array = $content['css_parsed'];
 
 	if ($css_array) {
 		foreach ($css_array as $element => $rules) {
 			if (array_key_exists('text-decoration', $rules)) {
+				
+				// replace CSS variables
+				$rules['text-decoration'] = edac_replace_css_variables($rules['text-decoration'], $css_array);
+
 				if($rules['text-decoration'] == 'blink' || $rules['text-decoration'] == 'Blink') {
 					$error_code = $element . '{ ';
 					foreach ($rules as $key => $value) {

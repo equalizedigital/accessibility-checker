@@ -69,7 +69,7 @@ function edac_validate($post_ID, $post, $action)
 	// apply filters to content
 	$content = edac_get_content($post);
 	do_action( 'edac_after_get_content',$post_ID, $content, $action);
-	if ( ! $content ) {
+	if ( ! $content['html'] ) {
 		return;
 	}
 	// set record check flag on previous error records
@@ -153,7 +153,8 @@ function edac_remove_corrected_posts($post_ID, $type, $pre = 1)
  */
 function edac_get_content($post)
 {
-	$content = false;
+	$content = [];
+	$content['html'] = false;
 	$context = '';
 	$username = get_option('edac_authorization_username');
 	$password = get_option('edac_authorization_password');
@@ -171,16 +172,43 @@ function edac_get_content($post)
 	}
 	try{
 		if($context){
-			$content = file_get_html(get_the_permalink($post->ID), false, $context);
+			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time(), false, $context);
 		}else{
-			$content = file_get_html(get_the_permalink($post->ID));
+			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time());
 		}
 	} catch (Exception $e){
-		$content = false;
+		$content['html'] = false;
 	}
 	
 	// done getting html, delete transient
 	delete_transient('edac_public_draft');
+
+
+	// get styles and parse
+	if($content['html']){
+
+		$content['css'] = '';
+
+		// css from style tags
+		$style_tag_styles = $content['html']->find('style');
+		if($style_tag_styles){
+			foreach ($style_tag_styles as $style) {
+				$content['css'] .= $style->innertext;
+			}
+		}
+
+		// css from files
+		$style_files = $content['html']->find('link[rel="stylesheet"]');
+		foreach ($style_files as $stylesheet){
+			$stylesheet_url = $stylesheet->href;
+			$styles = @file_get_contents($stylesheet_url.'?c='.time());
+			if($styles){
+				$content['css'] .= $styles;
+			}
+		}
+
+		$content['css_parsed'] = edac_parse_css($content['css']);
+	}
 
 	return $content;
 }

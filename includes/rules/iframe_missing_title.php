@@ -2,7 +2,7 @@
 function edac_rule_iframe_missing_title($content, $post){
 
 	// rule vars
-	$dom = $content;	
+	$dom = $content['html'];	
 	$iframe_tags = $dom->find('iframe');
 	$errors = [];
 

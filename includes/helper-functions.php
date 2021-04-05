@@ -42,7 +42,8 @@ function edac_compare_strings($string1, $string2)
  * @return array
  */
 function edac_parse_css($css)
-{
+{	
+	$css = str_replace('@charset "UTF-8";','',$css);
 	$css = preg_replace("%/\*(?:(?!\*/).)*\*/%s", " ", $css);
 	$css_array = array(); // master array to hold all values
 	$element = explode('}', $css);

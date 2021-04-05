@@ -13,7 +13,7 @@
 function edac_rule_color_contrast_failure($content, $post)
 {	
 	// check links in content for style tags
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 
 	$elements = $dom->find('*');
@@ -120,29 +120,9 @@ function edac_rule_color_contrast_failure($content, $post)
 		}
 	}
 	
-	/*
-	 * check for styles within style tags
-	 * <style></style>
-	 */
-	if($content){
-		$dom_styles = $content;
-		$styles = $dom_styles->find('style');
-
-		if ($styles) {
-			foreach ($styles as $style) {
-				$errors = array_merge(edac_check_contrast($content, $style->innertext),$errors);
-			}
-		}
-		
-
-		/*
-		* check for styles from file
-		*/
-		foreach ($dom_styles->find('link[rel="stylesheet"]') as $stylesheet){
-			$stylesheet_url = $stylesheet->href;
-			$styles = @file_get_contents($stylesheet_url);
-			$errors = array_merge(edac_check_contrast($content, $styles),$errors);
-		}
+	// check styles
+	if($content['css_parsed']){
+		$errors = array_merge(edac_check_contrast($content),$errors);
 	}
 
 	return $errors;
@@ -155,29 +135,32 @@ function edac_rule_color_contrast_failure($content, $post)
  * @param string $styles
  * @return array
  */
-function edac_check_contrast($content, $styles)
+function edac_check_contrast($content)
 {
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 	$error_code = '';
-	$css_array = edac_parse_css($styles);
+	$css_array = $content['css_parsed'];
 
 	foreach ($css_array as $element => $rules) {
 
 		if (array_key_exists('color', $rules)) {
 
 			$background = "";
-			$foreground = $rules['color'];
+			$foreground = edac_replace_css_variables($rules['color'], $css_array);
 
 			// determin which rule has preference if both background and background-color are present
 			$preference = edac_deteremine_hierarchy($rules);
 
 			if (array_key_exists('background', $rules) and $preference == 'background')
+				$rules['background'] = edac_replace_css_variables($rules['background'], $css_array);
 				$background = edac_check_color_match2($rules['background']);
 
 			if (array_key_exists('background-color', $rules) and $preference == 'background-color')
+				$rules['background-color'] = edac_replace_css_variables($rules['background-color'], $css_array);
 				$background = $rules['background-color'];
 
+			
 			// if background color not set exit	
 			if ($background == "initial" or $background == "inherit" or $background == "transparent" or $background == "" or $foreground == "") goto a;
 			
@@ -185,15 +168,18 @@ function edac_check_contrast($content, $styles)
 			$font_size = 0;
 
 			if (array_key_exists('font-size', $rules)) {
-				
-				$value = str_replace('.', '', preg_replace('/\d/', '', $rules['font-size'] ));
 
-				if($value == 'px'){
-					$font_size = $rules['font-size']* 0.75;
+				$rules['font-size'] = edac_replace_css_variables($rules['font-size'], $css_array);
+				
+				$unit = str_replace('.', '', preg_replace('/\d/', '', $rules['font-size'] ));
+				$value = str_replace($unit,'',$rules['font-size']);
+
+				if($unit == 'px'){
+					$font_size = $value* 0.75;
 				}
 
-				if($value == 'pt'){
-					$font_size = $rules['font-size'];
+				if($unit == 'pt'){
+					$font_size = $value;
 				}
 			}
 
@@ -201,6 +187,9 @@ function edac_check_contrast($content, $styles)
 			$font_bold = false;
 
 			if(array_key_exists('font-weight', $rules)){
+
+				$rules['font-weight'] = edac_replace_css_variables($rules['font-weight'], $css_array);
+
 				if(
 					$rules['font-weight'] == 'bold' ||
 					$rules['font-weight'] == 'bolder' ||
@@ -697,4 +686,45 @@ function edac_check_color_match2($background_rule)
 		}
 	}
 	return "";
+}
+
+/**
+ * Replace CSS Variables with Value
+ *
+ * @param string $value
+ * @param array $css_array
+ * @return void
+ * 
+ */
+function edac_replace_css_variables($value, $css_array){
+
+	if(stripos($value,'var(--') !== false){
+
+		// replace strings
+		$value = str_replace('var(','',$value);
+		$value = str_replace(')','',$value);
+		$value = str_replace('calc(','',$value);
+
+		// explode and loop through css vars
+		$values = explode(',',$value);
+		foreach ($values as $value) {
+
+			//check if is a css variable
+			if(substr( $value, 0, 2 ) === "--"){
+				$found_value = $css_array[':root'][$value];
+
+				// if value found break loop
+				if($found_value) break;
+			}else{
+
+				// if not a variable return value.
+				$found_value = $value;
+			}
+		}
+
+		return $found_value;
+
+	}else{
+		return $value;
+	}
 }

@@ -2,7 +2,7 @@
 
 function edac_rule_link_blank($content, $post){
 
-	$content = $content;
+	$content = $content['html'];
 	$errors = [];
 	$elements = $content->find('a[target="_blank"]');
 	if($elements){

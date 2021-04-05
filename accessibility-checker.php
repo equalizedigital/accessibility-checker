@@ -219,7 +219,7 @@ function edac_update_database(){
  */
 function edac_register_rules(){
 	$rules = [];
-
+	
 	// img_alt_missing
 	array_push($rules, [
 		'title' => 'Image Missing Alternative Text',

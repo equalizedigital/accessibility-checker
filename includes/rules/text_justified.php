@@ -18,7 +18,7 @@ function edac_rule_text_justified($content, $post){
 	 * check for justify font-size styles
 	 * < class="text-align: justify">test</>
 	 */
-	$dom = $content;
+	$dom = $content['html'];
 	$elements = $dom->find('*');
 	if ($elements) {
 		foreach ($elements as $element) {
@@ -39,30 +39,9 @@ function edac_rule_text_justified($content, $post){
 		}
 	}
 
-	/*
-	 * check for text-align: justify styles within style tags
-	 * <style></style>
-	 */
-	if($content){
-		$dom = $content;
-
-		$styles = $dom->find('style');
-
-		if ($styles) {
-			foreach ($styles as $style) {
-				$errors = array_merge(edac_css_justified_text_check($content, $style->innertext),$errors);
-			}
-		}
-		
-
-		/*
-		* check for text-align: justify styles from file
-		*/
-		foreach ($dom->find('link[rel="stylesheet"]') as $stylesheet){
-			$stylesheet_url = $stylesheet->href;
-			$styles = @file_get_contents($stylesheet_url);
-			$errors = array_merge(edac_css_justified_text_check($content, $styles),$errors);
-		}
+	// check styles
+	if($content['css_parsed']){
+		$errors = array_merge(edac_css_justified_text_check($content),$errors);
 	}
 
 	return $errors;
@@ -75,16 +54,19 @@ function edac_rule_text_justified($content, $post){
  * @param $styles
  * @return array
  */
-function edac_css_justified_text_check($content, $styles){
+function edac_css_justified_text_check($content){
 
-	$dom = $content;
+	$dom = $content['html'];
 	$errors = [];
 	$error_code = '';
-	$css_array = edac_parse_css($styles);
+	$css_array = $content['css_parsed'];
 
 	if ($css_array) {
 		foreach ($css_array as $element => $rules) {
 			if (array_key_exists('text-align', $rules)) {
+
+				// replace CSS variables
+				$rules['text-align'] = edac_replace_css_variables($rules['text-align'], $css_array);
 				
 				$value = preg_replace('/\d/', '', $rules['text-align'] );
 

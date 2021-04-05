@@ -3,7 +3,7 @@
 function edac_rule_empty_table_header($content, $post){
     
     // rule vars
-    $dom = $content;
+    $dom = $content['html'];
     $errors = [];
 
     $table_headings = $dom->find('th');
