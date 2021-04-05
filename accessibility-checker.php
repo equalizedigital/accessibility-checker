@@ -573,10 +573,27 @@ if($rules){
  * Summary Ajax
  *
  * @return void
+ * 
+ *  - '-1' means that nonce could not be varified
+ *  - '-2' means that the post ID was not specified
+ *  - '-3' means that there isn't any summary data to return
  */
 function edac_summary_ajax(){
 
-	if(!isset($_REQUEST['post_id'])) die();
+	// nonce security
+	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+		
+		$error = new WP_Error( '-1', 'Permission Denied' );
+		wp_send_json_error( $error );
+
+	}
+
+	if ( ! isset( $_REQUEST['post_id'] ) ) {
+	
+		$error = new WP_Error( '-2', 'The post ID was not set' );
+		wp_send_json_error( $error );
+
+	}
 
 	$post_id = intval($_REQUEST['post_id']);
 	$summary = edac_summary($post_id);
@@ -650,9 +667,16 @@ function edac_summary_ajax(){
 	</div>
 	<div class="edac-summary-disclaimer"><small>* Accessibility Checker uses automated scanning to help you to identify if common accessibility errors are present on your website. Automated tools are great for catching some accessibility problems and are part of achieving and maintaining an accessible website, however not all accessibility problems can be identified by a scanning tool. Learn more about <a href="https://a11ychecker.com/help4280" target="_blank">manual accessibility testing</a> and <a href="https://a11ychecker.com/help4279" target="_blank">why 100% passed tests does not necessarily mean your website is accessible</a>.</small></div>
 	';
+	
+	if( !$html ){
 
-	print json_encode($html);
-	die();
+		$error = new WP_Error( '-3', 'No summary to return' );
+		wp_send_json_error( $error );
+
+	}
+
+	wp_send_json_success( json_encode($html) );
+
 }
 
 /**
@@ -731,10 +755,27 @@ function edac_summary($post_id){
  * Details Ajax
  *
  * @return void
+ * 
+ *  - '-1' means that nonce could not be varified
+ *  - '-2' means that the post ID was not specified
+ *  - '-3' means that there isn't any details to return
  */
 function edac_details_ajax(){
 
-	if(!isset($_REQUEST['post_id'])) die();
+	// nonce security
+	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+		
+		$error = new WP_Error( '-1', 'Permission Denied' );
+		wp_send_json_error( $error );
+
+	}
+
+	if ( ! isset( $_REQUEST['post_id'] ) ) {
+	
+		$error = new WP_Error( '-2', 'The post ID was not set' );
+		wp_send_json_error( $error );
+
+	}
 	
 	$html = '';
 	global $wpdb;
@@ -927,18 +968,42 @@ function edac_details_ajax(){
 		}
 	}
 
-	print json_encode($html);
-	die();
+	if( !$html ){
+
+		$error = new WP_Error( '-3', 'No details to return' );
+		wp_send_json_error( $error );
+
+	}
+
+	wp_send_json_success( json_encode($html) );
+
 }
 
 /**
  * Readability Ajax
  *
  * @return void
+ * 
+ *  - '-1' means that nonce could not be varified
+ *  - '-2' means that the post ID was not specified
+ *  - '-3' means that there isn't any readability data to return
  */
 function edac_readability_ajax(){
 
-	if(!isset($_REQUEST['post_id'])) die();
+	// nonce security
+	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+			
+		$error = new WP_Error( '-1', 'Permission Denied' );
+		wp_send_json_error( $error );
+
+	}
+
+	if ( ! isset( $_REQUEST['post_id'] ) ) {
+
+		$error = new WP_Error( '-2', 'The post ID was not set' );
+		wp_send_json_error( $error );
+
+	}
 
 	$post_id = intval($_REQUEST['post_id']);
 	$html = '';
@@ -1022,18 +1087,50 @@ function edac_readability_ajax(){
 	global $wp_version;
 	$html .= '<span class="dashicons dashicons-info"></span><a href="https://a11ychecker.com/help3265?utm_source=accessibility-checker&utm_medium=software&utm_term=readability&utm_content=content-analysis&utm_campaign=wordpress-general&php_version='.PHP_VERSION.'&platform=wordpress&platform_version='.$wp_version.'&software=free&software_version='.EDAC_VERSION.'&days_active='.edac_days_active().'" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
 
-	print json_encode($html);
-	die();
+	if( !$html ){
+
+		$error = new WP_Error( '-3', 'No readability data to return' );
+		wp_send_json_error( $error );
+	
+	}
+	
+	wp_send_json_success( json_encode($html) );
+
 }
 
 /**
  * Update simplified summary
  *
  * @return void
+ * 
+ *  - '-1' means that nonce could not be varified
+ *  - '-2' means that the post ID was not specified
+ *  - '-3' means that the summary was not specified
+ *  - '-4' means that there isn't any summary to return
  */
 function edac_update_simplified_summary(){
 
-	if(!isset($_REQUEST['post_id']) || !isset($_REQUEST['summary'])) die();
+	// nonce security
+	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+			
+		$error = new WP_Error( '-1', 'Permission Denied' );
+		wp_send_json_error( $error );
+
+	}
+
+	if ( ! isset( $_REQUEST['post_id'] ) ) {
+
+		$error = new WP_Error( '-2', 'The post ID was not set' );
+		wp_send_json_error( $error );
+	
+	}
+
+	if ( ! isset( $_REQUEST['summary'] ) ) {
+
+		$error = new WP_Error( '-3', 'The summary was not set' );
+		wp_send_json_error( $error );
+	
+	}
 
 	$post_id = intval($_REQUEST['post_id']);
 	$summary = sanitize_text_field($_REQUEST['summary']);
@@ -1043,10 +1140,16 @@ function edac_update_simplified_summary(){
 	}
 
 	$simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
-	
 
-	print json_encode($simplified_summary);
-	die();
+	if( !$simplified_summary ){
+
+		$error = new WP_Error( '-4', 'No simplified summary to return' );
+		wp_send_json_error( $error );
+	
+	}
+	
+	wp_send_json_success( json_encode($simplified_summary) );
+	
 }
 
 /**
