@@ -124,6 +124,13 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 
 == Changelog ==
 
+= 1.2.0 =
+* Improved ambiguous text check to include aria-label and aria-labelledby
+* Color contrast adjust ratio based on font size
+* Ajax security improvements
+* Basic CSS veriable support
+* Fast Track
+
 = 1.1.3 =
 * Code object word break
 
