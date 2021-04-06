@@ -257,8 +257,8 @@
       
       $(".edac-details-rule-records-record-ignore-submit").click(function (e) {
         e.preventDefault();
-
-        let id = $(this).attr("data-id");
+        
+        let ids = [$(this).attr("data-id")];
         let ignore_action = $(this).attr("data-action");
         let ignore_type = $(this).attr("data-type");
         let comment = $(
@@ -272,7 +272,7 @@
           method: 'GET',
           data: {
             action: 'edac_insert_ignore_data',
-            id: id,
+            ids: ids,
             comment: comment,
             ignore_action: ignore_action,
             ignore_type: ignore_type,
@@ -285,7 +285,7 @@
       
             let data = $.parseJSON( response.data );
       
-            let record = "#edac-details-rule-records-record-" + data["id"];
+            let record = "#edac-details-rule-records-record-" + data["ids"][0];
             let ignore_action = data["action"] == "enable" ? "disable" : "enable";
             let comment_disabled = data["action"] == "enable" ? true : false;
             let actions_ignore_label = data["action"] == "enable" ? "Ignored" : "Ignore";
@@ -299,9 +299,9 @@
               $(record + " .edac-details-rule-records-record-ignore-comment").val("");
             }
             $(record + " .edac-details-rule-records-record-actions-ignore").toggleClass("active");
-            $(".edac-details-rule-records-record-actions-ignore[data-id='" + id + "']").toggleClass("active"); // pro
+            $(".edac-details-rule-records-record-actions-ignore[data-id='" + ids[0] + "']").toggleClass("active"); // pro
             $(record + " .edac-details-rule-records-record-actions-ignore-label").html(actions_ignore_label);
-            $(".edac-details-rule-records-record-actions-ignore[data-id='" + id + "'] .edac-details-rule-records-record-actions-ignore-label").html(actions_ignore_label); // pro
+            $(".edac-details-rule-records-record-actions-ignore[data-id='" + ids[0] + "'] .edac-details-rule-records-record-actions-ignore-label").html(actions_ignore_label); // pro
             $(record + " .edac-details-rule-records-record-ignore-submit-label").html(ignore_submit_label);
             $(record + " .edac-details-rule-records-record-ignore-info-user").html(username);
             $(record + " .edac-details-rule-records-record-ignore-info-date").html(date);
@@ -324,7 +324,7 @@
 
             // Update ignore rule count
             var count_ignore = parseInt($(".edac-details-rule-count-ignore", rule).html());
-            console.log(count_ignore);
+            //console.log(count_ignore);
             if (data["action"] == "enable") {
               count_ignore++;
             } else if (data["action"] == "disable") {
@@ -341,7 +341,7 @@
             // refresh page on ignore or unignore in pro
             if($('body').hasClass('accessibility-checker_page_accessibility_checker_issues') || $('body').hasClass('accessibility-checker_page_accessibility_checker_ignored')){
               location.reload(true);
-            } 
+            }
       
           } else {
       
