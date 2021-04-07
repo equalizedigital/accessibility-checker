@@ -8,7 +8,19 @@
 				</a>
 			</div>
 			<div class="edac-welcome-header-left">
-				<h2 class="edac-welcome-title"><?php echo esc_html( get_admin_page_title() ); ?> - <?php echo EDAC_VERSION; ?></h2>
+				<h2 class="edac-welcome-title">
+					<?php
+					if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') == true && get_transient( 'edacp_license_valid' ) == true){
+						$title = esc_html( get_admin_page_title() ).' Pro';
+						$version = EDACP_VERSION;
+					}else{
+						$title = esc_html( get_admin_page_title() );
+						$version = EDAC_VERSION;
+					}
+					
+					echo $title.' - '.$version;
+					?>
+				</h2>
 				<h3 class="edac-welcome-subtitle">WordPress Accessibility Auditing by <a href="https://equalizedigital.com/" target="_blank">Equalize Digital</a></h3>
 			</div>
 		</div>
