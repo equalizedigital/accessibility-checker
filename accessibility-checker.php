@@ -235,9 +235,9 @@ function edac_register_rules(){
 	// img_alt_empty
 	array_push($rules, [
 		'title' => 'Image Empty Alternative Text',
-		'info_url'  => 'https://a11ychecker.com/help1927',
+		'info_url'  => 'https://a11ychecker.com/help4991',
 		'slug'  => 'img_alt_empty',
-		'rule_type' => 'error',
+		'rule_type' => 'warning',
 	]);
 	
 	// img_alt_invalid
