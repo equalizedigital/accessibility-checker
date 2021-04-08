@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Insert rule date into database
  *
@@ -85,53 +84,6 @@ function edac_insert_rule_data($post, $rule, $ruletype, $object){
  *  - '-1' means that nonce could not be varified
  *  - '-2' means that there isn't any ignore data to return
  */
-/* function edac_insert_ignore_data(){
-
-	// nonce security
-	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
-			
-		$error = new WP_Error( '-1', 'Permission Denied' );
-		wp_send_json_error( $error );
-
-	}
-	
-	global $wpdb;
-	$table_name = $wpdb->prefix . "accessibility_checker";
-	$id = intval($_REQUEST['id']);
-	$action = esc_html($_REQUEST['ignore_action']);
-	$type = esc_html($_REQUEST['ignore_type']);
-	$siteid = get_current_blog_id();
-	$ignre_user = get_current_user_id();
-	$ignre_user_info = ($action == 'enable') ? get_userdata($ignre_user) : '';
-	$ignre_username = ($action == 'enable') ? $ignre_user_info->user_login : '';
-	$ignre_date = ($action == 'enable') ? date('Y-m-d H:i:s') : '';
-	$ignre_date_formatted = ($action == 'enable') ? date("F j, Y g:i a", strtotime($ignre_date)) : '';
-	$ignre_comment = $_REQUEST['comment'] ? esc_html($_REQUEST['comment']) : '';
-	$ignore_global = isset($_REQUEST['ignore_global']) ? esc_html($_REQUEST['ignore_global']) : 0;
-
-	if($action == 'enable'){
-
-		$wpdb->query( $wpdb->prepare( 'UPDATE '.$table_name.' SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', 1, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id) );
-
-	}elseif($action == 'disable'){
-
-		$wpdb->query( $wpdb->prepare( 'UPDATE '.$table_name.' SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', 0, NULL, NULL, NULL, 0, $siteid, $id) );
-
-	}
-
-	$data = ['id' => $id, 'action' => $action, 'type' => $type, 'user' => $ignre_username, 'date' => $ignre_date_formatted];
-
-	if( !$data ){
-
-		$error = new WP_Error( '-2', 'No ignore data to return' );
-		wp_send_json_error( $error );
-	
-	}
-	
-	wp_send_json_success( json_encode($data) );
-
-} */
-
 function edac_insert_ignore_data(){
 
 	// nonce security

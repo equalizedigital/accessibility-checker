@@ -1,6 +1,26 @@
 <?php
 
 /**
+ * Oxygen Builder on save
+ * 
+ * @since 1.2.0
+ * @param int $meta_id
+ * @param int $post_id
+ * @param string $meta_key
+ * @param mixed $meta_value
+ * @return void
+ */
+function edac_oxygen_builder_save_post( $meta_id, $post_id, $meta_key, $meta_value )
+{
+	if($meta_key == 'ct_builder_shortcodes'){
+
+		$post = get_post($post_id, OBJECT);
+		edac_validate($post_id, $post, $action = 'save');
+
+	}
+}
+
+/**
  * Check if current post has been checked, if not check on page load
  *
  * @return void

@@ -165,6 +165,10 @@ add_filter( 'pre_delete_post', 'edac_delete_post', 10, 3 );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 add_action( 'admin_init', 'edac_process_actions' );
 add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
+if(edac_check_plugin_active('oxygen/functions.php')){
+	add_action( 'added_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
+	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
+}
 
 /**
  * Create/Update database
