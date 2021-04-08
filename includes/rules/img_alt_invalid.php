@@ -2,12 +2,64 @@
 
 function edac_rule_img_alt_invalid($content, $post){
 
-	// rule vars
 	$dom = $content['html'];
-	$starts_with_keywords = ['graphic of','bullet','image of'];
-	$ends_with_keywords = ['image','graphic'];
-	$image_extensions = ['.apng','.bmp','.gif','.ico','.cur','.jpg','.jpeg','.jfif','.pjpeg','.pjp','.png','.svg','.tif','.tiff','.webp'];
-	$keywords = ['graphic of','bullet','image of','image','graphic','image','graphic','photo','photograph','drawing','painting','artwork','logo','bullet','button','arrow','more','spacer','blank','chart','table','diagram','graph','*'];
+
+	$starts_with_keywords = [
+		__('graphic of','edac'),
+		__('bullet','edac'),
+		__('image of','edac')
+	];
+
+	$ends_with_keywords = [
+		__('image','edac'),
+		__('graphic','edac')
+	];
+
+	$image_extensions = [
+		__('.apng','edac'),
+		__('.bmp','edac'),
+		__('.gif','edac'),
+		__('.ico','edac'),
+		__('.cur','edac'),
+		__('.jpg','edac'),
+		__('.jpeg','edac'),
+		__('.jfif','edac'),
+		__('.pjpeg','edac'),
+		__('.pjp','edac'),
+		__('.png','edac'),
+		__('.svg','edac'),
+		__('.tif','edac'),
+		__('.tiff','edac'),
+		__('.webp','edac')
+	];
+
+	$keywords = [
+		__('graphic of','edac'),
+		__('bullet','edac'),
+		__('image of','edac'),
+		__('image','edac'),
+		__('graphic','edac'),
+		__('image','edac'),
+		__('graphic','edac'),
+		__('photo','edac'),
+		__('photograph','edac'),
+		__('drawing','edac'),
+		__('painting','edac'),
+		__('artwork','edac'),
+		__('logo','edac'),
+		__('bullet','edac'),
+		__('button','edac'),
+		__('arrow','edac'),
+		__('more','edac'),
+		__('spacer','edac'),
+		__('blank','edac'),
+		__('chart','edac'),
+		__('table','edac'),
+		__('diagram','edac'),
+		__('graph','edac'),
+		__('*','edac')
+	];
+
 	$errors = [];
 
 	$images = $dom->find('img');
@@ -33,7 +85,7 @@ function edac_rule_img_alt_invalid($content, $post){
 				// check if string begins with
 				if($starts_with_keywords){
 					foreach ($starts_with_keywords as $starts_with_keyword) {
-						if(ac_starts_with(__($alt,'edac'),$starts_with_keyword)){
+						if(ac_starts_with($alt,$starts_with_keyword)){
 							$error = true;
 							goto img_alt_invalid_bottom;
 						}
@@ -43,7 +95,7 @@ function edac_rule_img_alt_invalid($content, $post){
 				// check if string ends with
 				if($ends_with_keywords){
 					foreach ($ends_with_keywords as $ends_with_keyword) {
-						if(ac_ends_with(__($alt,'edac'),$ends_with_keyword)){
+						if(ac_ends_with($alt,$ends_with_keyword)){
 							$error = true;
 							goto img_alt_invalid_bottom;
 						}
@@ -53,7 +105,7 @@ function edac_rule_img_alt_invalid($content, $post){
 				// check for image extensions
 				if($image_extensions){
 					foreach ($image_extensions as $image_extension){
-						if(strpos($alt,__($image_extension,'edac')) == true){
+						if(strpos($alt,$image_extension) == true){
 							$error = true;
 							goto img_alt_invalid_bottom;
 						}
@@ -65,7 +117,7 @@ function edac_rule_img_alt_invalid($content, $post){
 					foreach ($keywords as $keyword){
 						// remove spaces
 						$alt = str_replace(' ','',$alt);
-						if($alt == __($keyword,'edac')){
+						if($alt == $keyword){
 							$error = true;
 							goto img_alt_invalid_bottom;
 						}

@@ -112,23 +112,24 @@ function edac_check_ambiguous_phrase($text){
 	$text = strtolower($text);
 
 	// phrases
-	$ambiguous_phrases = [];
-	$ambiguous_phrases[] = __('click here','edac');
-	$ambiguous_phrases[] = __('here','edac');
-	$ambiguous_phrases[] = __('go here','edac');
-	$ambiguous_phrases[] = __('more','edac');
-	$ambiguous_phrases[] = __('more...','edac');
-	$ambiguous_phrases[] = __('details','edac');
-	$ambiguous_phrases[] = __('more details','edac');
-	$ambiguous_phrases[] = __('link','edac');
-	$ambiguous_phrases[] = __('this page','edac');
-	$ambiguous_phrases[] = __('continue','edac');
-	$ambiguous_phrases[] = __('continue reading','edac');
-	$ambiguous_phrases[] = __('read more','edac');
-	$ambiguous_phrases[] = __('open','edac');
-	$ambiguous_phrases[] = __('download','edac');
-	$ambiguous_phrases[] = __('button','edac');
-	$ambiguous_phrases[] = __('keep reading','edac');
+	$ambiguous_phrases = [
+		__('click here','edac'),
+		__('here','edac'),
+		__('go here','edac'),
+		__('more','edac'),
+		__('more...','edac'),
+		__('details','edac'),
+		__('more details','edac'),
+		__('link','edac'),
+		__('this page','edac'),
+		__('continue','edac'),
+		__('continue reading','edac'),
+		__('read more','edac'),
+		__('open','edac'),
+		__('download','edac'),
+		__('button','edac'),
+		__('keep reading','edac'),
+	];
 
 	// check if text contains phrase
 	if(strpos($text,__('click here','edac')) == true || strpos($text,__('click','edac')) == true){
