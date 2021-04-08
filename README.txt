@@ -130,6 +130,7 @@ If you need detailed consultation or custom coding assistance, we offer [Priorit
 * Ajax security improvements
 * Basic CSS veriable support
 * Fast Track
+* Added support for Oxygen Builder
 
 = 1.1.3 =
 * Code object word break
