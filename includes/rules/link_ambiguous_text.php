@@ -111,7 +111,24 @@ function edac_check_ambiguous_phrase($text){
 
 	$text = strtolower($text);
 
-	$ambiguous_phrases = ['click here','here','go here','more','more...','details','more details','link','this page','continue','continue reading','read more','open','download','button','keep reading'];
+	// phrases
+	$ambiguous_phrases = [];
+	$ambiguous_phrases[] = __('click here','edac');
+	$ambiguous_phrases[] = __('here','edac');
+	$ambiguous_phrases[] = __('go here','edac');
+	$ambiguous_phrases[] = __('more','edac');
+	$ambiguous_phrases[] = __('more...','edac');
+	$ambiguous_phrases[] = __('details','edac');
+	$ambiguous_phrases[] = __('more details','edac');
+	$ambiguous_phrases[] = __('link','edac');
+	$ambiguous_phrases[] = __('this page','edac');
+	$ambiguous_phrases[] = __('continue','edac');
+	$ambiguous_phrases[] = __('continue reading','edac');
+	$ambiguous_phrases[] = __('read more','edac');
+	$ambiguous_phrases[] = __('open','edac');
+	$ambiguous_phrases[] = __('download','edac');
+	$ambiguous_phrases[] = __('button','edac');
+	$ambiguous_phrases[] = __('keep reading','edac');
 
 	// check if text contains phrase
 	if(strpos($text,__('click here','edac')) == true || strpos($text,__('click','edac')) == true){
@@ -120,7 +137,7 @@ function edac_check_ambiguous_phrase($text){
 
 	// check if text is equal to
 	foreach ($ambiguous_phrases as $ambiguous_phrase) {
-		if($text == __($ambiguous_phrase,'edac')){
+		if($text == $ambiguous_phrase){
 			return true;
 			break;
 		}
