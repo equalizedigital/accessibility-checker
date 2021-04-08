@@ -12,13 +12,15 @@ Audit and check your website for accessibility before you hit publish. In-post a
 
 == Description ==
 
+[Documentation](https://equalizedigital.com/accessibility-checker/#documentation) | [Compare Free to Pro](https://products.equalizedigital.com/accessibility-checker-pro/features/#comparison) | [Get Pro](https://products.equalizedigital.com/#pricing) | [Priority Support & Accessibility Consulting](https://products.equalizedigital.com/priority-support/)
+
 ### Make Your Website Accessible with Accessibility Checker 
 
 Accessibility Checker by Equalize Digital provides easy to understand accessibility error and warning notifications right on your post and/or page edit screen. 
 
 Accessibility Checker automatically scans your content each time you save a draft or hit publish, giving you real-time feedback on your post's or page's accessibility. Receive a visual overview of how your content stacks up against more than 40 different accessibility checks created to meet Web Content Accessibility Guidelines (WCAG) 2.1 success criteria. Each item is identified as an error or warning depending upon its severity, so that you can prioritize your fixes. For each error or warning flagged, Accessibility Checker lists the code that triggered the error or warning. Thorough documentation is available to guide you on how to fix accessibility problems on your website. 
 
-### Ensure Ongoing ADA & Section 508 Compliance
+### Ensure Ongoing ADA, Section 508, AODA, & WCAG Compliance
 
 For already accessible websites, Accessibility Checker is an excellent tool for ensuring ongoing compliance and accessibility. The in-page test helps content managers and contributors confirm that they have entered their content in an accessible manner. No need to be an accessibility expert or memorize long lists of WCAG success criteria - Accessibility Checker provides an easy to understand accessibility checklist. Content area scans are visible on each post's or page's edit screen as you type - no need to go elsewhere on your site to view results or visit a third-party website. 
 
@@ -27,13 +29,10 @@ For already accessible websites, Accessibility Checker is an excellent tool for 
 Accessibility Checker is the best automated tool to run along with your manual accessibility tests. It's perfect for **small business websites**, **large enterprise organizations**, and everything in between. Whether you're running a small brochure website, an **eCommerce** store with thousands of products, or a **multi-site** network for a university, Accessibility Checker is the right tool for your website:
 
 * **No limits on pages scanned.** Have hundreds of blog posts or pages on your website? No problem! 
-* **Coded and tested by accessibility experts.** Equalize Digital is a corporate member of the International Association of Accessibility Professionals and experts at building accessible 
-WordPress websites.
+* **Coded and tested by accessibility experts.** Equalize Digital is a corporate member of the International Association of Accessibility Professionals and experts at building accessible WordPress websites.
 * **WCAG 2.1 A, AA, & AAA guidance.** Flags errors and warnings for accessibility problems according to WCAG 2.1.
-* **Readability analysis & auto insertion of simplified summary.** Includes a Flesch Kincaid grade level analysis and place to enter a simplified summary to meet WCAG Success Criterion 3.1.5 
-Reading Level.
-* **Ignore feature.** Easily close errors or warnings that have been assessed manually and determined to be not relevant. Optionally, document a reason/notes with each ignore. Logs username 
-and date/time when errors/warnings are ignored.
+* **Readability analysis & auto insertion of simplified summary.** Includes a Flesch Kincaid grade level analysis and place to enter a simplified summary to meet WCAG Success Criterion 3.1.5 Reading Level.
+* **Ignore feature.** Easily close errors or warnings that have been assessed manually and determined to be not relevant. Optionally, document a reason/notes with each ignore. Logs username and date/time when errors/warnings are ignored.
 * **Detailed documentation.** Thorough help articles and instructions for fixing problems - the perfect resource for learning more about accessibility.
 * **[Pro] Scan additional post types.** Add the Accessibility Checker in-post accessibility audit to any post type present on your website.
 * **[Pro] Centralized Open Issues list.** See all existing issues in one place for fast-track accessibility remediation.
@@ -50,9 +49,13 @@ To get started with Accessibility Checker Pro or learn more about how it works, 
 
 [Read Video Transcript](https://equalizedigital.com/accessibility-checker/getting-started-quick-guide/#vidtranscript)
 
-### Premium Support
+### Our Support Team is Here to Help You
 
-The Equalize Digital team aims to provide regular support for Accessibility Checker on the WordPress.org forums. If you have a question about the plugin or its use, please post in the support forum, and we will do our best to help you in a timely manner. Our support hours are Monday-Friday, 9:00 AM to 5:00 PM U.S. central time. Please understand that we do prioritize support for purchasers of Accessibility Checker Pro. If you need one-on-one email support, please consider purchasing [Accessibility Checker Pro](https://products.equalizedigital.com/). We also offer [Priority Support Packages](https://products.equalizedigital.com/priority-support/) that include phone and Zoom video support, as well as assistance with accessibility/screen reader testing and custom coding.
+The Equalize Digital team aims to provide regular support for Accessibility Checker on the WordPress.org forums. If you have a question about the plugin or its use, please post in the support forum, and we will do our best to help you in a timely manner. Our support hours are Monday-Friday, 9:00 AM to 5:00 PM U.S. central time. Please understand that we do prioritize support for purchasers of Accessibility Checker Pro or our Priority Support Packages. 
+
+If you need one-on-one email support, please consider purchasing [Accessibility Checker Pro](https://products.equalizedigital.com/). Accessibility Checker Pro customers receive unlimited personal support on plugin usage and features. 
+
+We also offer [Priority Support Packages](https://products.equalizedigital.com/priority-support/) that include phone and Zoom video support, as well as assistance with accessibility/screen reader testing and custom coding. Priority Support Packages are perfect for agencies, freelancers, and website managers who want an accessibility expert on-call to provide consultation and assistance as they remediate their website's accessibility. [Learn More About Priority Support](https://products.equalizedigital.com/priority-support/)
 
 ### Multi-platform Accessibility
 
@@ -60,10 +63,12 @@ Accessibility Checker supports a variety of WordPress editors and can scan and i
 
 * Gutenberg Block Editor
 * The Classic Editor
-* Elementor
+* Advanced Custom Fields
 * Beaver Builder
+* Divi
+* Elementor
+* Oxygen
 * **[Pro]** WooCommerce
-* **[Pro]** Advanced Custom Fields
 
 == Installation ==
 
@@ -103,13 +108,23 @@ Accessibility Checker does not make your website accessible, but it is a valuabl
 
 Accessibility Checker Free scans blog posts and pages, including the header, content area, sidebar, and footer on those pages. There is no limit to the number of pages or posts that you can scan with Accessibility Checker or the number of times any one page or post can be scanned. So, if your website only contains standard posts and pages, then YES, Accessibility Checker will scan all of your content. If you have custom post types (such as a portfolio, team member pages, or WooCommerce products), the free version of the plugin will not scan these posts.
 
-For a full-site scan or to check custom post types for accessibility, please upgrade to [Accessibility Checker Pro](https://a11ychecker.com).
+For a full-site scan or to check custom post types for accessibility, please upgrade to [Accessibility Checker Pro](https:products.equalizedigital.com).
 
 = How do I know how to fix accessibility problems on my website? =
 
 Every error and warning in Accessibility Checker has an 'i' icon to the right of the error or warning name on the details tab. If you click these 'i' icons, you'll be directed to a help article that clearly explains what the error or warning is, what its impact on accessibility is, and how to fix or resolve it. Generally, these help articles will provide sufficient information to point you in the right direction, but if you still have questions, open a support ticket on WordPress.org and we'll do our best to help you.
 
 If you need detailed consultation or custom coding assistance, we offer [Priority Support Packages](https://products.equalizedigital.com/priority-support/). These packages include email, phone, and Zoom support and are ideal for individuals or teams who need more hands-on assistance in resolving accessibility problems on their website.
+
+= Can you help me fix accessibility problems on my website? =
+
+Yes! If you need detailed guidance in how to resolve the identified problems in your theme or plugins or need accessibility fixes custom coded for your site, we offer Priority Support packages that provide this assistance. [Get Priority Support](https://products.equalizedigital.com/priority-support/)
+
+= What if there are accessibility errors in my theme or a plugin that I cannot fix? =
+
+If Accessibility Checker is identifying errors in your theme or a plugin and you're not sure how to fix them, the best bet is to reach out to the theme or plugin developer for assistance. If that does not work, we may be able to help.  There is more guidance about how to handle problems in your theme or plugins at:
+* [What to do if a Plugin You’re Using has Accessibility Errors](https://equalizedigital.com/accessibility-checker/errors-in-plugin/)
+* [What to do if There are Accessibility Errors in Your Theme](https://equalizedigital.com/accessibility-checker/errors-in-theme/)
 
 == Screenshots ==
 
