@@ -145,6 +145,10 @@ function edac_tools_sysinfo_get() {
 		$return .= 'Scan Total:               ' . get_transient( 'edacp_scan_total' ) . "\n";
 		$return .= 'Simplified Sum Heading:   ' . get_option('edacp_simplified_summary_heading')."\n";
 		$return .= 'Background Scan Schedule: ' . get_option('edacp_background_scan_schedule') . "\n";
+		$next_scan = as_next_scheduled_action( 'edacp_schedule_scan_hook' );
+		if($next_scan){
+			$return .= 'Next Background Scan: ' . date('F j, Y g:i a', $next_scan). "\n";
+		}
 		$return .= 'Ignore Permissions:       ' . ( get_option('edacp_ignore_user_roles') ? implode(', ', get_option('edacp_ignore_user_roles'))."\n" : "None\n" );
 
 	}
