@@ -392,12 +392,25 @@
             #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore {
               color: #3273aa;
               border: none;
-              background: transparent; }
+              background: transparent;
+              display: flex;
+              align-items: center; }
+              #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore svg {
+                width: 18px;
+                height: auto;
+                display: inline-block;
+                margin-right: 2px; }
+                #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore svg path {
+                  fill: #3273aa; }
               #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:hover, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:focus {
                 color: #006600;
                 cursor: pointer; }
+                #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:hover svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:focus svg path {
+                  fill: #006600; }
               #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore.active {
                 color: #b30f0f; }
+                #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore.active svg path {
+                  fill: #b30f0f; }
               #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore .dashicons {
                 margin-right: 3px; }
           #edac-meta-box #edac-tabs .edac-details-rule-records-record-ignore {
@@ -417,13 +430,23 @@
               border: none;
               border-radius: 5px;
               padding: 5px 10px;
-              text-transform: capitalize; }
+              text-transform: capitalize;
+              display: flex;
+              align-items: center;
+              overflow: hidden; }
               #edac-meta-box #edac-tabs .edac-details-rule-records-record-ignore-submit[data-action="enable"] {
                 background-color: #b30f0f; }
               #edac-meta-box #edac-tabs .edac-details-rule-records-record-ignore-submit[data-action="disable"] {
                 background-color: #006600; }
               #edac-meta-box #edac-tabs .edac-details-rule-records-record-ignore-submit:hover {
                 cursor: pointer; }
+              #edac-meta-box #edac-tabs .edac-details-rule-records-record-ignore-submit svg {
+                width: 18px;
+                height: auto;
+                display: inline-block;
+                margin-right: 2px; }
+                #edac-meta-box #edac-tabs .edac-details-rule-records-record-ignore-submit svg path {
+                  fill: #ffffff; }
             #edac-meta-box #edac-tabs .edac-details-rule-records-record-ignore-global {
               color: #ffffff;
               background-color: #072446;

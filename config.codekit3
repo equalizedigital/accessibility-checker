@@ -167,6 +167,16 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/assets/images/ignore-icon.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/assets/images/ignore-icon.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 52780316221407,
+		"prP": 0
+		},
 	"/assets/images/list-check.png": {
 		"ft": 32768,
 		"iS": 410,

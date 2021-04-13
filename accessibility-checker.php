@@ -97,6 +97,9 @@ if ( ! defined( 'EDAC_DEBUG' ) ) {
 	define( 'EDAC_DEBUG', false );
 }
 
+// SVG Icons
+define( 'EDAC_SVG_IGNORE_ICON', file_get_contents(EDAC_PLUGIN_URL. 'assets/images/ignore-icon.svg'));
+
 /**
  * Plugin Activation & Deactivation
  */
@@ -920,7 +923,6 @@ function edac_details_ajax(){
 							$ignore_action = $ignore ? 'disable' : 'enable';
 							$ignore_type = $rule['rule_type'];
 							$ignore_submit_label = $ignore ? 'Stop Ignoring' : 'Ignore This '.$ignore_type;
-							$ignore_submit_icon = $ignore ? 'dashicons-visibility' : 'dashicons-hidden';
 							$ignore_comment_disabled = $ignore ? 'disabled' : '';
 							$ignore_global = intval($row['ignre_global']);
 
@@ -934,7 +936,7 @@ function edac_details_ajax(){
 
 								$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
 
-									$html .= '<button class="edac-details-rule-records-record-actions-ignore'.$ignore_class.'"><span class="dashicons dashicons-admin-generic"></span><span class="edac-details-rule-records-record-actions-ignore-label">'.$ignore_label.'</span></button>';
+									$html .= '<button class="edac-details-rule-records-record-actions-ignore'.$ignore_class.'">'.EDAC_SVG_IGNORE_ICON.'<span class="edac-details-rule-records-record-actions-ignore-label">'.$ignore_label.'</span></button>';
 
 								$html .= '</div>';
 
@@ -952,7 +954,7 @@ function edac_details_ajax(){
 									if($ignore_global){
 										$html .= ($ignore_permission == true) ? '<a href="'.admin_url('admin.php?page=accessibility_checker_ignored&tab=global').'" class="edac-details-rule-records-record-ignore-global">Manage Globally Ignored</a>' : '';
 									}else{
-										$html .= ($ignore_permission == true) ? '<button class="edac-details-rule-records-record-ignore-submit" data-id='.$id.' data-action='.$ignore_action.' data-type='.$ignore_type.'><span class="dashicons '.$ignore_submit_icon.'"></span> <span class="edac-details-rule-records-record-ignore-submit-label">'.$ignore_submit_label.'<span></button>' : '';
+										$html .= ($ignore_permission == true) ? '<button class="edac-details-rule-records-record-ignore-submit" data-id='.$id.' data-action='.$ignore_action.' data-type='.$ignore_type.'>'.EDAC_SVG_IGNORE_ICON.' <span class="edac-details-rule-records-record-ignore-submit-label">'.$ignore_submit_label.'<span></button>' : '';
 									}
 
 									$html .= ($ignore_permission == false && $ignore == false) ? __('Your user account doesn\'t have permission to ignore this issue.','edac') : '';

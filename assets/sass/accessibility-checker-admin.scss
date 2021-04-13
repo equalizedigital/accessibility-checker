@@ -515,13 +515,30 @@
                 color: $color-blue;
                 border: none;
                 background: transparent;
+                display: flex;
+                align-items: center;
+                svg{
+                  width: 18px;
+                  height: auto;
+                  display: inline-block;
+                  margin-right: 2px;
+                  path{
+                    fill: $color-blue;
+                  }
+                }
                 &:hover,
                 &:focus {
                   color: $color-green;
                   cursor: pointer;
+                  svg path{
+                    fill: $color-green;
+                  }
                 }
                 &.active {
                   color: $color-red;
+                  svg path{
+                    fill: $color-red;
+                  }
                 }
                 .dashicons {
                   margin-right: 3px;
@@ -548,6 +565,9 @@
                 border-radius: 5px;
                 padding: 5px 10px;
                 text-transform: capitalize;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
                 &[data-action="enable"] {
                   background-color: $color-red;
                 }
@@ -556,6 +576,15 @@
                 }
                 &:hover {
                   cursor: pointer;
+                }
+                svg{
+                  width: 18px;
+                  height: auto;
+                  display: inline-block;
+                  margin-right: 2px;
+                  path{
+                    fill: $color-white;
+                  }
                 }
               }
               &-global{
