@@ -755,6 +755,26 @@ function edac_summary($post_id){
 		update_post_meta ( $post_id, '_edac_summary', $summary );
 	}
 
+	if ( ! add_post_meta( $post_id, '_edac_summary_passed_tests', $summary['passed_tests'], true ) ) {
+		update_post_meta ( $post_id, '_edac_summary_passed_tests', $summary['passed_tests'] );
+	}
+
+	if ( ! add_post_meta( $post_id, '_edac_summary_errors', $summary['errors'], true ) ) {
+		update_post_meta ( $post_id, '_edac_summary_errors', $summary['errors'] );
+	}
+
+	if ( ! add_post_meta( $post_id, '_edac_summary_warnings', $summary['warnings'], true ) ) {
+		update_post_meta ( $post_id, '_edac_summary_warnings', $summary['warnings'] );
+	}
+
+	if ( ! add_post_meta( $post_id, '_edac_summary_ignored', $summary['ignored'], true ) ) {
+		update_post_meta ( $post_id, '_edac_summary_ignored', $summary['ignored'] );
+	}
+
+	if ( ! add_post_meta( $post_id, '_edac_summary_contrast_errors', $summary['contrast_errors'], true ) ) {
+		update_post_meta ( $post_id, '_edac_summary_contrast_errors', $summary['contrast_errors'] );
+	}
+
 	return $summary;
 }
 
