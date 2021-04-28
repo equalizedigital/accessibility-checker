@@ -3,7 +3,6 @@
 function edac_activation(){
 	
 	// set options
-	add_option( 'edac_db_version', EDAC_DB_VERSION );
 	add_option( 'edac_activation_date', date('Y-m-d H:i:s') );
 	add_option( 'edac_post_types', ['post','page']);
 	add_option( 'edac_simplified_summary_position', 'after');
