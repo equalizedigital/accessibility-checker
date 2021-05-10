@@ -319,6 +319,21 @@ function edac_sanitize_post_types( $selected_post_types ) {
 			}
 		}
 	}
+
+	// get unselected post types
+	if($selected_post_types){
+		$unselected_post_types = array_diff($post_types, $selected_post_types);
+	}else{
+		$unselected_post_types = $post_types;
+	}
+
+	// delete unselected post type issues
+	if($unselected_post_types){
+		foreach ($unselected_post_types as $unselected_post_type) {
+			edac_delete_cpt_posts($unselected_post_type);
+		}
+	}
+
 	return $selected_post_types;
 }
 
