@@ -92,6 +92,15 @@ if ( ! defined( 'EDAC_PLUGIN_FILE' ) ) {
 	define( 'EDAC_PLUGIN_FILE', __FILE__ );
 }
 
+// Accessibility New Window Warning Plugin Active
+if ( ! defined( 'EDAC_ANWW_ACTIVE' ) ) {
+	if(is_plugin_active('accessibility-new-window-warnings/accessibility-new-window-warnings.php')){
+		define( 'EDAC_ANWW_ACTIVE', true );
+	}else{
+		define( 'EDAC_ANWW_ACTIVE', false );
+	}
+}
+
 // Enable EDAC_DEBUG mode
 if ( ! defined( 'EDAC_DEBUG' ) ) {
 	define( 'EDAC_DEBUG', false );
@@ -189,7 +198,7 @@ add_action( 'wp_ajax_edac_insert_ignore_data', 'edac_insert_ignore_data' );
 add_action( 'wp_ajax_edac_update_simplified_summary', 'edac_update_simplified_summary' );
 add_filter( 'the_content', 'edac_output_simplified_summary' );
 add_filter( 'wp_footer', 'edac_output_accessibility_statement' );
-add_filter( 'pre_delete_post', 'edac_delete_post', 10, 3 );
+add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 add_action( 'admin_init', 'edac_process_actions' );
 add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
