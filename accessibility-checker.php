@@ -847,6 +847,11 @@ function edac_details_ajax(){
 	$rules = edac_register_rules();
 	if($rules){
 
+		// if ANWW is active remove link_blank for details meta box
+		if(EDAC_ANWW_ACTIVE){
+			$rules = edac_remove_element_with_value($rules, 'slug', 'link_blank');
+		}
+
 		// separate rule types
 		$passed_rules = [];
 		$error_rules = edac_remove_element_with_value($rules, 'rule_type', 'warning');
