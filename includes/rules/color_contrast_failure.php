@@ -152,13 +152,15 @@ function edac_check_contrast($content)
 			// determin which rule has preference if both background and background-color are present
 			$preference = edac_deteremine_hierarchy($rules);
 
-			if (array_key_exists('background', $rules) and $preference == 'background')
+			if (array_key_exists('background', $rules) and $preference == 'background'){
 				$rules['background'] = edac_replace_css_variables($rules['background'], $css_array);
 				$background = edac_check_color_match2($rules['background']);
+			}
 
-			if (array_key_exists('background-color', $rules) and $preference == 'background-color')
+			if (array_key_exists('background-color', $rules) and $preference == 'background-color'){
 				$rules['background-color'] = edac_replace_css_variables($rules['background-color'], $css_array);
 				$background = $rules['background-color'];
+			}
 
 			
 			// if background color not set exit	
@@ -710,7 +712,7 @@ function edac_replace_css_variables($value, $css_array){
 		foreach ($values as $value) {
 
 			//check if is a css variable
-			if(substr( $value, 0, 2 ) === "--"){
+			if(substr( $value, 0, 2 ) === "--" && array_key_exists($value, $css_array[':root'])){
 				$found_value = $css_array[':root'][$value];
 
 				// if value found break loop

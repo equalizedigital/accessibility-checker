@@ -123,8 +123,6 @@ function ac_css_font_size_weight_check($content){
 
 				// replace CSS variables
 				$rules['font-size'] = edac_replace_css_variables($rules['font-size'], $css_array);
-				$rules['font-weight'] = edac_replace_css_variables($rules['font-weight'], $css_array);
-				$rules['font-weight'] = edac_replace_css_variables($rules['font-style'], $css_array);
 
 				if(preg_match('(rem|em|%|inherit)', $rules['font-size']) === 1) { continue; }
 
@@ -135,6 +133,10 @@ function ac_css_font_size_weight_check($content){
 				if($rules['font-size'] >= 16){
 					$has_bold_or_italic = false;
 					if(array_key_exists('font-weight', $rules)){
+
+						// replace CSS variables
+						$rules['font-weight'] = edac_replace_css_variables($rules['font-weight'], $css_array);
+
 						if(
 							$rules['font-weight'] == 'bold' ||
 							$rules['font-weight'] == 'bolder' ||
@@ -146,6 +148,10 @@ function ac_css_font_size_weight_check($content){
 						}
 					}
 					if(array_key_exists('font-style', $rules)){
+
+						// replace CSS variables
+						$rules['font-style'] = edac_replace_css_variables($rules['font-style'], $css_array);
+
 						if(
 							$rules['font-style'] == 'italic' ||
 							$rules['font-style'] == 'oblique'
