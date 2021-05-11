@@ -206,6 +206,7 @@ if(edac_check_plugin_active('oxygen/functions.php')){
 	add_action( 'added_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 }
+add_action( 'admin_init', 'edac_anww_update_post_meta');
 
 /**
  * Create/Update database
@@ -827,6 +828,51 @@ function edac_summary($post_id){
 	}
 
 	return $summary;
+}
+
+/**
+ * Update post meta when Accessibility New Window Warning pluing is installed or uninstalled
+ *
+ * @return void
+ */
+function edac_anww_update_post_meta(){
+
+	$option_name = 'edac_anww_update_post_meta';
+
+	if ( get_option( $option_name ) === false && EDAC_ANWW_ACTIVE === true ) {
+		
+		add_option( $option_name, true);
+
+		edac_update_post_meta('link_blank');
+		
+
+	} elseif(get_option( $option_name ) == true && EDAC_ANWW_ACTIVE == false ) {
+		
+		delete_option($option_name);
+
+		edac_update_post_meta('link_blank');
+
+	}
+	
+}
+
+/**
+ * Update post meta by rule
+ *
+ * @param string $rule
+ * @return void
+ */
+function edac_update_post_meta($rule){
+	global $wpdb;
+	$site_id = get_current_blog_id();
+
+	$posts = $wpdb->get_results( $wpdb->prepare( 'SELECT postid FROM '.$wpdb->prefix.'accessibility_checker WHERE rule = %s and siteid = %d', $rule, $site_id), ARRAY_A );
+
+	if($posts){
+		foreach ($posts as $post) {
+			edac_summary($post['postid']);
+		}
+	}
 }
 
 /**
