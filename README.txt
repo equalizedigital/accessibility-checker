@@ -143,6 +143,7 @@ If Accessibility Checker is identifying errors in your theme or a plugin and you
 * Add support for Accessibility New Window Warning Plugin
 * Delete issues and meta data when post is added to trash
 * Color Contrast and Possible Heading minor bug fixes
+* Fixed post type purge bug when saving settings
 
 = 1.2.1 =
 * Fixed database version that was preventing the database from being created on activation
