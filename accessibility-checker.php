@@ -732,9 +732,14 @@ function edac_summary($post_id){
 
 	// Passed Tests
 	$rules = edac_register_rules();
+
+	// if ANWW is active remove link_blank for details meta box
+	if(EDAC_ANWW_ACTIVE){
+		$rules = edac_remove_element_with_value($rules, 'slug', 'link_blank');
+	}
+
 	$rules_passed = [];
 
-	//edac_log($rules_count);
 	if($rules){
 		foreach ($rules as $rule){
 			global $wpdb;
@@ -756,12 +761,24 @@ function edac_summary($post_id){
 	$summary['errors'] = intval($wpdb->get_var($wpdb->prepare($query, get_current_blog_id(), $post_id, 'error', 0)));
 
 	// count warnings
-	$query = "SELECT count(*) FROM ".$wpdb->prefix."accessibility_checker where siteid = %d and postid = %d and ruletype = %s and ignre = %d";
-	$summary['warnings'] = intval($wpdb->get_var($wpdb->prepare($query, get_current_blog_id(), $post_id, 'warning', 0)));
+	$warnings_parameters = array(get_current_blog_id(), $post_id, 'warning', 0);
+	$warnings_where = 'WHERE siteid = siteid = %d and postid = %d and ruletype = %s and ignre = %d';
+	if (EDAC_ANWW_ACTIVE) {
+		array_push($warnings_parameters, 'link_blank');
+		$warnings_where .= ' and rule != %s';
+	}
+	$query = "SELECT count(*) FROM ".$wpdb->prefix."accessibility_checker ".$warnings_where;
+	$summary['warnings'] = intval($wpdb->get_var($wpdb->prepare($query, $warnings_parameters)));
 
 	// count ignored issues	
-	$query = "SELECT count(*) FROM ".$wpdb->prefix."accessibility_checker where siteid = %d and postid = %d and ignre = %d";
-	$summary['ignored'] = intval($wpdb->get_var($wpdb->prepare($query, get_current_blog_id(), $post_id, 1)));
+	$ignored_parameters = array(get_current_blog_id(), $post_id, 1);
+	$ignored_where = 'WHERE siteid = %d and postid = %d and ignre = %d';
+	if (EDAC_ANWW_ACTIVE) {
+		array_push($ignored_parameters, 'link_blank');
+		$ignored_where .= ' and rule != %s';
+	}
+	$query = "SELECT count(*) FROM ".$wpdb->prefix."accessibility_checker ".$ignored_where;
+	$summary['ignored'] = intval($wpdb->get_var($wpdb->prepare($query, $ignored_parameters)));
 
 	// contrast errors
 	$query = "SELECT count(*) FROM ".$wpdb->prefix."accessibility_checker where siteid = %d and postid = %d and rule = %s and ignre = %d";
