@@ -640,3 +640,29 @@
   .edac-pro-callout-activate {
     margin-top: 30px;
     display: block; }
+
+@media (min-width: 1140px) {
+  .edac-review-notice {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 20px;
+    align-items: center; } }
+
+.edac-review-notice button:hover {
+  cursor: pointer; }
+
+.edac-review-notice-review {
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #3273aa;
+  border: none;
+  border-radius: 5px;
+  padding: 3px 6px; }
+  .edac-review-notice-review:after {
+    content: " \f155\f155\f155\f155\f155";
+    font-family: dashicons;
+    position: relative;
+    bottom: -1px;
+    color: #f3cd1e; }
+  .edac-review-notice-review:hover {
+    background-color: #135e96; }

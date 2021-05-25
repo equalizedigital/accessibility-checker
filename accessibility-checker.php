@@ -207,6 +207,8 @@ if(edac_check_plugin_active('oxygen/functions.php')){
 	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 }
 add_action( 'admin_init', 'edac_anww_update_post_meta');
+add_action( 'admin_notices', 'edac_review_notice');
+add_action( 'wp_ajax_edac_review_notice_ajax', 'edac_review_notice_ajax' );
 
 /**
  * Create/Update database
@@ -1368,4 +1370,98 @@ function edac_output_accessibility_statement(){
 	if(!empty($statement)){
 		echo '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>'.$statement.'</small></p>';
 	}
+}
+
+/**
+ * Review Admin Notice
+ *
+ * @return void
+ */
+function edac_review_notice(){
+
+	$option = 'edac_review_notice';
+	$edac_review_notice = get_option($option);
+
+	// exit if option is set to stop
+	if($edac_review_notice == 'stop') return;
+
+	$transient = 'edac_review_notice_reminder';
+	$edac_review_notice_reminder = get_transient($transient);
+
+	// first time if notice has never been shown wait 14 days
+	if($edac_review_notice_reminder == false && $edac_review_notice == false){
+		// if option isn't set and plugin has been active for more than 14 days show notice. This is for current users.
+		if(edac_days_active() > 14){
+			update_option($option,'play');
+		}else{
+			// if plugin has been active less than 14 days set transient for 14 days
+			set_transient($transient, true, 14 * DAY_IN_SECONDS);
+			// set option to pause
+			update_option($option,'pause');
+		}
+	}
+
+	// if transient has expired and option is set to pause update option to play
+	if($edac_review_notice_reminder == false && $edac_review_notice == 'pause'){
+		update_option($option,'play');
+	}
+
+	// if option is not set to play exit
+	if(get_option($option) != 'play') return;
+	
+	?>
+	<div class="notice notice-info edac-review-notice">
+		<p>
+			<?php _e( "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!", 'edac' ); ?>
+			
+		</p>
+		<p>
+			<button class="edac-review-notice-review"><?php _e( 'Write A Review', 'edac' ); ?></button>
+			<button class="edac-review-notice-remind"><?php _e( 'Remind me in two weeks', 'edac' ); ?></button>
+			<button class="edac-review-notice-dismiss"><?php _e( 'Never Ask Again', 'edac' ); ?></button>
+		</p>
+	</div>
+	<?php
+}
+/**
+ * Review Admin Notice Ajax
+ *
+ * @return void
+ * 
+ *  - '-1' means that nonce could not be varified
+ *  - '-2' means that the review action value was not specified
+ *  - '-3' means that update option wasn't successful
+ */
+function edac_review_notice_ajax(){
+
+	// nonce security
+	if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+		
+		$error = new WP_Error( '-1', 'Permission Denied' );
+		wp_send_json_error( $error );
+
+	}
+
+	if ( ! isset( $_REQUEST['review_action'] ) ) {
+	
+		$error = new WP_Error( '-2', 'The review action value was not set' );
+		wp_send_json_error( $error );
+
+	}
+
+	$results = update_option( 'edac_review_notice', $_REQUEST['review_action'] );
+
+	if($_REQUEST['review_action'] == 'pause'){
+		set_transient('edac_review_notice_reminder', true, 14 * DAY_IN_SECONDS);
+	}
+	
+	if( !$results ){
+
+		$error = new WP_Error( '-3', 'Update option wasn\'t successful' );
+		wp_send_json_error( $error );
+
+	}
+
+	wp_send_json_success( json_encode($results) );
+
 }

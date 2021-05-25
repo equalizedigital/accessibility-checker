@@ -361,6 +361,41 @@
       return document.body.classList.contains("block-editor-page");
     }
 
+    /**
+     * Review Notice Ajax
+     */
+    if($('.edac-review-notice').length){
+      $('.edac-review-notice-review').on('click', function() {
+        edac_review_notice_ajax('stop',true);
+      });
+
+      $('.edac-review-notice-remind').on('click', function() {
+        edac_review_notice_ajax('pause',false);
+      });
+
+      $('.edac-review-notice-dismiss').on('click', function() {
+        edac_review_notice_ajax('stop',false);
+      });
+    }
+
+    function edac_review_notice_ajax(review_action, redirect) {
+      $.ajax({
+        url: ajaxurl,
+        method: 'GET',
+        data: { action: 'edac_review_notice_ajax', review_action: review_action, nonce: edac_script_vars.nonce }
+      }).done(function( response ) {
+        if( true === response.success ) {
+          let response_json = $.parseJSON( response.data );
+          $('.edac-review-notice').fadeOut();
+          if(redirect){
+            window.location.href = 'https://wordpress.org/support/plugin/accessibility-checker/reviews/#new-post';
+          }
+        } else {
+          console.log(response);
+        }
+      });
+    }
+
     edac_summary_ajax();
     edac_details_ajax();
     edac_readability_ajax();

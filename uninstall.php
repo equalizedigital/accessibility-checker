@@ -24,7 +24,8 @@ if($delete_data == true){
         'edac_add_footer_accessibility_statement',
         'edac_accessibility_policy_page',
         'edac_delete_data',
-        'edac_anww_update_post_meta'
+        'edac_anww_update_post_meta',
+        'edac_review_notice'
     ];
     if($options){
         foreach ($options as $option){

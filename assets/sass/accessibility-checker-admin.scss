@@ -841,3 +841,38 @@
     display: block;
   }
 }
+
+.edac-review-notice{
+  @include breakpoint(lg){
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 20px;
+    align-items: center;
+  }
+  button{
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  &-review{
+    color: $color-white;
+    font-weight: bold;
+    background-color: $color-blue;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 6px;
+    &:after{
+      content: " \f155\f155\f155\f155\f155";
+      font-family: dashicons;
+      position: relative;
+      bottom: -1px;
+      color: $color-yellow;
+    }
+    &:hover{
+      background-color: #135e96;
+    }
+  }
+  &-remind, &-dismiss{
+ 
+  }
+}
