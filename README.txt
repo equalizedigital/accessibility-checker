@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev, philwebs, roadwarriorwp
 Tags: accessibility, accessible, wcag, ada, a11y, section 508, audit, readability, content analysis
 Requires at least: 5.0.0
-Tested up to: 5.7.1
-Stable tag: 5.7.1
+Tested up to: 5.7.2
+Stable tag: 5.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -144,6 +144,7 @@ If Accessibility Checker is identifying errors in your theme or a plugin and you
 * Delete issues and meta data when post is added to trash
 * Color Contrast and Possible Heading minor bug fixes
 * Fixed post type purge bug when saving settings
+* Review notification
 
 = 1.2.1 =
 * Fixed database version that was preventing the database from being created on activation
