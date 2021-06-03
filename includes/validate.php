@@ -47,6 +47,11 @@ function edac_post_on_load()
  */
 function edac_save_post($post_ID, $post, $update)
 {
+	// check post type
+	$post_types = get_option('edac_post_types');
+	if (!in_array($post->post_type, $post_types))
+		return;
+	
 	// prevents first past of save_post due to meta boxes on post editor in gutenberg
 	if (empty($_POST))
 		return;
