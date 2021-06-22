@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.2.3
+ * Version:           1.2.4
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -69,7 +69,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 // Current plugin version
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.2.3' );
+	define( 'EDAC_VERSION', '1.2.4' );
 }
 
 // Current database version
@@ -1142,6 +1142,16 @@ function edac_readability_ajax(){
 	$content_post = get_post($post_id);
 	$content = $content_post->post_content;
 	$content = apply_filters('the_content', $content);
+	$oxygen_builder_shortcodes_meta = get_post_meta($post_id, 'ct_builder_shortcodes', true);
+	
+	// add oxygen builder shortcode content to readability scan
+	if($oxygen_builder_shortcodes_meta){
+		$oxygen_builder_shortcodes = do_shortcode($oxygen_builder_shortcodes_meta);
+		if($oxygen_builder_shortcodes){
+			$content .= $oxygen_builder_shortcodes;
+		}
+	}
+
 	if(has_filter('edac_filter_readability_content')) {
 		$content = apply_filters('edac_filter_readability_content', $content, $post_id);
 	}
@@ -1417,7 +1427,7 @@ function edac_review_notice(){
 		</p>
 		<p>
 			<button class="edac-review-notice-review"><?php _e( 'Write A Review', 'edac' ); ?></button>
-			<button class="edac-review-notice-remind"><?php _e( 'Remind me in two weeks', 'edac' ); ?></button>
+			<button class="edac-review-notice-remind"><?php _e( 'Remind Me In Two Weeks', 'edac' ); ?></button>
 			<button class="edac-review-notice-dismiss"><?php _e( 'Never Ask Again', 'edac' ); ?></button>
 		</p>
 	</div>
