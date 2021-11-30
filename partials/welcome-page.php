@@ -4,7 +4,7 @@
 		<div class="edac-welcome-header">
 			<div class="edac-welcome-header-right">
 				<a href="https://equalizedigital.com/" target="_blank">
-					<img src="<?php echo plugin_dir_url( __DIR__ ); ?>assets/images/edac-logo.png" alt="Equalize Digital Logo">
+					<img src="<?php echo plugin_dir_url( __DIR__ ); ?>assets/images/edac-logo.png" alt="Link to Equalize Digital Website">
 				</a>
 			</div>
 			<div class="edac-welcome-header-left">
