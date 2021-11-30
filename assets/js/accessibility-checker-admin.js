@@ -37,10 +37,10 @@
 
       $(".edac-panel").hide();
       $(".edac-panel").removeClass("active");
-      $(".edac-tab a").removeClass("active");
+      $(".edac-tab a").removeClass("active").attr("aria-current", false);
       $(id).show();
       $(id).addClass("active");
-      $("a", this).addClass("active");
+      $("a", this).addClass("active").attr("aria-current", true);
     });
 
     // Details Tab on click Ajax
@@ -236,9 +236,9 @@
           // reset to first meta box tab
           /* $(".edac-panel").hide();
           $(".edac-panel").removeClass("active");
-          $(".edac-tab a").removeClass("active");
+          $(".edac-tab a").removeClass("active").attr("aria-current", false);
           $("#edac-summary").show();
-          $("#edac-summary").addClass("active");
+          $("#edac-summary").addClass("active").attr("aria-current", true);
           $(".edac-tab:first-child a").addClass("active"); */
 
           edac_summary_ajax();
