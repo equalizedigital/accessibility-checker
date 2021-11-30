@@ -236,9 +236,9 @@
           // reset to first meta box tab
           /* $(".edac-panel").hide();
           $(".edac-panel").removeClass("active");
-          $(".edac-tab a").removeClass("active").attr("aria-current", false);
+          $(".edac-tab a").removeClass("active");
           $("#edac-summary").show();
-          $("#edac-summary").addClass("active").attr("aria-current", true);
+          $("#edac-summary").addClass("active");
           $(".edac-tab:first-child a").addClass("active"); */
 
           edac_summary_ajax();
