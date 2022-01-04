@@ -134,6 +134,7 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Post Types:               ' . implode(', ', get_option('edac_post_types'))."\n";
 	$return .= 'Simplified Sum Position:  ' . get_option('edac_simplified_summary_position')."\n";
 	$return .= 'Simplified Sum Prompt:    ' . get_option('edac_simplified_summary_prompt')."\n";
+	$return .= 'Post Count:               ' . edac_get_posts_count()."\n";
 
 	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php')){
 		
@@ -365,4 +366,49 @@ function edac_tools_sysinfo_download() {
 	echo wp_strip_all_tags( $_POST['edac-sysinfo'] );
 
 	die();
+}
+
+/**
+ * Get Post Count by available custom post types
+ *
+ * @return mixed
+ */
+function edac_get_posts_count(){
+
+	$output = [];
+
+	$post_types = get_option('edac_post_types');
+	if($post_types){
+		foreach ($post_types as $post_type) {
+
+			$counts = wp_count_posts($post_type);
+			
+			if($counts){
+				foreach ($counts as $key => $value) {
+					if($value == 0){
+						unset($counts->{$key});
+					}
+				}
+			}
+
+			if($counts){
+				$array = [];
+				foreach ($counts as $key => $value) {
+					$array[] = $key.' = '.$value;
+				}
+				if($array){
+					$output[] = $post_type.': '.implode(', ',$array);
+				}
+			}
+			
+		}
+	}
+
+	if($output){
+		return implode(', ',$output);
+	}else{
+		return false;
+	}
+	
+
 }
