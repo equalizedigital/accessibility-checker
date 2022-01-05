@@ -135,6 +135,9 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Simplified Sum Position:  ' . get_option('edac_simplified_summary_position')."\n";
 	$return .= 'Simplified Sum Prompt:    ' . get_option('edac_simplified_summary_prompt')."\n";
 	$return .= 'Post Count:               ' . edac_get_posts_count()."\n";
+	$return .= 'Error Count:              ' . edac_get_error_count()."\n";
+	$return .= 'Warning Count:            ' . edac_get_warning_count()."\n";
+	$return .= 'DB Table Count:           ' . edac_database_table_count('accessibility_checker')."\n";
 
 	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php')){
 		
@@ -151,7 +154,8 @@ function edac_tools_sysinfo_get() {
 			$return .= 'Next Background Scan: ' . date('F j, Y g:i a', $next_scan). "\n";
 		}
 		$return .= 'Ignore Permissions:       ' . ( get_option('edacp_ignore_user_roles') ? implode(', ', get_option('edacp_ignore_user_roles'))."\n" : "None\n" );
-
+		$return .= 'Ignores DB Table Count:   ' . edac_database_table_count('accessibility_checker_global_ignores')."\n";
+		$return .= 'Logs DB Table Count:      ' . edac_database_table_count('accessibility_checker_logs')."\n";
 	}
 
 	$return  = apply_filters( 'edac_sysinfo_after_edac_config', $return );
@@ -410,5 +414,52 @@ function edac_get_posts_count(){
 		return false;
 	}
 	
+
+}
+
+/**
+ * Get Raw Global Error Count
+ *
+ * @param int $post_id
+ * @return array
+ */
+function edac_get_error_count(){
+	global $wpdb;
+
+	$query = "SELECT count(*) FROM ".$wpdb->prefix."accessibility_checker where siteid = %d and ruletype = %s";
+	$summary['errors'] = intval($wpdb->get_var($wpdb->prepare($query, get_current_blog_id(), 'error')));
+
+	return $summary['errors'];
+}
+
+/**
+ * Get Raw Global Warning Count
+ *
+ * @param int $post_id
+ * @return array
+ */
+function edac_get_warning_count(){
+	global $wpdb;
+
+	$query = "SELECT count(*) FROM ".$wpdb->prefix."accessibility_checker where siteid = %d and ruletype = %s";
+	$summary['errors'] = intval($wpdb->get_var($wpdb->prepare($query, get_current_blog_id(), 'warning')));
+
+	return $summary['errors'];
+}
+
+/**
+ * Get Database Table Count
+ *
+ * @param [type] $table
+ * @return int
+ */
+function edac_database_table_count($table){
+
+	global $wpdb;
+    $table_name = $wpdb->prefix . $table;
+    $count_query = "select count(*) from $table_name";
+    $num = $wpdb->get_var($count_query);
+
+    return  $num;
 
 }
