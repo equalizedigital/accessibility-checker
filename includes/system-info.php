@@ -154,7 +154,7 @@ function edac_tools_sysinfo_get() {
 			$return .= 'Next Background Scan: ' . date('F j, Y g:i a', $next_scan). "\n";
 		}
 		$return .= 'Ignore Permissions:       ' . ( get_option('edacp_ignore_user_roles') ? implode(', ', get_option('edacp_ignore_user_roles'))."\n" : "None\n" );
-		$return .= 'Global Ignores DB Table Count: ' . edac_database_table_count('accessibility_checker_global_ignores')."\n";
+		$return .= 'Ignores DB Table Count:   ' . edac_database_table_count('accessibility_checker_global_ignores')."\n";
 		$return .= 'Logs DB Table Count:      ' . edac_database_table_count('accessibility_checker_logs')."\n";
 	}
 
@@ -454,18 +454,12 @@ function edac_get_warning_count(){
  * @return int
  */
 function edac_database_table_count($table){
+
 	global $wpdb;
+    $table_name = $wpdb->prefix . $table;
+    $count_query = "select count(*) from $table_name";
+    $num = $wpdb->get_var($count_query);
 
-	/* $query = "SELECT count(*) FROM ".$wpdb->prefix.$table;
-	$rows = intval($wpdb->get_var($wpdb->prepare($query)));
-
-	return $wpdb->num_rows; */
-
-
-	$query = $wpdb->get_results("SELECT count(*) FROM ".$wpdb->prefix.$table);
-	edac_log($query);
-	//return $query[0][count(*)];
-
-
+    return  $num;
 
 }
