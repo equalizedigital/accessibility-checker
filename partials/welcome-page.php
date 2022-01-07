@@ -46,7 +46,7 @@
 		<div class="edac-welcome-section edac-welcome-section-documentation-support <?php if(get_transient( 'edacp_license_valid' ) == false) echo 'edac-show-pro-callout'; ?>">
 			<?php if(get_transient( 'edacp_license_valid' ) == false){ ?>
 				<div class="edac-welcome-pro-callout">
-					<?php include('pro-callout-h4.php'); ?>
+					<?php include('pro-callout.php'); ?>
 				</div>
 			<?php } ?>
 			<div class="edac-welcome-documentation-support">
