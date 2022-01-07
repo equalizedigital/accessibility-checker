@@ -37,10 +37,10 @@
 
       $(".edac-panel").hide();
       $(".edac-panel").removeClass("active");
-      $(".edac-tab a").removeClass("active");
+      $(".edac-tab a").removeClass("active").attr("aria-current", false);
       $(id).show();
       $(id).addClass("active");
-      $("a", this).addClass("active");
+      $("a", this).addClass("active").attr("aria-current", true);
     });
 
     // Details Tab on click Ajax

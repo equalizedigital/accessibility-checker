@@ -4,11 +4,11 @@
 		<div class="edac-welcome-header">
 			<div class="edac-welcome-header-right">
 				<a href="https://equalizedigital.com/" target="_blank">
-					<img src="<?php echo plugin_dir_url( __DIR__ ); ?>assets/images/edac-logo.png" alt="Equalize Digital">
+					<img src="<?php echo plugin_dir_url( __DIR__ ); ?>assets/images/edac-logo.png" alt="Link to Equalize Digital Website">
 				</a>
 			</div>
 			<div class="edac-welcome-header-left">
-				<h2 class="edac-welcome-title">
+				<h1 class="edac-welcome-title">
 					<?php
 					if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') == true && get_transient( 'edacp_license_valid' ) == true){
 						$title = esc_html( get_admin_page_title() ).' Pro';
@@ -20,13 +20,13 @@
 					
 					echo $title.' - '.$version;
 					?>
-				</h2>
-				<h3 class="edac-welcome-subtitle">WordPress Accessibility Auditing by <a href="https://equalizedigital.com/" target="_blank">Equalize Digital</a></h3>
+				</h1>
+				<h2 class="edac-welcome-subtitle">WordPress Accessibility Auditing by <a href="https://equalizedigital.com/" target="_blank">Equalize Digital</a></h2>
 			</div>
 		</div>
 		<div class="edac-welcome-section">
 			<div class="edac-welcome-quick-start">
-				<h4 class="edac-welcome-section-title">Quick Start Guide</h4>
+				<h3 class="edac-welcome-section-title">Quick Start Guide</h3>
 				<p>Accessibility Checker is here to help you make your website more accessible, whether you're new to website accessibility or a seasoned pro. If you've installed the plugin for the first time, follow these steps to get started checking your content:</p>
 				<ol>
 					<li>Visit the <a href="<?php echo get_bloginfo('url'); ?>/wp-admin/admin.php?page=accessibility_checker_settings">Settings Page</a> to configure checking settings and simplified summary position.</li>
@@ -46,11 +46,11 @@
 		<div class="edac-welcome-section edac-welcome-section-documentation-support <?php if(get_transient( 'edacp_license_valid' ) == false) echo 'edac-show-pro-callout'; ?>">
 			<?php if(get_transient( 'edacp_license_valid' ) == false){ ?>
 				<div class="edac-welcome-pro-callout">
-					<?php include('pro-callout.php'); ?>
+					<?php include('pro-callout-h4.php'); ?>
 				</div>
 			<?php } ?>
 			<div class="edac-welcome-documentation-support">
-				<h4 class="edac-welcome-section-title">Documentation and FAQs</h4>
+				<h3 class="edac-welcome-section-title">Documentation and FAQs</h3>
 				<p>We’ve done our best to create helpful articles that address frequently asked questions and provide the information you need to make your website accessible, faster. If you're just getting started, you may want to review these articles:</p>
 				<ul>
 					<li><a href="https://a11ychecker.com/help4279" target="_blank">Why do we say 100% Passed Tests, Not 100% Accessible?</a></li>
@@ -65,7 +65,7 @@
 
 				<div class="edac-welcome-section-divider"></div>
 
-				<h4 class="edac-welcome-section-title">Support Information</h4>
+				<h3 class="edac-welcome-section-title">Support Information</h3>
 				<p>We provide support for the free version of Accessibility Checker via the WordPress.org support forum. You will need to create a WordPress.org account and then can open a new support thread.</p>
 				<p><a class="button" href="https://wordpress.org/support/plugin/accessibility-checker/" target="_blank">Go to Support Forum</a></p>
 				<p>If you would like additional support, there are two options for receiving more personalized support:</p>

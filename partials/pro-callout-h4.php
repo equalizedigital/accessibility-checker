@@ -1,6 +1,6 @@
 <div class="edac-pro-callout">
     <img class="edac-pro-callout-icon" src="<?php echo plugin_dir_url( __DIR__ ); ?>assets/images/edac-emblem.png" alt="Equalize Digital Logo">
-    <h3 class="edac-pro-callout-title">Upgrade to Accessibility Checker Pro</h3>
+    <h4 class="edac-pro-callout-title">Upgrade to Accessibility Checker Pro</h4>
     <div>
         <ul class="edac-pro-callout-list">
             <li>Scan all post types</li>

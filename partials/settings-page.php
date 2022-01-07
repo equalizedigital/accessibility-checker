@@ -24,7 +24,7 @@ $tab = (array_search($tab, array_column($settings_tab_items, 'slug')) !== FALSE)
 
 <div class="wrap edac-settings">
 
-	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
 	<?php
 	if($settings_tab_items){
@@ -34,7 +34,7 @@ $tab = (array_search($tab, array_column($settings_tab_items, 'slug')) !== FALSE)
 			$query_var = $slug ? '&tab='.$slug : '';
 			$label = $settings_tab_item['label'];
 			?>
-			<a href="?page=accessibility_checker_settings<?php echo $query_var; ?>" class="nav-tab <?php if($tab===$slug):?>nav-tab-active<?php endif; ?>"><?php echo $label; ?></a>
+			<a <?php if($tab===$slug):?>aria-current="true" <?php endif; ?>href="?page=accessibility_checker_settings<?php echo $query_var; ?>" class="nav-tab <?php if($tab===$slug):?>nav-tab-active<?php endif; ?>"><?php echo $label; ?></a>
 			<?php
 		}
 		echo '</nav>';
