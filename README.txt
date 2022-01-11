@@ -139,6 +139,9 @@ If Accessibility Checker is identifying errors in your theme or a plugin and you
 
 == Changelog ==
 
+= 1.2.7 =
+* Add accessibility statement page template
+
 = 1.2.6 =
 * Minor accessibility updates
 
