@@ -180,7 +180,7 @@ function edac_general_cb(){
 	
 	$pro_text = '';
 	if (get_transient( 'edacp_license_valid' ) == false){
-		$pro_text = ' More features and email support is available with <a href="https://products.equalizedigital.com/" target="_blank">Accessibility Checker Pro</a>.';
+		$pro_text = ' More features and email support is available with <a href="https://my.equalizedigital.com/" target="_blank">Accessibility Checker Pro</a>.';
 	}
 
 	echo '<p>' . __( 'Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the <a href="https://a11ychecker.com/" target="_blank">plugin documentation</a>.'.$pro_text, 'edac' ) . '</p>';
@@ -299,7 +299,7 @@ function edac_post_types_cb(){
 			
 		</fieldset>
 		<?php if (get_transient( 'edacp_license_valid' ) == false){ ?>
-			<p class="edac-description"><?php echo __('To check content other than posts and pages, please ','edac'); ?><a href="https://products.equalizedigital.com/" target="_blank"><?php echo __('upgrade to pro','edac'); ?></a>.</p>
+			<p class="edac-description"><?php echo __('To check content other than posts and pages, please ','edac'); ?><a href="https://my.equalizedigital.com/" target="_blank"><?php echo __('upgrade to pro','edac'); ?></a>.</p>
 		<?php } ?>
 	<?php
 

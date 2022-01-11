@@ -70,8 +70,8 @@
 				<p><a class="button" href="https://wordpress.org/support/plugin/accessibility-checker/" target="_blank">Go to Support Forum</a></p>
 				<p>If you would like additional support, there are two options for receiving more personalized support:</p>
 				<ol>
-					<li><strong>Purchase Accessibility Checker Pro:</strong> Accessibility Checker Pro includes a number of additional features to support auditing your full website and includes personalized email-based support on plugin features and usage. Learn more about <a href="https://products.equalizedigital.com/" target="_blank">Accessibility Checker Pro</a>.</li>
-					<li><strong>Purchase a Priority Support Plan:</strong> Our priority support packages give you direct access to expert accessibility specialists and developers ready to help you resolve the accessibility errors and warnings on your website. Priority support plans include email, phone, and Zoom support, as desired. Priority support goes beyond plugin usage and can include consulting or custom coding to resolve accessibility problems on your website. Learn more about <a href="https://products.equalizedigital.com/priority-support/" target="_blank">Priority Support Plans</a>.</li>
+					<li><strong>Purchase Accessibility Checker Pro:</strong> Accessibility Checker Pro includes a number of additional features to support auditing your full website and includes personalized email-based support on plugin features and usage. Learn more about <a href="https://my.equalizedigital.com/" target="_blank">Accessibility Checker Pro</a>.</li>
+					<li><strong>Purchase a Priority Support Plan:</strong> Our priority support packages give you direct access to expert accessibility specialists and developers ready to help you resolve the accessibility errors and warnings on your website. Priority support plans include email, phone, and Zoom support, as desired. Priority support goes beyond plugin usage and can include consulting or custom coding to resolve accessibility problems on your website. Learn more about <a href="https://my.equalizedigital.com/priority-support/" target="_blank">Priority Support Plans</a>.</li>
 				</ol>
 			</div>
 		</div>

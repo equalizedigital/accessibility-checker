@@ -12,7 +12,7 @@ Audit and check your website for accessibility before you hit publish. In-post a
 
 == Description ==
 
-[Documentation](https://equalizedigital.com/accessibility-checker/#documentation) | [Compare Free to Pro](https://products.equalizedigital.com/accessibility-checker-pro/features/#comparison) | [Get Pro](https://products.equalizedigital.com/#pricing) | [Priority Support & Accessibility Consulting](https://products.equalizedigital.com/priority-support/)
+[Documentation](https://equalizedigital.com/accessibility-checker/#documentation) | [Compare Free to Pro](https://my.equalizedigital.com/accessibility-checker-pro/features/#comparison) | [Get Pro](https://my.equalizedigital.com/#pricing) | [Priority Support & Accessibility Consulting](https://my.equalizedigital.com/priority-support/)
 
 ### Make Your Website Accessible with Accessibility Checker 
 
@@ -53,9 +53,9 @@ To get started with Accessibility Checker Pro or learn more about how it works, 
 
 The Equalize Digital team aims to provide regular support for Accessibility Checker on the WordPress.org forums. If you have a question about the plugin or its use, please post in the support forum, and we will do our best to help you in a timely manner. Our support hours are Monday-Friday, 9:00 AM to 5:00 PM U.S. central time. Please understand that we do prioritize support for purchasers of Accessibility Checker Pro or our Priority Support Packages. 
 
-If you need one-on-one email support, please consider purchasing [Accessibility Checker Pro](https://products.equalizedigital.com/). Accessibility Checker Pro customers receive unlimited personal support on plugin usage and features. 
+If you need one-on-one email support, please consider purchasing [Accessibility Checker Pro](https://my.equalizedigital.com/). Accessibility Checker Pro customers receive unlimited personal support on plugin usage and features. 
 
-We also offer [Priority Support Packages](https://products.equalizedigital.com/priority-support/) that include phone and Zoom video support, as well as assistance with accessibility/screen reader testing and custom coding. Priority Support Packages are perfect for agencies, freelancers, and website managers who want an accessibility expert on-call to provide consultation and assistance as they remediate their website's accessibility. [Learn More About Priority Support](https://products.equalizedigital.com/priority-support/)
+We also offer [Priority Support Packages](https://my.equalizedigital.com/priority-support/) that include phone and Zoom video support, as well as assistance with accessibility/screen reader testing and custom coding. Priority Support Packages are perfect for agencies, freelancers, and website managers who want an accessibility expert on-call to provide consultation and assistance as they remediate their website's accessibility. [Learn More About Priority Support](https://my.equalizedigital.com/priority-support/)
 
 ### Multi-platform Accessibility
 
@@ -108,17 +108,17 @@ Accessibility Checker does not make your website accessible, but it is a valuabl
 
 Accessibility Checker Free scans blog posts and pages, including the header, content area, sidebar, and footer on those pages. There is no limit to the number of pages or posts that you can scan with Accessibility Checker or the number of times any one page or post can be scanned. So, if your website only contains standard posts and pages, then YES, Accessibility Checker will scan all of your content. If you have custom post types (such as a portfolio, team member pages, or WooCommerce products), the free version of the plugin will not scan these posts.
 
-For a full-site scan or to check custom post types for accessibility, please upgrade to [Accessibility Checker Pro](https:products.equalizedigital.com).
+For a full-site scan or to check custom post types for accessibility, please upgrade to [Accessibility Checker Pro](https:my.equalizedigital.com).
 
 = How do I know how to fix accessibility problems on my website? =
 
 Every error and warning in Accessibility Checker has an 'i' icon to the right of the error or warning name on the details tab. If you click these 'i' icons, you'll be directed to a help article that clearly explains what the error or warning is, what its impact on accessibility is, and how to fix or resolve it. Generally, these help articles will provide sufficient information to point you in the right direction, but if you still have questions, open a support ticket on WordPress.org and we'll do our best to help you.
 
-If you need detailed consultation or custom coding assistance, we offer [Priority Support Packages](https://products.equalizedigital.com/priority-support/). These packages include email, phone, and Zoom support and are ideal for individuals or teams who need more hands-on assistance in resolving accessibility problems on their website.
+If you need detailed consultation or custom coding assistance, we offer [Priority Support Packages](https://my.equalizedigital.com/priority-support/). These packages include email, phone, and Zoom support and are ideal for individuals or teams who need more hands-on assistance in resolving accessibility problems on their website.
 
 = Can you help me fix accessibility problems on my website? =
 
-Yes! If you need detailed guidance in how to resolve the identified problems in your theme or plugins or need accessibility fixes custom coded for your site, we offer Priority Support packages that provide this assistance. [Get Priority Support](https://products.equalizedigital.com/priority-support/)
+Yes! If you need detailed guidance in how to resolve the identified problems in your theme or plugins or need accessibility fixes custom coded for your site, we offer Priority Support packages that provide this assistance. [Get Priority Support](https://my.equalizedigital.com/priority-support/)
 
 = What if there are accessibility errors in my theme or a plugin that I cannot fix? =
 
