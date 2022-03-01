@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev, philwebs, roadwarriorwp
 Tags: accessibility, accessible, wcag, ada, a11y, section 508, audit, readability, content analysis
 Requires at least: 5.0.0
-Tested up to: 5.8.3
-Stable tag: 5.8.3
+Tested up to: 5.9.1
+Stable tag: 5.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,8 +139,11 @@ If Accessibility Checker is identifying errors in your theme or a plugin and you
 
 == Changelog ==
 
+= 1.2.8 =
+* Freemius Update
+
 = 1.2.7 =
-* Add accessibility statement page template
+* Add accessibility statement page template 
 
 = 1.2.6 =
 * Minor accessibility updates
