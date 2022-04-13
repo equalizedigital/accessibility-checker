@@ -953,26 +953,23 @@ function edac_details_ajax(){
 	
 	// sort error rules by count
 	usort($error_rules, function($a, $b) {
-		return $a['count'] < $b['count'];
+		
+		return $b['count'] <=> $a['count'];
+		
 	});
 
 	// sort warning rules by count
 	usort($warning_rules, function($a, $b) {
-		return $a['count'] < $b['count'];
+		
+		return $b['count'] <=> $a['count'];
+
 	});
 
 	// sort passed rules array by title
 	usort($passed_rules, function($a, $b) {
-		
-		// PHP 5.6
-		if ($a == $b) {
-			return 0;
-		}
-		return ($a < $b) ? -1 : 1;
-		
-		// PHP 7 with spaceship operator
-		//return $a['title'] <=> $b['title'];
-		
+
+		return $a['title'] <=> $b['title'];
+
 	});
 
 	// merge rule arrays together

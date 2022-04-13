@@ -12,7 +12,7 @@ if(has_filter('edac_filter_settings_tab_items')) {
 // sort settings tab items
 if(is_array($settings_tab_items)){
 	usort($settings_tab_items, function($a, $b) {
-		return $a['order'] > $b['order'];
+		return $a['order'] <=> $b['order'];
 	});
 }
 
