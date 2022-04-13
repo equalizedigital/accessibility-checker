@@ -1010,7 +1010,8 @@ function edac_details_ajax(){
 						$html .= '<span class="edac-details-rule-count-ignore">'.$count_ignored.'</span>';
 					}
 					$html .= esc_html($rule['title']);
-					$html .= '<a href="'.$tool_tip_link.'" class="edac-details-rule-information" target="_blank"><span class="dashicons dashicons-info"></span></a>';
+					//Can you please add an aria-label to the link "Read documentation for [rule name]"?
+					$html .= '<a href="'.$tool_tip_link.'" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for '. esc_html($rule['title']).'"><span class="dashicons dashicons-info"></span></a>';
 					$html .= ($expand_rule) ? '<button class="edac-details-rule-title-arrow"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 
 				$html .= '</div>';
