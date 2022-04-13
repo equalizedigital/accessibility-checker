@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.2.8
+ * Version:           1.2.9
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -69,7 +69,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 // Current plugin version
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.2.8' );
+	define( 'EDAC_VERSION', '1.2.9' );
 }
 
 // Current database version
@@ -953,26 +953,23 @@ function edac_details_ajax(){
 	
 	// sort error rules by count
 	usort($error_rules, function($a, $b) {
-		return $a['count'] < $b['count'];
+		
+		return $b['count'] <=> $a['count'];
+		
 	});
 
 	// sort warning rules by count
 	usort($warning_rules, function($a, $b) {
-		return $a['count'] < $b['count'];
+		
+		return $b['count'] <=> $a['count'];
+
 	});
 
 	// sort passed rules array by title
 	usort($passed_rules, function($a, $b) {
-		
-		// PHP 5.6
-		if ($a == $b) {
-			return 0;
-		}
-		return ($a < $b) ? -1 : 1;
-		
-		// PHP 7 with spaceship operator
-		//return $a['title'] <=> $b['title'];
-		
+
+		return $a['title'] <=> $b['title'];
+
 	});
 
 	// merge rule arrays together
@@ -1013,7 +1010,8 @@ function edac_details_ajax(){
 						$html .= '<span class="edac-details-rule-count-ignore">'.$count_ignored.'</span>';
 					}
 					$html .= esc_html($rule['title']);
-					$html .= '<a href="'.$tool_tip_link.'" class="edac-details-rule-information" target="_blank"><span class="dashicons dashicons-info"></span></a>';
+					//Can you please add an aria-label to the link "Read documentation for [rule name]"?
+					$html .= '<a href="'.$tool_tip_link.'" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for '. esc_html($rule['title']).'"><span class="dashicons dashicons-info"></span></a>';
 					$html .= ($expand_rule) ? '<button class="edac-details-rule-title-arrow"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 
 				$html .= '</div>';
