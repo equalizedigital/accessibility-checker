@@ -174,6 +174,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.2.10 =
+* Fix issue with unmatched reading levels
+
 = 1.2.9 =
 * Add support for PHP 8
 * Make helper icons links less ambiguous
