@@ -86,7 +86,7 @@ function edac_validate($post_ID, $post, $action)
 {	
 	// check post type
 	$post_types = get_option('edac_post_types');
-	if (!in_array($post->post_type, $post_types))
+	if (is_array($post_types) && !in_array($post->post_type, $post_types))
 		return;
 
 	do_action( 'edac_before_validate', $post_ID, $action);
