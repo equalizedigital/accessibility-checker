@@ -358,6 +358,11 @@
      * Check if Gutenberg is active
      */
     function edac_gutenberg_active() {
+
+      // return false if widgets page
+      if(document.body.classList.contains("widgets-php")) return false;
+
+      // check if block editor page
       return document.body.classList.contains("block-editor-page");
     }
 
