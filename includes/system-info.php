@@ -131,7 +131,7 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Authorization Password:   ' . ( get_option('edac_authorization_password') ? get_option('edac_authorization_password')."\n" : "Unset\n" );
 	$return .= 'Delete Data:              ' . ( get_option('edac_delete_data') ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Include Statement Link:   ' . ( get_option('edac_include_accessibility_statement_link') ? "Enabled\n" : "Disabled\n" );
-	$return .= 'Post Types:               ' . implode(', ', get_option('edac_post_types'))."\n";
+	$return .= 'Post Types:               ' . ( is_array(get_option('edac_post_types')) ) ?: implode(', ', get_option('edac_post_types'))."\n";
 	$return .= 'Simplified Sum Position:  ' . get_option('edac_simplified_summary_position')."\n";
 	$return .= 'Simplified Sum Prompt:    ' . get_option('edac_simplified_summary_prompt')."\n";
 	$return .= 'Post Count:               ' . edac_get_posts_count()."\n";
@@ -302,6 +302,8 @@ function edac_get_host() {
 		$host = 'WP Engine';
 	} elseif( defined( 'PAGELYBIN' ) ) {
 		$host = 'Pagely';
+	} elseif( defined( 'WPCOM_IS_VIP_ENV' ) ) {
+		$host = 'WordPress VIP';
 	} elseif( DB_HOST == 'localhost:/tmp/mysql5.sock' ) {
 		$host = 'ICDSoft';
 	} elseif( DB_HOST == 'mysqlv5' ) {

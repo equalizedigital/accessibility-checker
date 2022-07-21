@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev, philwebs, roadwarriorwp
 Tags: accessibility, accessible, wcag, ada, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
-Tested up to: 6.0
-Stable tag: 6.0
+Tested up to: 6.0.1
+Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -173,6 +173,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 
 == Changelog ==
+
+= 1.2.12 =
+* Updates to system info
 
 = 1.2.11 =
 * Fix conflict with widgets block editor
