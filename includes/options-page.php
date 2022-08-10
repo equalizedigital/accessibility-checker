@@ -1,23 +1,55 @@
 <?php
 
 /**
+ * Check if user can ignore or can manage options
+ *
+ * @return bool
+ */
+function edac_user_can_ignore(){
+
+	if(current_user_can( 'manage_options' )){
+		return true;
+	}
+
+	$user = wp_get_current_user();
+	$user_roles = (isset($user->roles)) ? $user->roles : [];
+	$ignore_user_roles = get_option('edacp_ignore_user_roles');
+	$interset = array_intersect($user_roles, $ignore_user_roles);
+
+	if($interset){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+/**
  * Add an options page under the Settings submenu
  */
 function edac_add_options_page(){
+
+	if(!edac_user_can_ignore()) return;
+
 	add_menu_page(
 		__( 'Welcome to Accessibility Checker', 'edac' ),
 		__( 'Accessibility Checker', 'edac' ),
-		'manage_options',
+		'read',
 		'accessibility_checker',
 		'edac_display_welcome_page',
 		'dashicons-universal-access-alt	'
 	);
 
+	// settings panel filter
+	$settings_capability = 'manage_options';
+	if(has_filter('edac_filter_settings_capability')) {
+		$settings_capability = apply_filters('edac_filter_settings_capability', $settings_capability);
+	}
+	
 	add_submenu_page(
 		'accessibility_checker',
 		__( 'Accessibility Checker Settings', 'edac' ),
 		__( 'Settings', 'edac' ),
-		'manage_options',
+		$settings_capability,
 		'accessibility_checker_settings',
 		'edac_display_options_page',
 		1,
