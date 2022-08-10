@@ -174,6 +174,10 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.2.13 =
+* Show Open Issues and Ignore Log admin pages to users with ignore permissions
+* Fix bug when post types setting was blank
+
 = 1.2.12 =
 * Updates to system info
 
