@@ -14,7 +14,7 @@ function edac_user_can_ignore(){
 	$user = wp_get_current_user();
 	$user_roles = (isset($user->roles)) ? $user->roles : [];
 	$ignore_user_roles = get_option('edacp_ignore_user_roles');
-	$interset = array_intersect($user_roles, $ignore_user_roles);
+	$interset = ($user_roles && $ignore_user_roles) ? array_intersect($user_roles, $ignore_user_roles) : null;
 
 	if($interset){
 		return true;
@@ -28,8 +28,6 @@ function edac_user_can_ignore(){
  */
 function edac_add_options_page(){
 
-	if(!edac_user_can_ignore()) return;
-
 	add_menu_page(
 		__( 'Welcome to Accessibility Checker', 'edac' ),
 		__( 'Accessibility Checker', 'edac' ),
@@ -38,6 +36,8 @@ function edac_add_options_page(){
 		'edac_display_welcome_page',
 		'dashicons-universal-access-alt	'
 	);
+
+	if(!edac_user_can_ignore()) return;
 
 	// settings panel filter
 	$settings_capability = 'manage_options';
