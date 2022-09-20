@@ -1051,7 +1051,7 @@ function edac_details_ajax(){
 
 					$html .= '<span class="edac-details-rule-count'.$count_classes.'">'.$rule['count'].'</span>';
 					if($count_ignored > 0){
-						$html .= '<span class="edac-details-rule-count-ignore">'.$count_ignored.'</span>';
+						$html .= '<span class="edac-details-rule-count-ignore">'.$count_ignored.' Ignored Items</span>';
 					}
 					$html .= esc_html($rule['title']);
 					//Can you please add an aria-label to the link "Read documentation for [rule name]"?
