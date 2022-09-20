@@ -340,7 +340,7 @@
           color: #3273aa; }
         #edac-meta-box #edac-tabs .edac-details-rule-title.active .edac-details-rule-title-arrow {
           transform: rotate(180deg); }
-      #edac-meta-box #edac-tabs .edac-details-rule-count, #edac-meta-box #edac-tabs .edac-details-rule-count-ignore {
+      #edac-meta-box #edac-tabs .edac-details-rule-count {
         width: 20px;
         height: 20px;
         font-size: 12px;
@@ -353,8 +353,15 @@
         margin-right: 5px; }
         #edac-meta-box #edac-tabs .edac-details-rule-count-passed {
           background-color: #006600; }
-        #edac-meta-box #edac-tabs .edac-details-rule-count-ignore {
-          background-color: #072446; }
+      #edac-meta-box #edac-tabs .edac-details-rule-count-ignore {
+        color: #ffffff;
+        background-color: #072446;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 13px;
+        line-height: 13px;
+        margin-left: 10px;
+        display: inline-block; }
       #edac-meta-box #edac-tabs .edac-details-rule-count-error.active {
         background-color: #b30f0f; }
       #edac-meta-box #edac-tabs .edac-details-rule-count-warning.active {
@@ -641,28 +648,28 @@
     margin-top: 30px;
     display: block; }
 
-@media (min-width: 1140px) {
-  .edac-review-notice {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-column-gap: 20px;
-    align-items: center; } }
-
-.edac-review-notice button:hover {
-  cursor: pointer; }
-
-.edac-review-notice-review {
-  color: #ffffff;
-  font-weight: bold;
-  background-color: #3273aa;
-  border: none;
-  border-radius: 5px;
-  padding: 3px 6px; }
-  .edac-review-notice-review:after {
-    content: " \f155\f155\f155\f155\f155";
-    font-family: dashicons;
-    position: relative;
-    bottom: -1px;
-    color: #f3cd1e; }
-  .edac-review-notice-review:hover {
-    background-color: #135e96; }
+.edac-review-notice {
+  clear: both; }
+  @media (min-width: 1140px) {
+    .edac-review-notice {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-column-gap: 20px;
+      align-items: center; } }
+  .edac-review-notice button:hover {
+    cursor: pointer; }
+  .edac-review-notice-review {
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #3273aa;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 6px; }
+    .edac-review-notice-review:after {
+      content: " \f155\f155\f155\f155\f155";
+      font-family: dashicons;
+      position: relative;
+      bottom: -1px;
+      color: #f3cd1e; }
+    .edac-review-notice-review:hover {
+      background-color: #135e96; }

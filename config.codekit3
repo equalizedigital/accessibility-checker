@@ -7,9 +7,2362 @@
       "uuidString" : "EC5399FC-EB0E-45FE-A5A4-9CA8752E2244"
     }
   ],
-  "creatorBuild" : "34127",
+  "creatorBuild" : "34365",
   "files" : {
-
+    "\/.gitignore" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.gitignore",
+      "oF" : 0
+    },
+    "\/accessibility-checker.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/accessibility-checker.php",
+      "oF" : 0
+    },
+    "\/assets\/css\/accessibility-checker-admin.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/assets\/css\/accessibility-checker-admin-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/assets\/images\/checkmark icon green.png" : {
+      "ft" : 32768,
+      "iS" : 14817,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/checkmark icon green.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/contrast icon blue.png" : {
+      "ft" : 32768,
+      "iS" : 13405,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/contrast icon blue.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/contrast icon navy.png" : {
+      "ft" : 32768,
+      "iS" : 13404,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/contrast icon navy.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/contrast icon red.png" : {
+      "ft" : 32768,
+      "iS" : 13517,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/contrast icon red.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/contrast icon white.png" : {
+      "ft" : 32768,
+      "iS" : 13926,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/contrast icon white.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/edac-emblem.png" : {
+      "ft" : 32768,
+      "iS" : 29661,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/edac-emblem.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/edac-logo.png" : {
+      "ft" : 32768,
+      "iS" : 4757,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/edac-logo.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/error icon red.png" : {
+      "ft" : 32768,
+      "iS" : 15655,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/error icon red.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/error icon white.png" : {
+      "ft" : 32768,
+      "iS" : 15997,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/error icon white.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/ignore icon blue.png" : {
+      "ft" : 32768,
+      "iS" : 13818,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/ignore icon blue.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/ignore icon navy.png" : {
+      "ft" : 32768,
+      "iS" : 13827,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/ignore icon navy.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/ignore icon white.png" : {
+      "ft" : 32768,
+      "iS" : 13862,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/ignore icon white.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/ignore-icon.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/assets\/images\/ignore-icon.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/assets\/images\/list-check.png" : {
+      "ft" : 32768,
+      "iS" : 410,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/list-check.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/readability icon blue.png" : {
+      "ft" : 32768,
+      "iS" : 14964,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/readability icon blue.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/readability icon navy.png" : {
+      "ft" : 32768,
+      "iS" : 8930,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/readability icon navy.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/readability icon white.png" : {
+      "ft" : 32768,
+      "iS" : 14972,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/readability icon white.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/warning icon navy.png" : {
+      "ft" : 32768,
+      "iS" : 12534,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/warning icon navy.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/warning icon white.png" : {
+      "ft" : 32768,
+      "iS" : 14978,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/warning icon white.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/images\/warning icon yellow.png" : {
+      "ft" : 32768,
+      "iS" : 13988,
+      "oA" : 0,
+      "oAP" : "\/assets\/images\/warning icon yellow.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/assets\/js\/accessibility-checker-admin-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/assets\/js\/accessibility-checker-admin-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/assets\/js\/accessibility-checker-admin.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/assets\/js\/accessibility-checker-admin-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/assets\/sass\/_helpers.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "dP" : 10,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/assets\/sass\/_helpers.css",
+      "oF" : 0,
+      "oS" : 0,
+      "pg" : 0,
+      "sct" : 1
+    },
+    "\/assets\/sass\/_variables.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "dP" : 10,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/assets\/sass\/_variables.css",
+      "oF" : 0,
+      "oS" : 0,
+      "pg" : 0,
+      "sct" : 1
+    },
+    "\/assets\/sass\/accessibility-checker-admin.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "dP" : 10,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/assets\/css\/accessibility-checker-admin.css",
+      "oF" : 2,
+      "oS" : 0,
+      "pg" : 0,
+      "sct" : 1
+    },
+    "\/edac_log.log" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/edac_log.log",
+      "oF" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/account.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/account-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/add-ons.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/add-ons-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/affiliation.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/affiliation-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/checkout.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/checkout-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/common.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/common-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/connect.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/connect-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/debug.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/debug-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/dialog-boxes.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/dialog-boxes-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/gdpr-optin-notice.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/gdpr-optin-notice-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/assets\/css\/admin\/plugins.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/admin\/plugins-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/customizer.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/customizer-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/freemius\/assets\/css\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/css\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/assets\/img\/accessibility-checker.png" : {
+      "ft" : 32768,
+      "iS" : 9380,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/img\/accessibility-checker.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/freemius\/assets\/img\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/img\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/assets\/img\/plugin-icon.png" : {
+      "ft" : 32768,
+      "iS" : 9380,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/img\/plugin-icon.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/freemius\/assets\/img\/theme-icon.png" : {
+      "ft" : 32768,
+      "iS" : 11237,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/img\/theme-icon.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/freemius\/assets\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/assets\/js\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/js\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/assets\/js\/nojquery.ba-postmessage.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/js\/nojquery.ba-postmessage-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/freemius\/assets\/js\/nojquery.ba-postmessage.min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/js\/nojquery.ba-postmessage.min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/freemius\/assets\/js\/postmessage.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/freemius\/assets\/js\/postmessage-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/freemius\/config.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/config.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/class-freemius-abstract.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/class-freemius-abstract.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/class-freemius.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/class-freemius.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/class-fs-admin-notices.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/class-fs-admin-notices.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/class-fs-api.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/class-fs-api.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/class-fs-logger.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/class-fs-logger.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/class-fs-options.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/class-fs-options.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/class-fs-plugin-updater.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/class-fs-plugin-updater.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/class-fs-security.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/class-fs-security.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/class-fs-storage.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/class-fs-storage.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/class-fs-user-lock.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/class-fs-user-lock.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/customizer\/class-fs-customizer-support-section.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/customizer\/class-fs-customizer-support-section.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/customizer\/class-fs-customizer-upsell-control.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/customizer\/class-fs-customizer-upsell-control.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/customizer\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/customizer\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/debug\/class-fs-debug-bar-panel.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/debug\/class-fs-debug-bar-panel.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/debug\/debug-bar-start.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/debug\/debug-bar-start.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/debug\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/debug\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-affiliate-terms.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-affiliate-terms.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-affiliate.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-affiliate.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-billing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-billing.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-entity.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-entity.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-payment.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-payment.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-plugin-info.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-plugin-info.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-plugin-license.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-plugin-license.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-plugin-plan.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-plugin-plan.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-plugin-tag.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-plugin-tag.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-plugin.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-plugin.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-pricing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-pricing.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-scope-entity.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-scope-entity.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-site.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-site.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-subscription.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-subscription.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/class-fs-user.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/class-fs-user.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/entities\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/entities\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/fs-core-functions.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/fs-core-functions.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/fs-essential-functions.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/fs-essential-functions.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/fs-plugin-info-dialog.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/fs-plugin-info-dialog.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/i18n.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/i18n.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/l10n.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/l10n.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/managers\/class-fs-admin-menu-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/managers\/class-fs-admin-menu-manager.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/managers\/class-fs-admin-notice-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/managers\/class-fs-admin-notice-manager.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/managers\/class-fs-cache-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/managers\/class-fs-cache-manager.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/managers\/class-fs-gdpr-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/managers\/class-fs-gdpr-manager.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/managers\/class-fs-key-value-storage.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/managers\/class-fs-key-value-storage.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/managers\/class-fs-license-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/managers\/class-fs-license-manager.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/managers\/class-fs-option-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/managers\/class-fs-option-manager.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/managers\/class-fs-plan-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/managers\/class-fs-plan-manager.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/managers\/class-fs-plugin-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/managers\/class-fs-plugin-manager.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/managers\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/managers\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/sdk\/Exceptions\/ArgumentNotExistException.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/sdk\/Exceptions\/ArgumentNotExistException.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/sdk\/Exceptions\/EmptyArgumentException.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/sdk\/Exceptions\/EmptyArgumentException.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/sdk\/Exceptions\/Exception.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/sdk\/Exceptions\/Exception.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/sdk\/Exceptions\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/sdk\/Exceptions\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/sdk\/Exceptions\/InvalidArgumentException.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/sdk\/Exceptions\/InvalidArgumentException.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/sdk\/Exceptions\/OAuthException.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/sdk\/Exceptions\/OAuthException.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/sdk\/FreemiusBase.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/sdk\/FreemiusBase.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/sdk\/FreemiusWordPress.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/sdk\/FreemiusWordPress.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/sdk\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/sdk\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/sdk\/LICENSE.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/sdk\/LICENSE.txt",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/supplements\/fs-essential-functions-1.1.7.1.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/supplements\/fs-essential-functions-1.1.7.1.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/supplements\/fs-essential-functions-2.2.1.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/supplements\/fs-essential-functions-2.2.1.php",
+      "oF" : 0
+    },
+    "\/freemius\/includes\/supplements\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/includes\/supplements\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-cs_CZ.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-cs_CZ.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-da_DK.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-da_DK.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-en.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-en.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-es_ES.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-es_ES.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-fr_FR.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-fr_FR.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-he_IL.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-he_IL.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-hu_HU.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-hu_HU.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-it_IT.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-it_IT.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-ja.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-ja.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-nl_NL.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-nl_NL.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-ru_RU.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-ru_RU.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-ta.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-ta.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius-zh_CN.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius-zh_CN.mo",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/freemius.pot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/freemius.pot",
+      "oF" : 0
+    },
+    "\/freemius\/languages\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/languages\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/LICENSE.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/LICENSE.txt",
+      "oF" : 0
+    },
+    "\/freemius\/package.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/freemius\/package-min.json",
+      "oF" : 0,
+      "oO" : 0,
+      "oS" : 1
+    },
+    "\/freemius\/README.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/README.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/freemius\/require.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/require.php",
+      "oF" : 0
+    },
+    "\/freemius\/start.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/start.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/account.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/account.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/account\/billing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/account\/billing.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/account\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/account\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/account\/partials\/activate-license-button.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/account\/partials\/activate-license-button.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/account\/partials\/addon.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/account\/partials\/addon.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/account\/partials\/deactivate-license-button.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/account\/partials\/deactivate-license-button.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/account\/partials\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/account\/partials\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/account\/partials\/site.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/account\/partials\/site.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/account\/payments.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/account\/payments.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/add-ons.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/add-ons.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/add-trial-to-pricing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/add-trial-to-pricing.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/admin-notice.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/admin-notice.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/ajax-loader.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/ajax-loader.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/auto-installation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/auto-installation.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/checkout.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/checkout.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/connect.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/connect.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/contact.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/contact.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/debug.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/debug.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/debug\/api-calls.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/debug\/api-calls.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/debug\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/debug\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/debug\/logger.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/debug\/logger.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/debug\/plugins-themes-sync.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/debug\/plugins-themes-sync.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/debug\/scheduled-crons.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/debug\/scheduled-crons.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/email.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/email.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/firewall-issues-js.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/firewall-issues-js.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/affiliation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/affiliation.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/data-debug-mode.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/data-debug-mode.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/deactivation\/contact.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/deactivation\/contact.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/deactivation\/form.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/deactivation\/form.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/deactivation\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/deactivation\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/deactivation\/retry-skip.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/deactivation\/retry-skip.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/license-activation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/license-activation.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/optout.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/optout.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/premium-versions-upgrade-handler.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/premium-versions-upgrade-handler.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/premium-versions-upgrade-metadata.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/premium-versions-upgrade-metadata.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/resend-key.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/resend-key.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/subscription-cancellation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/subscription-cancellation.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/trial-start.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/trial-start.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/forms\/user-change.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/forms\/user-change.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/gdpr-optin-js.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/gdpr-optin-js.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/js\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/js\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/js\/jquery.content-change.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/js\/jquery.content-change.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/js\/open-license-activation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/js\/open-license-activation.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/js\/style-premium-theme.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/js\/style-premium-theme.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/partials\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/partials\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/partials\/network-activation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/partials\/network-activation.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/plugin-icon.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/plugin-icon.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/plugin-info\/description.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/plugin-info\/description.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/plugin-info\/features.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/plugin-info\/features.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/plugin-info\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/plugin-info\/index.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/plugin-info\/screenshots.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/plugin-info\/screenshots.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/powered-by.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/powered-by.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/pricing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/pricing.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/secure-https-header.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/secure-https-header.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/sticky-admin-notice-js.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/sticky-admin-notice-js.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/tabs-capture-js.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/tabs-capture-js.php",
+      "oF" : 0
+    },
+    "\/freemius\/templates\/tabs.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/freemius\/templates\/tabs.php",
+      "oF" : 0
+    },
+    "\/includes\/activation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/activation.php",
+      "oF" : 0
+    },
+    "\/includes\/classes\/browser.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/classes\/browser.php",
+      "oF" : 0
+    },
+    "\/includes\/classes\/class_edac_dom.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/classes\/class_edac_dom.php",
+      "oF" : 0
+    },
+    "\/includes\/deactivation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/deactivation.php",
+      "oF" : 0
+    },
+    "\/includes\/enqueue-scripts.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/enqueue-scripts.php",
+      "oF" : 0
+    },
+    "\/includes\/helper-functions.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/helper-functions.php",
+      "oF" : 0
+    },
+    "\/includes\/insert.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/insert.php",
+      "oF" : 0
+    },
+    "\/includes\/meta-boxes.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/meta-boxes.php",
+      "oF" : 0
+    },
+    "\/includes\/options-page.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/options-page.php",
+      "oF" : 0
+    },
+    "\/includes\/purge.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/purge.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/aria_hidden.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/aria_hidden.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/broken_aria_reference.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/broken_aria_reference.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/broken_skip_anchor_link.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/broken_skip_anchor_link.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/color_contrast_failure.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/color_contrast_failure.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/duplicate_form_label.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/duplicate_form_label.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/empty_button.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/empty_button.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/empty_form_label.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/empty_form_label.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/empty_heading_tag.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/empty_heading_tag.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/empty_link.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/empty_link.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/empty_table_header.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/empty_table_header.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/iframe_missing_title.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/iframe_missing_title.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/image_map_missing_alt_text.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/image_map_missing_alt_text.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/img_alt_empty.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/img_alt_empty.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/img_alt_invalid.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/img_alt_invalid.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/img_alt_long.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/img_alt_long.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/img_alt_missing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/img_alt_missing.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/img_alt_redundant.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/img_alt_redundant.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/img_animated_gif.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/img_animated_gif.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/img_linked_alt_empty.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/img_linked_alt_empty.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/img_linked_alt_missing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/img_linked_alt_missing.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/incorrect_heading_order.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/incorrect_heading_order.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/link_ambiguous_text.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/link_ambiguous_text.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/link_blank.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/link_blank.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/link_ms_office_file.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/link_ms_office_file.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/link_non_html_file.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/link_non_html_file.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/link_pdf.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/link_pdf.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/long_description_invalid.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/long_description_invalid.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/missing_form_label.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/missing_form_label.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/missing_headings.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/missing_headings.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/missing_lang_attr.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/missing_lang_attr.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/missing_table_header.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/missing_table_header.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/missing_title.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/missing_title.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/missing_transcript.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/missing_transcript.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/possible_heading.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/possible_heading.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/slider_present.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/slider_present.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/tab_order_modified.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/tab_order_modified.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/text_blinking_scrolling.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/text_blinking_scrolling.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/text_justified.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/text_justified.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/text_small.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/text_small.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/underlined_text.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/underlined_text.php",
+      "oF" : 0
+    },
+    "\/includes\/rules\/video_present.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/video_present.php",
+      "oF" : 0
+    },
+    "\/includes\/simplehtmldom\/CHANGELOG.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/simplehtmldom\/CHANGELOG.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/includes\/simplehtmldom\/LICENSE" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/simplehtmldom\/LICENSE",
+      "oF" : 0
+    },
+    "\/includes\/simplehtmldom\/phpcompatibility.xml" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/simplehtmldom\/phpcompatibility.xml",
+      "oF" : 0
+    },
+    "\/includes\/simplehtmldom\/phpcs.xml" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/simplehtmldom\/phpcs.xml",
+      "oF" : 0
+    },
+    "\/includes\/simplehtmldom\/simple_html_dom.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/simplehtmldom\/simple_html_dom.php",
+      "oF" : 0
+    },
+    "\/includes\/system-info.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/system-info.php",
+      "oF" : 0
+    },
+    "\/includes\/TextStatistics\/Maths.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/TextStatistics\/Maths.php",
+      "oF" : 0
+    },
+    "\/includes\/TextStatistics\/Pluralise.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/TextStatistics\/Pluralise.php",
+      "oF" : 0
+    },
+    "\/includes\/TextStatistics\/Resource.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/TextStatistics\/Resource.php",
+      "oF" : 0
+    },
+    "\/includes\/TextStatistics\/resources\/DaleChallWordList.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/TextStatistics\/resources\/DaleChallWordList.php",
+      "oF" : 0
+    },
+    "\/includes\/TextStatistics\/resources\/Homographs.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/TextStatistics\/resources\/Homographs.txt",
+      "oF" : 0
+    },
+    "\/includes\/TextStatistics\/resources\/SpacheWordList.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/TextStatistics\/resources\/SpacheWordList.php",
+      "oF" : 0
+    },
+    "\/includes\/TextStatistics\/Syllables.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/TextStatistics\/Syllables.php",
+      "oF" : 0
+    },
+    "\/includes\/TextStatistics\/Text.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/TextStatistics\/Text.php",
+      "oF" : 0
+    },
+    "\/includes\/TextStatistics\/TextStatistics.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/TextStatistics\/TextStatistics.php",
+      "oF" : 0
+    },
+    "\/includes\/validate.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/validate.php",
+      "oF" : 0
+    },
+    "\/LICENSE.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/LICENSE.txt",
+      "oF" : 0
+    },
+    "\/partials\/custom-meta-box.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/partials\/custom-meta-box.php",
+      "oF" : 0
+    },
+    "\/partials\/pro-callout.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/partials\/pro-callout.php",
+      "oF" : 0
+    },
+    "\/partials\/settings-page.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/partials\/settings-page.php",
+      "oF" : 0
+    },
+    "\/partials\/welcome-page.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/partials\/welcome-page.php",
+      "oF" : 0
+    },
+    "\/README.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/README.txt",
+      "oF" : 0
+    },
+    "\/uninstall.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/uninstall.php",
+      "oF" : 0
+    }
   },
   "hooks" : [
 
@@ -320,146 +2673,11 @@
     "buildFolderActive" : 0,
     "buildFolderName" : "build",
     "cleanBuild" : 1,
-    "coffeeLintFlags2" : {
-      "arrow_spacing" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "camel_case_classes" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "colon_assignment_spacing" : {
-        "active" : 0,
-        "flagValue" : 1
-      },
-      "cyclomatic_complexity" : {
-        "active" : 0,
-        "flagValue" : 10
-      },
-      "duplicate_key" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "empty_constructor_needs_parens" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "ensure_comprehensions" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "indentation" : {
-        "active" : 1,
-        "flagValue" : 2
-      },
-      "line_endings" : {
-        "active" : 0,
-        "flagValue" : 0
-      },
-      "max_line_length" : {
-        "active" : 0,
-        "flagValue" : 150
-      },
-      "missing_fat_arrows" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "newlines_after_classes" : {
-        "active" : 0,
-        "flagValue" : 3
-      },
-      "no_backticks" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "no_debugger" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "no_empty_functions" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "no_empty_param_list" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "no_implicit_braces" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "no_implicit_parens" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "no_interpolation_in_single_quotes" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "no_nested_string_interpolation" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "no_plusplus" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "no_private_function_fat_arrows" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "no_stand_alone_at" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "no_tabs" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "no_this" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "no_throwing_strings" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "no_trailing_semicolons" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "no_trailing_whitespace" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "no_unnecessary_double_quotes" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "no_unnecessary_fat_arrows" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "non_empty_constructor_needs_parens" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "prefer_english_operator" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "space_operators" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "spacing_after_comma" : {
-        "active" : 1,
-        "flagValue" : -1
-      }
-    },
     "cssoForceMediaMerge" : 0,
     "cssoRestructure" : 1,
+    "environmentVariableEntries" : [
+      "NODE_ENV:::production"
+    ],
     "esLintConfigFileHandlingType" : 0,
     "esLintECMAVersion" : 7,
     "esLintEnvironmentsMask" : 1,
@@ -506,10 +2724,6 @@
       "brace-style" : {
         "active" : 0,
         "optionString" : "'1tbs', {'allowSingleLine': true}"
-      },
-      "callback-return" : {
-        "active" : 0,
-        "optionString" : "['callback', 'cb', 'next']"
       },
       "camelcase" : {
         "active" : 0,
@@ -602,6 +2816,10 @@
         "active" : 0,
         "optionString" : "'expression'"
       },
+      "function-call-argument-newline" : {
+        "active" : 0,
+        "optionString" : "'always'"
+      },
       "function-paren-newline" : {
         "active" : 0,
         "optionString" : "'multiline'"
@@ -614,9 +2832,6 @@
         "active" : 0,
         "optionString" : "{'allowImplicit': false}"
       },
-      "global-require" : {
-        "active" : 0
-      },
       "grouped-accessor-pairs" : {
         "active" : 0,
         "optionString" : "'anyOrder'"
@@ -624,11 +2839,7 @@
       "guard-for-in" : {
         "active" : 0
       },
-      "handle-callback-err" : {
-        "active" : 0,
-        "optionString" : "'err'"
-      },
-      "id-blacklist" : {
+      "id-denylist" : {
         "active" : 0,
         "optionString" : "'data', 'err', 'e', 'cb', 'callback'"
       },
@@ -752,9 +2963,6 @@
         "active" : 0,
         "optionString" : "{'allow': ['~'], 'int32Hint': true}"
       },
-      "no-buffer-constructor" : {
-        "active" : 0
-      },
       "no-caller" : {
         "active" : 0
       },
@@ -781,6 +2989,9 @@
       },
       "no-const-assign" : {
         "active" : 1
+      },
+      "no-constant-binary-expression" : {
+        "active" : 0
       },
       "no-constant-condition" : {
         "active" : 1,
@@ -814,6 +3025,9 @@
         "active" : 1
       },
       "no-dupe-keys" : {
+        "active" : 1
+      },
+      "no-duplicate-case" : {
         "active" : 1
       },
       "no-duplicate-imports" : {
@@ -857,7 +3071,7 @@
       "no-extra-boolean-cast" : {
         "active" : 1
       },
-      "no-extra-labels" : {
+      "no-extra-label" : {
         "active" : 0
       },
       "no-extra-parens" : {
@@ -945,16 +3159,13 @@
         "active" : 0,
         "optionString" : "{'groups': [['+', '-', '*', '\/', '%', '**'], ['&', '|', '^', '~', '<<', '>>', '>>>'], ['==', '!=', '===', '!==', '>', '>=', '<', '<='], ['&&', '||'], ['in', 'instanceof']], 'allowSamePrecedence': true}"
       },
-      "no-mixed-requires" : {
-        "active" : 0,
-        "optionString" : "{'grouping': false, 'allowCall': false }"
-      },
       "no-mixed-spaces-and-tabs" : {
         "active" : 0,
         "optionString" : ""
       },
       "no-multi-assign" : {
-        "active" : 0
+        "active" : 0,
+        "optionString" : "{'ignoreNonDeclaration': false}"
       },
       "no-multi-spaces" : {
         "active" : 0,
@@ -982,14 +3193,14 @@
       "no-new-object" : {
         "active" : 0
       },
-      "no-new-require" : {
-        "active" : 0
-      },
       "no-new-symbol" : {
         "active" : 1
       },
       "no-new-wrappers" : {
         "active" : 0
+      },
+      "no-nonoctal-decimal-escape" : {
+        "active" : 1
       },
       "no-obj-calls" : {
         "active" : 1
@@ -1004,17 +3215,11 @@
         "active" : 0,
         "optionString" : "{'props': false}"
       },
-      "no-path-concat" : {
-        "active" : 0
-      },
       "no-plusplus" : {
         "active" : 0,
         "optionString" : "{'allowForLoopAfterthoughts': false}"
       },
-      "no-process-env" : {
-        "active" : 0
-      },
-      "no-process-exit" : {
+      "no-promise-executor-return" : {
         "active" : 0
       },
       "no-proto" : {
@@ -1040,10 +3245,6 @@
       },
       "no-restricted-imports" : {
         "active" : 0
-      },
-      "no-restricted-modules" : {
-        "active" : 0,
-        "optionString" : ""
       },
       "no-restricted-properties" : {
         "active" : 0,
@@ -1071,7 +3272,8 @@
         "active" : 0
       },
       "no-sequences" : {
-        "active" : 0
+        "active" : 0,
+        "optionString" : "{'allowInParentheses': true}"
       },
       "no-setter-return" : {
         "active" : 1
@@ -1085,10 +3287,6 @@
       },
       "no-sparse-arrays" : {
         "active" : 1
-      },
-      "no-sync" : {
-        "active" : 0,
-        "optionString" : "{'allowAtRootLevel': false}"
       },
       "no-tabs" : {
         "active" : 0,
@@ -1137,6 +3335,10 @@
       "no-unreachable" : {
         "active" : 1
       },
+      "no-unreachable-loop" : {
+        "active" : 0,
+        "optionString" : "{'ignore': []}"
+      },
       "no-unsafe-finally" : {
         "active" : 1
       },
@@ -1144,12 +3346,19 @@
         "active" : 1,
         "optionString" : ""
       },
+      "no-unsafe-optional-chaining" : {
+        "active" : 1,
+        "optionString" : "{'disallowArithmeticOperators': false}"
+      },
       "no-unused-expressions" : {
         "active" : 0,
         "optionString" : "{'allowShortCircuit': false, 'allowTernary': false, 'allowTaggedTemplates': false}"
       },
       "no-unused-labels" : {
         "active" : 1
+      },
+      "no-unused-private-class-members" : {
+        "active" : 0
       },
       "no-unused-vars" : {
         "active" : 1,
@@ -1269,6 +3478,9 @@
       "prefer-numeric-literals" : {
         "active" : 0
       },
+      "prefer-object-has-own" : {
+        "active" : 0
+      },
       "prefer-object-spread" : {
         "active" : 0
       },
@@ -1301,14 +3513,11 @@
         "optionString" : "'always'"
       },
       "require-atomic-updates" : {
-        "active" : 0
+        "active" : 0,
+        "optionString" : "{'allowProperties': false}"
       },
       "require-await" : {
         "active" : 0
-      },
-      "require-jsdoc" : {
-        "active" : 0,
-        "optionString" : "{'require': {'FunctionDeclaration': true, 'MethodDefinition': false, 'ClassDeclaration': false, 'ArrowFunctionExpression': false}}"
       },
       "require-unicode-regexp" : {
         "active" : 0
@@ -1395,10 +3604,6 @@
         "active" : 1,
         "optionString" : ""
       },
-      "valid-jsdoc" : {
-        "active" : 0,
-        "optionString" : "{'prefer': {'return': 'returns'}, 'requireReturn': true, 'requireReturnDescription': true, 'requireReturnType': true, 'requireParamDescription': true}"
-      },
       "valid-typeof" : {
         "active" : 1,
         "optionString" : "{'requireStringLiterals': true}"
@@ -1427,354 +3632,6 @@
     "gitIgnoreBuildFolder" : 1,
     "hideConfigFile" : 0,
     "jsCheckerReservedNamesString" : "",
-    "jsHintFlags2" : {
-      "asi" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "bitwise" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "boss" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "browser" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "browserify" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "camelcase" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "couch" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "curly" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "debug" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "devel" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "dojo" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "elision" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "eqeqeq" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "eqnull" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "es3" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "esnext" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "evil" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "expr" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "forin" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "freeze" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "funcscope" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "futurehostile" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "globalstrict" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "immed" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "indent" : {
-        "active" : 0,
-        "flagValue" : 4
-      },
-      "iterator" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "jasmine" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "jquery" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "lastsemic" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "latedef" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "laxbreak" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "laxcomma" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "loopfunc" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "maxcomplexity" : {
-        "active" : 0,
-        "flagValue" : 10
-      },
-      "maxdepth" : {
-        "active" : 0,
-        "flagValue" : 3
-      },
-      "maxlen" : {
-        "active" : 0,
-        "flagValue" : 150
-      },
-      "maxparams" : {
-        "active" : 0,
-        "flagValue" : 3
-      },
-      "maxstatements" : {
-        "active" : 0,
-        "flagValue" : 4
-      },
-      "mocha" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "mootools" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "moz" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "multistr" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "newcap" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "noarg" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "nocomma" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "node" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "noempty" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "nonbsp" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "nonew" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "nonstandard" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "notypeof" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "noyield" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "onecase" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "phantom" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "plusplus" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "proto" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "prototypejs" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "qunit" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "regexp" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "rhino" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "scripturl" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "shadow" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "shelljs" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "singleGroups" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "strict" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "sub" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "supernew" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "typed" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "undef" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "unused" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "varstmt" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "withstmt" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "worker" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "wsh" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "yui" : {
-        "active" : 0,
-        "flagValue" : -1
-      }
-    },
-    "jsLintFlags2" : {
-      "bitwise" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "browser" : {
-        "active" : 1,
-        "flagValue" : -1
-      },
-      "couch" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "devel" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "es6" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "eval" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "for" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "maxlen" : {
-        "active" : 0,
-        "flagValue" : 150
-      },
-      "node" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "this" : {
-        "active" : 0,
-        "flagValue" : -1
-      },
-      "white" : {
-        "active" : 0,
-        "flagValue" : -1
-      }
-    },
     "languageDefaultsCOFFEE" : {
       "autoOutputAction" : 0,
       "autoOutputPathFilenamePattern" : "*.js",
@@ -1785,7 +3642,6 @@
       "minifierStyle" : 0,
       "outputStyle" : 0,
       "sourceMapStyle" : 0,
-      "syntaxCheckerStyle" : 1,
       "transpilerStyle" : 1
     },
     "languageDefaultsCSS" : {
@@ -2032,7 +3888,45 @@
     "npmTargetDependencyListType" : 1,
     "overrideExternalServerCSS" : 0,
     "previewPathAddition" : "",
+    "purgeCSS" : {
+      "blocklistEntries" : [
+
+      ],
+      "contentEntries" : [
+        "**\/*.html",
+        "**\/*.htm",
+        "**\/*.shtml",
+        "**\/*.xhtml",
+        "**\/*.php",
+        "**\/*.js",
+        "**\/*.ts",
+        "**\/*.coffee",
+        "**\/*.erb",
+        "**\/*.pug",
+        "**\/*.jade",
+        "**\/*.slim",
+        "**\/*.haml",
+        "**\/*.md",
+        "**\/*.kit"
+      ],
+      "removeFontFace" : 0,
+      "removeKeyframes" : 0,
+      "removeVariables" : 0,
+      "safelistEntries" : [
+
+      ],
+      "skippedEntries" : [
+        "node_modules\/**"
+      ]
+    },
     "rollupContext" : "",
+    "rollupExternalEntries" : [
+
+    ],
+    "rollupReplacementEntries" : [
+      "process.env.NODE_ENV:::$NODE_ENV",
+      "ENVIRONMENT:::$NODE_ENV"
+    ],
     "rollupTreeshakingEnabled" : 1,
     "skippedFoldersString" : "log, _logs, logs, _cache, cache, .idea, \/storage\/framework\/sessions, node_modules",
     "sourceFolderName" : "source",
@@ -2045,6 +3939,7 @@
     "tsEmitBOM" : 0,
     "tsEmitDecoratorMetadata" : 0,
     "tsESModuleInterop" : 0,
+    "tsExactOptionalPropertyTypes" : 0,
     "tsForceConsistentCasingInFileNames" : 0,
     "tsImportHelpers" : 0,
     "tsIsolatedModules" : 0,
@@ -2053,6 +3948,7 @@
     "tsNoEmitHelpers" : 0,
     "tsNoFallthroughCasesInSwitch" : 0,
     "tsNoImplicitAny" : 0,
+    "tsNoImplicitOverride" : 0,
     "tsNoImplicitReturns" : 0,
     "tsNoImplicitThis" : 0,
     "tsNoImplicitUseStrict" : 0,
@@ -2073,6 +3969,7 @@
     "tsStripInternal" : 0,
     "tsSuppressExcessPropertyErrors" : 0,
     "tsSuppressImplicitAnyIndexErrors" : 0,
+    "tsUseUnknownInCatchVariables" : 0,
     "uglifyDefinesString" : "",
     "uglifyFlags2" : {
       "arguments" : {
@@ -2207,6 +4104,10 @@
         "active" : 0,
         "flagValue" : -1
       },
+      "keep_numbers" : {
+        "active" : 0,
+        "flagValue" : -1
+      },
       "keep_quoted_props" : {
         "active" : 0,
         "flagValue" : -1
@@ -2230,6 +4131,10 @@
       "passes" : {
         "active" : 1,
         "flagValue" : 1
+      },
+      "preserve_annotations" : {
+        "active" : 0,
+        "flagValue" : -1
       },
       "properties" : {
         "active" : 1,
@@ -2333,6 +4238,10 @@
       },
       "webkit" : {
         "active" : 0,
+        "flagValue" : -1
+      },
+      "wrap_func_args" : {
+        "active" : 1,
         "flagValue" : -1
       },
       "wrap_iife" : {

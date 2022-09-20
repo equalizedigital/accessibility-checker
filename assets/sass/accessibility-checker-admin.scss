@@ -459,10 +459,16 @@
           &-passed {
             background-color: $color-green;
           }
-          &-ignore{
-            @extend .edac-details-rule-count;
-            background-color: $color-blue-dark;
-          }
+        }
+        &-count-ignore{
+          color: $color-white;
+          background-color: $color-blue-dark;
+          padding: 5px 10px;
+          border-radius: 4px;
+          font-size: 13px;
+          line-height: 13px;
+          margin-left: 10px;
+          display: inline-block;
         }
         &-count-error {
           &.active {
@@ -843,6 +849,7 @@
 }
 
 .edac-review-notice{
+  clear: both;
   @include breakpoint(lg){
     display: grid;
     grid-template-columns: 1fr auto;
