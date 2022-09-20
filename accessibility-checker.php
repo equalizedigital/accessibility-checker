@@ -217,33 +217,36 @@ add_action( 'wp_ajax_edac_review_notice_ajax', 'edac_review_notice_ajax' );
  */
 function edac_update_database(){
 	
-	if(get_option('edac_db_version') == EDAC_DB_VERSION) return;
-
 	global $wpdb;
-	
 	$table_name = $wpdb->prefix . "accessibility_checker";
-	$charset_collate = $wpdb->get_charset_collate();
-	$sql = "CREATE TABLE $table_name (
-		id bigint(20) NOT NULL AUTO_INCREMENT,
-		postid bigint(20) NOT NULL,
-		siteid text NOT NULL,
-		type text NOT NULL,
-		rule text NOT NULL,
-		ruletype text NOT NULL,
-		object mediumtext NOT NULL,
-		recordcheck mediumint(9) NOT NULL,
-		created timestamp NOT NULL default CURRENT_TIMESTAMP,
-		user bigint(20) NOT NULL,
-		ignre mediumint(9) NOT NULL,
-		ignre_global mediumint(9) NOT NULL,
-		ignre_user bigint(20) NULL,
-		ignre_date timestamp NULL,
-		ignre_comment mediumtext NULL,
-		UNIQUE KEY id (id)
-	  ) $charset_collate;";
 
-	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-	dbDelta( $sql );
+	$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
+	if ( get_option('edac_db_version') != EDAC_DB_VERSION || $wpdb->get_var( $query ) != $table_name ) {
+
+		$charset_collate = $wpdb->get_charset_collate();
+		$sql = "CREATE TABLE $table_name (
+			id bigint(20) NOT NULL AUTO_INCREMENT,
+			postid bigint(20) NOT NULL,
+			siteid text NOT NULL,
+			type text NOT NULL,
+			rule text NOT NULL,
+			ruletype text NOT NULL,
+			object mediumtext NOT NULL,
+			recordcheck mediumint(9) NOT NULL,
+			created timestamp NOT NULL default CURRENT_TIMESTAMP,
+			user bigint(20) NOT NULL,
+			ignre mediumint(9) NOT NULL,
+			ignre_global mediumint(9) NOT NULL,
+			ignre_user bigint(20) NULL,
+			ignre_date timestamp NULL,
+			ignre_comment mediumtext NULL,
+			UNIQUE KEY id (id)
+		) $charset_collate;";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+
+	}
 	
 	// Update database version option
 	$option_name = 'edac_db_version' ;
