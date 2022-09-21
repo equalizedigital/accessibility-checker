@@ -209,6 +209,7 @@ if(edac_check_plugin_active('oxygen/functions.php')){
 add_action( 'admin_init', 'edac_anww_update_post_meta');
 add_action( 'admin_notices', 'edac_review_notice');
 add_action( 'wp_ajax_edac_review_notice_ajax', 'edac_review_notice_ajax' );
+add_action('in_admin_header', 'edac_remove_admin_notices', 1000);
 
 /**
  * Create/Update database
@@ -1516,5 +1517,21 @@ function edac_review_notice_ajax(){
 	}
 
 	wp_send_json_success( json_encode($results) );
+
+}
+
+/**
+ * Remove Admin Notices
+ *
+ * @return void
+ */
+function edac_remove_admin_notices(){
+
+	$page = isset($_GET['page']) ? $_GET['page'] : false;
+	
+	if($page && ($page == 'accessibility_checker') || $page == 'accessibility_checker_settings' || $page == 'accessibility_checker_issues' || $page == 'accessibility_checker_ignored'){
+		remove_all_actions('admin_notices');
+		remove_all_actions('all_admin_notices');
+	}
 
 }
