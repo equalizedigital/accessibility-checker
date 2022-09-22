@@ -174,7 +174,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
-= 1.3 =
+= 1.3.0 =
 * Removed: Admin Notices from plugin settings pages
 * Updated: Location of ignore count and made less ambiguous on the details tab
 * Fixed: Code snippet wrapping
