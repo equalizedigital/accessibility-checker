@@ -2,7 +2,7 @@
 Contributors: equalizedigital, alh0319, stevejonesdev, philwebs, roadwarriorwp
 Tags: accessibility, accessible, wcag, ada, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
-Tested up to: 6.0.1
+Tested up to: 6.0.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -173,6 +173,13 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 
 == Changelog ==
+
+= 1.3 =
+* Removed: Admin Notices from plugin settings pages
+* Updated: Location of ignore count and made less ambiguous on the details tab
+* Fixed: Code snippet wrapping
+* Updated: Database check to ensure tables exist
+* Added: Rule summary text to rules array
 
 = 1.2.14 =
 * Show Open Issues and Ignore Log admin pages to users with ignore permissions bug fix
