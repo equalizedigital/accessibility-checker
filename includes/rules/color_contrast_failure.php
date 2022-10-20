@@ -709,22 +709,31 @@ function edac_replace_css_variables($value, $css_array){
 
 		// explode and loop through css vars
 		$values = explode(',',$value);
-		foreach ($values as $value) {
+		if(is_array($css_array)){
+			foreach ($values as $value) {
 
-			//check if is a css variable
-			if(substr( $value, 0, 2 ) === "--" && array_key_exists($value, $css_array[':root'])){
-				$found_value = $css_array[':root'][$value];
+				// check for index in array
+				if(!isset($css_array[':root'])) continue;
 
-				// if value found break loop
-				if($found_value) break;
-			}else{
+				//check if is a css variable
+				if(substr( $value, 0, 2 ) === "--" && array_key_exists($value, $css_array[':root'])){
+					$found_value = $css_array[':root'][$value];
 
-				// if not a variable return value.
-				$found_value = $value;
+					// if value found break loop
+					if($found_value) break;
+				}else{
+
+					// if not a variable return value.
+					$found_value = $value;
+				}
 			}
 		}
 
-		return $found_value;
+		if($found_value){
+			return $found_value;
+		}else{
+			return $value;
+		}
 
 	}else{
 		return $value;
