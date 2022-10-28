@@ -177,7 +177,7 @@ function edac_check_contrast($content)
 				$value = str_replace($unit,'',$rules['font-size']);
 
 				if($unit == 'px'){
-					$font_size = $value* 0.75;
+					$font_size = (float)$value* 0.75;
 				}
 
 				if($unit == 'pt'){
