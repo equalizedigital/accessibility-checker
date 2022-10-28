@@ -175,6 +175,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 == Changelog ==
 
 = 1.3.2 =
+* Fixed: force color contrast font size value
+
+= 1.3.2 =
 * Fixed: minor bug in replace css variables function
 
 = 1.3.1 =
