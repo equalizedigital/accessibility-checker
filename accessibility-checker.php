@@ -423,7 +423,7 @@ function edac_register_rules(){
 
 	//aria_hidden
 	array_push($rules, [
-		'title' => 'ARIA hidden',
+		'title' => 'ARIA Hidden',
 		'info_url'  => 'https://a11ychecker.com/help1979',
 		'slug'  => 'aria_hidden',
 		'rule_type' => 'warning',
