@@ -96,15 +96,9 @@ function edac_check_link_blank_text($text){
 		__('opens new tab','edac'),
 	];
 
-	// remove all but letters
-	$text = preg_replace('/[^a-z]+/i', ' ', $text);
-
-	// remove whitespace from beginning and end of phrase
-	$text = trim($text);
-
-	// check if text is equal to
+	// check if text contains any of the allowed phrases
 	foreach ($allowed_phrases as $allowed_phrase) {
-		if($text == $allowed_phrase){
+		if(strpos($text, $allowed_phrase) !== false){
 			return true;
 			break;
 		}
