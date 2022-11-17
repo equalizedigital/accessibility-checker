@@ -210,6 +210,7 @@ add_action( 'admin_init', 'edac_anww_update_post_meta');
 add_action( 'admin_notices', 'edac_review_notice');
 add_action( 'wp_ajax_edac_review_notice_ajax', 'edac_review_notice_ajax' );
 add_action('in_admin_header', 'edac_remove_admin_notices', 1000);
+add_action( 'admin_notices', 'edac_black_friday_notice');
 
 /**
  * Create/Update database
@@ -1534,4 +1535,27 @@ function edac_remove_admin_notices(){
 		remove_all_actions('all_admin_notices');
 	}
 
+}
+
+/**
+ * Black Friday Admin Notice
+ *
+ * @return void
+ */
+function edac_black_friday_notice(){
+
+	// check if accessibility checker pro is active
+	$pro = edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php');
+	if(!$pro) return;
+
+	// Show from November 20-30
+	$current_date = current_time('Ymd');
+	$current_date = 20221121;
+	$start_date = 20221120;
+	$end_date = 20221130;
+	if($current_date >= $start_date && $current_date <= $end_date){
+		echo '<div class="notice notice-info is-dismissible">
+			<p>Black Friday special: upgrade to a paid version of Accessibility Checker from November 20-30 and get 50% off! Full site scanning, site-wide open issues report, ignore logs, and more. <a href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=WPadmin&utm_medium=banner&utm_campaign=BlackFriday">Upgrade Now</a></p>
+			</div>';
+	}
 }
