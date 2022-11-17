@@ -2024,6 +2024,14 @@
       "oAP" : "\/includes\/rules\/link_blank.php",
       "oF" : 0
     },
+    "\/includes\/rules\/link_improper.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/rules\/link_improper.php",
+      "oF" : 0
+    },
     "\/includes\/rules\/link_ms_office_file.php" : {
       "cB" : 0,
       "ft" : 8192,

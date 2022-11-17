@@ -638,6 +638,15 @@ function edac_register_rules(){
 		'summary' => esc_html('An iFrame Missing title error means that one or more of the iFrames on your post or page does not have an accessible title describing the contents of the iFrame. An iFrame title is an attribute that can be added to the <iframe> tag to describe the contents of the frame to people using assistive technology. To fix a missing iFrame title, you will need to add a title or an aria-label attribute to the <iframe> tag. The attribute should accurately describe the contents of the iFrame.')
 	]);
 
+	// improper_link
+	array_push($rules, [
+		'title' => 'Improper Use of Link',
+		'info_url'  => 'https://a11ychecker.com/help6473',
+		'slug'  => 'link_improper',
+		'rule_type' => 'error',
+		'summary' => esc_html('An Improper Use of Link error appears if you have links that are missing an href attribute or are only linked to a #, and do not have role="button" on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a <button> tag (preferable) or add role="button" to the existing <a> tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required.')
+	]);
+
 	// filter rules
 	if(has_filter('edac_filter_register_rules')) {
 		$rules = apply_filters('edac_filter_register_rules', $rules);
