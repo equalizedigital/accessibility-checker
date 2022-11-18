@@ -212,13 +212,15 @@ function edac_get_content($post)
 	// done getting html, delete transient
 	delete_transient('edac_public_draft');
 
-	//
-	//edac_log($content['html']);
-	//edac_log($content['html']);
-	if($content['html'] && (!$content['html']->find('body') || !$content['html']->find('header') ||!$content['html']->find('footer') )){
-		$content['html'] = false;
-	};
-	edac_log($content['html']);
+	// check if html content is valid
+	if($content['html']){
+		$body = ($content['html']->find('body')) ? true : false;
+		$header = ($content['html']->find('header') || $content['html']->find('[role=header]') || $content['html']->find('[id=header]')) ? true : false;
+		$footer = ($content['html']->find('footer') || $content['html']->find('[role=footer]') || $content['html']->find('[id=footer]')) ? true : false;
+		if($body == false || $header == false || $footer == false){
+			$content['html'] = false;
+		}
+	}
 
 	// get styles and parse
 	if($content['html']){
