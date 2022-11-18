@@ -159,7 +159,7 @@ Accessibility Checker does not load anything on the front end of your website so
 
 = Do I have to connect to any third-party APIs? =
 
-No, Accessibility Checker runs completely on your server and does not require you to connect to any external APIs or services for scans. This can save you thousands of dallars per year in accessibility scanning fees and is privacy-focused, ensuring that your website data stays completely under your control.
+No, Accessibility Checker runs completely on your server and does not require you to connect to any external APIs or services for scans. This can save you thousands of dollars per year in accessibility scanning fees and is privacy-focused, ensuring that your website data stays completely under your control.
 
 == Screenshots ==
 
@@ -174,7 +174,17 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
-= 1.3.2 =
+= 1.3.4 =
+* Updated: ARIA Hidden check to ignore for core spacer block
+* Updated: Ambiguous Anchor Text check to disregard spaces and punctuation
+* Updated: Footer statement link with 'opens in new window' aria-label
+* Updated: Link Opens New Window or Tab check to search for contained phrases rather than equal to phrases
+* Added: Support for role attribute to Missing Subheadings and Incorrect Heading Order checks
+* Added: Improper Use of Link check
+* Updated: Broken Skip or Anchor Link check to exclude error now flagged by the Improper Use of Link check
+* Added: Password protection notices
+
+= 1.3.3 =
 * Fixed: force color contrast font size value
 
 = 1.3.2 =
