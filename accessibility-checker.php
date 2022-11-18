@@ -1544,7 +1544,7 @@ function edac_remove_admin_notices(){
 }
 
 /**
- * Password Protected Notice
+ * Password Protected Notice Text
  *
  * @return string
  */
@@ -1558,6 +1558,11 @@ function edac_password_protected_notice_text(){
 	return $notice;
 }
 
+/**
+ * Password Protected Notice
+ *
+ * @return string
+ */
 function edac_password_protected_notice(){
 	if(get_option('edac_password_protected') == true){
 		echo '<div class="notice notice-error is-dismissible"><p>'.edac_password_protected_notice_text().'</p></div>';
