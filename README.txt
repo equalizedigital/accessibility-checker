@@ -2,7 +2,7 @@
 Contributors: equalizedigital, alh0319, stevejonesdev, philwebs, roadwarriorwp
 Tags: accessibility, accessible, wcag, ada, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
-Tested up to: 6.0.3
+Tested up to: 6.1.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
