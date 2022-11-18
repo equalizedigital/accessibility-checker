@@ -75,8 +75,20 @@
         if( true === response.success ) {
 
           let response_json = $.parseJSON( response.data );
-
-          $(".edac-summary").html(response_json);
+          
+          if(response_json.password_protected && edac_gutenberg_active()){
+            wp.data.dispatch('core/notices').createInfoNotice(
+              response_json.password_protected, 
+              {
+                id: 'edac-password-protected-error',
+                type: 'default', //default, or snackbar
+                speak: true,
+                __unstableHTML: true,
+              },
+            );
+          }else{
+            $(".edac-summary").html(response_json);
+          }
 
         } else {
 
