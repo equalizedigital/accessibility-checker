@@ -95,8 +95,12 @@ function edac_validate($post_ID, $post, $action)
 	$content = edac_get_content($post);
 	do_action( 'edac_after_get_content',$post_ID, $content, $action);
 	if ( ! $content['html'] ) {
+		add_option('edac_password_protected', true);
 		return;
+	}else{
+		delete_option('edac_password_protected');
 	}
+	
 	// set record check flag on previous error records
 	edac_remove_corrected_posts($post_ID, $post->post_type, $pre = 1);
 
@@ -181,8 +185,8 @@ function edac_get_content($post)
 	$content = [];
 	$content['html'] = false;
 	$context = '';
-	$username = get_option('edac_authorization_username');
-	$password = get_option('edac_authorization_password');
+	$username = get_option('edacp_authorization_username');
+	$password = get_option('edacp_authorization_password');
 
 	// set transient to get html from draft posts
 	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
@@ -208,6 +212,13 @@ function edac_get_content($post)
 	// done getting html, delete transient
 	delete_transient('edac_public_draft');
 
+	//
+	//edac_log($content['html']);
+	//edac_log($content['html']);
+	if($content['html'] && (!$content['html']->find('body') || !$content['html']->find('header') ||!$content['html']->find('footer') )){
+		$content['html'] = false;
+	};
+	edac_log($content['html']);
 
 	// get styles and parse
 	if($content['html']){

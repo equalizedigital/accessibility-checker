@@ -14,7 +14,7 @@
             <li>...and more</li>
         </ul>
     </div>
-    <a class="edac-pro-callout-button" href="https://my.equalizedigital.com/#pricing" target="_blank">Get Accessibility Checker Pro</a>
+    <a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank">Get Accessibility Checker Pro</a>
 
     <?php if(is_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php')){ ?>
         <br /><a class="edac-pro-callout-activate" href="<?php echo admin_url('admin.php?page=accessibility_checker_settings&tab=license'); ?>">Or activate your license key here.</a>

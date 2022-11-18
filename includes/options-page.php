@@ -109,15 +109,6 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
-		'edac_authorization',
-		__( 'Password Protection Login', 'edac' ),	
-		'edac_authorization_cb',
-		'edac_settings',
-		'edac_general',
-		array( 'label_for' => 'edac_authorization' )
-	);
-
-	add_settings_field(
 		'edac_delete_data',
 		__( 'Delete Data', 'edac' ),	
 		'edac_delete_data_cb',
@@ -182,8 +173,6 @@ function edac_register_setting() {
 
 	// Register settings
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types');
-	register_setting( 'edac_settings', 'edac_authorization_password', 'edac_sanitize_authorization_password');
-	register_setting( 'edac_settings', 'edac_authorization_username', 'edac_sanitize_authorization_username');
 	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_delete_data');
 	register_setting( 'edac_settings', 'edac_simplified_summary_prompt', 
 		[
@@ -367,37 +356,6 @@ function edac_sanitize_post_types( $selected_post_types ) {
 	}
 
 	return $selected_post_types;
-}
-
-/**
- * Render the fields for site authorization
- */
-function edac_authorization_cb(){
-	$password = get_option( 'edac_authorization_password');
-	$username = get_option( 'edac_authorization_username');
-	?>
-		<fieldset>
-			<label for="edac_authorization_username">Username</label>
-			<input type="text" name="edac_authorization_username" id="edac_authorization_username" value="<?php echo $username; ?>">
-			<label for="edac_authorization_password">Password</label>
-			<input type="password" name="edac_authorization_password" id="edac_authorization_password" value="<?php echo $password; ?>">
-		</fieldset>
-		<p class="edac-description"><?php echo __('If your website is on a password protected URL such as a staging site, Accessibility Checker may need the username and password in order to scan your website.','edac'); ?></p>
-	<?php
-}
-
-/**
- * Sanitize authorization values before being saved to database
- */
-function edac_sanitize_authorization_username( $username ) {
-	return sanitize_text_field($username);
-}
-
-/**
- * Sanitize authorization values before being saved to database
- */
-function edac_sanitize_authorization_password( $password ) {
-	return sanitize_text_field($password);
 }
 
 /**
