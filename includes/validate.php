@@ -192,7 +192,7 @@ function edac_get_content($post)
 	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
 
 	// http authorization
-	if($username && $password){
+	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') && get_transient( 'edacp_license_valid' ) == true && $username && $password){
 		$context = stream_context_create(array(
 			'http' => array(
 				'header'  => "Authorization: Basic " . base64_encode("$username:$password")
