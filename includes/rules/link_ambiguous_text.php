@@ -129,12 +129,19 @@ function edac_check_ambiguous_phrase($text){
 		__('download','edac'),
 		__('button','edac'),
 		__('keep reading','edac'),
+		__('learn more','edac'),
 	];
 
 	// check if text contains phrase
 	if(strpos($text,__('click here','edac')) == true || strpos($text,__('click','edac')) == true){
 		return true;
 	}
+
+	// remove all but letters
+	$text = preg_replace('/[^a-z]+/i', ' ', $text);
+
+	// remove whitespace from beginning and end of phrase
+	$text = trim($text);
 
 	// check if text is equal to
 	foreach ($ambiguous_phrases as $ambiguous_phrase) {
