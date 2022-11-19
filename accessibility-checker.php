@@ -1590,11 +1590,10 @@ function edac_black_friday_notice(){
 
 	// check if accessibility checker pro is active
 	$pro = edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php');
-	if(!$pro) return;
+	if($pro) return;
 
 	// Show from November 20-30
 	$current_date = current_time('Ymd');
-	$current_date = 20221121;
 	$start_date = 20221120;
 	$end_date = 20221130;
 	if($current_date >= $start_date && $current_date <= $end_date){
