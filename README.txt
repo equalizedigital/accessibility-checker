@@ -175,6 +175,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 == Changelog ==
 
 = 1.3.4 =
+Fixed: marketing notice logic
+
+= 1.3.4 =
 * Updated: ARIA Hidden check to ignore for core spacer block
 * Updated: Ambiguous Anchor Text check to disregard spaces and punctuation
 * Updated: Footer statement link with 'opens in new window' aria-label
