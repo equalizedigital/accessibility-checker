@@ -212,14 +212,9 @@ function edac_get_content($post)
 	// done getting html, delete transient
 	delete_transient('edac_public_draft');
 
-	// check if html content is valid
-	if($content['html']){
-		$body = ($content['html']->find('body')) ? true : false;
-		$header = ($content['html']->find('header') || $content['html']->find('[role=header]') || $content['html']->find('[id=header]')) ? true : false;
-		$footer = ($content['html']->find('footer') || $content['html']->find('[role=footer]') || $content['html']->find('[id=footer]')) ? true : false;
-		if($body == false || $header == false || $footer == false){
-			$content['html'] = false;
-		}
+	// check for restricted access plugin
+	if(!edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') && edac_check_plugin_active('restricted-site-access/restricted_site_access.php')){
+		$content['html'] = false;
 	}
 
 	// get styles and parse
