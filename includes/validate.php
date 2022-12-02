@@ -191,19 +191,49 @@ function edac_get_content($post)
 	// set transient to get html from draft posts
 	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
 
+	/**
+	 * Indicates file_get_html should not verify SSL.
+	 * 
+	 * For site security it is not recommended to use this filter in production.
+	 * 
+	 * @param bool $no_verify_ssl The boolean to check.
+	 */
+	$no_verify_ssl = apply_filters( 'edac_no_verify_ssl', false );
+
 	// http authorization
 	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') && get_transient( 'edacp_license_valid' ) == true && $username && $password){
-		$context = stream_context_create(array(
+		$context_args = array(
 			'http' => array(
 				'header'  => "Authorization: Basic " . base64_encode("$username:$password")
+			),
+		);
+
+		if ( $no_verify_ssl ) {
+			$context_args['ssl'] = array(
+				'verify_peer'      => false,
+				'verify_peer_name' => false,
+			);
+		}
+		$context = stream_context_create( $context_args );
+	} elseif ( $no_verify_ssl ) {
+		$context = stream_context_create( array(
+			'ssl' => array(
+				'verify_peer'      => false,
+				'verify_peer_name' => false,
 			)
-		));
+		) );
 	}
 	try{
 		if($context){
 			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time(), false, $context);
 		}else{
-			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time());
+			$context = stream_context_create(array(
+				'ssl'  => array(
+					'verify_peer'      => false,
+					'verify_peer_name' => false,
+				),
+			));
+			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time(), false, $context);
 		}
 	} catch (Exception $e){
 		$content['html'] = false;
