@@ -1218,9 +1218,13 @@ function edac_readability_ajax(){
 	$content = str_replace(']]>', ']]&gt;', $content);
 	$textStatistics = new TS\TextStatistics;
 	//$post_grade = floor($textStatistics->fleschKincaidGradeLevel($content));
-	$post_grade = get_post_meta($post_id, '_edac_summary', true);
-	$post_grade = $post_grade['readability'];
-	$post_grade_failed = ($post_grade > 9) ? true : false;
+
+	// get readability metadata and determine if a simplified summary is required
+	$edac_summary = get_post_meta($post_id, '_edac_summary', true);
+	$post_grade_readability = (isset($edac_summary['readability'])) ? $edac_summary['readability'] : 0;
+	$post_grade = (int) filter_var($post_grade_readability, FILTER_SANITIZE_NUMBER_INT);
+	$post_grade_failed = ($post_grade < 9) ? false : true;
+
 	$simplified_summary_grade = edac_ordinal(floor($textStatistics->fleschKincaidGradeLevel($simplified_summary)));
 	$simplified_summary_grade_failed = ($simplified_summary_grade > 9) ? true : false;
 	$simplified_summary_prompt = get_option('edac_simplified_summary_prompt');
@@ -1230,7 +1234,7 @@ function edac_readability_ajax(){
 		$html .=
 		 '<li class="edac-readability-list-item edac-readability-grade-level">
 			<span class="edac-readability-list-item-icon dashicons '.(($post_grade_failed || $post_grade == 0) ? 'dashicons-no-alt' : 'dashicons-saved').'"></span>
-			<p class="edac-readability-list-item-title">Post Reading Grade Level: <strong class="'.(($post_grade_failed || $post_grade == 0) ? 'failed-text-color' : 'passed-text-color').'">'.(( $post_grade == 0) ? 'None' : $post_grade).'</strong><br /></p>';
+			<p class="edac-readability-list-item-title">Post Reading Grade Level: <strong class="'.(($post_grade_failed || $post_grade == 0) ? 'failed-text-color' : 'passed-text-color').'">'.(( $post_grade == 0) ? 'None' : $post_grade_readability).'</strong><br /></p>';
 			if($post_grade_failed){
 				$html .='<p class="edac-readability-list-item-description">Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below.</p>';
 			}elseif($post_grade == 0){
