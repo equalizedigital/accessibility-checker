@@ -174,10 +174,13 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
-= 1.3.4 =
+= 1.3.7 =
+Fixed: issue when restricted websites fail to generate post meta
+
+= 1.3.6 =
 Fixed: password protection notice logic
 
-= 1.3.4 =
+= 1.3.5 =
 Fixed: marketing notice logic
 
 = 1.3.4 =
