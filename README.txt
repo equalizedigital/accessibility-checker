@@ -174,6 +174,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.8 =
+Updated: database index on postid for better performance
+
 = 1.3.7 =
 Fixed: issue when restricted websites fail to generate post meta
 
