@@ -188,9 +188,6 @@ function edac_get_content($post)
 	$username = get_option('edacp_authorization_username');
 	$password = get_option('edacp_authorization_password');
 
-	// set transient to get html from draft posts
-	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
-
 	/**
 	 * Indicates file_get_html should not verify SSL.
 	 * 
@@ -200,40 +197,37 @@ function edac_get_content($post)
 	 */
 	$no_verify_ssl = apply_filters( 'edac_no_verify_ssl', false );
 
+	// set transient to get html from draft posts
+	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
+
 	// http authorization
 	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') && get_transient( 'edacp_license_valid' ) == true && $username && $password){
-		$context_args = array(
+		$context_opts = array(
 			'http' => array(
 				'header'  => "Authorization: Basic " . base64_encode("$username:$password")
 			),
 		);
 
 		if ( $no_verify_ssl ) {
-			$context_args['ssl'] = array(
+			$context_opts['ssl'] = array(
 				'verify_peer'      => false,
 				'verify_peer_name' => false,
 			);
 		}
-		$context = stream_context_create( $context_args );
+		$context = stream_context_create( $context_opts );
 	} elseif ( $no_verify_ssl ) {
-		$context = stream_context_create( array(
+		$context = stream_context_create(array(
 			'ssl' => array(
 				'verify_peer'      => false,
 				'verify_peer_name' => false,
 			)
-		) );
+		));
 	}
 	try{
 		if($context){
 			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time(), false, $context);
 		}else{
-			$context = stream_context_create(array(
-				'ssl'  => array(
-					'verify_peer'      => false,
-					'verify_peer_name' => false,
-				),
-			));
-			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time(), false, $context);
+			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time());
 		}
 	} catch (Exception $e){
 		$content['html'] = false;
