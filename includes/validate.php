@@ -188,14 +188,38 @@ function edac_get_content($post)
 	$username = get_option('edacp_authorization_username');
 	$password = get_option('edacp_authorization_password');
 
+	/**
+	 * Indicates file_get_html should not verify SSL.
+	 * 
+	 * For site security it is not recommended to use this filter in production.
+	 * 
+	 * @param bool $no_verify_ssl The boolean to check.
+	 */
+	$no_verify_ssl = apply_filters( 'edac_no_verify_ssl', false );
+
 	// set transient to get html from draft posts
 	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
 
 	// http authorization
 	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') && get_transient( 'edacp_license_valid' ) == true && $username && $password){
-		$context = stream_context_create(array(
+		$context_opts = array(
 			'http' => array(
 				'header'  => "Authorization: Basic " . base64_encode("$username:$password")
+			),
+		);
+
+		if ( $no_verify_ssl ) {
+			$context_opts['ssl'] = array(
+				'verify_peer'      => false,
+				'verify_peer_name' => false,
+			);
+		}
+		$context = stream_context_create( $context_opts );
+	} elseif ( $no_verify_ssl ) {
+		$context = stream_context_create(array(
+			'ssl' => array(
+				'verify_peer'      => false,
+				'verify_peer_name' => false,
 			)
 		));
 	}
