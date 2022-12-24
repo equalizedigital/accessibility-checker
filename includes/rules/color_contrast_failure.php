@@ -729,7 +729,7 @@ function edac_replace_css_variables($value, $css_array){
 			}
 		}
 
-		if($found_value){
+		if( ! empty( $found_value )){
 			return $found_value;
 		}else{
 			return $value;
