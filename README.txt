@@ -174,6 +174,10 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.9 =
+Added: filter edac_no_verify_ssl to bypass SSL validation. Use: add_filter( 'edac_no_verify_ssl', '__return_true' );
+Fixed: undefined variable error color contrast failure check
+
 = 1.3.8 =
 Updated: database index on postid for better performance
 
