@@ -1068,13 +1068,15 @@ function edac_details_ajax(){
 
 				$html .= '<div class="edac-details-rule-title">';
 
-					$html .= '<span class="edac-details-rule-count'.$count_classes.'">'.$rule['count'].'</span>';
-					$html .= esc_html($rule['title']);
-					if($count_ignored > 0){
-						$html .= '<span class="edac-details-rule-count-ignore">'.$count_ignored.' Ignored Items</span>';
-					}
+					$html .= '<h3>';
+						$html .= '<span class="edac-details-rule-count'.$count_classes.'">'.$rule['count'].'</span>';
+						$html .= esc_html($rule['title']);
+						if($count_ignored > 0){
+							$html .= '<span class="edac-details-rule-count-ignore">'.$count_ignored.' Ignored Items</span>';
+						}
+					$html .= '</h3>';
 					$html .= '<a href="'.$tool_tip_link.'" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for '. esc_html($rule['title']).'"><span class="dashicons dashicons-info"></span></a>';
-					$html .= ($expand_rule) ? '<button class="edac-details-rule-title-arrow"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
+					$html .= ($expand_rule) ? '<button class="edac-details-rule-title-arrow" aria-label="Expand issues for '. esc_html($rule['title']).'"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 
 				$html .= '</div>';
 
@@ -1084,10 +1086,13 @@ function edac_details_ajax(){
 
 						$html .=
 						'<div class="edac-details-rule-records-labels">
-							<div class="edac-details-rule-records-labels-label">
+							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
 								Affected Code
 							</div>
-							<div class="edac-details-rule-records-labels-label">
+							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
+								Image
+							</div>
+							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
 								Actions
 							</div>
 						</div>';
@@ -1110,11 +1115,45 @@ function edac_details_ajax(){
 							$ignore_comment_disabled = $ignore ? 'disabled' : '';
 							$ignore_global = intval($row['ignre_global']);
 
+							//check for images and svgs in object code
+							$object_img = null;
+							$object_svg = null;
+							$object_img_html = str_get_html(htmlspecialchars_decode($row['object'], ENT_QUOTES));
+							if($object_img_html){
+								$object_img_elements = $object_img_html->find('img');
+								$object_svg_elements = $object_img_html->find('svg');
+								if($object_img_elements){
+									foreach ($object_img_elements as $element) {
+										$object_img = $element->getAttribute('src');
+										if($object_img){
+											break;
+										}
+									}
+								}elseif($object_svg_elements){
+									foreach ($object_svg_elements as $element) {
+										$object_svg = $element;
+										break;
+									}
+								}
+							}
+							
+							$html .= '<h4 class="screen-reader-text">Issue ID '.$id.'</h4>';
+
 							$html .= '<div id="edac-details-rule-records-record-'.$id.'" class="edac-details-rule-records-record">';
 
 								$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-object">';
 
 									$html .= '<code>'.esc_html($row['object']).'</code>';
+
+								$html .= '</div>';
+
+								$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-image">';
+
+									if($object_img){
+										$html .= '<img src="'.$object_img.'" alt="image for issue '.$id.'" />';
+									}elseif($object_svg){
+										$html .= $object_svg;
+									}
 
 								$html .= '</div>';
 

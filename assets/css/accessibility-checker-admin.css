@@ -325,6 +325,10 @@
         text-align: left;
         font-size: 16px;
         border-bottom: solid 1px #e2e4e7; }
+        #edac-meta-box #edac-tabs .edac-details-rule-title h3 {
+          font-size: 16px;
+          font-weight: normal;
+          display: inline; }
         #edac-meta-box #edac-tabs .edac-details-rule-title:hover {
           cursor: pointer; }
         #edac-meta-box #edac-tabs .edac-details-rule-title-arrow {
@@ -334,8 +338,7 @@
           border-radius: none; }
           #edac-meta-box #edac-tabs .edac-details-rule-title-arrow:hover, #edac-meta-box #edac-tabs .edac-details-rule-title-arrow:focus {
             color: #3273aa;
-            outline-color: #3273aa;
-            outline: none; }
+            outline-color: #3273aa; }
         #edac-meta-box #edac-tabs .edac-details-rule-title:hover .edac-details-rule-title-arrow, #edac-meta-box #edac-tabs .edac-details-rule-title:focus .edac-details-rule-title-arrow {
           color: #3273aa; }
         #edac-meta-box #edac-tabs .edac-details-rule-title.active .edac-details-rule-title-arrow {
@@ -380,13 +383,13 @@
           color: #ffffff;
           background-color: #484848;
           display: grid;
-          grid-template-columns: auto 125px; }
+          grid-template-columns: auto 125px 125px; }
           #edac-meta-box #edac-tabs .edac-details-rule-records-labels-label {
             padding: 3px;
             border-right: solid 1px #e2e4e7; }
         #edac-meta-box #edac-tabs .edac-details-rule-records-record {
           display: grid;
-          grid-template-columns: auto 125px; }
+          grid-template-columns: auto 125px 125px; }
           #edac-meta-box #edac-tabs .edac-details-rule-records-record-cell {
             padding: 10px;
             border-bottom: solid 1px #e2e4e7;
