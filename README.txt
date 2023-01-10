@@ -174,6 +174,12 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.10 =
+Added: image column to details panel to display issue image
+Updated: details rule name to an H3 and added hidden h4 for each issue
+Added: aria-label to details expand button
+Added: space between number and error name in error details list
+
 = 1.3.9 =
 Added: filter edac_no_verify_ssl to bypass SSL validation. Use: add_filter( 'edac_no_verify_ssl', '__return_true' );
 Fixed: undefined variable error color contrast failure check
