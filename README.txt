@@ -179,6 +179,7 @@ Added: image column to details panel to display issue image
 Updated: details rule name to an H3 and added hidden h4 for each issue
 Added: aria-label to details expand button
 Added: space between number and error name in error details list
+Added: aria-expanded and aria-controls to buttons on details panel
 
 = 1.3.9 =
 Added: filter edac_no_verify_ssl to bypass SSL validation. Use: add_filter( 'edac_no_verify_ssl', '__return_true' );
