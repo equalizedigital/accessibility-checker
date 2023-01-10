@@ -1069,7 +1069,7 @@ function edac_details_ajax(){
 				$html .= '<div class="edac-details-rule-title">';
 
 					$html .= '<h3>';
-						$html .= '<span class="edac-details-rule-count'.$count_classes.'">'.$rule['count'].'</span>';
+						$html .= '<span class="edac-details-rule-count'.$count_classes.'">'.$rule['count'].'</span> ';
 						$html .= esc_html($rule['title']);
 						if($count_ignored > 0){
 							$html .= '<span class="edac-details-rule-count-ignore">'.$count_ignored.' Ignored Items</span>';
