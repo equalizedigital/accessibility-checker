@@ -140,12 +140,22 @@
           // Title arrow button on click
           $(".edac-details-rule-title-arrow").click(function (e) {
             e.preventDefault();
+            if( $(this).attr("aria-expanded") === "true"){
+              $(this).attr("aria-expanded", "false");
+            }else{
+              $(this).attr("aria-expanded", "true");
+            }
           });
 
           // Ignore on click
           $(".edac-details-rule-records-record-actions-ignore").click(function (e) {
             e.preventDefault();
             $(this).parent().next(".edac-details-rule-records-record-ignore").slideToggle();
+            if( $(this).attr("aria-expanded") === "true"){
+              $(this).attr("aria-expanded", "false");
+            }else{
+              $(this).attr("aria-expanded", "true");
+            }
           });
 
           // Ignore submit on click
