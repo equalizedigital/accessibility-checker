@@ -424,7 +424,7 @@
               #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore .dashicons {
                 margin-right: 3px; }
           #edac-meta-box #edac-tabs .edac-details-rule-records-record-ignore {
-            grid-column: 1 / 3;
+            grid-column: 1 / 4;
             border-bottom: solid 1px #e2e4e7;
             text-align: left;
             padding: 10px;

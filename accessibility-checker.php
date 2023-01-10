@@ -1076,13 +1076,13 @@ function edac_details_ajax(){
 						}
 					$html .= '</h3>';
 					$html .= '<a href="'.$tool_tip_link.'" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for '. esc_html($rule['title']).'"><span class="dashicons dashicons-info"></span></a>';
-					$html .= ($expand_rule) ? '<button class="edac-details-rule-title-arrow" aria-label="Expand issues for '. esc_html($rule['title']).'"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
+					$html .= ($expand_rule) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-'.$rule['slug'].'" aria-label="Expand issues for '. esc_html($rule['title']).'"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 
 				$html .= '</div>';
 
 				if($results){
 
-					$html .= '<div class="edac-details-rule-records">';
+					$html .= '<div id="edac-details-rule-records-'.$rule['slug'].'" class="edac-details-rule-records">';
 
 						$html .=
 						'<div class="edac-details-rule-records-labels">
@@ -1159,11 +1159,11 @@ function edac_details_ajax(){
 
 								$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
 
-									$html .= '<button class="edac-details-rule-records-record-actions-ignore'.$ignore_class.'">'.EDAC_SVG_IGNORE_ICON.'<span class="edac-details-rule-records-record-actions-ignore-label">'.$ignore_label.'</span></button>';
+									$html .= '<button class="edac-details-rule-records-record-actions-ignore'.$ignore_class.'" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-'.$row['id'].'">'.EDAC_SVG_IGNORE_ICON.'<span class="edac-details-rule-records-record-actions-ignore-label">'.$ignore_label.'</span></button>';
 
 								$html .= '</div>';
 
-								$html .= '<div class="edac-details-rule-records-record-ignore">';
+								$html .= '<div id="edac-details-rule-records-record-ignore-'.$row['id'].'" class="edac-details-rule-records-record-ignore">';
 									
 									$html .= '<div class="edac-details-rule-records-record-ignore-info">';
 										$html .= '<span class="edac-details-rule-records-record-ignore-info-user">'.$ignore_username.'</span>';
