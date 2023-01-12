@@ -69,7 +69,7 @@ function edac_save_post($post_ID, $post, $update)
 		return;
 
 	// handle the case when the custom post is quick edited
-	if (wp_verify_nonce($_POST['_inline_edit'], 'inlineeditnonce'))
+	if (isset($_POST['_inline_edit']) && wp_verify_nonce($_POST['_inline_edit'], 'inlineeditnonce'))
 		return;
 
 	edac_validate($post_ID, $post, $action = 'save');
