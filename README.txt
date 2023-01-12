@@ -174,6 +174,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.11 =
+Updated: quick edit save to check if _inline_edit array key is set
+
 = 1.3.10 =
 Added: image column to details panel to display issue image
 Updated: details rule name to an H3 and added hidden h4 for each issue
