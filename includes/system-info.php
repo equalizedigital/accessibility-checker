@@ -14,8 +14,10 @@
  * @return void
  */
 function edac_sysinfo_display(){
+	
 	?>
 	<form action="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=system_info' ) ); ?>" method="post" dir="ltr">
+		<?php wp_nonce_field('edac_process_actions'); ?>
 		<textarea readonly="readonly" onclick="this.focus(); this.select()" id="system-info-textarea" name="edac-sysinfo"><?php echo edac_tools_sysinfo_get(); ?></textarea>
 		<p class="submit">
 			<input type="hidden" name="edac-action" value="download_sysinfo" />
