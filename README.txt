@@ -174,6 +174,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.12 =
+Added: added security check to system info download
+
 = 1.3.11 =
 Updated: quick edit save to check if _inline_edit array key is set
 
