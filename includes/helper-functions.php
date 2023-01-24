@@ -295,7 +295,7 @@ function edac_post_types(){
 function edac_process_actions() {
 	
 	// if this fails, check_admin_referer() will automatically print a "failed" page and die.
-	if ( ! empty( $_POST ) && check_admin_referer( 'edac_process_actions', '_wpnonce' ) ) {
+	if ( ! empty( $_POST ) && isset($_POST['edac_download_sysinfo_nonce']) && check_admin_referer( 'edac_download_sysinfo','edac_download_sysinfo_nonce' ) ) {
 
 		if ( isset( $_POST['edac-action'] ) ) {
 			do_action( 'edac_' . $_POST['edac-action'], $_POST );
