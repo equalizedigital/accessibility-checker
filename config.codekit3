@@ -2355,6 +2355,14 @@
       "oAP" : "\/partials\/welcome-page.php",
       "oF" : 0
     },
+    "\/phpcs.xml" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/phpcs.xml",
+      "oF" : 0
+    },
     "\/README.txt" : {
       "cB" : 0,
       "ft" : 8192,
