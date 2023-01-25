@@ -42,19 +42,19 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 			$edac_fs = fs_dynamic_init(
 				array(
-					'id'                  => '7322',
-					'slug'                => 'accessibility-checker',
-					'type'                => 'plugin',
-					'public_key'          => 'pk_5146b841819550deb8874ca70bc89',
-					'is_premium'          => false,
-					'has_addons'          => false,
-					'has_paid_plans'      => false,
-					'menu'                => array(
-						'slug'           => 'accessibility_checker',
-						'first-path'     => 'admin.php?page=accessibility_checker',
-						'account'        => false,
-						'contact'        => false,
-						'support'        => false,
+					'id'             => '7322',
+					'slug'           => 'accessibility-checker',
+					'type'           => 'plugin',
+					'public_key'     => 'pk_5146b841819550deb8874ca70bc89',
+					'is_premium'     => false,
+					'has_addons'     => false,
+					'has_paid_plans' => false,
+					'menu'           => array(
+						'slug'       => 'accessibility_checker',
+						'first-path' => 'admin.php?page=accessibility_checker',
+						'account'    => false,
+						'contact'    => false,
+						'support'    => false,
 					),
 				)
 			);
@@ -153,7 +153,7 @@ register_deactivation_hook( __FILE__, 'edac_deactivation' );
  * Define file path and basename
  */
 $edac_plugin_directory = __FILE__;
-$edac_plugin_basename = plugin_basename( __FILE__ );
+$edac_plugin_basename  = plugin_basename( __FILE__ );
 
 /**
  * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
@@ -162,34 +162,34 @@ if ( ! defined( 'MAX_FILE_SIZE' ) ) {
 	define( 'MAX_FILE_SIZE', 6000000 );
 }
 if ( ! class_exists( 'simple_html_dom' ) ) {
-	include_once( plugin_dir_path( __FILE__ ) . 'includes/simplehtmldom/simple_html_dom.php' );
-	include_once( plugin_dir_path( __FILE__ ) . 'includes/classes/class_edac_dom.php' );
+	include_once plugin_dir_path( __FILE__ ) . 'includes/simplehtmldom/simple_html_dom.php';
+	include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class_edac_dom.php';
 }
 
 /**
  * Include TextStatistics
  */
-include_once( plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Maths.php' );
-include_once( plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Pluralise.php' );
-include_once( plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Resource.php' );
-include_once( plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Syllables.php' );
-include_once( plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Text.php' );
-include_once( plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/TextStatistics.php' );
+require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Maths.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Pluralise.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Resource.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Syllables.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Text.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/TextStatistics.php';
 use DaveChild\TextStatistics as TS;
 
 /**
  * Import Resources
  */
-require_once( plugin_dir_path( __FILE__ ) . 'includes/activation.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/deactivation.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/enqueue-scripts.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/meta-boxes.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/options-page.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/validate.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/insert.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/purge.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/system-info.php' );
+require_once plugin_dir_path( __FILE__ ) . 'includes/activation.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/enqueue-scripts.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/meta-boxes.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 
 /**
  * Filters and Actions
@@ -235,7 +235,7 @@ function edac_update_database() {
 	$table_name = $wpdb->prefix . 'accessibility_checker';
 
 	$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
-	if ( get_option( 'edac_db_version' ) != EDAC_DB_VERSION || $wpdb->get_var( $query ) != $table_name ) {
+	if ( get_option( 'edac_db_version' ) !== EDAC_DB_VERSION || $wpdb->get_var( $query ) !== $table_name ) {
 
 		$charset_collate = $wpdb->get_charset_collate();
 		$sql = "CREATE TABLE $table_name (
@@ -258,7 +258,7 @@ function edac_update_database() {
 			KEY postid_index (postid)
 		) $charset_collate;";
 
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
 
 	}
@@ -833,25 +833,25 @@ function edac_summary_ajax() {
 				<div class="edac-panel-number">
 					' . $summary['errors'] . '
 				</div>
-				<div class="edac-panel-number-label">Error' . ( ( $summary['errors'] != 1 ) ? 's' : '' ) . '</div>
+				<div class="edac-panel-number-label">Error' . ( ( 1 !== $summary['errors'] ) ? 's' : '' ) . '</div>
 			</div>
 			<div class="edac-summary-stat edac-summary-contrast' . ( ( $summary['contrast_errors'] > 0 ) ? ' has-errors' : '' ) . '">
 				<div class="edac-panel-number">
 					' . $summary['contrast_errors'] . '
 				</div>
-				<div class="edac-panel-number-label">Contrast Error' . ( ( $summary['contrast_errors'] != 1 ) ? 's' : '' ) . '</div>
+				<div class="edac-panel-number-label">Contrast Error' . ( ( 1 !== $summary['contrast_errors'] ) ? 's' : '' ) . '</div>
 			</div>
 			<div class="edac-summary-stat edac-summary-warnings' . ( ( $summary['warnings'] > 0 ) ? ' has-warning' : '' ) . '">
 				<div class="edac-panel-number">
 					' . $summary['warnings'] . '
 				</div>
-				<div class="edac-panel-number-label">Warning' . ( ( $summary['warnings'] != 1 ) ? 's' : '' ) . '</div>
+				<div class="edac-panel-number-label">Warning' . ( ( 1 !== $summary['warnings'] ) ? 's' : '' ) . '</div>
 			</div>
 			<div class="edac-summary-stat edac-summary-ignored">
 				<div class="edac-panel-number">
 					' . $summary['ignored'] . '
 				</div>
-				<div class="edac-panel-number-label">Ignored Item' . ( ( $summary['ignored'] != 1 ) ? 's' : '' ) . '</div>
+				<div class="edac-panel-number-label">Ignored Item' . ( ( 1 !== $summary['ignored'] ) ? 's' : '' ) . '</div>
 			</div>
 		</div>
 		<div class="edac-summary-readability">
@@ -906,8 +906,8 @@ function edac_summary( $post_id ) {
 		foreach ( $rules as $rule ) {
 			global $wpdb;
 			$table_name = $wpdb->prefix . 'accessibility_checker';
-			$postid = $post_id;
-			$siteid = get_current_blog_id();
+			$postid     = $post_id;
+			$siteid     = get_current_blog_id();
 			$query = 'SELECT count(*) FROM ' . $table_name . ' where rule = %s and siteid = %d and postid = %d and ignre = %d';
 			$rule_count = $wpdb->get_var( $wpdb->prepare( $query, $rule['slug'], $siteid, $postid, 0 ) );
 			if ( ! $rule_count ) {
@@ -957,7 +957,7 @@ function edac_summary( $post_id ) {
 	$content = str_replace( ']]>', ']]&gt;', $content );
 	$text_statistics = new TS\TextStatistics();
 	$content_grade = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
-	$summary['readability'] = ( $content_grade == 0 ) ? 'N/A' : edac_ordinal( $content_grade );
+	$summary['readability'] = ( 0 === $content_grade ) ? 'N/A' : edac_ordinal( $content_grade );
 
 	// simplified summary.
 	$summary['simplified_summary'] = get_post_meta( $post_id, '_edac_simplified_summary', $single = true ) ? true : false;
@@ -1150,14 +1150,14 @@ function edac_details_ajax() {
 		}
 		foreach ( $rules as $rule ) {
 			$results = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid ), ARRAY_A );
-			$count_classes = ( $rule['rule_type'] === 'error' ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
-			$count_classes .= ( $rule['count'] != 0 ) ? ' active' : '';
+			$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
+			$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
 
 			$count_ignored = 0;
 			$ignores       = array_column( $results, 'ignre' );
 			if ( $ignores ) {
 				foreach ( $ignores as $ignore ) {
-					if ( $ignore == 1 ) {
+					if ( 1 === $ignore ) {
 						$count_ignored++;
 					}
 				}
@@ -1202,7 +1202,6 @@ function edac_details_ajax() {
 
 				foreach ( $results as $row ) {
 
-					// vars
 					$id                      = intval( $row['id'] );
 					$ignore                  = intval( $row['ignre'] );
 					$ignore_class            = $ignore ? ' active' : '';
@@ -1210,7 +1209,7 @@ function edac_details_ajax() {
 					$ignore_user             = intval( $row['ignre_user'] );
 					$ignore_user_info        = get_userdata( $ignore_user );
 					$ignore_username         = is_object( $ignore_user_info ) ? '<strong>Username:</strong> ' . $ignore_user_info->user_login : '';
-					$ignore_date             = ( $row['ignre_date'] && $row['ignre_date'] != '0000-00-00 00:00:00' ) ? '<strong>Date:</strong> ' . date( 'F j, Y g:i a', strtotime( esc_html( $row['ignre_date'] ) ) ) : '';
+					$ignore_date             = ( $row['ignre_date'] && '0000-00-00 00:00:00' !== $row['ignre_date'] ) ? '<strong>Date:</strong> ' . gmdate( 'F j, Y g:i a', strtotime( esc_html( $row['ignre_date'] ) ) ) : '';
 					$ignore_comment          = esc_html( $row['ignre_comment'] );
 					$ignore_action           = $ignore ? 'disable' : 'enable';
 					$ignore_type             = $rule['rule_type'];
@@ -1525,20 +1524,20 @@ function edac_get_simplified_summary( int $post = null ) {
 	if ( null === $post ) {
 		$post = get_the_ID();
 	}
-	echo edac_simplified_summary_markup( $post );
+	echo esc_html( edac_simplified_summary_markup( $post ) );
 }
 
 /**
  * Simplified summary markup
  *
- * @param int $post
+ * @param int $post Post ID.
  * @return string
  */
 function edac_simplified_summary_markup( $post ) {
 	$simplified_summary = get_post_meta( $post, '_edac_simplified_summary', $single = true ) ?: '';
 	$simplified_summary_heading = 'Simplified Summary';
 
-	// filter title
+	// filter title.
 	if ( has_filter( 'edac_filter_simplified_summary_heading' ) ) {
 		$simplified_summary_heading = apply_filters( 'edac_filter_simplified_summary_heading', $simplified_summary_heading );
 	}
@@ -1553,7 +1552,6 @@ function edac_simplified_summary_markup( $post ) {
 /**
  * Get accessibility statement
  *
- * @param void
  * @return string
  */
 function edac_get_accessibility_statement() {
@@ -1577,13 +1575,12 @@ function edac_get_accessibility_statement() {
 /**
  * Output simplified summary
  *
- * @param string $content
- * @return string
+ * @return void
  */
 function edac_output_accessibility_statement() {
 	$statement = edac_get_accessibility_statement();
 	if ( ! empty( $statement ) ) {
-		echo '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>' . $statement . '</small></p>';
+		echo esc_html( '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>' . $statement . '</small></p>' );
 	}
 }
 
@@ -1597,33 +1594,33 @@ function edac_review_notice() {
 	$option = 'edac_review_notice';
 	$edac_review_notice = get_option( $option );
 
-	// exit if option is set to stop
-	if ( $edac_review_notice == 'stop' ) {
+	// exit if option is set to stop.
+	if ( 'stop' === $edac_review_notice ) {
 		return;
 	}
 
 	$transient = 'edac_review_notice_reminder';
 	$edac_review_notice_reminder = get_transient( $transient );
 
-	// first time if notice has never been shown wait 14 days
-	if ( $edac_review_notice_reminder == false && $edac_review_notice == false ) {
+	// first time if notice has never been shown wait 14 days.
+	if ( false === $edac_review_notice_reminder && false === $edac_review_notice ) {
 		// if option isn't set and plugin has been active for more than 14 days show notice. This is for current users.
 		if ( edac_days_active() > 14 ) {
 			update_option( $option, 'play' );
 		} else {
-			// if plugin has been active less than 14 days set transient for 14 days
+			// if plugin has been active less than 14 days set transient for 14 days.
 			set_transient( $transient, true, 14 * DAY_IN_SECONDS );
-			// set option to pause
+			// set option to pause.
 			update_option( $option, 'pause' );
 		}
 	}
 
-	// if transient has expired and option is set to pause update option to play
-	if ( $edac_review_notice_reminder == false && $edac_review_notice == 'pause' ) {
+	// if transient has expired and option is set to pause update option to play.
+	if ( false === $edac_review_notice_reminder && 'pause' === $edac_review_notice ) {
 		update_option( $option, 'play' );
 	}
 
-	// if option is not set to play exit
+	// if option is not set to play exit.
 	if ( get_option( $option ) != 'play' ) {
 		return;
 	}
@@ -1631,12 +1628,12 @@ function edac_review_notice() {
 	?>
 	<div class="notice notice-info edac-review-notice">
 		<p>
-			<?php _e( "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!", 'edac' ); ?>
+			<?php esc_html_e( "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!", 'edac' ); ?>
 		</p>
 		<p>
-			<button class="edac-review-notice-review"><?php _e( 'Write A Review', 'edac' ); ?></button>
-			<button class="edac-review-notice-remind"><?php _e( 'Remind Me In Two Weeks', 'edac' ); ?></button>
-			<button class="edac-review-notice-dismiss"><?php _e( 'Never Ask Again', 'edac' ); ?></button>
+			<button class="edac-review-notice-review"><?php esc_html_e( 'Write A Review', 'edac' ); ?></button>
+			<button class="edac-review-notice-remind"><?php esc_html_e( 'Remind Me In Two Weeks', 'edac' ); ?></button>
+			<button class="edac-review-notice-dismiss"><?php esc_html_e( 'Never Ask Again', 'edac' ); ?></button>
 		</p>
 	</div>
 	<?php
@@ -1652,7 +1649,7 @@ function edac_review_notice() {
  */
 function edac_review_notice_ajax() {
 
-	// nonce security
+	// nonce security.
 	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
 
 		$error = new WP_Error( '-1', 'Permission Denied' );
@@ -1669,7 +1666,7 @@ function edac_review_notice_ajax() {
 
 	$results = update_option( 'edac_review_notice', $_REQUEST['review_action'] );
 
-	if ( $_REQUEST['review_action'] == 'pause' ) {
+	if ( 'pause' === $_REQUEST['review_action'] ) {
 		set_transient( 'edac_review_notice_reminder', true, 14 * DAY_IN_SECONDS );
 	}
 
@@ -1693,7 +1690,7 @@ function edac_remove_admin_notices() {
 
 	$page = isset( $_GET['page'] ) ? $_GET['page'] : false;
 
-	if ( $page && ( $page == 'accessibility_checker' ) || $page == 'accessibility_checker_settings' || $page == 'accessibility_checker_issues' || $page == 'accessibility_checker_ignored' ) {
+	if ( $page && ( 'accessibility_checker' === $page ) || 'accessibility_checker_settings' === $page || 'accessibility_checker_issues' === $page || 'accessibility_checker_ignored' === $page ) {
 		remove_all_actions( 'admin_notices' );
 		remove_all_actions( 'all_admin_notices' );
 	}
@@ -1722,7 +1719,7 @@ function edac_password_protected_notice_text() {
  */
 function edac_password_protected_notice() {
 	if ( get_option( 'edac_password_protected' ) == true ) {
-		echo '<div class="notice notice-error is-dismissible"><p>' . edac_password_protected_notice_text() . '</p></div>';
+		echo '<div class="notice notice-error is-dismissible"><p>' . esc_html( edac_password_protected_notice_text() ) . '</p></div>';
 	} else {
 		return;
 	}
@@ -1735,16 +1732,16 @@ function edac_password_protected_notice() {
  */
 function edac_black_friday_notice() {
 
-	// check if accessibility checker pro is active
+	// check if accessibility checker pro is active.
 	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
 	if ( $pro ) {
 		return;
 	}
 
-	// Show from November 20-30
+	// Show from November 20-30.
 	$current_date = current_time( 'Ymd' );
-	$start_date = 20221120;
-	$end_date = 20221130;
+	$start_date   = 20221120;
+	$end_date     = 20221130;
 	if ( $current_date >= $start_date && $current_date <= $end_date ) {
 		echo '<div class="notice notice-info is-dismissible">
 			<p>Black Friday special: upgrade to a paid version of Accessibility Checker from November 20-30 and get 50% off! Full site scanning, site-wide open issues report, ignore logs, and more. <a href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=WPadmin&utm_medium=banner&utm_campaign=BlackFriday">Upgrade Now</a></p>

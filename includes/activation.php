@@ -5,15 +5,18 @@
  * @package Accessibility_Checker
  */
 
+/**
+ * Activation
+ *
+ * @return void
+ */
 function edac_activation() {
-	
-	// set options
-	add_option( 'edac_activation_date', date('Y-m-d H:i:s') );
-	add_option( 'edac_post_types', ['post','page']);
-	add_option( 'edac_simplified_summary_position', 'after');
-	
+	// set options.
+	add_option( 'edac_activation_date', date( 'Y-m-d H:i:s' ) );
+	add_option( 'edac_post_types', array( 'post', 'page' ) );
+	add_option( 'edac_simplified_summary_position', 'after' );
 
-	// Redirect: Don't do redirects when multiple plugins are bulk activated
+	// Redirect: Don't do redirects when multiple plugins are bulk activated.
 	if (
 		( isset( $_REQUEST['action'] ) && 'activate-selected' === $_REQUEST['action'] ) &&
 		( isset( $_POST['checked'] ) && count( $_POST['checked'] ) > 1 ) ) {
@@ -21,7 +24,7 @@ function edac_activation() {
 	}
 
 	edac_add_accessibility_statement_page();
-	
+
 }
 
 /**
@@ -31,8 +34,10 @@ function edac_activation() {
  */
 function edac_add_accessibility_statement_page() {
 
-	if ( ! current_user_can( 'activate_plugins' ) ) return;
-	
+	if ( ! current_user_can( 'activate_plugins' ) ) {
+		return;
+	}
+
 	global $wpdb;
 
 	if ( null === $wpdb->get_row( "SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'accessibility-statement'", 'ARRAY_A' ) ) {
@@ -40,7 +45,7 @@ function edac_add_accessibility_statement_page() {
 		$current_user = wp_get_current_user();
 		$author_id = $current_user->ID;
 		$slug = 'accessibility-statement';
-		$title = __( 'Our Commitment to Web Accessibility','edacp' );
+		$title = __( 'Our Commitment to Web Accessibility', 'edacp' );
 		$content = '[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web.<br /><br />
 <h2><strong>Ongoing Efforts to Ensure Accessibility</strong></h2>
  
@@ -64,18 +69,18 @@ This is part of our broader effort to make everyone’s experience at [COMPANY N
 <h2>Accessibility Support Contact</h2>
  
 We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS]  or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues.';
-	
-		// create post object
+
+		// create post object.
 		$page = array(
 			'post_title'   => $title,
 			'post_status'  => 'draft',
 			'post_author'  => $author_id,
 			'post_name'    => $slug,
 			'post_content' => $content,
-			'post_type'    => 'page'
+			'post_type'    => 'page',
 		);
-		
-		// insert the post into the database
+
+		// insert the post into the database.
 		wp_insert_post( $page );
 
 	}

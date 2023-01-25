@@ -15,23 +15,23 @@
 function edac_compare_strings( $string1, $string2 ) {
 	// text to remove
 	$removeText = array();
-	$removeText[] = __('permalink of ', 'edac');
-	$removeText[] = __('permalink to ', 'edac');
-	$removeText[] = __('&nbsp;', 'edac');
+	$removeText[] = __( 'permalink of ', 'edac' );
+	$removeText[] = __( 'permalink to ', 'edac' );
+	$removeText[] = __( '&nbsp;', 'edac' );
 
-	$string1 = strtolower($string1);
-	$string1 = str_ireplace($removeText, '', $string1);
-	$string1 = strip_tags($string1);
-	$string1 = trim($string1, " \t\n\r\0\x0B\xC2\xA0");
-	$string1 = html_entity_decode($string1);
+	$string1 = strtolower( $string1 );
+	$string1 = str_ireplace( $removeText, '', $string1 );
+	$string1 = strip_tags( $string1 );
+	$string1 = trim( $string1, " \t\n\r\0\x0B\xC2\xA0" );
+	$string1 = html_entity_decode( $string1 );
 
-	$string2 = strtolower($string2);
-	$string2 = str_ireplace($removeText, '', $string2);
-	$string2 = strip_tags($string2);
-	$string2 = trim($string2, " \t\n\r\0\x0B\xC2\xA0");
-	$string2 = html_entity_decode($string2);
+	$string2 = strtolower( $string2 );
+	$string2 = str_ireplace( $removeText, '', $string2 );
+	$string2 = strip_tags( $string2 );
+	$string2 = trim( $string2, " \t\n\r\0\x0B\xC2\xA0" );
+	$string2 = html_entity_decode( $string2 );
 
-	if ($string1 == $string2) {
+	if ( $string1 == $string2 ) {
 		return 1;
 	} else {
 		return 0;
@@ -46,34 +46,33 @@ function edac_compare_strings( $string1, $string2 ) {
  * @return array
  */
 function edac_parse_css( $css ) {
-	$css = str_replace('@charset "UTF-8";','',$css);
-	$css = preg_replace("%/\*(?:(?!\*/).)*\*/%s", " ", $css);
+	$css = str_replace( '@charset "UTF-8";', '', $css );
+	$css = preg_replace( '%/\*(?:(?!\*/).)*\*/%s', ' ', $css );
 	$css_array = array(); // master array to hold all values
-	$element = explode('}', $css);
-	foreach ($element as $element) {
+	$element = explode( '}', $css );
+	foreach ( $element as $element ) {
 		// get the name of the CSS element
-		$a_name = explode('{', $element);
+		$a_name = explode( '{', $element );
 		$name = $a_name[0];
 		// get all the key:value pair styles
-		$a_styles = explode(';', $element);
+		$a_styles = explode( ';', $element );
 		// remove element name from first property element
-		$a_styles[0] = str_replace($name . '{', '', $a_styles[0]);
+		$a_styles[0] = str_replace( $name . '{', '', $a_styles[0] );
 		// loop through each style and split apart the key from the value
-		$count = count($a_styles);
-		//$counter = 0;
-		for ($a = 0; $a < $count; $a++) {
-			if ($a_styles[$a] != '') {
-				$a_styles[$a] = str_ireplace('https://', '//', $a_styles[$a]);
-				$a_styles[$a] = str_ireplace('http://', '//', $a_styles[$a]);
-				$a_key_value = explode(':', $a_styles[$a]);
+		$count = count( $a_styles );
+		// $counter = 0;
+		for ( $a = 0; $a < $count; $a++ ) {
+			if ( $a_styles[ $a ] != '' ) {
+				$a_styles[ $a ] = str_ireplace( 'https://', '//', $a_styles[ $a ] );
+				$a_styles[ $a ] = str_ireplace( 'http://', '//', $a_styles[ $a ] );
+				$a_key_value = explode( ':', $a_styles[ $a ] );
 				// build the master css array
-				if (array_key_exists(1, $a_key_value)) {
-					//$css_array[trim($counter . $name)][trim(strtolower($a_key_value[0]))] = trim($a_key_value[1]);
-					$css_array[trim($name)][trim(strtolower($a_key_value[0]))] = trim($a_key_value[1]);
+				if ( array_key_exists( 1, $a_key_value ) ) {
+					// $css_array[trim($counter . $name)][trim(strtolower($a_key_value[0]))] = trim($a_key_value[1]);
+					$css_array[ trim( $name ) ][ trim( strtolower( $a_key_value[0] ) ) ] = trim( $a_key_value[1] );
 				}
-
 			}
-			//$counter++;
+			// $counter++;
 		}
 	}
 	return $css_array;
@@ -114,11 +113,12 @@ function edac_check_plugin_active( $plugin_slug ) {
  * @return string
  */
 function edac_ordinal( $number ) {
-	$ends = array('th','st','nd','rd','th','th','th','th','th','th');
-	if ((($number % 100) >= 11) && (($number%100) <= 13))
-		return $number. 'th';
-	else
-		return $number. $ends[$number % 10];
+	$ends = array( 'th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th' );
+	if ( ( ( $number % 100 ) >= 11 ) && ( ( $number % 100 ) <= 13 ) ) {
+		return $number . 'th';
+	} else {
+		return $number . $ends[ $number % 10 ];
+	}
 }
 
 /**
@@ -128,18 +128,18 @@ function edac_ordinal( $number ) {
  * @return void
  */
 function edac_log( $message ) {
-	$edac_log = dirname(__DIR__) . '/edac_log.log';
-	if (is_array($message)) {
-		$message = print_r($message, true);
+	$edac_log = dirname( __DIR__ ) . '/edac_log.log';
+	if ( is_array( $message ) ) {
+		$message = print_r( $message, true );
 	}
-	if (file_exists($edac_log)) {
-		$file = fopen($edac_log, 'a');
-		fwrite($file, $message . "\n");
+	if ( file_exists( $edac_log ) ) {
+		$file = fopen( $edac_log, 'a' );
+		fwrite( $file, $message . "\n" );
 	} else {
-		$file = fopen($edac_log, 'w');
-		fwrite($file, $message . "\n");
+		$file = fopen( $edac_log, 'w' );
+		fwrite( $file, $message . "\n" );
 	}
-	fclose($file);
+	fclose( $file );
 }
 
 /**
@@ -163,9 +163,9 @@ function edac_simple_dom_remove_child( simple_html_dom_node $parentNode ) {
  * @return array
  */
 function edac_remove_element_with_value( $array, $key, $value ) {
-	foreach($array as $subKey => $subArray){
-		if($subArray[$key] == $value){
-			unset($array[$subKey]);
+	foreach ( $array as $subKey => $subArray ) {
+		if ( $subArray[ $key ] == $value ) {
+			unset( $array[ $subKey ] );
 		}
 	}
 	return $array;
@@ -174,22 +174,22 @@ function edac_remove_element_with_value( $array, $key, $value ) {
 /**
  * Filter a multi-demensional array
  *
- * @param array $array
+ * @param array  $array
  * @param string $index
  * @param string $value
  * @return void
  */
 function edac_filter_by_value( $array, $index, $value ) {
-	if( is_array($array) && count($array)>0 ) {
-		foreach(array_keys($array) as $key){
-			$temp[$key] = $array[$key][$index];
-			
-			if ($temp[$key] == $value){
-				$newarray[$key] = $array[$key];
+	if ( is_array( $array ) && count( $array ) > 0 ) {
+		foreach ( array_keys( $array ) as $key ) {
+			$temp[ $key ] = $array[ $key ][ $index ];
+
+			if ( $temp[ $key ] == $value ) {
+				$newarray[ $key ] = $array[ $key ];
 			}
 		}
 	}
-	return array_values($newarray);
+	return array_values( $newarray );
 }
 
 /**
@@ -232,11 +232,11 @@ function edac_is_gutenberg_active() {
  * @return void
  */
 function edac_days_active() {
-	$activation_date = get_option('edac_activation_date');
-	if($activation_date){
-		$diff = strtotime($activation_date) - strtotime(date('Y-m-d H:i:s'));
-		$days_active = abs(round($diff / 86400));
-	}else{
+	$activation_date = get_option( 'edac_activation_date' );
+	if ( $activation_date ) {
+		$diff = strtotime( $activation_date ) - strtotime( date( 'Y-m-d H:i:s' ) );
+		$days_active = abs( round( $diff / 86400 ) );
+	} else {
 		$days_active = null;
 	}
 	return $days_active;
@@ -247,7 +247,7 @@ function edac_days_active() {
  *
  * @return array
  */
-function edac_custom_post_types(){
+function edac_custom_post_types() {
 	$args = array(
 		'public'   => true,
 		'_builtin' => false,
@@ -256,7 +256,7 @@ function edac_custom_post_types(){
 	$output = 'names'; // names or objects, note names is the default
 	$operator = 'and'; // 'and' or 'or'
 
-	$post_types = get_post_types( $args, $output, $operator ); 
+	$post_types = get_post_types( $args, $output, $operator );
 
 	return $post_types;
 }
@@ -268,19 +268,21 @@ function edac_custom_post_types(){
  */
 function edac_post_types() {
 
-	$post_types = ['post','page'];
+	$post_types = array( 'post', 'page' );
 
 	// filter post types
-	if(has_filter('edac_filter_post_types')) {
-		$post_types = apply_filters('edac_filter_post_types', $post_types);
+	if ( has_filter( 'edac_filter_post_types' ) ) {
+		$post_types = apply_filters( 'edac_filter_post_types', $post_types );
 	}
 
 	// remove duplicates
-	$post_types = array_unique($post_types);
+	$post_types = array_unique( $post_types );
 
 	// validate post types
-	foreach ($post_types as $key => $post_type) {
-		if(!post_type_exists($post_type)) unset($post_types[$key]);
+	foreach ( $post_types as $key => $post_type ) {
+		if ( ! post_type_exists( $post_type ) ) {
+			unset( $post_types[ $key ] );
+		}
 	}
 
 	return $post_types;
@@ -290,23 +292,21 @@ function edac_post_types() {
 /**
  * Processes all EDAC actions sent via POST and GET by looking for the 'edac-action'
  * request and running do_action() to call the function
- * 
  *
  * @return void
  */
 function edac_process_actions() {
-	
+
 	// if this fails, check_admin_referer() will automatically print a "failed" page and die.
-	if ( ! empty( $_POST ) && isset($_POST['edac_download_sysinfo_nonce']) && check_admin_referer( 'edac_download_sysinfo','edac_download_sysinfo_nonce' ) ) {
+	if ( ! empty( $_POST ) && isset( $_POST['edac_download_sysinfo_nonce'] ) && check_admin_referer( 'edac_download_sysinfo', 'edac_download_sysinfo_nonce' ) ) {
 
 		if ( isset( $_POST['edac-action'] ) ) {
 			do_action( 'edac_' . $_POST['edac-action'], $_POST );
 		}
-	
+
 		if ( isset( $_GET['edac-action'] ) ) {
 			do_action( 'edac_' . $_GET['edac-action'], $_GET );
 		}
-
 	}
-	
+
 }

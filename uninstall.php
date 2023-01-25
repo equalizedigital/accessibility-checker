@@ -11,17 +11,17 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 // check if the delte data option is checked. If not, don't delete data.
-$delete_data = get_option('edac_delete_data');
-if($delete_data == true){
+$delete_data = get_option( 'edac_delete_data' );
+if ( true === $delete_data ) {
 
-	// drop database
+	// drop database.
 	global $wpdb;
-	$table_name = $wpdb->prefix . "accessibility_checker";
+	$table_name = $wpdb->prefix . 'accessibility_checker';
 	$sql = "DROP TABLE IF EXISTS $table_name";
-	$wpdb->query($sql);
+	$wpdb->query( $sql );
 
-	// delete options
-	$options = [
+	// delete options.
+	$options = array(
 		'edac_db_version',
 		'edac_activation_date',
 		'edac_simplified_summary_position',
@@ -33,11 +33,11 @@ if($delete_data == true){
 		'edac_review_notice',
 		'edac_authorization_password',
 		'edac_authorization_username',
-	];
-	if($options){
-		foreach ($options as $option){
-			delete_option($option);
-			delete_site_option($option);
+	);
+	if ( $options ) {
+		foreach ( $options as $option ) {
+			delete_option( $option );
+			delete_site_option( $option );
 		}
 	}
 }
