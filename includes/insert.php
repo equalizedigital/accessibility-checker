@@ -1,14 +1,20 @@
 <?php
 /**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
+
+/**
  * Insert rule date into database
  *
- * @param array $post
+ * @param object $post
  * @param string $rule
  * @param string $ruletype
  * @param string $object
  * @return void
  */
-function edac_insert_rule_data($post, $rule, $ruletype, $object){
+function edac_insert_rule_data( $post, $rule, $ruletype, $object ) {
 
 	global $wpdb;
 	$table_name = $wpdb->prefix . "accessibility_checker";
@@ -40,7 +46,7 @@ function edac_insert_rule_data($post, $rule, $ruletype, $object){
 		$wpdb->prepare( 
 			'SELECT postid, ignre FROM '.$table_name.' where type = %s and postid = %d and rule = %s and object = %s and siteid = %d', $rule_data['type'], $rule_data['postid'], $rule_data['rule'], $rule_data['object'], $rule_data['siteid']
 		), ARRAY_A 
-	);	
+	);
 
 	// Loop existing records
 	if($results){

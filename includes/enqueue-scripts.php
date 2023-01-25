@@ -1,16 +1,21 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
 /**
- * Enqueue Admin Styles 
+ * Enqueue Admin Styles
  */
-function edac_admin_enqueue_styles(){
+function edac_admin_enqueue_styles() {
 	wp_enqueue_style( 'edac', plugin_dir_url( __DIR__ ).'assets/css/accessibility-checker-admin.css', array(), EDAC_VERSION, 'all' );
 }
 
 /**
- * Enqueue Admin Scripts 
+ * Enqueue Admin Scripts
  */
-function edac_admin_enqueue_scripts(){
+function edac_admin_enqueue_scripts() {
 
 	global $post;
 	$post_id = is_object($post) ? $post->ID : null;

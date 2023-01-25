@@ -1,11 +1,16 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
 /**
  * Check if user can ignore or can manage options
  *
  * @return bool
  */
-function edac_user_can_ignore(){
+function edac_user_can_ignore() {
 
 	if(current_user_can( 'manage_options' )){
 		return true;
@@ -26,7 +31,7 @@ function edac_user_can_ignore(){
 /**
  * Add an options page under the Settings submenu
  */
-function edac_add_options_page(){
+function edac_add_options_page() {
 
 	add_menu_page(
 		__( 'Welcome to Accessibility Checker', 'edac' ),
@@ -60,14 +65,14 @@ function edac_add_options_page(){
 /**
  * Render the welcome page for plugin
  */
-function edac_display_welcome_page(){
+function edac_display_welcome_page() {
 	include_once plugin_dir_path( __DIR__ ).'partials/welcome-page.php';
 }
 
 /**
  * Render the options page for plugin
  */
-function edac_display_options_page(){
+function edac_display_options_page() {
 	include_once plugin_dir_path( __DIR__ ).'partials/settings-page.php';
 }
 
@@ -110,7 +115,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edac_delete_data',
-		__( 'Delete Data', 'edac' ),	
+		__( 'Delete Data', 'edac' ),
 		'edac_delete_data_cb',
 		'edac_settings',
 		'edac_general',
@@ -197,7 +202,7 @@ function edac_register_setting() {
 /**
  * Render the text for the general section
  */
-function edac_general_cb(){
+function edac_general_cb() {
 	
 	$pro_text = '';
 	if (get_transient( 'edacp_license_valid' ) == false){
@@ -210,21 +215,21 @@ function edac_general_cb(){
 /**
  * Render the text for the simplified summary section
  */
-function edac_simplified_summary_cb(){
+function edac_simplified_summary_cb() {
 	echo '<p>' . __( 'Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post\'s or page\'s edit screen. <a href="https://a11ychecker.com/help3265" target="_blank">Learn more about simplified summaries and readability requirements.', 'edac' ) . '</a></p>';
 }
 
 /**
  * Render the text for the footer accessiblity statement section
  */
-function edac_footer_accessibility_statement_cb(){
+function edac_footer_accessibility_statement_cb() {
 	echo '<p>' . __( 'Are you thinking "Wow, this plugin is amazing" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you\'re using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website.', 'edac' ) . '</a></p>';
 }
 
 /**
  * Render the radio input field for position option
  */
-function edac_simplified_summary_position_cb(){
+function edac_simplified_summary_position_cb() {
 	$position = get_option( 'edac_simplified_summary_position');
 	?>
 		<fieldset>
@@ -265,7 +270,7 @@ function edac_sanitize_simplified_summary_position( $position ) {
 /**
  * Render the radio input field for position option
  */
-function edac_simplified_summary_prompt_cb(){
+function edac_simplified_summary_prompt_cb() {
 	$prompt = get_option( 'edac_simplified_summary_prompt');
 	?>
 		<fieldset>
@@ -295,7 +300,7 @@ function edac_sanitize_simplified_summary_prompt( $prompt ) {
 /**
  * Render the checkbox input field for post_types option
  */
-function edac_post_types_cb(){
+function edac_post_types_cb() {
 
 	$selected_post_types = get_option( 'edac_post_types') ?: [];
 	$post_types = edac_post_types();
@@ -361,7 +366,7 @@ function edac_sanitize_post_types( $selected_post_types ) {
 /**
  * Render the checkbox input field for add footer accessibility statement option
  */
-function edac_add_footer_accessibility_statement_cb(){
+function edac_add_footer_accessibility_statement_cb() {
 
 	$option = get_option( 'edac_add_footer_accessibility_statement') ?: false;
 
@@ -388,7 +393,7 @@ function edac_sanitize_add_footer_accessibility_statement( $option ) {
 /**
  * Render the checkbox input field for add footer accessibility statement option
  */
-function edac_include_accessibility_statement_link_cb(){
+function edac_include_accessibility_statement_link_cb() {
 
 	$option = get_option( 'edac_include_accessibility_statement_link') ?: false;
 	$disabled = get_option( 'edac_add_footer_accessibility_statement') ?: false;
@@ -416,7 +421,7 @@ function edac_sanitize_include_accessibility_statement_link( $option ) {
 /**
  * Render the select field for accessibility policy page option
  */
-function edac_accessibility_policy_page_cb(){
+function edac_accessibility_policy_page_cb() {
 
 	$policy_page = get_option( 'edac_accessibility_policy_page');
 	$policy_page = is_numeric($policy_page) ? get_page_link($policy_page) : $policy_page;
@@ -448,7 +453,7 @@ function edac_accessibility_statement_preview_cb(){
 /**
  * Render the checkbox input field for delete data option
  */
-function edac_delete_data_cb(){
+function edac_delete_data_cb() {
 
 	$option = get_option( 'edac_delete_data') ?: false;
 

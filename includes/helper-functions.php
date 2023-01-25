@@ -1,4 +1,9 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
 /**
  * Compare strings
@@ -7,8 +12,7 @@
  * @param string $string2
  * @return boolean
  */
-function edac_compare_strings($string1, $string2)
-{
+function edac_compare_strings( $string1, $string2 ) {
 	// text to remove
 	$removeText = array();
 	$removeText[] = __('permalink of ', 'edac');
@@ -41,8 +45,7 @@ function edac_compare_strings($string1, $string2)
  * @param string $css
  * @return array
  */
-function edac_parse_css($css)
-{	
+function edac_parse_css( $css ) {
 	$css = str_replace('@charset "UTF-8";','',$css);
 	$css = preg_replace("%/\*(?:(?!\*/).)*\*/%s", " ", $css);
 	$css_array = array(); // master array to hold all values
@@ -110,12 +113,12 @@ function edac_check_plugin_active( $plugin_slug ) {
  * @param int $number
  * @return string
  */
-function edac_ordinal($number) {
-    $ends = array('th','st','nd','rd','th','th','th','th','th','th');
-    if ((($number % 100) >= 11) && (($number%100) <= 13))
-        return $number. 'th';
-    else
-        return $number. $ends[$number % 10];
+function edac_ordinal( $number ) {
+	$ends = array('th','st','nd','rd','th','th','th','th','th','th');
+	if ((($number % 100) >= 11) && (($number%100) <= 13))
+		return $number. 'th';
+	else
+		return $number. $ends[$number % 10];
 }
 
 /**
@@ -124,7 +127,7 @@ function edac_ordinal($number) {
  * @param mixed $message
  * @return void
  */
-function edac_log($message){
+function edac_log( $message ) {
 	$edac_log = dirname(__DIR__) . '/edac_log.log';
 	if (is_array($message)) {
 		$message = print_r($message, true);
@@ -145,7 +148,7 @@ function edac_log($message){
  * @param $parentNode
  * @return string
  */
-function edac_simple_dom_remove_child(simple_html_dom_node $parentNode) {
+function edac_simple_dom_remove_child( simple_html_dom_node $parentNode ) {
 	$parentNode->innertext = '';
 	$error = $parentNode->save();
 	return $error;
@@ -159,11 +162,11 @@ function edac_simple_dom_remove_child(simple_html_dom_node $parentNode) {
  * @param $value
  * @return array
  */
-function edac_remove_element_with_value($array, $key, $value){
+function edac_remove_element_with_value( $array, $key, $value ) {
 	foreach($array as $subKey => $subArray){
-		 if($subArray[$key] == $value){
-			  unset($array[$subKey]);
-		 }
+		if($subArray[$key] == $value){
+			unset($array[$subKey]);
+		}
 	}
 	return $array;
 }
@@ -176,9 +179,8 @@ function edac_remove_element_with_value($array, $key, $value){
  * @param string $value
  * @return void
  */
-function edac_filter_by_value($array, $index, $value){
-	if(is_array($array) && count($array)>0) 
-	{
+function edac_filter_by_value( $array, $index, $value ) {
+	if( is_array($array) && count($array)>0 ) {
 		foreach(array_keys($array) as $key){
 			$temp[$key] = $array[$key][$index];
 			
@@ -186,8 +188,8 @@ function edac_filter_by_value($array, $index, $value){
 				$newarray[$key] = $array[$key];
 			}
 		}
-	  }
-  return array_values($newarray);
+	}
+	return array_values($newarray);
 }
 
 /**
@@ -229,7 +231,7 @@ function edac_is_gutenberg_active() {
  *
  * @return void
  */
-function edac_days_active(){
+function edac_days_active() {
 	$activation_date = get_option('edac_activation_date');
 	if($activation_date){
 		$diff = strtotime($activation_date) - strtotime(date('Y-m-d H:i:s'));
@@ -264,7 +266,7 @@ function edac_custom_post_types(){
  *
  * @return array
  */
-function edac_post_types(){
+function edac_post_types() {
 
 	$post_types = ['post','page'];
 

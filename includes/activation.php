@@ -1,6 +1,11 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
-function edac_activation(){
+function edac_activation() {
 	
 	// set options
 	add_option( 'edac_activation_date', date('Y-m-d H:i:s') );
@@ -24,7 +29,7 @@ function edac_activation(){
  *
  * @return void
  */
-function edac_add_accessibility_statement_page(){
+function edac_add_accessibility_statement_page() {
 
 	if ( ! current_user_can( 'activate_plugins' ) ) return;
 	
