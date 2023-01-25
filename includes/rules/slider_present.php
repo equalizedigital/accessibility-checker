@@ -1,12 +1,17 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
 /**
- * Slider Present function
+ * Slider Present Check
  *
- * @param $content
- * @param $post
+ * @param array  $content Array of content to check.
+ * @param object $post Object to check.
  * @return array
- * 
+ *
  * Soliloquy: .wp-block-soliloquy-soliloquywp, .soliloquy-container - https://wordpress.org/plugins/soliloquy-lite/
  * Smart Slider 3: .wp-block-nextend-smartslider3, .n2-section-smartslider - https://wordpress.org/plugins/smart-slider-3/
  * MetaSlider: .metaslider - https://wordpress.org/plugins/ml-slider/
@@ -30,16 +35,15 @@
  * bxSlider: .bxslider, .bx-wrapper - https://bxslider.com/
  * Glidejs: .glide--slider - https://glidejs.com/
  */
-function edac_rule_slider_present($content, $post)
-{
+function edac_rule_slider_present( $content, $post ) {
 	$dom = $content['html'];
-	$errors = [];
+	$errors = array();
 
-	$elements = $dom->find('.slider, .carousel, .owl-carousel, .soliloquy-container, .n2-section-smartslider, .metaslider, .master-slider, [data-layerslider-uid], .rev_slider, .royalSlider, .wonderpluginslider, .meteor-slides, .flexslider, .slick-slider, .swiper-container, .flickity-slider, .spacegallery, .blueimp-gallery, .seq-active, .siema, .keen-slider, [data-jssor-slider], .bxslider, .glide--slider');
+	$elements = $dom->find( '.slider, .carousel, .owl-carousel, .soliloquy-container, .n2-section-smartslider, .metaslider, .master-slider, [data-layerslider-uid], .rev_slider, .royalSlider, .wonderpluginslider, .meteor-slides, .flexslider, .slick-slider, .swiper-container, .flickity-slider, .spacegallery, .blueimp-gallery, .seq-active, .siema, .keen-slider, [data-jssor-slider], .bxslider, .glide--slider' );
 
-	if ($elements) {
-		foreach ($elements as $element) {
-			$errors[] = edac_simple_dom_remove_child($element);
+	if ( $elements ) {
+		foreach ( $elements as $element ) {
+			$errors[] = edac_simple_dom_remove_child( $element );
 		}
 	}
 	return $errors;

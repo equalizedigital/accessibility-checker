@@ -1,27 +1,38 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
-function edac_rule_img_linked_alt_missing($content, $post){
-	
-	// rule vars
+/**
+ * IMG Linked ALT Missing Check
+ *
+ * @param array  $content Array of content to check.
+ * @param object $post Object to check.
+ * @return array
+ */
+function edac_rule_img_linked_alt_missing( $content, $post ) {
+
 	$dom = $content['html'];
-	$errors = [];
+	$errors = array();
 
-    $as = $dom->find('a');
-	foreach ($as as $a){
+	$as = $dom->find( 'a' );
+	foreach ( $as as $a ) {
 
-        // anchors with aria-label or title or valid node text
-		if($a->getAttribute('aria-label') == "" && $a->getAttribute('title') == "" && strlen($a->plaintext) <= 5){
+		// anchors with aria-label or title or valid node text.
+		if ( $a->getAttribute( 'aria-label' ) == '' && $a->getAttribute( 'title' ) == '' && strlen( $a->plaintext ) <= 5 ) {
 
-			$images = $a->find('img');
-			foreach ($images as $image){                
+			$images = $a->find( 'img' );
+			foreach ( $images as $image ) {
 
-                if (isset($image) and (!$image->hasAttribute('alt') and $image->getAttribute('role') != "presentation") and $image->getAttribute('aria-hidden') != "true"){
+				if ( isset( $image ) && ( ! $image->hasAttribute( 'alt' ) && $image->getAttribute( 'role' ) != 'presentation' ) && $image->getAttribute( 'aria-hidden' ) != 'true' ) {
 
-                    $image_code = $a;
+					$image_code = $a;
 
 					$errors[] = $image_code;
-                    
-                }
+
+				}
 			}
 		}
 	}

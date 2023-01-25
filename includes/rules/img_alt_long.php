@@ -1,16 +1,27 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
-function edac_rule_img_alt_long($content, $post){
-		
-	// rule vars
+/**
+ * IMG ALT Long Check
+ *
+ * @param array  $content Array of content to check.
+ * @param object $post Object to check.
+ * @return array
+ */
+function edac_rule_img_alt_long( $content, $post ) {
+
 	$dom = $content['html'];
-	$errors = [];
+	$errors = array();
 
-	$images = $dom->find('img');
-	foreach ($images as $image) {
-		if(isset($image) && $image->hasAttribute('alt') && $image->getAttribute('alt') != ""){
-			$alt = $image->getAttribute('alt');
-			if(strlen($alt) > 100){
+	$images = $dom->find( 'img' );
+	foreach ( $images as $image ) {
+		if ( isset( $image ) && $image->hasAttribute( 'alt' ) && $image->getAttribute( 'alt' ) != '' ) {
+			$alt = $image->getAttribute( 'alt' );
+			if ( strlen( $alt ) > 100 ) {
 				$image_code = $image;
 				$errors[] = $image_code;
 			}

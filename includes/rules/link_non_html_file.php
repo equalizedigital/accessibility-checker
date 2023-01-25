@@ -1,26 +1,37 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
-function edac_rule_link_non_html_file($content, $post){
-	
-	// rule vars
-    $dom = $content['html'];
-    $file_extensions = ['.rtf', '.wpd', '.ods', '.odt', '.odp', '.sxw', '.sxc', '.sxd', '.sxi', '.pages', '.key'];
-    $errors = [];
+/**
+ * Link Non-HTML File Check
+ *
+ * @param array  $content Array of content to check.
+ * @param object $post Object to check.
+ * @return array
+ */
+function edac_rule_link_non_html_file( $content, $post ) {
 
-    $as = $dom->find('a');
-	foreach ($as as $a){
+	$dom = $content['html'];
+	$file_extensions = array( '.rtf', '.wpd', '.ods', '.odt', '.odp', '.sxw', '.sxc', '.sxd', '.sxi', '.pages', '.key' );
+	$errors = array();
 
-        if($a->getAttribute('href')){
-            if($file_extensions){
-                foreach($file_extensions as $file_extension){
-                    if(strpos(strtolower($a), $file_extension)){
-                        $link_code = $a;
+	$as = $dom->find( 'a' );
+	foreach ( $as as $a ) {
 
-                        $errors[] = $link_code;
-                    }
-                }
-            }
-        }
-    }
-    return $errors;
+		if ( $a->getAttribute( 'href' ) ) {
+			if ( $file_extensions ) {
+				foreach ( $file_extensions as $file_extension ) {
+					if ( strpos( strtolower( $a ), $file_extension ) ) {
+						$link_code = $a;
+
+						$errors[] = $link_code;
+					}
+				}
+			}
+		}
+	}
+	return $errors;
 }

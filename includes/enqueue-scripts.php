@@ -18,7 +18,7 @@ function edac_admin_enqueue_styles() {
 function edac_admin_enqueue_scripts() {
 
 	global $post;
-	$post_id = is_object($post) ? $post->ID : null;
+	$post_id = is_object( $post ) ? $post->ID : null;
 	wp_enqueue_script( 'edac', plugin_dir_url( __DIR__ ) . 'assets/js/accessibility-checker-admin-min.js', array( 'jquery' ), EDAC_VERSION, false );
 
 	wp_localize_script(
@@ -26,7 +26,7 @@ function edac_admin_enqueue_scripts() {
 		'edac_script_vars',
 		array(
 			'postID' => $post_id,
-			'nonce' => wp_create_nonce( 'ajax-nonce' ),
+			'nonce'  => wp_create_nonce( 'ajax-nonce' ),
 		)
 	);
 }

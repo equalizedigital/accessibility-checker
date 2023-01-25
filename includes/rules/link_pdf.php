@@ -1,21 +1,32 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
-function edac_rule_link_pdf($content, $post){
-	
-	// rule vars
-    $dom = $content['html'];
-    $errors = [];
+/**
+ * Link PDF Check
+ *
+ * @param array  $content Array of content to check.
+ * @param object $post Object to check.
+ * @return array
+ */
+function edac_rule_link_pdf( $content, $post ) {
 
-    $as = $dom->find('a');
-	foreach ($as as $a){
+	$dom = $content['html'];
+	$errors = array();
 
-        if($a->getAttribute('href')){
-            if(strpos(strtolower($a), '.pdf')){
-                $link_code = $a;
+	$as = $dom->find( 'a' );
+	foreach ( $as as $a ) {
 
-                $errors[] = $link_code;
-            }
-        }
-    }
-    return $errors;
+		if ( $a->getAttribute( 'href' ) ) {
+			if ( strpos( strtolower( $a ), '.pdf' ) ) {
+				$link_code = $a;
+
+				$errors[] = $link_code;
+			}
+		}
+	}
+	return $errors;
 }

@@ -1562,11 +1562,11 @@ function edac_get_accessibility_statement() {
 	$policy_page = is_numeric( $policy_page ) ? get_page_link( $policy_page ) : $policy_page;
 
 	if ( $add_footer_statement ) {
-		$statement .= get_bloginfo( 'name' ) . ' ' . __( 'uses', 'edac' ) . ' <a href="https://equalizedigital.com/accessibility-checker" target="_blank" aria-label="' . __( 'Accessibility Checker', 'edac' ) . ', opens a new window">' . __( 'Accessibility Checker', 'edac' ) . '</a> ' . __( 'to monitor our website\'s accessibility. ', 'edac' );
+		$statement .= get_bloginfo( 'name' ) . ' ' . esc_html__( 'uses', 'edac' ) . ' <a href="https://equalizedigital.com/accessibility-checker" target="_blank" aria-label="' . esc_attr__( 'Accessibility Checker', 'edac' ) . ', opens a new window">' . esc_html__( 'Accessibility Checker', 'edac' ) . '</a> ' . esc_html__( 'to monitor our website\'s accessibility. ', 'edac' );
 	}
 
 	if ( $include_statement_link && $policy_page ) {
-		$statement .= __( 'Read our ', 'edac' ) . '<a href="' . $policy_page . '">' . __( 'Accessibility Policy', 'edac' ) . '</a>.';
+		$statement .= esc_html__( 'Read our ', 'edac' ) . '<a href="' . $policy_page . '">' . esc_html__( 'Accessibility Policy', 'edac' ) . '</a>.';
 	}
 
 	return $statement;
@@ -1580,7 +1580,7 @@ function edac_get_accessibility_statement() {
 function edac_output_accessibility_statement() {
 	$statement = edac_get_accessibility_statement();
 	if ( ! empty( $statement ) ) {
-		echo esc_html( '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>' . $statement . '</small></p>' );
+		echo '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>' . $statement . '</small></p>';
 	}
 }
 
