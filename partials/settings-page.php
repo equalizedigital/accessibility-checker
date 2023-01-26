@@ -75,7 +75,7 @@ nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
 		<?php if ( null === $settings_tab ) { ?>
 			<div class="edac-settings-general 
 			<?php
-			if ( get_transient( 'edacp_license_valid' ) == false ) {
+			if ( (bool) get_transient( 'edacp_license_valid' ) === false ) {
 				echo 'edac-show-pro-callout';}
 			?>
 			">
@@ -86,7 +86,7 @@ nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
 						submit_button();
 					?>
 				</form>
-				<?php if ( get_transient( 'edacp_license_valid' ) == false ) { ?>
+				<?php if ( (bool) get_transient( 'edacp_license_valid' ) === false ) { ?>
 					<div><?php include 'pro-callout.php'; ?></div>
 				<?php } ?>
 			</div>
