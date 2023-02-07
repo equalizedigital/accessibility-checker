@@ -407,7 +407,7 @@ function edac_add_footer_accessibility_statement_cb() {
  * @return int
  */
 function edac_sanitize_add_footer_accessibility_statement( $option ) {
-	if ( 1 === $option ) {
+	if ( 1 === intval( $option ) ) {
 		return $option;
 	}
 }
@@ -443,7 +443,7 @@ function edac_include_accessibility_statement_link_cb() {
  * @return int
  */
 function edac_sanitize_include_accessibility_statement_link( $option ) {
-	if ( 1 === $option ) {
+	if ( 1 === intval( $option ) ) {
 		return $option;
 	}
 }
