@@ -1,15 +1,27 @@
 <?php
-function edac_rule_iframe_missing_title($content, $post){
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
-	// rule vars
-	$dom = $content['html'];	
-	$iframe_tags = $dom->find('iframe');
-	$errors = [];
+/**
+ * IFrame Missing Title Check
+ *
+ * @param array  $content Array of content to check.
+ * @param object $post Object to check.
+ * @return array
+ */
+function edac_rule_iframe_missing_title( $content, $post ) {
 
-	foreach ($iframe_tags as $iframe) {
-		if (isset($iframe) and $iframe->getAttribute('title') == "" and $iframe->getAttribute('aria-label') == ""){
-			
-			$iframecode = htmlspecialchars($iframe->outertext);
+	$dom = $content['html'];
+	$iframe_tags = $dom->find( 'iframe' );
+	$errors = array();
+
+	foreach ( $iframe_tags as $iframe ) {
+		if ( isset( $iframe ) && $iframe->getAttribute( 'title' ) == '' && $iframe->getAttribute( 'aria-label' ) == '' ) {
+
+			$iframecode = htmlspecialchars( $iframe->outertext );
 
 			$errors[] = $iframecode;
 
@@ -17,5 +29,3 @@ function edac_rule_iframe_missing_title($content, $post){
 	}
 	return $errors;
 }
-
-?>

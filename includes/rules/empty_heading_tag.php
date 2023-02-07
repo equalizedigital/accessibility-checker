@@ -1,25 +1,37 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
-function edac_rule_empty_heading_tag($content, $post){
-    
-    // rule vars
-    $dom = $content['html'];
-    $errors = [];
+/**
+ * Empty Heading Tab Check
+ *
+ * @param array  $content Array of content to check.
+ * @param object $post Object to check.
+ * @return array
+ */
+function edac_rule_empty_heading_tag( $content, $post ) {
 
-    // Loop heading 1 - 6
-    for ($i = 1; $i <= 6; $i++){
+	// rule vars.
+	$dom = $content['html'];
+	$errors = array();
 
-        $headings = $dom->find('h'.$i);
-        foreach ($headings as $heading){
+	// Loop heading 1 - 6.
+	for ( $i = 1; $i <= 6; $i++ ) {
 
-            $heading_code = $heading->outertext;
+		$headings = $dom->find( 'h' . $i );
+		foreach ( $headings as $heading ) {
 
-            if ((str_ireplace(array(' ','&nbsp;','-','_'),'',htmlentities(trim($heading->plaintext))) == "" or str_ireplace(array(' ','&nbsp;','-','_'),'',trim($heading->plaintext))== "")  and !preg_match('#<img(\S|\s)*alt=(\'|\")(\w|\s)(\w|\s|\p{P}|\(|\)|\p{Sm}|~|`|’|\^|\$)+(\'|\")#',$heading_code)){
+			$heading_code = $heading->outertext;
 
-                $errors[] = $heading_code;
-				
-            }
-        }
-    }
-    return $errors;
+			if ( ( str_ireplace( array( ' ', '&nbsp;', '-', '_' ), '', htmlentities( trim( $heading->plaintext ) ) ) == '' || str_ireplace( array( ' ', '&nbsp;', '-', '_' ), '', trim( $heading->plaintext ) ) == '' ) && ! preg_match( '#<img(\S|\s)*alt=(\'|\")(\w|\s)(\w|\s|\p{P}|\(|\)|\p{Sm}|~|`|’|\^|\$)+(\'|\")#', $heading_code ) ) {
+
+				$errors[] = $heading_code;
+
+			}
+		}
+	}
+	return $errors;
 }

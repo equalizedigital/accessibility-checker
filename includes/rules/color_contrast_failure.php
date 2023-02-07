@@ -1,117 +1,129 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
 /**
- * Check for color contrast failures
+ * Color Contrast Check
  *
- * @param string $content
- * @param array $post
+ * @param array  $content Array of content to check.
+ * @param object $post Object to check.
  * @return array
- * 
+ *
  * WCAG 2.0 level AA requires a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text.
  * Large text is defined as 14 point (typically 18.66px) and bold or larger, or 18 point (typically 24px) or larger.
  */
-function edac_rule_color_contrast_failure($content, $post)
-{	
-	// check links in content for style tags
+function edac_rule_color_contrast_failure( $content, $post ) {
+	// check links in content for style tags.
 	$dom = $content['html'];
-	$errors = [];
+	$errors = array();
 
-	$elements = $dom->find('*');
-	foreach ($elements as $element) {
+	$elements = $dom->find( '*' );
+	foreach ( $elements as $element ) {
 
-		if (isset($element) and stristr($element->getAttribute('style'), 'color:') and $element->innertext != "") {
-			$foreground = "";
-			$background = "";
+		if ( isset( $element ) && stristr( $element->getAttribute( 'style' ), 'color:' ) && '' !== $element->innertext ) {
+			$foreground = '';
+			$background = '';
 
-			// get background color
-			preg_match('/background-color:\s*(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\)\s*(!important)*)/i', $element->getAttribute('style'), $matches, PREG_OFFSET_CAPTURE);
-			if (isset($matches[1][0]) and $matches[1][0] != "") $rules['background-color'] = $matches[1][0];
+			// get background color.
+			preg_match( '/background-color:\s*(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\)\s*(!important)*)/i', $element->getAttribute( 'style' ), $matches, PREG_OFFSET_CAPTURE );
+			if ( isset( $matches[1][0] ) && '' !== $matches[1][0] ) {
+				$rules['background-color'] = $matches[1][0];
+			}
 
-			preg_match('/background:\s*(rgb\(\s*\d{1,3},\s*\d{1,3},\s*\d{1,3}\)|\#*[\w]{3,25}\s*(!important)*)/i', $element->getAttribute('style'), $matches, PREG_OFFSET_CAPTURE);
+			preg_match( '/background:\s*(rgb\(\s*\d{1,3},\s*\d{1,3},\s*\d{1,3}\)|\#*[\w]{3,25}\s*(!important)*)/i', $element->getAttribute( 'style' ), $matches, PREG_OFFSET_CAPTURE );
 
-			if (isset($matches[1][0]) and $matches[1][0] != "") {
+			if ( isset( $matches[1][0] ) && '' !== $matches[1][0] ) {
 				$rules['background'] = $matches[1][0];
 			}
 
-			// if no background color is set assume white
+			// if no background color is set assume white.
 			$assumedbackground = '#ffffff';
-			if (!isset($rules) and $assumedbackground != "") $rules['background'] = $assumedbackground;
-			
-			if (isset($rules)) {
+			if ( ! isset( $rules ) && '' !== $assumedbackground ) {
+				$rules['background'] = $assumedbackground;
+			}
 
-				// reverse array if background color is before background
-				if (strpos($element->getAttribute('style'), 'background-color:') > strpos($element->getAttribute('style'), 'background:'))
-					$rules = array_reverse($rules);
+			if ( isset( $rules ) ) {
 
-				$preference = edac_deteremine_hierarchy($rules);
+				// reverse array if background color is before background.
+				if ( strpos( $element->getAttribute( 'style' ), 'background-color:' ) > strpos( $element->getAttribute( 'style' ), 'background:' ) ) {
+					$rules = array_reverse( $rules );
+				}
 
-				if ($preference == 'background') $background =  edac_check_color_match2($rules['background']);
-				elseif ($preference == 'background-color') $background = $rules['background-color'];
-				else return 1;
+				$preference = edac_deteremine_hierarchy( $rules );
 
-				// get foreground color
-				preg_match('/[\s|\"|\']*[^-]color:\s*(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\)\s*(!important)*)/i', ' ' . $element->getAttribute('style'), $matches, PREG_OFFSET_CAPTURE);
+				if ( 'background' == $preference ) {
+					$background = edac_check_color_match2( $rules['background'] );
+				} elseif ( 'background-color' === $preference ) {
+					$background = $rules['background-color'];
+				} else {
+					return 1;
+				}
 
-				if (isset($matches[1][0]) and $matches[1][0] != "") $foreground = $matches[1][0];
+				// get foreground color.
+				preg_match( '/[\s|\"|\']*[^-]color:\s*(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\)\s*(!important)*)/i', ' ' . $element->getAttribute( 'style' ), $matches, PREG_OFFSET_CAPTURE );
 
-				// get font size
+				if ( isset( $matches[1][0] ) && '' !== $matches[1][0] ) {
+					$foreground = $matches[1][0];
+				}
+
+				// get font size.
 				$font_size = null;
 
-				if (stristr($element->getAttribute('style'), 'font-size:')) {
+				if ( stristr( $element->getAttribute( 'style' ), 'font-size:' ) ) {
 
-					
-					$fontsearchpatterns[] = "|font\-size:\s?([\d]+)pt|i";
-					$fontsearchpatterns[] = "|font\-size:\s?([\d]+)px|i";
-					$fontsearchpatterns[] = "|font:\s?[\w\s\d*\s]*([\d]+)pt|i";
-					$fontsearchpatterns[] = "|font:\s?[\w\s\d*\s]*([\d]+)px|i";
+					$fontsearchpatterns[] = '|font\-size:\s?([\d]+)pt|i';
+					$fontsearchpatterns[] = '|font\-size:\s?([\d]+)px|i';
+					$fontsearchpatterns[] = '|font:\s?[\w\s\d*\s]*([\d]+)pt|i';
+					$fontsearchpatterns[] = '|font:\s?[\w\s\d*\s]*([\d]+)px|i';
 
-					// Get font size
-					// 1 px = 0.75 point; 1 point = 1.333333 px
-					foreach ($fontsearchpatterns as $pattern) {
-						if (preg_match_all($pattern, $element, $matches, PREG_PATTERN_ORDER)) {
-							$matchsize = sizeof($matches);
-							for ($i = 0; $i < $matchsize; $i++) {
-								if (isset($matches[0][$i]) and $matches[0][$i] != "") {
-									$absolute_fontsize_errorcode = htmlspecialchars($matches[0][$i]);
+					// Get font size.
+					// 1 px = 0.75 point; 1 point = 1.333333 px.
+					foreach ( $fontsearchpatterns as $pattern ) {
+						if ( preg_match_all( $pattern, $element, $matches, PREG_PATTERN_ORDER ) ) {
+							$matchsize = sizeof( $matches );
+							for ( $i = 0; $i < $matchsize; $i++ ) {
+								if ( isset( $matches[0][ $i ] ) && '' !== $matches[0][ $i ] ) {
+									$absolute_fontsize_errorcode = htmlspecialchars( $matches[0][ $i ] );
 
-									preg_match_all('!\d+!', $absolute_fontsize_errorcode, $matches);
-									
-									// convert pixels to points
-									if(stristr($absolute_fontsize_errorcode, 'px') == 'px'){
-										$font_size = implode(' ',$matches[0]) * 0.75;
+									preg_match_all( '!\d+!', $absolute_fontsize_errorcode, $matches );
+
+									// convert pixels to points.
+									if ( stristr( $absolute_fontsize_errorcode, 'px' ) == 'px' ) {
+										$font_size = implode( ' ', $matches[0] ) * 0.75;
 									}
 
-									if(stristr($absolute_fontsize_errorcode, 'pt') == 'pt'){
-										$font_size = implode(' ',$matches[0]);
+									if ( stristr( $absolute_fontsize_errorcode, 'pt' ) == 'pt' ) {
+										$font_size = implode( ' ', $matches[0] );
 									}
-
 								}
 							}
 						}
 					}
-	
 				}
 
-				// get font weight
+				// get font weight.
 				$font_bold = false;
 
-				if(
-					preg_match('(bold|bolder|700|800|900)', stristr($element->getAttribute('style'), 'font-weight:')) === 1 ||
-					$element->find('b') ||
-					$element->find('strong')
-				){
+				if (
+					preg_match( '(bold|bolder|700|800|900)', stristr( $element->getAttribute( 'style' ), 'font-weight:' ) ) === 1 ||
+					$element->find( 'b' ) ||
+					$element->find( 'strong' )
+				) {
 					$font_bold = true;
 				}
 
-				// ratio
+				// ratio.
 				$ratio = 4.5;
-				if(($font_size >= 14 && $font_bold == true) || $font_size >= 18){
+				if ( ( $font_size >= 14 && true === $font_bold ) || $font_size >= 18 ) {
 					$ratio = 3;
 				}
 
-				if ($foreground != "" and $background != "initial" and $background != "inherit" and $background != "transparent") {
+				if ( '' !== $foreground && 'initial' !== $background && 'inherit' !== $background && 'transparent' !== $background ) {
 
-					if (edac_coldiff($foreground, $background, $ratio)) {
+					if ( edac_coldiff( $foreground, $background, $ratio ) ) {
 
 						$errors[] = $element->outertext;
 					}
@@ -119,10 +131,10 @@ function edac_rule_color_contrast_failure($content, $post)
 			}
 		}
 	}
-	
-	// check styles
-	if($content['css_parsed']){
-		$errors = array_merge(edac_check_contrast($content),$errors);
+
+	// check styles.
+	if ( $content['css_parsed'] ) {
+		$errors = array_merge( edac_check_contrast( $content ), $errors );
 	}
 
 	return $errors;
@@ -131,106 +143,105 @@ function edac_rule_color_contrast_failure($content, $post)
 /**
  * Scan the content from a css file or style tag inside a post
  *
- * @param array $content
- * @param string $styles
+ * @param array $content to be checked.
  * @return array
  */
-function edac_check_contrast($content)
-{
+function edac_check_contrast( $content ) {
 	$dom = $content['html'];
-	$errors = [];
+	$errors = array();
 	$error_code = '';
 	$css_array = $content['css_parsed'];
 
-	foreach ($css_array as $element => $rules) {
+	foreach ( $css_array as $element => $rules ) {
 
-		if (array_key_exists('color', $rules)) {
+		if ( array_key_exists( 'color', $rules ) ) {
 
-			$background = "";
-			$foreground = edac_replace_css_variables($rules['color'], $css_array);
+			$background = '';
+			$foreground = edac_replace_css_variables( $rules['color'], $css_array );
 
-			// determin which rule has preference if both background and background-color are present
-			$preference = edac_deteremine_hierarchy($rules);
+			// determin which rule has preference if both background and background-color are present.
+			$preference = edac_deteremine_hierarchy( $rules );
 
-			if (array_key_exists('background', $rules) and $preference == 'background'){
-				$rules['background'] = edac_replace_css_variables($rules['background'], $css_array);
-				$background = edac_check_color_match2($rules['background']);
+			if ( array_key_exists( 'background', $rules ) && 'background' === $preference ) {
+				$rules['background'] = edac_replace_css_variables( $rules['background'], $css_array );
+				$background = edac_check_color_match2( $rules['background'] );
 			}
 
-			if (array_key_exists('background-color', $rules) and $preference == 'background-color'){
-				$rules['background-color'] = edac_replace_css_variables($rules['background-color'], $css_array);
+			if ( array_key_exists( 'background-color', $rules ) && 'background-color' === $preference ) {
+				$rules['background-color'] = edac_replace_css_variables( $rules['background-color'], $css_array );
 				$background = $rules['background-color'];
 			}
 
-			
-			// if background color not set exit	
-			if ($background == "initial" or $background == "inherit" or $background == "transparent" or $background == "" or $foreground == "") goto a;
-			
-			// get font size
+			// if background color not set exit.
+			if ( 'initial' === $background || 'inherit' === $background || 'transparent' === $background || '' === $background || '' === $foreground ) {
+				goto a;
+			}
+
+			// get font size.
 			$font_size = 0;
 
-			if (array_key_exists('font-size', $rules)) {
+			if ( array_key_exists( 'font-size', $rules ) ) {
 
-				$rules['font-size'] = edac_replace_css_variables($rules['font-size'], $css_array);
-				
-				$unit = str_replace('.', '', preg_replace('/\d/', '', $rules['font-size'] ));
-				$value = str_replace($unit,'',$rules['font-size']);
+				$rules['font-size'] = edac_replace_css_variables( $rules['font-size'], $css_array );
 
-				if($unit == 'px'){
-					$font_size = (float)$value* 0.75;
+				$unit = str_replace( '.', '', preg_replace( '/\d/', '', $rules['font-size'] ) );
+				$value = str_replace( $unit, '', $rules['font-size'] );
+
+				if ( 'px' === $unit ) {
+					$font_size = (float) $value * 0.75;
 				}
 
-				if($unit == 'pt'){
+				if ( 'pt' === $unit ) {
 					$font_size = $value;
 				}
 			}
 
-			// get font weight
+			// get font weight.
 			$font_bold = false;
 
-			if(array_key_exists('font-weight', $rules)){
+			if ( array_key_exists( 'font-weight', $rules ) ) {
 
-				$rules['font-weight'] = edac_replace_css_variables($rules['font-weight'], $css_array);
+				$rules['font-weight'] = edac_replace_css_variables( $rules['font-weight'], $css_array );
 
-				if(
-					$rules['font-weight'] == 'bold' ||
-					$rules['font-weight'] == 'bolder' ||
-					$rules['font-weight'] == '700' ||
-					$rules['font-weight'] == '800' ||
-					$rules['font-weight'] == '900'
-				){
+				if (
+					'bold' === $rules['font-weight'] ||
+					'bolder' === $rules['font-weight'] ||
+					'700' === $rules['font-weight'] ||
+					'800' === $rules['font-weight'] ||
+					'900' === $rules['font-weight']
+				) {
 					$font_bold = true;
 				}
 			}
 
-			// check for bold or strong tags within element
-			$bold_elements = $dom->find($element);
-			if($bold_elements){
-				foreach ($bold_elements as $bold_element) {
-					if($bold_element->find('b') || $bold_element->find('strong')){
+			// check for bold or strong tags within element.
+			$bold_elements = $dom->find( $element );
+			if ( $bold_elements ) {
+				foreach ( $bold_elements as $bold_element ) {
+					if ( $bold_element->find( 'b' ) || $bold_element->find( 'strong' ) ) {
 						$font_bold = true;
 					}
 				}
 			}
-			
-			// ratio
+
+			// ratio.
 			$ratio = 4.5;
-			if(($font_size >= 14 && $font_bold == true) || $font_size >= 18){
+			if ( ( $font_size >= 14 && true === $font_bold ) || $font_size >= 18 ) {
 				$ratio = 3;
 			}
 
-			if (edac_coldiff($foreground, $background, $ratio)) {
+			if ( edac_coldiff( $foreground, $background, $ratio ) ) {
 
 				$error_code = $element . '{';
-				foreach ($rules as $key => $value) {
+				foreach ( $rules as $key => $value ) {
 					$error_code .= $key . ': ' . $value . '; ';
 				}
 				$error_code .= '}';
 
-				$elements = $dom->find($element);
-				if($elements){
-					foreach ($elements as $element) {
-						$errors[] = $element->outertext.' '.$error_code;
+				$elements = $dom->find( $element );
+				if ( $elements ) {
+					foreach ( $elements as $element ) {
+						$errors[] = $element->outertext . ' ' . $error_code;
 					}
 				}
 			}
@@ -241,121 +252,145 @@ function edac_check_contrast($content)
 }
 
 /**
- * determine rule hierarchy	
+ * Determine rule hierarchy
+ *
+ * @param array $rules array of rules.
+ * @return string
  */
-function edac_deteremine_hierarchy($rules)
-{
-	$first = "";
-	$rules = array_reverse($rules);
-	foreach ($rules as $key => $value) {
-		if (($key == 'background' or $key == 'background-color') and $value != "") {
+function edac_deteremine_hierarchy( $rules ) {
+	$first = '';
+	$rules = array_reverse( $rules );
+	foreach ( $rules as $key => $value ) {
+		if ( ( 'background' === $key || 'background-color' === $key ) && '' !== $value ) {
 			$first = $key;
 			goto a;
 		}
 	}
 	a:
 
-	// if background color has preference and is marked important then return background color
-	if ($first == 'background-color' and stristr($rules['background-color'], '!important')) return 'background-color';
+	// if background color has preference and is marked important then return background color.
+	if ( 'background-color' == $first && stristr( $rules['background-color'], '!important' ) ) {
+		return 'background-color';
+	}
 
-	// if background has preference and is not marked important but background color is then return background color
+	// if background has preference and is not marked important but background color is then return background color.
 	if (
-		$first == 'background' and !stristr($rules['background'], '!important')
-		and (array_key_exists('background-color', $rules) and stristr($rules['background-color'], '!important'))
-	) return 'background-color';
+		'background' === $first && ! stristr( $rules['background'], '!important' )
+		&& ( array_key_exists( 'background-color', $rules ) && stristr( $rules['background-color'], '!important' ) )
+	) {
+		return 'background-color';
+	}
 
-	// if background color has preference but is not marked important but background is and has a color value then return background
+	// if background color has preference but is not marked important but background is and has a color value then return background.
 	if (
-		$first == 'background-color' and !stristr($rules['background-color'], '!important')
-		and (array_key_exists('background', $rules)
-			and stristr($rules['background'], '!important')
-			and edac_check_color_match2($rules['background']))
-	) return 'background';
+		'background-color' === $first && ! stristr( $rules['background-color'], '!important' )
+		&& ( array_key_exists( 'background', $rules )
+			&& stristr( $rules['background'], '!important' )
+			&& edac_check_color_match2( $rules['background'] ) )
+	) {
+		return 'background';
+	}
 
-	if ($first == 'background' and edac_check_color_match2($rules['background'])) return 'background';
-	elseif (array_key_exists('background-color', $rules)) return 'background-color';
-
+	if ( 'background' === $first && edac_check_color_match2( $rules['background'] ) ) {
+		return 'background';
+	} elseif ( array_key_exists( 'background-color', $rules ) ) {
+		return 'background-color';
+	}
 
 	return $first;
 }
 
 /**
- * check the color contrast
+ * Check the color contrast
+ *
+ * @param string $foreground color hex.
+ * @param string $background color hex.
+ * @param int    $ratio number.
+ * @return bool
  */
-function edac_coldiff($foreground, $background, $ratio)
-{
+function edac_coldiff( $foreground, $background, $ratio ) {
 
-	//convert color names to hex
-	$foreground = trim(edac_convert_color_names($foreground));
-	$background = trim(edac_convert_color_names($background));
+	// convert color names to hex.
+	$foreground = trim( edac_convert_color_names( $foreground ) );
+	$background = trim( edac_convert_color_names( $background ) );
 
-	// convert hex to rgb	
-	$color1 = edac_hexToRgb($foreground);
-	$color2 = edac_hexToRgb($background);
+	// convert hex to rgb.
+	$color1 = edac_hex_to_rgb( $foreground );
+	$color2 = edac_hex_to_rgb( $background );
 
-	$dif = edac_test_color_diff($color1, $color2);
+	$dif = edac_test_color_diff( $color1, $color2 );
 
-	// failed
-	if ($dif < $ratio) {
-		if ($dif < $ratio)  return 1;
+	// failed.
+	if ( $dif < $ratio ) {
+		if ( $dif < $ratio ) {
+			return 1;
+		}
 	}
 
 	return 0;
 }
 
 /**
- * test color contrast
+ * Test color contrast
+ *
+ * @param array $color1 rgb color.
+ * @param array $color2 rgb color.
+ * @return int
  */
-function edac_test_color_diff($color1, $color2)
-{
-	$L1 = 0.2126 * pow($color1['r'] / 255, 2.2) +
-		0.7152 * pow($color1['g'] / 255, 2.2) +
-		0.0722 * pow($color1['b'] / 255, 2.2);
+function edac_test_color_diff( $color1, $color2 ) {
+	$l1 = 0.2126 * pow( $color1['r'] / 255, 2.2 ) +
+		0.7152 * pow( $color1['g'] / 255, 2.2 ) +
+		0.0722 * pow( $color1['b'] / 255, 2.2 );
 
-	$L2 = 0.2126 * pow($color2['r'] / 255, 2.2) +
-		0.7152 * pow($color2['g'] / 255, 2.2) +
-		0.0722 * pow($color2['b'] / 255, 2.2);
+	$l2 = 0.2126 * pow( $color2['r'] / 255, 2.2 ) +
+		0.7152 * pow( $color2['g'] / 255, 2.2 ) +
+		0.0722 * pow( $color2['b'] / 255, 2.2 );
 
-	if ($L1 > $L2) {
-		$dif = (($L1 + 0.05) / ($L2 + 0.05)) + 0.05;
+	if ( $l1 > $l2 ) {
+		$dif = ( ( $l1 + 0.05 ) / ( $l2 + 0.05 ) ) + 0.05;
 	} else {
-		$dif = (($L2 + 0.05) / ($L1 + 0.05)) + 0.05;
+		$dif = ( ( $l2 + 0.05 ) / ( $l1 + 0.05 ) ) + 0.05;
 	}
 
 	return $dif;
 }
 
 /**
- * convert hex to rgb
+ * Convert hex to rgb
+ *
+ * @param string  $hex code.
+ * @param boolean $alpha is alpha or not.
+ * @return string
  */
-function edac_hexToRgb($hex, $alpha = false)
-{
-	$hex      = str_replace('#', '', $hex);
-	$length   = strlen($hex);
-	$rgb['r'] = hexdec($length == 6 ? substr($hex, 0, 2) : ($length == 3 ? str_repeat(substr($hex, 0, 1), 2) : 0));
-	$rgb['g'] = hexdec($length == 6 ? substr($hex, 2, 2) : ($length == 3 ? str_repeat(substr($hex, 1, 1), 2) : 0));
-	$rgb['b'] = hexdec($length == 6 ? substr($hex, 4, 2) : ($length == 3 ? str_repeat(substr($hex, 2, 1), 2) : 0));
-	if ($alpha) {
+function edac_hex_to_rgb( $hex, $alpha = false ) {
+	$hex      = str_replace( '#', '', $hex );
+	$length   = strlen( $hex );
+	$rgb['r'] = hexdec( 6 === $length ? substr( $hex, 0, 2 ) : ( 3 === $length ? str_repeat( substr( $hex, 0, 1 ), 2 ) : 0 ) );
+	$rgb['g'] = hexdec( 6 === $length ? substr( $hex, 2, 2 ) : ( 3 === $length ? str_repeat( substr( $hex, 1, 1 ), 2 ) : 0 ) );
+	$rgb['b'] = hexdec( 6 === $length ? substr( $hex, 4, 2 ) : ( 3 === $length ? str_repeat( substr( $hex, 2, 1 ), 2 ) : 0 ) );
+	if ( $alpha ) {
 		$rgb['a'] = $alpha;
 	}
 	return $rgb;
 }
 
 /**
- * convert color names to hex
+ * Convert color names to hex
+ *
+ * @param string $color_name string of color name.
+ * @return string
  */
-function edac_convert_color_names($color_name)
-{
+function edac_convert_color_names( $color_name ) {
 
-	if (stristr($color_name, 'rgb(')) {
-		$color_name = str_replace('rgb(', '', $color_name);
-		$color_name = str_replace(')', '', $color_name);
-		$rgb = explode(',', $color_name);
-		return '#' . sprintf('%02x', $rgb['0']) . sprintf('%02x', $rgb['1']) . sprintf('%02x', $rgb['2']);
+	if ( stristr( $color_name, 'rgb(' ) ) {
+		$color_name = str_replace( 'rgb(', '', $color_name );
+		$color_name = str_replace( ')', '', $color_name );
+		$rgb = explode( ',', $color_name );
+		return '#' . sprintf( '%02x', $rgb['0'] ) . sprintf( '%02x', $rgb['1'] ) . sprintf( '%02x', $rgb['2'] );
 	}
 
-	// standard 147 HTML color names
-	$colors  =  array(
+	// standard 147 HTML color names.
+	$colors  = array(
 		'aliceblue' => 'F0F8FF',
 		'antiquewhite' => 'FAEBD7',
 		'aqua' => '00FFFF',
@@ -502,27 +537,29 @@ function edac_convert_color_names($color_name)
 		'white' => 'FFFFFF',
 		'whitesmoke' => 'F5F5F5',
 		'yellow' => 'FFFF00',
-		'yellowgreen' => '9ACD32'
+		'yellowgreen' => '9ACD32',
 	);
 
-	$color_name = strtolower($color_name);
-	$color_name = trim(str_replace('!important', '', $color_name));
+	$color_name = strtolower( $color_name );
+	$color_name = trim( str_replace( '!important', '', $color_name ) );
 
-	if (isset($colors[$color_name])) {
-		return ('#' . $colors[$color_name]);
+	if ( isset( $colors[ $color_name ] ) ) {
+		return ( '#' . $colors[ $color_name ] );
 	} else {
-		return ($color_name);
+		return ( $color_name );
 	}
 }
 
 /**
- * check background style for color
+ * Check background style for color
+ *
+ * @param string $background_rule string of background.
+ * @return string
  */
-function edac_check_color_match2($background_rule)
-{
+function edac_check_color_match2( $background_rule ) {
 
-	// standard 147 HTML color names
-	$colors  =  array(
+	// standard 147 HTML color names.
+	$colors  = array(
 		'aliceblue' => 'F0F8FF',
 		'antiquewhite' => 'FAEBD7',
 		'aqua' => '00FFFF',
@@ -669,59 +706,62 @@ function edac_check_color_match2($background_rule)
 		'white' => 'FFFFFF',
 		'whitesmoke' => 'F5F5F5',
 		'yellow' => 'FFFF00',
-		'yellowgreen' => '9ACD32'
+		'yellowgreen' => '9ACD32',
 	);
 
-	$background_rule = strtolower($background_rule);
-	$background_rule = trim(str_replace('!important', '', $background_rule));
+	$background_rule = strtolower( $background_rule );
+	$background_rule = trim( str_replace( '!important', '', $background_rule ) );
 
-	$rules = explode(' ', $background_rule);
+	$rules = explode( ' ', $background_rule );
 
-	foreach ($rules as $key => $value) {
+	foreach ( $rules as $key => $value ) {
 
-		if (array_key_exists($value, $colors)) {
-			return $colors[$value];
+		if ( array_key_exists( $value, $colors ) ) {
+			return $colors[ $value ];
 		}
 
-		if (preg_match('/(rgb\(\s*\d{1,3},\s*\d{1,3},\s*\d{1,3}\)|\#[\w]{3,6})/i', $value,  $matches, PREG_OFFSET_CAPTURE)) {
+		if ( preg_match( '/(rgb\(\s*\d{1,3},\s*\d{1,3},\s*\d{1,3}\)|\#[\w]{3,6})/i', $value, $matches, PREG_OFFSET_CAPTURE ) ) {
 			return $matches[1][0];
 		}
 	}
-	return "";
+	return '';
 }
 
 /**
  * Replace CSS Variables with Value
  *
- * @param string $value
- * @param array $css_array
- * @return void
- * 
+ * @param string $value string to replace.
+ * @param array  $css_array css array.
+ * @return string
  */
-function edac_replace_css_variables($value, $css_array){
+function edac_replace_css_variables( $value, $css_array ) {
 
-	if(stripos($value,'var(--') !== false){
+	if ( stripos( $value, 'var(--' ) !== false ) {
 
-		// replace strings
-		$value = str_replace('var(','',$value);
-		$value = str_replace(')','',$value);
-		$value = str_replace('calc(','',$value);
+		// replace strings.
+		$value = str_replace( 'var(', '', $value );
+		$value = str_replace( ')', '', $value );
+		$value = str_replace( 'calc(', '', $value );
 
-		// explode and loop through css vars
-		$values = explode(',',$value);
-		if(is_array($css_array)){
-			foreach ($values as $value) {
+		// explode and loop through css vars.
+		$values = explode( ',', $value );
+		if ( is_array( $css_array ) ) {
+			foreach ( $values as $value ) {
 
-				// check for index in array
-				if(!isset($css_array[':root'])) continue;
+				// check for index in array.
+				if ( ! isset( $css_array[':root'] ) ) {
+					continue;
+				}
 
-				//check if is a css variable
-				if(substr( $value, 0, 2 ) === "--" && array_key_exists($value, $css_array[':root'])){
-					$found_value = $css_array[':root'][$value];
+				// check if is a css variable.
+				if ( substr( $value, 0, 2 ) === '--' && array_key_exists( $value, $css_array[':root'] ) ) {
+					$found_value = $css_array[':root'][ $value ];
 
-					// if value found break loop
-					if($found_value) break;
-				}else{
+					// if value found break loop.
+					if ( $found_value ) {
+						break;
+					}
+				} else {
 
 					// if not a variable return value.
 					$found_value = $value;
@@ -729,13 +769,12 @@ function edac_replace_css_variables($value, $css_array){
 			}
 		}
 
-		if( ! empty( $found_value )){
+		if ( ! empty( $found_value ) ) {
 			return $found_value;
-		}else{
+		} else {
 			return $value;
 		}
-
-	}else{
+	} else {
 		return $value;
 	}
 }

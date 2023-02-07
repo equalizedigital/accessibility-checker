@@ -1,3 +1,11 @@
+<?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
+
+?>
 <div id="edac-tabs">
 	<ul class="edac-tabs">
 		<li class="edac-tab"><a role="button" aria-current="true" class="edac-tab-summary active" href="#edac-summary">Summary</a></li>

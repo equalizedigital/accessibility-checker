@@ -1,52 +1,56 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
 /**
- * Empty Button Rule
+ * Aria Hidden
  *
- * @param $content
- * @param $post
+ * @param array  $content Array of content to check.
+ * @param object $post Object to check.
  * @return array
- * 
+ *
  * <button></button>
  * <input type="button">
  * <input type="submit">
  * <input type="reset">
  * role="button"
  */
-function edac_rule_empty_button($content, $post)
-{
+function edac_rule_empty_button( $content, $post ) {
 	$dom = $content['html'];
-	$buttons = $dom->find('button, [role=button]');
-	$inputs = $dom->find('input[type=button], input[type=submit], input[type=reset]');
-	$errors = [];
+	$buttons = $dom->find( 'button, [role=button]' );
+	$inputs = $dom->find( 'input[type=button], input[type=submit], input[type=reset]' );
+	$errors = array();
 
-	// check buttons
-	foreach ($buttons as $button) {
+	// check buttons.
+	foreach ( $buttons as $button ) {
 		if (
-			str_ireplace(array(' ', '&nbsp;', '-', '_'), '', trim($button->plaintext)) == ""
-			and $button->getAttribute('aria-label') == ""
-			and $button->getAttribute('title') == ""
+			str_ireplace( array( ' ', '&nbsp;', '-', '_' ), '', trim( $button->plaintext ) ) == ''
+			&& $button->getAttribute( 'aria-label' ) == ''
+			&& $button->getAttribute( 'title' ) == ''
 		) {
 
 			$error_code = $button->outertext;
-			$image = $button->find('img');
-			$input = $button->find('input');
-			$i = $button->find('i');
+			$image = $button->find( 'img' );
+			$input = $button->find( 'input' );
+			$i = $button->find( 'i' );
 
 			if (
-				$error_code != ""
-				and (!isset($image[0]) or trim($image[0]->getAttribute('alt')) == "")
-				and (!isset($input[0]) or trim($input[0]->getAttribute('value')) == "")
-				and (!isset($i[0]) or (trim($i[0]->getAttribute('title')) == "") and trim($i[0]->getAttribute('aria-label')) == "")
+				'' !== $error_code
+				&& ( ! isset( $image[0] ) || trim( $image[0]->getAttribute( 'alt' ) ) == '' )
+				&& ( ! isset( $input[0] ) || trim( $input[0]->getAttribute( 'value' ) ) == '' )
+				&& ( ! isset( $i[0] ) || ( trim( $i[0]->getAttribute( 'title' ) ) == '' ) && trim( $i[0]->getAttribute( 'aria-label' ) ) == '' )
 			) {
 				$errors[] = $error_code;
 			}
 		}
 	}
 
-	// check inputs
-	foreach ($inputs as $input) {
-		if($input->getAttribute('value') == ""){
+	// check inputs.
+	foreach ( $inputs as $input ) {
+		if ( $input->getAttribute( 'value' ) == '' ) {
 			$errors[] = $input->outertext;
 		}
 	}

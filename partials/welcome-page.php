@@ -1,24 +1,33 @@
+<?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
+
+?>
+
 <div class="wrap">
 
 	<div class="edac-welcome">
 		<div class="edac-welcome-header">
 			<div class="edac-welcome-header-right">
 				<a href="https://equalizedigital.com/" target="_blank">
-					<img src="<?php echo plugin_dir_url( __DIR__ ); ?>assets/images/edac-logo.png" alt="Link to Equalize Digital Website">
+					<img src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/edac-logo.png" alt="Link to Equalize Digital Website">
 				</a>
 			</div>
 			<div class="edac-welcome-header-left">
 				<h1 class="edac-welcome-title">
 					<?php
-					if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') == true && get_transient( 'edacp_license_valid' ) == true){
-						$title = esc_html( get_admin_page_title() ).' Pro';
-						$version = EDACP_VERSION;
-					}else{
-						$title = esc_html( get_admin_page_title() );
-						$version = EDAC_VERSION;
+					if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) === true && (bool) get_transient( 'edacp_license_valid' ) === true ) {
+						$welcome_title = esc_html( get_admin_page_title() ) . ' Pro';
+						$version       = EDACP_VERSION;
+					} else {
+						$welcome_title = esc_html( get_admin_page_title() );
+						$version       = EDAC_VERSION;
 					}
-					
-					echo $title.' - '.$version;
+
+					echo esc_html( $welcome_title . ' - ' . $version );
 					?>
 				</h1>
 				<h2 class="edac-welcome-subtitle">WordPress Accessibility Auditing by <a href="https://equalizedigital.com/" target="_blank">Equalize Digital</a></h2>
@@ -29,7 +38,7 @@
 				<h3 class="edac-welcome-section-title">Quick Start Guide</h3>
 				<p>Accessibility Checker is here to help you make your website more accessible, whether you're new to website accessibility or a seasoned pro. If you've installed the plugin for the first time, follow these steps to get started checking your content:</p>
 				<ol>
-					<li>Visit the <a href="<?php echo get_bloginfo('url'); ?>/wp-admin/admin.php?page=accessibility_checker_settings">Settings Page</a> to configure checking settings and simplified summary position.</li>
+					<li>Visit the <a href="<?php echo esc_url( get_bloginfo( 'url' ) ); ?>/wp-admin/admin.php?page=accessibility_checker_settings">Settings Page</a> to configure checking settings and simplified summary position.</li>
 					<li>Go to the edit screen for the post or page that you would like to check; in the free version of Accessibility Checker, scan results are only visible on post and page edit screens.</li>
 					<li>Find the Accessibility Checker meta box on your edit screen. It is typically located below your content. If you are using a front-end page builder, you will need to visit the backend edit screen to view Accessibility Checker results as they are not visible on the front end.</li>
 					<li>If there are errors or warnings present on your page or post, open the details tab in Accessibility Checker to see more information about those errors or warnings and how to find them on the page.</li>
@@ -43,10 +52,15 @@
 				<p><a href="https://equalizedigital.com/accessibility-checker/getting-started-quick-guide/#vidtranscript">Read Video Transcript</a></p>
 			</div>
 		</div>
-		<div class="edac-welcome-section edac-welcome-section-documentation-support <?php if(get_transient( 'edacp_license_valid' ) == false) echo 'edac-show-pro-callout'; ?>">
-			<?php if(get_transient( 'edacp_license_valid' ) == false){ ?>
+		<div class="edac-welcome-section edac-welcome-section-documentation-support 
+		<?php
+		if ( (bool) get_transient( 'edacp_license_valid' ) === false ) {
+			echo 'edac-show-pro-callout';}
+		?>
+		">
+			<?php if ( (bool) get_transient( 'edacp_license_valid' ) === false ) { ?>
 				<div class="edac-welcome-pro-callout">
-					<?php include('pro-callout.php'); ?>
+					<?php include 'pro-callout.php'; ?>
 				</div>
 			<?php } ?>
 			<div class="edac-welcome-documentation-support">

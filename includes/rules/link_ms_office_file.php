@@ -1,26 +1,37 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
-function edac_rule_link_ms_office_file($content, $post){
-	
-	// rule vars
-    $dom = $content['html'];
-    $file_extensions = ['.doc','.docx','.xls','.xlsx','.ppt','.pptx','.pps','.ppsx'];
-    $errors = [];
+/**
+ * Link MS Office File Check
+ *
+ * @param array  $content Array of content to check.
+ * @param object $post Object to check.
+ * @return array
+ */
+function edac_rule_link_ms_office_file( $content, $post ) {
 
-    $as = $dom->find('a');
-	foreach ($as as $a){
+	$dom = $content['html'];
+	$file_extensions = array( '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx', '.pps', '.ppsx' );
+	$errors = array();
 
-        if($a->getAttribute('href')){
-            if($file_extensions){
-                foreach($file_extensions as $file_extension){
-                    if(strpos(strtolower($a), $file_extension)){
-                        $link_code = $a;
+	$as = $dom->find( 'a' );
+	foreach ( $as as $a ) {
 
-                        $errors[] = $link_code;
-                    }
-                }
-            }
-        }
-    }
-    return $errors;
+		if ( $a->getAttribute( 'href' ) ) {
+			if ( $file_extensions ) {
+				foreach ( $file_extensions as $file_extension ) {
+					if ( strpos( strtolower( $a ), $file_extension ) ) {
+						$link_code = $a;
+
+						$errors[] = $link_code;
+					}
+				}
+			}
+		}
+	}
+	return $errors;
 }

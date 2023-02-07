@@ -1,4 +1,9 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
 
 /**
  * Oxygen Builder on save
@@ -10,8 +15,7 @@
  * @param mixed $meta_value
  * @return void
  */
-function edac_oxygen_builder_save_post( $meta_id, $post_id, $meta_key, $meta_value )
-{
+function edac_oxygen_builder_save_post( $meta_id, $post_id, $meta_key, $meta_value ) {
 	if($meta_key == 'ct_builder_shortcodes'){
 
 		$post = get_post($post_id, OBJECT);
@@ -41,7 +45,7 @@ function edac_post_on_load()
  * Post on save
  *
  * @param int $post_ID
- * @param array $post
+ * @param object $post
  * @param bool $update
  * @return void
  */
@@ -49,7 +53,7 @@ function edac_save_post($post_ID, $post, $update)
 {
 	// check post type
 	$post_types = get_option('edac_post_types');
-	if (is_array($post_types) && !in_array($post->post_type, $post_types))
+	if ( is_array( $post_types ) && !in_array( $post->post_type, $post_types ) )
 		return;
 	
 	// prevents first past of save_post due to meta boxes on post editor in gutenberg
@@ -79,7 +83,7 @@ function edac_save_post($post_ID, $post, $update)
  * Validate
  *
  * @param int $post_ID
- * @param array $post
+ * @param object $post
  * @return void
  */
 function edac_validate($post_ID, $post, $action)
@@ -201,7 +205,7 @@ function edac_get_content($post)
 	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
 
 	// http authorization
-	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') && get_transient( 'edacp_license_valid' ) == true && $username && $password){
+	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') && (bool) get_transient( 'edacp_license_valid' ) == true && $username && $password){
 		$context_opts = array(
 			'http' => array(
 				'header'  => "Authorization: Basic " . base64_encode("$username:$password")
@@ -273,7 +277,7 @@ function edac_get_content($post)
 /**
  * Set drafts post_status to publish momentarily while getting page html
  *
- * @param array $query
+ * @param object $query
  * @return void
  */
 function edac_show_draft_posts( $query ) {
