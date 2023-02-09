@@ -19,7 +19,7 @@
 			<div class="edac-welcome-header-left">
 				<h1 class="edac-welcome-title">
 					<?php
-					if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) === true && (bool) get_transient( 'edacp_license_valid' ) === true ) {
+					if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) === true && EDACP_KEY_VALID === true ) {
 						$welcome_title = esc_html( get_admin_page_title() ) . ' Pro';
 						$version       = EDACP_VERSION;
 					} else {
@@ -54,11 +54,11 @@
 		</div>
 		<div class="edac-welcome-section edac-welcome-section-documentation-support 
 		<?php
-		if ( (bool) get_transient( 'edacp_license_valid' ) === false ) {
+		if ( EDACP_KEY_VALID === false ) {
 			echo 'edac-show-pro-callout';}
 		?>
 		">
-			<?php if ( (bool) get_transient( 'edacp_license_valid' ) === false ) { ?>
+			<?php if ( EDACP_KEY_VALID === false ) { ?>
 				<div class="edac-welcome-pro-callout">
 					<?php include 'pro-callout.php'; ?>
 				</div>
