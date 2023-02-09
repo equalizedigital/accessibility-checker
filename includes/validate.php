@@ -205,7 +205,7 @@ function edac_get_content($post)
 	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
 
 	// http authorization
-	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') && (bool) get_transient( 'edacp_license_valid' ) == true && $username && $password){
+	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') && EDACP_KEY_VALID == true && $username && $password){
 		$context_opts = array(
 			'http' => array(
 				'header'  => "Authorization: Basic " . base64_encode("$username:$password")

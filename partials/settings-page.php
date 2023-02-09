@@ -13,11 +13,6 @@ $settings_tab_items = array(
 		'order' => 1,
 	),
 	array(
-		'slug'  => 'license',
-		'label' => 'License',
-		'order' => 3,
-	),
-	array(
 		'slug'  => 'system_info',
 		'label' => 'System Info',
 		'order' => 4,
@@ -75,7 +70,7 @@ nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
 		<?php if ( null === $settings_tab ) { ?>
 			<div class="edac-settings-general 
 			<?php
-			if ( (bool) get_transient( 'edacp_license_valid' ) === false ) {
+			if ( EDACP_KEY_VALID === false ) {
 				echo 'edac-show-pro-callout';}
 			?>
 			">
@@ -86,22 +81,11 @@ nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
 						submit_button();
 					?>
 				</form>
-				<?php if ( (bool) get_transient( 'edacp_license_valid' ) === false ) { ?>
+				<?php if ( EDACP_KEY_VALID === false ) { ?>
 					<div><?php include 'pro-callout.php'; ?></div>
 				<?php } ?>
 			</div>
 		<?php } ?>
-
-		<?php if ( 'license' === $settings_tab ) { ?>
-			<h2><?php esc_html_e( 'License Settings' ); ?></h2>
-			<?php
-			if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
-				do_action( 'edac_license_tab' );
-			} else {
-				include 'pro-callout.php';
-			}
-		}
-		?>
 
 		<?php if ( 'system_info' === $settings_tab ) { ?>
 			<h2><?php esc_html_e( 'System Info' ); ?></h2>	

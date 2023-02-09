@@ -107,6 +107,13 @@ if ( ! defined( 'EDAC_ANWW_ACTIVE' ) ) {
 	}
 }
 
+/**
+ * Key Valid.
+ */
+if ( ! defined( 'EDACP_KEY_VALID' ) ) {
+	define( 'EDACP_KEY_VALID', false );
+}
+
 // Enable EDAC_DEBUG mode.
 if ( ! defined( 'EDAC_DEBUG' ) ) {
 	define( 'EDAC_DEBUG', false );
