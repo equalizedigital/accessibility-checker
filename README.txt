@@ -175,6 +175,10 @@ No, Accessibility Checker runs completely on your server and does not require yo
 == Changelog ==
 
 = 1.3.14 =
+Remove: license tab
+Updated: license checks
+
+= 1.3.14 =
 Added: security fixes
 
 = 1.3.13 =
