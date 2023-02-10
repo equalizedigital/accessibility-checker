@@ -174,6 +174,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.16 =
+Fixed: issue with ignored issues being removed on post save
+Fixed: issue with escaped html displaying on simplified summary
+Fixed: Ignored items label
+
 = 1.3.15 =
 Remove: license tab
 Updated: license checks
