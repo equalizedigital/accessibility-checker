@@ -358,7 +358,7 @@
               $(".edac-details-rule-count-ignore", rule).show();
             }
             count_ignore.toString();
-            $(".edac-details-rule-count-ignore", rule).html(count_ignore);
+            $(".edac-details-rule-count-ignore", rule).html(count_ignore + ' Ignored Items');
 
             // refresh page on ignore or unignore in pro
             if($('body').hasClass('accessibility-checker_page_accessibility_checker_issues') || $('body').hasClass('accessibility-checker_page_accessibility_checker_ignored')){
