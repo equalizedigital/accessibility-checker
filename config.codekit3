@@ -316,6 +316,17 @@
       "sC" : 3,
       "tS" : 0
     },
+    "\/assets\/js\/accessibility-checker.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/assets\/js\/accessibility-checker-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
     "\/assets\/sass\/_helpers.scss" : {
       "aP" : 0,
       "bl" : 0,
@@ -357,6 +368,21 @@
       "oA" : 0,
       "oAP" : "\/assets\/sass\/accessibility-checker-admin.css",
       "oF" : 0,
+      "oS" : 0,
+      "pg" : 0,
+      "sct" : 1
+    },
+    "\/assets\/sass\/accessibility-checker.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "dP" : 10,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/assets\/css\/accessibility-checker.css",
+      "oF" : 2,
       "oS" : 0,
       "pg" : 0,
       "sct" : 1

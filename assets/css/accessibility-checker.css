@@ -1,0 +1,55 @@
+.edac-highlight {
+  display: block;
+  clear: both;
+  outline: dashed 4px transparent;
+  outline-offset: 5px;
+  outline-color: magenta; }
+  .edac-highlight-error .edac-highlight-btn {
+    background: #b30f0f url("../images/error icon white.png") center center no-repeat;
+    background-size: 34px 34px; }
+  .edac-highlight-warning .edac-highlight-btn {
+    background: #f3cd1e url("../images/warning icon navy.png") center center no-repeat !important;
+    border: solid 3px #072446 !important;
+    background-size: 24px 24px !important; }
+  .edac-highlight-btn {
+    width: 40px;
+    height: 40px;
+    display: block;
+    font-size: 0;
+    border-radius: 50%;
+    margin-bottom: 7px; }
+    .edac-highlight-btn:hover .edac-highlight-btn {
+      display: block; }
+  .edac-highlight-tooltip {
+    max-width: 400px;
+    color: #ffffff;
+    background-color: #072446;
+    position: absolute;
+    font-size: 14px !important;
+    font-family: sans-serif;
+    padding: 10px 15px;
+    top: 0;
+    left: 50px;
+    border-radius: 5px;
+    z-index: 99;
+    text-align: left; }
+    .edac-highlight-tooltip:before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-right: 8px solid #072446;
+      position: absolute;
+      left: -8px;
+      top: 12px; }
+    .edac-highlight-tooltip-title {
+      font-size: 16px !important; }
+    .edac-highlight-tooltip-reference {
+      color: #f3cd1e !important;
+      text-decoration: none !important;
+      margin-left: 5px; }
+      .edac-highlight-tooltip-reference:hover, .edac-highlight-tooltip-reference:focus {
+        color: #ffffff !important; }
+      .edac-highlight-tooltip-reference:focus {
+        outline: solid 2px #f3cd1e !important; }

@@ -1,0 +1,88 @@
+@import "variables";
+@import "helpers";
+
+.edac-highlight{
+    display: block;
+    clear: both;
+    outline: dashed 4px transparent;
+    outline-offset: 5px;
+    //position: relative;
+    //outline-color: #ff00ff;
+    outline-color: magenta;
+    &-error{
+        //outline-color: $color-red;
+        .edac-highlight-btn{
+            background: $color-red url("../images/error icon white.png") center center no-repeat;
+            background-size: 34px 34px;
+        }
+    }
+    &-warning{
+        //outline-color: $color-orange;
+        .edac-highlight-btn{
+            background: $color-orange url("../images/warning icon navy.png") center center no-repeat !important;
+            border: solid 3px $color-blue-dark !important;
+            background-size: 24px 24px !important;
+        }
+    }
+    &-btn{
+        width: 40px;
+        height: 40px;
+        display: block;
+        font-size: 0;
+        border-radius: 50%;
+        // position: absolute;
+        // top: -36px;
+        // left: 0;
+        margin-bottom: 7px;
+        &-warning{
+
+        }
+        &-error{
+
+        }
+        &:hover{
+            .edac-highlight-btn{
+                display: block;
+            }
+        }
+    }
+    &-tooltip{
+        max-width: 400px;
+        color: $color-white;
+        background-color: $color-blue-dark;
+        position: absolute;
+        font-size: 14px !important;
+        font-family: sans-serif;
+        padding: 10px 15px;
+        top: 0;
+        left: 50px;
+        border-radius: 5px;
+        z-index: 99;
+        text-align: left;
+        &:before{
+            content: '';
+            width: 0; 
+            height: 0; 
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent; 
+            border-right:8px solid $color-blue-dark;
+            position: absolute;
+            left: -8px;
+            top: 12px;
+        }
+        &-title{
+            font-size: 16px !important;
+        }
+        &-reference{
+            color: $color-yellow !important;
+            text-decoration: none !important;
+            margin-left: 5px;
+            &:hover, &:focus{
+                color: $color-white !important;
+            }
+            &:focus{
+                outline: solid 2px $color-yellow !important;
+            }
+        }
+    }
+}

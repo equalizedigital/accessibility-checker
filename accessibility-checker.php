@@ -203,6 +203,8 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
  */
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'edac_enqueue_styles' );
 add_action( 'admin_init', 'edac_update_database', 10 );
 add_action( 'add_meta_boxes', 'edac_register_meta_boxes' );
 add_action( 'admin_menu', 'edac_add_options_page' );
@@ -230,6 +232,8 @@ add_action( 'admin_notices', 'edac_password_protected_notice' );
 add_action( 'wp_ajax_edac_review_notice_ajax', 'edac_review_notice_ajax' );
 add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
+add_action( 'wp_ajax_edac_frontend_highlight_ajax', 'edac_frontend_highlight_ajax' );
+add_action( 'wp_ajax_nopriv_edac_frontend_highlight_ajax', 'edac_frontend_highlight_ajax' );
 
 /**
  * Create/Update database
@@ -1042,6 +1046,21 @@ function edac_update_post_meta( $rule ) {
 }
 
 /**
+ * Documentation Link.
+ *
+ * @param array $rule to get link from.
+ * @return string markup for link.
+ */
+function edac_documentation_link( $rule ) {
+	global $wp_version;
+	$days_active = edac_days_active();
+
+	if( ! $rule['info_url'] || ! isset( $rule['slug'] ) ) return '';
+
+	return $rule['info_url'] . '?utm_source=accessibility-checker&utm_medium=software&utm_term=' . esc_html( $rule['slug'] ) . '&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . $days_active . '';
+}
+
+/**
  * Details Ajax
  *
  * @return void
@@ -1172,7 +1191,7 @@ function edac_details_ajax() {
 
 			$expand_rule = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid ), ARRAY_A ) );
 
-			$tool_tip_link = $rule['info_url'] . '?utm_source=accessibility-checker&utm_medium=software&utm_term=' . esc_html( $rule['slug'] ) . '&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . $days_active . '';
+			$tool_tip_link = edac_documentation_link( $rule );
 
 			$html .= '<div class="edac-details-rule">';
 
@@ -1269,6 +1288,10 @@ function edac_details_ajax() {
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
 
 							$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
+
+					if ( 'missing_headings' !== $rule['slug'] ) {
+						$html .= '<a href="' . get_the_permalink( $postid ) . '?edac=' . $id . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . __( 'View, opens a new window', 'edac' ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>View on page</a>';
+					}
 
 						$html .= '</div>';
 
@@ -1754,4 +1777,50 @@ function edac_black_friday_notice() {
 			<p>Black Friday special: upgrade to a paid version of Accessibility Checker from November 20-30 and get 50% off! Full site scanning, site-wide open issues report, ignore logs, and more. <a href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=WPadmin&utm_medium=banner&utm_campaign=BlackFriday">Upgrade Now</a></p>
 			</div>';
 	}
+}
+
+/**
+ * Frontend highlight Ajax
+ *
+ * @return void
+ *
+ *  - '-1' means that nonce could not be varified
+ *  - '-2' means that the review action value was not specified
+ *  - '-3' means that update option wasn't successful
+ */
+function edac_frontend_highlight_ajax() {
+
+	// nonce security.
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+		$error = new WP_Error( '-1', 'Permission Denied' );
+		wp_send_json_error( $error );
+	}
+
+	if ( ! isset( $_REQUEST['id'] ) ) {
+		$error = new WP_Error( '-2', 'The id value was not set' );
+		wp_send_json_error( $error );
+	}
+
+	global $wpdb;
+	$html                  = '';
+	$table_name            = $wpdb->prefix . 'accessibility_checker';
+	$id                    = intval( $_REQUEST['id'] );
+	$siteid                = get_current_blog_id();
+	$results               = $wpdb->get_row( $wpdb->prepare( 'SELECT id, rule, object, ruletype FROM ' . $table_name . ' where id = %d and siteid = %d', $id, $siteid ), ARRAY_A );
+	$rules                 = edac_register_rules();
+	$rule                  = edac_filter_by_value( $rules, 'slug', $results['rule'] )[0];
+	$results['rule_title'] = $rule['title'];
+	$results['summary']    = $rule['summary'];
+	$results['link']       = edac_documentation_link( $rule );
+	$results['object']     = html_entity_decode( esc_html( $results['object'] ) );
+
+	if ( ! $results ) {
+
+		$error = new WP_Error( '-3', 'Object query returned no results' );
+		wp_send_json_error( $error );
+
+	}
+
+	wp_send_json_success( json_encode( $results ) );
+
 }
