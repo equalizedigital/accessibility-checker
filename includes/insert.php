@@ -59,7 +59,7 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $object ) {
 		foreach ( $results as $row ) {
 
 			// if being ignored, don't overwrite value.
-			if ( 1 === $row['ignre'] ) {
+			if ( true === (bool) $row['ignre'] ) {
 				$rule_data['ignre'] = 1;
 			}
 
