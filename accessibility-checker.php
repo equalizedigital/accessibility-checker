@@ -1164,7 +1164,7 @@ function edac_details_ajax() {
 			$ignores       = array_column( $results, 'ignre' );
 			if ( $ignores ) {
 				foreach ( $ignores as $ignore ) {
-					if ( 1 === $ignore ) {
+					if ( true === (bool) $ignore ) {
 						$count_ignored++;
 					}
 				}
@@ -1531,7 +1531,7 @@ function edac_get_simplified_summary( int $post = null ) {
 	if ( null === $post ) {
 		$post = get_the_ID();
 	}
-	echo esc_html( edac_simplified_summary_markup( $post ) );
+	echo edac_simplified_summary_markup( $post );
 }
 
 /**
