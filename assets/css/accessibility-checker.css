@@ -1,5 +1,5 @@
 .edac-highlight {
-  display: block;
+  display: inline-block;
   clear: both;
   outline: dashed 4px transparent;
   outline-offset: 5px;

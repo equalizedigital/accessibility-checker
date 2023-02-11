@@ -30,38 +30,60 @@
             data: { action: 'edac_frontend_highlight_ajax', id: edac_id, nonce: edac_script_vars.nonce }
         }).done(function( response ) {
             if( true === response.success ) {
-
+                
+                // Get the response.
                 let response_json = $.parseJSON( response.data );
-                console.log(response_json);
-
-                // parse the response
+                
+                // Parse the response.
                 var html = $.parseHTML( response_json.object );
 
+                // 
                 var nodeName = html[0].nodeName;
-            
+                
+                console.log(response_json);
                 console.log(html);
                 console.log(nodeName);
 
-                var id = html[0]['id'];
-                var classes = html[0]['classList']['value'];
+                //var id = html[0]['id'];
+                //var classes = html[0]['classList'];
+                /*
+                classes.each(function( i ) {
+                    console.log(this);
+                });
+                */
+                //console.log('CLASSES: ' + classes);
 
                 var innerText = html[0]['innerText'];
 
                 //console.log(html[0]['attributes']);
 
                 var element_selector = nodeName;
-                var atributes_allowed = ['href','src', 'alt', 'aria-hidden', 'role', 'focusable', 'width', 'height'];
+                var atributes_allowed = [
+                    'id',
+                    'class',
+                    'href',
+                    'src',
+                    'alt',
+                    'aria-hidden',
+                    'role',
+                    'focusable',
+                    'width',
+                    'height',
+                    'aria-label',
+                    'rel',
+                    'target'
+                ];
                 
                 
-                if(id && nodeName != 'IMG'){
-                    element_selector += '#'+id;
-                }
-                if(classes && nodeName != 'IMG'){
+                //if(id && nodeName != 'IMG'){
+                    //element_selector += '#'+id;
+                //}
+                //if(classes && nodeName != 'IMG'){
                     // replace multiple spaces, tabs, new lines etc.
                     // cound use for only spaces /  +/g
-                    classes = classes.replace(/\s\s+/g, '.');
-                    element_selector += '.'+classes.replace(" ",".");
-                }
+                    //classes = classes.replace(/\s\s+/g, '.');
+                    //element_selector += '.'+classes.replace(" ",".");
+                //}
                 if(innerText && nodeName == 'A'){
                     element_selector += ":contains('"+innerText+"')";
                 }
@@ -69,11 +91,11 @@
 
                 var attribute_selector = '';
                 $(html[0]['attributes']).each(function( i ) {
-                //console.log(this.nodeName);
-                //console.log(this.nodeValue);
-                if(jQuery.inArray(this.nodeName, atributes_allowed) !== -1 && this.nodeValue != ''){
-                    attribute_selector += '['+this.nodeName+'="'+this.nodeValue+'"]';
-                }
+                    //console.log(this.nodeName);
+                    //console.log(this.nodeValue);
+                    if(jQuery.inArray(this.nodeName, atributes_allowed) !== -1 && this.nodeValue != ''){
+                        attribute_selector += '['+this.nodeName+'="'+this.nodeValue+'"]';
+                    }
                 });
                 //console.log('attribute_selector:'+attribute_selector);
 
