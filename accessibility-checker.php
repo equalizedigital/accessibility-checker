@@ -1821,6 +1821,6 @@ function edac_frontend_highlight_ajax() {
 
 	}
 
-	wp_send_json_success( json_encode( $results ) );
+	wp_send_json_success( wp_json_encode( $results ) );
 
 }
