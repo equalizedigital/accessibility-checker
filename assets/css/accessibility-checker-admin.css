@@ -399,29 +399,30 @@
             word-break: break-word; }
           #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions {
             border-right: none; }
-            #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore {
+            #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight-front {
               color: #3273aa;
               border: none;
               background: transparent;
               display: flex;
-              align-items: center; }
-              #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore svg {
+              align-items: center;
+              text-decoration: none; }
+              #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore svg, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight svg, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight-front svg {
                 width: 18px;
                 height: auto;
                 display: inline-block;
                 margin-right: 2px; }
-                #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore svg path {
+                #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight-front svg path {
                   fill: #3273aa; }
-              #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:hover, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:focus {
+              #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:hover, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:focus, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight:hover, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight:focus, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight-front:hover, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight-front:focus {
                 color: #006600;
                 cursor: pointer; }
-                #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:hover svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:focus svg path {
+                #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:hover svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore:focus svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight:hover svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight:focus svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight-front:hover svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight-front:focus svg path {
                   fill: #006600; }
-              #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore.active {
+              #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore.active, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight.active, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight-front.active {
                 color: #b30f0f; }
-                #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore.active svg path {
+                #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore.active svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight.active svg path, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight-front.active svg path {
                   fill: #b30f0f; }
-              #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore .dashicons {
+              #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore .dashicons, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight .dashicons, #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-highlight-front .dashicons {
                 margin-right: 3px; }
           #edac-meta-box #edac-tabs .edac-details-rule-records-record-ignore {
             grid-column: 1 / 4;

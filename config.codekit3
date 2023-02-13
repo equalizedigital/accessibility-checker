@@ -37,6 +37,18 @@
       "oF" : 0,
       "pg" : 0
     },
+    "\/assets\/css\/accessibility-checker.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/assets\/css\/accessibility-checker-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
     "\/assets\/images\/checkmark icon green.png" : {
       "ft" : 32768,
       "iS" : 14817,
@@ -153,6 +165,26 @@
       "ou" : "lpckwebp-none",
       "q" : 100,
       "rq" : 75
+    },
+    "\/assets\/images\/highlight-icon-error.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/assets\/images\/highlight-icon-error.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/assets\/images\/highlight-icon-warning.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/assets\/images\/highlight-icon-warning.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
     },
     "\/assets\/images\/ignore icon blue.png" : {
       "ft" : 32768,
@@ -316,6 +348,17 @@
       "sC" : 3,
       "tS" : 0
     },
+    "\/assets\/js\/accessibility-checker-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/assets\/js\/accessibility-checker-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
     "\/assets\/js\/accessibility-checker.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -366,8 +409,8 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/assets\/sass\/accessibility-checker-admin.css",
-      "oF" : 0,
+      "oAP" : "\/assets\/css\/accessibility-checker-admin.css",
+      "oF" : 2,
       "oS" : 0,
       "pg" : 0,
       "sct" : 1

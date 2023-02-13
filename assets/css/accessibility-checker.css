@@ -5,21 +5,21 @@
   outline-offset: 5px;
   outline-color: magenta; }
   .edac-highlight-error .edac-highlight-btn {
-    background: #b30f0f url("../images/error icon white.png") center center no-repeat;
-    background-size: 34px 34px; }
+    background: transparent url("../images/highlight-icon-error.svg") center center no-repeat;
+    background-size: 46px 46px; }
   .edac-highlight-warning .edac-highlight-btn {
-    background: #f3cd1e url("../images/warning icon navy.png") center center no-repeat !important;
-    border: solid 3px #072446 !important;
-    background-size: 24px 24px !important; }
+    background: transparent url("../images/highlight-icon-warning.svg") center center no-repeat !important; }
   .edac-highlight-btn {
-    width: 40px;
-    height: 40px;
+    width: 46px;
+    height: 46px;
     display: block;
     font-size: 0;
     border-radius: 50%;
-    margin-bottom: 7px; }
+    margin: 5px; }
     .edac-highlight-btn:hover .edac-highlight-btn {
       display: block; }
+    .edac-highlight-btn:hover, .edac-highlight-btn:focus {
+      outline: solid 5px rgba(0, 208, 255, 0.75); }
   .edac-highlight-tooltip {
     max-width: 400px;
     color: #ffffff;
@@ -43,6 +43,11 @@
       position: absolute;
       left: -8px;
       top: 12px; }
+    .edac-highlight-tooltip-left:before {
+      border-right: none;
+      border-left: 8px solid #072446;
+      right: -8px;
+      left: auto; }
     .edac-highlight-tooltip-title {
       font-size: 16px !important; }
     .edac-highlight-tooltip-reference {

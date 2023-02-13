@@ -6,34 +6,25 @@
     clear: both;
     outline: dashed 4px transparent;
     outline-offset: 5px;
-    //position: relative;
-    //outline-color: #ff00ff;
     outline-color: magenta;
     &-error{
-        //outline-color: $color-red;
         .edac-highlight-btn{
-            background: $color-red url("../images/error icon white.png") center center no-repeat;
-            background-size: 34px 34px;
+            background: transparent url("../images/highlight-icon-error.svg") center center no-repeat;
+            background-size: 46px 46px;
         }
     }
     &-warning{
-        //outline-color: $color-orange;
         .edac-highlight-btn{
-            background: $color-orange url("../images/warning icon navy.png") center center no-repeat !important;
-            border: solid 3px $color-blue-dark !important;
-            background-size: 24px 24px !important;
+            background: transparent url("../images/highlight-icon-warning.svg") center center no-repeat !important;
         }
     }
     &-btn{
-        width: 40px;
-        height: 40px;
+        width: 46px;
+        height: 46px;
         display: block;
         font-size: 0;
         border-radius: 50%;
-        // position: absolute;
-        // top: -36px;
-        // left: 0;
-        margin-bottom: 7px;
+        margin: 5px;
         &-warning{
 
         }
@@ -44,6 +35,9 @@
             .edac-highlight-btn{
                 display: block;
             }
+        }
+        &:hover, &:focus {
+           outline: solid 5px rgba(0,208,255,.75);
         }
     }
     &-tooltip{
@@ -69,6 +63,14 @@
             position: absolute;
             left: -8px;
             top: 12px;
+        }
+        &-left{
+            &:before{
+                border-right: none;
+                border-left:8px solid $color-blue-dark;
+                right: -8px;
+                left: auto;
+            }
         }
         &-title{
             font-size: 16px !important;

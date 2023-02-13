@@ -524,12 +524,13 @@
             }
             &-actions {
               border-right: none;
-              &-ignore {
+              &-ignore, &-highlight, &-highlight-front {
                 color: $color-blue;
                 border: none;
                 background: transparent;
                 display: flex;
                 align-items: center;
+                text-decoration: none;
                 svg{
                   width: 18px;
                   height: auto;
