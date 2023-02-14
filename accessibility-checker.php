@@ -807,7 +807,7 @@ function edac_summary_ajax() {
 		$post_id = intval( $_REQUEST['post_id'] );
 		$summary = edac_summary( $post_id );
 		$html = '';
-		if ( $summary['readability'] <= 9 ) {
+		if ( $summary['content_grade'] <= 9 ) {
 			$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
 		} else {
 			$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
@@ -959,12 +959,12 @@ function edac_summary( $post_id ) {
 	// reading grade level.
 	$content_post = get_post( $post_id );
 
-	$content                = $content_post->post_content;
-	$content                = wp_filter_nohtml_kses( $content );
-	$content                = str_replace( ']]>', ']]&gt;', $content );
-	$text_statistics        = new TS\TextStatistics();
-	$content_grade          = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
-	$summary['readability'] = ( 0 === $content_grade ) ? 'N/A' : edac_ordinal( $content_grade );
+	$content                  = $content_post->post_content;
+	$content                  = wp_filter_nohtml_kses( $content );
+	$content                  = str_replace( ']]>', ']]&gt;', $content );
+	$text_statistics          = new TS\TextStatistics();
+	$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
+	$summary['readability']   = ( 0 === $content_grade ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
 	$summary['simplified_summary'] = get_post_meta( $post_id, '_edac_simplified_summary', $single = true ) ? true : false;
