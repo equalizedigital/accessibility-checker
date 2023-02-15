@@ -1290,7 +1290,7 @@ function edac_details_ajax() {
 							$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
 
 					if ( 'missing_headings' !== $rule['slug'] ) {
-						$html .= '<a href="' . get_the_permalink( $postid ) . '?edac=' . $id . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . __( 'View, opens a new window', 'edac' ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>View on page</a>';
+						$html .= '<a href="' . add_query_arg( 'edac', $id, get_the_permalink( $postid ) ) . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . __( 'View, opens a new window', 'edac' ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>View on page</a>';
 					}
 
 						$html .= '</div>';
@@ -1785,8 +1785,10 @@ function edac_black_friday_notice() {
  * @return void
  *
  *  - '-1' means that nonce could not be varified
- *  - '-2' means that the review action value was not specified
- *  - '-3' means that update option wasn't successful
+ *  - '-2' means that the id value was not set
+ *  - '-3' means that issue query returned no results
+ *  - '-4' means that rule value not set
+ *  - '-5' means that object query returned no results
  */
 function edac_frontend_highlight_ajax() {
 
@@ -1802,21 +1804,32 @@ function edac_frontend_highlight_ajax() {
 	}
 
 	global $wpdb;
-	$html                  = '';
-	$table_name            = $wpdb->prefix . 'accessibility_checker';
-	$id                    = intval( $_REQUEST['id'] );
-	$siteid                = get_current_blog_id();
-	$results               = $wpdb->get_row( $wpdb->prepare( 'SELECT id, rule, object, ruletype FROM ' . $table_name . ' where id = %d and siteid = %d', $id, $siteid ), ARRAY_A );
-	$rules                 = edac_register_rules();
-	$rule                  = edac_filter_by_value( $rules, 'slug', $results['rule'] )[0];
-	$results['rule_title'] = $rule['title'];
-	$results['summary']    = $rule['summary'];
-	$results['link']       = edac_documentation_link( $rule );
+	$table_name = $wpdb->prefix . 'accessibility_checker';
+	$id         = intval( $_REQUEST['id'] );
+	$siteid     = get_current_blog_id();
+	$results    = $wpdb->get_row( $wpdb->prepare( 'SELECT id, rule, object, ruletype FROM ' . $table_name . ' where id = %d and siteid = %d', $id, $siteid ), ARRAY_A );
+
+	if ( ! $results ) {
+		$error = new WP_Error( '-3', 'Issue query returned no results' );
+		wp_send_json_error( $error );
+	}
+
+	$rules = edac_register_rules();
+	$rule  = edac_filter_by_value( $rules, 'slug', $results['rule'] );
+
+	if ( ! $rule ) {
+		$error = new WP_Error( '-4', 'Rule value not set' );
+		wp_send_json_error( $error );
+	}
+
+	$results['rule_title'] = $rule[0]['title'];
+	$results['summary']    = $rule[0]['summary'];
+	$results['link']       = edac_documentation_link( $rule[0] );
 	$results['object']     = html_entity_decode( esc_html( $results['object'] ) );
 
 	if ( ! $results ) {
 
-		$error = new WP_Error( '-3', 'Object query returned no results' );
+		$error = new WP_Error( '-5', 'Object query returned no results' );
 		wp_send_json_error( $error );
 
 	}

@@ -186,7 +186,13 @@ function edac_filter_by_value( $array, $index, $value ) {
 			}
 		}
 	}
-	return array_values( $newarray );
+
+	if ( isset( $newarray ) && is_array( $newarray ) && count( $newarray ) ) {
+		return array_values( $newarray );
+	} else {
+		return null;
+	}
+	
 }
 
 /**
