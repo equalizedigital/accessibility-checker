@@ -51,9 +51,10 @@ function edac_enqueue_scripts() {
 		'edac',
 		'edac_script_vars',
 		array(
-			'postID'  => $post_id,
-			'nonce'   => wp_create_nonce( 'ajax-nonce' ),
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'postID'   => $post_id,
+			'nonce'    => wp_create_nonce( 'ajax-nonce' ),
+			'ajaxurl'  => admin_url( 'admin-ajax.php' ),
+			'loggedIn' => is_user_logged_in()
 		)
 	);
 
