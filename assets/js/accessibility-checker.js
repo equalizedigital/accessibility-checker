@@ -44,7 +44,9 @@
         };
 
         var edac_id = getUrlParameter('edac');
-        edac_frontend_highlight_ajax(edac_id);
+        if(edac_script_vars.loggedIn && edac_id){
+            edac_frontend_highlight_ajax(edac_id);
+        }
 
         function edac_frontend_highlight_ajax(edac_id) {
             $.ajax({
