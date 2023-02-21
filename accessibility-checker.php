@@ -964,7 +964,7 @@ function edac_summary( $post_id ) {
 	$content                  = str_replace( ']]>', ']]&gt;', $content );
 	$text_statistics          = new TS\TextStatistics();
 	$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
-	$summary['readability']   = ( 0 === $content_grade ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
+	$summary['readability']   = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
 	$summary['simplified_summary'] = get_post_meta( $post_id, '_edac_simplified_summary', $single = true ) ? true : false;
