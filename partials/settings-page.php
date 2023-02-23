@@ -70,7 +70,7 @@ nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
 		<?php if ( null === $settings_tab ) { ?>
 			<div class="edac-settings-general 
 			<?php
-			if ( EDACP_KEY_VALID === false ) {
+			if ( EDAC_KEY_VALID === false ) {
 				echo 'edac-show-pro-callout';}
 			?>
 			">
@@ -81,7 +81,7 @@ nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
 						submit_button();
 					?>
 				</form>
-				<?php if ( EDACP_KEY_VALID === false ) { ?>
+				<?php if ( EDAC_KEY_VALID === false ) { ?>
 					<div><?php include 'pro-callout.php'; ?></div>
 				<?php } ?>
 			</div>
