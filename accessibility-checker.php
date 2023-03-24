@@ -1,6 +1,6 @@
 <?php
 /**
- * Accessibility Checker Pluign.
+ * Accessibility Checker Plugin.
  *
  * @package Accessibility_Checker
  * @link    https://a11ychecker.com
