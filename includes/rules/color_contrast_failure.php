@@ -17,11 +17,14 @@
  */
 function edac_rule_color_contrast_failure( $content, $post ) {
 	// check links in content for style tags.
-	$dom = $content['html'];
-	$errors = array();
+	$dom             = $content['html'];
+	$head            = $dom->find( 'head', 0 ); // find head element.
+	$head->outertext = ''; // remove head element.
+	$errors          = array();
 
 	$elements = $dom->find( '*' );
 	foreach ( $elements as $element ) {
+		edac_log($element);
 
 		if ( isset( $element ) && stristr( $element->getAttribute( 'style' ), 'color:' ) && '' !== $element->innertext ) {
 			$foreground = '';
