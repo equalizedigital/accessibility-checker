@@ -18,13 +18,10 @@
 function edac_rule_color_contrast_failure( $content, $post ) {
 	// check links in content for style tags.
 	$dom             = $content['html'];
-	$head            = $dom->find( 'head', 0 ); // find head element.
-	$head->outertext = ''; // remove head element.
 	$errors          = array();
 
 	$elements = $dom->find( '*' );
 	foreach ( $elements as $element ) {
-		edac_log($element);
 
 		if ( isset( $element ) && stristr( $element->getAttribute( 'style' ), 'color:' ) && '' !== $element->innertext ) {
 			$foreground = '';
@@ -232,19 +229,19 @@ function edac_check_contrast( $content ) {
 			if ( ( $font_size >= 14 && true === $font_bold ) || $font_size >= 18 ) {
 				$ratio = 3;
 			}
-
+			
 			if ( edac_coldiff( $foreground, $background, $ratio ) ) {
 
-				$error_code = $element . '{';
+				$error_code = $element . ' { ';
 				foreach ( $rules as $key => $value ) {
 					$error_code .= $key . ': ' . $value . '; ';
 				}
 				$error_code .= '}';
 
-				$elements = $dom->find( $element );
-				if ( $elements ) {
-					foreach ( $elements as $element ) {
-						$errors[] = $element->outertext . ' ' . $error_code;
+				$els = $dom->find( '*[' . $element . ']' );
+				if ( $els ) {
+					foreach ( $els as $el ) {
+						$errors[] = $el->outertext . ' ' . $error_code;
 					}
 				}
 			}
