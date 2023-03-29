@@ -139,7 +139,7 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Authorization Password:   ' . ( get_option( 'edac_authorization_password' ) ? get_option( 'edac_authorization_password' ) . "\n" : "Unset\n" );
 	$return .= 'Delete Data:              ' . ( get_option( 'edac_delete_data' ) ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Include Statement Link:   ' . ( get_option( 'edac_include_accessibility_statement_link' ) ? "Enabled\n" : "Disabled\n" );
-	$return .= 'Post Types:               ' . ( is_array( get_option( 'edac_post_types' ) ) ) ?: implode( ', ', get_option( 'edac_post_types' ) ) . "\n";
+	$return .= 'Post Types:               ' . ( get_option( 'edac_post_types' ) ? implode( ", ", get_option( 'edac_post_types' ) ) . "\n" : "Unset\n" );
 	$return .= 'Simplified Sum Position:  ' . get_option( 'edac_simplified_summary_position' ) . "\n";
 	$return .= 'Simplified Sum Prompt:    ' . get_option( 'edac_simplified_summary_prompt' ) . "\n";
 	$return .= 'Post Count:               ' . edac_get_posts_count() . "\n";
