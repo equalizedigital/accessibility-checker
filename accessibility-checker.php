@@ -38,7 +38,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 		if ( ! isset( $edac_fs ) ) {
 			// Include Freemius SDK.
-			require_once dirname( __FILE__ ) . '/freemius/start.php';
+			require_once dirname( __FILE__ ) . '/vendor/freemius/wordpress-sdk/start.php';
 
 			$edac_fs = fs_dynamic_init(
 				array(
@@ -68,6 +68,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
 	// Signal that SDK was initiated.
 	do_action( 'edac_fs_loaded' );
 }
+
 
 /**
  * Setup constants.
