@@ -174,6 +174,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.20 =
+Updated: freemius to the latest version
+
 = 1.3.19 =
 Updated: color contrast failure check
 
