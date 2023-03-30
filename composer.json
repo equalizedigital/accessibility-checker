@@ -1,0 +1,12 @@
+{
+    "name": "equalizedigital/accesibility-checker",
+    "authors": [
+        {
+            "name": "Steve Jones",
+            "email": "dev@equalizedigital.com"
+        }
+    ],
+    "require": {
+        "freemius/wordpress-sdk": "*"
+    }
+}
