@@ -1272,19 +1272,6 @@
       "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/index.php",
       "oF" : 0
     },
-    "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/accessibility-checker.png" : {
-      "ft" : 32768,
-      "iS" : 8285,
-      "oA" : 0,
-      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/accessibility-checker.png",
-      "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "oT" : 1,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
-    },
     "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/index.php" : {
       "cB" : 0,
       "ft" : 8192,
