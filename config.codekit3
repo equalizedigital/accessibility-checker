@@ -2378,6 +2378,1597 @@
       "oA" : 0,
       "oAP" : "\/uninstall.php",
       "oF" : 0
+    },
+    "\/vendor\/autoload.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/autoload.php",
+      "oF" : 0
+    },
+    "\/vendor\/composer\/autoload_classmap.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/composer\/autoload_classmap.php",
+      "oF" : 0
+    },
+    "\/vendor\/composer\/autoload_namespaces.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/composer\/autoload_namespaces.php",
+      "oF" : 0
+    },
+    "\/vendor\/composer\/autoload_psr4.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/composer\/autoload_psr4.php",
+      "oF" : 0
+    },
+    "\/vendor\/composer\/autoload_real.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/composer\/autoload_real.php",
+      "oF" : 0
+    },
+    "\/vendor\/composer\/autoload_static.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/composer\/autoload_static.php",
+      "oF" : 0
+    },
+    "\/vendor\/composer\/ClassLoader.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/composer\/ClassLoader.php",
+      "oF" : 0
+    },
+    "\/vendor\/composer\/installed.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/vendor\/composer\/installed-min.json",
+      "oF" : 0,
+      "oO" : 0,
+      "oS" : 1
+    },
+    "\/vendor\/composer\/installed.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/composer\/installed.php",
+      "oF" : 0
+    },
+    "\/vendor\/composer\/InstalledVersions.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/composer\/InstalledVersions.php",
+      "oF" : 0
+    },
+    "\/vendor\/composer\/LICENSE" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/composer\/LICENSE",
+      "oF" : 0
+    },
+    "\/vendor\/composer\/platform_check.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/composer\/platform_check.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/account.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/account-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/add-ons.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/add-ons-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/affiliation.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/affiliation-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/checkout.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/checkout-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/clone-resolution.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/clone-resolution-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/common.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/common-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/connect.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/connect-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/debug.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/debug-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/dialog-boxes.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/dialog-boxes-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/gdpr-optin-notice.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/gdpr-optin-notice-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/optout.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/optout-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/plugins.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/plugins-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/customizer.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/customizer-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/accessibility-checker.png" : {
+      "ft" : 32768,
+      "iS" : 8285,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/accessibility-checker.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/plugin-icon.png" : {
+      "ft" : 32768,
+      "iS" : 9380,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/plugin-icon.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/theme-icon.png" : {
+      "ft" : 32768,
+      "iS" : 11237,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/img\/theme-icon.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/js\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/js\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/js\/nojquery.ba-postmessage.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/js\/nojquery.ba-postmessage-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/js\/nojquery.ba-postmessage.min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/js\/nojquery.ba-postmessage.min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/assets\/js\/postmessage.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/assets\/js\/postmessage-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/config.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/config.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-freemius-abstract.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-freemius-abstract.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-freemius.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-freemius.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-admin-notices.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-admin-notices.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-api.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-api.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-lock.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-lock.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-logger.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-logger.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-options.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-options.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-plugin-updater.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-plugin-updater.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-security.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-security.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-storage.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-storage.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-user-lock.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/class-fs-user-lock.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/customizer\/class-fs-customizer-support-section.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/customizer\/class-fs-customizer-support-section.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/customizer\/class-fs-customizer-upsell-control.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/customizer\/class-fs-customizer-upsell-control.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/customizer\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/customizer\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/debug\/class-fs-debug-bar-panel.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/debug\/class-fs-debug-bar-panel.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/debug\/debug-bar-start.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/debug\/debug-bar-start.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/debug\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/debug\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-affiliate-terms.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-affiliate-terms.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-affiliate.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-affiliate.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-billing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-billing.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-entity.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-entity.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-payment.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-payment.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-plugin-info.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-plugin-info.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-plugin-license.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-plugin-license.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-plugin-plan.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-plugin-plan.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-plugin-tag.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-plugin-tag.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-plugin.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-plugin.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-pricing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-pricing.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-scope-entity.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-scope-entity.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-site.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-site.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-subscription.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-subscription.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-user.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/class-fs-user.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/entities\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/fs-core-functions.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/fs-core-functions.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/fs-essential-functions.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/fs-essential-functions.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/fs-plugin-info-dialog.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/fs-plugin-info-dialog.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/l10n.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/l10n.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-admin-menu-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-admin-menu-manager.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-admin-notice-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-admin-notice-manager.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-cache-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-cache-manager.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-clone-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-clone-manager.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-gdpr-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-gdpr-manager.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-key-value-storage.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-key-value-storage.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-license-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-license-manager.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-option-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-option-manager.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-permission-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-permission-manager.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-plan-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-plan-manager.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-plugin-manager.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/class-fs-plugin-manager.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/managers\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/ArgumentNotExistException.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/ArgumentNotExistException.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/EmptyArgumentException.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/EmptyArgumentException.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/Exception.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/Exception.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/InvalidArgumentException.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/InvalidArgumentException.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/OAuthException.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/Exceptions\/OAuthException.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/FreemiusBase.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/FreemiusBase.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/FreemiusWordPress.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/FreemiusWordPress.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/LICENSE.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/sdk\/LICENSE.txt",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/supplements\/fs-essential-functions-1.1.7.1.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/supplements\/fs-essential-functions-1.1.7.1.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/supplements\/fs-essential-functions-2.2.1.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/supplements\/fs-essential-functions-2.2.1.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/supplements\/fs-migration-2.5.1.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/supplements\/fs-migration-2.5.1.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/supplements\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/supplements\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-cs_CZ.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-cs_CZ.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-da_DK.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-da_DK.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-de_DE.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-de_DE.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-en.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-en.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-es_ES.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-es_ES.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-fr_FR.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-fr_FR.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-he_IL.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-he_IL.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-hu_HU.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-hu_HU.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-it_IT.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-it_IT.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-ja.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-ja.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-nl_NL.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-nl_NL.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-ru_RU.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-ru_RU.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-ta.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-ta.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-zh_CN.mo" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius-zh_CN.mo",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius.pot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/freemius.pot",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/languages\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/languages\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/LICENSE.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/LICENSE.txt",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/README.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/README.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/require.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/require.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/start.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/start.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/account.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/account.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/billing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/billing.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/activate-license-button.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/activate-license-button.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/addon.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/addon.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/deactivate-license-button.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/deactivate-license-button.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/disconnect-button.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/disconnect-button.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/site.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/partials\/site.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/payments.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/account\/payments.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/add-ons.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/add-ons.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/add-trial-to-pricing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/add-trial-to-pricing.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/admin-notice.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/admin-notice.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/ajax-loader.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/ajax-loader.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/api-connectivity-message-js.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/api-connectivity-message-js.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/auto-installation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/auto-installation.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/checkout.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/checkout.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/clone-resolution-js.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/clone-resolution-js.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/connect.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/connect.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/connect\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/connect\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/connect\/permission.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/connect\/permission.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/connect\/permissions-group.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/connect\/permissions-group.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/contact.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/contact.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/debug.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/debug.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/debug\/api-calls.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/debug\/api-calls.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/debug\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/debug\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/debug\/logger.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/debug\/logger.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/debug\/plugins-themes-sync.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/debug\/plugins-themes-sync.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/debug\/scheduled-crons.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/debug\/scheduled-crons.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/email.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/email.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/affiliation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/affiliation.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/data-debug-mode.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/data-debug-mode.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/deactivation\/contact.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/deactivation\/contact.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/deactivation\/form.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/deactivation\/form.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/deactivation\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/deactivation\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/deactivation\/retry-skip.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/deactivation\/retry-skip.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/email-address-update.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/email-address-update.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/license-activation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/license-activation.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/optout.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/optout.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/premium-versions-upgrade-handler.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/premium-versions-upgrade-handler.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/premium-versions-upgrade-metadata.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/premium-versions-upgrade-metadata.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/resend-key.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/resend-key.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/subscription-cancellation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/subscription-cancellation.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/trial-start.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/trial-start.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/user-change.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/forms\/user-change.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/gdpr-optin-js.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/gdpr-optin-js.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/js\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/js\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/js\/jquery.content-change.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/js\/jquery.content-change.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/js\/open-license-activation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/js\/open-license-activation.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/js\/permissions.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/js\/permissions.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/js\/style-premium-theme.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/js\/style-premium-theme.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/partials\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/partials\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/partials\/network-activation.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/partials\/network-activation.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/plugin-icon.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/plugin-icon.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/plugin-info\/description.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/plugin-info\/description.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/plugin-info\/features.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/plugin-info\/features.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/plugin-info\/index.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/plugin-info\/index.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/plugin-info\/screenshots.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/plugin-info\/screenshots.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/powered-by.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/powered-by.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/pricing.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/pricing.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/secure-https-header.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/secure-https-header.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/sticky-admin-notice-js.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/sticky-admin-notice-js.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/tabs-capture-js.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/tabs-capture-js.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/templates\/tabs.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/templates\/tabs.php",
+      "oF" : 0
     }
   },
   "hooks" : [
