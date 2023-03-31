@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.3.20
+ * Version:           1.3.21
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -76,7 +76,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.3.20' );
+	define( 'EDAC_VERSION', '1.3.21' );
 }
 
 // Current database version.
@@ -822,6 +822,14 @@ function edac_summary_ajax() {
 	}
 
 	$html['content'] .= '<div class="edac-summary-total">';
+		$post_id = intval( $_REQUEST['post_id'] );
+		$summary = edac_summary( $post_id );
+		
+		if ( $summary['content_grade'] <= 9 ) {
+			$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
+		} else {
+			$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
+		}
 
 		$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
 			<div class="edac-summary-total-progress-circle-label">
@@ -966,12 +974,12 @@ function edac_summary( $post_id ) {
 	// reading grade level.
 	$content_post = get_post( $post_id );
 
-	$content                = $content_post->post_content;
-	$content                = wp_filter_nohtml_kses( $content );
-	$content                = str_replace( ']]>', ']]&gt;', $content );
-	$text_statistics        = new TS\TextStatistics();
-	$content_grade          = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
-	$summary['readability'] = ( 0 === $content_grade ) ? 'N/A' : edac_ordinal( $content_grade );
+	$content                  = $content_post->post_content;
+	$content                  = wp_filter_nohtml_kses( $content );
+	$content                  = str_replace( ']]>', ']]&gt;', $content );
+	$text_statistics          = new TS\TextStatistics();
+	$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
+	$summary['readability']   = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
 	$summary['simplified_summary'] = get_post_meta( $post_id, '_edac_simplified_summary', $single = true ) ? true : false;
