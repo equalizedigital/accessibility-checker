@@ -803,14 +803,18 @@ function edac_summary_ajax() {
 
 	}
 
+	$html['content'] = '';
+
 	// password check.
 	if ( boolval( get_option( 'edac_password_protected' ) ) === true ) {
-		$html['password_protected'] = edac_password_protected_notice_text();
+		$notice_text                = edac_password_protected_notice_text();
+		$html['password_protected'] = $notice_text;
+		$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
 	}
 
 	$post_id = intval( $_REQUEST['post_id'] );
 	$summary = edac_summary( $post_id );
-	$html['content'] = '';
+	
 	if ( $summary['readability'] <= 9 ) {
 		$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
 	} else {

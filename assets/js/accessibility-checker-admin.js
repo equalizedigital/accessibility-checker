@@ -76,6 +76,7 @@
 
           let response_json = $.parseJSON( response.data );
           
+          /*
           if(response_json.password_protected && edac_gutenberg_active()){
             wp.data.dispatch('core/notices').createInfoNotice(
               response_json.password_protected, 
@@ -87,6 +88,7 @@
               },
             );
           }
+          */
           
           $(".edac-summary").html(response_json.content);
 
