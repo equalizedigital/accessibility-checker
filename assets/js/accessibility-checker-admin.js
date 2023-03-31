@@ -86,9 +86,9 @@
                 __unstableHTML: true,
               },
             );
-          }else{
-            $(".edac-summary").html(response_json);
           }
+          
+          $(".edac-summary").html(response_json.content);
 
         } else {
 
@@ -418,7 +418,7 @@
             window.location.href = 'https://wordpress.org/support/plugin/accessibility-checker/reviews/#new-post';
           }
         } else {
-          console.log(response);
+          //console.log(response);
         }
       });
     }
@@ -446,10 +446,16 @@
       });
     }
 
-    edac_summary_ajax();
-    edac_details_ajax();
-    edac_readability_ajax();
-    ignore_submit();
+    if( $('.edac-summary').length ) {
+      edac_summary_ajax();
+    }
+    if( $('.edac-details').length ) {
+      edac_details_ajax();
+      ignore_submit();
+    }
+    if( $('.edac-readability').length ) {
+      edac_readability_ajax();
+    }
 
   });
 })(jQuery);

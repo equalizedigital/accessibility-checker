@@ -806,81 +806,80 @@ function edac_summary_ajax() {
 	// password check.
 	if ( boolval( get_option( 'edac_password_protected' ) ) === true ) {
 		$html['password_protected'] = edac_password_protected_notice_text();
+	}
+
+	$post_id = intval( $_REQUEST['post_id'] );
+	$summary = edac_summary( $post_id );
+	$html['content'] = '';
+	if ( $summary['readability'] <= 9 ) {
+		$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
 	} else {
+		$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
+	}
 
-		$post_id = intval( $_REQUEST['post_id'] );
-		$summary = edac_summary( $post_id );
-		$html = '';
-		if ( $summary['readability'] <= 9 ) {
-			$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
-		} else {
-			$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
-		}
+	$html['content'] .= '<div class="edac-summary-total">';
 
-		$html .= '<div class="edac-summary-total">';
-
-			$html .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
-				<div class="edac-summary-total-progress-circle-label">
-					<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-					<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
-				</div>
-				<div class="left-half-clipper">
-					<div class="first50-bar"></div>
-					<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
-				</div>
-			</div>';
-
-			$html .= '<div class="edac-summary-total-mobile">
+		$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
+			<div class="edac-summary-total-progress-circle-label">
 				<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
 				<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
-				<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
-			</div>';
+			</div>
+			<div class="left-half-clipper">
+				<div class="first50-bar"></div>
+				<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
+			</div>
+		</div>';
 
-		$html .= '</div>';
+		$html['content'] .= '<div class="edac-summary-total-mobile">
+			<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
+			<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
+			<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
+		</div>';
 
-		$html .= '
-		<div class="edac-summary-stats">
-			<div class="edac-summary-stat edac-summary-errors' . ( ( $summary['errors'] > 0 ) ? ' has-errors' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['errors'] . '
-				</div>
-				<div class="edac-panel-number-label">Error' . ( ( 1 !== $summary['errors'] ) ? 's' : '' ) . '</div>
+	$html['content'] .= '</div>';
+
+	$html['content'] .= '
+	<div class="edac-summary-stats">
+		<div class="edac-summary-stat edac-summary-errors' . ( ( $summary['errors'] > 0 ) ? ' has-errors' : '' ) . '">
+			<div class="edac-panel-number">
+				' . $summary['errors'] . '
 			</div>
-			<div class="edac-summary-stat edac-summary-contrast' . ( ( $summary['contrast_errors'] > 0 ) ? ' has-errors' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['contrast_errors'] . '
-				</div>
-				<div class="edac-panel-number-label">Contrast Error' . ( ( 1 !== $summary['contrast_errors'] ) ? 's' : '' ) . '</div>
-			</div>
-			<div class="edac-summary-stat edac-summary-warnings' . ( ( $summary['warnings'] > 0 ) ? ' has-warning' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['warnings'] . '
-				</div>
-				<div class="edac-panel-number-label">Warning' . ( ( 1 !== $summary['warnings'] ) ? 's' : '' ) . '</div>
-			</div>
-			<div class="edac-summary-stat edac-summary-ignored">
-				<div class="edac-panel-number">
-					' . $summary['ignored'] . '
-				</div>
-				<div class="edac-panel-number-label">Ignored Item' . ( ( 1 !== $summary['ignored'] ) ? 's' : '' ) . '</div>
-			</div>
+			<div class="edac-panel-number-label">Error' . ( ( 1 !== $summary['errors'] ) ? 's' : '' ) . '</div>
 		</div>
-		<div class="edac-summary-readability">
-			<div class="edac-summary-readability-level">
-				<div><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/readability icon navy.png" alt="" width="54"></div>
-				<div class="edac-panel-number' . ( ( $summary['readability'] <= 9 ) ? ' passed-text-color' : ' failed-text-color' ) . '">
-					' . $summary['readability'] . '
-				</div>
-				<div class="edac-panel-number-label' . ( ( $summary['readability'] <= 9 ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
+		<div class="edac-summary-stat edac-summary-contrast' . ( ( $summary['contrast_errors'] > 0 ) ? ' has-errors' : '' ) . '">
+			<div class="edac-panel-number">
+				' . $summary['contrast_errors'] . '
 			</div>
-			<div class="edac-summary-readability-summary">
-				<div class="edac-summary-readability-summary-icon' . ( ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ? ' active' : '' ) . '"></div>
-				<div class="edac-summary-readability-summary-text' . ( ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
-			</div>
+			<div class="edac-panel-number-label">Contrast Error' . ( ( 1 !== $summary['contrast_errors'] ) ? 's' : '' ) . '</div>
 		</div>
-		<div class="edac-summary-disclaimer"><small>* Accessibility Checker uses automated scanning to help you to identify if common accessibility errors are present on your website. Automated tools are great for catching some accessibility problems and are part of achieving and maintaining an accessible website, however not all accessibility problems can be identified by a scanning tool. Learn more about <a href="https://a11ychecker.com/help4280" target="_blank">manual accessibility testing</a> and <a href="https://a11ychecker.com/help4279" target="_blank">why 100% passed tests does not necessarily mean your website is accessible</a>.</small></div>
-		';
-	}
+		<div class="edac-summary-stat edac-summary-warnings' . ( ( $summary['warnings'] > 0 ) ? ' has-warning' : '' ) . '">
+			<div class="edac-panel-number">
+				' . $summary['warnings'] . '
+			</div>
+			<div class="edac-panel-number-label">Warning' . ( ( 1 !== $summary['warnings'] ) ? 's' : '' ) . '</div>
+		</div>
+		<div class="edac-summary-stat edac-summary-ignored">
+			<div class="edac-panel-number">
+				' . $summary['ignored'] . '
+			</div>
+			<div class="edac-panel-number-label">Ignored Item' . ( ( 1 !== $summary['ignored'] ) ? 's' : '' ) . '</div>
+		</div>
+	</div>
+	<div class="edac-summary-readability">
+		<div class="edac-summary-readability-level">
+			<div><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/readability icon navy.png" alt="" width="54"></div>
+			<div class="edac-panel-number' . ( ( $summary['readability'] <= 9 ) ? ' passed-text-color' : ' failed-text-color' ) . '">
+				' . $summary['readability'] . '
+			</div>
+			<div class="edac-panel-number-label' . ( ( $summary['readability'] <= 9 ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
+		</div>
+		<div class="edac-summary-readability-summary">
+			<div class="edac-summary-readability-summary-icon' . ( ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ? ' active' : '' ) . '"></div>
+			<div class="edac-summary-readability-summary-text' . ( ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
+		</div>
+	</div>
+	<div class="edac-summary-disclaimer"><small>* Accessibility Checker uses automated scanning to help you to identify if common accessibility errors are present on your website. Automated tools are great for catching some accessibility problems and are part of achieving and maintaining an accessible website, however not all accessibility problems can be identified by a scanning tool. Learn more about <a href="https://a11ychecker.com/help4280" target="_blank">manual accessibility testing</a> and <a href="https://a11ychecker.com/help4279" target="_blank">why 100% passed tests does not necessarily mean your website is accessible</a>.</small></div>
+	';
 
 	if ( ! $html ) {
 
