@@ -7,7 +7,6 @@
         }
     ],
     "require": {
-        "freemius/wordpress-sdk": "*",
-        "afragen/wp-dismiss-notice": "^0.3.2"
+        "freemius/wordpress-sdk": "*"
     }
 }

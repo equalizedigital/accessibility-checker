@@ -1004,60 +1004,6 @@
       "oAP" : "\/uninstall.php",
       "oF" : 0
     },
-    "\/vendor\/afragen\/wp-dismiss-notice\/composer.json" : {
-      "ft" : 524288,
-      "oA" : 1,
-      "oAP" : "\/vendor\/afragen\/wp-dismiss-notice\/composer-min.json",
-      "oF" : 0,
-      "oO" : 0,
-      "oS" : 1
-    },
-    "\/vendor\/afragen\/wp-dismiss-notice\/js\/dismiss-notice.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 1,
-      "oA" : 0,
-      "oAP" : "\/vendor\/afragen\/wp-dismiss-notice\/js\/dismiss-notice-min.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/vendor\/afragen\/wp-dismiss-notice\/LICENSE" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/vendor\/afragen\/wp-dismiss-notice\/LICENSE",
-      "oF" : 0
-    },
-    "\/vendor\/afragen\/wp-dismiss-notice\/README.md" : {
-      "cB" : 0,
-      "cS" : 0,
-      "eF" : 1,
-      "eL" : 1,
-      "ema" : 1,
-      "eSQ" : 1,
-      "ft" : 4096,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/vendor\/afragen\/wp-dismiss-notice\/README.html",
-      "oF" : 0,
-      "oFM" : 0,
-      "oS" : 0,
-      "pHT" : 0,
-      "pME" : 1,
-      "rFN" : 0,
-      "uCM" : 0
-    },
-    "\/vendor\/afragen\/wp-dismiss-notice\/wp-dismiss-notice.php" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/vendor\/afragen\/wp-dismiss-notice\/wp-dismiss-notice.php",
-      "oF" : 0
-    },
     "\/vendor\/autoload.php" : {
       "cB" : 0,
       "ft" : 8192,
