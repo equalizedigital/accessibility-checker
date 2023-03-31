@@ -231,6 +231,7 @@ add_action( 'admin_init', 'edac_anww_update_post_meta' );
 add_action( 'admin_notices', 'edac_review_notice' );
 add_action( 'admin_notices', 'edac_password_protected_notice' );
 add_action( 'wp_ajax_edac_review_notice_ajax', 'edac_review_notice_ajax' );
+add_action( 'wp_ajax_edac_password_protected_notice_ajax', 'edac_password_protected_notice_ajax' );
 add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
 
@@ -803,7 +804,7 @@ function edac_summary_ajax() {
 	}
 
 	// password check.
-	if ( get_option( 'edac_password_protected' ) === true ) {
+	if ( boolval( get_option( 'edac_password_protected' ) ) === true ) {
 		$html['password_protected'] = edac_password_protected_notice_text();
 	} else {
 
@@ -1728,11 +1729,43 @@ function edac_password_protected_notice_text() {
  * @return string
  */
 function edac_password_protected_notice() {
-	if ( get_option( 'edac_password_protected' ) === true ) {
-		echo '<div class="notice notice-error is-dismissible"><p>' . esc_html( edac_password_protected_notice_text() ) . '</p></div>';
+
+	if ( boolval( get_option( 'edac_password_protected' ) ) === true && boolval( get_option( 'edac_password_protected_notice_dismiss' ) ) === false ) {
+		echo wp_kses( '<div class="edac_password_protected_notice notice notice-error is-dismissible"><p>' . edac_password_protected_notice_text() . '</p></div>', 'post' );
 	} else {
 		return;
 	}
+}
+
+/**
+ * Review Admin Notice Ajax
+ *
+ * @return void
+ *
+ *  - '-1' means that nonce could not be varified
+ *  - '-2' means that update option wasn't successful
+ */
+function edac_password_protected_notice_ajax() {
+
+	// nonce security.
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+
+		$error = new WP_Error( '-1', 'Permission Denied' );
+		wp_send_json_error( $error );
+
+	}
+
+	$results = update_option( 'edac_password_protected_notice_dismiss', true );
+
+	if ( ! $results ) {
+
+		$error = new WP_Error( '-2', 'Update option wasn\'t successful' );
+		wp_send_json_error( $error );
+
+	}
+
+	wp_send_json_success( json_encode( $results ) );
+
 }
 
 /**

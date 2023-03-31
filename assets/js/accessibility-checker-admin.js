@@ -423,6 +423,29 @@
       });
     }
 
+    /**
+     * Password Protected Notice Ajax
+     */
+    if($('.edac_password_protected_notice').length){
+      $('.edac_password_protected_notice').on('click', function() {
+        edac_password_protected_notice_ajax();
+      });
+    }
+
+    function edac_password_protected_notice_ajax() {
+      $.ajax({
+        url: ajaxurl,
+        method: 'GET',
+        data: { action: 'edac_password_protected_notice_ajax', nonce: edac_script_vars.nonce }
+      }).done(function( response ) {
+        if( true === response.success ) {
+          let response_json = $.parseJSON( response.data );
+        } else {
+          //console.log(response);
+        }
+      });
+    }
+
     edac_summary_ajax();
     edac_details_ajax();
     edac_readability_ajax();
