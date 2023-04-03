@@ -174,6 +174,12 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.21 =
+Fixed: issue of reading level & simplified summary mismatching
+Updated: password protected admin notice to be dismissable
+Updated: position of password protected notice on single post
+Fixed: issue with summary panel not showing if password protected
+
 = 1.3.20 =
 Updated: freemius to the latest version
 

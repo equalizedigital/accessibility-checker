@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.3.20
+ * Version:           1.3.21
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -76,7 +76,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.3.20' );
+	define( 'EDAC_VERSION', '1.3.21' );
 }
 
 // Current database version.
@@ -231,6 +231,7 @@ add_action( 'admin_init', 'edac_anww_update_post_meta' );
 add_action( 'admin_notices', 'edac_review_notice' );
 add_action( 'admin_notices', 'edac_password_protected_notice' );
 add_action( 'wp_ajax_edac_review_notice_ajax', 'edac_review_notice_ajax' );
+add_action( 'wp_ajax_edac_password_protected_notice_ajax', 'edac_password_protected_notice_ajax' );
 add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
 
@@ -802,84 +803,95 @@ function edac_summary_ajax() {
 
 	}
 
-	// password check.
-	if ( get_option( 'edac_password_protected' ) === true ) {
-		$html['password_protected'] = edac_password_protected_notice_text();
-	} else {
+	$html['content'] = '';
 
+	// password check.
+	if ( boolval( get_option( 'edac_password_protected' ) ) === true ) {
+		$notice_text                = edac_password_protected_notice_text();
+		$html['password_protected'] = $notice_text;
+		$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
+	}
+
+	$post_id = intval( $_REQUEST['post_id'] );
+	$summary = edac_summary( $post_id );
+	
+	if ( $summary['readability'] <= 9 ) {
+		$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
+	} else {
+		$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
+	}
+
+	$html['content'] .= '<div class="edac-summary-total">';
 		$post_id = intval( $_REQUEST['post_id'] );
 		$summary = edac_summary( $post_id );
-		$html = '';
-		if ( $summary['readability'] <= 9 ) {
+		
+		if ( $summary['content_grade'] <= 9 ) {
 			$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
 		} else {
 			$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
 		}
 
-		$html .= '<div class="edac-summary-total">';
-
-			$html .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
-				<div class="edac-summary-total-progress-circle-label">
-					<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-					<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
-				</div>
-				<div class="left-half-clipper">
-					<div class="first50-bar"></div>
-					<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
-				</div>
-			</div>';
-
-			$html .= '<div class="edac-summary-total-mobile">
+		$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
+			<div class="edac-summary-total-progress-circle-label">
 				<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
 				<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
-				<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
-			</div>';
+			</div>
+			<div class="left-half-clipper">
+				<div class="first50-bar"></div>
+				<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
+			</div>
+		</div>';
 
-		$html .= '</div>';
+		$html['content'] .= '<div class="edac-summary-total-mobile">
+			<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
+			<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
+			<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
+		</div>';
 
-		$html .= '
-		<div class="edac-summary-stats">
-			<div class="edac-summary-stat edac-summary-errors' . ( ( $summary['errors'] > 0 ) ? ' has-errors' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['errors'] . '
-				</div>
-				<div class="edac-panel-number-label">Error' . ( ( 1 !== $summary['errors'] ) ? 's' : '' ) . '</div>
+	$html['content'] .= '</div>';
+
+	$html['content'] .= '
+	<div class="edac-summary-stats">
+		<div class="edac-summary-stat edac-summary-errors' . ( ( $summary['errors'] > 0 ) ? ' has-errors' : '' ) . '">
+			<div class="edac-panel-number">
+				' . $summary['errors'] . '
 			</div>
-			<div class="edac-summary-stat edac-summary-contrast' . ( ( $summary['contrast_errors'] > 0 ) ? ' has-errors' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['contrast_errors'] . '
-				</div>
-				<div class="edac-panel-number-label">Contrast Error' . ( ( 1 !== $summary['contrast_errors'] ) ? 's' : '' ) . '</div>
-			</div>
-			<div class="edac-summary-stat edac-summary-warnings' . ( ( $summary['warnings'] > 0 ) ? ' has-warning' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['warnings'] . '
-				</div>
-				<div class="edac-panel-number-label">Warning' . ( ( 1 !== $summary['warnings'] ) ? 's' : '' ) . '</div>
-			</div>
-			<div class="edac-summary-stat edac-summary-ignored">
-				<div class="edac-panel-number">
-					' . $summary['ignored'] . '
-				</div>
-				<div class="edac-panel-number-label">Ignored Item' . ( ( 1 !== $summary['ignored'] ) ? 's' : '' ) . '</div>
-			</div>
+			<div class="edac-panel-number-label">Error' . ( ( 1 !== $summary['errors'] ) ? 's' : '' ) . '</div>
 		</div>
-		<div class="edac-summary-readability">
-			<div class="edac-summary-readability-level">
-				<div><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/readability icon navy.png" alt="" width="54"></div>
-				<div class="edac-panel-number' . ( ( $summary['readability'] <= 9 ) ? ' passed-text-color' : ' failed-text-color' ) . '">
-					' . $summary['readability'] . '
-				</div>
-				<div class="edac-panel-number-label' . ( ( $summary['readability'] <= 9 ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
+		<div class="edac-summary-stat edac-summary-contrast' . ( ( $summary['contrast_errors'] > 0 ) ? ' has-errors' : '' ) . '">
+			<div class="edac-panel-number">
+				' . $summary['contrast_errors'] . '
 			</div>
-			<div class="edac-summary-readability-summary">
-				<div class="edac-summary-readability-summary-icon' . ( ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ? ' active' : '' ) . '"></div>
-				<div class="edac-summary-readability-summary-text' . ( ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
-			</div>
+			<div class="edac-panel-number-label">Contrast Error' . ( ( 1 !== $summary['contrast_errors'] ) ? 's' : '' ) . '</div>
 		</div>
-		<div class="edac-summary-disclaimer"><small>* Accessibility Checker uses automated scanning to help you to identify if common accessibility errors are present on your website. Automated tools are great for catching some accessibility problems and are part of achieving and maintaining an accessible website, however not all accessibility problems can be identified by a scanning tool. Learn more about <a href="https://a11ychecker.com/help4280" target="_blank">manual accessibility testing</a> and <a href="https://a11ychecker.com/help4279" target="_blank">why 100% passed tests does not necessarily mean your website is accessible</a>.</small></div>
-		';
-	}
+		<div class="edac-summary-stat edac-summary-warnings' . ( ( $summary['warnings'] > 0 ) ? ' has-warning' : '' ) . '">
+			<div class="edac-panel-number">
+				' . $summary['warnings'] . '
+			</div>
+			<div class="edac-panel-number-label">Warning' . ( ( 1 !== $summary['warnings'] ) ? 's' : '' ) . '</div>
+		</div>
+		<div class="edac-summary-stat edac-summary-ignored">
+			<div class="edac-panel-number">
+				' . $summary['ignored'] . '
+			</div>
+			<div class="edac-panel-number-label">Ignored Item' . ( ( 1 !== $summary['ignored'] ) ? 's' : '' ) . '</div>
+		</div>
+	</div>
+	<div class="edac-summary-readability">
+		<div class="edac-summary-readability-level">
+			<div><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/readability icon navy.png" alt="" width="54"></div>
+			<div class="edac-panel-number' . ( ( $summary['readability'] <= 9 ) ? ' passed-text-color' : ' failed-text-color' ) . '">
+				' . $summary['readability'] . '
+			</div>
+			<div class="edac-panel-number-label' . ( ( $summary['readability'] <= 9 ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
+		</div>
+		<div class="edac-summary-readability-summary">
+			<div class="edac-summary-readability-summary-icon' . ( ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ? ' active' : '' ) . '"></div>
+			<div class="edac-summary-readability-summary-text' . ( ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
+		</div>
+	</div>
+	<div class="edac-summary-disclaimer"><small>* Accessibility Checker uses automated scanning to help you to identify if common accessibility errors are present on your website. Automated tools are great for catching some accessibility problems and are part of achieving and maintaining an accessible website, however not all accessibility problems can be identified by a scanning tool. Learn more about <a href="https://a11ychecker.com/help4280" target="_blank">manual accessibility testing</a> and <a href="https://a11ychecker.com/help4279" target="_blank">why 100% passed tests does not necessarily mean your website is accessible</a>.</small></div>
+	';
 
 	if ( ! $html ) {
 
@@ -962,12 +974,12 @@ function edac_summary( $post_id ) {
 	// reading grade level.
 	$content_post = get_post( $post_id );
 
-	$content                = $content_post->post_content;
-	$content                = wp_filter_nohtml_kses( $content );
-	$content                = str_replace( ']]>', ']]&gt;', $content );
-	$text_statistics        = new TS\TextStatistics();
-	$content_grade          = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
-	$summary['readability'] = ( 0 === $content_grade ) ? 'N/A' : edac_ordinal( $content_grade );
+	$content                  = $content_post->post_content;
+	$content                  = wp_filter_nohtml_kses( $content );
+	$content                  = str_replace( ']]>', ']]&gt;', $content );
+	$text_statistics          = new TS\TextStatistics();
+	$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
+	$summary['readability']   = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
 	$summary['simplified_summary'] = get_post_meta( $post_id, '_edac_simplified_summary', $single = true ) ? true : false;
@@ -1713,7 +1725,7 @@ function edac_remove_admin_notices() {
  * @return string
  */
 function edac_password_protected_notice_text() {
-	$notice = 'Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or <a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="upgrade to accessibility checker pro, opens in a new window">upgrade to pro.</a>';
+	$notice = 'Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or <a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="upgrade to accessibility checker pro, opens in a new window">upgrade to pro</a>. Scan results may be stored from a previous scan.';
 
 	if ( has_filter( 'edac_filter_password_protected_notice_text' ) ) {
 		$notice = apply_filters( 'edac_filter_password_protected_notice_text', $notice );
@@ -1728,11 +1740,43 @@ function edac_password_protected_notice_text() {
  * @return string
  */
 function edac_password_protected_notice() {
-	if ( get_option( 'edac_password_protected' ) === true ) {
-		echo '<div class="notice notice-error is-dismissible"><p>' . esc_html( edac_password_protected_notice_text() ) . '</p></div>';
+
+	if ( boolval( get_option( 'edac_password_protected' ) ) === true && boolval( get_option( 'edac_password_protected_notice_dismiss' ) ) === false ) {
+		echo wp_kses( '<div class="edac_password_protected_notice notice notice-error is-dismissible"><p>' . edac_password_protected_notice_text() . '</p></div>', 'post' );
 	} else {
 		return;
 	}
+}
+
+/**
+ * Review Admin Notice Ajax
+ *
+ * @return void
+ *
+ *  - '-1' means that nonce could not be varified
+ *  - '-2' means that update option wasn't successful
+ */
+function edac_password_protected_notice_ajax() {
+
+	// nonce security.
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+
+		$error = new WP_Error( '-1', 'Permission Denied' );
+		wp_send_json_error( $error );
+
+	}
+
+	$results = update_option( 'edac_password_protected_notice_dismiss', true );
+
+	if ( ! $results ) {
+
+		$error = new WP_Error( '-2', 'Update option wasn\'t successful' );
+		wp_send_json_error( $error );
+
+	}
+
+	wp_send_json_success( json_encode( $results ) );
+
 }
 
 /**
