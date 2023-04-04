@@ -3,11 +3,16 @@
 
     $(function () {
 
+        // tooltip: hide
+        let timeout;
+
         function edac_disabled_styles() { 
             var css = $('head').find('style[type="text/css"]').add('style').add('link[rel="stylesheet"]');
-            //console.log(css);
 
-            $(css).each(function( i ) {
+            // remove inline styles
+            $('* [style]').not('.edac-highlight-tooltip').removeAttr("style");
+
+            $(css).each(function() {
                 //edac-css
                 console.log(this.id);
                 if( this.id == 'edac-css' || this.id == 'dashicons-css' ) {
@@ -20,12 +25,14 @@
             //alert("Styles have been disabled. To enable styles please refresh the page.");
         }
 
+        /*
         function edac_enable_styles() { 
             var css = $('head').data('css');
             if (css) {
                 $('head').append(css);
             }
         }
+        */
 
         var getUrlParameter = function getUrlParameter(sParam) {
             var sPageURL = window.location.search.substring(1),
@@ -85,7 +92,7 @@
                     }
                     
                     // Build attribute selector.
-                    $(html[0]['attributes']).each(function( i ) {
+                    $(html[0]['attributes']).each(function() {
                         if(jQuery.inArray(this.nodeName, atributes_allowed) !== -1 && this.nodeValue != ''){
                             attribute_selector += '['+this.nodeName+'="'+this.nodeValue+'"]';
                         }
@@ -105,54 +112,10 @@
                         // Add tooltip markup.
                         element.before('<div class="edac-highlight-tooltip-wrap"><button class="edac-highlight-btn edac-highlight-btn-'+response_json.ruletype+'" aria-label="'+response_json.rule_title+'" aria-expanded="false" aria-controls="edac-highlight-tooltip-'+response_json.id+'"></button><div class="edac-highlight-tooltip" id="edac-highlight-tooltip-'+response_json.id+'"><strong class="edac-highlight-tooltip-title">'+response_json.rule_title+'</strong><a href="'+response_json.link+'" class="edac-highlight-tooltip-reference" target="_blank" aria-label="Read documentation for '+response_json.rule_title+', opens new window"><span class="dashicons dashicons-info"></span></a><br /><span>'+response_json.summary+'</span></div></div>');
 
-                        // Scroll to element.
-                        let element_offset = element.offset().top;
-                        let element_offset_left = element.offset().left;
-                        let element_height = element.height();
-                        let element_width = element.width();
-                        let window_height = $(window).height();
-                        let window_width = $(window).width();
-                        let offset;
-
-                        if (element_height < window_height) {
-                            offset = element_offset - ((window_height / 2) - (element_height / 2));
-                        } else {
-                            offset = element_offset;
-                        }
-
-                        $([document.documentElement, document.body]).animate({scrollTop:offset}, 500);
+                        edac_scroll_to( element );
 
                         // tooltip: hide
                         $('.edac-highlight-tooltip').hide();
-
-                        // tooltip: position
-                        function edac_tooltip_position(tooltip){
-                            
-                            let tooltip_offset_x = 15;
-                            let tooltip_offset_y = 7;
-                            let position = tooltip.position();
-                            let y = position.top + tooltip_offset_y;
-                            let x = position.left + tooltip.width() + 10;
-
-                            if(  position.left > window_width / 2 ) {
-                                x = (position.left - tooltip.next(".edac-highlight-tooltip").outerWidth()) - tooltip_offset_x;
-                                tooltip.next(".edac-highlight-tooltip").addClass('edac-highlight-tooltip-left');
-                            } else {
-                                x = position.left + tooltip.outerWidth() + tooltip_offset_x;
-                                tooltip.next(".edac-highlight-tooltip").removeClass('edac-highlight-tooltip-left');
-                            }
-
-                            tooltip.next(".edac-highlight-tooltip").css( { left: x + "px", top: y + "px" } );
-                            tooltip.next(".edac-highlight-tooltip").fadeIn();
-                        }
-
-                        // tooltip: hide
-                        let timeout;
-                        function edac_tooltip_hide() {
-                            timeout = setTimeout(function () {
-                                $('.edac-highlight-tooltip').fadeOut(400);
-                            }, 400);
-                        };
 
                         // tooltip: btn hover
                         $(".edac-highlight-btn").mouseover(function () {
@@ -187,8 +150,6 @@
                             console.log( 'Element visible: false' );
                             if (confirm("The element may be hidden on the page. Would you like to disable styles?")) {
                                 edac_disabled_styles();
-                            } else {
-                
                             }
                         }
 
@@ -202,6 +163,52 @@
             });
         }
 
+        function edac_scroll_to( element ) {
+
+            let element_offset = element.offset().top;
+            //let element_offset_left = element.offset().left;
+            let element_height = element.height();
+            //let element_width = element.width();
+            let window_height = $(window).height();
+            
+            let offset;
+
+            if (element_height < window_height) {
+                offset = element_offset - ((window_height / 2) - (element_height / 2));
+            } else {
+                offset = element_offset;
+            }
+
+            $([document.documentElement, document.body]).animate({scrollTop:offset}, 500);
+        }
+
+        function edac_tooltip_position(tooltip){
+
+            let window_width = $(window).width();
+                            
+            let tooltip_offset_x = 15;
+            let tooltip_offset_y = 7;
+            let position = tooltip.position();
+            let y = position.top + tooltip_offset_y;
+            let x = position.left + tooltip.width() + 10;
+
+            if(  position.left > window_width / 2 ) {
+                x = (position.left - tooltip.next(".edac-highlight-tooltip").outerWidth()) - tooltip_offset_x;
+                tooltip.next(".edac-highlight-tooltip").addClass('edac-highlight-tooltip-left');
+            } else {
+                x = position.left + tooltip.outerWidth() + tooltip_offset_x;
+                tooltip.next(".edac-highlight-tooltip").removeClass('edac-highlight-tooltip-left');
+            }
+
+            tooltip.next(".edac-highlight-tooltip").css( { left: x + "px", top: y + "px" } );
+            tooltip.next(".edac-highlight-tooltip").fadeIn();
+        }
+
+        function edac_tooltip_hide() {
+            timeout = setTimeout(function () {
+                $('.edac-highlight-tooltip').fadeOut(400);
+            }, 400);
+        }
 
     });
 })(jQuery);
