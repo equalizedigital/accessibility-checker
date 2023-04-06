@@ -415,18 +415,6 @@
       "pg" : 0,
       "sct" : 1
     },
-    "\/assets\/sass\/accessibility-checker.css" : {
-      "aP" : 1,
-      "bl" : 0,
-      "ci" : 0,
-      "co" : 0,
-      "ft" : 16,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/assets\/sass\/accessibility-checker-min.css",
-      "oF" : 0,
-      "pg" : 0
-    },
     "\/assets\/sass\/accessibility-checker.scss" : {
       "aP" : 0,
       "bl" : 0,
@@ -436,8 +424,8 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/assets\/sass\/accessibility-checker.css",
-      "oF" : 0,
+      "oAP" : "\/assets\/css\/accessibility-checker.css",
+      "oF" : 2,
       "oS" : 0,
       "pg" : 0,
       "sct" : 1
