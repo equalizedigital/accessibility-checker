@@ -56,9 +56,11 @@
         border-radius: 5px;
         z-index: 99;
         text-align: left;
+        text-decoration: none;
         p{
             all: unset;
             color: $color-white;
+            text-decoration: none;
         }
         &:before{
             all: unset;

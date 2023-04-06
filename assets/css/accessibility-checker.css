@@ -35,10 +35,12 @@
     left: 50px;
     border-radius: 5px;
     z-index: 99;
-    text-align: left; }
+    text-align: left;
+    text-decoration: none; }
     .edac-highlight-tooltip p {
       all: unset;
-      color: #ffffff; }
+      color: #ffffff;
+      text-decoration: none; }
     .edac-highlight-tooltip:before {
       all: unset;
       content: '';
