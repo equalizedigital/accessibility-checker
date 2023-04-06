@@ -37,7 +37,8 @@
     z-index: 99;
     text-align: left; }
     .edac-highlight-tooltip p {
-      all: unset; }
+      all: unset;
+      color: #ffffff; }
     .edac-highlight-tooltip:before {
       all: unset;
       content: '';
