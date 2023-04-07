@@ -43,6 +43,18 @@
       color: #ffffff;
       text-transform: none;
       letter-spacing: normal; }
+      .edac-highlight-tooltip p a {
+        all: unset;
+        color: #ffffff;
+        text-decoration: underline !important;
+        font-weight: normal !important; }
+        .edac-highlight-tooltip p a:hover {
+          all: unset;
+          color: #f3cd1e; }
+        .edac-highlight-tooltip p a:focus {
+          all: unset;
+          outline: solid 2px #f3cd1e;
+          outline-offset: 2px; }
     .edac-highlight-tooltip:before {
       all: unset;
       content: '';
@@ -66,7 +78,7 @@
       all: unset;
       color: #f3cd1e !important;
       text-decoration: none !important;
-      margin-left: 5px; }
+      margin-left: 5px !important; }
       .edac-highlight-tooltip-reference:hover, .edac-highlight-tooltip-reference:focus {
         color: #ffffff !important; }
       .edac-highlight-tooltip-reference:focus {

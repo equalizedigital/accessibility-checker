@@ -63,7 +63,23 @@
             color: $color-white;
             text-transform: none;
             letter-spacing: normal;
+            a{
+                all: unset;
+                color: $color-white;
+                text-decoration: underline !important;
+                font-weight: normal !important;
+                &:hover{
+                    all: unset;
+                    color: $color-yellow;
+                }
+                &:focus{
+                    all: unset;
+                    outline: solid 2px $color-yellow;
+                    outline-offset: 2px;
+                }
+            }
         }
+        
         &:before{
             all: unset;
             content: '';
@@ -92,7 +108,7 @@
             all: unset;
             color: $color-yellow !important;
             text-decoration: none !important;
-            margin-left: 5px;
+            margin-left: 5px !important;
             &:hover, &:focus{
                 color: $color-white !important;
             }
