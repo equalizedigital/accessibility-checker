@@ -56,11 +56,13 @@
         border-radius: 5px;
         z-index: 99;
         text-align: left;
-        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
         p{
             all: unset;
             color: $color-white;
-            text-decoration: none;
+            text-transform: none;
+            letter-spacing: normal;
         }
         &:before{
             all: unset;

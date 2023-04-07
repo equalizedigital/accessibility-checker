@@ -36,11 +36,13 @@
     border-radius: 5px;
     z-index: 99;
     text-align: left;
-    text-decoration: none; }
+    text-transform: none;
+    letter-spacing: normal; }
     .edac-highlight-tooltip p {
       all: unset;
       color: #ffffff;
-      text-decoration: none; }
+      text-transform: none;
+      letter-spacing: normal; }
     .edac-highlight-tooltip:before {
       all: unset;
       content: '';

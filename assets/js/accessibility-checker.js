@@ -64,6 +64,7 @@
                 if( true === response.success ) {
                     
                     let response_json = $.parseJSON( response.data );
+                    console.log( response_json );
                     let html = $.parseHTML( response_json.object );
                     let nodeName = html[0].nodeName;
                     console.log( html );
@@ -105,56 +106,69 @@
                     console.log( 'Element selector: ' + element_selector );
     
                     // Get the element.
-                    let element = $(element_selector);
-                    if(element.length){
-    
-                        // Wrap element.
-                        element.wrap('<div class="edac-highlight edac-highlight-'+response_json.ruletype+'"></div>');
-    
-                        // Add tooltip markup.
-                        element.before('<div class="edac-highlight-tooltip-wrap"><button class="edac-highlight-btn edac-highlight-btn-'+response_json.ruletype+'" aria-label="'+response_json.rule_title+'" aria-expanded="false" aria-controls="edac-highlight-tooltip-'+response_json.id+'"></button><div class="edac-highlight-tooltip" id="edac-highlight-tooltip-'+response_json.id+'"><strong class="edac-highlight-tooltip-title">'+response_json.rule_title+'</strong><a href="'+response_json.link+'" class="edac-highlight-tooltip-reference" target="_blank" aria-label="Read documentation for '+response_json.rule_title+', opens new window"><span class="dashicons dashicons-info"></span></a><br /><p>'+response_json.summary+'</p></div></div>');
-    
-                        // tooltip: scroll to
-                        edac_scroll_to( element );
-    
-                        // tooltip: hide
-                        $('.edac-highlight-tooltip').hide();
-    
-                        // tooltip: btn hover
-                        $(".edac-highlight-btn").mouseover(function () {
-                            edac_tooltip_position($(this));
-                            clearTimeout(timeout);
-                            $(this).next('.edac-highlight-tooltip').fadeIn(400);
-                        }).mouseout(edac_tooltip_hide);
-    
-                        // tooltip: hover
-                        $('.edac-highlight-tooltip').mouseover(function () {
-                            clearTimeout(timeout);
-                        }).mouseout(edac_tooltip_hide);
-    
-                        // tooltip: btn focus
-                        $(".edac-highlight-btn").click(function () {
-                            edac_tooltip_position($(this));
-                            if($(this).attr('aria-expanded') == 'false') {
+                    let elements = $(element_selector);
+                    if(elements.length){
+
+                        $(elements).each(function( index ) {
+
+                            let element = $(this);
+
+                            // Check if the JSON response rule is 'empty_link' and if the element has an aria-label attribute
+                            if( 'empty_link' == response_json.rule && element.attr('aria-label') ){
+                                return;
+                            };
+                    
+                            // Wrap element.
+                            element.wrap('<div class="edac-highlight edac-highlight-'+response_json.ruletype+'"></div>');
+        
+                            // Add tooltip markup.
+                            element.before('<div class="edac-highlight-tooltip-wrap"><button class="edac-highlight-btn edac-highlight-btn-'+response_json.ruletype+'" aria-label="'+response_json.rule_title+'" aria-expanded="false" aria-controls="edac-highlight-tooltip-'+response_json.id+'"></button><div class="edac-highlight-tooltip" id="edac-highlight-tooltip-'+response_json.id+'"><strong class="edac-highlight-tooltip-title">'+response_json.rule_title+'</strong><a href="'+response_json.link+'" class="edac-highlight-tooltip-reference" target="_blank" aria-label="Read documentation for '+response_json.rule_title+', opens new window"><span class="dashicons dashicons-info"></span></a><br /><p>'+response_json.summary+'</p></div></div>');
+        
+                            // tooltip: scroll to
+                            if (index === $('selector').length - 1) {
+                                edac_scroll_to( element );
+                            }
+        
+                            // tooltip: hide
+                            $('.edac-highlight-tooltip').hide();
+        
+                            // tooltip: btn hover
+                            $(".edac-highlight-btn").mouseover(function () {
+                                edac_tooltip_position($(this));
+                                clearTimeout(timeout);
                                 $(this).next('.edac-highlight-tooltip').fadeIn(400);
-                                $(this).attr('aria-expanded', 'true');
-                            }else{
-                                $(this).next('.edac-highlight-tooltip').fadeOut(400);
-                                $(this).attr('aria-expanded', 'false');
+                            }).mouseout(edac_tooltip_hide);
+        
+                            // tooltip: hover
+                            $('.edac-highlight-tooltip').mouseover(function () {
+                                clearTimeout(timeout);
+                            }).mouseout(edac_tooltip_hide);
+        
+                            // tooltip: btn focus
+                            $(".edac-highlight-btn").click(function () {
+                                edac_tooltip_position($(this));
+                                if($(this).attr('aria-expanded') == 'false') {
+                                    $(this).next('.edac-highlight-tooltip').fadeIn(400);
+                                    $(this).attr('aria-expanded', 'true');
+                                }else{
+                                    $(this).next('.edac-highlight-tooltip').fadeOut(400);
+                                    $(this).attr('aria-expanded', 'false');
+                                }
+                            });
+        
+                            // set focus on element
+                            $('.edac-highlight-btn',element.parent()).first().focus();
+        
+                            if($('.edac-highlight-btn',element.parent()).is(':visible')){
+                                console.log( 'Element visible: true' );
+                            } else {
+                                console.log( 'Element visible: false' );
+                                if (confirm("The element may be hidden on the page. Would you like to disable styles?")) {
+                                    edac_disabled_styles();
+                                }
                             }
+
                         });
-    
-                        // set focus on element
-                        $('.edac-highlight-btn',element.parent()).first().focus();
-    
-                        if($('.edac-highlight-btn',element.parent()).is(':visible')){
-                            console.log( 'Element visible: true' );
-                        } else {
-                            console.log( 'Element visible: false' );
-                            if (confirm("The element may be hidden on the page. Would you like to disable styles?")) {
-                                edac_disabled_styles();
-                            }
-                        }
     
                     } else {
                         alert('Accessibility Checker could not find the element on the page.');
