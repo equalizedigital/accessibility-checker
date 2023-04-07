@@ -89,6 +89,7 @@
                     
                     // If an anchor link and has inner text.
                     if( inner_text_empty && innerText && nodeName == 'A' ){
+                        innerText = innerText.replace(/\s+/g, " ").trim();
                         element_selector += ":contains('"+innerText+"')";
                     }
                     
