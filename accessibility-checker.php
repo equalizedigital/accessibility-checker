@@ -1290,7 +1290,16 @@ function edac_details_ajax() {
 							$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
 
 					if ( 'missing_headings' !== $rule['slug'] ) {
-						$html .= '<a href="' . add_query_arg( 'edac', $id, get_the_permalink( $postid ) ) . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . __( 'View, opens a new window', 'edac' ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>View on page</a>';
+
+						$url = add_query_arg(
+							array(
+								'edac' => $id,
+								'edac_nonce'    => wp_create_nonce( 'edac_highlight' ),
+							),
+							get_the_permalink( $postid )
+						);
+
+						$html .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . __( 'View, opens a new window', 'edac' ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>View on page</a>';
 					}
 
 						$html .= '</div>';
@@ -1838,9 +1847,12 @@ function edac_frontend_highlight_ajax() {
 
 }
 
-// Add a filter for lazyloading images using the perfmatters_lazyload hook
+// Add a filter for lazyloading images using the perfmatters_lazyload hook.
 add_filter( 'perfmatters_lazyload',
 	function( $lazyload ) {
+		if ( ! isset( $_GET['edac_nonce'] ) || ! wp_verify_nonce( $_GET['edac_nonce'], 'edac_highlight' ) ) {
+			return $lazyload;
+		}
 		if ( isset( $_GET['edac'] ) ) {
 			return false;
 		}
