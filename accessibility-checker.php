@@ -1837,3 +1837,13 @@ function edac_frontend_highlight_ajax() {
 	wp_send_json_success( wp_json_encode( $results ) );
 
 }
+
+// Add a filter for lazyloading images using the perfmatters_lazyload hook
+add_filter( 'perfmatters_lazyload',
+	function( $lazyload ) {
+		if ( isset( $_GET['edac'] ) ) {
+			return false;
+		}
+		return $lazyload;
+	}
+);
