@@ -65,6 +65,7 @@
                     
                     let response_json = $.parseJSON( response.data );
                     console.log( response_json );
+                    const matchedElement = findElementWithSameHtmlAndAddBorder(response_json.object);
                     let html = $.parseHTML( response_json.object );
                     let nodeName = html[0].nodeName;
                     console.log( html );
@@ -230,3 +231,53 @@
     });
     
 })(jQuery);
+
+function findElementWithSameHtmlAndAddBorder(htmlSnippet) {
+    // Parse the HTML snippet
+    const parser = new DOMParser();
+    const parsedHtml = parser.parseFromString(htmlSnippet, 'text/html');
+    const firstParsedElement = parsedHtml.body.firstElementChild;
+
+    // If there's no parsed element, return null
+    if (!firstParsedElement) {
+        return null;
+    }
+
+    
+
+    // Compare the outer HTML of the parsed element with all elements on the page
+    //const allElements = document.querySelectorAll('*');
+    //const allElements = [document.documentElement].concat(Array.from(document.querySelectorAll('*')));
+    const allElements = document.body.querySelectorAll('*');
+
+    
+
+    for (const element of allElements) {
+
+        //console.log(element);
+
+        
+        //console.log(firstParsedElement.outerHTML);
+
+        if (element.outerHTML === firstParsedElement.outerHTML) {
+            
+            // Add a solid red 5px border to the matched element
+            element.style.border = '5px solid red';
+            //element.setAttribute('aria-hidden', 'false');
+            return element;
+        }
+    }
+
+    // If no matching element is found, return null
+    return null;
+}
+
+// Sample usage
+const htmlSnippet = `
+<a class="wp-block-button__link wp-element-button">Test</a>
+`;
+
+// window.addEventListener('DOMContentLoaded', () => {
+//     const matchedElement = findElementWithSameHtmlAndAddBorder(htmlSnippet);
+//     console.log(matchedElement);
+// });
