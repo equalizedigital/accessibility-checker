@@ -173,6 +173,8 @@ if ( ! class_exists( 'simple_html_dom' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class_edac_dom.php';
 }
 
+include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend-highlight.php';
+
 /**
  * Include TextStatistics
  */
@@ -232,8 +234,8 @@ add_action( 'admin_notices', 'edac_password_protected_notice' );
 add_action( 'wp_ajax_edac_review_notice_ajax', 'edac_review_notice_ajax' );
 add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
-add_action( 'wp_ajax_edac_frontend_highlight_ajax', 'edac_frontend_highlight_ajax' );
-add_action( 'wp_ajax_nopriv_edac_frontend_highlight_ajax', 'edac_frontend_highlight_ajax' );
+add_action( 'wp_ajax_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
+add_action( 'wp_ajax_nopriv_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
 
 /**
  * Create/Update database
@@ -1830,7 +1832,7 @@ function edac_frontend_highlight_ajax() {
 		$error = new WP_Error( '-4', 'Rule value not set' );
 		wp_send_json_error( $error );
 	}
-
+	
 	$results['rule_title'] = $rule[0]['title'];
 	$results['summary']    = $rule[0]['summary'];
 	$results['link']       = edac_documentation_link( $rule[0] );

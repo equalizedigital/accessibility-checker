@@ -117,4 +117,11 @@
             }
         }
     }
+    &-panel{
+        width: 50%;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background-color: $color-white;
+    }
 }

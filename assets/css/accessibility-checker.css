@@ -83,3 +83,9 @@
         color: #ffffff !important; }
       .edac-highlight-tooltip-reference:focus {
         outline: solid 2px #f3cd1e !important; }
+  .edac-highlight-panel {
+    width: 50%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #ffffff; }

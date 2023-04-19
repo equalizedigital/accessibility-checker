@@ -116,7 +116,7 @@
     },
     "\/assets\/images\/edac-emblem.png" : {
       "ft" : 32768,
-      "iS" : 29661,
+      "iS" : 9461,
       "oA" : 0,
       "oAP" : "\/assets\/images\/edac-emblem.png",
       "oF" : 0,
@@ -436,8 +436,8 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/assets\/sass\/accessibility-checker.css",
-      "oF" : 0,
+      "oAP" : "\/assets\/css\/accessibility-checker.css",
+      "oF" : 2,
       "oS" : 0,
       "pg" : 0,
       "sct" : 1
@@ -1863,6 +1863,14 @@
       "hM" : 0,
       "oA" : 0,
       "oAP" : "\/includes\/classes\/class_edac_dom.php",
+      "oF" : 0
+    },
+    "\/includes\/classes\/class-edac-frontend-highlight.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/classes\/class-edac-frontend-highlight.php",
       "oF" : 0
     },
     "\/includes\/deactivation.php" : {
