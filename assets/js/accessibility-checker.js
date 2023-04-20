@@ -232,8 +232,44 @@
 	
 })(jQuery);
 
+class AccessibilityCheckerDisableHTML {
 
-class EdacHighlight {
+	constructor() {
+		this.disableStylesButton = document.querySelector('#edac-highlight-disable-styles');
+		this.init();
+	}
+
+	init() {
+		this.disableStylesButton.addEventListener('click', () => this.disabledStyles());
+	}
+
+	disabledStyles() {
+		var css = Array.from(document.head.querySelectorAll('style[type="text/css"], style, link[rel="stylesheet"]'));
+	
+		// remove inline styles
+		// except for elements with class starting with edac
+		var elementsWithStyle = document.querySelectorAll('*[style]:not([class^="edac"])');
+		elementsWithStyle.forEach(function(element) {
+			element.removeAttribute("style");
+		});
+	
+		css = css.filter(function(element) {
+			console.log(element.id);
+			if (element.id === 'edac-css' || element.id === 'dashicons-css') {
+				return false;
+			}
+			return true;
+		});
+	
+		document.head.dataset.css = css;
+		css.forEach(function(element) {
+			element.remove();
+		});
+		//alert("Styles have been disabled. To enable styles please refresh the page.");
+	}
+}
+
+class AccessibilityCheckerHighlight {
 
 	constructor() {
 		this.nextButton = document.querySelector('#edac-highlight-next');
@@ -241,6 +277,8 @@ class EdacHighlight {
 		this.panelToggle = document.querySelector('#edac-highlight-panel-toggle');
 		this.currentButtonIndex = 0;
 		this.init();
+		this.highlightButtonFocus();
+		this.highlightButtonFocusOut();
 	}
 
 	init() {
@@ -374,8 +412,33 @@ class EdacHighlight {
 		this.panelToggle.style.display = 'none';
 		this.highlightAjax();
 	}
+
+	highlightButtonFocus() {
+		document.addEventListener('focusin', function(event) {
+			const focusedElement = event.target;
+			if (focusedElement.classList.contains('edac-highlight-btn')) {
+			const highlightParent = focusedElement.closest('.edac-highlight');
+			if (highlightParent) {
+				highlightParent.classList.add('active');
+			}
+			}
+		});
+	}
+
+	highlightButtonFocusOut() {
+		document.addEventListener('focusout', function(event) {
+			const unfocusedElement = event.target;
+			if (unfocusedElement.classList.contains('edac-highlight-btn')) {
+				const highlightParent = unfocusedElement.closest('.edac-highlight');
+				if (highlightParent) {
+				highlightParent.classList.remove('active');
+				}
+			}
+		});
+	}
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-	new EdacHighlight();
+	new AccessibilityCheckerHighlight();
+	new AccessibilityCheckerDisableHTML();
 });

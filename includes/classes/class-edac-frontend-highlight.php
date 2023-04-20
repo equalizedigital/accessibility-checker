@@ -95,6 +95,7 @@ class EDAC_Frontend_Highlight {
 				<button class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel"></button>
 				<button id="edac-highlight-previous">previous</button>
 				<button id="edac-highlight-next">Next</button>
+				<button id="edac-highlight-disable-styles">Disable Styles</button>
 			</div>
 		</div>
 
