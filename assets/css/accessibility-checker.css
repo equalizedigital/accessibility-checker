@@ -84,8 +84,54 @@
       .edac-highlight-tooltip-reference:focus {
         outline: solid 2px #f3cd1e !important; }
   .edac-highlight-panel {
-    width: 50%;
+    width: 400px;
+    max-width: 400px;
     position: fixed;
-    bottom: 0;
-    right: 0;
-    background-color: #ffffff; }
+    bottom: 15px;
+    right: 15px; }
+    .edac-highlight-panel * {
+      all: unset; }
+    .edac-highlight-panel-toggle {
+      width: 50px;
+      height: 50px;
+      display: block;
+      background: transparent url("../images/edac-emblem.png") center center no-repeat;
+      background-size: contain;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      position: relative;
+      float: right; }
+      .edac-highlight-panel-toggle:hover {
+        cursor: pointer; }
+    .edac-highlight-panel-description {
+      display: block;
+      border: solid 1px #737373;
+      background-color: #ffffff;
+      margin-bottom: 15px;
+      padding: 15px;
+      color: #ffffff;
+      background-color: #072446;
+      font-size: 14px;
+      line-height: 22px;
+      font-family: sans-serif;
+      text-align: left;
+      display: none; }
+      .edac-highlight-panel-description-title {
+        font-size: 16px;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px; }
+      .edac-highlight-panel-description-reference {
+        all: unset;
+        color: #f3cd1e;
+        text-decoration: none;
+        display: inline-block; }
+        .edac-highlight-panel-description-reference:hover, .edac-highlight-panel-description-reference:focus {
+          color: #ffffff !important; }
+        .edac-highlight-panel-description-reference:focus {
+          outline: solid 2px #f3cd1e !important; }
+    .edac-highlight-panel-controls {
+      display: block;
+      background-color: #ffffff;
+      border: solid 1px #737373;
+      display: none; }

@@ -118,10 +118,65 @@
         }
     }
     &-panel{
-        width: 50%;
+        *{
+            all: unset;
+        }
+        width: 400px;
+        max-width: 400px;
         position: fixed;
-        bottom: 0;
-        right: 0;
-        background-color: $color-white;
+        bottom: 15px;
+        right: 15px;
+        &-toggle{
+            width: 50px;
+            height: 50px;
+            display: block;
+            background: transparent url("../images/edac-emblem.png") center center no-repeat;
+            background-size: contain;
+            box-shadow: 0 0 5px rgba($color-black,.5);
+            border-radius: 50%;
+            position: relative;
+            float: right;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        &-description {
+            display: block;
+            border: solid 1px $color-gray;
+            background-color: $color-white;
+            margin-bottom: 15px;
+            padding: 15px;
+            color: $color-white;
+            background-color: $color-blue-dark;
+            font-size: 14px;
+            line-height: 22px;
+            font-family: sans-serif;
+            text-align: left;
+            display: none;
+            &-title{
+                font-size: 16px;
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            &-reference{
+                all: unset;
+                color: $color-yellow;
+                text-decoration: none;
+                display: inline-block;
+                &:hover, &:focus{
+                    color: $color-white !important;
+                }
+                &:focus{
+                    outline: solid 2px $color-yellow !important;
+                }
+            }
+        }
+        &-controls {
+            display: block;
+            background-color: $color-white;
+            border: solid 1px $color-gray;
+            display: none;
+        }
     }
 }

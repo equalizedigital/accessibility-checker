@@ -232,200 +232,150 @@
 	
 })(jQuery);
 
-function findElementWithSameHtmlAndAddBorder(value) {
-	
-	// Parse the HTML snippet
-	const htmlSnippet = value.object;
-	const parser = new DOMParser();
-	const parsedHtml = parser.parseFromString(htmlSnippet, 'text/html');
-	console.log(parsedHtml);
-	const firstParsedElement = parsedHtml.body.firstElementChild;
 
-	
+class EdacHighlight {
 
-	// If there's no parsed element, return null
-	if (!firstParsedElement) {
+	constructor() {
+		this.nextButton = document.querySelector('#edac-highlight-next');
+		this.previousButton = document.querySelector('#edac-highlight-previous');
+		this.panelToggle = document.querySelector('#edac-highlight-panel-toggle');
+		this.currentButtonIndex = 0;
+		this.init();
+	}
+
+	init() {
+		this.nextButton.addEventListener('click', () => this.highlightFocusNext());
+		this.previousButton.addEventListener('click', () => this.highlightFocusPrevious());
+		this.panelToggle.addEventListener('click', () => this.panelOpen());
+	}
+
+	findElement(value) {
+	
+		// Parse the HTML snippet
+		const htmlSnippet = value.object;
+		const parser = new DOMParser();
+		const parsedHtml = parser.parseFromString(htmlSnippet, 'text/html');
+		console.log(parsedHtml);
+		const firstParsedElement = parsedHtml.body.firstElementChild;
+	
+		// If there's no parsed element, return null
+		if (!firstParsedElement) {
+			return null;
+		}
+	
+		// Compare the outer HTML of the parsed element with all elements on the page
+		//const allElements = document.querySelectorAll('*');
+		//const allElements = [document.documentElement].concat(Array.from(document.querySelectorAll('*')));
+		const allElements = document.body.querySelectorAll('*');
+	
+		for (const element of allElements) {
+	
+			if (element.outerHTML === firstParsedElement.outerHTML) {
+				
+				// Add a solid red 5px border to the matched element
+				//element.style.border = '5px solid red';
+				this.wrapElement(element, value);
+				this.addTooltip(element, value);
+				//element.setAttribute('aria-hidden', 'false');
+				return element;
+			}
+		}
+	
+		// If no matching element is found, return null
 		return null;
 	}
 
+	highlightAjax() {
+		const xhr = new XMLHttpRequest();
+		const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_script_vars.postID + '&nonce=' + edac_script_vars.nonce;
 	
-
-	// Compare the outer HTML of the parsed element with all elements on the page
-	//const allElements = document.querySelectorAll('*');
-	//const allElements = [document.documentElement].concat(Array.from(document.querySelectorAll('*')));
-	const allElements = document.body.querySelectorAll('*');
-
-	
-
-	for (const element of allElements) {
-
-		//console.log(element);
-
-		
-		//console.log(firstParsedElement.outerHTML);
-
-		if (element.outerHTML === firstParsedElement.outerHTML) {
-			
-			// Add a solid red 5px border to the matched element
-			//element.style.border = '5px solid red';
-			edac_frontend_highlight_wrap_element(element, value);
-			edac_frontend_highlight_add_tooltip(element, value);
-			//element.setAttribute('aria-hidden', 'false');
-			return element;
-		}
+		xhr.open('GET', url);
+	  
+		xhr.onload = function() {
+			if (xhr.status === 200) {
+				const response = JSON.parse(xhr.responseText);
+				if (true === response.success) {
+					let response_json = JSON.parse(response.data);
+					console.log(response_json);
+					response_json.forEach(function(value, index) {
+						//console.log(value.object);
+						const matchedElement = this.findElement(value);
+						console.log(matchedElement);
+					}.bind(this));
+				} else {
+					console.log(response);
+				}
+			} else {
+				console.log('Request failed.  Returned status of ' + xhr.status);
+			}
+		}.bind(this);
+		xhr.send();
 	}
 
-	// If no matching element is found, return null
-	return null;
-}
+	wrapElement(element, value) {
+		const parent = element.parentNode;
+		const wrapper = document.createElement('div');
+		wrapper.className = `edac-highlight edac-highlight-${value.rule_type}`;
+		parent.insertBefore(wrapper, element);
+		wrapper.appendChild(element);
+	}
+	
+	
+	addTooltip(element, value) {
+		// Create tooltip HTML markup.
+		const tooltipHTML = `
+			<button class="edac-highlight-btn edac-highlight-btn-${value.ruletype}"
+					aria-label="${value.rule_title}"
+					aria-expanded="false"
+					aria-controls="edac-highlight-tooltip-${value.id}"></button>
+		`;
+	
+		// Add the tooltip markup before the element.
+		element.insertAdjacentHTML('beforebegin', tooltipHTML);
+	}
 
-// Sample usage
-const htmlSnippet = `
-<a class="wp-block-button__link wp-element-button">Test</a>
-`;
+	highlightFocusNext() {
+		const highlightButtons = document.querySelectorAll('.edac-highlight-btn');
+		this.currentButtonIndex = (this.currentButtonIndex + 1) % highlightButtons.length;
+		highlightButtons[this.currentButtonIndex].focus();
+		console.log( 'Visible: ' + this.isElementVisible(highlightButtons[this.currentButtonIndex]));
+		console.log( 'Hidden: ' + this.isElementHidden(highlightButtons[this.currentButtonIndex]));
+	}
+	
+	highlightFocusPrevious() {
+		const highlightButtons = document.querySelectorAll('.edac-highlight-btn');
+		this.currentButtonIndex = (this.currentButtonIndex - 1 + highlightButtons.length) % highlightButtons.length;
+		highlightButtons[this.currentButtonIndex].focus();
+	}
 
-// window.addEventListener('DOMContentLoaded', () => {
-//     const matchedElement = findElementWithSameHtmlAndAddBorder(htmlSnippet);
-//     console.log(matchedElement);
-// });
+	isElementVisible(el) {
+		const rect = el.getBoundingClientRect();
+		const windowHeight =
+		window.innerHeight || document.documentElement.clientHeight;
+		const windowWidth =
+		window.innerWidth || document.documentElement.clientWidth;
+	
+		return (
+		rect.top >= 0 &&
+		rect.left >= 0 &&
+		rect.bottom <= windowHeight &&
+		rect.right <= windowWidth
+		);
+	}
 
+	isElementHidden(el) {
+		const style = window.getComputedStyle(el);
+		return style.display === 'none';
+	}
 
-
-
-function edac_frontend_highlight_ajax() {
-	const xhr = new XMLHttpRequest();
-	const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_script_vars.postID + '&nonce=' + edac_script_vars.nonce;
-
-	xhr.open('GET', url);
-  
-	xhr.onload = function() {
-	  if (xhr.status === 200) {
-		const response = JSON.parse(xhr.responseText);
-		if (true === response.success) {
-			let response_json = JSON.parse(response.data);
-			console.log(response_json);
-
-			response_json.forEach(function(value, index) {
-				//console.log(value.object);
-				const matchedElement = findElementWithSameHtmlAndAddBorder(value);
-				console.log(matchedElement);
-			});
-
-
-			
-		} else {
-		  console.log(response);
-		}
-	  } else {
-		console.log('Request failed.  Returned status of ' + xhr.status);
-	  }
-	};
-  
-	xhr.send();
-  }
-
-edac_frontend_highlight_ajax();
-
-function edac_frontend_highlight_wrap_element(element, value) {
-	const parent = element.parentNode;
-	const wrapper = document.createElement('div');
-	wrapper.className = `edac-highlight edac-highlight-${value.rule_type}`;
-	parent.insertBefore(wrapper, element);
-	wrapper.appendChild(element);
-}
-
-
-function edac_frontend_highlight_add_tooltip(element, value) {
-	// Create tooltip HTML markup.
-	const tooltipHTML = `
-		<div class="edac-highlight-tooltip-wrap">
-		<button class="edac-highlight-btn edac-highlight-btn-${value.ruletype}"
-				aria-label="${value.rule_title}"
-				aria-expanded="false"
-				aria-controls="edac-highlight-tooltip-${value.id}"></button>
-		<div class="edac-highlight-tooltip" id="edac-highlight-tooltip-${value.id}">
-			<strong class="edac-highlight-tooltip-title">${value.rule_title}</strong>
-			<a href="${value.link}" class="edac-highlight-tooltip-reference"
-				target="_blank"
-				aria-label="Read documentation for ${value.rule_title}, opens new window">
-			<span class="dashicons dashicons-info"></span>
-			</a>
-			<br />
-			<p>${value.summary}</p>
-		</div>
-		</div>
-	`;
-
-	// Add the tooltip markup before the element.
-	element.insertAdjacentHTML('beforebegin', tooltipHTML);
-}
-
-function edac_frontend_highlight_add_panel() {
-	// Create panel HTML markup.
-	const panelHTML = `
-		<div class="edac-highlight-panel">
-		<div class="edac-highlight-panel-inner">
-			<div class="edac-highlight-panel-header">
-			<h2 class="edac-highlight-panel-title">Accessibility Highlights</h2>
-			<button class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel"></button>
-			</div>
-			<div class="edac-highlight-panel-content">
-			<div class="edac-highlight-panel-content-inner">
-				<p>Accessibility highlights are available for this page. Click on the highlighted elements to learn more.</p>
-				<button id="edac-highlight-next">Next</button>
-				<button id="edac-highlight-previous">previous</button>
-			</div>
-			</div>
-		</div>
-		</div>
-	`;
-
-	// Add the panel markup after the body.
-	document.body.insertAdjacentHTML('afterbegin', panelHTML);
-
-	const nextButton = document.querySelector('#edac-highlight-next');
-	const previousButton = document.querySelector('#edac-highlight-previous');
-
-	nextButton.addEventListener('click', edac_highlight_focus_next);
-	previousButton.addEventListener('click', edac_highlight_focus_previous);
-
+	panelOpen() {
+		const panelControls = document.querySelector('#edac-highlight-panel-controls');
+		panelControls.style.display = 'block';
+		this.panelToggle.style.display = 'none';
+		this.highlightAjax();
+	}
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-	edac_frontend_highlight_add_panel();
+	new EdacHighlight();
 });
-
-let currentButtonIndex = 0;
-function edac_highlight_focus_next() {
-	const highlightButtons = document.querySelectorAll('.edac-highlight-btn');
-	currentButtonIndex = (currentButtonIndex + 1) % highlightButtons.length;
-	highlightButtons[currentButtonIndex].focus();
-	console.log(isElementVisible(highlightButtons[currentButtonIndex]));
-	console.log(isElementHidden(highlightButtons[currentButtonIndex]));
-  }
-  
-  function edac_highlight_focus_previous() {
-	const highlightButtons = document.querySelectorAll('.edac-highlight-btn');
-	currentButtonIndex = (currentButtonIndex - 1 + highlightButtons.length) % highlightButtons.length;
-	highlightButtons[currentButtonIndex].focus();
-}
-
-function isElementVisible(el) {
-	const rect = el.getBoundingClientRect();
-	const windowHeight =
-	  window.innerHeight || document.documentElement.clientHeight;
-	const windowWidth =
-	  window.innerWidth || document.documentElement.clientWidth;
-  
-	return (
-	  rect.top >= 0 &&
-	  rect.left >= 0 &&
-	  rect.bottom <= windowHeight &&
-	  rect.right <= windowWidth
-	);
-}
-
-function isElementHidden(el) {
-	const style = window.getComputedStyle(el);
-	return style.display === 'none';
-}
