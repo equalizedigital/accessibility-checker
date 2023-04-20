@@ -127,7 +127,7 @@
 		
 							// tooltip: scroll to
 							if (index === $('selector').length - 1) {
-								edac_scroll_to( element );
+								//edac_scroll_to( element );
 							}
 		
 							// tooltip: hide
@@ -420,6 +420,7 @@ class AccessibilityCheckerHighlight {
 			const highlightParent = focusedElement.closest('.edac-highlight');
 			if (highlightParent) {
 				highlightParent.classList.add('active');
+				//focusedElement.scrollIntoView();
 			}
 			}
 		});

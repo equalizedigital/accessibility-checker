@@ -1,5 +1,4 @@
 <?php
-
 class EDAC_Frontend_Highlight {
 
 	public function __construct() {
