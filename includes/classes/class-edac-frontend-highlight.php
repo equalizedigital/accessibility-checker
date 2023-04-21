@@ -58,6 +58,7 @@ class EDAC_Frontend_Highlight {
 			$rule  = edac_filter_by_value( $rules, 'slug', $result['rule'] );
 
 			$array['rule_type']  = $rule[0]['rule_type'];
+			$array['slug']       = $rule[0]['slug'];
 			$array['rule_title'] = $rule[0]['title'];
 			$array['summary']    = $rule[0]['summary'];
 			$array['link']       = edac_documentation_link( $rule[0] );
@@ -87,13 +88,12 @@ class EDAC_Frontend_Highlight {
 				<a href="#" class="edac-highlight-panel-description-reference" target="_self" aria-label="Read documentation for ${value.rule_title}, opens new window">Full Documentation</a>
 			</div>
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls">
-			Errors
-					Warnings
+				<!-- Errors Warnings -->
 				
 				
-				<button class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel"></button>
-				<button id="edac-highlight-previous">previous</button>
-				<button id="edac-highlight-next">Next</button>
+				<button id="edac-highlight-panel-close" class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel">Close</button><br />
+				<button id="edac-highlight-previous"><span aria-hidden="true">« </span>previous</button>
+				<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
 				<button id="edac-highlight-disable-styles">Disable Styles</button>
 			</div>
 		</div>

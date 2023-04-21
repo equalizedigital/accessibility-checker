@@ -132,6 +132,7 @@ class AccessibilityCheckerHighlight {
 			<button class="edac-highlight-btn edac-highlight-btn-${value.ruletype}"
 					aria-label="${value.rule_title}"
 					aria-expanded="false"
+					data-rule-id="${value.slug}"
 					aria-controls="edac-highlight-tooltip-${value.id}"></button>
 		`;
 	
@@ -188,6 +189,10 @@ class AccessibilityCheckerHighlight {
 			if (highlightParent) {
 				highlightParent.classList.add('active');
 				//focusedElement.scrollIntoView();
+
+				const dataRuleId = focusedElement.getAttribute('data-rule-id');
+                console.log(dataRuleId);
+
 			}
 			}
 		});
