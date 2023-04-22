@@ -78,28 +78,29 @@ class EDAC_Frontend_Highlight {
 	}
 
 	public function panel() {
+		$post_types        = get_option( 'edac_post_types' );
+		$current_post_type = get_post_type();
+		if ( in_array( $current_post_type, $post_types, true ) ) {
 		?>
-
-		<div class="edac-highlight-panel">
-			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" title="Toggle accessibility tools"></button>
-			<div class="edac-highlight-panel-description">
-				<div class="edac-highlight-panel-description-title">Text Justified</div>
-				<p>A warning about missing headings means that your post or page does not contain any heading elements (<h1>–<h6>) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one <h1> tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning.</p>
-				<a href="#" class="edac-highlight-panel-description-reference" target="_self" aria-label="Read documentation for ${value.rule_title}, opens new window">Full Documentation</a>
+			<div class="edac-highlight-panel">
+				<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" title="Toggle accessibility tools"></button>
+				<div class="edac-highlight-panel-description">
+					<div class="edac-highlight-panel-description-title">Text Justified</div>
+					<p>A warning about missing headings means that your post or page does not contain any heading elements (<h1>–<h6>) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one <h1> tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning.</p>
+					<a href="#" class="edac-highlight-panel-description-reference" target="_self" aria-label="Read documentation for ${value.rule_title}, opens new window">Full Documentation</a>
+				</div>
+				<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls">
+					<!-- Errors Warnings -->
+					
+					
+					<button id="edac-highlight-panel-close" class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel">Close</button><br />
+					<button id="edac-highlight-previous"><span aria-hidden="true">« </span>previous</button>
+					<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
+					<button id="edac-highlight-disable-styles">Disable Styles</button>
+				</div>
 			</div>
-			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls">
-				<!-- Errors Warnings -->
-				
-				
-				<button id="edac-highlight-panel-close" class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel">Close</button><br />
-				<button id="edac-highlight-previous"><span aria-hidden="true">« </span>previous</button>
-				<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
-				<button id="edac-highlight-disable-styles">Disable Styles</button>
-			</div>
-		</div>
-
-
 		<?php
+		}
 	}
 
 }
