@@ -42,7 +42,9 @@ class AccessibilityCheckerHighlight {
 		this.nextButton = document.querySelector('#edac-highlight-next');
 		this.previousButton = document.querySelector('#edac-highlight-previous');
 		this.panelToggle = document.querySelector('#edac-highlight-panel-toggle');
+		this.issues = null;
 		this.currentButtonIndex = 0;
+		this.descriptionTimeout;
 		this.init();
 		this.highlightButtonFocus();
 		this.highlightButtonFocusOut();
@@ -54,7 +56,7 @@ class AccessibilityCheckerHighlight {
 		this.panelToggle.addEventListener('click', () => this.panelOpen());
 	}
 
-	findElement(value) {
+	findElement(value, index) {
 	
 		// Parse the HTML snippet
 		const htmlSnippet = value.object;
@@ -80,7 +82,7 @@ class AccessibilityCheckerHighlight {
 				// Add a solid red 5px border to the matched element
 				//element.style.border = '5px solid red';
 				this.wrapElement(element, value);
-				this.addTooltip(element, value);
+				this.addTooltip(element, value, index);
 				//element.setAttribute('aria-hidden', 'false');
 				return element;
 			}
@@ -102,11 +104,35 @@ class AccessibilityCheckerHighlight {
 				if (true === response.success) {
 					let response_json = JSON.parse(response.data);
 					console.log(response_json);
+					this.issues = response_json;
 					response_json.forEach(function(value, index) {
 						//console.log(value.object);
-						const matchedElement = this.findElement(value);
+						const matchedElement = this.findElement(value, index);
 						console.log(matchedElement);
 					}.bind(this));
+				} else {
+					console.log(response);
+				}
+			} else {
+				console.log('Request failed.  Returned status of ' + xhr.status);
+			}
+		}.bind(this);
+		xhr.send();
+	}
+
+	descriptionAjax() {
+		const xhr = new XMLHttpRequest();
+		const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_description_ajax&nonce=' + edac_script_vars.nonce;
+	
+		xhr.open('GET', url);
+	  
+		xhr.onload = function() {
+			if (xhr.status === 200) {
+				const response = JSON.parse(xhr.responseText);
+				if (true === response.success) {
+					let response_json = JSON.parse(response.data);
+					console.log(response_json);
+					
 				} else {
 					console.log(response);
 				}
@@ -126,13 +152,13 @@ class AccessibilityCheckerHighlight {
 	}
 	
 	
-	addTooltip(element, value) {
+	addTooltip(element, value, index) {
 		// Create tooltip HTML markup.
 		const tooltipHTML = `
 			<button class="edac-highlight-btn edac-highlight-btn-${value.ruletype}"
 					aria-label="${value.rule_title}"
 					aria-expanded="false"
-					data-rule-id="${value.slug}"
+					data-issue-id="${index}"
 					aria-controls="edac-highlight-tooltip-${value.id}"></button>
 		`;
 	
@@ -179,36 +205,62 @@ class AccessibilityCheckerHighlight {
 		panelControls.style.display = 'block';
 		this.panelToggle.style.display = 'none';
 		this.highlightAjax();
+		this.descriptionAjax();
 	}
 
 	highlightButtonFocus() {
-		document.addEventListener('focusin', function(event) {
+		document.addEventListener('focusin', (event) => {
 			const focusedElement = event.target;
 			if (focusedElement.classList.contains('edac-highlight-btn')) {
 			const highlightParent = focusedElement.closest('.edac-highlight');
 			if (highlightParent) {
 				highlightParent.classList.add('active');
 				//focusedElement.scrollIntoView();
-
-				const dataRuleId = focusedElement.getAttribute('data-rule-id');
-                console.log(dataRuleId);
-
+		
+				const dataIssueId = focusedElement.getAttribute('data-issue-id');
+				this.description( dataIssueId );
+				
+				this.cancelDescriptionTimeout();
 			}
 			}
 		});
 	}
 
 	highlightButtonFocusOut() {
-		document.addEventListener('focusout', function(event) {
+		document.addEventListener('focusout', (event) => {
 			const unfocusedElement = event.target;
 			if (unfocusedElement.classList.contains('edac-highlight-btn')) {
 				const highlightParent = unfocusedElement.closest('.edac-highlight');
 				if (highlightParent) {
-				highlightParent.classList.remove('active');
+					highlightParent.classList.remove('active');
+					const description = document.querySelector('#edac-highlight-panel-description');
+					this.descriptionTimeout = setTimeout(function() {
+						description.style.display = 'none';
+					}, 500); // 1000 milliseconds (1 second) delay
 				}
 			}
 		});
 	}
+
+	cancelDescriptionTimeout() {
+		clearTimeout(this.descriptionTimeout);
+	}
+
+	description( dataIssueId ) {
+
+		const description = document.querySelector('#edac-highlight-panel-description');
+		const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
+		const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
+		let content = this.issues[dataIssueId].summary;
+
+		description.style.display = 'block';
+
+		content += `<a class="edac-highlight-panel-description-reference" href="${this.issues[dataIssueId].rule_title}">Full Documentation</a>`;
+
+		descriptionTitle.innerHTML = this.issues[dataIssueId].rule_title;
+		descriptionContent.innerHTML = content;
+	}
+
 }
 
 window.addEventListener('DOMContentLoaded', () => {
