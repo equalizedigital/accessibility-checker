@@ -2,6 +2,7 @@
 class AccessibilityCheckerDisableHTML {
 	constructor() {
 		this.disableStylesButton = document.querySelector('#edac-highlight-disable-styles');
+		this.closePanel = document.querySelector('#edac-highlight-panel-close');
 		this.stylesDisabled = false;
 		this.originalCss = [];
 		this.init();
@@ -15,6 +16,7 @@ class AccessibilityCheckerDisableHTML {
 				this.disableStyles();
 			}
 		});
+		this.closePanel.addEventListener('click', () => this.enableStyles());
 	}
 
 	disableStyles() {
