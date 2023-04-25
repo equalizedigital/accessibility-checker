@@ -47,6 +47,14 @@ function edac_enqueue_scripts() {
 	$post_id = is_object( $post ) ? $post->ID : null;
 	wp_enqueue_script( 'edac', plugin_dir_url( __DIR__ ) . 'assets/js/accessibility-checker-min.js', array( 'jquery' ), EDAC_VERSION, false );
 
+	$post_types        = get_option( 'edac_post_types' );
+	$current_post_type = get_post_type();
+	if ( in_array( $current_post_type, $post_types, true ) ) {
+		$active = true;
+	} else {
+		$active = false;
+	}
+
 	wp_localize_script(
 		'edac',
 		'edac_script_vars',
@@ -54,7 +62,8 @@ function edac_enqueue_scripts() {
 			'postID'   => $post_id,
 			'nonce'    => wp_create_nonce( 'ajax-nonce' ),
 			'ajaxurl'  => admin_url( 'admin-ajax.php' ),
-			'loggedIn' => is_user_logged_in()
+			'loggedIn' => is_user_logged_in(),
+			'active'   => $active,
 		)
 	);
 

@@ -39,6 +39,7 @@ class AccessibilityCheckerDisableHTML {
 class AccessibilityCheckerHighlight {
 
 	constructor() {
+		this.addHighlightPanel();
 		this.nextButton = document.querySelector('#edac-highlight-next');
 		this.previousButton = document.querySelector('#edac-highlight-previous');
 		this.panelToggle = document.querySelector('#edac-highlight-panel-toggle');
@@ -46,11 +47,11 @@ class AccessibilityCheckerHighlight {
 		this.currentButtonIndex = 0;
 		this.descriptionTimeout;
 		this.init();
-		this.highlightButtonFocus();
-		this.highlightButtonFocusOut();
 	}
 
 	init() {
+		this.highlightButtonFocus();
+		this.highlightButtonFocusOut();
 		this.nextButton.addEventListener('click', () => this.highlightFocusNext());
 		this.previousButton.addEventListener('click', () => this.highlightFocusPrevious());
 		this.panelToggle.addEventListener('click', () => this.panelOpen());
@@ -166,6 +167,27 @@ class AccessibilityCheckerHighlight {
 		element.insertAdjacentHTML('beforebegin', tooltipHTML);
 	}
 
+	addHighlightPanel() {
+		const newElement = `
+			<div class="edac-highlight-panel">
+			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" title="Toggle accessibility tools"></button>
+			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description">
+				<button class="edac-highlight-panel-description-close">Close</button>
+				<div class="edac-highlight-panel-description-title"></div>
+				<div class="edac-highlight-panel-description-content"></div>			
+			</div>
+			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls">					
+				<button id="edac-highlight-panel-close" class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel">Close</button><br />
+				<button id="edac-highlight-previous"><span aria-hidden="true">« </span>previous</button>
+				<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
+				<button id="edac-highlight-disable-styles">Disable Styles</button>
+			</div>
+			</div>
+		`;
+		
+		document.body.insertAdjacentHTML('afterbegin', newElement);
+	}
+
 	highlightFocusNext() {
 		const highlightButtons = document.querySelectorAll('.edac-highlight-btn');
 		this.currentButtonIndex = (this.currentButtonIndex + 1) % highlightButtons.length;
@@ -255,7 +277,7 @@ class AccessibilityCheckerHighlight {
 
 		description.style.display = 'block';
 
-		content += `<a class="edac-highlight-panel-description-reference" href="${this.issues[dataIssueId].rule_title}">Full Documentation</a>`;
+		content += `<a class="edac-highlight-panel-description-reference" href="${this.issues[dataIssueId].link}">Full Documentation</a>`;
 
 		descriptionTitle.innerHTML = this.issues[dataIssueId].rule_title;
 		descriptionContent.innerHTML = content;
@@ -264,6 +286,8 @@ class AccessibilityCheckerHighlight {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-	new AccessibilityCheckerHighlight();
-	new AccessibilityCheckerDisableHTML();
+	if( true == edac_script_vars.active ) {
+		new AccessibilityCheckerHighlight();
+		new AccessibilityCheckerDisableHTML();
+	}
 });

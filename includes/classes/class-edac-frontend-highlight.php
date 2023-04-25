@@ -6,7 +6,6 @@ class EDAC_Frontend_Highlight {
 		//add_action( 'wp_ajax_nopriv_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
 		add_action( 'wp_ajax_edac_frontend_highlight_description_ajax', array( $this, 'description_ajax' ) );
 		//add_action( 'wp_ajax_nopriv_edac_frontend_highlight_description_ajax', array( $this, 'ajax' ) );
-		add_action( 'wp_head', array( $this, 'panel' ) );
 	}
 
 	public function get_issues( $post_id ) {
@@ -99,29 +98,6 @@ class EDAC_Frontend_Highlight {
 		wp_send_json_success( wp_json_encode( $rules ) );
 
 	}
-
-	public function panel() {
-		$post_types        = get_option( 'edac_post_types' );
-		$current_post_type = get_post_type();
-		if ( in_array( $current_post_type, $post_types, true ) ) {
-		?>
-			<div class="edac-highlight-panel">
-				<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" title="Toggle accessibility tools"></button>
-				<div id="edac-highlight-panel-description" class="edac-highlight-panel-description">
-					<div class="edac-highlight-panel-description-title"></div>
-					<div class="edac-highlight-panel-description-content"></div>			
-				</div>
-				<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls">					
-					<button id="edac-highlight-panel-close" class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel">Close</button><br />
-					<button id="edac-highlight-previous"><span aria-hidden="true">« </span>previous</button>
-					<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
-					<button id="edac-highlight-disable-styles">Disable Styles</button>
-				</div>
-			</div>
-		<?php
-		}
-	}
-
 }
 
 new EDAC_Frontend_Highlight();
