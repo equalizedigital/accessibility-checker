@@ -455,6 +455,9 @@
       edac_details_ajax();
       ignore_submit();
     }
+    if( $('.edac-details-rule-records-record-ignore').length ) {
+      ignore_submit();
+    }
     if( $('.edac-readability').length ) {
       edac_readability_ajax();
     }
