@@ -1,40 +1,63 @@
 
 class AccessibilityCheckerDisableHTML {
-
 	constructor() {
 		this.disableStylesButton = document.querySelector('#edac-highlight-disable-styles');
+		this.stylesDisabled = false;
+		this.originalCss = [];
 		this.init();
 	}
 
 	init() {
-		this.disableStylesButton.addEventListener('click', () => this.disabledStyles());
+		this.disableStylesButton.addEventListener('click', () => {
+			if (this.stylesDisabled) {
+				this.enableStyles();
+			} else {
+				this.disableStyles();
+			}
+		});
 	}
 
-	disabledStyles() {
-		var css = Array.from(document.head.querySelectorAll('style[type="text/css"], style, link[rel="stylesheet"]'));
-	
-		// remove inline styles
-		// except for elements with class starting with edac
+	disableStyles() {
+		this.originalCss = Array.from(document.head.querySelectorAll('style[type="text/css"], style, link[rel="stylesheet"]'));
+
 		var elementsWithStyle = document.querySelectorAll('*[style]:not([class^="edac"])');
-		elementsWithStyle.forEach(function(element) {
+		elementsWithStyle.forEach(function (element) {
 			element.removeAttribute("style");
 		});
-	
-		css = css.filter(function(element) {
-			console.log(element.id);
+
+		this.originalCss = this.originalCss.filter(function (element) {
 			if (element.id === 'edac-css' || element.id === 'dashicons-css') {
 				return false;
 			}
 			return true;
 		});
-	
-		document.head.dataset.css = css;
-		css.forEach(function(element) {
+
+		document.head.dataset.css = this.originalCss;
+		this.originalCss.forEach(function (element) {
 			element.remove();
 		});
-		//alert("Styles have been disabled. To enable styles please refresh the page.");
+		this.stylesDisabled = true;
+		this.disableStylesButton.textContent = "Enable Styles";
+		//alert("Styles have been disabled. Click the button again to enable styles.");
+	}
+
+	enableStyles() {
+		this.originalCss.forEach(function (element) {
+			if (element.tagName === 'STYLE') {
+				document.head.appendChild(element.cloneNode(true));
+			} else {
+				const newElement = document.createElement('link');
+				newElement.rel = 'stylesheet';
+				newElement.href = element.href;
+				document.head.appendChild(newElement);
+			}
+		});
+		this.stylesDisabled = false;
+		this.disableStylesButton.textContent = "Disable Styles";
+		//alert("Styles have been enabled.");
 	}
 }
+
 
 class AccessibilityCheckerHighlight {
 
@@ -156,7 +179,7 @@ class AccessibilityCheckerHighlight {
 	addTooltip(element, value, index) {
 		// Create tooltip HTML markup.
 		const tooltipHTML = `
-			<button class="edac-highlight-btn edac-highlight-btn-${value.ruletype}"
+			<button class="edac-highlight-btn edac-highlight-btn-${value.rule_type}"
 					aria-label="${value.rule_title}"
 					aria-expanded="false"
 					data-issue-id="${index}"
@@ -277,7 +300,7 @@ class AccessibilityCheckerHighlight {
 
 		description.style.display = 'block';
 
-		content += `<a class="edac-highlight-panel-description-reference" href="${this.issues[dataIssueId].link}">Full Documentation</a>`;
+		content += ` <br /><a class="edac-highlight-panel-description-reference" href="${this.issues[dataIssueId].link}">Full Documentation</a>`;
 
 		descriptionTitle.innerHTML = this.issues[dataIssueId].rule_title;
 		descriptionContent.innerHTML = content;

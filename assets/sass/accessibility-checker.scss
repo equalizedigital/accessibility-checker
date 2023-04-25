@@ -165,8 +165,6 @@
                 all: unset;
                 color: $color-yellow;
                 text-decoration: none;
-                display: inline-block;
-                clear: both;
                 &:hover, &:focus{
                     color: $color-white !important;
                 }

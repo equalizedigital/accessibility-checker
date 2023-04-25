@@ -125,9 +125,7 @@
       .edac-highlight-panel-description-reference {
         all: unset;
         color: #f3cd1e;
-        text-decoration: none;
-        display: inline-block;
-        clear: both; }
+        text-decoration: none; }
         .edac-highlight-panel-description-reference:hover, .edac-highlight-panel-description-reference:focus {
           color: #ffffff !important; }
         .edac-highlight-panel-description-reference:focus {
