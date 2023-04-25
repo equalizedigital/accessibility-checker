@@ -66,6 +66,9 @@ class AccessibilityCheckerHighlight {
 		this.nextButton = document.querySelector('#edac-highlight-next');
 		this.previousButton = document.querySelector('#edac-highlight-previous');
 		this.panelToggle = document.querySelector('#edac-highlight-panel-toggle');
+		this.closePanel = document.querySelector('#edac-highlight-panel-close');
+		this.panelDescription = document.querySelector('#edac-highlight-panel-description');
+		this.panelControls = document.querySelector('#edac-highlight-panel-controls');
 		this.issues = null;
 		this.currentButtonIndex = 0;
 		this.descriptionTimeout;
@@ -78,6 +81,7 @@ class AccessibilityCheckerHighlight {
 		this.nextButton.addEventListener('click', () => this.highlightFocusNext());
 		this.previousButton.addEventListener('click', () => this.highlightFocusPrevious());
 		this.panelToggle.addEventListener('click', () => this.panelOpen());
+		this.closePanel.addEventListener('click', () => this.panelClose());
 	}
 
 	findElement(value, index) {
@@ -151,7 +155,30 @@ class AccessibilityCheckerHighlight {
 		parent.insertBefore(wrapper, element);
 		wrapper.appendChild(element);
 	}
-	
+
+	unwrapElements() {
+		const elements = document.querySelectorAll('.edac-highlight');
+		
+		for (let i = 0; i < elements.length; i++) {
+			const element = elements[i];
+			const parent = element.parentNode;
+			const wrapper = parent.parentNode;
+		
+			if (wrapper.tagName === 'DIV' && wrapper.classList.contains('edac-highlight')) {
+			parent.removeChild(element);
+			wrapper.parentNode.insertBefore(element, wrapper);
+			wrapper.parentNode.removeChild(wrapper);
+			}
+		}
+	}
+
+	removeHighlightButtons() {
+		const elements = document.querySelectorAll('.edac-highlight-btn');
+		
+		for (let i = 0; i < elements.length; i++) {
+			elements[i].remove();
+		}
+	}
 	
 	addTooltip(element, value, index) {
 		// Create tooltip HTML markup.
@@ -223,10 +250,17 @@ class AccessibilityCheckerHighlight {
 	}
 
 	panelOpen() {
-		const panelControls = document.querySelector('#edac-highlight-panel-controls');
-		panelControls.style.display = 'block';
+		this.panelControls.style.display = 'block';
 		this.panelToggle.style.display = 'none';
 		this.highlightAjax();
+	}
+
+	panelClose() {
+		this.panelControls.style.display = 'none';
+		this.panelDescription.style.display = 'none';
+		this.panelToggle.style.display = 'block';
+		this.unwrapElements();
+		this.removeHighlightButtons();
 	}
 
 	highlightButtonFocus() {
@@ -269,12 +303,12 @@ class AccessibilityCheckerHighlight {
 
 	description( dataIssueId ) {
 
-		const description = document.querySelector('#edac-highlight-panel-description');
+		
 		const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
 		const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
 		let content = this.issues[dataIssueId].summary;
 
-		description.style.display = 'block';
+		this.panelDescription.style.display = 'block';
 
 		content += ` <br /><a class="edac-highlight-panel-description-reference" href="${this.issues[dataIssueId].link}">Full Documentation</a>`;
 
