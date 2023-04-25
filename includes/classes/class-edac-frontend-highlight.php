@@ -3,9 +3,7 @@ class EDAC_Frontend_Highlight {
 
 	public function __construct() {
 		add_action( 'wp_ajax_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
-		//add_action( 'wp_ajax_nopriv_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
-		add_action( 'wp_ajax_edac_frontend_highlight_description_ajax', array( $this, 'description_ajax' ) );
-		//add_action( 'wp_ajax_nopriv_edac_frontend_highlight_description_ajax', array( $this, 'ajax' ) );
+		add_action( 'wp_ajax_nopriv_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
 	}
 
 	public function get_issues( $post_id ) {
@@ -76,27 +74,6 @@ class EDAC_Frontend_Highlight {
 		}
 
 		wp_send_json_success( wp_json_encode( $output ) );
-	}
-
-	public function description_ajax() {
-
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
-			$error = new WP_Error( '-1', 'Permission Denied' );
-			wp_send_json_error( $error );
-		}
-
-		$rules = edac_register_rules();
-
-		if ( ! $rules ) {
-
-			$error = new WP_Error( '-2', 'Rules returned no results' );
-			wp_send_json_error( $error );
-
-		}
-
-		wp_send_json_success( wp_json_encode( $rules ) );
-
 	}
 }
 

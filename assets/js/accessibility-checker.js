@@ -144,29 +144,6 @@ class AccessibilityCheckerHighlight {
 		xhr.send();
 	}
 
-	descriptionAjax() {
-		const xhr = new XMLHttpRequest();
-		const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_description_ajax&nonce=' + edac_script_vars.nonce;
-	
-		xhr.open('GET', url);
-	  
-		xhr.onload = function() {
-			if (xhr.status === 200) {
-				const response = JSON.parse(xhr.responseText);
-				if (true === response.success) {
-					let response_json = JSON.parse(response.data);
-					console.log(response_json);
-					
-				} else {
-					console.log(response);
-				}
-			} else {
-				console.log('Request failed.  Returned status of ' + xhr.status);
-			}
-		}.bind(this);
-		xhr.send();
-	}
-
 	wrapElement(element, value) {
 		const parent = element.parentNode;
 		const wrapper = document.createElement('div');
@@ -250,7 +227,6 @@ class AccessibilityCheckerHighlight {
 		panelControls.style.display = 'block';
 		this.panelToggle.style.display = 'none';
 		this.highlightAjax();
-		this.descriptionAjax();
 	}
 
 	highlightButtonFocus() {
