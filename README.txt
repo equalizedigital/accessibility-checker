@@ -174,6 +174,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.22 =
+Fixed: conflict with full site editor
+Fixed: bug with the Image Empty Alternative Text check not detecting images
+Fixed: bug with ignore button not working on the open issues and the ignore log
+
 = 1.3.21 =
 Fixed: issue of reading level & simplified summary mismatching
 Updated: password protected admin notice to be dismissable
