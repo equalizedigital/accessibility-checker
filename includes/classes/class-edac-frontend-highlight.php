@@ -62,6 +62,7 @@ class EDAC_Frontend_Highlight {
 			$array['summary']    = $rule[0]['summary'];
 			$array['link']       = edac_documentation_link( $rule[0] );
 			$array['object']     = html_entity_decode( esc_html( $result['object'] ) );
+			$array['id']         = $result['id'];
 
 			$output[] = $array;
 		}

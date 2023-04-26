@@ -74,6 +74,7 @@ class AccessibilityCheckerHighlight {
 		this.issues = null;
 		this.currentButtonIndex = 0;
 		this.descriptionTimeout;
+		this.urlParameter = this.get_url_parameter('edac');
 		this.init();
 	}
 
@@ -84,6 +85,10 @@ class AccessibilityCheckerHighlight {
 		this.previousButton.addEventListener('click', () => this.highlightFocusPrevious());
 		this.panelToggle.addEventListener('click', () => this.panelOpen());
 		this.closePanel.addEventListener('click', () => this.panelClose());
+
+		if(this.urlParameter){
+			this.panelOpen();
+		}
 	}
 
 	findElement(value, index) {
@@ -114,6 +119,20 @@ class AccessibilityCheckerHighlight {
 				this.wrapElement(element, value);
 				this.addTooltip(element, value, index);
 				//element.setAttribute('aria-hidden', 'false');
+
+				//highlightButtons[this.currentButtonIndex].style.display = 'block';
+				//element.setAttribute('aria-hidden', 'false');
+				//element.setAttribute('tabindex', '0');
+				//wp-block-navigation__responsive-close
+				/*
+				var elements = document.getElementsByClassName('wp-block-navigation__responsive-close');
+				for (var i = 0; i < elements.length; i++) {
+					elements[i].setAttribute('tabindex', '0');
+					elements[i].style.display = 'block';
+				}
+				*/
+
+
 				return element;
 			}
 		}
@@ -188,7 +207,8 @@ class AccessibilityCheckerHighlight {
 			<button class="edac-highlight-btn edac-highlight-btn-${value.rule_type}"
 					aria-label="${value.rule_title}"
 					aria-expanded="false"
-					data-issue-id="${index}"
+					data-index-id="${index}"
+					data-issue-id="${value.rule_type}"
 					aria-controls="edac-highlight-tooltip-${value.id}"></button>
 		`;
 	
@@ -274,7 +294,7 @@ class AccessibilityCheckerHighlight {
 				highlightParent.classList.add('active');
 				//focusedElement.scrollIntoView();
 		
-				const dataIssueId = focusedElement.getAttribute('data-issue-id');
+				const dataIssueId = focusedElement.getAttribute('data-index-id');
 				this.description( dataIssueId );
 				
 				this.cancelDescriptionTimeout();
@@ -317,6 +337,21 @@ class AccessibilityCheckerHighlight {
 		descriptionTitle.innerHTML = this.issues[dataIssueId].rule_title;
 		descriptionContent.innerHTML = content;
 	}
+
+	get_url_parameter(sParam) {
+		var sPageURL = window.location.search.substring(1);
+		var sURLVariables = sPageURL.split('&');
+		var sParameterName, i;
+		
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+		
+			if (sParameterName[0] === sParam) {
+			return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+			}
+		}
+		return false;
+	};
 
 }
 
