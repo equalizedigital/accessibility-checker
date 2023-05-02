@@ -189,7 +189,18 @@ function edac_get_content($post)
 {
 	$content = [];
 	$content['html'] = false;
+
 	$context = '';
+	$context_opts = array();
+	$default_context_opts = array(
+
+		//See: https://www.php.net/manual/en/context.http.php
+		'http' => array(
+			'follow_location'  => false,
+		)
+
+	);
+
 	$username = get_option('edacp_authorization_username');
 	$password = get_option('edacp_authorization_password');
 
@@ -202,42 +213,54 @@ function edac_get_content($post)
 	 */
 	$no_verify_ssl = apply_filters( 'edac_no_verify_ssl', false );
 
+	if ( $no_verify_ssl ) {
+		$context_opts['ssl'] = array(
+			'verify_peer'      => false,
+			'verify_peer_name' => false,
+		);
+	}
+
 	// set transient to get html from draft posts
 	set_transient('edac_public_draft',true, 5 * MINUTE_IN_SECONDS);
 
 	// http authorization
 	if(edac_check_plugin_active('accessibility-checker-pro/accessibility-checker-pro.php') && EDAC_KEY_VALID == true && $username && $password){
-		$context_opts = array(
-			'http' => array(
-				'header'  => "Authorization: Basic " . base64_encode("$username:$password")
-			),
-		);
-
-		if ( $no_verify_ssl ) {
-			$context_opts['ssl'] = array(
-				'verify_peer'      => false,
-				'verify_peer_name' => false,
-			);
-		}
-		$context = stream_context_create( $context_opts );
-	} elseif ( $no_verify_ssl ) {
-		$context = stream_context_create(array(
-			'ssl' => array(
-				'verify_peer'      => false,
-				'verify_peer_name' => false,
-			)
-		));
+		$context_opts['http']['header'] = "Authorization: Basic " . base64_encode("$username:$password");
 	}
-	try{
-		if($context){
-			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time(), false, $context);
-		}else{
-			$content['html'] = file_get_html(get_the_permalink($post->ID).'?c='.time());
+
+	$parsed_url = parse_url( get_the_permalink($post->ID) );
+	$parsed_site_url = parse_url( get_site_url() );
+
+	// sanity check: confirm the permalink url is on this site 
+	if( $parsed_url['host'] == $parsed_site_url['host'] ){
+
+		if($parsed_url['query'] ) {
+			// the permalink structure is using a querystring
+			$url = get_the_permalink($post->ID) . '&c=' . time();
+
+		} else {
+			// the permalink structure is not using a querystring
+			$url = get_the_permalink($post->ID) . '?c=' . time();
+	
 		}
-	} catch (Exception $e){
+
+		try{
+			// setup the context for the request
+			// note - if follow_location => false, permalinks that redirect (both offsite and on) 
+			// will not be followed, so $content['html] will be false
+			$merged_context_opts = array_merge( $default_context_opts , $context_opts );
+			$context = stream_context_create( $merged_context_opts );
+
+			$content['html'] = file_get_html( $url, false, $context );
+
+		} catch (Exception $e){
+			$content['html'] = false;
+		}
+
+	} else {
 		$content['html'] = false;
 	}
-	
+
 	// done getting html, delete transient
 	delete_transient('edac_public_draft');
 
