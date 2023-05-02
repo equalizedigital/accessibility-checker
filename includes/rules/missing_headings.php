@@ -1,6 +1,6 @@
 <?php
 /**
- * Accessibility Checker pluign file.
+ * Accessibility Checker plugin file.
  *
  * @package Accessibility_Checker
  */
@@ -13,12 +13,13 @@
  * @return array
  */
 function edac_rule_missing_headings( $content, $post ) {
+	$word_count = str_word_count( strip_tags( $post->post_content ) );
 
-	$dom = str_get_html( $post->post_content );
-	if ( empty( $dom ) ) {
-		goto error;
+	if ( $word_count < 400 ) {
+		return;
 	}
 
+	$dom = str_get_html( $post->post_content );
 	$h2 = count( $dom->find( 'h2,[role=heading][aria-level=2]' ) );
 	$h3 = count( $dom->find( 'h3,[role=heading][aria-level=3]' ) );
 	$h4 = count( $dom->find( 'h4,[role=heading][aria-level=4]' ) );
@@ -27,7 +28,6 @@ function edac_rule_missing_headings( $content, $post ) {
 	$headings = ( $h2 + $h3 + $h4 + $h5 + $h6 );
 
 	if ( 0 === $headings ) {
-		error:
 		$errorcode = __( 'Missing headings - Post ID: ', 'edac' ) . $post->ID;
 		return array( $errorcode );
 	}
