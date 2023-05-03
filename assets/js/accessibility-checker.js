@@ -214,6 +214,7 @@ class AccessibilityCheckerHighlight {
 	
 		// Add the tooltip markup before the element.
 		element.insertAdjacentHTML('beforebegin', tooltipHTML);
+
 	}
 
 	addHighlightPanel() {
