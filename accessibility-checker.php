@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.3.22
+ * Version:           1.3.23
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -76,7 +76,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.3.22' );
+	define( 'EDAC_VERSION', '1.3.23' );
 }
 
 // Current database version.
@@ -232,6 +232,8 @@ add_action( 'admin_notices', 'edac_review_notice' );
 add_action( 'admin_notices', 'edac_password_protected_notice' );
 add_action( 'wp_ajax_edac_review_notice_ajax', 'edac_review_notice_ajax' );
 add_action( 'wp_ajax_edac_password_protected_notice_ajax', 'edac_password_protected_notice_ajax' );
+add_action( 'admin_notices', 'edac_gaad_notice' );
+add_action( 'wp_ajax_edac_gaad_notice_ajax', 'edac_gaad_notice_ajax' );
 add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
 
@@ -1801,4 +1803,96 @@ function edac_black_friday_notice() {
 			<p>Black Friday special: upgrade to a paid version of Accessibility Checker from November 20-30 and get 50% off! Full site scanning, site-wide open issues report, ignore logs, and more. <a href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=WPadmin&utm_medium=banner&utm_campaign=BlackFriday">Upgrade Now</a></p>
 			</div>';
 	}
+}
+
+
+/**
+ * GAAD Notice
+ *
+ * @return string
+ */
+function edac_gaad_notice() {
+
+	// Define constants for start and end dates.
+	define( 'EDAC_GAAD_NOTICE_START_DATE', '2023-05-11' );
+	define( 'EDAC_GAAD_NOTICE_END_DATE', '2023-05-24' );
+
+	// Check if Accessibility Checker Pro is active.
+	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
+	if ( $pro ) {
+		return;
+	}
+
+	// Get the value of the 'edac_gaad_notice_dismiss' option and sanitize it.
+	$dismissed = absint( get_option( 'edac_gaad_notice_dismiss', 0 ) );
+
+	// Check if the notice has been dismissed.
+	if ( $dismissed ) {
+		return;
+	}
+
+	// Get the current date in the 'Y-m-d' format.
+	$current_date = gmdate( 'Y-m-d' );
+
+	// Check if the current date is within the specified range.
+	if ( $current_date >= EDAC_GAAD_NOTICE_START_DATE && $current_date <= EDAC_GAAD_NOTICE_END_DATE ) {
+
+		// Get the promotional message from a separate function/file.
+		$message = edac_get_gaad_promo_message();
+
+		// Output the message with appropriate sanitization.
+		echo wp_kses_post( $message );
+
+	}
+
+}
+
+/**
+ * Get GAAD Promo Message
+ *
+ * @return void
+ */
+function edac_get_gaad_promo_message() {
+
+	// Construct the promotional message.
+	$message = '<div class="edac_gaad_notice notice notice-info is-dismissible">';
+	$message .= '<p><strong>' . esc_html__( '🎉 Get 30% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', 'edac' ) . '</strong><br />';
+	$message .= esc_html__( 'Use coupon code GAAD23 from May 18th-May 25th to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?', 'edac' ) . '<br />';
+	$message .= '<a class="button button-primary" href="' . esc_url( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD23' ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'edac' ) . '</a> ';
+	$message .= '<a class="button button-primary" href="' . esc_url( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD23' ) . '">' . esc_html__( 'Upgrade Now', 'edac' ) . '</a></p>';
+	$message .= '</div>';
+
+	return $message;
+
+}
+
+/**
+ * Review Admin Notice Ajax
+ *
+ * @return void
+ *
+ *  - '-1' means that nonce could not be varified
+ *  - '-2' means that update option wasn't successful
+ */
+function edac_gaad_notice_ajax() {
+
+	// nonce security.
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+
+		$error = new WP_Error( '-1', 'Permission Denied' );
+		wp_send_json_error( $error );
+
+	}
+
+	$results = update_option( 'edac_gaad_notice_dismiss', true );
+
+	if ( ! $results ) {
+
+		$error = new WP_Error( '-2', 'Update option wasn\'t successful' );
+		wp_send_json_error( $error );
+
+	}
+
+	wp_send_json_success( json_encode( $results ) );
+
 }

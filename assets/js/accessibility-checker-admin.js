@@ -448,6 +448,29 @@
       });
     }
 
+    /**
+     * GAAD Notice Ajax
+     */
+    if($('.edac_gaad_notice').length){
+      $('.edac_gaad_notice').on('click', function() {
+        edac_gaad_notice_ajax();
+      });
+    }
+
+    function edac_gaad_notice_ajax() {
+      $.ajax({
+        url: ajaxurl,
+        method: 'GET',
+        data: { action: 'edac_gaad_notice_ajax', nonce: edac_script_vars.nonce }
+      }).done(function( response ) {
+        if( true === response.success ) {
+          let response_json = $.parseJSON( response.data );
+        } else {
+          //console.log(response);
+        }
+      });
+    }
+
     if( $('.edac-summary').length ) {
       edac_summary_ajax();
     }

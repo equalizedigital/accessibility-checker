@@ -17,6 +17,7 @@ function edac_admin_enqueue_styles() {
  */
 function edac_admin_enqueue_scripts() {
 
+	global $pagenow;
 	$post_types        = get_option( 'edac_post_types' );
 	$current_post_type = get_post_type();
 	$page              = isset( $_GET['page'] ) ? $_GET['page'] : null;
@@ -27,7 +28,7 @@ function edac_admin_enqueue_scripts() {
 		'accessibility_checker_ignored',
 	);
 
-	if ( in_array( $current_post_type, $post_types, true ) || in_array( $page, $pages, true ) ) {
+	if ( ( in_array( $current_post_type, $post_types, true ) || in_array( $page, $pages, true ) ) || ( $pagenow !== 'site-editor.php' ) ) {
 
 		global $post;
 		$post_id = is_object( $post ) ? $post->ID : null;
