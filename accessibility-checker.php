@@ -1547,6 +1547,10 @@ function edac_update_simplified_summary() {
  * @return string
  */
 function edac_output_simplified_summary( $content ) {
+	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
+	if( 'none' == $simplified_summary_prompt ) {
+		return $content;
+	} 
 	$simplified_summary = edac_simplified_summary_markup( get_the_ID() );
 	$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
 	if ( $simplified_summary && 'before' === $simplified_summary_position ) {
