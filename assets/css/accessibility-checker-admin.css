@@ -683,3 +683,6 @@
       color: #f3cd1e; }
     .edac-review-notice-review:hover {
       background-color: #135e96; }
+
+.edac_gaad_notice .button {
+  margin-top: 5px; }

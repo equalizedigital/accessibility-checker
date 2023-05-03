@@ -33,6 +33,7 @@ if ( true === $delete_data ) {
 		'edac_review_notice',
 		'edac_authorization_password',
 		'edac_authorization_username',
+		'edac_gaad_notice_dismiss',
 	);
 	if ( $options ) {
 		foreach ( $options as $option ) {
