@@ -122,14 +122,27 @@
         display: block;
         font-weight: bold;
         margin-bottom: 5px; }
-      .edac-highlight-panel-description-reference {
+      .edac-highlight-panel-description-reference, .edac-highlight-panel-description-code-button {
         all: unset;
-        color: #f3cd1e;
+        color: #072446;
+        background-color: #f3cd1e;
+        padding: 4px 10px;
+        display: inline-block;
+        margin-top: 10px;
+        margin-right: 10px; }
+        .edac-highlight-panel-description-reference:hover, .edac-highlight-panel-description-reference:focus, .edac-highlight-panel-description-reference[aria-expanded="true"], .edac-highlight-panel-description-code-button:hover, .edac-highlight-panel-description-code-button:focus, .edac-highlight-panel-description-code-button[aria-expanded="true"] {
+          color: #072446;
+          background-color: #ffffff;
+          cursor: pointer; }
+      .edac-highlight-panel-description-reference {
         text-decoration: none; }
-        .edac-highlight-panel-description-reference:hover, .edac-highlight-panel-description-reference:focus {
-          color: #ffffff !important; }
-        .edac-highlight-panel-description-reference:focus {
-          outline: solid 2px #f3cd1e !important; }
+      .edac-highlight-panel-description-code {
+        color: #000000;
+        display: block;
+        background-color: #ffffff;
+        padding: 10px 15px;
+        display: none;
+        margin-top: 10px; }
     .edac-highlight-panel-controls {
       display: block;
       background-color: #ffffff;

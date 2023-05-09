@@ -161,16 +161,33 @@
                 font-weight: bold;
                 margin-bottom: 5px;
             }
-            &-reference{
+            &-reference,
+            &-code-button{
                 all: unset;
-                color: $color-yellow;
+                color: $color-blue-dark;
+                background-color: $color-yellow;
+                padding: 4px 10px;
+                display: inline-block;
+                margin-top: 10px;
+                margin-right: 10px;
+                &:hover, &:focus, &[aria-expanded="true"]{
+                    color: $color-blue-dark;
+                    background-color: $color-white;
+                    cursor: pointer;
+                }
+            }
+            &-reference{
                 text-decoration: none;
-                &:hover, &:focus{
-                    color: $color-white !important;
-                }
-                &:focus{
-                    outline: solid 2px $color-yellow !important;
-                }
+            }
+            &-code-button{
+            }
+            &-code{
+                color: $color-black;
+                display: block;
+                background-color: $color-white;
+                padding: 10px 15px;
+                display: none;
+                margin-top: 10px;
             }
         }
         &-controls {

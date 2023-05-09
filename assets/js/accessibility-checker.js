@@ -81,8 +81,8 @@ class AccessibilityCheckerHighlight {
 	init() {
 		this.highlightButtonFocus();
 		this.highlightButtonFocusOut();
-		this.nextButton.addEventListener('click', () => this.highlightFocusNext());
-		this.previousButton.addEventListener('click', () => this.highlightFocusPrevious());
+		this.nextButton.addEventListener('click', (event) => this.highlightFocusNext());
+		this.previousButton.addEventListener('click', (event) => this.highlightFocusPrevious());
 		this.panelToggle.addEventListener('click', () => this.panelOpen());
 		this.closePanel.addEventListener('click', () => this.panelClose());
 
@@ -223,7 +223,8 @@ class AccessibilityCheckerHighlight {
 			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description">
 				<button class="edac-highlight-panel-description-close">Close</button>
 				<div class="edac-highlight-panel-description-title"></div>
-				<div class="edac-highlight-panel-description-content"></div>			
+				<div class="edac-highlight-panel-description-content"></div>
+				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
 			</div>
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls">					
 				<button id="edac-highlight-panel-close" class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel">Close</button><br />
@@ -238,6 +239,7 @@ class AccessibilityCheckerHighlight {
 	}
 
 	highlightFocusNext() {
+		event.preventDefault();
 		const id = this.issues[this.currentButtonIndex]['id'];
 		const issueElement = document.querySelector(`[data-id="${id}"]`);
 		if( issueElement ) {
@@ -342,14 +344,30 @@ class AccessibilityCheckerHighlight {
 		if( matchingObj ) {
 			const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
 			const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
+			const descriptionCode = document.querySelector('.edac-highlight-panel-description-code code');
 			let content = matchingObj.summary;
 
 			this.panelDescription.style.display = 'block';
 
 			content += ` <br /><a class="edac-highlight-panel-description-reference" href="${matchingObj.link}">Full Documentation</a>`;
 
+			content += `<button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">Affected Code</button>`;
+
+			// title and content
 			descriptionTitle.innerHTML = matchingObj.rule_title;
 			descriptionContent.innerHTML = content;
+
+			// code object
+			let textNode = document.createTextNode(matchingObj.object);
+			descriptionCode.innerText = textNode.nodeValue;
+			
+			// set code button listener
+			this.codeContainer = document.querySelector('.edac-highlight-panel-description-code');
+			this.codeButton = document.querySelector('.edac-highlight-panel-description-code-button');
+			this.codeButton.addEventListener('click', () => this.codeToggle());
+
+			// close the code container each time the description is opened
+			this.codeContainer.style.display = 'none';
 		}
 	}
 
@@ -366,6 +384,16 @@ class AccessibilityCheckerHighlight {
 			}
 		}
 		return false;
+	};
+
+	codeToggle() {
+		if (this.codeContainer.style.display === 'none' || this.codeContainer.style.display === '') {
+			this.codeContainer.style.display = 'block';
+			this.codeButton.setAttribute('aria-expanded', 'true');
+		} else {
+			this.codeContainer.style.display = 'none';
+			this.codeButton.setAttribute('aria-expanded', 'false');
+		}
 	};
 
 }
