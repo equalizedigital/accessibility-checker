@@ -207,8 +207,7 @@ class AccessibilityCheckerHighlight {
 			<button class="edac-highlight-btn edac-highlight-btn-${value.rule_type}"
 					aria-label="${value.rule_title}"
 					aria-expanded="false"
-					data-index-id="${index}"
-					data-issue-id="${value.rule_type}"
+					data-id="${value.id}"
 					aria-controls="edac-highlight-tooltip-${value.id}"></button>
 		`;
 	
@@ -239,17 +238,26 @@ class AccessibilityCheckerHighlight {
 	}
 
 	highlightFocusNext() {
-		const highlightButtons = document.querySelectorAll('.edac-highlight-btn');
-		this.currentButtonIndex = (this.currentButtonIndex + 1) % highlightButtons.length;
-		highlightButtons[this.currentButtonIndex].focus();
-		console.log( 'Visible: ' + this.isElementVisible(highlightButtons[this.currentButtonIndex]));
-		console.log( 'Hidden: ' + this.isElementHidden(highlightButtons[this.currentButtonIndex]));
+		const id = this.issues[this.currentButtonIndex]['id'];
+		const issueElement = document.querySelector(`[data-id="${id}"]`);
+		if( issueElement ) {
+			issueElement.focus();
+		}
+		this.description( id );
+		this.currentButtonIndex = (this.currentButtonIndex + 1) % this.issues.length;
+
+		//console.log( 'Visible: ' + this.isElementVisible(highlightButtons[this.currentButtonIndex]));
+		//console.log( 'Hidden: ' + this.isElementHidden(highlightButtons[this.currentButtonIndex]));
 	}
 	
 	highlightFocusPrevious() {
-		const highlightButtons = document.querySelectorAll('.edac-highlight-btn');
-		this.currentButtonIndex = (this.currentButtonIndex - 1 + highlightButtons.length) % highlightButtons.length;
-		highlightButtons[this.currentButtonIndex].focus();
+		const id = this.issues[this.currentButtonIndex]['id'];
+		const issueElement = document.querySelector(`[data-id="${id}"]`);
+		if( issueElement ) {
+			issueElement.focus();
+		}
+		this.currentButtonIndex = (this.currentButtonIndex - 1 + this.issues.length) % this.issues.length;
+		this.description( id );
 	}
 
 	isElementVisible(el) {
@@ -295,7 +303,7 @@ class AccessibilityCheckerHighlight {
 				highlightParent.classList.add('active');
 				//focusedElement.scrollIntoView();
 		
-				const dataIssueId = focusedElement.getAttribute('data-index-id');
+				const dataIssueId = focusedElement.getAttribute('data-id');
 				this.description( dataIssueId );
 				
 				this.cancelDescriptionTimeout();
@@ -324,19 +332,25 @@ class AccessibilityCheckerHighlight {
 		clearTimeout(this.descriptionTimeout);
 	}
 
-	description( dataIssueId ) {
+	description( dataId ) {
+		// get the value of the property by key
+		const searchTerm = dataId;
+		const keyToSearch = "id";
+		const matchingObj = this.issues.find(obj => obj[keyToSearch] === searchTerm);
+		//const value = matchingObj ? matchingObj[keyToSearch] : undefined;
 
-		
-		const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
-		const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
-		let content = this.issues[dataIssueId].summary;
+		if( matchingObj ) {
+			const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
+			const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
+			let content = matchingObj.summary;
 
-		this.panelDescription.style.display = 'block';
+			this.panelDescription.style.display = 'block';
 
-		content += ` <br /><a class="edac-highlight-panel-description-reference" href="${this.issues[dataIssueId].link}">Full Documentation</a>`;
+			content += ` <br /><a class="edac-highlight-panel-description-reference" href="${matchingObj.link}">Full Documentation</a>`;
 
-		descriptionTitle.innerHTML = this.issues[dataIssueId].rule_title;
-		descriptionContent.innerHTML = content;
+			descriptionTitle.innerHTML = matchingObj.rule_title;
+			descriptionContent.innerHTML = content;
+		}
 	}
 
 	get_url_parameter(sParam) {
