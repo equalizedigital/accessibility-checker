@@ -71,6 +71,7 @@ class AccessibilityCheckerHighlight {
 		this.closePanel = document.querySelector('#edac-highlight-panel-close');
 		this.panelDescription = document.querySelector('#edac-highlight-panel-description');
 		this.panelControls = document.querySelector('#edac-highlight-panel-controls');
+		this.descriptionCloseButton = document.querySelector('.edac-highlight-panel-description-close');
 		this.issues = null;
 		this.currentButtonIndex = 0;
 		this.descriptionTimeout;
@@ -85,6 +86,7 @@ class AccessibilityCheckerHighlight {
 		this.previousButton.addEventListener('click', (event) => this.highlightFocusPrevious());
 		this.panelToggle.addEventListener('click', () => this.panelOpen());
 		this.closePanel.addEventListener('click', () => this.panelClose());
+		this.descriptionCloseButton.addEventListener('click', () => this.descriptionClose());
 
 		if(this.urlParameter){
 			this.panelOpen();
@@ -322,9 +324,11 @@ class AccessibilityCheckerHighlight {
 				if (highlightParent) {
 					highlightParent.classList.remove('active');
 					const description = document.querySelector('#edac-highlight-panel-description');
+					/*
 					this.descriptionTimeout = setTimeout(function() {
 						description.style.display = 'none';
 					}, 500); // 1000 milliseconds (1 second) delay
+					*/
 				}
 			}
 		});
@@ -387,6 +391,7 @@ class AccessibilityCheckerHighlight {
 	};
 
 	codeToggle() {
+		this.cancelDescriptionTimeout();
 		if (this.codeContainer.style.display === 'none' || this.codeContainer.style.display === '') {
 			this.codeContainer.style.display = 'block';
 			this.codeButton.setAttribute('aria-expanded', 'true');
@@ -395,6 +400,10 @@ class AccessibilityCheckerHighlight {
 			this.codeButton.setAttribute('aria-expanded', 'false');
 		}
 	};
+
+	descriptionClose() {
+		this.panelDescription.style.display = 'none';
+	}
 
 }
 
