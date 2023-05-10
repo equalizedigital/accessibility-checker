@@ -1644,7 +1644,7 @@ function edac_review_notice() {
 	}
 
 	// if option is not set to play exit.
-	if ( get_option( $option ) != 'play' ) {
+	if ( get_option( $option ) !== 'play' ) {
 		return;
 	}
 
@@ -1711,13 +1711,18 @@ function edac_review_notice_ajax() {
  */
 function edac_remove_admin_notices() {
 
-	$page = isset( $_GET['page'] ) ? $_GET['page'] : false;
+	$current_screen = get_current_screen();
+	$screens        = array(
+		'toplevel_page_accessibility_checker',
+		'accessibility-checker_page_accessibility_checker_issues',
+		'accessibility-checker_page_accessibility_checker_ignored',
+		'accessibility-checker_page_accessibility_checker_settings',
+	);
 
-	if ( $page && ( 'accessibility_checker' === $page ) || 'accessibility_checker_settings' === $page || 'accessibility_checker_issues' === $page || 'accessibility_checker_ignored' === $page ) {
+	if ( in_array( $current_screen->id, $screens, true ) ) {
 		remove_all_actions( 'admin_notices' );
 		remove_all_actions( 'all_admin_notices' );
 	}
-
 }
 
 /**
