@@ -805,6 +805,7 @@ function edac_summary_ajax() {
 
 	}
 
+	$html            = array();
 	$html['content'] = '';
 
 	// password check.
