@@ -932,8 +932,17 @@ function edac_summary( $post_id ) {
 			$table_name = $wpdb->prefix . 'accessibility_checker';
 			$postid     = $post_id;
 			$siteid     = get_current_blog_id();
-			$query      = 'SELECT count(*) FROM ' . $table_name . ' where rule = %s and siteid = %d and postid = %d and ignre = %d';
-			$rule_count = $wpdb->get_var( $wpdb->prepare( $query, $rule['slug'], $siteid, $postid, 0 ) );
+
+			$rule_count = $wpdb->get_var(
+				$wpdb->prepare(
+					"SELECT count(*) FROM {$table_name} where rule = %s and siteid = %d and postid = %d and ignre = %d",
+					$rule['slug'],
+					$siteid,
+					$postid,
+					0
+				)
+			);
+
 			if ( ! $rule_count ) {
 				$rules_passed[] = $rule['slug'];
 			}
