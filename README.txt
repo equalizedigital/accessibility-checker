@@ -178,6 +178,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 Added: user_agent to file_get_html context
 Added: follow_location to file_get_html context to prevent scanning of offsite links
 Added: querystring check to file_get_html url to prevent malformed urls when the cache breaker string is appended
+Updated: get CSS via wp_remote_get
 
 = 1.3.23 =
 Added: GAAD Admin Notice
