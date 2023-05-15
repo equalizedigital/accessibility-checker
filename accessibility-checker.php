@@ -218,7 +218,7 @@ add_action( 'wp_ajax_edac_readability_ajax', 'edac_readability_ajax' );
 add_action( 'wp_ajax_edac_insert_ignore_data', 'edac_insert_ignore_data' );
 add_action( 'wp_ajax_edac_update_simplified_summary', 'edac_update_simplified_summary' );
 add_filter( 'the_content', 'edac_output_simplified_summary' );
-add_filter( 'wp_footer', 'edac_output_accessibility_statement' );
+add_action( 'wp_footer', 'edac_output_accessibility_statement' );
 add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 add_action( 'admin_init', 'edac_process_actions' );
