@@ -1075,7 +1075,8 @@ function edac_update_post_meta( $rule ) {
  *
  *  - '-1' means that nonce could not be varified
  *  - '-2' means that the post ID was not specified
- *  - '-3' means that there isn't any details to return
+ *  - '-3' means that the table name is not valid
+ *  - '-4' means that there isn't any details to return
  */
 function edac_details_ajax() {
 
@@ -1096,9 +1097,17 @@ function edac_details_ajax() {
 
 	$html = '';
 	global $wpdb;
-	$table_name = $wpdb->prefix . 'accessibility_checker';
+	$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 	$postid     = intval( $_REQUEST['post_id'] );
 	$siteid     = get_current_blog_id();
+
+	// Send error if table name is not valid.
+	if ( ! $table_name ) {
+
+		$error = new WP_Error( '-3', 'Invalid table name' );
+		wp_send_json_error( $error );
+
+	}
 
 	$rules = edac_register_rules();
 	if ( $rules ) {
@@ -1116,6 +1125,7 @@ function edac_details_ajax() {
 		// add count, unset passed error rules and add passed rules to array.
 		if ( $error_rules ) {
 			foreach ( $error_rules as $key => $error_rule ) {
+				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 				$count = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d and ignre = %d', $postid, $error_rule['slug'], $siteid, 0 ), ARRAY_A ) );
 				if ( $count ) {
 					$error_rules[ $key ]['count'] = $count;
@@ -1335,7 +1345,7 @@ function edac_details_ajax() {
 
 	if ( ! $html ) {
 
-		$error = new WP_Error( '-3', 'No details to return' );
+		$error = new WP_Error( '-4', 'No details to return' );
 		wp_send_json_error( $error );
 
 	}
