@@ -791,7 +791,7 @@ if ( $rules ) {
 function edac_summary_ajax() {
 
 	// nonce security.
-	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
 		$error = new WP_Error( '-1', 'Permission Denied' );
 		wp_send_json_error( $error );
@@ -1080,7 +1080,7 @@ function edac_update_post_meta( $rule ) {
 function edac_details_ajax() {
 
 	// nonce security.
-	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
 		$error = new WP_Error( '-1', 'Permission Denied' );
 		wp_send_json_error( $error );
@@ -1683,7 +1683,7 @@ function edac_review_notice() {
 function edac_review_notice_ajax() {
 
 	// nonce security.
-	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
 		$error = new WP_Error( '-1', 'Permission Denied' );
 		wp_send_json_error( $error );
@@ -1775,7 +1775,7 @@ function edac_password_protected_notice() {
 function edac_password_protected_notice_ajax() {
 
 	// nonce security.
-	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
 		$error = new WP_Error( '-1', 'Permission Denied' );
 		wp_send_json_error( $error );
@@ -1891,7 +1891,7 @@ function edac_get_gaad_promo_message() {
 function edac_gaad_notice_ajax() {
 
 	// nonce security.
-	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
 		$error = new WP_Error( '-1', 'Permission Denied' );
 		wp_send_json_error( $error );
