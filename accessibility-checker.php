@@ -1199,7 +1199,7 @@ function edac_details_ajax() {
 
 			$expand_rule = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid ), ARRAY_A ) );
 
-			$tool_tip_link = $rule['info_url'] . '?utm_source=accessibility-checker&utm_medium=software&utm_term=' . esc_html( $rule['slug'] ) . '&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . $days_active . '';
+			$tool_tip_link = $rule['info_url'] . '?utm_source=accessibility-checker&utm_medium=software&utm_term=' . esc_attr( $rule['slug'] ) . '&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . $days_active . '';
 
 			$html .= '<div class="edac-details-rule">';
 
