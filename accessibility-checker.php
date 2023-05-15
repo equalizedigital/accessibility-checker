@@ -1140,6 +1140,7 @@ function edac_details_ajax() {
 		// add count, unset passed warning rules and add passed rules to array.
 		if ( $warning_rules ) {
 			foreach ( $warning_rules as $key => $error_rule ) {
+				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 				$count = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d and ignre = %d', $postid, $error_rule['slug'], $siteid, 0 ), ARRAY_A ) );
 				if ( $count ) {
 					$warning_rules[ $key ]['count'] = $count;
@@ -1193,6 +1194,7 @@ function edac_details_ajax() {
 			$ignore_permission = apply_filters( 'edac_ignore_permission', $ignore_permission );
 		}
 		foreach ( $rules as $rule ) {
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid ), ARRAY_A );
 			$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
 			$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
@@ -1207,6 +1209,7 @@ function edac_details_ajax() {
 				}
 			}
 
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			$expand_rule = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid ), ARRAY_A ) );
 
 			$tool_tip_link = $rule['info_url'] . '?utm_source=accessibility-checker&utm_medium=software&utm_term=' . esc_attr( $rule['slug'] ) . '&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . $days_active . '';
