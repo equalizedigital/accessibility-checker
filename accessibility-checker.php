@@ -1356,11 +1356,11 @@ function edac_details_ajax() {
 function edac_readability_ajax() {
 
 	// nonce security.
-	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
 		$error = new WP_Error( '-1', 'Permission Denied' );
 		wp_send_json_error( $error );
-
+		
 	}
 
 	if ( ! isset( $_REQUEST['post_id'] ) ) {
