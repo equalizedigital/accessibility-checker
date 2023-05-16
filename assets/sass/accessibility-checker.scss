@@ -161,6 +161,14 @@
                 font-weight: bold;
                 margin-bottom: 5px;
             }
+            &-status{
+                color: $color-white;
+                display: block;
+                background-color: $color-red;
+                padding: 10px 15px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
             &-reference,
             &-code-button{
                 all: unset;

@@ -76,6 +76,7 @@ class AccessibilityCheckerHighlight {
 		this.currentButtonIndex = 0;
 		this.descriptionTimeout;
 		this.urlParameter = this.get_url_parameter('edac');
+		this.currentIssueStatus = null;
 		this.init();
 	}
 
@@ -118,8 +119,12 @@ class AccessibilityCheckerHighlight {
 				
 				// Add a solid red 5px border to the matched element
 				//element.style.border = '5px solid red';
+				
+
 				this.wrapElement(element, value);
 				this.addTooltip(element, value, index);
+
+				this.isElementFocusable(element);
 				//element.setAttribute('aria-hidden', 'false');
 
 				//highlightButtons[this.currentButtonIndex].style.display = 'block';
@@ -148,7 +153,7 @@ class AccessibilityCheckerHighlight {
 		const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_script_vars.postID + '&nonce=' + edac_script_vars.nonce;
 	
 		xhr.open('GET', url);
-	  
+
 		xhr.onload = function() {
 			if (xhr.status === 200) {
 				const response = JSON.parse(xhr.responseText);
@@ -240,18 +245,26 @@ class AccessibilityCheckerHighlight {
 		document.body.insertAdjacentHTML('afterbegin', newElement);
 	}
 
-	highlightFocusNext() {
+	highlightFocusNext = () => {
 		event.preventDefault();
 		const id = this.issues[this.currentButtonIndex]['id'];
 		const issueElement = document.querySelector(`[data-id="${id}"]`);
-		if( issueElement ) {
-			issueElement.focus();
+	
+		if (issueElement) {
+			if (this.isElementFocusable(issueElement)) {
+				issueElement.focus();
+				this.currentIssueStatus = null;
+			} else {
+				this.currentIssueStatus = 'The element is not focusable. Try disabling styles.';
+				console.log(`Element with id ${id} is not focusable!`);
+			}
+		} else {
+			this.currentIssueStatus = 'The element was not found on the page.';
+			console.log(`Element with id ${id} not found in the document!`);
 		}
-		this.description( id );
+	
+		this.description(id);
 		this.currentButtonIndex = (this.currentButtonIndex + 1) % this.issues.length;
-
-		//console.log( 'Visible: ' + this.isElementVisible(highlightButtons[this.currentButtonIndex]));
-		//console.log( 'Hidden: ' + this.isElementHidden(highlightButtons[this.currentButtonIndex]));
 	}
 	
 	highlightFocusPrevious() {
@@ -262,6 +275,21 @@ class AccessibilityCheckerHighlight {
 		}
 		this.currentButtonIndex = (this.currentButtonIndex - 1 + this.issues.length) % this.issues.length;
 		this.description( id );
+	}
+
+	isElementFocusable = (element) => {
+		// check if the element has a parent and if the parent has a parent (grandparent)
+		if (element.parentElement && element.parentElement.parentElement) {
+			const grandparentElement = element.parentElement.parentElement;
+	
+			//if (grandparentElement.tabIndex >= 0 && !grandparentElement.disabled) {
+				const style = window.getComputedStyle(grandparentElement);
+				grandparentElement.style.display = 'block';
+				grandparentElement.style.visibility = 'visible';
+				return style.display !== 'none' && style.visibility !== 'hidden';
+			//}
+		}
+		return false;
 	}
 
 	isElementVisible(el) {
@@ -349,9 +377,13 @@ class AccessibilityCheckerHighlight {
 			const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
 			const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
 			const descriptionCode = document.querySelector('.edac-highlight-panel-description-code code');
-			let content = matchingObj.summary;
+			let content = '';
 
-			this.panelDescription.style.display = 'block';
+			if( this.currentIssueStatus ) {
+				content += ` <div class="edac-highlight-panel-description-status">${this.currentIssueStatus}</div>`;
+			}
+
+			content += matchingObj.summary;
 
 			content += ` <br /><a class="edac-highlight-panel-description-reference" href="${matchingObj.link}">Full Documentation</a>`;
 
@@ -372,6 +404,9 @@ class AccessibilityCheckerHighlight {
 
 			// close the code container each time the description is opened
 			this.codeContainer.style.display = 'none';
+
+			// show the description
+			this.panelDescription.style.display = 'block';
 		}
 	}
 

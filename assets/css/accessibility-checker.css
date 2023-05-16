@@ -122,6 +122,13 @@
         display: block;
         font-weight: bold;
         margin-bottom: 5px; }
+      .edac-highlight-panel-description-status {
+        color: #ffffff;
+        display: block;
+        background-color: #b30f0f;
+        padding: 10px 15px;
+        margin-top: 10px;
+        margin-bottom: 10px; }
       .edac-highlight-panel-description-reference, .edac-highlight-panel-description-code-button {
         all: unset;
         color: #072446;
