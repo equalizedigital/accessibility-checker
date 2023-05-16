@@ -245,9 +245,15 @@ add_action( 'admin_notices', 'edac_black_friday_notice' );
 function edac_update_database() {
 
 	global $wpdb;
-	$table_name = $wpdb->prefix . 'accessibility_checker';
+	$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+
+	// Check if table exists.
+	if ( ! $table_name ) { 
+		return;
+	}
 
 	$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	if ( get_option( 'edac_db_version' ) !== EDAC_DB_VERSION || $wpdb->get_var( $query ) !== $table_name ) {
 
 		$charset_collate = $wpdb->get_charset_collate();
@@ -915,7 +921,13 @@ function edac_summary_ajax() {
  */
 function edac_summary( $post_id ) {
 	global $wpdb;
-	$summary = array();
+	$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+	$summary    = array();
+
+	// Check if table exists.
+	if ( ! $table_name ) {
+		return $summary;
+	}
 
 	// Passed Tests.
 	$rules = edac_register_rules();
@@ -929,20 +941,11 @@ function edac_summary( $post_id ) {
 
 	if ( $rules ) {
 		foreach ( $rules as $rule ) {
-			global $wpdb;
-			$table_name = $wpdb->prefix . 'accessibility_checker';
-			$postid     = $post_id;
-			$siteid     = get_current_blog_id();
+			$postid = $post_id;
+			$siteid = get_current_blog_id();
 
-			$rule_count = $wpdb->get_var(
-				$wpdb->prepare(
-					"SELECT count(*) FROM {$table_name} where rule = %s and siteid = %d and postid = %d and ignre = %d",
-					$rule['slug'],
-					$siteid,
-					$postid,
-					0
-				)
-			);
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$rule_count = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM {$table_name} where rule = %s and siteid = %d and postid = %d and ignre = %d", $rule['slug'], $siteid, $postid, 0 ) );
 
 			if ( ! $rule_count ) {
 				$rules_passed[] = $rule['slug'];
@@ -953,7 +956,8 @@ function edac_summary( $post_id ) {
 	$summary['passed_tests'] = round( count( $rules_passed ) / count( $rules ) * 100 );
 
 	// count errors.
-	$query             = 'SELECT count(*) FROM ' . $wpdb->prefix . 'accessibility_checker where siteid = %d and postid = %d and ruletype = %s and ignre = %d';
+	$query = 'SELECT count(*) FROM ' . $table_name . ' where siteid = %d and postid = %d and ruletype = %s and ignre = %d';
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	$summary['errors'] = intval( $wpdb->get_var( $wpdb->prepare( $query, get_current_blog_id(), $post_id, 'error', 0 ) ) );
 
 	// count warnings.
@@ -963,7 +967,8 @@ function edac_summary( $post_id ) {
 		array_push( $warnings_parameters, 'link_blank' );
 		$warnings_where .= ' and rule != %s';
 	}
-	$query               = 'SELECT count(*) FROM ' . $wpdb->prefix . 'accessibility_checker ' . $warnings_where;
+	$query = 'SELECT count(*) FROM ' . $table_name . ' ' . $warnings_where;
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	$summary['warnings'] = intval( $wpdb->get_var( $wpdb->prepare( $query, $warnings_parameters ) ) );
 
 	// count ignored issues.
@@ -973,11 +978,13 @@ function edac_summary( $post_id ) {
 		array_push( $ignored_parameters, 'link_blank' );
 		$ignored_where .= ' and rule != %s';
 	}
-	$query              = 'SELECT count(*) FROM ' . $wpdb->prefix . 'accessibility_checker ' . $ignored_where;
+	$query = 'SELECT count(*) FROM ' . $table_name . ' ' . $ignored_where;
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	$summary['ignored'] = intval( $wpdb->get_var( $wpdb->prepare( $query, $ignored_parameters ) ) );
 
 	// contrast errors.
-	$query                      = 'SELECT count(*) FROM ' . $wpdb->prefix . 'accessibility_checker where siteid = %d and postid = %d and rule = %s and ignre = %d';
+	$query = 'SELECT count(*) FROM ' . $table_name . ' where siteid = %d and postid = %d and rule = %s and ignre = %d';
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	$summary['contrast_errors'] = intval( $wpdb->get_var( $wpdb->prepare( $query, get_current_blog_id(), $post_id, 'color_contrast_failure', 0 ) ) );
 
 	// remove color contrast from errors count.
