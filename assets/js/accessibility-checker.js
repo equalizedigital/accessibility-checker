@@ -228,13 +228,13 @@ class AccessibilityCheckerHighlight {
 			<div class="edac-highlight-panel">
 			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" title="Toggle accessibility tools"></button>
 			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description">
-				<button class="edac-highlight-panel-description-close">Close</button>
+				<button class="edac-highlight-panel-description-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-description-title"></div>
 				<div class="edac-highlight-panel-description-content"></div>
 				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
 			</div>
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls">					
-				<button id="edac-highlight-panel-close" class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel">Close</button><br />
+				<button id="edac-highlight-panel-close" class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button><br />
 				<button id="edac-highlight-previous"><span aria-hidden="true">« </span>previous</button>
 				<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
 				<button id="edac-highlight-disable-styles">Disable Styles</button>
@@ -407,6 +407,8 @@ class AccessibilityCheckerHighlight {
 
 			// show the description
 			this.panelDescription.style.display = 'block';
+
+			//this.descriptionCloseButton.focus();
 		}
 	}
 
