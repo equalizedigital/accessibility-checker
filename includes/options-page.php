@@ -292,8 +292,13 @@ function edac_simplified_summary_prompt_cb() {
 				<input type="radio" name="<?php echo 'edac_simplified_summary_prompt'; ?>" value="always" <?php checked( $prompt, 'always' ); ?>>
 				<?php esc_html_e( 'Always', 'edac' ); ?>
 			</label>
+			<br>
+			<label>
+				<input type="radio" name="<?php echo 'edac_simplified_summary_prompt'; ?>" value="none" <?php checked( $prompt, 'none' ); ?>>
+				<?php esc_html_e( 'Never', 'edac' ); ?>
+			</label>
 		</fieldset>
-		<p class="edac-description"><?php echo esc_html__( 'Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade or always ask for it regardless of reading level?', 'edac' ); ?></p>
+		<p class="edac-description"><?php echo esc_html__( 'Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?', 'edac' ); ?></p>
 	<?php
 }
 
@@ -304,7 +309,7 @@ function edac_simplified_summary_prompt_cb() {
  * @return array
  */
 function edac_sanitize_simplified_summary_prompt( $prompt ) {
-	if ( in_array( $prompt, array( 'when required', 'always' ), true ) ) {
+	if ( in_array( $prompt, array( 'when required', 'always', 'none' ), true ) ) {
 		return $prompt;
 	}
 }
