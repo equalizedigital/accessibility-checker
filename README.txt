@@ -174,6 +174,12 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.25 =
+Fixed: video is present duplicating issues
+Updated: Missing subheadings word count
+Updated: prompt for simplified summary aded never option
+Fixed: minor coding standards
+
 = 1.3.24 =
 Added: user_agent to file_get_html context
 Added: follow_location to file_get_html context to prevent scanning of offsite links
