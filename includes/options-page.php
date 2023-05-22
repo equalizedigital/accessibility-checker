@@ -213,7 +213,7 @@ function edac_general_cb() {
 	echo esc_html__( 'Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the ', 'edac' ) . '<a href="https://a11ychecker.com/" target="_blank">' . esc_html__( 'plugin documentation', 'edac' ) . '</a>.';
 
 	if ( EDAC_KEY_VALID === false ) {
-		echo esc_html__( ' More features and email support is available with ', 'edac' ) . '<a href="https://my.equalizedigital.com/" target="_blank">' . esc_html__( 'Accessibility Checker Pro', 'edac' ) . '</a>.';
+		echo esc_html__( ' More features and email support is available with ', 'edac' ) . '<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank">' . esc_html__( 'Accessibility Checker Pro', 'edac' ) . '</a>.';
 	}
 	echo '</p>';
 }
