@@ -1,6 +1,6 @@
 === Equalize Digital Accessibility Checker - Audit Your Website for WCAG, ADA, and Section 508 Accessibility Errors ===
 Contributors: equalizedigital, alh0319, stevejonesdev, philwebs, roadwarriorwp
-Tags: accessibility, accessible, wcag, ada, section 508, aoda, a11y, audit, readability, content analysis
+Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
 Tested up to: 6.2
 Stable tag: trunk
