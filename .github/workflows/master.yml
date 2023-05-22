@@ -13,7 +13,7 @@ jobs:
       with:
         # Deploy vars
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
-        WPE_ENV: a11ycheckerprd
+        WPE_ENV: demositeedprd
         # Deploy Options
         REMOTE_PATH: "wp-content/plugins/accessibility-checker/"
         PHP_LINT: FALSE
