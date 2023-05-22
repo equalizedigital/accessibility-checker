@@ -911,7 +911,7 @@ function edac_summary_ajax() {
 			<div class="edac-summary-readability-summary-text' . ( ('none' !== $simplified_summary_prompt && ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 		</div>
 	</div>
-	<div class="edac-summary-disclaimer"><small>* Accessibility Checker uses automated scanning to help you to identify if common accessibility errors are present on your website. Automated tools are great for catching some accessibility problems and are part of achieving and maintaining an accessible website, however not all accessibility problems can be identified by a scanning tool. Learn more about <a href="https://a11ychecker.com/help4280" target="_blank">manual accessibility testing</a> and <a href="https://a11ychecker.com/help4279" target="_blank">why 100% passed tests does not necessarily mean your website is accessible</a>.</small></div>
+	<div class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
 	';
 
 	if ( ! $html ) {
