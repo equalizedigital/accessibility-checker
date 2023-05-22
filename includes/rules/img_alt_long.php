@@ -21,7 +21,7 @@ function edac_rule_img_alt_long( $content, $post ) {
 	foreach ( $images as $image ) {
 		if ( isset( $image ) && $image->hasAttribute( 'alt' ) && $image->getAttribute( 'alt' ) != '' ) {
 			$alt = $image->getAttribute( 'alt' );
-			if ( strlen( $alt ) > 100 ) {
+			if ( strlen( $alt ) > 300 ) {
 				$image_code = $image;
 				$errors[] = $image_code;
 			}
