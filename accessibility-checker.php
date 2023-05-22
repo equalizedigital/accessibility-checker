@@ -820,7 +820,7 @@ function edac_summary_ajax() {
 		$html['password_protected'] = $notice_text;
 		$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
 	}
-
+/*
 	$post_id = intval( $_REQUEST['post_id'] );
 	$summary = edac_summary( $post_id );
 
@@ -829,33 +829,45 @@ function edac_summary_ajax() {
 	} else {
 		$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
 	}
+*/
+	$post_id = intval( $_REQUEST['post_id'] );
+	$summary = edac_summary( $post_id );
+	$simplified_summary_text = '';
+	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
+	
+	
+	if ( 'none' !== $simplified_summary_prompt ) {
+		
+		if ( $summary['content_grade'] <= 9 ) {
+			$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
+		} else {
+			$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
+		}
 
-	$html['content'] .= '<div class="edac-summary-total">';
-		$post_id      = intval( $_REQUEST['post_id'] );
-		$summary      = edac_summary( $post_id );
-
-	if ( $summary['content_grade'] <= 9 ) {
-		$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
 	} else {
-		$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
+	
+		$simplified_summary_text = 'A Simplified summary has not been included for this content.';
+	
 	}
 
-		$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
-			<div class="edac-summary-total-progress-circle-label">
-				<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-				<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
-			</div>
-			<div class="left-half-clipper">
-				<div class="first50-bar"></div>
-				<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
-			</div>
-		</div>';
+	$html['content'] .= '<div class="edac-summary-total">';
 
-		$html['content'] .= '<div class="edac-summary-total-mobile">
+	$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
+		<div class="edac-summary-total-progress-circle-label">
 			<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
 			<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
-			<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
-		</div>';
+		</div>
+		<div class="left-half-clipper">
+			<div class="first50-bar"></div>
+			<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
+		</div>
+	</div>';
+
+	$html['content'] .= '<div class="edac-summary-total-mobile">
+		<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
+		<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
+		<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
+	</div>';
 
 	$html['content'] .= '</div>';
 
@@ -895,8 +907,8 @@ function edac_summary_ajax() {
 			<div class="edac-panel-number-label' . ( ( $summary['readability'] <= 9 ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
 		</div>
 		<div class="edac-summary-readability-summary">
-			<div class="edac-summary-readability-summary-icon' . ( ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ? ' active' : '' ) . '"></div>
-			<div class="edac-summary-readability-summary-text' . ( ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
+			<div class="edac-summary-readability-summary-icon' . ( ('none' !== $simplified_summary_prompt && ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ) ? ' active' : '' ) . '"></div>
+			<div class="edac-summary-readability-summary-text' . ( ('none' !== $simplified_summary_prompt && ( $summary['simplified_summary'] || $summary['readability'] <= 9 ) ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 		</div>
 	</div>
 	<div class="edac-summary-disclaimer"><small>* Accessibility Checker uses automated scanning to help you to identify if common accessibility errors are present on your website. Automated tools are great for catching some accessibility problems and are part of achieving and maintaining an accessible website, however not all accessibility problems can be identified by a scanning tool. Learn more about <a href="https://a11ychecker.com/help4280" target="_blank">manual accessibility testing</a> and <a href="https://a11ychecker.com/help4279" target="_blank">why 100% passed tests does not necessarily mean your website is accessible</a>.</small></div>
@@ -1440,7 +1452,7 @@ function edac_readability_ajax() {
 
 	if ( $post_grade_failed ) {
 
-		if ( $simplified_summary ) {
+		if ( $simplified_summary && 'none' !== $simplified_summary_prompt ) {
 			$html .= '<li class="edac-readability-list-item edac-readability-summary-grade-level">
 				<span class="edac-readability-list-item-icon dashicons ' . ( ( $simplified_summary_grade_failed ) ? 'dashicons-no-alt' : 'dashicons-saved' ) . '"></span>
 				<p class="edac-readability-list-item-title">Simplified Summary Reading Grade Level: <strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . $simplified_summary_grade . '</strong></p>
@@ -1448,7 +1460,17 @@ function edac_readability_ajax() {
 			</li>';
 		}
 
-		if ( 'none' !== $simplified_summary_position ) {
+		if ( 'none' === $simplified_summary_prompt ) {
+		
+			$html .=
+			'<li class="edac-readability-list-item edac-readability-summary-position">
+				<span class="edac-readability-list-item-icon"><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/warning icon yellow.png" alt="" width="22"></span>
+				<p class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</p>
+					<p class="edac-readability-list-item-description">Your Prompt for Simplified Summary is set to "never." If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
+			</li>';
+
+			
+		} elseif ( 'none' !== $simplified_summary_position ) {
 
 			$html .=
 			'<li class="edac-readability-list-item edac-readability-summary-position">
@@ -1463,7 +1485,7 @@ function edac_readability_ajax() {
 			'<li class="edac-readability-list-item edac-readability-summary-position">
 				<span class="edac-readability-list-item-icon"><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/warning icon yellow.png" alt="" width="22"></span>
 				<p class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</p>
-					<p class="edac-readability-list-item-description">Your Simplified Summary location is set to "manually" which requires a function be added to your page template. If you would like the simplified summary to displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/options-general.php?page=edac_settings">settings page</a>.</p>
+					<p class="edac-readability-list-item-description">Your Simplified Summary location is set to "manually" which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
 			</li>';
 
 		}
@@ -1471,7 +1493,7 @@ function edac_readability_ajax() {
 
 	$html .= '</ul>';
 
-	if ( $post_grade_failed || 'always' === $simplified_summary_prompt ) {
+	if ( ( $post_grade_failed || 'always' === $simplified_summary_prompt ) && ( 'none' !== $simplified_summary_prompt ) ) {
 		$html .=
 		'</form>
 		<form action="/" class="edac-readability-simplified-summary">
@@ -1556,7 +1578,11 @@ function edac_update_simplified_summary() {
  * @return string
  */
 function edac_output_simplified_summary( $content ) {
-	$simplified_summary          = edac_simplified_summary_markup( get_the_ID() );
+	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
+	if( 'none' == $simplified_summary_prompt ) {
+		return $content;
+	} 
+	$simplified_summary = edac_simplified_summary_markup( get_the_ID() );
 	$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
 	if ( $simplified_summary && 'before' === $simplified_summary_position ) {
 		return $simplified_summary . $content;
