@@ -27,6 +27,9 @@
     <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
     <rule ref="Generic.Commenting.Todo"/>
 
+    <!-- Add the WordPress-VIP-Go standard -->
+    <rule ref="WordPress-VIP-Go"/>
+
     <config name="minimum_supported_wp_version" value="5.0.0"/>
 
     <!--
