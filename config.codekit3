@@ -9,6 +9,30 @@
   ],
   "creatorBuild" : "34484",
   "files" : {
+    "\/.github\/workflows\/develop.yml" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.github\/workflows\/develop.yml",
+      "oF" : 0
+    },
+    "\/.github\/workflows\/master.yml" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.github\/workflows\/master.yml",
+      "oF" : 0
+    },
+    "\/.github\/workflows\/stage.yml" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.github\/workflows\/stage.yml",
+      "oF" : 0
+    },
     "\/.gitignore" : {
       "cB" : 0,
       "ft" : 8192,
