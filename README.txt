@@ -12,7 +12,7 @@ Audit and check your website for accessibility before you hit publish. In-post a
 
 == Description ==
 
-[Plugin Website](https://equalizedigital.com/accessibility-checker/) | [Documentation](https://equalizedigital.com/accessibility-checker/documentation/) | [Compare Free to Pro](https://equalizedigital.com/accessibility-checker/features/#comparison) | [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/) | [Priority Support & Accessibility Consulting](https://my.equalizedigital.com/priority-support/) | [WP Accessibility Meetup](https://equalizedigital.com/wordpress-accessibility-meetup/) | [WP Accessibility Facebook Group](https://www.facebook.com/groups/wordpress.accessibility)
+[Plugin Website](https://equalizedigital.com/accessibility-checker/) | [Documentation](https://equalizedigital.com/accessibility-checker/documentation/) | [Compare Free to Pro](https://equalizedigital.com/accessibility-checker/features/#comparison) | [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/) | [WP Accessibility Meetup](https://equalizedigital.com/wordpress-accessibility-meetup/) | [WP Accessibility Facebook Group](https://www.facebook.com/groups/wordpress.accessibility)
 
 ### Make Your Website Accessible with Accessibility Checker 
 
