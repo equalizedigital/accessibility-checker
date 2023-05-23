@@ -179,6 +179,7 @@ Fixed: video is present duplicating issues
 Updated: Missing subheadings word count
 Updated: prompt for simplified summary aded never option
 Fixed: minor coding standards
+Updated: Freemius SDK to version 2.5.8
 
 = 1.3.24 =
 Added: user_agent to file_get_html context
