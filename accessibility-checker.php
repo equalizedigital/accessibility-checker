@@ -1598,7 +1598,7 @@ function edac_get_simplified_summary( int $post = null ) {
 	if ( null === $post ) {
 		$post = get_the_ID();
 	}
-	echo esc_html( edac_simplified_summary_markup( $post ) );
+	echo wp_kses_post( edac_simplified_summary_markup( $post ) );
 }
 
 /**
@@ -1617,7 +1617,7 @@ function edac_simplified_summary_markup( $post ) {
 	}
 
 	if ( $simplified_summary ) {
-		return '<div class="edac-simplified-summary"><h2>' . esc_html( $simplified_summary_heading ) . '</h2><p>' . esc_html( $simplified_summary ) . '</p></div>';
+		return '<div class="edac-simplified-summary"><h2>' . wp_kses_post( $simplified_summary_heading ) . '</h2><p>' . wp_kses_post( $simplified_summary ) . '</p></div>';
 	} else {
 		return;
 	}
