@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.3.25
+ * Version:           1.3.26
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -76,7 +76,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.3.25' );
+	define( 'EDAC_VERSION', '1.3.26' );
 }
 
 // Current database version.
@@ -245,12 +245,7 @@ add_action( 'admin_notices', 'edac_black_friday_notice' );
 function edac_update_database() {
 
 	global $wpdb;
-	$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
-
-	// Check if table exists.
-	if ( ! $table_name ) { 
-		return;
-	}
+	$table_name = $wpdb->prefix . 'accessibility_checker';
 
 	$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
 	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
@@ -1603,7 +1598,7 @@ function edac_get_simplified_summary( int $post = null ) {
 	if ( null === $post ) {
 		$post = get_the_ID();
 	}
-	echo esc_html( edac_simplified_summary_markup( $post ) );
+	echo wp_kses_post( edac_simplified_summary_markup( $post ) );
 }
 
 /**
@@ -1622,7 +1617,7 @@ function edac_simplified_summary_markup( $post ) {
 	}
 
 	if ( $simplified_summary ) {
-		return '<div class="edac-simplified-summary"><h2>' . esc_html( $simplified_summary_heading ) . '</h2><p>' . esc_html( $simplified_summary ) . '</p></div>';
+		return '<div class="edac-simplified-summary"><h2>' . wp_kses_post( $simplified_summary_heading ) . '</h2><p>' . wp_kses_post( $simplified_summary ) . '</p></div>';
 	} else {
 		return;
 	}
