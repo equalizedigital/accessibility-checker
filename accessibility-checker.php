@@ -245,12 +245,7 @@ add_action( 'admin_notices', 'edac_black_friday_notice' );
 function edac_update_database() {
 
 	global $wpdb;
-	$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
-
-	// Check if table exists.
-	if ( ! $table_name ) { 
-		return;
-	}
+	$table_name = $wpdb->prefix . 'accessibility_checker';
 
 	$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
 	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
