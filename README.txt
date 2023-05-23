@@ -174,6 +174,10 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.26 =
+Fixed: database creation bug
+Fixed: simplified summary output
+
 = 1.3.25 =
 Fixed: video is present duplicating issues
 Updated: Missing subheadings word count
