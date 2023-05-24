@@ -347,9 +347,16 @@ function edac_post_types_cb() {
 		</fieldset>
 		<?php if ( EDAC_KEY_VALID === false ) { ?>
 			<p class="edac-description"><?php echo esc_html__( 'To check content other than posts and pages, please ', 'edac' ); ?><a href="https://my.equalizedigital.com/" target="_blank"><?php echo esc_html__( 'upgrade to pro', 'edac' ); ?></a>.</p>
-		<?php } ?>
-	<?php
-
+		<?php } else { ?>
+			<p class="edac-description">
+				<?php 
+				echo __('Choose which post types should be checked during a scan. <em>Please note</em>, 
+				removing a previously selected post type will remove its
+				scanned information and any custom ignored warnings that have been setup.', 'edac');
+				?>
+			</p>
+		<?php }
+	
 }
 
 /**
