@@ -2,7 +2,7 @@
 class AccessibilityCheckerDisableHTML {
 	constructor() {
 		this.disableStylesButton = document.querySelector('#edac-highlight-disable-styles');
-		this.closePanel = document.querySelector('#edac-highlight-panel-close');
+		this.closePanel = document.querySelector('#edac-highlight-panel-controls-close');
 		this.stylesDisabled = false;
 		this.originalCss = [];
 		this.init();
@@ -68,7 +68,7 @@ class AccessibilityCheckerHighlight {
 		this.nextButton = document.querySelector('#edac-highlight-next');
 		this.previousButton = document.querySelector('#edac-highlight-previous');
 		this.panelToggle = document.querySelector('#edac-highlight-panel-toggle');
-		this.closePanel = document.querySelector('#edac-highlight-panel-close');
+		this.closePanel = document.querySelector('#edac-highlight-panel-controls-close');
 		this.panelDescription = document.querySelector('#edac-highlight-panel-description');
 		this.panelControls = document.querySelector('#edac-highlight-panel-controls');
 		this.descriptionCloseButton = document.querySelector('.edac-highlight-panel-description-close');
@@ -165,7 +165,11 @@ class AccessibilityCheckerHighlight {
 						//console.log(value.object);
 						const matchedElement = this.findElement(value, index);
 						console.log(matchedElement);
+
 					}.bind(this));
+
+					this.showIssueCount();
+
 				} else {
 					console.log(response);
 				}
@@ -233,11 +237,20 @@ class AccessibilityCheckerHighlight {
 				<div class="edac-highlight-panel-description-content"></div>
 				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
 			</div>
-			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls">					
-				<button id="edac-highlight-panel-close" class="edac-highlight-panel-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button><br />
-				<button id="edac-highlight-previous"><span aria-hidden="true">« </span>previous</button>
-				<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
-				<button id="edac-highlight-disable-styles">Disable Styles</button>
+			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls">
+				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
+				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
+				<div class="edac-highlight-panel-controls-summary"></div>		
+				<div></div>
+				<div class="edac-highlight-panel-controls-buttons">
+					<div>
+						<button id="edac-highlight-previous"><span aria-hidden="true">« </span>previous</button>
+						<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
+					</div>
+					<div>
+						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles">Disable Styles</button>
+					</div>
+				</div>
 			</div>
 			</div>
 		`;
@@ -440,6 +453,23 @@ class AccessibilityCheckerHighlight {
 
 	descriptionClose() {
 		this.panelDescription.style.display = 'none';
+	}
+
+	countIssues( rule_type ) {
+		let count = 0;
+		for (let issue of this.issues) {
+			if (issue.rule_type === rule_type) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	showIssueCount() {
+		let errorCount = this.countIssues('error');
+		let warningCount = this.countIssues('warning');
+		let div = document.querySelector('.edac-highlight-panel-controls-summary');
+		div.textContent = errorCount + ' Errors, ' + warningCount + ' Warnings detected.';
 	}
 
 }

@@ -89,7 +89,8 @@
     max-width: 400px;
     position: fixed;
     bottom: 15px;
-    right: 15px; }
+    right: 15px;
+    z-index: 999 !important; }
     .edac-highlight-panel * {
       all: unset; }
     .edac-highlight-panel-toggle {
@@ -105,8 +106,9 @@
       .edac-highlight-panel-toggle:hover {
         cursor: pointer; }
     .edac-highlight-panel-description {
+      max-height: calc( 100vh - 200px);
       display: block;
-      border: solid 1px #737373;
+      border: solid 1px #e2e4e7;
       background-color: #ffffff;
       margin-bottom: 15px;
       padding: 15px;
@@ -116,7 +118,9 @@
       line-height: 22px;
       font-family: sans-serif;
       text-align: left;
-      display: none; }
+      display: none;
+      overflow-y: scroll;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25); }
       .edac-highlight-panel-description-title {
         font-size: 16px;
         display: block;
@@ -150,8 +154,67 @@
         padding: 10px 15px;
         display: none;
         margin-top: 10px; }
+      .edac-highlight-panel-description-close {
+        width: 25px;
+        height: 25px;
+        color: #072446;
+        background-color: #f3cd1e;
+        font-size: 18px;
+        line-height: 25px;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        text-align: center; }
+        .edac-highlight-panel-description-close:hover, .edac-highlight-panel-description-close:focus {
+          cursor: pointer;
+          background-color: #ffffff; }
     .edac-highlight-panel-controls {
+      color: #ffffff;
       display: block;
-      background-color: #ffffff;
-      border: solid 1px #737373;
-      display: none; }
+      background-color: #3273aa;
+      border: solid 1px #e2e4e7;
+      display: none;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+      position: relative;
+      padding: 15px;
+      font-size: 14px;
+      line-height: 22px; }
+      .edac-highlight-panel-controls-title {
+        font-size: 16px;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px; }
+      .edac-highlight-panel-controls-close {
+        width: 25px;
+        height: 25px;
+        color: #072446;
+        background-color: #f3cd1e;
+        font-size: 18px;
+        line-height: 25px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        text-align: center; }
+        .edac-highlight-panel-controls-close:hover, .edac-highlight-panel-controls-close:focus {
+          cursor: pointer;
+          background-color: #ffffff; }
+      .edac-highlight-panel-controls-summary {
+        display: block; }
+      .edac-highlight-panel-controls-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); }
+        .edac-highlight-panel-controls-buttons button {
+          all: unset;
+          color: #ffffff;
+          background-color: #072446;
+          padding: 4px 10px;
+          display: inline-block;
+          margin-top: 10px;
+          margin-right: 10px; }
+          .edac-highlight-panel-controls-buttons button:hover, .edac-highlight-panel-controls-buttons button:focus {
+            color: #072446;
+            background-color: #ffffff;
+            cursor: pointer; }
+      .edac-highlight-panel-controls .edac-highlight-disable-styles {
+        float: right;
+        margin-right: 0; }
