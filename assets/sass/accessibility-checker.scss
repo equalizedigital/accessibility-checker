@@ -245,6 +245,7 @@
                 text-align: center;
                 &:hover, &:focus{
                     cursor: pointer;
+                    color: $color-blue-dark;
                     background-color: $color-white;
                 }
             }
@@ -282,6 +283,7 @@
                 text-align: center;
                 &:hover, &:focus{
                     cursor: pointer;
+                    color: $color-blue-dark;
                     background-color: $color-white;
                 }
             }
