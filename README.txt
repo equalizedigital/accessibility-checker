@@ -1,8 +1,8 @@
 === Equalize Digital Accessibility Checker - Audit Your Website for WCAG, ADA, and Section 508 Accessibility Errors ===
 Contributors: equalizedigital, alh0319, stevejonesdev, philwebs, roadwarriorwp
-Tags: accessibility, accessible, wcag, ada, section 508, aoda, a11y, audit, readability, content analysis
+Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
-Tested up to: 6.1.1
+Tested up to: 6.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ Audit and check your website for accessibility before you hit publish. In-post a
 
 == Description ==
 
-[Plugin Website](https://equalizedigital.com/accessibility-checker/) | [Documentation](https://equalizedigital.com/accessibility-checker/documentation/) | [Compare Free to Pro](https://equalizedigital.com/accessibility-checker/features/#comparison) | [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/) | [Priority Support & Accessibility Consulting](https://my.equalizedigital.com/priority-support/) | [WP Accessibility Meetup](https://equalizedigital.com/wordpress-accessibility-meetup/) | [WP Accessibility Facebook Group](https://www.facebook.com/groups/wordpress.accessibility)
+[Plugin Website](https://equalizedigital.com/accessibility-checker/) | [Documentation](https://equalizedigital.com/accessibility-checker/documentation/) | [Compare Free to Pro](https://equalizedigital.com/accessibility-checker/features/#comparison) | [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/) | [WP Accessibility Meetup](https://equalizedigital.com/wordpress-accessibility-meetup/) | [WP Accessibility Facebook Group](https://www.facebook.com/groups/wordpress.accessibility)
 
 ### Make Your Website Accessible with Accessibility Checker 
 
@@ -173,6 +173,52 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 
 == Changelog ==
+
+= 1.3.27 =
+Fixed: uninstall delete data
+
+= 1.3.26 =
+Fixed: database creation bug
+Fixed: simplified summary output
+
+= 1.3.25 =
+Fixed: video is present duplicating issues
+Updated: Missing subheadings word count
+Updated: prompt for simplified summary aded never option
+Fixed: minor coding standards
+Updated: Freemius SDK to version 2.5.8
+
+= 1.3.24 =
+Added: user_agent to file_get_html context
+Added: follow_location to file_get_html context to prevent scanning of offsite links
+Added: querystring check to file_get_html url to prevent malformed urls when the cache breaker string is appended
+Updated: get CSS via wp_remote_get
+
+= 1.3.23 =
+Added: GAAD Admin Notice
+
+= 1.3.22 =
+Fixed: conflict with full site editor
+Fixed: bug with the Image Empty Alternative Text check not detecting images
+Fixed: bug with ignore button not working on the open issues and the ignore log
+
+= 1.3.21 =
+Fixed: issue of reading level & simplified summary mismatching
+Updated: password protected admin notice to be dismissable
+Updated: position of password protected notice on single post
+Fixed: issue with summary panel not showing if password protected
+
+= 1.3.20 =
+Updated: freemius to the latest version
+
+= 1.3.19 =
+Updated: color contrast failure check
+
+= 1.3.18 =
+Updated: system info custom post type output
+
+= 1.3.17 =
+Fixed: license constant conflict
 
 = 1.3.16 =
 Fixed: issue with ignored issues being removed on post save

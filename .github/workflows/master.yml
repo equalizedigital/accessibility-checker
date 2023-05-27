@@ -1,0 +1,20 @@
+name: Deploy to WP Engine
+on:
+  push:
+    branches:
+     - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v3
+    - name: GitHub Action Deploy to WP Engine
+      uses: wpengine/github-action-wpe-site-deploy@v3.0
+      with:
+        # Deploy vars
+        WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
+        WPE_ENV: demositeedprd
+        # Deploy Options
+        REMOTE_PATH: "wp-content/plugins/accessibility-checker/"
+        PHP_LINT: FALSE
+        CACHE_CLEAR: TRUE

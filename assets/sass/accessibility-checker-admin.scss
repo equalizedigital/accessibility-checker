@@ -105,6 +105,14 @@
       }
     }
     .edac-summary {
+      &-notice {
+        background-color: $color-gray-lightest;
+        box-shadow: inset 0px 0px 0px 1px $color-gray-light;
+        padding: 15px;
+        text-align: left;
+        margin-bottom: 20px;
+        border-left: solid 5px $color-red;
+      }
       &-total {
         width: 100%;
         background-color: $color-gray-lightest;
@@ -889,5 +897,11 @@
   }
   &-remind, &-dismiss{
  
+  }
+}
+
+.edac_gaad_notice{
+  .button{
+    margin-top: 5px;
   }
 }

@@ -352,3 +352,36 @@ function edac_str_get_html (
 
 	return $dom->load($str, $lowercase, $stripRN);
 }
+
+/**
+ * This function validates a table name against WordPress naming conventions and checks its existence in the database.
+ *
+ * The function first checks if the provided table name only contains alphanumeric characters, underscores, or hyphens.
+ * If not, it returns null.
+ *
+ * After that, it checks if a table with that name actually exists in the database using the SHOW TABLES LIKE query. 
+ * If the table doesn't exist, it also returns null.
+ *
+ * If both checks are passed, it returns the valid table name.
+ *
+ * @param string $table_name The name of the table to be validated.
+ * 
+ * @return string|null The validated table name, or null if the table name is invalid or the table does not exist.
+ */
+function edac_get_valid_table_name( $table_name ) {
+    global $wpdb;
+
+    // Check if table name only contains alphanumeric characters, underscores, or hyphens.
+    if (!preg_match('/^[a-zA-Z0-9_\-]+$/', $table_name)) {
+        // Invalid table name
+        return null;
+    }
+
+    // Verify that the table actually exists in the database.
+    if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+        // Table does not exist
+        return null;
+    }
+
+    return $table_name;
+}

@@ -76,6 +76,7 @@
 
           let response_json = $.parseJSON( response.data );
           
+          /*
           if(response_json.password_protected && edac_gutenberg_active()){
             wp.data.dispatch('core/notices').createInfoNotice(
               response_json.password_protected, 
@@ -86,9 +87,10 @@
                 __unstableHTML: true,
               },
             );
-          }else{
-            $(".edac-summary").html(response_json);
           }
+          */
+          
+          $(".edac-summary").html(response_json.content);
 
         } else {
 
@@ -418,15 +420,70 @@
             window.location.href = 'https://wordpress.org/support/plugin/accessibility-checker/reviews/#new-post';
           }
         } else {
-          console.log(response);
+          //console.log(response);
         }
       });
     }
 
-    edac_summary_ajax();
-    edac_details_ajax();
-    edac_readability_ajax();
-    ignore_submit();
+    /**
+     * Password Protected Notice Ajax
+     */
+    if($('.edac_password_protected_notice').length){
+      $('.edac_password_protected_notice').on('click', function() {
+        edac_password_protected_notice_ajax();
+      });
+    }
+
+    function edac_password_protected_notice_ajax() {
+      $.ajax({
+        url: ajaxurl,
+        method: 'GET',
+        data: { action: 'edac_password_protected_notice_ajax', nonce: edac_script_vars.nonce }
+      }).done(function( response ) {
+        if( true === response.success ) {
+          let response_json = $.parseJSON( response.data );
+        } else {
+          //console.log(response);
+        }
+      });
+    }
+
+    /**
+     * GAAD Notice Ajax
+     */
+    if($('.edac_gaad_notice').length){
+      $('.edac_gaad_notice').on('click', function() {
+        edac_gaad_notice_ajax();
+      });
+    }
+
+    function edac_gaad_notice_ajax() {
+      $.ajax({
+        url: ajaxurl,
+        method: 'GET',
+        data: { action: 'edac_gaad_notice_ajax', nonce: edac_script_vars.nonce }
+      }).done(function( response ) {
+        if( true === response.success ) {
+          let response_json = $.parseJSON( response.data );
+        } else {
+          //console.log(response);
+        }
+      });
+    }
+
+    if( $('.edac-summary').length ) {
+      edac_summary_ajax();
+    }
+    if( $('.edac-details').length ) {
+      edac_details_ajax();
+      ignore_submit();
+    }
+    if( $('.edac-details-rule-records-record-ignore').length ) {
+      ignore_submit();
+    }
+    if( $('.edac-readability').length ) {
+      edac_readability_ajax();
+    }
 
   });
 })(jQuery);

@@ -24,11 +24,11 @@ function edac_rule_img_alt_empty( $content, $post ) {
 			foreach ( $elements as $element ) {
 				if (
 					isset( $element )
-					&& 'img' === ( $element->tag
+					&& 'img' == ( $element->tag
 					&& $element->hasAttribute( 'alt' )
 					&& $element->getAttribute( 'alt' ) == ''
 					&& $element->getAttribute( 'role' ) != 'presentation' )
-					|| ( 'input' === $element->tag
+					|| ( 'input' == $element->tag
 							&& $element->hasAttribute( 'alt' ) && $element->getAttribute( 'type' ) == 'image' && $element->getAttribute( 'alt' ) == '' )
 						) {
 
