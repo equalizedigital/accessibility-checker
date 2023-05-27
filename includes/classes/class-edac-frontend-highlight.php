@@ -11,7 +11,7 @@ class EDAC_Frontend_Highlight {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$post_id    = intval( $post_id );
 		$siteid     = get_current_blog_id();
-		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, object, ruletype FROM ' . $table_name . ' where postid = %d and siteid = %d', $post_id, $siteid ), ARRAY_A );
+		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype FROM ' . $table_name . ' where postid = %d and siteid = %d', $post_id, $siteid ), ARRAY_A );
 		if ( ! $results ) {
 			return null;
 		}
@@ -55,14 +55,16 @@ class EDAC_Frontend_Highlight {
 		foreach ( $results as $result ) {
 			$array = [];
 			$rule  = edac_filter_by_value( $rules, 'slug', $result['rule'] );
+			$rule_type = ( true === boolval( $result['ignre'] ) ) ? 'ignored' : $rule[0]['rule_type'];
 
-			$array['rule_type']  = $rule[0]['rule_type'];
+			$array['rule_type']  = $rule_type;
 			$array['slug']       = $rule[0]['slug'];
 			$array['rule_title'] = $rule[0]['title'];
 			$array['summary']    = $rule[0]['summary'];
 			$array['link']       = edac_documentation_link( $rule[0] );
 			$array['object']     = html_entity_decode( esc_html( $result['object'] ) );
 			$array['id']         = $result['id'];
+			$array['ignored']    = $result['ignre'];
 
 			$output[] = $array;
 		}
@@ -79,4 +81,3 @@ class EDAC_Frontend_Highlight {
 }
 
 new EDAC_Frontend_Highlight();
-//var_dump( $frontend_highlight->get_issues( 3842 ) );

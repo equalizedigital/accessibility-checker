@@ -20,6 +20,11 @@
             background: transparent url("../images/highlight-icon-warning.svg") center center no-repeat !important;
         }
     }
+    &-ignored{
+        .edac-highlight-btn{
+            background: transparent url("../images/highlight-icon-ignored.svg") center center no-repeat !important;
+        }
+    }
     &-btn{
         all: unset;
         width: 46px;
@@ -144,7 +149,7 @@
             }
         }
         &-description {
-            max-height: calc( 100vh - 200px );
+            max-height: calc( 100vh - 230px );
             display: block;
             border: solid 1px $color-gray-light;
             background-color: $color-white;
@@ -159,14 +164,37 @@
             display: none;
             overflow-y: scroll;
             box-shadow: 0px 0px 5px rgba($color-black, .25);
-            button{
-                
-            }
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             &-title{
                 font-size: 16px;
                 display: block;
                 font-weight: bold;
                 margin-bottom: 5px;
+            }
+            &-type{
+                font-size: 12px;
+                padding: 5px 7px;
+                border-radius: 4px;
+                font-size: 12px;
+                line-height: 12px;
+                margin-left: 10px;
+                display: inline-block;
+                text-transform: capitalize;
+                position: relative;
+                top: -2px;
+                &-error{
+                    color: $color-white;
+                    background-color: $color-red;
+                }
+                &-warning{
+                    color: $color-blue-dark;
+                    background-color: $color-yellow;
+                }
+                &-ignored{
+                    color: $color-white;
+                    background-color: $color-blue;
+                }
             }
             &-status{
                 color: $color-white;
@@ -232,6 +260,9 @@
             padding: 15px;
             font-size: 14px;
             line-height: 22px;
+            font-family: sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             &-title{
                 font-size: 16px;
                 display: block;
