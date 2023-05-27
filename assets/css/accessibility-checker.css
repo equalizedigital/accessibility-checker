@@ -191,6 +191,7 @@
         text-align: center; }
         .edac-highlight-panel-description-close:hover, .edac-highlight-panel-description-close:focus {
           cursor: pointer;
+          color: #072446;
           background-color: #ffffff; }
     .edac-highlight-panel-controls {
       color: #ffffff;
@@ -224,6 +225,7 @@
         text-align: center; }
         .edac-highlight-panel-controls-close:hover, .edac-highlight-panel-controls-close:focus {
           cursor: pointer;
+          color: #072446;
           background-color: #ffffff; }
       .edac-highlight-panel-controls-summary {
         display: block; }
