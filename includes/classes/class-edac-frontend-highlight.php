@@ -1,11 +1,33 @@
 <?php
+/**
+ * Accessibility Checker pluign file.
+ *
+ * @package Accessibility_Checker
+ */
+
+/**
+ * Class EDAC_Frontend_Highlight
+ *
+ * A class that handles AJAX requests for frontend highlighting of accessibility issues.
+ */
 class EDAC_Frontend_Highlight {
 
+	/**
+	 * Constructor function for the class.
+	 * Adds AJAX action hooks for handling frontend highlighting requests.
+	 */
 	public function __construct() {
 		add_action( 'wp_ajax_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
 		add_action( 'wp_ajax_nopriv_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
 	}
 
+	/**
+	 * Retrieves accessibility issues for a specific post.
+	 *
+	 * @param int $post_id The ID of the post.
+	 *
+	 * @return array|null The array of issues or null if no issues found.
+	 */
 	public function get_issues( $post_id ) {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'accessibility_checker';
@@ -18,6 +40,9 @@ class EDAC_Frontend_Highlight {
 		return $results;
 	}
 
+	/**
+	 * AJAX handler function for frontend highlighting requests.
+	 */
 	public function ajax() {
 
 		// nonce security.
@@ -39,22 +64,11 @@ class EDAC_Frontend_Highlight {
 		}
 
 		$rules = edac_register_rules();
-		//$rule  = edac_filter_by_value( $rules, 'slug', $results['rule'] );
 
-		// if ( ! $rule ) {
-		// 	$error = new WP_Error( '-4', 'Rule value not set' );
-		// 	wp_send_json_error( $error );
-		// }
-
-		// $results['rule_title'] = $rule[0]['title'];
-		// $results['summary']    = $rule[0]['summary'];
-		// $results['link']       = edac_documentation_link( $rule[0] );
-		// $results['object']     = html_entity_decode( esc_html( $results['object'] ) );
-
-		$output = [];
+		$output = array();
 		foreach ( $results as $result ) {
-			$array = [];
-			$rule  = edac_filter_by_value( $rules, 'slug', $result['rule'] );
+			$array     = array();
+			$rule      = edac_filter_by_value( $rules, 'slug', $result['rule'] );
 			$rule_type = ( true === boolval( $result['ignre'] ) ) ? 'ignored' : $rule[0]['rule_type'];
 
 			$array['rule_type']  = $rule_type;
