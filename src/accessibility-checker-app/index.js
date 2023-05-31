@@ -369,7 +369,7 @@ class AccessibilityCheckerHighlight {
 			
 		
 		const issueElement = document.querySelector(`[data-id="${id}"]`);
-		const Element = document.querySelector(`[data-element-id="${id}"]`);
+		const element = document.querySelector(`[data-element-id="${id}"]`);
 		
 		//remove selected class from previously selected elements
 		const selectedElements = document.querySelectorAll('.edac-highlight-btn-selected');
