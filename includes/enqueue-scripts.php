@@ -59,9 +59,10 @@ function edac_enqueue_styles() {
  */
 function edac_enqueue_scripts() {
 	
-	if( is_preview() || is_admin() ){
-
 		global $post;
+
+		if( current_user_can( 'edit_post', $post->ID ) ) {
+
 		$post_id = is_object( $post ) ? $post->ID : null;
 		wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/accessibility-checker-app/main.bundle.js', false, EDAC_VERSION, false );
 

@@ -10,7 +10,13 @@ body.edac-app-disable-styles {
 .edac-highlight{
     display: inline-block;
     clear: both;
-
+ 
+    &-element-selected{
+        outline: dashed 4px transparent !important;
+        outline-offset: 5px !important;
+        outline-color: magenta !important;
+    }
+ 
     &-btn{
         all: unset;
         width: 46px;
@@ -21,11 +27,6 @@ body.edac-app-disable-styles {
         margin: 5px;
         position: absolute;
         
-        &.active{
-            outline: dashed 4px transparent;
-            outline-offset: 5px;
-            outline-color: magenta;
-        }
         &-error{
             background: transparent url("../images/highlight-icon-error.svg") center center no-repeat;
             background-size: 46px 46px;
@@ -154,8 +155,6 @@ body.edac-app-disable-styles {
             }
             &-reference{
                 text-decoration: none;
-            }
-            &-code-button{
             }
             &-code{
                 color: $color-black;

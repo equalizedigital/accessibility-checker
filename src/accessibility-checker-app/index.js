@@ -257,8 +257,12 @@ class AccessibilityCheckerHighlight {
 			tooltip.ariaLabel = value.rule_title;
 			tooltip.ariaExpanded = 'false';
 			//tooltip.ariaControls = 'edac-highlight-tooltip-' + value.id;
+			
+			//add data-id to the tooltip/button so we can find it later.
 			tooltip.dataset.id = value.id;
-			tooltip.dataset.elementId = value.id;
+			
+			//add data-element-id to the element so we can find it later.
+			element.dataset.elementId = value.id;
 			
 		
 			const onClick = (e) => {
@@ -371,18 +375,24 @@ class AccessibilityCheckerHighlight {
 		const issueElement = document.querySelector(`[data-id="${id}"]`);
 		const element = document.querySelector(`[data-element-id="${id}"]`);
 		
-		//remove selected class from previously selected elements
-		const selectedElements = document.querySelectorAll('.edac-highlight-btn-selected');
-		selectedElements.forEach( (selectedElement) => {
-			selectedElement.classList.remove('edac-highlight-btn-selected');
+		//remove selected class from previously selected buttons
+		const selectedButtons = document.querySelectorAll('.edac-highlight-btn-selected');
+		selectedButtons.forEach( (selectedButton) => {
+			selectedButton.classList.remove('edac-highlight-btn-selected');
 		});
 
-		
+		//remove selected class from previously selected elements
+		const selectedElements = document.querySelectorAll('.edac-highlight-element-selected');
+		selectedElements.forEach( (selectedElement) => {
+			selectedElement.classList.remove('edac-highlight-element-selected');
+		});
+
 		
 		if (issueElement && element) {
 			if (isFocusable(issueElement)) {
 				issueElement.focus();
-				issueElement.classList.add('edac-highlight-btn-selected');
+				issueElement.classList.add('edac-highlight-btn-selected');				
+				element.classList.add('edac-highlight-element-selected');
 
 				if (!this.checkVisibility(issueElement) || !this.checkVisibility(element)) {
 					this.currentIssueStatus = 'The element is not visible. Try disabling styles.';
