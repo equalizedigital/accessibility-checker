@@ -13,5 +13,4 @@ prepros-6.config
 vendor
 node_modules
 build
-
-
+dist/*.zip
