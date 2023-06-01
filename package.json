@@ -8,7 +8,7 @@
   "scripts": {
     "build:app": "npx webpack --config .configs/webpack.config.app.js",
     "TODO:lint:app": "wp-scripts lint-js ./src",
-    "dist": "composer dump-autoload && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist"
+    "dist": "composer dump-autoload --no-dev && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist"
   },
   "files":[
     "LICENSE.txt","README.txt","accessibility-checker.php","uninstall.php",
