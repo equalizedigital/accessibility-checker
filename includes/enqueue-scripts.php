@@ -59,11 +59,12 @@ function edac_enqueue_styles() {
  */
 function edac_enqueue_scripts() {
 	
-		global $post;
+	global $post;
 
-		if( current_user_can( 'edit_post', $post->ID ) ) {
+	$post_id = is_object( $post ) ? $post->ID : null;
 
-		$post_id = is_object( $post ) ? $post->ID : null;
+	if( $post_id && current_user_can( 'edit_post', $post_id ) ) {
+
 		wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/accessibility-checker-app/main.bundle.js', false, EDAC_VERSION, false );
 
 		$post_types        = get_option( 'edac_post_types' );
@@ -85,6 +86,7 @@ function edac_enqueue_scripts() {
 				'active'   => $active,
 			)
 		);
-	}
+
+	}		
 
 }
