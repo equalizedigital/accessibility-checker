@@ -226,6 +226,13 @@ class AccessibilityCheckerHighlight {
 
 		this.tooltips.forEach((item) => {
 
+			//find the associated element 
+			const id = tooltip.dataset.id;
+			const element = document.querySelector(`[data-element-id="${id}"]`);
+
+			//remove the data-element-id added we created the tooltip/button
+			delete element.dataset.elementId;
+
 			//remove click listener
 			item.tooltip.removeEventListener('click', item.listeners.onClick);
 
@@ -625,8 +632,18 @@ class AccessibilityCheckerHighlight {
 			descriptionContent.innerHTML = content;
 
 			// code object
-			let textNode = document.createTextNode(matchingObj.object);
-			descriptionCode.innerText = textNode.nodeValue;
+			// remove any non-html from the object
+			const htmlSnippet = matchingObj.object;
+			const parser = new DOMParser();
+			const parsedHtml = parser.parseFromString(htmlSnippet, 'text/html');
+			const firstParsedElement = parsedHtml.body.firstElementChild;
+
+			if (firstParsedElement) {
+				descriptionCode.innerText = firstParsedElement.outerHTML;
+			} else {
+				let textNode = document.createTextNode(matchingObj.object);
+				descriptionCode.innerText = textNode.nodeValue;
+			}
 
 			// set code button listener
 			this.codeContainer = document.querySelector('.edac-highlight-panel-description-code');
