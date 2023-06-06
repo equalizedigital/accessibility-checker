@@ -1,8 +1,5 @@
-
-
-import {computePosition, autoUpdate} from '@floating-ui/dom';
+import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { isFocusable, isTabbable } from 'tabbable';
-import unique from 'unique-selector';
 
 
 class AccessibilityCheckerDisableHTML {
@@ -43,7 +40,7 @@ class AccessibilityCheckerDisableHTML {
 			element.removeAttribute("style");
 		});
 
-		
+
 		this.originalCss = this.originalCss.filter(function (element) {
 			if (element.id === 'edac-app-css' || element.id === 'dashicons-css') {
 				return false;
@@ -57,7 +54,7 @@ class AccessibilityCheckerDisableHTML {
 		});
 
 		document.querySelector('body').classList.add('edac-app-disable-styles');
-	
+
 		this.stylesDisabled = true;
 		this.disableStylesButton.textContent = "Enable Styles";
 	}
@@ -77,9 +74,9 @@ class AccessibilityCheckerDisableHTML {
 			}
 		});
 
-	
+
 		document.querySelector('body').classList.remove('edac-app-disable-styles');
-	
+
 		this.stylesDisabled = false;
 		this.disableStylesButton.textContent = "Disable Styles";
 	}
@@ -108,7 +105,7 @@ class AccessibilityCheckerHighlight {
 		this.tooltips = [];
 		this.init();
 	}
-	
+
 	/**
 	 * This function initializes the component by setting up event listeners 
 	 * and managing the initial state of the panel based on the URL parameter.
@@ -130,8 +127,8 @@ class AccessibilityCheckerHighlight {
 		this.descriptionCloseButton.addEventListener('click', () => this.descriptionClose());
 
 		// Open panel if a URL parameter exists
-		if(this.urlParameter){
-			this.panelOpen( this.urlParameter );
+		if (this.urlParameter) {
+			this.panelOpen(this.urlParameter);
 		}
 	}
 
@@ -148,32 +145,32 @@ class AccessibilityCheckerHighlight {
 	 * @returns {HTMLElement|null} - Returns the matching HTML element, or null if no match is found.
 	 */
 	findElement(value, index) {
-	
+
 		// Parse the HTML snippet
 		const htmlSnippet = value.object;
 		const parser = new DOMParser();
 		const parsedHtml = parser.parseFromString(htmlSnippet, 'text/html');
 		const firstParsedElement = parsedHtml.body.firstElementChild;
-	
+
 		// If there's no parsed element, return null
 		if (!firstParsedElement) {
 			return null;
 		}
-	
+
 		// Compare the outer HTML of the parsed element with all elements on the page
 		const allElements = document.body.querySelectorAll('*');
-	
+
 		for (const element of allElements) {
-	
+
 			if (element.outerHTML === firstParsedElement.outerHTML) {
-				
+
 				const tooltip = this.addTooltip(element, value, index);
-				this.tooltips.push( tooltip );
-				
+				this.tooltips.push(tooltip);
+
 				return element;
 			}
 		}
-	
+
 		// If no matching element is found, return null
 		return null;
 	}
@@ -187,10 +184,10 @@ class AccessibilityCheckerHighlight {
 		return new Promise(function (resolve, reject) {
 			const xhr = new XMLHttpRequest();
 			const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_script_vars.postID + '&nonce=' + edac_script_vars.nonce;
-		
+
 			xhr.open('GET', url);
 
-			xhr.onload = function() {
+			xhr.onload = function () {
 				if (xhr.status === 200) {
 					const response = JSON.parse(xhr.responseText);
 					//console.log(response);
@@ -210,14 +207,14 @@ class AccessibilityCheckerHighlight {
 					});
 				}
 			};
-			
+
 			xhr.onerror = function () {
 				reject({
 					status: xhr.status,
 					statusText: xhr.statusText
-				  });
+				});
 			}
-		
+
 			xhr.send();
 		});
 	}
@@ -226,11 +223,11 @@ class AccessibilityCheckerHighlight {
 	 * This function removes the highlight/tooltip buttons and runs cleanups for each.
 	 */
 	removeHighlightButtons() {
-		
-		this.tooltips.forEach( ( item ) => {
-			
+
+		this.tooltips.forEach((item) => {
+
 			//remove click listener
-			item.tooltip.removeEventListener('click', item.listeners.onClick );
+			item.tooltip.removeEventListener('click', item.listeners.onClick);
 
 			//remove position/resize listener: https://floating-ui.com/docs/autoUpdate
 			item.listeners.cleanup();
@@ -240,7 +237,7 @@ class AccessibilityCheckerHighlight {
 		});
 
 	}
-	
+
 
 	/**
 	 * This function adds a new button element to the DOM, which acts as a tooltip for the highlighted element.
@@ -251,64 +248,64 @@ class AccessibilityCheckerHighlight {
 	 * @return {Object} - information about the tooltip
 	 */
 	addTooltip(element, value, index) {
-			// Create the tooltip.
-			let tooltip = document.createElement('button');
-			tooltip.classList = 'edac-highlight-btn edac-highlight-btn-' + value.rule_type;
-			tooltip.ariaLabel = value.rule_title;
-			tooltip.ariaExpanded = 'false';
-			//tooltip.ariaControls = 'edac-highlight-tooltip-' + value.id;
-			
-			//add data-id to the tooltip/button so we can find it later.
-			tooltip.dataset.id = value.id;
-			
-			//add data-element-id to the element so we can find it later.
-			element.dataset.elementId = value.id;
-			
-		
-			const onClick = (e) => {
-				const id = e.currentTarget.dataset.id;
-				this.showIssue( id );
-			};
-			
-			tooltip.addEventListener('click', onClick );
-			
-			
-			// Add the tooltip to the page.
-			document.body.append(tooltip);
-	
-			// Place the tooltip at the element's position on the page.
-			// See: https://floating-ui.com/docs/autoUpdate
-			
-			function updatePosition() {
-				computePosition(element, tooltip, {
-					placement: 'left',
-				}).then(({x, y, middlewareData, placement}) => {
+		// Create the tooltip.
+		let tooltip = document.createElement('button');
+		tooltip.classList = 'edac-highlight-btn edac-highlight-btn-' + value.rule_type;
+		tooltip.ariaLabel = value.rule_title;
+		tooltip.ariaExpanded = 'false';
+		//tooltip.ariaControls = 'edac-highlight-tooltip-' + value.id;
 
-					Object.assign(tooltip.style, {
-						left: `${x - 32}px`,
-						top: `${y}px`
-					});
+		//add data-id to the tooltip/button so we can find it later.
+		tooltip.dataset.id = value.id;
+
+		//add data-element-id to the element so we can find it later.
+		element.dataset.elementId = value.id;
+
+
+		const onClick = (e) => {
+			const id = e.currentTarget.dataset.id;
+			this.showIssue(id);
+		};
+
+		tooltip.addEventListener('click', onClick);
+
+
+		// Add the tooltip to the page.
+		document.body.append(tooltip);
+
+		// Place the tooltip at the element's position on the page.
+		// See: https://floating-ui.com/docs/autoUpdate
+
+		function updatePosition() {
+			computePosition(element, tooltip, {
+				placement: 'left',
+			}).then(({ x, y, middlewareData, placement }) => {
+
+				Object.assign(tooltip.style, {
+					left: `${x - 32}px`,
+					top: `${y}px`
 				});
-			};
-			const cleanup = autoUpdate(
-				element,
-				tooltip,
-				updatePosition
-			);
+			});
+		};
+		const cleanup = autoUpdate(
+			element,
+			tooltip,
+			updatePosition
+		);
 
-		
-			return {
-				element,
-				tooltip,
-				listeners : {
-					onClick,
-					cleanup
-				}
-			};
-			
+
+		return {
+			element,
+			tooltip,
+			listeners: {
+				onClick,
+				cleanup
+			}
+		};
+
 	}
 
-	
+
 	/**
 	 * This function adds a new div element to the DOM, which contains the accessibility checker panel.
 	 */
@@ -339,7 +336,7 @@ class AccessibilityCheckerHighlight {
 			</div>
 			</div>
 		`;
-		
+
 		document.body.insertAdjacentHTML('afterbegin', newElement);
 	}
 
@@ -351,8 +348,8 @@ class AccessibilityCheckerHighlight {
 		const id = this.issues[this.currentButtonIndex]['id'];
 		this.showIssue(id);
 	}
-	
-	
+
+
 	/**
 	 * This function highlights the previous element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
 	 */
@@ -369,29 +366,29 @@ class AccessibilityCheckerHighlight {
 	 * @param {string} id - The ID of the element.
 	 */
 
-	showIssue = ( id ) => {
-			
-		
+	showIssue = (id) => {
+
+
 		const issueElement = document.querySelector(`[data-id="${id}"]`);
 		const element = document.querySelector(`[data-element-id="${id}"]`);
-		
+
 		//remove selected class from previously selected buttons
 		const selectedButtons = document.querySelectorAll('.edac-highlight-btn-selected');
-		selectedButtons.forEach( (selectedButton) => {
+		selectedButtons.forEach((selectedButton) => {
 			selectedButton.classList.remove('edac-highlight-btn-selected');
 		});
 
 		//remove selected class from previously selected elements
 		const selectedElements = document.querySelectorAll('.edac-highlight-element-selected');
-		selectedElements.forEach( (selectedElement) => {
+		selectedElements.forEach((selectedElement) => {
 			selectedElement.classList.remove('edac-highlight-element-selected');
 		});
 
-		
+
 		if (issueElement && element) {
 			if (isFocusable(issueElement)) {
 				issueElement.focus();
-				issueElement.classList.add('edac-highlight-btn-selected');				
+				issueElement.classList.add('edac-highlight-btn-selected');
 				element.classList.add('edac-highlight-element-selected');
 
 				if (!this.checkVisibility(issueElement) || !this.checkVisibility(element)) {
@@ -400,16 +397,16 @@ class AccessibilityCheckerHighlight {
 				} else {
 					this.currentIssueStatus = null;
 				}
-				
+
 			} else {
 				this.currentIssueStatus = 'The element is not focusable. Try disabling styles.';
 				console.log(`Element with id ${id} is not focusable!`);
-		  	}
+			}
 		} else {
-		  this.currentIssueStatus = 'The element was not found on the page.';
-		  console.log(`Element with id ${id} not found in the document!`);
+			this.currentIssueStatus = 'The element was not found on the page.';
+			console.log(`Element with id ${id} not found in the document!`);
 		}
-		
+
 		this.description(id);
 
 
@@ -420,15 +417,15 @@ class AccessibilityCheckerHighlight {
 	 * This function checks if a given element is potentially focusable.
 	 * 
 	 * @param {HTMLElement} element - The DOM element to check for potential focusability.
- 	 * 
- 	 * @returns {Boolean} - Returns 'true' if the element is potentially focusable, otherwise returns 'false'.
+	   * 
+	   * @returns {Boolean} - Returns 'true' if the element is potentially focusable, otherwise returns 'false'.
 	 */
 	isElementFocusable = (element) => {
-		
+
 		// check if the element has a parent and if the parent has a parent (grandparent)
 		if (element.parentElement && element.parentElement.parentElement) {
 			const grandparentElement = element.parentElement.parentElement;
-	
+
 
 			const style = window.getComputedStyle(grandparentElement);
 			grandparentElement.style.display = 'block';
@@ -448,16 +445,16 @@ class AccessibilityCheckerHighlight {
 		//checkVisibility is still in draft but well supported on many browsers.
 		//See: https://drafts.csswg.org/cssom-view-1/#dom-element-checkvisibility
 		//See: https://caniuse.com/mdn-api_element_checkvisibility
-		if(typeof(el.checkVisibility) !== 'function'){
+		if (typeof (el.checkVisibility) !== 'function') {
 
 			//See: https://github.com/jquery/jquery/blob/main/src/css/hiddenVisibleSelectors.js
-			return !!( el.offsetWidth || el.offsetHeight || el.getClientRects().length );
-	
+			return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+
 		} else {
 			return el.checkVisibility({
 				checkOpacity: true,      // Check CSS opacity property too
 				checkVisibilityCSS: true // Check CSS visibility property too
-		});
+			});
 		}
 	}
 
@@ -471,15 +468,15 @@ class AccessibilityCheckerHighlight {
 	isElementVisible(el) {
 		const rect = el.getBoundingClientRect();
 		const windowHeight =
-		window.innerHeight || document.documentElement.clientHeight;
+			window.innerHeight || document.documentElement.clientHeight;
 		const windowWidth =
-		window.innerWidth || document.documentElement.clientWidth;
-	
+			window.innerWidth || document.documentElement.clientWidth;
+
 		return (
-		rect.top >= 0 &&
-		rect.left >= 0 &&
-		rect.bottom <= windowHeight &&
-		rect.right <= windowWidth
+			rect.top >= 0 &&
+			rect.left >= 0 &&
+			rect.bottom <= windowHeight &&
+			rect.right <= windowWidth
 		);
 	}
 
@@ -498,11 +495,11 @@ class AccessibilityCheckerHighlight {
 	/**
 	 * This function opens the accessibility checker panel.
 	 */
-	panelOpen( id ) {
-		
+	panelOpen(id) {
+
 		this.panelControls.style.display = 'block';
 		this.panelToggle.style.display = 'none';
-		
+
 		// Get the issues for this page.
 		this.highlightAjax().then(
 			(json) => {
@@ -510,20 +507,20 @@ class AccessibilityCheckerHighlight {
 				//console.log(json);
 
 				this.issues = json;
-				
-				if(typeof(id) === 'undefined '){
+
+				if (typeof (id) === 'undefined ') {
 					id = this.issues[this.currentButtonIndex]['id'];
 				}
-			
-				json.forEach(function(value, index) {
-					
+
+				json.forEach(function (value, index) {
+
 					const matchedElement = this.findElement(value, index);
 
 				}.bind(this));
 
 
 				this.showIssueCount();
-				this.showIssue( id );
+				this.showIssue(id);
 			}
 		).catch((err) => {
 			//TODO:
@@ -547,16 +544,16 @@ class AccessibilityCheckerHighlight {
 		document.addEventListener('focusin', (event) => {
 			const focusedElement = event.target;
 			if (focusedElement.classList.contains('edac-highlight-btn')) {
-			const highlightParent = focusedElement.closest('.edac-highlight');
-			if (highlightParent) {
-				highlightParent.classList.add('active');
-				//focusedElement.scrollIntoView();
-		
-				const dataIssueId = focusedElement.getAttribute('data-id');
-				this.description( dataIssueId );
-				
-				this.cancelDescriptionTimeout();
-			}
+				const highlightParent = focusedElement.closest('.edac-highlight');
+				if (highlightParent) {
+					highlightParent.classList.add('active');
+					//focusedElement.scrollIntoView();
+
+					const dataIssueId = focusedElement.getAttribute('data-id');
+					this.description(dataIssueId);
+
+					this.cancelDescriptionTimeout();
+				}
 			}
 		});
 	}
@@ -594,21 +591,21 @@ class AccessibilityCheckerHighlight {
 	 * 
 	 * @param {string} dataId 
 	 */
-	description( dataId ) {
+	description(dataId) {
 		// get the value of the property by key
 		const searchTerm = dataId;
 		const keyToSearch = "id";
 		const matchingObj = this.issues.find(obj => obj[keyToSearch] === searchTerm);
 
-		if( matchingObj ) {
+		if (matchingObj) {
 			const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
 			const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
 			const descriptionCode = document.querySelector('.edac-highlight-panel-description-code code');
-		
+
 			let content = '';
 
 			// Get the status of the issue
-			if( this.currentIssueStatus ) {
+			if (this.currentIssueStatus) {
 				content += ` <div class="edac-highlight-panel-description-status">${this.currentIssueStatus}</div>`;
 			}
 
@@ -623,14 +620,14 @@ class AccessibilityCheckerHighlight {
 
 			// title and content
 			descriptionTitle.innerHTML = matchingObj.rule_title + ' <span class="edac-highlight-panel-description-type edac-highlight-panel-description-type-' + matchingObj.rule_type + '" aria-label=" Issue type: ' + matchingObj.rule_type + '"> ' + matchingObj.rule_type + '</span>';
-			
+
 			// content
 			descriptionContent.innerHTML = content;
 
 			// code object
 			let textNode = document.createTextNode(matchingObj.object);
 			descriptionCode.innerText = textNode.nodeValue;
-			
+
 			// set code button listener
 			this.codeContainer = document.querySelector('.edac-highlight-panel-description-code');
 			this.codeButton = document.querySelector('.edac-highlight-panel-description-code-button');
@@ -654,12 +651,12 @@ class AccessibilityCheckerHighlight {
 		let sPageURL = window.location.search.substring(1);
 		let sURLVariables = sPageURL.split('&');
 		let sParameterName, i;
-		
+
 		for (i = 0; i < sURLVariables.length; i++) {
 			sParameterName = sURLVariables[i].split('=');
-		
+
 			if (sParameterName[0] === sParam) {
-			return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+				return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
 			}
 		}
 		return false;
@@ -692,7 +689,7 @@ class AccessibilityCheckerHighlight {
 	 * @param {String} rule_type The type of issue to be counted.
 	 * @returns {Number} The number of issues of a given type.
 	 */
-	countIssues( rule_type ) {
+	countIssues(rule_type) {
 		let count = 0;
 		for (let issue of this.issues) {
 			if (issue.rule_type === rule_type) {
@@ -710,7 +707,7 @@ class AccessibilityCheckerHighlight {
 	countIgnored() {
 		let count = 0;
 		for (let issue of this.issues) {
-			if ( issue.ignored == 1) {
+			if (issue.ignored == 1) {
 				count++;
 			}
 		}
@@ -725,7 +722,7 @@ class AccessibilityCheckerHighlight {
 		let warningCount = this.countIssues('warning');
 		let ignoredCount = this.countIgnored();
 		let div = document.querySelector('.edac-highlight-panel-controls-summary');
-	
+
 		let textContent = 'No issues detected.';
 		if (errorCount > 0 || warningCount > 0 || ignoredCount > 0) {
 			textContent = '';
@@ -742,15 +739,15 @@ class AccessibilityCheckerHighlight {
 				textContent = textContent.slice(0, -2) + ' detected.';
 			}
 		}
-	
+
 		div.textContent = textContent;
-	}	
+	}
 
 }
 
 
 window.addEventListener('DOMContentLoaded', () => {
-	if( true == edac_script_vars.active ) {
+	if (true == edac_script_vars.active) {
 		new AccessibilityCheckerHighlight();
 		new AccessibilityCheckerDisableHTML();
 	}
