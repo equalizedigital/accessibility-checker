@@ -131,7 +131,7 @@ class AccessibilityCheckerHighlight {
 
 		// Open panel if a URL parameter exists
 		if(this.urlParameter){
-			this.panelOpen();
+			this.panelOpen( this.urlParameter );
 		}
 	}
 
@@ -498,7 +498,8 @@ class AccessibilityCheckerHighlight {
 	/**
 	 * This function opens the accessibility checker panel.
 	 */
-	panelOpen() {
+	panelOpen( id ) {
+		
 		this.panelControls.style.display = 'block';
 		this.panelToggle.style.display = 'none';
 		
@@ -509,8 +510,11 @@ class AccessibilityCheckerHighlight {
 				//console.log(json);
 
 				this.issues = json;
-				const id = this.issues[this.currentButtonIndex]['id'];
-
+				
+				if(typeof(id) === 'undefined '){
+					id = this.issues[this.currentButtonIndex]['id'];
+				}
+			
 				json.forEach(function(value, index) {
 					
 					const matchedElement = this.findElement(value, index);
