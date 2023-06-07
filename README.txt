@@ -174,6 +174,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.3.28 =
+Fixed: enqueue error on empty post types
+
 = 1.3.27 =
 Fixed: uninstall delete data
 

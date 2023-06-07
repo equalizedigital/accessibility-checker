@@ -28,7 +28,7 @@ function edac_admin_enqueue_scripts() {
 		'accessibility_checker_ignored',
 	);
 
-	if ( ( in_array( $current_post_type, $post_types, true ) || in_array( $page, $pages, true ) ) || ( $pagenow !== 'site-editor.php' ) ) {
+	if ( is_array( $post_types ) && count( $post_types ) && ( in_array( $current_post_type, $post_types, true ) || in_array( $page, $pages, true ) ) || ( $pagenow !== 'site-editor.php' ) ) {
 
 		global $post;
 		$post_id = is_object( $post ) ? $post->ID : null;
