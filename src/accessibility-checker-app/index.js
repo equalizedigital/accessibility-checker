@@ -1,6 +1,6 @@
 import { computePosition, autoUpdate } from '@floating-ui/dom';
+import { createFocusTrap } from 'focus-trap';
 import { isFocusable, isTabbable } from 'tabbable';
-
 
 class AccessibilityCheckerDisableHTML {
 
@@ -103,6 +103,8 @@ class AccessibilityCheckerHighlight {
 		this.urlParameter = this.get_url_parameter('edac');
 		this.currentIssueStatus = null;
 		this.tooltips = [];
+		this.panelControlsFocusTrap = createFocusTrap('#' + this.panelControls.id, { clickOutsideDeactivates: true });
+		this.panelDescriptionFocusTrap = createFocusTrap('#' + this.panelDescription.id, { clickOutsideDeactivates: true });
 		this.init();
 	}
 
@@ -111,17 +113,28 @@ class AccessibilityCheckerHighlight {
 	 * and managing the initial state of the panel based on the URL parameter.
 	 */
 	init() {
-		// Set focus highlight on buttons
-		this.highlightButtonFocus();
-		this.highlightButtonFocusOut();
-
 		// Add event listeners for 'next' and 'previous' buttons
-		this.nextButton.addEventListener('click', (event) => this.highlightFocusNext());
-		this.previousButton.addEventListener('click', (event) => this.highlightFocusPrevious());
+		this.nextButton.addEventListener('click', (event) => {
+			this.highlightFocusNext();
+			this.panelControlsFocusTrap.deactivate();
+			this.panelDescriptionFocusTrap.deactivate();
+		});
+		this.previousButton.addEventListener('click', (event) => {
+			this.highlightFocusPrevious();
+			this.panelControlsFocusTrap.deactivate();
+			this.panelDescriptionFocusTrap.deactivate();
+		});
 
 		// Manage panel open/close operations
-		this.panelToggle.addEventListener('click', () => this.panelOpen());
-		this.closePanel.addEventListener('click', () => this.panelClose());
+		this.panelToggle.addEventListener('click', () => {
+			this.panelOpen();
+			this.panelControlsFocusTrap.activate();
+		});
+		this.closePanel.addEventListener('click', () => {
+			this.panelClose();
+			this.panelControlsFocusTrap.deactivate();
+			this.panelDescriptionFocusTrap.deactivate();
+		});
 
 		// Close description when close button is clicked
 		this.descriptionCloseButton.addEventListener('click', () => this.descriptionClose());
@@ -227,11 +240,13 @@ class AccessibilityCheckerHighlight {
 		this.tooltips.forEach((item) => {
 
 			//find the associated element 
-			const id = tooltip.dataset.id;
-			const element = document.querySelector(`[data-element-id="${id}"]`);
+			const id = item.tooltip.dataset.id;
 
 			//remove the data-element-id added we created the tooltip/button
-			delete element.dataset.elementId;
+			const element = document.querySelector(`[data-element-id="${id}"]`);
+			if (element) {
+				element.removeAttribute('data-element-id');
+			}
 
 			//remove click listener
 			item.tooltip.removeEventListener('click', item.listeners.onClick);
@@ -343,7 +358,6 @@ class AccessibilityCheckerHighlight {
 			</div>
 			</div>
 		`;
-
 		document.body.insertAdjacentHTML('afterbegin', newElement);
 	}
 
@@ -364,7 +378,6 @@ class AccessibilityCheckerHighlight {
 		this.currentButtonIndex = (this.currentButtonIndex - 1 + this.issues.length) % this.issues.length;
 		const id = this.issues[this.currentButtonIndex]['id'];
 		this.showIssue(id);
-
 	}
 
 
@@ -375,22 +388,15 @@ class AccessibilityCheckerHighlight {
 
 	showIssue = (id) => {
 
+		this.removeSelectedClasses();
+
+		if (id === undefined) {
+			return;
+			//id = this.issues[0]['id']; TODO: show first item?
+		}
 
 		const issueElement = document.querySelector(`[data-id="${id}"]`);
 		const element = document.querySelector(`[data-element-id="${id}"]`);
-
-		//remove selected class from previously selected buttons
-		const selectedButtons = document.querySelectorAll('.edac-highlight-btn-selected');
-		selectedButtons.forEach((selectedButton) => {
-			selectedButton.classList.remove('edac-highlight-btn-selected');
-		});
-
-		//remove selected class from previously selected elements
-		const selectedElements = document.querySelectorAll('.edac-highlight-element-selected');
-		selectedElements.forEach((selectedElement) => {
-			selectedElement.classList.remove('edac-highlight-element-selected');
-		});
-
 
 		if (issueElement && element) {
 			if (isFocusable(issueElement)) {
@@ -416,32 +422,10 @@ class AccessibilityCheckerHighlight {
 
 		this.description(id);
 
-
+		this.panelDescriptionFocusTrap.activate();
 	}
-
-	//TODO: unused.
-	/**
-	 * This function checks if a given element is potentially focusable.
-	 * 
-	 * @param {HTMLElement} element - The DOM element to check for potential focusability.
-	   * 
-	   * @returns {Boolean} - Returns 'true' if the element is potentially focusable, otherwise returns 'false'.
-	 */
-	isElementFocusable = (element) => {
-
-		// check if the element has a parent and if the parent has a parent (grandparent)
-		if (element.parentElement && element.parentElement.parentElement) {
-			const grandparentElement = element.parentElement.parentElement;
-
-
-			const style = window.getComputedStyle(grandparentElement);
-			grandparentElement.style.display = 'block';
-			grandparentElement.style.visibility = 'visible';
-			return style.display !== 'none' && style.visibility !== 'hidden';
-		}
-		return false;
-	}
-
+	
+	
 	/**
 	 * This function checks if a given element is visible on the page.
 	 * 
@@ -465,40 +449,6 @@ class AccessibilityCheckerHighlight {
 		}
 	}
 
-	//TODO: unused.
-	/**
-	 * This function checks if a given element is visible on the page.
-	 * 
-	 * @param {HTMLElement} el The element to check for visibility
-	 * @returns 
-	 */
-	isElementVisible(el) {
-		const rect = el.getBoundingClientRect();
-		const windowHeight =
-			window.innerHeight || document.documentElement.clientHeight;
-		const windowWidth =
-			window.innerWidth || document.documentElement.clientWidth;
-
-		return (
-			rect.top >= 0 &&
-			rect.left >= 0 &&
-			rect.bottom <= windowHeight &&
-			rect.right <= windowWidth
-		);
-	}
-
-	//TODO: unused.
-	/**
-	 * This function checks if a given element is hidden on the page.
-	 * 
-	 * @param {HTMLElement} el The element to check for visibility
-	 * @returns 
-	 */
-	isElementHidden(el) {
-		const style = window.getComputedStyle(el);
-		return style.display === 'none';
-	}
-
 	/**
 	 * This function opens the accessibility checker panel.
 	 */
@@ -506,6 +456,7 @@ class AccessibilityCheckerHighlight {
 
 		this.panelControls.style.display = 'block';
 		this.panelToggle.style.display = 'none';
+		this.closePanel.focus();
 
 		// Get the issues for this page.
 		this.highlightAjax().then(
@@ -515,10 +466,6 @@ class AccessibilityCheckerHighlight {
 
 				this.issues = json;
 
-				if (typeof (id) === 'undefined ') {
-					id = this.issues[this.currentButtonIndex]['id'];
-				}
-
 				json.forEach(function (value, index) {
 
 					const matchedElement = this.findElement(value, index);
@@ -527,11 +474,16 @@ class AccessibilityCheckerHighlight {
 
 
 				this.showIssueCount();
-				this.showIssue(id);
+
+				if (id !== undefined) {
+					this.showIssue(id);
+				}
 			}
 		).catch((err) => {
 			//TODO:
 		});
+
+		this.closePanel.focus();
 	}
 
 	/**
@@ -541,56 +493,29 @@ class AccessibilityCheckerHighlight {
 		this.panelControls.style.display = 'none';
 		this.panelDescription.style.display = 'none';
 		this.panelToggle.style.display = 'block';
+		this.removeSelectedClasses();
 		this.removeHighlightButtons();
+
+		this.closePanel.removeEventListener('click', this.panelControlsFocusTrap.deactivate);
+
+		this.panelToggle.focus();
 	}
 
+
 	/**
-	 * This function highlights the button when it receives focus.
+	 * This function removes the classes that indicates a button or element are selected 
 	 */
-	highlightButtonFocus() {
-		document.addEventListener('focusin', (event) => {
-			const focusedElement = event.target;
-			if (focusedElement.classList.contains('edac-highlight-btn')) {
-				const highlightParent = focusedElement.closest('.edac-highlight');
-				if (highlightParent) {
-					highlightParent.classList.add('active');
-					//focusedElement.scrollIntoView();
-
-					const dataIssueId = focusedElement.getAttribute('data-id');
-					this.description(dataIssueId);
-
-					this.cancelDescriptionTimeout();
-				}
-			}
+	removeSelectedClasses = () => {
+		//remove selected class from previously selected buttons
+		const selectedButtons = document.querySelectorAll('.edac-highlight-btn-selected');
+		selectedButtons.forEach((selectedButton) => {
+			selectedButton.classList.remove('edac-highlight-btn-selected');
 		});
-	}
-
-	/**
-	 * 	* This function removes the highlight from the button when it loses focus.
-	 */
-	highlightButtonFocusOut() {
-		document.addEventListener('focusout', (event) => {
-			const unfocusedElement = event.target;
-			if (unfocusedElement.classList.contains('edac-highlight-btn')) {
-				const highlightParent = unfocusedElement.closest('.edac-highlight');
-				if (highlightParent) {
-					highlightParent.classList.remove('active');
-					/*
-					const description = document.querySelector('#edac-highlight-panel-description');
-					this.descriptionTimeout = setTimeout(function() {
-						description.style.display = 'none';
-					}, 500); // 1000 milliseconds (1 second) delay
-					*/
-				}
-			}
+		//remove selected class from previously selected elements
+		const selectedElements = document.querySelectorAll('.edac-highlight-element-selected');
+		selectedElements.forEach((selectedElement) => {
+			selectedElement.classList.remove('edac-highlight-element-selected');
 		});
-	}
-
-	/**
-	 * This function cancels the description timeout.
-	 */
-	cancelDescriptionTimeout() {
-		clearTimeout(this.descriptionTimeout);
 	}
 
 	/**
@@ -698,6 +623,7 @@ class AccessibilityCheckerHighlight {
 	 */
 	descriptionClose() {
 		this.panelDescription.style.display = 'none';
+		this.panelDescriptionFocusTrap.deactivate();
 	}
 
 	/**

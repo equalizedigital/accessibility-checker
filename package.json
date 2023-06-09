@@ -10,9 +10,16 @@
     "TODO:lint:app": "wp-scripts lint-js ./src",
     "dist": "composer install && composer dump-autoload --no-dev && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist"
   },
-  "files":[
-    "LICENSE.txt","README.txt","accessibility-checker.php","uninstall.php",
-    "assets","build","includes","partials","vendor"
+  "files": [
+    "LICENSE.txt",
+    "README.txt",
+    "accessibility-checker.php",
+    "uninstall.php",
+    "assets",
+    "build",
+    "includes",
+    "partials",
+    "vendor"
   ],
   "devDependencies": {
     "@babel/core": "^7.22.1",
@@ -24,6 +31,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.0",
+    "focus-trap": "^7.4.3",
     "mini-css-extract-plugin": "^2.7.6",
     "node-sass": "^7.0.3",
     "sass-loader": "^13.3.1",

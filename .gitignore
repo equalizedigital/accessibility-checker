@@ -12,5 +12,5 @@ edac_log.txt
 prepros-6.config
 vendor
 node_modules
-build
+#build
 dist/*.zip
