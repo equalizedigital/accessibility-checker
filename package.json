@@ -6,7 +6,7 @@
   "license": "GPL-2.0+",
   "main": "index.js",
   "scripts": {
-    "build:app": "npx webpack --config .configs/webpack.config.app.js",
+    "build:app": "npm install && npx webpack --config .configs/webpack.config.app.js",
     "TODO:lint:app": "wp-scripts lint-js ./src",
     "dist": "composer install && composer dump-autoload --no-dev && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist"
   },
