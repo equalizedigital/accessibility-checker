@@ -84,6 +84,7 @@
       position: relative;
       z-index: 1;
       padding: 20px;
+      text-align: center;
       &-number {
         font-size: 48px;
         line-height: 48px;
@@ -531,14 +532,12 @@
             }
             &-actions {
               border-right: none;
-              &-ignore, &-highlight, &-highlight-front {
+              &-ignore {
                 color: $color-blue;
                 border: none;
                 background: transparent;
                 display: flex;
                 align-items: center;
-                text-decoration: none;
-                text-align: left;
                 svg{
                   width: 18px;
                   height: auto;
