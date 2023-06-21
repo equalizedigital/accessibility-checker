@@ -1760,7 +1760,7 @@ class AccessibilityCheckerHighlight {
 				<button class="edac-highlight-panel-description-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-description-title"></div>
 				<div class="edac-highlight-panel-description-content"></div>
-				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
+				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code tabindex="0"></code></div>			
 			</div>
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
@@ -1953,7 +1953,11 @@ class AccessibilityCheckerHighlight {
       const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
       const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
       const descriptionCode = document.querySelector('.edac-highlight-panel-description-code code');
+      this.currentButtonIndex;
       let content = '';
+
+      // Get the index and total
+      content += ` <div class="edac-highlight-panel-description-index">${this.currentButtonIndex + 1} of ${this.issues.length}</div>`;
 
       // Get the status of the issue
       if (this.currentIssueStatus) {

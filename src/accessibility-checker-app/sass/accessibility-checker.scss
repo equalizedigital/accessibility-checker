@@ -128,6 +128,12 @@ body.edac-app-disable-styles {
                     background-color: $color-blue !important;
                 }
             }
+            &-index{
+                font-size: 16px !important;
+                display: block !important;
+                font-weight: bold !important;
+                margin-bottom: 5px !important;
+            }
             &-status{
                 color: $color-white !important;
                 display: block !important;

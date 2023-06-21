@@ -102,18 +102,18 @@ class AccessibilityCheckerHighlight {
 		this.urlParameter = this.get_url_parameter('edac');
 		this.currentIssueStatus = null;
 		this.tooltips = [];
-		this.panelControlsFocusTrap = createFocusTrap('#' + this.panelControls.id, { 
+		this.panelControlsFocusTrap = createFocusTrap('#' + this.panelControls.id, {
 			clickOutsideDeactivates: true,
-			escapeDeactivates: () => { 
+			escapeDeactivates: () => {
 				this.panelClose();
 			}
 		});
-		this.panelDescriptionFocusTrap = createFocusTrap('#' + this.panelDescription.id, { 
-			clickOutsideDeactivates: true ,
-			escapeDeactivates: () => { 
+		this.panelDescriptionFocusTrap = createFocusTrap('#' + this.panelDescription.id, {
+			clickOutsideDeactivates: true,
+			escapeDeactivates: () => {
 				this.descriptionClose();
 			}
-	
+
 		});
 		this.init();
 	}
@@ -348,7 +348,7 @@ class AccessibilityCheckerHighlight {
 				<button class="edac-highlight-panel-description-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-description-title"></div>
 				<div class="edac-highlight-panel-description-content"></div>
-				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
+				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code tabindex="0"></code></div>			
 			</div>
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
@@ -396,25 +396,25 @@ class AccessibilityCheckerHighlight {
 		this.panelDescriptionFocusTrap.deactivate();
 		this.panelControlsFocusTrap.activate();
 
-		setTimeout(() => { 
+		setTimeout(() => {
 			this.panelControls.focus();
 		}, 100); //give render time to complete.	
-		
+
 	}
 
 	/**
 	 * This function sets a focus trap on the description panel
 	 */
-		focusTrapDescription = () => {
-			this.panelControlsFocusTrap.deactivate();
-			this.panelDescriptionFocusTrap.activate();
-	
-			setTimeout(() => { 
-				this.panelDescription.focus();
-			}, 100); //give render time to complete.
-		
-		}
-	
+	focusTrapDescription = () => {
+		this.panelControlsFocusTrap.deactivate();
+		this.panelDescriptionFocusTrap.activate();
+
+		setTimeout(() => {
+			this.panelDescription.focus();
+		}, 100); //give render time to complete.
+
+	}
+
 	/**
 	 * This function shows an issue related to an element.
 	 * @param {string} id - The ID of the element.
@@ -423,14 +423,14 @@ class AccessibilityCheckerHighlight {
 	showIssue = (id) => {
 
 		this.removeSelectedClasses();
-		
+
 		if (id === undefined) {
 			return;
 			//id = this.issues[0]['id']; TODO: show first item?
 		}
 
-		this.currentButtonIndex = this.issues.findIndex(issue=>issue.id == id);
-		
+		this.currentButtonIndex = this.issues.findIndex(issue => issue.id == id);
+
 		const issueElement = document.querySelector(`[data-id="${id}"]`);
 		const element = document.querySelector(`[data-element-id="${id}"]`);
 
@@ -439,11 +439,11 @@ class AccessibilityCheckerHighlight {
 			issueElement.classList.add('edac-highlight-btn-selected');
 			element.classList.add('edac-highlight-element-selected');
 
-			element.scrollIntoView({block: 'center'});
-			
+			element.scrollIntoView({ block: 'center' });
+
 			if (isFocusable(issueElement)) {
 				//issueElement.focus();
-			
+
 				if (!this.checkVisibility(issueElement) || !this.checkVisibility(element)) {
 					this.currentIssueStatus = 'The element is not visible. Try disabling styles.';
 					console.log(`Element with id ${id} is not visible!`);
@@ -459,11 +459,11 @@ class AccessibilityCheckerHighlight {
 			this.currentIssueStatus = 'The element was not found on the page.';
 			console.log(`Element with id ${id} not found in the document!`);
 		}
-		
+
 		this.descriptionOpen(id);
 	}
-	
-	
+
+
 	/**
 	 * This function checks if a given element is visible on the page.
 	 * 
@@ -487,7 +487,7 @@ class AccessibilityCheckerHighlight {
 		}
 	}
 
-	
+
 	/**
 	 * This function opens the accessibility checker panel.
 	 */
@@ -495,7 +495,7 @@ class AccessibilityCheckerHighlight {
 
 		this.panelControls.style.display = 'block';
 		this.panelToggle.style.display = 'none';
-	
+
 		// Get the issues for this page.
 		this.highlightAjax().then(
 			(json) => {
@@ -517,7 +517,7 @@ class AccessibilityCheckerHighlight {
 
 					this.showIssue(id);
 					this.focusTrapDescription();
-		
+
 				}
 			}
 		).catch((err) => {
@@ -573,8 +573,12 @@ class AccessibilityCheckerHighlight {
 			const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
 			const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
 			const descriptionCode = document.querySelector('.edac-highlight-panel-description-code code');
-
+		
 			let content = '';
+
+			// Get the index and total
+			content += ` <div class="edac-highlight-panel-description-index">${this.currentButtonIndex + 1} of ${this.issues.length}</div>`;
+
 
 			// Get the status of the issue
 			if (this.currentIssueStatus) {
@@ -666,7 +670,7 @@ class AccessibilityCheckerHighlight {
 		}
 	};
 
-	
+
 	/**
 	 * This function counts the number of issues of a given type.
 	 * 

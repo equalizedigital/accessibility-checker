@@ -116,6 +116,12 @@ body.edac-app-disable-styles #wpadminbar {
   color: #ffffff !important;
   background-color: #3273aa !important;
 }
+.edac-highlight-panel-description-index {
+  font-size: 16px !important;
+  display: block !important;
+  font-weight: bold !important;
+  margin-bottom: 5px !important;
+}
 .edac-highlight-panel-description-status {
   color: #ffffff !important;
   display: block !important;
