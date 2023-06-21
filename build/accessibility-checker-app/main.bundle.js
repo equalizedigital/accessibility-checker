@@ -1538,10 +1538,16 @@ class AccessibilityCheckerHighlight {
     this.currentIssueStatus = null;
     this.tooltips = [];
     this.panelControlsFocusTrap = (0,focus_trap__WEBPACK_IMPORTED_MODULE_0__.createFocusTrap)('#' + this.panelControls.id, {
-      clickOutsideDeactivates: true
+      clickOutsideDeactivates: true,
+      escapeDeactivates: () => {
+        this.panelClose();
+      }
     });
     this.panelDescriptionFocusTrap = (0,focus_trap__WEBPACK_IMPORTED_MODULE_0__.createFocusTrap)('#' + this.panelDescription.id, {
-      clickOutsideDeactivates: true
+      clickOutsideDeactivates: true,
+      escapeDeactivates: () => {
+        this.descriptionClose();
+      }
     });
     this.init();
   }
@@ -1554,19 +1560,17 @@ class AccessibilityCheckerHighlight {
     // Add event listeners for 'next' and 'previous' buttons
     this.nextButton.addEventListener('click', event => {
       this.highlightFocusNext();
-      this.panelControlsFocusTrap.deactivate();
-      this.panelDescriptionFocusTrap.deactivate();
+      this.focusTrapDescription();
     });
     this.previousButton.addEventListener('click', event => {
       this.highlightFocusPrevious();
-      this.panelControlsFocusTrap.deactivate();
-      this.panelDescriptionFocusTrap.deactivate();
+      this.focusTrapDescription();
     });
 
     // Manage panel open/close operations
     this.panelToggle.addEventListener('click', () => {
       this.panelOpen();
-      this.panelControlsFocusTrap.activate();
+      this.focusTrapControls();
     });
     this.closePanel.addEventListener('click', () => {
       this.panelClose();
@@ -1708,6 +1712,7 @@ class AccessibilityCheckerHighlight {
     const onClick = e => {
       const id = e.currentTarget.dataset.id;
       this.showIssue(id);
+      this.focusTrapDescription();
     };
     tooltip.addEventListener('click', onClick);
 
@@ -1751,13 +1756,13 @@ class AccessibilityCheckerHighlight {
     const newElement = `
 			<div class="edac-highlight-panel">
 			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" title="Toggle accessibility tools"></button>
-			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description">
+			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" tabindex="0">
 				<button class="edac-highlight-panel-description-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-description-title"></div>
 				<div class="edac-highlight-panel-description-content"></div>
 				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
 			</div>
-			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls">
+			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
 				<div class="edac-highlight-panel-controls-summary"></div>
@@ -1796,6 +1801,28 @@ class AccessibilityCheckerHighlight {
   };
 
   /**
+   * This function sets a focus trap on the description panel
+   */
+  focusTrapControls = () => {
+    this.panelDescriptionFocusTrap.deactivate();
+    this.panelControlsFocusTrap.activate();
+    setTimeout(() => {
+      this.panelControls.focus();
+    }, 100); //give render time to complete.	
+  };
+
+  /**
+   * This function sets a focus trap on the description panel
+   */
+  focusTrapDescription = () => {
+    this.panelControlsFocusTrap.deactivate();
+    this.panelDescriptionFocusTrap.activate();
+    setTimeout(() => {
+      this.panelDescription.focus();
+    }, 100); //give render time to complete.
+  };
+
+  /**
    * This function shows an issue related to an element.
    * @param {string} id - The ID of the element.
    */
@@ -1807,13 +1834,15 @@ class AccessibilityCheckerHighlight {
       //id = this.issues[0]['id']; TODO: show first item?
     }
 
+    this.currentButtonIndex = this.issues.findIndex(issue => issue.id == id);
     const issueElement = document.querySelector(`[data-id="${id}"]`);
     const element = document.querySelector(`[data-element-id="${id}"]`);
     if (issueElement && element) {
+      issueElement.classList.add('edac-highlight-btn-selected');
+      element.classList.add('edac-highlight-element-selected');
       if ((0,tabbable__WEBPACK_IMPORTED_MODULE_2__.isFocusable)(issueElement)) {
-        issueElement.focus();
-        issueElement.classList.add('edac-highlight-btn-selected');
-        element.classList.add('edac-highlight-element-selected');
+        //issueElement.focus();
+
         if (!this.checkVisibility(issueElement) || !this.checkVisibility(element)) {
           this.currentIssueStatus = 'The element is not visible. Try disabling styles.';
           console.log(`Element with id ${id} is not visible!`);
@@ -1828,8 +1857,7 @@ class AccessibilityCheckerHighlight {
       this.currentIssueStatus = 'The element was not found on the page.';
       console.log(`Element with id ${id} not found in the document!`);
     }
-    this.description(id);
-    this.panelDescriptionFocusTrap.activate();
+    this.descriptionOpen(id);
   };
 
   /**
@@ -1860,7 +1888,7 @@ class AccessibilityCheckerHighlight {
   panelOpen(id) {
     this.panelControls.style.display = 'block';
     this.panelToggle.style.display = 'none';
-    this.closePanel.focus();
+    //this.closePanel.focus();
 
     // Get the issues for this page.
     this.highlightAjax().then(json => {
@@ -1873,11 +1901,13 @@ class AccessibilityCheckerHighlight {
       this.showIssueCount();
       if (id !== undefined) {
         this.showIssue(id);
+        this.focusTrapDescription();
       }
     }).catch(err => {
       //TODO:
     });
-    this.closePanel.focus();
+
+    //this.closePanel.focus();
   }
 
   /**
@@ -1914,7 +1944,7 @@ class AccessibilityCheckerHighlight {
    * 
    * @param {string} dataId 
    */
-  description(dataId) {
+  descriptionOpen(dataId) {
     // get the value of the property by key
     const searchTerm = dataId;
     const keyToSearch = "id";
@@ -1972,6 +2002,14 @@ class AccessibilityCheckerHighlight {
   }
 
   /**
+   * This function closes the description.
+   */
+  descriptionClose() {
+    this.panelDescription.style.display = 'none';
+    this.focusTrapControls();
+  }
+
+  /**
    * 	* This function retrieves the value of a given URL parameter.
    * 
    * @param {String} sParam The name of the URL parameter to be retrieved.
@@ -2001,14 +2039,6 @@ class AccessibilityCheckerHighlight {
       this.codeButton.setAttribute('aria-expanded', 'false');
     }
   }
-  /**
-   * This function closes the description.
-   */
-  descriptionClose() {
-    this.panelDescription.style.display = 'none';
-    this.panelDescriptionFocusTrap.deactivate();
-  }
-
   /**
    * This function counts the number of issues of a given type.
    * 
