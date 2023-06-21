@@ -423,14 +423,14 @@ class AccessibilityCheckerHighlight {
 	showIssue = (id) => {
 
 		this.removeSelectedClasses();
-
+		
 		if (id === undefined) {
 			return;
 			//id = this.issues[0]['id']; TODO: show first item?
 		}
 
 		this.currentButtonIndex = this.issues.findIndex(issue=>issue.id == id);
-
+		
 		const issueElement = document.querySelector(`[data-id="${id}"]`);
 		const element = document.querySelector(`[data-element-id="${id}"]`);
 
@@ -439,6 +439,8 @@ class AccessibilityCheckerHighlight {
 			issueElement.classList.add('edac-highlight-btn-selected');
 			element.classList.add('edac-highlight-element-selected');
 
+			element.scrollIntoView({block: 'center'});
+			
 			if (isFocusable(issueElement)) {
 				//issueElement.focus();
 			

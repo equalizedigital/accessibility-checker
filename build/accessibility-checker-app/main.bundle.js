@@ -1801,7 +1801,7 @@ class AccessibilityCheckerHighlight {
   };
 
   /**
-   * This function sets a focus trap on the description panel
+   * This function sets a focus trap on the controls panel
    */
   focusTrapControls = () => {
     this.panelDescriptionFocusTrap.deactivate();
@@ -1840,6 +1840,9 @@ class AccessibilityCheckerHighlight {
     if (issueElement && element) {
       issueElement.classList.add('edac-highlight-btn-selected');
       element.classList.add('edac-highlight-element-selected');
+      element.scrollIntoView({
+        block: 'center'
+      });
       if ((0,tabbable__WEBPACK_IMPORTED_MODULE_2__.isFocusable)(issueElement)) {
         //issueElement.focus();
 
@@ -1888,7 +1891,6 @@ class AccessibilityCheckerHighlight {
   panelOpen(id) {
     this.panelControls.style.display = 'block';
     this.panelToggle.style.display = 'none';
-    //this.closePanel.focus();
 
     // Get the issues for this page.
     this.highlightAjax().then(json => {
@@ -1906,8 +1908,6 @@ class AccessibilityCheckerHighlight {
     }).catch(err => {
       //TODO:
     });
-
-    //this.closePanel.focus();
   }
 
   /**
