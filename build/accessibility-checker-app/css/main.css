@@ -38,7 +38,7 @@ body.edac-app-disable-styles #wpadminbar {
 .edac-highlight-btn-ignored {
   background: transparent url(.././img/highlight-icon-ignored.svg) center center no-repeat !important;
 }
-.edac-highlight-btn:hover, .edac-highlight-btn:focus {
+.edac-highlight-btn-selected, .edac-highlight-btn:hover, .edac-highlight-btn:focus {
   outline: solid 5px rgba(0, 208, 255, 0.75) !important;
 }
 .edac-highlight-panel {

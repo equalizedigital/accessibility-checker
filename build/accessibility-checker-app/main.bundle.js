@@ -1953,7 +1953,6 @@ class AccessibilityCheckerHighlight {
       const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
       const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
       const descriptionCode = document.querySelector('.edac-highlight-panel-description-code code');
-      this.currentButtonIndex;
       let content = '';
 
       // Get the index and total

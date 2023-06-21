@@ -46,7 +46,7 @@ body.edac-app-disable-styles {
             background: transparent url("../images/highlight-icon-ignored.svg") center center no-repeat !important;
         }
        
-        &:hover, &:focus {
+        &-selected, &:hover, &:focus {
            outline: solid 5px rgba(0,208,255,.75) !important;
         }
     }
