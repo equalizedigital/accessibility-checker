@@ -1,19 +1,142 @@
-@charset "UTF-8";
+/*
 body.edac-app-disable-styles {
-  padding: 0.5rem 92px !important;
-}
-body.edac-app-disable-styles #wpadminbar {
-  display: none !important;
+    padding: .5rem (46px + 46px ) !important;
+    #wpadminbar { display: none !important;}
 }
 
+
+.edac-highlight{
+
+
+    &-btn{
+        all: unset;
+        width: 46px;
+        height: 46px;
+        display: block;
+        font-size: 0;
+        border-radius: 50%;
+        margin: 5px;
+        position: absolute;
+
+        &-error{
+            background: transparent url("../images/highlight-icon-error.svg") center center no-repeat;
+            background-size: 46px 46px;
+        }
+        &-warning{
+            background: transparent url("../images/highlight-icon-warning.svg") center center no-repeat !important;
+        }
+        &-ignored{
+            background: transparent url("../images/highlight-icon-ignored.svg") center center no-repeat !important;
+        }
+        &:hover{
+            .edac-highlight-btn{
+                display: block;
+            }
+        }
+        &:hover, &:focus {
+            outline: solid 5px rgba(0,208,255,.75);
+        }
+
+        &-selected:after {
+            content:'\25BA';
+            font-size: 16px;
+            color: rgba(0,208,255,.75);
+            margin-left: 46px + 10px;
+
+        }
+    }
+    &-panel-toggle:hover,&panel-toggle:focus{
+        outline: solid 5px rgba(0,208,255,.75); 
+    }
+}
+
+*/
 .edac-highlight {
   display: inline-block;
   clear: both;
+  /*    
+      &-tooltip{
+          all: unset;
+          max-width: 400px;
+          color: $color-white;
+          background-color: $color-blue-dark;
+          position: absolute;
+          font-size: 14px !important;
+          line-height: 22px;
+          font-family: sans-serif;
+          padding: 10px 15px;
+          top: 0;
+          left: 50px;
+          border-radius: 5px;
+          z-index: 99;
+          text-align: left;
+          text-transform: none;
+          letter-spacing: normal;
+          p{
+              all: unset;
+              color: $color-white;
+              text-transform: none;
+              letter-spacing: normal;
+              a{
+                  all: unset;
+                  color: $color-white;
+                  text-decoration: underline !important;
+                  font-weight: normal !important;
+                  &:hover{
+                      all: unset;
+                      color: $color-yellow;
+                  }
+                  &:focus{
+                      all: unset;
+                      outline: solid 2px $color-yellow;
+                      outline-offset: 2px;
+                  }
+              }
+          }
+
+          &:before{
+              all: unset;
+              content: '';
+              width: 0; 
+              height: 0; 
+              border-top: 8px solid transparent;
+              border-bottom: 8px solid transparent; 
+              border-right:8px solid $color-blue-dark;
+              position: absolute;
+              left: -8px;
+              top: 12px;
+          }
+          &-left{
+              &:before{
+                  border-right: none;
+                  border-left:8px solid $color-blue-dark;
+                  right: -8px;
+                  left: auto;
+              }
+          }
+          &-title{
+              all: unset;
+              font-size: 16px !important;
+          }
+          &-reference{
+              all: unset;
+              color: $color-yellow !important;
+              text-decoration: none !important;
+              margin-left: 5px !important;
+              &:hover, &:focus{
+                  color: $color-white !important;
+              }
+              &:focus{
+                  outline: solid 2px $color-yellow !important;
+              }
+          }
+      }
+  */
 }
 .edac-highlight-element-selected {
-  outline: dashed 4px transparent !important;
-  outline-offset: 5px !important;
-  outline-color: magenta !important;
+  outline: dashed 4px transparent;
+  outline-offset: 5px;
+  outline-color: magenta;
 }
 .edac-highlight-btn {
   all: unset;
@@ -35,17 +158,8 @@ body.edac-app-disable-styles #wpadminbar {
 .edac-highlight-btn-ignored {
   background: transparent url(.././img/highlight-icon-ignored.svg) center center no-repeat !important;
 }
-.edac-highlight-btn:hover .edac-highlight-btn {
-  display: block;
-}
 .edac-highlight-btn:hover, .edac-highlight-btn:focus {
   outline: solid 5px rgba(0, 208, 255, 0.75);
-}
-.edac-highlight-btn-selected:after {
-  content: "►";
-  font-size: 16px;
-  color: rgba(0, 208, 255, 0.75);
-  margin-left: 56px;
 }
 .edac-highlight-panel {
   width: 400px;
@@ -58,27 +172,20 @@ body.edac-app-disable-styles #wpadminbar {
 .edac-highlight-panel * {
   all: unset;
 }
-.edac-highlight-panel.align-left {
-  right: unset;
-  left: 15px;
-}
 .edac-highlight-panel-toggle {
-  all: revert;
   width: 50px;
   height: 50px;
   display: block;
   background: transparent url(.././img/edac-emblem.png) center center no-repeat;
   background-size: contain;
-  border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   position: relative;
   float: right;
 }
 .edac-highlight-panel-toggle:hover, .edac-highlight-panel-toggle:focus {
-  outline: solid 2px black; /* ? rgba(0,208,255,.75); */
-  outline-offset: 2px;
   cursor: pointer;
+  outline: solid 5px rgba(0, 208, 255, 0.75);
 }
 .edac-highlight-panel-description {
   max-height: calc(100vh - 230px);
@@ -178,7 +285,6 @@ body.edac-app-disable-styles #wpadminbar {
   cursor: pointer;
   color: #072446;
   background-color: #ffffff;
-  outline: solid 1px black; /* ? rgba(0,208,255,.75); */
 }
 .edac-highlight-panel-controls {
   color: #ffffff;
@@ -217,7 +323,6 @@ body.edac-app-disable-styles #wpadminbar {
   cursor: pointer;
   color: #072446;
   background-color: #ffffff;
-  outline: solid 1px black; /* ? rgba(0,208,255,.75); */
 }
 .edac-highlight-panel-controls-summary {
   display: block;
@@ -233,7 +338,6 @@ body.edac-app-disable-styles #wpadminbar {
   padding: 4px 10px;
   display: inline-block;
   margin-top: 10px;
-  margin-bottom: 10px;
   margin-right: 10px;
 }
 .edac-highlight-panel-controls-buttons button:hover, .edac-highlight-panel-controls-buttons button:focus {

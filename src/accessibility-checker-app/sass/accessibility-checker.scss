@@ -1,6 +1,7 @@
-@import "./../../globals/sass/variables";
-@import "./../../globals/sass/helpers";
+@import "../../globals/sass/variables";
+@import "../../globals/sass/helpers";
 
+/*
 body.edac-app-disable-styles {
     padding: .5rem (46px + 46px ) !important;
     #wpadminbar { display: none !important;}
@@ -8,15 +9,8 @@ body.edac-app-disable-styles {
 
 
 .edac-highlight{
-    display: inline-block;
-    clear: both;
- 
-    &-element-selected{
-        outline: dashed 4px transparent !important;
-        outline-offset: 5px !important;
-        outline-color: magenta !important;
-    }
- 
+
+  
     &-btn{
         all: unset;
         width: 46px;
@@ -54,6 +48,126 @@ body.edac-app-disable-styles {
         
         }
     }
+    &-panel-toggle:hover,&panel-toggle:focus{
+        outline: solid 5px rgba(0,208,255,.75); 
+    }
+}
+   
+*/
+
+.edac-highlight{
+    display: inline-block;
+    clear: both;
+
+    &-element-selected{
+        outline: dashed 4px transparent;
+        outline-offset: 5px;
+        outline-color: magenta;
+    }
+
+    &-btn{
+        all: unset;
+        width: 46px;
+        height: 46px;
+        display: block;
+        font-size: 0;
+        border-radius: 50%;
+        margin: 5px;
+        position: absolute;
+
+        &-error{
+            background: transparent url("../images/highlight-icon-error.svg") center center no-repeat;
+            background-size: 46px 46px;
+        }
+        &-warning{
+             background: transparent url("../images/highlight-icon-warning.svg") center center no-repeat !important;
+        }
+        &-ignored{
+            background: transparent url("../images/highlight-icon-ignored.svg") center center no-repeat !important;
+        }
+       
+        &:hover, &:focus {
+           outline: solid 5px rgba(0,208,255,.75);
+        }
+    }
+/*    
+    &-tooltip{
+        all: unset;
+        max-width: 400px;
+        color: $color-white;
+        background-color: $color-blue-dark;
+        position: absolute;
+        font-size: 14px !important;
+        line-height: 22px;
+        font-family: sans-serif;
+        padding: 10px 15px;
+        top: 0;
+        left: 50px;
+        border-radius: 5px;
+        z-index: 99;
+        text-align: left;
+        text-transform: none;
+        letter-spacing: normal;
+        p{
+            all: unset;
+            color: $color-white;
+            text-transform: none;
+            letter-spacing: normal;
+            a{
+                all: unset;
+                color: $color-white;
+                text-decoration: underline !important;
+                font-weight: normal !important;
+                &:hover{
+                    all: unset;
+                    color: $color-yellow;
+                }
+                &:focus{
+                    all: unset;
+                    outline: solid 2px $color-yellow;
+                    outline-offset: 2px;
+                }
+            }
+        }
+        
+        &:before{
+            all: unset;
+            content: '';
+            width: 0; 
+            height: 0; 
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent; 
+            border-right:8px solid $color-blue-dark;
+            position: absolute;
+            left: -8px;
+            top: 12px;
+        }
+        &-left{
+            &:before{
+                border-right: none;
+                border-left:8px solid $color-blue-dark;
+                right: -8px;
+                left: auto;
+            }
+        }
+        &-title{
+            all: unset;
+            font-size: 16px !important;
+        }
+        &-reference{
+            all: unset;
+            color: $color-yellow !important;
+            text-decoration: none !important;
+            margin-left: 5px !important;
+            &:hover, &:focus{
+                color: $color-white !important;
+            }
+            &:focus{
+                outline: solid 2px $color-yellow !important;
+            }
+        }
+    }
+*/
     &-panel{
         *{
             all: unset;
@@ -64,26 +178,19 @@ body.edac-app-disable-styles {
         bottom: 15px;
         right: 15px;
         z-index: 999 !important;
-        &.align-left {
-            right: unset;
-            left: 15px;
-        }
         &-toggle{
-            all: revert;
             width: 50px;
             height: 50px;
             display: block;
             background: transparent url("../images/edac-emblem.png") center center no-repeat;
             background-size: contain;
-            border: none;
             box-shadow: 0 0 5px rgba($color-black,.5);
             border-radius: 50%;
             position: relative;
             float: right;
-            &:hover, &:focus{
-                outline: solid 2px black; /* ? rgba(0,208,255,.75); */
-                outline-offset: 2px;
+            &:hover, &:focus {
                 cursor: pointer;
+                outline: solid 5px rgba(0,208,255,.75); 
             }
         }
         &-description {
@@ -160,6 +267,8 @@ body.edac-app-disable-styles {
             &-reference{
                 text-decoration: none;
             }
+            &-code-button{
+            }
             &-code{
                 color: $color-black;
                 display: block;
@@ -183,7 +292,6 @@ body.edac-app-disable-styles {
                     cursor: pointer;
                     color: $color-blue-dark;
                     background-color: $color-white;
-                    outline: solid 1px black; /* ? rgba(0,208,255,.75); */
                 }
             }
         }
@@ -222,7 +330,6 @@ body.edac-app-disable-styles {
                     cursor: pointer;
                     color: $color-blue-dark;
                     background-color: $color-white;
-                    outline: solid 1px black; /* ? rgba(0,208,255,.75); */
                 }
             }
             &-summary{
@@ -238,7 +345,6 @@ body.edac-app-disable-styles {
                     padding: 4px 10px;
                     display: inline-block;
                     margin-top: 10px;
-                    margin-bottom: 10px;
                     margin-right: 10px;
                     &:hover, &:focus{
                         color: $color-blue-dark;
