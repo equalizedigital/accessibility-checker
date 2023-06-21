@@ -526,12 +526,13 @@
   background: transparent;
   display: flex;
   align-items: center;
+  padding-left: 0px;
 }
 #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore svg {
   width: 18px;
   height: auto;
   display: inline-block;
-  margin-right: 2px;
+  margin: 0px 2px 0px 3px;
 }
 #edac-meta-box #edac-tabs .edac-details-rule-records-record-actions-ignore svg path {
   fill: #3273aa;

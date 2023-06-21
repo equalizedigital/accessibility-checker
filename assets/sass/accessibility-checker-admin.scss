@@ -538,11 +538,12 @@
                 background: transparent;
                 display: flex;
                 align-items: center;
+                padding-left: 0px;
                 svg{
                   width: 18px;
                   height: auto;
                   display: inline-block;
-                  margin-right: 2px;
+                  margin: 0px 2px 0px 3px;
                   path{
                     fill: $color-blue;
                   }

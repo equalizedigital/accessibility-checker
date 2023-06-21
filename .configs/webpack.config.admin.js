@@ -11,7 +11,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: "none", //development | production
-  watch: true,
+  watch: false,
   entry: {
     'admin': [
       './assets/sass/accessibility-checker-admin.scss',
@@ -43,12 +43,14 @@ module.exports = {
     ]
   },
   plugins: [
+ 
     // clear out build directories on each build
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
         './build/admin/*',
       ]
     }),
+ 
     // css extraction into dedicated file
     new MiniCssExtractPlugin({
       filename: './css/accessibility-checker-admin.css'
