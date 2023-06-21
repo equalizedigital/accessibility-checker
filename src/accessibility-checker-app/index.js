@@ -99,7 +99,6 @@ class AccessibilityCheckerHighlight {
 		this.descriptionCloseButton = document.querySelector('.edac-highlight-panel-description-close');
 		this.issues = null;
 		this.currentButtonIndex = 0;
-		this.descriptionTimeout;
 		this.urlParameter = this.get_url_parameter('edac');
 		this.currentIssueStatus = null;
 		this.tooltips = [];
@@ -608,7 +607,6 @@ class AccessibilityCheckerHighlight {
 	 * This function toggles the code container.
 	 */
 	codeToggle() {
-		this.cancelDescriptionTimeout();
 		if (this.codeContainer.style.display === 'none' || this.codeContainer.style.display === '') {
 			this.codeContainer.style.display = 'block';
 			this.codeButton.setAttribute('aria-expanded', 'true');

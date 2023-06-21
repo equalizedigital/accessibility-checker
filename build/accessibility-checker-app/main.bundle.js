@@ -3,613 +3,13 @@
 /******/ 	var __webpack_modules__ = ([
 /* 0 */,
 /* 1 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   arrow: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.arrow),
-/* harmony export */   autoPlacement: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.autoPlacement),
-/* harmony export */   autoUpdate: () => (/* binding */ z),
-/* harmony export */   computePosition: () => (/* binding */ M),
-/* harmony export */   detectOverflow: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.detectOverflow),
-/* harmony export */   flip: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.flip),
-/* harmony export */   getOverflowAncestors: () => (/* binding */ W),
-/* harmony export */   hide: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.hide),
-/* harmony export */   inline: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.inline),
-/* harmony export */   limitShift: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.limitShift),
-/* harmony export */   offset: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.offset),
-/* harmony export */   platform: () => (/* binding */ k),
-/* harmony export */   shift: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.shift),
-/* harmony export */   size: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.size)
-/* harmony export */ });
-/* harmony import */ var _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-function n(t){var e;return(null==(e=t.ownerDocument)?void 0:e.defaultView)||window}function o(t){return n(t).getComputedStyle(t)}function i(t){return t instanceof n(t).Node}function r(t){return i(t)?(t.nodeName||"").toLowerCase():""}function l(t){return t instanceof n(t).HTMLElement}function c(t){return t instanceof n(t).Element}function s(t){if("undefined"==typeof ShadowRoot)return!1;return t instanceof n(t).ShadowRoot||t instanceof ShadowRoot}function f(t){const{overflow:e,overflowX:n,overflowY:i,display:r}=o(t);return/auto|scroll|overlay|hidden|clip/.test(e+i+n)&&!["inline","contents"].includes(r)}function u(t){return["table","td","th"].includes(r(t))}function a(t){const e=d(),n=o(t);return"none"!==n.transform||"none"!==n.perspective||!e&&!!n.backdropFilter&&"none"!==n.backdropFilter||!e&&!!n.filter&&"none"!==n.filter||["transform","perspective","filter"].some((t=>(n.willChange||"").includes(t)))||["paint","layout","strict","content"].some((t=>(n.contain||"").includes(t)))}function d(){return!("undefined"==typeof CSS||!CSS.supports)&&CSS.supports("-webkit-backdrop-filter","none")}function h(t){return["html","body","#document"].includes(r(t))}const p=Math.min,m=Math.max,g=Math.round;function y(t){const e=o(t);let n=parseFloat(e.width)||0,i=parseFloat(e.height)||0;const r=l(t),c=r?t.offsetWidth:n,s=r?t.offsetHeight:i,f=g(n)!==c||g(i)!==s;return f&&(n=c,i=s),{width:n,height:i,fallback:f}}function x(t){return c(t)?t:t.contextElement}const w={x:1,y:1};function v(t){const e=x(t);if(!l(e))return w;const n=e.getBoundingClientRect(),{width:o,height:i,fallback:r}=y(e);let c=(r?g(n.width):n.width)/o,s=(r?g(n.height):n.height)/i;return c&&Number.isFinite(c)||(c=1),s&&Number.isFinite(s)||(s=1),{x:c,y:s}}const b={x:0,y:0};function L(t,e,o){var i,r;if(void 0===e&&(e=!0),!d())return b;const l=t?n(t):window;return!o||e&&o!==l?b:{x:(null==(i=l.visualViewport)?void 0:i.offsetLeft)||0,y:(null==(r=l.visualViewport)?void 0:r.offsetTop)||0}}function E(e,o,i,r){void 0===o&&(o=!1),void 0===i&&(i=!1);const l=e.getBoundingClientRect(),s=x(e);let f=w;o&&(r?c(r)&&(f=v(r)):f=v(e));const u=L(s,i,r);let a=(l.left+u.x)/f.x,d=(l.top+u.y)/f.y,h=l.width/f.x,p=l.height/f.y;if(s){const t=n(s),e=r&&c(r)?n(r):r;let o=t.frameElement;for(;o&&r&&e!==t;){const t=v(o),e=o.getBoundingClientRect(),i=getComputedStyle(o);e.x+=(o.clientLeft+parseFloat(i.paddingLeft))*t.x,e.y+=(o.clientTop+parseFloat(i.paddingTop))*t.y,a*=t.x,d*=t.y,h*=t.x,p*=t.y,a+=e.x,d+=e.y,o=n(o).frameElement}}return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.rectToClientRect)({width:h,height:p,x:a,y:d})}function R(t){return((i(t)?t.ownerDocument:t.document)||window.document).documentElement}function T(t){return c(t)?{scrollLeft:t.scrollLeft,scrollTop:t.scrollTop}:{scrollLeft:t.pageXOffset,scrollTop:t.pageYOffset}}function S(t){return E(R(t)).left+T(t).scrollLeft}function C(t){if("html"===r(t))return t;const e=t.assignedSlot||t.parentNode||s(t)&&t.host||R(t);return s(e)?e.host:e}function F(t){const e=C(t);return h(e)?e.ownerDocument.body:l(e)&&f(e)?e:F(e)}function W(t,e){var o;void 0===e&&(e=[]);const i=F(t),r=i===(null==(o=t.ownerDocument)?void 0:o.body),l=n(i);return r?e.concat(l,l.visualViewport||[],f(i)?i:[]):e.concat(i,W(i))}function D(e,i,r){let s;if("viewport"===i)s=function(t,e){const o=n(t),i=R(t),r=o.visualViewport;let l=i.clientWidth,c=i.clientHeight,s=0,f=0;if(r){l=r.width,c=r.height;const t=d();(!t||t&&"fixed"===e)&&(s=r.offsetLeft,f=r.offsetTop)}return{width:l,height:c,x:s,y:f}}(e,r);else if("document"===i)s=function(t){const e=R(t),n=T(t),i=t.ownerDocument.body,r=m(e.scrollWidth,e.clientWidth,i.scrollWidth,i.clientWidth),l=m(e.scrollHeight,e.clientHeight,i.scrollHeight,i.clientHeight);let c=-n.scrollLeft+S(t);const s=-n.scrollTop;return"rtl"===o(i).direction&&(c+=m(e.clientWidth,i.clientWidth)-r),{width:r,height:l,x:c,y:s}}(R(e));else if(c(i))s=function(t,e){const n=E(t,!0,"fixed"===e),o=n.top+t.clientTop,i=n.left+t.clientLeft,r=l(t)?v(t):{x:1,y:1};return{width:t.clientWidth*r.x,height:t.clientHeight*r.y,x:i*r.x,y:o*r.y}}(i,r);else{const t=L(e);s={...i,x:i.x-t.x,y:i.y-t.y}}return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.rectToClientRect)(s)}function H(t,e){const n=C(t);return!(n===e||!c(n)||h(n))&&("fixed"===o(n).position||H(n,e))}function O(t,e){return l(t)&&"fixed"!==o(t).position?e?e(t):t.offsetParent:null}function P(t,e){const i=n(t);if(!l(t))return i;let c=O(t,e);for(;c&&u(c)&&"static"===o(c).position;)c=O(c,e);return c&&("html"===r(c)||"body"===r(c)&&"static"===o(c).position&&!a(c))?i:c||function(t){let e=C(t);for(;l(e)&&!h(e);){if(a(e))return e;e=C(e)}return null}(t)||i}function V(t,e,n){const o=l(e),i=R(e),c="fixed"===n,s=E(t,!0,c,e);let u={scrollLeft:0,scrollTop:0};const a={x:0,y:0};if(o||!o&&!c)if(("body"!==r(e)||f(i))&&(u=T(e)),l(e)){const t=E(e,!0,c,e);a.x=t.x+e.clientLeft,a.y=t.y+e.clientTop}else i&&(a.x=S(i));return{x:s.left+u.scrollLeft-a.x,y:s.top+u.scrollTop-a.y,width:s.width,height:s.height}}const k={getClippingRect:function(t){let{element:e,boundary:n,rootBoundary:i,strategy:l}=t;const s="clippingAncestors"===n?function(t,e){const n=e.get(t);if(n)return n;let i=W(t).filter((t=>c(t)&&"body"!==r(t))),l=null;const s="fixed"===o(t).position;let u=s?C(t):t;for(;c(u)&&!h(u);){const e=o(u),n=a(u);n||"fixed"!==e.position||(l=null),(s?!n&&!l:!n&&"static"===e.position&&l&&["absolute","fixed"].includes(l.position)||f(u)&&!n&&H(t,u))?i=i.filter((t=>t!==u)):l=e,u=C(u)}return e.set(t,i),i}(e,this._c):[].concat(n),u=[...s,i],d=u[0],g=u.reduce(((t,n)=>{const o=D(e,n,l);return t.top=m(o.top,t.top),t.right=p(o.right,t.right),t.bottom=p(o.bottom,t.bottom),t.left=m(o.left,t.left),t}),D(e,d,l));return{width:g.right-g.left,height:g.bottom-g.top,x:g.left,y:g.top}},convertOffsetParentRelativeRectToViewportRelativeRect:function(t){let{rect:e,offsetParent:n,strategy:o}=t;const i=l(n),c=R(n);if(n===c)return e;let s={scrollLeft:0,scrollTop:0},u={x:1,y:1};const a={x:0,y:0};if((i||!i&&"fixed"!==o)&&(("body"!==r(n)||f(c))&&(s=T(n)),l(n))){const t=E(n);u=v(n),a.x=t.x+n.clientLeft,a.y=t.y+n.clientTop}return{width:e.width*u.x,height:e.height*u.y,x:e.x*u.x-s.scrollLeft*u.x+a.x,y:e.y*u.y-s.scrollTop*u.y+a.y}},isElement:c,getDimensions:function(t){return y(t)},getOffsetParent:P,getDocumentElement:R,getScale:v,async getElementRects(t){let{reference:e,floating:n,strategy:o}=t;const i=this.getOffsetParent||P,r=this.getDimensions;return{reference:V(e,await i(n),o),floating:{x:0,y:0,...await r(n)}}},getClientRects:t=>Array.from(t.getClientRects()),isRTL:t=>"rtl"===o(t).direction};function z(t,e,n,o){void 0===o&&(o={});const{ancestorScroll:i=!0,ancestorResize:r=!0,elementResize:l=!0,animationFrame:s=!1}=o,f=i||r?[...c(t)?W(t):t.contextElement?W(t.contextElement):[],...W(e)]:[];f.forEach((t=>{const e=!c(t)&&t.toString().includes("V");!i||s&&!e||t.addEventListener("scroll",n,{passive:!0}),r&&t.addEventListener("resize",n)}));let u,a=null;l&&(a=new ResizeObserver((()=>{n()})),c(t)&&!s&&a.observe(t),c(t)||!t.contextElement||s||a.observe(t.contextElement),a.observe(e));let d=s?E(t):null;return s&&function e(){const o=E(t);!d||o.x===d.x&&o.y===d.y&&o.width===d.width&&o.height===d.height||n();d=o,u=requestAnimationFrame(e)}(),n(),()=>{var t;f.forEach((t=>{i&&t.removeEventListener("scroll",n),r&&t.removeEventListener("resize",n)})),null==(t=a)||t.disconnect(),a=null,s&&cancelAnimationFrame(u)}}const M=(t,n,o)=>{const i=new Map,r={platform:k,...o},l={...r.platform,_c:i};return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.computePosition)(t,n,{...r,platform:l})};
-
-
-/***/ }),
-/* 2 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   arrow: () => (/* binding */ u),
-/* harmony export */   autoPlacement: () => (/* binding */ v),
-/* harmony export */   computePosition: () => (/* binding */ r),
-/* harmony export */   detectOverflow: () => (/* binding */ s),
-/* harmony export */   flip: () => (/* binding */ b),
-/* harmony export */   hide: () => (/* binding */ P),
-/* harmony export */   inline: () => (/* binding */ T),
-/* harmony export */   limitShift: () => (/* binding */ O),
-/* harmony export */   offset: () => (/* binding */ D),
-/* harmony export */   rectToClientRect: () => (/* binding */ l),
-/* harmony export */   shift: () => (/* binding */ k),
-/* harmony export */   size: () => (/* binding */ B)
-/* harmony export */ });
-function t(t){return t.split("-")[1]}function e(t){return"y"===t?"height":"width"}function n(t){return t.split("-")[0]}function o(t){return["top","bottom"].includes(n(t))?"x":"y"}function i(i,r,a){let{reference:l,floating:s}=i;const c=l.x+l.width/2-s.width/2,f=l.y+l.height/2-s.height/2,m=o(r),u=e(m),g=l[u]/2-s[u]/2,d="x"===m;let p;switch(n(r)){case"top":p={x:c,y:l.y-s.height};break;case"bottom":p={x:c,y:l.y+l.height};break;case"right":p={x:l.x+l.width,y:f};break;case"left":p={x:l.x-s.width,y:f};break;default:p={x:l.x,y:l.y}}switch(t(r)){case"start":p[m]-=g*(a&&d?-1:1);break;case"end":p[m]+=g*(a&&d?-1:1)}return p}const r=async(t,e,n)=>{const{placement:o="bottom",strategy:r="absolute",middleware:a=[],platform:l}=n,s=a.filter(Boolean),c=await(null==l.isRTL?void 0:l.isRTL(e));let f=await l.getElementRects({reference:t,floating:e,strategy:r}),{x:m,y:u}=i(f,o,c),g=o,d={},p=0;for(let n=0;n<s.length;n++){const{name:a,fn:h}=s[n],{x:y,y:x,data:w,reset:v}=await h({x:m,y:u,initialPlacement:o,placement:g,strategy:r,middlewareData:d,rects:f,platform:l,elements:{reference:t,floating:e}});m=null!=y?y:m,u=null!=x?x:u,d={...d,[a]:{...d[a],...w}},v&&p<=50&&(p++,"object"==typeof v&&(v.placement&&(g=v.placement),v.rects&&(f=!0===v.rects?await l.getElementRects({reference:t,floating:e,strategy:r}):v.rects),({x:m,y:u}=i(f,g,c))),n=-1)}return{x:m,y:u,placement:g,strategy:r,middlewareData:d}};function a(t){return"number"!=typeof t?function(t){return{top:0,right:0,bottom:0,left:0,...t}}(t):{top:t,right:t,bottom:t,left:t}}function l(t){return{...t,top:t.y,left:t.x,right:t.x+t.width,bottom:t.y+t.height}}async function s(t,e){var n;void 0===e&&(e={});const{x:o,y:i,platform:r,rects:s,elements:c,strategy:f}=t,{boundary:m="clippingAncestors",rootBoundary:u="viewport",elementContext:g="floating",altBoundary:d=!1,padding:p=0}=e,h=a(p),y=c[d?"floating"===g?"reference":"floating":g],x=l(await r.getClippingRect({element:null==(n=await(null==r.isElement?void 0:r.isElement(y)))||n?y:y.contextElement||await(null==r.getDocumentElement?void 0:r.getDocumentElement(c.floating)),boundary:m,rootBoundary:u,strategy:f})),w="floating"===g?{...s.floating,x:o,y:i}:s.reference,v=await(null==r.getOffsetParent?void 0:r.getOffsetParent(c.floating)),b=await(null==r.isElement?void 0:r.isElement(v))&&await(null==r.getScale?void 0:r.getScale(v))||{x:1,y:1},A=l(r.convertOffsetParentRelativeRectToViewportRelativeRect?await r.convertOffsetParentRelativeRectToViewportRelativeRect({rect:w,offsetParent:v,strategy:f}):w);return{top:(x.top-A.top+h.top)/b.y,bottom:(A.bottom-x.bottom+h.bottom)/b.y,left:(x.left-A.left+h.left)/b.x,right:(A.right-x.right+h.right)/b.x}}const c=Math.min,f=Math.max;function m(t,e,n){return f(t,c(e,n))}const u=n=>({name:"arrow",options:n,async fn(i){const{element:r,padding:l=0}=n||{},{x:s,y:c,placement:f,rects:u,platform:g,elements:d}=i;if(null==r)return{};const p=a(l),h={x:s,y:c},y=o(f),x=e(y),w=await g.getDimensions(r),v="y"===y,b=v?"top":"left",A=v?"bottom":"right",R=v?"clientHeight":"clientWidth",P=u.reference[x]+u.reference[y]-h[y]-u.floating[x],E=h[y]-u.reference[y],T=await(null==g.getOffsetParent?void 0:g.getOffsetParent(r));let D=T?T[R]:0;D&&await(null==g.isElement?void 0:g.isElement(T))||(D=d.floating[R]||u.floating[x]);const L=P/2-E/2,k=p[b],O=D-w[x]-p[A],B=D/2-w[x]/2+L,C=m(k,B,O),H=null!=t(f)&&B!=C&&u.reference[x]/2-(B<k?p[b]:p[A])-w[x]/2<0;return{[y]:h[y]-(H?B<k?k-B:O-B:0),data:{[y]:C,centerOffset:B-C}}}}),g=["top","right","bottom","left"],d=g.reduce(((t,e)=>t.concat(e,e+"-start",e+"-end")),[]),p={left:"right",right:"left",bottom:"top",top:"bottom"};function h(t){return t.replace(/left|right|bottom|top/g,(t=>p[t]))}function y(n,i,r){void 0===r&&(r=!1);const a=t(n),l=o(n),s=e(l);let c="x"===l?a===(r?"end":"start")?"right":"left":"start"===a?"bottom":"top";return i.reference[s]>i.floating[s]&&(c=h(c)),{main:c,cross:h(c)}}const x={start:"end",end:"start"};function w(t){return t.replace(/start|end/g,(t=>x[t]))}const v=function(e){return void 0===e&&(e={}),{name:"autoPlacement",options:e,async fn(o){var i,r,a;const{rects:l,middlewareData:c,placement:f,platform:m,elements:u}=o,{crossAxis:g=!1,alignment:p,allowedPlacements:h=d,autoAlignment:x=!0,...v}=e,b=void 0!==p||h===d?function(e,o,i){return(e?[...i.filter((n=>t(n)===e)),...i.filter((n=>t(n)!==e))]:i.filter((t=>n(t)===t))).filter((n=>!e||t(n)===e||!!o&&w(n)!==n))}(p||null,x,h):h,A=await s(o,v),R=(null==(i=c.autoPlacement)?void 0:i.index)||0,P=b[R];if(null==P)return{};const{main:E,cross:T}=y(P,l,await(null==m.isRTL?void 0:m.isRTL(u.floating)));if(f!==P)return{reset:{placement:b[0]}};const D=[A[n(P)],A[E],A[T]],L=[...(null==(r=c.autoPlacement)?void 0:r.overflows)||[],{placement:P,overflows:D}],k=b[R+1];if(k)return{data:{index:R+1,overflows:L},reset:{placement:k}};const O=L.map((e=>{const n=t(e.placement);return[e.placement,n&&g?e.overflows.slice(0,2).reduce(((t,e)=>t+e),0):e.overflows[0],e.overflows]})).sort(((t,e)=>t[1]-e[1])),B=(null==(a=O.filter((e=>e[2].slice(0,t(e[0])?2:3).every((t=>t<=0))))[0])?void 0:a[0])||O[0][0];return B!==f?{data:{index:R+1,overflows:L},reset:{placement:B}}:{}}}};const b=function(e){return void 0===e&&(e={}),{name:"flip",options:e,async fn(o){var i;const{placement:r,middlewareData:a,rects:l,initialPlacement:c,platform:f,elements:m}=o,{mainAxis:u=!0,crossAxis:g=!0,fallbackPlacements:d,fallbackStrategy:p="bestFit",fallbackAxisSideDirection:x="none",flipAlignment:v=!0,...b}=e,A=n(r),R=n(c)===c,P=await(null==f.isRTL?void 0:f.isRTL(m.floating)),E=d||(R||!v?[h(c)]:function(t){const e=h(t);return[w(t),e,w(e)]}(c));d||"none"===x||E.push(...function(e,o,i,r){const a=t(e);let l=function(t,e,n){const o=["left","right"],i=["right","left"],r=["top","bottom"],a=["bottom","top"];switch(t){case"top":case"bottom":return n?e?i:o:e?o:i;case"left":case"right":return e?r:a;default:return[]}}(n(e),"start"===i,r);return a&&(l=l.map((t=>t+"-"+a)),o&&(l=l.concat(l.map(w)))),l}(c,v,x,P));const T=[c,...E],D=await s(o,b),L=[];let k=(null==(i=a.flip)?void 0:i.overflows)||[];if(u&&L.push(D[A]),g){const{main:t,cross:e}=y(r,l,P);L.push(D[t],D[e])}if(k=[...k,{placement:r,overflows:L}],!L.every((t=>t<=0))){var O,B;const t=((null==(O=a.flip)?void 0:O.index)||0)+1,e=T[t];if(e)return{data:{index:t,overflows:k},reset:{placement:e}};let n=null==(B=k.filter((t=>t.overflows[0]<=0)).sort(((t,e)=>t.overflows[1]-e.overflows[1]))[0])?void 0:B.placement;if(!n)switch(p){case"bestFit":{var C;const t=null==(C=k.map((t=>[t.placement,t.overflows.filter((t=>t>0)).reduce(((t,e)=>t+e),0)])).sort(((t,e)=>t[1]-e[1]))[0])?void 0:C[0];t&&(n=t);break}case"initialPlacement":n=c}if(r!==n)return{reset:{placement:n}}}return{}}}};function A(t,e){return{top:t.top-e.height,right:t.right-e.width,bottom:t.bottom-e.height,left:t.left-e.width}}function R(t){return g.some((e=>t[e]>=0))}const P=function(t){return void 0===t&&(t={}),{name:"hide",options:t,async fn(e){const{strategy:n="referenceHidden",...o}=t,{rects:i}=e;switch(n){case"referenceHidden":{const t=A(await s(e,{...o,elementContext:"reference"}),i.reference);return{data:{referenceHiddenOffsets:t,referenceHidden:R(t)}}}case"escaped":{const t=A(await s(e,{...o,altBoundary:!0}),i.floating);return{data:{escapedOffsets:t,escaped:R(t)}}}default:return{}}}}};function E(t){const e=c(...t.map((t=>t.left))),n=c(...t.map((t=>t.top)));return{x:e,y:n,width:f(...t.map((t=>t.right)))-e,height:f(...t.map((t=>t.bottom)))-n}}const T=function(t){return void 0===t&&(t={}),{name:"inline",options:t,async fn(e){const{placement:i,elements:r,rects:s,platform:m,strategy:u}=e,{padding:g=2,x:d,y:p}=t,h=Array.from(await(null==m.getClientRects?void 0:m.getClientRects(r.reference))||[]),y=function(t){const e=t.slice().sort(((t,e)=>t.y-e.y)),n=[];let o=null;for(let t=0;t<e.length;t++){const i=e[t];!o||i.y-o.y>o.height/2?n.push([i]):n[n.length-1].push(i),o=i}return n.map((t=>l(E(t))))}(h),x=l(E(h)),w=a(g);const v=await m.getElementRects({reference:{getBoundingClientRect:function(){if(2===y.length&&y[0].left>y[1].right&&null!=d&&null!=p)return y.find((t=>d>t.left-w.left&&d<t.right+w.right&&p>t.top-w.top&&p<t.bottom+w.bottom))||x;if(y.length>=2){if("x"===o(i)){const t=y[0],e=y[y.length-1],o="top"===n(i),r=t.top,a=e.bottom,l=o?t.left:e.left,s=o?t.right:e.right;return{top:r,bottom:a,left:l,right:s,width:s-l,height:a-r,x:l,y:r}}const t="left"===n(i),e=f(...y.map((t=>t.right))),r=c(...y.map((t=>t.left))),a=y.filter((n=>t?n.left===r:n.right===e)),l=a[0].top,s=a[a.length-1].bottom;return{top:l,bottom:s,left:r,right:e,width:e-r,height:s-l,x:r,y:l}}return x}},floating:r.floating,strategy:u});return s.reference.x!==v.reference.x||s.reference.y!==v.reference.y||s.reference.width!==v.reference.width||s.reference.height!==v.reference.height?{reset:{rects:v}}:{}}}};const D=function(e){return void 0===e&&(e=0),{name:"offset",options:e,async fn(i){const{x:r,y:a}=i,l=await async function(e,i){const{placement:r,platform:a,elements:l}=e,s=await(null==a.isRTL?void 0:a.isRTL(l.floating)),c=n(r),f=t(r),m="x"===o(r),u=["left","top"].includes(c)?-1:1,g=s&&m?-1:1,d="function"==typeof i?i(e):i;let{mainAxis:p,crossAxis:h,alignmentAxis:y}="number"==typeof d?{mainAxis:d,crossAxis:0,alignmentAxis:null}:{mainAxis:0,crossAxis:0,alignmentAxis:null,...d};return f&&"number"==typeof y&&(h="end"===f?-1*y:y),m?{x:h*g,y:p*u}:{x:p*u,y:h*g}}(i,e);return{x:r+l.x,y:a+l.y,data:l}}}};function L(t){return"x"===t?"y":"x"}const k=function(t){return void 0===t&&(t={}),{name:"shift",options:t,async fn(e){const{x:i,y:r,placement:a}=e,{mainAxis:l=!0,crossAxis:c=!1,limiter:f={fn:t=>{let{x:e,y:n}=t;return{x:e,y:n}}},...u}=t,g={x:i,y:r},d=await s(e,u),p=o(n(a)),h=L(p);let y=g[p],x=g[h];if(l){const t="y"===p?"bottom":"right";y=m(y+d["y"===p?"top":"left"],y,y-d[t])}if(c){const t="y"===h?"bottom":"right";x=m(x+d["y"===h?"top":"left"],x,x-d[t])}const w=f.fn({...e,[p]:y,[h]:x});return{...w,data:{x:w.x-i,y:w.y-r}}}}},O=function(t){return void 0===t&&(t={}),{options:t,fn(e){const{x:i,y:r,placement:a,rects:l,middlewareData:s}=e,{offset:c=0,mainAxis:f=!0,crossAxis:m=!0}=t,u={x:i,y:r},g=o(a),d=L(g);let p=u[g],h=u[d];const y="function"==typeof c?c(e):c,x="number"==typeof y?{mainAxis:y,crossAxis:0}:{mainAxis:0,crossAxis:0,...y};if(f){const t="y"===g?"height":"width",e=l.reference[g]-l.floating[t]+x.mainAxis,n=l.reference[g]+l.reference[t]-x.mainAxis;p<e?p=e:p>n&&(p=n)}if(m){var w,v;const t="y"===g?"width":"height",e=["top","left"].includes(n(a)),o=l.reference[d]-l.floating[t]+(e&&(null==(w=s.offset)?void 0:w[d])||0)+(e?0:x.crossAxis),i=l.reference[d]+l.reference[t]+(e?0:(null==(v=s.offset)?void 0:v[d])||0)-(e?x.crossAxis:0);h<o?h=o:h>i&&(h=i)}return{[g]:p,[d]:h}}}},B=function(e){return void 0===e&&(e={}),{name:"size",options:e,async fn(i){const{placement:r,rects:a,platform:l,elements:m}=i,{apply:u=(()=>{}),...g}=e,d=await s(i,g),p=n(r),h=t(r),y="x"===o(r),{width:x,height:w}=a.floating;let v,b;"top"===p||"bottom"===p?(v=p,b=h===(await(null==l.isRTL?void 0:l.isRTL(m.floating))?"start":"end")?"left":"right"):(b=p,v="end"===h?"top":"bottom");const A=w-d[v],R=x-d[b],P=!i.middlewareData.shift;let E=A,T=R;if(y){const t=x-d.left-d.right;T=h||P?c(R,t):t}else{const t=w-d.top-d.bottom;E=h||P?c(A,t):t}if(P&&!h){const t=f(d.left,0),e=f(d.right,0),n=f(d.top,0),o=f(d.bottom,0);y?T=x-2*(0!==t||0!==e?t+e:f(d.left,d.right)):E=w-2*(0!==n||0!==o?n+o:f(d.top,d.bottom))}await u({...i,availableWidth:T,availableHeight:E});const D=await l.getDimensions(m.floating);return x!==D.width||w!==D.height?{reset:{rects:!0}}:{}}}};
-
-
-/***/ }),
-/* 3 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   focusable: () => (/* binding */ focusable),
-/* harmony export */   isFocusable: () => (/* binding */ isFocusable),
-/* harmony export */   isTabbable: () => (/* binding */ isTabbable),
-/* harmony export */   tabbable: () => (/* binding */ tabbable)
-/* harmony export */ });
-/*!
-* tabbable 6.1.2
-* @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
-*/
-// NOTE: separate `:not()` selectors has broader browser support than the newer
-//  `:not([inert], [inert] *)` (Feb 2023)
-// CAREFUL: JSDom does not support `:not([inert] *)` as a selector; using it causes
-//  the entire query to fail, resulting in no nodes found, which will break a lot
-//  of things... so we have to rely on JS to identify nodes inside an inert container
-var candidateSelectors = ['input:not([inert])', 'select:not([inert])', 'textarea:not([inert])', 'a[href]:not([inert])', 'button:not([inert])', '[tabindex]:not(slot):not([inert])', 'audio[controls]:not([inert])', 'video[controls]:not([inert])', '[contenteditable]:not([contenteditable="false"]):not([inert])', 'details>summary:first-of-type:not([inert])', 'details:not([inert])'];
-var candidateSelector = /* #__PURE__ */candidateSelectors.join(',');
-var NoElement = typeof Element === 'undefined';
-var matches = NoElement ? function () {} : Element.prototype.matches || Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-var getRootNode = !NoElement && Element.prototype.getRootNode ? function (element) {
-  var _element$getRootNode;
-  return element === null || element === void 0 ? void 0 : (_element$getRootNode = element.getRootNode) === null || _element$getRootNode === void 0 ? void 0 : _element$getRootNode.call(element);
-} : function (element) {
-  return element === null || element === void 0 ? void 0 : element.ownerDocument;
-};
-
-/**
- * Determines if a node is inert or in an inert ancestor.
- * @param {Element} [node]
- * @param {boolean} [lookUp] If true and `node` is not inert, looks up at ancestors to
- *  see if any of them are inert. If false, only `node` itself is considered.
- * @returns {boolean} True if inert itself or by way of being in an inert ancestor.
- *  False if `node` is falsy.
- */
-var isInert = function isInert(node, lookUp) {
-  var _node$getAttribute;
-  if (lookUp === void 0) {
-    lookUp = true;
-  }
-  // CAREFUL: JSDom does not support inert at all, so we can't use the `HTMLElement.inert`
-  //  JS API property; we have to check the attribute, which can either be empty or 'true';
-  //  if it's `null` (not specified) or 'false', it's an active element
-  var inertAtt = node === null || node === void 0 ? void 0 : (_node$getAttribute = node.getAttribute) === null || _node$getAttribute === void 0 ? void 0 : _node$getAttribute.call(node, 'inert');
-  var inert = inertAtt === '' || inertAtt === 'true';
-
-  // NOTE: this could also be handled with `node.matches('[inert], :is([inert] *)')`
-  //  if it weren't for `matches()` not being a function on shadow roots; the following
-  //  code works for any kind of node
-  // CAREFUL: JSDom does not appear to support certain selectors like `:not([inert] *)`
-  //  so it likely would not support `:is([inert] *)` either...
-  var result = inert || lookUp && node && isInert(node.parentNode); // recursive
-
-  return result;
-};
-
-/**
- * Determines if a node's content is editable.
- * @param {Element} [node]
- * @returns True if it's content-editable; false if it's not or `node` is falsy.
- */
-var isContentEditable = function isContentEditable(node) {
-  var _node$getAttribute2;
-  // CAREFUL: JSDom does not support the `HTMLElement.isContentEditable` API so we have
-  //  to use the attribute directly to check for this, which can either be empty or 'true';
-  //  if it's `null` (not specified) or 'false', it's a non-editable element
-  var attValue = node === null || node === void 0 ? void 0 : (_node$getAttribute2 = node.getAttribute) === null || _node$getAttribute2 === void 0 ? void 0 : _node$getAttribute2.call(node, 'contenteditable');
-  return attValue === '' || attValue === 'true';
-};
-
-/**
- * @param {Element} el container to check in
- * @param {boolean} includeContainer add container to check
- * @param {(node: Element) => boolean} filter filter candidates
- * @returns {Element[]}
- */
-var getCandidates = function getCandidates(el, includeContainer, filter) {
-  // even if `includeContainer=false`, we still have to check it for inertness because
-  //  if it's inert, all its children are inert
-  if (isInert(el)) {
-    return [];
-  }
-  var candidates = Array.prototype.slice.apply(el.querySelectorAll(candidateSelector));
-  if (includeContainer && matches.call(el, candidateSelector)) {
-    candidates.unshift(el);
-  }
-  candidates = candidates.filter(filter);
-  return candidates;
-};
-
-/**
- * @callback GetShadowRoot
- * @param {Element} element to check for shadow root
- * @returns {ShadowRoot|boolean} ShadowRoot if available or boolean indicating if a shadowRoot is attached but not available.
- */
-
-/**
- * @callback ShadowRootFilter
- * @param {Element} shadowHostNode the element which contains shadow content
- * @returns {boolean} true if a shadow root could potentially contain valid candidates.
- */
-
-/**
- * @typedef {Object} CandidateScope
- * @property {Element} scopeParent contains inner candidates
- * @property {Element[]} candidates list of candidates found in the scope parent
- */
-
-/**
- * @typedef {Object} IterativeOptions
- * @property {GetShadowRoot|boolean} getShadowRoot true if shadow support is enabled; falsy if not;
- *  if a function, implies shadow support is enabled and either returns the shadow root of an element
- *  or a boolean stating if it has an undisclosed shadow root
- * @property {(node: Element) => boolean} filter filter candidates
- * @property {boolean} flatten if true then result will flatten any CandidateScope into the returned list
- * @property {ShadowRootFilter} shadowRootFilter filter shadow roots;
- */
-
-/**
- * @param {Element[]} elements list of element containers to match candidates from
- * @param {boolean} includeContainer add container list to check
- * @param {IterativeOptions} options
- * @returns {Array.<Element|CandidateScope>}
- */
-var getCandidatesIteratively = function getCandidatesIteratively(elements, includeContainer, options) {
-  var candidates = [];
-  var elementsToCheck = Array.from(elements);
-  while (elementsToCheck.length) {
-    var element = elementsToCheck.shift();
-    if (isInert(element, false)) {
-      // no need to look up since we're drilling down
-      // anything inside this container will also be inert
-      continue;
-    }
-    if (element.tagName === 'SLOT') {
-      // add shadow dom slot scope (slot itself cannot be focusable)
-      var assigned = element.assignedElements();
-      var content = assigned.length ? assigned : element.children;
-      var nestedCandidates = getCandidatesIteratively(content, true, options);
-      if (options.flatten) {
-        candidates.push.apply(candidates, nestedCandidates);
-      } else {
-        candidates.push({
-          scopeParent: element,
-          candidates: nestedCandidates
-        });
-      }
-    } else {
-      // check candidate element
-      var validCandidate = matches.call(element, candidateSelector);
-      if (validCandidate && options.filter(element) && (includeContainer || !elements.includes(element))) {
-        candidates.push(element);
-      }
-
-      // iterate over shadow content if possible
-      var shadowRoot = element.shadowRoot ||
-      // check for an undisclosed shadow
-      typeof options.getShadowRoot === 'function' && options.getShadowRoot(element);
-
-      // no inert look up because we're already drilling down and checking for inertness
-      //  on the way down, so all containers to this root node should have already been
-      //  vetted as non-inert
-      var validShadowRoot = !isInert(shadowRoot, false) && (!options.shadowRootFilter || options.shadowRootFilter(element));
-      if (shadowRoot && validShadowRoot) {
-        // add shadow dom scope IIF a shadow root node was given; otherwise, an undisclosed
-        //  shadow exists, so look at light dom children as fallback BUT create a scope for any
-        //  child candidates found because they're likely slotted elements (elements that are
-        //  children of the web component element (which has the shadow), in the light dom, but
-        //  slotted somewhere _inside_ the undisclosed shadow) -- the scope is created below,
-        //  _after_ we return from this recursive call
-        var _nestedCandidates = getCandidatesIteratively(shadowRoot === true ? element.children : shadowRoot.children, true, options);
-        if (options.flatten) {
-          candidates.push.apply(candidates, _nestedCandidates);
-        } else {
-          candidates.push({
-            scopeParent: element,
-            candidates: _nestedCandidates
-          });
-        }
-      } else {
-        // there's not shadow so just dig into the element's (light dom) children
-        //  __without__ giving the element special scope treatment
-        elementsToCheck.unshift.apply(elementsToCheck, element.children);
-      }
-    }
-  }
-  return candidates;
-};
-var getTabindex = function getTabindex(node, isScope) {
-  if (node.tabIndex < 0) {
-    // in Chrome, <details/>, <audio controls/> and <video controls/> elements get a default
-    // `tabIndex` of -1 when the 'tabindex' attribute isn't specified in the DOM,
-    // yet they are still part of the regular tab order; in FF, they get a default
-    // `tabIndex` of 0; since Chrome still puts those elements in the regular tab
-    // order, consider their tab index to be 0.
-    // Also browsers do not return `tabIndex` correctly for contentEditable nodes;
-    // so if they don't have a tabindex attribute specifically set, assume it's 0.
-    //
-    // isScope is positive for custom element with shadow root or slot that by default
-    // have tabIndex -1, but need to be sorted by document order in order for their
-    // content to be inserted in the correct position
-    if ((isScope || /^(AUDIO|VIDEO|DETAILS)$/.test(node.tagName) || isContentEditable(node)) && isNaN(parseInt(node.getAttribute('tabindex'), 10))) {
-      return 0;
-    }
-  }
-  return node.tabIndex;
-};
-var sortOrderedTabbables = function sortOrderedTabbables(a, b) {
-  return a.tabIndex === b.tabIndex ? a.documentOrder - b.documentOrder : a.tabIndex - b.tabIndex;
-};
-var isInput = function isInput(node) {
-  return node.tagName === 'INPUT';
-};
-var isHiddenInput = function isHiddenInput(node) {
-  return isInput(node) && node.type === 'hidden';
-};
-var isDetailsWithSummary = function isDetailsWithSummary(node) {
-  var r = node.tagName === 'DETAILS' && Array.prototype.slice.apply(node.children).some(function (child) {
-    return child.tagName === 'SUMMARY';
-  });
-  return r;
-};
-var getCheckedRadio = function getCheckedRadio(nodes, form) {
-  for (var i = 0; i < nodes.length; i++) {
-    if (nodes[i].checked && nodes[i].form === form) {
-      return nodes[i];
-    }
-  }
-};
-var isTabbableRadio = function isTabbableRadio(node) {
-  if (!node.name) {
-    return true;
-  }
-  var radioScope = node.form || getRootNode(node);
-  var queryRadios = function queryRadios(name) {
-    return radioScope.querySelectorAll('input[type="radio"][name="' + name + '"]');
-  };
-  var radioSet;
-  if (typeof window !== 'undefined' && typeof window.CSS !== 'undefined' && typeof window.CSS.escape === 'function') {
-    radioSet = queryRadios(window.CSS.escape(node.name));
-  } else {
-    try {
-      radioSet = queryRadios(node.name);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('Looks like you have a radio button with a name attribute containing invalid CSS selector characters and need the CSS.escape polyfill: %s', err.message);
-      return false;
-    }
-  }
-  var checked = getCheckedRadio(radioSet, node.form);
-  return !checked || checked === node;
-};
-var isRadio = function isRadio(node) {
-  return isInput(node) && node.type === 'radio';
-};
-var isNonTabbableRadio = function isNonTabbableRadio(node) {
-  return isRadio(node) && !isTabbableRadio(node);
-};
-
-// determines if a node is ultimately attached to the window's document
-var isNodeAttached = function isNodeAttached(node) {
-  var _nodeRoot;
-  // The root node is the shadow root if the node is in a shadow DOM; some document otherwise
-  //  (but NOT _the_ document; see second 'If' comment below for more).
-  // If rootNode is shadow root, it'll have a host, which is the element to which the shadow
-  //  is attached, and the one we need to check if it's in the document or not (because the
-  //  shadow, and all nodes it contains, is never considered in the document since shadows
-  //  behave like self-contained DOMs; but if the shadow's HOST, which is part of the document,
-  //  is hidden, or is not in the document itself but is detached, it will affect the shadow's
-  //  visibility, including all the nodes it contains). The host could be any normal node,
-  //  or a custom element (i.e. web component). Either way, that's the one that is considered
-  //  part of the document, not the shadow root, nor any of its children (i.e. the node being
-  //  tested).
-  // To further complicate things, we have to look all the way up until we find a shadow HOST
-  //  that is attached (or find none) because the node might be in nested shadows...
-  // If rootNode is not a shadow root, it won't have a host, and so rootNode should be the
-  //  document (per the docs) and while it's a Document-type object, that document does not
-  //  appear to be the same as the node's `ownerDocument` for some reason, so it's safer
-  //  to ignore the rootNode at this point, and use `node.ownerDocument`. Otherwise,
-  //  using `rootNode.contains(node)` will _always_ be true we'll get false-positives when
-  //  node is actually detached.
-  // NOTE: If `nodeRootHost` or `node` happens to be the `document` itself (which is possible
-  //  if a tabbable/focusable node was quickly added to the DOM, focused, and then removed
-  //  from the DOM as in https://github.com/focus-trap/focus-trap-react/issues/905), then
-  //  `ownerDocument` will be `null`, hence the optional chaining on it.
-  var nodeRoot = node && getRootNode(node);
-  var nodeRootHost = (_nodeRoot = nodeRoot) === null || _nodeRoot === void 0 ? void 0 : _nodeRoot.host;
-
-  // in some cases, a detached node will return itself as the root instead of a document or
-  //  shadow root object, in which case, we shouldn't try to look further up the host chain
-  var attached = false;
-  if (nodeRoot && nodeRoot !== node) {
-    var _nodeRootHost, _nodeRootHost$ownerDo, _node$ownerDocument;
-    attached = !!((_nodeRootHost = nodeRootHost) !== null && _nodeRootHost !== void 0 && (_nodeRootHost$ownerDo = _nodeRootHost.ownerDocument) !== null && _nodeRootHost$ownerDo !== void 0 && _nodeRootHost$ownerDo.contains(nodeRootHost) || node !== null && node !== void 0 && (_node$ownerDocument = node.ownerDocument) !== null && _node$ownerDocument !== void 0 && _node$ownerDocument.contains(node));
-    while (!attached && nodeRootHost) {
-      var _nodeRoot2, _nodeRootHost2, _nodeRootHost2$ownerD;
-      // since it's not attached and we have a root host, the node MUST be in a nested shadow DOM,
-      //  which means we need to get the host's host and check if that parent host is contained
-      //  in (i.e. attached to) the document
-      nodeRoot = getRootNode(nodeRootHost);
-      nodeRootHost = (_nodeRoot2 = nodeRoot) === null || _nodeRoot2 === void 0 ? void 0 : _nodeRoot2.host;
-      attached = !!((_nodeRootHost2 = nodeRootHost) !== null && _nodeRootHost2 !== void 0 && (_nodeRootHost2$ownerD = _nodeRootHost2.ownerDocument) !== null && _nodeRootHost2$ownerD !== void 0 && _nodeRootHost2$ownerD.contains(nodeRootHost));
-    }
-  }
-  return attached;
-};
-var isZeroArea = function isZeroArea(node) {
-  var _node$getBoundingClie = node.getBoundingClientRect(),
-    width = _node$getBoundingClie.width,
-    height = _node$getBoundingClie.height;
-  return width === 0 && height === 0;
-};
-var isHidden = function isHidden(node, _ref) {
-  var displayCheck = _ref.displayCheck,
-    getShadowRoot = _ref.getShadowRoot;
-  // NOTE: visibility will be `undefined` if node is detached from the document
-  //  (see notes about this further down), which means we will consider it visible
-  //  (this is legacy behavior from a very long way back)
-  // NOTE: we check this regardless of `displayCheck="none"` because this is a
-  //  _visibility_ check, not a _display_ check
-  if (getComputedStyle(node).visibility === 'hidden') {
-    return true;
-  }
-  var isDirectSummary = matches.call(node, 'details>summary:first-of-type');
-  var nodeUnderDetails = isDirectSummary ? node.parentElement : node;
-  if (matches.call(nodeUnderDetails, 'details:not([open]) *')) {
-    return true;
-  }
-  if (!displayCheck || displayCheck === 'full' || displayCheck === 'legacy-full') {
-    if (typeof getShadowRoot === 'function') {
-      // figure out if we should consider the node to be in an undisclosed shadow and use the
-      //  'non-zero-area' fallback
-      var originalNode = node;
-      while (node) {
-        var parentElement = node.parentElement;
-        var rootNode = getRootNode(node);
-        if (parentElement && !parentElement.shadowRoot && getShadowRoot(parentElement) === true // check if there's an undisclosed shadow
-        ) {
-          // node has an undisclosed shadow which means we can only treat it as a black box, so we
-          //  fall back to a non-zero-area test
-          return isZeroArea(node);
-        } else if (node.assignedSlot) {
-          // iterate up slot
-          node = node.assignedSlot;
-        } else if (!parentElement && rootNode !== node.ownerDocument) {
-          // cross shadow boundary
-          node = rootNode.host;
-        } else {
-          // iterate up normal dom
-          node = parentElement;
-        }
-      }
-      node = originalNode;
-    }
-    // else, `getShadowRoot` might be true, but all that does is enable shadow DOM support
-    //  (i.e. it does not also presume that all nodes might have undisclosed shadows); or
-    //  it might be a falsy value, which means shadow DOM support is disabled
-
-    // Since we didn't find it sitting in an undisclosed shadow (or shadows are disabled)
-    //  now we can just test to see if it would normally be visible or not, provided it's
-    //  attached to the main document.
-    // NOTE: We must consider case where node is inside a shadow DOM and given directly to
-    //  `isTabbable()` or `isFocusable()` -- regardless of `getShadowRoot` option setting.
-
-    if (isNodeAttached(node)) {
-      // this works wherever the node is: if there's at least one client rect, it's
-      //  somehow displayed; it also covers the CSS 'display: contents' case where the
-      //  node itself is hidden in place of its contents; and there's no need to search
-      //  up the hierarchy either
-      return !node.getClientRects().length;
-    }
-
-    // Else, the node isn't attached to the document, which means the `getClientRects()`
-    //  API will __always__ return zero rects (this can happen, for example, if React
-    //  is used to render nodes onto a detached tree, as confirmed in this thread:
-    //  https://github.com/facebook/react/issues/9117#issuecomment-284228870)
-    //
-    // It also means that even window.getComputedStyle(node).display will return `undefined`
-    //  because styles are only computed for nodes that are in the document.
-    //
-    // NOTE: THIS HAS BEEN THE CASE FOR YEARS. It is not new, nor is it caused by tabbable
-    //  somehow. Though it was never stated officially, anyone who has ever used tabbable
-    //  APIs on nodes in detached containers has actually implicitly used tabbable in what
-    //  was later (as of v5.2.0 on Apr 9, 2021) called `displayCheck="none"` mode -- essentially
-    //  considering __everything__ to be visible because of the innability to determine styles.
-    //
-    // v6.0.0: As of this major release, the default 'full' option __no longer treats detached
-    //  nodes as visible with the 'none' fallback.__
-    if (displayCheck !== 'legacy-full') {
-      return true; // hidden
-    }
-    // else, fallback to 'none' mode and consider the node visible
-  } else if (displayCheck === 'non-zero-area') {
-    // NOTE: Even though this tests that the node's client rect is non-zero to determine
-    //  whether it's displayed, and that a detached node will __always__ have a zero-area
-    //  client rect, we don't special-case for whether the node is attached or not. In
-    //  this mode, we do want to consider nodes that have a zero area to be hidden at all
-    //  times, and that includes attached or not.
-    return isZeroArea(node);
-  }
-
-  // visible, as far as we can tell, or per current `displayCheck=none` mode, we assume
-  //  it's visible
-  return false;
-};
-
-// form fields (nested) inside a disabled fieldset are not focusable/tabbable
-//  unless they are in the _first_ <legend> element of the top-most disabled
-//  fieldset
-var isDisabledFromFieldset = function isDisabledFromFieldset(node) {
-  if (/^(INPUT|BUTTON|SELECT|TEXTAREA)$/.test(node.tagName)) {
-    var parentNode = node.parentElement;
-    // check if `node` is contained in a disabled <fieldset>
-    while (parentNode) {
-      if (parentNode.tagName === 'FIELDSET' && parentNode.disabled) {
-        // look for the first <legend> among the children of the disabled <fieldset>
-        for (var i = 0; i < parentNode.children.length; i++) {
-          var child = parentNode.children.item(i);
-          // when the first <legend> (in document order) is found
-          if (child.tagName === 'LEGEND') {
-            // if its parent <fieldset> is not nested in another disabled <fieldset>,
-            // return whether `node` is a descendant of its first <legend>
-            return matches.call(parentNode, 'fieldset[disabled] *') ? true : !child.contains(node);
-          }
-        }
-        // the disabled <fieldset> containing `node` has no <legend>
-        return true;
-      }
-      parentNode = parentNode.parentElement;
-    }
-  }
-
-  // else, node's tabbable/focusable state should not be affected by a fieldset's
-  //  enabled/disabled state
-  return false;
-};
-var isNodeMatchingSelectorFocusable = function isNodeMatchingSelectorFocusable(options, node) {
-  if (node.disabled ||
-  // we must do an inert look up to filter out any elements inside an inert ancestor
-  //  because we're limited in the type of selectors we can use in JSDom (see related
-  //  note related to `candidateSelectors`)
-  isInert(node) || isHiddenInput(node) || isHidden(node, options) ||
-  // For a details element with a summary, the summary element gets the focus
-  isDetailsWithSummary(node) || isDisabledFromFieldset(node)) {
-    return false;
-  }
-  return true;
-};
-var isNodeMatchingSelectorTabbable = function isNodeMatchingSelectorTabbable(options, node) {
-  if (isNonTabbableRadio(node) || getTabindex(node) < 0 || !isNodeMatchingSelectorFocusable(options, node)) {
-    return false;
-  }
-  return true;
-};
-var isValidShadowRootTabbable = function isValidShadowRootTabbable(shadowHostNode) {
-  var tabIndex = parseInt(shadowHostNode.getAttribute('tabindex'), 10);
-  if (isNaN(tabIndex) || tabIndex >= 0) {
-    return true;
-  }
-  // If a custom element has an explicit negative tabindex,
-  // browsers will not allow tab targeting said element's children.
-  return false;
-};
-
-/**
- * @param {Array.<Element|CandidateScope>} candidates
- * @returns Element[]
- */
-var sortByOrder = function sortByOrder(candidates) {
-  var regularTabbables = [];
-  var orderedTabbables = [];
-  candidates.forEach(function (item, i) {
-    var isScope = !!item.scopeParent;
-    var element = isScope ? item.scopeParent : item;
-    var candidateTabindex = getTabindex(element, isScope);
-    var elements = isScope ? sortByOrder(item.candidates) : element;
-    if (candidateTabindex === 0) {
-      isScope ? regularTabbables.push.apply(regularTabbables, elements) : regularTabbables.push(element);
-    } else {
-      orderedTabbables.push({
-        documentOrder: i,
-        tabIndex: candidateTabindex,
-        item: item,
-        isScope: isScope,
-        content: elements
-      });
-    }
-  });
-  return orderedTabbables.sort(sortOrderedTabbables).reduce(function (acc, sortable) {
-    sortable.isScope ? acc.push.apply(acc, sortable.content) : acc.push(sortable.content);
-    return acc;
-  }, []).concat(regularTabbables);
-};
-var tabbable = function tabbable(el, options) {
-  options = options || {};
-  var candidates;
-  if (options.getShadowRoot) {
-    candidates = getCandidatesIteratively([el], options.includeContainer, {
-      filter: isNodeMatchingSelectorTabbable.bind(null, options),
-      flatten: false,
-      getShadowRoot: options.getShadowRoot,
-      shadowRootFilter: isValidShadowRootTabbable
-    });
-  } else {
-    candidates = getCandidates(el, options.includeContainer, isNodeMatchingSelectorTabbable.bind(null, options));
-  }
-  return sortByOrder(candidates);
-};
-var focusable = function focusable(el, options) {
-  options = options || {};
-  var candidates;
-  if (options.getShadowRoot) {
-    candidates = getCandidatesIteratively([el], options.includeContainer, {
-      filter: isNodeMatchingSelectorFocusable.bind(null, options),
-      flatten: true,
-      getShadowRoot: options.getShadowRoot
-    });
-  } else {
-    candidates = getCandidates(el, options.includeContainer, isNodeMatchingSelectorFocusable.bind(null, options));
-  }
-  return candidates;
-};
-var isTabbable = function isTabbable(node, options) {
-  options = options || {};
-  if (!node) {
-    throw new Error('No node provided');
-  }
-  if (matches.call(node, candidateSelector) === false) {
-    return false;
-  }
-  return isNodeMatchingSelectorTabbable(options, node);
-};
-var focusableCandidateSelector = /* #__PURE__ */candidateSelectors.concat('iframe').join(',');
-var isFocusable = function isFocusable(node, options) {
-  options = options || {};
-  if (!node) {
-    throw new Error('No node provided');
-  }
-  if (matches.call(node, focusableCandidateSelector) === false) {
-    return false;
-  }
-  return isNodeMatchingSelectorFocusable(options, node);
-};
-
-
-//# sourceMappingURL=index.esm.js.map
-
-
-/***/ }),
-/* 4 */,
-/* 5 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createFocusTrap: () => (/* binding */ createFocusTrap)
 /* harmony export */ });
-/* harmony import */ var tabbable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
+/* harmony import */ var tabbable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /*!
 * focus-trap 7.4.3
 * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
@@ -1383,6 +783,605 @@ var createFocusTrap = function createFocusTrap(elements, userOptions) {
 //# sourceMappingURL=focus-trap.esm.js.map
 
 
+/***/ }),
+/* 2 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   focusable: () => (/* binding */ focusable),
+/* harmony export */   isFocusable: () => (/* binding */ isFocusable),
+/* harmony export */   isTabbable: () => (/* binding */ isTabbable),
+/* harmony export */   tabbable: () => (/* binding */ tabbable)
+/* harmony export */ });
+/*!
+* tabbable 6.1.2
+* @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
+*/
+// NOTE: separate `:not()` selectors has broader browser support than the newer
+//  `:not([inert], [inert] *)` (Feb 2023)
+// CAREFUL: JSDom does not support `:not([inert] *)` as a selector; using it causes
+//  the entire query to fail, resulting in no nodes found, which will break a lot
+//  of things... so we have to rely on JS to identify nodes inside an inert container
+var candidateSelectors = ['input:not([inert])', 'select:not([inert])', 'textarea:not([inert])', 'a[href]:not([inert])', 'button:not([inert])', '[tabindex]:not(slot):not([inert])', 'audio[controls]:not([inert])', 'video[controls]:not([inert])', '[contenteditable]:not([contenteditable="false"]):not([inert])', 'details>summary:first-of-type:not([inert])', 'details:not([inert])'];
+var candidateSelector = /* #__PURE__ */candidateSelectors.join(',');
+var NoElement = typeof Element === 'undefined';
+var matches = NoElement ? function () {} : Element.prototype.matches || Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+var getRootNode = !NoElement && Element.prototype.getRootNode ? function (element) {
+  var _element$getRootNode;
+  return element === null || element === void 0 ? void 0 : (_element$getRootNode = element.getRootNode) === null || _element$getRootNode === void 0 ? void 0 : _element$getRootNode.call(element);
+} : function (element) {
+  return element === null || element === void 0 ? void 0 : element.ownerDocument;
+};
+
+/**
+ * Determines if a node is inert or in an inert ancestor.
+ * @param {Element} [node]
+ * @param {boolean} [lookUp] If true and `node` is not inert, looks up at ancestors to
+ *  see if any of them are inert. If false, only `node` itself is considered.
+ * @returns {boolean} True if inert itself or by way of being in an inert ancestor.
+ *  False if `node` is falsy.
+ */
+var isInert = function isInert(node, lookUp) {
+  var _node$getAttribute;
+  if (lookUp === void 0) {
+    lookUp = true;
+  }
+  // CAREFUL: JSDom does not support inert at all, so we can't use the `HTMLElement.inert`
+  //  JS API property; we have to check the attribute, which can either be empty or 'true';
+  //  if it's `null` (not specified) or 'false', it's an active element
+  var inertAtt = node === null || node === void 0 ? void 0 : (_node$getAttribute = node.getAttribute) === null || _node$getAttribute === void 0 ? void 0 : _node$getAttribute.call(node, 'inert');
+  var inert = inertAtt === '' || inertAtt === 'true';
+
+  // NOTE: this could also be handled with `node.matches('[inert], :is([inert] *)')`
+  //  if it weren't for `matches()` not being a function on shadow roots; the following
+  //  code works for any kind of node
+  // CAREFUL: JSDom does not appear to support certain selectors like `:not([inert] *)`
+  //  so it likely would not support `:is([inert] *)` either...
+  var result = inert || lookUp && node && isInert(node.parentNode); // recursive
+
+  return result;
+};
+
+/**
+ * Determines if a node's content is editable.
+ * @param {Element} [node]
+ * @returns True if it's content-editable; false if it's not or `node` is falsy.
+ */
+var isContentEditable = function isContentEditable(node) {
+  var _node$getAttribute2;
+  // CAREFUL: JSDom does not support the `HTMLElement.isContentEditable` API so we have
+  //  to use the attribute directly to check for this, which can either be empty or 'true';
+  //  if it's `null` (not specified) or 'false', it's a non-editable element
+  var attValue = node === null || node === void 0 ? void 0 : (_node$getAttribute2 = node.getAttribute) === null || _node$getAttribute2 === void 0 ? void 0 : _node$getAttribute2.call(node, 'contenteditable');
+  return attValue === '' || attValue === 'true';
+};
+
+/**
+ * @param {Element} el container to check in
+ * @param {boolean} includeContainer add container to check
+ * @param {(node: Element) => boolean} filter filter candidates
+ * @returns {Element[]}
+ */
+var getCandidates = function getCandidates(el, includeContainer, filter) {
+  // even if `includeContainer=false`, we still have to check it for inertness because
+  //  if it's inert, all its children are inert
+  if (isInert(el)) {
+    return [];
+  }
+  var candidates = Array.prototype.slice.apply(el.querySelectorAll(candidateSelector));
+  if (includeContainer && matches.call(el, candidateSelector)) {
+    candidates.unshift(el);
+  }
+  candidates = candidates.filter(filter);
+  return candidates;
+};
+
+/**
+ * @callback GetShadowRoot
+ * @param {Element} element to check for shadow root
+ * @returns {ShadowRoot|boolean} ShadowRoot if available or boolean indicating if a shadowRoot is attached but not available.
+ */
+
+/**
+ * @callback ShadowRootFilter
+ * @param {Element} shadowHostNode the element which contains shadow content
+ * @returns {boolean} true if a shadow root could potentially contain valid candidates.
+ */
+
+/**
+ * @typedef {Object} CandidateScope
+ * @property {Element} scopeParent contains inner candidates
+ * @property {Element[]} candidates list of candidates found in the scope parent
+ */
+
+/**
+ * @typedef {Object} IterativeOptions
+ * @property {GetShadowRoot|boolean} getShadowRoot true if shadow support is enabled; falsy if not;
+ *  if a function, implies shadow support is enabled and either returns the shadow root of an element
+ *  or a boolean stating if it has an undisclosed shadow root
+ * @property {(node: Element) => boolean} filter filter candidates
+ * @property {boolean} flatten if true then result will flatten any CandidateScope into the returned list
+ * @property {ShadowRootFilter} shadowRootFilter filter shadow roots;
+ */
+
+/**
+ * @param {Element[]} elements list of element containers to match candidates from
+ * @param {boolean} includeContainer add container list to check
+ * @param {IterativeOptions} options
+ * @returns {Array.<Element|CandidateScope>}
+ */
+var getCandidatesIteratively = function getCandidatesIteratively(elements, includeContainer, options) {
+  var candidates = [];
+  var elementsToCheck = Array.from(elements);
+  while (elementsToCheck.length) {
+    var element = elementsToCheck.shift();
+    if (isInert(element, false)) {
+      // no need to look up since we're drilling down
+      // anything inside this container will also be inert
+      continue;
+    }
+    if (element.tagName === 'SLOT') {
+      // add shadow dom slot scope (slot itself cannot be focusable)
+      var assigned = element.assignedElements();
+      var content = assigned.length ? assigned : element.children;
+      var nestedCandidates = getCandidatesIteratively(content, true, options);
+      if (options.flatten) {
+        candidates.push.apply(candidates, nestedCandidates);
+      } else {
+        candidates.push({
+          scopeParent: element,
+          candidates: nestedCandidates
+        });
+      }
+    } else {
+      // check candidate element
+      var validCandidate = matches.call(element, candidateSelector);
+      if (validCandidate && options.filter(element) && (includeContainer || !elements.includes(element))) {
+        candidates.push(element);
+      }
+
+      // iterate over shadow content if possible
+      var shadowRoot = element.shadowRoot ||
+      // check for an undisclosed shadow
+      typeof options.getShadowRoot === 'function' && options.getShadowRoot(element);
+
+      // no inert look up because we're already drilling down and checking for inertness
+      //  on the way down, so all containers to this root node should have already been
+      //  vetted as non-inert
+      var validShadowRoot = !isInert(shadowRoot, false) && (!options.shadowRootFilter || options.shadowRootFilter(element));
+      if (shadowRoot && validShadowRoot) {
+        // add shadow dom scope IIF a shadow root node was given; otherwise, an undisclosed
+        //  shadow exists, so look at light dom children as fallback BUT create a scope for any
+        //  child candidates found because they're likely slotted elements (elements that are
+        //  children of the web component element (which has the shadow), in the light dom, but
+        //  slotted somewhere _inside_ the undisclosed shadow) -- the scope is created below,
+        //  _after_ we return from this recursive call
+        var _nestedCandidates = getCandidatesIteratively(shadowRoot === true ? element.children : shadowRoot.children, true, options);
+        if (options.flatten) {
+          candidates.push.apply(candidates, _nestedCandidates);
+        } else {
+          candidates.push({
+            scopeParent: element,
+            candidates: _nestedCandidates
+          });
+        }
+      } else {
+        // there's not shadow so just dig into the element's (light dom) children
+        //  __without__ giving the element special scope treatment
+        elementsToCheck.unshift.apply(elementsToCheck, element.children);
+      }
+    }
+  }
+  return candidates;
+};
+var getTabindex = function getTabindex(node, isScope) {
+  if (node.tabIndex < 0) {
+    // in Chrome, <details/>, <audio controls/> and <video controls/> elements get a default
+    // `tabIndex` of -1 when the 'tabindex' attribute isn't specified in the DOM,
+    // yet they are still part of the regular tab order; in FF, they get a default
+    // `tabIndex` of 0; since Chrome still puts those elements in the regular tab
+    // order, consider their tab index to be 0.
+    // Also browsers do not return `tabIndex` correctly for contentEditable nodes;
+    // so if they don't have a tabindex attribute specifically set, assume it's 0.
+    //
+    // isScope is positive for custom element with shadow root or slot that by default
+    // have tabIndex -1, but need to be sorted by document order in order for their
+    // content to be inserted in the correct position
+    if ((isScope || /^(AUDIO|VIDEO|DETAILS)$/.test(node.tagName) || isContentEditable(node)) && isNaN(parseInt(node.getAttribute('tabindex'), 10))) {
+      return 0;
+    }
+  }
+  return node.tabIndex;
+};
+var sortOrderedTabbables = function sortOrderedTabbables(a, b) {
+  return a.tabIndex === b.tabIndex ? a.documentOrder - b.documentOrder : a.tabIndex - b.tabIndex;
+};
+var isInput = function isInput(node) {
+  return node.tagName === 'INPUT';
+};
+var isHiddenInput = function isHiddenInput(node) {
+  return isInput(node) && node.type === 'hidden';
+};
+var isDetailsWithSummary = function isDetailsWithSummary(node) {
+  var r = node.tagName === 'DETAILS' && Array.prototype.slice.apply(node.children).some(function (child) {
+    return child.tagName === 'SUMMARY';
+  });
+  return r;
+};
+var getCheckedRadio = function getCheckedRadio(nodes, form) {
+  for (var i = 0; i < nodes.length; i++) {
+    if (nodes[i].checked && nodes[i].form === form) {
+      return nodes[i];
+    }
+  }
+};
+var isTabbableRadio = function isTabbableRadio(node) {
+  if (!node.name) {
+    return true;
+  }
+  var radioScope = node.form || getRootNode(node);
+  var queryRadios = function queryRadios(name) {
+    return radioScope.querySelectorAll('input[type="radio"][name="' + name + '"]');
+  };
+  var radioSet;
+  if (typeof window !== 'undefined' && typeof window.CSS !== 'undefined' && typeof window.CSS.escape === 'function') {
+    radioSet = queryRadios(window.CSS.escape(node.name));
+  } else {
+    try {
+      radioSet = queryRadios(node.name);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Looks like you have a radio button with a name attribute containing invalid CSS selector characters and need the CSS.escape polyfill: %s', err.message);
+      return false;
+    }
+  }
+  var checked = getCheckedRadio(radioSet, node.form);
+  return !checked || checked === node;
+};
+var isRadio = function isRadio(node) {
+  return isInput(node) && node.type === 'radio';
+};
+var isNonTabbableRadio = function isNonTabbableRadio(node) {
+  return isRadio(node) && !isTabbableRadio(node);
+};
+
+// determines if a node is ultimately attached to the window's document
+var isNodeAttached = function isNodeAttached(node) {
+  var _nodeRoot;
+  // The root node is the shadow root if the node is in a shadow DOM; some document otherwise
+  //  (but NOT _the_ document; see second 'If' comment below for more).
+  // If rootNode is shadow root, it'll have a host, which is the element to which the shadow
+  //  is attached, and the one we need to check if it's in the document or not (because the
+  //  shadow, and all nodes it contains, is never considered in the document since shadows
+  //  behave like self-contained DOMs; but if the shadow's HOST, which is part of the document,
+  //  is hidden, or is not in the document itself but is detached, it will affect the shadow's
+  //  visibility, including all the nodes it contains). The host could be any normal node,
+  //  or a custom element (i.e. web component). Either way, that's the one that is considered
+  //  part of the document, not the shadow root, nor any of its children (i.e. the node being
+  //  tested).
+  // To further complicate things, we have to look all the way up until we find a shadow HOST
+  //  that is attached (or find none) because the node might be in nested shadows...
+  // If rootNode is not a shadow root, it won't have a host, and so rootNode should be the
+  //  document (per the docs) and while it's a Document-type object, that document does not
+  //  appear to be the same as the node's `ownerDocument` for some reason, so it's safer
+  //  to ignore the rootNode at this point, and use `node.ownerDocument`. Otherwise,
+  //  using `rootNode.contains(node)` will _always_ be true we'll get false-positives when
+  //  node is actually detached.
+  // NOTE: If `nodeRootHost` or `node` happens to be the `document` itself (which is possible
+  //  if a tabbable/focusable node was quickly added to the DOM, focused, and then removed
+  //  from the DOM as in https://github.com/focus-trap/focus-trap-react/issues/905), then
+  //  `ownerDocument` will be `null`, hence the optional chaining on it.
+  var nodeRoot = node && getRootNode(node);
+  var nodeRootHost = (_nodeRoot = nodeRoot) === null || _nodeRoot === void 0 ? void 0 : _nodeRoot.host;
+
+  // in some cases, a detached node will return itself as the root instead of a document or
+  //  shadow root object, in which case, we shouldn't try to look further up the host chain
+  var attached = false;
+  if (nodeRoot && nodeRoot !== node) {
+    var _nodeRootHost, _nodeRootHost$ownerDo, _node$ownerDocument;
+    attached = !!((_nodeRootHost = nodeRootHost) !== null && _nodeRootHost !== void 0 && (_nodeRootHost$ownerDo = _nodeRootHost.ownerDocument) !== null && _nodeRootHost$ownerDo !== void 0 && _nodeRootHost$ownerDo.contains(nodeRootHost) || node !== null && node !== void 0 && (_node$ownerDocument = node.ownerDocument) !== null && _node$ownerDocument !== void 0 && _node$ownerDocument.contains(node));
+    while (!attached && nodeRootHost) {
+      var _nodeRoot2, _nodeRootHost2, _nodeRootHost2$ownerD;
+      // since it's not attached and we have a root host, the node MUST be in a nested shadow DOM,
+      //  which means we need to get the host's host and check if that parent host is contained
+      //  in (i.e. attached to) the document
+      nodeRoot = getRootNode(nodeRootHost);
+      nodeRootHost = (_nodeRoot2 = nodeRoot) === null || _nodeRoot2 === void 0 ? void 0 : _nodeRoot2.host;
+      attached = !!((_nodeRootHost2 = nodeRootHost) !== null && _nodeRootHost2 !== void 0 && (_nodeRootHost2$ownerD = _nodeRootHost2.ownerDocument) !== null && _nodeRootHost2$ownerD !== void 0 && _nodeRootHost2$ownerD.contains(nodeRootHost));
+    }
+  }
+  return attached;
+};
+var isZeroArea = function isZeroArea(node) {
+  var _node$getBoundingClie = node.getBoundingClientRect(),
+    width = _node$getBoundingClie.width,
+    height = _node$getBoundingClie.height;
+  return width === 0 && height === 0;
+};
+var isHidden = function isHidden(node, _ref) {
+  var displayCheck = _ref.displayCheck,
+    getShadowRoot = _ref.getShadowRoot;
+  // NOTE: visibility will be `undefined` if node is detached from the document
+  //  (see notes about this further down), which means we will consider it visible
+  //  (this is legacy behavior from a very long way back)
+  // NOTE: we check this regardless of `displayCheck="none"` because this is a
+  //  _visibility_ check, not a _display_ check
+  if (getComputedStyle(node).visibility === 'hidden') {
+    return true;
+  }
+  var isDirectSummary = matches.call(node, 'details>summary:first-of-type');
+  var nodeUnderDetails = isDirectSummary ? node.parentElement : node;
+  if (matches.call(nodeUnderDetails, 'details:not([open]) *')) {
+    return true;
+  }
+  if (!displayCheck || displayCheck === 'full' || displayCheck === 'legacy-full') {
+    if (typeof getShadowRoot === 'function') {
+      // figure out if we should consider the node to be in an undisclosed shadow and use the
+      //  'non-zero-area' fallback
+      var originalNode = node;
+      while (node) {
+        var parentElement = node.parentElement;
+        var rootNode = getRootNode(node);
+        if (parentElement && !parentElement.shadowRoot && getShadowRoot(parentElement) === true // check if there's an undisclosed shadow
+        ) {
+          // node has an undisclosed shadow which means we can only treat it as a black box, so we
+          //  fall back to a non-zero-area test
+          return isZeroArea(node);
+        } else if (node.assignedSlot) {
+          // iterate up slot
+          node = node.assignedSlot;
+        } else if (!parentElement && rootNode !== node.ownerDocument) {
+          // cross shadow boundary
+          node = rootNode.host;
+        } else {
+          // iterate up normal dom
+          node = parentElement;
+        }
+      }
+      node = originalNode;
+    }
+    // else, `getShadowRoot` might be true, but all that does is enable shadow DOM support
+    //  (i.e. it does not also presume that all nodes might have undisclosed shadows); or
+    //  it might be a falsy value, which means shadow DOM support is disabled
+
+    // Since we didn't find it sitting in an undisclosed shadow (or shadows are disabled)
+    //  now we can just test to see if it would normally be visible or not, provided it's
+    //  attached to the main document.
+    // NOTE: We must consider case where node is inside a shadow DOM and given directly to
+    //  `isTabbable()` or `isFocusable()` -- regardless of `getShadowRoot` option setting.
+
+    if (isNodeAttached(node)) {
+      // this works wherever the node is: if there's at least one client rect, it's
+      //  somehow displayed; it also covers the CSS 'display: contents' case where the
+      //  node itself is hidden in place of its contents; and there's no need to search
+      //  up the hierarchy either
+      return !node.getClientRects().length;
+    }
+
+    // Else, the node isn't attached to the document, which means the `getClientRects()`
+    //  API will __always__ return zero rects (this can happen, for example, if React
+    //  is used to render nodes onto a detached tree, as confirmed in this thread:
+    //  https://github.com/facebook/react/issues/9117#issuecomment-284228870)
+    //
+    // It also means that even window.getComputedStyle(node).display will return `undefined`
+    //  because styles are only computed for nodes that are in the document.
+    //
+    // NOTE: THIS HAS BEEN THE CASE FOR YEARS. It is not new, nor is it caused by tabbable
+    //  somehow. Though it was never stated officially, anyone who has ever used tabbable
+    //  APIs on nodes in detached containers has actually implicitly used tabbable in what
+    //  was later (as of v5.2.0 on Apr 9, 2021) called `displayCheck="none"` mode -- essentially
+    //  considering __everything__ to be visible because of the innability to determine styles.
+    //
+    // v6.0.0: As of this major release, the default 'full' option __no longer treats detached
+    //  nodes as visible with the 'none' fallback.__
+    if (displayCheck !== 'legacy-full') {
+      return true; // hidden
+    }
+    // else, fallback to 'none' mode and consider the node visible
+  } else if (displayCheck === 'non-zero-area') {
+    // NOTE: Even though this tests that the node's client rect is non-zero to determine
+    //  whether it's displayed, and that a detached node will __always__ have a zero-area
+    //  client rect, we don't special-case for whether the node is attached or not. In
+    //  this mode, we do want to consider nodes that have a zero area to be hidden at all
+    //  times, and that includes attached or not.
+    return isZeroArea(node);
+  }
+
+  // visible, as far as we can tell, or per current `displayCheck=none` mode, we assume
+  //  it's visible
+  return false;
+};
+
+// form fields (nested) inside a disabled fieldset are not focusable/tabbable
+//  unless they are in the _first_ <legend> element of the top-most disabled
+//  fieldset
+var isDisabledFromFieldset = function isDisabledFromFieldset(node) {
+  if (/^(INPUT|BUTTON|SELECT|TEXTAREA)$/.test(node.tagName)) {
+    var parentNode = node.parentElement;
+    // check if `node` is contained in a disabled <fieldset>
+    while (parentNode) {
+      if (parentNode.tagName === 'FIELDSET' && parentNode.disabled) {
+        // look for the first <legend> among the children of the disabled <fieldset>
+        for (var i = 0; i < parentNode.children.length; i++) {
+          var child = parentNode.children.item(i);
+          // when the first <legend> (in document order) is found
+          if (child.tagName === 'LEGEND') {
+            // if its parent <fieldset> is not nested in another disabled <fieldset>,
+            // return whether `node` is a descendant of its first <legend>
+            return matches.call(parentNode, 'fieldset[disabled] *') ? true : !child.contains(node);
+          }
+        }
+        // the disabled <fieldset> containing `node` has no <legend>
+        return true;
+      }
+      parentNode = parentNode.parentElement;
+    }
+  }
+
+  // else, node's tabbable/focusable state should not be affected by a fieldset's
+  //  enabled/disabled state
+  return false;
+};
+var isNodeMatchingSelectorFocusable = function isNodeMatchingSelectorFocusable(options, node) {
+  if (node.disabled ||
+  // we must do an inert look up to filter out any elements inside an inert ancestor
+  //  because we're limited in the type of selectors we can use in JSDom (see related
+  //  note related to `candidateSelectors`)
+  isInert(node) || isHiddenInput(node) || isHidden(node, options) ||
+  // For a details element with a summary, the summary element gets the focus
+  isDetailsWithSummary(node) || isDisabledFromFieldset(node)) {
+    return false;
+  }
+  return true;
+};
+var isNodeMatchingSelectorTabbable = function isNodeMatchingSelectorTabbable(options, node) {
+  if (isNonTabbableRadio(node) || getTabindex(node) < 0 || !isNodeMatchingSelectorFocusable(options, node)) {
+    return false;
+  }
+  return true;
+};
+var isValidShadowRootTabbable = function isValidShadowRootTabbable(shadowHostNode) {
+  var tabIndex = parseInt(shadowHostNode.getAttribute('tabindex'), 10);
+  if (isNaN(tabIndex) || tabIndex >= 0) {
+    return true;
+  }
+  // If a custom element has an explicit negative tabindex,
+  // browsers will not allow tab targeting said element's children.
+  return false;
+};
+
+/**
+ * @param {Array.<Element|CandidateScope>} candidates
+ * @returns Element[]
+ */
+var sortByOrder = function sortByOrder(candidates) {
+  var regularTabbables = [];
+  var orderedTabbables = [];
+  candidates.forEach(function (item, i) {
+    var isScope = !!item.scopeParent;
+    var element = isScope ? item.scopeParent : item;
+    var candidateTabindex = getTabindex(element, isScope);
+    var elements = isScope ? sortByOrder(item.candidates) : element;
+    if (candidateTabindex === 0) {
+      isScope ? regularTabbables.push.apply(regularTabbables, elements) : regularTabbables.push(element);
+    } else {
+      orderedTabbables.push({
+        documentOrder: i,
+        tabIndex: candidateTabindex,
+        item: item,
+        isScope: isScope,
+        content: elements
+      });
+    }
+  });
+  return orderedTabbables.sort(sortOrderedTabbables).reduce(function (acc, sortable) {
+    sortable.isScope ? acc.push.apply(acc, sortable.content) : acc.push(sortable.content);
+    return acc;
+  }, []).concat(regularTabbables);
+};
+var tabbable = function tabbable(el, options) {
+  options = options || {};
+  var candidates;
+  if (options.getShadowRoot) {
+    candidates = getCandidatesIteratively([el], options.includeContainer, {
+      filter: isNodeMatchingSelectorTabbable.bind(null, options),
+      flatten: false,
+      getShadowRoot: options.getShadowRoot,
+      shadowRootFilter: isValidShadowRootTabbable
+    });
+  } else {
+    candidates = getCandidates(el, options.includeContainer, isNodeMatchingSelectorTabbable.bind(null, options));
+  }
+  return sortByOrder(candidates);
+};
+var focusable = function focusable(el, options) {
+  options = options || {};
+  var candidates;
+  if (options.getShadowRoot) {
+    candidates = getCandidatesIteratively([el], options.includeContainer, {
+      filter: isNodeMatchingSelectorFocusable.bind(null, options),
+      flatten: true,
+      getShadowRoot: options.getShadowRoot
+    });
+  } else {
+    candidates = getCandidates(el, options.includeContainer, isNodeMatchingSelectorFocusable.bind(null, options));
+  }
+  return candidates;
+};
+var isTabbable = function isTabbable(node, options) {
+  options = options || {};
+  if (!node) {
+    throw new Error('No node provided');
+  }
+  if (matches.call(node, candidateSelector) === false) {
+    return false;
+  }
+  return isNodeMatchingSelectorTabbable(options, node);
+};
+var focusableCandidateSelector = /* #__PURE__ */candidateSelectors.concat('iframe').join(',');
+var isFocusable = function isFocusable(node, options) {
+  options = options || {};
+  if (!node) {
+    throw new Error('No node provided');
+  }
+  if (matches.call(node, focusableCandidateSelector) === false) {
+    return false;
+  }
+  return isNodeMatchingSelectorFocusable(options, node);
+};
+
+
+//# sourceMappingURL=index.esm.js.map
+
+
+/***/ }),
+/* 3 */
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   arrow: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.arrow),
+/* harmony export */   autoPlacement: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.autoPlacement),
+/* harmony export */   autoUpdate: () => (/* binding */ z),
+/* harmony export */   computePosition: () => (/* binding */ M),
+/* harmony export */   detectOverflow: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.detectOverflow),
+/* harmony export */   flip: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.flip),
+/* harmony export */   getOverflowAncestors: () => (/* binding */ W),
+/* harmony export */   hide: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.hide),
+/* harmony export */   inline: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.inline),
+/* harmony export */   limitShift: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.limitShift),
+/* harmony export */   offset: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.offset),
+/* harmony export */   platform: () => (/* binding */ k),
+/* harmony export */   shift: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.shift),
+/* harmony export */   size: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.size)
+/* harmony export */ });
+/* harmony import */ var _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
+function n(t){var e;return(null==(e=t.ownerDocument)?void 0:e.defaultView)||window}function o(t){return n(t).getComputedStyle(t)}function i(t){return t instanceof n(t).Node}function r(t){return i(t)?(t.nodeName||"").toLowerCase():""}function l(t){return t instanceof n(t).HTMLElement}function c(t){return t instanceof n(t).Element}function s(t){if("undefined"==typeof ShadowRoot)return!1;return t instanceof n(t).ShadowRoot||t instanceof ShadowRoot}function f(t){const{overflow:e,overflowX:n,overflowY:i,display:r}=o(t);return/auto|scroll|overlay|hidden|clip/.test(e+i+n)&&!["inline","contents"].includes(r)}function u(t){return["table","td","th"].includes(r(t))}function a(t){const e=d(),n=o(t);return"none"!==n.transform||"none"!==n.perspective||!e&&!!n.backdropFilter&&"none"!==n.backdropFilter||!e&&!!n.filter&&"none"!==n.filter||["transform","perspective","filter"].some((t=>(n.willChange||"").includes(t)))||["paint","layout","strict","content"].some((t=>(n.contain||"").includes(t)))}function d(){return!("undefined"==typeof CSS||!CSS.supports)&&CSS.supports("-webkit-backdrop-filter","none")}function h(t){return["html","body","#document"].includes(r(t))}const p=Math.min,m=Math.max,g=Math.round;function y(t){const e=o(t);let n=parseFloat(e.width)||0,i=parseFloat(e.height)||0;const r=l(t),c=r?t.offsetWidth:n,s=r?t.offsetHeight:i,f=g(n)!==c||g(i)!==s;return f&&(n=c,i=s),{width:n,height:i,fallback:f}}function x(t){return c(t)?t:t.contextElement}const w={x:1,y:1};function v(t){const e=x(t);if(!l(e))return w;const n=e.getBoundingClientRect(),{width:o,height:i,fallback:r}=y(e);let c=(r?g(n.width):n.width)/o,s=(r?g(n.height):n.height)/i;return c&&Number.isFinite(c)||(c=1),s&&Number.isFinite(s)||(s=1),{x:c,y:s}}const b={x:0,y:0};function L(t,e,o){var i,r;if(void 0===e&&(e=!0),!d())return b;const l=t?n(t):window;return!o||e&&o!==l?b:{x:(null==(i=l.visualViewport)?void 0:i.offsetLeft)||0,y:(null==(r=l.visualViewport)?void 0:r.offsetTop)||0}}function E(e,o,i,r){void 0===o&&(o=!1),void 0===i&&(i=!1);const l=e.getBoundingClientRect(),s=x(e);let f=w;o&&(r?c(r)&&(f=v(r)):f=v(e));const u=L(s,i,r);let a=(l.left+u.x)/f.x,d=(l.top+u.y)/f.y,h=l.width/f.x,p=l.height/f.y;if(s){const t=n(s),e=r&&c(r)?n(r):r;let o=t.frameElement;for(;o&&r&&e!==t;){const t=v(o),e=o.getBoundingClientRect(),i=getComputedStyle(o);e.x+=(o.clientLeft+parseFloat(i.paddingLeft))*t.x,e.y+=(o.clientTop+parseFloat(i.paddingTop))*t.y,a*=t.x,d*=t.y,h*=t.x,p*=t.y,a+=e.x,d+=e.y,o=n(o).frameElement}}return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.rectToClientRect)({width:h,height:p,x:a,y:d})}function R(t){return((i(t)?t.ownerDocument:t.document)||window.document).documentElement}function T(t){return c(t)?{scrollLeft:t.scrollLeft,scrollTop:t.scrollTop}:{scrollLeft:t.pageXOffset,scrollTop:t.pageYOffset}}function S(t){return E(R(t)).left+T(t).scrollLeft}function C(t){if("html"===r(t))return t;const e=t.assignedSlot||t.parentNode||s(t)&&t.host||R(t);return s(e)?e.host:e}function F(t){const e=C(t);return h(e)?e.ownerDocument.body:l(e)&&f(e)?e:F(e)}function W(t,e){var o;void 0===e&&(e=[]);const i=F(t),r=i===(null==(o=t.ownerDocument)?void 0:o.body),l=n(i);return r?e.concat(l,l.visualViewport||[],f(i)?i:[]):e.concat(i,W(i))}function D(e,i,r){let s;if("viewport"===i)s=function(t,e){const o=n(t),i=R(t),r=o.visualViewport;let l=i.clientWidth,c=i.clientHeight,s=0,f=0;if(r){l=r.width,c=r.height;const t=d();(!t||t&&"fixed"===e)&&(s=r.offsetLeft,f=r.offsetTop)}return{width:l,height:c,x:s,y:f}}(e,r);else if("document"===i)s=function(t){const e=R(t),n=T(t),i=t.ownerDocument.body,r=m(e.scrollWidth,e.clientWidth,i.scrollWidth,i.clientWidth),l=m(e.scrollHeight,e.clientHeight,i.scrollHeight,i.clientHeight);let c=-n.scrollLeft+S(t);const s=-n.scrollTop;return"rtl"===o(i).direction&&(c+=m(e.clientWidth,i.clientWidth)-r),{width:r,height:l,x:c,y:s}}(R(e));else if(c(i))s=function(t,e){const n=E(t,!0,"fixed"===e),o=n.top+t.clientTop,i=n.left+t.clientLeft,r=l(t)?v(t):{x:1,y:1};return{width:t.clientWidth*r.x,height:t.clientHeight*r.y,x:i*r.x,y:o*r.y}}(i,r);else{const t=L(e);s={...i,x:i.x-t.x,y:i.y-t.y}}return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.rectToClientRect)(s)}function H(t,e){const n=C(t);return!(n===e||!c(n)||h(n))&&("fixed"===o(n).position||H(n,e))}function O(t,e){return l(t)&&"fixed"!==o(t).position?e?e(t):t.offsetParent:null}function P(t,e){const i=n(t);if(!l(t))return i;let c=O(t,e);for(;c&&u(c)&&"static"===o(c).position;)c=O(c,e);return c&&("html"===r(c)||"body"===r(c)&&"static"===o(c).position&&!a(c))?i:c||function(t){let e=C(t);for(;l(e)&&!h(e);){if(a(e))return e;e=C(e)}return null}(t)||i}function V(t,e,n){const o=l(e),i=R(e),c="fixed"===n,s=E(t,!0,c,e);let u={scrollLeft:0,scrollTop:0};const a={x:0,y:0};if(o||!o&&!c)if(("body"!==r(e)||f(i))&&(u=T(e)),l(e)){const t=E(e,!0,c,e);a.x=t.x+e.clientLeft,a.y=t.y+e.clientTop}else i&&(a.x=S(i));return{x:s.left+u.scrollLeft-a.x,y:s.top+u.scrollTop-a.y,width:s.width,height:s.height}}const k={getClippingRect:function(t){let{element:e,boundary:n,rootBoundary:i,strategy:l}=t;const s="clippingAncestors"===n?function(t,e){const n=e.get(t);if(n)return n;let i=W(t).filter((t=>c(t)&&"body"!==r(t))),l=null;const s="fixed"===o(t).position;let u=s?C(t):t;for(;c(u)&&!h(u);){const e=o(u),n=a(u);n||"fixed"!==e.position||(l=null),(s?!n&&!l:!n&&"static"===e.position&&l&&["absolute","fixed"].includes(l.position)||f(u)&&!n&&H(t,u))?i=i.filter((t=>t!==u)):l=e,u=C(u)}return e.set(t,i),i}(e,this._c):[].concat(n),u=[...s,i],d=u[0],g=u.reduce(((t,n)=>{const o=D(e,n,l);return t.top=m(o.top,t.top),t.right=p(o.right,t.right),t.bottom=p(o.bottom,t.bottom),t.left=m(o.left,t.left),t}),D(e,d,l));return{width:g.right-g.left,height:g.bottom-g.top,x:g.left,y:g.top}},convertOffsetParentRelativeRectToViewportRelativeRect:function(t){let{rect:e,offsetParent:n,strategy:o}=t;const i=l(n),c=R(n);if(n===c)return e;let s={scrollLeft:0,scrollTop:0},u={x:1,y:1};const a={x:0,y:0};if((i||!i&&"fixed"!==o)&&(("body"!==r(n)||f(c))&&(s=T(n)),l(n))){const t=E(n);u=v(n),a.x=t.x+n.clientLeft,a.y=t.y+n.clientTop}return{width:e.width*u.x,height:e.height*u.y,x:e.x*u.x-s.scrollLeft*u.x+a.x,y:e.y*u.y-s.scrollTop*u.y+a.y}},isElement:c,getDimensions:function(t){return y(t)},getOffsetParent:P,getDocumentElement:R,getScale:v,async getElementRects(t){let{reference:e,floating:n,strategy:o}=t;const i=this.getOffsetParent||P,r=this.getDimensions;return{reference:V(e,await i(n),o),floating:{x:0,y:0,...await r(n)}}},getClientRects:t=>Array.from(t.getClientRects()),isRTL:t=>"rtl"===o(t).direction};function z(t,e,n,o){void 0===o&&(o={});const{ancestorScroll:i=!0,ancestorResize:r=!0,elementResize:l=!0,animationFrame:s=!1}=o,f=i||r?[...c(t)?W(t):t.contextElement?W(t.contextElement):[],...W(e)]:[];f.forEach((t=>{const e=!c(t)&&t.toString().includes("V");!i||s&&!e||t.addEventListener("scroll",n,{passive:!0}),r&&t.addEventListener("resize",n)}));let u,a=null;l&&(a=new ResizeObserver((()=>{n()})),c(t)&&!s&&a.observe(t),c(t)||!t.contextElement||s||a.observe(t.contextElement),a.observe(e));let d=s?E(t):null;return s&&function e(){const o=E(t);!d||o.x===d.x&&o.y===d.y&&o.width===d.width&&o.height===d.height||n();d=o,u=requestAnimationFrame(e)}(),n(),()=>{var t;f.forEach((t=>{i&&t.removeEventListener("scroll",n),r&&t.removeEventListener("resize",n)})),null==(t=a)||t.disconnect(),a=null,s&&cancelAnimationFrame(u)}}const M=(t,n,o)=>{const i=new Map,r={platform:k,...o},l={...r.platform,_c:i};return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.computePosition)(t,n,{...r,platform:l})};
+
+
+/***/ }),
+/* 4 */
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   arrow: () => (/* binding */ u),
+/* harmony export */   autoPlacement: () => (/* binding */ v),
+/* harmony export */   computePosition: () => (/* binding */ r),
+/* harmony export */   detectOverflow: () => (/* binding */ s),
+/* harmony export */   flip: () => (/* binding */ b),
+/* harmony export */   hide: () => (/* binding */ P),
+/* harmony export */   inline: () => (/* binding */ T),
+/* harmony export */   limitShift: () => (/* binding */ O),
+/* harmony export */   offset: () => (/* binding */ D),
+/* harmony export */   rectToClientRect: () => (/* binding */ l),
+/* harmony export */   shift: () => (/* binding */ k),
+/* harmony export */   size: () => (/* binding */ B)
+/* harmony export */ });
+function t(t){return t.split("-")[1]}function e(t){return"y"===t?"height":"width"}function n(t){return t.split("-")[0]}function o(t){return["top","bottom"].includes(n(t))?"x":"y"}function i(i,r,a){let{reference:l,floating:s}=i;const c=l.x+l.width/2-s.width/2,f=l.y+l.height/2-s.height/2,m=o(r),u=e(m),g=l[u]/2-s[u]/2,d="x"===m;let p;switch(n(r)){case"top":p={x:c,y:l.y-s.height};break;case"bottom":p={x:c,y:l.y+l.height};break;case"right":p={x:l.x+l.width,y:f};break;case"left":p={x:l.x-s.width,y:f};break;default:p={x:l.x,y:l.y}}switch(t(r)){case"start":p[m]-=g*(a&&d?-1:1);break;case"end":p[m]+=g*(a&&d?-1:1)}return p}const r=async(t,e,n)=>{const{placement:o="bottom",strategy:r="absolute",middleware:a=[],platform:l}=n,s=a.filter(Boolean),c=await(null==l.isRTL?void 0:l.isRTL(e));let f=await l.getElementRects({reference:t,floating:e,strategy:r}),{x:m,y:u}=i(f,o,c),g=o,d={},p=0;for(let n=0;n<s.length;n++){const{name:a,fn:h}=s[n],{x:y,y:x,data:w,reset:v}=await h({x:m,y:u,initialPlacement:o,placement:g,strategy:r,middlewareData:d,rects:f,platform:l,elements:{reference:t,floating:e}});m=null!=y?y:m,u=null!=x?x:u,d={...d,[a]:{...d[a],...w}},v&&p<=50&&(p++,"object"==typeof v&&(v.placement&&(g=v.placement),v.rects&&(f=!0===v.rects?await l.getElementRects({reference:t,floating:e,strategy:r}):v.rects),({x:m,y:u}=i(f,g,c))),n=-1)}return{x:m,y:u,placement:g,strategy:r,middlewareData:d}};function a(t){return"number"!=typeof t?function(t){return{top:0,right:0,bottom:0,left:0,...t}}(t):{top:t,right:t,bottom:t,left:t}}function l(t){return{...t,top:t.y,left:t.x,right:t.x+t.width,bottom:t.y+t.height}}async function s(t,e){var n;void 0===e&&(e={});const{x:o,y:i,platform:r,rects:s,elements:c,strategy:f}=t,{boundary:m="clippingAncestors",rootBoundary:u="viewport",elementContext:g="floating",altBoundary:d=!1,padding:p=0}=e,h=a(p),y=c[d?"floating"===g?"reference":"floating":g],x=l(await r.getClippingRect({element:null==(n=await(null==r.isElement?void 0:r.isElement(y)))||n?y:y.contextElement||await(null==r.getDocumentElement?void 0:r.getDocumentElement(c.floating)),boundary:m,rootBoundary:u,strategy:f})),w="floating"===g?{...s.floating,x:o,y:i}:s.reference,v=await(null==r.getOffsetParent?void 0:r.getOffsetParent(c.floating)),b=await(null==r.isElement?void 0:r.isElement(v))&&await(null==r.getScale?void 0:r.getScale(v))||{x:1,y:1},A=l(r.convertOffsetParentRelativeRectToViewportRelativeRect?await r.convertOffsetParentRelativeRectToViewportRelativeRect({rect:w,offsetParent:v,strategy:f}):w);return{top:(x.top-A.top+h.top)/b.y,bottom:(A.bottom-x.bottom+h.bottom)/b.y,left:(x.left-A.left+h.left)/b.x,right:(A.right-x.right+h.right)/b.x}}const c=Math.min,f=Math.max;function m(t,e,n){return f(t,c(e,n))}const u=n=>({name:"arrow",options:n,async fn(i){const{element:r,padding:l=0}=n||{},{x:s,y:c,placement:f,rects:u,platform:g,elements:d}=i;if(null==r)return{};const p=a(l),h={x:s,y:c},y=o(f),x=e(y),w=await g.getDimensions(r),v="y"===y,b=v?"top":"left",A=v?"bottom":"right",R=v?"clientHeight":"clientWidth",P=u.reference[x]+u.reference[y]-h[y]-u.floating[x],E=h[y]-u.reference[y],T=await(null==g.getOffsetParent?void 0:g.getOffsetParent(r));let D=T?T[R]:0;D&&await(null==g.isElement?void 0:g.isElement(T))||(D=d.floating[R]||u.floating[x]);const L=P/2-E/2,k=p[b],O=D-w[x]-p[A],B=D/2-w[x]/2+L,C=m(k,B,O),H=null!=t(f)&&B!=C&&u.reference[x]/2-(B<k?p[b]:p[A])-w[x]/2<0;return{[y]:h[y]-(H?B<k?k-B:O-B:0),data:{[y]:C,centerOffset:B-C}}}}),g=["top","right","bottom","left"],d=g.reduce(((t,e)=>t.concat(e,e+"-start",e+"-end")),[]),p={left:"right",right:"left",bottom:"top",top:"bottom"};function h(t){return t.replace(/left|right|bottom|top/g,(t=>p[t]))}function y(n,i,r){void 0===r&&(r=!1);const a=t(n),l=o(n),s=e(l);let c="x"===l?a===(r?"end":"start")?"right":"left":"start"===a?"bottom":"top";return i.reference[s]>i.floating[s]&&(c=h(c)),{main:c,cross:h(c)}}const x={start:"end",end:"start"};function w(t){return t.replace(/start|end/g,(t=>x[t]))}const v=function(e){return void 0===e&&(e={}),{name:"autoPlacement",options:e,async fn(o){var i,r,a;const{rects:l,middlewareData:c,placement:f,platform:m,elements:u}=o,{crossAxis:g=!1,alignment:p,allowedPlacements:h=d,autoAlignment:x=!0,...v}=e,b=void 0!==p||h===d?function(e,o,i){return(e?[...i.filter((n=>t(n)===e)),...i.filter((n=>t(n)!==e))]:i.filter((t=>n(t)===t))).filter((n=>!e||t(n)===e||!!o&&w(n)!==n))}(p||null,x,h):h,A=await s(o,v),R=(null==(i=c.autoPlacement)?void 0:i.index)||0,P=b[R];if(null==P)return{};const{main:E,cross:T}=y(P,l,await(null==m.isRTL?void 0:m.isRTL(u.floating)));if(f!==P)return{reset:{placement:b[0]}};const D=[A[n(P)],A[E],A[T]],L=[...(null==(r=c.autoPlacement)?void 0:r.overflows)||[],{placement:P,overflows:D}],k=b[R+1];if(k)return{data:{index:R+1,overflows:L},reset:{placement:k}};const O=L.map((e=>{const n=t(e.placement);return[e.placement,n&&g?e.overflows.slice(0,2).reduce(((t,e)=>t+e),0):e.overflows[0],e.overflows]})).sort(((t,e)=>t[1]-e[1])),B=(null==(a=O.filter((e=>e[2].slice(0,t(e[0])?2:3).every((t=>t<=0))))[0])?void 0:a[0])||O[0][0];return B!==f?{data:{index:R+1,overflows:L},reset:{placement:B}}:{}}}};const b=function(e){return void 0===e&&(e={}),{name:"flip",options:e,async fn(o){var i;const{placement:r,middlewareData:a,rects:l,initialPlacement:c,platform:f,elements:m}=o,{mainAxis:u=!0,crossAxis:g=!0,fallbackPlacements:d,fallbackStrategy:p="bestFit",fallbackAxisSideDirection:x="none",flipAlignment:v=!0,...b}=e,A=n(r),R=n(c)===c,P=await(null==f.isRTL?void 0:f.isRTL(m.floating)),E=d||(R||!v?[h(c)]:function(t){const e=h(t);return[w(t),e,w(e)]}(c));d||"none"===x||E.push(...function(e,o,i,r){const a=t(e);let l=function(t,e,n){const o=["left","right"],i=["right","left"],r=["top","bottom"],a=["bottom","top"];switch(t){case"top":case"bottom":return n?e?i:o:e?o:i;case"left":case"right":return e?r:a;default:return[]}}(n(e),"start"===i,r);return a&&(l=l.map((t=>t+"-"+a)),o&&(l=l.concat(l.map(w)))),l}(c,v,x,P));const T=[c,...E],D=await s(o,b),L=[];let k=(null==(i=a.flip)?void 0:i.overflows)||[];if(u&&L.push(D[A]),g){const{main:t,cross:e}=y(r,l,P);L.push(D[t],D[e])}if(k=[...k,{placement:r,overflows:L}],!L.every((t=>t<=0))){var O,B;const t=((null==(O=a.flip)?void 0:O.index)||0)+1,e=T[t];if(e)return{data:{index:t,overflows:k},reset:{placement:e}};let n=null==(B=k.filter((t=>t.overflows[0]<=0)).sort(((t,e)=>t.overflows[1]-e.overflows[1]))[0])?void 0:B.placement;if(!n)switch(p){case"bestFit":{var C;const t=null==(C=k.map((t=>[t.placement,t.overflows.filter((t=>t>0)).reduce(((t,e)=>t+e),0)])).sort(((t,e)=>t[1]-e[1]))[0])?void 0:C[0];t&&(n=t);break}case"initialPlacement":n=c}if(r!==n)return{reset:{placement:n}}}return{}}}};function A(t,e){return{top:t.top-e.height,right:t.right-e.width,bottom:t.bottom-e.height,left:t.left-e.width}}function R(t){return g.some((e=>t[e]>=0))}const P=function(t){return void 0===t&&(t={}),{name:"hide",options:t,async fn(e){const{strategy:n="referenceHidden",...o}=t,{rects:i}=e;switch(n){case"referenceHidden":{const t=A(await s(e,{...o,elementContext:"reference"}),i.reference);return{data:{referenceHiddenOffsets:t,referenceHidden:R(t)}}}case"escaped":{const t=A(await s(e,{...o,altBoundary:!0}),i.floating);return{data:{escapedOffsets:t,escaped:R(t)}}}default:return{}}}}};function E(t){const e=c(...t.map((t=>t.left))),n=c(...t.map((t=>t.top)));return{x:e,y:n,width:f(...t.map((t=>t.right)))-e,height:f(...t.map((t=>t.bottom)))-n}}const T=function(t){return void 0===t&&(t={}),{name:"inline",options:t,async fn(e){const{placement:i,elements:r,rects:s,platform:m,strategy:u}=e,{padding:g=2,x:d,y:p}=t,h=Array.from(await(null==m.getClientRects?void 0:m.getClientRects(r.reference))||[]),y=function(t){const e=t.slice().sort(((t,e)=>t.y-e.y)),n=[];let o=null;for(let t=0;t<e.length;t++){const i=e[t];!o||i.y-o.y>o.height/2?n.push([i]):n[n.length-1].push(i),o=i}return n.map((t=>l(E(t))))}(h),x=l(E(h)),w=a(g);const v=await m.getElementRects({reference:{getBoundingClientRect:function(){if(2===y.length&&y[0].left>y[1].right&&null!=d&&null!=p)return y.find((t=>d>t.left-w.left&&d<t.right+w.right&&p>t.top-w.top&&p<t.bottom+w.bottom))||x;if(y.length>=2){if("x"===o(i)){const t=y[0],e=y[y.length-1],o="top"===n(i),r=t.top,a=e.bottom,l=o?t.left:e.left,s=o?t.right:e.right;return{top:r,bottom:a,left:l,right:s,width:s-l,height:a-r,x:l,y:r}}const t="left"===n(i),e=f(...y.map((t=>t.right))),r=c(...y.map((t=>t.left))),a=y.filter((n=>t?n.left===r:n.right===e)),l=a[0].top,s=a[a.length-1].bottom;return{top:l,bottom:s,left:r,right:e,width:e-r,height:s-l,x:r,y:l}}return x}},floating:r.floating,strategy:u});return s.reference.x!==v.reference.x||s.reference.y!==v.reference.y||s.reference.width!==v.reference.width||s.reference.height!==v.reference.height?{reset:{rects:v}}:{}}}};const D=function(e){return void 0===e&&(e=0),{name:"offset",options:e,async fn(i){const{x:r,y:a}=i,l=await async function(e,i){const{placement:r,platform:a,elements:l}=e,s=await(null==a.isRTL?void 0:a.isRTL(l.floating)),c=n(r),f=t(r),m="x"===o(r),u=["left","top"].includes(c)?-1:1,g=s&&m?-1:1,d="function"==typeof i?i(e):i;let{mainAxis:p,crossAxis:h,alignmentAxis:y}="number"==typeof d?{mainAxis:d,crossAxis:0,alignmentAxis:null}:{mainAxis:0,crossAxis:0,alignmentAxis:null,...d};return f&&"number"==typeof y&&(h="end"===f?-1*y:y),m?{x:h*g,y:p*u}:{x:p*u,y:h*g}}(i,e);return{x:r+l.x,y:a+l.y,data:l}}}};function L(t){return"x"===t?"y":"x"}const k=function(t){return void 0===t&&(t={}),{name:"shift",options:t,async fn(e){const{x:i,y:r,placement:a}=e,{mainAxis:l=!0,crossAxis:c=!1,limiter:f={fn:t=>{let{x:e,y:n}=t;return{x:e,y:n}}},...u}=t,g={x:i,y:r},d=await s(e,u),p=o(n(a)),h=L(p);let y=g[p],x=g[h];if(l){const t="y"===p?"bottom":"right";y=m(y+d["y"===p?"top":"left"],y,y-d[t])}if(c){const t="y"===h?"bottom":"right";x=m(x+d["y"===h?"top":"left"],x,x-d[t])}const w=f.fn({...e,[p]:y,[h]:x});return{...w,data:{x:w.x-i,y:w.y-r}}}}},O=function(t){return void 0===t&&(t={}),{options:t,fn(e){const{x:i,y:r,placement:a,rects:l,middlewareData:s}=e,{offset:c=0,mainAxis:f=!0,crossAxis:m=!0}=t,u={x:i,y:r},g=o(a),d=L(g);let p=u[g],h=u[d];const y="function"==typeof c?c(e):c,x="number"==typeof y?{mainAxis:y,crossAxis:0}:{mainAxis:0,crossAxis:0,...y};if(f){const t="y"===g?"height":"width",e=l.reference[g]-l.floating[t]+x.mainAxis,n=l.reference[g]+l.reference[t]-x.mainAxis;p<e?p=e:p>n&&(p=n)}if(m){var w,v;const t="y"===g?"width":"height",e=["top","left"].includes(n(a)),o=l.reference[d]-l.floating[t]+(e&&(null==(w=s.offset)?void 0:w[d])||0)+(e?0:x.crossAxis),i=l.reference[d]+l.reference[t]+(e?0:(null==(v=s.offset)?void 0:v[d])||0)-(e?x.crossAxis:0);h<o?h=o:h>i&&(h=i)}return{[g]:p,[d]:h}}}},B=function(e){return void 0===e&&(e={}),{name:"size",options:e,async fn(i){const{placement:r,rects:a,platform:l,elements:m}=i,{apply:u=(()=>{}),...g}=e,d=await s(i,g),p=n(r),h=t(r),y="x"===o(r),{width:x,height:w}=a.floating;let v,b;"top"===p||"bottom"===p?(v=p,b=h===(await(null==l.isRTL?void 0:l.isRTL(m.floating))?"start":"end")?"left":"right"):(b=p,v="end"===h?"top":"bottom");const A=w-d[v],R=x-d[b],P=!i.middlewareData.shift;let E=A,T=R;if(y){const t=x-d.left-d.right;T=h||P?c(R,t):t}else{const t=w-d.top-d.bottom;E=h||P?c(A,t):t}if(P&&!h){const t=f(d.left,0),e=f(d.right,0),n=f(d.top,0),o=f(d.bottom,0);y?T=x-2*(0!==t||0!==e?t+e:f(d.left,d.right)):E=w-2*(0!==n||0!==o?n+o:f(d.top,d.bottom))}await u({...i,availableWidth:T,availableHeight:E});const D=await l.getDimensions(m.floating);return x!==D.width||w!==D.height?{reset:{rects:!0}}:{}}}};
+
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -1445,15 +1444,11 @@ var __webpack_exports__ = {};
 (() => {
 var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _floating_ui_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
-/* harmony import */ var focus_trap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
-/* harmony import */ var tabbable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
+/* harmony import */ var _floating_ui_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var focus_trap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var tabbable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
 
 
-
-
-//https://github.com/focus-trap/focus-trap
-//https://github.com/focus-trap/focus-trap/blob/master/docs/js/default.js
 
 class AccessibilityCheckerDisableHTML {
   /**
@@ -1539,7 +1534,6 @@ class AccessibilityCheckerHighlight {
     this.descriptionCloseButton = document.querySelector('.edac-highlight-panel-description-close');
     this.issues = null;
     this.currentButtonIndex = 0;
-    this.descriptionTimeout;
     this.urlParameter = this.get_url_parameter('edac');
     this.currentIssueStatus = null;
     this.tooltips = [];
@@ -1557,10 +1551,6 @@ class AccessibilityCheckerHighlight {
    * and managing the initial state of the panel based on the URL parameter.
    */
   init() {
-    // Set focus highlight on buttons
-    //this.highlightButtonFocus();
-    //this.highlightButtonFocusOut();
-
     // Add event listeners for 'next' and 'previous' buttons
     this.nextButton.addEventListener('click', event => {
       this.highlightFocusNext();
@@ -1811,7 +1801,6 @@ class AccessibilityCheckerHighlight {
    */
 
   showIssue = id => {
-    console.log(id);
     this.removeSelectedClasses();
     if (id === undefined) {
       return;
@@ -1841,23 +1830,6 @@ class AccessibilityCheckerHighlight {
     }
     this.description(id);
     this.panelDescriptionFocusTrap.activate();
-  };
-
-  /**
-   * This function removes the classes that indicates a button or element are selected 
-   */
-  removeSelectedClasses = () => {
-    //remove selected class from previously selected buttons
-    const selectedButtons = document.querySelectorAll('.edac-highlight-btn-selected');
-    selectedButtons.forEach(selectedButton => {
-      selectedButton.classList.remove('edac-highlight-btn-selected');
-    });
-
-    //remove selected class from previously selected elements
-    const selectedElements = document.querySelectorAll('.edac-highlight-element-selected');
-    selectedElements.forEach(selectedElement => {
-      selectedElement.classList.remove('edac-highlight-element-selected');
-    });
   };
 
   /**
@@ -1920,6 +1892,22 @@ class AccessibilityCheckerHighlight {
     this.closePanel.removeEventListener('click', this.panelControlsFocusTrap.deactivate);
     this.panelToggle.focus();
   }
+
+  /**
+   * This function removes the classes that indicates a button or element are selected 
+   */
+  removeSelectedClasses = () => {
+    //remove selected class from previously selected buttons
+    const selectedButtons = document.querySelectorAll('.edac-highlight-btn-selected');
+    selectedButtons.forEach(selectedButton => {
+      selectedButton.classList.remove('edac-highlight-btn-selected');
+    });
+    //remove selected class from previously selected elements
+    const selectedElements = document.querySelectorAll('.edac-highlight-element-selected');
+    selectedElements.forEach(selectedElement => {
+      selectedElement.classList.remove('edac-highlight-element-selected');
+    });
+  };
 
   /**
    * This function displays the description of the issue.
@@ -2005,7 +1993,6 @@ class AccessibilityCheckerHighlight {
    * This function toggles the code container.
    */
   codeToggle() {
-    this.cancelDescriptionTimeout();
     if (this.codeContainer.style.display === 'none' || this.codeContainer.style.display === '') {
       this.codeContainer.style.display = 'block';
       this.codeButton.setAttribute('aria-expanded', 'true');
