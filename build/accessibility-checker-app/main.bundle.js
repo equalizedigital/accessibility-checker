@@ -1533,7 +1533,7 @@ class AccessibilityCheckerHighlight {
     this.panelControls = document.querySelector('#edac-highlight-panel-controls');
     this.descriptionCloseButton = document.querySelector('.edac-highlight-panel-description-close');
     this.issues = null;
-    this.currentButtonIndex = 0;
+    this.currentButtonIndex = null;
     this.urlParameter = this.get_url_parameter('edac');
     this.currentIssueStatus = null;
     this.tooltips = [];
@@ -1760,7 +1760,7 @@ class AccessibilityCheckerHighlight {
 				<button class="edac-highlight-panel-description-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-description-title"></div>
 				<div class="edac-highlight-panel-description-content"></div>
-				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code tabindex="0"></code></div>			
+				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
 			</div>
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
@@ -1786,7 +1786,11 @@ class AccessibilityCheckerHighlight {
    * This function highlights the next element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
    */
   highlightFocusNext = () => {
-    this.currentButtonIndex = (this.currentButtonIndex + 1) % this.issues.length;
+    if (this.currentButtonIndex == null) {
+      this.currentButtonIndex = 0;
+    } else {
+      this.currentButtonIndex = (this.currentButtonIndex + 1) % this.issues.length;
+    }
     const id = this.issues[this.currentButtonIndex]['id'];
     this.showIssue(id);
   };
@@ -1795,7 +1799,11 @@ class AccessibilityCheckerHighlight {
    * This function highlights the previous element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
    */
   highlightFocusPrevious = () => {
-    this.currentButtonIndex = (this.currentButtonIndex - 1 + this.issues.length) % this.issues.length;
+    if (this.currentButtonIndex == null) {
+      this.currentButtonIndex = this.issues.length - 1;
+    } else {
+      this.currentButtonIndex = (this.currentButtonIndex - 1 + this.issues.length) % this.issues.length;
+    }
     const id = this.issues[this.currentButtonIndex]['id'];
     this.showIssue(id);
   };
@@ -1831,9 +1839,7 @@ class AccessibilityCheckerHighlight {
     this.removeSelectedClasses();
     if (id === undefined) {
       return;
-      //id = this.issues[0]['id']; TODO: show first item?
     }
-
     this.currentButtonIndex = this.issues.findIndex(issue => issue.id == id);
     const issueElement = document.querySelector(`[data-id="${id}"]`);
     const element = document.querySelector(`[data-element-id="${id}"]`);
@@ -1848,18 +1854,19 @@ class AccessibilityCheckerHighlight {
 
         if (!this.checkVisibility(issueElement) || !this.checkVisibility(element)) {
           this.currentIssueStatus = 'The element is not visible. Try disabling styles.';
-          console.log(`Element with id ${id} is not visible!`);
+          //TODO: console.log(`Element with id ${id} is not visible!`);
         } else {
           this.currentIssueStatus = null;
         }
       } else {
         this.currentIssueStatus = 'The element is not focusable. Try disabling styles.';
-        console.log(`Element with id ${id} is not focusable!`);
+        //TODO: console.log(`Element with id ${id} is not focusable!`);
       }
     } else {
       this.currentIssueStatus = 'The element was not found on the page.';
-      console.log(`Element with id ${id} not found in the document!`);
+      //TODO: console.log(`Element with id ${id} not found in the document!`);
     }
+
     this.descriptionOpen(id);
   };
 
