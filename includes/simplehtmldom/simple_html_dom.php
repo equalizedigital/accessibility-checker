@@ -589,13 +589,13 @@ class simple_html_dom_node
 			$nodes = $this->children;
 		} elseif ($parent_cmd === '+'
 			&& $this->parent
-			&& in_array($this, $this->parent->children)) { // Next-Sibling Combinator
+			&& in_array($this, $this->parent->children, true)) { // Next-Sibling Combinator
 				$index = array_search($this, $this->parent->children, true) + 1;
 				if ($index < count($this->parent->children))
 					$nodes[] = $this->parent->children[$index];
 		} elseif ($parent_cmd === '~'
 			&& $this->parent
-			&& in_array($this, $this->parent->children)) { // Subsequent Sibling Combinator
+			&& in_array($this, $this->parent->children, true)) { // Subsequent Sibling Combinator
 				$index = array_search($this, $this->parent->children, true);
 				$nodes = array_slice($this->parent->children, $index);
 		}
