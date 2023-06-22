@@ -9,6 +9,28 @@
   ],
   "creatorBuild" : "34484",
   "files" : {
+    "\/.configs\/webpack.config.admin.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/.configs\/webpack.config.admin-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/.configs\/webpack.config.app.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/.configs\/webpack.config.app-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
     "\/.github\/workflows\/develop.yml" : {
       "cB" : 0,
       "ft" : 8192,
@@ -382,28 +404,6 @@
       "sC" : 3,
       "tS" : 0
     },
-    "\/assets\/js\/accessibility-checker-min.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 1,
-      "oA" : 0,
-      "oAP" : "\/assets\/js\/accessibility-checker-min-min.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/assets\/js\/accessibility-checker.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 1,
-      "oA" : 0,
-      "oAP" : "\/assets\/js\/accessibility-checker-min.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
     "\/assets\/sass\/_helpers.scss" : {
       "aP" : 0,
       "bl" : 0,
@@ -449,20 +449,71 @@
       "pg" : 0,
       "sct" : 1
     },
-    "\/assets\/sass\/accessibility-checker.scss" : {
-      "aP" : 0,
+    "\/build\/accessibility-checker-app\/css\/main.css" : {
+      "aP" : 1,
       "bl" : 0,
+      "ci" : 0,
       "co" : 0,
-      "dP" : 10,
-      "ec" : 1,
-      "ft" : 4,
+      "ft" : 16,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/assets\/sass\/accessibility-checker.css",
+      "oAP" : "\/build\/accessibility-checker-app\/css\/main-min.css",
       "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "sct" : 1
+      "pg" : 0
+    },
+    "\/build\/accessibility-checker-app\/img\/edac-emblem.png" : {
+      "ft" : 32768,
+      "iS" : 9461,
+      "oA" : 0,
+      "oAP" : "\/build\/accessibility-checker-app\/img\/edac-emblem.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/build\/accessibility-checker-app\/img\/highlight-icon-error.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/build\/accessibility-checker-app\/img\/highlight-icon-error.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/build\/accessibility-checker-app\/img\/highlight-icon-ignored.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/build\/accessibility-checker-app\/img\/highlight-icon-ignored.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/build\/accessibility-checker-app\/img\/highlight-icon-warning.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/build\/accessibility-checker-app\/img\/highlight-icon-warning.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/build\/accessibility-checker-app\/main.bundle.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/build\/accessibility-checker-app\/main.bundle-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
     },
     "\/composer.json" : {
       "ft" : 524288,
@@ -478,6 +529,14 @@
       "hM" : 0,
       "oA" : 0,
       "oAP" : "\/composer.lock",
+      "oF" : 0
+    },
+    "\/dist\/accessibility-checker.zip" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/accessibility-checker.zip",
       "oF" : 0
     },
     "\/edac_log.log" : {
@@ -1059,6 +1118,22 @@
       "oAP" : "\/LICENSE.txt",
       "oF" : 0
     },
+    "\/package-lock.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/package-lock-min.json",
+      "oF" : 0,
+      "oO" : 0,
+      "oS" : 1
+    },
+    "\/package.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/package-min.json",
+      "oF" : 0,
+      "oO" : 0,
+      "oS" : 1
+    },
     "\/partials\/custom-meta-box.php" : {
       "cB" : 0,
       "ft" : 8192,
@@ -1106,6 +1181,115 @@
       "oA" : 0,
       "oAP" : "\/README.txt",
       "oF" : 0
+    },
+    "\/src\/accessibility-checker-app\/images\/edac-emblem.png" : {
+      "ft" : 32768,
+      "iS" : 9461,
+      "oA" : 0,
+      "oAP" : "\/src\/accessibility-checker-app\/images\/edac-emblem.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/src\/accessibility-checker-app\/images\/highlight-icon-error.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/src\/accessibility-checker-app\/images\/highlight-icon-error.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/src\/accessibility-checker-app\/images\/highlight-icon-ignored.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/src\/accessibility-checker-app\/images\/highlight-icon-ignored.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/src\/accessibility-checker-app\/images\/highlight-icon-warning.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/src\/accessibility-checker-app\/images\/highlight-icon-warning.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/src\/accessibility-checker-app\/images\/ignore-icon.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/src\/accessibility-checker-app\/images\/ignore-icon.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/src\/accessibility-checker-app\/index.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/src\/accessibility-checker-app\/index-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/src\/accessibility-checker-app\/sass\/accessibility-checker.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "dP" : 10,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/src\/accessibility-checker-app\/sass\/accessibility-checker.css",
+      "oF" : 0,
+      "oS" : 0,
+      "pg" : 0,
+      "sct" : 1
+    },
+    "\/src\/globals\/sass\/_helpers.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "dP" : 10,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/src\/globals\/sass\/_helpers.css",
+      "oF" : 0,
+      "oS" : 0,
+      "pg" : 0,
+      "sct" : 1
+    },
+    "\/src\/globals\/sass\/_variables.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "dP" : 10,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/src\/globals\/sass\/_variables.css",
+      "oF" : 0,
+      "oS" : 0,
+      "pg" : 0,
+      "sct" : 1
     },
     "\/uninstall.php" : {
       "cB" : 0,
