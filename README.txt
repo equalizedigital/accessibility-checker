@@ -2,7 +2,7 @@
 Contributors: equalizedigital, alh0319, stevejonesdev, philwebs, roadwarriorwp
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
-Tested up to: 6.2
+Tested up to: 6.2.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -173,6 +173,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 
 == Changelog ==
+
+= 1.4.0 =
+Added: frontend issue highlighting
+Updated: simple html dom to use strict on seek call to fix issue with too much recursion with complicated CSS
+Added: description and warning for Post Types to be Checked
 
 = 1.3.28 =
 Fixed: enqueue error on empty post types
