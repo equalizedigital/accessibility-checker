@@ -11,3 +11,7 @@ edac_log.txt
 *.Trashes
 prepros-6.config
 vendor
+node_modules
+#build
+dist/*.zip
+admin.bundle.not_currently_used.js
