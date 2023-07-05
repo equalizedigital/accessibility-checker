@@ -2,9 +2,15 @@
 @import "../../globals/sass/helpers";
 
 
-body.edac-app-disable-styles {
-    padding: .5rem (46px + 46px ) !important; //make sure button is visible
-    #wpadminbar { display: none !important; }
+body {
+    &.edac-app-disable-styles {
+        padding: .5rem (46px + 46px ) !important; //make sure button is visible
+        #wpadminbar { display: none !important; }
+    }
+
+    &.edac-app-wait * {
+        cursor: wait !important;
+    }
 }
 
 .edac-highlight{

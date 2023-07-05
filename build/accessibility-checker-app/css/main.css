@@ -4,6 +4,9 @@ body.edac-app-disable-styles {
 body.edac-app-disable-styles #wpadminbar {
   display: none !important;
 }
+body.edac-app-wait * {
+  cursor: wait !important;
+}
 
 .edac-highlight {
   all: unset;
