@@ -1393,14 +1393,6 @@
       "oAP" : "\/vendor\/composer\/LICENSE",
       "oF" : 0
     },
-    "\/vendor\/composer\/platform_check.php" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/vendor\/composer\/platform_check.php",
-      "oF" : 0
-    },
     "\/vendor\/freemius\/wordpress-sdk\/assets\/css\/admin\/account.css" : {
       "aP" : 1,
       "bl" : 0,
@@ -1942,6 +1934,14 @@
       "hM" : 0,
       "oA" : 0,
       "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/fs-essential-functions.php",
+      "oF" : 0
+    },
+    "\/vendor\/freemius\/wordpress-sdk\/includes\/fs-html-escaping-functions.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/vendor\/freemius\/wordpress-sdk\/includes\/fs-html-escaping-functions.php",
       "oF" : 0
     },
     "\/vendor\/freemius\/wordpress-sdk\/includes\/fs-plugin-info-dialog.php" : {

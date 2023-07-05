@@ -174,6 +174,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.4.1 =
+Updated: Freemius SDK to the latest version
+
 = 1.4.0 =
 Added: frontend issue highlighting
 Updated: simple html dom to use strict on seek call to fix issue with too much recursion with complicated CSS

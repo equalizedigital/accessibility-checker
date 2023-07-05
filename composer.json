@@ -8,5 +8,18 @@
     ],
     "require": {
         "freemius/wordpress-sdk": "*"
-    }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "freemius/wordpress-sdk",
+                "version": "2.5.10",
+                "dist": {
+                    "type": "zip",
+                    "url": "/tmp/wordpress-sdk-2.5.10.zip"
+                }
+            }
+        }
+    ]
 }
