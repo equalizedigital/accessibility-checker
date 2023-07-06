@@ -1944,6 +1944,9 @@ class AccessibilityCheckerHighlight {
     const selectedElements = document.querySelectorAll('.edac-highlight-element-selected');
     selectedElements.forEach(selectedElement => {
       selectedElement.classList.remove('edac-highlight-element-selected', 'edac-highlight-element-selected-min-width', 'edac-highlight-element-selected-min-height');
+      if (selectedElement.classList.length == 0) {
+        selectedElement.removeAttribute('class');
+      }
     });
   };
 

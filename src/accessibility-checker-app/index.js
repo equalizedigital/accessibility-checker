@@ -423,7 +423,7 @@ class AccessibilityCheckerHighlight {
 		}
 
 		const issue = this.issues.find(issue => issue.id == id);
- 		this.currentButtonIndex = this.issues.findIndex(issue => issue.id == id);
+		this.currentButtonIndex = this.issues.findIndex(issue => issue.id == id);
 		
 		const tooltip = issue.tooltip;
  		const element = issue.element;
@@ -566,6 +566,10 @@ class AccessibilityCheckerHighlight {
  				'edac-highlight-element-selected-min-width',
  				'edac-highlight-element-selected-min-height'
  			);
+
+			if(selectedElement.classList.length == 0){
+				selectedElement.removeAttribute('class');
+			}
 		});
 	}
 
