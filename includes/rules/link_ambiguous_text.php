@@ -45,7 +45,7 @@ function edac_rule_link_ambiguous_text( $content, $post ) {
 		$error_code = $a->outertext;
 
 		// check aria-label.
-		if ( $a->hasAttribute( 'aria-label' ) ) {
+		if ( $a->hasAttribute( 'aria-label' ) && '' !== $a->getAttribute( 'aria-label' ) ) {
 
 			$text = $a->getAttribute( 'aria-label' );
 			$error = edac_check_ambiguous_phrase( $text );
