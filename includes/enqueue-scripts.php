@@ -63,7 +63,7 @@ function edac_enqueue_scripts() {
 
 	$post_id = is_object( $post ) ? $post->ID : null;
 
-	if( $post_id && current_user_can( 'edit_post', $post_id ) ) {
+	if ( $post_id && current_user_can( 'edit_post', $post_id ) && ! is_customize_preview() ) {
 
 		wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/accessibility-checker-app/main.bundle.js', false, EDAC_VERSION, false );
 
@@ -87,6 +87,6 @@ function edac_enqueue_scripts() {
 			)
 		);
 
-	}		
+	}       
 
 }
