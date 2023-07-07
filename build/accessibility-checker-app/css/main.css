@@ -18,6 +18,13 @@ body.edac-app-disable-styles #wpadminbar {
   outline-offset: 5px !important;
   outline-color: magenta !important;
 }
+.edac-highlight-element-selected-min-width {
+  min-width: 25px !important;
+  display: inline-block !important;
+}
+.edac-highlight-element-selected-min-height {
+  min-height: 16px !important;
+}
 .edac-highlight-btn {
   all: unset;
   width: 46px !important;
