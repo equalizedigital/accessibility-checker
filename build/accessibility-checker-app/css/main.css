@@ -52,6 +52,10 @@ body.edac-app-disable-styles #wpadminbar {
 .edac-highlight-panel * {
   all: unset;
 }
+.edac-highlight-panel a:not(.edac-highlight-panel-description-reference) {
+  all: revert !important;
+  color: #ffffff !important;
+}
 .edac-highlight-panel-toggle {
   width: 50px !important;
   height: 50px !important;
