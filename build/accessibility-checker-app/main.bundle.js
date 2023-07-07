@@ -1622,7 +1622,7 @@ class AccessibilityCheckerHighlight {
     // Compare the outer HTML of the parsed element with all elements on the page
     const allElements = document.body.querySelectorAll('*');
     for (const element of allElements) {
-      if (element.outerHTML === firstParsedElement.outerHTML) {
+      if (element.outerHTML.replace(/\W/g, '') === firstParsedElement.outerHTML.replace(/\W/g, '')) {
         const tooltip = this.addTooltip(element, value, index);
         this.tooltips.push(tooltip);
         return element;
@@ -1643,9 +1643,11 @@ class AccessibilityCheckerHighlight {
     return new Promise(function (resolve, reject) {
       const xhr = new XMLHttpRequest();
       const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_script_vars.postID + '&nonce=' + edac_script_vars.nonce;
+      self.showWait(true);
       xhr.open('GET', url);
       xhr.onload = function () {
         if (xhr.status === 200) {
+          self.showWait(false);
           const response = JSON.parse(xhr.responseText);
           //console.log(response);
           if (true === response.success) {
@@ -1659,6 +1661,7 @@ class AccessibilityCheckerHighlight {
             //console.log(response);
           }
         } else {
+          self.showWait(false);
           console.log('Request failed.  Returned status of ' + xhr.status);
           reject({
             status: xhr.status,
@@ -1667,6 +1670,7 @@ class AccessibilityCheckerHighlight {
         }
       };
       xhr.onerror = function () {
+        self.showWait(false);
         reject({
           status: xhr.status,
           statusText: xhr.statusText
@@ -1677,18 +1681,23 @@ class AccessibilityCheckerHighlight {
   }
 
   /**
+   * This function toggles showing Wait
+   */
+  showWait(status = true) {
+    if (status) {
+      document.querySelector('body').classList.add('edac-app-wait');
+    } else {
+      document.querySelector('body').classList.remove('edac-app-wait');
+    }
+  }
+
+  /**
    * This function removes the highlight/tooltip buttons and runs cleanups for each.
    */
   removeHighlightButtons() {
     this.tooltips.forEach(item => {
       //find the associated element 
       const id = item.tooltip.dataset.id;
-
-      //remove the data-element-id added we created the tooltip/button
-      const element = document.querySelector(`[data-element-id="${id}"]`);
-      if (element) {
-        element.removeAttribute('data-element-id');
-      }
 
       //remove click listener
       item.tooltip.removeEventListener('click', item.listeners.onClick);
@@ -1719,9 +1728,6 @@ class AccessibilityCheckerHighlight {
 
     //add data-id to the tooltip/button so we can find it later.
     tooltip.dataset.id = value.id;
-
-    //add data-element-id to the element so we can find it later.
-    element.dataset.elementId = value.id;
     const onClick = e => {
       const id = e.currentTarget.dataset.id;
       this.showIssue(id);
@@ -1778,7 +1784,7 @@ class AccessibilityCheckerHighlight {
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
-				<div class="edac-highlight-panel-controls-summary"></div>
+				<div class="edac-highlight-panel-controls-summary">Loading...</div>
 				<div class="edac-highlight-panel-controls-buttons">
 					<div>
 						<button id="edac-highlight-previous"><span aria-hidden="true">« </span>Previous</button>
@@ -1853,19 +1859,26 @@ class AccessibilityCheckerHighlight {
     if (id === undefined) {
       return;
     }
+    const issue = this.issues.find(issue => issue.id == id);
     this.currentButtonIndex = this.issues.findIndex(issue => issue.id == id);
-    const issueElement = document.querySelector(`[data-id="${id}"]`);
-    const element = document.querySelector(`[data-element-id="${id}"]`);
-    if (issueElement && element) {
-      issueElement.classList.add('edac-highlight-btn-selected');
+    const tooltip = issue.tooltip;
+    const element = issue.element;
+    if (tooltip && element) {
+      tooltip.classList.add('edac-highlight-btn-selected');
       element.classList.add('edac-highlight-element-selected');
+      if (element.offsetWidth < 20) {
+        element.classList.add('edac-highlight-element-selected-min-width');
+      }
+      if (element.offsetHeight < 5) {
+        element.classList.add('edac-highlight-element-selected-min-height');
+      }
       element.scrollIntoView({
         block: 'center'
       });
-      if ((0,tabbable__WEBPACK_IMPORTED_MODULE_2__.isFocusable)(issueElement)) {
+      if ((0,tabbable__WEBPACK_IMPORTED_MODULE_2__.isFocusable)(tooltip)) {
         //issueElement.focus();
 
-        if (!this.checkVisibility(issueElement) || !this.checkVisibility(element)) {
+        if (!this.checkVisibility(tooltip) || !this.checkVisibility(element)) {
           this.currentIssueStatus = 'The element is not visible. Try disabling styles.';
           //TODO: console.log(`Element with id ${id} is not visible!`);
         } else {
@@ -1918,7 +1931,12 @@ class AccessibilityCheckerHighlight {
 
       this.issues = json;
       json.forEach(function (value, index) {
-        const matchedElement = this.findElement(value, index);
+        const element = this.findElement(value, index);
+        if (element !== null) {
+          const tooltip = this.addTooltip(element, value, index);
+          this.issues[index].tooltip = tooltip.tooltip;
+          this.issues[index].element = element;
+        }
       }.bind(this));
       this.showIssueCount();
       if (id !== undefined) {
@@ -1955,7 +1973,10 @@ class AccessibilityCheckerHighlight {
     //remove selected class from previously selected elements
     const selectedElements = document.querySelectorAll('.edac-highlight-element-selected');
     selectedElements.forEach(selectedElement => {
-      selectedElement.classList.remove('edac-highlight-element-selected');
+      selectedElement.classList.remove('edac-highlight-element-selected', 'edac-highlight-element-selected-min-width', 'edac-highlight-element-selected-min-height');
+      if (selectedElement.classList.length == 0) {
+        selectedElement.removeAttribute('class');
+      }
     });
   };
 
