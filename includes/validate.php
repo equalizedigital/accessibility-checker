@@ -239,7 +239,7 @@ function edac_get_content( $post ) {
 	// sanity check: confirm the permalink url is on this site.
 	if ( $parsed_url['host'] === $parsed_site_url['host'] ) {
 
-		if ( $parsed_url['query'] ) {
+		if ( array_key_exists( 'query', $parsed_url ) && $parsed_url['query'] ) {
 			// the permalink structure is using a querystring.
 			$url = get_the_permalink( $post->ID ) . '&c=' . time();
 

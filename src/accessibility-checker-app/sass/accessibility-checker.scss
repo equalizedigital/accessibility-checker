@@ -7,10 +7,10 @@ body.edac-app-disable-styles {
     #wpadminbar { display: none !important; }
 }
 
-.edac-highlight{
+.edac-highlight {
 
     all: unset;
-
+   
     * {
         all: unset;
     }
@@ -19,10 +19,19 @@ body.edac-app-disable-styles {
     display: inline-block;
     clear: both;
 
+   
     &-element-selected{
         outline: dashed 4px transparent !important;
         outline-offset: 5px !important;
         outline-color: magenta !important;
+
+        &-min-width {
+            min-width: 25px !important;
+            display: inline-block !important;    
+        }
+        &-min-height {
+            min-height: 16px !important;
+        }
     }
 
     &-btn{
@@ -56,6 +65,11 @@ body.edac-app-disable-styles {
             all: unset;
         }
 
+        a:not(.edac-highlight-panel-description-reference) { 
+            all: revert !important; 
+            color: $color-white !important;
+        }
+       
         width: 400px !important;
         max-width: 400px !important;
         position: fixed !important;
