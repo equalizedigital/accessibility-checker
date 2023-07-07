@@ -183,7 +183,11 @@ class AccessibilityCheckerHighlight {
 
 		for (const element of allElements) {
 
-			if (element.outerHTML === firstParsedElement.outerHTML) {
+			if (element.outerHTML.replace(/\W/g, '') === firstParsedElement.outerHTML.replace(/\W/g, '')) {
+
+				const tooltip = this.addTooltip(element, value, index);
+				this.tooltips.push(tooltip);
+
 				return element;
 			}
 		}
