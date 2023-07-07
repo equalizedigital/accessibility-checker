@@ -88,7 +88,14 @@ class AccessibilityCheckerHighlight {
 	/**
 	 * Constructor
 	 */
-	constructor() {
+	constructor(settings = {}) {
+
+		const defaultSettings = {
+			showIgnored : false
+		}
+
+		this.settings = { ...defaultSettings, ...settings };
+
 		this.addHighlightPanel();
 		this.nextButton = document.querySelector('#edac-highlight-next');
 		this.previousButton = document.querySelector('#edac-highlight-previous');
@@ -202,7 +209,7 @@ class AccessibilityCheckerHighlight {
 	 * Note: This function assumes that `edac_script_vars` is a global variable containing necessary data.
 	 */
 	highlightAjax() {
-		var self = this;
+		const self = this;
 		return new Promise(function (resolve, reject) {
 			const xhr = new XMLHttpRequest();
 			const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_script_vars.postID + '&nonce=' + edac_script_vars.nonce;
@@ -220,7 +227,14 @@ class AccessibilityCheckerHighlight {
 					//console.log(response);
 					if (true === response.success) {
 						const response_json = JSON.parse(response.data);
-						resolve(response_json);
+
+						if (self.settings.showIgnored) {
+							resolve(response_json);
+						} else {
+							resolve(
+								response_json.filter(item => item.rule_type !== 'ignored')
+							);
+						}
 
 					} else {
 						//console.log(response);
@@ -388,7 +402,7 @@ class AccessibilityCheckerHighlight {
 	 * This function highlights the next element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
 	 */
 	highlightFocusNext = () => {
-		if(this.currentButtonIndex == null){
+		if (this.currentButtonIndex == null) {
 			this.currentButtonIndex = 0;
 		} else {
 			this.currentButtonIndex = (this.currentButtonIndex + 1) % this.issues.length;
@@ -402,7 +416,7 @@ class AccessibilityCheckerHighlight {
 	 * This function highlights the previous element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
 	 */
 	highlightFocusPrevious = () => {
-		if(this.currentButtonIndex == null){
+		if (this.currentButtonIndex == null) {
 			this.currentButtonIndex = this.issues.length - 1;
 		} else {
 			this.currentButtonIndex = (this.currentButtonIndex - 1 + this.issues.length) % this.issues.length;
@@ -616,7 +630,7 @@ class AccessibilityCheckerHighlight {
 			const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
 			const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
 			const descriptionCode = document.querySelector('.edac-highlight-panel-description-code code');
-		
+
 			let content = '';
 
 			// Get the index and total
