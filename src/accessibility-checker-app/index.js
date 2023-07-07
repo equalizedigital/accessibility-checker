@@ -285,17 +285,17 @@ class AccessibilityCheckerHighlight {
 
 		this.tooltips.forEach((item) => {
 
-			//find the associated element 
-			const id = item.tooltip.dataset.id;
-
 			//remove click listener
 			item.tooltip.removeEventListener('click', item.listeners.onClick);
 
 			//remove position/resize listener: https://floating-ui.com/docs/autoUpdate
 			item.listeners.cleanup();
 
-			//remove tooltip
-			item.tooltip.remove();
+		});
+
+		const buttons = document.querySelectorAll('.edac-highlight-btn');
+		buttons.forEach((button) => {
+			button.remove();
 		});
 
 	}
