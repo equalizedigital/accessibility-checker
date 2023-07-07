@@ -20,7 +20,7 @@ function edac_rule_img_animated_gif( $content, $post ) {
 	$errors = array();
 
 	// check for image gifs.
-	$gifs = $dom->find( 'img[src$=gif]' );
+	$gifs = $dom->find( 'img[src$=.gif],img[src*=.gif?],img[src*=.gif#]' );
 	if ( $gifs ) {
 		foreach ( $gifs as $gif ) {
 
@@ -33,7 +33,7 @@ function edac_rule_img_animated_gif( $content, $post ) {
 	}
 
 	// check for image Webp.
-	$webps = $dom->find( 'img[src$=webp]' );
+	$webps = $dom->find( 'img[src$=.webp],img[src*=.webp?],img[src*=.webp#]' );
 	if ( $webps ) {
 		foreach ( $webps as $webp ) {
 
