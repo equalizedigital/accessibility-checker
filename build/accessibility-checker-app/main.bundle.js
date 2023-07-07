@@ -1631,12 +1631,15 @@ class AccessibilityCheckerHighlight {
    * Note: This function assumes that `edac_script_vars` is a global variable containing necessary data.
    */
   highlightAjax() {
+    var self = this;
     return new Promise(function (resolve, reject) {
       const xhr = new XMLHttpRequest();
       const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_script_vars.postID + '&nonce=' + edac_script_vars.nonce;
+      self.showWait(true);
       xhr.open('GET', url);
       xhr.onload = function () {
         if (xhr.status === 200) {
+          self.showWait(false);
           const response = JSON.parse(xhr.responseText);
           //console.log(response);
           if (true === response.success) {
@@ -1646,6 +1649,7 @@ class AccessibilityCheckerHighlight {
             //console.log(response);
           }
         } else {
+          self.showWait(false);
           console.log('Request failed.  Returned status of ' + xhr.status);
           reject({
             status: xhr.status,
@@ -1654,6 +1658,7 @@ class AccessibilityCheckerHighlight {
         }
       };
       xhr.onerror = function () {
+        self.showWait(false);
         reject({
           status: xhr.status,
           statusText: xhr.statusText
@@ -1661,6 +1666,17 @@ class AccessibilityCheckerHighlight {
       };
       xhr.send();
     });
+  }
+
+  /**
+   * This function toggles showing Wait
+   */
+  showWait(status = true) {
+    if (status) {
+      document.querySelector('body').classList.add('edac-app-wait');
+    } else {
+      document.querySelector('body').classList.remove('edac-app-wait');
+    }
   }
 
   /**
@@ -1756,7 +1772,7 @@ class AccessibilityCheckerHighlight {
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
-				<div class="edac-highlight-panel-controls-summary"></div>
+				<div class="edac-highlight-panel-controls-summary">Loading...</div>
 				<div class="edac-highlight-panel-controls-buttons">
 					<div>
 						<button id="edac-highlight-previous"><span aria-hidden="true">« </span>Previous</button>
