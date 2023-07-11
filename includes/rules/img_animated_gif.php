@@ -20,7 +20,7 @@ function edac_rule_img_animated_gif( $content, $post ) {
 	$errors = array();
 
 	// check for image gifs.
-	$gifs = $dom->find( 'img[src$=gif]' );
+	$gifs = $dom->find( 'img[src$=.gif],img[src*=.gif?],img[src*=.gif#]' );
 	if ( $gifs ) {
 		foreach ( $gifs as $gif ) {
 
@@ -29,6 +29,19 @@ function edac_rule_img_animated_gif( $content, $post ) {
 			}
 
 			$errors[] = $gif->outertext;
+		}
+	}
+
+	// check for image Webp.
+	$webps = $dom->find( 'img[src$=.webp],img[src*=.webp?],img[src*=.webp#]' );
+	if ( $webps ) {
+		foreach ( $webps as $webp ) {
+
+			if ( edac_img_webp_is_animated( $webp->getAttribute( 'src' ) ) == false ) {
+				continue;
+			}
+
+			$errors[] = $webp->outertext;
 		}
 	}
 
@@ -84,4 +97,28 @@ function edac_img_gif_is_animated( $filename ) {
 
 	fclose( $fh );
 	return $count > 1;
+}
+
+/**
+ * Checks if a webp image is animated
+ *
+ * @param  string $filename The filename.
+ * @return bool
+ */
+function edac_img_webp_is_animated( $filename ) {
+	if ( ! ( $fh = @fopen( $filename, 'rb' ) ) ) {
+		return false;
+	}
+	
+	// See: https://stackoverflow.com/questions/45190469/how-to-identify-whether-webp-image-is-static-or-animated.
+	$result = false;
+	fseek( $fh, 12 );
+	if ( 'VP8X' === fread( $fh, 4 ) ) {
+		fseek( $fh, 20 );
+		$byte = fread( $fh, 1 );
+		$result = ( ( ord( $byte ) >> 1 ) & 1 ) ? true : false;
+	}
+	fclose( $fh );
+	return $result;
+
 }
