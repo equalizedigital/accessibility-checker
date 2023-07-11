@@ -174,6 +174,20 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.4.2 =
+Added: frontend highlighting loading message
+Removed: frontend highlighting ignored issues
+Removed: frontend highlighting from customizer
+Fixed: frontend highlighting link styles
+Updated: frontend highlighing to allow elements that violate multiple rules
+Fixed: frontend highlighting elements not highlighting after closing the controls panel
+Fixed: frontend highlighting not finding images due to extra whitespace
+Updated: ambiguous text check to ignore svgs and icons
+Updated: animated gif check include animated webP images
+Updated: animated gif check to disregard url parameters
+Fixed: undefined array key "query"
+Fixed: Reading level icon logic
+
 = 1.4.1 =
 Updated: Freemius SDK to the latest version
 

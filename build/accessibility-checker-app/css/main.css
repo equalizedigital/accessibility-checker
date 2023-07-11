@@ -4,6 +4,9 @@ body.edac-app-disable-styles {
 body.edac-app-disable-styles #wpadminbar {
   display: none !important;
 }
+body.edac-app-wait * {
+  cursor: wait !important;
+}
 
 .edac-highlight {
   all: unset;
@@ -17,6 +20,13 @@ body.edac-app-disable-styles #wpadminbar {
   outline: dashed 4px transparent !important;
   outline-offset: 5px !important;
   outline-color: magenta !important;
+}
+.edac-highlight-element-selected-min-width {
+  min-width: 25px !important;
+  display: inline-block !important;
+}
+.edac-highlight-element-selected-min-height {
+  min-height: 16px !important;
 }
 .edac-highlight-btn {
   all: unset;
@@ -51,6 +61,10 @@ body.edac-app-disable-styles #wpadminbar {
 }
 .edac-highlight-panel * {
   all: unset;
+}
+.edac-highlight-panel a:not(.edac-highlight-panel-description-reference) {
+  all: revert !important;
+  color: #ffffff !important;
 }
 .edac-highlight-panel-toggle {
   width: 50px !important;

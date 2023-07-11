@@ -88,7 +88,14 @@ class AccessibilityCheckerHighlight {
 	/**
 	 * Constructor
 	 */
-	constructor() {
+	constructor(settings = {}) {
+
+		const defaultSettings = {
+			showIgnored : false
+		}
+
+		this.settings = { ...defaultSettings, ...settings };
+
 		this.addHighlightPanel();
 		this.nextButton = document.querySelector('#edac-highlight-next');
 		this.previousButton = document.querySelector('#edac-highlight-previous');
@@ -183,7 +190,7 @@ class AccessibilityCheckerHighlight {
 
 		for (const element of allElements) {
 
-			if (element.outerHTML === firstParsedElement.outerHTML) {
+			if (element.outerHTML.replace(/\W/g, '') === firstParsedElement.outerHTML.replace(/\W/g, '')) {
 
 				const tooltip = this.addTooltip(element, value, index);
 				this.tooltips.push(tooltip);
@@ -202,24 +209,40 @@ class AccessibilityCheckerHighlight {
 	 * Note: This function assumes that `edac_script_vars` is a global variable containing necessary data.
 	 */
 	highlightAjax() {
+		const self = this;
 		return new Promise(function (resolve, reject) {
 			const xhr = new XMLHttpRequest();
 			const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_script_vars.postID + '&nonce=' + edac_script_vars.nonce;
 
+			self.showWait(true);
+			
 			xhr.open('GET', url);
 
 			xhr.onload = function () {
 				if (xhr.status === 200) {
+			
+					self.showWait(false);
+			
 					const response = JSON.parse(xhr.responseText);
 					//console.log(response);
 					if (true === response.success) {
 						const response_json = JSON.parse(response.data);
-						resolve(response_json);
+
+						if (self.settings.showIgnored) {
+							resolve(response_json);
+						} else {
+							resolve(
+								response_json.filter(item => item.rule_type !== 'ignored')
+							);
+						}
 
 					} else {
 						//console.log(response);
 					}
 				} else {
+			
+					self.showWait(false);
+			
 					console.log('Request failed.  Returned status of ' + xhr.status);
 
 					reject({
@@ -230,6 +253,9 @@ class AccessibilityCheckerHighlight {
 			};
 
 			xhr.onerror = function () {
+
+				self.showWait(false);
+			
 				reject({
 					status: xhr.status,
 					statusText: xhr.statusText
@@ -241,20 +267,23 @@ class AccessibilityCheckerHighlight {
 	}
 
 	/**
+	 * This function toggles showing Wait
+	 */
+	showWait( status = true ) {
+		if( status ){
+			document.querySelector('body').classList.add('edac-app-wait');
+		} else {
+			document.querySelector('body').classList.remove('edac-app-wait');
+		}
+	}
+
+
+	/**
 	 * This function removes the highlight/tooltip buttons and runs cleanups for each.
 	 */
 	removeHighlightButtons() {
 
 		this.tooltips.forEach((item) => {
-
-			//find the associated element 
-			const id = item.tooltip.dataset.id;
-
-			//remove the data-element-id added we created the tooltip/button
-			const element = document.querySelector(`[data-element-id="${id}"]`);
-			if (element) {
-				element.removeAttribute('data-element-id');
-			}
 
 			//remove click listener
 			item.tooltip.removeEventListener('click', item.listeners.onClick);
@@ -262,8 +291,11 @@ class AccessibilityCheckerHighlight {
 			//remove position/resize listener: https://floating-ui.com/docs/autoUpdate
 			item.listeners.cleanup();
 
-			//remove tooltip
-			item.tooltip.remove();
+		});
+
+		const buttons = document.querySelectorAll('.edac-highlight-btn');
+		buttons.forEach((button) => {
+			button.remove();
 		});
 
 	}
@@ -287,10 +319,6 @@ class AccessibilityCheckerHighlight {
 
 		//add data-id to the tooltip/button so we can find it later.
 		tooltip.dataset.id = value.id;
-
-		//add data-element-id to the element so we can find it later.
-		element.dataset.elementId = value.id;
-
 
 		const onClick = (e) => {
 			const id = e.currentTarget.dataset.id;
@@ -353,7 +381,7 @@ class AccessibilityCheckerHighlight {
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
-				<div class="edac-highlight-panel-controls-summary"></div>
+				<div class="edac-highlight-panel-controls-summary">Loading...</div>
 				<div class="edac-highlight-panel-controls-buttons">
 					<div>
 						<button id="edac-highlight-previous"><span aria-hidden="true">« </span>Previous</button>
@@ -374,7 +402,7 @@ class AccessibilityCheckerHighlight {
 	 * This function highlights the next element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
 	 */
 	highlightFocusNext = () => {
-		if(this.currentButtonIndex == null){
+		if (this.currentButtonIndex == null) {
 			this.currentButtonIndex = 0;
 		} else {
 			this.currentButtonIndex = (this.currentButtonIndex + 1) % this.issues.length;
@@ -388,7 +416,7 @@ class AccessibilityCheckerHighlight {
 	 * This function highlights the previous element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
 	 */
 	highlightFocusPrevious = () => {
-		if(this.currentButtonIndex == null){
+		if (this.currentButtonIndex == null) {
 			this.currentButtonIndex = this.issues.length - 1;
 		} else {
 			this.currentButtonIndex = (this.currentButtonIndex - 1 + this.issues.length) % this.issues.length;
@@ -436,22 +464,31 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
+		const issue = this.issues.find(issue => issue.id == id);
 		this.currentButtonIndex = this.issues.findIndex(issue => issue.id == id);
+		
+		const tooltip = issue.tooltip;
+ 		const element = issue.element;
+ 		
+ 		if (tooltip && element) {
 
-		const issueElement = document.querySelector(`[data-id="${id}"]`);
-		const element = document.querySelector(`[data-element-id="${id}"]`);
+ 			tooltip.classList.add('edac-highlight-btn-selected');
+ 			element.classList.add('edac-highlight-element-selected');
 
-		if (issueElement && element) {
+ 			if(element.offsetWidth < 20){
+ 				element.classList.add('edac-highlight-element-selected-min-width');
+ 			}
 
-			issueElement.classList.add('edac-highlight-btn-selected');
-			element.classList.add('edac-highlight-element-selected');
+ 			if(element.offsetHeight < 5){
+ 				element.classList.add('edac-highlight-element-selected-min-height');
+ 			}
 
 			element.scrollIntoView({ block: 'center' });
 
-			if (isFocusable(issueElement)) {
+			if (isFocusable(tooltip)) {
 				//issueElement.focus();
 
-				if (!this.checkVisibility(issueElement) || !this.checkVisibility(element)) {
+				if (!this.checkVisibility(tooltip) || !this.checkVisibility(element)) {
 					this.currentIssueStatus = 'The element is not visible. Try disabling styles.';
 					//TODO: console.log(`Element with id ${id} is not visible!`);
 				} else {
@@ -513,7 +550,12 @@ class AccessibilityCheckerHighlight {
 
 				json.forEach(function (value, index) {
 
-					const matchedElement = this.findElement(value, index);
+					const element = this.findElement(value, index);
+					if(element !== null ){
+						const tooltip = this.addTooltip(element, value, index);
+						this.issues[index].tooltip = tooltip.tooltip;
+						this.issues[index].element = element;		
+					}
 
 				}.bind(this));
 
@@ -561,7 +603,15 @@ class AccessibilityCheckerHighlight {
 		//remove selected class from previously selected elements
 		const selectedElements = document.querySelectorAll('.edac-highlight-element-selected');
 		selectedElements.forEach((selectedElement) => {
-			selectedElement.classList.remove('edac-highlight-element-selected');
+		selectedElement.classList.remove(
+ 				'edac-highlight-element-selected',
+ 				'edac-highlight-element-selected-min-width',
+ 				'edac-highlight-element-selected-min-height'
+ 			);
+
+			if(selectedElement.classList.length == 0){
+				selectedElement.removeAttribute('class');
+			}
 		});
 	}
 
@@ -580,7 +630,7 @@ class AccessibilityCheckerHighlight {
 			const descriptionTitle = document.querySelector('.edac-highlight-panel-description-title');
 			const descriptionContent = document.querySelector('.edac-highlight-panel-description-content');
 			const descriptionCode = document.querySelector('.edac-highlight-panel-description-code code');
-		
+
 			let content = '';
 
 			// Get the index and total
