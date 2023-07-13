@@ -202,6 +202,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/rest.php';
 
 /**
  * Filters and Actions
@@ -673,6 +674,7 @@ function edac_register_rules() {
 			'slug'      => 'color_contrast_failure',
 			'rule_type' => 'error',
 			'summary'   => esc_html( 'Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be "false positives" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors.' ),
+			'ruleset'   => 'js',
 		)
 	);
 
@@ -780,7 +782,8 @@ function edac_register_rules() {
 $rules = edac_register_rules();
 if ( $rules ) {
 	foreach ( $rules as $rule ) {
-		if ( $rule['slug'] ) {
+		if ( ( array_key_exists( 'ruleset', $rule ) && 'php' === $rule['ruleset'] ) ||
+		( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) ) {
 			require_once plugin_dir_path( __FILE__ ) . 'includes/rules/' . $rule['slug'] . '.php';
 		}
 	}
@@ -834,8 +837,7 @@ function edac_summary_ajax() {
 			$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
 		} else {
 			$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
-		}
-
+		}   
 	} else {
 	
 		$simplified_summary_text = 'A Simplified summary has not been included for this content.';
@@ -1089,7 +1091,9 @@ function edac_documentation_link( $rule ) {
 	global $wp_version;
 	$days_active = edac_days_active();
 
-	if( ! $rule['info_url'] || ! isset( $rule['slug'] ) ) return '';
+	if ( ! $rule['info_url'] || ! isset( $rule['slug'] ) ) {
+		return '';
+	}
 
 	return $rule['info_url'] . '?utm_source=accessibility-checker&utm_medium=software&utm_term=' . esc_html( $rule['slug'] ) . '&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . $days_active . '';
 }
@@ -1599,7 +1603,7 @@ function edac_update_simplified_summary() {
  */
 function edac_output_simplified_summary( $content ) {
 	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
-	if( 'none' == $simplified_summary_prompt ) {
+	if ( 'none' == $simplified_summary_prompt ) {
 		return $content;
 	} 
 	$simplified_summary = edac_simplified_summary_markup( get_the_ID() );
@@ -1978,7 +1982,8 @@ function edac_gaad_notice_ajax() {
 }
 
 // Add a filter for lazyloading images using the perfmatters_lazyload hook.
-add_filter( 'perfmatters_lazyload',
+add_filter(
+	'perfmatters_lazyload',
 	function( $lazyload ) {
 		if ( ! isset( $_GET['edac_nonce'] ) || ! wp_verify_nonce( $_GET['edac_nonce'], 'edac_highlight' ) ) {
 			return $lazyload;

@@ -1,6 +1,17 @@
 import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable, isTabbable } from 'tabbable';
+import { scan } from './scanner';
+
+
+let SCAN_INTERVAL_IN_SECONDS = 10;
+let STATS_INTERVAL_IN_SECONDS = 10;
+
+if(edac_script_vars.mode === 'full-scan'){
+	SCAN_INTERVAL_IN_SECONDS = 3;
+	STATS_INTERVAL_IN_SECONDS = 3;
+}
+
 
 class AccessibilityCheckerDisableHTML {
 
@@ -91,7 +102,7 @@ class AccessibilityCheckerHighlight {
 	constructor(settings = {}) {
 
 		const defaultSettings = {
-			showIgnored : false
+			showIgnored: false
 		}
 
 		this.settings = { ...defaultSettings, ...settings };
@@ -215,14 +226,14 @@ class AccessibilityCheckerHighlight {
 			const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_script_vars.postID + '&nonce=' + edac_script_vars.nonce;
 
 			self.showWait(true);
-			
+
 			xhr.open('GET', url);
 
 			xhr.onload = function () {
 				if (xhr.status === 200) {
-			
+
 					self.showWait(false);
-			
+
 					const response = JSON.parse(xhr.responseText);
 					//console.log(response);
 					if (true === response.success) {
@@ -240,9 +251,9 @@ class AccessibilityCheckerHighlight {
 						//console.log(response);
 					}
 				} else {
-			
+
 					self.showWait(false);
-			
+
 					console.log('Request failed.  Returned status of ' + xhr.status);
 
 					reject({
@@ -255,7 +266,7 @@ class AccessibilityCheckerHighlight {
 			xhr.onerror = function () {
 
 				self.showWait(false);
-			
+
 				reject({
 					status: xhr.status,
 					statusText: xhr.statusText
@@ -269,8 +280,8 @@ class AccessibilityCheckerHighlight {
 	/**
 	 * This function toggles showing Wait
 	 */
-	showWait( status = true ) {
-		if( status ){
+	showWait(status = true) {
+		if (status) {
 			document.querySelector('body').classList.add('edac-app-wait');
 		} else {
 			document.querySelector('body').classList.remove('edac-app-wait');
@@ -466,22 +477,22 @@ class AccessibilityCheckerHighlight {
 
 		const issue = this.issues.find(issue => issue.id == id);
 		this.currentButtonIndex = this.issues.findIndex(issue => issue.id == id);
-		
+
 		const tooltip = issue.tooltip;
- 		const element = issue.element;
- 		
- 		if (tooltip && element) {
+		const element = issue.element;
 
- 			tooltip.classList.add('edac-highlight-btn-selected');
- 			element.classList.add('edac-highlight-element-selected');
+		if (tooltip && element) {
 
- 			if(element.offsetWidth < 20){
- 				element.classList.add('edac-highlight-element-selected-min-width');
- 			}
+			tooltip.classList.add('edac-highlight-btn-selected');
+			element.classList.add('edac-highlight-element-selected');
 
- 			if(element.offsetHeight < 5){
- 				element.classList.add('edac-highlight-element-selected-min-height');
- 			}
+			if (element.offsetWidth < 20) {
+				element.classList.add('edac-highlight-element-selected-min-width');
+			}
+
+			if (element.offsetHeight < 5) {
+				element.classList.add('edac-highlight-element-selected-min-height');
+			}
 
 			element.scrollIntoView({ block: 'center' });
 
@@ -544,17 +555,16 @@ class AccessibilityCheckerHighlight {
 		this.highlightAjax().then(
 			(json) => {
 
-				//console.log(json);
 
 				this.issues = json;
 
 				json.forEach(function (value, index) {
 
 					const element = this.findElement(value, index);
-					if(element !== null ){
+					if (element !== null) {
 						const tooltip = this.addTooltip(element, value, index);
 						this.issues[index].tooltip = tooltip.tooltip;
-						this.issues[index].element = element;		
+						this.issues[index].element = element;
 					}
 
 				}.bind(this));
@@ -603,13 +613,13 @@ class AccessibilityCheckerHighlight {
 		//remove selected class from previously selected elements
 		const selectedElements = document.querySelectorAll('.edac-highlight-element-selected');
 		selectedElements.forEach((selectedElement) => {
-		selectedElement.classList.remove(
- 				'edac-highlight-element-selected',
- 				'edac-highlight-element-selected-min-width',
- 				'edac-highlight-element-selected-min-height'
- 			);
+			selectedElement.classList.remove(
+				'edac-highlight-element-selected',
+				'edac-highlight-element-selected-min-width',
+				'edac-highlight-element-selected-min-height'
+			);
 
-			if(selectedElement.classList.length == 0){
+			if (selectedElement.classList.length == 0) {
 				selectedElement.removeAttribute('class');
 			}
 		});
@@ -790,10 +800,202 @@ class AccessibilityCheckerHighlight {
 
 }
 
+async function postData(url = "", data = {}) {
+	const response = await fetch(url, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"X-WP-Nonce": edac_script_vars.restNonce
+		},
+		body: JSON.stringify(data),
+	});
+	return response.json();
+}
+
+async function getData(url = "") {
+	const response = await fetch(url, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			"X-WP-Nonce": edac_script_vars.restNonce
+		}
+	});
+	return response.json();
+}
+
 
 window.addEventListener('DOMContentLoaded', () => {
-	if (true == edac_script_vars.active) {
-		new AccessibilityCheckerHighlight();
-		new AccessibilityCheckerDisableHTML();
+
+	let API_warning_shown = false;
+	
+	if (edac_script_vars.mode === 'editor-scan') {
+
+		// We are loading the app from within the editor (rather than the page preview).			
+		// Create an iframe in the editor for loading the page preview.
+		// The page preview's url has an ?edac-action=scan, which tells the app 
+		// loaded in the iframe to: 1) run the js scan, 2) post the results.
+		// See: "Ref:edac-action=js-scan".
+		const iframe = document.createElement('iframe');
+		iframe.setAttribute('src', edac_script_vars.scanUrl);
+		iframe.style.width = screen.width + 'px';
+		iframe.style.height = screen.height + 'px';
+		iframe.style.position = 'absolute';
+		iframe.style.left = '-' + screen.width + 'px';
+		document.body.append(iframe);
+
 	}
+
+	if (edac_script_vars.mode === 'editor-scan' || edac_script_vars.mode === 'full-scan') {
+		//We are loading the app from either the editor page or from the scheduled full scan page.
+
+		if (edac_script_vars.nextScheduledScan) {
+			// There are posts awaiting a scan.
+			// Create an iframe in the editor for loading the page preview for the scheduled scans.
+			const iframeScheduledScanner = document.createElement('iframe');
+			iframeScheduledScanner.style.width = screen.width + 'px';
+			iframeScheduledScanner.style.height = screen.height + 'px';
+			iframeScheduledScanner.style.position = 'absolute';
+			iframeScheduledScanner.style.left = '-' + screen.width + 'px';
+			document.body.append(iframeScheduledScanner);
+
+
+			let scanInterval = setInterval(() => {
+				
+				// If there are any scans pending, load the next in line to be scanned.
+				getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
+					.then((data) => {
+					
+						if(data.code !== 'rest_no_route') {
+							if (data.data !== undefined) {
+								
+								if ( API_warning_shown && edac_script_vars.mode === 'full-scan' ){
+									document.querySelector('.edac-notice-rest-error');
+									API_warning_shown = false;
+								}
+								
+								if (data.data.scanUrl !== undefined) {
+									iframeScheduledScanner.setAttribute('src', data.data.scanUrl);
+								}
+	
+							}
+			
+						} else {
+					
+							if( !API_warning_shown ){
+						
+								if ( edac_script_vars.mode === 'editor-scan' ){
+
+									API_warning_shown = true;
+									wp.data.dispatch("core/notices").createNotice(
+										"warning", 
+										"There was a problem connecting to the REST API.",
+										{
+										  isDismissible: true,
+										  actions: [
+											{
+											  url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions/',
+											  label: 'View details',
+											},
+										 ],
+										}
+									  );
+									  
+								
+								}
+							
+								if ( edac_script_vars.mode === 'full-scan' ){
+									API_warning_shown = true;
+								
+									const warning = document.createElement('div');
+									warning.classList = 'notice notice-warning edac-notice-rest-error';
+									warning.innerHTML = "<p>There was a problem connecting to the <a href='https://developer.wordpress.org/rest-api/frequently-asked-questions/'>REST API</a> which is required by Accessibility Checker.</p>";
+									document.querySelector('#wpbody-content h1').after( warning );
+							
+								}
+							}
+						}
+			
+					});
+
+
+			}, SCAN_INTERVAL_IN_SECONDS * 1000);
+
+
+			if (edac_script_vars.mode === 'full-scan') {
+				// Load the stats so we can give a progress update.
+
+				let statsInterval = setInterval(() => {
+
+					// Get the stats.
+					getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-stats')
+						.then((data) => {
+							if (data.data !== undefined) {
+								console.log(data.data);
+								console.log('js fullscan progress: ' + data.data.completed + ' of ' + data.data.count + ' (' + data.data.progress + '%)')
+							}
+						});
+
+
+				}, STATS_INTERVAL_IN_SECONDS * 1000);
+
+			}
+
+		}
+
+
+	}
+
+	if (edac_script_vars.mode === 'ui' && edac_script_vars.active ) {
+	
+		//We are loading the app in the page preview.
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const edacAction = urlParams.get('edac-action');
+
+		// Ref:edac-action=js-scan
+		if (edacAction === 'js-scan') {
+			// This page preview is being loaded from within the editor's iframe because we want to run an autoscan.
+
+
+			// Special handler that runs the js based rules in the browser.
+			scan().then((results) => {
+
+				let post_id = edac_script_vars.postID;
+
+				console.log('scan results for: ' + post_id);
+				console.log(results);
+				
+				if (post_id !== null) {
+
+					// Send the scan results so we can process them.
+					postData(edac_script_vars.edacApiUrl + '/post-scan-results/' + post_id, {
+						violations: results.violations
+					}).then((data) => {
+						//TODO:
+						//console.log(data);
+					});
+
+				}
+
+
+			}).catch((err) => {
+				//TODO:
+				console.log(err);
+			});
+
+
+
+		} else {
+
+			// We are loading the app in a normal page preview so show the user the ui
+			new AccessibilityCheckerHighlight();
+			new AccessibilityCheckerDisableHTML();
+
+		}
+
+	}
+
+
+
+
 });
