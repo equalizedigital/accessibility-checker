@@ -1,4 +1,9 @@
 import 'axe-core';
+import colorContrastFailure from './rules/color-contrast-failure';
+//TODO: examples:
+//import customRule1 from './rules/custom-rule-1';
+//import alwaysFail from './checks/always-fail';
+
 
 //TODO: 			
 //see: https://www.youtube.com/watch?v=AtsX0dPCG_4
@@ -9,14 +14,25 @@ export async function scan(
 	options = { configOptions: {}, runOptions: {} }
 ) {
 
-
+	
 	const context = { exclude: ['#wpadminbar', '.edac-panel-container'] };
 
 	const defaults = {
 		configOptions: {
-			reporter: "raw"
+			reporter: "raw",
+	
+			rules : [
+				//customRule1,
+				colorContrastFailure
+			],
+			checks: [
+				//alwaysFail,
+			  ],
 		},
 		runOptions: {
+			runOnly: ['color_contrast_failure']
+			//TODO:
+			/*
 			runOnly: {
 				type: 'tag',
 				values: [
@@ -30,6 +46,7 @@ export async function scan(
 					'experimental'
 				]
 			}
+			*/
 		}
 	};
 
@@ -51,12 +68,7 @@ export async function scan(
 				item.violations.forEach( violation => {
 					if(violation.result === 'failed'){
 				
-						//TODO:
-						if(item.id == 'color-contrast'){
-							item.id = 'color_contrast_failure';
-							item.impact = 'warning';
-						}
-
+			
 						violations.push({
 							selector:violation.node.selector,
 							html: document.querySelector(violation.node.selector).outerHTML,

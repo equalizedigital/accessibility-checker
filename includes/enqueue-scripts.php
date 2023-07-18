@@ -105,15 +105,34 @@ function edac_enqueue_scripts( $mode = '' ) {
 			}
 		}
 
-		$next_scheduled_scan = 0;
+		$pending_full_scan = false;
 		$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
 		if ( $pro ) {
-			$next_scheduled_action = as_next_scheduled_action( 'edacp_schedule_scan_hook', array(), 'edacp' );
-			if ( time() > $next_scheduled_action ) {
-				$next_scheduled_scan = $next_scheduled_action;
-			}
-		}
 
+			global $wpdb;
+						
+			// if a scheduled or fullscan has been completed after the last recorded js fullscan, we need to run a new js fullscan.
+			$row = $wpdb->get_row( 
+				$wpdb->prepare(
+					"SELECT scheduled_date_gmt FROM {$wpdb->actionscheduler_actions} WHERE 
+				(hook=%s or hook=%s) and status=%s and scheduled_date_gmt > %s
+				ORDER BY  scheduled_date_gmt  DESC LIMIT 1",
+					'edacp_spawn_schedules_hook', 
+					'edacp_scan_content_hook',
+					ActionScheduler_Store::STATUS_COMPLETE,
+					get_option(
+						'edacp_fullscan_start',
+						time()
+					)
+				)
+			);
+
+			
+			if ( ! IS_NULL( $row ) ) {
+				$pending_full_scan = true;
+			}       
+		}
+		
 		wp_localize_script(
 			'edac-app',
 			'edac_script_vars',
@@ -127,7 +146,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 				'loggedIn' => is_user_logged_in(),
 				'active'   => $active,
 				'mode'     => $mode,
-				'nextScheduledScan' => $next_scheduled_scan,
+				'pendingFullScan' => $pending_full_scan,
 				'scanUrl' => get_preview_post_link(
 					$post_id, 
 					array(

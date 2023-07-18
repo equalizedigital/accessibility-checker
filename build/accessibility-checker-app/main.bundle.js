@@ -11,7 +11,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axe_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var axe_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axe_core__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _rules_color_contrast_failure__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
 
+
+//TODO: examples:
+//import customRule1 from './rules/custom-rule-1';
+//import alwaysFail from './checks/always-fail';
 
 //TODO: 			
 //see: https://www.youtube.com/watch?v=AtsX0dPCG_4
@@ -27,15 +32,35 @@ async function scan(options = {
   };
   const defaults = {
     configOptions: {
-      reporter: "raw"
+      reporter: "raw",
+      rules: [
+      //customRule1,
+      _rules_color_contrast_failure__WEBPACK_IMPORTED_MODULE_1__["default"]],
+      checks: [
+        //alwaysFail,
+      ]
     },
     runOptions: {
+      runOnly: ['color_contrast_failure']
+      //TODO:
+      /*
       runOnly: {
-        type: 'tag',
-        values: ['wcag2a', 'wcag2aa', 'wcag2aaa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice', 'ACT', 'section508', 'TTv5', 'experimental']
+      	type: 'tag',
+      	values: [
+      		'wcag2a', 'wcag2aa', 'wcag2aaa',
+      		'wcag21a', 'wcag21aa',
+      		'wcag22aa',
+      		'best-practice',
+      		'ACT',
+      		'section508',
+      		'TTv5',
+      		'experimental'
+      	]
       }
+      */
     }
   };
+
   const configOptions = Object.assign(defaults.configOptions, options.configOptions);
   axe.configure(configOptions);
   const runOptions = Object.assign(defaults.runOptions, options.runOptions);
@@ -46,11 +71,6 @@ async function scan(options = {
       //Build an array of the dom selectors and ruleIDs for violations/failed tests
       item.violations.forEach(violation => {
         if (violation.result === 'failed') {
-          //TODO:
-          if (item.id == 'color-contrast') {
-            item.id = 'color_contrast_failure';
-            item.impact = 'warning';
-          }
           violations.push({
             selector: violation.node.selector,
             html: document.querySelector(violation.node.selector).outerHTML,
@@ -30366,9 +30386,33 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  "id": "color_contrast_failure",
+  "matches": "color-contrast-matches",
+  "excludeHidden": false,
+  "tags": ["cat.color", "wcag2aa", "wcag143", "TTv5", "TT13.c", "EN-301-549", "EN-9.1.4.3", "ACT"],
+  "actIds": ["afw4f7", "09o5cg"],
+  "metadata": {
+    "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    "help": "Elements must meet minimum color contrast ratio thresholds"
+  },
+  "all": [],
+  "any": ["color-contrast"],
+  "none": []
+});
+
+/***/ }),
+/* 4 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createFocusTrap: () => (/* binding */ createFocusTrap)
 /* harmony export */ });
-/* harmony import */ var tabbable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
+/* harmony import */ var tabbable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
 /*!
 * focus-trap 7.4.3
 * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
@@ -31143,7 +31187,7 @@ var createFocusTrap = function createFocusTrap(elements, userOptions) {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -31696,7 +31740,7 @@ var isFocusable = function isFocusable(node, options) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -31717,12 +31761,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   shift: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.shift),
 /* harmony export */   size: () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.size)
 /* harmony export */ });
-/* harmony import */ var _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
+/* harmony import */ var _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
 function n(t){var e;return(null==(e=t.ownerDocument)?void 0:e.defaultView)||window}function o(t){return n(t).getComputedStyle(t)}function i(t){return t instanceof n(t).Node}function r(t){return i(t)?(t.nodeName||"").toLowerCase():""}function l(t){return t instanceof n(t).HTMLElement}function c(t){return t instanceof n(t).Element}function s(t){if("undefined"==typeof ShadowRoot)return!1;return t instanceof n(t).ShadowRoot||t instanceof ShadowRoot}function f(t){const{overflow:e,overflowX:n,overflowY:i,display:r}=o(t);return/auto|scroll|overlay|hidden|clip/.test(e+i+n)&&!["inline","contents"].includes(r)}function u(t){return["table","td","th"].includes(r(t))}function a(t){const e=d(),n=o(t);return"none"!==n.transform||"none"!==n.perspective||!e&&!!n.backdropFilter&&"none"!==n.backdropFilter||!e&&!!n.filter&&"none"!==n.filter||["transform","perspective","filter"].some((t=>(n.willChange||"").includes(t)))||["paint","layout","strict","content"].some((t=>(n.contain||"").includes(t)))}function d(){return!("undefined"==typeof CSS||!CSS.supports)&&CSS.supports("-webkit-backdrop-filter","none")}function h(t){return["html","body","#document"].includes(r(t))}const p=Math.min,m=Math.max,g=Math.round;function y(t){const e=o(t);let n=parseFloat(e.width)||0,i=parseFloat(e.height)||0;const r=l(t),c=r?t.offsetWidth:n,s=r?t.offsetHeight:i,f=g(n)!==c||g(i)!==s;return f&&(n=c,i=s),{width:n,height:i,fallback:f}}function x(t){return c(t)?t:t.contextElement}const w={x:1,y:1};function v(t){const e=x(t);if(!l(e))return w;const n=e.getBoundingClientRect(),{width:o,height:i,fallback:r}=y(e);let c=(r?g(n.width):n.width)/o,s=(r?g(n.height):n.height)/i;return c&&Number.isFinite(c)||(c=1),s&&Number.isFinite(s)||(s=1),{x:c,y:s}}const b={x:0,y:0};function L(t,e,o){var i,r;if(void 0===e&&(e=!0),!d())return b;const l=t?n(t):window;return!o||e&&o!==l?b:{x:(null==(i=l.visualViewport)?void 0:i.offsetLeft)||0,y:(null==(r=l.visualViewport)?void 0:r.offsetTop)||0}}function E(e,o,i,r){void 0===o&&(o=!1),void 0===i&&(i=!1);const l=e.getBoundingClientRect(),s=x(e);let f=w;o&&(r?c(r)&&(f=v(r)):f=v(e));const u=L(s,i,r);let a=(l.left+u.x)/f.x,d=(l.top+u.y)/f.y,h=l.width/f.x,p=l.height/f.y;if(s){const t=n(s),e=r&&c(r)?n(r):r;let o=t.frameElement;for(;o&&r&&e!==t;){const t=v(o),e=o.getBoundingClientRect(),i=getComputedStyle(o);e.x+=(o.clientLeft+parseFloat(i.paddingLeft))*t.x,e.y+=(o.clientTop+parseFloat(i.paddingTop))*t.y,a*=t.x,d*=t.y,h*=t.x,p*=t.y,a+=e.x,d+=e.y,o=n(o).frameElement}}return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.rectToClientRect)({width:h,height:p,x:a,y:d})}function R(t){return((i(t)?t.ownerDocument:t.document)||window.document).documentElement}function T(t){return c(t)?{scrollLeft:t.scrollLeft,scrollTop:t.scrollTop}:{scrollLeft:t.pageXOffset,scrollTop:t.pageYOffset}}function S(t){return E(R(t)).left+T(t).scrollLeft}function C(t){if("html"===r(t))return t;const e=t.assignedSlot||t.parentNode||s(t)&&t.host||R(t);return s(e)?e.host:e}function F(t){const e=C(t);return h(e)?e.ownerDocument.body:l(e)&&f(e)?e:F(e)}function W(t,e){var o;void 0===e&&(e=[]);const i=F(t),r=i===(null==(o=t.ownerDocument)?void 0:o.body),l=n(i);return r?e.concat(l,l.visualViewport||[],f(i)?i:[]):e.concat(i,W(i))}function D(e,i,r){let s;if("viewport"===i)s=function(t,e){const o=n(t),i=R(t),r=o.visualViewport;let l=i.clientWidth,c=i.clientHeight,s=0,f=0;if(r){l=r.width,c=r.height;const t=d();(!t||t&&"fixed"===e)&&(s=r.offsetLeft,f=r.offsetTop)}return{width:l,height:c,x:s,y:f}}(e,r);else if("document"===i)s=function(t){const e=R(t),n=T(t),i=t.ownerDocument.body,r=m(e.scrollWidth,e.clientWidth,i.scrollWidth,i.clientWidth),l=m(e.scrollHeight,e.clientHeight,i.scrollHeight,i.clientHeight);let c=-n.scrollLeft+S(t);const s=-n.scrollTop;return"rtl"===o(i).direction&&(c+=m(e.clientWidth,i.clientWidth)-r),{width:r,height:l,x:c,y:s}}(R(e));else if(c(i))s=function(t,e){const n=E(t,!0,"fixed"===e),o=n.top+t.clientTop,i=n.left+t.clientLeft,r=l(t)?v(t):{x:1,y:1};return{width:t.clientWidth*r.x,height:t.clientHeight*r.y,x:i*r.x,y:o*r.y}}(i,r);else{const t=L(e);s={...i,x:i.x-t.x,y:i.y-t.y}}return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.rectToClientRect)(s)}function H(t,e){const n=C(t);return!(n===e||!c(n)||h(n))&&("fixed"===o(n).position||H(n,e))}function O(t,e){return l(t)&&"fixed"!==o(t).position?e?e(t):t.offsetParent:null}function P(t,e){const i=n(t);if(!l(t))return i;let c=O(t,e);for(;c&&u(c)&&"static"===o(c).position;)c=O(c,e);return c&&("html"===r(c)||"body"===r(c)&&"static"===o(c).position&&!a(c))?i:c||function(t){let e=C(t);for(;l(e)&&!h(e);){if(a(e))return e;e=C(e)}return null}(t)||i}function V(t,e,n){const o=l(e),i=R(e),c="fixed"===n,s=E(t,!0,c,e);let u={scrollLeft:0,scrollTop:0};const a={x:0,y:0};if(o||!o&&!c)if(("body"!==r(e)||f(i))&&(u=T(e)),l(e)){const t=E(e,!0,c,e);a.x=t.x+e.clientLeft,a.y=t.y+e.clientTop}else i&&(a.x=S(i));return{x:s.left+u.scrollLeft-a.x,y:s.top+u.scrollTop-a.y,width:s.width,height:s.height}}const k={getClippingRect:function(t){let{element:e,boundary:n,rootBoundary:i,strategy:l}=t;const s="clippingAncestors"===n?function(t,e){const n=e.get(t);if(n)return n;let i=W(t).filter((t=>c(t)&&"body"!==r(t))),l=null;const s="fixed"===o(t).position;let u=s?C(t):t;for(;c(u)&&!h(u);){const e=o(u),n=a(u);n||"fixed"!==e.position||(l=null),(s?!n&&!l:!n&&"static"===e.position&&l&&["absolute","fixed"].includes(l.position)||f(u)&&!n&&H(t,u))?i=i.filter((t=>t!==u)):l=e,u=C(u)}return e.set(t,i),i}(e,this._c):[].concat(n),u=[...s,i],d=u[0],g=u.reduce(((t,n)=>{const o=D(e,n,l);return t.top=m(o.top,t.top),t.right=p(o.right,t.right),t.bottom=p(o.bottom,t.bottom),t.left=m(o.left,t.left),t}),D(e,d,l));return{width:g.right-g.left,height:g.bottom-g.top,x:g.left,y:g.top}},convertOffsetParentRelativeRectToViewportRelativeRect:function(t){let{rect:e,offsetParent:n,strategy:o}=t;const i=l(n),c=R(n);if(n===c)return e;let s={scrollLeft:0,scrollTop:0},u={x:1,y:1};const a={x:0,y:0};if((i||!i&&"fixed"!==o)&&(("body"!==r(n)||f(c))&&(s=T(n)),l(n))){const t=E(n);u=v(n),a.x=t.x+n.clientLeft,a.y=t.y+n.clientTop}return{width:e.width*u.x,height:e.height*u.y,x:e.x*u.x-s.scrollLeft*u.x+a.x,y:e.y*u.y-s.scrollTop*u.y+a.y}},isElement:c,getDimensions:function(t){return y(t)},getOffsetParent:P,getDocumentElement:R,getScale:v,async getElementRects(t){let{reference:e,floating:n,strategy:o}=t;const i=this.getOffsetParent||P,r=this.getDimensions;return{reference:V(e,await i(n),o),floating:{x:0,y:0,...await r(n)}}},getClientRects:t=>Array.from(t.getClientRects()),isRTL:t=>"rtl"===o(t).direction};function z(t,e,n,o){void 0===o&&(o={});const{ancestorScroll:i=!0,ancestorResize:r=!0,elementResize:l=!0,animationFrame:s=!1}=o,f=i||r?[...c(t)?W(t):t.contextElement?W(t.contextElement):[],...W(e)]:[];f.forEach((t=>{const e=!c(t)&&t.toString().includes("V");!i||s&&!e||t.addEventListener("scroll",n,{passive:!0}),r&&t.addEventListener("resize",n)}));let u,a=null;l&&(a=new ResizeObserver((()=>{n()})),c(t)&&!s&&a.observe(t),c(t)||!t.contextElement||s||a.observe(t.contextElement),a.observe(e));let d=s?E(t):null;return s&&function e(){const o=E(t);!d||o.x===d.x&&o.y===d.y&&o.width===d.width&&o.height===d.height||n();d=o,u=requestAnimationFrame(e)}(),n(),()=>{var t;f.forEach((t=>{i&&t.removeEventListener("scroll",n),r&&t.removeEventListener("resize",n)})),null==(t=a)||t.disconnect(),a=null,s&&cancelAnimationFrame(u)}}const M=(t,n,o)=>{const i=new Map,r={platform:k,...o},l={...r.platform,_c:i};return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.computePosition)(t,n,{...r,platform:l})};
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -31831,9 +31875,9 @@ var __webpack_exports__ = {};
 "use strict";
 var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _floating_ui_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var focus_trap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var tabbable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4);
+/* harmony import */ var _floating_ui_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
+/* harmony import */ var focus_trap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
+/* harmony import */ var tabbable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5);
 /* harmony import */ var _scanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 
 
@@ -32571,7 +32615,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (edac_script_vars.mode === 'editor-scan' || edac_script_vars.mode === 'full-scan') {
     //We are loading the app from either the editor page or from the scheduled full scan page.
 
-    if (edac_script_vars.nextScheduledScan) {
+    if (edac_script_vars.pendingFullScan) {
       // There are posts awaiting a scan.
       // Create an iframe in the editor for loading the page preview for the scheduled scans.
       const iframeScheduledScanner = document.createElement('iframe');

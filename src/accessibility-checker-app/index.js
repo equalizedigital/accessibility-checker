@@ -7,7 +7,7 @@ import { scan } from './scanner';
 let SCAN_INTERVAL_IN_SECONDS = 10;
 let STATS_INTERVAL_IN_SECONDS = 10;
 
-if(edac_script_vars.mode === 'full-scan'){
+if (edac_script_vars.mode === 'full-scan') {
 	SCAN_INTERVAL_IN_SECONDS = 3;
 	STATS_INTERVAL_IN_SECONDS = 3;
 }
@@ -827,7 +827,7 @@ async function getData(url = "") {
 window.addEventListener('DOMContentLoaded', () => {
 
 	let API_warning_shown = false;
-	
+
 	if (edac_script_vars.mode === 'editor-scan') {
 
 		// We are loading the app from within the editor (rather than the page preview).			
@@ -845,10 +845,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	}
 
+
 	if (edac_script_vars.mode === 'editor-scan' || edac_script_vars.mode === 'full-scan') {
 		//We are loading the app from either the editor page or from the scheduled full scan page.
 
-		if (edac_script_vars.nextScheduledScan) {
+
+		if (edac_script_vars.pendingFullScan) {
+
 			// There are posts awaiting a scan.
 			// Create an iframe in the editor for loading the page preview for the scheduled scans.
 			const iframeScheduledScanner = document.createElement('iframe');
@@ -860,61 +863,62 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 			let scanInterval = setInterval(() => {
-				
+
 				// If there are any scans pending, load the next in line to be scanned.
 				getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
 					.then((data) => {
-					
-						if(data.code !== 'rest_no_route') {
+
+						if (data.code !== 'rest_no_route') {
+
 							if (data.data !== undefined) {
-								
-								if ( API_warning_shown && edac_script_vars.mode === 'full-scan' ){
+
+								if (API_warning_shown && edac_script_vars.mode === 'full-scan') {
 									document.querySelector('.edac-notice-rest-error');
 									API_warning_shown = false;
 								}
-								
+
 								if (data.data.scanUrl !== undefined) {
 									iframeScheduledScanner.setAttribute('src', data.data.scanUrl);
 								}
-	
+
 							}
-			
+
 						} else {
-					
-							if( !API_warning_shown ){
-						
-								if ( edac_script_vars.mode === 'editor-scan' ){
+
+							if (!API_warning_shown) {
+
+								if (edac_script_vars.mode === 'editor-scan') {
 
 									API_warning_shown = true;
 									wp.data.dispatch("core/notices").createNotice(
-										"warning", 
+										"warning",
 										"There was a problem connecting to the REST API.",
 										{
-										  isDismissible: true,
-										  actions: [
-											{
-											  url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions/',
-											  label: 'View details',
-											},
-										 ],
+											isDismissible: true,
+											actions: [
+												{
+													url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions/',
+													label: 'View details',
+												},
+											],
 										}
-									  );
-									  
-								
+									);
+
+
 								}
-							
-								if ( edac_script_vars.mode === 'full-scan' ){
+
+								if (edac_script_vars.mode === 'full-scan') {
 									API_warning_shown = true;
-								
+
 									const warning = document.createElement('div');
 									warning.classList = 'notice notice-warning edac-notice-rest-error';
 									warning.innerHTML = "<p>There was a problem connecting to the <a href='https://developer.wordpress.org/rest-api/frequently-asked-questions/'>REST API</a> which is required by Accessibility Checker.</p>";
-									document.querySelector('#wpbody-content h1').after( warning );
-							
+									document.querySelector('#wpbody-content h1').after(warning);
+
 								}
 							}
 						}
-			
+
 					});
 
 
@@ -945,8 +949,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	}
 
-	if (edac_script_vars.mode === 'ui' && edac_script_vars.active ) {
-	
+	if (edac_script_vars.mode === 'ui' && edac_script_vars.active) {
+
+
 		//We are loading the app in the page preview.
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
@@ -956,7 +961,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		if (edacAction === 'js-scan') {
 			// This page preview is being loaded from within the editor's iframe because we want to run an autoscan.
 
-
 			// Special handler that runs the js based rules in the browser.
 			scan().then((results) => {
 
@@ -964,7 +968,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 				console.log('scan results for: ' + post_id);
 				console.log(results);
-				
+
 				if (post_id !== null) {
 
 					// Send the scan results so we can process them.
