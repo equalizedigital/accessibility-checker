@@ -32611,6 +32611,20 @@ window.addEventListener('DOMContentLoaded', () => {
     iframe.style.position = 'absolute';
     iframe.style.left = '-' + screen.width + 'px';
     document.body.append(iframe);
+
+    //Listen for dispatches from the wp data store
+    let saving = false;
+    wp.data.subscribe(() => {
+      // Rescan the page if user saves post
+      if (wp.data.select('core/editor').isSavingPost()) {
+        saving = true;
+      } else {
+        if (saving) {
+          saving = false;
+          iframe.setAttribute('src', edac_script_vars.scanUrl);
+        }
+      }
+    });
   }
   if (edac_script_vars.mode === 'editor-scan' || edac_script_vars.mode === 'full-scan') {
     //We are loading the app from either the editor page or from the scheduled full scan page.

@@ -830,6 +830,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	if (edac_script_vars.mode === 'editor-scan') {
 
+		
 		// We are loading the app from within the editor (rather than the page preview).			
 		// Create an iframe in the editor for loading the page preview.
 		// The page preview's url has an ?edac-action=scan, which tells the app 
@@ -842,6 +843,23 @@ window.addEventListener('DOMContentLoaded', () => {
 		iframe.style.position = 'absolute';
 		iframe.style.left = '-' + screen.width + 'px';
 		document.body.append(iframe);
+		
+		
+		//Listen for dispatches from the wp data store
+		let saving = false;
+		wp.data.subscribe(() => {
+
+			// Rescan the page if user saves post
+			if(wp.data.select('core/editor').isSavingPost()){
+				saving = true;
+			} else {
+				if ( saving ) {
+					saving = false;
+					iframe.setAttribute('src', edac_script_vars.scanUrl);
+				}
+			}
+	
+		});
 
 	}
 
