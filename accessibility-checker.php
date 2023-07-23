@@ -202,11 +202,19 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/rest.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Rest_Api.php';
 
 /**
  * Filters and Actions
  */
+add_action(
+	'init',
+	function() {
+		// instantiate the classes that need to load hooks early.
+		$rest_api = new \EDAC\Rest_api();
+	}
+);
+
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );

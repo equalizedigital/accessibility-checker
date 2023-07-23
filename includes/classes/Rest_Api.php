@@ -1,42 +1,67 @@
 <?php
 /**
- * Accessibility Checker plugin file.
- *
+ * Class file for REST api
+ * 
  * @package Accessibility_Checker
  */
 
- // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
+namespace EDAC;
 
-// TODO: refactor as a class.
-// TODO: add check for REST. If not enabled show admin alert.
+/**
+ * Class that initializes and handles the REST api
+ */
+class REST_Api {
 
+	/**
+	 * If class has already been initialized.
+	 *
+	 * @var boolean
+	 */
+	private static $initialized = false;
 
-add_action(
-	'rest_api_init',
-	function () {
-		register_rest_route(
-			'accessibility-checker/v1',
-			'/post-scan-results/(?P<id>\d+)',
-			array(
-				'methods' => 'POST',
-				'callback' => 'edac_set_post_scan_results',
-				'args' => array(
-					'id' => array(
-						'validate_callback' => function( $param, $request, $key ) {
-							return is_numeric( $param );
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+			
+		if ( ! self::$initialized ) {
+			$this->initialize();
+		}
+			
+	}
+
+	/**
+	 * Adds the actions.
+	 */
+	private function initialize() {
+
+		$ns = 'accessibility-checker/';
+		$version = 'v1';
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/post-scan-results/(?P<id>\d+)',
+					array(
+						'methods' => 'GET',
+						'callback' => array( $this, 'set_post_scan_results' ),
+						'args' => array(
+							'id' => array(
+								'validate_callback' => function( $param, $request, $key ) {
+									return is_numeric( $param );
+								},
+							),
+						),
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
 						},
-					),
-				),
-				'permission_callback' => function () {
-					return current_user_can( 'edit_posts' );
-				},
-			) 
+					) 
+				);
+			} 
 		);
-	} 
-);
+	}
 
 
 /**
@@ -46,7 +71,7 @@ add_action(
  * 
  * @return void
  */
-function edac_set_post_scan_results( WP_REST_Request $request ) {
+public function edac_set_post_scan_results( WP_REST_Request $request ) {
 	
 	if ( ! isset( $request['violations'] ) 
 	) {
@@ -140,3 +165,4 @@ function edac_set_post_scan_results( WP_REST_Request $request ) {
 
 }
 
+}

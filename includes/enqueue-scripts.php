@@ -73,24 +73,27 @@ function edac_enqueue_styles() {
  * Enqueue Scripts
  */
 function edac_enqueue_scripts( $mode = '' ) {
-	
+
 	global $post;
 	$post_id = is_object( $post ) ? $post->ID : null;
-
-	if ( '' === $mode ) {
-		// Load with ui by default.
+	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
+		
+	if ( array_key_exists( 'preview', $_GET ) && $_GET['preview'] ) {
 		$mode = 'ui';
 	}
-	
-	if ( 'full-scan' === $mode ||
-		( 
-			( 'ui' === $mode || 'editor-scan' === $mode ) &&
-			$post_id && current_user_can( 'edit_post', $post_id ) && 
-			! is_customize_preview() 
-		)
-	) {
 
-		wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/accessibility-checker-app/main.bundle.js', false, EDAC_VERSION, false );
+	if ( '' === $mode ) {
+		return;
+	}
+	
+	if ( ( 'full-scan' === $mode && $pro )
+			||
+			( 'ui' === $mode || 'editor-scan' === $mode  
+			 &&
+			$post_id && current_user_can( 'edit_post', $post_id ) )
+		) {
+
+			wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/accessibility-checker-app/main.bundle.js', false, EDAC_VERSION, false );
 
 		$active = null;
 	
@@ -105,34 +108,25 @@ function edac_enqueue_scripts( $mode = '' ) {
 			}
 		}
 
-		$pending_full_scan = false;
-		$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
 		if ( $pro ) {
 
-			global $wpdb;
-						
-			// if a scheduled or fullscan has been completed after the last recorded js fullscan, we need to run a new js fullscan.
-			$row = $wpdb->get_row( 
-				$wpdb->prepare(
-					"SELECT scheduled_date_gmt FROM {$wpdb->actionscheduler_actions} WHERE 
-				(hook=%s or hook=%s) and status=%s and scheduled_date_gmt > %s
-				ORDER BY  scheduled_date_gmt  DESC LIMIT 1",
-					'edacp_spawn_schedules_hook', 
-					'edacp_scan_content_hook',
-					ActionScheduler_Store::STATUS_COMPLETE,
-					get_option(
-						'edacp_fullscan_start',
-						time()
-					)
-				)
-			);
-
-			
-			if ( ! IS_NULL( $row ) ) {
-				$pending_full_scan = true;
+			if ( 'full-scan' === $mode ) {
+				$has_pending_scans = true;
+				
+			} else {
+				$has_pending_scans = false;
+				$scans = new \EDACP\Scans();
+				$all_pendings = array_merge(
+					$scans->get_never_scanned(),
+					$scans->get_pending()
+				);
+		
+				if ( count( $all_pendings ) ) {
+					$has_pending_scans = true;
+				}           
 			}       
 		}
-		
+	
 		wp_localize_script(
 			'edac-app',
 			'edac_script_vars',
@@ -146,7 +140,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 				'loggedIn' => is_user_logged_in(),
 				'active'   => $active,
 				'mode'     => $mode,
-				'pendingFullScan' => $pending_full_scan,
+				'pendingFullScan' => $has_pending_scans,
 				'scanUrl' => get_preview_post_link(
 					$post_id, 
 					array(

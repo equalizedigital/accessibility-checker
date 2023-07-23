@@ -4,16 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d12c723f3ec9662f95f7c174b4fb3b9b",
+    "content-hash": "85b81dbc4fc08e5b8b18e221c6709e9b",
     "packages": [
         {
             "name": "freemius/wordpress-sdk",
-            "version": "2.5.10",
+            "version": "2.5.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Freemius/wordpress-sdk.git",
+                "reference": "e9e3b37d165a881326991a672af0269a6e2b2cda"
+            },
             "dist": {
                 "type": "zip",
-                "url": "/tmp/wordpress-sdk-2.5.10.zip"
+                "url": "https://api.github.com/repos/Freemius/wordpress-sdk/zipball/e9e3b37d165a881326991a672af0269a6e2b2cda",
+                "reference": "e9e3b37d165a881326991a672af0269a6e2b2cda",
+                "shasum": ""
             },
-            "type": "library"
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "description": "Freemius WordPress SDK",
+            "homepage": "https://freemius.com",
+            "keywords": [
+                "freemius",
+                "plugin",
+                "sdk",
+                "theme",
+                "wordpress",
+                "wordpress-plugin",
+                "wordpress-theme"
+            ],
+            "support": {
+                "issues": "https://github.com/Freemius/wordpress-sdk/issues",
+                "source": "https://github.com/Freemius/wordpress-sdk/tree/2.5.9"
+            },
+            "time": "2023-06-12T06:57:05+00:00"
         }
     ],
     "packages-dev": [],

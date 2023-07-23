@@ -3,7 +3,7 @@ import { createFocusTrap } from 'focus-trap';
 import { isFocusable, isTabbable } from 'tabbable';
 import { scan } from './scanner';
 
-
+let DEBUG_ENABLED = true;
 let SCAN_INTERVAL_IN_SECONDS = 10;
 let STATS_INTERVAL_IN_SECONDS = 10;
 
@@ -823,14 +823,26 @@ async function getData(url = "") {
 	return response.json();
 }
 
+function debug($message) {
+	if (DEBUG_ENABLED) {
+		if (typeof ($message) !== 'object') {
+			console.debug('DEBUG: ' + $message);
+		} else {
+			console.debug($message);
+		}
+	}
+}
 
 window.addEventListener('DOMContentLoaded', () => {
+
+	debug('We are loading the app in ' + edac_script_vars.mode + ' mode.');
 
 	let API_warning_shown = false;
 
 	if (edac_script_vars.mode === 'editor-scan') {
 
-		
+		debug('App is loading from within the editor.');
+
 		// We are loading the app from within the editor (rather than the page preview).			
 		// Create an iframe in the editor for loading the page preview.
 		// The page preview's url has an ?edac-action=scan, which tells the app 
@@ -843,126 +855,117 @@ window.addEventListener('DOMContentLoaded', () => {
 		iframe.style.position = 'absolute';
 		iframe.style.left = '-' + screen.width + 'px';
 		document.body.append(iframe);
-		
-		
+
+
 		//Listen for dispatches from the wp data store
 		let saving = false;
-		wp.data.subscribe(() => {
+		if (wp.data !== undefined && wp.data.subscribe !== undefined) {
+			wp.data.subscribe(() => {
 
-			// Rescan the page if user saves post
-			if(wp.data.select('core/editor').isSavingPost()){
-				saving = true;
-			} else {
-				if ( saving ) {
-					saving = false;
-					iframe.setAttribute('src', edac_script_vars.scanUrl);
+				// Rescan the page if user saves post
+				if (wp.data.select('core/editor').isSavingPost()) {
+					saving = true;
+				} else {
+					if (saving) {
+						saving = false;
+						iframe.setAttribute('src', edac_script_vars.scanUrl);
+					}
 				}
-			}
-	
-		});
+
+			});
+
+		} else {
+			debug("Gutenberg is no enabled.");
+		}
 
 	}
 
 
-	if (edac_script_vars.mode === 'editor-scan' || edac_script_vars.mode === 'full-scan') {
-		//We are loading the app from either the editor page or from the scheduled full scan page.
+	if (
+		(edac_script_vars.mode === 'editor-scan' && edac_script_vars.pendingFullScan) ||
+		(edac_script_vars.mode === 'full-scan')
+	) {
+
+		debug('App is loading either from the editor page or from the scheduled full scan page.');
+
+		// Create an iframe in the editor for loading the page preview for the scheduled scans.
+		const iframeScheduledScanner = document.createElement('iframe');
+		iframeScheduledScanner.style.width = screen.width + 'px';
+		iframeScheduledScanner.style.height = screen.height + 'px';
+		iframeScheduledScanner.style.position = 'absolute';
+		iframeScheduledScanner.style.left = '-' + screen.width + 'px';
+		document.body.append(iframeScheduledScanner);
 
 
-		if (edac_script_vars.pendingFullScan) {
+		let scanInterval = setInterval(() => {
 
-			// There are posts awaiting a scan.
-			// Create an iframe in the editor for loading the page preview for the scheduled scans.
-			const iframeScheduledScanner = document.createElement('iframe');
-			iframeScheduledScanner.style.width = screen.width + 'px';
-			iframeScheduledScanner.style.height = screen.height + 'px';
-			iframeScheduledScanner.style.position = 'absolute';
-			iframeScheduledScanner.style.left = '-' + screen.width + 'px';
-			document.body.append(iframeScheduledScanner);
+			debug('Polling to see if there are any scans pending.');
 
+			// Poll to see if there are any scans pending.
+			getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
+				.then((data) => {
 
-			let scanInterval = setInterval(() => {
+					if (data.code !== 'rest_no_route') {
 
-				// If there are any scans pending, load the next in line to be scanned.
-				getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
-					.then((data) => {
+						if (data.data !== undefined) {
 
-						if (data.code !== 'rest_no_route') {
+							if (API_warning_shown && edac_script_vars.mode === 'full-scan') {
+								document.querySelector('.edac-notice-rest-error');
+								API_warning_shown = false;
+							}
 
-							if (data.data !== undefined) {
+							if (data.data.scanUrl !== undefined) {
 
-								if (API_warning_shown && edac_script_vars.mode === 'full-scan') {
-									document.querySelector('.edac-notice-rest-error');
-									API_warning_shown = false;
-								}
+								debug('There is a scan pending: ' + data.data.scanUrl);
 
-								if (data.data.scanUrl !== undefined) {
-									iframeScheduledScanner.setAttribute('src', data.data.scanUrl);
-								}
+								// We have the url of the next in line to be scanned so pass to the iframe.
+								iframeScheduledScanner.setAttribute('src', data.data.scanUrl);
 
 							}
 
-						} else {
-
-							if (!API_warning_shown) {
-
-								if (edac_script_vars.mode === 'editor-scan') {
-
-									API_warning_shown = true;
-									wp.data.dispatch("core/notices").createNotice(
-										"warning",
-										"There was a problem connecting to the REST API.",
-										{
-											isDismissible: true,
-											actions: [
-												{
-													url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions/',
-													label: 'View details',
-												},
-											],
-										}
-									);
-
-
-								}
-
-								if (edac_script_vars.mode === 'full-scan') {
-									API_warning_shown = true;
-
-									const warning = document.createElement('div');
-									warning.classList = 'notice notice-warning edac-notice-rest-error';
-									warning.innerHTML = "<p>There was a problem connecting to the <a href='https://developer.wordpress.org/rest-api/frequently-asked-questions/'>REST API</a> which is required by Accessibility Checker.</p>";
-									document.querySelector('#wpbody-content h1').after(warning);
-
-								}
-							}
 						}
 
-					});
+					} else {
+
+						if (!API_warning_shown) {
+
+							if (edac_script_vars.mode === 'editor-scan') {
+
+								API_warning_shown = true;
+								wp.data.dispatch("core/notices").createNotice(
+									"warning",
+									"There was a problem connecting to the REST API.",
+									{
+										isDismissible: true,
+										actions: [
+											{
+												url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions/',
+												label: 'View details',
+											},
+										],
+									}
+								);
 
 
-			}, SCAN_INTERVAL_IN_SECONDS * 1000);
-
-
-			if (edac_script_vars.mode === 'full-scan') {
-				// Load the stats so we can give a progress update.
-
-				let statsInterval = setInterval(() => {
-
-					// Get the stats.
-					getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-stats')
-						.then((data) => {
-							if (data.data !== undefined) {
-								console.log(data.data);
-								console.log('js fullscan progress: ' + data.data.completed + ' of ' + data.data.count + ' (' + data.data.progress + '%)')
 							}
-						});
+
+							if (edac_script_vars.mode === 'full-scan') {
+								API_warning_shown = true;
+
+								const warning = document.createElement('div');
+								warning.classList = 'notice notice-warning edac-notice-rest-error';
+								warning.innerHTML = "<p>There was a problem connecting to the <a href='https://developer.wordpress.org/rest-api/frequently-asked-questions/'>REST API</a> which is required by Accessibility Checker.</p>";
+								document.querySelector('#wpbody-content h1').after(warning);
+
+							}
+						}
+					}
+
+				});
 
 
-				}, STATS_INTERVAL_IN_SECONDS * 1000);
+		}, SCAN_INTERVAL_IN_SECONDS * 1000);
 
-			}
-
-		}
 
 
 	}
@@ -984,8 +987,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 				let post_id = edac_script_vars.postID;
 
-				console.log('scan results for: ' + post_id);
-				console.log(results);
+				debug('Post ' + post_id + ' scan results:');
+				debug(results);
 
 				if (post_id !== null) {
 
