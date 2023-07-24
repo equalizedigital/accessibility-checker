@@ -45,7 +45,7 @@ class REST_Api {
 					$ns . $version,
 					'/post-scan-results/(?P<id>\d+)',
 					array(
-						'methods' => 'GET',
+						'methods' => 'POST',
 						'callback' => array( $this, 'set_post_scan_results' ),
 						'args' => array(
 							'id' => array(
@@ -71,7 +71,7 @@ class REST_Api {
  * 
  * @return void
  */
-public function edac_set_post_scan_results( WP_REST_Request $request ) {
+public function set_post_scan_results( $request ) {
 	
 	if ( ! isset( $request['violations'] ) 
 	) {

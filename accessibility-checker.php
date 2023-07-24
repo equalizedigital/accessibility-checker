@@ -211,7 +211,7 @@ add_action(
 	'init',
 	function() {
 		// instantiate the classes that need to load hooks early.
-		$rest_api = new \EDAC\Rest_api();
+		$rest_api = new \EDAC\Rest_Api();
 	}
 );
 
