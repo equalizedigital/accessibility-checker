@@ -78,7 +78,10 @@ function edac_enqueue_scripts( $mode = '' ) {
 	$post_id = is_object( $post ) ? $post->ID : null;
 	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
 		
-	if ( array_key_exists( 'preview', $_GET ) && $_GET['preview'] ) {
+	if (
+		( array_key_exists( 'preview', $_GET ) && $_GET['preview'] ) ||
+		 array_key_exists( 'edac', $_GET ) 
+	) {  
 		$mode = 'ui';
 	}
 
@@ -91,9 +94,9 @@ function edac_enqueue_scripts( $mode = '' ) {
 			( 'ui' === $mode || 'editor-scan' === $mode  
 			 &&
 			$post_id && current_user_can( 'edit_post', $post_id ) )
-		) {
+	) {
 
-			wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/accessibility-checker-app/main.bundle.js', false, EDAC_VERSION, false );
+		wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/accessibility-checker-app/main.bundle.js', false, EDAC_VERSION, false );
 
 		$active = null;
 	
