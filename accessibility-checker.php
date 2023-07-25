@@ -1196,7 +1196,7 @@ function edac_details_ajax() {
 		$error_rules,
 		function( $a, $b ) {
 
-			return $b['count'] <=> $a['count'];
+			return strcmp($b['count'], $a['count']);
 
 		}
 	);
@@ -1206,7 +1206,7 @@ function edac_details_ajax() {
 		$warning_rules,
 		function( $a, $b ) {
 
-			return $b['count'] <=> $a['count'];
+			return strcmp($b['count'], $a['count']);
 
 		}
 	);
@@ -1216,7 +1216,7 @@ function edac_details_ajax() {
 		$passed_rules,
 		function( $a, $b ) {
 
-			return $a['title'] <=> $b['title'];
+			return strcmp($b['title'], $a['title']);
 
 		}
 	);
@@ -1631,7 +1631,7 @@ function edac_output_simplified_summary( $content ) {
  * @param integer $post Post ID.
  * @return void
  */
-function edac_get_simplified_summary( int $post = null ) {
+function edac_get_simplified_summary( $post = null ) {
 	if ( null === $post ) {
 		$post = get_the_ID();
 	}
