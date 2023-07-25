@@ -135,7 +135,12 @@ class REST_Api {
 						// $tags = $violation['tags'];
 						
 						// This rule is one that we've included in our js ruleset.
+						// Write the rule/violation data to the db.
 						edac_insert_rule_data( $post, $rule_id, $impact, $html );
+
+						// Update the summary info that is stored in meta for each of the posts that have this rule.
+						edac_update_post_meta( $rule_id );
+
 					}               
 				}           
 			}
@@ -146,7 +151,7 @@ class REST_Api {
 			// store a record of this scan in the post's meta.
 			update_post_meta( $post_id, '_edac_post_checked_js', time() );
 			
-			wp_send_json_success(
+			return new \WP_REST_Response(
 				array(
 					'id' => $post_id,
 					'timestamp' => time(),
