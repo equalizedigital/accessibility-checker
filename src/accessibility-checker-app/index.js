@@ -5,11 +5,9 @@ import { scan } from './scanner';
 
 let DEBUG_ENABLED = true;
 let SCAN_INTERVAL_IN_SECONDS = 10;
-let STATS_INTERVAL_IN_SECONDS = 10;
 
 if (edac_script_vars.mode === 'full-scan') {
 	SCAN_INTERVAL_IN_SECONDS = 3;
-	STATS_INTERVAL_IN_SECONDS = 3;
 }
 
 
@@ -875,7 +873,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			});
 
 		} else {
-			debug("Gutenberg is no enabled.");
+			debug("Gutenberg is not enabled.");
 		}
 
 	}
@@ -910,7 +908,7 @@ window.addEventListener('DOMContentLoaded', () => {
 						if (data.data !== undefined) {
 
 							if (API_warning_shown && edac_script_vars.mode === 'full-scan') {
-								document.querySelector('.edac-notice-rest-error');
+								document.querySelector('.edac-notice-rest-error').remove();
 								API_warning_shown = false;
 							}
 

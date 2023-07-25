@@ -64,105 +64,106 @@ class REST_Api {
 	}
 
 
-/**
- * REST handler that saves to the DB a list of js rule violations for a post.
- *
- * @param WP_REST_Request $request  The request passed from the REST call.
- * 
- * @return void
- */
-public function set_post_scan_results( $request ) {
+	/**
+	 * REST handler that saves to the DB a list of js rule violations for a post.
+	 *
+	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 * 
+	 * @return \WP_REST_Response 
+	 */
+	public function set_post_scan_results( $request ) {
 	
-	if ( ! isset( $request['violations'] ) 
-	) {
-		$error = new WP_Error( 400, 'A required parameter is missing.' );
-		wp_send_json_error( $error );
-
-	}
-
-	$post_id = intval( $request['id'] );
-	$post = get_post( $post_id );
-	if ( ! is_object( $post ) ) {    
-
-		$error = new WP_Error( 400, 'The post id is not valid.' );
-		wp_send_json_error( $error );
-	}
-
-	$post_type = get_post_type( $post );
-	$post_types = get_option( 'edac_post_types' );
-	if ( ! is_array( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
-
-		$error = new WP_Error( 400, 'The post type is not set to be scanned.' );
-		wp_send_json_error( $error );
-	
-	}
-
-	
-		
-	// TODO: setup a rules class for loading/filtering rules.
-	$rules = edac_register_rules();
-	$js_rule_ids = array();
-	foreach ( $rules as $rule ) {
-		if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
-			$js_rule_ids[] = $rule['slug'];
+		if ( ! isset( $request['violations'] ) 
+		) {
+			return new \WP_REST_Response( array( 'message' => 'A required parameter is missing.' ), 400 );
 		}
-	}
+
+		$post_id = intval( $request['id'] );
+		$post = get_post( $post_id );
+		if ( ! is_object( $post ) ) {    
+
+			return new \WP_REST_Response( array( 'message' => 'The post is not valid.' ), 400 );
+		}
+
+		$post_type = get_post_type( $post );
+		$post_types = get_option( 'edac_post_types' );
+		if ( ! is_array( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
+
+			return new \WP_REST_Response( array( 'message' => 'The post type is not set to be scanned.' ), 400 );
+
+		}
+
+	
+		
+		// TODO: setup a rules class for loading/filtering rules.
+		$rules = edac_register_rules();
+		$js_rule_ids = array();
+		foreach ( $rules as $rule ) {
+			if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
+				$js_rule_ids[] = $rule['slug'];
+			}
+		}
 
 		
-	try {
+		try {
 
-		$violations = $request['violations'];
+			$violations = $request['violations'];
 			
 					
-		// set record check flag on previous error records.
-		edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 1, 'js' );
+			// set record check flag on previous error records.
+			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 1, 'js' );
 
-		if ( is_array( $violations ) && count( $violations ) > 0 ) {
+			if ( is_array( $violations ) && count( $violations ) > 0 ) {
 
-			foreach ( $violations as $violation ) {
-				$rule_id = $violation['ruleId'];
+				foreach ( $violations as $violation ) {
+					$rule_id = $violation['ruleId'];
 				
-				if ( in_array( $rule_id, $js_rule_ids ) ) {
+					if ( in_array( $rule_id, $js_rule_ids ) ) {
 				
-					$html = $violation['html'];
-					$impact = $violation['impact']; // by default, use the impact setting from the js rule.
+						$html = $violation['html'];
+						$impact = $violation['impact']; // by default, use the impact setting from the js rule.
 					
-					// TODO: setup a rules class for loading/filtering rules.
-					foreach ( $rules as $rule ) {
-						if ( $rule['slug'] === $rule_id ) {
-							$impact = $rule['rule_type']; // if we are defining the rule_type in php rules config, use that instead of the js rule's impact setting.
+						// TODO: setup a rules class for loading/filtering rules.
+						foreach ( $rules as $rule ) {
+							if ( $rule['slug'] === $rule_id ) {
+								$impact = $rule['rule_type']; // if we are defining the rule_type in php rules config, use that instead of the js rule's impact setting.
+							}
 						}
-					}
 
-					// TODO:
-					// $selector = $violation['selector'];
-					// $tags = $violation['tags'];
+						// TODO:
+						// $selector = $violation['selector'];
+						// $tags = $violation['tags'];
 						
-					// This rule is one that we've included in our js ruleset.
-					edac_insert_rule_data( $post, $rule_id, $impact, $html );
-				}               
-			}           
-		}
+						// This rule is one that we've included in our js ruleset.
+						edac_insert_rule_data( $post, $rule_id, $impact, $html );
+					}               
+				}           
+			}
 
-		// remove corrected records.
-		edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 2, 'js' );
+			// remove corrected records.
+			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 2, 'js' );
 
-		// store a record of this scan in the post's meta.
-		update_post_meta( $post_id, '_edac_post_checked_js', time() );
+			// store a record of this scan in the post's meta.
+			update_post_meta( $post_id, '_edac_post_checked_js', time() );
 			
-		wp_send_json_success(
-			array(
-				'id' => $post_id,
-				'timestamp' => time()
-			) 
-		);
+			wp_send_json_success(
+				array(
+					'id' => $post_id,
+					'timestamp' => time(),
+				) 
+			);
 
-	} catch ( \Exception $ex ) {
+		} catch ( \Exception $ex ) {
 			
-		wp_send_json_error( $ex->getMessage() );
+			return new \WP_REST_Response(
+				array(
+					'message' => $ex->getMessage(),
+				), 
+				500
+			);
 
-	}   
+		}   
 
-}
+	}
 
 }
