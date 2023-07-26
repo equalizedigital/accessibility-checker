@@ -78,9 +78,22 @@ function edac_enqueue_scripts( $mode = '' ) {
 	$post_id = is_object( $post ) ? $post->ID : null;
 	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
 		
-	if (
-		( array_key_exists( 'preview', $_GET ) && $_GET['preview'] ) ||
-		 array_key_exists( 'edac', $_GET ) 
+	global $wp_query;
+	$is_preview = false;
+	if ( isset( $wp_query ) ) {
+		$is_preview = $wp_query->is_preview();
+	}
+	
+	
+	if ( 
+		$is_preview || 
+		
+		array_key_exists( 'edac', $_GET ) &&
+		array_key_exists( 'edac_nonce', $_GET ) &&
+		wp_verify_nonce($_GET['edac_nonce'], 'edac_highlight') || 
+		
+		(array_key_exists( 'edac-preview-nonce', $_GET ) && 
+		wp_verify_nonce($_GET['edac-preview-nonce'], 'edac-preview_nonce') )
 	) {  
 		$mode = 'ui';
 	}
@@ -148,6 +161,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 					$post_id, 
 					array(
 						'edac-action' => 'js-scan',
+						'edac-preview-nonce' => wp_create_nonce( 'edac-preview_nonce' ),
 					)
 				),
 			)
