@@ -52,11 +52,9 @@ Accessibility Checker is the best automated tool to run along with your manual a
 
 ### How It Works
 
-To get started with Accessibility Checker Pro or learn more about how it works, plese reference our [Getting Started Quick Guide](https://equalizedigital.com/accessibility-checker/getting-started-quick-guide/) or watch this video showing the settings page and how to test your posts and pages with Accessibility Checker.
+To get started with Accessibility Checker or learn more about how it works, please reference our [Getting Started Quick Guide](https://equalizedigital.com/accessibility-checker/getting-started-quick-guide/) or watch this quick video demonstration of the software. Please note that the video demonstration does show some features that are only available in the paid version.
 
-[vimeo https://vimeo.com/486599947]
-
-[Read Video Transcript](https://equalizedigital.com/accessibility-checker/getting-started-quick-guide/#vidtranscript)
+[youtube https://www.youtube.com/watch?v=ncAfP06dPpU]
 
 ### Our Support Team is Here to Help You
 
