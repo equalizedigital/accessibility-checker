@@ -241,7 +241,8 @@ class AccessibilityCheckerHighlight {
 							resolve(response_json);
 						} else {
 							resolve(
-								response_json.filter(item => item.rule_type !== 'ignored')
+								response_json.filter(item => (item.id !== this.urlParameter ||
+								item.rule_type !== 'ignored'))
 							);
 						}
 
@@ -786,7 +787,7 @@ class AccessibilityCheckerHighlight {
 				textContent += warningCount + ' warning' + (warningCount > 1 ? 's' : '') + ', ';
 			}
 			if (ignoredCount > 0) {
-				textContent += 'and ' + ignoredCount + ' Ignored Issue' + (ignoredCount > 1 ? 's' : '') + ' detected.';
+				textContent += 'and ' + ignoredCount + ' ignored issue' + (ignoredCount > 1 ? 's' : '') + ' detected.';
 			} else {
 				// Remove the trailing comma and add "detected."
 				textContent = textContent.slice(0, -2) + ' detected.';
