@@ -74,17 +74,17 @@ function edac_enqueue_styles() {
  */
 function edac_enqueue_scripts( $mode = '' ) {
 	
-	if(
+	if (
 		( array_key_exists( 'edac_nonce', $_GET ) && 
-		!wp_verify_nonce($_GET['edac_nonce'], 'edac_highlight')) || 
+		! wp_verify_nonce( $_GET['edac_nonce'], 'edac_highlight' ) ) || 
 		
 		
 		( array_key_exists( 'edac-preview-nonce', $_GET ) && 
-		!wp_verify_nonce($_GET['edac-preview-nonce'], 'edac-preview_nonce') 
+		! wp_verify_nonce( $_GET['edac-preview-nonce'], 'edac-preview_nonce' ) 
 		)
-	){
-		status_header(401);
-		wp_die('Permission Denied.');
+	) {
+		status_header( 401 );
+		wp_die( 'Permission Denied.' );
 	}
 
 	
@@ -95,8 +95,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 
 	
 	if ( '' === $mode ) {
-		if ( 
-			(current_user_can('edit_post', $post_id) && !is_customize_preview())
+		if ( ( current_user_can( 'edit_post', $post_id ) && ! is_customize_preview() )
 		) {  
 			$mode = 'ui';
 		} else {

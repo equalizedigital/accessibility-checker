@@ -1,4 +1,4 @@
-import { computePosition, autoUpdate, shift, offset,inline } from '@floating-ui/dom';
+import { computePosition, autoUpdate, shift, offset, inline } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable, isTabbable } from 'tabbable';
 import { scan } from './scanner';
@@ -236,9 +236,9 @@ class AccessibilityCheckerHighlight {
 					const response = JSON.parse(xhr.responseText);
 					if (true === response.success) {
 						const response_json = JSON.parse(response.data);
-					
+
 						debug(response_json);
-				
+
 						if (self.settings.showIgnored) {
 							resolve(response_json);
 						} else {
@@ -352,29 +352,48 @@ class AccessibilityCheckerHighlight {
 				placement: 'top-start',
 				middleware: [],
 			}).then(({ x, y, middlewareData, placement }) => {
-				
-				const elHeight = element.offsetHeight == undefined ? 0 : element.offsetHeight;  
-				const elWidth = element.offsetWidth == undefined ? 0 : element.offsetWidth;  
-				const tooltipHeight = tooltip.offsetHeight == undefined ? 0 : tooltip.offsetHeight;  
-				const tooltipWidth = tooltip.offsetWidth == undefined ? 0 : tooltip.offsetWidth;  
-				
+
+				const elRect = element.getBoundingClientRect();
+				const elHeight = element.offsetHeight == undefined ? 0 : element.offsetHeight;
+				const elWidth = element.offsetWidth == undefined ? 0 : element.offsetWidth;
+				const tooltipHeight = tooltip.offsetHeight == undefined ? 0 : tooltip.offsetHeight;
+				const tooltipWidth = tooltip.offsetWidth == undefined ? 0 : tooltip.offsetWidth;
+
 				let top = 0;
 				let left = 0;
 
-				if(tooltipHeight <= (elHeight * .8) ){
+				if (tooltipHeight <= (elHeight * .8)) {
 					top = tooltipHeight;
-				} else {
-					top = 0;
 				}
-				if( tooltipWidth >= (elWidth * .8) ){
+			
+				if (tooltipWidth >= (elWidth * .8)) {
 					top = 0;
 				}
 
+				if(elRect.left < tooltipWidth){
+					x = 0;
+				}
+
+				if(elRect.left > window.screen){
+					x = window.screen.width - tooltipWidth;
+				}
+
+				if(elRect.top < tooltipHeight){
+					y = 0;
+				}
+
+				if(elRect.bottom > window.screen.height){
+					y = window.screen.height - tooltipHeight;
+				}
+
 				Object.assign(tooltip.style, {
-					left: `${x + left }px`,
-					top:  `${y + top  }px`
+					left: `${x + left}px`,
+					top: `${y + top}px`
 				});
-				
+				console.log(tooltip.style.left);
+				console.log(tooltip.style.top);
+				console.log('---');
+		
 			});
 		};
 		const cleanup = autoUpdate(
@@ -888,7 +907,7 @@ window.addEventListener('DOMContentLoaded', () => {
 				} else {
 					if (saving) {
 						saving = false;
-						debug( edac_script_vars.scanUrl);
+						debug(edac_script_vars.scanUrl);
 						iframe.setAttribute('src', edac_script_vars.scanUrl);
 					}
 				}
