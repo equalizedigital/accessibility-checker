@@ -1,4 +1,4 @@
-import { computePosition, autoUpdate } from '@floating-ui/dom';
+import { computePosition, autoUpdate, shift, offset,inline } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable, isTabbable } from 'tabbable';
 import { scan } from './scanner';
@@ -218,6 +218,7 @@ class AccessibilityCheckerHighlight {
 	 * Note: This function assumes that `edac_script_vars` is a global variable containing necessary data.
 	 */
 	highlightAjax() {
+
 		const self = this;
 		return new Promise(function (resolve, reject) {
 			const xhr = new XMLHttpRequest();
@@ -233,16 +234,17 @@ class AccessibilityCheckerHighlight {
 					self.showWait(false);
 
 					const response = JSON.parse(xhr.responseText);
-					//console.log(response);
 					if (true === response.success) {
 						const response_json = JSON.parse(response.data);
-
+					
+						debug(response_json);
+				
 						if (self.settings.showIgnored) {
 							resolve(response_json);
 						} else {
 							resolve(
 								response_json.filter(item => (item.id !== this.urlParameter ||
-								item.rule_type !== 'ignored'))
+									item.rule_type !== 'ignored'))
 							);
 						}
 
@@ -347,13 +349,32 @@ class AccessibilityCheckerHighlight {
 
 		function updatePosition() {
 			computePosition(element, tooltip, {
-				placement: 'left',
+				placement: 'top-start',
+				middleware: [],
 			}).then(({ x, y, middlewareData, placement }) => {
+				
+				const elHeight = element.offsetHeight == undefined ? 0 : element.offsetHeight;  
+				const elWidth = element.offsetWidth == undefined ? 0 : element.offsetWidth;  
+				const tooltipHeight = tooltip.offsetHeight == undefined ? 0 : tooltip.offsetHeight;  
+				const tooltipWidth = tooltip.offsetWidth == undefined ? 0 : tooltip.offsetWidth;  
+				
+				let top = 0;
+				let left = 0;
+
+				if(tooltipHeight <= (elHeight * .8) ){
+					top = tooltipHeight;
+				} else {
+					top = 0;
+				}
+				if( tooltipWidth >= (elWidth * .8) ){
+					top = 0;
+				}
 
 				Object.assign(tooltip.style, {
-					left: `${x - 32}px`,
-					top: `${y}px`
+					left: `${x + left }px`,
+					top:  `${y + top  }px`
 				});
+				
 			});
 		};
 		const cleanup = autoUpdate(
@@ -867,6 +888,7 @@ window.addEventListener('DOMContentLoaded', () => {
 				} else {
 					if (saving) {
 						saving = false;
+						debug( edac_script_vars.scanUrl);
 						iframe.setAttribute('src', edac_script_vars.scanUrl);
 					}
 				}
@@ -977,36 +999,42 @@ window.addEventListener('DOMContentLoaded', () => {
 		const urlParams = new URLSearchParams(queryString);
 		const edacAction = urlParams.get('edac-action');
 
+
 		// Ref:edac-action=js-scan
 		if (edacAction === 'js-scan') {
+
 			// This page preview is being loaded from within the editor's iframe because we want to run an autoscan.
 
-			// Special handler that runs the js based rules in the browser.
-			scan().then((results) => {
+			// Give any page scripts priority to run before we perform
+			setTimeout(function () {
 
-				let post_id = edac_script_vars.postID;
+				// Special handler that runs the js based rules in the browser.
+				scan().then((results) => {
 
-				debug('Post ' + post_id + ' scan results:');
-				debug(results);
+					let post_id = edac_script_vars.postID;
 
-				if (post_id !== null) {
+					debug('Post ' + post_id + ' scan results:');
+					debug(results);
 
-					// Send the scan results so we can process them.
-					postData(edac_script_vars.edacApiUrl + '/post-scan-results/' + post_id, {
-						violations: results.violations
-					}).then((data) => {
-						//TODO:
-						//console.log(data);
-					});
+					if (post_id !== null) {
 
-				}
+						// Send the scan results so we can process them.
+						postData(edac_script_vars.edacApiUrl + '/post-scan-results/' + post_id, {
+							violations: results.violations
+						}).then((data) => {
+							//TODO:
+							//console.log(data);
+						});
+
+					}
 
 
-			}).catch((err) => {
-				//TODO:
-				console.log(err);
-			});
+				}).catch((err) => {
+					//TODO:
+					console.log(err);
+				});
 
+			}, 50);
 
 
 		} else {

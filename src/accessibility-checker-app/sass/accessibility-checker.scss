@@ -4,7 +4,7 @@
 
 body {
     &.edac-app-disable-styles {
-        padding: .5rem (46px + 46px ) !important; //make sure button is visible
+     //   padding: .5rem (46px + 46px ) !important; //make sure button is visible
         #wpadminbar { display: none !important; }
     }
 
@@ -42,17 +42,18 @@ body {
 
     &-btn{
         all: unset;
-        width: 46px !important;
-        height: 46px !important;
+        width: 40px !important;
+        height: 40px !important;
         display: block !important;
         font-size: 0 !important;
         border-radius: 50% !important;
         margin: 5px !important;
         position: absolute !important;
+        z-index: 2147483646 !important;
 
         &-error{
             background: transparent url("../images/highlight-icon-error.svg") center center no-repeat !important;
-            background-size: 46px 46px !important;
+            background-size: 40px 40px !important;
         }
         &-warning{
              background: transparent url("../images/highlight-icon-warning.svg") center center no-repeat !important;
@@ -81,7 +82,7 @@ body {
         position: fixed !important;
         bottom: 15px !important;
         right: 15px !important;
-        z-index: 9999 !important;
+        z-index: 2147483647 !important;
         &-toggle{
             width: 50px !important;
             height: 50px !important;
