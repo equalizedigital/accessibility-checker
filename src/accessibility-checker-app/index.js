@@ -390,16 +390,15 @@ class AccessibilityCheckerHighlight {
 					left: `${x + left}px`,
 					top: `${y + top}px`
 				});
-				console.log(tooltip.style.left);
-				console.log(tooltip.style.top);
-				console.log('---');
 		
 			});
 		};
 		const cleanup = autoUpdate(
 			element,
 			tooltip,
-			updatePosition
+			updatePosition, {
+				animationFrame: true
+			}
 		);
 
 
