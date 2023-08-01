@@ -23,12 +23,12 @@
     "vendor"
   ],
   "devDependencies": {
-    "axe-core": "^4.7.2",
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.4",
     "@babel/preset-react": "^7.22.3",
     "@floating-ui/dom": "^1.2.9",
     "@wordpress/scripts": "^26.5.0",
+    "axe-core": "^4.7.2",
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
@@ -36,6 +36,7 @@
     "focus-trap": "^7.4.3",
     "mini-css-extract-plugin": "^2.7.6",
     "node-sass": "^7.0.3",
+    "notyf": "^3.10.0",
     "sass-loader": "^13.3.1",
     "tabbable": "^6.1.2",
     "unique-selector": "^0.5.0",

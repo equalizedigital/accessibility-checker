@@ -74,6 +74,7 @@ function edac_enqueue_styles() {
  */
 function edac_enqueue_scripts( $mode = '' ) {
 	
+	
 	if (
 		( array_key_exists( 'edac_nonce', $_GET ) && 
 		! wp_verify_nonce( $_GET['edac_nonce'], 'edac_highlight' ) ) || 
@@ -86,12 +87,14 @@ function edac_enqueue_scripts( $mode = '' ) {
 		status_header( 401 );
 		wp_die( 'Permission Denied.' );
 	}
-
+	
 	
 	global $post;
 	$post_id = is_object( $post ) ? $post->ID : null;
-	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
-
+	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true;
+	$basic_auth = false;
+	$has_pending_scans = false;
+		
 
 	
 	if ( '' === $mode ) {
@@ -131,7 +134,6 @@ function edac_enqueue_scripts( $mode = '' ) {
 				$has_pending_scans = true;
 				
 			} else {
-				$has_pending_scans = false;
 				$scans = new \EDACP\Scans();
 				$all_pendings = array_merge(
 					$scans->get_never_scanned(),
@@ -142,6 +144,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 					$has_pending_scans = true;
 				}           
 			}       
+
 		}
 	
 		wp_localize_script(
@@ -152,7 +155,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 				'nonce'    => wp_create_nonce( 'ajax-nonce' ),
 				'restNonce' => wp_create_nonce( 'wp_rest' ),
 				'edacApiUrl'   => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-				'edacpApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker-pro/v1' ),
+				'edacpApiUrl'  => $pro ? esc_url_raw( rest_url() . 'accessibility-checker-pro/v1' ) : '',
 				'ajaxurl'  => admin_url( 'admin-ajax.php' ),
 				'loggedIn' => is_user_logged_in(),
 				'active'   => $active,

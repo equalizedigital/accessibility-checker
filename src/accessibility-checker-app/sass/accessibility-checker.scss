@@ -277,3 +277,17 @@ body {
         }
     }
 }
+
+.notyf {
+    z-index: 2147483647 !important;
+}
+.notyf__toast {
+    max-width: 100% !important;
+}
+.notyf__message {
+    color: #000000;
+}
+
+.notyf__dismiss-btn:before, .notyf__dismiss-btn:after {
+    background: #000000 !important;
+}

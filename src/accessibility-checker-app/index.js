@@ -1,7 +1,10 @@
 import { computePosition, autoUpdate, shift, offset, inline } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable, isTabbable } from 'tabbable';
+import { Notyf } from 'notyf';
+
 import { scan } from './scanner';
+
 
 let DEBUG_ENABLED = true;
 let SCAN_INTERVAL_IN_SECONDS = 10;
@@ -200,8 +203,10 @@ class AccessibilityCheckerHighlight {
 		for (const element of allElements) {
 
 			if (element.outerHTML.replace(/\W/g, '') === firstParsedElement.outerHTML.replace(/\W/g, '')) {
-
 				const tooltip = this.addTooltip(element, value, index);
+
+				this.issues[index].tooltip = tooltip.tooltip;
+			
 				this.tooltips.push(tooltip);
 
 				return element;
@@ -312,7 +317,7 @@ class AccessibilityCheckerHighlight {
 
 	}
 
-
+	
 	/**
 	 * This function adds a new button element to the DOM, which acts as a tooltip for the highlighted element.
 	 * 
@@ -340,28 +345,27 @@ class AccessibilityCheckerHighlight {
 
 		tooltip.addEventListener('click', onClick);
 
-
+	
 		// Add the tooltip to the page.
 		document.body.append(tooltip);
 
-		// Place the tooltip at the element's position on the page.
-		// See: https://floating-ui.com/docs/autoUpdate
-
-		function updatePosition() {
+		const updatePosition = function(){
+		
 			computePosition(element, tooltip, {
 				placement: 'top-start',
 				middleware: [],
 			}).then(({ x, y, middlewareData, placement }) => {
-
+	
 				const elRect = element.getBoundingClientRect();
 				const elHeight = element.offsetHeight == undefined ? 0 : element.offsetHeight;
 				const elWidth = element.offsetWidth == undefined ? 0 : element.offsetWidth;
 				const tooltipHeight = tooltip.offsetHeight == undefined ? 0 : tooltip.offsetHeight;
 				const tooltipWidth = tooltip.offsetWidth == undefined ? 0 : tooltip.offsetWidth;
-
+	
+		
 				let top = 0;
 				let left = 0;
-
+	
 				if (tooltipHeight <= (elHeight * .8)) {
 					top = tooltipHeight;
 				}
@@ -369,35 +373,40 @@ class AccessibilityCheckerHighlight {
 				if (tooltipWidth >= (elWidth * .8)) {
 					top = 0;
 				}
-
+	
 				if(elRect.left < tooltipWidth){
 					x = 0;
 				}
-
+	
 				if(elRect.left > window.screen){
 					x = window.screen.width - tooltipWidth;
 				}
-
+	
 				if(elRect.top < tooltipHeight){
 					y = 0;
 				}
-
-				if(elRect.bottom > window.screen.height){
-					y = window.screen.height - tooltipHeight;
-				}
-
+	
 				Object.assign(tooltip.style, {
 					left: `${x + left}px`,
 					top: `${y + top}px`
 				});
 		
 			});
+
 		};
+
+		
+		// Place the tooltip at the element's position on the page.
+		// See: https://floating-ui.com/docs/autoUpdate	
 		const cleanup = autoUpdate(
 			element,
 			tooltip,
 			updatePosition, {
-				animationFrame: true
+				ancestorScroll: true,
+				ancestorResize: true,
+				elementResize: true,
+				layoutShift: true,
+				animationFrame: false
 			}
 		);
 
@@ -600,8 +609,8 @@ class AccessibilityCheckerHighlight {
 
 					const element = this.findElement(value, index);
 					if (element !== null) {
-						const tooltip = this.addTooltip(element, value, index);
-						this.issues[index].tooltip = tooltip.tooltip;
+					//MB	const tooltip = this.addTooltip(element, value, index);
+					//MB	this.issues[index].tooltip = tooltip.tooltip;
 						this.issues[index].element = element;
 					}
 
@@ -838,21 +847,63 @@ class AccessibilityCheckerHighlight {
 
 }
 
+async function checkApi() {
+
+	var credentials = 'omit';
+	
+	if( edac_script_vars.edacpApiUrl !== ''){
+		credentials = 'same-origin';
+	}
+	
+	var headers = {
+		"Content-Type": "application/json",
+		"X-WP-Nonce": edac_script_vars.restNonce,
+	};
+	
+
+	const response = await fetch(edac_script_vars.edacApiUrl + '/test', {
+		method: "POST",
+		headers: headers,
+		credentials: credentials
+	});
+
+	return response.status;
+}
+
+
 async function postData(url = "", data = {}) {
+
+	var credentials = 'omit';
+	
+	if( edac_script_vars.edacpApiUrl !== ''){
+		credentials = 'same-origin';
+	}
+	
+	var headers = {
+		"Content-Type": "application/json",
+		"X-WP-Nonce": edac_script_vars.restNonce,
+	};
+	
 	const response = await fetch(url, {
 		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			"X-WP-Nonce": edac_script_vars.restNonce
-		},
+		credentials: credentials,
+		headers: headers,
 		body: JSON.stringify(data),
 	});
 	return response.json();
 }
 
 async function getData(url = "") {
+	
+	var credentials = 'omit';
+	
+	if( edac_script_vars.edacpApiUrl !== ''){
+		credentials = 'same-origin';
+	}
+	
 	const response = await fetch(url, {
 		method: "GET",
+		credentials: credentials,
 		headers: {
 			"Content-Type": "application/json",
 			"X-WP-Nonce": edac_script_vars.restNonce
@@ -875,8 +926,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	debug('We are loading the app in ' + edac_script_vars.mode + ' mode.');
 
-	let API_warning_shown = false;
-
+	
 	if (edac_script_vars.mode === 'editor-scan') {
 
 		debug('App is loading from within the editor.');
@@ -907,6 +957,20 @@ window.addEventListener('DOMContentLoaded', () => {
 					if (saving) {
 						saving = false;
 						debug(edac_script_vars.scanUrl);
+
+						checkApi().then((status) => {
+							if(status == 401 && edac_script_vars.edacpApiUrl == ''){
+						
+								showNotice({
+									msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
+									type: 'warning',
+									url: 'https://equalizedigital.com/accessibility-checker/pricing/',
+									label: 'upgrade to Accessibility Checker Pro',
+									closeOthers: true
+								});
+							}
+						});
+					
 						iframe.setAttribute('src', edac_script_vars.scanUrl);
 					}
 				}
@@ -925,6 +989,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		(edac_script_vars.mode === 'full-scan')
 	) {
 
+		
 		debug('App is loading either from the editor page or from the scheduled full scan page.');
 
 		// Create an iframe in the editor for loading the page preview for the scheduled scans.
@@ -938,8 +1003,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		let scanInterval = setInterval(() => {
 
+		
 			debug('Polling to see if there are any scans pending.');
 
+			
 			// Poll to see if there are any scans pending.
 			getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
 				.then((data) => {
@@ -947,11 +1014,6 @@ window.addEventListener('DOMContentLoaded', () => {
 					if (data.code !== 'rest_no_route') {
 
 						if (data.data !== undefined) {
-
-							if (API_warning_shown && edac_script_vars.mode === 'full-scan') {
-								document.querySelector('.edac-notice-rest-error').remove();
-								API_warning_shown = false;
-							}
 
 							if (data.data.scanUrl !== undefined) {
 
@@ -966,38 +1028,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 					} else {
 
-						if (!API_warning_shown) {
-
-							if (edac_script_vars.mode === 'editor-scan') {
-
-								API_warning_shown = true;
-								wp.data.dispatch("core/notices").createNotice(
-									"warning",
-									"There was a problem connecting to the REST API.",
-									{
-										isDismissible: true,
-										actions: [
-											{
-												url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions/',
-												label: 'View details',
-											},
-										],
-									}
-								);
-
-
-							}
-
-							if (edac_script_vars.mode === 'full-scan') {
-								API_warning_shown = true;
-
-								const warning = document.createElement('div');
-								warning.classList = 'notice notice-warning edac-notice-rest-error';
-								warning.innerHTML = "<p>There was a problem connecting to the <a href='https://developer.wordpress.org/rest-api/frequently-asked-questions/'>REST API</a> which is required by Accessibility Checker.</p>";
-								document.querySelector('#wpbody-content h1').after(warning);
-
-							}
-						}
+						debug('There was a problem connecting to the API.');
+				
 					}
 
 				});
@@ -1010,7 +1042,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
 	if (edac_script_vars.mode === 'ui' && edac_script_vars.active) {
-
 
 		//We are loading the app in the page preview.
 		const queryString = window.location.search;
@@ -1033,17 +1064,67 @@ window.addEventListener('DOMContentLoaded', () => {
 
 					debug('Post ' + post_id + ' scan results:');
 					debug(results);
-
+				
+				
 					if (post_id !== null) {
 
-						// Send the scan results so we can process them.
-						postData(edac_script_vars.edacApiUrl + '/post-scan-results/' + post_id, {
-							violations: results.violations
-						}).then((data) => {
-							//TODO:
-							//console.log(data);
+						// Confirm api service is working.
+						checkApi().then((status) => {
+						
+							if(status >= 400 ){
+								if(status == 401 && edac_script_vars.edacpApiUrl == ''){
+							
+									showNotice({
+										msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
+										type: 'warning',
+										url: 'https://equalizedigital.com/accessibility-checker/pricing/',
+										label: 'upgrade to Accessibility Checker Pro',
+										closeOthers: true
+									});
+								
+								} else if(status == 401 && edac_script_vars.edacpApiUrl != ''){
+									showNotice({
+										msg: 'Whoops! It looks like your website is currently password protected. To scan this website for accessibility problems {link}.',
+										type: 'warning',
+										url: '/wp-admin/admin.php?page=accessibility_checker_settings',
+										label: 'add your username and password to your Accessibility Checker Pro settings',
+										closeOthers: true
+									});
+							
+								} else {
+									showNotice({
+										msg: 'Whoops! It looks like there was a problem connecting to the {link} which is required by Accessibility Checker.',
+										type: 'warning',
+										url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions',
+										label: 'Rest API',
+										closeOthers: true
+									});
+								}
+						
+							} else {
+		
+								// Api is fine so we can send the scan results.
+								postData(edac_script_vars.edacApiUrl + '/post-scan-results/' + post_id, {
+									violations: results.violations
+								}).then((data) => {
+									if(!data.success){
+										showNotice({
+											msg: 'Whoops! It looks like there was a problem updating. Please try again.',
+											type: 'warning'
+										});
+							
+									}
+								});
+			
+							};
+					
 						});
 
+					
+						
+				
+						
+				
 					}
 
 
@@ -1067,5 +1148,119 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
+	function showNotice(options){
+		window.top._showNotice(options);
+	}
+
+					
 
 });
+
+
+if( window.top === window && window._showNotice === undefined ){
+
+	var link = document.createElement( "link" );
+	link.href = 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css';
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	link.media = "screen,print";
+	document.getElementsByTagName( "head" )[0].appendChild( link );
+
+	window._showNotice = function(options){
+
+		const settings = Object.assign({}, {
+			msg: '',
+			type: 'warning',
+			url: false,
+			label: '',
+			closeOthers: false
+		}, options);
+		
+		
+		if(window.wp !== undefined && window.wp.data !== undefined && window.wp.data.dispatch !== undefined){
+		
+			var o = {isDismissible: true };
+			
+			var msg = settings.msg;
+			
+			if( settings.url ){
+				o.actions = [{
+					url: settings.url,
+					label: settings.label
+			}];
+
+				msg = msg.replace('{link}',settings.label);
+			} else {
+				msg = msg.replace('{link}', '');
+			}
+	
+			if(settings.closeOthers){				
+				document.querySelectorAll('.components-notice').forEach( (element) => {
+					element.style.display = 'none';
+				});
+			}
+
+			setTimeout(function(){
+				wp.data.dispatch("core/notices").createNotice( settings.type, msg , o );
+			},10);
+			
+	
+
+			
+
+		} else {
+		
+			var msg = settings.msg;
+
+			if( settings.url ){
+				msg = msg.replace('{link}','<a href="' + settings.url + '" target="_blank" arial-label="' + settings.label + '">' + settings.label + '</a>');
+			} else {
+				msg = msg.replace('{link}', '');
+			}
+	
+			const notyf = new Notyf({
+				position: {x: 'left', y: 'top'},
+				ripple: false,
+				types: [	
+					{
+						type: 'success',
+						background: '#eff9f1',
+						duration: 2000,
+						dismissible: true,
+						icon: false
+						},
+				
+					{
+						type: 'warning',
+						background: '#fef8ee',
+						duration: 0,
+						dismissible: true,
+						icon: false
+					},
+					{
+						type: 'error',
+						background: '#f4a2a2',
+						duration: 0,
+						dismissible: true,
+						icon: false
+					}
+					]
+			});
+				
+			if(settings.closeOthers){
+				notyf.dismissAll();
+			}
+
+			const notification = notyf.open({
+				type: settings.type,
+				message: msg
+			});
+		
+			
+		}
+
+		
+		
+	}
+		
+}

@@ -30,6 +30,7 @@ class REST_Api {
 			
 	}
 
+
 	/**
 	 * Adds the actions.
 	 */
@@ -37,6 +38,32 @@ class REST_Api {
 
 		$ns = 'accessibility-checker/';
 		$version = 'v1';
+
+		//http://localhost/index.php?rest_route=/accessibility-checker/v1/test
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/test',
+					array(
+						'methods' => array( 'GET','POST' ),
+						'callback' => function() {
+							global $wp;
+							$messages = [];
+							$messages['time'] = time();
+							$messages['perms'] = current_user_can( 'edit_posts' );
+							$messages['method'] = $_SERVER['REQUEST_METHOD'];
+							$messages['nonce'] = wp_create_nonce( 'wp_rest' );
+							return new \WP_REST_Response( array( 'messages' => $messages ), 200 );
+						},
+						'permission_callback' => function () {
+							return true;
+						},
+					) 
+				);
+			} 
+		);
 
 		add_action(
 			'rest_api_init',
@@ -93,7 +120,6 @@ class REST_Api {
 
 		}
 
-	
 		
 		// TODO: setup a rules class for loading/filtering rules.
 		$rules = edac_register_rules();
@@ -104,7 +130,8 @@ class REST_Api {
 			}
 		}
 
-		
+	
+	
 		try {
 
 			$violations = $request['violations'];
@@ -113,6 +140,7 @@ class REST_Api {
 			// set record check flag on previous error records.
 			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 1, 'js' );
 
+	
 			if ( is_array( $violations ) && count( $violations ) > 0 ) {
 
 				foreach ( $violations as $violation ) {
@@ -138,13 +166,13 @@ class REST_Api {
 						// Write the rule/violation data to the db.
 						edac_insert_rule_data( $post, $rule_id, $impact, $html );
 
-						// Update the summary info that is stored in meta for each of the posts that have this rule.
-						edac_update_post_meta( $rule_id );
-
 					}               
 				}           
 			}
-
+	
+			// Update the summary info that is stored in meta this post.
+			$summary = edac_summary( $post_id );
+	
 			// remove corrected records.
 			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 2, 'js' );
 
@@ -153,6 +181,7 @@ class REST_Api {
 			
 			return new \WP_REST_Response(
 				array(
+					'success' => true,
 					'id' => $post_id,
 					'timestamp' => time(),
 				) 
