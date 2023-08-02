@@ -15,3 +15,4 @@ node_modules
 #build
 dist/*.zip
 admin.bundle.not_currently_used.js
+.env

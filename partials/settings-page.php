@@ -27,7 +27,7 @@ if ( is_array( $settings_tab_items ) ) {
 	usort(
 		$settings_tab_items,
 		function( $a, $b ) {
-			return $a['order'] <=> $b['order'];
+			return strcmp($b['order'], $a['order']);
 		}
 	);
 }

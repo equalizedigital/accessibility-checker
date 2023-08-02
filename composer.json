@@ -9,17 +9,15 @@
     "require": {
         "freemius/wordpress-sdk": "*"
     },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "freemius/wordpress-sdk",
-                "version": "2.5.10",
-                "dist": {
-                    "type": "zip",
-                    "url": "/tmp/wordpress-sdk-2.5.10.zip"
-                }
-            }
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
-    ]
+    },
+    "require-dev": {
+        "automattic/vipwpcs": "^2.3",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+        "phpcompatibility/php-compatibility": "*"
+        
+    }
 }

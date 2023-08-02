@@ -116,7 +116,7 @@ function edac_validate( $post_ID, $post, $action ) {
 	}
 
 	// set record check flag on previous error records.
-	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 1 );
+	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 1, 'php' );
 
 	// check and validate content.
 	$rules = edac_register_rules();
@@ -127,7 +127,10 @@ function edac_validate( $post_ID, $post, $action ) {
 	if ( $rules ) {
 		foreach ( $rules as $rule ) {
 
-			if ( $rule['slug'] ) {
+			// Run php-base rules.
+			if ( ( array_key_exists( 'ruleset', $rule ) && 'php' === $rule['ruleset'] ) ||
+				( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) 
+			) {
 				do_action( 'edac_before_rule', $post_ID, $rule, $action );
 				if ( EDAC_DEBUG === true ) {
 					$rule_process_time = microtime( true );
@@ -157,7 +160,7 @@ function edac_validate( $post_ID, $post, $action ) {
 	}
 
 	// remove corrected records.
-	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 2 );
+	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 2, 'php' );
 
 	// set post meta checked.
 	add_post_meta( $post_ID, '_edac_post_checked', true, true );
@@ -170,19 +173,70 @@ function edac_validate( $post_ID, $post, $action ) {
  *
  * @param int    $post_ID The ID of the post.
  * @param string $type    The type of the post.
- * @param int    $pre     The flag indicating the removal stage (1 for before validation, 2 for after validation).
+ * @param int    $pre     The flag indicating the removal stage (1 for before validation php based rules, 2 for after validation).
+ * @param string $type    The type of the ruleset to correct (php or js).
  *
  * @return void
  */
-function edac_remove_corrected_posts( $post_ID, $type, $pre = 1 ) {
+function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php' ) {
 	global $wpdb;
 
+	// TODO: setup a rules class for loading/filtering rules.
+	$rules = edac_register_rules();
+	$js_rule_ids = array();
+	$php_rule_ids = array();
+	foreach ( $rules as $rule ) {
+		if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
+			$js_rule_ids[] = $rule['slug'];
+		} else {
+			$php_rule_ids[] = $rule['slug'];
+		}
+	}
+	
+	// Build a sql sanitized list from an array
+	// See: https://stackoverflow.com/questions/10634058/wordpress-prepared-statement-with-in-condition .
+	$js_rule_ids = array_map(
+		function( $v ) {
+			return "'" . esc_sql( $v ) . "'";
+		},
+		$js_rule_ids
+	);
+	$js_rule_ids = implode( ',', $js_rule_ids );
+
+	// Build a sql sanitized list from an array
+	// See: https://stackoverflow.com/questions/10634058/wordpress-prepared-statement-with-in-condition .
+	$php_rule_ids = array_map(
+		function( $v ) {
+			return "'" . esc_sql( $v ) . "'";
+		},
+		$php_rule_ids
+	);
+	$php_rule_ids = implode( ',', $php_rule_ids );
+
+
 	if ( 1 === $pre ) {
+
 		// set record flag before validating content.
-		$wpdb->query( $wpdb->prepare( 'UPDATE ' . $wpdb->prefix . 'accessibility_checker SET recordcheck = %d WHERE siteid = %d and postid = %d and type = %s', 0, get_current_blog_id(), $post_ID, $type ) );
+		$sql = $wpdb->prepare( 'UPDATE ' . $wpdb->prefix . 'accessibility_checker SET recordcheck = %d WHERE siteid = %d and postid = %d and type = %s', 0, get_current_blog_id(), $post_ID, $type );
+		
+		if ( 'js' === $ruleset ) {
+			$sql = $sql . ' AND rule IN(' . $js_rule_ids . ')';
+		} else {
+			$sql = $sql . ' AND rule IN(' . $php_rule_ids . ')';
+		}
+		$wpdb->query( $sql );
+
 	} elseif ( 2 === $pre ) {
 		// after validation is complete remove previous errors that were not found.
-		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . $wpdb->prefix . 'accessibility_checker WHERE siteid = %d and postid = %d and type = %s and recordcheck = %d', get_current_blog_id(), $post_ID, $type, 0 ) );
+		$sql = $wpdb->prepare( 'DELETE FROM ' . $wpdb->prefix . 'accessibility_checker WHERE siteid = %d and postid = %d and type = %s and recordcheck = %d', get_current_blog_id(), $post_ID, $type, 0 );
+
+		if ( 'js' === $ruleset ) {
+			$sql = $sql . ' AND rule IN(' . $js_rule_ids . ')';
+		} else {
+			$sql = $sql . ' AND rule IN(' . $php_rule_ids . ')';
+		}
+		$wpdb->query( $sql );
+	
 	}
 }
 
