@@ -14,87 +14,6 @@ if (edac_script_vars.mode === 'full-scan') {
 }
 
 
-class AccessibilityCheckerDisableHTML {
-
-	/**
-	 * Constructor
-	 */
-	constructor() {
-		this.disableStylesButton = document.querySelector('#edac-highlight-disable-styles');
-		this.closePanel = document.querySelector('#edac-highlight-panel-controls-close');
-		this.stylesDisabled = false;
-		this.originalCss = [];
-		this.init();
-	}
-
-	/**
-	 * This function initializes the component by setting up event listeners.
-	 */
-	init() {
-		this.disableStylesButton.addEventListener('click', () => {
-			if (this.stylesDisabled) {
-				this.enableStyles();
-			} else {
-				this.disableStyles();
-			}
-		});
-		this.closePanel.addEventListener('click', () => this.enableStyles());
-	}
-
-	/**
-	 * This function disables all styles on the page.
-	 */
-	disableStyles() {
-		this.originalCss = Array.from(document.head.querySelectorAll('style[type="text/css"], style, link[rel="stylesheet"]'));
-
-		var elementsWithStyle = document.querySelectorAll('*[style]:not([class^="edac"])');
-		elementsWithStyle.forEach(function (element) {
-			element.removeAttribute("style");
-		});
-
-
-		this.originalCss = this.originalCss.filter(function (element) {
-			if (element.id === 'edac-app-css' || element.id === 'dashicons-css') {
-				return false;
-			}
-			return true;
-		});
-
-		document.head.dataset.css = this.originalCss;
-		this.originalCss.forEach(function (element) {
-			element.remove();
-		});
-
-		document.querySelector('body').classList.add('edac-app-disable-styles');
-
-		this.stylesDisabled = true;
-		this.disableStylesButton.textContent = "Enable Styles";
-	}
-
-	/**
-	 * This function enables all styles on the page.
-	 */
-	enableStyles() {
-		this.originalCss.forEach(function (element) {
-			if (element.tagName === 'STYLE') {
-				document.head.appendChild(element.cloneNode(true));
-			} else {
-				const newElement = document.createElement('link');
-				newElement.rel = 'stylesheet';
-				newElement.href = element.href;
-				document.head.appendChild(newElement);
-			}
-		});
-
-
-		document.querySelector('body').classList.remove('edac-app-disable-styles');
-
-		this.stylesDisabled = false;
-		this.disableStylesButton.textContent = "Disable Styles";
-	}
-}
-
-
 class AccessibilityCheckerHighlight {
 
 	/**
@@ -134,6 +53,11 @@ class AccessibilityCheckerHighlight {
 			}
 
 		});
+
+		this.disableStylesButton = document.querySelector('#edac-highlight-disable-styles');
+		this.stylesDisabled = false;
+		this.originalCss = [];
+	
 		this.init();
 	}
 
@@ -161,10 +85,22 @@ class AccessibilityCheckerHighlight {
 			this.panelClose();
 			this.panelControlsFocusTrap.deactivate();
 			this.panelDescriptionFocusTrap.deactivate();
+			this.enableStyles();
 		});
 
 		// Close description when close button is clicked
 		this.descriptionCloseButton.addEventListener('click', () => this.descriptionClose());
+
+		// Handle disable/enable styles
+		this.disableStylesButton.addEventListener('click', () => {
+			if (this.stylesDisabled) {
+				this.enableStyles();
+			} else {
+				this.disableStyles();
+			}
+		});
+		
+	
 
 		// Open panel if a URL parameter exists
 		if (this.urlParameter) {
@@ -406,7 +342,9 @@ class AccessibilityCheckerHighlight {
 				ancestorResize: true,
 				elementResize: true,
 				layoutShift: true,
-				animationFrame: false
+				animationFrame: true 	// TODO: Disable styles sometimes causes the toolbar to disappear until a scroll or resize event. This may help - but is expensive.
+			
+			
 			}
 		);
 
@@ -609,8 +547,6 @@ class AccessibilityCheckerHighlight {
 
 					const element = this.findElement(value, index);
 					if (element !== null) {
-					//MB	const tooltip = this.addTooltip(element, value, index);
-					//MB	this.issues[index].tooltip = tooltip.tooltip;
 						this.issues[index].element = element;
 					}
 
@@ -751,6 +687,60 @@ class AccessibilityCheckerHighlight {
 
 
 	/**
+	 * This function disables all styles on the page.
+	 */
+		disableStyles() {
+			this.originalCss = Array.from(document.head.querySelectorAll('style[type="text/css"], style, link[rel="stylesheet"]'));
+	
+			var elementsWithStyle = document.querySelectorAll('*[style]:not([class^="edac"])');
+			elementsWithStyle.forEach(function (element) {
+				element.removeAttribute("style");
+			});
+	
+	
+			this.originalCss = this.originalCss.filter(function (element) {
+				if (element.id === 'edac-app-css' || element.id === 'dashicons-css') {
+					return false;
+				}
+				return true;
+			});
+	
+			document.head.dataset.css = this.originalCss;
+			this.originalCss.forEach(function (element) {
+				element.remove();
+			});
+	
+			document.querySelector('body').classList.add('edac-app-disable-styles');
+	
+			this.stylesDisabled = true;
+			this.disableStylesButton.textContent = "Enable Styles";
+
+		}
+	
+		/**
+		 * This function enables all styles on the page.
+		 */
+		enableStyles() {
+			this.originalCss.forEach(function (element) {
+				if (element.tagName === 'STYLE') {
+					document.head.appendChild(element.cloneNode(true));
+				} else {
+					const newElement = document.createElement('link');
+					newElement.rel = 'stylesheet';
+					newElement.href = element.href;
+					document.head.appendChild(newElement);
+				}
+			});
+	
+	
+			document.querySelector('body').classList.remove('edac-app-disable-styles');
+	
+			this.stylesDisabled = false;
+			this.disableStylesButton.textContent = "Disable Styles";
+		}
+	
+
+	/**
 	 * 	* This function retrieves the value of a given URL parameter.
 	 * 
 	 * @param {String} sParam The name of the URL parameter to be retrieved.
@@ -847,47 +837,33 @@ class AccessibilityCheckerHighlight {
 
 }
 
+
 async function checkApi() {
 
-	var credentials = 'omit';
-	
-	if( edac_script_vars.edacpApiUrl !== ''){
-		credentials = 'same-origin';
+	if(edac_script_vars.edacHeaders.Authorization == 'None'){
+		return 401;
 	}
-	
-	var headers = {
-		"Content-Type": "application/json",
-		"X-WP-Nonce": edac_script_vars.restNonce,
-	};
-	
 
 	const response = await fetch(edac_script_vars.edacApiUrl + '/test', {
 		method: "POST",
-		headers: headers,
-		credentials: credentials
+		headers: edac_script_vars.edacHeaders
 	});
 
 	return response.status;
+	
 }
 
 
 async function postData(url = "", data = {}) {
 
-	var credentials = 'omit';
-	
-	if( edac_script_vars.edacpApiUrl !== ''){
-		credentials = 'same-origin';
+
+	if(edac_script_vars.edacHeaders.Authorization == 'None'){
+		return;
 	}
-	
-	var headers = {
-		"Content-Type": "application/json",
-		"X-WP-Nonce": edac_script_vars.restNonce,
-	};
-	
+
 	const response = await fetch(url, {
 		method: "POST",
-		credentials: credentials,
-		headers: headers,
+		headers: edac_script_vars.edacHeaders,
 		body: JSON.stringify(data),
 	});
 	return response.json();
@@ -895,32 +871,190 @@ async function postData(url = "", data = {}) {
 
 async function getData(url = "") {
 	
-	var credentials = 'omit';
-	
-	if( edac_script_vars.edacpApiUrl !== ''){
-		credentials = 'same-origin';
+	if(edac_script_vars.edacHeaders.Authorization == 'None'){
+		return;
 	}
-	
+
 	const response = await fetch(url, {
 		method: "GET",
-		credentials: credentials,
-		headers: {
-			"Content-Type": "application/json",
-			"X-WP-Nonce": edac_script_vars.restNonce
-		}
+		headers: edac_script_vars.edacHeaders
 	});
 	return response.json();
 }
 
-function debug($message) {
+function debug(message) {
 	if (DEBUG_ENABLED) {
-		if (typeof ($message) !== 'object') {
-			console.debug('DEBUG: ' + $message);
+
+		console.debug('DEBUG [ ' + location.href + ' ]');
+		
+		if (typeof message !== 'object') {
+			console.debug('DEBUG: ' + message);
 		} else {
-			console.debug($message);
+			console.debug(message);
 		}
 	}
 }
+
+function saveScanResults( postId , violations ){
+		// Confirm api service is working.
+		checkApi().then((status) => {
+						
+			debug("API status:" + status);
+				
+			if(status >= 400 ){
+				if(status == 401 && edac_script_vars.edacpApiUrl == ''){
+			
+					showNotice({
+						msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
+						type: 'warning',
+						url: 'https://equalizedigital.com/accessibility-checker/pricing/',
+						label: 'upgrade to Accessibility Checker Pro',
+						closeOthers: true
+					});
+				
+				} else if(status == 401 && edac_script_vars.edacpApiUrl != ''){
+					showNotice({
+						msg: 'Whoops! It looks like your website is currently password protected. To scan this website for accessibility problems {link}.',
+						type: 'warning',
+						url: '/wp-admin/admin.php?page=accessibility_checker_settings',
+						label: 'add your username and password to your Accessibility Checker Pro settings',
+						closeOthers: true
+					});
+			
+				} else {
+					showNotice({
+						msg: 'Whoops! It looks like there was a problem connecting to the {link} which is required by Accessibility Checker.',
+						type: 'warning',
+						url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions',
+						label: 'Rest API',
+						closeOthers: true
+					});
+				}
+		
+			} else {
+
+				// Api is fine so we can send the scan results.
+				postData(edac_script_vars.edacApiUrl + '/post-scan-results/' + postId, {
+					violations: violations
+				}).then((data) => {
+		
+					debug("OK: Post #" + postId);
+					debug(data);
+					
+					if(!data.success){
+						debug("FAILED: Post #" + postId);
+						debug(data);
+						
+						showNotice({
+							msg: 'Whoops! It looks like there was a problem updating. Please try again.',
+							type: 'warning'
+						});
+			
+					}
+				});
+
+			};
+	
+		});
+
+}
+
+//TODO: see also https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel
+window.addEventListener(
+	"message",
+	(e) => {
+	
+
+		if (e.origin !== edac_script_vars.edacUrl ) return;
+	 
+	  	if(window === window.top){
+
+			//There has been a request to start a scan. Pass the message to the scanner's window.
+			if(e.data && e.data.sender === 'edac_start_scan'){
+				var scanner = document.getElementById('edac_scanner');
+				var scannerWindow =scanner.contentWindow;
+				scannerWindow.postMessage({
+					'sender' : 'edac_start_scan',
+					'message' :  e.data.message
+				});
+		
+			}
+
+			//There has been a request to start a scheduled scan. Pass the message to the scanner's window.
+			if(e.data && e.data.sender === 'edac_start_scheduled_scan'){
+				var scheduledScanner = document.getElementById('edacp_scheduled_scanner');
+				var scheduledScannerWindow =scheduledScanner.contentWindow;
+				scheduledScannerWindow.postMessage({
+					'sender' : 'edac_start_scheduled_scan',
+					'message' :  e.data.message
+				});
+		
+			}
+		
+			//There has been a request to save the scan.
+			if(e.data && e.data.sender === 'edac_save_scan'){
+				debug("saving " + e.data.message.postId);	
+				saveScanResults( e.data.message.postId , e.data.message.violations );
+			}
+		
+		} else {
+
+			if(e.data && e.data.sender === 'edac_start_scan'){
+				const postId = e.data.message.postId;
+			
+				// We are running a scan in the iframe. We need to send the results
+				// back to the top window so we can use that cookie to authenticate the rest post.
+				// See: https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
+
+				scan().then((results) => {
+					
+					let violations =JSON.parse(JSON.stringify(results.violations));
+				
+					window.top.postMessage({
+						'sender' : 'edac_save_scan',
+						'message' :  {
+							postId : postId,
+							violations: violations
+						}
+					});
+					
+					
+				});
+
+			}
+			
+		
+
+			if(e.data && e.data.sender === 'edac_start_scheduled_scan'){
+				const postId = e.data.message.postId;
+			
+				// We are running a scheduled scan in the iframe. We need to send the results
+				// back to the top window so we can use that cookie to authenticate the rest post.
+				// See: https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
+
+				scan().then((results) => {
+					
+					let violations =JSON.parse(JSON.stringify(results.violations));
+				
+					window.top.postMessage({
+						'sender' : 'edac_save_scan',
+						'message' :  {
+							postId : postId,
+							violations: violations
+						}
+					});
+					
+					
+				});
+
+			}
+			
+		}
+
+	},
+	false,
+);
+
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -937,6 +1071,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		// loaded in the iframe to: 1) run the js scan, 2) post the results.
 		// See: "Ref:edac-action=js-scan".
 		const iframe = document.createElement('iframe');
+		iframe.setAttribute('id', 'edac_scanner');
 		iframe.setAttribute('src', edac_script_vars.scanUrl);
 		iframe.style.width = screen.width + 'px';
 		iframe.style.height = screen.height + 'px';
@@ -965,13 +1100,22 @@ window.addEventListener('DOMContentLoaded', () => {
 									msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
 									type: 'warning',
 									url: 'https://equalizedigital.com/accessibility-checker/pricing/',
-									label: 'upgrade to Accessibility Checker Pro',
+									label: 'Upgrade to Accessibility Checker Pro',
 									closeOthers: true
 								});
 							}
 						});
 					
 						iframe.setAttribute('src', edac_script_vars.scanUrl);
+						
+						// Pass the message that fires the iframe scan and save.
+						window.postMessage({
+							'sender' : 'edac_start_scan',
+							'message' :   {
+								postId : edac_script_vars.postID
+							}
+						});
+
 					}
 				}
 
@@ -994,46 +1138,63 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		// Create an iframe in the editor for loading the page preview for the scheduled scans.
 		const iframeScheduledScanner = document.createElement('iframe');
+		iframeScheduledScanner.setAttribute('id', 'edacp_scheduled_scanner');
 		iframeScheduledScanner.style.width = screen.width + 'px';
 		iframeScheduledScanner.style.height = screen.height + 'px';
 		iframeScheduledScanner.style.position = 'absolute';
 		iframeScheduledScanner.style.left = '-' + screen.width + 'px';
+
 		document.body.append(iframeScheduledScanner);
 
 
+		let scheduledScanRunning = false;
 		let scanInterval = setInterval(() => {
 
-		
-			debug('Polling to see if there are any scans pending.');
+			if(!scheduledScanRunning){
 
-			
-			// Poll to see if there are any scans pending.
-			getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
-				.then((data) => {
+				debug('Polling to see if there are any scans pending.');
 
-					if (data.code !== 'rest_no_route') {
+				scheduledScanRunning = true;
 
-						if (data.data !== undefined) {
+				// Poll to see if there are any scans pending.
+				getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
+					.then((data) => {
 
-							if (data.data.scanUrl !== undefined) {
+						scheduledScanRunning = false;
 
-								debug('There is a scan pending: ' + data.data.scanUrl);
+						if (data.code !== 'rest_no_route') {
 
-								// We have the url of the next in line to be scanned so pass to the iframe.
-								iframeScheduledScanner.setAttribute('src', data.data.scanUrl);
+							if (data.data !== undefined) {
+
+								if (data.data.scanUrl !== undefined) {
+
+									
+									// We have the url of the next in line to be scanned so pass to the iframe.
+									iframeScheduledScanner.setAttribute('src', data.data.scanUrl);
+									
+									// Pass the message that fires the iframe scan and save.
+									window.postMessage({
+										'sender' : 'edac_start_scheduled_scan',
+										'message' :  data.data 
+									});
+									
+								}
 
 							}
 
+						} else {
+
+							debug('There was a problem connecting to the API.');
+					
 						}
 
-					} else {
+					}).finally(()=> {
+						scheduledScanRunning = false;
+					});
 
-						debug('There was a problem connecting to the API.');
-				
-					}
-
-				});
-
+			} else {
+				debug('Waiting for previous poll to complete.');
+			}
 
 		}, SCAN_INTERVAL_IN_SECONDS * 1000);
 
@@ -1043,106 +1204,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	if (edac_script_vars.mode === 'ui' && edac_script_vars.active) {
 
-		//We are loading the app in the page preview.
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		const edacAction = urlParams.get('edac-action');
-
-
-		// Ref:edac-action=js-scan
-		if (edacAction === 'js-scan') {
-
-			// This page preview is being loaded from within the editor's iframe because we want to run an autoscan.
-
-			// Give any page scripts priority to run before we perform
-			setTimeout(function () {
-
-				// Special handler that runs the js based rules in the browser.
-				scan().then((results) => {
-
-					let post_id = edac_script_vars.postID;
-
-					debug('Post ' + post_id + ' scan results:');
-					debug(results);
-				
-				
-					if (post_id !== null) {
-
-						// Confirm api service is working.
-						checkApi().then((status) => {
-						
-							if(status >= 400 ){
-								if(status == 401 && edac_script_vars.edacpApiUrl == ''){
-							
-									showNotice({
-										msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
-										type: 'warning',
-										url: 'https://equalizedigital.com/accessibility-checker/pricing/',
-										label: 'upgrade to Accessibility Checker Pro',
-										closeOthers: true
-									});
-								
-								} else if(status == 401 && edac_script_vars.edacpApiUrl != ''){
-									showNotice({
-										msg: 'Whoops! It looks like your website is currently password protected. To scan this website for accessibility problems {link}.',
-										type: 'warning',
-										url: '/wp-admin/admin.php?page=accessibility_checker_settings',
-										label: 'add your username and password to your Accessibility Checker Pro settings',
-										closeOthers: true
-									});
-							
-								} else {
-									showNotice({
-										msg: 'Whoops! It looks like there was a problem connecting to the {link} which is required by Accessibility Checker.',
-										type: 'warning',
-										url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions',
-										label: 'Rest API',
-										closeOthers: true
-									});
-								}
-						
-							} else {
-		
-								// Api is fine so we can send the scan results.
-								postData(edac_script_vars.edacApiUrl + '/post-scan-results/' + post_id, {
-									violations: results.violations
-								}).then((data) => {
-									if(!data.success){
-										showNotice({
-											msg: 'Whoops! It looks like there was a problem updating. Please try again.',
-											type: 'warning'
-										});
-							
-									}
-								});
-			
-							};
-					
-						});
-
-					
-						
-				
-						
-				
-					}
-
-
-				}).catch((err) => {
-					//TODO:
-					console.log(err);
-				});
-
-			}, 50);
-
-
-		} else {
-
-			// We are loading the app in a normal page preview so show the user the ui
-			new AccessibilityCheckerHighlight();
-			new AccessibilityCheckerDisableHTML();
-
-		}
+		// We are loading the app in a normal page preview so show the user the ui
+		new AccessibilityCheckerHighlight();
 
 	}
 

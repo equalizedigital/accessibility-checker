@@ -74,7 +74,7 @@ function edac_enqueue_styles() {
  */
 function edac_enqueue_scripts( $mode = '' ) {
 	
-	
+	/*
 	if (
 		( array_key_exists( 'edac_nonce', $_GET ) && 
 		! wp_verify_nonce( $_GET['edac_nonce'], 'edac_highlight' ) ) || 
@@ -87,16 +87,18 @@ function edac_enqueue_scripts( $mode = '' ) {
 		status_header( 401 );
 		wp_die( 'Permission Denied.' );
 	}
-	
+	*/
 	
 	global $post;
 	$post_id = is_object( $post ) ? $post->ID : null;
 	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true;
-	$basic_auth = false;
 	$has_pending_scans = false;
-		
-
 	
+	$headers = array(
+		'Content-Type' => 'application/json',
+		'X-WP-Nonce' => wp_create_nonce( 'wp_rest' ),
+	);
+
 	if ( '' === $mode ) {
 		if ( ( current_user_can( 'edit_post', $post_id ) && ! is_customize_preview() )
 		) {  
@@ -128,6 +130,9 @@ function edac_enqueue_scripts( $mode = '' ) {
 			}
 		}
 
+
+	
+	
 		if ( $pro ) {
 
 			if ( 'full-scan' === $mode ) {
@@ -145,7 +150,20 @@ function edac_enqueue_scripts( $mode = '' ) {
 				}           
 			}       
 
+
+			$username = get_option( 'edacp_authorization_username' );
+			$password = get_option( 'edacp_authorization_password' );   
+			if ( $username && $password ) {
+				$headers['Authorization'] = 'Basic ' . base64_encode( "$username:$password" );
+			}       
+		} else {
+			
+			$server_headers = getallheaders();
+			if ( isset( $server_headers['Authorization'] ) ) {
+				$headers['Authorization'] = 'None';
+			}       
 		}
+	
 	
 		wp_localize_script(
 			'edac-app',
@@ -153,8 +171,9 @@ function edac_enqueue_scripts( $mode = '' ) {
 			array(
 				'postID'   => $post_id,
 				'nonce'    => wp_create_nonce( 'ajax-nonce' ),
-				'restNonce' => wp_create_nonce( 'wp_rest' ),
+				'edacUrl'   => esc_url_raw(get_site_url()),
 				'edacApiUrl'   => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+				'edacHeaders' => $headers,
 				'edacpApiUrl'  => $pro ? esc_url_raw( rest_url() . 'accessibility-checker-pro/v1' ) : '',
 				'ajaxurl'  => admin_url( 'admin-ajax.php' ),
 				'loggedIn' => is_user_logged_in(),

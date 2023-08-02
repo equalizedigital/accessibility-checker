@@ -31,8 +31,8 @@ export async function scan(
 		},
 		runOptions: {
 			runOnly: ['color_contrast_failure']
+			/*	
 			//TODO:
-			/*
 			runOnly: {
 				type: 'tag',
 				values: [
@@ -54,6 +54,7 @@ export async function scan(
 	axe.configure(configOptions);
 
 	const runOptions = Object.assign(defaults.runOptions, options.runOptions);
+
 	return await axe.run(context, runOptions)
 		.then((rules) => {
 
@@ -81,6 +82,16 @@ export async function scan(
 
 			});
 
+			let rules_min = rules.map((r) => {
+				return {
+					id: r.id,
+					description: r.description,
+					help: r.help,
+					impact: r.impact,
+					tags: r.tags
+				}
+			});
+			
 			//Sort the violations by order they appear in the document
 			violations.sort(function(a,b) {
 				a = document.querySelector(a.selector);
@@ -94,7 +105,7 @@ export async function scan(
 				return -1;
 			});
 			
-			return { rules, violations };
+			return { rules, rules_min, violations };
 			
 	
 		}).catch((err) => {
