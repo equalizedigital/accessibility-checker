@@ -1497,7 +1497,7 @@ class AccessibilityCheckerDisableHTML {
     });
     document.querySelector('body').classList.add('edac-app-disable-styles');
     this.stylesDisabled = true;
-    this.disableStylesButton.textContent = "Enable Styles";
+    this.disableStylesButton.setAttribute('aria-pressed', true);
   }
 
   /**
@@ -1516,7 +1516,7 @@ class AccessibilityCheckerDisableHTML {
     });
     document.querySelector('body').classList.remove('edac-app-disable-styles');
     this.stylesDisabled = false;
-    this.disableStylesButton.textContent = "Disable Styles";
+    this.disableStylesButton.setAttribute('aria-pressed', false);
   }
 }
 class AccessibilityCheckerHighlight {
@@ -1771,24 +1771,24 @@ class AccessibilityCheckerHighlight {
   addHighlightPanel() {
     const newElement = `
 			<div class="edac-highlight-panel">
-			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" title="Toggle accessibility tools"></button>
-			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" tabindex="0">
+			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog">Accessibility Checker Tools</button>
+			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
 				<button class="edac-highlight-panel-description-close" aria-label="Close">×</button>
-				<div class="edac-highlight-panel-description-title"></div>
+				<div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
 				<div class="edac-highlight-panel-description-content"></div>
 				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
 			</div>
-			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
-				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
-				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
+			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" role="dialog" aria-labelledby="edac-highlight-panel-controls-title" tabindex="0">
+				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
+				<div id="edac-highlight-panel-controls-title" class="edac-highlight-panel-controls-title">Accessibility Checker</div>
 				<div class="edac-highlight-panel-controls-summary">Loading...</div>
 				<div class="edac-highlight-panel-controls-buttons">
 					<div>
-						<button id="edac-highlight-previous"><span aria-hidden="true">« </span>Previous</button>
-						<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
+						<button id="edac-highlight-previous" aria-haspopup="dialog"><span aria-hidden="true">« </span>Previous</button>
+						<button id="edac-highlight-next" aria-haspopup="dialog">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
 					<div>
-						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles">Disable Styles</button>
+						<button id="edac-highlight-disable-styles" aria-pressed="false" class="edac-highlight-disable-styles">Disable Styles</button>
 					</div>
 				</div>
 			
