@@ -6,7 +6,7 @@ import { Notyf } from 'notyf';
 import { scan } from './scanner';
 
 
-let DEBUG_ENABLED = true;
+let DEBUG_ENABLED = false;
 let SCAN_INTERVAL_IN_SECONDS = 10;
 
 if (edac_script_vars.mode === 'full-scan') {
@@ -190,6 +190,7 @@ class AccessibilityCheckerHighlight {
 						}
 
 					} else {
+						resolve([]);
 						//console.log(response);
 					}
 				} else {
@@ -818,14 +819,14 @@ class AccessibilityCheckerHighlight {
 		let textContent = 'No issues detected.';
 		if (errorCount > 0 || warningCount > 0 || ignoredCount > 0) {
 			textContent = '';
-			if (errorCount > 0) {
-				textContent += errorCount + ' error' + (errorCount > 1 ? 's' : '') + ', ';
+			if (errorCount >= 0) {
+				textContent += errorCount + ' error' + (errorCount == 1 ? '' : 's') + ', ';
 			}
-			if (warningCount > 0) {
-				textContent += warningCount + ' warning' + (warningCount > 1 ? 's' : '') + ', ';
+			if (warningCount >= 0) {
+				textContent += warningCount + ' warning' + (warningCount == 1 ? '' : 's') + ', ';
 			}
-			if (ignoredCount > 0) {
-				textContent += 'and ' + ignoredCount + ' ignored issue' + (ignoredCount > 1 ? 's' : '') + ' detected.';
+			if (ignoredCount >= 0) {
+				textContent += 'and ' + ignoredCount + ' ignored issue' + (ignoredCount == 1 ? '' : 's') + ' detected.';
 			} else {
 				// Remove the trailing comma and add "detected."
 				textContent = textContent.slice(0, -2) + ' detected.';
@@ -838,6 +839,13 @@ class AccessibilityCheckerHighlight {
 }
 
 
+if(window.top._scheduledScanRunning == undefined){
+ 	window.top._scheduledScanRunning = false;
+ 	window.top._scheduledScanCurrentPost = false;
+}
+
+
+		
 async function checkApi() {
 
 	if(edac_script_vars.edacHeaders.Authorization == 'None'){
@@ -882,11 +890,18 @@ async function getData(url = "") {
 	return response.json();
 }
 
+function info(message) {
+	console.info( message );		
+}
+
+
 function debug(message) {
+	
 	if (DEBUG_ENABLED) {
 
-		console.debug('DEBUG [ ' + location.href + ' ]');
-		
+		if(location.href !== window.top.location.href){
+			console.debug('DEBUG [ ' + location.href + ' ]');
+		}
 		if (typeof message !== 'object') {
 			console.debug('DEBUG: ' + message);
 		} else {
@@ -895,11 +910,11 @@ function debug(message) {
 	}
 }
 
-function saveScanResults( postId , violations ){
+function saveScanResults( postId , violations, scheduled = false ){
+
 		// Confirm api service is working.
 		checkApi().then((status) => {
 						
-			debug("API status:" + status);
 				
 			if(status >= 400 ){
 				if(status == 401 && edac_script_vars.edacpApiUrl == ''){
@@ -912,6 +927,7 @@ function saveScanResults( postId , violations ){
 						closeOthers: true
 					});
 				
+					debug('Error: Password protected scans are not supported in the free version.');
 				} else if(status == 401 && edac_script_vars.edacpApiUrl != ''){
 					showNotice({
 						msg: 'Whoops! It looks like your website is currently password protected. To scan this website for accessibility problems {link}.',
@@ -921,6 +937,7 @@ function saveScanResults( postId , violations ){
 						closeOthers: true
 					});
 			
+					debug('Error: Password protected scan in Pro, but password is not correct.');
 				} else {
 					showNotice({
 						msg: 'Whoops! It looks like there was a problem connecting to the {link} which is required by Accessibility Checker.',
@@ -929,32 +946,54 @@ function saveScanResults( postId , violations ){
 						label: 'Rest API',
 						closeOthers: true
 					});
+
+					debug('Error: Cannot connect to API. Status code is: ' + status);
 				}
 		
 			} else {
 
+				info('Saving: started');
+					
 				// Api is fine so we can send the scan results.
 				postData(edac_script_vars.edacApiUrl + '/post-scan-results/' + postId, {
 					violations: violations
 				}).then((data) => {
 		
-					debug("OK: Post #" + postId);
+					
+					
+					info('Saving: done');
 					debug(data);
 					
+			
 					if(!data.success){
-						debug("FAILED: Post #" + postId);
-						debug(data);
 						
+						info('Saving: error');
 						showNotice({
 							msg: 'Whoops! It looks like there was a problem updating. Please try again.',
 							type: 'warning'
 						});
 			
 					}
+
+					if(scheduled ){
+						debug('_scheduledScanRunning: false');
+				
+						window.top._scheduledScanRunning = false;
+					};
+			
+			
 				});
 
 			};
 	
+		}).catch((error) => {
+			info('Saving: error');
+			debug(error);
+			showNotice({
+				msg: 'Whoops! It looks like there was a problem updating. Please try again.',
+				type: 'warning'
+			});
+
 		});
 
 }
@@ -993,8 +1032,9 @@ window.addEventListener(
 		
 			//There has been a request to save the scan.
 			if(e.data && e.data.sender === 'edac_save_scan'){
-				debug("saving " + e.data.message.postId);	
-				saveScanResults( e.data.message.postId , e.data.message.violations );
+
+				saveScanResults( e.data.message.postId , e.data.message.violations, e.data.message.violations );
+			
 			}
 		
 		} else {
@@ -1006,15 +1046,21 @@ window.addEventListener(
 				// back to the top window so we can use that cookie to authenticate the rest post.
 				// See: https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
 
+				info("Scanning #" + postId);
+
+				info("Scan: started");
+
 				scan().then((results) => {
-					
+				
+					info("Scan: done");
 					let violations =JSON.parse(JSON.stringify(results.violations));
 				
 					window.top.postMessage({
 						'sender' : 'edac_save_scan',
 						'message' :  {
 							postId : postId,
-							violations: violations
+							violations: violations,
+							scheduled: false
 						}
 					});
 					
@@ -1026,21 +1072,31 @@ window.addEventListener(
 		
 
 			if(e.data && e.data.sender === 'edac_start_scheduled_scan'){
-				const postId = e.data.message.postId;
-			
+				
 				// We are running a scheduled scan in the iframe. We need to send the results
 				// back to the top window so we can use that cookie to authenticate the rest post.
 				// See: https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
 
+				const postId = e.data.message.postId;
+			
+				window.top._scheduledScanRunning = true;
+				
+				info("Scheduled scan: started");
+				debug('_scheduledScanRunning: true');
+
 				scan().then((results) => {
-					
-					let violations =JSON.parse(JSON.stringify(results.violations));
+
+		
+					info("Scheduled scan: done");
+
+					let violations = JSON.parse(JSON.stringify(results.violations));
 				
 					window.top.postMessage({
 						'sender' : 'edac_save_scan',
 						'message' :  {
 							postId : postId,
-							violations: violations
+							violations: violations,
+							scheduled: true
 						}
 					});
 					
@@ -1069,7 +1125,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		// Create an iframe in the editor for loading the page preview.
 		// The page preview's url has an ?edac-action=scan, which tells the app 
 		// loaded in the iframe to: 1) run the js scan, 2) post the results.
-		// See: "Ref:edac-action=js-scan".
 		const iframe = document.createElement('iframe');
 		iframe.setAttribute('id', 'edac_scanner');
 		iframe.setAttribute('src', edac_script_vars.scanUrl);
@@ -1078,6 +1133,20 @@ window.addEventListener('DOMContentLoaded', () => {
 		iframe.style.position = 'absolute';
 		iframe.style.left = '-' + screen.width + 'px';
 		document.body.append(iframe);
+
+		iframe.addEventListener( "load", function(e) {
+
+			debug('Scan iframe loaded.');
+					
+			// The frame has loaded the preview page, so post the message that fires the iframe scan and save.			
+			window.postMessage({
+				'sender' : 'edac_start_scan',
+				'message' :   {
+					postId : edac_script_vars.postID
+				}
+			});
+
+		});
 
 
 		//Listen for dispatches from the wp data store
@@ -1091,8 +1160,7 @@ window.addEventListener('DOMContentLoaded', () => {
 				} else {
 					if (saving) {
 						saving = false;
-						debug(edac_script_vars.scanUrl);
-
+						
 						checkApi().then((status) => {
 							if(status == 401 && edac_script_vars.edacpApiUrl == ''){
 						
@@ -1103,19 +1171,15 @@ window.addEventListener('DOMContentLoaded', () => {
 									label: 'Upgrade to Accessibility Checker Pro',
 									closeOthers: true
 								});
-							}
+
+								debug('Password protected scans are not supported on the free version.')
+							} else {
+								debug('Loading scan iframe: ' + edac_script_vars.scanUrl);
+								iframe.setAttribute('src', edac_script_vars.scanUrl);
+							} 
 						});
 					
-						iframe.setAttribute('src', edac_script_vars.scanUrl);
 						
-						// Pass the message that fires the iframe scan and save.
-						window.postMessage({
-							'sender' : 'edac_start_scan',
-							'message' :   {
-								postId : edac_script_vars.postID
-							}
-						});
-
 					}
 				}
 
@@ -1129,7 +1193,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 	if (
-		(edac_script_vars.mode === 'editor-scan' && edac_script_vars.pendingFullScan) ||
+		(edac_script_vars.mode === 'editor-scan' && edac_script_vars.edacpApiUrl != '') || //&& edac_script_vars.pendingFullScan) ||
 		(edac_script_vars.mode === 'full-scan')
 	) {
 
@@ -1144,39 +1208,50 @@ window.addEventListener('DOMContentLoaded', () => {
 		iframeScheduledScanner.style.position = 'absolute';
 		iframeScheduledScanner.style.left = '-' + screen.width + 'px';
 
+		const onLoadIframeScheduledScanner = function(e){
+			debug('Loading scheduled scan iframe: done');
+		
+			var data = e.currentTarget.data;
+		
+			// The frame has loaded the preview page, so post the message that fires the iframe scan and save.
+			window.postMessage({
+				'sender' : 'edac_start_scheduled_scan',
+				'message' :  data
+			});
+			
+		};
+		iframeScheduledScanner.addEventListener( 'load', onLoadIframeScheduledScanner, false);
+
 		document.body.append(iframeScheduledScanner);
 
-
-		let scheduledScanRunning = false;
 		let scanInterval = setInterval(() => {
-
-			if(!scheduledScanRunning){
+	
+			
+			if(!window.top._scheduledScanRunning){
 
 				debug('Polling to see if there are any scans pending.');
 
-				scheduledScanRunning = true;
 
 				// Poll to see if there are any scans pending.
 				getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
 					.then((data) => {
 
-						scheduledScanRunning = false;
-
+						
 						if (data.code !== 'rest_no_route') {
 
 							if (data.data !== undefined) {
 
 								if (data.data.scanUrl !== undefined) {
 
+									info('A post needs scanning: ' + data.data.scanUrl);
+
+									//set the data so we can pass it to the onload handler
+									iframeScheduledScanner.data = data.data;
+									
 									
 									// We have the url of the next in line to be scanned so pass to the iframe.
 									iframeScheduledScanner.setAttribute('src', data.data.scanUrl);
 									
-									// Pass the message that fires the iframe scan and save.
-									window.postMessage({
-										'sender' : 'edac_start_scheduled_scan',
-										'message' :  data.data 
-									});
 									
 								}
 
@@ -1184,21 +1259,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
 						} else {
 
-							debug('There was a problem connecting to the API.');
-					
+							info('There was a problem connecting to the API.');
+						
+							window.top._scheduledScanRunning = false;
+							
+							debug('_scheduledScanRunning: false');
+		
 						}
-
-					}).finally(()=> {
-						scheduledScanRunning = false;
-					});
+			});
 
 			} else {
-				debug('Waiting for previous poll to complete.');
+				debug('Waiting for previous scan to complete.');
 			}
 
 		}, SCAN_INTERVAL_IN_SECONDS * 1000);
 
-
+		
 
 	}
 
