@@ -255,7 +255,6 @@ function edac_get_content( $post ) {
 
 		// Add the token to the URL.
 		$url = add_query_arg( 'edac_token', $token, $url );
-		edac_log($url);
 
 		try {
 			// setup the context for the request.
