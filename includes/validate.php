@@ -253,8 +253,10 @@ function edac_get_content( $post ) {
 			$url = get_the_permalink( $post->ID ) . '?edac_cache=' . time();
 		}
 
-		// Add the token to the URL.
-		$url = add_query_arg( 'edac_token', $token, $url );
+		if ( in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
+			// Add the token to the URL.
+			$url = add_query_arg( 'edac_token', $token, $url );
+		}
 
 		try {
 			// setup the context for the request.
@@ -331,6 +333,8 @@ function edac_get_content( $post ) {
  * @param WP_Query $query The WP_Query instance (passed by reference).
  */
 function edac_show_draft_posts( $query ) {
+
+	//$headers = getallheaders();
 
 	// Do not run if it's not the main query.
 	if ( ! $query->is_main_query() ) {
