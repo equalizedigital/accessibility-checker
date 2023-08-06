@@ -14,8 +14,8 @@ module.exports = {
   //watch: true,
   entry: {
     'main': [
-      './src/accessibility-checker-app/index.js',
-      './src/accessibility-checker-app/sass/accessibility-checker.scss',
+      './src/app/index.js',
+      './src/app/sass/accessibility-checker.scss',
       
     ]
   },
@@ -45,7 +45,7 @@ module.exports = {
     // clear out build directories on each build
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
-        './build/*',
+        './build/app/*',
       ]
     }),
     // css extraction into dedicated file
@@ -65,7 +65,7 @@ module.exports = {
 
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, './../build/accessibility-checker-app'),
+    path: path.resolve(__dirname, './../build/app'),
   },
 
  

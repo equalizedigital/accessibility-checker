@@ -9,7 +9,7 @@
  * Enqueue Admin Styles
  */
 function edac_admin_enqueue_styles() {
-	wp_enqueue_style( 'edac', plugin_dir_url( __DIR__ ) . 'assets/css/accessibility-checker-admin.css', array(), EDAC_VERSION, 'all' );
+	wp_enqueue_style( 'edac', plugin_dir_url( __DIR__ ) . 'build/admin/css/accessibility-checker-admin.css', array(), EDAC_VERSION, 'all' );
 }
 
 /**
@@ -32,7 +32,7 @@ function edac_admin_enqueue_scripts() {
 
 		global $post;
 		$post_id = is_object( $post ) ? $post->ID : null;
-		wp_enqueue_script( 'edac', plugin_dir_url( __DIR__ ) . 'assets/js/accessibility-checker-admin-min.js', array( 'jquery' ), EDAC_VERSION, false );
+		wp_enqueue_script( 'edac', plugin_dir_url( __DIR__ ) . 'build/admin/admin.bundle.js', array( 'jquery' ), EDAC_VERSION, false );
 
 		wp_localize_script(
 			'edac',
@@ -66,7 +66,7 @@ function edac_admin_enqueue_scripts() {
  * Enqueue Styles
  */
 function edac_enqueue_styles() {
-	wp_enqueue_style( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/accessibility-checker-app/css/main.css', false, EDAC_VERSION, 'all' );
+	wp_enqueue_style( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/app/css/main.css', false, EDAC_VERSION, 'all' );
 }
 
 /**
@@ -115,7 +115,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 			$post_id && current_user_can( 'edit_post', $post_id ) )
 	) {
 
-		wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/accessibility-checker-app/main.bundle.js', false, EDAC_VERSION, false );
+		wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/app/main.bundle.js', false, EDAC_VERSION, false );
 
 		$active = null;
 	

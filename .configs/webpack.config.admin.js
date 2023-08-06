@@ -14,7 +14,8 @@ module.exports = {
   watch: false,
   entry: {
     'admin': [
-      './assets/sass/accessibility-checker-admin.scss',
+      './src/admin/index.js',
+      './src/admin/sass/accessibility-checker-admin.scss',
     ]
   },
 
@@ -69,8 +70,8 @@ module.exports = {
 
   
   output: {
-    filename: '[name].bundle.not_currently_used.js',
-    path: path.resolve(__dirname, './../assets/'),
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, './../build/admin'),
   },
 
  

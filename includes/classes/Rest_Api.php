@@ -54,7 +54,7 @@ class REST_Api {
 							$messages['time'] = time();
 							$messages['perms'] = current_user_can( 'edit_posts' );
 							$messages['method'] = $_SERVER['REQUEST_METHOD'];
-							$messages['nonce'] = wp_create_nonce( 'wp_rest' );
+				
 							return new \WP_REST_Response( array( 'messages' => $messages ), 200 );
 						},
 						'permission_callback' => function () {
