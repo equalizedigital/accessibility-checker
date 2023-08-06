@@ -1,15 +1,16 @@
+
 (function ($) {
   "use strict";
 
   $(function () {
 
     // Accessibility Statement disable
-    $("input[type=checkbox][name=edac_add_footer_accessibility_statement]").on('change',function () {
-      if(this.checked) {
-        $("input[type=checkbox][name=edac_include_accessibility_statement_link]").prop('disabled',false);
-      }else{
-        $("input[type=checkbox][name=edac_include_accessibility_statement_link]").prop('disabled',true);
-        $("input[type=checkbox][name=edac_include_accessibility_statement_link]").prop('checked',false);
+    $("input[type=checkbox][name=edac_add_footer_accessibility_statement]").on('change', function () {
+      if (this.checked) {
+        $("input[type=checkbox][name=edac_include_accessibility_statement_link]").prop('disabled', false);
+      } else {
+        $("input[type=checkbox][name=edac_include_accessibility_statement_link]").prop('disabled', true);
+        $("input[type=checkbox][name=edac_include_accessibility_statement_link]").prop('checked', false);
       }
       //
     });
@@ -18,16 +19,19 @@
     if ($("input[type=radio][name=edac_simplified_summary_position]:checked").val() == "none") {
       $("#ac-simplified-summary-option-code").show();
     }
-    $("input[type=radio][name=edac_simplified_summary_position]").on('load',function () {
+    $("input[type=radio][name=edac_simplified_summary_position]").on('load', function () {
       if (this.value == "none") {
         $("#ac-simplified-summary-option-code").show();
       } else {
         $("#ac-simplified-summary-option-code").hide();
       }
     });
+
   });
 
-  $(window).on('load',function () {
+
+  $(window).on('load', function () {
+
     /**
      * Tabs
      */
@@ -44,9 +48,9 @@
     });
 
     // Details Tab on click Ajax
-    /* $(".edac-tab-details").click(function (e) {
+    $(".edac-tab-details").click(function (e) {
       edac_details_ajax();
-    }); */
+    });
 
     // Summary Tab on click Ajax
     $(".edac-tab-summary").click(function (e) {
@@ -70,12 +74,12 @@
         method: 'GET',
         data: { action: 'edac_summary_ajax', post_id: post_id, nonce: edac_script_vars.nonce }
 
-      }).done(function( response ) {
+      }).done(function (response) {
 
-        if( true === response.success ) {
+        if (true === response.success) {
 
-          let response_json = $.parseJSON( response.data );
-          
+          let response_json = $.parseJSON(response.data);
+
           /*
           if(response_json.password_protected && edac_gutenberg_active()){
             wp.data.dispatch('core/notices').createInfoNotice(
@@ -89,7 +93,7 @@
             );
           }
           */
-          
+
           $(".edac-summary").html(response_json.content);
 
         } else {
@@ -119,12 +123,12 @@
         method: 'GET',
         data: { action: 'edac_details_ajax', post_id: post_id, nonce: edac_script_vars.nonce }
 
-      }).done(function( response ) {
+      }).done(function (response) {
 
-        if( true === response.success ) {
+        if (true === response.success) {
 
-          let response_json = $.parseJSON( response.data );
-          
+          let response_json = $.parseJSON(response.data);
+
           $(".edac-details").html(response_json);
 
           // Rule on click
@@ -142,9 +146,9 @@
           // Title arrow button on click
           $(".edac-details-rule-title-arrow").click(function (e) {
             e.preventDefault();
-            if( $(this).attr("aria-expanded") === "true"){
+            if ($(this).attr("aria-expanded") === "true") {
               $(this).attr("aria-expanded", "false");
-            }else{
+            } else {
               $(this).attr("aria-expanded", "true");
             }
           });
@@ -153,9 +157,9 @@
           $(".edac-details-rule-records-record-actions-ignore").click(function (e) {
             e.preventDefault();
             $(this).parent().next(".edac-details-rule-records-record-ignore").slideToggle();
-            if( $(this).attr("aria-expanded") === "true"){
+            if ($(this).attr("aria-expanded") === "true") {
               $(this).attr("aria-expanded", "false");
-            }else{
+            } else {
               $(this).attr("aria-expanded", "true");
             }
           });
@@ -177,7 +181,7 @@
      * Ajax Readability
      */
     function edac_readability_ajax() {
-      
+
       let post_id = edac_script_vars.postID;
 
       if (post_id == null) {
@@ -190,11 +194,11 @@
         method: 'GET',
         data: { action: 'edac_readability_ajax', post_id: post_id, nonce: edac_script_vars.nonce }
 
-      }).done(function( response ) {
+      }).done(function (response) {
 
-        if( true === response.success ) {
+        if (true === response.success) {
 
-          let response_json = $.parseJSON( response.data );
+          let response_json = $.parseJSON(response.data);
 
           $(".edac-readability").html(response_json);
 
@@ -210,22 +214,22 @@
               url: ajaxurl,
               method: 'GET',
               data: { action: 'edac_update_simplified_summary', post_id: post_id, summary: summary, nonce: edac_script_vars.nonce }
-          
-            }).done(function( response ) {
-          
-              if( true === response.success ) {
-          
-                let response_json = $.parseJSON( response.data );
-          
+
+            }).done(function (response) {
+
+              if (true === response.success) {
+
+                let response_json = $.parseJSON(response.data);
+
                 edac_readability_ajax();
                 edac_summary_ajax();
-          
+
               } else {
-          
+
                 console.log(response);
-          
+
               }
-          
+
             });
 
           });
@@ -255,20 +259,25 @@
         if (isSaving !== lastIsSaving && !isSaving) {
           lastIsSaving = isSaving;
 
-          // Assume saving has finished
 
           // reset to first meta box tab
-          /* $(".edac-panel").hide();
+          $(".edac-panel").hide();
           $(".edac-panel").removeClass("active");
           $(".edac-tab a").removeClass("active");
           $("#edac-summary").show();
           $("#edac-summary").addClass("active");
-          $(".edac-tab:first-child a").addClass("active"); */
+          $(".edac-tab:first-child a").addClass("active");
 
-          edac_summary_ajax();
-          edac_details_ajax();
-          edac_readability_ajax();
-          $(".edac-panel").removeClass("edac-panel-loading");
+          // Wait a bit to give js scan/save time to complete.
+          //TODO: listen for a saveComplete event.
+          setTimeout(function () {
+            edac_summary_ajax();
+            edac_details_ajax();
+            edac_readability_ajax();
+            $(".edac-panel").removeClass("edac-panel-loading");
+
+          }, 1000);
+
         }
         lastIsSaving = isSaving;
       });
@@ -277,11 +286,11 @@
     /**
      * Ignore Submit on click
      */
-    function ignore_submit(){
-      
+    function ignore_submit() {
+
       $(".edac-details-rule-records-record-ignore-submit").click(function (e) {
         e.preventDefault();
-        
+
         let ids = [$(this).attr("data-id")];
         let ignore_action = $(this).attr("data-action");
         let ignore_type = $(this).attr("data-type");
@@ -289,7 +298,7 @@
           ".edac-details-rule-records-record-ignore-comment",
           $(this).parent()
         ).val();
-        
+
         $.ajax({
 
           url: ajaxurl,
@@ -302,13 +311,13 @@
             ignore_type: ignore_type,
             nonce: edac_script_vars.nonce
           }
-      
-        }).done(function( response ) {
-      
-          if( true === response.success ) {
-      
-            let data = $.parseJSON( response.data );
-      
+
+        }).done(function (response) {
+
+          if (true === response.success) {
+
+            let data = $.parseJSON(response.data);
+
             let record = "#edac-details-rule-records-record-" + data["ids"][0];
             let ignore_action = data["action"] == "enable" ? "disable" : "enable";
             let comment_disabled = data["action"] == "enable" ? true : false;
@@ -363,16 +372,16 @@
             $(".edac-details-rule-count-ignore", rule).html(count_ignore + ' Ignored Items');
 
             // refresh page on ignore or unignore in pro
-            if($('body').hasClass('accessibility-checker_page_accessibility_checker_issues') || $('body').hasClass('accessibility-checker_page_accessibility_checker_ignored')){
+            if ($('body').hasClass('accessibility-checker_page_accessibility_checker_issues') || $('body').hasClass('accessibility-checker_page_accessibility_checker_ignored')) {
               location.reload(true);
             }
-      
+
           } else {
-      
+
             console.log(response);
-      
+
           }
-      
+
         });
 
       });
@@ -384,7 +393,7 @@
     function edac_gutenberg_active() {
 
       // return false if widgets page
-      if(document.body.classList.contains("widgets-php")) return false;
+      if (document.body.classList.contains("widgets-php")) return false;
 
       // check if block editor page
       return document.body.classList.contains("block-editor-page");
@@ -393,17 +402,17 @@
     /**
      * Review Notice Ajax
      */
-    if($('.edac-review-notice').length){
-      $('.edac-review-notice-review').on('click', function() {
-        edac_review_notice_ajax('stop',true);
+    if ($('.edac-review-notice').length) {
+      $('.edac-review-notice-review').on('click', function () {
+        edac_review_notice_ajax('stop', true);
       });
 
-      $('.edac-review-notice-remind').on('click', function() {
-        edac_review_notice_ajax('pause',false);
+      $('.edac-review-notice-remind').on('click', function () {
+        edac_review_notice_ajax('pause', false);
       });
 
-      $('.edac-review-notice-dismiss').on('click', function() {
-        edac_review_notice_ajax('stop',false);
+      $('.edac-review-notice-dismiss').on('click', function () {
+        edac_review_notice_ajax('stop', false);
       });
     }
 
@@ -412,11 +421,11 @@
         url: ajaxurl,
         method: 'GET',
         data: { action: 'edac_review_notice_ajax', review_action: review_action, nonce: edac_script_vars.nonce }
-      }).done(function( response ) {
-        if( true === response.success ) {
-          let response_json = $.parseJSON( response.data );
+      }).done(function (response) {
+        if (true === response.success) {
+          let response_json = $.parseJSON(response.data);
           $('.edac-review-notice').fadeOut();
-          if(redirect){
+          if (redirect) {
             window.location.href = 'https://wordpress.org/support/plugin/accessibility-checker/reviews/#new-post';
           }
         } else {
@@ -428,8 +437,8 @@
     /**
      * Password Protected Notice Ajax
      */
-    if($('.edac_password_protected_notice').length){
-      $('.edac_password_protected_notice').on('click', function() {
+    if ($('.edac_password_protected_notice').length) {
+      $('.edac_password_protected_notice').on('click', function () {
         edac_password_protected_notice_ajax();
       });
     }
@@ -439,9 +448,9 @@
         url: ajaxurl,
         method: 'GET',
         data: { action: 'edac_password_protected_notice_ajax', nonce: edac_script_vars.nonce }
-      }).done(function( response ) {
-        if( true === response.success ) {
-          let response_json = $.parseJSON( response.data );
+      }).done(function (response) {
+        if (true === response.success) {
+          let response_json = $.parseJSON(response.data);
         } else {
           //console.log(response);
         }
@@ -451,8 +460,8 @@
     /**
      * GAAD Notice Ajax
      */
-    if($('.edac_gaad_notice').length){
-      $('.edac_gaad_notice').on('click', function() {
+    if ($('.edac_gaad_notice').length) {
+      $('.edac_gaad_notice').on('click', function () {
         edac_gaad_notice_ajax();
       });
     }
@@ -462,28 +471,74 @@
         url: ajaxurl,
         method: 'GET',
         data: { action: 'edac_gaad_notice_ajax', nonce: edac_script_vars.nonce }
-      }).done(function( response ) {
-        if( true === response.success ) {
-          let response_json = $.parseJSON( response.data );
+      }).done(function (response) {
+        if (true === response.success) {
+          let response_json = $.parseJSON(response.data);
         } else {
           //console.log(response);
         }
       });
     }
 
-    if( $('.edac-summary').length ) {
+    if ($('.edac-summary').length) {
       edac_summary_ajax();
     }
-    if( $('.edac-details').length ) {
+    if ($('.edac-details').length) {
       edac_details_ajax();
       ignore_submit();
     }
-    if( $('.edac-details-rule-records-record-ignore').length ) {
+    if ($('.edac-details-rule-records-record-ignore').length) {
       ignore_submit();
     }
-    if( $('.edac-readability').length ) {
+    if ($('.edac-readability').length) {
       edac_readability_ajax();
     }
 
+
+    /** 
+     * Stop pass 1 button's on click handler
+     */
+    $('.edacp-scan-stop-pass1-btn').click(function (e) {
+
+      postData(edac_script_vars.edacApiUrl + '/cancel-current-php-scan', {}).then((data) => {
+        //console.log(data);
+      });
+
+    });
+
+    /** 
+      * Stop pass 2 button's on click handler
+      */
+    $('.edacp-scan-stop-pass2-btn').click(function (e) {
+
+      postData(edac_script_vars.edacApiUrl + '/cancel-current-scan', {}).then((data) => {
+        //console.log(data);
+      });
+
+    });
+
+
+
+
   });
+
+
+
 })(jQuery);
+
+
+const postData = async (url = "", data = {}) => {
+
+
+  if (edac_script_vars.edacHeaders.Authorization == 'None') {
+    return;
+  }
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: edac_script_vars.edacHeaders,
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+

@@ -1,5 +1,5 @@
-@import "variables";
-@import "helpers";
+@import "../../globals/sass/variables" ;
+@import "../../globals/sass/helpers";
 
 .failed-text-color {
   color: $color-red;
