@@ -385,3 +385,55 @@ function edac_get_valid_table_name( $table_name ) {
 
     return $table_name;
 }
+
+
+/**
+ * Generates a nonce that expires after a specified number of seconds.
+ * 
+ * @param [string]  $secret
+ * @param [integer] $timeout_seconds
+ * @return void
+ */
+function edac_generate_nonce( $secret = 'secret', $timeout_seconds = 120 ) {
+
+	$length = 10;
+	$chars = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+	$ll = strlen( $chars ) - 1;
+	$salt = '';
+	while ( strlen( $salt ) < $length ) {
+		$salt .= $chars[ rand( 0, $ll ) ];
+	}
+
+	$time = time();
+	$max_time = $time + $timeout_seconds;
+	$nonce = $salt . ',' . $max_time . ',' . sha1( $salt . $secret . $max_time );
+	return $nonce;
+}
+
+/**
+ * Verifies if the nonce is valid and not expired.
+ *
+ * @param [string] $secret
+ * @param [string] $nonce
+ * @return void
+ */
+function edac_is_valid_nonce( $secret = 'secret', $nonce ) {
+	if ( is_string( $nonce ) == false ) {
+		return false;
+	}
+	$a = explode( ',', $nonce );
+	if ( count( $a ) != 3 ) {
+		return false;
+	}
+	$salt = $a[0];
+	$max_time = intval( $a[1] );
+	$hash = $a[2];
+	$back = sha1( $salt . $secret . $max_time );
+	if ( $back != $hash ) {
+		return false;
+	}
+	if ( time() > $max_time ) {
+		return false;
+	}
+	return true;
+}

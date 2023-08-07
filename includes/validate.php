@@ -225,15 +225,7 @@ function edac_get_content( $post ) {
 		);
 	}
 
-	// set post meta to get html from draft posts if post status is 'draft' or 'pending'.
-	if ( in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
-		// Generate a unique token.
-		$token = wp_generate_password( 20, false );
-
-		// Store the token in the database.
-		update_option( '_edac_public_draft_token', $token );
-	}
-
+	
 	// http authorization.
 	if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true && $username && $password ) {
 		$context_opts['http']['header'] = 'Authorization: Basic ' . base64_encode( "$username:$password" );
@@ -253,10 +245,17 @@ function edac_get_content( $post ) {
 			$url = get_the_permalink( $post->ID ) . '?edac_cache=' . time();
 		}
 
+		// set token if post status is 'draft' or 'pending'.
 		if ( in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
+	
+			// Generate a token that is valid for a short period of time.
+			$token = edac_generate_nonce( 'draft-or-pending-status', 120 );
+		
 			// Add the token to the URL.
 			$url = add_query_arg( 'edac_token', $token, $url );
+
 		}
+	
 
 		try {
 			// setup the context for the request.
@@ -297,12 +296,16 @@ function edac_get_content( $post ) {
 		foreach ( $style_files as $stylesheet ) {
 			$stylesheet_url = $stylesheet->href;
 
+			$css_args['edac_cache'] = time();
+		
+			if ( isset( $token ) ) {
+				$css_args['edac_token'] = $token;
+		
+			}
+			
 			// Add the query vars to the URL.
 			$stylesheet_url = add_query_arg( 
-				array(
-					'edac_token' => $token,
-					'edac_cache' => time(),
-				),
+				$css_args,
 				$url
 			);
 			
@@ -316,9 +319,6 @@ function edac_get_content( $post ) {
 
 		$content['css_parsed'] = edac_parse_css( $content['css'] );
 	}
-
-	// delete the token.
-	delete_option( '_edac_public_draft_token' );
 
 	return $content;
 }
@@ -355,13 +355,15 @@ function edac_show_draft_posts( $query ) {
 
 	// Retrieve the token from the URL.
 	// phpcs:ignore WordPress.Security.NonceVerification
-	$url_token = isset( $_GET['edac_token'] ) ? sanitize_text_field( $_GET['edac_token'] ) : '';
+	$url_token = isset( $_GET['edac_token'] ) ? sanitize_text_field( $_GET['edac_token'] ) : false;
+	
+	// If the token is not set we do nothing and return early.
+	if( false === $url_token ){
+		return;
+	}
 
-	// Get the saved token from the options.
-	$saved_token = get_option( '_edac_public_draft_token' );
-
-	// If our post meta '_edac_public_draft' is not set or is not true, or the tokens do not match, we do nothing and return early.
-	if ( $url_token !== $saved_token ) {
+	// If the passed token is no longer valid, we do nothing and return early.
+	if ( false === edac_is_valid_nonce( 'draft-or-pending-status', $url_token ) ) {
 		return;
 	}
 
