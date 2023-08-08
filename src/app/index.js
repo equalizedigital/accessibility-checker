@@ -5,7 +5,7 @@ import { Notyf } from 'notyf';
 
 import { scan } from './scanner';
 
-
+let INFO_ENABLED = false;
 let DEBUG_ENABLED = false;
 let SCAN_INTERVAL_IN_SECONDS = 10;
 
@@ -194,7 +194,7 @@ class AccessibilityCheckerHighlight {
 
 					self.showWait(false);
 
-					console.log('Request failed.  Returned status of ' + xhr.status);
+					info('Request failed.  Returned status of ' + xhr.status);
 
 					reject({
 						status: xhr.status,
@@ -888,7 +888,9 @@ async function getData(url = "") {
 }
 
 function info(message) {
-	console.info(message);
+	if (INFO_ENABLED) {
+		console.info(message);
+	}
 }
 
 
