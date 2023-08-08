@@ -279,9 +279,7 @@ function edac_get_content( $post ) {
 		);
 	}
 
-	// set transient to get html from draft posts.
-	set_transient( 'edac_public_draft', true, 5 * MINUTE_IN_SECONDS );
-
+	
 	// http authorization.
 	if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true && $username && $password ) {
 		$context_opts['http']['header'] = 'Authorization: Basic ' . base64_encode( "$username:$password" );
@@ -295,13 +293,23 @@ function edac_get_content( $post ) {
 
 		if ( array_key_exists( 'query', $parsed_url ) && $parsed_url['query'] ) {
 			// the permalink structure is using a querystring.
-			$url = get_the_permalink( $post->ID ) . '&c=' . time();
-
+			$url = get_the_permalink( $post->ID ) . '&edac_cache=' . time();
 		} else {
 			// the permalink structure is not using a querystring.
-			$url = get_the_permalink( $post->ID ) . '?c=' . time();
+			$url = get_the_permalink( $post->ID ) . '?edac_cache=' . time();
+		}
+
+		// set token if post status is 'draft' or 'pending'.
+		if ( in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
+	
+			// Generate a token that is valid for a short period of time.
+			$token = edac_generate_nonce( 'draft-or-pending-status', 120 );
+		
+			// Add the token to the URL.
+			$url = add_query_arg( 'edac_token', $token, $url );
 
 		}
+	
 
 		try {
 			// setup the context for the request.
@@ -318,9 +326,6 @@ function edac_get_content( $post ) {
 	} else {
 		$content['html'] = false;
 	}
-
-	// done getting html, delete transient.
-	delete_transient( 'edac_public_draft' );
 
 	// check for restricted access plugin.
 	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && edac_check_plugin_active( 'restricted-site-access/restricted_site_access.php' ) ) {
@@ -344,7 +349,21 @@ function edac_get_content( $post ) {
 		$style_files = $content['html']->find( 'link[rel="stylesheet"]' );
 		foreach ( $style_files as $stylesheet ) {
 			$stylesheet_url = $stylesheet->href;
-			$response       = wp_remote_get( $stylesheet_url . '?c=' . time() );
+
+			$css_args['edac_cache'] = time();
+		
+			if ( isset( $token ) ) {
+				$css_args['edac_token'] = $token;
+		
+			}
+			
+			// Add the query vars to the URL.
+			$stylesheet_url = add_query_arg( 
+				$css_args,
+				$url
+			);
+			
+			$response = wp_remote_get( $stylesheet_url );
 
 			if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
 				$styles          = wp_remote_retrieve_body( $response );
@@ -359,20 +378,49 @@ function edac_get_content( $post ) {
 }
 
 /**
- * Set drafts post_status to publish momentarily while getting page HTML
+ * Show draft posts.
  *
- * @param WP_Query $query The WP_Query object.
- * @return void
+ * This function alters the main query on the front-end to show draft and pending posts when a specific
+ * token is present in the URL. This token is stored as an option in the database and is regenerated every time
+ * it's used, to prevent unauthorized access to drafts and pending posts.
+ *
+ * @param WP_Query $query The WP_Query instance (passed by reference).
  */
 function edac_show_draft_posts( $query ) {
 
-	if ( is_admin() || is_feed() ) {
+	//$headers = getallheaders();
+
+	// Do not run if it's not the main query.
+	if ( ! $query->is_main_query() ) {
 		return;
 	}
 
-	if ( boolval( get_transient( 'edac_public_draft' ) ) === false ) {
+	// Do not run on admin pages, feeds, REST API or AJAX calls.
+	if ( is_admin() || is_feed() || wp_doing_ajax() || ( function_exists( 'rest_doing_request' ) && rest_doing_request() ) ) {
+		return;
+	}
+	
+	// Do not run if the query variable 'edac_cache' is not set.
+	// phpcs:ignore WordPress.Security.NonceVerification
+	$url_cache = isset( $_GET['edac_cache'] ) ? sanitize_text_field( $_GET['edac_cache'] ) : '';
+	if ( ! $url_cache ) {
 		return;
 	}
 
-	$query->set( 'post_status', array( 'publish', 'draft', 'pending', 'auto-draft' ) );
+	// Retrieve the token from the URL.
+	// phpcs:ignore WordPress.Security.NonceVerification
+	$url_token = isset( $_GET['edac_token'] ) ? sanitize_text_field( $_GET['edac_token'] ) : false;
+	
+	// If the token is not set we do nothing and return early.
+	if( false === $url_token ){
+		return;
+	}
+
+	// If the passed token is no longer valid, we do nothing and return early.
+	if ( false === edac_is_valid_nonce( 'draft-or-pending-status', $url_token ) ) {
+		return;
+	}
+
+	// If we've reached this point, alter the query to include 'publish', 'draft', and 'pending' posts.
+	$query->set( 'post_status', array( 'publish', 'draft', 'pending' ) );
 }
