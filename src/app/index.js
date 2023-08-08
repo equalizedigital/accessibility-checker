@@ -178,14 +178,11 @@ class AccessibilityCheckerHighlight {
 					if (true === response.success) {
 						const response_json = JSON.parse(response.data);
 
-						debug(response_json);
-
 						if (self.settings.showIgnored) {
 							resolve(response_json);
 						} else {
 							resolve(
-								response_json.filter(item => (item.id !== this.urlParameter ||
-									item.rule_type !== 'ignored'))
+								response_json.filter(item => (item.id == self.urlParameter || item.rule_type !== 'ignored'))
 							);
 						}
 
@@ -963,7 +960,7 @@ function saveScanResults(postId, violations, scheduled = false) {
 
 				info('Saving ' + postId + ': done');
 
-			
+
 
 				if (!data.success) {
 
@@ -1244,7 +1241,7 @@ window.addEventListener('DOMContentLoaded', () => {
 							if (data.data !== undefined) {
 
 								if (data.data.scanUrl !== undefined) {
-									
+
 									info('A post needs scanning: ' + data.data.scanUrl);
 									debug(data);
 
@@ -1290,9 +1287,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-	function showNotice(options) {
-		window.top._showNotice(options);
-	}
 
 
 
@@ -1315,7 +1309,7 @@ if (window.top === window && window._showNotice === undefined) {
 			type: 'warning',
 			url: false,
 			label: '',
-			closeOthers: false
+			closeOthers: true
 		}, options);
 
 
@@ -1407,4 +1401,9 @@ if (window.top === window && window._showNotice === undefined) {
 
 	}
 
+}
+
+
+function showNotice(options) {
+	window.top._showNotice(options);
 }
