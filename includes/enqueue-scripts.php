@@ -74,21 +74,6 @@ function edac_enqueue_styles() {
  */
 function edac_enqueue_scripts( $mode = '' ) {
 	
-	/*
-	if (
-		( array_key_exists( 'edac_nonce', $_GET ) && 
-		! wp_verify_nonce( $_GET['edac_nonce'], 'edac_highlight' ) ) || 
-		
-		
-		( array_key_exists( 'edac-preview-nonce', $_GET ) && 
-		! wp_verify_nonce( $_GET['edac-preview-nonce'], 'edac-preview_nonce' ) 
-		)
-	) {
-		status_header( 401 );
-		wp_die( 'Permission Denied.' );
-	}
-	*/
-	
 	global $post;
 	$post_id = is_object( $post ) ? $post->ID : null;
 	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true;
@@ -171,7 +156,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 			array(
 				'postID'   => $post_id,
 				'nonce'    => wp_create_nonce( 'ajax-nonce' ),
-				'edacUrl'   => esc_url_raw(get_site_url()),
+				'edacUrl'   => esc_url_raw( get_site_url() ),
 				'edacApiUrl'   => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
 				'edacHeaders' => $headers,
 				'edacpApiUrl'  => $pro ? esc_url_raw( rest_url() . 'accessibility-checker-pro/v1' ) : '',

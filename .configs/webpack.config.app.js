@@ -11,7 +11,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: "none", //development | production
-  //watch: true,
+  watch: false,
   entry: {
     'main': [
       './src/app/index.js',
