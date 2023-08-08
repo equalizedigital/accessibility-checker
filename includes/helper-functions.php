@@ -386,7 +386,6 @@ function edac_get_valid_table_name( $table_name ) {
     return $table_name;
 }
 
-
 /**
  * Replace CSS Variables with Value
  *
@@ -437,6 +436,9 @@ function edac_replace_css_variables( $value, $css_array ) {
 	} else {
 		return $value;
 	}
+}
+
+/**
  * Generates a nonce that expires after a specified number of seconds.
  * 
  * @param [string]  $secret
