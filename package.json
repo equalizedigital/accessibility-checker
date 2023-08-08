@@ -6,6 +6,7 @@
   "license": "GPL-2.0+",
   "main": "index.js",
   "scripts": {
+    "build": "npx webpack --config .configs/webpack.config.admin.js & npx webpack --config .configs/webpack.config.app.js",
     "build:admin": "npm install && npx webpack --config .configs/webpack.config.admin.js",
     "build:app": "npm install && npx webpack --config .configs/webpack.config.app.js",
     "dev": "npx webpack --config .configs/webpack.config.admin.js --watch & npx webpack --config .configs/webpack.config.app.js --watch",
