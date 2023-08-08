@@ -65,6 +65,19 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 	// Init Freemius.
 	edac_fs();
+
+	/**
+	 * Setup Freemius opt-in screen icon
+	 *
+	 * @return void
+	 */
+	function edac_fs_custom_icon() {
+		return dirname( __FILE__ ) . '/assets/images/edac-emblem.png';
+	}
+	 
+	edac_fs()->add_filter( 'plugin_icon' , 'edac_fs_custom_icon' );
+	
+
 	// Signal that SDK was initiated.
 	do_action( 'edac_fs_loaded' );
 }
