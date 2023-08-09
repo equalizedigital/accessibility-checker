@@ -2,7 +2,7 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
-Tested up to: 6.2.2
+Tested up to: 6.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -171,6 +171,15 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 
 == Changelog ==
+
+= 1.4.3 =
+Updated: frontend highlighting to allow ignored items accessed via the view on page button
+Updated: frontend highlighting panel logic to match selected post types in the settings
+Updated: frontend highlighting button size and placement improvements
+Updated: frontend highlighting number of issues output
+Updated: frontend highlighting scroll-to improvements
+Fixed: Freemius icon output
+Updated: demo video
 
 = 1.4.2 =
 Added: frontend highlighting loading message
