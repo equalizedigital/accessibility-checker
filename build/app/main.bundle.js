@@ -32353,6 +32353,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+let INFO_ENABLED = false;
 let DEBUG_ENABLED = false;
 let SCAN_INTERVAL_IN_SECONDS = 10;
 if (edac_script_vars.mode === 'full-scan') {
@@ -32514,7 +32515,7 @@ class AccessibilityCheckerHighlight {
           }
         } else {
           self.showWait(false);
-          console.log('Request failed.  Returned status of ' + xhr.status);
+          info('Request failed.  Returned status of ' + xhr.status);
           reject({
             status: xhr.status,
             statusText: xhr.statusText
@@ -33094,7 +33095,9 @@ async function getData(url = "") {
   return response.json();
 }
 function info(message) {
-  console.info(message);
+  if (INFO_ENABLED) {
+    console.info(message);
+  }
 }
 function debug(message) {
   if (DEBUG_ENABLED) {
