@@ -172,6 +172,15 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.4.3 =
+Updated: demo video
+Updated: frontend highlighting to allow ignored items accessed via the view on page button
+Updated: frontend highlighting panel logic to match selected post types in the settings
+Updated: frontend highlighting button size and placement improvements
+Updated: frontend highlighting number of issues output
+Updated: frontend highlighting scroll-to improvements
+Fixed: Freemius icon output
+
 = 1.4.2 =
 Added: frontend highlighting loading message
 Removed: frontend highlighting ignored issues
