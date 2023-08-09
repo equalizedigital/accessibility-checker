@@ -445,7 +445,7 @@ function edac_replace_css_variables( $value, $css_array ) {
  * @param [integer] $timeout_seconds
  * @return void
  */
-function edac_generate_nonce( $secret = 'secret', $timeout_seconds = 120 ) {
+function edac_generate_nonce( $secret , $timeout_seconds = 120 ) {
 
 	$length = 10;
 	$chars = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
@@ -468,7 +468,7 @@ function edac_generate_nonce( $secret = 'secret', $timeout_seconds = 120 ) {
  * @param [string] $nonce
  * @return void
  */
-function edac_is_valid_nonce( $secret = 'secret', $nonce ) {
+function edac_is_valid_nonce( $secret , $nonce ) {
 	if ( is_string( $nonce ) == false ) {
 		return false;
 	}
