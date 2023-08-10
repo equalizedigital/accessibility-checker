@@ -438,3 +438,4 @@ function edac_replace_css_variables( $value, $css_array ) {
 		return $value;
 	}
 }
+
