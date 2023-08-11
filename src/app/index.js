@@ -7,7 +7,7 @@ import { scan } from './scanner';
 
 let INFO_ENABLED = false;
 let DEBUG_ENABLED = false;
-let SCAN_INTERVAL_IN_SECONDS = 5;
+let SCAN_INTERVAL_IN_SECONDS = 30;
 
 if (edac_script_vars.mode === 'full-scan') {
 	SCAN_INTERVAL_IN_SECONDS = 3;
