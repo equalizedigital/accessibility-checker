@@ -360,7 +360,7 @@ function edac_get_content( $post ) {
 			// Add the query vars to the URL.
 			$stylesheet_url = add_query_arg( 
 				$css_args,
-				$url
+				$stylesheet_url
 			);
 			
 			$response = wp_remote_get( $stylesheet_url );
