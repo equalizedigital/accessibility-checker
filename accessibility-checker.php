@@ -132,7 +132,7 @@ if ( 'valid' === get_option( 'edacp_license_status' ) ) {
 
 // Enable EDAC_DEBUG mode.
 if ( ! defined( 'EDAC_DEBUG' ) ) {
-	define( 'EDAC_DEBUG', true );
+	define( 'EDAC_DEBUG', false );
 }
 
 // SVG Icons.
