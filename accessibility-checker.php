@@ -132,7 +132,7 @@ if ( 'valid' === get_option( 'edacp_license_status' ) ) {
 
 // Enable EDAC_DEBUG mode.
 if ( ! defined( 'EDAC_DEBUG' ) ) {
-	define( 'EDAC_DEBUG', false );
+	define( 'EDAC_DEBUG', true );
 }
 
 // SVG Icons.
@@ -695,7 +695,7 @@ function edac_register_rules() {
 			'slug'      => 'color_contrast_failure',
 			'rule_type' => 'error',
 			'summary'   => esc_html( 'Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be "false positives" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors.' ),
-			'ruleset'   => 'js',
+			//'ruleset'   => 'js',
 		)
 	);
 
