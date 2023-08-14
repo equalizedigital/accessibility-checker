@@ -68,26 +68,27 @@ class Scan_Report_Data {
 
 		$issues_query = new \EDAC\Issues_Query();
 		
-		$data['posts_scanned'] = $scannable_posts_count;
-		$data['failed_tests'] = $issues_query->count();
-		$data['passed_tests'] = $tests_count - $data['failed_tests'];
+		$data['posts_scanned'] = (int) $scannable_posts_count ;
+		$data['failed_tests'] = (int) $issues_query->count();
+		$data['passed_tests'] = (int) ($tests_count - $data['failed_tests']);
 		$data['passed_percentage'] = round( ( $data['passed_tests'] / $tests_count ) * 100 );
 		
 		
 		$error_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_ERROR ) ) );
-		$data['errors'] = $error_issues_query->count();
-	
-		$data['distinct_errors'] = $error_issues_query->distinct_count();
+		$data['errors'] = (int) $error_issues_query->count();
+		$data['distinct_errors'] = (int) $error_issues_query->distinct_count();
 	
 		$warning_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_WARNING ) ) );
-		$data['warnings'] = $warning_issues_query->count();
-		$data['distinct_warnings'] = $warning_issues_query->distinct_count();
+		$data['warnings'] = (int) $warning_issues_query->count();
+		$data['distinct_warnings'] = (int) $warning_issues_query->distinct_count();
 
-		$color_contrast_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ) ) );
-		$data['color_contrast_errors'] = $color_contrast_issues_query->count();
-	
+		$contrast_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ) ) );
+		$data['contrast_errors'] = (int) $contrast_issues_query->count();
+		$data['distinct_contrast_errors'] = (int) $contrast_issues_query->distinct_count();
+
+		
 		$ignored_issues_query = new \EDAC\Issues_Query( array(), \EDAC\Issues_Query::IGNORE_FLAG_ONLY_IGNORED );
-		$data['ignored'] = $ignored_issues_query->count();
+		$data['ignored'] = (int) $ignored_issues_query->count();
 		
 		//needs:
 		//urls w/o issues
@@ -109,7 +110,7 @@ class Scan_Report_Data {
 			) {
 				$data['fullscan_running'] = true;
 			} 
-			$data['fullscan_completed_at'] = get_option( 'edacp_fullscan_completed_at' );
+			$data['fullscan_completed_at'] = (int) get_option( 'edacp_fullscan_completed_at' );
 		} else {
 			$data['fullscan_completed_at'] = 0;
 		}
@@ -151,6 +152,8 @@ class Scan_Report_Data {
 			)
 		);
 		$data['errors'] = $error_issues_query->count();
+		$data['distinct_errors'] = $error_issues_query->distinct_count();
+		
 
 
 		$warning_issues_query = new \EDAC\Issues_Query(
@@ -160,6 +163,8 @@ class Scan_Report_Data {
 			)
 		);
 		$data['warnings'] = $warning_issues_query->count();
+		$data['distinct_warnings'] = $warning_issues_query->distinct_count();
+		
 	
 		$color_contrast_issues_query = new \EDAC\Issues_Query(
 			array( 
@@ -167,7 +172,8 @@ class Scan_Report_Data {
 				'post_types' => array( $post_type ),
 			)
 		);
-		$data['color_contrast_errors'] = $color_contrast_issues_query->count();
+		$data['contrast_errors'] = $color_contrast_issues_query->count();
+		$data['distinct_contrast_errors'] = $color_contrast_issues_query->distinct_count();
 	
 		
 	

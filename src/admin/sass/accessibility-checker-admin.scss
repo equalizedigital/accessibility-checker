@@ -905,3 +905,99 @@
     margin-top: 5px;
   }
 }
+
+
+.edac-summary {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+ 
+  &-header {
+    display: flex;
+    width: 100%;
+
+    &-label {
+  
+      flex: 1;
+     
+      font-size: $font-size-medium;
+    }
+  }
+  
+
+  &-passed {
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: .5rem 0;
+   
+  
+    /* see: https://nikitahl.com/circle-progress-bar-css#conic-gradient */
+    .edac-progress-bar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%; 
+
+      .edac-progress-percentage {
+        margin: 0 .5rem 0 .5rem;
+        font-size: $font-size-large;
+      }
+      .edac-progress-label {
+        margin: 0 1rem 0 1rem;
+        font-size: $font-size-x-small;
+      }
+    }
+
+  }
+
+  &-info {
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+   
+    &-date {
+      display: flex;
+      
+      &-label {}
+      &-date {}
+    }
+
+    &-count {
+      display: flex;
+   
+      &-label {}
+      &-date {}
+    }
+  }
+
+  &-stats {
+    
+    &-error{}
+    &-contrast{}
+    &-warning{}
+    
+    &-number{}
+    &-label{}
+
+   
+    &.has-errors{
+      background-color: $color-red;
+    }
+    &.has-warning{
+      color: $color-blue-dark;
+      background-color: $color-yellow;
+      background-image: url("../images/warning icon navy.png");
+    }
+
+
+  }
+
+}

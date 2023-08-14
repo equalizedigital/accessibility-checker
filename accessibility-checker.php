@@ -202,11 +202,13 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Rest_Api.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Helpers.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Issues_Query.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Scan_Report_Data.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Widgets.php';
+
 
 
 /**
@@ -217,21 +219,18 @@ add_action(
 	function() {
 		// instantiate the classes that need to load hooks early.
 		$rest_api = new \EDAC\Rest_Api();
-
-		$data = new \EDAC\Scan_Report_Data();
-		var_dump($data->scan_summary());
-
-		$scannable_post_types = \EDAC\Settings::get_scannable_post_types();
-		foreach($scannable_post_types as $scannable_post_type){
-			echo $scannable_post_type . '<hr>';
-			var_dump($data->issue_summary_by_post_type($scannable_post_type));
-			echo '<hr>';
-		}
-
-		
-		die();	
 	}
 );
+
+add_action( 'wp_dashboard_setup', function() {
+	wp_add_dashboard_widget(
+		'edac_dashboard_scan_summary',
+		'Accessibility Checker',
+		array(
+			'\\EDAC\Widgets', 'render_dashboard_scan_summary') );
+});
+
+
 
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
