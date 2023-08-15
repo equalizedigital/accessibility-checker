@@ -875,60 +875,191 @@
   margin-top: 5px;
 }
 
-.edac-summary {
+#edac_dashboard_scan_summary hr {
+  margin: 1rem 0 1rem 0;
+}
+#edac_dashboard_scan_summary .edac-ml-1 {
+  margin-left: 0.5rem;
+}
+#edac_dashboard_scan_summary .edac-mr-1 {
+  margin-right: 0.5rem;
+}
+#edac_dashboard_scan_summary .edac-align-center {
+  text-align: center;
+}
+#edac_dashboard_scan_summary .edac-summary {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.edac-summary-header {
+#edac_dashboard_scan_summary .edac-summary-header {
   display: flex;
   width: 100%;
 }
-.edac-summary-header-label {
+#edac_dashboard_scan_summary .edac-summary-header-label {
   flex: 1;
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
-.edac-summary-passed {
+#edac_dashboard_scan_summary .edac-summary-passed {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem 0;
+  padding: 0.3rem 0;
   /* see: https://nikitahl.com/circle-progress-bar-css#conic-gradient */
 }
-.edac-summary-passed .edac-progress-bar {
+#edac_dashboard_scan_summary .edac-summary-passed .edac-progress-bar {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
-.edac-summary-passed .edac-progress-bar .edac-progress-percentage {
-  margin: 0 0.5rem 0 0.5rem;
-  font-size: 1.2rem;
+#edac_dashboard_scan_summary .edac-summary-passed .edac-progress-bar .edac-progress-percentage {
+  margin: 0 0.5rem;
+  font-size: 1.3rem;
 }
-.edac-summary-passed .edac-progress-bar .edac-progress-label {
+#edac_dashboard_scan_summary .edac-summary-passed .edac-progress-bar .edac-progress-label {
   margin: 0 1rem 0 1rem;
-  font-size: 0.6rem;
+  font-size: 0.75rem;
 }
-.edac-summary-info {
+#edac_dashboard_scan_summary .edac-summary .edac-widget-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2147483647;
+}
+#edac_dashboard_scan_summary .edac-summary .edac-widget-modal-content {
+  background-color: #fff;
+  width: 80%;
+  height: calc(100% - 80px - 40px);
+  margin: 40px auto 40px;
+  padding: 20px;
+  position: relative;
+}
+#edac_dashboard_scan_summary .edac-summary .edac-widget-modal-content-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+#edac_dashboard_scan_summary .edac-summary-info {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-.edac-summary-info-date {
+#edac_dashboard_scan_summary .edac-summary-info-date {
   display: flex;
 }
-.edac-summary-info-count {
+#edac_dashboard_scan_summary .edac-summary-info-date .edac-time {
+  display: none;
+}
+#edac_dashboard_scan_summary .edac-summary-info-date-label {
+  font-size: 0.83rem;
+}
+#edac_dashboard_scan_summary .edac-summary-info-date-date {
+  margin: 0 0.3rem 0;
+  font-size: 0.83rem;
+}
+#edac_dashboard_scan_summary .edac-summary-info-count {
   display: flex;
 }
-.edac-summary-stats.has-errors {
+#edac_dashboard_scan_summary .edac-summary-info-count-label {
+  font-size: 0.83rem;
+}
+#edac_dashboard_scan_summary .edac-summary-info-count-number {
+  margin: 0 0.3rem 0;
+  font-size: 0.83rem;
+}
+#edac_dashboard_scan_summary .edac-summary-info-stats-box {
+  margin: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #ffffff;
+}
+#edac_dashboard_scan_summary .edac-summary-info-stats-box-error {
+  background: url(".././images/error%20icon%20white.png") no-repeat top left;
+  background-size: contain;
+  background-position: calc(0% + 5px) 50%;
+  background-size: 1rem 1rem;
+  background-color: #006600;
+}
+#edac_dashboard_scan_summary .edac-summary-info-stats-box-error.has-errors {
   background-color: #b30f0f;
 }
-.edac-summary-stats.has-warning {
-  color: #072446;
+#edac_dashboard_scan_summary .edac-summary-info-stats-box-contrast {
+  background: url(".././images/contrast%20icon%20white.png") no-repeat top left;
+  background-size: contain;
+  background-position: calc(0% + 5px) 50%;
+  background-size: 1rem 1rem;
+  background-color: #006600;
+}
+#edac_dashboard_scan_summary .edac-summary-info-stats-box-contrast.has-errors {
+  background-color: #b30f0f;
+}
+#edac_dashboard_scan_summary .edac-summary-info-stats-box-warning {
+  background: url(".././images/warning%20icon%20white.png") no-repeat top left;
+  background-size: contain;
+  background-position: calc(0% + 5px) 50%;
+  background-size: 1rem 1rem;
+  background-color: #006600;
+}
+#edac_dashboard_scan_summary .edac-summary-info-stats-box-warning.has-warning {
+  background: url(".././images/warning%20icon%20navy.png") no-repeat top left;
+  background-size: contain;
+  background-position: calc(0% + 5px) 50%;
+  background-size: 1rem 1rem;
   background-color: #f3cd1e;
-  background-image: url(".././images/warning%20icon%20navy.png");
+  color: #072446;
+}
+#edac_dashboard_scan_summary .edac-summary-info-stats-box-label {
+  line-height: 2rem;
+  margin-left: calc(1rem + 10px);
+  font-size: 0.83rem;
+}
+#edac_dashboard_scan_summary .edac-summary-info-stats-box-number {
+  margin-left: 0.3rem;
+  font-size: 0.83rem;
+}
+#edac_dashboard_scan_summary .edac-summary-notice {
+  padding: 1.5rem 0 0.5rem 0;
+  font-size: 0.875rem;
+}
+#edac_dashboard_scan_summary .edac-issues-summary td {
+  vertical-align: middle;
+}
+#edac_dashboard_scan_summary .edac-issues-summary-notice-enable-edacp {
+  text-align: center;
+  border: solid 1px #737373;
+  padding: 0.5rem;
+}
+#edac_dashboard_scan_summary .edac-issues-summary-notice-enable-edacp {
+  text-align: center;
+  border: solid 3px #737373;
+  padding: 0.5rem;
+}
+#edac_dashboard_scan_summary .edac-issues-summary-notice-upgrade-to-edacp {
+  text-align: center;
+  border: solid 1px #737373;
+  padding: 0.5rem;
+}
+#edac_dashboard_scan_summary .edac-upcoming-meetup-item-name {
+  display: inline;
+  font-weight: bold;
+}
+#edac_dashboard_scan_summary .edac-upcoming-meetup-item-link {
+  text-decoration: revert;
+}
+#edac_dashboard_scan_summary .edac-widget-footer-link-list-spacer {
+  border-left: 2px solid #ccc;
+  padding: 0;
+  margin: 0;
 }

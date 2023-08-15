@@ -439,3 +439,86 @@ function edac_replace_css_variables( $value, $css_array ) {
 	}
 }
 
+
+/**
+ * Upcoming meetups in json format
+ *
+ * @param string $meetup
+ * @param integer $count
+ * @return json
+ */
+function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
+
+    $key = 'upcoming_meetups__' . sanitize_title( $meetup ) . '_' . intval( $count );
+    $output = get_transient( $key );
+    if( false === $output ) {
+
+        $query_args = array(
+            'sign' => 'true',
+            'photo-host' => 'public',
+            'page' => intval( $count ),
+        );
+
+        $request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
+        $request = wp_remote_get( add_query_arg( $query_args, $request_uri ) );
+
+        if( is_wp_error( $request ) || '200' != wp_remote_retrieve_response_code( $request ) )
+            return;
+
+        $output = json_decode( wp_remote_retrieve_body( $request ) );
+        if( empty( $output ) )
+            return;
+
+	
+        set_transient( $key, $output, DAY_IN_SECONDS );
+    }
+
+    return $output;
+}
+
+
+function edac_get_upcoming_meetups_html( $meetup, $count = 5 ) {
+
+	$json = edac_get_upcoming_meetups_json( $meetup, $count );
+
+	if(empty($json)){
+		return;
+	}
+
+	$allowed_tags = array(
+		'div' => array(),
+		'p' => array(),
+		'span' => array(),
+		'br' => array(),
+		'hr' => array(),
+		'strong' => array(),
+		'b' => array(),
+		'em' => array(),
+		'i' => array(),
+	);
+
+	$html = '<ul class="edac-upcoming-meetup-list">';
+	
+	foreach($json as $event){
+
+		$desc = wp_kses( $event->description, $allowed_tags );
+
+		$html .= '
+		<li class="edac-upcoming-meetup-item">
+			<details>
+				<summary>
+					<div class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</div>
+					<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . (intval( $event->time ) / 1000) . '</div>
+				</summary>
+				<div class="edac-upcoming-meetup-item-desc"> ' . $desc  . '</div>			
+			</details>
+			<a class="edac-upcoming-meetup-item-link" href="' . esc_url($event->link)  . '">Attend Free</a>
+		</li>';
+	}
+
+	$html .= '</ul>';
+
+	return $html;
+			
+}
+

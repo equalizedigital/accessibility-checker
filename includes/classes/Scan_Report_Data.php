@@ -68,16 +68,11 @@ class Scan_Report_Data {
 
 		$issues_query = new \EDAC\Issues_Query();
 		
-		$data['posts_scanned'] = (int) $scannable_posts_count ;
+		$data['posts_scanned'] = (int) $scannable_posts_count;
 		$data['failed_tests'] = (int) $issues_query->count();
 		$data['passed_tests'] = (int) ($tests_count - $data['failed_tests']);
 		$data['passed_percentage'] = round( ( $data['passed_tests'] / $tests_count ) * 100 );
 		
-		
-		$error_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_ERROR ) ) );
-		$data['errors'] = (int) $error_issues_query->count();
-		$data['distinct_errors'] = (int) $error_issues_query->distinct_count();
-	
 		$warning_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_WARNING ) ) );
 		$data['warnings'] = (int) $warning_issues_query->count();
 		$data['distinct_warnings'] = (int) $warning_issues_query->distinct_count();
@@ -85,12 +80,18 @@ class Scan_Report_Data {
 		$contrast_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ) ) );
 		$data['contrast_errors'] = (int) $contrast_issues_query->count();
 		$data['distinct_contrast_errors'] = (int) $contrast_issues_query->distinct_count();
-
-		
+	
+		$error_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_ERROR ) ) );
+		$data['errors'] = (int) $error_issues_query->count();
+		$data['distinct_errors'] = (int) $error_issues_query->distinct_count();
+	
+		$data['errors_without_contrast'] = $data['errors'] - $data['contrast_errors'];
+		$data['distinct_errors_without_contrast'] = $data['distinct_errors'] - $data['distinct_contrast_errors'];
+	
 		$ignored_issues_query = new \EDAC\Issues_Query( array(), \EDAC\Issues_Query::IGNORE_FLAG_ONLY_IGNORED );
 		$data['ignored'] = (int) $ignored_issues_query->count();
 		
-		//needs:
+		//TODO:
 		//urls w/o issues
 		//avg issues/page
 		//density
@@ -174,6 +175,9 @@ class Scan_Report_Data {
 		);
 		$data['contrast_errors'] = $color_contrast_issues_query->count();
 		$data['distinct_contrast_errors'] = $color_contrast_issues_query->distinct_count();
+	
+		$data['errors_without_contrast'] = $data['errors'] - $data['contrast_errors'];
+		$data['distinct_errors_without_contrast'] = $data['distinct_errors'] - $data['distinct_contrast_errors'];
 	
 		
 	

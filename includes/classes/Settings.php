@@ -11,7 +11,7 @@ use EDAC\Helpers;
 
 
 /**
- * Class that handles scan settings
+ * Class that handles plugin settings
  */
 class Settings {
 

@@ -907,97 +907,272 @@
 }
 
 
-.edac-summary {
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
- 
-  &-header {
-    display: flex;
-    width: 100%;
+#edac_dashboard_scan_summary {
 
-    &-label {
-  
-      flex: 1;
-     
-      font-size: $font-size-medium;
-    }
+  hr {
+    margin: 1rem 0 1rem 0;
   }
   
-
-  &-passed {
-
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: .5rem 0;
-   
   
-    /* see: https://nikitahl.com/circle-progress-bar-css#conic-gradient */
-    .edac-progress-bar {
+  .edac-ml-1 {
+    margin-left: .5rem;
+  }
+  
+  .edac-mr-1 {
+    margin-right: .5rem;
+  }
+
+  .edac-align-center {
+    text-align: center;
+  }
+
+  .edac-summary {
+
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  
+    &-header {
+      display: flex;
+      width: 100%;
+
+      &-label {
+    
+        flex: 1;
+      
+        font-size: $font-size-medium;
+      }
+    }
+    
+
+    &-passed {
+
+      flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%; 
+      padding: .3rem 0;
+    
+    
+      /* see: https://nikitahl.com/circle-progress-bar-css#conic-gradient */
+      .edac-progress-bar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%; 
 
-      .edac-progress-percentage {
-        margin: 0 .5rem 0 .5rem;
-        font-size: $font-size-large;
+        .edac-progress-percentage {
+          margin: 0 .5rem;
+          font-size: $font-size-large;
+        }
+        .edac-progress-label {
+          margin: 0 1rem 0 1rem;
+          font-size: $font-size-x-small;
+        }
       }
-      .edac-progress-label {
-        margin: 0 1rem 0 1rem;
-        font-size: $font-size-x-small;
-      }
+
     }
 
-  }
 
-  &-info {
-
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-   
-    &-date {
-      display: flex;
+    .edac-widget-modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 2147483647;
+  
+      &-content {
+          background-color: #fff;
+          width: 80%;
+          height: calc(100% - 80px - 40px); //margin (40x2) - padding (20x2)
+          margin: 40px auto 40px;
+          padding: 20px;
+          position: relative;
+     
+       &-close {
+          position: absolute;
+          top: 10px;
+          right: 15px;
+          font-size: 20px;
+          cursor: pointer;
+        }
       
-      &-label {}
-      &-date {}
+      }
+  
     }
+  
 
-    &-count {
+    &-info {
+
+      flex: 1;
       display: flex;
-   
-      &-label {}
-      &-date {}
+      flex-direction: column;
+    
+      &-date {
+        display: flex;
+
+        .edac-time {
+          display: none;
+        }
+        
+        &-label {
+          font-size: $font-size-small;
+        }
+        &-date {
+          margin: 0 .3rem 0;
+          font-size: $font-size-small;
+        }
+      }
+
+      &-count {
+        display: flex;
+    
+        &-label {
+          font-size: $font-size-small;
+    
+        }
+        &-number {
+          margin: 0 .3rem 0;
+          font-size: $font-size-small;
+        }
+      }
+  
+      &-stats {
+      
+        &-box {
+          margin: .3rem 0;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          color: #ffffff;
+      
+        
+      
+          &-error{
+            background: url('.././images/error%20icon%20white.png') no-repeat top left;
+            background-size: contain;
+            background-position: calc(0% + 5px) 50%;
+            background-size: 1rem 1rem;
+            background-color: $color-green;
+
+            &.has-errors {
+              background-color: $color-red;
+            }
+        
+          }
+
+          &-contrast{
+            background: url('.././images/contrast%20icon%20white.png') no-repeat top left;
+            background-size: contain;
+            background-position: calc(0% + 5px) 50%;
+            background-size: 1rem 1rem;
+            background-color: $color-green;
+
+            &.has-errors {
+              background-color: $color-red;
+            }
+        
+          }
+        
+          &-warning {
+            background: url('.././images/warning%20icon%20white.png') no-repeat top left;
+            background-size: contain;
+            background-position: calc(0% + 5px) 50%;
+            background-size: 1rem 1rem;
+            background-color: $color-green;
+        
+          &.has-warning {
+              background: url('.././images/warning%20icon%20navy.png') no-repeat top left;
+              background-size: contain;
+              background-position: calc(0% + 5px) 50%;
+              background-size: 1rem 1rem;
+              background-color: $color-yellow;
+              color: $color-blue-dark;   
+            }
+
+          }
+      
+          
+          &-label {
+            line-height: 2rem;
+            margin-left: calc(1rem + 10px);
+            font-size: $font-size-small;
+      
+          }
+          &-number {
+            margin-left: calc(.3rem);
+            font-size: $font-size-small;
+      
+          }
+      
+
+        }
+    
+      
+    
+      }
+    
+  
+    }
+
+  
+  }
+
+  .edac-summary-notice {
+    padding: 1.5rem 0 .5rem 0;
+    font-size: $font-size-medium;
+  }
+
+  .edac-issues-summary {
+
+    td { vertical-align: middle; }
+    
+    &-notice-enable-edacp { 
+      text-align: center;
+      border: solid 1px $color-gray;
+      padding: .5rem;
+    }
+    
+    &-notice-enable-edacp { 
+      text-align: center;
+      border: solid 3px $color-gray;
+      padding: .5rem;
+    }
+    
+    &-notice-upgrade-to-edacp {
+      text-align: center;
+      border: solid 1px $color-gray;
+      padding: .5rem;   
     }
   }
 
-  &-stats {
+  
+  .edac-upcoming-meetup {
     
-    &-error{}
-    &-contrast{}
-    &-warning{}
+    &-item-name {
+      display: inline;
+      font-weight: bold;
+    }
     
-    &-number{}
-    &-label{}
-
-   
-    &.has-errors{
-      background-color: $color-red;
+    &-item-link {
+      text-decoration: revert;
     }
-    &.has-warning{
-      color: $color-blue-dark;
-      background-color: $color-yellow;
-      background-image: url("../images/warning icon navy.png");
-    }
-
 
   }
 
+
+  .edac-widget-footer-link-list-spacer {
+    border-left: 2px solid #ccc;
+    padding: 0;
+    margin: 0;
+  }
+  
+ 
 }
