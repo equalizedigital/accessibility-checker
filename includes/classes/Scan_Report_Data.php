@@ -71,7 +71,7 @@ class Scan_Report_Data {
 		$data['posts_scanned'] = (int) $scannable_posts_count;
 		$data['failed_tests'] = (int) $issues_query->count();
 		$data['passed_tests'] = (int) ($tests_count - $data['failed_tests']);
-		$data['passed_percentage'] = round( ( $data['passed_tests'] / $tests_count ) * 100 );
+		$data['passed_percentage'] = round( ( $data['passed_tests'] / $tests_count ) * 100 ,2 );
 		
 		$warning_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_WARNING ) ) );
 		$data['warnings'] = (int) $warning_issues_query->count();

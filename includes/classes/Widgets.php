@@ -37,11 +37,11 @@ class Widgets {
 				Full Site Accessibility Status
 			</h3>';
 			
-		if( 1==1 ||
+		if( 
 			! edac_check_plugin_installed( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ||
-			! EDAC_KEY_VALID 
+			( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && ! EDAC_KEY_VALID) 
 		){
-		$html .='
+			$html .='
 			<div class="edac-widget-modal">
 				<div class="edac-widget-modal-content">
 					<span class="edac-widget-modal-content-close">&times;</span>
