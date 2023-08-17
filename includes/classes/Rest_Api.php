@@ -39,7 +39,7 @@ class REST_Api {
 		$ns = 'accessibility-checker/';
 		$version = 'v1';
 
-		//http://localhost/index.php?rest_route=/accessibility-checker/v1/test
+		// http://localhost/index.php?rest_route=/accessibility-checker/v1/test
 		add_action(
 			'rest_api_init',
 			function () use ( $ns, $version ) {
@@ -47,10 +47,10 @@ class REST_Api {
 					$ns . $version,
 					'/test',
 					array(
-						'methods' => array( 'GET','POST' ),
+						'methods' => array( 'GET', 'POST' ),
 						'callback' => function() {
 							global $wp;
-							$messages = [];
+							$messages = array();
 							$messages['time'] = time();
 							$messages['perms'] = current_user_can( 'edit_posts' );
 							$messages['method'] = $_SERVER['REQUEST_METHOD'];
@@ -131,9 +131,11 @@ class REST_Api {
 		}
 
 	
-	
+		
 		try {
 
+			do_action( 'edac_before_validate', $post_id, 'js' );
+	
 			$violations = $request['violations'];
 			
 					
@@ -164,11 +166,18 @@ class REST_Api {
 						
 						// This rule is one that we've included in our js ruleset.
 						// Write the rule/violation data to the db.
+			
+						do_action( 'edac_before_rule', $post_id, $rule_id, 'js' );
+			
 						edac_insert_rule_data( $post, $rule_id, $impact, $html );
 
+						do_action( 'edac_after_rule', $post_id, $rule_id, 'js' );
+			
 					}               
 				}           
 			}
+	
+			do_action( 'edac_after_validate', $post_id, 'js' );
 	
 			// Update the summary info that is stored in meta this post.
 			$summary = edac_summary( $post_id );

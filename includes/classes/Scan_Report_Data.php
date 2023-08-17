@@ -76,8 +76,8 @@ class Scan_Report_Data {
 
 		$data['posts_scanned'] = (int) $scannable_posts_count;
 		$data['rules_failed'] = (int) $issues_query->distinct_count();
-		$data['rules_passed'] = (int) ($tests_count - $data['rules_failed']);
-		$data['passed_percentage'] = round( ( $data['rules_passed'] / $tests_count ) * 100 ,2 );
+		$data['rules_passed'] = (int) ( $tests_count - $data['rules_failed'] );
+		$data['passed_percentage'] = round( ( $data['rules_passed'] / $tests_count ) * 100, 2 );
 	
 		$warning_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_WARNING ) ) );
 		$data['warnings'] = (int) $warning_issues_query->count();
@@ -100,25 +100,33 @@ class Scan_Report_Data {
 
 		$data['posts_without_issues'] = $wpdb->get_var( 
 			$wpdb->prepare(
-				'SELECT count(wp_posts.ID) from {$wpdb->posts} 
-				LEFT JOIN wp_accessibility_checker ON 
-				wp_posts.ID = wp_accessibility_checker.postid
-				WHERE wp_accessibility_checker.postid IS NULL and 1=%d;',
+				'SELECT count(wp_posts.ID) from ' . $wpdb->posts . '  
+				LEFT JOIN ' . $wpdb->prefix . 'accessibility_checker ON 
+				wp_posts.ID = ' . $wpdb->prefix . 'accessibility_checker.postid 
+				WHERE ' . $wpdb->prefix . 'accessibility_checker.postid IS NULL and 1=%d;',
 				array( 1 )
 			)
 		);
 
-		$data['avg_issues_per_post'] = ($data['warnings'] + $data['errors']) / $data['posts_scanned'];
+		$data['avg_issues_per_post'] = ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'];
 	
 
-		$data['issue_density'] = $wpdb->get_var( 
-			$wpdb->prepare(
-				'SELECT avg(meta_key) from {$wpdb->postmeta}
-				WHERE meta_value = _edac_issue_density and _edac_issue_density > 0
-				and 1=%d;',
-				array( 1 )
-			)
-		);
+		$data['issue_density_percentage'] = 
+			$wpdb->get_var( 
+				$wpdb->prepare(
+					'SELECT avg(meta_value) from ' . $wpdb->postmeta . ' 
+				WHERE meta_key = %s and meta_value > %d;',
+					array( '_edac_issue_density', 0 )
+				)
+			);
+		
+		if ( null === $data['issue_density_percentage'] ) {
+			$data['issue_density_percentage'] = 'N/A';
+		} else {
+			$data['issue_density_percentage'] = round( $data['issue_density_percentage'], 2 );
+
+		}
+	
 
 
 		$data['fullscan_running'] = false;

@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.4.2
+ * Version:           1.4.3
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -65,6 +65,19 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 	// Init Freemius.
 	edac_fs();
+
+	/**
+	 * Setup Freemius opt-in screen icon
+	 *
+	 * @return void
+	 */
+	function edac_fs_custom_icon() {
+		return dirname( __FILE__ ) . '/assets/images/edac-emblem.png';
+	}
+	 
+	edac_fs()->add_filter( 'plugin_icon', 'edac_fs_custom_icon' );
+	
+
 	// Signal that SDK was initiated.
 	do_action( 'edac_fs_loaded' );
 }
@@ -76,7 +89,7 @@ if ( ! function_exists( 'edac_fs' ) ) {
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.4.2' );
+	define( 'EDAC_VERSION', '1.4.3' );
 }
 
 // Current database version.
@@ -216,19 +229,52 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Widgets.php';
  */
 add_action(
 	'init',
-	function() {
+	function () {
 		// instantiate the classes that need to load hooks early.
 		$rest_api = new \EDAC\Rest_Api();
+//TODO		
+return;
+		$scannable_post_types = \EDAC\Settings::get_scannable_post_types();
+			
+		$d = new \EDAC\Scan_Report_Data(0);
+		var_dump( $d->scan_summary() );
+		echo '<hr>';
+		$post_types = get_post_types(
+			array(
+				'public' => true,
+			) 
+		);
+		unset( $post_types['attachment'] );
+		foreach ( $post_types as $posttype ) {
+
+			if ( in_array( $posttype, $scannable_post_types ) ) {
+
+				$by_issue = $d->issue_summary_by_post_type( $posttype );
+
+				var_dump( $by_issue );
+				echo '<hr>';
+
+			}       
+		}
+		
+		die();
+
 	}
 );
 
-add_action( 'wp_dashboard_setup', function() {
-	wp_add_dashboard_widget(
-		'edac_dashboard_scan_summary',
-		'Accessibility Checker',
-		array(
-			'\\EDAC\Widgets', 'render_dashboard_scan_summary') );
-});
+add_action(
+	'wp_dashboard_setup',
+	function() {
+		wp_add_dashboard_widget(
+			'edac_dashboard_scan_summary',
+			'Accessibility Checker',
+			array(
+				'\\EDAC\Widgets',
+				'render_dashboard_scan_summary',
+			) 
+		);
+	}
+);
 
 
 
@@ -699,7 +745,7 @@ function edac_register_rules() {
 			'slug'      => 'color_contrast_failure',
 			'rule_type' => 'error',
 			'summary'   => esc_html( 'Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be "false positives" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors.' ),
-			'ruleset'   => 'js',
+			// 'ruleset'   => 'js',
 		)
 	);
 
@@ -1024,23 +1070,21 @@ function edac_summary( $post_id ) {
 	// issue density.
 	$issue_count = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'];
 
-	$issue_density_array = get_post_meta($post_id, '_edac_density_data');
+	$issue_density_array = get_post_meta( $post_id, '_edac_density_data' );
 	
 	
-	if(is_array($issue_density_array) ){
+	if ( is_array( $issue_density_array ) ) {
 		
 		$element_count = $issue_density_array[0][0];
 		$content_length = $issue_density_array[0][1];
 		
 		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
-		edac_log($issue_density . ':' . log($issue_density) . ':' .log10($edac_get_issue_density));
-
+	
 		if ( ! add_post_meta( $post_id, '_edac_issue_density', $issue_density, true ) ) {
 			update_post_meta( $post_id, '_edac_issue_density', $issue_density );
-		}
-	
+		}   
 	} else {
-		delete_post_meta( $post_id, '_edac_issue_density');
+		delete_post_meta( $post_id, '_edac_issue_density' );
 	}
 
 	// reading grade level.
@@ -1235,7 +1279,7 @@ function edac_details_ajax() {
 		$error_rules,
 		function( $a, $b ) {
 
-			return strcmp($b['count'], $a['count']);
+			return strcmp( $b['count'], $a['count'] );
 
 		}
 	);
@@ -1245,7 +1289,7 @@ function edac_details_ajax() {
 		$warning_rules,
 		function( $a, $b ) {
 
-			return strcmp($b['count'], $a['count']);
+			return strcmp( $b['count'], $a['count'] );
 
 		}
 	);
@@ -1255,7 +1299,7 @@ function edac_details_ajax() {
 		$passed_rules,
 		function( $a, $b ) {
 
-			return strcmp($b['title'], $a['title']);
+			return strcmp( $b['title'], $a['title'] );
 
 		}
 	);

@@ -498,30 +498,30 @@
     /**
      * Helper function to convert unixtime timestamp to the local date time.
      */
-    function edac_timestamp_to_local(){
+    function edac_timestamp_to_local() {
 
       var options = { year: "numeric", month: "short", day: "numeric" };
 
       var elements = document.querySelectorAll(".edac-timestamp-to-local");
-      
-      elements.forEach( function(element){
-       
+
+      elements.forEach(function (element) {
+
         var unixtime_in_seconds = element.textContent;
-        var d = new Date(unixtime_in_seconds * 1000 ).toLocaleDateString([], options);
-        var t = new Date(unixtime_in_seconds * 1000).toLocaleTimeString([], {timeStyle: 'short'});
-      
+        var d = new Date(unixtime_in_seconds * 1000).toLocaleDateString([], options);
+        var t = new Date(unixtime_in_seconds * 1000).toLocaleTimeString([], { timeStyle: 'short' });
+
         var parts = Intl.DateTimeFormat([], { timeZoneName: 'short' }).formatToParts(new Date());
         let tz = '';
         for (const part of parts) {
-            if (part.type === 'timeZoneName') {
-                tz = part.value;
-                break;
-            }
+          if (part.type === 'timeZoneName') {
+            tz = part.value;
+            break;
+          }
         }
-   
-        element.innerHTML =  '<span class="edac-date">' + d + '</span>&nbsp;<span class="edac-time">'
-         + t + '</span>&nbsp;<span class="edac-timezone">' + tz + '</span>';
-     
+
+        element.innerHTML = '<span class="edac-date">' + d + '</span>&nbsp;<span class="edac-time">'
+          + t + '</span>&nbsp;<span class="edac-timezone">' + tz + '</span>';
+
       });
 
 
@@ -534,15 +534,17 @@
      * Handle widget modal close click
      * @param {*} event
      */
-    function edac_widget_modal_content_close( e ){
+    function edac_widget_modal_content_close(e) {
       var modal = e.target.closest('.edac-widget-modal');
       modal.style.display = 'none';
-      
+
       document.querySelector('.edac-summary').remove();
 
     }
-    document.querySelector('.edac-widget-modal-content-close').addEventListener('click', edac_widget_modal_content_close);
-    
+    const modal_close_btn = document.querySelector('.edac-widget-modal-content-close');
+    if (modal_close_btn) {
+      addEventListener('click', edac_widget_modal_content_close);
+    }
 
 
   });

@@ -8,7 +8,6 @@
 namespace EDAC;
 
 use EDAC\Scan_Report_Data;
-use PHP_CodeSniffer\Reports\Summary;
 
 /**
  * Class that handles widgets

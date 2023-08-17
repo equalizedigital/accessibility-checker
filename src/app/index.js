@@ -5,9 +5,10 @@ import { Notyf } from 'notyf';
 
 import { scan } from './scanner';
 
-
+let JS_SCAN_ENABLED = false;
+let INFO_ENABLED = false;
 let DEBUG_ENABLED = false;
-let SCAN_INTERVAL_IN_SECONDS = 10;
+let SCAN_INTERVAL_IN_SECONDS = 30;
 
 if (edac_script_vars.mode === 'full-scan') {
 	SCAN_INTERVAL_IN_SECONDS = 3;
@@ -122,23 +123,25 @@ class AccessibilityCheckerHighlight {
 	 */
 	findElement(value, index) {
 
-		// Parse the HTML snippet
-		const htmlSnippet = value.object;
-		const parser = new DOMParser();
-		const parsedHtml = parser.parseFromString(htmlSnippet, 'text/html');
-		const firstParsedElement = parsedHtml.body.firstElementChild;
 
-		// If there's no parsed element, return null
-		if (!firstParsedElement) {
-			return null;
+		// Parse the HTML snippet
+		let htmlToFind = value.object;
+		const parser = new DOMParser();
+		const parsedHtml = parser.parseFromString(htmlToFind, 'text/html');
+		const firstParsedElement = parsedHtml.body.firstElementChild;
+		
+		if (firstParsedElement) {
+			htmlToFind = firstParsedElement.outerHTML;
 		}
 
+		
 		// Compare the outer HTML of the parsed element with all elements on the page
 		const allElements = document.body.querySelectorAll('*');
 
 		for (const element of allElements) {
-
-			if (element.outerHTML.replace(/\W/g, '') === firstParsedElement.outerHTML.replace(/\W/g, '')) {
+		
+			if (element.outerHTML.replace(/\W/g, '') === htmlToFind.replace(/\W/g, '')) {
+		
 				const tooltip = this.addTooltip(element, value, index);
 
 				this.issues[index].tooltip = tooltip.tooltip;
@@ -178,14 +181,11 @@ class AccessibilityCheckerHighlight {
 					if (true === response.success) {
 						const response_json = JSON.parse(response.data);
 
-						debug(response_json);
-
 						if (self.settings.showIgnored) {
 							resolve(response_json);
 						} else {
 							resolve(
-								response_json.filter(item => (item.id !== this.urlParameter ||
-									item.rule_type !== 'ignored'))
+								response_json.filter(item => (item.id == self.urlParameter || item.rule_type !== 'ignored'))
 							);
 						}
 
@@ -197,7 +197,7 @@ class AccessibilityCheckerHighlight {
 
 					self.showWait(false);
 
-					console.log('Request failed.  Returned status of ' + xhr.status);
+					info('Request failed.  Returned status of ' + xhr.status);
 
 					reject({
 						status: xhr.status,
@@ -847,7 +847,7 @@ if (window.top._scheduledScanRunning == undefined) {
 
 
 async function checkApi() {
-
+	
 	if (edac_script_vars.edacHeaders.Authorization == 'None') {
 		return 401;
 	}
@@ -869,29 +869,39 @@ async function postData(url = "", data = {}) {
 		return;
 	}
 
-	const response = await fetch(url, {
+	return await fetch(url, {
 		method: "POST",
 		headers: edac_script_vars.edacHeaders,
 		body: JSON.stringify(data),
+	}).then((res) => {
+		return res.json();
+	}).catch(() => {
+		return {};
 	});
-	return response.json();
+
 }
 
 async function getData(url = "") {
 
 	if (edac_script_vars.edacHeaders.Authorization == 'None') {
-		return;
+		return {};
 	}
 
-	const response = await fetch(url, {
+	return await fetch(url, {
 		method: "GET",
 		headers: edac_script_vars.edacHeaders
+	}).then((res) => {
+		return res.json();
+	}).catch(() => {
+		return {};
 	});
-	return response.json();
+
 }
 
 function info(message) {
-	console.info(message);
+	if (INFO_ENABLED) {
+		console.info(message);
+	}
 }
 
 
@@ -963,7 +973,7 @@ function saveScanResults(postId, violations, scheduled = false) {
 
 				info('Saving ' + postId + ': done');
 
-			
+
 
 				if (!data.success) {
 
@@ -1118,7 +1128,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	debug('We are loading the app in ' + edac_script_vars.mode + ' mode.');
 
-
+	if(JS_SCAN_ENABLED){
 	if (edac_script_vars.mode === 'editor-scan') {
 
 		debug('App is loading from within the editor.');
@@ -1244,7 +1254,7 @@ window.addEventListener('DOMContentLoaded', () => {
 							if (data.data !== undefined) {
 
 								if (data.data.scanUrl !== undefined) {
-									
+
 									info('A post needs scanning: ' + data.data.scanUrl);
 									debug(data);
 
@@ -1280,7 +1290,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 	}
-
+	}
 	if (edac_script_vars.mode === 'ui' && edac_script_vars.active) {
 
 		// We are loading the app in a normal page preview so show the user the ui
@@ -1290,9 +1300,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-	function showNotice(options) {
-		window.top._showNotice(options);
-	}
 
 
 
@@ -1315,7 +1322,7 @@ if (window.top === window && window._showNotice === undefined) {
 			type: 'warning',
 			url: false,
 			label: '',
-			closeOthers: false
+			closeOthers: true
 		}, options);
 
 
@@ -1407,4 +1414,9 @@ if (window.top === window && window._showNotice === undefined) {
 
 	}
 
+}
+
+
+function showNotice(options) {
+	window.top._showNotice(options);
 }
