@@ -495,31 +495,6 @@
     }
 
 
-    /** 
-     * Stop pass 1 button's on click handler
-     */
-    $('.edacp-scan-stop-pass1-btn').click(function (e) {
-
-      postData(edac_script_vars.edacApiUrl + '/cancel-current-php-scan', {}).then((data) => {
-        //console.log(data);
-      });
-
-    });
-
-    /** 
-      * Stop pass 2 button's on click handler
-      */
-    $('.edacp-scan-stop-pass2-btn').click(function (e) {
-
-      postData(edac_script_vars.edacApiUrl + '/cancel-current-scan', {}).then((data) => {
-        //console.log(data);
-      });
-
-    });
-
-
-
-
     /**
      * Helper function to convert unixtime timestamp to the local date time.
      */

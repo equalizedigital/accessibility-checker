@@ -7,7 +7,6 @@
 
 namespace EDAC;
 
-use EDAC\Helpers;
 use EDAC\Settings;
 use EDAC\Issues_Query;
 
@@ -51,10 +50,13 @@ class Scan_Report_Data {
 	 */
 	public function scan_summary() {
 	
+		global $wpdb;
+
 		$transient_name = 'edac_scan_summary';
 
 		$cache = get_transient( $transient_name );
 	
+		
 		if ( $this->cache_time && $cache ) {
 			return $cache;
 		}
@@ -66,13 +68,17 @@ class Scan_Report_Data {
 		$scannable_posts_count  = Settings::get_scannable_posts_count();
 		$tests_count = $scannable_posts_count * $this->rule_count;
 
+		$data['scannable_posts_count'] = (int) $scannable_posts_count;
+		$data['rule_count'] = (int) $this->rule_count;
+		$data['tests_count'] = (int) $tests_count;
+		
 		$issues_query = new \EDAC\Issues_Query();
-		
+
 		$data['posts_scanned'] = (int) $scannable_posts_count;
-		$data['failed_tests'] = (int) $issues_query->count();
-		$data['passed_tests'] = (int) ($tests_count - $data['failed_tests']);
-		$data['passed_percentage'] = round( ( $data['passed_tests'] / $tests_count ) * 100 ,2 );
-		
+		$data['rules_failed'] = (int) $issues_query->distinct_count();
+		$data['rules_passed'] = (int) ($tests_count - $data['rules_failed']);
+		$data['passed_percentage'] = round( ( $data['rules_passed'] / $tests_count ) * 100 ,2 );
+	
 		$warning_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_WARNING ) ) );
 		$data['warnings'] = (int) $warning_issues_query->count();
 		$data['distinct_warnings'] = (int) $warning_issues_query->distinct_count();
@@ -80,22 +86,40 @@ class Scan_Report_Data {
 		$contrast_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ) ) );
 		$data['contrast_errors'] = (int) $contrast_issues_query->count();
 		$data['distinct_contrast_errors'] = (int) $contrast_issues_query->distinct_count();
-	
+		
 		$error_issues_query = new \EDAC\Issues_Query( array( 'rule_types' => array( Issues_Query::RULETYPE_ERROR ) ) );
 		$data['errors'] = (int) $error_issues_query->count();
 		$data['distinct_errors'] = (int) $error_issues_query->distinct_count();
-	
+		
 		$data['errors_without_contrast'] = $data['errors'] - $data['contrast_errors'];
 		$data['distinct_errors_without_contrast'] = $data['distinct_errors'] - $data['distinct_contrast_errors'];
 	
 		$ignored_issues_query = new \EDAC\Issues_Query( array(), \EDAC\Issues_Query::IGNORE_FLAG_ONLY_IGNORED );
 		$data['ignored'] = (int) $ignored_issues_query->count();
-		
-		//TODO:
-		//urls w/o issues
-		//avg issues/page
-		//density
-		//post types checked
+
+
+		$data['posts_without_issues'] = $wpdb->get_var( 
+			$wpdb->prepare(
+				'SELECT count(wp_posts.ID) from {$wpdb->posts} 
+				LEFT JOIN wp_accessibility_checker ON 
+				wp_posts.ID = wp_accessibility_checker.postid
+				WHERE wp_accessibility_checker.postid IS NULL and 1=%d;',
+				array( 1 )
+			)
+		);
+
+		$data['avg_issues_per_post'] = ($data['warnings'] + $data['errors']) / $data['posts_scanned'];
+	
+
+		$data['issue_density'] = $wpdb->get_var( 
+			$wpdb->prepare(
+				'SELECT avg(meta_key) from {$wpdb->postmeta}
+				WHERE meta_value = _edac_issue_density and _edac_issue_density > 0
+				and 1=%d;',
+				array( 1 )
+			)
+		);
+
 
 		$data['fullscan_running'] = false;
 		$data['fullscan_state'] = '';
@@ -155,7 +179,7 @@ class Scan_Report_Data {
 		$data['errors'] = $error_issues_query->count();
 		$data['distinct_errors'] = $error_issues_query->distinct_count();
 		
-
+	
 
 		$warning_issues_query = new \EDAC\Issues_Query(
 			array( 
@@ -175,6 +199,8 @@ class Scan_Report_Data {
 		);
 		$data['contrast_errors'] = $color_contrast_issues_query->count();
 		$data['distinct_contrast_errors'] = $color_contrast_issues_query->distinct_count();
+		$data['distinct_contrast_errors_sql'] = $color_contrast_issues_query->get_sql();
+		
 	
 		$data['errors_without_contrast'] = $data['errors'] - $data['contrast_errors'];
 		$data['distinct_errors_without_contrast'] = $data['distinct_errors'] - $data['distinct_contrast_errors'];

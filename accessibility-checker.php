@@ -1021,6 +1021,28 @@ function edac_summary( $post_id ) {
 	// remove color contrast from errors count.
 	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
 
+	// issue density.
+	$issue_count = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'];
+
+	$issue_density_array = get_post_meta($post_id, '_edac_density_data');
+	
+	
+	if(is_array($issue_density_array) ){
+		
+		$element_count = $issue_density_array[0][0];
+		$content_length = $issue_density_array[0][1];
+		
+		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
+		edac_log($issue_density . ':' . log($issue_density) . ':' .log10($edac_get_issue_density));
+
+		if ( ! add_post_meta( $post_id, '_edac_issue_density', $issue_density, true ) ) {
+			update_post_meta( $post_id, '_edac_issue_density', $issue_density );
+		}
+	
+	} else {
+		delete_post_meta( $post_id, '_edac_issue_density');
+	}
+
 	// reading grade level.
 	$content_post = get_post( $post_id );
 

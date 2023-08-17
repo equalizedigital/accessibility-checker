@@ -45,6 +45,7 @@ class Issues_Query {
 		'filters' => '',
 	);
 
+
 	/**
 	 * Constructor
 	 *
@@ -194,7 +195,7 @@ class Issues_Query {
 			// Special handler for color contrast rule/ruletype.
 			if ( in_array( self::RULETYPE_COLOR_CONTRAST, $filter['rule_types'] ) ) {
 				
-				// We are filtering by color contrast but  color contrast is a rule not a ruletype.
+				// We are filtering by color contrast but color contrast is a rule not a ruletype.
 				// Remove color_contrast from the rule_type filter.
 				$key = array_search( self::RULETYPE_COLOR_CONTRAST, $filter['rule_types'] );
 				if ( false !== $key ) {

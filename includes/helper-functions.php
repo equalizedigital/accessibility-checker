@@ -522,3 +522,74 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5 ) {
 			
 }
 
+
+/**
+ * Calculate the issue density
+ *
+ * @param [type] $issue_count
+ * @param [type] $element_count
+ * @param [type] $content_length
+ * @return void
+ */
+function edac_get_issue_density( $issue_count, $element_count, $content_length){
+
+	$element_weight = .8;
+	$content_weight = .2;
+
+	$elements_per_error = $issue_count / $element_count;
+	$chars_per_error = $issue_count / $content_length;
+	
+	$score = (($elements_per_error * $element_weight) + ($chars_per_error * $content_weight));
+	
+	return round($score * 100,2);
+
+}
+	
+
+/**
+ * Get info from a dom that we need for calculating density
+ *
+ * @param [type] $dom
+ * @return void
+ */
+function edac_get_body_density_data( $dom ){
+
+	$body_element = $dom->find('body', 0);
+
+	//Remove the elements we shouldn't count
+	foreach ($body_element->find('.edac-highlight-panel,#wpadminbar,style,script') as $element) {
+		$element->remove();
+	}
+	
+	if($body_element){
+	
+		$body_elements_count = edac_count_dom_descendants($body_element);
+		
+		$body_content = preg_replace("/[^A-Za-z0-9]/", '', $body_element->plaintext);
+		
+		return [
+			$body_elements_count,
+			strlen($body_content),
+		];
+	
+	}	
+
+	return false;
+}
+
+/**
+ * Recursively count elements in a dom
+ *
+ * @param [type] $element
+ * @return void
+ */
+function edac_count_dom_descendants($dom_elements) {
+    $count = 0;
+
+    foreach ($dom_elements->children() as $child) {
+        $count++; // Count the current child
+        $count += edac_count_dom_descendants($child); // Recursively count descendants
+    }
+
+    return $count;
+}
