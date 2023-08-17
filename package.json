@@ -6,12 +6,10 @@
   "license": "GPL-2.0+",
   "main": "index.js",
   "scripts": {
-    "build": "npx webpack --config .configs/webpack.config.admin.js & npx webpack --config .configs/webpack.config.app.js",
-    "build:admin": "npm install && npx webpack --config .configs/webpack.config.admin.js",
-    "build:app": "npm install && npx webpack --config .configs/webpack.config.app.js",
-    "dev": "npx webpack --config .configs/webpack.config.admin.js --watch & npx webpack --config .configs/webpack.config.app.js --watch",
+    "build": "npm install && npx webpack",
+    "dev": "npx webpack --watch --mode development",
     "lint": "./vendor/bin/phpcs -p *.php ./includes ./partials --standard=PHPCompatibility --runtime-set testVersion 5.6 --extensions=php",
-    "dist": "npm install && npx webpack --mode production --config .configs/webpack.config.app.js && composer install --no-dev && composer dump-autoload --no-dev && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist && composer install"
+    "dist": "mkdir -p ./dist && npm install && npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist && composer install"
   },
   "files": [
     "LICENSE.txt",
