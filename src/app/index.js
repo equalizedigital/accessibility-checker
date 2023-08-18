@@ -5,9 +5,10 @@ import { Notyf } from 'notyf';
 
 import { scan } from './scanner';
 
+let JS_SCAN_ENABLED = false;
 let INFO_ENABLED = false;
 let DEBUG_ENABLED = false;
-let SCAN_INTERVAL_IN_SECONDS = 5;
+let SCAN_INTERVAL_IN_SECONDS = 30;
 
 if (edac_script_vars.mode === 'full-scan') {
 	SCAN_INTERVAL_IN_SECONDS = 3;
@@ -1127,7 +1128,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	debug('We are loading the app in ' + edac_script_vars.mode + ' mode.');
 
-
+	if(JS_SCAN_ENABLED){
 	if (edac_script_vars.mode === 'editor-scan') {
 
 		debug('App is loading from within the editor.');
@@ -1289,7 +1290,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 	}
-
+	}
 	if (edac_script_vars.mode === 'ui' && edac_script_vars.active) {
 
 		// We are loading the app in a normal page preview so show the user the ui

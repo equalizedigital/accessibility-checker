@@ -12,7 +12,6 @@ edac_log.txt
 prepros-6.config
 vendor
 node_modules
-#build
-dist/*.zip
-admin.bundle.not_currently_used.js
+build
+dist
 .env
