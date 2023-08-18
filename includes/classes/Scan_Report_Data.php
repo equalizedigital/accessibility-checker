@@ -8,7 +8,9 @@
 namespace EDAC;
 
 use EDAC\Settings;
+use EDAC\Helpers;
 use EDAC\Issues_Query;
+
 
 /**
  * Class that handles calculating scan report data
@@ -68,10 +70,21 @@ class Scan_Report_Data {
 		$scannable_posts_count  = Settings::get_scannable_posts_count();
 		$tests_count = $scannable_posts_count * $this->rule_count;
 
+
 		$data['scannable_posts_count'] = (int) $scannable_posts_count;
 		$data['rule_count'] = (int) $this->rule_count;
 		$data['tests_count'] = (int) $tests_count;
 		
+		$data['scannable_post_types_count'] = (int) count( Settings::get_scannable_post_types() );
+		
+		$post_types = get_post_types( [
+			'public' => true,
+		] );
+		unset($post_types['attachment']);
+
+		$data['public_post_types_count'] = (int) count( $post_types );
+		
+
 		$issues_query = new \EDAC\Issues_Query();
 
 		$data['posts_scanned'] = (int) $scannable_posts_count;
@@ -96,22 +109,27 @@ class Scan_Report_Data {
 	
 		$ignored_issues_query = new \EDAC\Issues_Query( array(), \EDAC\Issues_Query::IGNORE_FLAG_ONLY_IGNORED );
 		$data['ignored'] = (int) $ignored_issues_query->count();
-
-
-		$data['posts_without_issues'] = $wpdb->get_var( 
-			$wpdb->prepare(
-				'SELECT count(wp_posts.ID) from ' . $wpdb->posts . '  
-				LEFT JOIN ' . $wpdb->prefix . 'accessibility_checker ON 
-				wp_posts.ID = ' . $wpdb->prefix . 'accessibility_checker.postid 
-				WHERE ' . $wpdb->prefix . 'accessibility_checker.postid IS NULL and 1=%d;',
-				array( 1 )
-			)
+		$data['distinct_ignored'] = (int) $ignored_issues_query->distinct_count();
+		
+		
+		$data['posts_without_issues']  = $wpdb->get_var( 
+			"SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}  
+			LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
+			$wpdb->prefix . "accessibility_checker.postid WHERE " . 
+			$wpdb->prefix . "accessibility_checker.postid IS NULL and post_type IN(" . 
+			Helpers::array_to_sql_safe_list( 
+				Settings::get_scannable_post_types() 
+			) . ") and
+			post_status IN(" . Helpers::array_to_sql_safe_list( 
+				Settings::get_scannable_post_statuses()
+			) . ")"
 		);
 
-		$data['avg_issues_per_post'] = ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'];
+
+		$data['avg_issues_per_post'] = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'] );
 	
 
-		$data['issue_density_percentage'] = 
+		$data['avg_issue_density_percentage'] = 
 			$wpdb->get_var( 
 				$wpdb->prepare(
 					'SELECT avg(meta_value) from ' . $wpdb->postmeta . ' 
@@ -120,10 +138,10 @@ class Scan_Report_Data {
 				)
 			);
 		
-		if ( null === $data['issue_density_percentage'] ) {
-			$data['issue_density_percentage'] = 'N/A';
+		if ( null === $data['avg_issue_density_percentage'] ) {
+			$data['avg_issue_density_percentage'] = 'N/A';
 		} else {
-			$data['issue_density_percentage'] = round( $data['issue_density_percentage'], 2 );
+			$data['avg_issue_density_percentage'] = round( $data['avg_issue_density_percentage'], 2 );
 
 		}
 	

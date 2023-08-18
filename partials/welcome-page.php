@@ -9,6 +9,12 @@
 
 <div class="wrap">
 
+	
+	<?php 
+		\EDAC\Welcome_Page::render_summary();	
+	?>
+	
+
 	<div class="edac-welcome">
 		<div class="edac-welcome-header">
 			<div class="edac-welcome-header-right">

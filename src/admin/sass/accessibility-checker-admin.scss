@@ -908,7 +908,7 @@
 
 
 
-#edac_dashboard_scan_summary {
+#edac_dashboard_scan_summary, #edac_welcome_page_summary, #edac_welcome_page_banner {
 
   hr {
     margin: 1rem 0 1rem 0;
@@ -926,6 +926,11 @@
   .edac-align-center {
     text-align: center;
   }
+
+  .edac-dark-border {
+    border: solid 1px $color-black;
+  }
+
 
   .edac-summary {
 
@@ -1175,4 +1180,106 @@
   }
   
  
+
+
+  #edac_welcome_page_summary {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .edac-summary-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .edac-summary-info-stats {
+    width: 25%;
+    flex-grow: 1;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .edac-progress-bar {
+    width: 300px !important;
+    height: 300px !important;
+  }
+
+  .edac-summary-info-stats .edac-summary-info-stats-box {
+    width: min(150px, 25%);
+    height: min(150px, 50%);
+    max-width: 150px;
+    max-height: 150px;
+    position: relative;
+    /*
+    background-image: url('../images/warning icon navy.png');
+    */
+    background-size: 25px 25px; 
+    background-position: 5px 10px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .edac-summary-info-stats-box-number {
+    margin: 0; /* Remove default margin */
+  }
+  
+  .edac-summary-info-stats-box-label {
+    margin: 0; /* Remove default margin */
+    text-align: center;
+  }
+  
+
+
+
+  #edac_welcome_page_summary, .edac-summary-group {
+    display: block
+  }
+  
+  .edac-summary-info-stats {
+
+      .edac-summary-info-stats-box {
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+        
+        &-number {
+          text-align: center;
+          padding: 1rem;
+          font-size: $font-size-large;
+        }
+
+        &-label {
+          text-align: center;
+          line-height: 1rem;
+          padding: 1rem;
+          font-size: $font-size-small;
+     
+        }
+     
+        
+        &-ignore {
+          background: $color-blue-dark !important;
+        }
+        
+      }
+          
+  }
+
+  .edac-summary-group-no-background-color .edac-summary-info-stats-box-label {
+    color: $color-black;
+    padding: 1rem;
+  }
+
+  .edac-summary-group-no-background-color .edac-summary-info-stats-box-number {
+    color: $color-black;
+    padding: 1rem;
+  }
+
+
 }
+
+
+

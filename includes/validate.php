@@ -403,7 +403,7 @@ function edac_get_content( $post ) {
  */
 function edac_show_draft_posts( $query ) {
 
-	// $headers = getallheaders();
+	//$headers = getallheaders();
 
 	// Do not run if it's not the main query.
 	if ( ! $query->is_main_query() ) {
@@ -427,7 +427,7 @@ function edac_show_draft_posts( $query ) {
 	$url_token = isset( $_GET['edac_token'] ) ? sanitize_text_field( $_GET['edac_token'] ) : false;
 	
 	// If the token is not set we do nothing and return early.
-	if ( false === $url_token ) {
+	if( false === $url_token ){
 		return;
 	}
 
