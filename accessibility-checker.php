@@ -233,33 +233,6 @@ add_action(
 	function () {
 		// instantiate the classes that need to load hooks early.
 		$rest_api = new \EDAC\Rest_Api();
-//TODO		
-return;
-		$scannable_post_types = \EDAC\Settings::get_scannable_post_types();
-			
-		$d = new \EDAC\Scan_Report_Data(0);
-		var_dump( $d->scan_summary() );
-		echo '<hr>';
-		$post_types = get_post_types(
-			array(
-				'public' => true,
-			) 
-		);
-		unset( $post_types['attachment'] );
-		foreach ( $post_types as $posttype ) {
-
-			if ( in_array( $posttype, $scannable_post_types ) ) {
-
-				$by_issue = $d->issue_summary_by_post_type( $posttype );
-
-				var_dump( $by_issue );
-				echo '<hr>';
-
-			}       
-		}
-		
-		die();
-
 	}
 );
 
@@ -315,6 +288,8 @@ add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
 add_action( 'wp_ajax_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
 add_action( 'wp_ajax_nopriv_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
+add_action('wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
 
 /**
  * Create/Update database
@@ -2072,6 +2047,20 @@ function edac_gaad_notice_ajax() {
 	wp_send_json_success( wp_json_encode( $results ) );
 
 }
+
+/**
+ * Handle AJAX request to dismiss Welcome CTA
+ *
+ * @return void
+ */
+function edac_dismiss_welcome_cta() {
+	// Update user meta to indicate the button has been clicked
+	update_user_meta(get_current_user_id(), 'edac_welcome_cta_dismissed', true);
+	
+	// Return success response
+	wp_send_json('success');
+  }
+
 
 // Add a filter for lazyloading images using the perfmatters_lazyload hook.
 add_filter(

@@ -25,97 +25,121 @@ class Welcome_Page {
 		$html = '';
 		$scan_data = new Scan_Report_Data( 5 );
 		$summary = $scan_data->scan_summary();
-	
+
+		
+		$html .= '
+			<div id="edac_welcome_page_summary">';
+
+
 		if ( edac_check_plugin_installed( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
 	
 			$html .= '
-			<div id="edac_welcome_page_summary" class="edac-summary">	
-
-				<h3 class="edac-summary-header">
+			<section>
+				<div class="edac-cols">
+				<h3 class="edac-cols-left">
 					Most Recent Test Summary
 				</h3>
 
-				<a class="button" href="/wp-admin/admin.php?page=accessibility_checker_settings&tab=scan">Start New Scan</a>
-				<a class="button button-primary" href="/wp-admin/admin.php?page=accessibility_checker_issues">View All Open Issues</a>';
-				
+				<p class="edac-cols-right edac-right-text"> 
+					<a class="button edac-mr-1" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ) . '">Start New Scan</a>
+					<a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_issues' ) ) . '">View All Open Issues</a>
+				</p>
+				</div>
+				<div class="edac-flex-container">';
 			
+		
 			$html .= '
-			<div class="edac-summary-group">
-				<div class="edac-summary-passed edac-dark-border">
-					<div class="edac-progress-bar" role="progressbar" aria-valuenow="' . $summary['passed_percentage'] . '" 
+				<div class="edac-flex-item edac-rowspan edac-dark-border">
+					<div class="edac-circle-progress" role="progressbar" aria-valuenow="' . $summary['passed_percentage'] . '" 
 						aria-valuemin="0" aria-valuemax="100"
 						style="text-align: center; 
 						background: radial-gradient(closest-side, white 79%, transparent 80% 100%), 
 						conic-gradient(#006600 ' . $summary['passed_percentage'] . '%, #e2e4e7 0);">
 						<div class="edac-progress-percentage">' . $summary['passed_percentage'] . '%</div>
 						<div class="edac-progress-label">Passed Tests</div>
+						
 					</div>
 				</div>';
 
+
 			$html .= '
-				<div class="edac-summary-info-stats">
-
-				<div class="edac-summary-info-stats-box edac-summary-info-stats-box-error ' . ( ( $summary['distinct_errors_without_contrast'] > 0 ) ? ' has-errors' : '' ) . '">
-						<div class="edac-summary-info-stats-box-number">
-							' . $summary['distinct_errors_without_contrast'] . '
+					<div class="edac-flex-item' . ( ( $summary['distinct_errors_without_contrast'] > 0 ) ? ' has-errors' : ' has-no-errors' ) . '">
+						<div class="edac-inner-row">
+							<div class="edac-large-text">' . $summary['distinct_errors_without_contrast'] . '</div>
 						</div>
-						<div class="edac-summary-info-stats-box-label">Unique Error' . ( ( 1 == $summary['distinct_errors_without_contrast'] ) ? '' : 's' ) . '</div>
-					</div>
-
-					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-contrast ' . ( ( $summary['distinct_contrast_errors'] > 0 ) ? ' has-errors' : '' ) . '">
-						<div class="edac-summary-info-stats-box-number">
-							' . $summary['distinct_contrast_errors'] . '
+						<div class="edac-inner-row">
+							<div class="edac-medium-text">Unique Error' . ( ( 1 == $summary['distinct_errors_without_contrast'] ) ? '' : 's' ) . '</div>
 						</div>
-						<div class="edac-summary-info-stats-box-label">Unique Color Contrast Error' . ( ( 1 == $summary['distinct_contrast_errors'] ) ? '' : 's' ) . '</div>
 					</div>
-
-					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-warning ' . ( ( $summary['distinct_warnings'] > 0 ) ? ' has-warning' : '' ) . '">
-						<div class="edac-summary-info-stats-box-number">
-							' . $summary['distinct_warnings'] . '
-						</div>
-						<div class="edac-summary-info-stats-box-label">Unique Warning' . ( ( 1 == $summary['distinct_warnings'] ) ? '' : 's' ) . '</div>
-					</div>
-
-					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-ignore ' . ( ( $summary['distinct_ignored'] > 0 ) ? ' has-ignored' : '' ) . '">
-						<div class="edac-summary-info-stats-box-number">
-							' . $summary['distinct_ignored'] . '
-						</div>
-						<div class="edac-summary-info-stats-box-label">Dismissed Issue' . ( ( 1 == $summary['distinct_ignored'] ) ? '' : 's' ) . '</div>
-					</div>
-
-				</div>
-			</div>';
 	
+					<div class="edac-flex-item' . ( ( $summary['distinct_contrast_errors'] > 0 ) ? ' has-errors' : ' has-no-errors' ) . '">
+						<div class="edac-inner-row">
+							<div class="edac-large-text">' . $summary['distinct_contrast_errors'] . '</div>
+						</div>
+						<div class="edac-inner-row">
+							<div class="edac-medium-text">Unique Color Constrast Error' . ( ( 1 == $summary['distinct_errors_without_contrast'] ) ? '' : 's' ) . '</div>
+						</div>
+					</div>
+
+			
+					<div class="edac-flex-item' . ( ( $summary['distinct_warnings'] > 0 ) ? ' has-warning' : ' has-no-warning' ) . '">
+						<div class="edac-inner-row">
+							<div class="edac-large-text">' . $summary['distinct_warnings'] . '</div>
+						</div>
+						<div class="edac-inner-row">
+							<div class="edac-medium-text">Unique Warning' . ( ( 1 == $summary['distinct_warnings'] ) ? '' : 's' ) . '</div>
+						</div>
+					</div>
+		
+
+					
+			
+					<div class="edac-flex-item' . ( ( $summary['distinct_ignored'] > 0 ) ? ' has-ignored' : ' has-no-ignored' ) . '">
+						<div class="edac-inner-row">
+							<div class="edac-large-text">' . $summary['distinct_ignored'] . '</div>
+						</div>
+						<div class="edac-inner-row">
+							<div class="edac-medium-text">Dismissed Issue' . ( ( 1 == $summary['distinct_ignored'] ) ? '' : 's' ) . '</div>
+						</div>
+					</div>';
 
 			$html .= '
-			<div class="edac-summary-group edac-summary-group-no-background-color">
 					
-				<div class="edac-summary-info-stats-box edac-summary-info-stats-box-avg-issues edac-dark-border">
-					<div class="edac-summary-info-stats-box-label">Average Issues Per Page</div>
-					<div class="edac-summary-info-stats-box-number">
-					' . $summary['avg_issues_per_post'] . '
+				<div class="edac-flex-item edac-dark-border">
+					<div class="edac-inner-row">
+						<div class="edac-medium-text">Average Issues Per Page</div>
+					</div>
+
+					<div class="edac-inner-row">
+						<div class="edac-large-text">' . $summary['avg_issues_per_post'] . '</div>
 					</div>
 				</div>
 
 		
-				<div class="edac-summary-info-stats-box edac-summary-info-stats-box-avg-density edac-dark-border">
-					<div class="edac-summary-info-stats-box-label">Average Issue Density</div>
-					<div class="edac-summary-info-stats-box-number">
-					' . $summary['avg_issue_density_percentage'] . '%
+				<div class="edac-flex-item edac-dark-border">
+					<div class="edac-inner-row">
+						<div class="edac-medium-text">Average Issue Density</div>
+					</div>
+					<div class="edac-inner-row">
+						<div class="edac-large-text">' . $summary['avg_issue_density_percentage'] . '%</div>
 					</div>
 				</div>
 
-				<div class="edac-summary-info-stats-box edac-summary-info-stats-box-last-scan edac-dark-border">
-					<div class="edac-summary-info-date">
-						<div class="edac-summary-info-stats-box-label">Last Full-Site Scan: </div>
+		
+				<div class="edac-flex-item edac-dark-border">
+					<div class="edac-inner-row">
+						<div class="edac-medium-text">Last Full-Site Scan: </div>
+					</div>
+					<div class="edac-inner-row">
+				
 					';
 				
 				if($summary['fullscan_completed_at'] > 0){
 					$html .= '
-						<div class="edac-summary-info-stats-box-label edac-summary-info-date-date edac-timestamp-to-local">' . $summary['fullscan_completed_at'] . '</div>';
+						<div class="edac-large-text edac-timestamp-to-local">' . $summary['fullscan_completed_at'] . '</div>';
 				} else {
 					$html .= '
-						<div class="edac-summary-info-stats-box-number edac-summary-info-date-date">Never</div>';
+						<div class="edac-large-text">Never</div>';
 				}
 
 				$html .= '
@@ -124,58 +148,108 @@ class Welcome_Page {
 
 
 
-				<div class="edac-summary-info-stats-box edac-summary-info-stats-box-urls-scanned edac-dark-border">
-					<div class="edac-summary-info-stats-box-number">
-						' . $summary['posts_scanned'] . '
+				<div class="edac-flex-item edac-dark-border">
+					<div class="edac-inner-row">
+						<div class="edac-large-text">' . $summary['posts_scanned'] . '</div>
 					</div>
-					<div class="edac-summary-info-stats-box-label">URLs Scanned</div>
+					<div class="edac-inner-row">
+						<div class="edac-medium-text">URLs Scanned</div>
+					</div>
 				</div>
 
-
-				<div class="edac-summary-info-stats-box edac-summary-info-stats-box-types-checked edac-dark-border">
-					<div class="edac-summary-info-stats-box-number">
-						' . $summary['scannable_post_types_count'] . ' of ' . $summary['public_post_types_count'] . '
+	
+				<div class="edac-flex-item edac-dark-border">
+					<div class="edac-inner-row">
+						<div class="edac-large-text">' . $summary['scannable_post_types_count'] . ' of ' . $summary['public_post_types_count'] . '</div>
 					</div>
-					<div class="edac-summary-info-stats-box-label">Post Types Checked</div>
+					<div class="edac-inner-row">
+						<div class="edac-medium-text">Post Types Checked</div>
+					</div>
 				</div>
 
-			<div class="edac-summary-info-stats-box edac-summary-info-stats-box-no-issues edac-dark-border">
-					<div class="edac-summary-info-stats-box-number">
-						' . $summary['posts_without_issues'] . ' 
+				<div class="edac-flex-item edac-dark-border">
+					<div class="edac-inner-row">
+						<div class="edac-large-text">' . $summary['posts_without_issues'] . '</div>
 					</div>
-					<div class="edac-summary-info-stats-box-label">URLs with 100% score</div>
+					<div class="edac-inner-row">
+						<div class="edac-medium-text">URLs with 100% score</div>
+					</div>
 				</div>
 
-			</div>';
+			</div>
+			</section>';
 
-				
-			$html .='
-			</div>';
-
+			
 		} else {
 
-			//TODO:
-			if( 'dismissed' !== 'dismissed' ){
-
+		
+			if ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true )) ) {
+	
 				$html .='
-				<div id="edac_welcome_page_banner">	
+					<section>
+					<div class="edac-cols">
+						<h3 class="edac-cols-left">
+							Site-Wide Accessibility Reports
+						</h3>
 
-					<h3>
-						Site-Wide Accessibility Reports
-					</h3>
-
-					<a href="TODO">Hide banner</a>
+						<p class="edac-cols-right"> 
+							<button id="dismiss_welcome_cta" class="button">Hide banner</button>
+						</p>
+					</div>
+ 
+					<div class="edac-modal-container edac-desktop"> 
+						
 					
-					<div>
-						TODO
+						<div class="edac-modal">
+
+							<div class="edac-modal-content">
+
+								<h3 class="edac-align-center">Unlock Detailed Accessibility Reports</h3>
+								<p class="edac-align-center">Start scanning your entire website for accessibility issues, get full-site reports,
+								and become compliant with accessibility guidelines faster.</p>
+								<p class="edac-align-center">
+									<a class="button" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
+									Upgrade Accessibility Checker
+								</a>
+								</p>
+							</div>	
+							
+						</div>					
+					
 					</div>
 
-				</div>';
-		
+
+					<div class="edac-pro-callout edac-mobile">
+						<img class="edac-pro-callout-icon" src="' . esc_url( plugin_dir_url( __DIR__ ) ) .'assets/images/edac-emblem.png" alt="Equalize Digital Logo">
+						<h4 class="edac-pro-callout-title">Upgrade to Accessibility Checker Pro</h4>
+						<div>
+							<ul class="edac-pro-callout-list">
+								<li>Scan all post types</li>
+								<li>Admin columns to see accessibility status at a glance</li>
+								<li>Centralized list of all open issues</li>
+								<li>Ignore log</li>
+								<li>Rename simplified summary</li>
+								<li>User restrictions on ignoring issues</li>
+								<li>Email support</li>
+								<li>...and more</li>
+							</ul>
+						</div>
+						<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank">Get Accessibility Checker Pro</a>';
+
+					if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
+						$html .='
+							<br /><a class="edac-pro-callout-activate" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=license' ) ) . 'Or activate your license key here.</a>';
+					}
+					$html .='
+					</div>
+					</section>';
 			}
 
 		}
 		
+		$html .= '
+		</div>';
+
 		echo $html;
 		
 

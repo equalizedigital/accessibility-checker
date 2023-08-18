@@ -272,12 +272,12 @@ class Widgets {
 
 		if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
 			$html .= '
-			<a class="button edac-mr-1" href="/wp-admin/admin.php?page=accessibility_checker">See More</a>';
+			<a class="button edac-mr-1" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker' ) ) . '">See More</a>';
 		}
 			
 
 		$html .= '
-		<a href="/wp-admin/admin.php?page=accessibility_checker_settings">Edit Accessibility Checker Settings</a>
+		<a href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ) . '">Edit Accessibility Checker Settings</a>
 		<hr />
 		<h3 class="edac-summary-header">
 			Learn Accessibility

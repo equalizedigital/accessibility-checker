@@ -495,6 +495,24 @@
     }
 
 
+    $('#dismiss_welcome_cta').on('click', function() {
+      // AJAX request to handle button click
+      $.ajax({
+        type: 'POST',
+        url: ajaxurl,
+        data: {
+          action: 'edac_dismiss_welcome_cta_ajax',
+        },
+        success: function(response) {
+          if (response === 'success') {
+            // Hide the CTA on button click
+            $('#edac_welcome_page_summary').hide();
+          }
+        }
+      });
+    });
+
+
     /**
      * Helper function to convert unixtime timestamp to the local date time.
      */
