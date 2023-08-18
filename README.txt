@@ -172,6 +172,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.4.4 =
+Removed: unused class
+
 = 1.4.3 =
 Updated: frontend highlighting to allow ignored items accessed via the view on page button
 Updated: frontend highlighting panel logic to match selected post types in the settings
