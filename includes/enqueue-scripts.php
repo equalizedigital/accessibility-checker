@@ -120,22 +120,6 @@ function edac_enqueue_scripts( $mode = '' ) {
 	
 		if ( $pro ) {
 
-			if ( 'full-scan' === $mode ) {
-				$has_pending_scans = true;
-				
-			} else {
-				$scans = new \EDACP\Scans();
-				$all_pendings = array_merge(
-					$scans->get_never_scanned(),
-					$scans->get_pending()
-				);
-		
-				if ( count( $all_pendings ) ) {
-					$has_pending_scans = true;
-				}           
-			}       
-
-
 			$username = get_option( 'edacp_authorization_username' );
 			$password = get_option( 'edacp_authorization_password' );   
 			if ( $username && $password ) {
@@ -164,7 +148,6 @@ function edac_enqueue_scripts( $mode = '' ) {
 				'loggedIn' => is_user_logged_in(),
 				'active'   => $active,
 				'mode'     => $mode,
-				'pendingFullScan' => $has_pending_scans,
 				'scanUrl' => get_preview_post_link(
 					$post_id, 
 					array(
