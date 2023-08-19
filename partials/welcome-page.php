@@ -10,7 +10,7 @@
 <div class="wrap">
 
 	<div class="edac-cols">
-	<div class="edac-welcome edac-cols-left  edac-mr-3">
+	<div class="edac-welcome edac-cols-left">
 		<div class="edac-welcome-header">
 			<div class="edac-welcome-header-right">
 				<a href="https://equalizedigital.com/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
@@ -40,7 +40,7 @@
 			</div>
 		</div>
 
-	
+
 		<?php \EDAC\Welcome_Page::render_summary();?>
 
 

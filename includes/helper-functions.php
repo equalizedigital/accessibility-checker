@@ -568,10 +568,10 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
 	$element_weight = .8;
 	$content_weight = .2;
 
-	$elements_per_error = $issue_count / $element_count;
-	$chars_per_error = $issue_count / $content_length;
+	$error_elements_percentage = $issue_count / $element_count;
+	$error_content_percentage = $issue_count / $content_length;
 	
-	$score = ( ( $elements_per_error * $element_weight ) + ( $chars_per_error * $content_weight ) );
+	$score = ( ( $error_elements_percentage * $element_weight ) + ( $error_content_percentage * $content_weight ) );
 	
 	return round( $score * 100, 2 );
 
