@@ -472,8 +472,9 @@ function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
  */
 function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
-	$key = 'upcoming_meetups__' . sanitize_title( $meetup ) . '_' . intval( $count );
+	$key = 'upcoming_meetups__' . sanitize_title( $meetup ) . '__' . intval( $count );
 	$output = get_transient( $key );
+	
 	if ( false === $output ) {
 
 		$query_args = array(
@@ -509,13 +510,45 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
  * @param integer $count 
  * @return json
  */
-function edac_get_upcoming_meetups_html( $meetup, $count = 5 ) {
+function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) {
 
 	$json = edac_get_upcoming_meetups_json( $meetup, $count );
 
 	if ( empty( $json ) ) {
 		return;
 	}
+
+	$html = '<ul class="edac-upcoming-meetup-list">';
+	
+	foreach ( $json as $event ) {
+
+		$desc = edac_truncate_html_content( $event->description, $paragraph_count );
+		
+		$link_text = 'Attend Free';
+
+		$html .= '
+		<li class="edac-upcoming-meetup-item edac-mb-3">
+			<h4 class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h4>
+			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . ( intval( $event->time ) / 1000 ) . '</div>
+			<div class="edac-upcoming-meetup-item-desc"> ' . $desc . '</div>			
+			<a aria-label="' . esc_attr($link_text . ': ' . $event->name) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '">' . $link_text . '</a>
+		</li>';
+	}
+
+	$html .= '</ul>';
+
+	return $html;
+			
+}
+
+/**
+ * Return the first X number of root p or div tags from html
+ *
+ * @param [type]  $html
+ * @param integer $paragraph_count
+ * @return void
+ */
+function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 
 	$allowed_tags = array(
 		'div' => array(),
@@ -528,32 +561,40 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5 ) {
 		'em' => array(),
 		'i' => array(),
 	);
-
-	$html = '<ul class="edac-upcoming-meetup-list">';
 	
-	foreach ( $json as $event ) {
 
-		$desc = wp_kses( $event->description, $allowed_tags );
+	$html = wp_kses( $html, $allowed_tags );
 
-		$html .= '
-		<li class="edac-upcoming-meetup-item">
-			<details>
-				<summary>
-					<div class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</div>
-					<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . ( intval( $event->time ) / 1000 ) . '</div>
-				</summary>
-				<div class="edac-upcoming-meetup-item-desc"> ' . $desc . '</div>			
-			</details>
-			<a class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '">Attend Free</a>
-		</li>';
+	// Create a new DOMDocument instance
+	$dom = new DOMDocument();
+	$dom->loadHTML( $html );
+	
+	// Find the <body> element
+	$bodyElement = $dom->getElementsByTagName( 'body' )->item( 0 );
+	
+	if ( $bodyElement ) {
+		
+		$content = array();
+	
+		// Loop through the child nodes of the <body> element
+		foreach ( $bodyElement->childNodes as $childNode ) {
+			if ( $childNode->nodeName === 'p' || $childNode->nodeName === 'div' ) {
+				$content[] = '<p>' . $childNode->textContent . '</p>';
+			}
+		}
+
+		
+		if ( count( $content ) > 0 ) {
+			return 
+				implode(
+					PHP_EOL, array_slice( $content, 0, $paragraph_count)
+				);
+		}
 	}
 
-	$html .= '</ul>';
-
-	return $html;
-			
+	return false;
+	
 }
-
 
 /**
  * Calculate the issue density

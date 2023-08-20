@@ -1062,13 +1062,14 @@
     text-align: center;
   }
 
-  .edac-dark-border {
-    border: solid 1px $color-black;
-  }
 
 }
 
 #edac_dashboard_scan_summary {
+
+  h3 {
+    font-weight: bold;
+  }
 
   .edac-summary {
 
@@ -1383,35 +1384,56 @@
   &-left {
   }
 
-  &-right {
-    min-width: 250px;
-  }
+}
+
+.edac-flex-container {
+  display: flex;
 }
 
 .edac-background-white {
   background-color: $color-white;
 }
 
+.edac-mt-1 {
+  margin-top: .5rem !important;
+}
+
+.edac-mt-3 {
+  margin-top: 1.5rem !important;
+}
+
+.edac-mb-1 {
+  margin-bottom: .5rem !important;
+}
+
+.edac-mb-3 {
+  margin-bottom : 1.5rem !important;
+}
 
 .edac-ml-1 {
-  margin-left: .5rem;
+  margin-left: .5rem !important;
 }
 
 .edac-ml-3 {
-  margin-left: 1.5rem;
+  margin-left: 1.5rem !important;
 }
 
 .edac-mr-1 {
-  margin-right: .5rem;
+  margin-right: .5rem !important;
 }
 
 .edac-mr-3 {
-  margin-right: 1.5rem;
+  margin-right: 1.5rem !important;
+}
+
+.edac-buttons-container * {
+  line-height: 2.15384615;
 }
 
 
-
-
+.edac-dark-border {
+  border: solid 1px $color-black;
+}
 
 
 .edac-modal-container {
@@ -1451,7 +1473,9 @@
 
 
 
+
 .edac-welcome {
+ 
   section {
     border-bottom: 1px solid #e2e4e7;
     padding: 2rem;
@@ -1459,16 +1483,42 @@
 }
 
 
+body.wp-admin {
+  .edac-cols-right {
+    min-width: 200px;
+    max-width: 320px;
+    .edac-panel {
+      padding: 0 .5rem;
+    }
+  }
+}
+
 @media screen and (max-width: $large-screen-width ) {
 
   .edac-cols {
     flex-direction: column;
   }
 
+  body.wp-admin {
+    .edac-cols {
+      gap: 0
+    } 
+    .edac-cols-right {
+      max-width: 100%;
+    }
+  }
+
 }
 
 
+
+
 #edac_welcome_page_summary {
+
+  h3 {
+    font-weight: bold;
+  }
+
 
   .edac-welcome-grid-container {
     display: grid; 
@@ -1636,3 +1686,22 @@
 
 
 
+.edac-support-section {
+  .edac-flex-container {
+    gap: 1rem;
+
+
+      @media screen and (max-width: $medium-screen-width ) {
+        flex-direction: column;
+      }
+
+      .edac-cols {
+        flex-direction: column;
+      }
+    
+
+    .edac-flex-item {
+      padding: 1rem;
+    }
+  }
+}

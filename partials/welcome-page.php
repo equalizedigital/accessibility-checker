@@ -86,7 +86,7 @@
 		<?php
 		if ( EDAC_KEY_VALID ) {
 		?>
-				<div class="edac-flex-item edac-flex-item-33 edac-background-white">
+				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
 					<h4>Plugin Support</h4>
 					<p>
 						Active license holders of paid Accessibility Checker plans
@@ -99,7 +99,7 @@
 		<?php
 		} else {
 		?>
-				<div class="edac-flex-item edac-flex-item-33 edac-background-white">
+				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
 					<h4>Free Plugin Support</h4>
 					<p>
 						Free plugin support is available via the WordPress.org forums. You'll need to create an account
@@ -112,7 +112,7 @@
 		<?php
 		}
 		?>	
-				<div class="edac-flex-item edac-flex-item-33 edac-background-white">
+				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
 					<h4>Office Hours</h4>
 					<p>
 						Open Q&A on Zoom every other week to help you remediate your website.
@@ -123,7 +123,7 @@
 					</p>
 				</div>	
 			
-				<div class="edac-flex-item edac-flex-item-33 edac-background-white">
+				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
 					<h4>Auditing and Remediation</h4>
 					<p>
 						Get help making your website accessible. Expert auditing, user testing,
