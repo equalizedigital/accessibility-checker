@@ -280,8 +280,8 @@ class Widgets {
 		<hr />
 		<div class="edac-widget-footer-link-list">';
 
-		$html .= '<a class="edac-widget-footer-link-list-item edac-mr-1" href="https://equalizedigital.com/resources/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">Blog</a>';
-		$html .= '<span class="edac-widget-footer-link-list-spacer" /><a class="edac-widget-footer-link-list-item edac-ml-1" href="https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">Documentation</a>
+		$html .= '<a target="_blank" class="edac-widget-footer-link-list-item edac-mr-1" href="https://equalizedigital.com/resources/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">Blog</a>';
+		$html .= '<span class="edac-widget-footer-link-list-spacer" /><a target="_blank" class="edac-widget-footer-link-list-item edac-ml-1" href="https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">Documentation</a>
 		</div></div>';
 
 
