@@ -553,15 +553,27 @@
      * @param {*} event
      */
     function edac_widget_modal_content_close(e) {
+    
       var modal = e.target.closest('.edac-widget-modal');
-      modal.style.display = 'none';
-
+      if(modal){
+        modal.style.display = 'none';
+      }
+     
       document.querySelector('.edac-summary').remove();
+
+      $.ajax({
+        type: 'POST',
+        url: ajaxurl,
+        data: {
+          action: 'edac_dismiss_dashboard_cta_ajax',
+        }
+      });
+
 
     }
     const modal_close_btn = document.querySelector('.edac-widget-modal-content-close');
     if (modal_close_btn) {
-      addEventListener('click', edac_widget_modal_content_close);
+      modal_close_btn.addEventListener('click', edac_widget_modal_content_close);
     }
 
 

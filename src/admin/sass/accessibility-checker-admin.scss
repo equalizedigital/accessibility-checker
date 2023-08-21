@@ -1136,7 +1136,7 @@
       &-content {
         background-color: #fff;
         width: 80%;
-        height: calc(100% - 80px - 40px); //margin (40x2) - padding (20x2)
+        height: calc(100% - 60px);
         margin: 40px auto 40px;
         padding: 20px;
         position: relative;
@@ -1452,7 +1452,7 @@
     &-content {
       background-color: #fff;
       width: 80%;
-      height: calc(100% - 80px - 40px); //margin (40x2) - padding (20x2)
+      height: calc(100% - 60px); //80px - 40px); //margin (40x2) - padding (20x2)
       margin: 40px auto 40px;
       padding: 20px;
       position: relative;
@@ -1485,12 +1485,19 @@
 
 body.wp-admin {
   .edac-cols-right {
-    min-width: 200px;
-
     .edac-panel {
       padding: 0 .5rem;
     }
   }
+}
+
+
+.edac-cols-right > div {
+  width: 200px;
+}
+
+.edac-cols-right > div.edac-has-cta {
+  width: 300px;
 }
 
 @media screen and (max-width: $large-screen-width ) {
@@ -1501,10 +1508,12 @@ body.wp-admin {
 
   body.wp-admin {
     .edac-cols {
-      gap: 0
-    } 
-    .edac-cols-right {
-      max-width: 100%;
+      gap: 0;
+
+      .edac-cols-right > div {
+        width: unset;
+      } 
+ 
     }
   }
 

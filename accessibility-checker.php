@@ -290,6 +290,8 @@ add_action( 'wp_ajax_edac_frontend_highlight_single_ajax', 'edac_frontend_highli
 add_action( 'wp_ajax_nopriv_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
 add_action('wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
 add_action('wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
 
 /**
  * Create/Update database
@@ -2056,6 +2058,20 @@ function edac_gaad_notice_ajax() {
 function edac_dismiss_welcome_cta() {
 	// Update user meta to indicate the button has been clicked
 	update_user_meta(get_current_user_id(), 'edac_welcome_cta_dismissed', true);
+	
+	// Return success response
+	wp_send_json('success');
+  }
+
+
+  /**
+ * Handle AJAX request to dismiss dashboard CTA
+ *
+ * @return void
+ */
+function edac_dismiss_dashboard_cta() {
+	// Update user meta to indicate the button has been clicked
+	update_user_meta(get_current_user_id(), 'edac_dashboard_cta_dismissed', true);
 	
 	// Return success response
 	wp_send_json('success');

@@ -139,9 +139,15 @@
 
 	</div>
 
-	<div class="edac-cols-right">
-
 	<?php
+	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
+		echo '<div class="edac-cols-right">
+			<div class="edac-has-cta">';
+	} else {
+		echo '<div class="edac-cols-right">
+			<div>';
+	}
+
 	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
 		?>
 		<div class="edac-pro-callout edac-mt-3 edac-mb-3">
@@ -170,8 +176,9 @@
 		</div>
 		<?php
 	}
-	?>
 
+
+	?>
 
 		<div class="edac-panel">
 			<h3 class="edac-summary-header">
@@ -182,7 +189,7 @@
 			?>
 		</div>
 	</div>
-
+</div>
 
 	</div>
 </div>
