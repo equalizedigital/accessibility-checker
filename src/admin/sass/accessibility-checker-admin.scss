@@ -1486,7 +1486,7 @@
 body.wp-admin {
   .edac-cols-right {
     min-width: 200px;
-    max-width: 320px;
+
     .edac-panel {
       padding: 0 .5rem;
     }
@@ -1673,6 +1673,7 @@ body.wp-admin {
 
 .edac-pro-callout {
   position: relative; /* Add relative positioning */
+  padding: .5rem;
 }
 
 

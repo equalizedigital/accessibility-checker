@@ -31,7 +31,7 @@ class Welcome_Page {
 			<div id="edac_welcome_page_summary">';
 
 
-		if ( edac_check_plugin_installed( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+		if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
 	
 			$html .= '
 			<section>
@@ -192,12 +192,12 @@ class Welcome_Page {
 							Site-Wide Accessibility Reports
 						</h3>
 
-						<p class="edac-cols-right"> 
+						<p class="edac-cols-right edac-right-text"> 
 							<button id="dismiss_welcome_cta" class="button">Hide banner</button>
 						</p>
 					</div>
  
-					<div class="edac-modal-container edac-desktop"> 
+					<div class="edac-modal-container"> 
 						
 					
 						<div class="edac-modal">
@@ -218,30 +218,6 @@ class Welcome_Page {
 					
 					</div>
 
-
-					<div class="edac-pro-callout edac-mobile">
-						<img class="edac-pro-callout-icon" src="' . esc_url( plugin_dir_url( __DIR__ ) ) .'assets/images/edac-emblem.png" alt="Equalize Digital Logo">
-						<h4 class="edac-pro-callout-title">Upgrade to Accessibility Checker Pro</h4>
-						<div>
-							<ul class="edac-pro-callout-list">
-								<li>Scan all post types</li>
-								<li>Admin columns to see accessibility status at a glance</li>
-								<li>Centralized list of all open issues</li>
-								<li>Ignore log</li>
-								<li>Rename simplified summary</li>
-								<li>User restrictions on ignoring issues</li>
-								<li>Email support</li>
-								<li>...and more</li>
-							</ul>
-						</div>
-						<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank">Get Accessibility Checker Pro</a>';
-
-					if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
-						$html .='
-							<br /><a class="edac-pro-callout-activate" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=license' ) ) . 'Or activate your license key here.</a>';
-					}
-					$html .='
-					</div>
 					</section>';
 			}
 

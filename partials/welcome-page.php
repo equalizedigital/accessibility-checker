@@ -41,7 +41,7 @@
 		</div>
 
 
-		<?php \EDAC\Welcome_Page::render_summary();?>
+		<?php \EDAC\Welcome_Page::render_summary(); ?>
 
 
 		<section class="edac-welcome-section">
@@ -84,8 +84,8 @@
 		
 			<div class="edac-flex-container">
 		<?php
-		if ( EDAC_KEY_VALID ) {
-		?>
+		if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
+			?>
 				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
 					<h4>Plugin Support</h4>
 					<p>
@@ -96,9 +96,9 @@
 						<a href="https://my.equalizedigital.com/support/pro-support/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" class="button">Open Support Ticket</a>
 					</p>
 				</div>	
-		<?php
+			<?php
 		} else {
-		?>
+			?>
 				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
 					<h4>Free Plugin Support</h4>
 					<p>
@@ -109,9 +109,10 @@
 						<a href="https://wordpress.org/support/plugin/accessibility-checker/" class="button">Go to Support Forum</a>
 					</p>
 				</div>	
-		<?php
+			<?php
 		}
-		?>	
+		?>
+			
 				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
 					<h4>Office Hours</h4>
 					<p>
@@ -138,14 +139,46 @@
 
 	</div>
 
-
 	<div class="edac-cols-right">
+
+	<?php
+	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
+		?>
+		<div class="edac-pro-callout edac-mt-3 edac-mb-3">
+			<img class="edac-pro-callout-icon" src="<?php echo esc_url( EDAC_PLUGIN_URL ); ?>assets/images/edac-emblem.png" alt="Equalize Digital Logo">
+			<h4 class="edac-pro-callout-title">Upgrade to Accessibility Checker Pro</h4>
+			<div>
+				<ul class="edac-pro-callout-list">
+					<li>Scan all post types</li>
+					<li>Admin columns to see accessibility status at a glance</li>
+					<li>Centralized list of all open issues</li>
+					<li>Ignore log</li>
+					<li>Rename simplified summary</li>
+					<li>User restrictions on ignoring issues</li>
+					<li>Email support</li>
+					<li>...and more</li>
+				</ul>
+			</div>
+			<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank">Get Accessibility Checker Pro</a>';
+		<?php	
+		if ( edac_check_plugin_installed( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
+			?>
+			<br /><a class="edac-pro-callout-activate" href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=license' ) ); ?>">Or activate your license key here.</a>
+			<?php
+		}
+		?>
+		</div>
+		<?php
+	}
+	?>
+
+
 		<div class="edac-panel">
 			<h3 class="edac-summary-header">
 				Learn Accessibility
 			</h3>
 			<?php
-			echo edac_get_upcoming_meetups_html('wordpress-accessibility-meetup-group', 2);
+			echo edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );
 			?>
 		</div>
 	</div>

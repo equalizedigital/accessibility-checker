@@ -246,7 +246,7 @@ class Widgets {
 		';
 
 
-		if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
+		if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
 			$html .= '
 			<a class="button edac-mr-1" href="/wp-admin/admin.php?page=accessibility_checker">See More Reports</a>';
 		}
