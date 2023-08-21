@@ -36,10 +36,10 @@ class Widgets {
 				Full Site Accessibility Status
 			</h3>';
 			
-		if( 
-			! edac_check_plugin_installed( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ||
-			( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && ! EDAC_KEY_VALID) 
-		){
+			
+		if(  
+			 ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || false == EDAC_KEY_VALID) 
+		{
 			$html .='
 			<div class="edac-widget-modal">
 				<div class="edac-widget-modal-content">
@@ -170,18 +170,7 @@ class Widgets {
 		
 
 			
-				$edacp_inactive = false;
 				$scannable_post_types = Settings::get_scannable_post_types();
-				if(
-					edac_check_plugin_installed( 'accessibility-checker-pro/accessibility-checker-pro.php' ) &&
-					(
-						! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ||
-						! EDAC_KEY_VALID
-					)
-				){
-					$edacp_inactive = true;
-				}
-
 			
 				$post_types = get_post_types( [
 					'public' => true,
@@ -212,26 +201,14 @@ class Widgets {
 								<th scope="col">' . esc_html( ucwords($post_type) ) . '</th>
 								<td>-</td>
 								<td>-</td>
-								<td>-</td>
+								<td>' . $by_issue['distinct_warnings'] . '</td>
 							</tr>';
 							
 						}
 					
 					} else {
-						if(	$edacp_inactive ){
-
-							$html .= '
-								<tr >
-									<th scope="col">' . esc_html( ucwords($post_type) ) . '</th>
-									<td colspan="3">
-										<div class="edac-issues-summary-notice-enable-edacp">
-											Accessibility Checker Pro not enabled.
-										</div>
-									</td>
-								</tr>';
 						
-				
-						} else if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+						if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
 						
 							$html .= '
 							<tr >
@@ -290,8 +267,8 @@ class Widgets {
 		<hr />
 		<div class="edac-widget-footer-link-list">';
 
-		$html .='<a class="edac-widget-footer-link-list-item edac-mr-1" target="_blank" href="https://equalizedigital.com/resources/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">Blog</a>';
-		$html .='<span class="edac-widget-footer-link-list-spacer" /><a class="edac-widget-footer-link-list-item edac-ml-1" target="_blank" href="https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">Documentation</a>
+		$html .='<a class="edac-widget-footer-link-list-item edac-mr-1" href="https://equalizedigital.com/resources/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">Blog</a>';
+		$html .='<span class="edac-widget-footer-link-list-spacer" /><a class="edac-widget-footer-link-list-item edac-ml-1" href="https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">Documentation</a>
 		</div></div>';
 
 
