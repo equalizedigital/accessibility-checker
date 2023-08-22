@@ -36,9 +36,9 @@ class Welcome_Page {
 			$html .= '
 			<section>
 				<div class="edac-cols">
-				<h3 class="edac-cols-left">
+				<h2 class="edac-cols-left">
 					Most Recent Test Summary
-				</h3>
+				</h2>
 
 				<p class="edac-cols-right edac-right-text"> 
 					<a class="button edac-mr-1" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ) . '">Start New Scan</a>
@@ -49,14 +49,14 @@ class Welcome_Page {
 			
 		
 			$html .= '
-				<div class="edac-welcome-grid-c1 edac-welcome-grid-item edac-dark-border" style="grid-area: 1 / 1 / span 2;">
+				<div class="edac-welcome-grid-c1 edac-welcome-grid-item edac-background-light" style="grid-area: 1 / 1 / span 2;">
 					<div class="edac-circle-progress" role="progressbar" aria-valuenow="' . $summary['passed_percentage'] . '" 
 						aria-valuemin="0" aria-valuemax="100"
 						style="text-align: center; 
-						background: radial-gradient(closest-side, white 79%, transparent 80% 100%), 
+						background: radial-gradient(closest-side, white 90%, transparent 80% 100%), 
 						conic-gradient(#006600 ' . $summary['passed_percentage'] . '%, #e2e4e7 0);">
-						<div class="edac-progress-percentage edac-large-text">' . $summary['passed_percentage'] . '%</div>
-						<div class="edac-progress-label edac-small-text">Passed Tests</div>
+						<div class="edac-progress-percentage edac-xxx-large-text">' . $summary['passed_percentage'] . '%</div>
+						<div class="edac-progress-label edac-large-text">Passed Tests</div>
 						
 					</div>
 				</div>';
@@ -65,29 +65,29 @@ class Welcome_Page {
 			$html .= '
 					<div class="edac-welcome-grid-c2 edac-welcome-grid-item' . ( ( $summary['distinct_errors_without_contrast'] > 0 ) ? ' has-errors' : ' has-no-errors' ) . '">
 						<div class="edac-inner-row">
-							<div class="edac-large-text">' . $summary['distinct_errors_without_contrast'] . '</div>
+							<div class="edac-stat-number">' . $summary['distinct_errors_without_contrast'] . '</div>
 						</div>
 						<div class="edac-inner-row">
-							<div class="edac-medium-text">Unique Error' . ( ( 1 == $summary['distinct_errors_without_contrast'] ) ? '' : 's' ) . '</div>
+							<div class="edac-stat-label">Unique Error' . ( ( 1 == $summary['distinct_errors_without_contrast'] ) ? '' : 's' ) . '</div>
 						</div>
 					</div>
 	
-					<div class="edac-welcome-grid-c3 edac-welcome-grid-item' . ( ( $summary['distinct_contrast_errors'] > 0 ) ? ' has-errors' : ' has-no-errors' ) . '">
+					<div class="edac-welcome-grid-c3 edac-welcome-grid-item' . ( ( $summary['distinct_contrast_errors'] > 0 ) ? ' has-contrast-errors' : ' has-no-contrast-errors' ) . '">
 						<div class="edac-inner-row">
-							<div class="edac-large-text">' . $summary['distinct_contrast_errors'] . '</div>
+							<div class="edac-stat-number">' . $summary['distinct_contrast_errors'] . '</div>
 						</div>
 						<div class="edac-inner-row">
-							<div class="edac-medium-text">Unique Color Constrast Error' . ( ( 1 == $summary['distinct_errors_without_contrast'] ) ? '' : 's' ) . '</div>
+							<div class="edac-stat-label">Unique Color Contrast Error' . ( ( 1 == $summary['distinct_errors_without_contrast'] ) ? '' : 's' ) . '</div>
 						</div>
 					</div>
 
 			
 					<div class="edac-welcome-grid-c4 edac-welcome-grid-item' . ( ( $summary['distinct_warnings'] > 0 ) ? ' has-warning' : ' has-no-warning' ) . '">
 						<div class="edac-inner-row">
-							<div class="edac-large-text">' . $summary['distinct_warnings'] . '</div>
+							<div class="edac-stat-number">' . $summary['distinct_warnings'] . '</div>
 						</div>
 						<div class="edac-inner-row">
-							<div class="edac-medium-text">Unique Warning' . ( ( 1 == $summary['distinct_warnings'] ) ? '' : 's' ) . '</div>
+							<div class="edac-stat-label">Unique Warning' . ( ( 1 == $summary['distinct_warnings'] ) ? '' : 's' ) . '</div>
 						</div>
 					</div>
 		
@@ -96,39 +96,39 @@ class Welcome_Page {
 			
 					<div class="edac-welcome-grid-c5 edac-welcome-grid-item' . ( ( $summary['distinct_ignored'] > 0 ) ? ' has-ignored' : ' has-no-ignored' ) . '">
 						<div class="edac-inner-row">
-							<div class="edac-large-text">' . $summary['distinct_ignored'] . '</div>
+							<div class="edac-stat-number">' . $summary['distinct_ignored'] . '</div>
 						</div>
 						<div class="edac-inner-row">
-							<div class="edac-medium-text">Dismissed Issue' . ( ( 1 == $summary['distinct_ignored'] ) ? '' : 's' ) . '</div>
+							<div class="edac-stat-label">Ignored Item' . ( ( 1 == $summary['distinct_ignored'] ) ? '' : 's' ) . '</div>
 						</div>
 					</div>';
 
 			$html .= '
 					
-				<div class="edac-welcome-grid-c6 edac-welcome-grid-item edac-dark-border">
+				<div class="edac-welcome-grid-c6 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
-						<div class="edac-medium-text">Average Issues Per Page</div>
+						<div class="edac-stat-label">Average Issues Per Page</div>
 					</div>
 
 					<div class="edac-inner-row">
-						<div class="edac-large-text">' . $summary['avg_issues_per_post'] . '</div>
+						<div class="edac-stat-number">' . $summary['avg_issues_per_post'] . '</div>
 					</div>
 				</div>
 
 		
-				<div class="edac-welcome-grid-c7 edac-welcome-grid-item edac-dark-border">
+				<div class="edac-welcome-grid-c7 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
-						<div class="edac-medium-text">Average Issue Density</div>
+						<div class="edac-stat-label">Average Issue Density</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-large-text">' . $summary['avg_issue_density_percentage'] . '%</div>
+						<div class="edac-stat-number">' . $summary['avg_issue_density_percentage'] . '%</div>
 					</div>
 				</div>
 
 		
-				<div class="edac-welcome-grid-c8 edac-welcome-grid-item edac-dark-border">
+				<div class="edac-welcome-grid-c8 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
-						<div class="edac-medium-text">Last Full-Site Scan: </div>
+						<div class="edac-stat-label">Last Full-Site Scan: </div>
 					</div>
 					<div class="edac-inner-row">
 				
@@ -136,10 +136,10 @@ class Welcome_Page {
 				
 				if($summary['fullscan_completed_at'] > 0){
 					$html .= '
-						<div class="edac-large-text edac-timestamp-to-local">' . $summary['fullscan_completed_at'] . '</div>';
+						<div class="edac-stat-number edac-timestamp-to-local">' . $summary['fullscan_completed_at'] . '</div>';
 				} else {
 					$html .= '
-						<div class="edac-large-text">Never</div>';
+						<div class="edac-stat-number">Never</div>';
 				}
 
 				$html .= '
@@ -148,31 +148,31 @@ class Welcome_Page {
 
 
 
-				<div class="edac-welcome-grid-c9 edac-welcome-grid-item edac-dark-border">
+				<div class="edac-welcome-grid-c9 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
-						<div class="edac-large-text">' . $summary['posts_scanned'] . '</div>
+						<div class="edac-stat-number">' . $summary['posts_scanned'] . '</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-medium-text">URLs Scanned</div>
+						<div class="edac-stat-label">URLs Scanned</div>
 					</div>
 				</div>
 
 	
-				<div class="edac-welcome-grid-c10 edac-welcome-grid-item edac-dark-border">
+				<div class="edac-welcome-grid-c10 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
-						<div class="edac-large-text">' . $summary['scannable_post_types_count'] . ' of ' . $summary['public_post_types_count'] . '</div>
+						<div class="edac-stat-number">' . $summary['scannable_post_types_count'] . ' of ' . $summary['public_post_types_count'] . '</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-medium-text">Post Types Checked</div>
+						<div class="edac-stat-label">Post Types Checked</div>
 					</div>
 				</div>
 
-				<div class="edac-welcome-grid-c11 edac-welcome-grid-item edac-dark-border">
+				<div class="edac-welcome-grid-c11 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
-						<div class="edac-large-text">' . $summary['posts_without_issues'] . '</div>
+						<div class="edac-stat-number">' . $summary['posts_without_issues'] . '</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-medium-text">URLs with 100% score</div>
+						<div class="edac-stat-label">URLs with 100% score</div>
 					</div>
 				</div>
 

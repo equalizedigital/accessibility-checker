@@ -46,7 +46,7 @@
 
 		<section class="edac-welcome-section">
 			<div class="edac-welcome-quick-start">
-				<h3>Quick Start Guide</h3>
+				<h2>Quick Start Guide</h2>
 				<p>Follow these steps to get started checking your content:</p>
 				<ol>
 					<li>On the <a href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ); ?>">Settings Page</a>, choose which post types you want to scan.</li>
@@ -64,7 +64,7 @@
 			</div>
 
 			<div class="edac-welcome-documentation">
-				<h3>Documentation and FAQs</h3>
+				<h2>Documentation and FAQs</h2>
 				<p>We’ve done our best to create helpful articles that address frequently asked questions and provide the information you need to make your website accessible, faster. If you're just getting started, you may want to review these articles:</p>
 				<ul>
 					<li><a href="https://a11ychecker.com/help4279" target="_blank">Why do we say 100% Passed Tests, Not 100% Accessible?</a></li>
@@ -80,14 +80,14 @@
 		</section>
 
 		<section class="edac-support-section">
-			<h3>Support Information</h3>
+			<h2>Support Information</h2>
 		
 			<div class="edac-flex-container">
 		<?php
 		if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
 			?>
 				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
-					<h4>Plugin Support</h4>
+					<h3>Plugin Support</h3>
 					<p>
 						Active license holders of paid Accessibility Checker plans
 						get unlimited email support on plugin usage and troubleshooting.
@@ -99,8 +99,8 @@
 			<?php
 		} else {
 			?>
-				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
-					<h4>Free Plugin Support</h4>
+				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
+					<h3>Free Plugin Support</h3>
 					<p>
 						Free plugin support is available via the WordPress.org forums. You'll need to create an account
 						then you can open a new support thread.
@@ -113,8 +113,8 @@
 		}
 		?>
 			
-				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
-					<h4>Office Hours</h4>
+				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
+					<h3>Office Hours</h3>
 					<p>
 						Open Q&A on Zoom every other week to help you remediate your website.
 						<a href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page">Included in Small Business and Agency plans</a>.
@@ -124,8 +124,8 @@
 					</p>
 				</div>	
 			
-				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
-					<h4>Auditing and Remediation</h4>
+				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
+					<h3>Auditing and Remediation</h3>
 					<p>
 						Get help making your website accessible. Expert auditing, user testing,
 						and dev support. Conformance letters available.
@@ -181,9 +181,9 @@
 	?>
 
 		<div class="edac-panel">
-			<h3 class="edac-summary-header">
+			<h2 class="edac-summary-header">
 				Learn Accessibility
-			</h3>
+			</h2>
 			<?php
 			echo edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );
 			?>

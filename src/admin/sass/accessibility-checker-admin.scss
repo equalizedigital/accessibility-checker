@@ -1099,8 +1099,8 @@
       align-items: center;
       padding: .3rem 0;
 
-
       /* see: https://nikitahl.com/circle-progress-bar-css#conic-gradient */
+/*
       .edac-progress-bar {
         display: flex;
         flex-direction: column;
@@ -1112,15 +1112,15 @@
 
         .edac-progress-percentage {
           margin: 0 .5rem;
-          font-size: $font-size-large;
+          font-size: $font-size-xxx-large;
         }
 
         .edac-progress-label {
           margin: 0 1rem 0 1rem;
-          font-size: $font-size-x-small;
+          font-size: $font-size-large;
         }
       }
-
+*/
     }
 
 
@@ -1354,8 +1354,14 @@
   
 }
 
+.edac-xxx-large-text {
+  font-size: $font-size-xxx-large;
+  line-height: $font-size-xxx-large;
+}
+
 .edac-large-text {
   font-size: $font-size-large;
+  line-height: $font-size-large;
 }
 
 .edac-medium-text {
@@ -1426,13 +1432,18 @@
   margin-right: 1.5rem !important;
 }
 
+
 .edac-buttons-container * {
   line-height: 2.15384615;
 }
 
-
 .edac-dark-border {
-  border: solid 1px $color-black;
+  border: solid 1px black;
+}
+
+.edac-background-light {
+  background-color: $color-gray-lightest;
+  box-shadow: inset 0 0 0 1px $color-gray-light;
 }
 
 
@@ -1536,8 +1547,52 @@ body.wp-admin {
     grid-column-gap: 1rem;
     grid-row-gap: 1rem; 
   }
+  
+  .edac-inner-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 
-  .edac-welcome-grid-c1 { grid-area: 1 / 1 / 3 / 2; } 
+  .edac-inner-row:nth-child(1) {
+    align-items: flex-end;
+    height: 50%; 
+  } 
+
+  .edac-inner-row:nth-child(2) {
+    margin-top: .5rem;
+    align-items: flex-start;
+    height: 50%;
+
+  } 
+  
+  .edac-circle-progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: auto;
+
+    .edac-progress-percentage {
+      margin: 0 .5rem;
+    }
+
+    .edac-progress-label {
+      margin: 0 1rem 0 1rem;
+    }
+  }
+
+  
+  .edac-welcome-grid-item {
+    text-align: center;
+    padding: .5rem;
+  }
+
+  .edac-welcome-grid-c1 { grid-area: 1 / 1 / 3 / 2; padding: 1rem;} 
   .edac-welcome-grid-c2 { grid-area: 1 / 2 / 2 / 3; } 
   .edac-welcome-grid-c3 { grid-area: 1 / 3 / 2 / 4; } 
   .edac-welcome-grid-c4 { grid-area: 2 / 2 / 3 / 3; } 
@@ -1577,64 +1632,62 @@ body.wp-admin {
   }
   
  
+  .edac-stat-label {
+    font-size: $font-size-medium;
+    line-height: $font-size-large;
+  }
   
-  .edac-welcome-grid-item {
-    text-align: center;
-    padding: .5rem;
+  .edac-stat-number {
+    font-size: $font-size-xx-large;
+    line-height: $font-size-xx-large;
   }
 
-  .edac-inner-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-  }
-
-  .edac-inner-row:nth-child(1) {
-    align-items: flex-end;
-  } 
-
-  .edac-inner-row:nth-child(2) {
-    margin-top: .5rem;
-    align-items: flex-start;
-  } 
-  
-  .edac-circle-progress {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    margin: auto;
-
-    .edac-progress-percentage {
-      margin: 0 .5rem;
+  .edac-background-light {
+    .edac-stat-label {
+      font-size: $font-size-small;
+      line-height: $font-size-medium;
     }
-
-    .edac-progress-label {
-      margin: 0 1rem 0 1rem;
-    }
+    
+    .edac-stat-number {
+      font-size: $font-size-x-large;
+      line-height: $font-size-x-large;
+    }  
   }
 
-  .has-no-errors,
-  .has-no-warning,
-  .has-no-ignored {
-    color: $color-white;
-    background-color: $color-green;
-    background-image: url("../images/error icon white.png");
-    background-size: 25px 25px;
-    background-position: 5px 10px;
-    background-repeat: no-repeat;
-  }
 
   .has-errors {
     color: $color-white;
     background-color: $color-red;
     background-image: url("../images/error icon white.png");
-    background-size: 25px 25px;
+    background-size: 25px auto;
+    background-position: 5px 10px;
+    background-repeat: no-repeat;
+  }
+
+  .has-no-errors
+  {
+    color: $color-white;
+    background-color: $color-green;
+    background-image: url("../images/error icon white.png");
+    background-size: 25px auto;
+    background-position: 5px 10px;
+    background-repeat: no-repeat;
+  }
+
+  .has-contrast-errors {
+    color: $color-white;
+    background-color: $color-red;
+    background-image: url("../images/contrast icon white.png");
+    background-size: 25px auto;
+    background-position: 5px 10px;
+    background-repeat: no-repeat;
+  }
+
+  .has-no-contrast-errors {
+    color: $color-white;
+    background-color: $color-green;
+    background-image: url("../images/contrast icon white.png");
+    background-size: 25px auto;
     background-position: 5px 10px;
     background-repeat: no-repeat;
   }
@@ -1644,20 +1697,38 @@ body.wp-admin {
     color: $color-blue-dark;
     background-color: $color-yellow;
     background-image: url("../images/warning icon navy.png");
-    background-size: 25px 25px;
+    background-size: 25px auto;
     background-position: 5px 10px;
     background-repeat: no-repeat;
   }
 
+
+.has-no-warning {
+    color: $color-white;
+    background-color: $color-green;
+    background-image: url("../images/warning icon white.png");
+    background-size: 25px auto;
+    background-position: 5px 10px;
+    background-repeat: no-repeat;
+  }
+  
   .has-ignored {
     color: $color-white;
     background-color: $color-blue-dark;
     background-image: url("../images/ignore icon white.png");
-    background-size: 25px 25px;
+    background-size: 25px auto;
     background-position: 5px 10px;
     background-repeat: no-repeat;
   }
 
+  .has-no-ignored {
+    color: $color-white;
+    background-color: $color-blue-dark;
+    background-image: url("../images/ignore icon white.png");
+    background-size: 25px auto;
+    background-position: 5px 10px;
+    background-repeat: no-repeat;
+  }
 
   .edac-time,
   .edac-timezone {
