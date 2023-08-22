@@ -84,9 +84,9 @@
 		
 			<div class="edac-flex-container">
 		<?php
-		if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
+		if (  edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
 			?>
-				<div class="edac-flex-item edac-flex-item-33 edac-background-white edac-dark-border">
+				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
 					<h3>Plugin Support</h3>
 					<p>
 						Active license holders of paid Accessibility Checker plans
