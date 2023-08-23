@@ -1100,8 +1100,8 @@
       padding: .3rem 0;
 
       /* see: https://nikitahl.com/circle-progress-bar-css#conic-gradient */
-/*
-      .edac-progress-bar {
+
+      .edac-circle-progress {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1109,18 +1109,20 @@
         width: 150px;
         height: 150px;
         border-radius: 50%;
+        margin: auto;
+    
 
         .edac-progress-percentage {
           margin: 0 .5rem;
-          font-size: $font-size-xxx-large;
+          font-size: $font-size-x-large;
         }
 
         .edac-progress-label {
           margin: 0 1rem 0 1rem;
-          font-size: $font-size-large;
+          font-size: $font-size-small;
         }
       }
-*/
+
     }
 
 
