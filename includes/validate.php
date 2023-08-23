@@ -320,9 +320,9 @@ function edac_get_content( $post ) {
 
 			$content['html'] = file_get_html( $url, false, $context );
 		
-			
 			// Write density data to post meta. 
 			$body_density_data = edac_get_body_density_data( $content['html'] );
+			
 			if ( false != $body_density_data ) {
 		
 				update_post_meta( $post->ID, '_edac_density_data', $body_density_data );

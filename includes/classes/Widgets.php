@@ -68,10 +68,10 @@ class Widgets {
 			Full Site Accessibility Status
 			</h3>
 			<div class="edac-summary-passed">
-				<div class="edac-progress-bar" role="progressbar" aria-valuenow="' . $summary['passed_percentage'] . '" 
+				<div class="edac-circle-progress" role="progressbar" aria-valuenow="' . $summary['passed_percentage'] . '" 
 					aria-valuemin="0" aria-valuemax="100"
 					style="text-align: center; 
-					background: radial-gradient(closest-side, white 79%, transparent 80% 100%), 
+					background: radial-gradient(closest-side, white 85%, transparent 80% 100%), 
 					conic-gradient(#006600 ' . $summary['passed_percentage'] . '%, #e2e4e7 0);">
 					<div class="edac-progress-percentage">' . $summary['passed_percentage'] . '%</div>
 					<div class="edac-progress-label">Passed Tests</div>
@@ -217,7 +217,7 @@ class Widgets {
 								<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
 								<td>-</td>
 								<td>-</td>
-								<td>' . $by_issue['distinct_warnings'] . '</td>
+								<td>-</td>
 							</tr>';
 							
 				}           

@@ -606,6 +606,10 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
  */
 function edac_get_issue_density( $issue_count, $element_count, $content_length ) {
 
+	if($element_count < 1 || $content_length < 1 ){
+		return 0;
+	}
+
 	$element_weight = .8;
 	$content_weight = .2;
 
@@ -626,27 +630,35 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
  * @return void
  */
 function edac_get_body_density_data( $dom ) {
+			
+	if($dom){
+	
+		$body_element = $dom->find( 'body', 0 );
+	
+		if(null == $body_element){
+			return false;
+		}
 
-	$body_element = $dom->find( 'body', 0 );
-
-	// Remove the elements we shouldn't count
-	foreach ( $body_element->find( '.edac-highlight-panel,#wpadminbar,style,script' ) as $element ) {
-		$element->remove();
+		// Remove the elements we shouldn't count
+		foreach ( $body_element->find( '.edac-highlight-panel,#wpadminbar,style,script' ) as $element ) {
+			$element->remove();
+		}
+		
+		if ( $body_element ) {
+		
+			$body_elements_count = edac_count_dom_descendants( $body_element );
+			
+			$body_content = preg_replace( '/[^A-Za-z0-9]/', '', $body_element->plaintext );
+	
+			return array(
+				$body_elements_count,
+				strlen( $body_content ),
+			);
+		
+		}   
+	
 	}
 	
-	if ( $body_element ) {
-	
-		$body_elements_count = edac_count_dom_descendants( $body_element );
-		
-		$body_content = preg_replace( '/[^A-Za-z0-9]/', '', $body_element->plaintext );
-		
-		return array(
-			$body_elements_count,
-			strlen( $body_content ),
-		);
-	
-	}   
-
 	return false;
 }
 
