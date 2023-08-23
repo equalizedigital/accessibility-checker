@@ -58,13 +58,14 @@ To get started with Accessibility Checker or learn more about how it works, plea
 
 ### Our Support Team is Here to Help You
 
-The Equalize Digital team aims to provide regular support for Accessibility Checker on the WordPress.org forums. If you have a question about the plugin or its use, please post in the support forum, and we will do our best to help you in a timely manner. Our support hours are Monday-Friday, 9:00 AM to 5:00 PM U.S. central time. Please understand that we do prioritize support for purchasers of Accessibility Checker Pro or our Priority Support Packages. 
+The Equalize Digital team aims to provide regular support for Accessibility Checker on the WordPress.org forums. If you have a question about the plugin or its use, please post in the support forum, and we will do our best to help you in a timely manner. Our support hours are Monday-Friday, 9:00 AM to 5:00 PM U.S. central time. Please understand that we do prioritize support for purchasers of Accessibility Checker Pro.
 
 If you need one-on-one email support, please consider purchasing [Accessibility Checker Pro](https://equalizedigital.com/accessibility-checker/pricing/). Accessibility Checker Pro customers receive unlimited personal support on plugin usage and features. 
 
 Join our [WordPress Accessibility Facebook group](https://www.facebook.com/groups/wordpress.accessibility) for community support and to connect with other developers, designers, and content creators who are working to make their websites more accessible. This is a great place to get free WP accessibility remediation assistance from others in the community.
 
-For organizations needing more one-on-one assistance in resolving accessibility problems, we offer [Priority Support Packages](https://my.equalizedigital.com/priority-support/) that include phone and Zoom video support, as well as assistance with accessibility/screen reader testing and custom coding. Priority Support Packages are perfect for agencies, freelancers, and website managers who want an accessibility expert on-call to provide consultation and assistance as they remediate their website's accessibility. [Learn More About Priority Support](https://my.equalizedigital.com/priority-support/)
+For paid Accessibility Checker customers on a small business plan or above, we provide two accessibility [office hour
+](https://equalizedigital.com/accessibility-checker/pricing/#common-pre-sale-questions) calls each month to address your remediation queries. This is an invaluable resource for those who need direct assistance and expert insights when making their sites more accessible.
 
 ### Multi-platform Accessibility
 
@@ -139,11 +140,9 @@ For bulk full-site scanning or to check custom post types for accessibility, ple
 
 Every error and warning in Accessibility Checker has an 'i' icon to the right of the error or warning name on the details tab. If you click these 'i' icons, you'll be directed to a help article that clearly explains what the error or warning is, what its impact on accessibility is, and how to fix or resolve it. Generally, these help articles will provide sufficient information to point you in the right direction, but if you still have questions, open a support ticket on WordPress.org and we'll do our best to help you.
 
-If you need detailed consultation or custom coding assistance, we offer [Priority Support Packages](https://my.equalizedigital.com/priority-support/). These packages include email, phone, and Zoom support and are ideal for individuals or teams who need more hands-on assistance in resolving accessibility problems on their website.
-
 = Can you help me fix accessibility problems on my website? =
 
-Yes! If you need detailed guidance in how to resolve the identified problems in your theme or plugins or need accessibility fixes custom coded for your site, we offer Priority Support packages that provide this assistance. [Get Priority Support](https://my.equalizedigital.com/priority-support/)
+Yes! If you need need accessibility fixes custom coded for your site, we offer website accessibility remediation to help bring your current site into compliance. [Learn more about Website Accessibility Remediation](https://equalizedigital.com/services/website-accessibility-remediation/)
 
 = What if there are accessibility errors in my theme or a plugin that I cannot fix? =
 
