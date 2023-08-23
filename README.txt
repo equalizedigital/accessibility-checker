@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
 Tested up to: 6.3
-Stable tag: trunk
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -168,7 +168,6 @@ No, Accessibility Checker runs completely on your server and does not require yo
 6. Example of an ignored error, including the username and date/time the error was ignored. Ignored errors and warnings can be reopened if ignored incorrectly.
 7. Accessibility Checker Readability Tab checks the grade level of the content and allows for the insertion of a simplified summary to meet WCAG AAA accessibility.
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
-
 
 == Changelog ==
 
