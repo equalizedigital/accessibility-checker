@@ -161,12 +161,13 @@ No, Accessibility Checker runs completely on your server and does not require yo
 == Screenshots ==
 
 1. Accessibility Checker Summary tab on a page with numerous errors and warnings.
-2. Accessibility Checker Details tab showing errors, warnings, and passed checks.
-3. Expanded error example 'Image Empty Alternative Text' showing the code for 7 items that caused the error to be flagged.
-4. Ignore comment box and button to ignore the error.
-5. Example of an ignored error, including the username and date/time the error was ignored. Ignored errors and warnings can be reopened if ignored incorrectly.
-6. Accessibility Checker Readability Tab checks the grade level of the content and allows for the insertion of a simplified summary to meet WCAG AAA accessibility.
-7. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
+2. Accessibility problems can be viewed on the front end of the website, as shown on the NASA website.
+3. Accessibility Checker Details tab showing errors, warnings, and passed checks.
+4. Expanded error example 'Image Empty Alternative Text' showing the code for 7 items that caused the error to be flagged.
+5. Ignore comment box and button to ignore the error.
+6. Example of an ignored error, including the username and date/time the error was ignored. Ignored errors and warnings can be reopened if ignored incorrectly.
+7. Accessibility Checker Readability Tab checks the grade level of the content and allows for the insertion of a simplified summary to meet WCAG AAA accessibility.
+8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 
 == Changelog ==
