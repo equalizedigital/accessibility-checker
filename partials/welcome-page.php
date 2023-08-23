@@ -7,16 +7,11 @@
 
 ?>
 
-<div class="wrap">
+<div class="wrap edac-welcome-container">
 
 	<div class="edac-cols">
-	<div class="edac-welcome edac-cols-left">
+	<div class="edac-cols-left edac-welcome">
 		<div class="edac-welcome-header">
-			<div class="edac-welcome-header-right">
-				<a href="https://equalizedigital.com/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
-					<img src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/Accessibility Checker logo transparent bg.svg" alt="Link to Equalize Digital Website">
-				</a>
-			</div>
 			<div class="edac-welcome-header-left">
 				<h1 class="edac-welcome-title">
 					<?php
@@ -37,6 +32,12 @@
 					echo 'version ' . $version;
 					?>
 				</p>			
+			</div>
+
+		<div class="edac-welcome-header-right">
+				<a href="https://equalizedigital.com/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+					<img src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/Accessibility Checker logo transparent bg.svg" alt="Link to Equalize Digital Website">
+				</a>
 			</div>
 		</div>
 
@@ -65,7 +66,6 @@
 
 			<div class="edac-welcome-documentation">
 				<h2>Documentation and FAQs</h2>
-				<p>We’ve done our best to create helpful articles that address frequently asked questions and provide the information you need to make your website accessible, faster. If you're just getting started, you may want to review these articles:</p>
 				<ul>
 					<li><a href="https://a11ychecker.com/help4279" target="_blank">Why do we say 100% Passed Tests, Not 100% Accessible?</a></li>
 					<li><a href="https://a11ychecker.com/help4280" target="_blank">How to Manually Check Your Website for Accessibility</a></li>
@@ -141,10 +141,10 @@
 
 	<?php
 	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
-		echo '<div class="edac-cols-right">
+		echo '<div class="edac-cols-right edac-welcome-aside">
 			<div class="edac-has-cta">';
 	} else {
-		echo '<div class="edac-cols-right">
+		echo '<div class="edac-cols-right edac-welcome-aside">
 			<div>';
 	}
 

@@ -35,14 +35,14 @@ class Welcome_Page {
 	
 			$html .= '
 			<section>
-				<div class="edac-cols">
+				<div class="edac-cols edac-cols-header">
 				<h2 class="edac-cols-left">
 					Most Recent Test Summary
 				</h2>
 
-				<p class="edac-cols-right edac-right-text"> 
-					<a class="button edac-mr-1" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ) . '">Start New Scan</a>
-					<a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_issues' ) ) . '">View All Open Issues</a>
+				<p class="edac-cols-right"> 
+					<a class="button" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ) . '">Start New Scan</a>
+					<a class="edac-ml-1 button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_issues' ) ) . '">View All Open Issues</a>
 				</p>
 				</div>
 				<div class="edac-welcome-grid-container">';
@@ -187,12 +187,12 @@ class Welcome_Page {
 	
 				$html .='
 					<section>
-					<div class="edac-cols">
+					<div class="edac-cols edac-cols-header">
 						<h3 class="edac-cols-left">
 							Site-Wide Accessibility Reports
 						</h3>
 
-						<p class="edac-cols-right edac-right-text"> 
+						<p class="edac-cols-right"> 
 							<button id="dismiss_welcome_cta" class="button">Hide banner</button>
 						</p>
 					</div>
@@ -208,7 +208,7 @@ class Welcome_Page {
 								<p class="edac-align-center">Start scanning your entire website for accessibility issues, get full-site reports,
 								and become compliant with accessibility guidelines faster.</p>
 								<p class="edac-align-center">
-									<a class="button" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
+									<a class="button button-primary" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
 									Upgrade Accessibility Checker
 								</a>
 								</p>

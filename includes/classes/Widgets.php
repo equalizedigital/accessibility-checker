@@ -40,14 +40,14 @@ class Widgets {
 			true !== boolval( get_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true ) ) 
 		) {
 			$pro_modal_html = '
-			<div class="edac-widget-modal">
-				<div class="edac-widget-modal-content">
-					<span class="edac-widget-modal-content-close">&times;</span>
+			<div class="edac-modal">
+				<div class="edac-modal-content">
+					<span class="edac-modal-content-close edac-widget-modal-content-close">&times;</span>
 					<h3>Get Detailed Accessibility Reports</h3>
-					<p>Start scanning your entire website for accessibility issues, get full-site reports,
+					<p class="edac-align-center">Start scanning your entire website for accessibility issues, get full-site reports,
 					and become compliant with accessibility guidelines faster.</p>
 					<p class="edac-align-center">
-					<a class="button" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
+					<a class="button button-primary" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
 					Upgrade Accessibility Checker
 					</a>
 					</p>
@@ -59,7 +59,7 @@ class Widgets {
 		if ( ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) || '' != $pro_modal_html ) {
 	
 			$html .= '
-			<div class="edac-summary">';
+			<div class="edac-summary edac-modal-container">';
 
 			$html .= $pro_modal_html;
 		
@@ -148,7 +148,7 @@ class Widgets {
 			
 			$html .= '
 		</div>
-		<hr />';
+		<hr class="edac-hr" />';
 		
 		}
 
@@ -268,7 +268,7 @@ class Widgets {
 		$html .= '
 		<a href="/wp-admin/admin.php?page=accessibility_checker_settings">Edit Accessibility Checker Settings</a>
 		</div>
-		<hr />
+		<hr class="edac-hr" />
 		<h3 class="edac-summary-header">
 			Learn Accessibility
 		</h3>';
@@ -277,7 +277,7 @@ class Widgets {
 
 
 		$html .= '
-		<hr />
+		<hr class="edac-hr" />
 		<div class="edac-widget-footer-link-list">';
 
 		$html .= '<a target="_blank" class="edac-widget-footer-link-list-item edac-mr-1" href="https://equalizedigital.com/resources/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">Blog</a>';
