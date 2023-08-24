@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
 Tested up to: 6.3
-Stable tag: trunk
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,13 +58,14 @@ To get started with Accessibility Checker or learn more about how it works, plea
 
 ### Our Support Team is Here to Help You
 
-The Equalize Digital team aims to provide regular support for Accessibility Checker on the WordPress.org forums. If you have a question about the plugin or its use, please post in the support forum, and we will do our best to help you in a timely manner. Our support hours are Monday-Friday, 9:00 AM to 5:00 PM U.S. central time. Please understand that we do prioritize support for purchasers of Accessibility Checker Pro or our Priority Support Packages. 
+The Equalize Digital team aims to provide regular support for Accessibility Checker on the WordPress.org forums. If you have a question about the plugin or its use, please post in the support forum, and we will do our best to help you in a timely manner. Our support hours are Monday-Friday, 9:00 AM to 5:00 PM U.S. central time. Please understand that we do prioritize support for purchasers of Accessibility Checker Pro.
 
 If you need one-on-one email support, please consider purchasing [Accessibility Checker Pro](https://equalizedigital.com/accessibility-checker/pricing/). Accessibility Checker Pro customers receive unlimited personal support on plugin usage and features. 
 
 Join our [WordPress Accessibility Facebook group](https://www.facebook.com/groups/wordpress.accessibility) for community support and to connect with other developers, designers, and content creators who are working to make their websites more accessible. This is a great place to get free WP accessibility remediation assistance from others in the community.
 
-For organizations needing more one-on-one assistance in resolving accessibility problems, we offer [Priority Support Packages](https://my.equalizedigital.com/priority-support/) that include phone and Zoom video support, as well as assistance with accessibility/screen reader testing and custom coding. Priority Support Packages are perfect for agencies, freelancers, and website managers who want an accessibility expert on-call to provide consultation and assistance as they remediate their website's accessibility. [Learn More About Priority Support](https://my.equalizedigital.com/priority-support/)
+For paid Accessibility Checker customers on a small business plan or above, we provide two accessibility [office hour
+](https://equalizedigital.com/accessibility-checker/pricing/#common-pre-sale-questions) calls each month to address your remediation queries. This is an invaluable resource for those who need direct assistance and expert insights when making their sites more accessible.
 
 ### Multi-platform Accessibility
 
@@ -139,11 +140,9 @@ For bulk full-site scanning or to check custom post types for accessibility, ple
 
 Every error and warning in Accessibility Checker has an 'i' icon to the right of the error or warning name on the details tab. If you click these 'i' icons, you'll be directed to a help article that clearly explains what the error or warning is, what its impact on accessibility is, and how to fix or resolve it. Generally, these help articles will provide sufficient information to point you in the right direction, but if you still have questions, open a support ticket on WordPress.org and we'll do our best to help you.
 
-If you need detailed consultation or custom coding assistance, we offer [Priority Support Packages](https://my.equalizedigital.com/priority-support/). These packages include email, phone, and Zoom support and are ideal for individuals or teams who need more hands-on assistance in resolving accessibility problems on their website.
-
 = Can you help me fix accessibility problems on my website? =
 
-Yes! If you need detailed guidance in how to resolve the identified problems in your theme or plugins or need accessibility fixes custom coded for your site, we offer Priority Support packages that provide this assistance. [Get Priority Support](https://my.equalizedigital.com/priority-support/)
+Yes! If you need need accessibility fixes custom coded for your site, we offer website accessibility remediation to help bring your current site into compliance. [Learn more about Website Accessibility Remediation](https://equalizedigital.com/services/website-accessibility-remediation/)
 
 = What if there are accessibility errors in my theme or a plugin that I cannot fix? =
 
@@ -162,24 +161,27 @@ No, Accessibility Checker runs completely on your server and does not require yo
 == Screenshots ==
 
 1. Accessibility Checker Summary tab on a page with numerous errors and warnings.
-2. Accessibility Checker Details tab showing errors, warnings, and passed checks.
-3. Expanded error example 'Image Empty Alternative Text' showing the code for 7 items that caused the error to be flagged.
-4. Ignore comment box and button to ignore the error.
-5. Example of an ignored error, including the username and date/time the error was ignored. Ignored errors and warnings can be reopened if ignored incorrectly.
-6. Accessibility Checker Readability Tab checks the grade level of the content and allows for the insertion of a simplified summary to meet WCAG AAA accessibility.
-7. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
-
+2. Accessibility problems can be viewed on the front end of the website, as shown on the NASA website.
+3. Accessibility Checker Details tab showing errors, warnings, and passed checks.
+4. Expanded error example 'Image Empty Alternative Text' showing the code for 7 items that caused the error to be flagged.
+5. Ignore comment box and button to ignore the error.
+6. Example of an ignored error, including the username and date/time the error was ignored. Ignored errors and warnings can be reopened if ignored incorrectly.
+7. Accessibility Checker Readability Tab checks the grade level of the content and allows for the insertion of a simplified summary to meet WCAG AAA accessibility.
+8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
 
+= 1.4.4 =
+Removed: unused class
+
 = 1.4.3 =
-Updated: demo video
 Updated: frontend highlighting to allow ignored items accessed via the view on page button
 Updated: frontend highlighting panel logic to match selected post types in the settings
 Updated: frontend highlighting button size and placement improvements
 Updated: frontend highlighting number of issues output
 Updated: frontend highlighting scroll-to improvements
 Fixed: Freemius icon output
+Updated: demo video
 
 = 1.4.2 =
 Added: frontend highlighting loading message

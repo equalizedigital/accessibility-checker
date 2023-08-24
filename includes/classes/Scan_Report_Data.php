@@ -126,7 +126,7 @@ class Scan_Report_Data {
 		);
 
 
-		$data['avg_issues_per_post'] = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'] );
+		$data['avg_issues_per_post'] = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
 	
 
 		$data['avg_issue_density_percentage'] = 
