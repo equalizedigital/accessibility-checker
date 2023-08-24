@@ -368,15 +368,15 @@ class AccessibilityCheckerHighlight {
 	addHighlightPanel() {
 		const newElement = `
 			<div class="edac-highlight-panel">
-			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" title="Toggle accessibility tools"></button>
-			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" tabindex="0">
+			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog">Accessibility Checker Tools</button>
+			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
 				<button class="edac-highlight-panel-description-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-description-title"></div>
 				<div class="edac-highlight-panel-description-content"></div>
 				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
 			</div>
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
-				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
+				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
 				<div class="edac-highlight-panel-controls-summary">Loading...</div>
 				<div class="edac-highlight-panel-controls-buttons">
@@ -385,7 +385,7 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
 					<div>
-						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles">Disable Styles</button>
+						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite">Disable Styles</button>
 					</div>
 				</div>
 			
