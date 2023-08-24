@@ -554,7 +554,7 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, 
 
 		$html .= '
 		<li class="edac-upcoming-meetup-item edac-mb-3">
-			<h3 class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h3>
+			<h4 class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h4>
 			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . ( intval( $event->time ) / 1000 ) . '</div>
 			<a aria-label="' . esc_attr($link_text . ': ' . $event->name) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '">' . $link_text . '</a>
 		</li>';
