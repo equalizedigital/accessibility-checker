@@ -425,7 +425,7 @@ function edac_register_rules() {
 			'info_url'  => 'https://a11ychecker.com/help1940',
 			'slug'      => 'incorrect_heading_order',
 			'rule_type' => 'error',
-			'summary'   => esc_html( 'An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (<h3>) under a level 1 heading (<h1>), an Incorrect Heading Order error will be flagged because there is no <h2> tag between the H1 and H2. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels.' ),
+			'summary'   => esc_html( 'An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (<h3>) under a level 1 heading (<h1>), an Incorrect Heading Order error will be flagged because there is no <h2> tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels.' ),
 		)
 	);
 
