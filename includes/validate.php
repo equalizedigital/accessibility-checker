@@ -319,11 +319,26 @@ function edac_get_content( $post ) {
 			$context             = stream_context_create( $merged_context_opts );
 
 			$content['html'] = file_get_html( $url, false, $context );
-
+		
+			// Write density data to post meta. 
+			$body_density_data = edac_get_body_density_data( $content['html'] );
+			
+			if ( false != $body_density_data ) {
+		
+				update_post_meta( $post->ID, '_edac_density_data', $body_density_data );
+			
+			} else {
+				delete_post_meta( $post->ID, '_edac_density_data' );
+				
+			}       
 		} catch ( Exception $e ) {
+			update_post_meta( $post->ID, '_edac_density_data', '0,0' );
+	
 			$content['html'] = false;
 		}
 	} else {
+		update_post_meta( $post->ID, '_edac_density_data', '0,0' );
+	
 		$content['html'] = false;
 	}
 

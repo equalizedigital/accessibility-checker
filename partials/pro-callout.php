@@ -17,7 +17,6 @@
 			<li>Ignore log</li>
 			<li>Rename simplified summary</li>
 			<li>User restrictions on ignoring issues</li>
-			<li>Accessibility Statement draft</li>
 			<li>Email support</li>
 			<li>...and more</li>
 		</ul>
@@ -28,3 +27,4 @@
 		<br /><a class="edac-pro-callout-activate" href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=license' ) ); ?>">Or activate your license key here.</a>
 	<?php } ?>
 </div>
+

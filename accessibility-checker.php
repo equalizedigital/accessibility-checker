@@ -216,17 +216,41 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Rest_Api.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Helpers.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Issues_Query.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Scan_Report_Data.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Widgets.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Welcome_Page.php';
+
+
 
 /**
  * Filters and Actions
  */
 add_action(
 	'init',
-	function() {
+	function () {
 		// instantiate the classes that need to load hooks early.
 		$rest_api = new \EDAC\Rest_Api();
 	}
 );
+
+add_action(
+	'wp_dashboard_setup',
+	function() {
+		wp_add_dashboard_widget(
+			'edac_dashboard_scan_summary',
+			'Accessibility Checker',
+			array(
+				'\\EDAC\Widgets',
+				'render_dashboard_scan_summary',
+			) 
+		);
+	}
+);
+
+
 
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
@@ -264,6 +288,10 @@ add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
 add_action( 'wp_ajax_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
 add_action( 'wp_ajax_nopriv_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
+add_action('wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
 
 /**
  * Create/Update database
@@ -1017,6 +1045,26 @@ function edac_summary( $post_id ) {
 	// remove color contrast from errors count.
 	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
 
+	// issue density.
+	$issue_count = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'];
+
+	$issue_density_array = get_post_meta( $post_id, '_edac_density_data' );
+	
+	
+	if ( is_array( $issue_density_array ) ) {
+		
+		$element_count = $issue_density_array[0][0];
+		$content_length = $issue_density_array[0][1];
+		
+		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
+	
+		if ( ! add_post_meta( $post_id, '_edac_issue_density', $issue_density, true ) ) {
+			update_post_meta( $post_id, '_edac_issue_density', $issue_density );
+		}   
+	} else {
+		delete_post_meta( $post_id, '_edac_issue_density' );
+	}
+
 	// reading grade level.
 	$content_post = get_post( $post_id );
 
@@ -1209,7 +1257,7 @@ function edac_details_ajax() {
 		$error_rules,
 		function( $a, $b ) {
 
-			return strcmp($b['count'], $a['count']);
+			return strcmp( $b['count'], $a['count'] );
 
 		}
 	);
@@ -1219,7 +1267,7 @@ function edac_details_ajax() {
 		$warning_rules,
 		function( $a, $b ) {
 
-			return strcmp($b['count'], $a['count']);
+			return strcmp( $b['count'], $a['count'] );
 
 		}
 	);
@@ -1229,7 +1277,7 @@ function edac_details_ajax() {
 		$passed_rules,
 		function( $a, $b ) {
 
-			return strcmp($b['title'], $a['title']);
+			return strcmp( $b['title'], $a['title'] );
 
 		}
 	);
@@ -2001,6 +2049,34 @@ function edac_gaad_notice_ajax() {
 	wp_send_json_success( wp_json_encode( $results ) );
 
 }
+
+/**
+ * Handle AJAX request to dismiss Welcome CTA
+ *
+ * @return void
+ */
+function edac_dismiss_welcome_cta() {
+	// Update user meta to indicate the button has been clicked
+	update_user_meta(get_current_user_id(), 'edac_welcome_cta_dismissed', true);
+	
+	// Return success response
+	wp_send_json('success');
+  }
+
+
+  /**
+ * Handle AJAX request to dismiss dashboard CTA
+ *
+ * @return void
+ */
+function edac_dismiss_dashboard_cta() {
+	// Update user meta to indicate the button has been clicked
+	update_user_meta(get_current_user_id(), 'edac_dashboard_cta_dismissed', true);
+	
+	// Return success response
+	wp_send_json('success');
+  }
+
 
 // Add a filter for lazyloading images using the perfmatters_lazyload hook.
 add_filter(

@@ -495,6 +495,88 @@
     }
 
 
+    $('#dismiss_welcome_cta').on('click', function() {
+      // AJAX request to handle button click
+      $.ajax({
+        type: 'POST',
+        url: ajaxurl,
+        data: {
+          action: 'edac_dismiss_welcome_cta_ajax',
+        },
+        success: function(response) {
+          if (response === 'success') {
+            // Hide the CTA on button click
+            $('#edac_welcome_page_summary').hide();
+          }
+        }
+      });
+    });
+
+
+    /**
+     * Helper function to convert unixtime timestamp to the local date time.
+     */
+    function edac_timestamp_to_local() {
+
+      var options = { year: "numeric", month: "short", day: "numeric" };
+
+      var elements = document.querySelectorAll(".edac-timestamp-to-local");
+
+      elements.forEach(function (element) {
+
+        var unixtime_in_seconds = element.textContent;
+        var d = new Date(unixtime_in_seconds * 1000).toLocaleDateString([], options);
+        var t = new Date(unixtime_in_seconds * 1000).toLocaleTimeString([], { timeStyle: 'short' });
+
+        var parts = Intl.DateTimeFormat([], { timeZoneName: 'short' }).formatToParts(new Date());
+        let tz = '';
+        for (const part of parts) {
+          if (part.type === 'timeZoneName') {
+            tz = part.value;
+            break;
+          }
+        }
+
+        element.innerHTML = '<span class="edac-date">' + d + '</span>&nbsp;<span class="edac-time">'
+          + t + '</span>&nbsp;<span class="edac-timezone">' + tz + '</span>';
+
+      });
+
+
+    };
+    edac_timestamp_to_local();
+
+
+
+    /**
+     * Handle widget modal close click
+     * @param {*} event
+     */
+    function edac_widget_modal_content_close(e) {
+    
+      var modal = e.target.closest('.edac-widget-modal');
+      if(modal){
+        modal.style.display = 'none';
+      }
+     
+      document.querySelector('.edac-summary').remove();
+
+      $.ajax({
+        type: 'POST',
+        url: ajaxurl,
+        data: {
+          action: 'edac_dismiss_dashboard_cta_ajax',
+        }
+      });
+
+
+    }
+    const modal_close_btn = document.querySelector('.edac-widget-modal-content-close');
+    if (modal_close_btn) {
+      modal_close_btn.addEventListener('click', edac_widget_modal_content_close);
+    }
+
+
   });
 
 

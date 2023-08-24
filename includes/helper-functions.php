@@ -318,23 +318,23 @@ function edac_process_actions() {
 /**
  * String Get HTML
  *
- * @param string $str
+ * @param string  $str
  * @param boolean $lowercase
  * @param boolean $forceTagsClosed
- * @param string $target_charset
+ * @param string  $target_charset
  * @param boolean $stripRN
- * @param string $defaultBRText
- * @param string $defaultSpanText
+ * @param string  $defaultBRText
+ * @param string  $defaultSpanText
  * @return string
  */
-function edac_str_get_html (
+function edac_str_get_html(
 	$str,
 	$lowercase = true,
 	$forceTagsClosed = true,
 	$target_charset = DEFAULT_TARGET_CHARSET,
 	$stripRN = true,
 	$defaultBRText = DEFAULT_BR_TEXT,
-	$defaultSpanText = DEFAULT_SPAN_TEXT){
+	$defaultSpanText = DEFAULT_SPAN_TEXT ) {
 	$dom = new EDAC_Dom(
 		null,
 		$lowercase,
@@ -345,12 +345,12 @@ function edac_str_get_html (
 		$defaultSpanText
 	);
 
-	if (empty($str) || strlen($str) > MAX_FILE_SIZE) {
+	if ( empty( $str ) || strlen( $str ) > MAX_FILE_SIZE ) {
 		$dom->clear();
 		return false;
 	}
 
-	return $dom->load($str, $lowercase, $stripRN);
+	return $dom->load( $str, $lowercase, $stripRN );
 }
 
 /**
@@ -369,21 +369,21 @@ function edac_str_get_html (
  * @return string|null The validated table name, or null if the table name is invalid or the table does not exist.
  */
 function edac_get_valid_table_name( $table_name ) {
-    global $wpdb;
+	global $wpdb;
 
-    // Check if table name only contains alphanumeric characters, underscores, or hyphens.
-    if (!preg_match('/^[a-zA-Z0-9_\-]+$/', $table_name)) {
-        // Invalid table name
-        return null;
-    }
+	// Check if table name only contains alphanumeric characters, underscores, or hyphens.
+	if ( ! preg_match( '/^[a-zA-Z0-9_\-]+$/', $table_name ) ) {
+		// Invalid table name
+		return null;
+	}
 
-    // Verify that the table actually exists in the database.
-    if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
-        // Table does not exist
-        return null;
-    }
+	// Verify that the table actually exists in the database.
+	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name ) {
+		// Table does not exist
+		return null;
+	}
 
-    return $table_name;
+	return $table_name;
 }
 
 /**
@@ -487,4 +487,219 @@ function edac_is_valid_nonce( $secret , $nonce ) {
 		return false;
 	}
 	return true;
+}
+
+/**
+ * Upcoming meetups in json format
+ *
+ * @param string  $meetup
+ * @param integer $count
+ * @return json
+ */
+function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
+
+	$key = 'upcoming_meetups__' . sanitize_title( $meetup ) . '__' . intval( $count );
+	$output = get_transient( $key );
+	
+	if ( false === $output ) {
+
+		$query_args = array(
+			'sign' => 'true',
+			'photo-host' => 'public',
+			'page' => intval( $count ),
+		);
+
+		$request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
+		$request = wp_remote_get( add_query_arg( $query_args, $request_uri ) );
+
+		if ( is_wp_error( $request ) || '200' != wp_remote_retrieve_response_code( $request ) ) {
+			return;
+		}
+
+		$output = json_decode( wp_remote_retrieve_body( $request ) );
+		if ( empty( $output ) ) {
+			return;
+		}
+
+	
+		set_transient( $key, $output, DAY_IN_SECONDS );
+	}
+
+	return $output;
+}
+
+
+/**
+ * Upcoming meetups in html
+ *
+ * @param string  $meetup 
+ * @param integer $count 
+ * @return json
+ */
+function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) {
+
+	$json = edac_get_upcoming_meetups_json( $meetup, $count );
+
+	if ( empty( $json ) ) {
+		return;
+	}
+
+	$html = '<ul class="edac-upcoming-meetup-list">';
+	
+	foreach ( $json as $event ) {
+
+		$desc = edac_truncate_html_content( $event->description, $paragraph_count );
+		
+		$link_text = 'Attend Free';
+
+		$html .= '
+		<li class="edac-upcoming-meetup-item edac-mb-3">
+			<h3 class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h3>
+			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . ( intval( $event->time ) / 1000 ) . '</div>
+			<a aria-label="' . esc_attr($link_text . ': ' . $event->name) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '">' . $link_text . '</a>
+		</li>';
+	}
+
+	$html .= '</ul>';
+
+	return $html;
+			
+}
+
+/**
+ * Return the first X number of root p or div tags from html
+ *
+ * @param [type]  $html
+ * @param integer $paragraph_count
+ * @return void
+ */
+function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
+
+	$allowed_tags = array(
+		'div' => array(),
+		'p' => array(),
+		'span' => array(),
+		'br' => array(),
+		'hr' => array(),
+		'strong' => array(),
+		'b' => array(),
+		'em' => array(),
+		'i' => array(),
+	);
+	
+
+	$html = wp_kses( $html, $allowed_tags );
+
+	// Create a new DOMDocument instance
+	$dom = new DOMDocument();
+	$dom->loadHTML( $html );
+	
+	// Find the <body> element
+	$bodyElement = $dom->getElementsByTagName( 'body' )->item( 0 );
+	
+	if ( $bodyElement ) {
+		
+		$content = array();
+	
+		// Loop through the child nodes of the <body> element
+		foreach ( $bodyElement->childNodes as $childNode ) {
+			if ( $childNode->nodeName === 'p' || $childNode->nodeName === 'div' ) {
+				$content[] = '<p>' . $childNode->textContent . '</p>';
+			}
+		}
+
+		
+		if ( count( $content ) > 0 ) {
+			return 
+				implode(
+					PHP_EOL, array_slice( $content, 0, $paragraph_count)
+				);
+		}
+	}
+
+	return false;
+	
+}
+
+/**
+ * Calculate the issue density
+ *
+ * @param [type] $issue_count
+ * @param [type] $element_count
+ * @param [type] $content_length
+ * @return void
+ */
+function edac_get_issue_density( $issue_count, $element_count, $content_length ) {
+
+	if($element_count < 1 || $content_length < 1 ){
+		return 0;
+	}
+
+	$element_weight = .8;
+	$content_weight = .2;
+
+	$error_elements_percentage = $issue_count / $element_count;
+	$error_content_percentage = $issue_count / $content_length;
+	
+	$score = ( ( $error_elements_percentage * $element_weight ) + ( $error_content_percentage * $content_weight ) );
+	
+	return round( $score * 100, 2 );
+
+}
+	
+
+/**
+ * Get info from a dom that we need for calculating density
+ *
+ * @param [type] $dom
+ * @return void
+ */
+function edac_get_body_density_data( $dom ) {
+			
+	if($dom){
+	
+		$body_element = $dom->find( 'body', 0 );
+	
+		if(null == $body_element){
+			return false;
+		}
+
+		// Remove the elements we shouldn't count
+		foreach ( $body_element->find( '.edac-highlight-panel,#wpadminbar,style,script' ) as $element ) {
+			$element->remove();
+		}
+		
+		if ( $body_element ) {
+		
+			$body_elements_count = edac_count_dom_descendants( $body_element );
+			
+			$body_content = preg_replace( '/[^A-Za-z0-9]/', '', $body_element->plaintext );
+	
+			return array(
+				$body_elements_count,
+				strlen( $body_content ),
+			);
+		
+		}   
+	
+	}
+	
+	return false;
+}
+
+/**
+ * Recursively count elements in a dom
+ *
+ * @param [type] $element
+ * @return void 
+ */
+function edac_count_dom_descendants( $dom_elements ) {
+	$count = 0;
+
+	foreach ( $dom_elements->children() as $child ) {
+		$count++; 
+		$count += edac_count_dom_descendants( $child ); // Recursively count descendants.
+	}
+
+	return $count;
 }

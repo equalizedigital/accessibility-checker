@@ -376,7 +376,7 @@ class AccessibilityCheckerHighlight {
 				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
 			</div>
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
-				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close accessibility highlights panel" aria-label="Close">×</button>
+				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
 				<div class="edac-highlight-panel-controls-summary">Loading...</div>
 				<div class="edac-highlight-panel-controls-buttons">
