@@ -42,7 +42,7 @@ class Widgets {
 			$pro_modal_html = '
 			<div class="edac-modal">
 				<div class="edac-modal-content">
-					<span class="edac-modal-content-close edac-widget-modal-content-close">&times;</span>
+					<button class="edac-modal-content-close edac-widget-modal-content-close" aria-label="close ad">&times;</button>
 					<h3>Get Detailed Accessibility Reports</h3>
 					<p class="edac-align-center">Start scanning your entire website for accessibility issues, get full-site reports,
 					and become compliant with accessibility guidelines faster.</p>
