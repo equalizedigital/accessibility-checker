@@ -368,7 +368,7 @@ class AccessibilityCheckerHighlight {
 	addHighlightPanel() {
 		const newElement = `
 			<div class="edac-highlight-panel">
-			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog">Accessibility Checker Tools</button>
+			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
 			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
 			<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-description-title"></div>
