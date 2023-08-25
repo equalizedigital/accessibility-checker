@@ -171,6 +171,12 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.5.0 =
+Added: site wide summary
+Added: accessibility checker dashboard widget
+Updated: welcome page
+Updated: frontend highlighting accessibility
+
 = 1.4.4 =
 Removed: unused class
 
