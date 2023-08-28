@@ -24,64 +24,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/**
- * Freemius
- */
-if ( ! function_exists( 'edac_fs' ) ) {
-	/**
-	 * Create a helper function for easy SDK access.
-	 *
-	 * @return mixed
-	 */
-	function edac_fs() {
-		global $edac_fs;
-
-		if ( ! isset( $edac_fs ) ) {
-			// Include Freemius SDK.
-			require_once dirname( __FILE__ ) . '/vendor/freemius/wordpress-sdk/start.php';
-
-			$edac_fs = fs_dynamic_init(
-				array(
-					'id'             => '7322',
-					'slug'           => 'accessibility-checker',
-					'type'           => 'plugin',
-					'public_key'     => 'pk_5146b841819550deb8874ca70bc89',
-					'is_premium'     => false,
-					'has_addons'     => false,
-					'has_paid_plans' => false,
-					'menu'           => array(
-						'slug'       => 'accessibility_checker',
-						'first-path' => 'admin.php?page=accessibility_checker',
-						'account'    => false,
-						'contact'    => false,
-						'support'    => false,
-					),
-				)
-			);
-		}
-
-		return $edac_fs;
-	}
-
-	// Init Freemius.
-	edac_fs();
-
-	/**
-	 * Setup Freemius opt-in screen icon
-	 *
-	 * @return void
-	 */
-	function edac_fs_custom_icon() {
-		return dirname( __FILE__ ) . '/assets/images/edac-emblem.png';
-	}
-	 
-	edac_fs()->add_filter( 'plugin_icon' , 'edac_fs_custom_icon' );
-	
-
-	// Signal that SDK was initiated.
-	do_action( 'edac_fs_loaded' );
-}
-
+// Include plugin dependency.
+require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 /**
  * Setup constants.

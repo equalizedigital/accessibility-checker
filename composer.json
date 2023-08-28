@@ -6,9 +6,6 @@
             "email": "dev@equalizedigital.com"
         }
     ],
-    "require": {
-        "freemius/wordpress-sdk": "*"
-    },
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
