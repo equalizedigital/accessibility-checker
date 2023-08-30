@@ -42,12 +42,15 @@ function edac_tools_sysinfo_get() {
 	$browser = new Browser();
 
 	// Get theme info.
-	$theme_data   = wp_get_theme();
-	$theme        = $theme_data->Name . ' ' . $theme_data->Version;
+	$theme_data = wp_get_theme();
+	// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+	$theme = $theme_data->Name . ' ' . $theme_data->Version;
+	// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 	$parent_theme = $theme_data->Template;
 	if ( ! empty( $parent_theme ) ) {
 		$parent_theme_data = wp_get_theme( $parent_theme );
-		$parent_theme      = $parent_theme_data->Name . ' ' . $parent_theme_data->Version;
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+		$parent_theme = $parent_theme_data->Name . ' ' . $parent_theme_data->Version;
 	}
 
 	// Try to identify the hosting provider.
@@ -68,14 +71,14 @@ function edac_tools_sysinfo_get() {
 		$return .= "\n" . '-- Hosting Provider' . "\n\n";
 		$return .= 'Host:                     ' . $host . "\n";
 
-		$return  = apply_filters( 'edac_sysinfo_after_host_info', $return );
+		$return = apply_filters( 'edac_sysinfo_after_host_info', $return );
 	}
 
 	// The local users' browser information, handled by the Browser class.
 	$return .= "\n" . '-- User Browser' . "\n\n";
 	$return .= $browser;
 
-	$return  = apply_filters( 'edac_sysinfo_after_user_browser', $return );
+	$return = apply_filters( 'edac_sysinfo_after_user_browser', $return );
 
 	$locale = get_locale();
 
@@ -93,7 +96,7 @@ function edac_tools_sysinfo_get() {
 	// Only show page specs if frontpage is set to 'page'.
 	if ( get_option( 'show_on_front' ) == 'page' ) {
 		$front_page_id = get_option( 'page_on_front' );
-		$blog_page_id = get_option( 'page_for_posts' );
+		$blog_page_id  = get_option( 'page_for_posts' );
 
 		$return .= 'Page On Front:            ' . ( 0 !== $front_page_id ? get_the_title( $front_page_id ) . ' (#' . $front_page_id . ')' : 'Unset' ) . "\n";
 		$return .= 'Page For Posts:           ' . ( 0 !== $blog_page_id ? get_the_title( $blog_page_id ) . ' (#' . $blog_page_id . ')' : 'Unset' ) . "\n";
@@ -105,28 +108,27 @@ function edac_tools_sysinfo_get() {
 	$request['cmd'] = '_notify-validate';
 
 	$params = array(
-		'sslverify'     => false,
-		'timeout'       => 60,
-		'user-agent'    => 'EDAC/' . EDAC_VERSION,
-		'body'          => $request,
+		'sslverify'  => false,
+		'timeout'    => 3,
+		'user-agent' => 'EDAC/' . EDAC_VERSION,
+		'body'       => $request,
 	);
 
 	$response = wp_remote_post( 'https://www.paypal.com/cgi-bin/webscr', $params );
 
 	if ( ! is_wp_error( $response ) && $response['response']['code'] >= 200 && $response['response']['code'] < 300 ) {
-		$WP_REMOTE_POST = 'wp_remote_post() works';
+		$wp_remote_post = 'wp_remote_post() works';
 	} else {
-		$WP_REMOTE_POST = 'wp_remote_post() does not work';
+		$wp_remote_post = 'wp_remote_post() does not work';
 	}
 
-	$return .= 'Remote Post:              ' . $WP_REMOTE_POST . "\n";
-	$return .= 'Table Prefix:             ' . 'Length: ' . strlen( $wpdb->prefix ) . '   Status: ' . ( strlen( $wpdb->prefix ) > 16 ? 'ERROR: Too long' : 'Acceptable' ) . "\n";
-	// $return .= 'Admin AJAX:               ' . ( edac_test_ajax_works() ? 'Accessible' : 'Inaccessible' ) . "\n";
+	$return .= 'Remote Post:              ' . $wp_remote_post . "\n";
+	$return .= 'Table Prefix:             Length: ' . strlen( $wpdb->prefix ) . '   Status: ' . ( strlen( $wpdb->prefix ) > 16 ? 'ERROR: Too long' : 'Acceptable' ) . "\n";
 	$return .= 'WP_DEBUG:                 ' . ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Unset' ) . "\n";
 	$return .= 'Memory Limit:             ' . WP_MEMORY_LIMIT . "\n";
 	$return .= 'Registered Post Stati:    ' . implode( ', ', get_post_stati() ) . "\n";
 
-	$return  = apply_filters( 'edac_sysinfo_after_wordpress_config', $return );
+	$return = apply_filters( 'edac_sysinfo_after_wordpress_config', $return );
 
 	// EDAC configuration.
 	$return .= "\n" . '-- Accessibility Checker Configuration' . "\n\n";
@@ -139,7 +141,7 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Authorization Password:   ' . ( get_option( 'edac_authorization_password' ) ? get_option( 'edac_authorization_password' ) . "\n" : "Unset\n" );
 	$return .= 'Delete Data:              ' . ( get_option( 'edac_delete_data' ) ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Include Statement Link:   ' . ( get_option( 'edac_include_accessibility_statement_link' ) ? "Enabled\n" : "Disabled\n" );
-	$return .= 'Post Types:               ' . ( get_option( 'edac_post_types' ) ? implode( ", ", get_option( 'edac_post_types' ) ) . "\n" : "Unset\n" );
+	$return .= 'Post Types:               ' . ( get_option( 'edac_post_types' ) ? implode( ', ', get_option( 'edac_post_types' ) ) . "\n" : "Unset\n" );
 	$return .= 'Simplified Sum Position:  ' . get_option( 'edac_simplified_summary_position' ) . "\n";
 	$return .= 'Simplified Sum Prompt:    ' . get_option( 'edac_simplified_summary_prompt' ) . "\n";
 	$return .= 'Post Count:               ' . edac_get_posts_count() . "\n";
@@ -149,14 +151,14 @@ function edac_tools_sysinfo_get() {
 
 	if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
 
-		$return .= "\n" . '-- Accessibility Checker Pro Configuration' . "\n\n";
-		$return .= 'Version:                  ' . EDACP_VERSION . "\n";
-		$return .= 'Database Version:         ' . get_option( 'edacp_db_version' ) . "\n";
-		$return .= 'License Status:           ' . get_option( 'edacp_license_status' ) . "\n";
-		$return .= 'Scan ID:                  ' . get_transient( 'edacp_scan_id' ) . "\n";
-		$return .= 'Scan Total:               ' . get_transient( 'edacp_scan_total' ) . "\n";
-		$return .= 'Simplified Sum Heading:   ' . get_option( 'edacp_simplified_summary_heading' ) . "\n";
-		$return .= 'Background Scan Schedule: ' . get_option( 'edacp_background_scan_schedule' ) . "\n";
+		$return   .= "\n" . '-- Accessibility Checker Pro Configuration' . "\n\n";
+		$return   .= 'Version:                  ' . EDACP_VERSION . "\n";
+		$return   .= 'Database Version:         ' . get_option( 'edacp_db_version' ) . "\n";
+		$return   .= 'License Status:           ' . get_option( 'edacp_license_status' ) . "\n";
+		$return   .= 'Scan ID:                  ' . get_transient( 'edacp_scan_id' ) . "\n";
+		$return   .= 'Scan Total:               ' . get_transient( 'edacp_scan_total' ) . "\n";
+		$return   .= 'Simplified Sum Heading:   ' . get_option( 'edacp_simplified_summary_heading' ) . "\n";
+		$return   .= 'Background Scan Schedule: ' . get_option( 'edacp_background_scan_schedule' ) . "\n";
 		$next_scan = as_next_scheduled_action( 'edacp_schedule_scan_hook' );
 		if ( $next_scan ) {
 			$return .= 'Next Background Scan: ' . gmdate( 'F j, Y g:i a', $next_scan ) . "\n";
@@ -166,7 +168,7 @@ function edac_tools_sysinfo_get() {
 		$return .= 'Logs DB Table Count:      ' . edac_database_table_count( 'accessibility_checker_logs' ) . "\n";
 	}
 
-	$return  = apply_filters( 'edac_sysinfo_after_edac_config', $return );
+	$return = apply_filters( 'edac_sysinfo_after_edac_config', $return );
 
 	// Templates.
 	$dir = get_stylesheet_directory() . '/edac_templates/*';
@@ -177,7 +179,7 @@ function edac_tools_sysinfo_get() {
 			$return .= 'Filename:                 ' . basename( $file ) . "\n";
 		}
 
-		$return  = apply_filters( 'edac_sysinfo_after_edac_templates', $return );
+		$return = apply_filters( 'edac_sysinfo_after_edac_templates', $return );
 	}
 
 	// Get plugins that have an update.
@@ -199,7 +201,7 @@ function edac_tools_sysinfo_get() {
 	// WordPress active plugins.
 	$return .= "\n" . '-- WordPress Active Plugins' . "\n\n";
 
-	$plugins = get_plugins();
+	$plugins        = get_plugins();
 	$active_plugins = get_option( 'active_plugins', array() );
 
 	foreach ( $plugins as $plugin_path => $plugin ) {
@@ -207,11 +209,11 @@ function edac_tools_sysinfo_get() {
 			continue;
 		}
 
-		$update = ( array_key_exists( $plugin_path, $updates ) ) ? ' (needs update - ' . $updates[ $plugin_path ]->update->new_version . ')' : '';
+		$update  = ( array_key_exists( $plugin_path, $updates ) ) ? ' (needs update - ' . $updates[ $plugin_path ]->update->new_version . ')' : '';
 		$return .= $plugin['Name'] . ': ' . $plugin['Version'] . $update . "\n";
 	}
 
-	$return  = apply_filters( 'edac_sysinfo_after_wordpress_plugins', $return );
+	$return = apply_filters( 'edac_sysinfo_after_wordpress_plugins', $return );
 
 	// WordPress inactive plugins.
 	$return .= "\n" . '-- WordPress Inactive Plugins' . "\n\n";
@@ -221,17 +223,17 @@ function edac_tools_sysinfo_get() {
 			continue;
 		}
 
-		$update = ( array_key_exists( $plugin_path, $updates ) ) ? ' (needs update - ' . $updates[ $plugin_path ]->update->new_version . ')' : '';
+		$update  = ( array_key_exists( $plugin_path, $updates ) ) ? ' (needs update - ' . $updates[ $plugin_path ]->update->new_version . ')' : '';
 		$return .= $plugin['Name'] . ': ' . $plugin['Version'] . $update . "\n";
 	}
 
-	$return  = apply_filters( 'edac_sysinfo_after_wordpress_plugins_inactive', $return );
+	$return = apply_filters( 'edac_sysinfo_after_wordpress_plugins_inactive', $return );
 
 	if ( is_multisite() ) {
 		// WordPress Multisite active plugins.
 		$return .= "\n" . '-- Network Active Plugins' . "\n\n";
 
-		$plugins = wp_get_active_network_plugins();
+		$plugins        = wp_get_active_network_plugins();
 		$active_plugins = get_site_option( 'active_sitewide_plugins', array() );
 
 		foreach ( $plugins as $plugin_path ) {
@@ -241,21 +243,23 @@ function edac_tools_sysinfo_get() {
 				continue;
 			}
 
-			$update = ( array_key_exists( $plugin_path, $updates ) ) ? ' (needs update - ' . $updates[ $plugin_path ]->update->new_version . ')' : '';
+			$update  = ( array_key_exists( $plugin_path, $updates ) ) ? ' (needs update - ' . $updates[ $plugin_path ]->update->new_version . ')' : '';
 			$plugin  = get_plugin_data( $plugin_path );
 			$return .= $plugin['Name'] . ': ' . $plugin['Version'] . $update . "\n";
 		}
 
-		$return  = apply_filters( 'edac_sysinfo_after_wordpress_ms_plugins', $return );
+		$return = apply_filters( 'edac_sysinfo_after_wordpress_ms_plugins', $return );
 	}
 
 	// Server configuration.
+	$server_software = isset( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( $_SERVER['SERVER_SOFTWARE'] ) : 'Unknown';
+
 	$return .= "\n" . '-- Webserver Configuration' . "\n\n";
 	$return .= 'PHP Version:              ' . PHP_VERSION . "\n";
 	$return .= 'MySQL Version:            ' . $wpdb->db_version() . "\n";
-	$return .= 'Webserver Info:           ' . $_SERVER['SERVER_SOFTWARE'] . "\n";
+	$return .= 'Webserver Info:           ' . $server_software . "\n";
 
-	$return  = apply_filters( 'edac_sysinfo_after_webserver_config', $return );
+	$return = apply_filters( 'edac_sysinfo_after_webserver_config', $return );
 
 	// PHP configs.
 	$return .= "\n" . '-- PHP Configuration' . "\n\n";
@@ -268,7 +272,7 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Display Errors:           ' . ( ini_get( 'display_errors' ) ? 'On (' . ini_get( 'display_errors' ) . ')' : 'N/A' ) . "\n";
 	$return .= 'PHP Arg Separator:        ' . edac_get_php_arg_separator_output() . "\n";
 
-	$return  = apply_filters( 'edac_sysinfo_after_php_config', $return );
+	$return = apply_filters( 'edac_sysinfo_after_php_config', $return );
 
 	// PHP extensions and such.
 	$return .= "\n" . '-- PHP Extensions' . "\n\n";
@@ -277,11 +281,10 @@ function edac_tools_sysinfo_get() {
 	$return .= 'SOAP Client:              ' . ( class_exists( 'SoapClient' ) ? 'Installed' : 'Not Installed' ) . "\n";
 	$return .= 'Suhosin:                  ' . ( extension_loaded( 'suhosin' ) ? 'Installed' : 'Not Installed' ) . "\n";
 
-	$return  = apply_filters( 'edac_sysinfo_after_php_ext', $return );
+	$return = apply_filters( 'edac_sysinfo_after_php_ext', $return );
 
 	// Session stuff.
 	$return .= "\n" . '-- Session Configuration' . "\n\n";
-	// $return .= 'EDAC Use Sessions:         ' . ( defined( 'edac_USE_PHP_SESSIONS' ) && edac_USE_PHP_SESSIONS ? 'Enforced' : ( EDAC()->session->use_php_sessions() ? 'Enabled' : 'Disabled' ) ) . "\n";
 	$return .= 'Session:                  ' . ( isset( $_SESSION ) ? 'Enabled' : 'Disabled' ) . "\n";
 
 	// The rest of this is only relevant is session is enabled.
@@ -293,7 +296,7 @@ function edac_tools_sysinfo_get() {
 		$return .= 'Use Only Cookies:         ' . ( ini_get( 'session.use_only_cookies' ) ? 'On' : 'Off' ) . "\n";
 	}
 
-	$return  = apply_filters( 'edac_sysinfo_after_session_config', $return );
+	$return = apply_filters( 'edac_sysinfo_after_session_config', $return );
 
 	$return .= "\n" . '### End System Info ###';
 
@@ -374,7 +377,9 @@ function edac_tools_sysinfo_download() {
 		header( 'Content-Type: text/plain' );
 		header( 'Content-Disposition: attachment; filename="edac-system-info.txt"' );
 
-		echo esc_html( wp_strip_all_tags( $_POST['edac-sysinfo'] ) );
+		if ( isset( $_POST['edac-sysinfo'] ) ) {
+			echo esc_html( wp_strip_all_tags( $_POST['edac-sysinfo'] ) );
+		}
 
 		die();
 
@@ -432,10 +437,25 @@ function edac_get_posts_count() {
 function edac_get_error_count() {
 	global $wpdb;
 
-	$query = 'SELECT count(*) FROM ' . $wpdb->prefix . 'accessibility_checker where siteid = %d and ruletype = %s';
-	$summary['errors'] = intval( $wpdb->get_var( $wpdb->prepare( $query, get_current_blog_id(), 'error' ) ) );
+	// Define a unique cache key for our data.
+	$cache_key     = 'edac_errors_' . get_current_blog_id();
+	$stored_errors = wp_cache_get( $cache_key );
 
-	return $summary['errors'];
+	// Check if the result exists in the cache.
+	if ( false === $stored_errors ) {
+		// If not, perform the database query.
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$query = $wpdb->prepare( 'SELECT count(*) FROM ' . $table_name . ' WHERE siteid = %d AND ruletype = %s', get_current_blog_id(), 'error' );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
+		$stored_errors = intval( $wpdb->get_var( $query ) );
+
+		// Save the result in the cache for future use.
+		wp_cache_set( $cache_key, $stored_errors );
+	}
+
+	return $stored_errors;
 }
 
 /**
@@ -446,11 +466,27 @@ function edac_get_error_count() {
 function edac_get_warning_count() {
 	global $wpdb;
 
-	$query             = 'SELECT count(*) FROM ' . $wpdb->prefix . 'accessibility_checker where siteid = %d and ruletype = %s';
-	$summary['errors'] = intval( $wpdb->get_var( $wpdb->prepare( $query, get_current_blog_id(), 'warning' ) ) );
+	// Define a unique cache key for our data.
+	$cache_key       = 'edac_warnings_' . get_current_blog_id();
+	$stored_warnings = wp_cache_get( $cache_key );
 
-	return $summary['errors'];
+	// Check if the result exists in the cache.
+	if ( false === $stored_warnings ) {
+		// If not, perform the database query.
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$query = $wpdb->prepare( 'SELECT count(*) FROM ' . $table_name . ' WHERE siteid = %d AND ruletype = %s', get_current_blog_id(), 'warning' );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
+		$stored_warnings = intval( $wpdb->get_var( $query ) );
+
+		// Save the result in the cache for future use.
+		wp_cache_set( $cache_key, $stored_warnings );
+	}
+
+	return $stored_warnings;
 }
+
 
 /**
  * Get Database Table Count
@@ -459,12 +495,25 @@ function edac_get_warning_count() {
  * @return int
  */
 function edac_database_table_count( $table ) {
-
 	global $wpdb;
-	$table_name  = $wpdb->prefix . $table;
-	$count_query = "select count(*) from $table_name";
-	$num         = $wpdb->get_var( $count_query );
 
-	return $num;
+	// Create a unique cache key based on the table's name.
+	$cache_key = 'edac_table_count_' . $table;
+	
+	// Try to get the count from the cache first.
+	$count = wp_cache_get( $cache_key );
 
+	if ( false === $count ) {
+		// If the count is not in the cache, perform the database query.
+		$table_name  = $wpdb->prefix . $table;
+		$count_query = "SELECT count(*) FROM $table_name";
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
+		$count = $wpdb->get_var( $count_query );
+		
+		// Save the count to the cache for future use.
+		wp_cache_set( $cache_key, $count );
+	}
+
+	return $count;
 }
