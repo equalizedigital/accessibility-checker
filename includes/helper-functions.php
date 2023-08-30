@@ -15,9 +15,9 @@
 function edac_compare_strings( $string1, $string2 ) {
 	// text to remove.
 	$remove_text   = array();
-	$remove_text[] = __( 'permalink of ', 'edac' );
-	$remove_text[] = __( 'permalink to ', 'edac' );
-	$remove_text[] = __( '&nbsp;', 'edac' );
+	$remove_text[] = __( 'permalink of ', 'accessibility-checker' );
+	$remove_text[] = __( 'permalink to ', 'accessibility-checker' );
+	$remove_text[] = __( '&nbsp;', 'accessibility-checker' );
 
 	$string1 = strtolower( $string1 );
 	$string1 = str_ireplace( $remove_text, '', $string1 );

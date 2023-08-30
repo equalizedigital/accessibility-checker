@@ -9,12 +9,12 @@
 $settings_tab_items = array(
 	array(
 		'slug'  => '',
-		'label' => 'General',
+		'label' => esc_html__( 'General', 'accessibility-checker' ),
 		'order' => 1,
 	),
 	array(
 		'slug'  => 'system_info',
-		'label' => 'System Info',
+		'label' => esc_html__( 'System Info', 'accessibility-checker' ),
 		'order' => 4,
 	),
 );
@@ -22,12 +22,13 @@ $settings_tab_items = array(
 if ( has_filter( 'edac_filter_settings_tab_items' ) ) {
 	$settings_tab_items = apply_filters( 'edac_filter_settings_tab_items', $settings_tab_items );
 }
+
 // sort settings tab items.
 if ( is_array( $settings_tab_items ) ) {
 	usort(
 		$settings_tab_items,
 		function( $a, $b ) {
-			return strcmp($b['order'], $a['order']);
+			return strcmp( $b['order'], $a['order'] );
 		}
 	);
 }
@@ -50,15 +51,7 @@ $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items
 			$query_var = $slug ? '&tab=' . $slug : '';
 			$label     = $settings_tab_item['label'];
 			?>
-			<a 
-			<?php
-			if ( $settings_tab === $slug ) :
-				?>
-aria-current="true" <?php endif; ?>href="?page=accessibility_checker_settings<?php echo esc_html( $query_var ); ?>" class="nav-tab 
-			<?php
-			if ( $settings_tab === $slug ) :
-				?>
-nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
+			<a <?php if ( $settings_tab === $slug ) : ?>aria-current="true" <?php endif; ?>href="?page=accessibility_checker_settings<?php echo esc_html( $query_var ); ?>" class="nav-tab <?php if ( $settings_tab === $slug ) : ?>nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
 			<?php
 		}
 		echo '</nav>';
@@ -88,7 +81,7 @@ nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
 		<?php } ?>
 
 		<?php if ( 'system_info' === $settings_tab ) { ?>
-			<h2><?php esc_html_e( 'System Info' ); ?></h2>	
+			<h2><?php esc_html_e( 'System Info', 'accessibility-checker' ); ?></h2>	
 			<div class="edac-settings-system-info">
 				<?php edac_sysinfo_display(); ?>
 			</div>	

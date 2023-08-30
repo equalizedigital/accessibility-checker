@@ -350,7 +350,7 @@ function edac_post_types_cb() {
 		<?php } else { ?>
 			<p class="edac-description">
 				<?php 
-				esc_html_e( 'Choose which post types should be checked during a scan. <em>Please note</em>, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup.', 'accessibility-checker' );
+				esc_html_e( 'Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup.', 'accessibility-checker' );
 				?>
 			</p>
 		<?php }
