@@ -79,6 +79,11 @@ function edac_enqueue_scripts( $mode = '' ) {
 	
 	global $post;
 	$post_id = is_object( $post ) ? $post->ID : null;
+
+	if(null === $post_id){
+		return;
+	}
+
 	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true;
 	$has_pending_scans = false;
 	
