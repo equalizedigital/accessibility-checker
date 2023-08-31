@@ -80,7 +80,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 	global $post;
 	$post_id = is_object( $post ) ? $post->ID : null;
 
-	if(null === $post_id){
+	if ( null === $post_id ) {
 		return;
 	}
 
