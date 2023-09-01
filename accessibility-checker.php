@@ -180,6 +180,7 @@ add_action(
 	}
 );
 
+/*
 add_action(
 	'wp_dashboard_setup',
 	function() {
@@ -193,7 +194,7 @@ add_action(
 		);
 	}
 );
-
+*/
 
 
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
