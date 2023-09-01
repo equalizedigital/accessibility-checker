@@ -7,6 +7,8 @@
 
 namespace EDAC;
 
+use EDAC\Scans_Stats;
+
 /**
  * Class that initializes and handles the REST api
  */
@@ -39,7 +41,6 @@ class REST_Api {
 		$ns = 'accessibility-checker/';
 		$version = 'v1';
 
-		// http://localhost/index.php?rest_route=/accessibility-checker/v1/test
 		add_action(
 			'rest_api_init',
 			function () use ( $ns, $version ) {
@@ -88,6 +89,24 @@ class REST_Api {
 				);
 			} 
 		);
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/scans-stats',
+					array(
+						'methods' => 'GET',
+						'callback' => array( $this, 'get_scans_stats' ),
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
+						},
+					) 
+				);
+			} 
+		);
+
 	}
 
 
@@ -193,6 +212,41 @@ class REST_Api {
 					'success' => true,
 					'id' => $post_id,
 					'timestamp' => time(),
+				) 
+			);
+
+		} catch ( \Exception $ex ) {
+			
+			return new \WP_REST_Response(
+				array(
+					'message' => $ex->getMessage(),
+				), 
+				500
+			);
+
+		}   
+
+	}
+
+
+	/**
+	 * REST handler that gets stats about the scans
+	 *
+	 * @param WP_REST_Request $request The request passed from the REST call.
+	 * 
+	 * @return \WP_REST_Response 
+	 */
+	public function get_scans_stats( $request ) {
+	
+		try {
+
+			$scans_stats = new Scans_Stats();
+			$stats = $scans_stats->summary();
+
+			return new \WP_REST_Response(
+				array(
+					'success' => true,
+					'stats' => $stats,
 				) 
 			);
 

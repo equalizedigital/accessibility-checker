@@ -7,7 +7,7 @@
 
 namespace EDAC;
 
-use EDAC\Scan_Report_Data;
+use EDAC\Scans_Stats;
 
 /**
  * Class that handles widgets
@@ -23,9 +23,8 @@ class Widgets {
 	public static function render_dashboard_scan_summary() {
 
 		$html = '';
-		$scan_data = new Scan_Report_Data( 5 );
-		$summary = $scan_data->scan_summary();
-	
+		$scans_stats = new Scans_Stats();
+		$summary = $scans_stats->summary();
 		$html .= '
 	
 		
@@ -202,7 +201,7 @@ class Widgets {
 		
 				if ( in_array( $post_type, $scannable_post_types ) ) {
 		
-					$by_issue = $scan_data->issue_summary_by_post_type( $post_type );
+					$by_issue = $scans_stats->issues_summary_by_post_type( $post_type );
 		
 					$html .= '
 							<tr>
@@ -254,7 +253,14 @@ class Widgets {
 		$html .= '
 				</tbody>
 			</table>
-		</div>
+		</div>';
+		
+		if ( $summary['is_truncated'] ) {
+			$html .= '<div class="edac-summary-notice">Your site has a large number of issues. For performance reasons, not all issues have been included in this report.</div>';
+		}
+
+		
+		$html .='
 		<div class="edac-buttons-container edac-mt-3 edac-mb-3">
 		';
 
@@ -264,10 +270,13 @@ class Widgets {
 			<a class="button edac-mr-1" href="/wp-admin/admin.php?page=accessibility_checker">See More Reports</a>';
 		}
 			
+		
 
 		$html .= '
 		<a href="/wp-admin/admin.php?page=accessibility_checker_settings">Edit Accessibility Checker Settings</a>
-		</div>
+		</div>';
+
+		$html .='
 		<hr class="edac-hr" />
 		<h3 class="edac-summary-header">
 			Learn Accessibility

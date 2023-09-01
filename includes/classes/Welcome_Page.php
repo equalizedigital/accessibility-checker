@@ -7,7 +7,7 @@
 
 namespace EDAC;
 
-use EDAC\Scan_Report_Data;
+use EDAC\Scans_Stats;
 
 /**
  * Class that handles welcome page
@@ -23,10 +23,11 @@ class Welcome_Page {
 	public static function render_summary() {
 
 		$html = '';
-		$scan_data = new Scan_Report_Data( 5 );
-		$summary = $scan_data->scan_summary();
-
+		$scans_stats = new Scans_Stats();
+		$summary = $scans_stats->summary();
 		
+		
+	
 		$html .= '
 			<div id="edac_welcome_page_summary">';
 
@@ -134,13 +135,13 @@ class Welcome_Page {
 				
 					';
 				
-				if($summary['fullscan_completed_at'] > 0){
-					$html .= '
+			if ( $summary['fullscan_completed_at'] > 0 ) {
+				$html .= '
 						<div class="edac-stat-number edac-timestamp-to-local">' . $summary['fullscan_completed_at'] . '</div>';
-				} else {
-					$html .= '
+			} else {
+				$html .= '
 						<div class="edac-stat-number">Never</div>';
-				}
+			}
 
 				$html .= '
 					</div>
@@ -176,16 +177,23 @@ class Welcome_Page {
 					</div>
 				</div>
 
-			</div>
+			</div>';
+
+
+			if ( $summary['is_truncated'] ) {
+				$html .= '<div class="edac-center-text edac-mt-3">Your site has a large number of issues. For performance reasons, not all issues have been included in this summary.</div>';
+			}
+	
+			$html .= '
 			</section>';
 
 			
 		} else {
 
 		
-			if ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true )) ) {
+			if ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true ) ) ) {
 	
-				$html .='
+				$html .= '
 					<section>
 					<div class="edac-cols edac-cols-header">
 						<h3 class="edac-cols-left">
@@ -219,8 +227,7 @@ class Welcome_Page {
 					</div>
 
 					</section>';
-			}
-
+			}       
 		}
 		
 		$html .= '

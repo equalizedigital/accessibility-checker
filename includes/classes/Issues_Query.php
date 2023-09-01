@@ -32,6 +32,13 @@ class Issues_Query {
 	private $table;
 
 	
+	/**
+	 * Holds the max number of records we'll query
+	 *
+	 * @var [integer]
+	 */
+	private $record_limit;
+	
 	
 	/**
 	 * Holds the sql safe elements used to build the query
@@ -39,10 +46,11 @@ class Issues_Query {
 	 * @var array
 	 */
 	private $query = array(
-		'select' => 'select count(id)',
+		'select' => 'select count(*)',
 		'from' => '',
 		'where_base' => '',
 		'filters' => '',
+		'limit' => '',
 	);
 
 
@@ -51,7 +59,7 @@ class Issues_Query {
 	 *
 	 * @param array $filter [post_types, rule_types, rule_slugs].
 	 */
-	public function __construct( $filter = array(), $ignored_flag = self::IGNORE_FLAG_EXCLUDE_IGNORED ) {
+	public function __construct( $filter = array(), $record_limit = 100000, $ignored_flag = self::IGNORE_FLAG_EXCLUDE_IGNORED ) {
 	
 		$valid_filters = array(
 			'post_types',
@@ -59,13 +67,15 @@ class Issues_Query {
 			'rule_slugs',
 		);
 
-		$validated_filters = [];
-		foreach($filter as $key => $val){
-			if(in_array($key, $valid_filters)){
-				$validated_filters[$key] = $val;
+		$validated_filters = array();
+		foreach ( $filter as $key => $val ) {
+			if ( in_array( $key, $valid_filters ) ) {
+				$validated_filters[ $key ] = $val;
 			}
 		}
 	
+		$this->record_limit = $record_limit;
+
 		// Setup FROM
 		global $wpdb;
 		$this->table = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
@@ -73,26 +83,28 @@ class Issues_Query {
 		
 		// Setup base WHERE
 		$siteid = get_current_blog_id();
-		switch ($ignored_flag){
+		switch ( $ignored_flag ) {
 			case self::IGNORE_FLAG_EXCLUDE_IGNORED:
-				$this->query['where_base'] = $wpdb->prepare( 'where siteid=%d and ignre=%d and ignre_global=%d ', array( $siteid, 0, 0 ) );
+				$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and ignre=%d and ignre_global=%d ', array( $siteid, 0, 0 ) );
 				break;
 	
 			case self::IGNORE_FLAG_INCLUDE_IGNORED:
-				$this->query['where_base'] = $wpdb->prepare( 'where siteid=%d', array( $siteid ) );
+				$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d', array( $siteid ) );
 				break;
 	
 			case self::IGNORE_FLAG_ONLY_IGNORED:
-				$this->query['where_base'] = $wpdb->prepare( 'where siteid=%d and (ignre=%d or ignre_global=%d) ', array( $siteid, 1, 1 ) );
+				$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and (ignre=%d or ignre_global=%d) ', array( $siteid, 1, 1 ) );
 				break;
 			
 			default:
-				$this->query['where_base'] = $wpdb->prepare( 'where siteid=%d and ignre=%d and ignre_global=%d ', array( $siteid, 0, 0 ) );
+				$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and ignre=%d and ignre_global=%d ', array( $siteid, 0, 0 ) );
 		
 		}
 
 		
-	
+		// Setup LIMIT
+		$this->query['limit'] = $wpdb->prepare( 'LIMIT %d', array( $record_limit ) );
+		
 		
 		$filter_defaults = array(
 			'post_types' => array(),
@@ -112,7 +124,7 @@ class Issues_Query {
 	 * @return string $sql .
 	 */
 	public function get_sql() {
-		return $this->query['select'] . ' ' . $this->query['from'] . ' ' . $this->query['where_base'] . ' ' . $this->query['filters'];
+		return $this->query['select'] . ' ' . $this->query['from'] . ' ' . $this->query['where_base'] . ' ' . $this->query['filters'] . ' ' . $this->query['limit'];
 	}
 
 
@@ -125,6 +137,21 @@ class Issues_Query {
 		return $this->query;
 	}
 
+	/**
+	 * Are the results from all the issues or did we truncate
+	 *
+	 * @return boolean
+	 */
+	public function has_truncated_results() {
+		global $wpdb;
+		
+		$total_issues_count = $wpdb->get_var( 'SELECT COUNT(*) ' . $this->query['from'] );
+		if ( $total_issues_count > $this->record_limit ) {
+			return true;
+		}
+
+		return false;
+	}
 
 	/**
 	 * Gets issue count.

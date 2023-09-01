@@ -28,7 +28,7 @@ class Settings {
 	/**
 	 * Gets a list of post types that are scannable.
 	 *
-	 * @return void
+	 * @return array
 	 */
 	public static function get_scannable_post_types() {
 
