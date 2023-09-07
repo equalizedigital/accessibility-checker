@@ -354,6 +354,28 @@ function edac_str_get_html(
 }
 
 /**
+ * Remove elements from the dom by css_selector
+ *
+ * @param simple_html_dom $dom .
+ * @param array           $css_selectors array .
+ * @return simple_html_dom
+ */
+function edac_remove_elements( $dom, $css_selectors = array() ) {
+
+	foreach ( $css_selectors as $css_selector ) {
+		$elements = $dom->find( $css_selector );
+		foreach ( $elements as $element ) {
+			if ( null !== $element ) {
+				$element->remove();
+			}   
+		}
+	}
+
+	return $dom;
+}
+
+
+/**
  * This function validates a table name against WordPress naming conventions and checks its existence in the database.
  *
  * The function first checks if the provided table name only contains alphanumeric characters, underscores, or hyphens.
@@ -445,7 +467,7 @@ function edac_replace_css_variables( $value, $css_array ) {
  * @param [integer] $timeout_seconds
  * @return void
  */
-function edac_generate_nonce( $secret , $timeout_seconds = 120 ) {
+function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
 
 	$length = 10;
 	$chars = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
@@ -468,7 +490,7 @@ function edac_generate_nonce( $secret , $timeout_seconds = 120 ) {
  * @param [string] $nonce
  * @return void
  */
-function edac_is_valid_nonce( $secret , $nonce ) {
+function edac_is_valid_nonce( $secret, $nonce ) {
 	if ( is_string( $nonce ) == false ) {
 		return false;
 	}
@@ -556,7 +578,7 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, 
 		<li class="edac-upcoming-meetup-item edac-mb-3">
 			<h4 class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h4>
 			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . ( intval( $event->time ) / 1000 ) . '</div>
-			<a aria-label="' . esc_attr($link_text . ': ' . $event->name) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '">' . $link_text . '</a>
+			<a aria-label="' . esc_attr( $link_text . ': ' . $event->name ) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '">' . $link_text . '</a>
 		</li>';
 	}
 
@@ -610,10 +632,10 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 
 		
 		if ( count( $content ) > 0 ) {
-			return 
-				implode(
-					PHP_EOL, array_slice( $content, 0, $paragraph_count)
-				);
+			return implode(
+				PHP_EOL,
+				array_slice( $content, 0, $paragraph_count )
+			);
 		}
 	}
 
@@ -631,7 +653,7 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
  */
 function edac_get_issue_density( $issue_count, $element_count, $content_length ) {
 
-	if($element_count < 1 || $content_length < 1 ){
+	if ( $element_count < 1 || $content_length < 1 ) {
 		return 0;
 	}
 
@@ -656,11 +678,11 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
  */
 function edac_get_body_density_data( $dom ) {
 			
-	if($dom){
+	if ( $dom ) {
 	
 		$body_element = $dom->find( 'body', 0 );
 	
-		if(null == $body_element){
+		if ( null == $body_element ) {
 			return false;
 		}
 
@@ -681,7 +703,6 @@ function edac_get_body_density_data( $dom ) {
 			);
 		
 		}   
-	
 	}
 	
 	return false;
