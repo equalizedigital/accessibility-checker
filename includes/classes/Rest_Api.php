@@ -88,8 +88,28 @@ class REST_Api {
 				);
 			} 
 		);
+	
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/scan-summary',
+					array(
+						'methods' => 'GET',
+						'callback' => array( $this, 'get_scan_summary' ),
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
+						},
+					) 
+				);
+			} 
+		);
+	
+	
 	}
 
+	
 
 	/**
 	 * REST handler that saves to the DB a list of js rule violations for a post.
@@ -206,6 +226,44 @@ class REST_Api {
 			);
 
 		}   
+
+	}
+
+
+	/**
+	 * REST handler that saves to the DB a list of js rule violations for a post.
+	 *
+	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 * 
+	 * @return \WP_REST_Response 
+	 */
+	public function get_scan_summary( $request ) {
+
+		try {
+
+			$scan_data = new Scan_Report_Data();
+			$summary = $scan_data->scan_summary();
+
+			return new \WP_REST_Response(
+				array(
+					'success' => true,
+					'data' => $summary,
+					'timestamp' => time(),
+				) 
+			);
+
+
+		} catch ( \Exception $ex ) {
+			
+			return new \WP_REST_Response(
+				array(
+					'message' => $ex->getMessage(),
+				), 
+				500
+			);
+
+		}   
+
 
 	}
 
