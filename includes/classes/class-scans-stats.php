@@ -48,7 +48,8 @@ class Scans_Stats {
 	/**
 	 * Constructor
 	 *
-	 * @param integer $cache_type number of seconds to return the results from cache.
+	 * @param integer $cache_time number of seconds to return the results from cache.
+	 * @param integer $record_limit max number of records to be returned in query.
 	 */
 	public function __construct( $cache_time = 60 * 60 * 24, $record_limit = 100000 ) {
 	
@@ -58,7 +59,64 @@ class Scans_Stats {
 		$this->rule_count = count( edac_register_rules() );
 	
 	}
+
+	/**
+	 * Load all stats into the cache. Should be called by a background scheduled.
+	 * 
+	 * @param integer $cache_time number of seconds to return the results from cache.
+	 * @param integer $record_limit max number of records to be returned in query.
+	 * @return void
+	 */
+	public static function load_cache( $cache_time = 60 * 60 * 24, $record_limit = 100000 ) {
+		
+		$scans_stats = new Scans_Stats( $cache_time, $record_limit );
+			
+		// Cache the summary.
+		$scans_stats->summary();
+				
+		// Cache the post_types.
+		$scannable_post_types = Settings::get_scannable_post_types();
+					
+		$post_types = get_post_types(
+			array(
+				'public' => true,
+			) 
+		);
 	
+		unset( $post_types['attachment'] );
+	
+			
+		foreach ( $post_types as $post_type ) {
+			if ( in_array( $post_type, $scannable_post_types ) ) {
+				   $scans_stats->issues_summary_by_post_type( $post_type ); 
+			}
+		}
+	
+	}
+	
+	/**
+	 * Clear the summary and post type scans stats that have been cached
+	 * 
+	 * @return void
+	 */
+	public function clear_cache() {
+	
+		// Delete the cached summary stats.
+		$transient_name = $this->cache_name_prefix . '_summary';
+		delete_transient( $transient_name );
+		
+		// Delete the cached post_type stats.
+		$post_types = get_post_types(
+			array(
+				'public' => true,
+			) 
+		);
+		unset( $post_types['attachment'] );
+		foreach ( $post_types as $post_type ) {
+			$transient_name = $this->cache_name_prefix . '_issues_summary_by_post_type_' . $post_type;
+			delete_transient( $transient_name );
+		}
+	}
 
 	/**
 	 * Gets summary information about all scans
@@ -168,13 +226,13 @@ class Scans_Stats {
 	
 
 		$data['avg_issue_density_percentage'] = 
-			$wpdb->get_var( 
-				$wpdb->prepare(
-					'SELECT avg(meta_value) from ' . $wpdb->postmeta . ' 
+		$wpdb->get_var( 
+			$wpdb->prepare(
+				'SELECT avg(meta_value) from ' . $wpdb->postmeta . ' 
 				WHERE meta_key = %s and meta_value > %d;',
-					array( '_edac_issue_density', 0 )
-				)
-			);
+				array( '_edac_issue_density', 0 )
+			)
+		);
 		
 		if ( null === $data['avg_issue_density_percentage'] ) {
 			$data['avg_issue_density_percentage'] = 'N/A';
@@ -193,9 +251,8 @@ class Scans_Stats {
 			$scan_state = $scans->scan_state();
 			
 			$data['fullscan_state'] = $scan_state;
-			if (
-				\EDACP\Scans::SCAN_STATE_PHP_SCAN_RUNNING == $scan_state ||
-				\EDACP\Scans::SCAN_STATE_JS_SCAN_RUNNING == $scan_state
+			if ( \EDACP\Scans::SCAN_STATE_PHP_SCAN_RUNNING == $scan_state 
+				|| \EDACP\Scans::SCAN_STATE_JS_SCAN_RUNNING == $scan_state
 			) {
 				$data['fullscan_running'] = true;
 			} 
@@ -218,7 +275,7 @@ class Scans_Stats {
 	/**
 	 * Gets issues summary information about a post type
 	 *
-	 * @param string $post_type
+	 * @param  string $post_type
 	 * @return array .
 	 */
 	public function issues_summary_by_post_type( $post_type ) {
