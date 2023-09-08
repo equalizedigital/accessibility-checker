@@ -370,7 +370,7 @@ class AccessibilityCheckerHighlight {
 			<div class="edac-highlight-panel">
 			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
 			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
-			<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
+			<button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-description-title"></div>
 				<div class="edac-highlight-panel-description-content"></div>
 				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
@@ -381,8 +381,8 @@ class AccessibilityCheckerHighlight {
 				<div class="edac-highlight-panel-controls-summary">Loading...</div>
 				<div class="edac-highlight-panel-controls-buttons">
 					<div>
-						<button id="edac-highlight-previous"><span aria-hidden="true">« </span>Previous</button>
-						<button id="edac-highlight-next">Next<span aria-hidden="true"> »</span></button><br />
+						<button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>Previous</button>
+						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
 					<div>
 						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite">Disable Styles</button>
@@ -541,6 +541,14 @@ class AccessibilityCheckerHighlight {
 		this.highlightAjax().then(
 			(json) => {
 
+				if(json.length == 0){
+					this.nextButton.disabled = true;
+					this.previousButton.disabled = true;
+					
+				} else {
+					this.nextButton.disabled = false;
+					this.previousButton.disabled = false;
+				}
 
 				this.issues = json;
 
