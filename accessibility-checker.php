@@ -175,7 +175,6 @@ add_action( 'init', 'edac_init' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
-add_action( 'wp_enqueue_scripts', 'edac_enqueue_styles' );
 add_action( 'admin_init', 'edac_update_database', 10 );
 add_action( 'add_meta_boxes', 'edac_register_meta_boxes' );
 add_action( 'admin_menu', 'edac_add_options_page' );
@@ -652,7 +651,7 @@ function edac_register_rules() {
 			'slug'      => 'color_contrast_failure',
 			'rule_type' => 'error',
 			'summary'   => esc_html( 'Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be "false positives" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors.' ),
-			//'ruleset'   => 'js',
+			// 'ruleset'   => 'js',
 		)
 	);
 
@@ -997,7 +996,10 @@ function edac_summary( $post_id ) {
 	$issue_density_array = get_post_meta( $post_id, '_edac_density_data' );
 	
 	
-	if ( is_array( $issue_density_array ) ) {
+	if ( is_array( $issue_density_array ) &&
+		count( $issue_density_array ) > 0 &&
+		count( $issue_density_array[0] ) > 0  
+	) {
 		
 		$element_count = $issue_density_array[0][0];
 		$content_length = $issue_density_array[0][1];
@@ -2003,25 +2005,25 @@ function edac_gaad_notice_ajax() {
  */
 function edac_dismiss_welcome_cta() {
 	// Update user meta to indicate the button has been clicked
-	update_user_meta(get_current_user_id(), 'edac_welcome_cta_dismissed', true);
+	update_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true );
 	
 	// Return success response
-	wp_send_json('success');
-  }
+	wp_send_json( 'success' );
+}
 
 
   /**
- * Handle AJAX request to dismiss dashboard CTA
- *
- * @return void
- */
+   * Handle AJAX request to dismiss dashboard CTA
+   *
+   * @return void
+   */
 function edac_dismiss_dashboard_cta() {
 	// Update user meta to indicate the button has been clicked
-	update_user_meta(get_current_user_id(), 'edac_dashboard_cta_dismissed', true);
+	update_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true );
 	
 	// Return success response
-	wp_send_json('success');
-  }
+	wp_send_json( 'success' );
+}
 
 
 // Add a filter for lazyloading images using the perfmatters_lazyload hook.
