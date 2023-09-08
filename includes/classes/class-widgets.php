@@ -7,8 +7,6 @@
 
 namespace EDAC;
 
-use EDAC\Scans_Stats;
-
 /**
  * Class that handles widgets
  */
@@ -23,9 +21,6 @@ class Widgets {
 	public static function render_dashboard_scan_summary() {
 
 		$html = '';
-		//$scans_stats = new Scans_Stats();
-		//$summary = $scans_stats->summary();
-		$summary = array();
 		$html .= '
 	
 		<div class="edac-widget">';
@@ -60,12 +55,12 @@ class Widgets {
 				__( 'Full Site Accessibility Status', 'accessibility-checker' ) . 
 			'</h3>
 			<div class="edac-summary-passed">
-				<div id="edac-summary-passed" class="edac-circle-progress" role="progressbar" aria-valuenow="' . esc_attr( $summary['passed_percentage'] ) . '" 
+				<div id="edac-summary-passed" class="edac-circle-progress" role="progressbar" aria-valuenow="0" 
 					aria-valuemin="0" aria-valuemax="100"
 					style="text-align: center; 
 					background: radial-gradient(closest-side, white 85%, transparent 80% 100%), 
-					conic-gradient(#006600 ' . esc_attr( $summary['passed_percentage'] ) . '%, #e2e4e7 0);">
-					<div class="edac-progress-percentage">' . esc_html( $summary['passed_percentage'] ) . '%</div>
+					conic-gradient(#006600 0%, #e2e4e7 0);">
+					<div class="edac-progress-percentage">-</div>
 					<div class="edac-progress-label">' . 
 					__( 'Passed Tests', 'accessibility-checker' ) . 
 					'</div>
@@ -84,28 +79,22 @@ class Widgets {
 					<div class="edac-summary-scan-count-label">
 						' . __( 'URLs Scanned:', 'accessibility-checker' ) . '
 					</div>
-					<div id="edac-summary-info-count" class="edac-summary-info-count-number">' . $summary['posts_scanned'] . '</div>
+					<div id="edac-summary-info-count" class="edac-summary-info-count-number">-</div>
 				</div>';
 
 			$html .= '
 				<div class="edac-summary-info-stats">
-					<div  class="edac-summary-info-stats-box edac-summary-info-stats-box-error ' . ( ( $summary['distinct_errors_without_contrast'] > 0 ) ? ' has-errors' : '' ) . '">
+					<div  class="edac-summary-info-stats-box edac-summary-info-stats-box-error">
 						<div class="edac-summary-info-stats-box-label">' . __( 'Errors:', 'accessibility-checker' ) . ' </div>
-						<div id="edac-summary-info-errors" class="edac-summary-info-stats-box-number">
-							' . $summary['distinct_errors_without_contrast'] . '
-						</div>
+						<div id="edac-summary-info-errors" class="edac-summary-info-stats-box-number">-</div>
 					</div>
-					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-contrast ' . ( ( $summary['distinct_contrast_errors'] > 0 ) ? ' has-errors' : '' ) . '">
+					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-contrast">
 						<div class="edac-summary-info-stats-box-label">' . __( 'Color Contrast Errors:', 'accessibility-checker' ) . ' </div>
-						<div id="edac-summary-info-contrast-errors" class="edac-summary-info-stats-box-number">
-							' . $summary['distinct_contrast_errors'] . '
-						</div>
+						<div id="edac-summary-info-contrast-errors" class="edac-summary-info-stats-box-number">-</div>
 					</div>
-					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-warning ' . ( ( $summary['distinct_warnings'] > 0 ) ? ' has-warning' : '' ) . '">
+					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-warning">
 						<div class="edac-summary-info-stats-box-label">' . __( 'Warnings:', 'accessibility-checker' ) . ' </div>
-						<div id="edac-summary-info-warnings" class="edac-summary-info-stats-box-number">
-							' . $summary['distinct_warnings'] . '
-						</div>
+						<div id="edac-summary-info-warnings" class="edac-summary-info-stats-box-number">-</div>
 					</div>
 				</div>
 			</div>
@@ -171,15 +160,12 @@ class Widgets {
 		
 				if ( in_array( $post_type, $scannable_post_types ) ) {
 		
-					//$by_post_type = $scans_stats->issues_summary_by_post_type( $post_type );
-					$by_post_type = array();
-					
 					$html .= '
 							<tr>
 								<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
-								<td id="' . esc_attr($post_type) . '-errors">' . $by_post_type['distinct_errors_without_contrast'] . '</td>
-								<td id="' . esc_attr($post_type) . '-contrast-errors">' . $by_post_type['distinct_contrast_errors'] . '</td>
-								<td id="' . esc_attr($post_type) . '-warnings">' . $by_post_type['distinct_warnings'] . '</td>
+								<td id="' . esc_attr( $post_type ) . '-errors">-</td>
+								<td id="' . esc_attr( $post_type ) . '-contrast-errors">-</td>
+								<td id="' . esc_attr( $post_type ) . '-warnings">-</td>
 							</tr>';
 				} else {
 					$html .= '
@@ -229,7 +215,7 @@ class Widgets {
 		$html .= '<div class="edac-summary-notice edac-summary-notice-is-truncated edac-hidden">Your site has a large number of issues. For performance reasons, not all issues have been included in this report.</div>';
 	
 		
-		$html .='
+		$html .= '
 		<div class="edac-buttons-container edac-mt-3 edac-mb-3">
 		';
 
@@ -244,7 +230,7 @@ class Widgets {
 		<a href="/wp-admin/admin.php?page=accessibility_checker_settings">Edit Accessibility Checker Settings</a>
 		</div>';
 
-		$html .='
+		$html .= '
 		<hr class="edac-hr" />
 		<h3 class="edac-summary-header">
 			' . __( 'Learn Accessibility', 'accessibility-checker' ) . '

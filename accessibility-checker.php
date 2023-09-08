@@ -167,46 +167,11 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.p
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Welcome_Page.php';
 
-function create_custom_post_type() {
-    register_post_type('custom_type', array(
-        'labels' => array(
-            'name' => 'Custom Types',
-            'singular_name' => 'Custom Type',
-        ),
-        'public' => true,
-        'has_archive' => true,
-    ));
-}
-add_action('init', 'create_custom_post_type');
 
 /**
  * Filters and Actions
  */
-add_action(
-	'init',
-	function () {
-		// instantiate the classes that need to load hooks early.
-		$rest_api = new \EDAC\Rest_Api();
-	}
-);
-
-
-add_action(
-	'wp_dashboard_setup',
-	function() {
-		wp_add_dashboard_widget(
-			'edac_dashboard_scan_summary',
-			'Accessibility Checker',
-			array(
-				'\\EDAC\Widgets',
-				'render_dashboard_scan_summary',
-			) 
-		);
-	}
-);
-
-
-
+add_action( 'init', 'edac_init' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
@@ -247,6 +212,15 @@ add_action('wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
 add_action('wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
 add_action('wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
 add_action('wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
+add_action( 'wp_dashboard_setup', 'edac_wp_dashboard_setup');
+
+/**
+ * Init the plugin
+ */
+function edac_init() {
+	// instantiate the classes that need to load hooks early.
+	$rest_api = new \EDAC\Rest_Api();
+}
 
 /**
  * Create/Update database
@@ -791,6 +765,23 @@ if ( $rules ) {
 			require_once plugin_dir_path( __FILE__ ) . 'includes/rules/' . $rule['slug'] . '.php';
 		}
 	}
+}
+
+/**
+ * Add dashboard widget
+ *
+ * @return void
+ */
+function edac_wp_dashboard_setup() {
+	wp_add_dashboard_widget(
+		'edac_dashboard_scan_summary',
+		'Accessibility Checker',
+		array(
+			'\EDAC\Widgets',
+			'render_dashboard_scan_summary',
+		) 
+	);
+
 }
 
 /**

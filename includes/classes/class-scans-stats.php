@@ -49,13 +49,12 @@ class Scans_Stats {
 	 * Constructor
 	 *
 	 * @param integer $cache_time number of seconds to return the results from cache.
-	 * @param integer $record_limit max number of records to be returned in query.
 	 */
-	public function __construct( $cache_time = 60 * 60 * 24, $record_limit = 100000 ) {
+	public function __construct( $cache_time = 60 * 60 * 24 ) {
 	
 		$this->cache_time = $cache_time;
-		$this->cache_name_prefix = 'edac_scans_stats_' . $record_limit;
-		$this->record_limit = $record_limit;
+		$this->cache_name_prefix = 'edac_scans_stats';
+		$this->record_limit = 100000;
 		$this->rule_count = count( edac_register_rules() );
 	
 	}
@@ -63,16 +62,12 @@ class Scans_Stats {
 	/**
 	 * Load all stats into the cache. Should be called by a background scheduled.
 	 * 
-	 * @param integer $cache_time number of seconds to return the results from cache.
-	 * @param integer $record_limit max number of records to be returned in query.
 	 * @return void
 	 */
-	public static function load_cache( $cache_time = 60 * 60 * 24, $record_limit = 100000 ) {
+	public function load_cache() {
 		
-		$scans_stats = new Scans_Stats( $cache_time, $record_limit );
-			
 		// Cache the summary.
-		$scans_stats->summary();
+		$this->summary();
 				
 		// Cache the post_types.
 		$scannable_post_types = Settings::get_scannable_post_types();
@@ -88,7 +83,7 @@ class Scans_Stats {
 			
 		foreach ( $post_types as $post_type ) {
 			if ( in_array( $post_type, $scannable_post_types ) ) {
-				   $scans_stats->issues_summary_by_post_type( $post_type ); 
+				$this->issues_summary_by_post_type( $post_type ); 
 			}
 		}
 	
@@ -130,16 +125,20 @@ class Scans_Stats {
 		$transient_name = $this->cache_name_prefix . '_summary';
 
 		$cache = get_transient( $transient_name );
-		
-		
+
 		if ( $this->cache_time && $cache ) {
 
-			$full_scan_completed_at = (int) get_option( 'edacp_fullscan_completed_at' );
-
-			if ( $full_scan_completed_at < $cache['cached_at'] ) {
-				// There hasn't been a full scan completed since we've cached, so return these results.
-				return $cache;
-			}
+		
+			if ( $cache['expires_at'] >= time() && $cache['cached_at'] + $this->cache_time >= time() 
+			) {
+		
+				$full_scan_completed_at = (int) get_option( 'edacp_fullscan_completed_at' );
+				if ( $full_scan_completed_at <= $cache['cached_at'] ) {
+					// There hasn't been a full scan completed since we've cached, so return these results.
+					$cache['cache_hit'] = true;
+					return $cache;
+				}           
+			}       
 		}
 
 	
@@ -264,6 +263,8 @@ class Scans_Stats {
 
 		$data['cache_id'] = $transient_name; 
 		$data['cached_at'] = time(); 
+		$data['expires_at'] = time() + $this->cache_time; 
+		$data['cache_hit'] = false;
 		
 
 		set_transient( $transient_name, $data, $this->cache_time );
@@ -286,11 +287,15 @@ class Scans_Stats {
 	
 		if ( $this->cache_time && $cache ) {
 
-			$full_scan_completed_at = (int) get_option( 'edacp_fullscan_completed_at' );
-
-			if ( $full_scan_completed_at < $cache['cached_at'] ) {
-				// There hasn't been a full scan completed since we've cached, so return these results.
-				return $cache;
+			if ( $cache['expires_at'] >= time() && $cache['cached_at'] + $this->cache_time >= time() 
+			) {
+		
+				$full_scan_completed_at = (int) get_option( 'edacp_fullscan_completed_at' );
+				if ( $full_scan_completed_at <= $cache['cached_at'] ) {
+					// There hasn't been a full scan completed since we've cached, so return these results.
+					$cache['cache_hit'] = true;
+					return $cache;
+				}           
 			}       
 		}
 
@@ -339,7 +344,9 @@ class Scans_Stats {
 	
 		$data['cache_id'] = $transient_name; 
 		$data['cached_at'] = time(); 
-		
+		$data['expires_at'] = time() + $this->cache_time; 
+		$cache['cache_hit'] = false;
+
 		set_transient( $transient_name, $data, $this->cache_time );
 
 	

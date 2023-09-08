@@ -555,7 +555,8 @@ window.addEventListener("load", function() {
   }
 
   edac_timestamp_to_local();
-
+  
+  
 });
 
 
@@ -566,6 +567,7 @@ const fillDashboardWidget = () => {
   getData(edac_script_vars.edacApiUrl + '/scans-stats').then((data) => {
     if(data.success){
  
+      
       // Set passed %
       const passed_percentage = data.stats.passed_percentage;
       const passed_percentage_el = document.querySelector('#edac-summary-passed');
@@ -581,10 +583,17 @@ const fillDashboardWidget = () => {
       
       // Set completed_at
       const completed_at = data.stats.fullscan_completed_at;
+      const expires_at = data.stats.expires_at;
+      const now = Date.now();
+      const mins_to_exp = Math.round((expires_at - Math.floor(now / 1000))/60);
+      const cache_hit = data.stats.cache_hit;
       const completed_at_el = document.querySelector('#edac-summary-info-date');
       if(completed_at_el){
         completed_at_el.textContent = completed_at; 
+        completed_at_el.setAttribute('data-edac-cache-hit', cache_hit);
+        completed_at_el.setAttribute('data-edac-cache-mins-to-expiration', mins_to_exp + ' minutes');
       }
+
       
       // scanned
       const posts_scanned = data.stats.posts_scanned;
@@ -695,6 +704,8 @@ const fillDashboardWidget = () => {
 
     }
  
+    edac_timestamp_to_local();
+  
   }).catch((e) => {
     console.log(e);
     //TODO:
@@ -715,21 +726,28 @@ const fillDashboardWidget = () => {
 
     elements.forEach(function (element) {
 
-      var unixtime_in_seconds = element.textContent;
-      var d = new Date(unixtime_in_seconds * 1000).toLocaleDateString([], options);
-      var t = new Date(unixtime_in_seconds * 1000).toLocaleTimeString([], { timeStyle: 'short' });
+      if(/^[0-9]+$/.test(element.textContent)){ //if only numbers
 
-      var parts = Intl.DateTimeFormat([], { timeZoneName: 'short' }).formatToParts(new Date());
-      let tz = '';
-      for (const part of parts) {
-        if (part.type === 'timeZoneName') {
-          tz = part.value;
-          break;
+        var unixtime_in_seconds = element.textContent;
+
+        var d = new Date(unixtime_in_seconds * 1000).toLocaleDateString([], options);
+        var t = new Date(unixtime_in_seconds * 1000).toLocaleTimeString([], { timeStyle: 'short' });
+
+        var parts = Intl.DateTimeFormat([], { timeZoneName: 'short' }).formatToParts(new Date());
+        let tz = '';
+        for (const part of parts) {
+          if (part.type === 'timeZoneName') {
+            tz = part.value;
+            break;
+          }
         }
-      }
 
-      element.innerHTML = '<span class="edac-date">' + d + '</span>&nbsp;<span class="edac-time">'
-        + t + '</span>&nbsp;<span class="edac-timezone">' + tz + '</span>';
+        element.innerHTML = '<span class="edac-date">' + d + '</span>&nbsp;<span class="edac-time">'
+          + t + '</span>&nbsp;<span class="edac-timezone">' + tz + '</span>';
+
+        element.classList.remove('edac-timestamp-to-local');
+      
+      }
 
     });
 
