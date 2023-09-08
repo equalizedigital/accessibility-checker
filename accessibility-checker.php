@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.5.3
+ * Version:           1.5.4
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -33,7 +33,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.5.3' );
+	define( 'EDAC_VERSION', '1.5.4' );
 }
 
 // Current database version.
@@ -159,15 +159,25 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Rest_Api.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rest-api.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Issues_Query.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Scan_Report_Data.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Widgets.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Welcome_Page.php';
 
-
+function create_custom_post_type() {
+    register_post_type('custom_type', array(
+        'labels' => array(
+            'name' => 'Custom Types',
+            'singular_name' => 'Custom Type',
+        ),
+        'public' => true,
+        'has_archive' => true,
+    ));
+}
+add_action('init', 'create_custom_post_type');
 
 /**
  * Filters and Actions
@@ -179,6 +189,7 @@ add_action(
 		$rest_api = new \EDAC\Rest_Api();
 	}
 );
+
 
 add_action(
 	'wp_dashboard_setup',
