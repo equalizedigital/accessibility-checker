@@ -46,7 +46,7 @@ class Widgets {
 		if ( ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) || '' != $pro_modal_html ) {
 	
 			$html .= '
-			<div class="edac-summary edac-modal-container">';
+			<div class="edac-summary edac-modal-container edac-hidden">';
 
 			$html .= $pro_modal_html;
 		
@@ -116,7 +116,7 @@ class Widgets {
 
 		$html .= '
 		
-		<div class="edac-issues-summary">
+		<div class="edac-issues-summary edac-hidden">
 
 			<h3 class="edac-issues-summary-header">
 				' . __( 'Issues By Post Type', 'accessibility-checker' ) . '

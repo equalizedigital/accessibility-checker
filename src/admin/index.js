@@ -654,12 +654,16 @@ const fillDashboardWidget = () => {
       // truncated notice
       const is_truncated = data.stats.is_truncated;
       const is_truncated_el = document.querySelector('.edac-summary-notice-is-truncated');
-      if(is_truncated_el){
+      if(is_truncated_el && is_truncated){
         is_truncated_el.classList.remove('edac-hidden');
       }
     
 
-
+      const wrapper = document.querySelector('.edac-summary.edac-modal-container');
+      if(wrapper){
+        wrapper.classList.remove('edac-hidden');
+      }
+      
 	
       edac_timestamp_to_local();
     
@@ -704,6 +708,11 @@ const fillDashboardWidget = () => {
 
     }
  
+    const wrapper = document.querySelector('.edac-issues-summary');
+    if(wrapper){
+      wrapper.classList.remove('edac-hidden');
+    }
+
     edac_timestamp_to_local();
   
   }).catch((e) => {
