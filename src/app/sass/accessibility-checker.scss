@@ -269,6 +269,10 @@ body {
                         background-color: $color-white !important;
                         cursor: pointer !important;
                     }
+                    &:disabled {
+                        display: none !important;
+                    }
+                
                 }
             }
             .edac-highlight-disable-styles{
