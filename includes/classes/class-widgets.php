@@ -242,7 +242,7 @@ class Widgets {
 		}
 
 		
-		$html .='
+		$html .= '
 		<div class="edac-buttons-container edac-mt-3 edac-mb-3">
 		';
 
@@ -269,7 +269,7 @@ class Widgets {
 		$html .= '<a target="_blank" aria-label="' . __( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="https://equalizedigital.com/resources/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'Blog', 'accessibility-checker' ) . '</a>';
 		$html .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" aria-label="' . __( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'Documentation', 'accessibility-checker' ) . '</a></div></div>';
 
-		echo $html;
+		echo esc_html( $html );
 
 	}
 

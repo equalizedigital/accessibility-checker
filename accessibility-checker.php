@@ -164,7 +164,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Issues_Query.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Widgets.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Welcome_Page.php';
 
 
@@ -180,7 +180,7 @@ add_action(
 	}
 );
 
-/*
+
 add_action(
 	'wp_dashboard_setup',
 	function() {
@@ -194,7 +194,7 @@ add_action(
 		);
 	}
 );
-*/
+
 
 
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
