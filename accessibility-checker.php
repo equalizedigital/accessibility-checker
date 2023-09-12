@@ -27,6 +27,11 @@ if ( ! defined( 'WPINC' ) ) {
 // Include plugin dependency.
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
+// Load composer packages.
+if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
+	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+}
+
 /**
  * Setup constants.
  */
@@ -134,17 +139,6 @@ if ( ! class_exists( 'simple_html_dom' ) ) {
 }
 
 include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend-highlight.php';
-
-/**
- * Include TextStatistics
- */
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Maths.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Pluralise.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Resource.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Syllables.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Text.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/TextStatistics.php';
-use DaveChild\TextStatistics as TS;
 
 /**
  * Import Resources
@@ -1018,8 +1012,13 @@ function edac_summary( $post_id ) {
 	$content                  = $content_post->post_content;
 	$content                  = wp_filter_nohtml_kses( $content );
 	$content                  = str_replace( ']]>', ']]&gt;', $content );
-	$text_statistics          = new TS\TextStatistics();
-	$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
+	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
+		$text_statistics          = new DaveChild\TextStatistics\TextStatistics();
+		$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
+	} else {
+		$summary['content_grade'] = 0;
+	}
+	
 	$summary['readability']   = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
@@ -1464,15 +1463,20 @@ function edac_readability_ajax() {
 	}
 	$content         = wp_filter_nohtml_kses( $content );
 	$content         = str_replace( ']]>', ']]&gt;', $content );
-	$text_statistics = new TS\TextStatistics();
-
+	
 	// get readability metadata and determine if a simplified summary is required.
 	$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 	$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 	$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
 	$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
 
-	$simplified_summary_grade        = edac_ordinal( floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) ) );
+	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
+		$text_statistics = new DaveChild\TextStatistics\TextStatistics();
+		$simplified_summary_grade = edac_ordinal( floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) ) );
+	} else {
+		$simplified_summary_grade = 0;
+	}
+	
 	$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
 	$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
 
