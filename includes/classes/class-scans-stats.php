@@ -48,7 +48,8 @@ class Scans_Stats {
 	/**
 	 * Constructor
 	 *
-	 * @param integer $cache_type number of seconds to return the results from cache.
+	 * @param integer $cache_time number of seconds to return the results from cache.
+	 * @param integer $record_limit max number of issues to consider for results.
 	 */
 	public function __construct( $cache_time = 60 * 60 * 24, $record_limit = 100000 ) {
 	
@@ -151,8 +152,7 @@ class Scans_Stats {
 		$data['distinct_ignored'] = (int) $ignored_issues_query->distinct_count();
 		
 		
-		$data['posts_without_issues']  = $wpdb->get_var( 
-			"SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}  
+		$sql = "SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}  
 			LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
 			$wpdb->prefix . 'accessibility_checker.postid WHERE ' . 
 			$wpdb->prefix . 'accessibility_checker.postid IS NULL and post_type IN(' . 
@@ -161,8 +161,10 @@ class Scans_Stats {
 			) . ') and
 			post_status IN(' . Helpers::array_to_sql_safe_list( 
 				Settings::get_scannable_post_statuses()
-			) . ')'
-		);
+			) . ')';
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$data['posts_without_issues']  = $wpdb->get_var( $sql );
 
 		$data['avg_issues_per_post'] = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
 	
@@ -218,7 +220,7 @@ class Scans_Stats {
 	/**
 	 * Gets issues summary information about a post type
 	 *
-	 * @param string $post_type
+	 * @param string $post_type post type.
 	 * @return array .
 	 */
 	public function issues_summary_by_post_type( $post_type ) {
