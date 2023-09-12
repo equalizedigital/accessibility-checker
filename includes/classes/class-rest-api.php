@@ -56,8 +56,7 @@ class REST_Api {
 							$messages = array();
 							$messages['time'] = time();
 							$messages['perms'] = current_user_can( 'edit_posts' );
-							$messages['method'] = $_SERVER['REQUEST_METHOD'];
-				
+						
 							return new \WP_REST_Response( array( 'messages' => $messages ), 200 );
 						},
 						'permission_callback' => function () {
@@ -216,9 +215,7 @@ class REST_Api {
 							}
 						}
 
-						// TODO:
-						// $selector = $violation['selector'];
-						// $tags = $violation['tags'];
+						// TODO: add support storing $violation['selector'], $violation['tags'].
 						
 						// This rule is one that we've included in our js ruleset.
 						// Write the rule/violation data to the db.
