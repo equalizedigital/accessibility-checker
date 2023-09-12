@@ -116,6 +116,7 @@ function edac_check_ambiguous_phrase( $text ) {
 
 	// phrases.
 	$ambiguous_phrases = array(
+		__( 'click', 'edac' ),
 		__( 'click here', 'edac' ),
 		__( 'here', 'edac' ),
 		__( 'go here', 'edac' ),
@@ -134,11 +135,6 @@ function edac_check_ambiguous_phrase( $text ) {
 		__( 'keep reading', 'edac' ),
 		__( 'learn more', 'edac' ),
 	);
-
-	// check if text contains phrase.
-	if ( strpos( $text, __( 'click here', 'edac' ) ) == true || strpos( $text, __( 'click', 'edac' ) ) == true ) {
-		return true;
-	}
 
 	// remove all but letters.
 	$text = preg_replace( '/[^a-z]+/i', ' ', $text );
