@@ -17,59 +17,70 @@ function edac_rule_img_alt_invalid( $content, $post ) {
 	$dom = $content['html'];
 
 	$starts_with_keywords = array(
-		__( 'graphic of', 'edac' ),
-		__( 'bullet', 'edac' ),
-		__( 'image of', 'edac' ),
+		__( 'graphic of', 'accessibility-checker' ),
+		__( 'bullet', 'accessibility-checker' ),
+		__( 'image of', 'accessibility-checker' ),
 	);
 
 	$ends_with_keywords = array(
-		__( 'image', 'edac' ),
-		__( 'graphic', 'edac' ),
+		__( 'image', 'accessibility-checker' ),
+		__( 'graphic', 'accessibility-checker' ),
 	);
 
 	$image_extensions = array(
-		__( '.apng', 'edac' ),
-		__( '.bmp', 'edac' ),
-		__( '.gif', 'edac' ),
-		__( '.ico', 'edac' ),
-		__( '.cur', 'edac' ),
-		__( '.jpg', 'edac' ),
-		__( '.jpeg', 'edac' ),
-		__( '.jfif', 'edac' ),
-		__( '.pjpeg', 'edac' ),
-		__( '.pjp', 'edac' ),
-		__( '.png', 'edac' ),
-		__( '.svg', 'edac' ),
-		__( '.tif', 'edac' ),
-		__( '.tiff', 'edac' ),
-		__( '.webp', 'edac' ),
+		__( '.apng', 'accessibility-checker' ),
+		__( '.bmp', 'accessibility-checker' ),
+		__( '.gif', 'accessibility-checker' ),
+		__( '.ico', 'accessibility-checker' ),
+		__( '.cur', 'accessibility-checker' ),
+		__( '.jpg', 'accessibility-checker' ),
+		__( '.jpeg', 'accessibility-checker' ),
+		__( '.jfif', 'accessibility-checker' ),
+		__( '.pjpeg', 'accessibility-checker' ),
+		__( '.pjp', 'accessibility-checker' ),
+		__( '.png', 'accessibility-checker' ),
+		__( '.svg', 'accessibility-checker' ),
+		__( '.tif', 'accessibility-checker' ),
+		__( '.tiff', 'accessibility-checker' ),
+		__( '.webp', 'accessibility-checker' ),
 	);
 
 	$keywords = array(
-		__( 'graphic of', 'edac' ),
-		__( 'bullet', 'edac' ),
-		__( 'image of', 'edac' ),
-		__( 'image', 'edac' ),
-		__( 'graphic', 'edac' ),
-		__( 'image', 'edac' ),
-		__( 'graphic', 'edac' ),
-		__( 'photo', 'edac' ),
-		__( 'photograph', 'edac' ),
-		__( 'drawing', 'edac' ),
-		__( 'painting', 'edac' ),
-		__( 'artwork', 'edac' ),
-		__( 'logo', 'edac' ),
-		__( 'bullet', 'edac' ),
-		__( 'button', 'edac' ),
-		__( 'arrow', 'edac' ),
-		__( 'more', 'edac' ),
-		__( 'spacer', 'edac' ),
-		__( 'blank', 'edac' ),
-		__( 'chart', 'edac' ),
-		__( 'table', 'edac' ),
-		__( 'diagram', 'edac' ),
-		__( 'graph', 'edac' ),
-		__( '*', 'edac' ),
+		__( 'graphic of', 'accessibility-checker' ),
+		__( 'bullet', 'accessibility-checker' ),
+		__( 'image of', 'accessibility-checker' ),
+		__( 'image', 'accessibility-checker' ),
+		__( 'graphic', 'accessibility-checker' ),
+		__( 'image', 'accessibility-checker' ),
+		__( 'graphic', 'accessibility-checker' ),
+		__( 'photo', 'accessibility-checker' ),
+		__( 'photograph', 'accessibility-checker' ),
+		__( 'drawing', 'accessibility-checker' ),
+		__( 'painting', 'accessibility-checker' ),
+		__( 'artwork', 'accessibility-checker' ),
+		__( 'logo', 'accessibility-checker' ),
+		__( 'bullet', 'accessibility-checker' ),
+		__( 'button', 'accessibility-checker' ),
+		__( 'arrow', 'accessibility-checker' ),
+		__( 'more', 'accessibility-checker' ),
+		__( 'spacer', 'accessibility-checker' ),
+		__( 'blank', 'accessibility-checker' ),
+		__( 'chart', 'accessibility-checker' ),
+		__( 'table', 'accessibility-checker' ),
+		__( 'diagram', 'accessibility-checker' ),
+		__( 'graph', 'accessibility-checker' ),
+		__( '*', 'accessibility-checker' ),
+	);
+
+	$contains = array(
+		'_',
+		'img',
+		'jpg',
+		'jpeg',
+		'apng',
+		'png',
+		'svg',
+		'webp',
 	);
 
 	$errors = array();
@@ -80,67 +91,81 @@ function edac_rule_img_alt_invalid( $content, $post ) {
 			if ( isset( $image ) ) {
 				$error = false;
 				$alt = strtolower( $image->getAttribute( 'alt' ) );
+				$alt_trimmed = preg_replace( '/\s+/', ' ', trim( $alt ) );
 				$image_code = $image->outertext;
-
+				
 				// ignore certain images.
 				if ( ac_img_alt_ignore_plugin_issues( $image_code ) ) {
-					goto img_alt_invalid_bottom;
+					break;
 				}
 
 				// ignore images with captions.
 				if ( ac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
-					goto img_alt_invalid_bottom;
+					break;
 				}
-
+				
 				// check if alt contains only whitespace.
 				if ( strlen( $alt ) > 0 && ctype_space( $alt ) == true ) {
 					$error = true;
-					goto img_alt_invalid_bottom;
 				}
 
 				// check if string begins with.
-				if ( $starts_with_keywords ) {
+				if ( false === $error && $starts_with_keywords ) {
 					foreach ( $starts_with_keywords as $starts_with_keyword ) {
 						if ( ac_starts_with( $alt, $starts_with_keyword ) ) {
 							$error = true;
-							goto img_alt_invalid_bottom;
+							break;
 						}
 					}
 				}
 
 				// check if string ends with.
-				if ( $ends_with_keywords ) {
+				if ( false === $error && $ends_with_keywords ) {
 					foreach ( $ends_with_keywords as $ends_with_keyword ) {
 						if ( ac_ends_with( $alt, $ends_with_keyword ) ) {
 							$error = true;
-							goto img_alt_invalid_bottom;
+							break;
 						}
 					}
 				}
 
 				// check for image extensions.
-				if ( $image_extensions ) {
+				if ( false === $error && $image_extensions ) {
 					foreach ( $image_extensions as $image_extension ) {
 						if ( strpos( $alt, $image_extension ) == true ) {
 							$error = true;
-							goto img_alt_invalid_bottom;
+							break;
 						}
 					}
 				}
 
-				// check for keywords.
-				if ( $keywords ) {
+				// check for specific keyword matches.
+				if ( false === $error && $keywords ) {
 					foreach ( $keywords as $keyword ) {
-						// remove spaces.
-						$alt = str_replace( ' ', '', $alt );
-						if ( $alt == $keyword ) {
+						if ( $alt_trimmed == $keyword ) {
 							$error = true;
-							goto img_alt_invalid_bottom;
+							break;
 						}
 					}
 				}
 
-				img_alt_invalid_bottom:
+				// check if the alt contains a keyword or phrase.
+				if ( false === $error && $contains ) {
+					foreach ( $contains as $keyword ) {
+						if ( stripos( $alt, $keyword ) !== false ) {
+							$error = true;
+							break;
+						}
+					}
+				}
+				
+				// check if the alt is composed of only numbers.
+				if ( false === $error ) {
+					if ( ctype_digit( $alt_trimmed ) ) {
+						$error = true;
+					}
+				}
+
 				if ( true === $error ) {
 					$errors[] = $image_code;
 				}
