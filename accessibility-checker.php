@@ -27,6 +27,11 @@ if ( ! defined( 'WPINC' ) ) {
 // Include plugin dependency.
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
+// Load composer packages.
+if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
+	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+}
+
 /**
  * Setup constants.
  */
