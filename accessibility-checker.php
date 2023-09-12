@@ -159,7 +159,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Rest_Api.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rest-api.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Issues_Query.php';
