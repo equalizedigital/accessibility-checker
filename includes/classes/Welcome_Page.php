@@ -179,7 +179,7 @@ class Welcome_Page {
 			if ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true ) ) ) {
 	
 				$html .= '
-				<section>
+					<section>
 					<div class="edac-cols edac-cols-header">
 						<h3 class="edac-cols-left">' . esc_html__( 'Site-Wide Accessibility Reports', 'accessibility-checker' ) . '</h3>
 
@@ -201,10 +201,9 @@ class Welcome_Page {
 							</div>	
 						</div>					
 					</div>
-				</section>';
 
-			}
-
+					</section>';
+			}       
 		}
 		
 		$html .= '

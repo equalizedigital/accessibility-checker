@@ -514,41 +514,6 @@
 
 
     /**
-     * Helper function to convert unixtime timestamp to the local date time.
-     */
-    function edac_timestamp_to_local() {
-
-      var options = { year: "numeric", month: "short", day: "numeric" };
-
-      var elements = document.querySelectorAll(".edac-timestamp-to-local");
-
-      elements.forEach(function (element) {
-
-        var unixtime_in_seconds = element.textContent;
-        var d = new Date(unixtime_in_seconds * 1000).toLocaleDateString([], options);
-        var t = new Date(unixtime_in_seconds * 1000).toLocaleTimeString([], { timeStyle: 'short' });
-
-        var parts = Intl.DateTimeFormat([], { timeZoneName: 'short' }).formatToParts(new Date());
-        let tz = '';
-        for (const part of parts) {
-          if (part.type === 'timeZoneName') {
-            tz = part.value;
-            break;
-          }
-        }
-
-        element.innerHTML = '<span class="edac-date">' + d + '</span>&nbsp;<span class="edac-time">'
-          + t + '</span>&nbsp;<span class="edac-timezone">' + tz + '</span>';
-
-      });
-
-
-    };
-    edac_timestamp_to_local();
-
-
-
-    /**
      * Handle widget modal close click
      * @param {*} event
      */
@@ -582,6 +547,234 @@
 
 
 })(jQuery);
+
+window.addEventListener("load", function() {
+  
+  if(this.document.querySelector('.edac-widget .edac-summary')){
+    fillDashboardWidget();
+  }
+
+  edac_timestamp_to_local();
+  
+  
+});
+
+
+// Fill the dashboard widget
+const fillDashboardWidget = () => {
+
+
+  getData(edac_script_vars.edacApiUrl + '/scans-stats').then((data) => {
+    if(data.success){
+ 
+      
+      // Set passed %
+      const passed_percentage = data.stats.passed_percentage;
+      const passed_percentage_el = document.querySelector('#edac-summary-passed');
+      if(passed_percentage_el){
+        passed_percentage_el.setAttribute('aria-valuenow', passed_percentage );
+        passed_percentage_el.style.background = 
+          'radial-gradient(closest-side, white 85%, transparent 80% 100%), conic-gradient(#006600 ' + passed_percentage + '%, #e2e4e7 0)';
+      }
+      const passed_percentage_text_el = document.querySelector('#edac-summary-passed .edac-progress-percentage');
+      if(passed_percentage_text_el){
+        passed_percentage_text_el.textContent = passed_percentage + '%';
+      }
+      
+      // Set completed_at
+      const completed_at = data.stats.fullscan_completed_at;
+      const expires_at = data.stats.expires_at;
+      const now = Date.now();
+      const mins_to_exp = Math.round((expires_at - Math.floor(now / 1000))/60);
+      const cache_hit = data.stats.cache_hit;
+      const completed_at_el = document.querySelector('#edac-summary-info-date');
+      if(completed_at_el){
+        completed_at_el.textContent = completed_at; 
+        completed_at_el.setAttribute('data-edac-cache-hit', cache_hit);
+        completed_at_el.setAttribute('data-edac-cache-mins-to-expiration', mins_to_exp + ' minutes');
+      }
+
+      
+      // scanned
+      const posts_scanned = data.stats.posts_scanned;
+      const posts_scanned_el = document.querySelector('#edac-summary-info-count');
+      if(posts_scanned_el){
+        posts_scanned_el.textContent = posts_scanned;
+      }
+
+      
+      // errors
+      const errors = data.stats.distinct_errors_without_contrast;
+      const errors_container_el = document.querySelector('.edac-summary-info-stats-box-error');
+      if(errors > 0 && errors_container_el){
+        errors_container_el.classList.add('has-errors');
+      }
+      const errors_el = document.querySelector('#edac-summary-info-errors');
+      if(errors_el){
+        errors_el.textContent = errors;
+      }
+      
+      // constrast errors
+      const contrast_errors = data.stats.distinct_contrast_errors;
+      const contrast_container_el = document.querySelector('.edac-summary-info-stats-box-contrast');
+      if(errors > 0 && contrast_container_el){
+        contrast_container_el.classList.add('has-errors');
+      }
+      const contrast_errors_el = document.querySelector('#edac-summary-info-contrast-errors');
+      if(contrast_errors_el){
+        contrast_errors_el.textContent = contrast_errors;
+      }
+      
+
+      // warnings
+      const warnings = data.stats.distinct_warnings;
+      const warnings_container_el = document.querySelector('.edac-summary-info-stats-box-warning');
+      if(warnings > 0 && warnings_container_el){
+        warnings_container_el.classList.add('has-warning');
+      }
+      const warnings_el = document.querySelector('#edac-summary-info-warnings');
+      if(warnings_el){
+        warnings_el.textContent = warnings;
+      }
+      
+      
+      // summary notice
+      if(errors + contrast_errors + warnings > 0){
+        const has_issues_notice_el = document.querySelector('.edac-summary-notice-has-issues');
+        if(has_issues_notice_el){
+          has_issues_notice_el.classList.remove('edac-hidden');
+        }
+      } else {
+        const has_no_issues_notice_el = document.querySelector('.edac-summary-notice-no-issues');
+        if(has_no_issues_notice_el){
+          has_no_issues_notice_el.classList.remove('edac-hidden');
+        }
+      }
+
+      // truncated notice
+      const is_truncated = data.stats.is_truncated;
+      const is_truncated_el = document.querySelector('.edac-summary-notice-is-truncated');
+      if(is_truncated_el && is_truncated){
+        is_truncated_el.classList.remove('edac-hidden');
+      }
+    
+
+      const wrapper = document.querySelector('.edac-summary.edac-modal-container');
+      if(wrapper){
+        wrapper.classList.remove('edac-hidden');
+      }
+      
+	
+      edac_timestamp_to_local();
+    
+    }
+  }).catch((e) => {
+    //TODO:
+  });
+
+
+  getData(edac_script_vars.edacApiUrl + '/scans-stats-by-post-types').then((data) => {
+ 
+    if(data.success){
+      
+      Object.entries(data.stats).forEach(([key, value]) => {
+        
+        if( data.stats[key] ){
+        
+          const errors = value['distinct_errors_without_contrast'];
+          const contrast_errors = value['distinct_contrast_errors'];
+          const warnings = value['distinct_warnings'];
+        
+          const errors_el = document.querySelector('#' + key + '-errors');
+          if(errors_el){
+            errors_el.textContent = errors;
+          }
+
+          const contrast_errors_el = document.querySelector('#' + key + '-contrast-errors');
+          if(contrast_errors_el){
+            contrast_errors_el.textContent = contrast_errors;
+          }
+
+          const warnings_el = document.querySelector('#' + key + '-warnings');
+          if(warnings_el){
+            warnings_el.textContent = warnings;
+          }
+
+        } else {
+          //We aren't tracking stats for this post type
+          
+        }
+      });
+
+    }
+ 
+    const wrapper = document.querySelector('.edac-issues-summary');
+    if(wrapper){
+      wrapper.classList.remove('edac-hidden');
+    }
+
+    edac_timestamp_to_local();
+  
+  }).catch((e) => {
+    console.log(e);
+    //TODO:
+  });
+
+};
+
+
+
+  /**
+     * Helper function to convert unixtime timestamp to the local date time.
+     */
+  function edac_timestamp_to_local() {
+
+    var options = { year: "numeric", month: "short", day: "numeric" };
+
+    var elements = document.querySelectorAll(".edac-timestamp-to-local");
+
+    elements.forEach(function (element) {
+
+      if(/^[0-9]+$/.test(element.textContent)){ //if only numbers
+
+        var unixtime_in_seconds = element.textContent;
+
+        var d = new Date(unixtime_in_seconds * 1000).toLocaleDateString([], options);
+        var t = new Date(unixtime_in_seconds * 1000).toLocaleTimeString([], { timeStyle: 'short' });
+
+        var parts = Intl.DateTimeFormat([], { timeZoneName: 'short' }).formatToParts(new Date());
+        let tz = '';
+        for (const part of parts) {
+          if (part.type === 'timeZoneName') {
+            tz = part.value;
+            break;
+          }
+        }
+
+        element.innerHTML = '<span class="edac-date">' + d + '</span>&nbsp;<span class="edac-time">'
+          + t + '</span>&nbsp;<span class="edac-timezone">' + tz + '</span>';
+
+        element.classList.remove('edac-timestamp-to-local');
+      
+      }
+
+    });
+
+
+  };
+  
+
+const getData = async (url = "", data = {}) => {
+  const response = await fetch(url, {
+    method: "GET",
+      headers: { 
+        'X-WP-Nonce' : edac_script_vars.restNonce 
+    }
+  });
+  return response.json();
+}
+
+
 
 
 const postData = async (url = "", data = {}) => {

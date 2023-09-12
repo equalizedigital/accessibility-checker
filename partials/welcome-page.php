@@ -85,7 +85,7 @@
 		
 			<div class="edac-flex-container">
 		<?php
-		if (  edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+		if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
 			?>
 				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
 					<h3><?php _e('Plugin Support', 'accessibility-checker'); ?></h3>
