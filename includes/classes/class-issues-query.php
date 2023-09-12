@@ -57,7 +57,9 @@ class Issues_Query {
 	/**
 	 * Constructor
 	 *
-	 * @param array $filter [post_types, rule_types, rule_slugs].
+	 * @param array   $filter [post_types, rule_types, rule_slugs].
+	 * @param integer $record_limit Max number of records we'll query.
+	 * @param string  $ignored_flag Flag used to determine how ignored issues sould be handled.
 	 */
 	public function __construct( $filter = array(), $record_limit = 100000, $ignored_flag = self::IGNORE_FLAG_EXCLUDE_IGNORED ) {
 	
@@ -76,12 +78,12 @@ class Issues_Query {
 	
 		$this->record_limit = $record_limit;
 
-		// Setup FROM
+		// Setup FROM.
 		global $wpdb;
 		$this->table = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 		$this->query['from'] = " FROM {$this->table} ";
 		
-		// Setup base WHERE
+		// Setup base WHERE.
 		$siteid = get_current_blog_id();
 		switch ( $ignored_flag ) {
 			case self::IGNORE_FLAG_EXCLUDE_IGNORED:
@@ -102,7 +104,7 @@ class Issues_Query {
 		}
 
 		
-		// Setup LIMIT
+		// Setup LIMIT.
 		$this->query['limit'] = $wpdb->prepare( 'LIMIT %d', array( $record_limit ) );
 		
 		
@@ -145,7 +147,10 @@ class Issues_Query {
 	public function has_truncated_results() {
 		global $wpdb;
 		
-		$total_issues_count = $wpdb->get_var( 'SELECT COUNT(*) ' . $this->query['from'] );
+		$sql = 'SELECT COUNT(*) ' . $this->query['from'];
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$total_issues_count = $wpdb->get_var( $sql );
 		if ( $total_issues_count > $this->record_limit ) {
 			return true;
 		}
@@ -164,7 +169,10 @@ class Issues_Query {
 
 		$this->query['select'] = 'SELECT COUNT(id) ';
 		
-		return $wpdb->get_var( $this->get_sql() );
+		$sql = $this->get_sql();
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->get_var( $sql );
 	
 	}
 
@@ -179,7 +187,10 @@ class Issues_Query {
 
 		$this->query['select'] = 'SELECT COUNT( DISTINCT rule, object ) ';
 		
-		return $wpdb->get_var( $this->get_sql() );
+		$sql = $this->get_sql();
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->get_var( $sql );
 	
 	}
 
@@ -194,7 +205,10 @@ class Issues_Query {
 
 		$this->query['select'] = 'SELECT id';
 		
-		return $wpdb->get_results( $this->get_sql() );
+		$sql = $this->get_sql();
+		
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->get_results( $sql );
 	
 	}
 
