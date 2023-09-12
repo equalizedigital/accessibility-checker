@@ -161,7 +161,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Rest_Api.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Helpers.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Issues_Query.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Widgets.php';
