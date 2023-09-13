@@ -60,7 +60,7 @@
     /**
      * Ajax Summary
      */
-    function edac_summary_ajax() {
+    function edac_summary_ajax( callback = null ) {
 
       let post_id = edac_script_vars.postID;
 
@@ -96,6 +96,10 @@
 
           $(".edac-summary").html(response_json.content);
 
+          if (typeof callback === 'function') {
+            callback();
+          }
+          
         } else {
 
           console.log(response);
@@ -221,8 +225,7 @@
 
                 let response_json = $.parseJSON(response.data);
 
-                edac_readability_ajax();
-                edac_summary_ajax();
+                edac_summary_ajax( edac_readability_ajax );
 
               } else {
 
@@ -271,9 +274,8 @@
           // Wait a bit to give js scan/save time to complete.
           //TODO: listen for a saveComplete event.
           setTimeout(function () {
-            edac_summary_ajax();
+            edac_summary_ajax( edac_readability_ajax );
             edac_details_ajax();
-            edac_readability_ajax();
             $(".edac-panel").removeClass("edac-panel-loading");
 
           }, 1000);
