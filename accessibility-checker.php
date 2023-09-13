@@ -27,9 +27,11 @@ if ( ! defined( 'WPINC' ) ) {
 // Include plugin dependency.
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
-// Load composer packages.
-if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
+// Load composer packages only in admin.
+if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) && is_admin() ) {
 	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+} else {
+	die();
 }
 
 /**
@@ -138,7 +140,7 @@ if ( ! class_exists( 'simple_html_dom' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class_edac_dom.php';
 }
 
-include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend-highlight.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend-highlight.php';
 
 /**
  * Include TextStatistics
@@ -290,7 +292,6 @@ function edac_update_database() {
 	} else {
 		add_option( $option_name, $new_value );
 	}
-
 }
 
 /**
@@ -823,9 +824,9 @@ function edac_summary_ajax() {
 		$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
 	}
 
-	$post_id = intval( $_REQUEST['post_id'] );
-	$summary = edac_summary( $post_id );
-	$simplified_summary_text = '';
+	$post_id                   = intval( $_REQUEST['post_id'] );
+	$summary                   = edac_summary( $post_id );
+	$simplified_summary_text   = '';
 	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
 	
 	
@@ -914,7 +915,6 @@ function edac_summary_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $html ) );
-
 }
 
 /**
@@ -1005,7 +1005,7 @@ function edac_summary( $post_id ) {
 		count( $issue_density_array[0] ) > 0  
 	) {
 		
-		$element_count = $issue_density_array[0][0];
+		$element_count  = $issue_density_array[0][0];
 		$content_length = $issue_density_array[0][1];
 		
 		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
@@ -1080,7 +1080,6 @@ function edac_anww_update_post_meta() {
 		edac_update_post_meta( 'link_blank' );
 
 	}
-
 }
 
 /**
@@ -1207,30 +1206,27 @@ function edac_details_ajax() {
 	// sort error rules by count.
 	usort(
 		$error_rules,
-		function( $a, $b ) {
+		function ( $a, $b ) {
 
 			return strcmp( $b['count'], $a['count'] );
-
 		}
 	);
 
 	// sort warning rules by count.
 	usort(
 		$warning_rules,
-		function( $a, $b ) {
+		function ( $a, $b ) {
 
 			return strcmp( $b['count'], $a['count'] );
-
 		}
 	);
 
 	// sort passed rules array by title.
 	usort(
 		$passed_rules,
-		function( $a, $b ) {
+		function ( $a, $b ) {
 
 			return strcmp( $b['title'], $a['title'] );
-
 		}
 	);
 
@@ -1255,7 +1251,7 @@ function edac_details_ajax() {
 			if ( $ignores ) {
 				foreach ( $ignores as $ignore ) {
 					if ( true === (bool) $ignore ) {
-						$count_ignored++;
+						++$count_ignored;
 					}
 				}
 			}
@@ -1365,8 +1361,8 @@ function edac_details_ajax() {
 
 						$url = add_query_arg(
 							array(
-								'edac' => $id,
-								'edac_nonce'    => wp_create_nonce( 'edac_highlight' ),
+								'edac'       => $id,
+								'edac_nonce' => wp_create_nonce( 'edac_highlight' ),
 							),
 							get_the_permalink( $postid )
 						);
@@ -1418,7 +1414,6 @@ function edac_details_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $html ) );
-
 }
 
 /**
@@ -1559,7 +1554,6 @@ function edac_readability_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $html ) );
-
 }
 
 /**
@@ -1613,7 +1607,6 @@ function edac_update_simplified_summary() {
 	}
 
 	wp_send_json_success( wp_json_encode( $simplified_summary ) );
-
 }
 
 /**
@@ -1627,7 +1620,7 @@ function edac_output_simplified_summary( $content ) {
 	if ( 'none' == $simplified_summary_prompt ) {
 		return $content;
 	} 
-	$simplified_summary = edac_simplified_summary_markup( get_the_ID() );
+	$simplified_summary          = edac_simplified_summary_markup( get_the_ID() );
 	$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
 	if ( $simplified_summary && 'before' === $simplified_summary_position ) {
 		return $simplified_summary . $content;
@@ -1802,7 +1795,6 @@ function edac_review_notice_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $results ) );
-
 }
 
 /**
@@ -1883,7 +1875,6 @@ function edac_password_protected_notice_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $results ) );
-
 }
 
 /**
@@ -1949,7 +1940,6 @@ function edac_gaad_notice() {
 		echo wp_kses_post( $message );
 
 	}
-
 }
 
 /**
@@ -1968,7 +1958,6 @@ function edac_get_gaad_promo_message() {
 	$message .= '</div>';
 
 	return $message;
-
 }
 
 /**
@@ -1999,7 +1988,6 @@ function edac_gaad_notice_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $results ) );
-
 }
 
 /**
@@ -2016,11 +2004,11 @@ function edac_dismiss_welcome_cta() {
 }
 
 
-  /**
-   * Handle AJAX request to dismiss dashboard CTA
-   *
-   * @return void
-   */
+	/**
+	 * Handle AJAX request to dismiss dashboard CTA
+	 *
+	 * @return void
+	 */
 function edac_dismiss_dashboard_cta() {
 	// Update user meta to indicate the button has been clicked
 	update_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true );
@@ -2033,7 +2021,7 @@ function edac_dismiss_dashboard_cta() {
 // Add a filter for lazyloading images using the perfmatters_lazyload hook.
 add_filter(
 	'perfmatters_lazyload',
-	function( $lazyload ) {
+	function ( $lazyload ) {
 		if ( ! isset( $_GET['edac_nonce'] ) || ! wp_verify_nonce( $_GET['edac_nonce'], 'edac_highlight' ) ) {
 			return $lazyload;
 		}
