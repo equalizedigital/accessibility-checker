@@ -74,7 +74,7 @@ class Settings {
 			')';
 		
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		$scannable_posts_count  = $wpdb->get_var( $sql );
+		$scannable_posts_count = $wpdb->get_var( $sql );
 
 		return $scannable_posts_count;
 	}
