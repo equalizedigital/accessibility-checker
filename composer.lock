@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a5ae90e5482ccaf5c61c8bafcd2f5c0",
+    "content-hash": "ed4c94b6ede9257edf06fa37783ae73a",
     "packages": [
         {
             "name": "cbschuld/browser.php",
