@@ -588,7 +588,7 @@ const fillDashboardWidget = () => {
       const mins_to_exp = Math.round((expires_at - Math.floor(now / 1000))/60);
       const cache_hit = data.stats.cache_hit;
       const completed_at_el = document.querySelector('#edac-summary-info-date');
-      if(completed_at_el){
+      if(completed_at_el && completed_at){
         completed_at_el.textContent = completed_at; 
         completed_at_el.setAttribute('data-edac-cache-hit', cache_hit);
         completed_at_el.setAttribute('data-edac-cache-mins-to-expiration', mins_to_exp + ' minutes');
