@@ -20,7 +20,7 @@ class Widgets {
 	 */
 	public static function render_dashboard_scan_summary() {
 
-		$html = '';
+		$html  = '';
 		$html .= '
 	
 		<div class="edac-widget">';
@@ -177,33 +177,30 @@ class Widgets {
 							</tr>';
 							
 				}           
+			} elseif ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+						
+				$html .= '
+						<tr >
+							<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+						</tr>';
+			
 			} else {
-						
-				if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
-						
-					$html .= '
-							<tr >
-								<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>';
-				
-				} else {
 
-					$html .= '
-							<tr >
-								<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
-								<td colspan="3">
-									<div class="edac-issues-summary-notice-upgrade-to-edacp">
-										<a href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
-											' . __( 'Upgrade to Scan', 'accessibility-checker' ) . '
-										</a>
-									</div>
-								</td>
-							</tr>';
-					
-				}           
+				$html .= '
+						<tr >
+							<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
+							<td colspan="3">
+								<div class="edac-issues-summary-notice-upgrade-to-edacp">
+									<a href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
+										' . __( 'Upgrade to Scan', 'accessibility-checker' ) . '
+									</a>
+								</div>
+							</td>
+						</tr>';
+				
 			}       
 		}   
 
@@ -246,8 +243,7 @@ class Widgets {
 		$html .= '<a target="_blank" aria-label="' . __( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="https://equalizedigital.com/resources/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'Blog', 'accessibility-checker' ) . '</a>';
 		$html .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" aria-label="' . __( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'Documentation', 'accessibility-checker' ) . '</a></div></div>';
 
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
-
 	}
-
 }
