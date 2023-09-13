@@ -362,12 +362,15 @@ function edac_str_get_html(
  */
 function edac_remove_elements( $dom, $css_selectors = array() ) {
 
-	foreach ( $css_selectors as $css_selector ) {
-		$elements = $dom->find( $css_selector );
-		foreach ( $elements as $element ) {
-			if ( null !== $element ) {
-				$element->remove();
-			}   
+	if ( $dom ) {
+		
+		foreach ( $css_selectors as $css_selector ) {
+			$elements = $dom->find( $css_selector );
+			foreach ( $elements as $element ) {
+				if ( null !== $element ) {
+					$element->remove();
+				}   
+			}
 		}
 	}
 
