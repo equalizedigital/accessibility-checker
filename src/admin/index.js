@@ -290,7 +290,6 @@
           $(".edac-tab:first-child a").addClass("active");
 
           edac_details_ajax();
-          console.log('[on_save]')
           
           refresh_summary_and_readability();
           
