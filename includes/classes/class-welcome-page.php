@@ -22,9 +22,9 @@ class Welcome_Page {
 	 */
 	public static function render_summary() {
 
-		$html = '';
+		$html        = '';
 		$scans_stats = new Scans_Stats();
-		$summary = $scans_stats->summary();
+		$summary     = $scans_stats->summary();
 		
 		
 	
@@ -173,37 +173,33 @@ class Welcome_Page {
 			$html .= '
 			</section>';
 			
-		} else {
-
-		
-			if ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true ) ) ) {
+		} elseif ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true ) ) ) {
 	
-				$html .= '
-				<section>
-					<div class="edac-cols edac-cols-header">
-						<h3 class="edac-cols-left">' . esc_html__( 'Site-Wide Accessibility Reports', 'accessibility-checker' ) . '</h3>
+			$html .= '
+			<section>
+				<div class="edac-cols edac-cols-header">
+					<h3 class="edac-cols-left">' . esc_html__( 'Site-Wide Accessibility Reports', 'accessibility-checker' ) . '</h3>
 
-						<p class="edac-cols-right"> 
-							<button id="dismiss_welcome_cta" class="button">' . esc_html__( 'Hide banner', 'accessibility-checker' ) . '</button>
-						</p>
-					</div>
+					<p class="edac-cols-right"> 
+						<button id="dismiss_welcome_cta" class="button">' . esc_html__( 'Hide banner', 'accessibility-checker' ) . '</button>
+					</p>
+				</div>
 
-					<div class="edac-modal-container"> 
-						<div class="edac-modal">
-							<div class="edac-modal-content">
-								<h3 class="edac-align-center">' . esc_html__( 'Unlock Detailed Accessibility Reports', 'accessibility-checker' ) . '</h3>
-								<p class="edac-align-center">' . esc_html__( 'Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster.', 'accessibility-checker' ) . '</p>
-								<p class="edac-align-center">
-									<a class="button button-primary" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
-										' . esc_html__( 'Upgrade Accessibility Checker', 'accessibility-checker' ) . '
-									</a>
-								</p>
-							</div>	
-						</div>					
-					</div>
-				</section>';
+				<div class="edac-modal-container"> 
+					<div class="edac-modal">
+						<div class="edac-modal-content">
+							<h3 class="edac-align-center">' . esc_html__( 'Unlock Detailed Accessibility Reports', 'accessibility-checker' ) . '</h3>
+							<p class="edac-align-center">' . esc_html__( 'Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster.', 'accessibility-checker' ) . '</p>
+							<p class="edac-align-center">
+								<a class="button button-primary" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
+									' . esc_html__( 'Upgrade Accessibility Checker', 'accessibility-checker' ) . '
+								</a>
+							</p>
+						</div>	
+					</div>					
+				</div>
+			</section>';
 
-			}
 		}
 		
 		$html .= '
@@ -211,6 +207,5 @@ class Welcome_Page {
 
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
-
 	}
 }
