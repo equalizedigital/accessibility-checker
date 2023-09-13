@@ -35,6 +35,19 @@
     /**
      * Tabs
      */
+    // Refreshe data on summary and readability tabs
+    const refresh_summary_and_readability = () => {
+
+      edac_summary_ajax( 
+        () => {
+          edac_readability_ajax();
+          $(".edac-panel").removeClass("edac-panel-loading");
+        }
+      );
+  
+    };
+
+    
     $(".edac-tab").click(function (e) {
       e.preventDefault();
       var id = $("a", this).attr("href");
@@ -47,6 +60,7 @@
       $("a", this).addClass("active").attr("aria-current", true);
     });
 
+    
     // Details Tab on click Ajax
     $(".edac-tab-details").click(function (e) {
       edac_details_ajax();
@@ -54,8 +68,13 @@
 
     // Summary Tab on click Ajax
     $(".edac-tab-summary").click(function (e) {
-      edac_summary_ajax();
+      refresh_summary_and_readability();
     });
+
+    
+    
+
+
 
     /**
      * Ajax Summary
@@ -101,7 +120,6 @@
           }
           
         } else {
-
           console.log(response);
 
         }
@@ -225,8 +243,8 @@
 
                 let response_json = $.parseJSON(response.data);
 
-                edac_summary_ajax( edac_readability_ajax );
-
+                  refresh_summary_and_readability();
+    
               } else {
 
                 console.log(response);
@@ -271,15 +289,11 @@
           $("#edac-summary").addClass("active");
           $(".edac-tab:first-child a").addClass("active");
 
-          // Wait a bit to give js scan/save time to complete.
-          //TODO: listen for a saveComplete event.
-          setTimeout(function () {
-            edac_summary_ajax( edac_readability_ajax );
-            edac_details_ajax();
-            $(".edac-panel").removeClass("edac-panel-loading");
-
-          }, 1000);
-
+          edac_details_ajax();
+          console.log('[on_save]')
+          
+          refresh_summary_and_readability();
+          
         }
         lastIsSaving = isSaving;
       });
@@ -483,7 +497,7 @@
     }
 
     if ($('.edac-summary').length) {
-      edac_summary_ajax();
+      refresh_summary_and_readability();
     }
     if ($('.edac-details').length) {
       edac_details_ajax();
@@ -492,10 +506,7 @@
     if ($('.edac-details-rule-records-record-ignore').length) {
       ignore_submit();
     }
-    if ($('.edac-readability').length) {
-      edac_readability_ajax();
-    }
-
+    
 
     $('#dismiss_welcome_cta').on('click', function() {
       // AJAX request to handle button click
