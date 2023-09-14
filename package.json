@@ -6,9 +6,9 @@
   "license": "GPL-2.0+",
   "main": "index.js",
   "scripts": {
-    "build": "composer install && npm install && npx webpack",
+    "build": "npm install && npx webpack",
     "dev": "npx webpack --watch --mode development",
-    "lint": "./vendor/bin/phpcs",
+    "lint": "./vendor/bin/phpcs -p *.php ./includes ./partials --standard=PHPCompatibility --runtime-set testVersion 5.6 --extensions=php",
     "dist": "mkdir -p ./dist && npm install && npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist && composer install"
   },
   "files": [

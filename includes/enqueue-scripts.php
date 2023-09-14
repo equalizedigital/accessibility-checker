@@ -62,6 +62,12 @@ function edac_admin_enqueue_scripts() {
 
 }
 
+/**
+ * Enqueue Styles
+ */
+function edac_enqueue_styles() {
+	wp_enqueue_style( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/css/app.css', false, EDAC_VERSION, 'all' );
+}
 
 /**
  * Enqueue scripts
@@ -135,8 +141,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 			}       
 		}
 	
-		wp_enqueue_style( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/css/app.css', false, EDAC_VERSION, 'all' );
-
+	
 		wp_localize_script(
 			'edac-app',
 			'edac_script_vars',

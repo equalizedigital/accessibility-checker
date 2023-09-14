@@ -318,16 +318,7 @@ function edac_get_content( $post ) {
 			$merged_context_opts = array_merge( $default_context_opts, $context_opts );
 			$context             = stream_context_create( $merged_context_opts );
 
-			$dom = file_get_html( $url, false, $context );
-			$content['html'] = edac_remove_elements(
-				$dom, 
-				array(
-					'#wpadminbar',            // wp admin bar.
-					'.edac-highlight-panel',  // frontend highlighter.
-					'#query-monitor-main',    // query-monitor.
-					'#qm-icon-container',     // query-monitor.
-				)
-			);
+			$content['html'] = file_get_html( $url, false, $context );
 		
 			// Write density data to post meta. 
 			$body_density_data = edac_get_body_density_data( $content['html'] );

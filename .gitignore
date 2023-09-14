@@ -2,9 +2,9 @@
 .sass-cache/
 #.codekit-config.json
 #config.codekit
-config.codekit3
+#config.codekit3
 edac_log.txt
-
+ 
 # Hidden system files
 *.DS_Store
 *[Tt]humbs.db

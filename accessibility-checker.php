@@ -15,7 +15,7 @@
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       accessibility-checker
+ * Text Domain:       edac
  * Domain Path:       /languages
  */
 
@@ -160,7 +160,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Rest_Api.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-helpers.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Issues_Query.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
@@ -200,6 +200,7 @@ add_action(
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'edac_enqueue_styles' );
 add_action( 'admin_init', 'edac_update_database', 10 );
 add_action( 'add_meta_boxes', 'edac_register_meta_boxes' );
 add_action( 'admin_menu', 'edac_add_options_page' );
@@ -232,10 +233,10 @@ add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
 add_action( 'wp_ajax_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
 add_action( 'wp_ajax_nopriv_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
-add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta' );
-add_action( 'wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta' );
-add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta' );
-add_action( 'wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta' );
+add_action('wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
 
 /**
  * Create/Update database
@@ -314,7 +315,7 @@ function edac_register_rules() {
 			'info_url'  => 'https://a11ychecker.com/help4991',
 			'slug'      => 'img_alt_empty',
 			'rule_type' => 'warning',
-			'summary'   => esc_html( 'An Image Empty Alternative Text warning appears if you have an image with an alt attribute (alt="") that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image\'s purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning.' ),
+			'summary'   => esc_html( 'An Image Empty Alternative Text warning appears if you have an image with an alt attribute (alt="") that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image’s purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning.' ),
 		)
 	);
 
@@ -556,7 +557,7 @@ function edac_register_rules() {
 			'info_url'  => 'https://a11ychecker.com/help4109',
 			'slug'      => 'empty_form_label',
 			'rule_type' => 'error',
-			'summary'   => esc_html( 'An Empty Form Label error is triggered when a <label> tag is present in your form and associated with an input (form field), but does not contain any text. To fix empty form label errors, you\'ll need to determine how the field and form were created and then add text to the label for the field that is currently blank.' ),
+			'summary'   => esc_html( 'An Empty Form Label error is triggered when a <label> tag is present in your form and associated with an input (form field), but does not contain any text. To fix empty form label errors, you’ll need to determine how the field and form were created and then add text to the label for the field that is currently blank.' ),
 		)
 	);
 
@@ -567,7 +568,7 @@ function edac_register_rules() {
 			'info_url'  => 'https://a11ychecker.com/help1949',
 			'slug'      => 'missing_form_label',
 			'rule_type' => 'error',
-			'summary'   => esc_html( 'A Missing Form Label error is triggered when an <input> (form field) is present in your form and but is not associated with a <label> element. This could mean the label is present but is missing a for="" attribute to connect it to the applicable field or there could be no label present at all and only an <input> tag. To fix missing form label errors, you\'ll need to determine how the field and form were created and then add field labels or a correct for="" attribute to exisiting labels that are not connected to a field.' ),
+			'summary'   => esc_html( 'A Missing Form Label error is triggered when an <input> (form field) is present in your form and but is not associated with a <label> element. This could mean the label is present but is missing a for="" attribute to connect it to the applicable field or there could be no label present at all and only an <input> tag. To fix missing form label errors, you’ll need to determine how the field and form were created and then add field labels or a correct for="" attribute to exisiting labels that are not connected to a field.' ),
 		)
 	);
 
@@ -667,7 +668,7 @@ function edac_register_rules() {
 			'slug'      => 'color_contrast_failure',
 			'rule_type' => 'error',
 			'summary'   => esc_html( 'Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be "false positives" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors.' ),
-			// 'ruleset'   => 'js',
+			//'ruleset'   => 'js',
 		)
 	);
 
@@ -995,10 +996,7 @@ function edac_summary( $post_id ) {
 	$issue_density_array = get_post_meta( $post_id, '_edac_density_data' );
 	
 	
-	if ( is_array( $issue_density_array ) &&
-		count( $issue_density_array ) > 0 &&
-		count( $issue_density_array[0] ) > 0  
-	) {
+	if ( is_array( $issue_density_array ) ) {
 		
 		$element_count = $issue_density_array[0][0];
 		$content_length = $issue_density_array[0][1];
@@ -1366,7 +1364,7 @@ function edac_details_ajax() {
 							get_the_permalink( $postid )
 						);
 
-						$html .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . __( 'View, opens a new window', 'accessibility-checker' ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>View on page</a>';
+						$html .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . __( 'View, opens a new window', 'edac' ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>View on page</a>';
 					}
 
 						$html .= '</div>';
@@ -1388,7 +1386,7 @@ function edac_details_ajax() {
 						$html .= ( true === $ignore_permission ) ? '<button class="edac-details-rule-records-record-ignore-submit" data-id=' . $id . ' data-action=' . $ignore_action . ' data-type=' . $ignore_type . '>' . EDAC_SVG_IGNORE_ICON . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . $ignore_submit_label . '<span></button>' : '';
 					}
 
-							$html .= ( false === $ignore_permission && false === $ignore ) ? __( 'Your user account doesn\'t have permission to ignore this issue.', 'accessibility-checker' ) : '';
+							$html .= ( false === $ignore_permission && false === $ignore ) ? __( 'Your user account doesn\'t have permission to ignore this issue.', 'edac' ) : '';
 
 						$html .= '</div>';
 
@@ -1681,11 +1679,11 @@ function edac_get_accessibility_statement() {
 	$policy_page            = is_numeric( $policy_page ) ? get_page_link( $policy_page ) : $policy_page;
 
 	if ( $add_footer_statement ) {
-		$statement .= get_bloginfo( 'name' ) . ' ' . esc_html__( 'uses', 'accessibility-checker' ) . ' <a href="https://equalizedigital.com/accessibility-checker" target="_blank" aria-label="' . esc_attr__( 'Accessibility Checker', 'accessibility-checker' ) . ', opens a new window">' . esc_html__( 'Accessibility Checker', 'accessibility-checker' ) . '</a> ' . esc_html__( 'to monitor our website\'s accessibility. ', 'accessibility-checker' );
+		$statement .= get_bloginfo( 'name' ) . ' ' . esc_html__( 'uses', 'edac' ) . ' <a href="https://equalizedigital.com/accessibility-checker" target="_blank" aria-label="' . esc_attr__( 'Accessibility Checker', 'edac' ) . ', opens a new window">' . esc_html__( 'Accessibility Checker', 'edac' ) . '</a> ' . esc_html__( 'to monitor our website\'s accessibility. ', 'edac' );
 	}
 
 	if ( $include_statement_link && $policy_page ) {
-		$statement .= esc_html__( 'Read our ', 'accessibility-checker' ) . '<a href="' . $policy_page . '">' . esc_html__( 'Accessibility Policy', 'accessibility-checker' ) . '</a>.';
+		$statement .= esc_html__( 'Read our ', 'edac' ) . '<a href="' . $policy_page . '">' . esc_html__( 'Accessibility Policy', 'edac' ) . '</a>.';
 	}
 
 	return $statement;
@@ -1747,12 +1745,12 @@ function edac_review_notice() {
 	?>
 	<div class="notice notice-info edac-review-notice">
 		<p>
-			<?php esc_html_e( "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!", 'accessibility-checker' ); ?>
+			<?php esc_html_e( "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!", 'edac' ); ?>
 		</p>
 		<p>
-			<button class="edac-review-notice-review"><?php esc_html_e( 'Write A Review', 'accessibility-checker' ); ?></button>
-			<button class="edac-review-notice-remind"><?php esc_html_e( 'Remind Me In Two Weeks', 'accessibility-checker' ); ?></button>
-			<button class="edac-review-notice-dismiss"><?php esc_html_e( 'Never Ask Again', 'accessibility-checker' ); ?></button>
+			<button class="edac-review-notice-review"><?php esc_html_e( 'Write A Review', 'edac' ); ?></button>
+			<button class="edac-review-notice-remind"><?php esc_html_e( 'Remind Me In Two Weeks', 'edac' ); ?></button>
+			<button class="edac-review-notice-dismiss"><?php esc_html_e( 'Never Ask Again', 'edac' ); ?></button>
 		</p>
 	</div>
 	<?php
@@ -1956,10 +1954,10 @@ function edac_get_gaad_promo_message() {
 
 	// Construct the promotional message.
 	$message  = '<div class="edac_gaad_notice notice notice-info is-dismissible">';
-	$message .= '<p><strong>' . esc_html__( '🎉 Get 30% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', 'accessibility-checker' ) . '</strong><br />';
-	$message .= esc_html__( 'Use coupon code GAAD23 from May 18th-May 25th to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?', 'accessibility-checker' ) . '<br />';
-	$message .= '<a class="button button-primary" href="' . esc_url( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD23' ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
-	$message .= '<a class="button button-primary" href="' . esc_url( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD23' ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
+	$message .= '<p><strong>' . esc_html__( '🎉 Get 30% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', 'edac' ) . '</strong><br />';
+	$message .= esc_html__( 'Use coupon code GAAD23 from May 18th-May 25th to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?', 'edac' ) . '<br />';
+	$message .= '<a class="button button-primary" href="' . esc_url( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD23' ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'edac' ) . '</a> ';
+	$message .= '<a class="button button-primary" href="' . esc_url( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD23' ) . '">' . esc_html__( 'Upgrade Now', 'edac' ) . '</a></p>';
 	$message .= '</div>';
 
 	return $message;
@@ -2004,25 +2002,25 @@ function edac_gaad_notice_ajax() {
  */
 function edac_dismiss_welcome_cta() {
 	// Update user meta to indicate the button has been clicked
-	update_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true );
+	update_user_meta(get_current_user_id(), 'edac_welcome_cta_dismissed', true);
 	
 	// Return success response
-	wp_send_json( 'success' );
-}
+	wp_send_json('success');
+  }
 
 
   /**
-   * Handle AJAX request to dismiss dashboard CTA
-   *
-   * @return void
-   */
+ * Handle AJAX request to dismiss dashboard CTA
+ *
+ * @return void
+ */
 function edac_dismiss_dashboard_cta() {
 	// Update user meta to indicate the button has been clicked
-	update_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true );
+	update_user_meta(get_current_user_id(), 'edac_dashboard_cta_dismissed', true);
 	
 	// Return success response
-	wp_send_json( 'success' );
-}
+	wp_send_json('success');
+  }
 
 
 // Add a filter for lazyloading images using the perfmatters_lazyload hook.
