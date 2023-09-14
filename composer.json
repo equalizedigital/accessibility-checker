@@ -19,5 +19,8 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
         "phpcompatibility/php-compatibility": "*"
         
+    },
+    "require": {
+        "cbschuld/browser.php": "^1.9"
     }
 }
