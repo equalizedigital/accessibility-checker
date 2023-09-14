@@ -35,12 +35,6 @@ function edac_sysinfo_display() {
 function edac_tools_sysinfo_get() {
 	global $wpdb;
 
-	if ( ! class_exists( 'Browser' ) ) {
-		require_once EDAC_PLUGIN_DIR . 'includes/classes/browser.php';
-	}
-
-	$browser = new Browser();
-
 	// Get theme info.
 	$theme_data = wp_get_theme();
 	// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
@@ -76,7 +70,18 @@ function edac_tools_sysinfo_get() {
 
 	// The local users' browser information, handled by the Browser class.
 	$return .= "\n" . '-- User Browser' . "\n\n";
-	$return .= $browser;
+	if ( class_exists( 'Browser' ) ) {
+		$browser = new Browser();
+		$return .= 'Platform:                  ' . $browser->getPlatform() . "\n";
+		$return .= 'Browser Name:              ' . $browser->getBrowser() . "\n";
+		$return .= 'Browser Version:           ' . $browser->getVersion() . "\n";
+		$return .= 'Browser User Agent:        ' . $browser->getUserAgent() . "\n";
+	} else {
+		$return .= 'Platform:                   N/A' . "\n";
+		$return .= 'Browser Name:               N/A' . "\n";
+		$return .= 'Browser Version:            N/A' . "\n";
+		$return .= 'Browser User Agent:         N/A' . "\n";
+	}
 
 	$return = apply_filters( 'edac_sysinfo_after_user_browser', $return );
 

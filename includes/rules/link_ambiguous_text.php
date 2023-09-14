@@ -116,29 +116,25 @@ function edac_check_ambiguous_phrase( $text ) {
 
 	// phrases.
 	$ambiguous_phrases = array(
-		__( 'click here', 'edac' ),
-		__( 'here', 'edac' ),
-		__( 'go here', 'edac' ),
-		__( 'more', 'edac' ),
-		__( 'more...', 'edac' ),
-		__( 'details', 'edac' ),
-		__( 'more details', 'edac' ),
-		__( 'link', 'edac' ),
-		__( 'this page', 'edac' ),
-		__( 'continue', 'edac' ),
-		__( 'continue reading', 'edac' ),
-		__( 'read more', 'edac' ),
-		__( 'open', 'edac' ),
-		__( 'download', 'edac' ),
-		__( 'button', 'edac' ),
-		__( 'keep reading', 'edac' ),
-		__( 'learn more', 'edac' ),
+		__( 'click', 'accessibility-checker' ),
+		__( 'click here', 'accessibility-checker' ),
+		__( 'here', 'accessibility-checker' ),
+		__( 'go here', 'accessibility-checker' ),
+		__( 'more', 'accessibility-checker' ),
+		__( 'more...', 'accessibility-checker' ),
+		__( 'details', 'accessibility-checker' ),
+		__( 'more details', 'accessibility-checker' ),
+		__( 'link', 'accessibility-checker' ),
+		__( 'this page', 'accessibility-checker' ),
+		__( 'continue', 'accessibility-checker' ),
+		__( 'continue reading', 'accessibility-checker' ),
+		__( 'read more', 'accessibility-checker' ),
+		__( 'open', 'accessibility-checker' ),
+		__( 'download', 'accessibility-checker' ),
+		__( 'button', 'accessibility-checker' ),
+		__( 'keep reading', 'accessibility-checker' ),
+		__( 'learn more', 'accessibility-checker' ),
 	);
-
-	// check if text contains phrase.
-	if ( strpos( $text, __( 'click here', 'edac' ) ) == true || strpos( $text, __( 'click', 'edac' ) ) == true ) {
-		return true;
-	}
 
 	// remove all but letters.
 	$text = preg_replace( '/[^a-z]+/i', ' ', $text );

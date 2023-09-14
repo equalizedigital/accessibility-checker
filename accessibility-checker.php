@@ -27,6 +27,11 @@ if ( ! defined( 'WPINC' ) ) {
 // Include plugin dependency.
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
+// Load composer packages.
+if ( is_admin() && file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
+	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+}
+
 /**
  * Setup constants.
  */
@@ -136,17 +141,6 @@ if ( ! class_exists( 'simple_html_dom' ) ) {
 include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend-highlight.php';
 
 /**
- * Include TextStatistics
- */
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Maths.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Pluralise.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Resource.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Syllables.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Text.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/TextStatistics.php';
-use DaveChild\TextStatistics as TS;
-
-/**
  * Import Resources
  */
 require_once plugin_dir_path( __FILE__ ) . 'includes/activation.php';
@@ -159,44 +153,20 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Rest_Api.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rest-api.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-issues-query.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Widgets.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Welcome_Page.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-welcome-page.php';
 
 
 
 /**
  * Filters and Actions
  */
-add_action(
-	'init',
-	function () {
-		// instantiate the classes that need to load hooks early.
-		$rest_api = new \EDAC\Rest_Api();
-	}
-);
-
-/*
-add_action(
-	'wp_dashboard_setup',
-	function() {
-		wp_add_dashboard_widget(
-			'edac_dashboard_scan_summary',
-			'Accessibility Checker',
-			array(
-				'\\EDAC\Widgets',
-				'render_dashboard_scan_summary',
-			) 
-		);
-	}
-);
-*/
-
-
+add_action( 'init', 'edac_init' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
@@ -215,6 +185,7 @@ add_filter( 'the_content', 'edac_output_simplified_summary' );
 add_action( 'wp_footer', 'edac_output_accessibility_statement' );
 add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
+add_action( 'template_redirect', 'edac_before_page_render' );
 add_action( 'admin_init', 'edac_process_actions' );
 add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
 if ( edac_check_plugin_active( 'oxygen/functions.php' ) ) {
@@ -232,10 +203,19 @@ add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
 add_action( 'wp_ajax_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
 add_action( 'wp_ajax_nopriv_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
-add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta' );
-add_action( 'wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta' );
-add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta' );
-add_action( 'wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta' );
+add_action('wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
+add_action( 'wp_dashboard_setup', 'edac_wp_dashboard_setup');
+
+/**
+ * Init the plugin
+ */
+function edac_init() {
+	// instantiate the classes that need to load hooks early.
+	$rest_api = new \EDAC\Rest_Api();
+}
 
 /**
  * Create/Update database
@@ -285,7 +265,6 @@ function edac_update_database() {
 	} else {
 		add_option( $option_name, $new_value );
 	}
-
 }
 
 /**
@@ -782,6 +761,44 @@ if ( $rules ) {
 	}
 }
 
+
+/**
+ * Code that needs to run before the page is rendered
+ *
+ * @return void
+ */
+function edac_before_page_render() {
+
+	global $pagenow;
+
+	if ( 'index.php' == $pagenow && false == is_customize_preview() && current_user_can( 'edit_posts' ) ) {
+	
+		// Check the page if it hasn't already been checked.
+		global $post;
+		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
+		if ( false === boolval( $checked ) ) {
+			edac_validate( $post->ID, $post, $action = 'load' );
+		}
+	}
+}
+
+/**
+ * Add dashboard widget
+ *
+ * @return void
+ */
+function edac_wp_dashboard_setup() {
+	wp_add_dashboard_widget(
+		'edac_dashboard_scan_summary',
+		'Accessibility Checker',
+		array(
+			'\EDAC\Widgets',
+			'render_dashboard_scan_summary',
+		) 
+	);
+
+}
+
 /**
  * Summary Ajax
  *
@@ -818,9 +835,9 @@ function edac_summary_ajax() {
 		$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
 	}
 
-	$post_id = intval( $_REQUEST['post_id'] );
-	$summary = edac_summary( $post_id );
-	$simplified_summary_text = '';
+	$post_id                   = intval( $_REQUEST['post_id'] );
+	$summary                   = edac_summary( $post_id );
+	$simplified_summary_text   = '';
 	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
 	
 	
@@ -909,7 +926,6 @@ function edac_summary_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $html ) );
-
 }
 
 /**
@@ -1000,7 +1016,7 @@ function edac_summary( $post_id ) {
 		count( $issue_density_array[0] ) > 0  
 	) {
 		
-		$element_count = $issue_density_array[0][0];
+		$element_count  = $issue_density_array[0][0];
 		$content_length = $issue_density_array[0][1];
 		
 		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
@@ -1018,8 +1034,13 @@ function edac_summary( $post_id ) {
 	$content                  = $content_post->post_content;
 	$content                  = wp_filter_nohtml_kses( $content );
 	$content                  = str_replace( ']]>', ']]&gt;', $content );
-	$text_statistics          = new TS\TextStatistics();
-	$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
+	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
+		$text_statistics          = new DaveChild\TextStatistics\TextStatistics();
+		$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
+	} else {
+		$summary['content_grade'] = 0;
+	}
+	
 	$summary['readability']   = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
@@ -1075,7 +1096,6 @@ function edac_anww_update_post_meta() {
 		edac_update_post_meta( 'link_blank' );
 
 	}
-
 }
 
 /**
@@ -1202,30 +1222,27 @@ function edac_details_ajax() {
 	// sort error rules by count.
 	usort(
 		$error_rules,
-		function( $a, $b ) {
+		function ( $a, $b ) {
 
 			return strcmp( $b['count'], $a['count'] );
-
 		}
 	);
 
 	// sort warning rules by count.
 	usort(
 		$warning_rules,
-		function( $a, $b ) {
+		function ( $a, $b ) {
 
 			return strcmp( $b['count'], $a['count'] );
-
 		}
 	);
 
 	// sort passed rules array by title.
 	usort(
 		$passed_rules,
-		function( $a, $b ) {
+		function ( $a, $b ) {
 
 			return strcmp( $b['title'], $a['title'] );
-
 		}
 	);
 
@@ -1250,7 +1267,7 @@ function edac_details_ajax() {
 			if ( $ignores ) {
 				foreach ( $ignores as $ignore ) {
 					if ( true === (bool) $ignore ) {
-						$count_ignored++;
+						++$count_ignored;
 					}
 				}
 			}
@@ -1360,8 +1377,8 @@ function edac_details_ajax() {
 
 						$url = add_query_arg(
 							array(
-								'edac' => $id,
-								'edac_nonce'    => wp_create_nonce( 'edac_highlight' ),
+								'edac'       => $id,
+								'edac_nonce' => wp_create_nonce( 'edac_highlight' ),
 							),
 							get_the_permalink( $postid )
 						);
@@ -1413,7 +1430,6 @@ function edac_details_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $html ) );
-
 }
 
 /**
@@ -1464,15 +1480,20 @@ function edac_readability_ajax() {
 	}
 	$content         = wp_filter_nohtml_kses( $content );
 	$content         = str_replace( ']]>', ']]&gt;', $content );
-	$text_statistics = new TS\TextStatistics();
-
+	
 	// get readability metadata and determine if a simplified summary is required.
 	$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 	$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 	$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
 	$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
 
-	$simplified_summary_grade        = edac_ordinal( floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) ) );
+	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
+		$text_statistics = new DaveChild\TextStatistics\TextStatistics();
+		$simplified_summary_grade = edac_ordinal( floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) ) );
+	} else {
+		$simplified_summary_grade = 0;
+	}
+	
 	$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
 	$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
 
@@ -1554,7 +1575,6 @@ function edac_readability_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $html ) );
-
 }
 
 /**
@@ -1608,7 +1628,6 @@ function edac_update_simplified_summary() {
 	}
 
 	wp_send_json_success( wp_json_encode( $simplified_summary ) );
-
 }
 
 /**
@@ -1622,7 +1641,7 @@ function edac_output_simplified_summary( $content ) {
 	if ( 'none' == $simplified_summary_prompt ) {
 		return $content;
 	} 
-	$simplified_summary = edac_simplified_summary_markup( get_the_ID() );
+	$simplified_summary          = edac_simplified_summary_markup( get_the_ID() );
 	$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
 	if ( $simplified_summary && 'before' === $simplified_summary_position ) {
 		return $simplified_summary . $content;
@@ -1797,7 +1816,6 @@ function edac_review_notice_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $results ) );
-
 }
 
 /**
@@ -1878,7 +1896,6 @@ function edac_password_protected_notice_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $results ) );
-
 }
 
 /**
@@ -1944,7 +1961,6 @@ function edac_gaad_notice() {
 		echo wp_kses_post( $message );
 
 	}
-
 }
 
 /**
@@ -1963,7 +1979,6 @@ function edac_get_gaad_promo_message() {
 	$message .= '</div>';
 
 	return $message;
-
 }
 
 /**
@@ -1994,7 +2009,6 @@ function edac_gaad_notice_ajax() {
 	}
 
 	wp_send_json_success( wp_json_encode( $results ) );
-
 }
 
 /**
@@ -2011,11 +2025,11 @@ function edac_dismiss_welcome_cta() {
 }
 
 
-  /**
-   * Handle AJAX request to dismiss dashboard CTA
-   *
-   * @return void
-   */
+	/**
+	 * Handle AJAX request to dismiss dashboard CTA
+	 *
+	 * @return void
+	 */
 function edac_dismiss_dashboard_cta() {
 	// Update user meta to indicate the button has been clicked
 	update_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true );
@@ -2028,7 +2042,7 @@ function edac_dismiss_dashboard_cta() {
 // Add a filter for lazyloading images using the perfmatters_lazyload hook.
 add_filter(
 	'perfmatters_lazyload',
-	function( $lazyload ) {
+	function ( $lazyload ) {
 		if ( ! isset( $_GET['edac_nonce'] ) || ! wp_verify_nonce( $_GET['edac_nonce'], 'edac_highlight' ) ) {
 			return $lazyload;
 		}

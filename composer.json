@@ -11,10 +11,16 @@
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
+    "require": {
+        "davechild/textstatistics": "1.0.2"
+    },
     "require-dev": {
         "automattic/vipwpcs": "^3",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
         "phpcompatibility/php-compatibility": "*"
         
+    },
+    "require": {
+        "cbschuld/browser.php": "^1.9"
     }
 }
