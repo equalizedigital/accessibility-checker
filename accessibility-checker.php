@@ -793,7 +793,7 @@ function edac_before_page_render() {
 
 	global $pagenow;
 
-	if( 'index.php' == $pagenow && !is_customize_preview() && current_user_can('edit_posts') ) {
+	if ( 'index.php' == $pagenow && false == is_customize_preview() && current_user_can( 'edit_posts' ) ) {
 	
 		// Check the page if it hasn't already been checked.
 		global $post;
