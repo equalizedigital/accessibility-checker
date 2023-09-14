@@ -185,6 +185,7 @@ add_filter( 'the_content', 'edac_output_simplified_summary' );
 add_action( 'wp_footer', 'edac_output_accessibility_statement' );
 add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
+add_action( 'template_redirect', 'edac_before_page_render' );
 add_action( 'admin_init', 'edac_process_actions' );
 add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
 if ( edac_check_plugin_active( 'oxygen/functions.php' ) ) {
@@ -757,6 +758,27 @@ if ( $rules ) {
 		if ( ( array_key_exists( 'ruleset', $rule ) && 'php' === $rule['ruleset'] ) ||
 		( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) ) {
 			require_once plugin_dir_path( __FILE__ ) . 'includes/rules/' . $rule['slug'] . '.php';
+		}
+	}
+}
+
+
+/**
+ * Code that needs to run before the page is rendered
+ *
+ * @return void
+ */
+function edac_before_page_render() {
+
+	global $pagenow;
+
+	if ( 'index.php' == $pagenow && false == is_customize_preview() && current_user_can( 'edit_posts' ) ) {
+	
+		// Check the page if it hasn't already been checked.
+		global $post;
+		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
+		if ( false === boolval( $checked ) ) {
+			edac_validate( $post->ID, $post, $action = 'load' );
 		}
 	}
 }
