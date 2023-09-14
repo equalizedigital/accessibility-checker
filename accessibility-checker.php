@@ -783,18 +783,18 @@ if ( $rules ) {
 	}
 }
 
+
 /**
  * Code that needs to run before the page is rendered
  *
  * @return void
  */
 function edac_before_page_render() {
-	
-	// If the admin_bar is visible and we're not editing the post 
-	// assume we are on the frontend and the frontend highlighter is loading. 
-	global $pagenow;
-	if ( is_admin_bar_showing() && 'post.php' != $pagenow ) {
 
+	global $pagenow;
+
+	if( 'index.php' == $pagenow && !is_customize_preview() && current_user_can('edit_posts') ) {
+	
 		// Check the page if it hasn't already been checked.
 		global $post;
 		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
