@@ -215,7 +215,7 @@ add_filter( 'the_content', 'edac_output_simplified_summary' );
 add_action( 'wp_footer', 'edac_output_accessibility_statement' );
 add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
-add_action('template_redirect', 'edac_before_page_render');
+add_action( 'template_redirect', 'edac_before_page_render' );
 add_action( 'admin_init', 'edac_process_actions' );
 add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
 if ( edac_check_plugin_active( 'oxygen/functions.php' ) ) {
