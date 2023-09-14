@@ -15,13 +15,13 @@ use EDAC\Settings;
  */
 class Issues_Query {
 
-	const RULETYPE_WARNING = 'warning';
-	const RULETYPE_ERROR = 'error';
+	const RULETYPE_WARNING        = 'warning';
+	const RULETYPE_ERROR          = 'error';
 	const RULETYPE_COLOR_CONTRAST = 'color_contrast';
 	
 	const IGNORE_FLAG_EXCLUDE_IGNORED = 'exclude_ignored';
 	const IGNORE_FLAG_INCLUDE_IGNORED = 'include_ignored';
-	const IGNORE_FLAG_ONLY_IGNORED = 'only_ignored';
+	const IGNORE_FLAG_ONLY_IGNORED    = 'only_ignored';
 	
 	
 	/**
@@ -46,18 +46,20 @@ class Issues_Query {
 	 * @var array
 	 */
 	private $query = array(
-		'select' => 'select count(*)',
-		'from' => '',
+		'select'     => 'select count(*)',
+		'from'       => '',
 		'where_base' => '',
-		'filters' => '',
-		'limit' => '',
+		'filters'    => '',
+		'limit'      => '',
 	);
 
 
 	/**
 	 * Constructor
 	 *
-	 * @param array $filter [post_types, rule_types, rule_slugs].
+	 * @param array   $filter [post_types, rule_types, rule_slugs].
+	 * @param integer $record_limit Max number of records we'll query.
+	 * @param string  $ignored_flag Flag used to determine how ignored issues sould be handled.
 	 */
 	public function __construct( $filter = array(), $record_limit = 100000, $ignored_flag = self::IGNORE_FLAG_EXCLUDE_IGNORED ) {
 	
@@ -76,12 +78,12 @@ class Issues_Query {
 	
 		$this->record_limit = $record_limit;
 
-		// Setup FROM
+		// Setup FROM.
 		global $wpdb;
-		$this->table = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+		$this->table         = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 		$this->query['from'] = " FROM {$this->table} ";
 		
-		// Setup base WHERE
+		// Setup base WHERE.
 		$siteid = get_current_blog_id();
 		switch ( $ignored_flag ) {
 			case self::IGNORE_FLAG_EXCLUDE_IGNORED:
@@ -102,7 +104,7 @@ class Issues_Query {
 		}
 
 		
-		// Setup LIMIT
+		// Setup LIMIT.
 		$this->query['limit'] = $wpdb->prepare( 'LIMIT %d', array( $record_limit ) );
 		
 		
@@ -111,10 +113,9 @@ class Issues_Query {
 			'rule_types' => array(),
 			'rule_slugs' => array(),
 		);
-		$filter = array_replace_recursive( $filter_defaults, $validated_filters );
+		$filter          = array_replace_recursive( $filter_defaults, $validated_filters );
 
 		$this->add_filters( $filter );
-
 	}
 
 
@@ -145,7 +146,10 @@ class Issues_Query {
 	public function has_truncated_results() {
 		global $wpdb;
 		
-		$total_issues_count = $wpdb->get_var( 'SELECT COUNT(*) ' . $this->query['from'] );
+		$sql = 'SELECT COUNT(*) ' . $this->query['from'];
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$total_issues_count = $wpdb->get_var( $sql );
 		if ( $total_issues_count > $this->record_limit ) {
 			return true;
 		}
@@ -164,8 +168,10 @@ class Issues_Query {
 
 		$this->query['select'] = 'SELECT COUNT(id) ';
 		
-		return $wpdb->get_var( $this->get_sql() );
-	
+		$sql = $this->get_sql();
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->get_var( $sql );
 	}
 
 	/**
@@ -179,8 +185,10 @@ class Issues_Query {
 
 		$this->query['select'] = 'SELECT COUNT( DISTINCT rule, object ) ';
 		
-		return $wpdb->get_var( $this->get_sql() );
-	
+		$sql = $this->get_sql();
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->get_var( $sql );
 	}
 
 	/**
@@ -194,8 +202,10 @@ class Issues_Query {
 
 		$this->query['select'] = 'SELECT id';
 		
-		return $wpdb->get_results( $this->get_sql() );
-	
+		$sql = $this->get_sql();
+		
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->get_results( $sql );
 	}
 
 
@@ -211,7 +221,7 @@ class Issues_Query {
 		if ( array_key_exists( 'post_types', $filter ) && count( $filter['post_types'] ) ) {
 
 			$scannable_post_types = Settings::get_scannable_post_types();
-			$post_types = array_intersect( $filter['post_types'], $scannable_post_types );
+			$post_types           = array_intersect( $filter['post_types'], $scannable_post_types );
 			if ( count( $post_types ) ) {
 				$this->query['filters'] .= ' and type IN (' . Helpers::array_to_sql_safe_list( $post_types ) . ') ';
 			}
@@ -245,8 +255,5 @@ class Issues_Query {
 		if ( array_key_exists( 'rule_slugs', $filter ) && count( $filter['rule_slugs'] ) ) {
 			$this->query['filters'] .= ' and rule IN (' . Helpers::array_to_sql_safe_list( $filter['rule_slugs'] ) . ') ';
 		}
-
 	}
-
-
 }
