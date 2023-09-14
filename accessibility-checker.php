@@ -996,7 +996,10 @@ function edac_summary( $post_id ) {
 	$issue_density_array = get_post_meta( $post_id, '_edac_density_data' );
 	
 	
-	if ( is_array( $issue_density_array ) ) {
+	if ( is_array( $issue_density_array ) &&
+		count( $issue_density_array ) > 0 &&
+		count( $issue_density_array[0] ) > 0  
+	) {
 		
 		$element_count = $issue_density_array[0][0];
 		$content_length = $issue_density_array[0][1];
