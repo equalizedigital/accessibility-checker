@@ -52,11 +52,9 @@ class Scans_Stats {
 	 */
 	public function __construct( $cache_time = 60 * 60 * 24 ) {
 	
-		$this->cache_time = $cache_time;
-		$this->cache_name_prefix = 'edac_scans_stats';
-		$this->record_limit = 100000;
-		$this->rule_count = count( edac_register_rules() );
-	
+		$this->cache_time        = $cache_time;
+		$this->cache_name_prefix = 'edac_scans_stats_' . $record_limit;
+		$this->rule_count        = count( edac_register_rules() );
 	}
 
 	/**
@@ -146,14 +144,13 @@ class Scans_Stats {
 		$data = array();
 
 	
-		$scannable_posts_count  = Settings::get_scannable_posts_count();
-		$tests_count = $scannable_posts_count * $this->rule_count;
+		$scannable_posts_count = Settings::get_scannable_posts_count();
+		$tests_count           = $scannable_posts_count * $this->rule_count;
 
 
-		$data['scannable_posts_count'] = (int) $scannable_posts_count;
-		$data['rule_count'] = (int) $this->rule_count;
-		$data['tests_count'] = (int) $tests_count;
-		
+		$data['scannable_posts_count']      = (int) $scannable_posts_count;
+		$data['rule_count']                 = (int) $this->rule_count;
+		$data['tests_count']                = (int) $tests_count;
 		$data['scannable_post_types_count'] = (int) count( Settings::get_scannable_post_types() );
 		
 		$post_types = get_post_types(
@@ -168,48 +165,47 @@ class Scans_Stats {
 
 		$issues_query = new \EDAC\Issues_Query( array(), $this->record_limit );
 	
-		$data['is_truncated'] = $issues_query->has_truncated_results();
-	
-		$data['posts_scanned'] = (int) $scannable_posts_count;
-		$data['rules_failed'] = (int) $issues_query->distinct_count();
-		$data['rules_passed'] = (int) ( $tests_count - $data['rules_failed'] );
+		$data['is_truncated']      = $issues_query->has_truncated_results();
+		$data['posts_scanned']     = (int) $scannable_posts_count;
+		$data['rules_failed']      = (int) $issues_query->distinct_count();
+		$data['rules_passed']      = (int) ( $tests_count - $data['rules_failed'] );
 		$data['passed_percentage'] = round( ( $data['rules_passed'] / $tests_count ) * 100, 2 );
 	
-		$warning_issues_query = new \EDAC\Issues_Query( 
+		$warning_issues_query      = new \EDAC\Issues_Query( 
 			array( 'rule_types' => array( Issues_Query::RULETYPE_WARNING ) ), 
 			$this->record_limit 
 		);
-		$data['warnings'] = (int) $warning_issues_query->count();
+		$data['warnings']          = (int) $warning_issues_query->count();
 		$data['distinct_warnings'] = (int) $warning_issues_query->distinct_count();
 
 		$contrast_issues_query = new \EDAC\Issues_Query( 
 			array( 'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ) ),
 			$this->record_limit 
 		);
-		$data['contrast_errors'] = (int) $contrast_issues_query->count();
+		
+		$data['contrast_errors']          = (int) $contrast_issues_query->count();
 		$data['distinct_contrast_errors'] = (int) $contrast_issues_query->distinct_count();
 		
-		$error_issues_query = new \EDAC\Issues_Query( 
+		$error_issues_query      = new \EDAC\Issues_Query( 
 			array( 'rule_types' => array( Issues_Query::RULETYPE_ERROR ) ),
 			$this->record_limit 
 		);
-		$data['errors'] = (int) $error_issues_query->count();
+		$data['errors']          = (int) $error_issues_query->count();
 		$data['distinct_errors'] = (int) $error_issues_query->distinct_count();
 		
-		$data['errors_without_contrast'] = $data['errors'] - $data['contrast_errors'];
+		$data['errors_without_contrast']          = $data['errors'] - $data['contrast_errors'];
 		$data['distinct_errors_without_contrast'] = $data['distinct_errors'] - $data['distinct_contrast_errors'];
 	
-		$ignored_issues_query = new \EDAC\Issues_Query( 
+		$ignored_issues_query     = new \EDAC\Issues_Query( 
 			array(), 
 			$this->record_limit,
 			\EDAC\Issues_Query::IGNORE_FLAG_ONLY_IGNORED
 		);
-		$data['ignored'] = (int) $ignored_issues_query->count();
+		$data['ignored']          = (int) $ignored_issues_query->count();
 		$data['distinct_ignored'] = (int) $ignored_issues_query->distinct_count();
 		
 		
-		$data['posts_without_issues']  = $wpdb->get_var( 
-			"SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}  
+		$sql = "SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}  
 			LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
 			$wpdb->prefix . 'accessibility_checker.postid WHERE ' . 
 			$wpdb->prefix . 'accessibility_checker.postid IS NULL and post_type IN(' . 
@@ -218,8 +214,10 @@ class Scans_Stats {
 			) . ') and
 			post_status IN(' . Helpers::array_to_sql_safe_list( 
 				Settings::get_scannable_post_statuses()
-			) . ')'
-		);
+			) . ')';
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$data['posts_without_issues'] = $wpdb->get_var( $sql );
 
 		$data['avg_issues_per_post'] = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
 	
@@ -243,10 +241,10 @@ class Scans_Stats {
 
 
 		$data['fullscan_running'] = false;
-		$data['fullscan_state'] = '';
+		$data['fullscan_state']   = '';
 		
 		if ( class_exists( '\EDACP\Scans' ) ) {
-			$scans = new \EDACP\Scans();
+			$scans      = new \EDACP\Scans();
 			$scan_state = $scans->scan_state();
 			
 			$data['fullscan_state'] = $scan_state;
@@ -261,7 +259,7 @@ class Scans_Stats {
 			$data['fullscan_completed_at'] = 0;
 		}
 
-		$data['cache_id'] = $transient_name; 
+		$data['cache_id']  = $transient_name; 
 		$data['cached_at'] = time(); 
 		$data['expires_at'] = time() + $this->cache_time; 
 		$data['cache_hit'] = false;
@@ -276,7 +274,7 @@ class Scans_Stats {
 	/**
 	 * Gets issues summary information about a post type
 	 *
-	 * @param  string $post_type
+	 * @param string $post_type post type.
 	 * @return array .
 	 */
 	public function issues_summary_by_post_type( $post_type ) {
@@ -303,46 +301,46 @@ class Scans_Stats {
 		$data = array();
 
 	
-		$error_issues_query = new \EDAC\Issues_Query(
+		$error_issues_query      = new \EDAC\Issues_Query(
 			array( 
 				'rule_types' => array( Issues_Query::RULETYPE_ERROR ),
 				'post_types' => array( $post_type ),
 			),
 			$this->record_limit
 		);
-		$data['errors'] = $error_issues_query->count();
+		$data['errors']          = $error_issues_query->count();
 		$data['distinct_errors'] = $error_issues_query->distinct_count();
 		
 	
 
-		$warning_issues_query = new \EDAC\Issues_Query(
+		$warning_issues_query      = new \EDAC\Issues_Query(
 			array( 
 				'rule_types' => array( Issues_Query::RULETYPE_WARNING ),
 				'post_types' => array( $post_type ),
 			),
 			$this->record_limit
 		);
-		$data['warnings'] = $warning_issues_query->count();
+		$data['warnings']          = $warning_issues_query->count();
 		$data['distinct_warnings'] = $warning_issues_query->distinct_count();
 		
 	
-		$color_contrast_issues_query = new \EDAC\Issues_Query(
+		$color_contrast_issues_query      = new \EDAC\Issues_Query(
 			array( 
 				'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ),
 				'post_types' => array( $post_type ),
 			),
 			$this->record_limit
 		);
-		$data['contrast_errors'] = $color_contrast_issues_query->count();
+		$data['contrast_errors']          = $color_contrast_issues_query->count();
 		$data['distinct_contrast_errors'] = $color_contrast_issues_query->distinct_count();
 		
 	
-		$data['errors_without_contrast'] = $data['errors'] - $data['contrast_errors'];
+		$data['errors_without_contrast']          = $data['errors'] - $data['contrast_errors'];
 		$data['distinct_errors_without_contrast'] = $data['distinct_errors'] - $data['distinct_contrast_errors'];
 	
 		
 	
-		$data['cache_id'] = $transient_name; 
+		$data['cache_id']  = $transient_name; 
 		$data['cached_at'] = time(); 
 		$data['expires_at'] = time() + $this->cache_time; 
 		$cache['cache_hit'] = false;
@@ -352,5 +350,4 @@ class Scans_Stats {
 	
 		return $data;
 	}
-
 }
