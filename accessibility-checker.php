@@ -159,8 +159,8 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Issues_Query.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Welcome_Page.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-welcome-page.php';
+
 
 
 /**
