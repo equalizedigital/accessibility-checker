@@ -27,6 +27,11 @@ if ( ! defined( 'WPINC' ) ) {
 // Include plugin dependency.
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
+// Load composer packages.
+if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
+	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+}
+
 /**
  * Setup constants.
  */
@@ -136,17 +141,6 @@ if ( ! class_exists( 'simple_html_dom' ) ) {
 include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend-highlight.php';
 
 /**
- * Include TextStatistics
- */
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Maths.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Pluralise.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Resource.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Syllables.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/Text.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/TextStatistics/TextStatistics.php';
-use DaveChild\TextStatistics as TS;
-
-/**
  * Import Resources
  */
 require_once plugin_dir_path( __FILE__ ) . 'includes/activation.php';
@@ -159,44 +153,20 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Rest_Api.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rest-api.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-helpers.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Issues_Query.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Widgets.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Welcome_Page.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-welcome-page.php';
 
 
 
 /**
  * Filters and Actions
  */
-add_action(
-	'init',
-	function () {
-		// instantiate the classes that need to load hooks early.
-		$rest_api = new \EDAC\Rest_Api();
-	}
-);
-
-/*
-add_action(
-	'wp_dashboard_setup',
-	function() {
-		wp_add_dashboard_widget(
-			'edac_dashboard_scan_summary',
-			'Accessibility Checker',
-			array(
-				'\\EDAC\Widgets',
-				'render_dashboard_scan_summary',
-			) 
-		);
-	}
-);
-*/
-
-
+add_action( 'init', 'edac_init' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
@@ -232,10 +202,19 @@ add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
 add_action( 'wp_ajax_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
 add_action( 'wp_ajax_nopriv_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
-add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta' );
-add_action( 'wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta' );
-add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta' );
-add_action( 'wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta' );
+add_action('wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
+add_action( 'wp_dashboard_setup', 'edac_wp_dashboard_setup');
+
+/**
+ * Init the plugin
+ */
+function edac_init() {
+	// instantiate the classes that need to load hooks early.
+	$rest_api = new \EDAC\Rest_Api();
+}
 
 /**
  * Create/Update database
@@ -783,6 +762,23 @@ if ( $rules ) {
 }
 
 /**
+ * Add dashboard widget
+ *
+ * @return void
+ */
+function edac_wp_dashboard_setup() {
+	wp_add_dashboard_widget(
+		'edac_dashboard_scan_summary',
+		'Accessibility Checker',
+		array(
+			'\EDAC\Widgets',
+			'render_dashboard_scan_summary',
+		) 
+	);
+
+}
+
+/**
  * Summary Ajax
  *
  * @return void
@@ -1018,8 +1014,13 @@ function edac_summary( $post_id ) {
 	$content                  = $content_post->post_content;
 	$content                  = wp_filter_nohtml_kses( $content );
 	$content                  = str_replace( ']]>', ']]&gt;', $content );
-	$text_statistics          = new TS\TextStatistics();
-	$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
+	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
+		$text_statistics          = new DaveChild\TextStatistics\TextStatistics();
+		$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
+	} else {
+		$summary['content_grade'] = 0;
+	}
+	
 	$summary['readability']   = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
@@ -1464,15 +1465,20 @@ function edac_readability_ajax() {
 	}
 	$content         = wp_filter_nohtml_kses( $content );
 	$content         = str_replace( ']]>', ']]&gt;', $content );
-	$text_statistics = new TS\TextStatistics();
-
+	
 	// get readability metadata and determine if a simplified summary is required.
 	$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 	$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 	$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
 	$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
 
-	$simplified_summary_grade        = edac_ordinal( floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) ) );
+	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
+		$text_statistics = new DaveChild\TextStatistics\TextStatistics();
+		$simplified_summary_grade = edac_ordinal( floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) ) );
+	} else {
+		$simplified_summary_grade = 0;
+	}
+	
 	$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
 	$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
 
