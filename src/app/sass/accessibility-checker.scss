@@ -83,6 +83,7 @@ body {
         bottom: 15px !important;
         right: 15px !important;
         z-index: 2147483647 !important;
+  
         &-toggle{
             width: 50px !important;
             height: 50px !important;
@@ -280,7 +281,44 @@ body {
             }
         }
     }
+
+    &-panel {
+        @media screen and (max-width: $small-screen-width ) {
+            width: 100%;
+            max-width: calc(100% - 30px) !important;
+        }
+
+        @media screen and (max-width: $extra-small-screen-width ) {
+
+            .edac-highlight-panel-controls-buttons {
+             //   display: flex !important;
+                justify-content: space-around;
+                
+                button {
+                    padding: 4px 7px !important;
+                    margin-right: 0px !important;
+                }
+            }
+
+        }
+   
+        @media screen and (max-width: calc($extra-small-screen-width ) ) {
+
+            .edac-highlight-panel-controls-buttons {
+                display: flex !important;
+                justify-content: space-around;
+                
+                button {
+                    padding: 4px 7px !important;
+                    margin-right: 0px !important;
+                }
+            }
+
+        }
+   
+    }
 }
+
 
 .notyf {
     z-index: 2147483647 !important;

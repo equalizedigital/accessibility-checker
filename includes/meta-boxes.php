@@ -16,7 +16,7 @@ function edac_register_meta_boxes() {
 		foreach ( $post_types as $post_type ) {
 			add_meta_box(
 				'edac-meta-box',
-				__( 'Accessibility Checker', 'edac' ),
+				__( 'Accessibility Checker', 'accessibility-checker' ),
 				'edac_custom_meta_box_cb',
 				$post_type,
 				'normal',
