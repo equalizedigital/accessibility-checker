@@ -277,7 +277,7 @@ class REST_Api {
 	
 		try {
 
-			$scans_stats = new Scans_Stats();
+			$scans_stats = new Scans_Stats( 60 * 5 );
 			$stats = $scans_stats->summary();
 
 			return new \WP_REST_Response(
