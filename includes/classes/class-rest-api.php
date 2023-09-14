@@ -8,6 +8,8 @@
 namespace EDAC;
 
 use EDAC\Scans_Stats;
+use EDAC\Settings;
+
 
 /**
  * Class that initializes and handles the REST api
@@ -100,7 +102,41 @@ class REST_Api {
 						'methods' => 'GET',
 						'callback' => array( $this, 'get_scans_stats' ),
 						'permission_callback' => function () {
-							return current_user_can( 'edit_posts' );
+							return current_user_can( 'read' ); // able to access the admin dashboard.
+						},
+					) 
+				);
+			} 
+		);
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/scans-stats-by-post-type/(?P<slug>[a-zA-Z0-9_-]+)',
+					array(
+						'methods' => 'GET',
+						'callback' => array( $this, 'get_scans_stats_by_post_type' ),
+						'permission_callback' => function () {
+							return current_user_can( 'read' ); // able to access the admin dashboard.
+						},
+					) 
+				);
+			} 
+		);
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/scans-stats-by-post-types',
+					array(
+						'methods' => 'GET',
+						'callback' => array( $this, 'get_scans_stats_by_post_types' ),
+						'permission_callback' => function () {
+							return current_user_can( 'read' ); // able to access the admin dashboard.
 						},
 					) 
 				);
@@ -109,6 +145,7 @@ class REST_Api {
 
 	}
 
+	
 
 	/**
 	 * REST handler that saves to the DB a list of js rule violations for a post.
@@ -262,5 +299,129 @@ class REST_Api {
 		}   
 
 	}
+
+
+	/**
+	 * REST handler that gets stats about the scans by post type
+	 *
+	 * @param WP_REST_Request $request The request passed from the REST call.
+	 * 
+	 * @return \WP_REST_Response 
+	 */
+	public function get_scans_stats_by_post_type( $request ) {
+
+		if ( ! isset( $request['slug'] ) 
+		) {
+			return new \WP_REST_Response( array( 'message' => 'A required parameter is missing.' ), 400 );
+		}
+
+		try {
+
+			$post_type = strval( $request['slug'] );
+		
+			$scannable_post_types = Settings::get_scannable_post_types();
+				
+			$post_types = get_post_types(
+				array(
+					'public' => true,
+				) 
+			);
+			unset( $post_types['attachment'] );
+		
+			$scans_stats = new Scans_Stats();   
+	
+			$post_types_to_check = array_merge( array( 'post', 'page' ), $scannable_post_types );
+					
+			if ( in_array( $post_type, $scannable_post_types ) && in_array( $post_type, $post_types_to_check ) ) {
+		
+					$by_type = $scans_stats->issues_summary_by_post_type( $post_type );
+
+					return new \WP_REST_Response(
+						array(
+							'success' => true,
+							'stats' => $by_type,
+						) 
+					);
+			
+
+			} else {
+
+				return new \WP_REST_Response( array( 'message' => 'The post type is not set to be scanned.' ), 400 );
+
+			}       
+		} catch ( \Exception $ex ) {
+			
+			return new \WP_REST_Response(
+				array(
+					'message' => $ex->getMessage(),
+				), 
+				500
+			);
+
+		}   
+
+	}
+
+
+	
+	/**
+	 * REST handler that gets stats about the scans by post types
+	 *
+	 * @param WP_REST_Request $request The request passed from the REST call.
+	 * 
+	 * @return \WP_REST_Response 
+	 */
+	public function get_scans_stats_by_post_types( $request ) {
+
+		try {
+
+			$scans_stats = new Scans_Stats();   
+
+			$scannable_post_types = Settings::get_scannable_post_types();
+				
+			$post_types = get_post_types(
+				array(
+					'public' => true,
+				) 
+			);
+			unset( $post_types['attachment'] );
+	
+			$post_types_to_check = array_merge( array( 'post', 'page' ), $scannable_post_types );
+			
+			$by_types = array();
+
+			foreach ( $post_types as $post_type ) {
+
+				if ( in_array( $post_type, $scannable_post_types ) && in_array( $post_type, $post_types_to_check ) ) {
+		
+					$by_types[ $post_type ] = $scans_stats->issues_summary_by_post_type( $post_type );
+				
+				} else {
+					$by_types[ $post_type ] = false;
+				}
+			}
+			
+			return new \WP_REST_Response(
+				array(
+					'success' => true,
+					'stats' => $by_types,
+				) 
+			);
+	
+
+		
+		} catch ( \Exception $ex ) {
+			
+			return new \WP_REST_Response(
+				array(
+					'message' => $ex->getMessage(),
+				), 
+				500
+			);
+
+		}   
+
+	}
+
 
 }

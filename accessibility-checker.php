@@ -153,44 +153,20 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Rest_Api.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rest-api.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Issues_Query.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Widgets.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Welcome_Page.php';
-
 
 
 /**
  * Filters and Actions
  */
-add_action(
-	'init',
-	function () {
-		// instantiate the classes that need to load hooks early.
-		$rest_api = new \EDAC\Rest_Api();
-	}
-);
-
-/*
-add_action(
-	'wp_dashboard_setup',
-	function() {
-		wp_add_dashboard_widget(
-			'edac_dashboard_scan_summary',
-			'Accessibility Checker',
-			array(
-				'\\EDAC\Widgets',
-				'render_dashboard_scan_summary',
-			) 
-		);
-	}
-);
-*/
-
-
+add_action( 'init', 'edac_init' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
@@ -226,10 +202,19 @@ add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
 add_action( 'wp_ajax_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
 add_action( 'wp_ajax_nopriv_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
-add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta' );
-add_action( 'wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta' );
-add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta' );
-add_action( 'wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta' );
+add_action('wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
+add_action('wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
+add_action('wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
+add_action( 'wp_dashboard_setup', 'edac_wp_dashboard_setup');
+
+/**
+ * Init the plugin
+ */
+function edac_init() {
+	// instantiate the classes that need to load hooks early.
+	$rest_api = new \EDAC\Rest_Api();
+}
 
 /**
  * Create/Update database
@@ -774,6 +759,23 @@ if ( $rules ) {
 			require_once plugin_dir_path( __FILE__ ) . 'includes/rules/' . $rule['slug'] . '.php';
 		}
 	}
+}
+
+/**
+ * Add dashboard widget
+ *
+ * @return void
+ */
+function edac_wp_dashboard_setup() {
+	wp_add_dashboard_widget(
+		'edac_dashboard_scan_summary',
+		'Accessibility Checker',
+		array(
+			'\EDAC\Widgets',
+			'render_dashboard_scan_summary',
+		) 
+	);
+
 }
 
 /**
