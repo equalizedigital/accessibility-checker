@@ -31,7 +31,6 @@ class REST_Api {
 		if ( ! self::$initialized ) {
 			$this->initialize();
 		}
-			
 	}
 
 
@@ -40,7 +39,7 @@ class REST_Api {
 	 */
 	private function initialize() {
 
-		$ns = 'accessibility-checker/';
+		$ns      = 'accessibility-checker/';
 		$version = 'v1';
 
 		add_action(
@@ -50,14 +49,14 @@ class REST_Api {
 					$ns . $version,
 					'/test',
 					array(
-						'methods' => array( 'GET', 'POST' ),
-						'callback' => function() {
+						'methods'             => array( 'GET', 'POST' ),
+						'callback'            => function () {
 							global $wp;
 							$messages = array();
 							$messages['time'] = time();
 							$messages['perms'] = current_user_can( 'edit_posts' );
-							$messages['method'] = $_SERVER['REQUEST_METHOD'];
-				
+						
+						
 							return new \WP_REST_Response( array( 'messages' => $messages ), 200 );
 						},
 						'permission_callback' => function () {
@@ -75,11 +74,11 @@ class REST_Api {
 					$ns . $version,
 					'/post-scan-results/(?P<id>\d+)',
 					array(
-						'methods' => 'POST',
-						'callback' => array( $this, 'set_post_scan_results' ),
-						'args' => array(
+						'methods'             => 'POST',
+						'callback'            => array( $this, 'set_post_scan_results' ),
+						'args'                => array(
 							'id' => array(
-								'validate_callback' => function( $param, $request, $key ) {
+								'validate_callback' => function ( $param ) {
 									return is_numeric( $param );
 								},
 							),
@@ -98,6 +97,23 @@ class REST_Api {
 				register_rest_route(
 					$ns . $version,
 					'/scans-stats',
+					array(
+						'methods'             => 'GET',
+						'callback'            => array( $this, 'get_scans_stats' ),
+						'permission_callback' => function () {
+							return current_user_can( 'read' ); // able to access the admin dashboard.
+						},
+					) 
+				);
+			} 
+		);
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/scans-stats-by-post-type/(?P<slug>[a-zA-Z0-9_-]+)',
 					array(
 						'methods' => 'GET',
 						'callback' => array( $this, 'get_scans_stats' ),
@@ -162,13 +178,13 @@ class REST_Api {
 		}
 
 		$post_id = intval( $request['id'] );
-		$post = get_post( $post_id );
+		$post    = get_post( $post_id );
 		if ( ! is_object( $post ) ) {    
 
 			return new \WP_REST_Response( array( 'message' => 'The post is not valid.' ), 400 );
 		}
 
-		$post_type = get_post_type( $post );
+		$post_type  = get_post_type( $post );
 		$post_types = get_option( 'edac_post_types' );
 		if ( ! is_array( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 
@@ -176,9 +192,9 @@ class REST_Api {
 
 		}
 
-		
+		//phpcs:ignore Generic.Commenting.Todo.TaskFound			
 		// TODO: setup a rules class for loading/filtering rules.
-		$rules = edac_register_rules();
+		$rules       = edac_register_rules();
 		$js_rule_ids = array();
 		foreach ( $rules as $rule ) {
 			if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
@@ -205,10 +221,13 @@ class REST_Api {
 					$rule_id = $violation['ruleId'];
 				
 					if ( in_array( $rule_id, $js_rule_ids ) ) {
+
+						// This rule is one that we've included in our js ruleset.
 				
-						$html = $violation['html'];
+						$html   = $violation['html'];
 						$impact = $violation['impact']; // by default, use the impact setting from the js rule.
 					
+						//phpcs:ignore Generic.Commenting.Todo.TaskFound
 						// TODO: setup a rules class for loading/filtering rules.
 						foreach ( $rules as $rule ) {
 							if ( $rule['slug'] === $rule_id ) {
@@ -216,13 +235,9 @@ class REST_Api {
 							}
 						}
 
-						// TODO:
-						// $selector = $violation['selector'];
-						// $tags = $violation['tags'];
+						// TODO: add support storing $violation['selector'], $violation['tags'].
 						
-						// This rule is one that we've included in our js ruleset.
-						// Write the rule/violation data to the db.
-			
+						
 						do_action( 'edac_before_rule', $post_id, $rule_id, 'js' );
 			
 						edac_insert_rule_data( $post, $rule_id, $impact, $html );
@@ -246,8 +261,8 @@ class REST_Api {
 			
 			return new \WP_REST_Response(
 				array(
-					'success' => true,
-					'id' => $post_id,
+					'success'   => true,
+					'id'        => $post_id,
 					'timestamp' => time(),
 				) 
 			);
@@ -262,18 +277,15 @@ class REST_Api {
 			);
 
 		}   
-
 	}
 
 
 	/**
 	 * REST handler that gets stats about the scans
 	 *
-	 * @param WP_REST_Request $request The request passed from the REST call.
-	 * 
 	 * @return \WP_REST_Response 
 	 */
-	public function get_scans_stats( $request ) {
+	public function get_scans_stats() {
 	
 		try {
 
@@ -283,7 +295,7 @@ class REST_Api {
 			return new \WP_REST_Response(
 				array(
 					'success' => true,
-					'stats' => $stats,
+					'stats'   => $stats,
 				) 
 			);
 
@@ -297,7 +309,6 @@ class REST_Api {
 			);
 
 		}   
-
 	}
 
 
