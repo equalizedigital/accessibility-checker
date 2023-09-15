@@ -53,7 +53,7 @@ class Scans_Stats {
 	public function __construct( $cache_time = 60 * 60 * 24 ) {
 	
 		$this->cache_time        = $cache_time;
-		$this->cache_name_prefix = 'edac_scans_stats_' . $record_limit;
+		$this->cache_name_prefix = 'edac_scans_stats_' . $this->record_limit;
 		$this->rule_count        = count( edac_register_rules() );
 	}
 
