@@ -211,8 +211,7 @@ class Scans_Stats {
 			$wpdb->prefix . 'accessibility_checker.postid IS NULL and post_type IN(' . 
 			Helpers::array_to_sql_safe_list( 
 				Settings::get_scannable_post_types() 
-			) . ') and
-			post_status IN(' . Helpers::array_to_sql_safe_list( 
+			) . ') and post_status IN(' . Helpers::array_to_sql_safe_list( 
 				Settings::get_scannable_post_statuses()
 			) . ')';
 
