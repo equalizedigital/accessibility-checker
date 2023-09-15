@@ -115,8 +115,8 @@ class REST_Api {
 					$ns . $version,
 					'/scans-stats-by-post-type/(?P<slug>[a-zA-Z0-9_-]+)',
 					array(
-						'methods' => 'GET',
-						'callback' => array( $this, 'get_scans_stats' ),
+						'methods'             => 'GET',
+						'callback'            => array( $this, 'get_scans_stats' ),
 						'permission_callback' => function () {
 							return current_user_can( 'read' ); // able to access the admin dashboard.
 						},
@@ -132,8 +132,8 @@ class REST_Api {
 					$ns . $version,
 					'/scans-stats-by-post-type/(?P<slug>[a-zA-Z0-9_-]+)',
 					array(
-						'methods' => 'GET',
-						'callback' => array( $this, 'get_scans_stats_by_post_type' ),
+						'methods'             => 'GET',
+						'callback'            => array( $this, 'get_scans_stats_by_post_type' ),
 						'permission_callback' => function () {
 							return current_user_can( 'read' ); // able to access the admin dashboard.
 						},
@@ -149,8 +149,8 @@ class REST_Api {
 					$ns . $version,
 					'/scans-stats-by-post-types',
 					array(
-						'methods' => 'GET',
-						'callback' => array( $this, 'get_scans_stats_by_post_types' ),
+						'methods'             => 'GET',
+						'callback'            => array( $this, 'get_scans_stats_by_post_types' ),
 						'permission_callback' => function () {
 							return current_user_can( 'read' ); // able to access the admin dashboard.
 						},
@@ -158,7 +158,6 @@ class REST_Api {
 				);
 			} 
 		);
-
 	}
 
 	
@@ -290,7 +289,7 @@ class REST_Api {
 		try {
 
 			$scans_stats = new Scans_Stats( 60 * 5 );
-			$stats = $scans_stats->summary();
+			$stats       = $scans_stats->summary();
 
 			return new \WP_REST_Response(
 				array(
@@ -350,7 +349,7 @@ class REST_Api {
 					return new \WP_REST_Response(
 						array(
 							'success' => true,
-							'stats' => $by_type,
+							'stats'   => $by_type,
 						) 
 					);
 			
@@ -370,7 +369,6 @@ class REST_Api {
 			);
 
 		}   
-
 	}
 
 
@@ -415,7 +413,7 @@ class REST_Api {
 			return new \WP_REST_Response(
 				array(
 					'success' => true,
-					'stats' => $by_types,
+					'stats'   => $by_types,
 				) 
 			);
 	
@@ -431,8 +429,5 @@ class REST_Api {
 			);
 
 		}   
-
 	}
-
-
 }

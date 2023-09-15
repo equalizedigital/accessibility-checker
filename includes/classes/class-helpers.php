@@ -32,5 +32,4 @@ class Helpers {
 
 		return implode( ',', $items );
 	}
-
 }
