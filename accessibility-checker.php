@@ -155,7 +155,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rest-api.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-helpers.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/Settings.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-issues-query.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
