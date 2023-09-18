@@ -35,6 +35,19 @@
     /**
      * Tabs
      */
+
+    // Refresh data on summary and readability tabs
+    const refresh_summary_and_readability = () => {
+
+      edac_summary_ajax( 
+        () => {
+          edac_readability_ajax();
+          $(".edac-panel").removeClass("edac-panel-loading");
+        }
+      );
+
+    };
+
     $(".edac-tab").click(function (e) {
       e.preventDefault();
       var id = $("a", this).attr("href");
@@ -54,7 +67,7 @@
 
     // Summary Tab on click Ajax
     $(".edac-tab-summary").click(function (e) {
-      edac_summary_ajax();
+      refresh_summary_and_readability();
     });
 
     /**
@@ -225,7 +238,7 @@
 
                 let response_json = $.parseJSON(response.data);
 
-                edac_summary_ajax( edac_readability_ajax );
+                refresh_summary_and_readability();
 
               } else {
 
@@ -271,15 +284,9 @@
           $("#edac-summary").addClass("active");
           $(".edac-tab:first-child a").addClass("active");
 
-          // Wait a bit to give js scan/save time to complete.
-          //TODO: listen for a saveComplete event.
-          setTimeout(function () {
-            edac_summary_ajax( edac_readability_ajax );
-            edac_details_ajax();
-            $(".edac-panel").removeClass("edac-panel-loading");
-
-          }, 1000);
-
+          edac_details_ajax();
+          refresh_summary_and_readability();
+         
         }
         lastIsSaving = isSaving;
       });
@@ -483,7 +490,7 @@
     }
 
     if ($('.edac-summary').length) {
-      edac_summary_ajax();
+      refresh_summary_and_readability();
     }
     if ($('.edac-details').length) {
       edac_details_ajax();
@@ -493,7 +500,7 @@
       ignore_submit();
     }
     if ($('.edac-readability').length) {
-      edac_readability_ajax();
+      refresh_summary_and_readability();
     }
 
 
