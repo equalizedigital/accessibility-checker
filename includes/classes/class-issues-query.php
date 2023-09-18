@@ -192,6 +192,23 @@ class Issues_Query {
 	}
 
 	/**
+	 * Gets distinct posts count.
+	 *    
+	 * @return integer posts_count .
+	 */
+	public function distinct_posts_count() {
+
+		global $wpdb;
+
+		$this->query['select'] = 'SELECT COUNT( DISTINCT postid ) ';
+		
+		$sql = $this->get_sql();
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->get_var( $sql );
+	}
+
+	/**
 	 * Get the ids of the issues.
 	 *    
 	 * @return array issues .

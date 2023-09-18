@@ -72,14 +72,18 @@ class Settings {
 		
 		$post_statuses = self::get_scannable_post_statuses();
 
-		$sql = "SELECT COUNT(id) FROM {$wpdb->posts}  WHERE post_type IN(" . 
+		if($post_types && $post_statuses){
+			$sql = "SELECT COUNT(id) FROM {$wpdb->posts}  WHERE post_type IN(" . 
 				Helpers::array_to_sql_safe_list( $post_types ) . ') and post_status IN(' .
 				Helpers::array_to_sql_safe_list( $post_statuses ) . 
 			')';
-		
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		$scannable_posts_count = $wpdb->get_var( $sql );
+	
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$scannable_posts_count = $wpdb->get_var( $sql );
 
+		} else {
+			$scannable_posts_count = 0;
+		}
 		return $scannable_posts_count;
 	}
 }

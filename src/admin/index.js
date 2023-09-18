@@ -576,7 +576,6 @@ const fillDashboardWidget = () => {
   getData(edac_script_vars.edacApiUrl + '/scans-stats').then((data) => {
     if(data.success){
  
-      
       // Set passed %
       const passed_percentage = data.stats.passed_percentage;
       const passed_percentage_el = document.querySelector('#edac-summary-passed');
@@ -654,9 +653,11 @@ const fillDashboardWidget = () => {
           has_issues_notice_el.classList.remove('edac-hidden');
         }
       } else {
-        const has_no_issues_notice_el = document.querySelector('.edac-summary-notice-no-issues');
-        if(has_no_issues_notice_el){
-          has_no_issues_notice_el.classList.remove('edac-hidden');
+        if(posts_scanned > 0){
+          const has_no_issues_notice_el = document.querySelector('.edac-summary-notice-no-issues');
+          if(has_no_issues_notice_el){
+            has_no_issues_notice_el.classList.remove('edac-hidden');
+          }
         }
       }
 
