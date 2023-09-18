@@ -338,7 +338,7 @@ class REST_Api {
 			);
 			unset( $post_types['attachment'] );
 		
-			$scans_stats = new Scans_Stats();   
+			$scans_stats = new Scans_Stats( 60 * 5 );   
 	
 			$post_types_to_check = array_merge( array( 'post', 'page' ), $scannable_post_types );
 					
@@ -384,7 +384,7 @@ class REST_Api {
 
 		try {
 
-			$scans_stats = new Scans_Stats();   
+			$scans_stats = new Scans_Stats( 60 * 5 );   
 
 			$scannable_post_types = Settings::get_scannable_post_types();
 				

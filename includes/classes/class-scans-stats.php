@@ -164,11 +164,16 @@ class Scans_Stats {
 
 		$issues_query = new \EDAC\Issues_Query( array(), $this->record_limit );
 	
-		$data['is_truncated']      = $issues_query->has_truncated_results();
-		$data['posts_scanned']     = (int) $scannable_posts_count;
-		$data['rules_failed']      = (int) $issues_query->distinct_count();
-		$data['rules_passed']      = (int) ( $tests_count - $data['rules_failed'] );
-		$data['passed_percentage'] = round( ( $data['rules_passed'] / $tests_count ) * 100, 2 );
+		$data['is_truncated']  = $issues_query->has_truncated_results();
+		$data['posts_scanned'] = (int) $issues_query->distinct_posts_count();
+		$data['rules_failed']  = (int) $issues_query->distinct_count();
+		$data['rules_passed']  = (int) ( $tests_count - $data['rules_failed'] );
+
+		if ( $data['posts_scanned'] > 0 ) {
+			$data['passed_percentage'] = round( ( $data['rules_passed'] / $tests_count ) * 100, 2 );
+		} else {
+			$data['passed_percentage'] = 0;
+		}
 	
 		$warning_issues_query      = new \EDAC\Issues_Query( 
 			array( 'rule_types' => array( Issues_Query::RULETYPE_WARNING ) ), 
@@ -204,7 +209,10 @@ class Scans_Stats {
 		$data['distinct_ignored'] = (int) $ignored_issues_query->distinct_count();
 		
 		
-		$sql = "SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}  
+		
+		if ( $data['posts_scanned'] > 0 ) {
+		
+			$sql = "SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}  
 			LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
 			$wpdb->prefix . 'accessibility_checker.postid WHERE ' . 
 			$wpdb->prefix . 'accessibility_checker.postid IS NULL and post_type IN(' . 
@@ -214,10 +222,14 @@ class Scans_Stats {
 				Settings::get_scannable_post_statuses()
 			) . ')';
 
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		$data['posts_without_issues'] = $wpdb->get_var( $sql );
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$data['posts_without_issues'] = $wpdb->get_var( $sql );
 
-		$data['avg_issues_per_post'] = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
+			$data['avg_issues_per_post'] = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
+		} else {
+			$data['posts_without_issues'] = 0;
+			$data['avg_issues_per_post']  = 0;
+		}
 	
 
 		$data['avg_issue_density_percentage'] = 
@@ -263,8 +275,13 @@ class Scans_Stats {
 		$data['cache_hit']  = false;
 		
 
-		set_transient( $transient_name, $data, $this->cache_time );
 
+		if ( $data['posts_scanned'] > 0 ) {
+			set_transient( $transient_name, $data, $this->cache_time );
+		} else {
+			// no posts have been scanned, so clear any previously cache results.
+			$this->clear_cache();
+		}
 	
 		return $data;
 	}
