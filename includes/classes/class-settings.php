@@ -36,16 +36,20 @@ class Settings {
 		if ( ! class_exists( '\EDACP\Settings' ) ) {
 			$post_types = get_option( 'edac_post_types' );
 
-			// remove duplicates.
-			$post_types = array_unique( $post_types );
+			if ( is_array( $post_types ) ) {
+				// remove duplicates.
+				$post_types = array_unique( $post_types );
+				
 
-
-			// validate post types.
-			foreach ( $post_types as $key => $post_type ) {
-				if ( ! post_type_exists( $post_type ) ) {
-					unset( $post_types[ $key ] );
-				}
-			}       
+				// validate post types.
+				foreach ( $post_types as $key => $post_type ) {
+					if ( ! post_type_exists( $post_type ) ) {
+						unset( $post_types[ $key ] );
+					}
+				}       
+			} else {
+				$post_types = array();
+			}
 		} else {
 			$post_types = \EDACP\Settings::get_scannable_post_types();
 		}
