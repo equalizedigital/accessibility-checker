@@ -8,6 +8,7 @@
 namespace EDAC;
 
 use EDAC\Scans_Stats;
+use EDAC\Helpers;
 
 /**
  * Class that handles welcome page
@@ -26,8 +27,6 @@ class Welcome_Page {
 		$scans_stats = new Scans_Stats();
 		$summary     = $scans_stats->summary();
 		
-		
-	
 		$html .= '
 			<div id="edac_welcome_page_summary">';
 
@@ -55,7 +54,7 @@ class Welcome_Page {
 						style="text-align: center; 
 						background: radial-gradient(closest-side, white 90%, transparent 80% 100%), 
 						conic-gradient(#006600 ' . esc_attr( $summary['passed_percentage'] ) . '%, #e2e4e7 0);">
-						<div class="edac-progress-percentage edac-xxx-large-text">' . esc_html( $summary['passed_percentage'] ) . '%</div>
+						<div class="edac-progress-percentage edac-xxx-large-text">' . esc_html( Helpers::percentage( $summary['passed_percentage'] ) ) . '</div>
 						<div class="edac-progress-label edac-large-text">' . __( 'Passed Tests', 'accessibility-checker' ) . '</div>
 					</div>
 				</div>';
@@ -63,48 +62,47 @@ class Welcome_Page {
 			$html .= '
 				<div class="edac-welcome-grid-c2 edac-welcome-grid-item' . ( ( $summary['distinct_errors_without_contrast'] > 0 ) ? ' has-errors' : ' has-no-errors' ) . '">
 					<div class="edac-inner-row">
-						<div class="edac-stat-number">' . esc_html( $summary['distinct_errors_without_contrast'] ) . '</div>
+						<div class="edac-stat-number">' . esc_html( Helpers::format_number( $summary['distinct_errors_without_contrast'] ) ) . '</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-stat-label">' . sprintf( _n( 'Unique Error', 'Unique Errors', $summary['distinct_errors_without_contrast'], 'accessibility-checker' ), $summary['distinct_errors_without_contrast'] ) . '</div>
+						<div class="edac-stat-label">' . sprintf( _n( 'Unique Error', 'Unique Errors', Helpers::format_number( $summary['distinct_errors_without_contrast'] ), 'accessibility-checker' ), Helpers::format_number( $summary['distinct_errors_without_contrast'] ) ) . '</div>
 					</div>
 				</div>
 			
 				<div class="edac-welcome-grid-c3 edac-welcome-grid-item' . ( ( $summary['distinct_contrast_errors'] > 0 ) ? ' has-contrast-errors' : ' has-no-contrast-errors' ) . '">
 					<div class="edac-inner-row">
-						<div class="edac-stat-number">' . esc_html( $summary['distinct_contrast_errors'] ) . '</div>
+						<div class="edac-stat-number">' . esc_html( Helpers::format_number( $summary['distinct_contrast_errors'] ) ) . '</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-stat-label">' . sprintf( _n( 'Unique Color Contrast Error', 'Unique Color Contrast Errors', $summary['distinct_contrast_errors'], 'accessibility-checker' ), $summary['distinct_contrast_errors'] ) . '</div>
+						<div class="edac-stat-label">' . sprintf( _n( 'Unique Color Contrast Error', 'Unique Color Contrast Errors', Helpers::format_number( $summary['distinct_contrast_errors'] ), 'accessibility-checker' ), $summary['distinct_contrast_errors'] ) . '</div>
 					</div>
 				</div>
 			
 				<div class="edac-welcome-grid-c4 edac-welcome-grid-item' . ( ( $summary['distinct_warnings'] > 0 ) ? ' has-warning' : ' has-no-warning' ) . '">
 					<div class="edac-inner-row">
-						<div class="edac-stat-number">' . esc_html( $summary['distinct_warnings'] ) . '</div>
+						<div class="edac-stat-number">' . esc_html( Helpers::format_number( $summary['distinct_warnings'] ) ) . '</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-stat-label">' . sprintf( _n( 'Unique Warning', 'Unique Warnings', $summary['distinct_warnings'], 'accessibility-checker' ), $summary['distinct_warnings'] ) . '</div>
+						<div class="edac-stat-label">' . sprintf( _n( 'Unique Warning', 'Unique Warnings', Helpers::format_number( $summary['distinct_warnings'] ), 'accessibility-checker' ), Helpers::format_number( $summary['distinct_warnings'] ) ) . '</div>
 					</div>
 				</div>
 			
 				<div class="edac-welcome-grid-c5 edac-welcome-grid-item' . ( ( $summary['distinct_ignored'] > 0 ) ? ' has-ignored' : ' has-no-ignored' ) . '">
 					<div class="edac-inner-row">
-						<div class="edac-stat-number">' . esc_html( $summary['distinct_ignored'] ) . '</div>
+						<div class="edac-stat-number">' . esc_html( Helpers::format_number( $summary['distinct_ignored'] ) ) . '</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-stat-label">' . sprintf( _n( 'Ignored Item', 'Ignored Items', $summary['distinct_ignored'], 'accessibility-checker' ), $summary['distinct_ignored'] ) . '</div>
+						<div class="edac-stat-label">' . sprintf( _n( 'Ignored Item', 'Ignored Items', Helpers::format_number( $summary['distinct_ignored'] ), 'accessibility-checker' ), Helpers::format_number( $summary['distinct_ignored'] ) ) . '</div>
 					</div>
 				</div>';
 			
-
 			$html .= '
 				<div class="edac-welcome-grid-c6 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
 						<div class="edac-stat-label">' . esc_html__( 'Average Issues Per Page', 'accessibility-checker' ) . '</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-stat-number">' . $summary['avg_issues_per_post'] . '</div>
+						<div class="edac-stat-number">' . Helpers::format_number( $summary['avg_issues_per_post'] ) . '</div>
 					</div>
 				</div>
 			
@@ -113,7 +111,7 @@ class Welcome_Page {
 						<div class="edac-stat-label">' . esc_html__( 'Average Issue Density', 'accessibility-checker' ) . '</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-stat-number">' . esc_html( $summary['avg_issue_density_percentage'] ) . '%</div>
+						<div class="edac-stat-number">' . esc_html( Helpers::percentage( $summary['avg_issue_density_percentage'] ) ) . '</div>
 					</div>
 				</div>
 			
@@ -138,7 +136,7 @@ class Welcome_Page {
 
 				<div class="edac-welcome-grid-c9 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
-						<div class="edac-stat-number">' . esc_html( $summary['posts_scanned'] ) . '</div>
+						<div class="edac-stat-number">' . esc_html( Helpers::format_number( $summary['posts_scanned'] ) ) . '</div>
 					</div>
 					<div class="edac-inner-row">
 						<div class="edac-stat-label">' . esc_html__( 'URLs Scanned', 'accessibility-checker' ) . '</div>
@@ -147,7 +145,7 @@ class Welcome_Page {
 
 				<div class="edac-welcome-grid-c10 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
-						<div class="edac-stat-number">' . esc_html( $summary['scannable_post_types_count'] ) . ' ' . esc_html__( 'of', 'accessibility-checker' ) . ' ' . esc_html( $summary['public_post_types_count'] ) . '</div>
+						<div class="edac-stat-number">' . esc_html( Helpers::format_number( $summary['scannable_post_types_count'] ) ) . ' ' . esc_html__( 'of', 'accessibility-checker' ) . ' ' . esc_html( Helpers::format_number( $summary['public_post_types_count'] ) ) . '</div>
 					</div>
 					<div class="edac-inner-row">
 						<div class="edac-stat-label">' . esc_html__( 'Post Types Checked', 'accessibility-checker' ) . '</div>
@@ -156,7 +154,7 @@ class Welcome_Page {
 
 				<div class="edac-welcome-grid-c11 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
-						<div class="edac-stat-number">' . esc_html( $summary['posts_without_issues'] ) . '</div>
+						<div class="edac-stat-number">' . esc_html( Helpers::format_number( $summary['posts_without_issues'] ) ) . '</div>
 					</div>
 					<div class="edac-inner-row">
 						<div class="edac-stat-label">' . esc_html__( 'URLs with 100% score', 'accessibility-checker' ) . '</div>
