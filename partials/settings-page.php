@@ -27,14 +27,20 @@ if ( has_filter( 'edac_filter_settings_tab_items' ) ) {
 if ( is_array( $settings_tab_items ) ) {
 	usort(
 		$settings_tab_items,
-		function( $a, $b ) {
-			return strcmp( $b['order'], $a['order'] );
+		function ( $a, $b ) {
+			if ( $a['order'] < $b['order'] ) {
+				return -1;
+			} elseif ( $a['order'] == $b['order'] ) {
+				return 0;
+			} else {
+				return 1;
+			}
 		}
 	);
 }
 
 // Get the active tab from the $_GET param.
-$default_tab = null;
+$default_tab  = null;
 $settings_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : $default_tab;
 $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items, 'slug' ) ) !== false ) ? $settings_tab : $default_tab;
 ?>
@@ -51,7 +57,15 @@ $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items
 			$query_var = $slug ? '&tab=' . $slug : '';
 			$label     = $settings_tab_item['label'];
 			?>
-			<a <?php if ( $settings_tab === $slug ) : ?>aria-current="true" <?php endif; ?>href="?page=accessibility_checker_settings<?php echo esc_html( $query_var ); ?>" class="nav-tab <?php if ( $settings_tab === $slug ) : ?>nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
+			<a 
+			<?php 
+			if ( $settings_tab === $slug ) :
+				?>
+				aria-current="true" <?php endif; ?>href="?page=accessibility_checker_settings<?php echo esc_html( $query_var ); ?>" class="nav-tab 
+				<?php 
+				if ( $settings_tab === $slug ) :
+					?>
+				nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
 			<?php
 		}
 		echo '</nav>';
