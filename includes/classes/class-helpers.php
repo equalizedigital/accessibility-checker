@@ -38,7 +38,7 @@ class Helpers {
 	 * Localizes the format of a number.
 	 *
 	 * @param [type]  $number
-	 * @param integer $decimals number of decimals.
+	 * @param integer $precision number of decimals.
 	 * @return integer
 	 */
 	public static function format_number( $number, $precision = 0 ) {
@@ -51,18 +51,25 @@ class Helpers {
 
 		$formatter = new \NumberFormatter( $locale, \NumberFormatter::DECIMAL );
 		$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
-		$formatter->setAttribute( \NumberFormatter::GROUPING_USED, 1 ); // Include thousands separator
+		$formatter->setAttribute( \NumberFormatter::GROUPING_USED, 1 ); // Include thousands separator.
 		
 		return $formatter->format( $number );
 	}
 
-	public static function percentage($number, $precision = 2){
+	/**
+	 * Localizes the format of a percentage.
+	 *
+	 * @param [type]  $number
+	 * @param integer $precision number of decimals.
+	 * @return integer
+	 */
+	public static function format_percentage( $number, $precision = 2 ) {
 
 		if ( ( ! is_numeric( $number ) ) ) {
 			return $number;
 		}
 
-		if($number > 1){
+		if ( $number > 1 ) {
 			$number = $number / 100;
 		}
 
@@ -73,6 +80,38 @@ class Helpers {
 		$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
 		
 		return $formatter->format( $number );
-		
+	}
+
+	/**
+	 * Localizes the format of a date.
+	 *
+	 * @param [type]  $number
+	 * @param integer $precision number of decimals.
+	 * @return integer
+	 */
+	public static function format_date( $date ) {
+
+		if ( ! is_numeric( $date ) ) { // date as string.
+			
+			$timestamp = strtotime( $date ); 
+
+			if ( ! $timestamp ) { // The passed string is not a valid date.
+				return $date;
+			}       
+		} else { // unix timestamp.
+			$timestamp = $date; 
+		}
+
+
+		// Use date_i18n to format and localize the date.
+		$format = get_option( 'date_format' );
+
+		if ( ! $format ) {
+			$format = 'j M Y';
+		}
+
+		$formatted_date = date_i18n( $format, $timestamp );
+	
+		return $formatted_date;
 	}
 }

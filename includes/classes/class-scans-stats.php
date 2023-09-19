@@ -122,7 +122,7 @@ class Scans_Stats {
 		$transient_name = $this->cache_name_prefix . '_summary';
 
 		$cache = get_transient( $transient_name );
-
+		
 		if ( $this->cache_time && $cache ) {
 
 		
@@ -276,6 +276,39 @@ class Scans_Stats {
 		
 
 
+		// Handle formatting. Assumes all are numbers except for those listed in exceptions.
+		$formatting            = array();
+		$formatting_exceptions = array(
+			'is_truncated',
+			'passed_percentage',
+			'avg_issue_density_percentage',
+			'fullscan_running',
+			'fullscan_state',
+			'fullscan_completed_at',
+			'cache_id',
+			'cached_at',
+			'expires_at',
+			'cache_hit',
+		);
+		
+		foreach ( $data as $key => $value ) {
+			if ( ! in_array( $key, $formatting_exceptions ) ) {
+				$formatting[ $key . '_formatted' ] = Helpers::format_number( $value );
+			}
+		}
+
+		// Handle exceptions.
+		if ( $data['fullscan_completed_at'] > 0 ) {
+			$formatting['fullscan_completed_at_formatted'] = Helpers::format_date( $data['fullscan_completed_at'] );
+		} else {
+			$formatting['fullscan_completed_at_formatted'] = 'N/A';
+		}
+		$formatting['passed_percentage_formatted']            = Helpers::format_percentage( $data['passed_percentage'] );
+		$formatting['avg_issue_density_percentage_formatted'] = Helpers::format_percentage( $data['avg_issue_density_percentage'] );
+		
+		$data = array_merge( $data, $formatting );
+		
+
 		if ( $data['posts_scanned'] > 0 ) {
 			set_transient( $transient_name, $data, $this->cache_time );
 		} else {
@@ -354,6 +387,10 @@ class Scans_Stats {
 		$data['distinct_errors_without_contrast'] = $data['distinct_errors'] - $data['distinct_contrast_errors'];
 	
 		
+		foreach ( $data as $key => $val ) {
+			$data[ $key . '_formatted' ] = Helpers::format_number( $val );
+		}
+
 	
 		$data['cache_id']   = $transient_name; 
 		$data['cached_at']  = time(); 
