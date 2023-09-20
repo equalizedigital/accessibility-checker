@@ -113,7 +113,7 @@ class Helpers {
 			$format = 'j M Y';
 		}
 
-		$formatted_date = $datetime->format( format );
+		$formatted_date = $datetime->format( $format );
 
 		return $formatted_date;
 	}
