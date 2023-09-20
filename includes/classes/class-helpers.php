@@ -102,16 +102,19 @@ class Helpers {
 			$timestamp = $date; 
 		}
 
+		$datetime = new \DateTime();
+		$datetime->setTimestamp( $timestamp );
+		$datetime->setTimezone( wp_timezone() );
+	
 
-		// Use date_i18n to format and localize the date.
 		$format = get_option( 'date_format' );
 
 		if ( ! $format ) {
 			$format = 'j M Y';
 		}
 
-		$formatted_date = date_i18n( $format, $timestamp );
-	
+		$formatted_date = $datetime->format( format );
+
 		return $formatted_date;
 	}
 }
