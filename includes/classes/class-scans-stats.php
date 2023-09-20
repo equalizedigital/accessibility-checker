@@ -263,7 +263,7 @@ class Scans_Stats {
 			) {
 				$data['fullscan_running'] = true;
 			} 
-			$data['fullscan_completed_at'] = (int) get_option( 'edacp_fullscan_completed_at' );
+			$data['fullscan_completed_at'] = $scans->scan_date( 'php' );
 	
 		} else {
 			$data['fullscan_completed_at'] = 0;
