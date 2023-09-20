@@ -57,19 +57,20 @@ function edac_delete_cpt_posts( $post_type ) {
 	global $wpdb;
 	$site_id = get_current_blog_id();
 
-	// get all post of the current post type.
-	$posts = $wpdb->get_results( $wpdb->prepare( 'SELECT postid FROM ' . $wpdb->prefix . 'accessibility_checker WHERE type = %s and siteid = %d', $post_type, $site_id ), ARRAY_A );
+	$postmeta_table = $wpdb->postmeta;
+	$ac_table       = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 
-	// delete post meta.
-	if ( $posts ) {
-		foreach ( $posts as $post ) {
-			edac_delete_post_meta( $post['postid'] );
-		}
-	}
+	$sql = $wpdb->prepare(
+		"DELETE T1,T2 from {$postmeta_table} as T1 
+		JOIN {$ac_table} as T2 ON t1.post_id = T2.postid
+		WHERE t1.meta_key like %s and T2.siteid=%d and T2.type=%s",
+		array(
+			'_edac%',
+			$site_id,
+			$post_type,
+		)
+	);
 
-	// delete issues by post type.
-	$results = $wpdb->query( $wpdb->prepare( 'DELETE FROM ' . $wpdb->prefix . 'accessibility_checker WHERE type = %s and siteid = %d', $post_type, $site_id ) );
-
-	return $results;
-
+	//phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+	return $wpdb->query( $sql );
 }
