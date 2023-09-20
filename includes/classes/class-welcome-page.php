@@ -113,7 +113,7 @@ class Welcome_Page {
 						<div class="edac-stat-label">' . esc_html__( 'Average Issue Density', 'accessibility-checker' ) . '</div>
 					</div>
 					<div class="edac-inner-row">
-						<div class="edac-stat-number">' . esc_html( $summary['avg_issue_density_percentage'] ) . '%</div>
+						<div class="edac-stat-number">' . esc_html( $summary['avg_issue_density_percentage'] ) . '</div>
 					</div>
 				</div>
 			
