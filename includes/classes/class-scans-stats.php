@@ -123,6 +123,7 @@ class Scans_Stats {
 
 		$cache = get_transient( $transient_name );
 
+		
 		if ( $this->cache_time && $cache ) {
 
 		
@@ -162,7 +163,7 @@ class Scans_Stats {
 		$data['public_post_types_count'] = (int) count( $post_types );
 		
 
-		$issues_query = new \EDAC\Issues_Query( array(), $this->record_limit );
+		$issues_query = new \EDAC\Issues_Query( array(), $this->record_limit, Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES );
 	
 		$data['is_truncated']  = $issues_query->has_truncated_results();
 		$data['posts_scanned'] = (int) $issues_query->distinct_posts_count();
@@ -176,14 +177,20 @@ class Scans_Stats {
 		}
 	
 		$warning_issues_query      = new \EDAC\Issues_Query( 
-			array( 'rule_types' => array( Issues_Query::RULETYPE_WARNING ) ), 
+			array( 
+				'post_types' => Settings::get_scannable_post_types(),
+				'rule_types' => array( Issues_Query::RULETYPE_WARNING ), 
+			), 
 			$this->record_limit 
 		);
 		$data['warnings']          = (int) $warning_issues_query->count();
 		$data['distinct_warnings'] = (int) $warning_issues_query->distinct_count();
 
 		$contrast_issues_query = new \EDAC\Issues_Query( 
-			array( 'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ) ),
+			array( 
+				'post_types' => Settings::get_scannable_post_types(),
+				'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ), 
+			),
 			$this->record_limit 
 		);
 		
@@ -191,7 +198,10 @@ class Scans_Stats {
 		$data['distinct_contrast_errors'] = (int) $contrast_issues_query->distinct_count();
 		
 		$error_issues_query      = new \EDAC\Issues_Query( 
-			array( 'rule_types' => array( Issues_Query::RULETYPE_ERROR ) ),
+			array( 
+				'post_types' => Settings::get_scannable_post_types(),
+				'rule_types' => array( Issues_Query::RULETYPE_ERROR ),
+			),
 			$this->record_limit 
 		);
 		$data['errors']          = (int) $error_issues_query->count();
@@ -200,17 +210,23 @@ class Scans_Stats {
 		$data['errors_without_contrast']          = $data['errors'] - $data['contrast_errors'];
 		$data['distinct_errors_without_contrast'] = $data['distinct_errors'] - $data['distinct_contrast_errors'];
 	
-		$ignored_issues_query     = new \EDAC\Issues_Query( 
-			array(), 
+		
+		$ignored_issues_query     = new Issues_Query( 
+			array( 
+				'post_types' => Settings::get_scannable_post_types(),
+			),
 			$this->record_limit,
-			\EDAC\Issues_Query::IGNORE_FLAG_ONLY_IGNORED
+			Issues_Query::FLAG_ONLY_IGNORED
 		);
 		$data['ignored']          = (int) $ignored_issues_query->count();
 		$data['distinct_ignored'] = (int) $ignored_issues_query->distinct_count();
 		
 		
 		
-		if ( $data['posts_scanned'] > 0 ) {
+		if ( $data['posts_scanned'] > 0 && 
+			! empty( Settings::get_scannable_post_types() ) && 
+			! empty( Settings::get_scannable_post_statuses() ) 
+		) {
 		
 			$sql = "SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}  
 			LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
@@ -263,7 +279,10 @@ class Scans_Stats {
 			) {
 				$data['fullscan_running'] = true;
 			} 
-			$data['fullscan_completed_at'] = (int) get_option( 'edacp_fullscan_completed_at' );
+			
+			$scans                         = new \EDACP\Scans();
+			$data['fullscan_completed_at'] = $scans->scan_date( 'php' );
+			
 	
 		} else {
 			$data['fullscan_completed_at'] = 0;

@@ -34,22 +34,26 @@ class Settings {
 
 	
 		if ( ! class_exists( '\EDACP\Settings' ) ) {
-			$post_types = get_option( 'edac_post_types' );
+			
+			$post_types = Helpers::get_option_as_array( 'edac_post_types' );
 
-			if ( is_array( $post_types ) ) {
-				// remove duplicates.
-				$post_types = array_unique( $post_types );
-				
+			// remove duplicates.
+			$post_types = array_unique( $post_types );
+			
+			// validate post types.
+			$args             = array(
+				'public'   => true,
+				'_builtin' => true,
+			);
+			$valid_post_types = get_post_types( $args, 'names', 'and' );
+			unset( $valid_post_types['attachment'] );
 
-				// validate post types.
-				foreach ( $post_types as $key => $post_type ) {
-					if ( ! post_type_exists( $post_type ) ) {
-						unset( $post_types[ $key ] );
-					}
-				}       
-			} else {
-				$post_types = array();
-			}
+			foreach ( $post_types as $key => $post_type ) {
+
+				if ( ! post_type_exists( $post_type ) || ! array_key_exists( $post_type, $valid_post_types ) ) {
+					unset( $post_types[ $key ] );
+				}
+			}       
 		} else {
 			$post_types = \EDACP\Settings::get_scannable_post_types();
 		}
@@ -72,7 +76,7 @@ class Settings {
 		
 		$post_statuses = self::get_scannable_post_statuses();
 
-		if($post_types && $post_statuses){
+		if ( ! empty( $post_types ) && ! empty( $post_statuses ) ) {
 			$sql = "SELECT COUNT(id) FROM {$wpdb->posts}  WHERE post_type IN(" . 
 				Helpers::array_to_sql_safe_list( $post_types ) . ') and post_status IN(' .
 				Helpers::array_to_sql_safe_list( $post_statuses ) . 
