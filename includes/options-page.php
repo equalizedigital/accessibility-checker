@@ -5,6 +5,8 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Scans_Stats;
+
 /**
  * Check if user can ignore or can manage options
  *
@@ -34,12 +36,12 @@ function edac_user_can_ignore() {
 function edac_add_options_page() {
 
 	add_menu_page(
-		__( 'Welcome to Accessibility Checker', 'edac' ),
-		__( 'Accessibility Checker', 'edac' ),
+		__( 'Welcome to Accessibility Checker', 'accessibility-checker' ),
+		__( 'Accessibility Checker', 'accessibility-checker' ),
 		'read',
 		'accessibility_checker',
 		'edac_display_welcome_page',
-		'dashicons-universal-access-alt	'
+		'dashicons-universal-access-alt'
 	);
 
 	if ( ! edac_user_can_ignore() ) {
@@ -54,13 +56,12 @@ function edac_add_options_page() {
 
 	add_submenu_page(
 		'accessibility_checker',
-		__( 'Accessibility Checker Settings', 'edac' ),
-		__( 'Settings', 'edac' ),
+		__( 'Accessibility Checker Settings', 'accessibility-checker' ),
+		__( 'Settings', 'accessibility-checker' ),
 		$settings_capability,
 		'accessibility_checker_settings',
-		'edac_display_options_page',
-		1,
-		'dashicons-universal-access-alt	'
+		'edac_display_options_page'
+		// The submenu doesn't typically require a separate icon.
 	);
 }
 
@@ -86,21 +87,21 @@ function edac_register_setting() {
 	// Add sections.
 	add_settings_section(
 		'edac_general',
-		__( 'General Settings', 'edac' ),
+		__( 'General Settings', 'accessibility-checker' ),
 		'edac_general_cb',
 		'edac_settings'
 	);
 
 	add_settings_section(
 		'edac_simplified_summary',
-		__( 'Simplified Summary Settings', 'edac' ),
+		__( 'Simplified Summary Settings', 'accessibility-checker' ),
 		'edac_simplified_summary_cb',
 		'edac_settings'
 	);
 
 	add_settings_section(
 		'edac_footer_accessibility_statement',
-		__( 'Footer Accessibility Statement', 'edac' ),
+		__( 'Footer Accessibility Statement', 'accessibility-checker' ),
 		'edac_footer_accessibility_statement_cb',
 		'edac_settings'
 	);
@@ -108,7 +109,7 @@ function edac_register_setting() {
 	// Add fields.
 	add_settings_field(
 		'edac_post_types',
-		__( 'Post Types To Be Checked', 'edac' ),
+		__( 'Post Types To Be Checked', 'accessibility-checker' ),
 		'edac_post_types_cb',
 		'edac_settings',
 		'edac_general',
@@ -117,7 +118,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edac_delete_data',
-		__( 'Delete Data', 'edac' ),
+		__( 'Delete Data', 'accessibility-checker' ),
 		'edac_delete_data_cb',
 		'edac_settings',
 		'edac_general',
@@ -126,7 +127,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edac_simplified_summary_prompt',
-		__( 'Prompt for Simplified Summary', 'edac' ),
+		__( 'Prompt for Simplified Summary', 'accessibility-checker' ),
 		'edac_simplified_summary_prompt_cb',
 		'edac_settings',
 		'edac_simplified_summary',
@@ -135,7 +136,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edac_simplified_summary_position',
-		__( 'Simplified Summary Position', 'edac' ),
+		__( 'Simplified Summary Position', 'accessibility-checker' ),
 		'edac_simplified_summary_position_cb',
 		'edac_settings',
 		'edac_simplified_summary',
@@ -144,7 +145,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edac_add_footer_accessibility_statement',
-		__( 'Add Footer Accessibility Statement', 'edac' ),
+		__( 'Add Footer Accessibility Statement', 'accessibility-checker' ),
 		'edac_add_footer_accessibility_statement_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
@@ -153,7 +154,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edac_include_accessibility_statement_link',
-		__( 'Include Link to Accessibility Policy', 'edac' ),
+		__( 'Include Link to Accessibility Policy', 'accessibility-checker' ),
 		'edac_include_accessibility_statement_link_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
@@ -162,7 +163,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edac_accessibility_policy_page',
-		__( 'Accessibility Policy page', 'edac' ),
+		__( 'Accessibility Policy page', 'accessibility-checker' ),
 		'edac_accessibility_policy_page_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
@@ -171,7 +172,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edac_accessibility_statement_preview',
-		__( 'Accessibility Statement Preview', 'edac' ),
+		__( 'Accessibility Statement Preview', 'accessibility-checker' ),
 		'edac_accessibility_statement_preview_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
@@ -210,11 +211,22 @@ function edac_register_setting() {
  */
 function edac_general_cb() {
 	echo '<p>';
-	echo esc_html__( 'Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the ', 'edac' ) . '<a href="https://a11ychecker.com/" target="_blank">' . esc_html__( 'plugin documentation', 'edac' ) . '</a>.';
+	
+	
+	printf(
+		/* translators: %1$s: link to the plugin documentation website. */
+		esc_html__( 'Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s.', 'accessibility-checker' ),
+		'<a href="https://a11ychecker.com/" target="_blank" aria-label="' . esc_attr__( 'plugin documentation (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'plugin documentation', 'accessibility-checker' ) . '</a>'
+	);
 
 	if ( EDAC_KEY_VALID === false ) {
-		echo esc_html__( ' More features and email support is available with ', 'edac' ) . '<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank">' . esc_html__( 'Accessibility Checker Pro', 'edac' ) . '</a>.';
+		printf(
+			/* translators: %1$s: link to the "Accessibility Checker Pro" website. */
+			' ' . esc_html__( 'More features and email support is available with %1$s.', 'accessibility-checker' ),
+			'<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="' . esc_attr__( 'Accessibility Checker Pro (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'Accessibility Checker Pro', 'accessibility-checker' ) . '</a>'
+		);
 	}
+
 	echo '</p>';
 }
 
@@ -222,14 +234,20 @@ function edac_general_cb() {
  * Render the text for the simplified summary section
  */
 function edac_simplified_summary_cb() {
-	echo '<p>' . esc_html__( 'Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post\'s or page\'s edit screen. ', 'edac' ) . '<a href="https://a11ychecker.com/help3265" target="_blank">' . esc_html__( 'Learn more about simplified summaries and readability requirements.', 'edac' ) . '</a></p>';
+	printf(
+		'<p>%1$s %2$s</p>',
+		esc_html__( 'Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post\'s or page\'s edit screen.', 'accessibility-checker' ),
+		'<a href="https://a11ychecker.com/help3265" target="_blank" aria-label="' . esc_attr__( 'Learn more about simplified summaries and readability requirements (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'Learn more about simplified summaries and readability requirements.', 'accessibility-checker' ) . '</a>'
+	);
 }
 
 /**
  * Render the text for the footer accessiblity statement section
  */
 function edac_footer_accessibility_statement_cb() {
-	echo '<p>' . esc_html__( 'Are you thinking "Wow, this plugin is amazing" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you\'re using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website.', 'edac' ) . '</p>';
+	echo '<p>';
+	echo esc_html__( 'Are you thinking "Wow, this plugin is amazing" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you\'re using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website.', 'accessibility-checker' );
+	echo '</p>';
 }
 
 /**
@@ -241,26 +259,26 @@ function edac_simplified_summary_position_cb() {
 		<fieldset>
 			<label>
 				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" id="<?php echo 'edac_simplified_summary_position'; ?>" value="before" <?php checked( $position, 'before' ); ?>>
-				<?php esc_html_e( 'Before the content', 'edac' ); ?>
+				<?php esc_html_e( 'Before the content', 'accessibility-checker' ); ?>
 			</label>
 			<br>
 			<label>
 				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" value="after" <?php checked( $position, 'after' ); ?>>
-				<?php esc_html_e( 'After the content', 'edac' ); ?>
+				<?php esc_html_e( 'After the content', 'accessibility-checker' ); ?>
 			</label>
 			<br>
 			<label>
 				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" value="none" <?php checked( $position, 'none' ); ?>>
-				<?php esc_html_e( 'Insert manually', 'edac' ); ?>
+				<?php esc_html_e( 'Insert manually', 'accessibility-checker' ); ?>
 			</label>
 		</fieldset>
 		<div id="ac-simplified-summary-option-code">
-			<p>Use this function to manually add the simplified summary to your theme within the loop.</p>
+			<p><?php esc_html_e( 'Use this function to manually add the simplified summary to your theme within the loop.', 'accessibility-checker' ); ?></p>
 			<kbd>edac_get_simplified_summary();</kbd>
-			<p>The function optionally accepts the post ID as a parameter.<p>
+			<p><?php esc_html_e( 'The function optionally accepts the post ID as a parameter.', 'accessibility-checker' ); ?><p>
 			<kbd>edac_get_simplified_summary($post);</kbd>
 		</div>
-		<p class="edac-description"><?php echo esc_html__( 'Set where you would like simplified summaries to appear in relation to your content if filled in.', 'edac' ); ?></p>
+		<p class="edac-description"><?php echo esc_html__( 'Set where you would like simplified summaries to appear in relation to your content if filled in.', 'accessibility-checker' ); ?></p>
 	<?php
 }
 
@@ -285,20 +303,20 @@ function edac_simplified_summary_prompt_cb() {
 		<fieldset>
 			<label>
 				<input type="radio" name="<?php echo 'edac_simplified_summary_prompt'; ?>" id="<?php echo 'edac_simplified_summary_prompt'; ?>" value="when required" <?php checked( $prompt, 'when required' ); ?>>
-				<?php esc_html_e( 'When Required', 'edac' ); ?>
+				<?php esc_html_e( 'When Required', 'accessibility-checker' ); ?>
 			</label>
 			<br>
 			<label>
 				<input type="radio" name="<?php echo 'edac_simplified_summary_prompt'; ?>" value="always" <?php checked( $prompt, 'always' ); ?>>
-				<?php esc_html_e( 'Always', 'edac' ); ?>
+				<?php esc_html_e( 'Always', 'accessibility-checker' ); ?>
 			</label>
 			<br>
 			<label>
 				<input type="radio" name="<?php echo 'edac_simplified_summary_prompt'; ?>" value="none" <?php checked( $prompt, 'none' ); ?>>
-				<?php esc_html_e( 'Never', 'edac' ); ?>
+				<?php esc_html_e( 'Never', 'accessibility-checker' ); ?>
 			</label>
 		</fieldset>
-		<p class="edac-description"><?php echo esc_html__( 'Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?', 'edac' ); ?></p>
+		<p class="edac-description"><?php echo esc_html__( 'Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?', 'accessibility-checker' ); ?></p>
 	<?php
 }
 
@@ -346,17 +364,22 @@ function edac_post_types_cb() {
 			?>
 		</fieldset>
 		<?php if ( EDAC_KEY_VALID === false ) { ?>
-			<p class="edac-description"><?php echo esc_html__( 'To check content other than posts and pages, please ', 'edac' ); ?><a href="https://my.equalizedigital.com/" target="_blank"><?php echo esc_html__( 'upgrade to pro', 'edac' ); ?></a>.</p>
+			<p class="edac-description">
+				<?php 
+				echo esc_html__( 'To check content other than posts and pages, please ', 'accessibility-checker' );
+				?>
+				<a href="https://my.equalizedigital.com/" target="_blank" rel="noopener noreferrer"><?php echo esc_html__( 'upgrade to pro', 'accessibility-checker' ); ?></a>
+				<?php esc_html_e( ' (opens in a new window)', 'accessibility-checker' ); ?>
+			</p>
 		<?php } else { ?>
 			<p class="edac-description">
 				<?php 
-				echo __('Choose which post types should be checked during a scan. <em>Please note</em>, 
-				removing a previously selected post type will remove its
-				scanned information and any custom ignored warnings that have been setup.', 'edac');
+				esc_html_e( 'Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup.', 'accessibility-checker' );
 				?>
 			</p>
-		<?php }
-	
+			<?php 
+		}
+
 }
 
 /**
@@ -391,6 +414,16 @@ function edac_sanitize_post_types( $selected_post_types ) {
 		}
 	}
 
+	// clear cached stats if selected posts types change.
+	if ( get_option( 'edac_post_types' ) !== $selected_post_types ) {
+		$scan_stats = new \EDAC\Scans_Stats();
+		$scan_stats->clear_cache();
+
+		if ( class_exists( '\EDACP\Scans' ) ) {
+			delete_option( 'edacp_fullscan_completed_at' );
+		}
+	}
+	
 	return $selected_post_types;
 }
 
@@ -404,8 +437,8 @@ function edac_add_footer_accessibility_statement_cb() {
 	?>
 	<fieldset>
 		<label>
-			<input type="checkbox" name="<?php echo 'edac_add_footer_accessibility_statement'; ?>" value="<?php echo '1'; ?>" <?php checked( $option, 1 ); ?>>
-			<?php esc_html_e( 'Add Footer Accessibility Statement', 'edac' ); ?>
+			<input type="checkbox" name="edac_add_footer_accessibility_statement" value="1" <?php checked( $option, 1 ); ?>>
+			<?php esc_html_e( 'Add Footer Accessibility Statement', 'accessibility-checker' ); ?>
 		</label>
 	</fieldset>
 	<?php
@@ -441,7 +474,7 @@ function edac_include_accessibility_statement_link_cb() {
 													disabled( $disabled, false );
 													?>
 			>
-			<?php esc_html_e( 'Include Link to Accessibility Policy', 'edac' ); ?>
+			<?php esc_html_e( 'Include Link to Accessibility Policy', 'accessibility-checker' ); ?>
 		</label>
 	</fieldset>
 	<?php
@@ -491,7 +524,7 @@ function edac_sanitize_accessibility_policy_page( $page ) {
  */
 function edac_accessibility_statement_preview_cb() {
 
-	echo edac_get_accessibility_statement();
+	echo wp_kses_post( edac_get_accessibility_statement() );
 
 }
 
@@ -505,12 +538,11 @@ function edac_delete_data_cb() {
 	?>
 	<fieldset>
 		<label>
-			<input type="checkbox" name="<?php echo 'edac_delete_data'; ?>" value="<?php echo '1'; ?>" <?php checked( $option, 1 ); ?>>
-			<?php esc_html_e( 'Delete all Accessibility Checker data when the plugin is uninstalled.', 'edac' ); ?>
+			<input type="checkbox" name="edac_delete_data" value="1" <?php checked( $option, 1 ); ?>>
+			<?php esc_html_e( 'Delete all Accessibility Checker data when the plugin is uninstalled.', 'accessibility-checker' ); ?>
 		</label>
 	</fieldset>
 	<?php
-
 }
 
 /**

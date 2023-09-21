@@ -16,124 +16,126 @@
 				<h1 class="edac-welcome-title">
 					<?php
 					if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) === true && EDAC_KEY_VALID === true ) {
-						$welcome_title = 'Accessibility Checker Pro';
+						$welcome_title = __('Accessibility Checker Pro', 'accessibility-checker');
 						$version       = EDACP_VERSION;
 					} else {
-						$welcome_title = 'Accessibility Checker';
+						$welcome_title = __('Accessibility Checker', 'accessibility-checker');
 						$version       = EDAC_VERSION;
 					}
 
 					echo $welcome_title;
-		
 					?>
 				</h1>
 				<p>
 					<?php 
-					echo 'version ' . $version;
+					printf( __('version %s', 'accessibility-checker' ), $version);
 					?>
-				</p>			
+				</p>
 			</div>
 
 		<div class="edac-welcome-header-right">
 				<a href="https://equalizedigital.com/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
-					<img src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/Accessibility Checker logo transparent bg.svg" alt="Link to Equalize Digital Website">
+					<img src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/Accessibility Checker logo transparent bg.svg" alt="<?php _e('Link to Equalize Digital Website', 'accessibility-checker'); ?>">
 				</a>
 			</div>
 		</div>
 
-
 		<?php \EDAC\Welcome_Page::render_summary(); ?>
-
 
 		<section class="edac-welcome-section">
 			<div class="edac-welcome-quick-start">
-				<h2>Quick Start Guide</h2>
-				<p>Follow these steps to get started checking your content:</p>
+				<h2><?php _e('Quick Start Guide', 'accessibility-checker'); ?></h2>
+				<p><?php _e('Follow these steps to get started checking your content:', 'accessibility-checker'); ?></p>
 				<ol>
-					<li>On the <a href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ); ?>">Settings Page</a>, choose which post types you want to scan.</li>
-					<li>Go to the edit screen for the post you want to check.</li>
-					<li>Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results.</li>
-					<li>If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information.</li>
-					<li>Expand each issue to see the code, or click "view on page" if you need help finding the element that needs fixing.</li>
-					<li>If you don't know what an error or warning means, click the "i" icon to read the documentation and how to fix it.</li>
-					<li>If an issue is a false positive and the element is accessible, you can remove issues from reports with the "Ignore" feature.</li>
-					<li>After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests.</li>
+					<li>
+						<?php printf( __('On the <a href="%s">Settings Page</a>, choose which post types you want to scan.', 'accessibility-checker'), esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ) ); ?>
+					</li>
+					<li><?php _e('Go to the edit screen for the post you want to check.', 'accessibility-checker'); ?></li>
+					<li><?php _e('Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results.', 'accessibility-checker'); ?></li>
+					<li><?php _e('If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information.', 'accessibility-checker'); ?></li>
+					<li><?php _e('Expand each issue to see the code, or click "view on page" if you need help finding the element that needs fixing.', 'accessibility-checker'); ?></li>
+					<li><?php _e('If you don\'t know what an error or warning means, click the "i" icon to read the documentation and how to fix it.', 'accessibility-checker'); ?></li>
+					<li><?php _e('If an issue is a false positive and the element is accessible, you can remove issues from reports with the "Ignore" feature.', 'accessibility-checker'); ?></li>
+					<li><?php _e('After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests.', 'accessibility-checker'); ?></li>
 				</ol>
 				<p>
-					<a href="https://equalizedigital.com/accessibility-checker/getting-started-quick-guide/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page#demo">Watch a video of Accessibility Checker in use.</a>
+					<a href="https://equalizedigital.com/accessibility-checker/getting-started-quick-guide/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page#demo">
+						<?php _e('Watch a video of Accessibility Checker in use.', 'accessibility-checker'); ?>
+					</a>
 				</p>
 			</div>
 
 			<div class="edac-welcome-documentation">
-				<h2>Documentation and FAQs</h2>
+				<h2><?php _e('Documentation and FAQs', 'accessibility-checker'); ?></h2>
 				<ul>
-					<li><a href="https://a11ychecker.com/help4279" target="_blank">Why do we say 100% Passed Tests, Not 100% Accessible?</a></li>
-					<li><a href="https://a11ychecker.com/help4280" target="_blank">How to Manually Check Your Website for Accessibility</a></li>
-					<li><a href="https://a11ychecker.com/help4206" target="_blank">When to Ignore Accessibility Errors</a></li>
-					<li><a href="https://a11ychecker.com/help4114" target="_blank">What to do if a Plugin You’re Using has Accessibility Errors</a></li>
-					<li><a href="https://a11ychecker.com/help4386" target="_blank">What to do if there are Accessibility Errors in Your Theme</a></li>
-					<li><a href="https://a11ychecker.com/help4293" target="_blank">Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?</a></li>
-					<li><a href="https://a11ychecker.com/help4285" target="_blank">Additional Resources for Learning About Accessibility</a></li>
+					<li><a href="https://a11ychecker.com/help4279" target="_blank"><?php _e('Why do we say 100% Passed Tests, Not 100% Accessible?', 'accessibility-checker'); ?> <span class="screen-reader-text"><?php _e('(opens in a new window)', 'accessibility-checker'); ?></span></a></li>
+					<li><a href="https://a11ychecker.com/help4280" target="_blank"><?php _e('How to Manually Check Your Website for Accessibility', 'accessibility-checker'); ?> <span class="screen-reader-text"><?php _e('(opens in a new window)', 'accessibility-checker'); ?></span></a></li>
+					<li><a href="https://a11ychecker.com/help4206" target="_blank"><?php _e('When to Ignore Accessibility Errors', 'accessibility-checker'); ?> <span class="screen-reader-text"><?php _e('(opens in a new window)', 'accessibility-checker'); ?></span></a></li>
+					<li><a href="https://a11ychecker.com/help4114" target="_blank"><?php _e('What to do if a Plugin You’re Using has Accessibility Errors', 'accessibility-checker'); ?> <span class="screen-reader-text"><?php _e('(opens in a new window)', 'accessibility-checker'); ?></span></a></li>
+					<li><a href="https://a11ychecker.com/help4386" target="_blank"><?php _e('What to do if there are Accessibility Errors in Your Theme', 'accessibility-checker'); ?> <span class="screen-reader-text"><?php _e('(opens in a new window)', 'accessibility-checker'); ?></span></a></li>
+					<li><a href="https://a11ychecker.com/help4293" target="_blank"><?php _e('Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?', 'accessibility-checker'); ?> <span class="screen-reader-text"><?php _e('(opens in a new window)', 'accessibility-checker'); ?></span></a></li>
+					<li><a href="https://a11ychecker.com/help4285" target="_blank"><?php _e('Additional Resources for Learning About Accessibility', 'accessibility-checker'); ?> <span class="screen-reader-text"><?php _e('(opens in a new window)', 'accessibility-checker'); ?></span></a></li>
 				</ul>
-				<p><a class="button" href="https://a11ychecker.com/" target="_blank">Read Full Documentation</a></p>
+				<p><a class="button" href="https://a11ychecker.com/" target="_blank"><?php _e('Read Full Documentation', 'accessibility-checker'); ?> <span class="screen-reader-text"><?php _e('(opens in a new window)', 'accessibility-checker'); ?></span></a></p>
 			</div>
 		</section>
 
 		<section class="edac-support-section">
-			<h2>Support Information</h2>
+			<h2><?php _e('Support Information', 'accessibility-checker'); ?></h2>
 		
 			<div class="edac-flex-container">
 		<?php
-		if (  edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+		if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
 			?>
 				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
-					<h3>Plugin Support</h3>
+					<h3><?php _e('Plugin Support', 'accessibility-checker'); ?></h3>
 					<p>
-						Active license holders of paid Accessibility Checker plans
-						get unlimited email support on plugin usage and troubleshooting.
+						<?php _e('Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting.', 'accessibility-checker'); ?>
 					</p>
 					<p>
-						<a href="https://my.equalizedigital.com/support/pro-support/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" class="button">Open Support Ticket</a>
+						<a href="https://my.equalizedigital.com/support/pro-support/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" class="button"><?php _e('Open Support Ticket', 'accessibility-checker'); ?></a>
 					</p>
-				</div>	
+				</div>
 			<?php
 		} else {
 			?>
 				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
-					<h3>Free Plugin Support</h3>
+					<h3><?php _e('Free Plugin Support', 'accessibility-checker'); ?></h3>
 					<p>
-						Free plugin support is available via the WordPress.org forums. You'll need to create an account
-						then you can open a new support thread.
+						<?php _e('Free plugin support is available via the WordPress.org forums. You\'ll need to create an account then you can open a new support thread.', 'accessibility-checker'); ?>
 					</p>
 					<p>
-						<a href="https://wordpress.org/support/plugin/accessibility-checker/" class="button">Go to Support Forum</a>
+						<a href="https://wordpress.org/support/plugin/accessibility-checker/" class="button"><?php _e('Go to Support Forum', 'accessibility-checker'); ?></a>
 					</p>
-				</div>	
+				</div>
 			<?php
 		}
 		?>
 			
 				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
-					<h3>Office Hours</h3>
+					<h3><?php _e('Office Hours', 'accessibility-checker'); ?></h3>
 					<p>
-						Open Q&A on Zoom every other week to help you remediate your website.
-						<a href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page">Included in Small Business and Agency plans</a>.
+						<?php _e('Open Q&A on Zoom every other week to help you remediate your website.', 'accessibility-checker'); ?>
+						<a href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page">
+						<?php _e('Included in Small Business and Agency plans', 'accessibility-checker'); ?></a>.
 					</p>
 					<p>
-						<a href="https://my.equalizedigital.com/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" class="button">Register for Office Hours</a>
+						<a href="https://my.equalizedigital.com/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" class="button">
+						<?php _e('Register for Office Hours', 'accessibility-checker'); ?></a>
 					</p>
-				</div>	
-			
+				</div>
+
 				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
-					<h3>Auditing and Remediation</h3>
+					<h3><?php _e('Auditing and Remediation', 'accessibility-checker'); ?></h3>
 					<p>
-						Get help making your website accessible. Expert auditing, user testing,
-						and dev support. Conformance letters available.
+						<?php _e('Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available.', 'accessibility-checker'); ?>
 					</p>
 					<p>
-						<a href="https://equalizedigital.com/services/website-accessibility-remediation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" class="button">Get Remediation Help</a>
+						<a href="https://equalizedigital.com/services/website-accessibility-remediation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" class="button">
+						<?php _e('Get Remediation Help', 'accessibility-checker'); ?></a>
 					</p>
-				</div>	
+				</div>
+	
 			</div>		
 	</section>
 
@@ -151,25 +153,30 @@
 	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
 		?>
 		<div class="edac-pro-callout edac-mt-3 edac-mb-3">
-			<img class="edac-pro-callout-icon" src="<?php echo esc_url( EDAC_PLUGIN_URL ); ?>assets/images/edac-emblem.png" alt="Equalize Digital Logo">
-			<h4 class="edac-pro-callout-title">Upgrade to Accessibility Checker Pro</h4>
+			<img class="edac-pro-callout-icon" src="<?php echo esc_url( EDAC_PLUGIN_URL ); ?>assets/images/edac-emblem.png" alt="<?php _e('Equalize Digital Logo', 'accessibility-checker'); ?>">
+			<h4 class="edac-pro-callout-title"><?php _e('Upgrade to Accessibility Checker Pro', 'accessibility-checker'); ?></h4>
 			<div>
 				<ul class="edac-pro-callout-list">
-					<li>Scan all post types</li>
-					<li>Admin columns to see accessibility status at a glance</li>
-					<li>Centralized list of all open issues</li>
-					<li>Ignore log</li>
-					<li>Rename simplified summary</li>
-					<li>User restrictions on ignoring issues</li>
-					<li>Email support</li>
-					<li>...and more</li>
+					<li><?php _e('Scan all post types', 'accessibility-checker'); ?></li>
+					<li><?php _e('Admin columns to see accessibility status at a glance', 'accessibility-checker'); ?></li>
+					<li><?php _e('Centralized list of all open issues', 'accessibility-checker'); ?></li>
+					<li><?php _e('Ignore log', 'accessibility-checker'); ?></li>
+					<li><?php _e('Rename simplified summary', 'accessibility-checker'); ?></li>
+					<li><?php _e('User restrictions on ignoring issues', 'accessibility-checker'); ?></li>
+					<li><?php _e('Email support', 'accessibility-checker'); ?></li>
+					<li><?php _e('...and more', 'accessibility-checker'); ?></li>
 				</ul>
 			</div>
-			<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank">Get Accessibility Checker Pro</a>';
+			<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank">
+				<?php _e('Get Accessibility Checker Pro', 'accessibility-checker'); ?> 
+				<span class="screen-reader-text"><?php _e('(opens in a new window)', 'accessibility-checker'); ?></span>
+			</a>
 		<?php	
 		if ( edac_check_plugin_installed( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
 			?>
-			<br /><a class="edac-pro-callout-activate" href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=license' ) ); ?>">Or activate your license key here.</a>
+			<br /><a class="edac-pro-callout-activate" href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=license' ) ); ?>">
+				<?php _e('Or activate your license key here.', 'accessibility-checker'); ?>
+			</a>
 			<?php
 		}
 		?>
@@ -182,7 +189,7 @@
 
 		<div class="edac-panel">
 			<h2 class="edac-summary-header">
-				Learn Accessibility
+				<?php _e('Learn Accessibility', 'accessibility-checker'); ?>
 			</h2>
 			<?php
 			echo edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );

@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
 Tested up to: 6.3.1
-Stable tag: 1.5.6
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,26 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.6.0 =
+Added: dashboard reports widget
+Added: frontend highlighting page scan trigger
+Added: enhancements to the Low-quality Alternative Text check
+Fixed: adherence to coding standards
+Fixed: frontend highlighting responsiveness on mobile
+Fixed: frontend highlighting's broken ARIA reference
+Fixed: Issue Density bug when creating a new post
+Fixed: a bug on the reports dashboard widget and welcome page when no post types are selected in the settings
+Fixed: settings page tab order bug
+Updated: scanning process to exclude the admin bar and the query monitor
+Updated: improvements to the Ambiguous Anchor check
+Updated: the Browser.php class has been restructured to load via Composer
+Updated: the TextStatistics class is now loaded through Composer
+Updated: text domain and internationalization on user-facing strings
+Updated: reports dashboard widget and welcome page now have improved refresh and caching
+Updated: the date format on the reports dashboard widget and the welcome page now respects the site's timezone setting
+Updated: Improved performance during the purge of issues after changing the "post types to scan" setting
+Removed: CSS output when a user is logged out
 
 = 1.5.6 =
 Fixed: reading level ajax timing issue
