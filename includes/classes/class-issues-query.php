@@ -15,13 +15,15 @@ use EDAC\Settings;
  */
 class Issues_Query {
 
+	const FLAG_EXCLUDE_IGNORED        = 0; // default.
+	const FLAG_INCLUDE_IGNORED        = 1;
+	const FLAG_ONLY_IGNORED           = 2;
+	const FLAG_INCLUDE_ALL_POST_TYPES = 4;  // If enabled, will ignore the post_type filter and return results for all post types. 
+	
+
 	const RULETYPE_WARNING        = 'warning';
 	const RULETYPE_ERROR          = 'error';
 	const RULETYPE_COLOR_CONTRAST = 'color_contrast';
-	
-	const IGNORE_FLAG_EXCLUDE_IGNORED = 'exclude_ignored';
-	const IGNORE_FLAG_INCLUDE_IGNORED = 'include_ignored';
-	const IGNORE_FLAG_ONLY_IGNORED    = 'only_ignored';
 	
 	
 	/**
@@ -61,8 +63,7 @@ class Issues_Query {
 	 * @param integer $record_limit Max number of records we'll query.
 	 * @param string  $ignored_flag Flag used to determine how ignored issues sould be handled.
 	 */
-	public function __construct( $filter = array(), $record_limit = 100000, $ignored_flag = self::IGNORE_FLAG_EXCLUDE_IGNORED ) {
-	
+	public function __construct( $filter = array(), $record_limit = 100000, $flags = self::FLAG_EXCLUDE_IGNORED ) {
 		$valid_filters = array(
 			'post_types',
 			'rule_types',
@@ -85,37 +86,45 @@ class Issues_Query {
 		
 		// Setup base WHERE.
 		$siteid = get_current_blog_id();
-		switch ( $ignored_flag ) {
-			case self::IGNORE_FLAG_EXCLUDE_IGNORED:
-				$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and ignre=%d and ignre_global=%d ', array( $siteid, 0, 0 ) );
-				break;
-	
-			case self::IGNORE_FLAG_INCLUDE_IGNORED:
-				$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d', array( $siteid ) );
-				break;
-	
-			case self::IGNORE_FLAG_ONLY_IGNORED:
-				$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and (ignre=%d or ignre_global=%d) ', array( $siteid, 1, 1 ) );
-				break;
-			
-			default:
-				$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and ignre=%d and ignre_global=%d ', array( $siteid, 0, 0 ) );
-		
-		}
 
 		
-		// Setup LIMIT.
-		$this->query['limit'] = $wpdb->prepare( 'LIMIT %d', array( $record_limit ) );
+		if ( $flags & self::FLAG_INCLUDE_IGNORED ) {
+			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d', array( $siteid ) );
 		
+		} elseif ( $flags & self::FLAG_ONLY_IGNORED ) {
+			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and (ignre=%d or ignre_global=%d) ', array( $siteid, 1, 1 ) );
+		
+		} else { // This is the default.
+			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and ignre=%d and ignre_global=%d ', array( $siteid, 0, 0 ) );
+		}
+
 		
 		$filter_defaults = array(
 			'post_types' => array(),
 			'rule_types' => array(),
 			'rule_slugs' => array(),
 		);
-		$filter          = array_replace_recursive( $filter_defaults, $validated_filters );
+		
+		
+		$filter = array_replace_recursive( $filter_defaults, $validated_filters );
 
+		// flag for including all post types is set, so remove that from the filters.
+		if ( $flags & self::FLAG_INCLUDE_ALL_POST_TYPES ) {
+			unset( $filter['post_types'] );      
+		}
+		
 		$this->add_filters( $filter );
+
+	
+		if ( empty( $filter['post_types'] ) && false == ( $flags & self::FLAG_INCLUDE_ALL_POST_TYPES ) ) {
+			// no post_types were pass in, but the flag for including all post types is not set.
+			$this->query['filters'] .= ' and 1!=1'; // forces false so no results are returned.
+		}
+		
+
+
+		// Setup LIMIT.
+		$this->query['limit'] = $wpdb->prepare( 'LIMIT %d', array( $record_limit ) );
 	}
 
 
@@ -125,7 +134,9 @@ class Issues_Query {
 	 * @return string $sql .
 	 */
 	public function get_sql() {
-		return $this->query['select'] . ' ' . $this->query['from'] . ' ' . $this->query['where_base'] . ' ' . $this->query['filters'] . ' ' . $this->query['limit'];
+		$sql = $this->query['select'] . ' ' . $this->query['from'] . ' ' . $this->query['where_base'] . ' ' . $this->query['filters'] . ' ' . $this->query['limit'];
+		
+		return $sql;
 	}
 
 
@@ -244,7 +255,7 @@ class Issues_Query {
 			}
 		}
 	
-		if ( array_key_exists( 'rule_types', $filter ) && count( $filter['rule_types'] ) ) {
+		if ( array_key_exists( 'rule_types', $filter ) && ! empty( $filter['rule_types'] ) ) {
 
 			// Special handler for color contrast rule/ruletype.
 			if ( in_array( self::RULETYPE_COLOR_CONTRAST, $filter['rule_types'] ) ) {
@@ -263,13 +274,13 @@ class Issues_Query {
 				}           
 			}
 
-			if ( count( $filter['rule_types'] ) ) {
+			if ( ! empty( $filter['rule_types'] ) ) {
 				$this->query['filters'] .= ' and ruletype IN (' . Helpers::array_to_sql_safe_list( $filter['rule_types'] ) . ') ';
 			}
 		}
 
 	
-		if ( array_key_exists( 'rule_slugs', $filter ) && count( $filter['rule_slugs'] ) ) {
+		if ( array_key_exists( 'rule_slugs', $filter ) && ! empty( $filter['rule_slugs'] ) ) {
 			$this->query['filters'] .= ' and rule IN (' . Helpers::array_to_sql_safe_list( $filter['rule_slugs'] ) . ') ';
 		}
 	}
