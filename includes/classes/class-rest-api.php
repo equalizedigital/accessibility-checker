@@ -9,6 +9,7 @@ namespace EDAC;
 
 use EDAC\Scans_Stats;
 use EDAC\Settings;
+use EDAC\Helpers;
 
 
 /**
@@ -184,8 +185,9 @@ class REST_Api {
 		}
 
 		$post_type  = get_post_type( $post );
-		$post_types = get_option( 'edac_post_types' );
-		if ( ! is_array( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
+		$post_types = Helpers::get_option_as_array( 'edac_post_types' );
+
+		if ( ! empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 
 			return new \WP_REST_Response( array( 'message' => 'The post type is not set to be scanned.' ), 400 );
 
@@ -330,20 +332,11 @@ class REST_Api {
 			$post_type = strval( $request['slug'] );
 		
 			$scannable_post_types = Settings::get_scannable_post_types();
-				
-			$post_types = get_post_types(
-				array(
-					'public' => true,
-				) 
-			);
-			unset( $post_types['attachment'] );
 		
-			$scans_stats = new Scans_Stats( 60 * 5 );   
+			if ( in_array( $post_type, $scannable_post_types ) ) {
+			
+					$scans_stats = new Scans_Stats( 60 * 5 );   
 	
-			$post_types_to_check = array_merge( array( 'post', 'page' ), $scannable_post_types );
-					
-			if ( in_array( $post_type, $scannable_post_types ) && in_array( $post_type, $post_types_to_check ) ) {
-		
 					$by_type = $scans_stats->issues_summary_by_post_type( $post_type );
 
 					return new \WP_REST_Response(
