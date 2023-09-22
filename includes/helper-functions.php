@@ -36,7 +36,6 @@ function edac_compare_strings( $string1, $string2 ) {
 	} else {
 		return 0;
 	}
-
 }
 
 /**
@@ -192,7 +191,6 @@ function edac_filter_by_value( $array, $index, $value ) {
 	} else {
 		return null;
 	}
-	
 }
 
 /**
@@ -290,7 +288,6 @@ function edac_post_types() {
 	}
 
 	return $post_types;
-
 }
 
 /**
@@ -312,7 +309,6 @@ function edac_process_actions() {
 			do_action( 'edac_' . $_GET['edac-action'], $_GET );
 		}
 	}
-
 }
 
 /**
@@ -334,7 +330,8 @@ function edac_str_get_html(
 	$target_charset = DEFAULT_TARGET_CHARSET,
 	$stripRN = true,
 	$defaultBRText = DEFAULT_BR_TEXT,
-	$defaultSpanText = DEFAULT_SPAN_TEXT ) {
+	$defaultSpanText = DEFAULT_SPAN_TEXT 
+) {
 	$dom = new EDAC_Dom(
 		null,
 		$lowercase,
@@ -473,16 +470,16 @@ function edac_replace_css_variables( $value, $css_array ) {
 function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
 
 	$length = 10;
-	$chars = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
-	$ll = strlen( $chars ) - 1;
-	$salt = '';
+	$chars  = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+	$ll     = strlen( $chars ) - 1;
+	$salt   = '';
 	while ( strlen( $salt ) < $length ) {
 		$salt .= $chars[ rand( 0, $ll ) ];
 	}
 
-	$time = time();
+	$time     = time();
 	$max_time = $time + $timeout_seconds;
-	$nonce = $salt . ',' . $max_time . ',' . sha1( $salt . $secret . $max_time );
+	$nonce    = $salt . ',' . $max_time . ',' . sha1( $salt . $secret . $max_time );
 	return $nonce;
 }
 
@@ -501,10 +498,10 @@ function edac_is_valid_nonce( $secret, $nonce ) {
 	if ( count( $a ) != 3 ) {
 		return false;
 	}
-	$salt = $a[0];
+	$salt     = $a[0];
 	$max_time = intval( $a[1] );
-	$hash = $a[2];
-	$back = sha1( $salt . $secret . $max_time );
+	$hash     = $a[2];
+	$back     = sha1( $salt . $secret . $max_time );
 	if ( $back != $hash ) {
 		return false;
 	}
@@ -523,19 +520,19 @@ function edac_is_valid_nonce( $secret, $nonce ) {
  */
 function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
-	$key = 'upcoming_meetups__' . sanitize_title( $meetup ) . '__' . intval( $count );
+	$key    = 'upcoming_meetups__' . sanitize_title( $meetup ) . '__' . intval( $count );
 	$output = get_transient( $key );
 	
 	if ( false === $output ) {
 
 		$query_args = array(
-			'sign' => 'true',
+			'sign'       => 'true',
 			'photo-host' => 'public',
-			'page' => intval( $count ),
+			'page'       => intval( $count ),
 		);
 
 		$request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
-		$request = wp_remote_get( add_query_arg( $query_args, $request_uri ) );
+		$request     = wp_remote_get( add_query_arg( $query_args, $request_uri ) );
 
 		if ( is_wp_error( $request ) || '200' != wp_remote_retrieve_response_code( $request ) ) {
 			return;
@@ -588,7 +585,6 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, 
 	$html .= '</ul>';
 
 	return $html;
-			
 }
 
 /**
@@ -601,15 +597,15 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, 
 function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 
 	$allowed_tags = array(
-		'div' => array(),
-		'p' => array(),
-		'span' => array(),
-		'br' => array(),
-		'hr' => array(),
+		'div'    => array(),
+		'p'      => array(),
+		'span'   => array(),
+		'br'     => array(),
+		'hr'     => array(),
 		'strong' => array(),
-		'b' => array(),
-		'em' => array(),
-		'i' => array(),
+		'b'      => array(),
+		'em'     => array(),
+		'i'      => array(),
 	);
 	
 
@@ -643,7 +639,6 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 	}
 
 	return false;
-	
 }
 
 /**
@@ -664,32 +659,35 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
 	$content_weight = .2;
 
 	$error_elements_percentage = $issue_count / $element_count;
-	$error_content_percentage = $issue_count / $content_length;
+	$error_content_percentage  = $issue_count / $content_length;
 	
 	$score = ( ( $error_elements_percentage * $element_weight ) + ( $error_content_percentage * $content_weight ) );
 	
 	return round( $score * 100, 2 );
-
 }
 	
 
 /**
- * Get info from a dom that we need for calculating density
+ * Get info from html that we need for calculating density
  *
- * @param [type] $dom
+ * @param string $html
  * @return void
  */
-function edac_get_body_density_data( $dom ) {
+function edac_get_body_density_data( $html ) {
+
 			
-	if ( $dom ) {
+	if ( $html && trim( $html ) !== '' ) {
 	
-		$body_element = $dom->find( 'body', 0 );
+		$density_dom = new simple_html_dom();
+		$density_dom->load( $html );
+
+		$body_element = $density_dom->find( 'body', 0 );
 	
 		if ( null == $body_element ) {
 			return false;
 		}
 
-		// Remove the elements we shouldn't count
+		// Remove the elements we shouldn't count.
 		foreach ( $body_element->find( '.edac-highlight-panel,#wpadminbar,style,script' ) as $element ) {
 			$element->remove();
 		}
@@ -699,7 +697,7 @@ function edac_get_body_density_data( $dom ) {
 			$body_elements_count = edac_count_dom_descendants( $body_element );
 			
 			$body_content = preg_replace( '/[^A-Za-z0-9]/', '', $body_element->plaintext );
-	
+
 			return array(
 				$body_elements_count,
 				strlen( $body_content ),
@@ -707,9 +705,11 @@ function edac_get_body_density_data( $dom ) {
 		
 		}   
 	}
+			
 	
 	return false;
 }
+
 
 /**
  * Recursively count elements in a dom
@@ -721,7 +721,7 @@ function edac_count_dom_descendants( $dom_elements ) {
 	$count = 0;
 
 	foreach ( $dom_elements->children() as $child ) {
-		$count++; 
+		++$count; 
 		$count += edac_count_dom_descendants( $child ); // Recursively count descendants.
 	}
 
