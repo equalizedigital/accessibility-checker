@@ -738,6 +738,17 @@ function edac_register_rules() {
 		)
 	);
 
+	array_push(
+		$rules,
+		array(
+			'title'     => 'Unexpected Language Change',
+			'info_url'  => 'https://a11ychecker.com',
+			'slug'      => 'unexpected_language_change',
+			'rule_type' => 'error',
+			'summary'   => esc_html( '' ),
+		)
+	);
+
 	// filter rules.
 	if ( has_filter( 'edac_filter_register_rules' ) ) {
 		$rules = apply_filters( 'edac_filter_register_rules', $rules );
