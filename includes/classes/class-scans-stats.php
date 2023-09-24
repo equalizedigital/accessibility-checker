@@ -122,7 +122,7 @@ class Scans_Stats {
 		$transient_name = $this->cache_name_prefix . '_summary';
 
 		$cache = get_transient( $transient_name );
-		
+
 		if ( $this->cache_time && $cache ) {
 
 		
@@ -166,11 +166,35 @@ class Scans_Stats {
 	
 		$data['is_truncated']  = $issues_query->has_truncated_results();
 		$data['posts_scanned'] = (int) $issues_query->distinct_posts_count();
-		$data['rules_failed']  = (int) $issues_query->distinct_count();
-		$data['rules_passed']  = (int) ( $tests_count - $data['rules_failed'] );
+		$data['rules_failed']  = 0;
+		
+		
+		
+		// Get a count of rules that are not in the issues table.
+		$rule_slugs = array_map(
+			function ( $item ) {
+				return $item['slug'];
+			},
+			edac_register_rules()
+		);
+	
+		foreach ( $rule_slugs as $rule_slug ) {
+			$rule_query = new \EDAC\Issues_Query( 
+				array(
+					'rule_slugs' => array( $rule_slug ),
+				),
+				1,
+				Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES 
+			);
+
+			if ( $rule_query->count() ) {
+				++$data['rules_failed'];
+			}       
+		}
+		$data['rules_passed'] = $this->rule_count - $data['rules_failed'];
 
 		if ( $data['posts_scanned'] > 0 && $tests_count > 0 ) {
-			$data['passed_percentage'] = round( ( $data['rules_passed'] / $tests_count ) * 100, 2 );
+			$data['passed_percentage'] = round( ( $data['rules_passed'] / $this->rule_count ) * 100, 2 );
 		} else {
 			$data['passed_percentage'] = 0;
 		}
