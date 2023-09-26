@@ -53,7 +53,7 @@ class Scans_Stats {
 	public function __construct( $cache_time = 60 * 60 * 24 ) {
 	
 		$this->cache_time        = $cache_time;
-		$this->cache_name_prefix = 'edac_scans_stats_' . $this->record_limit;
+		$this->cache_name_prefix = 'edac_scans_stats_' . EDAC_VERSION . '_' . $this->record_limit;
 		$this->rule_count        = count( edac_register_rules() );
 	}
 
@@ -122,7 +122,7 @@ class Scans_Stats {
 		$transient_name = $this->cache_name_prefix . '_summary';
 
 		$cache = get_transient( $transient_name );
-		
+	
 		if ( $this->cache_time && $cache ) {
 
 		
@@ -145,6 +145,7 @@ class Scans_Stats {
 	
 		$scannable_posts_count = Settings::get_scannable_posts_count();
 		$tests_count           = $scannable_posts_count * $this->rule_count;
+		$siteid                = get_current_blog_id();
 
 
 		$data['scannable_posts_count']      = (int) $scannable_posts_count;
@@ -236,6 +237,7 @@ class Scans_Stats {
 			) . ') and post_status IN(' . Helpers::array_to_sql_safe_list( 
 				Settings::get_scannable_post_statuses()
 			) . ')';
+		
 
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			$data['posts_without_issues'] = $wpdb->get_var( $sql );
@@ -251,8 +253,10 @@ class Scans_Stats {
 		$wpdb->get_var( 
 			$wpdb->prepare(
 				'SELECT avg(meta_value) from ' . $wpdb->postmeta . ' 
-				WHERE meta_key = %s and meta_value > %d;',
-				array( '_edac_issue_density', 0 )
+				JOIN ' . $wpdb->prefix . 'accessibility_checker ON postid=post_id
+				WHERE meta_key = %s and meta_value > %d 
+				and ' . $wpdb->prefix . 'accessibility_checker.siteid=%d and ignre=%d and ignre_global=%d LIMIT %d', 
+				array( '_edac_issue_density', 0, $siteid, 0, 0, $this->record_limit )
 			)
 		);
 		
