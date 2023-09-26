@@ -46,7 +46,7 @@ function edac_admin_enqueue_scripts() {
 		);
 
 		if ( 'post.php' === $pagenow ) {
-			// Load the app in scan mode when editing a post/page
+			// Load the app in scan mode when editing a post/page.
 			edac_enqueue_scripts( 'editor-scan' );
 		}   
 
