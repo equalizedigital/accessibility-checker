@@ -123,9 +123,6 @@ class Scans_Stats {
 
 		$cache = get_transient( $transient_name );
 	
-		// TODO:
-		$cache = false;
-
 		if ( $this->cache_time && $cache ) {
 
 		
