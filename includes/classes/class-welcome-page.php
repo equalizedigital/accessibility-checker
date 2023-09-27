@@ -218,30 +218,45 @@ class Welcome_Page {
 	 */
 	public static function render_email_opt_in( $zx, $zcld, $zctd, $zc_form_ix ) {
 		
+		$current_user = wp_get_current_user();
+		$email        = $current_user->user_email;
+
+		if ( empty( $email ) ) {
+			$email = '';
+		}
+
 		$form_id = 'sf' . $zc_form_ix;
 
 		$html = '
 			<script type="text/javascript" src="https://zmp-glf.maillist-manage.com/js/optin.min.js" onload="setupSF(\'' . esc_attr( $form_id ) . '\',\'ZCFORMVIEW\',false,\'light\',false,\'0\')"></script>
 			<script type="text/javascript">
+				var _edac_email_opt_in_email = "";
 				function runOnFormSubmit_' . esc_html( $form_id ) . '(th){
-					/*Before submit, if you want to trigger your event, "include your code here"*/
+					_edac_email_opt_in_email = document.querySelector("#EMBED_FORM_EMAIL_LABEL").value;
 				};
 			</script>
 
-			<div class="edac-panel edac-mt-1" id="' . esc_attr( $form_id ) . '" data-type="signupform" style="opacity: 1;">
-				<div id="customForm">
+			<div class="edac-panel edac-mt-1 edac-pb-3">
+			<div id="' . esc_attr( $form_id ) . '" data-type="signupform" style="opacity: 1;">
+
+			<div id="customForm">
 					<div class="quick_form_8_css" name="SIGNUP_BODY">
-						<div class="opt-in-hide">
+						<div>
 							<h2 id="SIGNUP_HEADING">' . __( 'Get Notified of Upcoming Events', 'accessibility-checker' ) . '</h2>
 							<div>' . __( 'Join our email list and get event reminders and recordings in your inbox.', 'accessibility-checker' ) . '</div>
 							<div>
-								<div id="Zc_SignupSuccess" style="display: none;">' . __( 'Thank-you for signing up!', 'accessibility-checker' ) . '</div>
+								<div id="Zc_SignupSuccess" style="display: none;"></div>
 							</div>
+							<div class="opt-in-show edac-mt-1" style="display: none;">' . __( 'Thank-you for joining!', 'accessibility-checker' ) . '</div>
+				
 							<form method="POST" id="zcampaignOptinForm" style="margin: 0px; width: 100%" action="https://zmp-glf.maillist-manage.com/weboptin.zc" target="_zcSignup">
 							
-							<div class="SIGNUP_FLD edac-mt-1" id="edac-opt-in-email">
-								<label style="font-weight: 600;" for="EMBED_FORM_EMAIL_LABEL">Email Address *</label>
-								<input style="max-width: 100%;" type="email" changeitem="SIGNUP_FORM_FIELD" name="CONTACT_EMAIL" id="EMBED_FORM_EMAIL_LABEL">
+							<div class="SIGNUP_FLD edac-mt-3" id="edac-opt-in-email">
+								<label style="font-weight: 600;" for="EMBED_FORM_EMAIL_LABEL">Email Address (Required)</label>
+								<input style="max-width: 100%;" type="email" changeitem="SIGNUP_FORM_FIELD" name="CONTACT_EMAIL" id="EMBED_FORM_EMAIL_LABEL" aria-describedby="email-info-region" value="' . esc_attr( $email ) . '">
+								<div class="edac-mt-3" id="email-info-region" aria-live="polite" class="info-message">
+									' . esc_html( __( 'Note: The Email Address field has been auto-populated with your WordPress email.', 'accessibility-checker' ) ) . '
+								</div>
 							</div>
 							<div class="edac-mt-0" style="display: none;" id="errorMsgDiv">' . __( 'Please enter a valid email address.', 'accessibility-checker' ) . '</div>
 						
@@ -249,6 +264,7 @@ class Welcome_Page {
 								<input type="button" class="button" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin" value="' . __( 'Subscribe', 'accessibility-checker' ) . '">
 							</div>
 						
+							
 							<input type="hidden" id="fieldBorder" value="">
 							<input type="hidden" id="submitType" name="submitType" value="optinCustomView">
 							<input type="hidden" id="emailReportId" name="emailReportId" value="">
@@ -269,26 +285,37 @@ class Welcome_Page {
 							<span style="display: none" id="dt_CONTACT_EMAIL">1,true,6,Contact Email,2</span>
 							</form>
 						</div>
-						<div class="opt-in-show" style="display: none;">
-							<h2>' . __( 'Get Notified of Upcoming Events', 'accessibility-checker' ) . '</h2>
-							<div>' . __( 'Thank-you for signing up!', 'accessibility-checker' ) . '</div>
-						</div>
 					</div>
 				</div>
-				<img src="https://zmp-glf.maillist-manage.com/images/spacer.gif" id="refImage" onload="referenceSetter(this)" style="display:none;">
+				<img src="https://zmp-glf.maillist-manage.com/images/spacer.gif" id="refImage" onload="referenceSetter(this)" style="display:none;" alt="">
 			</div>
+
+
 			<input type="hidden" id="signupFormType" value="QuickForm_Horizontal">
 			<div id="zcOptinOverLay" oncontextmenu="return false" style="display:none;text-align: center; background-color: rgb(0, 0, 0); opacity: 0.5; z-index: 100; position: fixed; width: 100%; top: 0px; left: 0px; height: 988px;"></div>
 			<div id="zcOptinSuccessPopup" style="display:none;z-index: 9999;width: 800px; height: 40%;top: 84px;position: fixed; left: 26%;background-color: #FFFFFF;border-color: #E6E6E6; border-style: solid; border-width: 1px;  box-shadow: 0 1px 10px #424242;padding: 35px;">
 				<span style="position: absolute;top: -16px;right:-14px;z-index:99999;cursor: pointer;" id="closeSuccess">
-					<img src="https://zmp-glf.maillist-manage.com/images/videoclose.png">
+					<img src="https://zmp-glf.maillist-manage.com/images/videoclose.png" alt="close">
 				</span>
-				<div id="zcOptinSuccessPanel"></div>
+				<div>' . __( 'There was a problem saving your email. Please try again.', 'accessibility-checker' ) . '
+					<div id="zcOptinSuccessPanel"></div>
+				</div>
 			</div>
+			
 			<script>
+
+				const email_element = document.querySelector("#EMBED_FORM_EMAIL_LABEL");
+				const email_info_region = document.querySelector("#email-info-region");
+				const submit_element = document.querySelector("#zcWebOptin");
+
+				email_element.addEventListener("input", (event) => {
+					 email_info_region.textContent = "";
+				});
+				
+			
 				function initOnComplete(){
 					const optIn = document.querySelector("#edac-opt-in-email");
-							
+
 					// Function to be executed when the HTML content of the element changes
 					function handleHtmlChange(mutationsList, observer) {
 						for (const mutation of mutationsList) {
@@ -306,14 +333,19 @@ class Welcome_Page {
 									if (!response.ok) {
 										throw new Error("There was a network problem. Please try again.");
 									} else {
-										// HTML content of the element has changed
-										document.querySelector(".opt-in-hide").style.display = "none";
-										document.querySelector(".opt-in-show").style.display = "block";
-		
-										setTimeout(function(){
-											document.querySelector("#' . esc_attr( $form_id ) . '").remove();
-										},5000);
-							
+									
+										// HTML content of the element has changed so assume zoho has saved the email.
+										
+										submit_element.disabled = true;
+									
+										email_element.value = _edac_email_opt_in_email;
+										email_element.readonly = true;
+										email_element.disabled = true;
+														
+										document.querySelectorAll(".opt-in-show").forEach((item) => {
+											item.style.display = "block";
+										});
+						
 									}
 								})
 								.catch(error => {
@@ -340,7 +372,8 @@ class Welcome_Page {
 				}
 
 				initOnComplete();
-			</script>';
+			</script>
+			</div>';
 	
 		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped	
 		echo $html;
