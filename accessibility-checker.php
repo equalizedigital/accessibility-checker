@@ -2046,7 +2046,7 @@ function edac_dismiss_dashboard_cta() {
 	 */
 function edac_email_opt_in() {
 	// Update user meta to indicate the button has been clicked.
-	update_user_meta( get_current_user_id(), 'edac_email_opt_in', true );
+	update_user_meta( get_current_user_id(), 'edac_email_optin', true );
 		
 	// Return success response.
 	wp_send_json( 'success' );
