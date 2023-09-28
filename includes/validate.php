@@ -182,8 +182,8 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 	global $wpdb;
 
 	// TODO: setup a rules class for loading/filtering rules.
-	$rules = edac_register_rules();
-	$js_rule_ids = array();
+	$rules        = edac_register_rules();
+	$js_rule_ids  = array();
 	$php_rule_ids = array();
 	foreach ( $rules as $rule ) {
 		if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
@@ -196,7 +196,7 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 	// Build a sql sanitized list from an array
 	// See: https://stackoverflow.com/questions/10634058/wordpress-prepared-statement-with-in-condition .
 	$js_rule_ids = array_map(
-		function( $v ) {
+		function ( $v ) {
 			return "'" . esc_sql( $v ) . "'";
 		},
 		$js_rule_ids
@@ -206,7 +206,7 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 	// Build a sql sanitized list from an array
 	// See: https://stackoverflow.com/questions/10634058/wordpress-prepared-statement-with-in-condition .
 	$php_rule_ids = array_map(
-		function( $v ) {
+		function ( $v ) {
 			return "'" . esc_sql( $v ) . "'";
 		},
 		$php_rule_ids
@@ -312,13 +312,14 @@ function edac_get_content( $post ) {
 	
 
 		try {
+	
 			// setup the context for the request.
 			// note - if follow_location => false, permalinks that redirect (both offsite and on).
 			// will not be followed, so $content['html] will be false.
 			$merged_context_opts = array_merge( $default_context_opts, $context_opts );
 			$context             = stream_context_create( $merged_context_opts );
 
-			$dom = file_get_html( $url, false, $context );
+			$dom             = file_get_html( $url, false, $context );      
 			$content['html'] = edac_remove_elements(
 				$dom, 
 				array(
@@ -328,17 +329,18 @@ function edac_get_content( $post ) {
 					'#qm-icon-container',     // query-monitor.
 				)
 			);
-		
+			
 			// Write density data to post meta. 
-			$body_density_data = edac_get_body_density_data( $content['html'] );
+			if ( $content['html'] ) {
 			
-			if ( false != $body_density_data ) {
-		
-				update_post_meta( $post->ID, '_edac_density_data', $body_density_data );
-			
-			} else {
-				delete_post_meta( $post->ID, '_edac_density_data' );
+				$page_html         = $content['html']->save();
+				$body_density_data = edac_get_body_density_data( $page_html );
 				
+				if ( false != $body_density_data ) {
+					update_post_meta( $post->ID, '_edac_density_data', $body_density_data );
+				} else {
+					delete_post_meta( $post->ID, '_edac_density_data' );
+				}        
 			}       
 		} catch ( Exception $e ) {
 			update_post_meta( $post->ID, '_edac_density_data', '0,0' );
@@ -412,7 +414,7 @@ function edac_get_content( $post ) {
  */
 function edac_show_draft_posts( $query ) {
 
-	//$headers = getallheaders();
+	// $headers = getallheaders();
 
 	// Do not run if it's not the main query.
 	if ( ! $query->is_main_query() ) {
@@ -436,7 +438,7 @@ function edac_show_draft_posts( $query ) {
 	$url_token = isset( $_GET['edac_token'] ) ? sanitize_text_field( $_GET['edac_token'] ) : false;
 	
 	// If the token is not set we do nothing and return early.
-	if( false === $url_token ){
+	if ( false === $url_token ) {
 		return;
 	}
 
