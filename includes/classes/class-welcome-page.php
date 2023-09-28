@@ -247,14 +247,13 @@ class Welcome_Page {
 							<div>
 								<div id="Zc_SignupSuccess" style="display: none;"></div>
 							</div>
-							<div class="opt-in-show edac-mt-1" style="display: none;">' . __( 'Thank-you for joining!', 'accessibility-checker' ) . '</div>
-				
+							
 							<form method="POST" id="zcampaignOptinForm" style="margin: 0px; width: 100%" action="https://zmp-glf.maillist-manage.com/weboptin.zc" target="_zcSignup">
 							
 							<div class="SIGNUP_FLD edac-mt-3" id="edac-opt-in-email">
 								<label style="font-weight: 600;" for="EMBED_FORM_EMAIL_LABEL">Email Address (Required)</label>
 								<input style="max-width: 100%;" type="email" changeitem="SIGNUP_FORM_FIELD" name="CONTACT_EMAIL" id="EMBED_FORM_EMAIL_LABEL" aria-describedby="email-info-region" value="' . esc_attr( $email ) . '">
-								<div class="edac-mt-3" id="email-info-region" aria-live="polite" class="info-message">
+								<div class="edac-mt-3" id="email-info-region" class="info-message">
 									' . esc_html( __( 'Note: The Email Address field has been auto-populated with your WordPress email.', 'accessibility-checker' ) ) . '
 								</div>
 							</div>
@@ -284,6 +283,11 @@ class Welcome_Page {
 							<input type="hidden" id="zc_formIx" name="zc_formIx" value="' . esc_attr( $zc_form_ix ) . '">
 							<span style="display: none" id="dt_CONTACT_EMAIL">1,true,6,Contact Email,2</span>
 							</form>
+
+							<!-- Confirmation Message -->
+							<div id="confirmationMessage" tabindex="-1" role="alert" style="outline: none;">
+							<!-- This will be populated with the confirmation message on form submit -->
+							</div>
 						</div>
 					</div>
 				</div>
@@ -335,13 +339,16 @@ class Welcome_Page {
 									} else {
 									
 										// HTML content of the element has changed so assume zoho has saved the email.
+
+										document.querySelector("#zcampaignOptinForm").remove();
+				
+										// Populate the confirmation message
+										const confirmMessage = document.getElementById("confirmationMessage");
+										confirmMessage.textContent = "' . esc_js( __( 'Thank-you for joining!', 'accessibility-checker' ) ) . '";
+										confirmMessage.classList.add("edac-mt-3");
+										confirmMessage.focus();
+				
 										
-										submit_element.disabled = true;
-									
-										email_element.value = _edac_email_opt_in_email;
-										email_element.readonly = true;
-										email_element.disabled = true;
-														
 										document.querySelectorAll(".opt-in-show").forEach((item) => {
 											item.style.display = "block";
 										});
