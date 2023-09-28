@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
 Tested up to: 6.3.1
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,14 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.6.1 =
+Updated: passed percentage calculation
+Updated: frontend highlighting disable styles to be compatible with optimization plugins
+Fixed: average issue density percentage not accounting for site ID and ignores
+Updated: body density to receive HTML rather than the dom object
+Updated: empty link check logic
+Added: minor coding standards improvements
 
 = 1.6.0 =
 Added: dashboard reports widget

@@ -699,6 +699,25 @@ class AccessibilityCheckerHighlight {
 	 * This function disables all styles on the page.
 	 */
 	disableStyles() {
+
+		/*
+		If the site compiles css into a combined file, our method for disabling styles will cause out app's css to break.
+		This checks if the app's css is loading into #edac-app-css as expected. 
+		If not, then we assume the css has been combined, so we manually add it to the document.
+		*/
+		if( ! document.querySelector('#edac-app-css') ){
+			debug('css is combined, so adding app.css to page.');
+
+			var link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.id = 'edac-app-css';
+			link.type = 'text/css';
+			link.href = edac_script_vars.appCssUrl,
+			link.media = 'all';
+			document.head.appendChild(link);
+		}
+	
+
 		this.originalCss = Array.from(document.head.querySelectorAll('style[type="text/css"], style, link[rel="stylesheet"]'));
 
 		var elementsWithStyle = document.querySelectorAll('*[style]:not([class^="edac"])');

@@ -38,10 +38,10 @@ function edac_admin_enqueue_scripts() {
 			'edac',
 			'edac_script_vars',
 			array(
-				'postID' => $post_id,
-				'nonce'  => wp_create_nonce( 'ajax-nonce' ),
+				'postID'     => $post_id,
+				'nonce'      => wp_create_nonce( 'ajax-nonce' ),
 				'edacApiUrl' => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-				'restNonce' => wp_create_nonce( 'wp_rest' )
+				'restNonce'  => wp_create_nonce( 'wp_rest' ),
 			)
 		);
 
@@ -61,7 +61,6 @@ function edac_admin_enqueue_scripts() {
 		
 		}   
 	}
-
 }
 
 
@@ -80,12 +79,12 @@ function edac_enqueue_scripts( $mode = '' ) {
 		return;
 	}
 
-	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true;
+	$pro               = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true;
 	$has_pending_scans = false;
 	
 	$headers = array(
 		'Content-Type' => 'application/json',
-		'X-WP-Nonce' => wp_create_nonce( 'wp_rest' ),
+		'X-WP-Nonce'   => wp_create_nonce( 'wp_rest' ),
 	);
 
 	if ( '' === $mode ) {
@@ -100,7 +99,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 	if ( ( 'full-scan' === $mode && $pro )
 			||
 			( 'ui' === $mode || 'editor-scan' === $mode  
-			 &&
+			&&
 			$post_id && current_user_can( 'edit_post', $post_id ) )
 	) {
 
@@ -143,26 +142,26 @@ function edac_enqueue_scripts( $mode = '' ) {
 			'edac-app',
 			'edac_script_vars',
 			array(
-				'postID'   => $post_id,
-				'nonce'    => wp_create_nonce( 'ajax-nonce' ),
-				'edacUrl'   => esc_url_raw( get_site_url() ),
-				'edacApiUrl'   => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+				'postID'      => $post_id,
+				'nonce'       => wp_create_nonce( 'ajax-nonce' ),
+				'edacUrl'     => esc_url_raw( get_site_url() ),
+				'edacApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
 				'edacHeaders' => $headers,
-				'edacpApiUrl'  => $pro ? esc_url_raw( rest_url() . 'accessibility-checker-pro/v1' ) : '',
-				'ajaxurl'  => admin_url( 'admin-ajax.php' ),
-				'loggedIn' => is_user_logged_in(),
-				'active'   => $active,
-				'mode'     => $mode,
-				'scanUrl' => get_preview_post_link(
+				'edacpApiUrl' => $pro ? esc_url_raw( rest_url() . 'accessibility-checker-pro/v1' ) : '',
+				'ajaxurl'     => admin_url( 'admin-ajax.php' ),
+				'loggedIn'    => is_user_logged_in(),
+				'active'      => $active,
+				'mode'        => $mode,
+				'scanUrl'     => get_preview_post_link(
 					$post_id, 
 					array(
-						'edac-action' => 'js-scan',
+						'edac-action'        => 'js-scan',
 						'edac-preview-nonce' => wp_create_nonce( 'edac-preview_nonce' ),
 					)
 				),
+				'appCssUrl'   => plugin_dir_url( __DIR__ ) . 'build/css/app.css?ver=' . EDAC_VERSION,
 			)
 		);
 
 	}       
-
 }
