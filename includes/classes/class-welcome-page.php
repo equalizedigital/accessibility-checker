@@ -285,7 +285,7 @@ class Welcome_Page {
 							</form>
 
 							<!-- Confirmation Message -->
-							<div id="confirmationMessage" tabindex="-1" role="alert" style="outline: none;">
+							<div id="confirmationMessage" tabindex="-1" style="outline: none;">
 							<!-- This will be populated with the confirmation message on form submit -->
 							</div>
 						</div>
