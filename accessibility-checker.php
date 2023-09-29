@@ -138,7 +138,7 @@ if ( ! class_exists( 'simple_html_dom' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class_edac_dom.php';
 }
 
-include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend-highlight.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend-highlight.php';
 
 /**
  * Import Resources
@@ -203,11 +203,12 @@ add_action( 'in_admin_header', 'edac_remove_admin_notices', 1000 );
 add_action( 'admin_notices', 'edac_black_friday_notice' );
 add_action( 'wp_ajax_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
 add_action( 'wp_ajax_nopriv_edac_frontend_highlight_single_ajax', 'edac_frontend_highlight_ajax' );
-add_action('wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
-add_action('wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta');
-add_action('wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
-add_action('wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta');
-add_action( 'wp_dashboard_setup', 'edac_wp_dashboard_setup');
+add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta' );
+add_action( 'wp_ajax_nopriv_edac_dismiss_welcome_cta_ajax', 'edac_dismiss_welcome_cta' );
+add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta' );
+add_action( 'wp_ajax_nopriv_edac_dismiss_dashboard_cta_ajax', 'edac_dismiss_dashboard_cta' );
+add_action( 'wp_ajax_edac_email_opt_in_ajax', 'edac_email_opt_in' );
+add_action( 'wp_dashboard_setup', 'edac_wp_dashboard_setup' );
 
 /**
  * Init the plugin
@@ -796,7 +797,6 @@ function edac_wp_dashboard_setup() {
 			'render_dashboard_scan_summary',
 		) 
 	);
-
 }
 
 /**
@@ -1031,9 +1031,9 @@ function edac_summary( $post_id ) {
 	// reading grade level.
 	$content_post = get_post( $post_id );
 
-	$content                  = $content_post->post_content;
-	$content                  = wp_filter_nohtml_kses( $content );
-	$content                  = str_replace( ']]>', ']]&gt;', $content );
+	$content = $content_post->post_content;
+	$content = wp_filter_nohtml_kses( $content );
+	$content = str_replace( ']]>', ']]&gt;', $content );
 	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
 		$text_statistics          = new DaveChild\TextStatistics\TextStatistics();
 		$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
@@ -1041,7 +1041,7 @@ function edac_summary( $post_id ) {
 		$summary['content_grade'] = 0;
 	}
 	
-	$summary['readability']   = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
+	$summary['readability'] = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
 	$summary['simplified_summary'] = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? true : false;
@@ -1131,7 +1131,7 @@ function edac_documentation_link( $rule ) {
 		return '';
 	}
 
-	return $rule['info_url'] . '?utm_source=accessibility-checker&utm_medium=software&utm_term=' . esc_html( $rule['slug'] ) . '&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . $days_active . '';
+	return $rule['info_url'] . '?utm_source=accessibility-checker&utm_medium=software&utm_term=' . esc_attr( $rule['slug'] ) . '&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . $days_active . '';
 }
 
 /**
@@ -1478,8 +1478,8 @@ function edac_readability_ajax() {
 	if ( has_filter( 'edac_filter_readability_content' ) ) {
 		$content = apply_filters( 'edac_filter_readability_content', $content, $post_id );
 	}
-	$content         = wp_filter_nohtml_kses( $content );
-	$content         = str_replace( ']]>', ']]&gt;', $content );
+	$content = wp_filter_nohtml_kses( $content );
+	$content = str_replace( ']]>', ']]&gt;', $content );
 	
 	// get readability metadata and determine if a simplified summary is required.
 	$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
@@ -1488,7 +1488,7 @@ function edac_readability_ajax() {
 	$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
 
 	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-		$text_statistics = new DaveChild\TextStatistics\TextStatistics();
+		$text_statistics          = new DaveChild\TextStatistics\TextStatistics();
 		$simplified_summary_grade = edac_ordinal( floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) ) );
 	} else {
 		$simplified_summary_grade = 0;
@@ -2017,10 +2017,10 @@ function edac_gaad_notice_ajax() {
  * @return void
  */
 function edac_dismiss_welcome_cta() {
-	// Update user meta to indicate the button has been clicked
+	// Update user meta to indicate the button has been clicked.
 	update_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true );
 	
-	// Return success response
+	// Return success response.
 	wp_send_json( 'success' );
 }
 
@@ -2031,14 +2031,28 @@ function edac_dismiss_welcome_cta() {
 	 * @return void
 	 */
 function edac_dismiss_dashboard_cta() {
-	// Update user meta to indicate the button has been clicked
+	// Update user meta to indicate the button has been clicked.
 	update_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true );
 	
-	// Return success response
+	// Return success response.
 	wp_send_json( 'success' );
 }
 
 
+	/**
+	 * Handle AJAX request to opt in to email
+	 *
+	 * @return void
+	 */
+function edac_email_opt_in() {
+	// Update user meta to indicate the button has been clicked.
+	update_user_meta( get_current_user_id(), 'edac_email_optin', true );
+		
+	// Return success response.
+	wp_send_json( 'success' );
+}
+	
+	
 // Add a filter for lazyloading images using the perfmatters_lazyload hook.
 add_filter(
 	'perfmatters_lazyload',
