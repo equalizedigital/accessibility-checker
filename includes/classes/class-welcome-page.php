@@ -253,9 +253,6 @@ class Welcome_Page {
 							<div class="SIGNUP_FLD edac-mt-3" id="edac-opt-in-email">
 								<label style="font-weight: 600;" for="EMBED_FORM_EMAIL_LABEL">Email Address (Required)</label>
 								<input style="max-width: 100%;" type="email" changeitem="SIGNUP_FORM_FIELD" name="CONTACT_EMAIL" id="EMBED_FORM_EMAIL_LABEL" aria-describedby="email-info-region" value="' . esc_attr( $email ) . '">
-								<div class="edac-mt-3" id="email-info-region" class="info-message">
-									' . esc_html( __( 'Note: The Email Address field has been auto-populated with your WordPress email.', 'accessibility-checker' ) ) . '
-								</div>
 							</div>
 							<div class="edac-mt-0" style="display: none;" id="errorMsgDiv">' . __( 'Please enter a valid email address.', 'accessibility-checker' ) . '</div>
 						
@@ -308,15 +305,6 @@ class Welcome_Page {
 			
 			<script>
 
-				const email_element = document.querySelector("#EMBED_FORM_EMAIL_LABEL");
-				const email_info_region = document.querySelector("#email-info-region");
-				const submit_element = document.querySelector("#zcWebOptin");
-
-				email_element.addEventListener("input", (event) => {
-					 email_info_region.textContent = "";
-				});
-				
-			
 				function initOnComplete(){
 					const optIn = document.querySelector("#edac-opt-in-email");
 
