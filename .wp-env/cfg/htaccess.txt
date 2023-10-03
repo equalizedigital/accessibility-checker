@@ -1,0 +1,18 @@
+#Protect Directory
+AuthName "Dialog prompt"
+AuthType Basic
+AuthUserFile /var/www/html/.htpasswd
+Require valid-user
+
+<FilesMatch "(admin-ajax\.php|media-upload\.php|async-upload\.php|wp-cron\.php|xmlrpc\.php)$">
+Satisfy Any
+Order allow,deny
+Allow from all
+Deny from none
+</FilesMatch>
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+
+# END WordPress

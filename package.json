@@ -6,10 +6,17 @@
   "license": "GPL-2.0+",
   "main": "index.js",
   "scripts": {
+    "init": "mkdir -p ./tests/e2e/.auth && npm run start && ./.wp-env/scripts/init-wp.sh ",
+    "start": "npx wp-env start && ./.wp-env/scripts/start-wp.sh && ./.wp-env/scripts/start-wp-tests.sh",
+    "stop": "npx wp-env stop",
+    "test:e2e":       "npx wp-env stop && npx wp-env start && ./.wp-env/scripts/start-wp-tests.sh && npx wp-env clean tests && npx playwright test ./e2e/specs/free",
+    "test:e2e:debug": "npx wp-env stop && npx wp-env start && ./.wp-env/scripts/start-wp-tests.sh && npx wp-env clean tests && npx playwright test ./e2e/specs/free --debug",
+    "test:e2e:pro": "npx wp-env clean tests && npx playwright test ./e2e/specs/pro",
     "build": "composer install && npm install && npx webpack",
     "dev": "npx webpack --watch --mode development",
     "lint": "./vendor/bin/phpcs",
-    "dist": "mkdir -p ./dist && npm install && npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist && composer install"
+    "dist": "mkdir -p ./dist && npm install && npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist && composer install",
+    "postinstall": "patch-package"
   },
   "files": [
     "LICENSE.txt",
@@ -27,6 +34,10 @@
     "@babel/preset-env": "^7.22.4",
     "@babel/preset-react": "^7.22.3",
     "@floating-ui/dom": "^1.2.9",
+    "@playwright/test": "^1.38.1",
+    "@types/node": "^20.7.2",
+    "@wordpress/e2e-test-utils-playwright": "^0.10.0",
+    "@wordpress/env": "*",
     "@wordpress/scripts": "^26.5.0",
     "axe-core": "^4.7.2",
     "babel-loader": "^9.1.2",
@@ -37,10 +48,14 @@
     "mini-css-extract-plugin": "^2.7.6",
     "node-sass": "^7.0.3",
     "notyf": "^3.10.0",
+    "patch-package": "^8.0.0",
     "sass-loader": "^13.3.1",
     "tabbable": "^6.1.2",
     "unique-selector": "^0.5.0",
     "webpack": "^5.84.1",
     "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }
