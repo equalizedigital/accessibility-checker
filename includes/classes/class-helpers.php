@@ -49,11 +49,16 @@ class Helpers {
 		
 		$locale = get_locale();
 
-		$formatter = new \NumberFormatter( $locale, \NumberFormatter::DECIMAL );
-		$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
-		$formatter->setAttribute( \NumberFormatter::GROUPING_USED, 1 ); // Include thousands separator.
+		if ( class_exists( 'NumberFormatter' ) ) {
+			$formatter = new \NumberFormatter( $locale, \NumberFormatter::DECIMAL );
+			$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
+			$formatter->setAttribute( \NumberFormatter::GROUPING_USED, 1 ); // Include thousands separator.
 		
-		return $formatter->format( $number );
+			return $formatter->format( $number );
+
+		} else {
+			return number_format( $number );
+		}
 	}
 
 	/**
@@ -76,10 +81,16 @@ class Helpers {
 		
 		$locale = get_locale();
 
-		$formatter = new \NumberFormatter( $locale, \NumberFormatter::PERCENT );
-		$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
+		if ( class_exists( 'NumberFormatter' ) ) {
+	
+			$formatter = new \NumberFormatter( $locale, \NumberFormatter::PERCENT );
+			$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
+			
+			return $formatter->format( $number );
 		
-		return $formatter->format( $number );
+		} else {
+			return sprintf( '%.2f%%', $number * 100 );
+		}
 	}
 
 	/**
