@@ -175,7 +175,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 Added: email opt-in to welcome page
 Added: support for formatting numbers and percentages in PHP installs that were build without the intl library
 Added: the see history button for audit history add-on
-Updated: admin notices to load from custom class
+Updated: admin notices to load from a custom class
 
 = 1.6.2 =
 Added: check for WordPress Playground
