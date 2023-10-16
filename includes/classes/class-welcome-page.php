@@ -41,8 +41,15 @@ class Welcome_Page {
 
 					<p class="edac-cols-right"> 
 						<a class="button" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ) . '">' . __( 'Start New Scan', 'accessibility-checker' ) . '</a>
-						<a class="edac-ml-1 button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_issues' ) ) . '">' . __( 'View All Open Issues', 'accessibility-checker' ) . '</a>
-					</p>
+						<a class="edac-ml-1 button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_issues' ) ) . '">' . __( 'View All Open Issues', 'accessibility-checker' ) . '</a>';
+
+			if ( edac_check_plugin_active( 'accessibility-checker-audit-history/accessibility-checker-audit-history.php' ) ) {
+				$html .= '
+				<a class="edac-ml-1 button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_audit_history' ) ) . '">' . __( 'See History', 'accessibility-checker' ) . '</a>';
+			}
+						
+			$html .= '			
+						</p>
 				</div>
 				<div class="edac-welcome-grid-container">';
 
