@@ -470,16 +470,25 @@
      * GAAD Notice Ajax
      */
     if ($('.edac_gaad_notice').length) {
-      $('.edac_gaad_notice').on('click', function () {
-        edac_gaad_notice_ajax();
+      $('.edac_gaad_notice .notice-dismiss').on('click', function () {
+        edac_gaad_notice_ajax( 'edac_gaad_notice_ajax' );
       });
     }
 
-    function edac_gaad_notice_ajax() {
+    /**
+     * Black Friday Notice Ajax
+     */
+    if ($('.edac_black_friday_notice').length) {
+      $('.edac_black_friday_notice .notice-dismiss').on('click', function () {
+        edac_gaad_notice_ajax( 'edac_black_friday_notice_ajax' );
+      });
+    }
+
+    function edac_gaad_notice_ajax( function_name = null ) {
       $.ajax({
         url: ajaxurl,
         method: 'GET',
-        data: { action: 'edac_gaad_notice_ajax', nonce: edac_script_vars.nonce }
+        data: { action: function_name, nonce: edac_script_vars.nonce }
       }).done(function (response) {
         if (true === response.success) {
           let response_json = $.parseJSON(response.data);
