@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.6.4
+ * Version:           1.6.5
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -45,7 +45,7 @@ if ( is_admin() && file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.p
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.6.4' );
+	define( 'EDAC_VERSION', '1.6.5' );
 }
 
 // Current database version.
@@ -828,7 +828,8 @@ function edac_summary_ajax() {
 
 	// password check.
 	if ( boolval( get_option( 'edac_password_protected' ) ) === true ) {
-		$notice_text                = edac_password_protected_notice_text();
+		$admin_notices              = new \EDAC\Admin_Notices();
+		$notice_text                = $admin_notices->edac_password_protected_notice_text();
 		$html['password_protected'] = $notice_text;
 		$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
 	}
