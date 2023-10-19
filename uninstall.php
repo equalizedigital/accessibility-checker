@@ -34,6 +34,7 @@ if ( true === boolval( $delete_data ) ) {
 		'edac_authorization_password',
 		'edac_authorization_username',
 		'edac_gaad_notice_dismiss',
+		'edac_black_friday_2023_notice_dismiss',
 	);
 	if ( $options ) {
 		foreach ( $options as $option ) {
