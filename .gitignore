@@ -4,6 +4,8 @@
 #config.codekit
 config.codekit3
 edac_log.txt
+composer.lock
+package-lock.json
 
 # Hidden system files
 *.DS_Store
@@ -15,3 +17,9 @@ node_modules
 build
 dist
 .env
+
+#accessibility-checker-wp-env
+.auth
+.wp-env.json
+.wp-env
+
