@@ -8,14 +8,15 @@
   "scripts": {
     "preinstall": "patch-package",
     "install": "./install.sh",
-    "wp:reset": "npx wp-env clean all",
+    "hard-reset": "./hard-reset.sh",
+    "wp:clean": "npx wp-env clean all",
     "wp:sql": "npx wp-env run cli wp db cli",
     "start": "npx wp-env start",
     "stop": "npx wp-env stop",
     "build": "npx webpack",
     "dev": "npx webpack --watch --mode development",
-    "lint": "./vendor/bin/phpcs",
     "dist": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist && composer install",
+    "lint": "./vendor/bin/phpcs",
     "test:e2e": "npx wp-env clean tests && npx playwright test ./e2e/specs"    
   },
   "files": [
