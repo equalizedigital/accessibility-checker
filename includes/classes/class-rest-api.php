@@ -114,6 +114,23 @@ class REST_Api {
 			function () use ( $ns, $version ) {
 				register_rest_route(
 					$ns . $version,
+					'/clear-cached-scans-stats',
+					array(
+						'methods'             => 'POST',
+						'callback'            => array( $this, 'clear_cached_scans_stats' ),
+						'permission_callback' => function () {
+							return current_user_can( 'read' ); // able to access the admin dashboard.
+						},
+					) 
+				);
+			} 
+		);
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
 					'/scans-stats-by-post-type/(?P<slug>[a-zA-Z0-9_-]+)',
 					array(
 						'methods'             => 'GET',
@@ -280,6 +297,40 @@ class REST_Api {
 		}   
 	}
 
+
+	/**
+	 * REST handler that clears the cached stats about the scans
+	 *
+	 * @return \WP_REST_Response 
+	 */
+	public function clear_cached_scans_stats() {
+	
+		try {
+
+			// Clear the cache.
+			$scans_stats = new Scans_Stats();
+			$scans_stats->clear_cache();
+			
+			// Prime the cache.
+			$scans_stats = new Scans_Stats();
+		
+			return new \WP_REST_Response(
+				array(
+					'success' => true,
+				) 
+			);
+
+		} catch ( \Exception $ex ) {
+			
+			return new \WP_REST_Response(
+				array(
+					'message' => $ex->getMessage(),
+				), 
+				500
+			);
+
+		}   
+	}
 
 	/**
 	 * REST handler that gets stats about the scans

@@ -471,7 +471,7 @@
      */
     if ($('.edac_gaad_notice').length) {
       $('.edac_gaad_notice .notice-dismiss').on('click', function () {
-        edac_gaad_notice_ajax( 'edac_gaad_notice_ajax' );
+        edac_gaad_notice_ajax('edac_gaad_notice_ajax');
       });
     }
 
@@ -480,11 +480,11 @@
      */
     if ($('.edac_black_friday_notice').length) {
       $('.edac_black_friday_notice .notice-dismiss').on('click', function () {
-        edac_gaad_notice_ajax( 'edac_black_friday_notice_ajax' );
+        edac_gaad_notice_ajax('edac_black_friday_notice_ajax');
       });
     }
 
-    function edac_gaad_notice_ajax( function_name = null ) {
+    function edac_gaad_notice_ajax(function_name = null) {
       $.ajax({
         url: ajaxurl,
         method: 'GET',
@@ -570,6 +570,33 @@ window.addEventListener("load", function () {
 
   if (this.document.querySelector('.edac-widget .edac-summary')) {
     fillDashboardWidget();
+  }
+
+  // Handle refresh button click.
+  if (this.document.querySelector('#edac_clear_cached_stats')) {
+
+    this.document.querySelector('#edac_clear_cached_stats').addEventListener('click', function () {
+
+      const container = document.querySelector('#edac_welcome_page_summary .edac-welcome-grid-container');
+      if (container) {
+        container.classList.add("edac-panel-loading");
+      }
+
+      postData(edac_script_vars.edacApiUrl + '/clear-cached-scans-stats').then((data) => {
+        if (data.success) {
+
+          if (container) {
+            container.classList.remove("edac-panel-loading");
+          }
+
+          // Reload the current page
+          location.reload();
+
+        }
+      })
+
+    });
+
   }
 
   edac_timestamp_to_local();
@@ -810,14 +837,11 @@ const getData = async (url = "", data = {}) => {
 
 const postData = async (url = "", data = {}) => {
 
-
-  if (edac_script_vars.edacHeaders.Authorization == 'None') {
-    return;
-  }
-
   const response = await fetch(url, {
     method: "POST",
-    headers: edac_script_vars.edacHeaders,
+    headers: {
+      'X-WP-Nonce': edac_script_vars.restNonce
+    },
     body: JSON.stringify(data),
   });
   return response.json();
