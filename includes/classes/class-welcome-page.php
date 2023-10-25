@@ -35,10 +35,11 @@ class Welcome_Page {
 			$html .= '
 			<section>
 				<div class="edac-cols edac-cols-header">
-					<h2 class="edac-cols-left">
-						' . __( 'Most Recent Test Summary', 'accessibility-checker' ) . '
-					</h2>
-
+					<div class="edac-cols-left">
+						<h2>
+							' . __( 'Most Recent Test Summary', 'accessibility-checker' ) . '
+						</h2>
+					</div>
 					<p class="edac-cols-right"> 
 						<a class="button" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ) . '">' . __( 'Start New Scan', 'accessibility-checker' ) . '</a>
 					
@@ -52,6 +53,11 @@ class Welcome_Page {
 			$html .= '		
 						<button class="edac-ml-1 button button-primary" id="edac_clear_cached_stats">' . __( 'Refresh', 'accessibility-checker' ) . '</button>	
 					</p>
+				</div>
+				<div><p>
+				' .
+				__( 'These results are automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update the results by click the Refresh button.', 'accessibility-checker' ) .
+				'</p>
 				</div>
 				<div class="edac-welcome-grid-container">';
 
