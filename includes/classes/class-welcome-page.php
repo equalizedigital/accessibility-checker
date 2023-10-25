@@ -50,7 +50,7 @@ class Welcome_Page {
 			}
 						
 			$html .= '		
-						<button class="edac-ml-1 button-primary" id="edac_clear_cached_stats">' . __( 'Refresh', 'accessibility-checker' ) . '</button>	
+						<button class="edac-ml-1 button button-primary" id="edac_clear_cached_stats">' . __( 'Refresh', 'accessibility-checker' ) . '</button>	
 					</p>
 				</div>
 				<div class="edac-welcome-grid-container">';
