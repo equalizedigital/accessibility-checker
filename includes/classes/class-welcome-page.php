@@ -56,7 +56,7 @@ class Welcome_Page {
 				</div>
 				<div><p>
 				' .
-				__( 'These results are automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update the results by click the Refresh button.', 'accessibility-checker' ) .
+				__( 'This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Refresh button.', 'accessibility-checker' ) .
 				'</p>
 				</div>
 				<div class="edac-welcome-grid-container">';
