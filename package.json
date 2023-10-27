@@ -6,10 +6,18 @@
   "license": "GPL-2.0+",
   "main": "index.js",
   "scripts": {
-    "build": "composer install && npm install && npx webpack",
+    "preinstall": "patch-package",
+    "install": "./install.sh",
+    "hard-reset": "./hard-reset.sh",
+    "wp:clean": "npx wp-env clean all",
+    "wp:sql": "npx wp-env run cli wp db cli",
+    "start": "npx wp-env start",
+    "stop": "npx wp-env stop",
+    "build": "npx webpack",
     "dev": "npx webpack --watch --mode development",
+    "dist": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist && composer install",
     "lint": "./vendor/bin/phpcs",
-    "dist": "mkdir -p ./dist && npm install && npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist && composer install"
+    "test:e2e": "npx wp-env clean tests && npx playwright test ./e2e/specs"    
   },
   "files": [
     "LICENSE.txt",
@@ -25,8 +33,9 @@
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.4",
-    "@babel/preset-react": "^7.22.3",
+    "@babel/preset-react": "^7.22.3", 
     "@floating-ui/dom": "^1.2.9",
+    "@wordpress/env": "*",
     "@wordpress/scripts": "^26.5.0",
     "axe-core": "^4.7.2",
     "babel-loader": "^9.1.2",
@@ -37,6 +46,7 @@
     "mini-css-extract-plugin": "^2.7.6",
     "node-sass": "^7.0.3",
     "notyf": "^3.10.0",
+    "patch-package": "^8.0.0",
     "sass-loader": "^13.3.1",
     "tabbable": "^6.1.2",
     "unique-selector": "^0.5.0",
