@@ -41,7 +41,9 @@ class Welcome_Page {
 						</h2>
 					</div>
 					<p class="edac-cols-right"> 
-						<a class="button" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ) . '">' . __( 'Start New Scan', 'accessibility-checker' ) . '</a>
+						<button class="button" id="edac_clear_cached_stats">' . __( 'Update Counts', 'accessibility-checker' ) . '</button>	
+	
+						<a class="edac-ml-1 button" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ) . '">' . __( 'Start New Scan', 'accessibility-checker' ) . '</a>
 					
 						<a class="edac-ml-1 button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_issues' ) ) . '">' . __( 'View All Open Issues', 'accessibility-checker' ) . '</a>';
 
@@ -51,12 +53,11 @@ class Welcome_Page {
 			}
 						
 			$html .= '		
-						<button class="edac-ml-1 button button-primary" id="edac_clear_cached_stats">' . __( 'Refresh', 'accessibility-checker' ) . '</button>	
 					</p>
 				</div>
 				<div><p>
 				' .
-				__( 'This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Refresh button.', 'accessibility-checker' ) .
+				__( 'This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button.', 'accessibility-checker' ) .
 				'</p>
 				</div>
 				<div class="edac-welcome-grid-container">';
