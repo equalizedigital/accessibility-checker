@@ -35,12 +35,16 @@ class Welcome_Page {
 			$html .= '
 			<section>
 				<div class="edac-cols edac-cols-header">
-					<h2 class="edac-cols-left">
-						' . __( 'Most Recent Test Summary', 'accessibility-checker' ) . '
-					</h2>
-
+					<div class="edac-cols-left">
+						<h2>
+							' . __( 'Most Recent Test Summary', 'accessibility-checker' ) . '
+						</h2>
+					</div>
 					<p class="edac-cols-right"> 
-						<a class="button" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ) . '">' . __( 'Start New Scan', 'accessibility-checker' ) . '</a>
+						<button class="button" id="edac_clear_cached_stats">' . __( 'Update Counts', 'accessibility-checker' ) . '</button>	
+	
+						<a class="edac-ml-1 button" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ) . '">' . __( 'Start New Scan', 'accessibility-checker' ) . '</a>
+					
 						<a class="edac-ml-1 button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_issues' ) ) . '">' . __( 'View All Open Issues', 'accessibility-checker' ) . '</a>';
 
 			if ( edac_check_plugin_active( 'accessibility-checker-audit-history/accessibility-checker-audit-history.php' ) ) {
@@ -48,8 +52,13 @@ class Welcome_Page {
 				<a class="edac-ml-1 button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_audit_history' ) ) . '">' . __( 'See History', 'accessibility-checker' ) . '</a>';
 			}
 						
-			$html .= '			
-						</p>
+			$html .= '		
+					</p>
+				</div>
+				<div><p>
+				' .
+				__( 'This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button.', 'accessibility-checker' ) .
+				'</p>
 				</div>
 				<div class="edac-welcome-grid-container">';
 

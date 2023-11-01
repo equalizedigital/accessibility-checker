@@ -1041,7 +1041,8 @@
   &-dismiss {}
 }
 
-.edac_gaad_notice, .edac_black_friday_notice {
+.edac_gaad_notice,
+.edac_black_friday_notice {
   .button {
     margin-top: 5px;
   }
@@ -1093,7 +1094,7 @@
 
 .edac-flex-container {
   display: flex;
- 
+
 }
 
 .edac-cols {
@@ -1214,7 +1215,7 @@
         padding: 0;
         background-color: transparent;
         border: none;
-  
+
       }
 
     }
@@ -1480,20 +1481,20 @@
   @media screen and (max-width: $large-screen-width ) {
 
     >.edac-cols {
-        //gap: 0;
+      //gap: 0;
 
 
-        flex-direction: column !important;
+      flex-direction: column !important;
 
-        .edac-cols-right {
-          .edac-panel {
-            padding: 0 1rem;
-          }
+      .edac-cols-right {
+        .edac-panel {
+          padding: 0 1rem;
         }
+      }
 
-        .edac-welcome-aside>div {
-          width: unset;
-        }
+      .edac-welcome-aside>div {
+        width: unset;
+      }
 
     }
 
@@ -1863,5 +1864,22 @@
     }
   }
 
+
+}
+
+
+#edac_welcome_page_summary>section {
+  position: relative;
+
+  .edac-panel-loading::before {
+    background-color: hsla(0, 0%, 100%, .5);
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9;
+  }
 
 }
