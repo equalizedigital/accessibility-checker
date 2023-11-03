@@ -100,7 +100,7 @@ class Helpers {
 	 * @param integer $precision number of decimals.
 	 * @return integer
 	 */
-	public static function format_date( $date ) {
+	public static function format_date( $date, $include_time = false ) {
 
 		if ( ! is_numeric( $date ) ) { // date as string.
 			
@@ -116,12 +116,19 @@ class Helpers {
 		$datetime = new \DateTime();
 		$datetime->setTimestamp( $timestamp );
 		$datetime->setTimezone( wp_timezone() );
-	
 
-		$format = get_option( 'date_format' );
+		if ( ! $include_time ) {
+			$format = get_option( 'date_format' );
+		} else {
+			$format = get_option( 'date_format' ) . ' \a\t ' . get_option( 'time_format' );
+		}
 
 		if ( ! $format ) {
-			$format = 'j M Y';
+			if ( $include_time ) {
+				$format = 'j M Y \a\t g:i a';
+			} else {
+				$format = 'j M Y';
+			}
 		}
 
 		$formatted_date = $datetime->format( $format );

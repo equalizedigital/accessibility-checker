@@ -71,7 +71,7 @@ class Widgets {
 		
 			<div class="edac-summary-info">
 				<div class="edac-summary-info-date">
-					<div class="edac-summary-info-date-label">' . __( 'Last Full-Site Scan:', 'accessibility-checker' ) . '</div>
+					<div class="edac-summary-info-date-label">' . __( 'Report Last Updated:', 'accessibility-checker' ) . '</div>
 					<div id="edac-summary-info-date" class="edac-summary-info-date-date edac-timestamp-to-local">-</div>';
 		
 				$html .= '
