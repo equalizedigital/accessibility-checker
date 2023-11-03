@@ -100,7 +100,7 @@ class Helpers {
 	 * @param integer $precision number of decimals.
 	 * @return integer
 	 */
-	public static function format_date( $date ) {
+	public static function format_date( $date, $date_format = null ) {
 
 		if ( ! is_numeric( $date ) ) { // date as string.
 			
@@ -117,8 +117,11 @@ class Helpers {
 		$datetime->setTimestamp( $timestamp );
 		$datetime->setTimezone( wp_timezone() );
 	
-
-		$format = get_option( 'date_format' );
+		// Use the provided format if it's not null, otherwise get the format from the settings.
+		$format = $date_format;
+		if ( null === $format ) {
+			$format = get_option( 'date_format' );
+		}
 
 		if ( ! $format ) {
 			$format = 'j M Y';

@@ -342,7 +342,7 @@ class Scans_Stats {
 
 		// Handle exceptions.
 		if ( $data['fullscan_completed_at'] > 0 ) {
-			$formatting['fullscan_completed_at_formatted'] = Helpers::format_date( $data['fullscan_completed_at'] );
+			$formatting['fullscan_completed_at_formatted'] = Helpers::format_date( $data['fullscan_completed_at'], 'M d, Y' );
 		} else {
 			$formatting['fullscan_completed_at_formatted'] = 'N/A';
 		}
