@@ -55,11 +55,6 @@ class Welcome_Page {
 			$html .= '		
 					</p>
 				</div>
-				<div><p>
-				' .
-				__( 'This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button.', 'accessibility-checker' ) .
-				'</p>
-				</div>
 				<div class="edac-welcome-grid-container">';
 
 			$html .= '
@@ -132,7 +127,7 @@ class Welcome_Page {
 			
 				<div class="edac-welcome-grid-c8 edac-welcome-grid-item edac-background-light">
 					<div class="edac-inner-row">
-						<div class="edac-stat-label">' . esc_html__( 'Last Full-Site Scan:', 'accessibility-checker' ) . '</div>
+						<div class="edac-stat-label">' . esc_html__( 'Report Last Updated:', 'accessibility-checker' ) . '</div>
 					</div>
 					<div class="edac-inner-row">
 						';
@@ -178,6 +173,7 @@ class Welcome_Page {
 
 			</div>';
 
+			$html .= '<div><p>' . __( 'This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button.', 'accessibility-checker' ) . '</p></div>';
 
 			if ( $summary['is_truncated'] ) {
 				$html .= '<div class="edac-center-text edac-mt-3">Your site has a large number of issues. For performance reasons, not all issues have been included in this summary.</div>';
