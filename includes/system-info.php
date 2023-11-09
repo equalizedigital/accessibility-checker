@@ -142,8 +142,6 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Policy Page:              ' . ( get_option( 'edac_accessibility_policy_page' ) ? get_option( 'edac_accessibility_policy_page' ) . "\n" : "Unset\n" );
 	$return .= 'Activation Date:          ' . get_option( 'edac_activation_date' ) . "\n";
 	$return .= 'Footer Statement:         ' . ( get_option( 'edac_add_footer_accessibility_statement' ) ? "Enabled\n" : "Disabled\n" );
-	$return .= 'Authorization Username:   ' . ( get_option( 'edac_authorization_username' ) ? get_option( 'edac_authorization_username' ) . "\n" : "Unset\n" );
-	$return .= 'Authorization Password:   ' . ( get_option( 'edac_authorization_password' ) ? get_option( 'edac_authorization_password' ) . "\n" : "Unset\n" );
 	$return .= 'Delete Data:              ' . ( get_option( 'edac_delete_data' ) ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Include Statement Link:   ' . ( get_option( 'edac_include_accessibility_statement_link' ) ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Post Types:               ' . ( get_option( 'edac_post_types' ) ? implode( ', ', get_option( 'edac_post_types' ) ) . "\n" : "Unset\n" );
@@ -160,6 +158,8 @@ function edac_tools_sysinfo_get() {
 		$return   .= 'Version:                  ' . EDACP_VERSION . "\n";
 		$return   .= 'Database Version:         ' . get_option( 'edacp_db_version' ) . "\n";
 		$return   .= 'License Status:           ' . get_option( 'edacp_license_status' ) . "\n";
+		$return   .= 'Authorization Username:   ' . ( get_option( 'edacp_authorization_username' ) ? get_option( 'edacp_authorization_username' ) . "\n" : "Unset\n" );
+		$return   .= 'Authorization Password:   ' . ( get_option( 'edacp_authorization_password' ) ? get_option( 'edacp_authorization_password' ) . "\n" : "Unset\n" );
 		$return   .= 'Scan ID:                  ' . get_transient( 'edacp_scan_id' ) . "\n";
 		$return   .= 'Scan Total:               ' . get_transient( 'edacp_scan_total' ) . "\n";
 		$return   .= 'Simplified Sum Heading:   ' . get_option( 'edacp_simplified_summary_heading' ) . "\n";
@@ -431,7 +431,6 @@ function edac_get_posts_count() {
 	} else {
 		return false;
 	}
-
 }
 
 /**
