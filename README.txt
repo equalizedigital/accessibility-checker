@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 5.0.0
-Tested up to: 6.3.2
-Stable tag: 1.6.7
+Tested up to: 6.4.1
+Stable tag: 1.6.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,10 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.6.8 =
+Updated: system info to stop showing edac_authorization_username & edac_authorization_username
+Updated: system info to show edacp_authorization_username & edacp_authorization_username for pro users
 
 = 1.6.7 =
 Updated: logic for Link to MS Office file
