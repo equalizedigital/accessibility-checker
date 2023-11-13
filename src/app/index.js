@@ -5,9 +5,9 @@ import { Notyf } from 'notyf';
 
 import { scan } from './scanner';
 
-let JS_SCAN_ENABLED = false;
-let INFO_ENABLED = false;
-let DEBUG_ENABLED = false;
+let JS_SCAN_ENABLED = true;
+let INFO_ENABLED = true;
+let DEBUG_ENABLED = true;
 let SCAN_INTERVAL_IN_SECONDS = 30;
 
 if (edac_script_vars.mode === 'full-scan') {
@@ -129,19 +129,19 @@ class AccessibilityCheckerHighlight {
 		const parser = new DOMParser();
 		const parsedHtml = parser.parseFromString(htmlToFind, 'text/html');
 		const firstParsedElement = parsedHtml.body.firstElementChild;
-		
+
 		if (firstParsedElement) {
 			htmlToFind = firstParsedElement.outerHTML;
 		}
 
-		
+
 		// Compare the outer HTML of the parsed element with all elements on the page
 		const allElements = document.body.querySelectorAll('*');
 
 		for (const element of allElements) {
-		
+
 			if (element.outerHTML.replace(/\W/g, '') === htmlToFind.replace(/\W/g, '')) {
-		
+
 				const tooltip = this.addTooltip(element, value, index);
 
 				this.issues[index].tooltip = tooltip.tooltip;
@@ -541,10 +541,10 @@ class AccessibilityCheckerHighlight {
 		this.highlightAjax().then(
 			(json) => {
 
-				if(json.length == 0){
+				if (json.length == 0) {
 					this.nextButton.disabled = true;
 					this.previousButton.disabled = true;
-					
+
 				} else {
 					this.nextButton.disabled = false;
 					this.previousButton.disabled = false;
@@ -705,7 +705,7 @@ class AccessibilityCheckerHighlight {
 		This checks if the app's css is loading into #edac-app-css as expected. 
 		If not, then we assume the css has been combined, so we manually add it to the document.
 		*/
-		if( ! document.querySelector('#edac-app-css') ){
+		if (!document.querySelector('#edac-app-css')) {
 			debug('css is combined, so adding app.css to page.');
 
 			var link = document.createElement('link');
@@ -713,10 +713,10 @@ class AccessibilityCheckerHighlight {
 			link.id = 'edac-app-css';
 			link.type = 'text/css';
 			link.href = edac_script_vars.appCssUrl,
-			link.media = 'all';
+				link.media = 'all';
 			document.head.appendChild(link);
 		}
-	
+
 
 		this.originalCss = Array.from(document.head.querySelectorAll('style[type="text/css"], style, link[rel="stylesheet"]'));
 
@@ -874,7 +874,7 @@ if (window.top._scheduledScanRunning == undefined) {
 
 
 async function checkApi() {
-	
+
 	if (edac_script_vars.edacHeaders.Authorization == 'None') {
 		return 401;
 	}
@@ -1155,168 +1155,168 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	debug('We are loading the app in ' + edac_script_vars.mode + ' mode.');
 
-	if(JS_SCAN_ENABLED){
-	if (edac_script_vars.mode === 'editor-scan') {
+	if (JS_SCAN_ENABLED) {
+		if (edac_script_vars.mode === 'editor-scan') {
 
-		debug('App is loading from within the editor.');
+			debug('App is loading from within the editor.');
 
-		// We are loading the app from within the editor (rather than the page preview).			
-		// Create an iframe in the editor for loading the page preview.
-		// The page preview's url has an ?edac-action=scan, which tells the app 
-		// loaded in the iframe to: 1) run the js scan, 2) post the results.
-		const iframe = document.createElement('iframe');
-		iframe.setAttribute('id', 'edac_scanner');
-		iframe.setAttribute('src', edac_script_vars.scanUrl);
-		iframe.style.width = screen.width + 'px';
-		iframe.style.height = screen.height + 'px';
-		iframe.style.position = 'absolute';
-		iframe.style.left = '-' + screen.width + 'px';
-		document.body.append(iframe);
+			// We are loading the app from within the editor (rather than the page preview).			
+			// Create an iframe in the editor for loading the page preview.
+			// The page preview's url has an ?edac-action=scan, which tells the app 
+			// loaded in the iframe to: 1) run the js scan, 2) post the results.
+			const iframe = document.createElement('iframe');
+			iframe.setAttribute('id', 'edac_scanner');
+			iframe.setAttribute('src', edac_script_vars.scanUrl);
+			iframe.style.width = screen.width + 'px';
+			iframe.style.height = screen.height + 'px';
+			iframe.style.position = 'absolute';
+			iframe.style.left = '-' + screen.width + 'px';
+			document.body.append(iframe);
 
-		iframe.addEventListener("load", function (e) {
+			iframe.addEventListener("load", function (e) {
 
-			debug('Scan iframe loaded.');
+				debug('Scan iframe loaded.');
 
-			// The frame has loaded the preview page, so post the message that fires the iframe scan and save.			
-			window.postMessage({
-				'sender': 'edac_start_scan',
-				'message': {
-					postId: edac_script_vars.postID
-				}
-			});
-
-		});
-
-
-		//Listen for dispatches from the wp data store
-		let saving = false;
-		if (wp.data !== undefined && wp.data.subscribe !== undefined) {
-			wp.data.subscribe(() => {
-
-				// Rescan the page if user saves post
-				if (wp.data.select('core/editor').isSavingPost()) {
-					saving = true;
-				} else {
-					if (saving) {
-						saving = false;
-
-						checkApi().then((status) => {
-							if (status == 401 && edac_script_vars.edacpApiUrl == '') {
-
-								showNotice({
-									msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
-									type: 'warning',
-									url: 'https://equalizedigital.com/accessibility-checker/pricing/',
-									label: 'Upgrade to Accessibility Checker Pro',
-									closeOthers: true
-								});
-
-								debug('Password protected scans are not supported on the free version.')
-							} else {
-								debug('Loading scan iframe: ' + edac_script_vars.scanUrl);
-								iframe.setAttribute('src', edac_script_vars.scanUrl);
-							}
-						});
-
-
+				// The frame has loaded the preview page, so post the message that fires the iframe scan and save.			
+				window.postMessage({
+					'sender': 'edac_start_scan',
+					'message': {
+						postId: edac_script_vars.postID
 					}
-				}
+				});
 
 			});
 
-		} else {
-			debug("Gutenberg is not enabled.");
+
+			//Listen for dispatches from the wp data store
+			let saving = false;
+			if (wp.data !== undefined && wp.data.subscribe !== undefined) {
+				wp.data.subscribe(() => {
+
+					// Rescan the page if user saves post
+					if (wp.data.select('core/editor').isSavingPost()) {
+						saving = true;
+					} else {
+						if (saving) {
+							saving = false;
+
+							checkApi().then((status) => {
+								if (status == 401 && edac_script_vars.edacpApiUrl == '') {
+
+									showNotice({
+										msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
+										type: 'warning',
+										url: 'https://equalizedigital.com/accessibility-checker/pricing/',
+										label: 'Upgrade to Accessibility Checker Pro',
+										closeOthers: true
+									});
+
+									debug('Password protected scans are not supported on the free version.')
+								} else {
+									debug('Loading scan iframe: ' + edac_script_vars.scanUrl);
+									iframe.setAttribute('src', edac_script_vars.scanUrl);
+								}
+							});
+
+
+						}
+					}
+
+				});
+
+			} else {
+				debug("Gutenberg is not enabled.");
+			}
+
 		}
 
-	}
+
+		if (
+			(edac_script_vars.mode === 'editor-scan' && edac_script_vars.edacpApiUrl != '') || //&& edac_script_vars.pendingFullScan) ||
+			(edac_script_vars.mode === 'full-scan')
+		) {
 
 
-	if (
-		(edac_script_vars.mode === 'editor-scan' && edac_script_vars.edacpApiUrl != '') || //&& edac_script_vars.pendingFullScan) ||
-		(edac_script_vars.mode === 'full-scan')
-	) {
+			debug('App is loading either from the editor page or from the scheduled full scan page.');
+
+			// Create an iframe in the editor for loading the page preview for the scheduled scans.
+			const iframeScheduledScanner = document.createElement('iframe');
+			iframeScheduledScanner.setAttribute('id', 'edacp_scheduled_scanner');
+			iframeScheduledScanner.style.width = screen.width + 'px';
+			iframeScheduledScanner.style.height = screen.height + 'px';
+			iframeScheduledScanner.style.position = 'absolute';
+			iframeScheduledScanner.style.left = '-' + screen.width + 'px';
+
+			const onLoadIframeScheduledScanner = function (e) {
+				debug('Loading scheduled scan iframe: done');
+
+				var data = e.currentTarget.data;
+
+				// The frame has loaded the preview page, so post the message that fires the iframe scan and save.
+				window.postMessage({
+					'sender': 'edac_start_scheduled_scan',
+					'message': data
+				});
+
+			};
+			iframeScheduledScanner.addEventListener('load', onLoadIframeScheduledScanner, false);
+
+			document.body.append(iframeScheduledScanner);
+
+			let scanInterval = setInterval(() => {
 
 
-		debug('App is loading either from the editor page or from the scheduled full scan page.');
+				if (!window.top._scheduledScanRunning) {
 
-		// Create an iframe in the editor for loading the page preview for the scheduled scans.
-		const iframeScheduledScanner = document.createElement('iframe');
-		iframeScheduledScanner.setAttribute('id', 'edacp_scheduled_scanner');
-		iframeScheduledScanner.style.width = screen.width + 'px';
-		iframeScheduledScanner.style.height = screen.height + 'px';
-		iframeScheduledScanner.style.position = 'absolute';
-		iframeScheduledScanner.style.left = '-' + screen.width + 'px';
-
-		const onLoadIframeScheduledScanner = function (e) {
-			debug('Loading scheduled scan iframe: done');
-
-			var data = e.currentTarget.data;
-
-			// The frame has loaded the preview page, so post the message that fires the iframe scan and save.
-			window.postMessage({
-				'sender': 'edac_start_scheduled_scan',
-				'message': data
-			});
-
-		};
-		iframeScheduledScanner.addEventListener('load', onLoadIframeScheduledScanner, false);
-
-		document.body.append(iframeScheduledScanner);
-
-		let scanInterval = setInterval(() => {
+					debug('Polling to see if there are any scans pending.');
 
 
-			if (!window.top._scheduledScanRunning) {
-
-				debug('Polling to see if there are any scans pending.');
-
-
-				// Poll to see if there are any scans pending.
-				getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
-					.then((data) => {
+					// Poll to see if there are any scans pending.
+					getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
+						.then((data) => {
 
 
-						if (data.code !== 'rest_no_route') {
+							if (data.code !== 'rest_no_route') {
 
-							if (data.data !== undefined) {
+								if (data.data !== undefined) {
 
-								if (data.data.scanUrl !== undefined) {
+									if (data.data.scanUrl !== undefined) {
 
-									info('A post needs scanning: ' + data.data.scanUrl);
-									debug(data);
+										info('A post needs scanning: ' + data.data.scanUrl);
+										debug(data);
 
-									//set the data so we can pass it to the onload handler
-									iframeScheduledScanner.data = data.data;
+										//set the data so we can pass it to the onload handler
+										iframeScheduledScanner.data = data.data;
 
 
-									// We have the url of the next in line to be scanned so pass to the iframe.
-									iframeScheduledScanner.setAttribute('src', data.data.scanUrl);
+										// We have the url of the next in line to be scanned so pass to the iframe.
+										iframeScheduledScanner.setAttribute('src', data.data.scanUrl);
 
+
+									}
 
 								}
 
+							} else {
+
+								info('There was a problem connecting to the API.');
+
+								window.top._scheduledScanRunning = false;
+
+								debug('_scheduledScanRunning: false');
+
 							}
+						});
 
-						} else {
+				} else {
+					debug('Waiting for previous scan to complete.');
+				}
 
-							info('There was a problem connecting to the API.');
-
-							window.top._scheduledScanRunning = false;
-
-							debug('_scheduledScanRunning: false');
-
-						}
-					});
-
-			} else {
-				debug('Waiting for previous scan to complete.');
-			}
-
-		}, SCAN_INTERVAL_IN_SECONDS * 1000);
+			}, SCAN_INTERVAL_IN_SECONDS * 1000);
 
 
 
-	}
+		}
 	}
 	if (edac_script_vars.mode === 'ui' && edac_script_vars.active) {
 

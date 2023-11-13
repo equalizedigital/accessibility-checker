@@ -204,7 +204,7 @@ class REST_Api {
 		$post_type  = get_post_type( $post );
 		$post_types = Helpers::get_option_as_array( 'edac_post_types' );
 
-		if ( ! empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
+		if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 
 			return new \WP_REST_Response( array( 'message' => 'The post type is not set to be scanned.' ), 400 );
 
