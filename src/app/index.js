@@ -952,6 +952,7 @@ function saveScanResults(postId, violations, scheduled = false) {
 	// Confirm api service is working.
 	checkApi().then((status) => {
 
+		console.log(status);
 
 		if (status >= 400) {
 			if (status == 401 && edac_script_vars.edacpApiUrl == '') {
@@ -1151,41 +1152,104 @@ window.addEventListener(
 );
 
 
+const injectIframe = (previewUrl) => {
+
+	// We are loading the app from within the editor (rather than the page preview).			
+	// Create an iframe offscreen to load the preview of the page.
+
+	// Gen unique id for this iframe
+	const timestamp = new Date().getTime();
+	const randomNumber = Math.floor(Math.random() * 1000);
+	const uniqueId = 'iframe' + '_' + timestamp + '_' + randomNumber;
+
+	// inject the iframe
+	const iframe = document.createElement('iframe');
+	iframe.setAttribute('id', uniqueId);
+	iframe.setAttribute('src', previewUrl);
+
+	iframe.style.width = screen.width + 'px';
+	iframe.style.height = screen.height + 'px';
+	iframe.style.position = 'absolute';
+	iframe.style.left = '-' + screen.width + 'px';
+	document.body.append(iframe);
+
+
+	// Wait for the preview to load & inject the pageScanner script.
+	iframe.addEventListener("load", function (e) {
+
+		// Access the contentDocument of the iframe.
+		var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+		// Pass the postID and iframe id into the document so we can reference it.
+		iframeDocument.querySelector('body').setAttribute('data-iframe-id', uniqueId);
+
+		// inject the scanner app.
+		var scriptElement = iframeDocument.createElement('script');
+		scriptElement.src = edac_script_vars.baseurl + '/build/pageScanner.bundle.js';
+		iframeDocument.head.appendChild(scriptElement);
+
+	});
+
+}
+
 window.addEventListener('DOMContentLoaded', () => {
 
 	debug('We are loading the app in ' + edac_script_vars.mode + ' mode.');
 
 	if (JS_SCAN_ENABLED) {
-		if (edac_script_vars.mode === 'editor-scan') {
 
-			debug('App is loading from within the editor.');
+		if (
+			(edac_script_vars.mode === 'editor-scan' || edac_script_vars.mode === 'full-scan')
+		) {
 
-			// We are loading the app from within the editor (rather than the page preview).			
-			// Create an iframe in the editor for loading the page preview.
-			// The page preview's url has an ?edac-action=scan, which tells the app 
-			// loaded in the iframe to: 1) run the js scan, 2) post the results.
-			const iframe = document.createElement('iframe');
-			iframe.setAttribute('id', 'edac_scanner');
-			iframe.setAttribute('src', edac_script_vars.scanUrl);
-			iframe.style.width = screen.width + 'px';
-			iframe.style.height = screen.height + 'px';
-			iframe.style.position = 'absolute';
-			iframe.style.left = '-' + screen.width + 'px';
-			document.body.append(iframe);
+			// Listen for completed scans.
+			top.addEventListener('edac_scan_complete', function (event) {
+				const postId = event.detail.postId;
+				const violations = event.detail.violations;
+				const iframeId = event.detail.iframeId;
+				
+				// remove the iframe.
+				document.getElementById(iframeId).remove();
 
-			iframe.addEventListener("load", function (e) {
+				//TODO: scheduled
+				const scheduled = false;
 
-				debug('Scan iframe loaded.');
+				// save the scan results.
+				saveScanResults(postId, violations, scheduled);
 
-				// The frame has loaded the preview page, so post the message that fires the iframe scan and save.			
-				window.postMessage({
-					'sender': 'edac_start_scan',
-					'message': {
-						postId: edac_script_vars.postID
+				
+/* TODO:
+				checkApi().then((status) => {
+					if (status == 401 && edac_script_vars.edacpApiUrl == '') {
+
+						showNotice({
+							msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
+							type: 'warning',
+							url: 'https://equalizedigital.com/accessibility-checker/pricing/',
+							label: 'Upgrade to Accessibility Checker Pro',
+							closeOthers: true
+						});
+
+						debug('Password protected scans are not supported on the free version.')
+					} else {
+						debug('Loading scan iframe: ' + edac_script_vars.scanUrl);
+						iframe.setAttribute('src', edac_script_vars.scanUrl);
 					}
 				});
+*/
 
+			
 			});
+		
+		}
+
+		
+		
+		if (edac_script_vars.mode === 'editor-scan') {
+		
+			debug('App is loading from within the editor.');
+
+			injectIframe(edac_script_vars.scanUrl);
 
 
 			//Listen for dispatches from the wp data store
@@ -1199,26 +1263,8 @@ window.addEventListener('DOMContentLoaded', () => {
 					} else {
 						if (saving) {
 							saving = false;
-
-							checkApi().then((status) => {
-								if (status == 401 && edac_script_vars.edacpApiUrl == '') {
-
-									showNotice({
-										msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
-										type: 'warning',
-										url: 'https://equalizedigital.com/accessibility-checker/pricing/',
-										label: 'Upgrade to Accessibility Checker Pro',
-										closeOthers: true
-									});
-
-									debug('Password protected scans are not supported on the free version.')
-								} else {
-									debug('Loading scan iframe: ' + edac_script_vars.scanUrl);
-									iframe.setAttribute('src', edac_script_vars.scanUrl);
-								}
-							});
-
-
+							
+							injectIframe(edac_script_vars.scanUrl);
 						}
 					}
 
@@ -1236,36 +1282,11 @@ window.addEventListener('DOMContentLoaded', () => {
 			(edac_script_vars.mode === 'full-scan')
 		) {
 
-
 			debug('App is loading either from the editor page or from the scheduled full scan page.');
-
-			// Create an iframe in the editor for loading the page preview for the scheduled scans.
-			const iframeScheduledScanner = document.createElement('iframe');
-			iframeScheduledScanner.setAttribute('id', 'edacp_scheduled_scanner');
-			iframeScheduledScanner.style.width = screen.width + 'px';
-			iframeScheduledScanner.style.height = screen.height + 'px';
-			iframeScheduledScanner.style.position = 'absolute';
-			iframeScheduledScanner.style.left = '-' + screen.width + 'px';
-
-			const onLoadIframeScheduledScanner = function (e) {
-				debug('Loading scheduled scan iframe: done');
-
-				var data = e.currentTarget.data;
-
-				// The frame has loaded the preview page, so post the message that fires the iframe scan and save.
-				window.postMessage({
-					'sender': 'edac_start_scheduled_scan',
-					'message': data
-				});
-
-			};
-			iframeScheduledScanner.addEventListener('load', onLoadIframeScheduledScanner, false);
-
-			document.body.append(iframeScheduledScanner);
 
 			let scanInterval = setInterval(() => {
 
-
+				//TODO: ?
 				if (!window.top._scheduledScanRunning) {
 
 					debug('Polling to see if there are any scans pending.');
@@ -1283,15 +1304,8 @@ window.addEventListener('DOMContentLoaded', () => {
 									if (data.data.scanUrl !== undefined) {
 
 										info('A post needs scanning: ' + data.data.scanUrl);
-										debug(data);
-
-										//set the data so we can pass it to the onload handler
-										iframeScheduledScanner.data = data.data;
-
-
-										// We have the url of the next in line to be scanned so pass to the iframe.
-										iframeScheduledScanner.setAttribute('src', data.data.scanUrl);
-
+									
+										injectIframe( data.data.scanUrl )
 
 									}
 

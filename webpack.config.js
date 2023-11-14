@@ -17,6 +17,9 @@ module.exports = {
       './src/admin/index.js',
       './src/admin/sass/accessibility-checker-admin.scss',  
     ],
+    'pageScanner': [
+      './src/pageScanner/index.js',
+    ],  
     
   },
 

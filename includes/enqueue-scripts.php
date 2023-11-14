@@ -149,6 +149,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 				'edacHeaders' => $headers,
 				'edacpApiUrl' => $pro ? esc_url_raw( rest_url() . 'accessibility-checker-pro/v1' ) : '',
 				'ajaxurl'     => admin_url( 'admin-ajax.php' ),
+				'baseurl'     => plugin_dir_url( __DIR__ ),
 				'loggedIn'    => is_user_logged_in(),
 				'active'      => $active,
 				'mode'        => $mode,
