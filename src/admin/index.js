@@ -30,7 +30,30 @@
   });
 
 
+
+
   $(window).on('load', function () {
+
+
+    // Allow other js to trigger a tab refresh thru an event listener. Refactor.
+    let refresh_tab_details = () => {
+
+      // reset to first meta box tab
+      $(".edac-panel").hide();
+      $(".edac-panel").removeClass("active");
+      $(".edac-tab a").removeClass("active");
+      $("#edac-summary").show();
+      $("#edac-summary").addClass("active");
+      $(".edac-tab:first-child a").addClass("active");
+
+      edac_details_ajax();
+      refresh_summary_and_readability();
+    };
+    top.addEventListener('edac_js_scan_save_complete', function (event) {
+      refresh_tab_details();
+    });
+
+
 
     /**
      * Tabs
@@ -276,16 +299,7 @@
           lastIsSaving = isSaving;
 
 
-          // reset to first meta box tab
-          $(".edac-panel").hide();
-          $(".edac-panel").removeClass("active");
-          $(".edac-tab a").removeClass("active");
-          $("#edac-summary").show();
-          $("#edac-summary").addClass("active");
-          $(".edac-tab:first-child a").addClass("active");
-
-          edac_details_ajax();
-          refresh_summary_and_readability();
+          refresh_tab_details();
 
         }
         lastIsSaving = isSaving;

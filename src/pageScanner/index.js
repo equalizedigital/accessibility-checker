@@ -6,9 +6,9 @@ import colorContrastFailure from './rules/color-contrast-failure';
 
 
 //TODO: 			
-//see: https://www.youtube.com/watch?v=AtsX0dPCG_4
 //see: https://github.com/dequelabs/axe-core/blob/develop/doc/developer-guide.md#api-reference
 //see: https://www.deque.com/axe/core-documentation/api-documentation/
+
 
 export async function scan(
 	options = { configOptions: {}, runOptions: {} }
@@ -118,4 +118,38 @@ export async function scan(
 
 	
 };
+
+
+	// Read the data passed from the parent document.
+	const body = document.querySelector('body');
+	const iframeId = body.getAttribute('data-iframe-id');
+	const eventName = body.getAttribute('data-iframe-event-name');
+	const postId = body.getAttribute('data-iframe-post-id');
+
+
+	scan().then((results) => {
+	
+		let violations = JSON.parse(JSON.stringify(results.violations));
+		
+		
+		
+		// Create a custom event
+		var customEvent = new CustomEvent(eventName, {
+			detail: {
+				iframeId: iframeId,
+				postId : postId,
+				violations: violations,
+			},
+			bubbles: true, // Allow the event to bubble up the DOM hierarchy
+		});
+	  
+	  // Dispatch the custom event on the top window
+	  top.dispatchEvent(customEvent);
+	  
+	
+	});
+	
+
+//});
+
 

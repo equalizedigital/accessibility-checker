@@ -1,18 +1,6 @@
 import { computePosition, autoUpdate, shift, offset, inline } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable, isTabbable } from 'tabbable';
-import { Notyf } from 'notyf';
-
-import { scan } from './scanner';
-
-let JS_SCAN_ENABLED = true;
-let INFO_ENABLED = true;
-let DEBUG_ENABLED = true;
-let SCAN_INTERVAL_IN_SECONDS = 30;
-
-if (edac_script_vars.mode === 'full-scan') {
-	SCAN_INTERVAL_IN_SECONDS = 3;
-}
 
 
 class AccessibilityCheckerHighlight {
@@ -129,19 +117,19 @@ class AccessibilityCheckerHighlight {
 		const parser = new DOMParser();
 		const parsedHtml = parser.parseFromString(htmlToFind, 'text/html');
 		const firstParsedElement = parsedHtml.body.firstElementChild;
-
+		
 		if (firstParsedElement) {
 			htmlToFind = firstParsedElement.outerHTML;
 		}
 
-
+		
 		// Compare the outer HTML of the parsed element with all elements on the page
 		const allElements = document.body.querySelectorAll('*');
 
 		for (const element of allElements) {
-
+		
 			if (element.outerHTML.replace(/\W/g, '') === htmlToFind.replace(/\W/g, '')) {
-
+		
 				const tooltip = this.addTooltip(element, value, index);
 
 				this.issues[index].tooltip = tooltip.tooltip;
@@ -159,14 +147,14 @@ class AccessibilityCheckerHighlight {
 	/**
 	 * This function makes an AJAX call to the server to retrieve the list of issues.
 	 *
-	 * Note: This function assumes that `edac_script_vars` is a global variable containing necessary data.
+	 * Note: This function assumes that `edac_frontend_highlighter_app` is a global variable containing necessary data.
 	 */
 	highlightAjax() {
 
 		const self = this;
 		return new Promise(function (resolve, reject) {
 			const xhr = new XMLHttpRequest();
-			const url = edac_script_vars.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_script_vars.postID + '&nonce=' + edac_script_vars.nonce;
+			const url = edac_frontend_highlighter_app.ajaxurl + '?action=edac_frontend_highlight_ajax&post_id=' + edac_frontend_highlighter_app.postID + '&nonce=' + edac_frontend_highlighter_app.nonce;
 
 			self.showWait(true);
 
@@ -541,10 +529,10 @@ class AccessibilityCheckerHighlight {
 		this.highlightAjax().then(
 			(json) => {
 
-				if (json.length == 0) {
+				if(json.length == 0){
 					this.nextButton.disabled = true;
 					this.previousButton.disabled = true;
-
+					
 				} else {
 					this.nextButton.disabled = false;
 					this.previousButton.disabled = false;
@@ -705,18 +693,18 @@ class AccessibilityCheckerHighlight {
 		This checks if the app's css is loading into #edac-app-css as expected. 
 		If not, then we assume the css has been combined, so we manually add it to the document.
 		*/
-		if (!document.querySelector('#edac-app-css')) {
+		if( ! document.querySelector('#edac-app-css') ){
 			debug('css is combined, so adding app.css to page.');
 
 			var link = document.createElement('link');
 			link.rel = 'stylesheet';
 			link.id = 'edac-app-css';
 			link.type = 'text/css';
-			link.href = edac_script_vars.appCssUrl,
-				link.media = 'all';
+			link.href = edac_frontend_highlighter_app.appCssUrl,
+			link.media = 'all';
 			document.head.appendChild(link);
 		}
-
+	
 
 		this.originalCss = Array.from(document.head.querySelectorAll('style[type="text/css"], style, link[rel="stylesheet"]'));
 
@@ -866,598 +854,6 @@ class AccessibilityCheckerHighlight {
 }
 
 
-if (window.top._scheduledScanRunning == undefined) {
-	window.top._scheduledScanRunning = false;
-	window.top._scheduledScanCurrentPost = false;
-}
-
-
-
-async function checkApi() {
-
-	if (edac_script_vars.edacHeaders.Authorization == 'None') {
-		return 401;
-	}
-
-	const response = await fetch(edac_script_vars.edacApiUrl + '/test', {
-		method: "POST",
-		headers: edac_script_vars.edacHeaders
-	});
-
-	return response.status;
-
-}
-
-
-async function postData(url = "", data = {}) {
-
-
-	if (edac_script_vars.edacHeaders.Authorization == 'None') {
-		return;
-	}
-
-	return await fetch(url, {
-		method: "POST",
-		headers: edac_script_vars.edacHeaders,
-		body: JSON.stringify(data),
-	}).then((res) => {
-		return res.json();
-	}).catch(() => {
-		return {};
-	});
-
-}
-
-async function getData(url = "") {
-
-	if (edac_script_vars.edacHeaders.Authorization == 'None') {
-		return {};
-	}
-
-	return await fetch(url, {
-		method: "GET",
-		headers: edac_script_vars.edacHeaders
-	}).then((res) => {
-		return res.json();
-	}).catch(() => {
-		return {};
-	});
-
-}
-
-function info(message) {
-	if (INFO_ENABLED) {
-		console.info(message);
-	}
-}
-
-
-function debug(message) {
-
-	if (DEBUG_ENABLED) {
-
-		if (location.href !== window.top.location.href) {
-			console.debug('DEBUG [ ' + location.href + ' ]');
-		}
-		if (typeof message !== 'object') {
-			console.debug('DEBUG: ' + message);
-		} else {
-			console.debug(message);
-		}
-	}
-}
-
-function saveScanResults(postId, violations, scheduled = false) {
-
-	// Confirm api service is working.
-	checkApi().then((status) => {
-
-		console.log(status);
-
-		if (status >= 400) {
-			if (status == 401 && edac_script_vars.edacpApiUrl == '') {
-
-				showNotice({
-					msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
-					type: 'warning',
-					url: 'https://equalizedigital.com/accessibility-checker/pricing/',
-					label: 'upgrade to Accessibility Checker Pro',
-					closeOthers: true
-				});
-
-				debug('Error: Password protected scans are not supported in the free version.');
-			} else if (status == 401 && edac_script_vars.edacpApiUrl != '') {
-				showNotice({
-					msg: 'Whoops! It looks like your website is currently password protected. To scan this website for accessibility problems {link}.',
-					type: 'warning',
-					url: '/wp-admin/admin.php?page=accessibility_checker_settings',
-					label: 'add your username and password to your Accessibility Checker Pro settings',
-					closeOthers: true
-				});
-
-				debug('Error: Password protected scan in Pro, but password is not correct.');
-			} else {
-				showNotice({
-					msg: 'Whoops! It looks like there was a problem connecting to the {link} which is required by Accessibility Checker.',
-					type: 'warning',
-					url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions',
-					label: 'Rest API',
-					closeOthers: true
-				});
-
-				debug('Error: Cannot connect to API. Status code is: ' + status);
-			}
-
-		} else {
-
-			info('Saving ' + postId + ': started');
-
-			// Api is fine so we can send the scan results.
-			postData(edac_script_vars.edacApiUrl + '/post-scan-results/' + postId, {
-				violations: violations
-			}).then((data) => {
-
-				debug(data);
-
-				info('Saving ' + postId + ': done');
-
-
-
-				if (!data.success) {
-
-					info('Saving ' + postId + ': error');
-
-					showNotice({
-						msg: 'Whoops! It looks like there was a problem updating. Please try again.',
-						type: 'warning'
-					});
-
-				}
-
-				if (scheduled) {
-					debug('_scheduledScanRunning: false');
-
-					window.top._scheduledScanRunning = false;
-				};
-
-
-			});
-
-		};
-
-	}).catch((error) => {
-		info('Saving ' + postId + ': error');
-
-		debug(error);
-		showNotice({
-			msg: 'Whoops! It looks like there was a problem updating. Please try again.',
-			type: 'warning'
-		});
-
-	});
-
-}
-
-//TODO: see also https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel
-window.addEventListener(
-	"message",
-	(e) => {
-
-
-		if (e.origin !== edac_script_vars.edacUrl) return;
-
-		if (window === window.top) {
-
-			//There has been a request to start a scan. Pass the message to the scanner's window.
-			if (e.data && e.data.sender === 'edac_start_scan') {
-				var scanner = document.getElementById('edac_scanner');
-				var scannerWindow = scanner.contentWindow;
-				scannerWindow.postMessage({
-					'sender': 'edac_start_scan',
-					'message': e.data.message
-				});
-
-			}
-
-			//There has been a request to start a scheduled scan. Pass the message to the scanner's window.
-			if (e.data && e.data.sender === 'edac_start_scheduled_scan') {
-				var scheduledScanner = document.getElementById('edacp_scheduled_scanner');
-				var scheduledScannerWindow = scheduledScanner.contentWindow;
-				scheduledScannerWindow.postMessage({
-					'sender': 'edac_start_scheduled_scan',
-					'message': e.data.message
-				});
-
-			}
-
-			//There has been a request to save the scan.
-			if (e.data && e.data.sender === 'edac_save_scan') {
-
-				saveScanResults(e.data.message.postId, e.data.message.violations, e.data.message.violations);
-
-			}
-
-		} else {
-
-			if (e.data && e.data.sender === 'edac_start_scan') {
-				const postId = e.data.message.postId;
-
-				// We are running a scan in the iframe. We need to send the results
-				// back to the top window so we can use that cookie to authenticate the rest post.
-				// See: https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
-
-				info('Scan ' + postId + ': started');
-
-
-				scan().then((results) => {
-
-					info('Scan ' + postId + ': done');
-
-					let violations = JSON.parse(JSON.stringify(results.violations));
-
-					window.top.postMessage({
-						'sender': 'edac_save_scan',
-						'message': {
-							postId: postId,
-							violations: violations,
-							scheduled: false
-						}
-					});
-
-
-				});
-
-			}
-
-
-
-			if (e.data && e.data.sender === 'edac_start_scheduled_scan') {
-
-				// We are running a scheduled scan in the iframe. We need to send the results
-				// back to the top window so we can use that cookie to authenticate the rest post.
-				// See: https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
-
-				const postId = e.data.message.postId;
-
-				window.top._scheduledScanRunning = true;
-
-				info("Scheduled scan: started " + postId);
-				debug('_scheduledScanRunning: true');
-
-				scan().then((results) => {
-
-
-					info("Scheduled scan: done " + postId);
-
-					let violations = JSON.parse(JSON.stringify(results.violations));
-
-					window.top.postMessage({
-						'sender': 'edac_save_scan',
-						'message': {
-							postId: postId,
-							violations: violations,
-							scheduled: true
-						}
-					});
-
-
-				});
-
-			}
-
-		}
-
-	},
-	false,
-);
-
-
-const injectIframe = (previewUrl) => {
-
-	// We are loading the app from within the editor (rather than the page preview).			
-	// Create an iframe offscreen to load the preview of the page.
-
-	// Gen unique id for this iframe
-	const timestamp = new Date().getTime();
-	const randomNumber = Math.floor(Math.random() * 1000);
-	const uniqueId = 'iframe' + '_' + timestamp + '_' + randomNumber;
-
-	// inject the iframe
-	const iframe = document.createElement('iframe');
-	iframe.setAttribute('id', uniqueId);
-	iframe.setAttribute('src', previewUrl);
-
-	iframe.style.width = screen.width + 'px';
-	iframe.style.height = screen.height + 'px';
-	iframe.style.position = 'absolute';
-	iframe.style.left = '-' + screen.width + 'px';
-	document.body.append(iframe);
-
-
-	// Wait for the preview to load & inject the pageScanner script.
-	iframe.addEventListener("load", function (e) {
-
-		// Access the contentDocument of the iframe.
-		var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-		// Pass the postID and iframe id into the document so we can reference it.
-		iframeDocument.querySelector('body').setAttribute('data-iframe-id', uniqueId);
-
-		// inject the scanner app.
-		var scriptElement = iframeDocument.createElement('script');
-		scriptElement.src = edac_script_vars.baseurl + '/build/pageScanner.bundle.js';
-		iframeDocument.head.appendChild(scriptElement);
-
-	});
-
-}
-
 window.addEventListener('DOMContentLoaded', () => {
-
-	debug('We are loading the app in ' + edac_script_vars.mode + ' mode.');
-
-	if (JS_SCAN_ENABLED) {
-
-		if (
-			(edac_script_vars.mode === 'editor-scan' || edac_script_vars.mode === 'full-scan')
-		) {
-
-			// Listen for completed scans.
-			top.addEventListener('edac_scan_complete', function (event) {
-				const postId = event.detail.postId;
-				const violations = event.detail.violations;
-				const iframeId = event.detail.iframeId;
-				
-				// remove the iframe.
-				document.getElementById(iframeId).remove();
-
-				//TODO: scheduled
-				const scheduled = false;
-
-				// save the scan results.
-				saveScanResults(postId, violations, scheduled);
-
-				
-/* TODO:
-				checkApi().then((status) => {
-					if (status == 401 && edac_script_vars.edacpApiUrl == '') {
-
-						showNotice({
-							msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
-							type: 'warning',
-							url: 'https://equalizedigital.com/accessibility-checker/pricing/',
-							label: 'Upgrade to Accessibility Checker Pro',
-							closeOthers: true
-						});
-
-						debug('Password protected scans are not supported on the free version.')
-					} else {
-						debug('Loading scan iframe: ' + edac_script_vars.scanUrl);
-						iframe.setAttribute('src', edac_script_vars.scanUrl);
-					}
-				});
-*/
-
-			
-			});
-		
-		}
-
-		
-		
-		if (edac_script_vars.mode === 'editor-scan') {
-		
-			debug('App is loading from within the editor.');
-
-			injectIframe(edac_script_vars.scanUrl);
-
-
-			//Listen for dispatches from the wp data store
-			let saving = false;
-			if (wp.data !== undefined && wp.data.subscribe !== undefined) {
-				wp.data.subscribe(() => {
-
-					// Rescan the page if user saves post
-					if (wp.data.select('core/editor').isSavingPost()) {
-						saving = true;
-					} else {
-						if (saving) {
-							saving = false;
-							
-							injectIframe(edac_script_vars.scanUrl);
-						}
-					}
-
-				});
-
-			} else {
-				debug("Gutenberg is not enabled.");
-			}
-
-		}
-
-
-		if (
-			(edac_script_vars.mode === 'editor-scan' && edac_script_vars.edacpApiUrl != '') || //&& edac_script_vars.pendingFullScan) ||
-			(edac_script_vars.mode === 'full-scan')
-		) {
-
-			debug('App is loading either from the editor page or from the scheduled full scan page.');
-
-			let scanInterval = setInterval(() => {
-
-				//TODO: ?
-				if (!window.top._scheduledScanRunning) {
-
-					debug('Polling to see if there are any scans pending.');
-
-
-					// Poll to see if there are any scans pending.
-					getData(edac_script_vars.edacpApiUrl + '/scheduled-scan-url')
-						.then((data) => {
-
-
-							if (data.code !== 'rest_no_route') {
-
-								if (data.data !== undefined) {
-
-									if (data.data.scanUrl !== undefined) {
-
-										info('A post needs scanning: ' + data.data.scanUrl);
-									
-										injectIframe( data.data.scanUrl )
-
-									}
-
-								}
-
-							} else {
-
-								info('There was a problem connecting to the API.');
-
-								window.top._scheduledScanRunning = false;
-
-								debug('_scheduledScanRunning: false');
-
-							}
-						});
-
-				} else {
-					debug('Waiting for previous scan to complete.');
-				}
-
-			}, SCAN_INTERVAL_IN_SECONDS * 1000);
-
-
-
-		}
-	}
-	if (edac_script_vars.mode === 'ui' && edac_script_vars.active) {
-
-		// We are loading the app in a normal page preview so show the user the ui
-		new AccessibilityCheckerHighlight();
-
-	}
-
-
-
-
-
-
+	new AccessibilityCheckerHighlight();
 });
-
-
-if (window.top === window && window._showNotice === undefined) {
-
-	var link = document.createElement("link");
-	link.href = 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css';
-	link.type = "text/css";
-	link.rel = "stylesheet";
-	link.media = "screen,print";
-	document.getElementsByTagName("head")[0].appendChild(link);
-
-	window._showNotice = function (options) {
-
-		const settings = Object.assign({}, {
-			msg: '',
-			type: 'warning',
-			url: false,
-			label: '',
-			closeOthers: true
-		}, options);
-
-
-		if (window.wp !== undefined && window.wp.data !== undefined && window.wp.data.dispatch !== undefined) {
-
-			var o = { isDismissible: true };
-
-			var msg = settings.msg;
-
-			if (settings.url) {
-				o.actions = [{
-					url: settings.url,
-					label: settings.label
-				}];
-
-				msg = msg.replace('{link}', settings.label);
-			} else {
-				msg = msg.replace('{link}', '');
-			}
-
-			if (settings.closeOthers) {
-				document.querySelectorAll('.components-notice').forEach((element) => {
-					element.style.display = 'none';
-				});
-			}
-
-			setTimeout(function () {
-				wp.data.dispatch("core/notices").createNotice(settings.type, msg, o);
-			}, 10);
-
-
-
-
-
-		} else {
-
-			//TODO: do we need to show notices on preview pages? If not we can remove this section and Notyf.
-
-			var msg = settings.msg;
-
-			if (settings.url) {
-				msg = msg.replace('{link}', '<a href="' + settings.url + '" target="_blank" arial-label="' + settings.label + '">' + settings.label + '</a>');
-			} else {
-				msg = msg.replace('{link}', '');
-			}
-
-			const notyf = new Notyf({
-				position: { x: 'left', y: 'top' },
-				ripple: false,
-				types: [
-					{
-						type: 'success',
-						background: '#eff9f1',
-						duration: 2000,
-						dismissible: true,
-						icon: false
-					},
-
-					{
-						type: 'warning',
-						background: '#fef8ee',
-						duration: 0,
-						dismissible: true,
-						icon: false
-					},
-					{
-						type: 'error',
-						background: '#f4a2a2',
-						duration: 0,
-						dismissible: true,
-						icon: false
-					}
-				]
-			});
-
-			if (settings.closeOthers) {
-				notyf.dismissAll();
-			}
-
-			const notification = notyf.open({
-				type: settings.type,
-				message: msg
-			});
-
-
-		}
-
-
-
-	}
-
-}
-
-
-function showNotice(options) {
-	window.top._showNotice(options);
-}

@@ -9,18 +9,20 @@ module.exports = {
   mode: "none", //development | production
   watch: false,
   entry: {
-    'app': [
-      './src/app/index.js',
-      './src/app/sass/accessibility-checker.scss',  
+    'frontendHighlighterApp': [
+      './src/frontendHighlighterApp/index.js',
+      './src/frontendHighlighterApp/sass/app.scss',
     ],
-    'admin': [
-      './src/admin/index.js',
-      './src/admin/sass/accessibility-checker-admin.scss',  
+    'editorApp': [
+      './src/editorApp/index.js',
     ],
     'pageScanner': [
       './src/pageScanner/index.js',
-    ],  
-    
+    ],
+    'admin': [
+      './src/admin/index.js',
+      './src/admin/sass/accessibility-checker-admin.scss',
+    ],
   },
 
   output: {
@@ -31,9 +33,9 @@ module.exports = {
   module: {
     rules: [
       {
-         test: /\.(js|jsx)$/,
-         exclude: /node_modules/,
-         use: ['babel-loader']
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       },
       {
         test: /\.(s(a|c)ss)$/,
@@ -51,14 +53,14 @@ module.exports = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new CleanWebpackPlugin(), 
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-        filename: './css/[name].css'
-    }),  
+      filename: './css/[name].css'
+    }),
     new CssMinimizerPlugin(),
-    
-  
+
+
   ],
-  
- 
+
+
 }
