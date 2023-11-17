@@ -35,12 +35,12 @@ function edac_rule_img_alt_empty( $content, $post ) {
 					$image_code = $element->outertext;
 
 					// ignore certain images.
-					if ( ac_img_alt_ignore_plugin_issues( $image_code ) ) {
+					if ( edac_img_alt_ignore_plugin_issues( $image_code ) ) {
 						goto img_missing_alt_bottom;
 					}
 
 					// ignore images with captions.
-					if ( ac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
+					if ( edac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
 						goto img_missing_alt_bottom;
 					}
 

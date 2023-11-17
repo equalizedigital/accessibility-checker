@@ -95,12 +95,12 @@ function edac_rule_img_alt_invalid( $content, $post ) {
 				$image_code = $image->outertext;
 				
 				// ignore certain images.
-				if ( ac_img_alt_ignore_plugin_issues( $image_code ) ) {
+				if ( edac_img_alt_ignore_plugin_issues( $image_code ) ) {
 					break;
 				}
 
 				// ignore images with captions.
-				if ( ac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
+				if ( edac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
 					break;
 				}
 				
