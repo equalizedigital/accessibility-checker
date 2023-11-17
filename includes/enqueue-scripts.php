@@ -20,7 +20,7 @@ function edac_admin_enqueue_scripts() {
 	global $pagenow;
 	$post_types        = get_option( 'edac_post_types' );
 	$current_post_type = get_post_type();
-	$page              = isset( $_GET['page'] ) ? $_GET['page'] : null;
+	$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
 	$pages             = array(
 		'accessibility_checker',
 		'accessibility_checker_settings',

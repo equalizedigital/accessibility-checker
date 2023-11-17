@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,10 +12,10 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_img_alt_empty( $content, $post ) {
+function edac_rule_img_alt_empty( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
 
-	$dom = $content['html'];
-	$tags = array( 'img', 'input' );
+	$dom    = $content['html'];
+	$tags   = array( 'img', 'input' );
 	$errors = array();
 
 	if ( $tags ) {
@@ -24,34 +24,34 @@ function edac_rule_img_alt_empty( $content, $post ) {
 			foreach ( $elements as $element ) {
 				if (
 					isset( $element )
-					&& 'img' == ( $element->tag
+					&& 'img' == $element->tag
 					&& $element->hasAttribute( 'alt' )
 					&& $element->getAttribute( 'alt' ) == ''
-					&& $element->getAttribute( 'role' ) != 'presentation' )
+					&& $element->getAttribute( 'role' ) != 'presentation'
 					|| ( 'input' == $element->tag
-							&& $element->hasAttribute( 'alt' ) && $element->getAttribute( 'type' ) == 'image' && $element->getAttribute( 'alt' ) == '' )
-						) {
+						&& $element->hasAttribute( 'alt' )
+						&& $element->getAttribute( 'type' ) == 'image'
+						&& $element->getAttribute( 'alt' ) == '' )
+				) {
 
 					$image_code = $element->outertext;
 
 					// ignore certain images.
-					if ( ac_img_alt_ignore_plugin_issues( $image_code ) ) {
-						goto img_missing_alt_bottom;
+					if ( edac_img_alt_ignore_plugin_issues( $image_code ) ) {
+						continue;
 					}
 
 					// ignore images with captions.
-					if ( ac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
-						goto img_missing_alt_bottom;
+					if ( edac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
+						continue;
 					}
 
 					$errors[] = $image_code;
-
 				}
-				img_missing_alt_bottom:
 			}
 		}
 	}
 
 	return $errors;
-
 }
+
