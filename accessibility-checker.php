@@ -45,7 +45,7 @@ if ( is_admin() && file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.p
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.6.8' );
+	define( 'EDAC_VERSION', '1.7.0-beta1' );
 }
 
 // Current database version.
