@@ -1,27 +1,14 @@
-import {info, debug } from './helpers';
+import { info, debug } from './helpers';
 import { showNotice } from './../common/helpers';
 
 
 const API_URL = edac_editor_app.edacApiUrl;
 
 let HEADERS;
-if(typeof(edacp_full_site_scan_app) === 'undefined'){
+if (typeof (edacp_full_site_scan_app) === 'undefined') {
 	HEADERS = edac_editor_app.edacHeaders;
 } else {
 	HEADERS = edacp_full_site_scan_app.edacpHeaders;
-}
-
-
-
-const checkApi = async () => {
-
-	const response = await fetch( API_URL + '/test', {
-		method: "POST",
-		headers: HEADERS
-	});
-
-	return response.status;
-
 }
 
 
@@ -55,84 +42,39 @@ const getData = async (url = "") => {
 
 
 
-
 const saveScanResults = (postId, violations) => {
 
-	// Confirm api service is working.
-	checkApi().then((status) => {
+	info('Saving ' + postId + ': started');
 
-		if (status > 400) {
+	document.querySelector(".edac-panel").classList.add("edac-panel-loading");
 
-			if (status == 401) {
+	postData(edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
+		violations: violations
+	}).then((data) => {
 
 
-				showNotice({
-					msg: 'Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
-					type: 'warning',
-					url: 'https://equalizedigital.com/accessibility-checker/pricing/',
-					label: 'upgrade to Accessibility Checker Pro',
-					closeOthers: true
-				});
+		info('Saving ' + postId + ': done');
 
-			} else {
-				showNotice({
-					msg: 'Whoops! It looks like there was a problem connecting to the {link} which is required by Accessibility Checker.',
-					type: 'warning',
-					url: 'https://developer.wordpress.org/rest-api/frequently-asked-questions',
-					label: 'Rest API',
-					closeOthers: true
-				});
+		// Create and dispatch an event to tell legacy admin.js to refresh tabs. Refactor this. 
+		var customEvent = new CustomEvent('edac_js_scan_save_complete');
+		top.dispatchEvent(customEvent);
 
-				debug('Error: Cannot connect to API. Status code is: ' + status);
 
-			}
+		if (!data.success) {
 
-		} else {
+			info('Saving ' + postId + ': error');
 
-			info('checkPage: Saving ' + postId + ': started');
-
-			document.querySelector(".edac-panel").classList.add("edac-panel-loading");
-      
-			// Api is fine so we can send the scan results.
-			postData(edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
-				violations: violations
-			}).then((data) => {
-
-		
-				info('checkPage: Saving ' + postId + ': done');
-
-				// Create and dispatch an event to tell legacy admin.js to refresh tabs. Refactor this. 
-				var customEvent = new CustomEvent('edac_js_scan_save_complete');
-				top.dispatchEvent(customEvent);
-		
-
-				if (!data.success) {
-
-					info('Saving ' + postId + ': error');
-
-					showNotice({
-						msg: 'Whoops! It looks like there was a problem updating. Please try again.',
-						type: 'warning'
-					});
-
-				}
-
-				document.querySelector(".edac-panel").classList.add("edac-panel-loading");
-      
+			showNotice({
+				msg: 'Whoops! It looks like there was a problem updating. Please try again.',
+				type: 'warning'
 			});
 
-		};
+		}
 
-	}).catch((error) => {
-		info('Saving ' + postId + ': error');
-
-		debug(error);
-		showNotice({
-			msg: 'Whoops! It looks like there was a problem updating. Please try again.',
-			type: 'warning'
-		});
+		document.querySelector(".edac-panel").classList.add("edac-panel-loading");
 
 	});
+
 
 }
 
@@ -171,7 +113,7 @@ const injectIframe = (previewUrl, postID) => {
 		body.setAttribute('data-iframe-id', uniqueId);
 		body.setAttribute('data-iframe-event-name', 'edac_scan_complete');
 		body.setAttribute('data-iframe-post-id', postID);
-		
+
 		// inject the scanner app.
 		var scriptElement = iframeDocument.createElement('script');
 		scriptElement.src = edac_editor_app.baseurl + '/build/pageScanner.bundle.js';
@@ -184,121 +126,48 @@ const injectIframe = (previewUrl, postID) => {
 
 export const init = () => {
 
-	//TODO: migrate to pro
-//	if (
-		//		(edac_editor_app.mode === 'editor-scan' || edac_editor_app.mode === 'full-scan')
-//		(edac_editor_app.mode === 'editor-scan')
 
-//	) {
+	// Listen for completed scans.
+	top.addEventListener('edac_scan_complete', function (event) {
 
-		// Listen for completed scans.
-		top.addEventListener('edac_scan_complete', function (event) {
-			
-			const postId = event.detail.postId;
-			const violations = event.detail.violations;
-			const iframeId = event.detail.iframeId;
+		const postId = event.detail.postId;
+		const violations = event.detail.violations;
+		const iframeId = event.detail.iframeId;
 
-			// remove the iframe.
-			document.getElementById(iframeId).remove();
+		// remove the iframe.
+		document.getElementById(iframeId).remove();
 
-			// save the scan results.
-			saveScanResults(postId, violations);
+		// save the scan results.
+		saveScanResults(postId, violations);
+
+	});
+
+	//Listen for dispatches from the wp data store so we can trap the update/publish event
+	let saving = false;
+	if (wp.data !== undefined && wp.data.subscribe !== undefined) {
+		wp.data.subscribe(() => {
+
+			// Rescan the page if user saves post
+			if (wp.data.select('core/editor').isSavingPost()) {
+				saving = true;
+			} else {
+				if (saving) {
+					saving = false;
+
+					injectIframe(edac_editor_app.scanUrl, edac_editor_app.postID);
+				}
+			}
 
 		});
 
-		//Listen for dispatches from the wp data store so we can trap the update/publish event
-		let saving = false;
-		if (wp.data !== undefined && wp.data.subscribe !== undefined) {
-			wp.data.subscribe(() => {
-
-				// Rescan the page if user saves post
-				if (wp.data.select('core/editor').isSavingPost()) {
-					saving = true;
-				} else {
-					if (saving) {
-						saving = false;
-
-						injectIframe(edac_editor_app.scanUrl, edac_editor_app.postID);
-					}
-				}
-
-			});
-
-		} else {
-			debug("Gutenberg is not enabled.");
-		}
-
-
-		debug('App is loading from within the editor.');
-
-		injectIframe(edac_editor_app.scanUrl, edac_editor_app.postID);
-
-
-
-
-//	}
-
-
-
-
-	//TODO: migrate to pro
-	/*
-	if (
-		(edac_editor_app.mode === 'editor-scan' && edac_editor_app.edacpApiUrl != '') || //&& edac_editor_app.pendingFullScan) ||
-		(edac_editor_app.mode === 'full-scan')
-	) {
-
-		debug('App is loading either from the editor page or from the scheduled full scan page.');
-
-		let scanInterval = setInterval(() => {
-
-			//TODO: ?
-			if (!window.top._scheduledScanRunning) {
-
-				debug('Polling to see if there are any scans pending.');
-
-
-				// Poll to see if there are any scans pending.
-				getData(edac_editor_app.edacpApiUrl + '/scheduled-scan-url')
-					.then((data) => {
-
-
-						if (data.code !== 'rest_no_route') {
-
-							if (data.data !== undefined) {
-
-								if (data.data.scanUrl !== undefined) {
-
-									info('A post needs scanning: ' + data.data.scanUrl);
-								
-									injectIframe( data.data.scanUrl )
-
-								}
-
-							}
-
-						} else {
-
-							info('There was a problem connecting to the API.');
-
-							window.top._scheduledScanRunning = false;
-
-							debug('_scheduledScanRunning: false');
-
-						}
-					});
-
-			} else {
-				debug('Waiting for previous scan to complete.');
-			}
-
-		}, SCAN_INTERVAL_IN_SECONDS * 1000);
-
-
-
+	} else {
+		debug("Gutenberg is not enabled.");
 	}
 
-	*/
+
+
+	injectIframe(edac_editor_app.scanUrl, edac_editor_app.postID);
+
 
 
 }

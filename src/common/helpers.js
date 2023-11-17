@@ -31,10 +31,11 @@ export const showNotice = (options) => {
                 label: settings.label
             }];
 
-            msg = msg.replace('{link}', settings.label);
+            msg = msg.replace('{link}', 'follow the link below');
         } else {
             msg = msg.replace('{link}', '');
         }
+
 
         if (settings.closeOthers) {
             document.querySelectorAll('.components-notice').forEach((element) => {
