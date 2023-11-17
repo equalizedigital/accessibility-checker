@@ -171,6 +171,10 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.7.0-beta1 =
+Added: architecture to switch checks to scan via JavaScript
+Updated: color contrast check to use axe-core rule
+
 = 1.6.8 =
 Updated: system info to stop showing edac_authorization_username & edac_authorization_username
 Updated: system info to show edacp_authorization_username & edacp_authorization_username for pro users
