@@ -275,29 +275,13 @@ function edac_get_content( $post ) {
 	$is_local_loopback = get_option( 'edac_local_loopback', null );
 	
 	if ( null === $is_local_loopback ) {
-
+	
 		$parsed_url = wp_parse_url( home_url() );
 
 		if ( isset( $parsed_url['host'] ) ) {
-			
-			// Get the ip of the domain.
-			$site_domain = $parsed_url['host'];
-			$host_ip     = gethostbyname( $site_domain );
-
-			// Check if the ip address is in the loopback range.
-			$loopback_start = ip2long( '127.0.0.0' );
-			$loopback_end   = ip2long( '127.255.255.255' );
-			$ip_long        = ip2long( $host_ip );
-		
-			if ( $ip_long >= $loopback_start && $ip_long <= $loopback_end ) {
-				$is_local_loopback = true;
-			} else {
-				$is_local_loopback = false;
-			}
-
+			$is_local_loopback = \EDAC\Helpers::is_domain_loopback( $parsed_url['host'] );
 			update_option( 'edac_local_loopback', $is_local_loopback );
-		
-		} 
+		}       
 	}
 	
 	/**
