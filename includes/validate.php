@@ -263,6 +263,27 @@ function edac_get_content( $post ) {
 	$username = get_option( 'edacp_authorization_username' );
 	$password = get_option( 'edacp_authorization_password' );
 
+
+	// Check if server returns that the domain IP is a local/loopback address.
+	// If so then file_get_contents calls from this server to this domain will
+	// likely not be able to verify ssl. So we need to use a context that
+	// does not try to validate the ssl, otherwise file_get_contents will fail.
+	// See: https://www.php.net/manual/en/context.ssl.php .
+
+	$no_verify_ssl = false; // Verify by default.
+
+	$is_local_loopback = get_option( 'edac_local_loopback', null );
+	
+	if ( null === $is_local_loopback ) {
+	
+		$parsed_url = wp_parse_url( home_url() );
+
+		if ( isset( $parsed_url['host'] ) ) {
+			$is_local_loopback = \EDAC\Helpers::is_domain_loopback( $parsed_url['host'] );
+			update_option( 'edac_local_loopback', $is_local_loopback );
+		}       
+	}
+	
 	/**
 	 * Indicates file_get_html should not verify SSL.
 	 *
@@ -270,7 +291,8 @@ function edac_get_content( $post ) {
 	 *
 	 * @param bool $no_verify_ssl The boolean to check.
 	 */
-	$no_verify_ssl = apply_filters( 'edac_no_verify_ssl', false );
+
+	$no_verify_ssl = apply_filters( 'edac_no_verify_ssl', $is_local_loopback );
 
 	if ( $no_verify_ssl ) {
 		$context_opts['ssl'] = array(
@@ -318,7 +340,7 @@ function edac_get_content( $post ) {
 			// will not be followed, so $content['html] will be false.
 			$merged_context_opts = array_merge( $default_context_opts, $context_opts );
 			$context             = stream_context_create( $merged_context_opts );
-
+			
 			$dom             = file_get_html( $url, false, $context );      
 			$content['html'] = edac_remove_elements(
 				$dom, 
