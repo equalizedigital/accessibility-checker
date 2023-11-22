@@ -21,13 +21,13 @@ function edac_compare_strings( $string1, $string2 ) {
 
 	$string1 = strtolower( $string1 );
 	$string1 = str_ireplace( $remove_text, '', $string1 );
-	$string1 = strip_tags( $string1 );
+	$string1 = wp_strip_all_tags( $string1 );
 	$string1 = trim( $string1, " \t\n\r\0\x0B\xC2\xA0" );
 	$string1 = html_entity_decode( $string1 );
 
 	$string2 = strtolower( $string2 );
 	$string2 = str_ireplace( $remove_text, '', $string2 );
-	$string2 = strip_tags( $string2 );
+	$string2 = wp_strip_all_tags( $string2 );
 	$string2 = trim( $string2, " \t\n\r\0\x0B\xC2\xA0" );
 	$string2 = html_entity_decode( $string2 );
 
@@ -114,27 +114,6 @@ function edac_ordinal( $number ) {
 	} else {
 		return $number . $ends[ $number % 10 ];
 	}
-}
-
-/**
- * Log
- *
- * @param mixed $message Log Message.
- * @return void
- */
-function edac_log( $message ) {
-	$edac_log = dirname( __DIR__ ) . '/edac_log.log';
-	if ( is_array( $message ) ) {
-		$message = print_r( $message, true );
-	}
-	if ( file_exists( $edac_log ) ) {
-		$file = fopen( $edac_log, 'a' );
-		fwrite( $file, $message . "\n" );
-	} else {
-		$file = fopen( $edac_log, 'w' );
-		fwrite( $file, $message . "\n" );
-	}
-	fclose( $file );
 }
 
 /**

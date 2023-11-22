@@ -120,10 +120,7 @@ function edac_validate( $post_ID, $post, $action ) {
 
 	// check and validate content.
 	$rules = edac_register_rules();
-	if ( EDAC_DEBUG === true ) {
-		$rule_performance_results = array();
-		$all_rules_process_time   = microtime( true );
-	}
+
 	if ( $rules ) {
 		foreach ( $rules as $rule ) {
 
@@ -132,9 +129,7 @@ function edac_validate( $post_ID, $post, $action ) {
 				( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) 
 			) {
 				do_action( 'edac_before_rule', $post_ID, $rule, $action );
-				if ( EDAC_DEBUG === true ) {
-					$rule_process_time = microtime( true );
-				}
+
 				$errors = call_user_func( 'edac_rule_' . $rule['slug'], $content, $post );
 
 				if ( $errors && is_array( $errors ) ) {
@@ -143,20 +138,10 @@ function edac_validate( $post_ID, $post, $action ) {
 						edac_insert_rule_data( $post, $rule['slug'], $rule['rule_type'], $object = $error );
 					}
 				}
-				if ( EDAC_DEBUG === true ) {
-					$time_elapsed_secs                         = microtime( true ) - $rule_process_time;
-					$rule_performance_results[ $rule['slug'] ] = $time_elapsed_secs;
-				}
+
 				do_action( 'edac_after_rule', $post_ID, $rule, $action );
 			}
 		}
-		if ( EDAC_DEBUG === true ) {
-			edac_log( $rule_performance_results );
-		}
-	}
-	if ( EDAC_DEBUG === true ) {
-		$time_elapsed_secs = microtime( true ) - $all_rules_process_time;
-		edac_log( 'rules validate time: ' . $time_elapsed_secs );
 	}
 
 	// remove corrected records.
