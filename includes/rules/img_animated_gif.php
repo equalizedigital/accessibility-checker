@@ -75,9 +75,32 @@ function edac_rule_img_animated_gif( $content, $post ) { // phpcs:ignore Generic
  * @return bool
  */
 function edac_img_gif_is_animated( $filename ) {
-	if ( ! ( $fh = @fopen( $filename, 'rb' ) ) ) {
+	
+	$upload_dir_info  = wp_get_upload_dir();
+	$uploads_base_dir = trailingslashit( $upload_dir_info['basedir'] );
+
+	// Get WordPress base URL and remove it from the filename to get the relative path.
+	$base_url      = trailingslashit( get_site_url() );
+	$relative_path = str_replace( $base_url, '', $filename );
+
+	// Construct the full file system path.
+	$file_system_path = $uploads_base_dir . $relative_path;
+
+	// Check if the file is within the WordPress uploads directory.
+	if ( 0 !== strpos( $file_system_path, $uploads_base_dir ) ) {
 		return false;
 	}
+
+	// First, attempt to open the file.
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen -- path validated above.
+	$fh = fopen( $filename, 'rb' );
+
+	// Then, check if the file handle is false, indicating an error.
+	if ( false === $fh ) {
+		// Handle the error, for example, by logging it or returning false.
+		return false;
+	}
+
 	$count = 0;
 
 	/*
@@ -92,7 +115,8 @@ function edac_img_gif_is_animated( $filename ) {
 	$chunk = false;
 	while ( ! feof( $fh ) && $count < 2 ) {
 		// add the last 20 characters from the previous string, to make sure the searched pattern is not split.
-		$chunk = ( $chunk ? substr( $chunk, -20 ) : '' ) . fread( $fh, 1024 * 100 ); // read 100kb at a time.
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fread -- WP_Filesystem is not available here.
+		$chunk  = ( $chunk ? substr( $chunk, -20 ) : '' ) . fread( $fh, 1024 * 100 ); // read 100kb at a time.
 		$count += preg_match_all( '#\x00\x21\xF9\x04.{4}\x00(\x2C|\x21)#s', $chunk, $matches );
 	}
 
@@ -107,15 +131,39 @@ function edac_img_gif_is_animated( $filename ) {
  * @return bool
  */
 function edac_img_webp_is_animated( $filename ) {
-	if ( ! ( $fh = @fopen( $filename, 'rb' ) ) ) {
+
+	$upload_dir_info  = wp_get_upload_dir();
+	$uploads_base_dir = trailingslashit( $upload_dir_info['basedir'] );
+
+	// Get WordPress base URL and remove it from the filename to get the relative path.
+	$base_url      = trailingslashit( get_site_url() );
+	$relative_path = str_replace( $base_url, '', $filename );
+
+	// Construct the full file system path.
+	$file_system_path = $uploads_base_dir . $relative_path;
+
+	// Check if the file is within the WordPress uploads directory.
+	if ( 0 !== strpos( $file_system_path, $uploads_base_dir ) ) {
+		return false;
+	}
+
+	// First, attempt to open the file.
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen -- path validated above.
+	$fh = fopen( $filename, 'rb' );
+
+	// Then, check if the file handle is false, indicating an error.
+	if ( false === $fh ) {
+		// Handle the error, for example, by logging it or returning false.
 		return false;
 	}
 	
 	// See: https://stackoverflow.com/questions/45190469/how-to-identify-whether-webp-image-is-static-or-animated.
 	$result = false;
 	fseek( $fh, 12 );
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fread -- WP_Filesystem is not available here.
 	if ( 'VP8X' === fread( $fh, 4 ) ) {
 		fseek( $fh, 20 );
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fread -- WP_Filesystem is not available here.
 		$byte   = fread( $fh, 1 );
 		$result = ( ( ord( $byte ) >> 1 ) & 1 ) ? true : false;
 	}
