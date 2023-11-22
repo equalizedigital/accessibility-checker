@@ -235,7 +235,7 @@ function edac_custom_post_types() {
 	);
 
 	$output   = 'names'; // names or objects, note names is the default.
-	$operator = 'and'; // 'and' or 'or'
+	$operator = 'and'; // Options 'and' or 'or'.
 
 	$post_types = get_post_types( $args, $output, $operator );
 
@@ -293,13 +293,13 @@ function edac_process_actions() {
 /**
  * String Get HTML
  *
- * @param string  $str
- * @param boolean $lowercase
- * @param boolean $forceTagsClosed
- * @param string  $target_charset
- * @param boolean $stripRN
- * @param string  $defaultBRText
- * @param string  $defaultSpanText
+ * @param string  $str string to parse.
+ * @param boolean $lowercase lowercase.
+ * @param boolean $forceTagsClosed force tags closed.
+ * @param string  $target_charset target charset.
+ * @param boolean $stripRN strip rn.
+ * @param string  $defaultBRText default br text.
+ * @param string  $defaultSpanText default span text.
  * @return string
  */
 function edac_str_get_html(
@@ -442,9 +442,9 @@ function edac_replace_css_variables( $value, $css_array ) {
 /**
  * Generates a nonce that expires after a specified number of seconds.
  * 
- * @param [string]  $secret
- * @param [integer] $timeout_seconds
- * @return void
+ * @param string $secret secret.
+ * @param int    $timeout_seconds The number of seconds after which the nonce expires.
+ * @return string
  */
 function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
 
@@ -465,9 +465,9 @@ function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
 /**
  * Verifies if the nonce is valid and not expired.
  *
- * @param [string] $secret
- * @param [string] $nonce
- * @return void
+ * @param string $secret secret.
+ * @param string $nonce nonce.
+ * @return boolean
  */
 function edac_is_valid_nonce( $secret, $nonce ) {
 	if ( is_string( $nonce ) == false ) {
@@ -493,8 +493,8 @@ function edac_is_valid_nonce( $secret, $nonce ) {
 /**
  * Upcoming meetups in json format
  *
- * @param string  $meetup
- * @param integer $count
+ * @param string  $meetup meetup name.
+ * @param integer $count number of meetups to return.
  * @return json
  */
 function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
@@ -511,7 +511,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 		);
 
 		$request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
-		$request     = wp_remote_get( add_query_arg( $query_args, $request_uri ) );
+		$request     = wp_remote_get( add_query_arg( $query_args, $request_uri ) ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- wp_remote_get needed to be compatible with all environments.
 
 		if ( is_wp_error( $request ) || '200' != wp_remote_retrieve_response_code( $request ) ) {
 			return;
@@ -533,8 +533,10 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 /**
  * Upcoming meetups in html
  *
- * @param string  $meetup 
- * @param integer $count 
+ * @param  string  $meetup meetup name.
+ * @param  integer $count number of meetups to return.
+ * @param  boolean $truncate truncate description.
+ * @param  integer $paragraph_count number of paragraphs to return.
  * @return json
  */
 function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) {
@@ -569,9 +571,9 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, 
 /**
  * Return the first X number of root p or div tags from html
  *
- * @param [type]  $html
- * @param integer $paragraph_count
- * @return void
+ * @param  object  $html object to parse.
+ * @param  integer $paragraph_count number of paragraphs to return.
+ * @return string|boolean
  */
 function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 
@@ -590,11 +592,11 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 
 	$html = wp_kses( $html, $allowed_tags );
 
-	// Create a new DOMDocument instance
+	// Create a new DOMDocument instance.
 	$dom = new DOMDocument();
 	$dom->loadHTML( $html );
 	
-	// Find the <body> element
+	// Find the <body> element.
 	$bodyElement = $dom->getElementsByTagName( 'body' )->item( 0 );
 	
 	if ( $bodyElement ) {
@@ -623,10 +625,10 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 /**
  * Calculate the issue density
  *
- * @param [type] $issue_count
- * @param [type] $element_count
- * @param [type] $content_length
- * @return void
+ * @param  int $issue_count number of issues.
+ * @param  int $element_count number of elements.
+ * @param  int $content_length length of content.
+ * @return int
  */
 function edac_get_issue_density( $issue_count, $element_count, $content_length ) {
 
@@ -649,8 +651,8 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
 /**
  * Get info from html that we need for calculating density
  *
- * @param string $html
- * @return void
+ * @param string $html html to parse.
+ * @return boolean|array
  */
 function edac_get_body_density_data( $html ) {
 
@@ -693,8 +695,8 @@ function edac_get_body_density_data( $html ) {
 /**
  * Recursively count elements in a dom
  *
- * @param [type] $element
- * @return void 
+ * @param object $dom_elements dom elements.
+ * @return int 
  */
 function edac_count_dom_descendants( $dom_elements ) {
 	$count = 0;
