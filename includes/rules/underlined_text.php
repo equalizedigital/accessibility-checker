@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,9 +12,9 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_underlined_text( $content, $post ) {
+function edac_rule_underlined_text( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
 
-	$errors = array();
+	$errors   = array();
 	$elements = $content['html']->find( 'u' );
 
 	/*
@@ -61,10 +61,10 @@ function edac_rule_underlined_text( $content, $post ) {
  */
 function edac_css_underlined_text_check( $content ) {
 
-	$dom = $content['html'];
-	$errors = array();
+	$dom        = $content['html'];
+	$errors     = array();
 	$error_code = '';
-	$css_array = $content['css_parsed'];
+	$css_array  = $content['css_parsed'];
 
 	if ( $css_array ) {
 		foreach ( $css_array as $element => $rules ) {
@@ -95,5 +95,4 @@ function edac_css_underlined_text_check( $content ) {
 	}
 
 	return $errors;
-
 }

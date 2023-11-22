@@ -28,7 +28,7 @@ if ( ! defined( 'WPINC' ) ) {
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-playground-check.php';
 $plugin_check = new EDAC\Playground_Check();
 if ( ! $plugin_check->should_load ) {
-    return;
+	return;
 }
 
 // Include plugin dependency.
@@ -958,7 +958,7 @@ function edac_summary( $post_id ) {
 			$postid = $post_id;
 			$siteid = get_current_blog_id();
 
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$rule_count = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM {$table_name} where rule = %s and siteid = %d and postid = %d and ignre = %d", $rule['slug'], $siteid, $postid, 0 ) );
 
 			if ( ! $rule_count ) {
@@ -1459,7 +1459,7 @@ function edac_readability_ajax() {
 
 	$post_id                        = intval( $_REQUEST['post_id'] );
 	$html                           = '';
-	$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ?: '';
+	$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
 	$simplified_summary_position    = get_option( 'edac_simplified_summary_position', $default = false );
 	$content_post                   = get_post( $post_id );
 	$content                        = $content_post->post_content;
@@ -1671,7 +1671,7 @@ function edac_get_simplified_summary( $post = null ) {
  * @return string
  */
 function edac_simplified_summary_markup( $post ) {
-	$simplified_summary         = get_post_meta( $post, '_edac_simplified_summary', true ) ?: '';
+	$simplified_summary         = get_post_meta( $post, '_edac_simplified_summary', true ) ? get_post_meta( $post, '_edac_simplified_summary', true ) : '';
 	$simplified_summary_heading = 'Simplified Summary';
 
 	// filter title.

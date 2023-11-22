@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,14 +12,14 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_missing_transcript( $content, $post ) {
+function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed -- $content is reserved for future use or for compliance with a specific interface.
 
 	if ( empty( $post->post_content ) ) {
 		return array();
 	}
 
-	$dom = edac_str_get_html( $post->post_content );
-	$errors = array();
+	$dom      = edac_str_get_html( $post->post_content );
+	$errors   = array();
 	$elements = $dom->find_media_embeds( true );
 
 	$dom->convert_tag_to_marker( array( 'img', 'iframe', 'audio', 'video', '.is-type-video' ) );

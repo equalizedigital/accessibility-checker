@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -15,8 +15,9 @@
  * checks all gif images that are animated
  * checks for giphy and tenor gif embeds
  */
-function edac_rule_img_animated_gif( $content, $post ) {
-	$dom = $content['html'];
+function edac_rule_img_animated_gif( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+
+	$dom    = $content['html'];
 	$errors = array();
 
 	// check for image gifs.
@@ -115,10 +116,9 @@ function edac_img_webp_is_animated( $filename ) {
 	fseek( $fh, 12 );
 	if ( 'VP8X' === fread( $fh, 4 ) ) {
 		fseek( $fh, 20 );
-		$byte = fread( $fh, 1 );
+		$byte   = fread( $fh, 1 );
 		$result = ( ( ord( $byte ) >> 1 ) & 1 ) ? true : false;
 	}
 	fclose( $fh );
 	return $result;
-
 }

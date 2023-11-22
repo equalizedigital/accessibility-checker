@@ -54,4 +54,3 @@ function edac_rule_img_alt_empty( $content, $post ) { // phpcs:ignore Generic.Co
 
 	return $errors;
 }
-

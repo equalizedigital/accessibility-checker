@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,18 +12,18 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_duplicate_form_label( $content, $post ) {
+function edac_rule_duplicate_form_label( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
 
-	$dom = $content['html'];
+	$dom    = $content['html'];
 	$errors = array();
-
 	$labels = $dom->find( 'label' );
+
 	if ( ! $labels ) {
 		return;
 	}
 	foreach ( $labels as $label ) {
 		$for_attr = $label->getAttribute( 'for' );
-		if ( sizeof( $dom->find( 'label[for="' . $for_attr . '"]' ) ) > 1 ) {
+		if ( count( $dom->find( 'label[for="' . $for_attr . '"]' ) ) > 1 ) {
 			$errors[] = __( 'Duplicate label', 'accessibility_checker' ) . ' for="' . $for_attr . '"';
 		}
 	}
