@@ -163,7 +163,7 @@ class Helpers {
 	/**
 	 * Determine if a domain is hosted on a local loopback
 	 *
-	 * @param string $domain
+	 * @param string $domain The domain to check.
 	 * @return boolean
 	 */
 	public static function is_domain_loopback( $domain ) {
