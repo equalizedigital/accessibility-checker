@@ -132,35 +132,35 @@ function edac_simple_dom_remove_child( simple_html_dom_node $parent_node ) {
 /**
  * Remove element from multidimensional array
  *
- * @param array  $array The multidimensional array.
+ * @param array  $items The multidimensional array.
  * @param string $key The key of the element.
  * @param string $value The value of the element.
  * @return array
  */
-function edac_remove_element_with_value( $array, $key, $value ) {
-	foreach ( $array as $sub_key => $sub_array ) {
+function edac_remove_element_with_value( $items, $key, $value ) {
+	foreach ( $items as $sub_key => $sub_array ) {
 		if ( $sub_array[ $key ] === $value ) {
-			unset( $array[ $sub_key ] );
+			unset( $items[ $sub_key ] );
 		}
 	}
-	return $array;
+	return $items;
 }
 
 /**
  * Filter a multi-demensional array
  *
- * @param array  $array The multi-dimensional array.
+ * @param array  $items The multi-dimensional array.
  * @param string $index The index of the element.
  * @param string $value of the array.
  * @return array
  */
-function edac_filter_by_value( $array, $index, $value ) {
-	if ( is_array( $array ) && count( $array ) > 0 ) {
-		foreach ( array_keys( $array ) as $key ) {
-			$temp[ $key ] = $array[ $key ][ $index ];
+function edac_filter_by_value( $items, $index, $value ) {
+	if ( is_array( $items ) && count( $items ) > 0 ) {
+		foreach ( array_keys( $items ) as $key ) {
+			$temp[ $key ] = $items[ $key ][ $index ];
 
 			if ( $temp[ $key ] === $value ) {
-				$newarray[ $key ] = $array[ $key ];
+				$newarray[ $key ] = $items[ $key ];
 			}
 		}
 	}
@@ -280,12 +280,14 @@ function edac_process_actions() {
 	// if this fails, check_admin_referer() will automatically print a "failed" page and die.
 	if ( ! empty( $_POST ) && isset( $_POST['edac_download_sysinfo_nonce'] ) && check_admin_referer( 'edac_download_sysinfo', 'edac_download_sysinfo_nonce' ) ) {
 
+		$edac_action = isset( $_POST['edac-action'] ) ? sanitize_key( $_POST['edac-action'] ) : '';
+
 		if ( isset( $_POST['edac-action'] ) ) {
-			do_action( 'edac_' . $_POST['edac-action'], $_POST );
+			do_action( 'edac_' . $edac_action, $_POST );
 		}
 
 		if ( isset( $_GET['edac-action'] ) ) {
-			do_action( 'edac_' . $_GET['edac-action'], $_GET );
+			do_action( 'edac_' . $edac_action, $_GET );
 		}
 	}
 }
@@ -295,30 +297,30 @@ function edac_process_actions() {
  *
  * @param string  $str string to parse.
  * @param boolean $lowercase lowercase.
- * @param boolean $forceTagsClosed force tags closed.
+ * @param boolean $force_tags_closed force tags closed.
  * @param string  $target_charset target charset.
- * @param boolean $stripRN strip rn.
- * @param string  $defaultBRText default br text.
- * @param string  $defaultSpanText default span text.
+ * @param boolean $strip_rn strip rn.
+ * @param string  $default_br_text default br text.
+ * @param string  $default_span_text default span text.
  * @return string
  */
 function edac_str_get_html(
 	$str,
 	$lowercase = true,
-	$forceTagsClosed = true,
+	$force_tags_closed = true,
 	$target_charset = DEFAULT_TARGET_CHARSET,
-	$stripRN = true,
-	$defaultBRText = DEFAULT_BR_TEXT,
-	$defaultSpanText = DEFAULT_SPAN_TEXT 
+	$strip_rn = true,
+	$default_br_text = DEFAULT_BR_TEXT,
+	$default_span_text = DEFAULT_SPAN_TEXT 
 ) {
 	$dom = new EDAC_Dom(
 		null,
 		$lowercase,
-		$forceTagsClosed,
+		$force_tags_closed,
 		$target_charset,
-		$stripRN,
-		$defaultBRText,
-		$defaultSpanText
+		$strip_rn,
+		$default_br_text,
+		$default_span_text
 	);
 
 	if ( empty( $str ) || strlen( $str ) > MAX_FILE_SIZE ) {
@@ -326,7 +328,7 @@ function edac_str_get_html(
 		return false;
 	}
 
-	return $dom->load( $str, $lowercase, $stripRN );
+	return $dom->load( $str, $lowercase, $strip_rn );
 }
 
 /**
@@ -374,13 +376,14 @@ function edac_get_valid_table_name( $table_name ) {
 
 	// Check if table name only contains alphanumeric characters, underscores, or hyphens.
 	if ( ! preg_match( '/^[a-zA-Z0-9_\-]+$/', $table_name ) ) {
-		// Invalid table name
+		// Invalid table name.
 		return null;
 	}
 
 	// Verify that the table actually exists in the database.
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared 
 	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name ) {
-		// Table does not exist
+		// Table does not exist.
 		return null;
 	}
 
@@ -448,12 +451,15 @@ function edac_replace_css_variables( $value, $css_array ) {
  */
 function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
 
-	$length = 10;
-	$chars  = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
-	$ll     = strlen( $chars ) - 1;
-	$salt   = '';
-	while ( strlen( $salt ) < $length ) {
-		$salt .= $chars[ rand( 0, $ll ) ];
+	$length      = 10;
+	$chars       = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+	$ll          = strlen( $chars ) - 1;
+	$salt        = '';
+	$salt_length = 0;
+
+	while ( $salt_length < $length ) {
+		$salt       .= $chars[ wp_rand( 0, $ll ) ];
+		$salt_length = strlen( $salt );
 	}
 
 	$time     = time();
@@ -539,7 +545,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
  * @param  integer $paragraph_count number of paragraphs to return.
  * @return json
  */
-function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) {
+function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed -- $truncate is used in the future.	
 
 	$json = edac_get_upcoming_meetups_json( $meetup, $count );
 
@@ -597,19 +603,20 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 	$dom->loadHTML( $html );
 	
 	// Find the <body> element.
-	$bodyElement = $dom->getElementsByTagName( 'body' )->item( 0 );
+	$body_element = $dom->getElementsByTagName( 'body' )->item( 0 );
 	
-	if ( $bodyElement ) {
+	if ( $body_element ) {
 		
 		$content = array();
 	
-		// Loop through the child nodes of the <body> element
-		foreach ( $bodyElement->childNodes as $childNode ) {
-			if ( $childNode->nodeName === 'p' || $childNode->nodeName === 'div' ) {
-				$content[] = '<p>' . $childNode->textContent . '</p>';
+		// Loop through the child nodes of the <body> element.
+		// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- DOMDocument uses camelCase.
+		foreach ( $body_element->childNodes as $child_node ) { 
+			if ( 'p' === $child_node->nodeName || 'div' === $child_node->nodeName ) {
+				$content[] = '<p>' . $child_node->textContent . '</p>';
 			}
 		}
-
+		// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 		
 		if ( count( $content ) > 0 ) {
 			return implode(
