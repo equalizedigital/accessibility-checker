@@ -42,8 +42,10 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $object ) {
 	}
 
 	// Check if exists.
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 	$results = $wpdb->get_results(
 		$wpdb->prepare(
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery -- Safe variable used for table name.
 			'SELECT postid, ignre FROM ' . $table_name . ' where type = %s and postid = %d and rule = %s and object = %s and siteid = %d',
 			$rule_data['type'],
 			$rule_data['postid'],
@@ -64,8 +66,10 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $object ) {
 			}
 
 			// update existing record.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$wpdb->query(
 				$wpdb->prepare(
+					// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery -- Safe variable used for table name.
 					'UPDATE ' . $table_name . ' SET recordcheck = %d, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s',
 					1,
 					$rule_data['ignre'],
@@ -89,6 +93,7 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $object ) {
 		}
 
 		// insert.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Using direct query for adding data to database.
 		$wpdb->insert( $table_name, $rule_data );
 
 		// Return insert id or error.
@@ -108,7 +113,7 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $object ) {
 function edac_insert_ignore_data() {
 
 	// nonce security.
-	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
+	if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
 		$error = new WP_Error( '-1', 'Permission Denied' );
 		wp_send_json_error( $error );
@@ -117,9 +122,10 @@ function edac_insert_ignore_data() {
 
 	global $wpdb;
 	$table_name           = $wpdb->prefix . 'accessibility_checker';
-	$ids                  = $_REQUEST['ids'];
-	$action               = esc_html( $_REQUEST['ignore_action'] );
-	$type                 = esc_html( $_REQUEST['ignore_type'] );
+	$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
+	$ids                  = array_map( 'intval', $raw_ids ); // Sanitizing array elements to integers.
+	$action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( $_REQUEST['ignore_action'] ) : '';
+	$type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( $_REQUEST['ignore_type'] ) : '';
 	$siteid               = get_current_blog_id();
 	$ignre                = ( 'enable' === $action ) ? 1 : 0;
 	$ignre_user           = ( 'enable' === $action ) ? get_current_user_id() : null;
@@ -127,10 +133,11 @@ function edac_insert_ignore_data() {
 	$ignre_username       = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
 	$ignre_date           = ( 'enable' === $action ) ? gmdate( 'Y-m-d H:i:s' ) : null;
 	$ignre_date_formatted = ( 'enable' === $action ) ? gmdate( 'F j, Y g:i a', strtotime( $ignre_date ) ) : '';
-	$ignre_comment        = ( 'enable' === $action ) ? esc_html( $_REQUEST['comment'] ) : null;
-	$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? esc_html( $_REQUEST['ignore_global'] ) : 0;
+	$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( $_REQUEST['comment'] ) : null;
+	$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( $_REQUEST['ignore_global'] ) : 0;
 
 	foreach ( $ids as $id ) {
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 		$wpdb->query( $wpdb->prepare( 'UPDATE ' . $table_name . ' SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
 	}
 
@@ -148,7 +155,5 @@ function edac_insert_ignore_data() {
 		wp_send_json_error( $error );
 
 	}
-
-	wp_send_json_success( json_encode( $data ) );
-
+	wp_send_json_success( wp_json_encode( $data ) );
 }
