@@ -47,7 +47,7 @@ class Welcome_Page {
 					
 						<a class="edac-ml-1 button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_issues' ) ) . '">' . __( 'View All Open Issues', 'accessibility-checker' ) . '</a>';
 
-			if ( edac_check_plugin_active( 'accessibility-checker-audit-history/accessibility-checker-audit-history.php' ) ) {
+			if ( get_option( 'edacah_enable_show_history_button', false ) ) {
 				$html .= '
 				<a class="edac-ml-1 button button-primary" href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_audit_history' ) ) . '">' . __( 'See History', 'accessibility-checker' ) . '</a>';
 			}
