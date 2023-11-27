@@ -92,7 +92,7 @@ function edac_img_gif_is_animated( $filename ) {
 	}
 
 	// First, attempt to open the file.
-	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen -- path validated above.
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen, WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- path validated above.
 	$fh = fopen( $filename, 'rb' );
 
 	// Then, check if the file handle is false, indicating an error.
@@ -115,7 +115,7 @@ function edac_img_gif_is_animated( $filename ) {
 	$chunk = false;
 	while ( ! feof( $fh ) && $count < 2 ) {
 		// add the last 20 characters from the previous string, to make sure the searched pattern is not split.
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fread -- WP_Filesystem is not available here.
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fread, WordPress.WP.AlternativeFunctions.file_system_operations_fread -- WP_Filesystem is not available here.
 		$chunk  = ( $chunk ? substr( $chunk, -20 ) : '' ) . fread( $fh, 1024 * 100 ); // read 100kb at a time.
 		$count += preg_match_all( '#\x00\x21\xF9\x04.{4}\x00(\x2C|\x21)#s', $chunk, $matches );
 	}
@@ -148,7 +148,7 @@ function edac_img_webp_is_animated( $filename ) {
 	}
 
 	// First, attempt to open the file.
-	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen -- path validated above.
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen, WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- path validated above.
 	$fh = fopen( $filename, 'rb' );
 
 	// Then, check if the file handle is false, indicating an error.
@@ -160,10 +160,10 @@ function edac_img_webp_is_animated( $filename ) {
 	// See: https://stackoverflow.com/questions/45190469/how-to-identify-whether-webp-image-is-static-or-animated.
 	$result = false;
 	fseek( $fh, 12 );
-	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fread -- WP_Filesystem is not available here.
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fread, WordPress.WP.AlternativeFunctions.file_system_operations_fread -- WP_Filesystem is not available here.
 	if ( 'VP8X' === fread( $fh, 4 ) ) {
 		fseek( $fh, 20 );
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fread -- WP_Filesystem is not available here.
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fread, WordPress.WP.AlternativeFunctions.file_system_operations_fread -- WP_Filesystem is not available here.
 		$byte   = fread( $fh, 1 );
 		$result = ( ( ord( $byte ) >> 1 ) & 1 ) ? true : false;
 	}
