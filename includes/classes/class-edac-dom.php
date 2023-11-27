@@ -118,7 +118,6 @@ class EDAC_Dom extends simple_html_dom {
 		$distance = $found_position - $tag_end;
 
 		return $distance < $total_distance;
-
 	}
 
 	/**
@@ -136,7 +135,7 @@ class EDAC_Dom extends simple_html_dom {
 		if ( $elements_with_src ) {
 			$elements = array_filter(
 				$elements_with_src,
-				function( $element ) use ( $extensions ) {
+				function ( $element ) use ( $extensions ) {
 					$count = 0;
 					str_ireplace( $extensions, '', $element->getAttribute( 'src' ), $count );
 					return $count > 0;
@@ -161,7 +160,7 @@ class EDAC_Dom extends simple_html_dom {
 		if ( $elements_with_href ) {
 			$elements = array_filter(
 				$elements_with_href,
-				function( $element ) use ( $extensions ) {
+				function ( $element ) use ( $extensions ) {
 					$count = 0;
 					str_ireplace( $extensions, '', $element->getAttribute( 'href' ), $count );
 					return $count > 0;
