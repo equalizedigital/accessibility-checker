@@ -134,23 +134,6 @@ class REST_Api {
 					'/scans-stats-by-post-type/(?P<slug>[a-zA-Z0-9_-]+)',
 					array(
 						'methods'             => 'GET',
-						'callback'            => array( $this, 'get_scans_stats' ),
-						'permission_callback' => function () {
-							return current_user_can( 'read' ); // able to access the admin dashboard.
-						},
-					) 
-				);
-			} 
-		);
-
-		add_action(
-			'rest_api_init',
-			function () use ( $ns, $version ) {
-				register_rest_route(
-					$ns . $version,
-					'/scans-stats-by-post-type/(?P<slug>[a-zA-Z0-9_-]+)',
-					array(
-						'methods'             => 'GET',
 						'callback'            => array( $this, 'get_scans_stats_by_post_type' ),
 						'permission_callback' => function () {
 							return current_user_can( 'read' ); // able to access the admin dashboard.
