@@ -14,7 +14,7 @@
  * @param string $object the object.
  * @return void
  */
-function edac_insert_rule_data( $post, $rule, $ruletype, $object ) {
+function edac_insert_rule_data( $post, $rule, $ruletype, $object ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.objectFound -- Object is a valid parameter name in this context.
 
 	global $wpdb;
 	$table_name = $wpdb->prefix . 'accessibility_checker';
@@ -99,7 +99,6 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $object ) {
 		// Return insert id or error.
 		return $wpdb->insert_id;
 	}
-
 }
 
 /**
