@@ -10,7 +10,11 @@
  */
 class EDAC_Dom extends simple_html_dom {
 
-	/** @var array $video_ext video extensions. */
+	/**
+	 * Array of supported video extensions.
+	 *
+	 * @var array $video_ext Video extensions.
+	 */
 	protected $video_ext = array(
 		'.3gp',
 		'.asf',
@@ -35,7 +39,11 @@ class EDAC_Dom extends simple_html_dom {
 		'.wmx',
 	);
 
-	/** @var array $audio_ext audio extensions. */
+	/**
+	 * List of supported audio file extensions.
+	 * 
+	 * @var array $audio_ext Audio extensions.
+	 */
 	protected $audio_ext = array(
 		'.aif',
 		'.aiff',
@@ -50,7 +58,11 @@ class EDAC_Dom extends simple_html_dom {
 		'.wma',
 	);
 
-	/** @var array $embed_sources embed source urls. */
+	/**
+	 * Array containing URLs of embed sources.
+	 * 
+	 * @var array $embed_sources Embed source URLs.
+	 */
 	protected $embed_sources = array(
 		'mixcloud.com',
 		'reverbnation.com',
@@ -93,11 +105,11 @@ class EDAC_Dom extends simple_html_dom {
 	 */
 	public function text_around_element_contains( $element, $contains, $distance_after_element = 25 ) {
 		// to account for the start of the search term getting cut off add the length of the search to the distance.
-		$total_distance = $distance_after_element + strlen( $contains );
-		$marker = $element->plaintext;
-		$tag_end = stripos( $this->plaintext, $marker ) + strlen( $marker );
-		$next_marker_position = stripos( $this->plaintext, 'ac_element', $tag_end ) ?: strlen( $this->plaintext );
-		$found_position = stripos( $this->plaintext, $contains, $tag_end );
+		$total_distance       = $distance_after_element + strlen( $contains );
+		$marker               = $element->plaintext;
+		$tag_end              = stripos( $this->plaintext, $marker ) + strlen( $marker );
+		$next_marker_position = stripos( $this->plaintext, 'ac_element', $tag_end ) !== false ? stripos( $this->plaintext, 'ac_element', $tag_end ) : strlen( $this->plaintext );
+		$found_position       = stripos( $this->plaintext, $contains, $tag_end );
 
 		if ( false === $found_position || $found_position > $next_marker_position ) {
 			return false;
@@ -118,9 +130,9 @@ class EDAC_Dom extends simple_html_dom {
 	public function find_media_embeds( $include_audio = true ) {
 		// all elements with sources.
 		$elements_with_src = $this->find( '[src]' );
-		$elements = array();
-		$audio = $include_audio ? $this->audio_ext : array();
-		$extensions = array_merge( $this->video_ext, $this->embed_sources, $audio );
+		$elements          = array();
+		$audio             = $include_audio ? $this->audio_ext : array();
+		$extensions        = array_merge( $this->video_ext, $this->embed_sources, $audio );
 		if ( $elements_with_src ) {
 			$elements = array_filter(
 				$elements_with_src,
@@ -143,9 +155,9 @@ class EDAC_Dom extends simple_html_dom {
 	 */
 	public function find_linked_media( $include_audio = true ) {
 		$elements_with_href = $this->find( '[href]' );
-		$elements = array();
-		$audio = $include_audio ? $this->audio_ext : array();
-		$extensions = array_merge( $this->video_ext, $audio );
+		$elements           = array();
+		$audio              = $include_audio ? $this->audio_ext : array();
+		$extensions         = array_merge( $this->video_ext, $audio );
 		if ( $elements_with_href ) {
 			$elements = array_filter(
 				$elements_with_href,
@@ -159,5 +171,4 @@ class EDAC_Dom extends simple_html_dom {
 
 		return $elements;
 	}
-
 }
