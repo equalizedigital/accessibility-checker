@@ -254,7 +254,7 @@ class REST_Api {
 						}
 
 						//phpcs:ignore Generic.Commenting.Todo.TaskFound, Squiz.PHP.CommentedOutCode.Found
-						// TODO: add support storing $violation['selector'], $violation['tags']. 		
+						// TODO: add support storing $violation['selector'], $violation['tags'].
 
 						do_action( 'edac_before_rule', $post_id, $rule_id, 'js' );
 			
