@@ -1,11 +1,20 @@
 {
     "name": "equalizedigital/accesibility-checker",
+    "description": "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.",
+    "keywords": [
+		"accessibility",
+		"accessible",
+		"wcag"
+	],
+    "homepage": "https://equalizedigital.com/accessibility-checker/",
+	"license": "GPL-3.0-or-later",
     "authors": [
         {
-            "name": "Steve Jones",
-            "email": "dev@equalizedigital.com"
+            "name": "Equalize Digital",
+			"homepage": "https://equalizedigital.com"
         }
     ],
+    "type": "wordpress-plugin",
     "config": {
         "platform": {
             "php": "7.4"
@@ -20,14 +29,14 @@
     "prefer-stable": true,
     "repositories": [
         {
-          "type": "vcs",
-          "url": "https://github.com/equalizedigital/accessibility-checker-wp-env"
+            "type": "vcs",
+            "url": "https://github.com/equalizedigital/accessibility-checker-wp-env"
         }
-      ],
+    ],
     "require-dev": {
         "automattic/vipwpcs": "^3",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
-        "equalizedigital/accessibility-checker-wp-env": "dev-main#2d6218b193e089baeb1848f8b9935c22343cbaa0",       
+        "equalizedigital/accessibility-checker-wp-env": "1.0.0",
         "phpcompatibility/php-compatibility": "*",
 		"yoast/wp-test-utils": "^1.1.1",
         "php-parallel-lint/php-parallel-lint": "^1.3"
