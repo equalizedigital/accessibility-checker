@@ -1417,7 +1417,6 @@ function edac_details_ajax() {
 			}
 
 			$html .= '</div>';
-
 		}
 	}
 
