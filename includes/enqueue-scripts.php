@@ -20,7 +20,7 @@ function edac_admin_enqueue_scripts() {
 	global $pagenow;
 	$post_types        = get_option( 'edac_post_types' );
 	$current_post_type = get_post_type();
-	$page              = isset( $_GET['page'] ) ? $_GET['page'] : null;
+	$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
 	$pages             = array(
 		'accessibility_checker',
 		'accessibility_checker_settings',
@@ -50,15 +50,10 @@ function edac_admin_enqueue_scripts() {
 			edac_enqueue_scripts( 'editor-scan' );
 		}   
 
-	
-		if (
-			'accessibility-checker_page_accessibility_checker_settings' === get_current_screen()->id 
-			&& isset( $_GET['tab'] ) && 'scan' === $_GET['tab']
-		) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+		if ( 'accessibility-checker_page_accessibility_checker_settings' === get_current_screen()->id && isset( $_GET['tab'] ) && 'scan' === sanitize_text_field( $_GET['tab'] ) ) { 
 			// Load the app in scan mode on the scan tab in the settings.
 			edac_enqueue_scripts( 'full-scan' );
-
-		
 		}   
 	}
 }

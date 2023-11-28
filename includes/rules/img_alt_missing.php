@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,17 +12,16 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_img_alt_missing( $content, $post ) {
+function edac_rule_img_alt_missing( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
 
-	$dom = $content['html'];
-	$tags = array( 'img', 'input' );
+	$dom    = $content['html'];
+	$tags   = array( 'img', 'input' );
 	$errors = array();
 
 	foreach ( $tags as $tag ) {
 		$elements = $dom->find( $tag );
 
 		foreach ( $elements as $element ) {
-
 			if ( isset( $element )
 			&& ( 'img' === $element->tag
 			&& ! $element->hasAttribute( 'alt' )
@@ -36,25 +35,23 @@ function edac_rule_img_alt_missing( $content, $post ) {
 				$image_code = $element->outertext;
 
 				// ignore certain images.
-				if ( ac_img_alt_ignore_plugin_issues( $image_code ) ) {
-					goto img_missing_alt_bottom;
+				if ( edac_img_alt_ignore_plugin_issues( $image_code ) ) {
+					continue;
 				}
 
 				// ignore images with captions.
-				if ( ac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
-					goto img_missing_alt_bottom;
+				if ( edac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
+					continue;
 				}
 
 				$errors[] = $image_code;
-
 			}
-			img_missing_alt_bottom:
 		}
 	}
 
 	return $errors;
-
 }
+
 
 /**
  * Ignore plugin issues that are being resolved automatically
@@ -62,7 +59,7 @@ function edac_rule_img_alt_missing( $content, $post ) {
  * @param string $content a string to evaluate.
  * @return bool
  */
-function ac_img_alt_ignore_plugin_issues( $content ) {
+function edac_img_alt_ignore_plugin_issues( $content ) {
 
 	// ignore spacer pixle.
 	$skipvalue = 'advanced-wp-columns/assets/js/plugins/views/img/1x1-pixel.png';
@@ -85,7 +82,7 @@ function ac_img_alt_ignore_plugin_issues( $content ) {
  * @param obj    $content dom content to evaluate.
  * @return bool
  */
-function ac_img_alt_ignore_inside_valid_caption( $image_code, $content ) {
+function edac_img_alt_ignore_inside_valid_caption( $image_code, $content ) {
 
 	$dom = $content;
 

@@ -203,7 +203,6 @@ function edac_register_setting() {
 	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', 'edac_sanitize_add_footer_accessibility_statement' );
 	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', 'edac_sanitize_include_accessibility_statement_link' );
 	register_setting( 'edac_settings', 'edac_accessibility_policy_page', 'edac_sanitize_accessibility_policy_page' );
-
 }
 
 /**
@@ -337,7 +336,7 @@ function edac_sanitize_simplified_summary_prompt( $prompt ) {
  */
 function edac_post_types_cb() {
 
-	$selected_post_types = get_option( 'edac_post_types' ) ?: array();
+	$selected_post_types = get_option( 'edac_post_types' ) ? get_option( 'edac_post_types' ) : array();
 	$post_types          = edac_post_types();
 	$custom_post_types   = edac_custom_post_types();
 	$all_post_types      = ( is_array( $post_types ) && is_array( $custom_post_types ) ) ? array_merge( $post_types, $custom_post_types ) : array();
@@ -346,7 +345,7 @@ function edac_post_types_cb() {
 			<?php
 			if ( $all_post_types ) {
 				foreach ( $all_post_types as $post_type ) {
-					$disabled = in_array( $post_type, $post_types, true ) ?: 'disabled';
+					$disabled = in_array( $post_type, $post_types, true ) ? '' : 'disabled';
 					?>
 					<label>
 						<input type="checkbox" name="<?php echo 'edac_post_types[]'; ?>" value="<?php echo esc_attr( $post_type ); ?>" 
@@ -379,7 +378,6 @@ function edac_post_types_cb() {
 			</p>
 			<?php 
 		}
-
 }
 
 /**
@@ -432,7 +430,7 @@ function edac_sanitize_post_types( $selected_post_types ) {
  */
 function edac_add_footer_accessibility_statement_cb() {
 
-	$option = get_option( 'edac_add_footer_accessibility_statement' ) ?: false;
+	$option = get_option( 'edac_add_footer_accessibility_statement' ) ? get_option( 'edac_add_footer_accessibility_statement' ) : false;
 
 	?>
 	<fieldset>
@@ -442,7 +440,6 @@ function edac_add_footer_accessibility_statement_cb() {
 		</label>
 	</fieldset>
 	<?php
-
 }
 
 /**
@@ -462,8 +459,8 @@ function edac_sanitize_add_footer_accessibility_statement( $option ) {
  */
 function edac_include_accessibility_statement_link_cb() {
 
-	$option   = get_option( 'edac_include_accessibility_statement_link' ) ?: false;
-	$disabled = get_option( 'edac_add_footer_accessibility_statement' ) ?: false;
+	$option   = get_option( 'edac_include_accessibility_statement_link' ) ? get_option( 'edac_include_accessibility_statement_link' ) : false;
+	$disabled = get_option( 'edac_add_footer_accessibility_statement' ) ? get_option( 'edac_add_footer_accessibility_statement' ) : false;
 
 	?>
 	<fieldset>
@@ -478,7 +475,6 @@ function edac_include_accessibility_statement_link_cb() {
 		</label>
 	</fieldset>
 	<?php
-
 }
 
 /**
@@ -525,7 +521,6 @@ function edac_sanitize_accessibility_policy_page( $page ) {
 function edac_accessibility_statement_preview_cb() {
 
 	echo wp_kses_post( edac_get_accessibility_statement() );
-
 }
 
 /**
@@ -533,7 +528,7 @@ function edac_accessibility_statement_preview_cb() {
  */
 function edac_delete_data_cb() {
 
-	$option = get_option( 'edac_delete_data' ) ?: false;
+	$option = get_option( 'edac_delete_data' ) ? get_option( 'edac_delete_data' ) : false;
 
 	?>
 	<fieldset>
