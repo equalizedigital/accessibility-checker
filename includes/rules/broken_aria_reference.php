@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,11 +12,11 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_broken_aria_reference( $content, $post ) {
+function edac_rule_broken_aria_reference( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
 
 	// rule vars.
-	$dom = $content['html'];
-	$errors = array();
+	$dom                 = $content['html'];
+	$errors              = array();
 	$labelledby_elements = $dom->find( '[aria-labelledby]' );
 
 	foreach ( $labelledby_elements as $labelledby_element ) {
@@ -44,7 +44,7 @@ function edac_rule_broken_aria_reference( $content, $post ) {
  */
 function edac_has_all_referenced_elements( $element, $dom, $attr = 'aria-labelledby' ) {
 	$label_string = $element->getAttribute( $attr );
-	$labels = explode( ' ', $label_string );
+	$labels       = explode( ' ', $label_string );
 	foreach ( $labels as $label ) {
 		if ( ! $dom->find( '#' . $label, 0 ) ) {
 			return false;

@@ -44,4 +44,3 @@ function edac_rule_incorrect_heading_order( $content, $post ) {
 
 	return $errors;
 }
-

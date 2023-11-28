@@ -376,7 +376,6 @@ class Admin_Notices {
 
 		wp_send_json_success( wp_json_encode( $results ) );
 	}
-
 }
 
 new Admin_Notices();

@@ -262,8 +262,7 @@ class Scans_Stats {
 				Settings::get_scannable_post_statuses()
 			) . ')';
 		
-
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$data['posts_without_issues'] = $wpdb->get_var( $sql );
 
 			$data['avg_issues_per_post'] = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
@@ -274,7 +273,7 @@ class Scans_Stats {
 	
 
 		$data['avg_issue_density_percentage'] = 
-		$wpdb->get_var( 
+		$wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$wpdb->prepare(
 				'SELECT avg(meta_value) from ' . $wpdb->postmeta . ' 
 				JOIN ' . $wpdb->prefix . 'accessibility_checker ON postid=post_id

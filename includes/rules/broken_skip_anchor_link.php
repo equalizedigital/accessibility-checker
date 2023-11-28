@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,10 +12,10 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_broken_skip_anchor_link( $content, $post ) {
+function edac_rule_broken_skip_anchor_link( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
 
-	$dom = $content['html'];
-	$errors = array();
+	$dom             = $content['html'];
+	$errors          = array();
 	$anchor_elements = $dom->find( 'a' );
 
 	foreach ( $anchor_elements as $anchor_element ) {
