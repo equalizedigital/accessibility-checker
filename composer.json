@@ -28,9 +28,7 @@
         "automattic/vipwpcs": "^3",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
         "equalizedigital/accessibility-checker-wp-env": "dev-main#2d6218b193e089baeb1848f8b9935c22343cbaa0",       
-        "phpcompatibility/php-compatibility": "*",
-        "yoast/yoastcs": "^2.2.1",
-		"yoast/wp-test-utils": "^1.1.1"
+        "phpcompatibility/php-compatibility": "*"
     },
     "require": {
         "cbschuld/browser.php": "^1.9",
