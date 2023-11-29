@@ -4,7 +4,7 @@
 #config.codekit
 config.codekit3
 edac_log.txt
-composer.lock
+#composer.lock
 package-lock.json
 
 # Hidden system files
