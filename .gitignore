@@ -5,7 +5,7 @@
 config.codekit3
 edac_log.txt
 composer.lock
-package-lock.json
+#package-lock.json
 
 # Hidden system files
 *.DS_Store
