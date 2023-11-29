@@ -17,8 +17,7 @@
  *
  * @return void
  */
-function edac_oxygen_builder_save_post( $meta_id, $post_id, $meta_key, $meta_value ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed, Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- This function is a hook and the parameters are required.
-
+function edac_oxygen_builder_save_post( $meta_id, $post_id, $meta_key, $meta_value ) {
 	if ( 'ct_builder_shortcodes' === $meta_key ) {
 
 		$post = get_post( $post_id, OBJECT );
@@ -80,13 +79,9 @@ function edac_save_post( $post_ID, $post, $update ) {
 	}
 
 	// handle the case when the custom post is quick edited.
-	if ( isset( $_POST['_inline_edit'] ) ) {
-		$inline_edit = sanitize_text_field( $_POST['_inline_edit'] );
-		if ( wp_verify_nonce( $inline_edit, 'inlineeditnonce' ) ) {
-			return;
-		}
+	if ( isset( $_POST['_inline_edit'] ) && wp_verify_nonce( $_POST['_inline_edit'], 'inlineeditnonce' ) ) {
+		return;
 	}
-
 
 	edac_validate( $post_ID, $post, $action = 'save' );
 }
@@ -125,7 +120,10 @@ function edac_validate( $post_ID, $post, $action ) {
 
 	// check and validate content.
 	$rules = edac_register_rules();
-
+	if ( EDAC_DEBUG === true ) {
+		$rule_performance_results = array();
+		$all_rules_process_time   = microtime( true );
+	}
 	if ( $rules ) {
 		foreach ( $rules as $rule ) {
 
@@ -134,7 +132,9 @@ function edac_validate( $post_ID, $post, $action ) {
 				( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) 
 			) {
 				do_action( 'edac_before_rule', $post_ID, $rule, $action );
-
+				if ( EDAC_DEBUG === true ) {
+					$rule_process_time = microtime( true );
+				}
 				$errors = call_user_func( 'edac_rule_' . $rule['slug'], $content, $post );
 
 				if ( $errors && is_array( $errors ) ) {
@@ -143,10 +143,20 @@ function edac_validate( $post_ID, $post, $action ) {
 						edac_insert_rule_data( $post, $rule['slug'], $rule['rule_type'], $object = $error );
 					}
 				}
-
+				if ( EDAC_DEBUG === true ) {
+					$time_elapsed_secs                         = microtime( true ) - $rule_process_time;
+					$rule_performance_results[ $rule['slug'] ] = $time_elapsed_secs;
+				}
 				do_action( 'edac_after_rule', $post_ID, $rule, $action );
 			}
 		}
+		if ( EDAC_DEBUG === true ) {
+			edac_log( $rule_performance_results );
+		}
+	}
+	if ( EDAC_DEBUG === true ) {
+		$time_elapsed_secs = microtime( true ) - $all_rules_process_time;
+		edac_log( 'rules validate time: ' . $time_elapsed_secs );
 	}
 
 	// remove corrected records.
@@ -164,13 +174,14 @@ function edac_validate( $post_ID, $post, $action ) {
  * @param int    $post_ID The ID of the post.
  * @param string $type    The type of the post.
  * @param int    $pre     The flag indicating the removal stage (1 for before validation php based rules, 2 for after validation).
- * @param string $ruleset    The type of the ruleset to correct (php or js).
+ * @param string $type    The type of the ruleset to correct (php or js).
  *
  * @return void
  */
 function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php' ) {
 	global $wpdb;
 
+	// TODO: setup a rules class for loading/filtering rules.
 	$rules        = edac_register_rules();
 	$js_rule_ids  = array();
 	$php_rule_ids = array();
@@ -213,8 +224,6 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 		} else {
 			$sql = $sql . ' AND rule IN(' . $php_rule_ids . ')';
 		}
-
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Prepare used above, Using direct query for adding data to database, caching not required for one time operation.
 		$wpdb->query( $sql );
 
 	} elseif ( 2 === $pre ) {
@@ -226,8 +235,6 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 		} else {
 			$sql = $sql . ' AND rule IN(' . $php_rule_ids . ')';
 		}
-
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Prepare used above, Using direct query for adding data to database, caching not required for one time operation.
 		$wpdb->query( $sql );
 	
 	}
@@ -256,6 +263,27 @@ function edac_get_content( $post ) {
 	$username = get_option( 'edacp_authorization_username' );
 	$password = get_option( 'edacp_authorization_password' );
 
+
+	// Check if server returns that the domain IP is a local/loopback address.
+	// If so then file_get_contents calls from this server to this domain will
+	// likely not be able to verify ssl. So we need to use a context that
+	// does not try to validate the ssl, otherwise file_get_contents will fail.
+	// See: https://www.php.net/manual/en/context.ssl.php .
+
+	$no_verify_ssl = false; // Verify by default.
+
+	$is_local_loopback = get_option( 'edac_local_loopback', null );
+	
+	if ( null === $is_local_loopback ) {
+	
+		$parsed_url = wp_parse_url( home_url() );
+
+		if ( isset( $parsed_url['host'] ) ) {
+			$is_local_loopback = \EDAC\Helpers::is_domain_loopback( $parsed_url['host'] );
+			update_option( 'edac_local_loopback', $is_local_loopback );
+		}       
+	}
+	
 	/**
 	 * Indicates file_get_html should not verify SSL.
 	 *
@@ -263,7 +291,8 @@ function edac_get_content( $post ) {
 	 *
 	 * @param bool $no_verify_ssl The boolean to check.
 	 */
-	$no_verify_ssl = apply_filters( 'edac_no_verify_ssl', false );
+
+	$no_verify_ssl = apply_filters( 'edac_no_verify_ssl', $is_local_loopback );
 
 	if ( $no_verify_ssl ) {
 		$context_opts['ssl'] = array(
@@ -311,7 +340,7 @@ function edac_get_content( $post ) {
 			// will not be followed, so $content['html] will be false.
 			$merged_context_opts = array_merge( $default_context_opts, $context_opts );
 			$context             = stream_context_create( $merged_context_opts );
-
+			
 			$dom             = file_get_html( $url, false, $context );      
 			$content['html'] = edac_remove_elements(
 				$dom, 
@@ -382,7 +411,7 @@ function edac_get_content( $post ) {
 				$stylesheet_url
 			);
 			
-			$response = wp_remote_get( $stylesheet_url ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- This is a valid use case for wp_remote_get as plugin can be used on environments other than WPVIP.
+			$response = wp_remote_get( $stylesheet_url );
 
 			if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
 				$styles          = wp_remote_retrieve_body( $response );
@@ -406,6 +435,8 @@ function edac_get_content( $post ) {
  * @param WP_Query $query The WP_Query instance (passed by reference).
  */
 function edac_show_draft_posts( $query ) {
+
+	// $headers = getallheaders();
 
 	// Do not run if it's not the main query.
 	if ( ! $query->is_main_query() ) {

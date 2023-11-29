@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker pluign file.
  *
@@ -14,16 +14,17 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_link_improper( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_link_improper( $content, $post ) {
 
-	$dom    = $content['html'];
+	$dom = $content['html'];
 	$errors = array();
-	$links  = $dom->find( 'a' );
+	$links = $dom->find( 'a' );
 	foreach ( $links as $link ) {
 		if ( ( ! $link->hasAttribute( 'href' ) || trim( $link->getAttribute( 'href' ) ) == '#' ) && $link->getAttribute( 'role' ) != 'button' ) {
 			$a_tag_code = $link->outertext;
-			$errors[]   = $a_tag_code;
+			$errors[] = $a_tag_code;
 		}
 	}
 	return $errors;
+
 }

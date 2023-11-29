@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker pluign file.
  *
@@ -14,10 +14,10 @@
  */
 function edac_rule_missing_title( $content, $post ) {
 
-	$the_title  = get_the_title( $post->ID );
-	$title      = $content['html']->find( 'title', 0 );
+	$the_title = get_the_title( $post->ID );
+	$title = $content['html']->find( 'title', 0 );
 	$meta_title = $content['html']->find( 'meta[property="og:title"]', 0 );
-	$error      = array();
+	$error = array();
 
 	if ( ! $the_title || '' === $the_title || 'Untitled' === $the_title || strlen( $the_title ) <= 1 ) {
 		$error = array( "Missing Title - Post ID: $post->ID" );
@@ -29,4 +29,5 @@ function edac_rule_missing_title( $content, $post ) {
 	}
 
 	return $error;
+
 }

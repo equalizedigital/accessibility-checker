@@ -82,7 +82,7 @@ class Settings {
 				Helpers::array_to_sql_safe_list( $post_statuses ) . 
 			')';
 	
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			$scannable_posts_count = $wpdb->get_var( $sql );
 
 		} else {

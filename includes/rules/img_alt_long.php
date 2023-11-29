@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,18 +12,18 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_img_alt_long( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_img_alt_long( $content, $post ) {
 
-	$dom    = $content['html'];
+	$dom = $content['html'];
 	$errors = array();
-	$images = $dom->find( 'img' );
 
+	$images = $dom->find( 'img' );
 	foreach ( $images as $image ) {
 		if ( isset( $image ) && $image->hasAttribute( 'alt' ) && $image->getAttribute( 'alt' ) != '' ) {
 			$alt = $image->getAttribute( 'alt' );
 			if ( strlen( $alt ) > 300 ) {
 				$image_code = $image;
-				$errors[]   = $image_code;
+				$errors[] = $image_code;
 			}
 		}
 	}

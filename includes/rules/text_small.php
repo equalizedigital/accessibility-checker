@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Text Small Check
  *
@@ -12,20 +12,20 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_text_small( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_text_small( $content, $post ) {
 
-	$fontsearchpatterns   = array();
+	$fontsearchpatterns = array();
 	$fontsearchpatterns[] = '|font\-size:\s?([\d]+)pt|i';
 	$fontsearchpatterns[] = '|font\-size:\s?([\d]+)px|i';
 	$fontsearchpatterns[] = '|font:\s?[\w\s\d*\s]*([\d]+)pt|i';
 	$fontsearchpatterns[] = '|font:\s?[\w\s\d*\s]*([\d]+)px|i';
-	$errors               = array();
+	$errors = array();
 
 	/*
 	 * check for inline font-size styles
 	 * <p style="font-size: 10px;">test</p>
 	 */
-	$dom      = $content['html'];
+	$dom = $content['html'];
 	$elements = $dom->find( '*' );
 	if ( $elements ) {
 		foreach ( $elements as $element ) {
@@ -35,7 +35,7 @@ function edac_rule_text_small( $content, $post ) { // phpcs:ignore Generic.CodeA
 				// Get font size.
 				foreach ( $fontsearchpatterns as $pattern ) {
 					if ( preg_match_all( $pattern, $element, $matches, PREG_PATTERN_ORDER ) ) {
-						$matchsize = count( $matches );
+						$matchsize = sizeof( $matches );
 						for ( $i = 0; $i < $matchsize; $i++ ) {
 							if ( isset( $matches[0][ $i ] ) && '' !== $matches[0][ $i ] ) {
 								$absolute_fontsize_errorcode = htmlspecialchars( $matches[0][ $i ] );
@@ -62,6 +62,7 @@ function edac_rule_text_small( $content, $post ) { // phpcs:ignore Generic.CodeA
 	}
 
 	return $errors;
+
 }
 
 /**
@@ -72,10 +73,10 @@ function edac_rule_text_small( $content, $post ) { // phpcs:ignore Generic.CodeA
  */
 function ac_css_small_text_check( $content ) {
 
-	$dom        = $content['html'];
-	$errors     = array();
+	$dom = $content['html'];
+	$errors = array();
 	$error_code = '';
-	$css_array  = $content['css_parsed'];
+	$css_array = $content['css_parsed'];
 
 	if ( $css_array ) {
 		foreach ( $css_array as $element => $rules ) {
@@ -108,4 +109,5 @@ function ac_css_small_text_check( $content ) {
 	}
 
 	return $errors;
+
 }

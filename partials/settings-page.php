@@ -41,7 +41,7 @@ if ( is_array( $settings_tab_items ) ) {
 
 // Get the active tab from the $_GET param.
 $default_tab  = null;
-$settings_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : $default_tab; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Nonce verification and sanitization not required for tab display.
+$settings_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : $default_tab;
 $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items, 'slug' ) ) !== false ) ? $settings_tab : $default_tab;
 ?>
 

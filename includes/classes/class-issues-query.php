@@ -61,7 +61,7 @@ class Issues_Query {
 	 *
 	 * @param array   $filter [post_types, rule_types, rule_slugs].
 	 * @param integer $record_limit Max number of records we'll query.
-	 * @param string  $flags Flag used to determine how ignored issues sould be handled.
+	 * @param string  $ignored_flag Flag used to determine how ignored issues sould be handled.
 	 */
 	public function __construct( $filter = array(), $record_limit = 100000, $flags = self::FLAG_EXCLUDE_IGNORED ) {
 		$valid_filters = array(
@@ -159,7 +159,7 @@ class Issues_Query {
 		
 		$sql = 'SELECT COUNT(*) ' . $this->query['from'];
 
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		$total_issues_count = $wpdb->get_var( $sql );
 		if ( $total_issues_count > $this->record_limit ) {
 			return true;
@@ -181,7 +181,7 @@ class Issues_Query {
 		
 		$sql = $this->get_sql();
 
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		return $wpdb->get_var( $sql );
 	}
 
@@ -198,7 +198,7 @@ class Issues_Query {
 		
 		$sql = $this->get_sql();
 
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		return $wpdb->get_var( $sql );
 	}
 
@@ -215,7 +215,7 @@ class Issues_Query {
 		
 		$sql = $this->get_sql();
 
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		return $wpdb->get_var( $sql );
 	}
 
@@ -232,7 +232,7 @@ class Issues_Query {
 		
 		$sql = $this->get_sql();
 		
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		return $wpdb->get_results( $sql );
 	}
 

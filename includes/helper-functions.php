@@ -21,13 +21,13 @@ function edac_compare_strings( $string1, $string2 ) {
 
 	$string1 = strtolower( $string1 );
 	$string1 = str_ireplace( $remove_text, '', $string1 );
-	$string1 = wp_strip_all_tags( $string1 );
+	$string1 = strip_tags( $string1 );
 	$string1 = trim( $string1, " \t\n\r\0\x0B\xC2\xA0" );
 	$string1 = html_entity_decode( $string1 );
 
 	$string2 = strtolower( $string2 );
 	$string2 = str_ireplace( $remove_text, '', $string2 );
-	$string2 = wp_strip_all_tags( $string2 );
+	$string2 = strip_tags( $string2 );
 	$string2 = trim( $string2, " \t\n\r\0\x0B\xC2\xA0" );
 	$string2 = html_entity_decode( $string2 );
 
@@ -117,6 +117,27 @@ function edac_ordinal( $number ) {
 }
 
 /**
+ * Log
+ *
+ * @param mixed $message Log Message.
+ * @return void
+ */
+function edac_log( $message ) {
+	$edac_log = dirname( __DIR__ ) . '/edac_log.log';
+	if ( is_array( $message ) ) {
+		$message = print_r( $message, true );
+	}
+	if ( file_exists( $edac_log ) ) {
+		$file = fopen( $edac_log, 'a' );
+		fwrite( $file, $message . "\n" );
+	} else {
+		$file = fopen( $edac_log, 'w' );
+		fwrite( $file, $message . "\n" );
+	}
+	fclose( $file );
+}
+
+/**
  * Remove child nodes with simple dom
  *
  * @param simple_html_dom_node $parent_node The parent node.
@@ -132,35 +153,35 @@ function edac_simple_dom_remove_child( simple_html_dom_node $parent_node ) {
 /**
  * Remove element from multidimensional array
  *
- * @param array  $items The multidimensional array.
+ * @param array  $array The multidimensional array.
  * @param string $key The key of the element.
  * @param string $value The value of the element.
  * @return array
  */
-function edac_remove_element_with_value( $items, $key, $value ) {
-	foreach ( $items as $sub_key => $sub_array ) {
+function edac_remove_element_with_value( $array, $key, $value ) {
+	foreach ( $array as $sub_key => $sub_array ) {
 		if ( $sub_array[ $key ] === $value ) {
-			unset( $items[ $sub_key ] );
+			unset( $array[ $sub_key ] );
 		}
 	}
-	return $items;
+	return $array;
 }
 
 /**
  * Filter a multi-demensional array
  *
- * @param array  $items The multi-dimensional array.
+ * @param array  $array The multi-dimensional array.
  * @param string $index The index of the element.
  * @param string $value of the array.
  * @return array
  */
-function edac_filter_by_value( $items, $index, $value ) {
-	if ( is_array( $items ) && count( $items ) > 0 ) {
-		foreach ( array_keys( $items ) as $key ) {
-			$temp[ $key ] = $items[ $key ][ $index ];
+function edac_filter_by_value( $array, $index, $value ) {
+	if ( is_array( $array ) && count( $array ) > 0 ) {
+		foreach ( array_keys( $array ) as $key ) {
+			$temp[ $key ] = $array[ $key ][ $index ];
 
 			if ( $temp[ $key ] === $value ) {
-				$newarray[ $key ] = $items[ $key ];
+				$newarray[ $key ] = $array[ $key ];
 			}
 		}
 	}
@@ -235,7 +256,7 @@ function edac_custom_post_types() {
 	);
 
 	$output   = 'names'; // names or objects, note names is the default.
-	$operator = 'and'; // Options 'and' or 'or'.
+	$operator = 'and'; // 'and' or 'or'
 
 	$post_types = get_post_types( $args, $output, $operator );
 
@@ -280,14 +301,12 @@ function edac_process_actions() {
 	// if this fails, check_admin_referer() will automatically print a "failed" page and die.
 	if ( ! empty( $_POST ) && isset( $_POST['edac_download_sysinfo_nonce'] ) && check_admin_referer( 'edac_download_sysinfo', 'edac_download_sysinfo_nonce' ) ) {
 
-		$edac_action = isset( $_POST['edac-action'] ) ? sanitize_key( $_POST['edac-action'] ) : '';
-
 		if ( isset( $_POST['edac-action'] ) ) {
-			do_action( 'edac_' . $edac_action, $_POST );
+			do_action( 'edac_' . $_POST['edac-action'], $_POST );
 		}
 
 		if ( isset( $_GET['edac-action'] ) ) {
-			do_action( 'edac_' . $edac_action, $_GET );
+			do_action( 'edac_' . $_GET['edac-action'], $_GET );
 		}
 	}
 }
@@ -295,32 +314,32 @@ function edac_process_actions() {
 /**
  * String Get HTML
  *
- * @param string  $str string to parse.
- * @param boolean $lowercase lowercase.
- * @param boolean $force_tags_closed force tags closed.
- * @param string  $target_charset target charset.
- * @param boolean $strip_rn strip rn.
- * @param string  $default_br_text default br text.
- * @param string  $default_span_text default span text.
+ * @param string  $str
+ * @param boolean $lowercase
+ * @param boolean $forceTagsClosed
+ * @param string  $target_charset
+ * @param boolean $stripRN
+ * @param string  $defaultBRText
+ * @param string  $defaultSpanText
  * @return string
  */
 function edac_str_get_html(
 	$str,
 	$lowercase = true,
-	$force_tags_closed = true,
+	$forceTagsClosed = true,
 	$target_charset = DEFAULT_TARGET_CHARSET,
-	$strip_rn = true,
-	$default_br_text = DEFAULT_BR_TEXT,
-	$default_span_text = DEFAULT_SPAN_TEXT 
+	$stripRN = true,
+	$defaultBRText = DEFAULT_BR_TEXT,
+	$defaultSpanText = DEFAULT_SPAN_TEXT 
 ) {
 	$dom = new EDAC_Dom(
 		null,
 		$lowercase,
-		$force_tags_closed,
+		$forceTagsClosed,
 		$target_charset,
-		$strip_rn,
-		$default_br_text,
-		$default_span_text
+		$stripRN,
+		$defaultBRText,
+		$defaultSpanText
 	);
 
 	if ( empty( $str ) || strlen( $str ) > MAX_FILE_SIZE ) {
@@ -328,7 +347,7 @@ function edac_str_get_html(
 		return false;
 	}
 
-	return $dom->load( $str, $lowercase, $strip_rn );
+	return $dom->load( $str, $lowercase, $stripRN );
 }
 
 /**
@@ -376,14 +395,13 @@ function edac_get_valid_table_name( $table_name ) {
 
 	// Check if table name only contains alphanumeric characters, underscores, or hyphens.
 	if ( ! preg_match( '/^[a-zA-Z0-9_\-]+$/', $table_name ) ) {
-		// Invalid table name.
+		// Invalid table name
 		return null;
 	}
 
 	// Verify that the table actually exists in the database.
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared 
 	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name ) {
-		// Table does not exist.
+		// Table does not exist
 		return null;
 	}
 
@@ -445,21 +463,18 @@ function edac_replace_css_variables( $value, $css_array ) {
 /**
  * Generates a nonce that expires after a specified number of seconds.
  * 
- * @param string $secret secret.
- * @param int    $timeout_seconds The number of seconds after which the nonce expires.
- * @return string
+ * @param [string]  $secret
+ * @param [integer] $timeout_seconds
+ * @return void
  */
 function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
 
-	$length      = 10;
-	$chars       = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
-	$ll          = strlen( $chars ) - 1;
-	$salt        = '';
-	$salt_length = 0;
-
-	while ( $salt_length < $length ) {
-		$salt       .= $chars[ wp_rand( 0, $ll ) ];
-		$salt_length = strlen( $salt );
+	$length = 10;
+	$chars  = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+	$ll     = strlen( $chars ) - 1;
+	$salt   = '';
+	while ( strlen( $salt ) < $length ) {
+		$salt .= $chars[ rand( 0, $ll ) ];
 	}
 
 	$time     = time();
@@ -471,9 +486,9 @@ function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
 /**
  * Verifies if the nonce is valid and not expired.
  *
- * @param string $secret secret.
- * @param string $nonce nonce.
- * @return boolean
+ * @param [string] $secret
+ * @param [string] $nonce
+ * @return void
  */
 function edac_is_valid_nonce( $secret, $nonce ) {
 	if ( is_string( $nonce ) == false ) {
@@ -499,8 +514,8 @@ function edac_is_valid_nonce( $secret, $nonce ) {
 /**
  * Upcoming meetups in json format
  *
- * @param string  $meetup meetup name.
- * @param integer $count number of meetups to return.
+ * @param string  $meetup
+ * @param integer $count
  * @return json
  */
 function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
@@ -517,7 +532,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 		);
 
 		$request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
-		$request     = wp_remote_get( add_query_arg( $query_args, $request_uri ) ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- wp_remote_get needed to be compatible with all environments.
+		$request     = wp_remote_get( add_query_arg( $query_args, $request_uri ) );
 
 		if ( is_wp_error( $request ) || '200' != wp_remote_retrieve_response_code( $request ) ) {
 			return;
@@ -539,13 +554,11 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 /**
  * Upcoming meetups in html
  *
- * @param  string  $meetup meetup name.
- * @param  integer $count number of meetups to return.
- * @param  boolean $truncate truncate description.
- * @param  integer $paragraph_count number of paragraphs to return.
+ * @param string  $meetup 
+ * @param integer $count 
  * @return json
  */
-function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed -- $truncate is used in the future.	
+function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) {
 
 	$json = edac_get_upcoming_meetups_json( $meetup, $count );
 
@@ -577,9 +590,9 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, 
 /**
  * Return the first X number of root p or div tags from html
  *
- * @param  object  $html object to parse.
- * @param  integer $paragraph_count number of paragraphs to return.
- * @return string|boolean
+ * @param [type]  $html
+ * @param integer $paragraph_count
+ * @return void
  */
 function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 
@@ -598,25 +611,24 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 
 	$html = wp_kses( $html, $allowed_tags );
 
-	// Create a new DOMDocument instance.
+	// Create a new DOMDocument instance
 	$dom = new DOMDocument();
 	$dom->loadHTML( $html );
 	
-	// Find the <body> element.
-	$body_element = $dom->getElementsByTagName( 'body' )->item( 0 );
+	// Find the <body> element
+	$bodyElement = $dom->getElementsByTagName( 'body' )->item( 0 );
 	
-	if ( $body_element ) {
+	if ( $bodyElement ) {
 		
 		$content = array();
 	
-		// Loop through the child nodes of the <body> element.
-		// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- DOMDocument uses camelCase.
-		foreach ( $body_element->childNodes as $child_node ) { 
-			if ( 'p' === $child_node->nodeName || 'div' === $child_node->nodeName ) {
-				$content[] = '<p>' . $child_node->textContent . '</p>';
+		// Loop through the child nodes of the <body> element
+		foreach ( $bodyElement->childNodes as $childNode ) {
+			if ( $childNode->nodeName === 'p' || $childNode->nodeName === 'div' ) {
+				$content[] = '<p>' . $childNode->textContent . '</p>';
 			}
 		}
-		// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+
 		
 		if ( count( $content ) > 0 ) {
 			return implode(
@@ -632,10 +644,10 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 /**
  * Calculate the issue density
  *
- * @param  int $issue_count number of issues.
- * @param  int $element_count number of elements.
- * @param  int $content_length length of content.
- * @return int
+ * @param [type] $issue_count
+ * @param [type] $element_count
+ * @param [type] $content_length
+ * @return void
  */
 function edac_get_issue_density( $issue_count, $element_count, $content_length ) {
 
@@ -658,8 +670,8 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
 /**
  * Get info from html that we need for calculating density
  *
- * @param string $html html to parse.
- * @return boolean|array
+ * @param string $html
+ * @return void
  */
 function edac_get_body_density_data( $html ) {
 
@@ -702,8 +714,8 @@ function edac_get_body_density_data( $html ) {
 /**
  * Recursively count elements in a dom
  *
- * @param object $dom_elements dom elements.
- * @return int 
+ * @param [type] $element
+ * @return void 
  */
 function edac_count_dom_descendants( $dom_elements ) {
 	$count = 0;
