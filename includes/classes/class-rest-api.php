@@ -253,9 +253,9 @@ class REST_Api {
 							}
 						}
 
+						//phpcs:ignore Generic.Commenting.Todo.TaskFound, Squiz.PHP.CommentedOutCode.Found
 						// TODO: add support storing $violation['selector'], $violation['tags'].
-						
-						
+
 						do_action( 'edac_before_rule', $post_id, $rule_id, 'js' );
 			
 						edac_insert_rule_data( $post, $rule_id, $impact, $html );
@@ -424,7 +424,7 @@ class REST_Api {
 	 * 
 	 * @return \WP_REST_Response 
 	 */
-	public function get_scans_stats_by_post_types( $request ) {
+	public function get_scans_stats_by_post_types( $request ) { //phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
 
 		try {
 

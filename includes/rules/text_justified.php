@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,17 +12,17 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_text_justified( $content, $post ) {
+function edac_rule_text_justified( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
 
-	$fontsearchpatterns = array();
+	$fontsearchpatterns   = array();
 	$fontsearchpatterns[] = '|(text-)?align:\s?justify|i';
-	$errors = array();
+	$errors               = array();
 
 	/*
 	 * check for justify font-size styles
 	 * < class="text-align: justify">test</>
 	 */
-	$dom = $content['html'];
+	$dom      = $content['html'];
 	$elements = $dom->find( '*' );
 	if ( $elements ) {
 		foreach ( $elements as $element ) {
@@ -31,7 +31,7 @@ function edac_rule_text_justified( $content, $post ) {
 
 				foreach ( $fontsearchpatterns as $pattern ) {
 					if ( preg_match_all( $pattern, $element, $matches, PREG_PATTERN_ORDER ) ) {
-						$matchsize = sizeof( $matches );
+						$matchsize = count( $matches );
 						for ( $i = 0; $i < $matchsize; $i++ ) {
 							if ( isset( $matches[0][ $i ] ) && '' !== $matches[0][ $i ] ) {
 								$errors[] = $element;
@@ -59,10 +59,10 @@ function edac_rule_text_justified( $content, $post ) {
  */
 function edac_css_justified_text_check( $content ) {
 
-	$dom = $content['html'];
-	$errors = array();
+	$dom        = $content['html'];
+	$errors     = array();
 	$error_code = '';
-	$css_array = $content['css_parsed'];
+	$css_array  = $content['css_parsed'];
 
 	if ( $css_array ) {
 		foreach ( $css_array as $element => $rules ) {
@@ -91,7 +91,5 @@ function edac_css_justified_text_check( $content ) {
 			}
 		}
 	}
-
 	return $errors;
-
 }

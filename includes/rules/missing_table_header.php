@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,12 +12,12 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_missing_table_header( $content, $post ) {
+function edac_rule_missing_table_header( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
 
-	$dom = $content['html'];
+	$dom    = $content['html'];
 	$errors = array();
-
 	$tables = $dom->find( 'table' );
+
 	if ( ! $tables ) {
 		return;
 	}
@@ -37,9 +37,9 @@ function edac_rule_missing_table_header( $content, $post ) {
  * @return int
  */
 function edac_th_match_td( $table ) {
-	$table_rows = $table->find( 'tr' );
+	$table_rows   = $table->find( 'tr' );
 	$header_count = 0;
-	$max_rows = 0;
+	$max_rows     = 0;
 	foreach ( $table_rows as $table_row ) {
 		if ( 0 === $header_count ) {
 			$header_count = count( $table_row->find( 'th' ) );
