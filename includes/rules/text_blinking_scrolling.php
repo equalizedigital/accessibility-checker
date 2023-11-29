@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,9 +12,8 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_text_blinking_scrolling( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
-
-	$dom    = $content['html'];
+function edac_rule_text_blinking_scrolling( $content, $post ) {
+	$dom = $content['html'];
 	$errors = array();
 
 	/**
@@ -56,6 +55,7 @@ function edac_rule_text_blinking_scrolling( $content, $post ) { // phpcs:ignore 
 	}
 
 	return $errors;
+
 }
 
 /**
@@ -66,10 +66,10 @@ function edac_rule_text_blinking_scrolling( $content, $post ) { // phpcs:ignore 
  */
 function ac_css_text_decoration_blink_check( $content ) {
 
-	$dom        = $content['html'];
-	$errors     = array();
+	$dom = $content['html'];
+	$errors = array();
 	$error_code = '';
-	$css_array  = $content['css_parsed'];
+	$css_array = $content['css_parsed'];
 
 	if ( $css_array ) {
 		foreach ( $css_array as $element => $rules ) {
@@ -97,4 +97,5 @@ function ac_css_text_decoration_blink_check( $content ) {
 	}
 
 	return $errors;
+
 }

@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_img_alt_invalid( $content, $post ) {
 
 	$dom = $content['html'];
 
@@ -89,18 +89,18 @@ function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore Generic.
 	if ( $images ) {
 		foreach ( $images as $image ) {
 			if ( isset( $image ) ) {
-				$error       = false;
-				$alt         = strtolower( $image->getAttribute( 'alt' ) );
+				$error = false;
+				$alt = strtolower( $image->getAttribute( 'alt' ) );
 				$alt_trimmed = preg_replace( '/\s+/', ' ', trim( $alt ) );
-				$image_code  = $image->outertext;
+				$image_code = $image->outertext;
 				
 				// ignore certain images.
-				if ( edac_img_alt_ignore_plugin_issues( $image_code ) ) {
+				if ( ac_img_alt_ignore_plugin_issues( $image_code ) ) {
 					break;
 				}
 
 				// ignore images with captions.
-				if ( edac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
+				if ( ac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
 					break;
 				}
 				

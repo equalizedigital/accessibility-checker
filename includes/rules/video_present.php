@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker plugin file.
  *
@@ -12,13 +12,13 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_video_present( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_video_present( $content, $post ) {
 
-	$dom             = $content['html'];
+	$dom = $content['html'];
 	$file_extensions = array( '.3gp', '.asf', '.asx', '.avi', '.flv', '.m4p', '.mov', '.mp4', '.mpeg', '.mpeg2', '.mpg', '.mpv', '.ogg', '.ogv', '.qtl', '.smi', '.smil', '.wax', '.webm', '.wmv', '.wmp', '.wmx' );
-	$keywords        = array( 'youtube', 'youtu.be', 'vimeo' );
-	$errors          = array();
-	$videos_found    = array();
+	$keywords = array( 'youtube', 'youtu.be', 'vimeo' );
+	$errors = array();
+	$videos_found = array();
 
 	// check for video blocks.
 	$elements = $dom->find( '.is-type-video' );

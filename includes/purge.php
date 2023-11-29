@@ -13,11 +13,9 @@
  */
 function edac_delete_post( $post_id ) {
 	global $wpdb;
-	$site_id    = get_current_blog_id();
-	$table_name = $wpdb->prefix . 'accessibility_checker';
+	$site_id = get_current_blog_id();
 
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-	$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . $table_name . ' WHERE postid = %d and siteid = %d', $post_id, $site_id ) );
+	$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . $wpdb->prefix . 'accessibility_checker WHERE postid = %d and siteid = %d', $post_id, $site_id ) );
 
 	edac_delete_post_meta( $post_id );
 }
@@ -62,9 +60,17 @@ function edac_delete_cpt_posts( $post_type ) {
 	$postmeta_table = $wpdb->postmeta;
 	$ac_table       = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 
-	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Safe variable used for table name.
-	$sql = $wpdb->prepare( "DELETE T1,T2 from {$postmeta_table} as T1 JOIN {$ac_table} as T2 ON t1.post_id = T2.postid WHERE t1.meta_key like %s and T2.siteid=%d and T2.type=%s", array( '_edac%', $site_id, $post_type ) );
+	$sql = $wpdb->prepare(
+		"DELETE T1,T2 from {$postmeta_table} as T1 
+		JOIN {$ac_table} as T2 ON t1.post_id = T2.postid
+		WHERE t1.meta_key like %s and T2.siteid=%d and T2.type=%s",
+		array(
+			'_edac%',
+			$site_id,
+			$post_type,
+		)
+	);
 
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
+	//phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	return $wpdb->query( $sql );
 }

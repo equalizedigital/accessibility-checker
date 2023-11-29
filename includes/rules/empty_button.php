@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker pluign file.
  *
@@ -18,11 +18,11 @@
  * <input type="reset">
  * role="button"
  */
-function edac_rule_empty_button( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
-	$dom     = $content['html'];
+function edac_rule_empty_button( $content, $post ) {
+	$dom = $content['html'];
 	$buttons = $dom->find( 'button, [role=button]' );
-	$inputs  = $dom->find( 'input[type=button], input[type=submit], input[type=reset]' );
-	$errors  = array();
+	$inputs = $dom->find( 'input[type=button], input[type=submit], input[type=reset]' );
+	$errors = array();
 
 	// check buttons.
 	foreach ( $buttons as $button ) {
@@ -33,9 +33,9 @@ function edac_rule_empty_button( $content, $post ) { // phpcs:ignore Generic.Cod
 		) {
 
 			$error_code = $button->outertext;
-			$image      = $button->find( 'img' );
-			$input      = $button->find( 'input' );
-			$i          = $button->find( 'i' );
+			$image = $button->find( 'img' );
+			$input = $button->find( 'input' );
+			$i = $button->find( 'i' );
 
 			if (
 				'' !== $error_code

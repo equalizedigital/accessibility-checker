@@ -33,7 +33,7 @@ class EDAC_Frontend_Highlight {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$post_id    = intval( $post_id );
 		$siteid     = get_current_blog_id();
-		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype FROM ' . $table_name . ' where postid = %d and siteid = %d', $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
+		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype FROM ' . $table_name . ' where postid = %d and siteid = %d', $post_id, $siteid ), ARRAY_A );
 		if ( ! $results ) {
 			return null;
 		}
@@ -46,7 +46,7 @@ class EDAC_Frontend_Highlight {
 	public function ajax() {
 
 		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
+		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'ajax-nonce' ) ) {
 			$error = new WP_Error( '-1', 'Permission Denied' );
 			wp_send_json_error( $error );
 		}
@@ -56,8 +56,7 @@ class EDAC_Frontend_Highlight {
 			wp_send_json_error( $error );
 		}
 
-		$post_id = isset( $_REQUEST['post_id'] ) ? intval( $_REQUEST['post_id'] ) : 0;
-		$results = $this->get_issues( $post_id );
+		$results = $this->get_issues( $_REQUEST['post_id'] );
 
 		if ( ! $results ) {
 			$error = new WP_Error( '-3', 'Issue query returned no results' );

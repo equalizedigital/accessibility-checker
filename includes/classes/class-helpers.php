@@ -37,7 +37,7 @@ class Helpers {
 	/**
 	 * Localizes the format of a number.
 	 *
-	 * @param int     $number number to format.
+	 * @param [type]  $number
 	 * @param integer $precision number of decimals.
 	 * @return integer
 	 */
@@ -64,7 +64,7 @@ class Helpers {
 	/**
 	 * Localizes the format of a percentage.
 	 *
-	 * @param init    $number number to format.
+	 * @param [type]  $number
 	 * @param integer $precision number of decimals.
 	 * @return integer
 	 */
@@ -96,8 +96,8 @@ class Helpers {
 	/**
 	 * Localizes the format of a date.
 	 *
-	 * @param string  $date date to format.
-	 * @param boolean $include_time whether to include time in the formatted date.
+	 * @param [type]  $number
+	 * @param integer $precision number of decimals.
 	 * @return integer
 	 */
 	public static function format_date( $date, $include_time = false ) {

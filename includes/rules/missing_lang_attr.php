@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,9 +12,8 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_missing_lang_attr( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
-
-	$errors   = array();
+function edac_rule_missing_lang_attr( $content, $post ) {
+	$errors = array();
 	$elements = $content['html']->find( 'html' );
 	if ( $elements[0] ) {
 		if ( ( $elements[0]->hasAttribute( 'lang' ) && $elements[0]->getAttribute( 'lang' ) != '' ) || ( $elements[0]->hasAttribute( 'xml:lang' ) && $elements[0]->getAttribute( 'xml:lang' ) != '' ) ) {

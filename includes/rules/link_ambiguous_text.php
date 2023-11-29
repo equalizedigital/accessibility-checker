@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker pluign file.
  *
@@ -32,22 +32,22 @@
  * img alt:
  * <a href="link.html"><img src="image.jpg" alt="Read More"></a>
  */
-function edac_rule_link_ambiguous_text( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_link_ambiguous_text( $content, $post ) {
 
-	$dom    = $content['html'];
+	$dom = $content['html'];
 	$errors = array();
 
 	// get and loop through anchor links.
 	$as = $dom->find( 'a' );
 	foreach ( $as as $a ) {
 
-		$error      = false;
+		$error = false;
 		$error_code = $a->outertext;
 
 		// check aria-label.
 		if ( $a->hasAttribute( 'aria-label' ) && '' !== $a->getAttribute( 'aria-label' ) ) {
 
-			$text  = $a->getAttribute( 'aria-label' );
+			$text = $a->getAttribute( 'aria-label' );
 			$error = edac_check_ambiguous_phrase( $text );
 
 			// check aria-labelledby.
@@ -55,8 +55,8 @@ function edac_rule_link_ambiguous_text( $content, $post ) { // phpcs:ignore Gene
 
 			// get aria-labelledby and explode into array since aria-labelledby allows for multiple element ids.
 			$label_string = $a->getAttribute( 'aria-labelledby' );
-			$labels       = explode( ' ', $label_string );
-			$label_text   = array();
+			$labels = explode( ' ', $label_string );
+			$label_text = array();
 
 			if ( $labels ) {
 				foreach ( $labels as $label ) {
@@ -70,7 +70,7 @@ function edac_rule_link_ambiguous_text( $content, $post ) { // phpcs:ignore Gene
 
 				// implode array and check.
 				if ( $label_text ) {
-					$text  = implode( ' ', $label_text );
+					$text = implode( ' ', $label_text );
 					$error = edac_check_ambiguous_phrase( $text );
 					if ( $error ) {
 						$error_code = $error_code . ' Label Text: ' . $text;
@@ -81,14 +81,14 @@ function edac_rule_link_ambiguous_text( $content, $post ) { // phpcs:ignore Gene
 			// check plain text.
 		} elseif ( $a->plaintext ) {
 
-			$text  = $a->plaintext;
+			$text = $a->plaintext;
 			$error = edac_check_ambiguous_phrase( $text );
 
 			// check image alt text.
 		} else {
 			$images = $a->find( 'img' );
 			foreach ( $images as $image ) {
-				$alt   = $image->getAttribute( 'alt' );
+				$alt = $image->getAttribute( 'alt' );
 				$error = edac_check_ambiguous_phrase( $alt );
 				if ( true === $error ) {
 					break;
@@ -146,7 +146,10 @@ function edac_check_ambiguous_phrase( $text ) {
 	foreach ( $ambiguous_phrases as $ambiguous_phrase ) {
 		if ( $text == $ambiguous_phrase ) {
 			return true;
+			break;
 		}
 	}
+
 	return false;
+
 }

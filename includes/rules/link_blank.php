@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,21 +12,21 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_link_blank( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_link_blank( $content, $post ) {
 
-	$content  = $content['html'];
-	$errors   = array();
+	$content = $content['html'];
+	$errors = array();
 	$elements = $content->find( 'a[target="_blank"]' );
 	if ( $elements ) {
 		foreach ( $elements as $a ) {
 
-			$error      = false;
+			$error = false;
 			$error_code = $a->outertext;
 
 			// check aria-label.
 			if ( $a->hasAttribute( 'aria-label' ) ) {
 
-				$text  = $a->getAttribute( 'aria-label' );
+				$text = $a->getAttribute( 'aria-label' );
 				$error = edac_check_link_blank_text( $text );
 
 				// check aria-labelledby.
@@ -34,8 +34,8 @@ function edac_rule_link_blank( $content, $post ) { // phpcs:ignore Generic.CodeA
 
 				// get aria-labelledby and explode into array since aria-labelledby allows for multiple element ids.
 				$label_string = $a->getAttribute( 'aria-labelledby' );
-				$labels       = explode( ' ', $label_string );
-				$label_text   = array();
+				$labels = explode( ' ', $label_string );
+				$label_text = array();
 
 				if ( $labels ) {
 					foreach ( $labels as $label ) {
@@ -49,7 +49,7 @@ function edac_rule_link_blank( $content, $post ) { // phpcs:ignore Generic.CodeA
 
 					// implode array and check.
 					if ( $label_text ) {
-						$text  = implode( ' ', $label_text );
+						$text = implode( ' ', $label_text );
 						$error = edac_check_link_blank_text( $text );
 					}
 				}
@@ -57,14 +57,14 @@ function edac_rule_link_blank( $content, $post ) { // phpcs:ignore Generic.CodeA
 				// check plain text.
 			} elseif ( $a->plaintext ) {
 
-				$text  = $a->plaintext;
+				$text = $a->plaintext;
 				$error = edac_check_link_blank_text( $text );
 
 				// check image alt text.
 			} else {
 				$images = $a->find( 'img' );
 				foreach ( $images as $image ) {
-					$alt   = $image->getAttribute( 'alt' );
+					$alt = $image->getAttribute( 'alt' );
 					$error = edac_check_link_blank_text( $alt );
 					if ( true === $error ) {
 						break;
@@ -79,6 +79,7 @@ function edac_rule_link_blank( $content, $post ) { // phpcs:ignore Generic.CodeA
 		}
 	}
 	return $errors;
+
 }
 
 /**
@@ -93,18 +94,20 @@ function edac_check_link_blank_text( $text ) {
 
 	// phrases.
 	$allowed_phrases = array(
-		__( 'opens a new window', 'accessibility-checker' ),
-		__( 'opens a new tab', 'accessibility-checker' ),
-		__( 'opens new window', 'accessibility-checker' ),
-		__( 'opens new tab', 'accessibility-checker' ),
+		__( 'opens a new window', 'edac' ),
+		__( 'opens a new tab', 'edac' ),
+		__( 'opens new window', 'edac' ),
+		__( 'opens new tab', 'edac' ),
 	);
 
 	// check if text contains any of the allowed phrases.
 	foreach ( $allowed_phrases as $allowed_phrase ) {
 		if ( strpos( $text, $allowed_phrase ) !== false ) {
 			return true;
+			break;
 		}
 	}
 
 	return false;
+
 }

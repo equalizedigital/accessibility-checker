@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
+<?php
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,10 +12,10 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_empty_heading_tag( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_empty_heading_tag( $content, $post ) {
 
 	// rule vars.
-	$dom    = $content['html'];
+	$dom = $content['html'];
 	$errors = array();
 
 	// Loop heading 1 - 6.
