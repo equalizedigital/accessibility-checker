@@ -1,6 +1,8 @@
 name: PHPCS check
 on:
-  push
+  push:
+    paths:
+      - '**.php'
 
 env:
   GH_TOKEN: ${{ github.token }}
@@ -33,5 +35,4 @@ jobs:
         # `grep` to only PHP files then remove deleted files via `find`.
         # Run `phpcs` on the remaining files and pass output to `cs2pr`.
         run: |
-          gh pr diff ${{ github.event.number }} --name-only | grep .php | xargs find 2> /dev/null | cat
           gh pr diff ${{ github.event.number }} --name-only | grep .php | xargs find 2> /dev/null | xargs vendor/bin/phpcs -nq --report=checkstyle --report-full --report-checkstyle=./phpcs-report.xml | cs2pr
