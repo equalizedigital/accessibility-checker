@@ -2,6 +2,9 @@ name: PHPCS check
 on:
   push
 
+env:
+  GH_TOKEN: ${{ github.token }}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
