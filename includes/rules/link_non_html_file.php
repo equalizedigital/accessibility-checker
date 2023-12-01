@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
  * Accessibility Checker pluign file.
  *
@@ -12,11 +12,11 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_link_non_html_file( $content, $post ) {
+function edac_rule_link_non_html_file( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
 
-	$dom = $content['html'];
+	$dom             = $content['html'];
 	$file_extensions = array( '.rtf', '.wpd', '.ods', '.odt', '.odp', '.sxw', '.sxc', '.sxd', '.sxi', '.pages', '.key' );
-	$errors = array();
+	$errors          = array();
 
 	$as = $dom->find( 'a' );
 	foreach ( $as as $a ) {

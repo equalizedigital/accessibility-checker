@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.6.9
+ * Version:           1.6.10
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -28,7 +28,7 @@ if ( ! defined( 'WPINC' ) ) {
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-playground-check.php';
 $plugin_check = new EDAC\Playground_Check();
 if ( ! $plugin_check->should_load ) {
-    return;
+	return;
 }
 
 // Include plugin dependency.
@@ -45,7 +45,7 @@ if ( is_admin() && file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.p
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.6.9' );
+	define( 'EDAC_VERSION', '1.6.10' );
 }
 
 // Current database version.
@@ -142,7 +142,7 @@ if ( ! defined( 'MAX_FILE_SIZE' ) ) {
 }
 if ( ! class_exists( 'simple_html_dom' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'includes/simplehtmldom/simple_html_dom.php';
-	include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class_edac_dom.php';
+	include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-dom.php';
 }
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend-highlight.php';
@@ -227,7 +227,7 @@ function edac_update_database() {
 	$table_name = $wpdb->prefix . 'accessibility_checker';
 
 	$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Prepare above, Safe variable used for table name, caching not required for one time operation.
 	if ( get_option( 'edac_db_version' ) !== EDAC_DB_VERSION || $wpdb->get_var( $query ) !== $table_name ) {
 
 		$charset_collate = $wpdb->get_charset_collate();
@@ -645,7 +645,6 @@ function edac_register_rules() {
 			'slug'      => 'color_contrast_failure',
 			'rule_type' => 'error',
 			'summary'   => esc_html( 'Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be "false positives" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors.' ),
-			// 'ruleset'   => 'js',
 		)
 	);
 
@@ -958,7 +957,7 @@ function edac_summary( $post_id ) {
 			$postid = $post_id;
 			$siteid = get_current_blog_id();
 
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 			$rule_count = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM {$table_name} where rule = %s and siteid = %d and postid = %d and ignre = %d", $rule['slug'], $siteid, $postid, 0 ) );
 
 			if ( ! $rule_count ) {
@@ -971,7 +970,7 @@ function edac_summary( $post_id ) {
 
 	// count errors.
 	$query = 'SELECT count(*) FROM ' . $table_name . ' where siteid = %d and postid = %d and ruletype = %s and ignre = %d';
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 	$summary['errors'] = intval( $wpdb->get_var( $wpdb->prepare( $query, get_current_blog_id(), $post_id, 'error', 0 ) ) );
 
 	// count warnings.
@@ -982,7 +981,7 @@ function edac_summary( $post_id ) {
 		$warnings_where .= ' and rule != %s';
 	}
 	$query = 'SELECT count(*) FROM ' . $table_name . ' ' . $warnings_where;
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 	$summary['warnings'] = intval( $wpdb->get_var( $wpdb->prepare( $query, $warnings_parameters ) ) );
 
 	// count ignored issues.
@@ -993,12 +992,12 @@ function edac_summary( $post_id ) {
 		$ignored_where .= ' and rule != %s';
 	}
 	$query = 'SELECT count(*) FROM ' . $table_name . ' ' . $ignored_where;
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 	$summary['ignored'] = intval( $wpdb->get_var( $wpdb->prepare( $query, $ignored_parameters ) ) );
 
 	// contrast errors.
 	$query = 'SELECT count(*) FROM ' . $table_name . ' where siteid = %d and postid = %d and rule = %s and ignre = %d';
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 	$summary['contrast_errors'] = intval( $wpdb->get_var( $wpdb->prepare( $query, get_current_blog_id(), $post_id, 'color_contrast_failure', 0 ) ) );
 
 	// remove color contrast from errors count.
@@ -1107,6 +1106,7 @@ function edac_update_post_meta( $rule ) {
 	global $wpdb;
 	$site_id = get_current_blog_id();
 
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 	$posts = $wpdb->get_results( $wpdb->prepare( 'SELECT postid FROM ' . $wpdb->prefix . 'accessibility_checker WHERE rule = %s and siteid = %d', $rule, $site_id ), ARRAY_A );
 
 	if ( $posts ) {
@@ -1190,7 +1190,7 @@ function edac_details_ajax() {
 		// add count, unset passed error rules and add passed rules to array.
 		if ( $error_rules ) {
 			foreach ( $error_rules as $key => $error_rule ) {
-				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 				$count = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d and ignre = %d', $postid, $error_rule['slug'], $siteid, 0 ), ARRAY_A ) );
 				if ( $count ) {
 					$error_rules[ $key ]['count'] = $count;
@@ -1205,7 +1205,7 @@ function edac_details_ajax() {
 		// add count, unset passed warning rules and add passed rules to array.
 		if ( $warning_rules ) {
 			foreach ( $warning_rules as $key => $error_rule ) {
-				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 				$count = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d and ignre = %d', $postid, $error_rule['slug'], $siteid, 0 ), ARRAY_A ) );
 				if ( $count ) {
 					$warning_rules[ $key ]['count'] = $count;
@@ -1256,7 +1256,7 @@ function edac_details_ajax() {
 			$ignore_permission = apply_filters( 'edac_ignore_permission', $ignore_permission );
 		}
 		foreach ( $rules as $rule ) {
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 			$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid ), ARRAY_A );
 			$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
 			$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
@@ -1271,7 +1271,7 @@ function edac_details_ajax() {
 				}
 			}
 
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 			$expand_rule = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid ), ARRAY_A ) );
 
 			$tool_tip_link = edac_documentation_link( $rule );
@@ -1417,7 +1417,6 @@ function edac_details_ajax() {
 			}
 
 			$html .= '</div>';
-
 		}
 	}
 
@@ -1459,7 +1458,7 @@ function edac_readability_ajax() {
 
 	$post_id                        = intval( $_REQUEST['post_id'] );
 	$html                           = '';
-	$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ?: '';
+	$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
 	$simplified_summary_position    = get_option( 'edac_simplified_summary_position', $default = false );
 	$content_post                   = get_post( $post_id );
 	$content                        = $content_post->post_content;
@@ -1671,7 +1670,7 @@ function edac_get_simplified_summary( $post = null ) {
  * @return string
  */
 function edac_simplified_summary_markup( $post ) {
-	$simplified_summary         = get_post_meta( $post, '_edac_simplified_summary', true ) ?: '';
+	$simplified_summary         = get_post_meta( $post, '_edac_simplified_summary', true ) ? get_post_meta( $post, '_edac_simplified_summary', true ) : '';
 	$simplified_summary_heading = 'Simplified Summary';
 
 	// filter title.
@@ -1764,7 +1763,7 @@ function edac_email_opt_in() {
 add_filter(
 	'perfmatters_lazyload',
 	function ( $lazyload ) {
-		if ( ! isset( $_GET['edac_nonce'] ) || ! wp_verify_nonce( $_GET['edac_nonce'], 'edac_highlight' ) ) {
+		if ( ! isset( $_GET['edac_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_GET['edac_nonce'] ), 'edac_highlight' ) ) {
 			return $lazyload;
 		}
 		if ( isset( $_GET['edac'] ) ) {

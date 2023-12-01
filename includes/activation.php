@@ -16,15 +16,18 @@ function edac_activation() {
 	add_option( 'edac_post_types', array( 'post', 'page' ) );
 	add_option( 'edac_simplified_summary_position', 'after' );
 
+	// Sanitize the input.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce is not required.
+	$action = isset( $_REQUEST['action'] ) ? sanitize_text_field( $_REQUEST['action'] ) : '';
+	// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce is not required.
+	$checked = isset( $_POST['checked'] ) ? array_map( 'sanitize_text_field', $_POST['checked'] ) : array();
+
 	// Redirect: Don't do redirects when multiple plugins are bulk activated.
-	if (
-		( isset( $_REQUEST['action'] ) && 'activate-selected' === $_REQUEST['action'] ) &&
-		( isset( $_POST['checked'] ) && count( $_POST['checked'] ) > 1 ) ) {
+	if ( 'activate-selected' === $action && count( $checked ) > 1 ) {
 		return;
 	}
 
 	edac_add_accessibility_statement_page();
-
 }
 
 /**
@@ -40,6 +43,7 @@ function edac_add_accessibility_statement_page() {
 
 	global $wpdb;
 
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 	if ( null === $wpdb->get_row( "SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'accessibility-statement'", 'ARRAY_A' ) ) {
 
 		$current_user = wp_get_current_user();
@@ -95,5 +99,4 @@ function edac_add_accessibility_statement_page() {
 		wp_insert_post( $page );
 
 	}
-
 }
