@@ -29,7 +29,6 @@ jobs:
         uses: "ramsey/composer-install@v2"
 
       - name: Run PHPCS checks
-        continue-on-error: true
         # Get the changed files from the PR via Github CLI.
         # `grep` to only PHP files then remove deleted files via `find`.
         # Run `phpcs` on the remaining files and pass output to `cs2pr`.
