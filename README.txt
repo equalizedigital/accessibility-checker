@@ -171,6 +171,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.6.10 =
+Fixed: coding standards
+
 = 1.6.9 =
 Added: functionality to handle loopback environments
 
