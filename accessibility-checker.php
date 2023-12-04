@@ -721,7 +721,7 @@ function edac_register_rules() {
 			'info_url'  => 'https://a11ychecker.com/help4431',
 			'slug'      => 'missing_title',
 			'rule_type' => 'error',
-			'summary'   => esc_html( 'An iFrame Missing title error means that one or more of the iFrames on your post or page does not have an accessible title describing the contents of the iFrame. An iFrame title is an attribute that can be added to the <iframe> tag to describe the contents of the frame to people using assistive technology. To fix a missing iFrame title, you will need to add a title or an aria-label attribute to the <iframe> tag. The attribute should accurately describe the contents of the iFrame.' ),
+			'summary'   => esc_html( 'A Missing Title error means that your post or page does not contain a title element (<title> or og:title ). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a <title> tag or og:title meta tag.' ),
 		)
 	);
 
