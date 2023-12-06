@@ -193,7 +193,9 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 			}
 			continue;
 		}
-		$rule_slugs[] = $rule['slug'];
+		if ( 'js' !== $ruleset ) {
+			$rule_slugs[] = $rule['slug'];
+		}
 	}
 
 	if ( 1 === $pre ) {
