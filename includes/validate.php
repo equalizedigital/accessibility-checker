@@ -184,10 +184,8 @@ function edac_validate( $post_ID, $post, $action ) {
 function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php' ) {
 	global $wpdb;
 
-	$rules        = edac_register_rules();
-	$js_rule_ids  = array();
-	$php_rule_ids = array();
-	$rule_slugs   = array();
+	$rules      = edac_register_rules();
+	$rule_slugs = array();
 	foreach ( $rules as $rule ) {
 		if ( isset( $rule['ruleset'] ) && 'js' === $rule['ruleset'] ) {
 			if ( 'js' === $ruleset ) {
