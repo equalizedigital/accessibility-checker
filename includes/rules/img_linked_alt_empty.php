@@ -17,19 +17,19 @@ function edac_rule_img_linked_alt_empty( $content, $post ) { // phpcs:ignore Gen
 	$dom    = $content['html'];
 	$errors = array();
 	$as     = $dom->find( 'a' );
-	
+
 	foreach ( $as as $a ) {
 
 		// anchors with aria-label or title or valid node text.
-		if ( $a->getAttribute( 'aria-label' ) == '' && $a->getAttribute( 'title' ) == '' && strlen( $a->plaintext ) <= 5 ) {
+		if ( $a->getAttribute( 'aria-label' ) === '' && $a->getAttribute( 'title' ) === '' && strlen( $a->plaintext ) <= 5 ) {
 
 			$images = $a->find( 'img' );
 			foreach ( $images as $image ) {
 
 				if ( isset( $image )
 					&& $image->hasAttribute( 'alt' )
-					&& $image->getAttribute( 'alt' ) == ''
-					&& $image->getAttribute( 'role' ) != 'presentation' ) {
+					&& $image->getAttribute( 'alt' ) === ''
+					&& $image->getAttribute( 'role' ) !== 'presentation' ) {
 
 					$image_code = $a;
 

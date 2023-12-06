@@ -93,7 +93,7 @@ function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore Generic.
 				$alt         = strtolower( $image->getAttribute( 'alt' ) );
 				$alt_trimmed = preg_replace( '/\s+/', ' ', trim( $alt ) );
 				$image_code  = $image->outertext;
-				
+
 				// ignore certain images.
 				if ( edac_img_alt_ignore_plugin_issues( $image_code ) ) {
 					break;
@@ -103,9 +103,9 @@ function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore Generic.
 				if ( edac_img_alt_ignore_inside_valid_caption( $image_code, $dom ) ) {
 					break;
 				}
-				
+
 				// check if alt contains only whitespace.
-				if ( strlen( $alt ) > 0 && ctype_space( $alt ) == true ) {
+				if ( strlen( $alt ) > 0 && ctype_space( $alt ) === true ) {
 					$error = true;
 				}
 
@@ -132,7 +132,7 @@ function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore Generic.
 				// check for image extensions.
 				if ( false === $error && $image_extensions ) {
 					foreach ( $image_extensions as $image_extension ) {
-						if ( strpos( $alt, $image_extension ) == true ) {
+						if ( strpos( $alt, $image_extension ) === true ) {
 							$error = true;
 							break;
 						}
@@ -142,7 +142,7 @@ function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore Generic.
 				// check for specific keyword matches.
 				if ( false === $error && $keywords ) {
 					foreach ( $keywords as $keyword ) {
-						if ( $alt_trimmed == $keyword ) {
+						if ( $alt_trimmed === $keyword ) {
 							$error = true;
 							break;
 						}
@@ -158,7 +158,7 @@ function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore Generic.
 						}
 					}
 				}
-				
+
 				// check if the alt is composed of only numbers.
 				if ( false === $error ) {
 					if ( ctype_digit( $alt_trimmed ) ) {

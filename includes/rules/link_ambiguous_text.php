@@ -144,7 +144,7 @@ function edac_check_ambiguous_phrase( $text ) {
 
 	// check if text is equal to.
 	foreach ( $ambiguous_phrases as $ambiguous_phrase ) {
-		if ( $text == $ambiguous_phrase ) {
+		if ( $text === $ambiguous_phrase ) {
 			return true;
 		}
 	}

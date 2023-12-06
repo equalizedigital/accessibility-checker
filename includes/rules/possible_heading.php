@@ -111,14 +111,14 @@ function edac_css_font_size_weight_check( $content ) {
 						if ( array_key_exists( 'font-weight', $rules ) ) {
 							// replace CSS variables.
 							$rules['font-weight'] = edac_replace_css_variables( $rules['font-weight'], $css_array );
-							if ( in_array( $rules['font-weight'], array( 'bold', 'bolder', '700', '800', '900' ) ) ) {
+							if ( in_array( $rules['font-weight'], array( 'bold', 'bolder', '700', '800', '900' ), true ) ) {
 								$has_bold_or_italic = true;
 							}
 						}
 						if ( array_key_exists( 'font-style', $rules ) ) {
 							// replace CSS variables.
 							$rules['font-style'] = edac_replace_css_variables( $rules['font-style'], $css_array );
-							if ( in_array( $rules['font-style'], array( 'italic', 'oblique' ) ) ) {
+							if ( 'italic' === $rules['font-style'] || 'oblique' === $rules['font-style'] ) {
 								$has_bold_or_italic = true;
 							}
 						}

@@ -1,7 +1,7 @@
 <?php
 /**
  * Class file for helpers
- * 
+ *
  * @package Accessibility_Checker
  */
 
@@ -46,14 +46,14 @@ class Helpers {
 		if ( ( ! is_numeric( $number ) ) ) {
 			return $number;
 		}
-		
+
 		$locale = get_locale();
 
 		if ( class_exists( 'NumberFormatter' ) ) {
 			$formatter = new \NumberFormatter( $locale, \NumberFormatter::DECIMAL );
 			$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
 			$formatter->setAttribute( \NumberFormatter::GROUPING_USED, 1 ); // Include thousands separator.
-		
+
 			return $formatter->format( $number );
 
 		} else {
@@ -78,16 +78,15 @@ class Helpers {
 			$number = $number / 100;
 		}
 
-		
 		$locale = get_locale();
 
 		if ( class_exists( 'NumberFormatter' ) ) {
-	
+
 			$formatter = new \NumberFormatter( $locale, \NumberFormatter::PERCENT );
 			$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
-			
+
 			return $formatter->format( $number );
-		
+
 		} else {
 			return sprintf( '%.2f%%', $number * 100 );
 		}
@@ -103,14 +102,14 @@ class Helpers {
 	public static function format_date( $date, $include_time = false ) {
 
 		if ( ! is_numeric( $date ) ) { // date as string.
-			
-			$timestamp = strtotime( $date ); 
+
+			$timestamp = strtotime( $date );
 
 			if ( ! $timestamp ) { // The passed string is not a valid date.
 				return $date;
-			}       
+			}
 		} else { // unix timestamp.
-			$timestamp = $date; 
+			$timestamp = $date;
 		}
 
 		$datetime = new \DateTime();
@@ -167,32 +166,31 @@ class Helpers {
 	 * @return boolean
 	 */
 	public static function is_domain_loopback( $domain ) {
-	
-		// Check if this is an ipv4 address in the loopback range.  
-	
+
+		// Check if this is an ipv4 address in the loopback range.
+
 		$record         = gethostbyname( $domain );
 		$loopback_start = ip2long( '127.0.0.0' );
 		$loopback_end   = ip2long( '127.255.255.255' );
 		$ip_long        = ip2long( $record );
-	
+
 		if ( $ip_long >= $loopback_start && $ip_long <= $loopback_end ) {
 			return true;
-		}       
+		}
 
-			
 		// Check if this is an ipv6 loopback.
-	
+
 		try {
 			$records = dns_get_record( $domain, DNS_AAAA );
 		} catch ( \Throwable $th ) {
-			return false;           
+			return false;
 		}
-			
+
 		foreach ( $records as $record ) {
-		
+
 			// Do ipv6 check.
 			if ( isset( $record['type'] ) && 'AAAA' === $record['type'] ) {
-			
+
 				// Normalize the IPv6 address for comparison.
 				$normalized_ipv6 = inet_pton( $record['ipv6'] );
 
@@ -201,10 +199,10 @@ class Helpers {
 
 				if ( $normalized_ipv6 === $loopback_ipv6 ) {
 					return true;
-				}     
+				}
 			}
 		}
-	
+
 		return false;
 	}
 }

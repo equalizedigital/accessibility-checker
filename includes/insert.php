@@ -8,13 +8,13 @@
 /**
  * Insert rule date into database
  *
- * @param object $post the post object.
- * @param string $rule the rule.
- * @param string $ruletype the rule type.
- * @param string $object the object.
+ * @param object $post     The post object.
+ * @param string $rule     The rule.
+ * @param string $ruletype The rule type.
+ * @param string $rule_obj The object.
  * @return void
  */
-function edac_insert_rule_data( $post, $rule, $ruletype, $object ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.objectFound -- Object is a valid parameter name in this context.
+function edac_insert_rule_data( $post, $rule, $ruletype, $rule_obj ) {
 
 	global $wpdb;
 	$table_name = $wpdb->prefix . 'accessibility_checker';
@@ -26,7 +26,7 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $object ) { // phpcs:ig
 		'type'          => $post->post_type,
 		'rule'          => $rule,
 		'ruletype'      => $ruletype,
-		'object'        => esc_attr( $object ),
+		'object'        => esc_attr( $rule_obj ),
 		'recordcheck'   => 1,
 		'user'          => get_current_user_id(),
 		'ignre'         => 0,
@@ -45,8 +45,8 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $object ) { // phpcs:ig
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 	$results = $wpdb->get_results(
 		$wpdb->prepare(
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery -- Safe variable used for table name.
-			'SELECT postid, ignre FROM ' . $table_name . ' where type = %s and postid = %d and rule = %s and object = %s and siteid = %d',
+			'SELECT postid, ignre FROM %i where type = %s and postid = %d and rule = %s and object = %s and siteid = %d',
+			$table_name,
 			$rule_data['type'],
 			$rule_data['postid'],
 			$rule_data['rule'],
@@ -69,8 +69,8 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $object ) { // phpcs:ig
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$wpdb->query(
 				$wpdb->prepare(
-					// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery -- Safe variable used for table name.
-					'UPDATE ' . $table_name . ' SET recordcheck = %d, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s',
+					'UPDATE %i SET recordcheck = %d, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s',
+					$table_name,
 					1,
 					$rule_data['ignre'],
 					$rule_data['siteid'],
@@ -136,8 +136,8 @@ function edac_insert_ignore_data() {
 	$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( $_REQUEST['ignore_global'] ) : 0;
 
 	foreach ( $ids as $id ) {
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-		$wpdb->query( $wpdb->prepare( 'UPDATE ' . $table_name . ' SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
+		$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
 	}
 
 	$data = array(

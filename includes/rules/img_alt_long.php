@@ -19,7 +19,7 @@ function edac_rule_img_alt_long( $content, $post ) { // phpcs:ignore Generic.Cod
 	$images = $dom->find( 'img' );
 
 	foreach ( $images as $image ) {
-		if ( isset( $image ) && $image->hasAttribute( 'alt' ) && $image->getAttribute( 'alt' ) != '' ) {
+		if ( isset( $image ) && $image->hasAttribute( 'alt' ) && $image->getAttribute( 'alt' ) !== '' ) {
 			$alt = $image->getAttribute( 'alt' );
 			if ( strlen( $alt ) > 300 ) {
 				$image_code = $image;

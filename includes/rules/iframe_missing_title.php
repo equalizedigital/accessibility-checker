@@ -19,7 +19,7 @@ function edac_rule_iframe_missing_title( $content, $post ) { // phpcs:ignore Gen
 	$errors      = array();
 
 	foreach ( $iframe_tags as $iframe ) {
-		if ( isset( $iframe ) && $iframe->getAttribute( 'title' ) == '' && $iframe->getAttribute( 'aria-label' ) == '' ) {
+		if ( isset( $iframe ) && $iframe->getAttribute( 'title' ) === '' && $iframe->getAttribute( 'aria-label' ) === '' ) {
 
 			$iframecode = htmlspecialchars( $iframe->outertext );
 

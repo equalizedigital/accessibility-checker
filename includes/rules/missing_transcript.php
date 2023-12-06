@@ -24,7 +24,7 @@ function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore Gener
 
 	$dom->convert_tag_to_marker( array( 'img', 'iframe', 'audio', 'video', '.is-type-video' ) );
 	foreach ( $elements as $element ) {
-		if ( ! $dom->text_around_element_contains( $element, __( 'transcript', 'edac' ), 25 ) ) {
+		if ( ! $dom->text_around_element_contains( $element, __( 'transcript', 'accessibility-checker' ), 25 ) ) {
 			$element->innertext = '';
 			$errors[]           = $element;
 		}
@@ -32,7 +32,7 @@ function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore Gener
 	$linked_media = $dom->find_linked_media( true );
 
 	foreach ( $linked_media as $media_link ) {
-		if ( ! $dom->text_around_element_contains( $media_link, __( 'transcript', 'edac' ), 25 ) ) {
+		if ( ! $dom->text_around_element_contains( $media_link, __( 'transcript', 'accessibility-checker' ), 25 ) ) {
 			$errors[] = $media_link;
 		}
 	}

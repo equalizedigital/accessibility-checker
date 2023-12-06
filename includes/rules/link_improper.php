@@ -20,7 +20,7 @@ function edac_rule_link_improper( $content, $post ) { // phpcs:ignore Generic.Co
 	$errors = array();
 	$links  = $dom->find( 'a' );
 	foreach ( $links as $link ) {
-		if ( ( ! $link->hasAttribute( 'href' ) || trim( $link->getAttribute( 'href' ) ) == '#' ) && $link->getAttribute( 'role' ) != 'button' ) {
+		if ( ( ! $link->hasAttribute( 'href' ) || trim( $link->getAttribute( 'href' ) ) === '#' ) && $link->getAttribute( 'role' ) !== 'button' ) {
 			$a_tag_code = $link->outertext;
 			$errors[]   = $a_tag_code;
 		}

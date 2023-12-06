@@ -27,7 +27,7 @@
 					?>
 				</h1>
 				<p>
-					<?php 
+					<?php
 					echo( esc_html__( 'version ', 'accessibility-checker' ) . esc_html( $version ) );
 					?>
 				</p>
@@ -48,14 +48,14 @@
 				<p><?php esc_html_e( 'Follow these steps to get started checking your content:', 'accessibility-checker' ); ?></p>
 				<ol>
 					<li>
-						<?php 
-						printf( 
+						<?php
+						printf(
 							wp_kses(
 								// translators: %s: path to settings page.
-								__( 'On the <a href="%s">Settings Page</a>, choose which post types you want to scan.', 'accessibility-checker' ), 
+								__( 'On the <a href="%s">Settings Page</a>, choose which post types you want to scan.', 'accessibility-checker' ),
 								array( 'a' => array( 'href' => array() ) )
 							),
-							esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ) 
+							esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) )
 						);
 						?>
 					</li>
@@ -178,7 +178,7 @@
 				<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?> 
 				<span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
 			</a>
-		<?php	
+		<?php
 		if ( edac_check_plugin_installed( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
 			?>
 			<br /><a class="edac-pro-callout-activate" href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=license' ) ); ?>">
@@ -190,7 +190,7 @@
 		</div>
 		<?php
 	}
-	
+
 	?>
 
 		<div class="edac-panel">
@@ -203,16 +203,16 @@
 			?>
 		</div>
 
-		<?php 
-		
-		
+		<?php
+
+
 		if ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_email_optin', true ) ) ) {
-			\EDAC\Welcome_Page::render_email_opt_in( 
+			\EDAC\Welcome_Page::render_email_opt_in(
 				'1273a5c7a',
-				'1a0796bc2303c2cb', 
-				'', 
-				'3zdf37c20714225fe975e2772c61e00bf3a196e8e7f12fdcb55c14b48b8778764e' 
-			); 
+				'1a0796bc2303c2cb',
+				'',
+				'3zdf37c20714225fe975e2772c61e00bf3a196e8e7f12fdcb55c14b48b8778764e'
+			);
 		}
 		?>
 	</div>

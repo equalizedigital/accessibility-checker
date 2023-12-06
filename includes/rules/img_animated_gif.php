@@ -25,7 +25,7 @@ function edac_rule_img_animated_gif( $content, $post ) { // phpcs:ignore Generic
 	if ( $gifs ) {
 		foreach ( $gifs as $gif ) {
 
-			if ( edac_img_gif_is_animated( $gif->getAttribute( 'src' ) ) == false ) {
+			if ( edac_img_gif_is_animated( $gif->getAttribute( 'src' ) ) === false ) {
 				continue;
 			}
 
@@ -38,7 +38,7 @@ function edac_rule_img_animated_gif( $content, $post ) { // phpcs:ignore Generic
 	if ( $webps ) {
 		foreach ( $webps as $webp ) {
 
-			if ( edac_img_webp_is_animated( $webp->getAttribute( 'src' ) ) == false ) {
+			if ( edac_img_webp_is_animated( $webp->getAttribute( 'src' ) ) === false ) {
 				continue;
 			}
 
@@ -75,7 +75,7 @@ function edac_rule_img_animated_gif( $content, $post ) { // phpcs:ignore Generic
  * @return bool
  */
 function edac_img_gif_is_animated( $filename ) {
-	
+
 	$upload_dir_info  = wp_get_upload_dir();
 	$uploads_base_dir = trailingslashit( $upload_dir_info['basedir'] );
 
@@ -120,6 +120,7 @@ function edac_img_gif_is_animated( $filename ) {
 		$count += preg_match_all( '#\x00\x21\xF9\x04.{4}\x00(\x2C|\x21)#s', $chunk, $matches );
 	}
 
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 	fclose( $fh );
 	return $count > 1;
 }
@@ -156,7 +157,7 @@ function edac_img_webp_is_animated( $filename ) {
 		// Handle the error, for example, by logging it or returning false.
 		return false;
 	}
-	
+
 	// See: https://stackoverflow.com/questions/45190469/how-to-identify-whether-webp-image-is-static-or-animated.
 	$result = false;
 	fseek( $fh, 12 );
@@ -167,6 +168,8 @@ function edac_img_webp_is_animated( $filename ) {
 		$byte   = fread( $fh, 1 );
 		$result = ( ( ord( $byte ) >> 1 ) & 1 ) ? true : false;
 	}
+
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 	fclose( $fh );
 	return $result;
 }

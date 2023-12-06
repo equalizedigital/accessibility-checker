@@ -17,7 +17,7 @@ function edac_rule_link_pdf( $content, $post ) { // phpcs:ignore Generic.CodeAna
 	$dom    = $content['html'];
 	$errors = array();
 	$as     = $dom->find( 'a' );
-	
+
 	foreach ( $as as $a ) {
 
 		if ( $a->getAttribute( 'href' ) ) {

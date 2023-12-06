@@ -21,7 +21,7 @@ function edac_rule_empty_form_label( $content, $post ) { // phpcs:ignore Generic
 
 	foreach ( $labels as $label ) {
 
-		$label_text = str_ireplace( array( '*', __( 'required', 'edac' ) ), '', $label->plaintext );
+		$label_text = str_ireplace( array( '*', __( 'required', 'accessibility-checker' ) ), '', $label->plaintext );
 		if ( empty( preg_replace( '/\s+/', '', $label_text ) ) ) {
 			$errors[] = $label->outertext;
 		}

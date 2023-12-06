@@ -17,16 +17,16 @@ function edac_rule_img_linked_alt_missing( $content, $post ) { // phpcs:ignore G
 	$dom    = $content['html'];
 	$errors = array();
 	$as     = $dom->find( 'a' );
-	
+
 	foreach ( $as as $a ) {
 
 		// anchors with aria-label or title or valid node text.
-		if ( $a->getAttribute( 'aria-label' ) == '' && $a->getAttribute( 'title' ) == '' && strlen( $a->plaintext ) <= 5 ) {
+		if ( $a->getAttribute( 'aria-label' ) === '' && $a->getAttribute( 'title' ) === '' && strlen( $a->plaintext ) <= 5 ) {
 
 			$images = $a->find( 'img' );
 			foreach ( $images as $image ) {
 
-				if ( isset( $image ) && ( ! $image->hasAttribute( 'alt' ) && $image->getAttribute( 'role' ) != 'presentation' ) && $image->getAttribute( 'aria-hidden' ) != 'true' ) {
+				if ( isset( $image ) && ( ! $image->hasAttribute( 'alt' ) && $image->getAttribute( 'role' ) !== 'presentation' ) && $image->getAttribute( 'aria-hidden' ) !== 'true' ) {
 
 					$image_code = $a;
 

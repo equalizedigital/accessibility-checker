@@ -132,7 +132,7 @@ function edac_validate( $post_ID, $post, $action ) {
 
 			// Run php-base rules.
 			if ( ( array_key_exists( 'ruleset', $rule ) && 'php' === $rule['ruleset'] ) ||
-				( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) 
+				( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] )
 			) {
 				do_action( 'edac_before_rule', $post_ID, $rule, $action );
 				if ( EDAC_DEBUG === true ) {
@@ -187,62 +187,48 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 	$rules        = edac_register_rules();
 	$js_rule_ids  = array();
 	$php_rule_ids = array();
+	$rule_slugs   = array();
 	foreach ( $rules as $rule ) {
-		if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
-			$js_rule_ids[] = $rule['slug'];
-		} else {
-			$php_rule_ids[] = $rule['slug'];
+		if ( isset( $rule['ruleset'] ) && 'js' === $rule['ruleset'] ) {
+			if ( 'js' === $ruleset ) {
+				$rule_slugs[] = $rule['slug'];
+			}
+			continue;
 		}
+		$rule_slugs[] = $rule['slug'];
 	}
-	
-	// Build a sql sanitized list from an array
-	// See: https://stackoverflow.com/questions/10634058/wordpress-prepared-statement-with-in-condition .
-	$js_rule_ids = array_map(
-		function ( $v ) {
-			return "'" . esc_sql( $v ) . "'";
-		},
-		$js_rule_ids
-	);
-	$js_rule_ids = implode( ',', $js_rule_ids );
-
-	// Build a sql sanitized list from an array
-	// See: https://stackoverflow.com/questions/10634058/wordpress-prepared-statement-with-in-condition .
-	$php_rule_ids = array_map(
-		function ( $v ) {
-			return "'" . esc_sql( $v ) . "'";
-		},
-		$php_rule_ids
-	);
-	$php_rule_ids = implode( ',', $php_rule_ids );
-
 
 	if ( 1 === $pre ) {
 
-		// set record flag before validating content.
-		$sql = $wpdb->prepare( 'UPDATE ' . $wpdb->prefix . 'accessibility_checker SET recordcheck = %d WHERE siteid = %d and postid = %d and type = %s', 0, get_current_blog_id(), $post_ID, $type );
-		
-		if ( 'js' === $ruleset ) {
-			$sql = $sql . ' AND rule IN(' . $js_rule_ids . ')';
-		} else {
-			$sql = $sql . ' AND rule IN(' . $php_rule_ids . ')';
-		}
-
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Prepare used above, Using direct query for adding data to database, caching not required for one time operation.
-		$wpdb->query( $sql );
+		// Set record flag before validating content.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+		$wpdb->query(
+			$wpdb->prepare(
+				sprintf(
+					"UPDATE {$wpdb->prefix}accessibility_checker SET recordcheck = %%d WHERE siteid = %%d and postid = %%d and type = %%s AND rule IN (%s)",
+					implode( ',', array_fill( 0, count( $rule_slugs ), '%s' ) )
+				),
+				array_merge(
+					array( 0, get_current_blog_id(), $post_ID, $type ),
+					$rule_slugs
+				)
+			)
+		);
 
 	} elseif ( 2 === $pre ) {
-		// after validation is complete remove previous errors that were not found.
-		$sql = $wpdb->prepare( 'DELETE FROM ' . $wpdb->prefix . 'accessibility_checker WHERE siteid = %d and postid = %d and type = %s and recordcheck = %d', get_current_blog_id(), $post_ID, $type, 0 );
-
-		if ( 'js' === $ruleset ) {
-			$sql = $sql . ' AND rule IN(' . $js_rule_ids . ')';
-		} else {
-			$sql = $sql . ' AND rule IN(' . $php_rule_ids . ')';
-		}
-
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Prepare used above, Using direct query for adding data to database, caching not required for one time operation.
-		$wpdb->query( $sql );
-	
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+		$wpdb->query(
+			$wpdb->prepare(
+				sprintf(
+					"DELETE FROM {$wpdb->prefix}accessibility_checker WHERE siteid = %%d and postid = %%d and type = %%s and recordcheck = %%d AND rule IN (%s)",
+					implode( ',', array_fill( 0, count( $rule_slugs ), '%s' ) )
+				),
+				array_merge(
+					array( get_current_blog_id(), $post_ID, $type, 0 ),
+					$rule_slugs
+				)
+			)
+		);
 	}
 }
 
@@ -269,7 +255,6 @@ function edac_get_content( $post ) {
 	$username = get_option( 'edacp_authorization_username' );
 	$password = get_option( 'edacp_authorization_password' );
 
-
 	// Check if server returns that the domain IP is a local/loopback address.
 	// If so then file_get_contents calls from this server to this domain will
 	// likely not be able to verify ssl. So we need to use a context that
@@ -279,17 +264,17 @@ function edac_get_content( $post ) {
 	$no_verify_ssl = false; // Verify by default.
 
 	$is_local_loopback = get_option( 'edac_local_loopback', null );
-	
+
 	if ( null === $is_local_loopback ) {
-	
+
 		$parsed_url = wp_parse_url( home_url() );
 
 		if ( isset( $parsed_url['host'] ) ) {
 			$is_local_loopback = \EDAC\Helpers::is_domain_loopback( $parsed_url['host'] );
 			update_option( 'edac_local_loopback', $is_local_loopback );
-		}       
+		}
 	}
-	
+
 	/**
 	 * Indicates file_get_html should not verify SSL.
 	 *
@@ -307,9 +292,9 @@ function edac_get_content( $post ) {
 		);
 	}
 
-	
 	// http authorization.
 	if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true && $username && $password ) {
+		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- This is a valid use case for base64_encode.
 		$context_opts['http']['header'] = 'Authorization: Basic ' . base64_encode( "$username:$password" );
 	}
 
@@ -328,28 +313,27 @@ function edac_get_content( $post ) {
 		}
 
 		// set token if post status is 'draft' or 'pending'.
-		if ( in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
-	
+		if ( 'draft' === $post->post_status || 'pending' === $post->post_status ) {
+
 			// Generate a token that is valid for a short period of time.
 			$token = edac_generate_nonce( 'draft-or-pending-status', 120 );
-		
+
 			// Add the token to the URL.
 			$url = add_query_arg( 'edac_token', $token, $url );
 
 		}
-	
 
 		try {
-	
+
 			// setup the context for the request.
 			// note - if follow_location => false, permalinks that redirect (both offsite and on).
 			// will not be followed, so $content['html] will be false.
 			$merged_context_opts = array_merge( $default_context_opts, $context_opts );
 			$context             = stream_context_create( $merged_context_opts );
-			
-			$dom             = file_get_html( $url, false, $context );      
+
+			$dom             = file_get_html( $url, false, $context );
 			$content['html'] = edac_remove_elements(
-				$dom, 
+				$dom,
 				array(
 					'#wpadminbar',            // wp admin bar.
 					'.edac-highlight-panel',  // frontend highlighter.
@@ -357,27 +341,27 @@ function edac_get_content( $post ) {
 					'#qm-icon-container',     // query-monitor.
 				)
 			);
-			
-			// Write density data to post meta. 
+
+			// Write density data to post meta.
 			if ( $content['html'] ) {
-			
+
 				$page_html         = $content['html']->save();
 				$body_density_data = edac_get_body_density_data( $page_html );
-				
-				if ( false != $body_density_data ) {
+
+				if ( false !== $body_density_data ) {
 					update_post_meta( $post->ID, '_edac_density_data', $body_density_data );
 				} else {
 					delete_post_meta( $post->ID, '_edac_density_data' );
-				}        
-			}       
+				}
+			}
 		} catch ( Exception $e ) {
 			update_post_meta( $post->ID, '_edac_density_data', '0,0' );
-	
+
 			$content['html'] = false;
 		}
 	} else {
 		update_post_meta( $post->ID, '_edac_density_data', '0,0' );
-	
+
 		$content['html'] = false;
 	}
 
@@ -405,18 +389,18 @@ function edac_get_content( $post ) {
 			$stylesheet_url = $stylesheet->href;
 
 			$css_args['edac_cache'] = time();
-		
+
 			if ( isset( $token ) ) {
 				$css_args['edac_token'] = $token;
-		
+
 			}
-			
+
 			// Add the query vars to the URL.
-			$stylesheet_url = add_query_arg( 
+			$stylesheet_url = add_query_arg(
 				$css_args,
 				$stylesheet_url
 			);
-			
+
 			$response = wp_remote_get( $stylesheet_url ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- This is a valid use case for wp_remote_get as plugin can be used on environments other than WPVIP.
 
 			if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
@@ -451,7 +435,7 @@ function edac_show_draft_posts( $query ) {
 	if ( is_admin() || is_feed() || wp_doing_ajax() || ( function_exists( 'rest_doing_request' ) && rest_doing_request() ) ) {
 		return;
 	}
-	
+
 	// Do not run if the query variable 'edac_cache' is not set.
 	// phpcs:ignore WordPress.Security.NonceVerification
 	$url_cache = isset( $_GET['edac_cache'] ) ? sanitize_text_field( $_GET['edac_cache'] ) : '';
@@ -462,7 +446,7 @@ function edac_show_draft_posts( $query ) {
 	// Retrieve the token from the URL.
 	// phpcs:ignore WordPress.Security.NonceVerification
 	$url_token = isset( $_GET['edac_token'] ) ? sanitize_text_field( $_GET['edac_token'] ) : false;
-	
+
 	// If the token is not set we do nothing and return early.
 	if ( false === $url_token ) {
 		return;
