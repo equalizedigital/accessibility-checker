@@ -519,7 +519,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 		$request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
 		$request     = wp_remote_get( add_query_arg( $query_args, $request_uri ) ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- wp_remote_get needed to be compatible with all environments.
 
-		if ( is_wp_error( $request ) || '200' !== (int) wp_remote_retrieve_response_code( $request ) ) {
+		if ( is_wp_error( $request ) || 200 !== (int) wp_remote_retrieve_response_code( $request ) ) {
 			return;
 		}
 
