@@ -17,7 +17,7 @@
  *
  * @return void
  */
-function edac_oxygen_builder_save_post( $meta_id, $post_id, $meta_key, $meta_value ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed, Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- This function is a hook and the parameters are required.
+function edac_oxygen_builder_save_post( $meta_id, $post_id, $meta_key, $meta_value ) { // phpcs:ignore -- This function is a hook and the parameters are required.
 	if ( 'ct_builder_shortcodes' === $meta_key ) {
 
 		$post = get_post( $post_id, OBJECT );
@@ -32,7 +32,7 @@ function edac_oxygen_builder_save_post( $meta_id, $post_id, $meta_key, $meta_val
  * @return void
  */
 function edac_post_on_load() {
-	global $pagenow, $typenow;
+	global $pagenow;
 	if ( 'post.php' === $pagenow ) {
 		global $post;
 		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );

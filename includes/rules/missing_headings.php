@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_missing_headings( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed -- $content is reserved for future use or for compliance with a specific interface.
+function edac_rule_missing_headings( $content, $post ) { // phpcs:ignore -- $content is reserved for future use or for compliance with a specific interface.
 
 	$word_count = str_word_count( wp_strip_all_tags( $post->post_content ) );
 

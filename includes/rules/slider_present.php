@@ -35,7 +35,7 @@
  * bxSlider: .bxslider, .bx-wrapper - https://bxslider.com/
  * Glidejs: .glide--slider - https://glidejs.com/
  */
-function edac_rule_slider_present( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_slider_present( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom      = $content['html'];
 	$errors   = array();

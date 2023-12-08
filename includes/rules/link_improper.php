@@ -14,7 +14,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_link_improper( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_link_improper( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
 	$errors = array();

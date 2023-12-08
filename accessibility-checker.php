@@ -129,12 +129,6 @@ register_activation_hook( __FILE__, 'edac_activation' );
 register_deactivation_hook( __FILE__, 'edac_deactivation' );
 
 /**
- * Define file path and basename
- */
-$edac_plugin_directory = __FILE__;
-$edac_plugin_basename  = plugin_basename( __FILE__ );
-
-/**
  * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
  */
 if ( ! defined( 'MAX_FILE_SIZE' ) ) {
@@ -213,7 +207,7 @@ add_action( 'wp_dashboard_setup', 'edac_wp_dashboard_setup' );
  */
 function edac_init() {
 	// instantiate the classes that need to load hooks early.
-	$rest_api = new \EDAC\Rest_Api();
+	new \EDAC\Rest_Api();
 }
 
 /**
@@ -1243,8 +1237,6 @@ function edac_details_ajax() {
 	$rules = array_merge( $error_rules, $warning_rules, $passed_rules );
 
 	if ( $rules ) {
-		global $wp_version;
-		$days_active       = edac_days_active();
 		$ignore_permission = true;
 		if ( has_filter( 'edac_ignore_permission' ) ) {
 			$ignore_permission = apply_filters( 'edac_ignore_permission', $ignore_permission );

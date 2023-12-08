@@ -24,7 +24,7 @@ function edac_rule_incorrect_heading_order( $content, $post ) {
 	$previous               = $starting_heading_level;
 
 	if ( $elements ) {
-		foreach ( $elements as $key => $element ) {
+		foreach ( $elements as $element ) {
 			if ( $element->hasAttribute( 'aria-level' ) ) {
 				$current = $element->getAttribute( 'aria-level' );
 			} else {

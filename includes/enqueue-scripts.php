@@ -74,8 +74,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 		return;
 	}
 
-	$pro               = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true;
-	$has_pending_scans = false;
+	$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true;
 
 	$headers = array(
 		'Content-Type' => 'application/json',

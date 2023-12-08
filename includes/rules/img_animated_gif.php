@@ -15,7 +15,7 @@
  * checks all gif images that are animated
  * checks for giphy and tenor gif embeds
  */
-function edac_rule_img_animated_gif( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_img_animated_gif( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
 	$errors = array();

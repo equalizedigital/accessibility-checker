@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed -- $content is reserved for future use or for compliance with a specific interface.
+function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore -- $content is reserved for future use or for compliance with a specific interface.
 
 	if ( empty( $post->post_content ) ) {
 		return array();

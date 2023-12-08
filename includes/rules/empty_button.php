@@ -18,7 +18,7 @@
  * <input type="reset">
  * role="button"
  */
-function edac_rule_empty_button( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_empty_button( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 	$dom     = $content['html'];
 	$buttons = $dom->find( 'button, [role=button]' );
 	$inputs  = $dom->find( 'input[type=button], input[type=submit], input[type=reset]' );

@@ -16,7 +16,7 @@
  * 20 pixels or bigger, or
  * 16 pixels or bigger and bold and/or italicized.
  */
-function edac_rule_possible_heading( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_possible_heading( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
 	$errors = array();

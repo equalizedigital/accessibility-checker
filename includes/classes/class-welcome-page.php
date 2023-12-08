@@ -24,7 +24,6 @@ class Welcome_Page {
 	 */
 	public static function render_summary() {
 
-		$html        = '';
 		$scans_stats = new Scans_Stats();
 		$summary     = $scans_stats->summary();
 		?>

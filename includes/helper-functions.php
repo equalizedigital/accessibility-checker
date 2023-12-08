@@ -544,7 +544,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
  * @param  integer $paragraph_count number of paragraphs to return.
  * @return json
  */
-function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed -- $truncate is used in the future.
+function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) { // phpcs:ignore -- $truncate is used in the future.
 
 	$json = edac_get_upcoming_meetups_json( $meetup, $count );
 
@@ -555,10 +555,7 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, 
 	$html = '<ul class="edac-upcoming-meetup-list">';
 
 	foreach ( $json as $event ) {
-
-		$desc = edac_truncate_html_content( $event->description, $paragraph_count );
-
-		$link_text = 'Attend Free';
+		$link_text = esc_html__( 'Attend Free', 'accessibility-checker' );
 
 		$html .= '
 		<li class="edac-upcoming-meetup-item edac-mb-3">

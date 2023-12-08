@@ -52,7 +52,6 @@ class REST_Api {
 					array(
 						'methods'             => array( 'GET', 'POST' ),
 						'callback'            => function () {
-							global $wp;
 							$messages = array();
 							$messages['time'] = time();
 							$messages['perms'] = current_user_can( 'edit_posts' );
@@ -264,7 +263,7 @@ class REST_Api {
 			do_action( 'edac_after_validate', $post_id, 'js' );
 
 			// Update the summary info that is stored in meta this post.
-			$summary = edac_summary( $post_id );
+			edac_summary( $post_id );
 
 			// remove corrected records.
 			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 2, 'js' );
@@ -418,7 +417,7 @@ class REST_Api {
 	 *
 	 * @return \WP_REST_Response
 	 */
-	public function get_scans_stats_by_post_types( $request ) { //phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
+	public function get_scans_stats_by_post_types( $request ) { //phpcs:ignore
 
 		try {
 
