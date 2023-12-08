@@ -31,7 +31,7 @@ class EDACCompareStrings extends WP_UnitTestCase {
 	 */
 	public function edac_compare_strings_data() {
 		return array(
-			'mixed upper/lower letters' => array(
+			'mixed upper/lower letters'            => array(
 				'string1'  => 'random string',
 				'string2'  => 'RanDom StrIng',
 				'expected' => true,
@@ -41,7 +41,7 @@ class EDACCompareStrings extends WP_UnitTestCase {
 				'string2'  => '<p>RanDom StrIng</p>',
 				'expected' => true,
 			),
-			'with different html tags' => array(
+			'with different html tags'             => array(
 				'string1'  => '<p>random string</p>',
 				'string2'  => '<div>random string</div>',
 				'expected' => true,
@@ -51,12 +51,12 @@ class EDACCompareStrings extends WP_UnitTestCase {
 				'string2'  => 'permalink to random string',
 				'expected' => true,
 			),
-			'containing "&nbsp;" strings' => array(
+			'containing "&nbsp;" strings'          => array(
 				'string1'  => 'random&nbsp; string',
 				'string2'  => 'random string',
 				'expected' => true,
 			),
-			'different strings' => array(
+			'different strings'                    => array(
 				'string1'  => 'random string',
 				'string2'  => 'different string',
 				'expected' => false,
