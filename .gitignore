@@ -23,3 +23,5 @@ dist
 .wp-env.json
 .wp-env
 
+
+.phpunit.result.cache
