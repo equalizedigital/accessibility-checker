@@ -13,29 +13,30 @@
  * @return boolean
  */
 function edac_compare_strings( $string1, $string2 ) {
-	// text to remove.
-	$remove_text   = array();
-	$remove_text[] = __( 'permalink of ', 'accessibility-checker' );
-	$remove_text[] = __( 'permalink to ', 'accessibility-checker' );
-	$remove_text[] = __( '&nbsp;', 'accessibility-checker' );
+	/**
+	 * Prepare strings for our comparison.
+	 * 
+	 * @param string $content String to prepare.
+	 * @return string
+	 */
+	$prepare_strings = function ( $content ) {
+		// Text to remove.
+		$remove_text = array(
+			__( 'permalink of ', 'accessibility-checker' ),
+			__( 'permalink to ', 'accessibility-checker' ),
+			__( '&nbsp;', 'accessibility-checker' ),
+		);
 
-	$string1 = strtolower( $string1 );
-	$string1 = str_ireplace( $remove_text, '', $string1 );
-	$string1 = wp_strip_all_tags( $string1 );
-	$string1 = trim( $string1, " \t\n\r\0\x0B\xC2\xA0" );
-	$string1 = html_entity_decode( $string1 );
+		$content = strtolower( $content );
+		$content = str_ireplace( $remove_text, '', $content );
+		$content = wp_strip_all_tags( $content );
+		$content = trim( $content, " \t\n\r\0\x0B\xC2\xA0" );
+		$content = html_entity_decode( $content );
 
-	$string2 = strtolower( $string2 );
-	$string2 = str_ireplace( $remove_text, '', $string2 );
-	$string2 = wp_strip_all_tags( $string2 );
-	$string2 = trim( $string2, " \t\n\r\0\x0B\xC2\xA0" );
-	$string2 = html_entity_decode( $string2 );
+		return $content;
+	};
 
-	if ( $string1 === $string2 ) {
-		return 1;
-	} else {
-		return 0;
-	}
+	return $prepare_strings( $string1 ) === $prepare_strings( $string2 );
 }
 
 /**
