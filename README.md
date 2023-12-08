@@ -18,7 +18,7 @@ Audit and check your website for accessibility before you hit publish. In-post a
 ## Want to contribute?
 
 ### Prerequisites
-At Equalize Digital, we make use a specific toolset to develop our code. Please ensure you have the following tools installed before contributing.
+At Equalize Digital, we make use of a specific toolset to develop our code. Please ensure you have the following tools installed before contributing.
 
 * [Composer](https://getcomposer.org/)
 * [NPM](https://www.npmjs.com/)
