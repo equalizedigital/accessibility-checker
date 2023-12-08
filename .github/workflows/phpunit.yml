@@ -20,11 +20,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - php_version: '7.4'
+          - php_version: '8.1'
             wp_version: '6.2'
             multisite: false
 
-          - php_version: '8.0'
+          - php_version: '8.1'
             wp_version: 'latest'
             multisite: false
 
