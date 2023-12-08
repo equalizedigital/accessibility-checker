@@ -1,0 +1,305 @@
+= 1.5.6 =
+Fixed: reading level ajax timing issue
+
+= 1.5.5 =
+Fixed: frontend highlighting description panel close button JavaScript error
+Fixed: frontend highlighting no issues detected JavaScript error
+Fixed: frontend highlighting panel close button bug
+
+= 1.5.4 =
+Updated: welcome page data caching for better performance
+Removed: dashboard reports widget
+
+= 1.5.3 =
+Updated: prevent enqueue scripts from running if global post is not defined
+
+= 1.5.2 =
+Fixed: missing class
+Removed: Freemius
+
+= 1.5.1 =
+Updated: button screen reader text
+
+= 1.5.0 =
+Added: site wide summary
+Added: accessibility checker dashboard widget
+Updated: welcome page
+Updated: frontend highlighting accessibility
+
+= 1.4.4 =
+Removed: unused class
+
+= 1.4.3 =
+Updated: frontend highlighting to allow ignored items accessed via the view on page button
+Updated: frontend highlighting panel logic to match selected post types in the settings
+Updated: frontend highlighting button size and placement improvements
+Updated: frontend highlighting number of issues output
+Updated: frontend highlighting scroll-to improvements
+Fixed: Freemius icon output
+Updated: demo video
+
+= 1.4.2 =
+Added: frontend highlighting loading message
+Removed: frontend highlighting ignored issues
+Removed: frontend highlighting from customizer
+Fixed: frontend highlighting link styles
+Updated: frontend highlighting to allow elements that violate multiple rules
+Fixed: frontend highlighting elements not highlighting after closing the controls panel
+Fixed: frontend highlighting not finding images due to extra whitespace
+Updated: ambiguous text check to ignore svgs and icons
+Updated: animated gif check include animated webP images
+Updated: animated gif check to disregard URL parameters
+Fixed: undefined array key "query"
+Fixed: Reading level icon logic
+
+= 1.4.1 =
+Updated: Freemius SDK to the latest version
+
+= 1.4.0 =
+Added: frontend issue highlighting
+Updated: simple html dom to use strict on seek call to fix issue with too much recursion with complicated CSS
+Added: description and warning for Post Types to be Checked
+
+= 1.3.28 =
+Fixed: enqueue error on empty post types
+
+= 1.3.27 =
+Fixed: uninstall delete data
+
+= 1.3.26 =
+Fixed: database creation bug
+Fixed: simplified summary output
+
+= 1.3.25 =
+Fixed: video is present duplicating issues
+Updated: Missing subheadings word count
+Updated: prompt for simplified summary aded never option
+Fixed: minor coding standards
+Updated: Freemius SDK to version 2.5.8
+
+= 1.3.24 =
+Added: user_agent to file_get_html context
+Added: follow_location to file_get_html context to prevent scanning of offsite links
+Added: querystring check to file_get_html url to prevent malformed urls when the cache breaker string is appended
+Updated: get CSS via wp_remote_get
+
+= 1.3.23 =
+Added: GAAD Admin Notice
+
+= 1.3.22 =
+Fixed: conflict with full site editor
+Fixed: bug with the Image Empty Alternative Text check not detecting images
+Fixed: bug with ignore button not working on the open issues and the ignore log
+
+= 1.3.21 =
+Fixed: issue of reading level & simplified summary mismatching
+Updated: password protected admin notice to be dismissable
+Updated: position of password protected notice on single post
+Fixed: issue with summary panel not showing if password protected
+
+= 1.3.20 =
+Updated: freemius to the latest version
+
+= 1.3.19 =
+Updated: color contrast failure check
+
+= 1.3.18 =
+Updated: system info custom post type output
+
+= 1.3.17 =
+Fixed: license constant conflict
+
+= 1.3.16 =
+Fixed: issue with ignored issues being removed on post save
+Fixed: issue with escaped html displaying on simplified summary
+Fixed: Ignored items label
+
+= 1.3.15 =
+Remove: license tab
+Updated: license checks
+
+= 1.3.14 =
+Added: security fixes
+
+= 1.3.13 =
+Fixed: nonce plugin update conflict
+
+= 1.3.12 =
+Added: added security check to system info download
+
+= 1.3.11 =
+Updated: quick edit save to check if _inline_edit array key is set
+
+= 1.3.10 =
+Added: image column to details panel to display issue image
+Updated: details rule name to an H3 and added hidden h4 for each issue
+Added: aria-label to details expand button
+Added: space between number and error name in error details list
+Added: aria-expanded and aria-controls to buttons on details panel
+
+= 1.3.9 =
+Added: filter edac_no_verify_ssl to bypass SSL validation. Use: add_filter( 'edac_no_verify_ssl', '__return_true' );
+Fixed: undefined variable error color contrast failure check
+
+= 1.3.8 =
+Updated: database index on postid for better performance
+
+= 1.3.7 =
+Fixed: issue when restricted websites fail to generate post meta
+
+= 1.3.6 =
+Fixed: password protection notice logic
+
+= 1.3.5 =
+Fixed: marketing notice logic
+
+= 1.3.4 =
+* Updated: ARIA Hidden check to ignore for core spacer block
+* Updated: Ambiguous Anchor Text check to disregard spaces and punctuation
+* Updated: Footer statement link with 'opens in new window' aria-label
+* Updated: Link Opens New Window or Tab check to search for contained phrases rather than equal to phrases
+* Added: Support for role attribute to Missing Subheadings and Incorrect Heading Order checks
+* Added: Improper Use of Link check
+* Updated: Broken Skip or Anchor Link check to exclude error now flagged by the Improper Use of Link check
+* Added: Password protection notices
+
+= 1.3.3 =
+* Fixed: force color contrast font size value
+
+= 1.3.2 =
+* Fixed: minor bug in replace css variables function
+
+= 1.3.1 =
+* Fixed: compiled JavaScript to latest version
+
+= 1.3.0 =
+* Removed: Admin Notices from plugin settings pages
+* Updated: Location of ignore count and made less ambiguous on the details tab
+* Fixed: Code snippet wrapping
+* Updated: Database check to ensure tables exist
+* Added: Rule summary text to rules array
+
+= 1.2.14 =
+* Show Open Issues and Ignore Log admin pages to users with ignore permissions bug fix
+
+= 1.2.13 =
+* Show Open Issues and Ignore Log admin pages to users with ignore permissions
+* Fix bug when post types setting was blank
+
+= 1.2.12 =
+* Updates to system info
+
+= 1.2.11 =
+* Fix conflict with widgets block editor
+* Fix post types setting bug
+
+= 1.2.10 =
+* Fix issue with unmatched reading levels
+
+= 1.2.9 =
+* Add support for PHP 8
+* Make helper icons links less ambiguous
+
+= 1.2.8 =
+* Freemius Update
+
+= 1.2.7 =
+* Add accessibility statement page template 
+
+= 1.2.6 =
+* Minor accessibility updates
+
+= 1.2.5 =
+* System info updates
+
+= 1.2.4 =
+* Add Oxygen Builder shortcode content to readability scan
+
+= 1.2.3 =
+* On save check post types to prevent menu save error
+
+= 1.2.2 =
+* Add support for Accessibility New Window Warning Plugin
+* Delete issues and meta data when post is added to trash
+* Color Contrast and Possible Heading minor bug fixes
+* Fixed post type purge bug when saving settings
+* Review notification
+
+= 1.2.1 =
+* Fixed database version that was preventing the database from being created on activation
+
+= 1.2.0 =
+* Improved ambiguous text check to include aria-label and aria-labelledby
+* Color contrast adjust ratio based on font size
+* Ajax security improvements
+* Basic CSS veriable support
+* Fast Track
+* Added support for Oxygen Builder
+
+= 1.1.3 =
+* Code object word break
+
+= 1.1.2 =
+* Improve legacy PHP compatibility
+
+= 1.1.1 =
+* Added filter for readability score content
+
+= 1.1.0 =
+* System info output added to settings
+
+= 1.0.13 =
+* Prevent page refresh when using classic editor
+
+= 1.0.12 =
+* Improved accuracy of skipped heading level
+
+= 1.0.11 =
+* Added informative error code to text justified and check within CSS
+* Update missing language attribute to only check the first html tag
+
+= 1.0.10 =
+* Text underlined, text small improvements
+* Updated deprecated jQuery
+
+= 1.0.9 =
+* Updates to missing title check
+
+= 1.0.8 =
+* Added support for fullsite scan
+* Added actions for log
+
+= 1.0.7 =
+* Ensure checks are not run if content not retrieved
+* Minor text fixes
+
+= 1.0.6 =
+* Check full page for issues
+* Check draft posts
+* Remove color contrast from error count
+* Update missing heading and heading order checks
+
+= 1.0.5 =
+* On post validate check that the post is published.
+
+= 1.0.4 =
+* Update policy page sanitize logic to allow for undefined value
+
+= 1.0.3 =
+* Minor bug fixes to activation redirect and quick edit post updating
+* Image map missing alternative text error if only a space is present
+
+= 1.0.2 =
+* use uninstall.php instead of register_uninstall_hook
+* add option to delete all data on uninstall
+
+= 1.0.1 =
+* update requires version
+* fix tooltip links
+* add filter to get_content function
+* update post empty logic
+
+= 1.0.0 =
+* Everything is new and shiny.
+* We think it's awesome you want to make your website more accessible.
+* Check for giphy and tenor animated gifs
