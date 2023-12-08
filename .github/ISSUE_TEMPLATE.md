@@ -28,6 +28,7 @@
 - [ ] Classic Editor
 - [ ] Gutenberg
 - [ ] Classic Editor plugin
+- [ ] Page Builder (please specify):
 
 <!-- You can check these boxes once you've created the issue. -->
 * Which browser is affected (or browsers): 
@@ -36,6 +37,7 @@
 - [ ] Chrome
 - [ ] Firefox
 - [ ] Safari
+- [ ] Brave
 
 * Relevant plugins in case of a bug:
 <!-- Please make sure you can reproduce this bug with a default theme such as Twenty Seventeen. Sometimes issues may occur due to theme conflicts. -->
