@@ -35,11 +35,13 @@
 	<!-- Add the WordPress-VIP-Go standard -->
 	<rule ref="WordPress-VIP-Go"/>
 
-	<config name="testVersion" value="7.0-"/>
+    <!-- Run against the PHPCompatibility ruleset -->
+    <rule ref="PHPCompatibility">
+        <!-- WP supports down to 7.0 : https://wordpress.org/about/requirements/ -->
+        <config name="testVersion" value="7.0-"/>
+    </rule>
 
-	<rule ref="PHPCompatibilityWP">
-		<include-pattern>*\.php$</include-pattern>
-	</rule>
+    <config name="minimum_wp_version" value="6.2"/>
 
 	<rule ref="WordPress-Core"/>
 	<rule ref="WordPress.WP.I18n">
