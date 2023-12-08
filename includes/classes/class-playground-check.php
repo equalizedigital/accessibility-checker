@@ -1,7 +1,7 @@
 <?php
 /**
  * Class file for Plugin Check
- * 
+ *
  * @package Accessibility_Checker
  */
 

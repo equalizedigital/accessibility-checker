@@ -1,7 +1,7 @@
 <?php
 /**
  * Class file for scan settings
- * 
+ *
  * @package Accessibility_Checker
  */
 
@@ -22,7 +22,7 @@ class Settings {
 	 */
 	public static function get_scannable_post_statuses() {
 		return array( 'publish', 'future', 'draft', 'pending', 'private' );
-	} 
+	}
 
 
 	/**
@@ -32,14 +32,13 @@ class Settings {
 	 */
 	public static function get_scannable_post_types() {
 
-	
 		if ( ! class_exists( '\EDACP\Settings' ) ) {
-			
+
 			$post_types = Helpers::get_option_as_array( 'edac_post_types' );
 
 			// remove duplicates.
 			$post_types = array_unique( $post_types );
-			
+
 			// validate post types.
 			$args             = array(
 				'public'   => true,
@@ -53,16 +52,15 @@ class Settings {
 				if ( ! post_type_exists( $post_type ) || ! array_key_exists( $post_type, $valid_post_types ) ) {
 					unset( $post_types[ $key ] );
 				}
-			}       
+			}
 		} else {
 			$post_types = \EDACP\Settings::get_scannable_post_types();
 		}
 
-		
 		return $post_types;
 	}
 
-	
+
 	/**
 	 * Gets a count of posts that are scannable.
 	 *
@@ -73,15 +71,15 @@ class Settings {
 		global $wpdb;
 
 		$post_types = self::get_scannable_post_types();
-		
+
 		$post_statuses = self::get_scannable_post_statuses();
 
 		if ( ! empty( $post_types ) && ! empty( $post_statuses ) ) {
-			$sql = "SELECT COUNT(id) FROM {$wpdb->posts}  WHERE post_type IN(" . 
+			$sql = "SELECT COUNT(id) FROM {$wpdb->posts}  WHERE post_type IN(" .
 				Helpers::array_to_sql_safe_list( $post_types ) . ') and post_status IN(' .
-				Helpers::array_to_sql_safe_list( $post_statuses ) . 
+				Helpers::array_to_sql_safe_list( $post_statuses ) .
 			')';
-	
+
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$scannable_posts_count = $wpdb->get_var( $sql );
 

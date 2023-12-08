@@ -15,7 +15,7 @@
  * WCAG 2.0 level AA requires a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text.
  * Large text is defined as 14 point (typically 18.66px) and bold or larger, or 18 point (typically 24px) or larger.
  */
-function edac_rule_color_contrast_failure( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_color_contrast_failure( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	// check links in content for style tags.
 	$dom    = $content['html'];
@@ -55,7 +55,7 @@ function edac_rule_color_contrast_failure( $content, $post ) { // phpcs:ignore G
 
 				$preference = edac_deteremine_hierarchy( $rules );
 
-				if ( 'background' == $preference ) {
+				if ( 'background' === $preference ) {
 					$background = edac_check_color_match2( $rules['background'] );
 				} elseif ( 'background-color' === $preference ) {
 					$background = $rules['background-color'];
@@ -92,11 +92,11 @@ function edac_rule_color_contrast_failure( $content, $post ) { // phpcs:ignore G
 									preg_match_all( '!\d+!', $absolute_fontsize_errorcode, $matches );
 
 									// convert pixels to points.
-									if ( stristr( $absolute_fontsize_errorcode, 'px' ) == 'px' ) {
+									if ( stristr( $absolute_fontsize_errorcode, 'px' ) === 'px' ) {
 										$font_size = implode( ' ', $matches[0] ) * 0.75;
 									}
 
-									if ( stristr( $absolute_fontsize_errorcode, 'pt' ) == 'pt' ) {
+									if ( stristr( $absolute_fontsize_errorcode, 'pt' ) === 'pt' ) {
 										$font_size = implode( ' ', $matches[0] );
 									}
 								}
@@ -230,7 +230,7 @@ function edac_check_contrast( $content ) {
 			if ( ( $font_size >= 14 && true === $font_bold ) || $font_size >= 18 ) {
 				$ratio = 3;
 			}
-			
+
 			if ( edac_coldiff( $foreground, $background, $ratio ) ) {
 
 				$error_code = $element . ' { ';
@@ -260,7 +260,7 @@ function edac_check_contrast( $content ) {
 function edac_deteremine_hierarchy( $rules ) {
 	$first = '';
 	$rules = array_reverse( $rules );
-	
+
 	foreach ( $rules as $key => $value ) {
 		if ( ( 'background' === $key || 'background-color' === $key ) && '' !== $value ) {
 			$first = $key;
@@ -269,7 +269,7 @@ function edac_deteremine_hierarchy( $rules ) {
 	}
 
 	// if background color has preference and is marked important then return background color.
-	if ( 'background-color' == $first && stristr( $rules['background-color'], '!important' ) ) {
+	if ( 'background-color' === $first && stristr( $rules['background-color'], '!important' ) ) {
 		return 'background-color';
 	}
 
@@ -714,13 +714,13 @@ function edac_check_color_match2( $background_rule ) {
 
 	$rules = explode( ' ', $background_rule );
 
-	foreach ( $rules as $key => $value ) {
+	foreach ( $rules as $rule ) {
 
-		if ( array_key_exists( $value, $colors ) ) {
-			return $colors[ $value ];
+		if ( array_key_exists( $rule, $colors ) ) {
+			return $colors[ $rule ];
 		}
 
-		if ( preg_match( '/(rgb\(\s*\d{1,3},\s*\d{1,3},\s*\d{1,3}\)|\#[\w]{3,6})/i', $value, $matches, PREG_OFFSET_CAPTURE ) ) {
+		if ( preg_match( '/(rgb\(\s*\d{1,3},\s*\d{1,3},\s*\d{1,3}\)|\#[\w]{3,6})/i', $rule, $matches, PREG_OFFSET_CAPTURE ) ) {
 			return $matches[1][0];
 		}
 	}

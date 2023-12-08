@@ -41,7 +41,7 @@ class EDAC_Dom extends simple_html_dom {
 
 	/**
 	 * List of supported audio file extensions.
-	 * 
+	 *
 	 * @var array $audio_ext Audio extensions.
 	 */
 	protected $audio_ext = array(
@@ -60,7 +60,7 @@ class EDAC_Dom extends simple_html_dom {
 
 	/**
 	 * Array containing URLs of embed sources.
-	 * 
+	 *
 	 * @var array $embed_sources Embed source URLs.
 	 */
 	protected $embed_sources = array(

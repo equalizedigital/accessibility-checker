@@ -99,7 +99,7 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Show On Front:            ' . get_option( 'show_on_front' ) . "\n";
 
 	// Only show page specs if frontpage is set to 'page'.
-	if ( get_option( 'show_on_front' ) == 'page' ) {
+	if ( get_option( 'show_on_front' ) === 'page' ) {
 		$front_page_id = get_option( 'page_on_front' );
 		$blog_page_id  = get_option( 'page_for_posts' );
 
@@ -210,7 +210,7 @@ function edac_tools_sysinfo_get() {
 	$active_plugins = get_option( 'active_plugins', array() );
 
 	foreach ( $plugins as $plugin_path => $plugin ) {
-		if ( ! in_array( $plugin_path, $active_plugins ) ) {
+		if ( ! in_array( $plugin_path, $active_plugins, true ) ) {
 			continue;
 		}
 
@@ -224,7 +224,7 @@ function edac_tools_sysinfo_get() {
 	$return .= "\n" . '-- WordPress Inactive Plugins' . "\n\n";
 
 	foreach ( $plugins as $plugin_path => $plugin ) {
-		if ( in_array( $plugin_path, $active_plugins ) ) {
+		if ( in_array( $plugin_path, $active_plugins, true ) ) {
 			continue;
 		}
 
@@ -323,9 +323,9 @@ function edac_get_host() {
 		$host = 'Pagely';
 	} elseif ( defined( 'WPCOM_IS_VIP_ENV' ) ) {
 		$host = 'WordPress VIP';
-	} elseif ( DB_HOST == 'localhost:/tmp/mysql5.sock' ) {
+	} elseif ( DB_HOST === 'localhost:/tmp/mysql5.sock' ) {
 		$host = 'ICDSoft';
-	} elseif ( DB_HOST == 'mysqlv5' ) {
+	} elseif ( DB_HOST === 'mysqlv5' ) {
 		$host = 'NetworkSolutions';
 	} elseif ( strpos( DB_HOST, 'ipagemysql.com' ) !== false ) {
 		$host = 'iPage';
@@ -408,6 +408,7 @@ function edac_get_posts_count() {
 
 			if ( $counts ) {
 				foreach ( $counts as $key => $value ) {
+					// phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
 					if ( 0 == $value ) {
 						unset( $counts->{$key} );
 					}
@@ -449,11 +450,9 @@ function edac_get_error_count() {
 	if ( false === $stored_errors ) {
 		// If not, perform the database query.
 		$table_name = $wpdb->prefix . 'accessibility_checker';
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		$query = $wpdb->prepare( 'SELECT count(*) FROM ' . $table_name . ' WHERE siteid = %d AND ruletype = %s', get_current_blog_id(), 'error' );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
-		$stored_errors = intval( $wpdb->get_var( $query ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$stored_errors = intval( $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'error' ) ) );
 
 		// Save the result in the cache for future use.
 		wp_cache_set( $cache_key, $stored_errors );
@@ -478,11 +477,9 @@ function edac_get_warning_count() {
 	if ( false === $stored_warnings ) {
 		// If not, perform the database query.
 		$table_name = $wpdb->prefix . 'accessibility_checker';
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		$query = $wpdb->prepare( 'SELECT count(*) FROM ' . $table_name . ' WHERE siteid = %d AND ruletype = %s', get_current_blog_id(), 'warning' );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
-		$stored_warnings = intval( $wpdb->get_var( $query ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$stored_warnings = intval( $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'warning' ) ) );
 
 		// Save the result in the cache for future use.
 		wp_cache_set( $cache_key, $stored_warnings );
@@ -503,18 +500,15 @@ function edac_database_table_count( $table ) {
 
 	// Create a unique cache key based on the table's name.
 	$cache_key = 'edac_table_count_' . $table;
-	
+
 	// Try to get the count from the cache first.
 	$count = wp_cache_get( $cache_key );
 
 	if ( false === $count ) {
 		// If the count is not in the cache, perform the database query.
-		$table_name  = $wpdb->prefix . $table;
-		$count_query = "SELECT count(*) FROM $table_name";
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$count = $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i', $wpdb->prefix . $table ) );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
-		$count = $wpdb->get_var( $count_query );
-		
 		// Save the count to the cache for future use.
 		wp_cache_set( $cache_key, $count );
 	}
