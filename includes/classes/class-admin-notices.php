@@ -1,7 +1,7 @@
 <?php
 /**
  * Class file for admin notices
- * 
+ *
  * @package Accessibility_Checker
  */
 

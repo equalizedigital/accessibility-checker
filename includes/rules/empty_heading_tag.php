@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_empty_heading_tag( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_empty_heading_tag( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	// rule vars.
 	$dom    = $content['html'];
@@ -26,7 +26,7 @@ function edac_rule_empty_heading_tag( $content, $post ) { // phpcs:ignore Generi
 
 			$heading_code = $heading->outertext;
 
-			if ( ( str_ireplace( array( ' ', '&nbsp;', '-', '_' ), '', htmlentities( trim( $heading->plaintext ) ) ) == '' || str_ireplace( array( ' ', '&nbsp;', '-', '_' ), '', trim( $heading->plaintext ) ) == '' ) && ! preg_match( '#<img(\S|\s)*alt=(\'|\")(\w|\s)(\w|\s|\p{P}|\(|\)|\p{Sm}|~|`|’|\^|\$)+(\'|\")#', $heading_code ) ) {
+			if ( ( str_ireplace( array( ' ', '&nbsp;', '-', '_' ), '', htmlentities( trim( $heading->plaintext ) ) ) === '' || str_ireplace( array( ' ', '&nbsp;', '-', '_' ), '', trim( $heading->plaintext ) ) === '' ) && ! preg_match( '#<img(\S|\s)*alt=(\'|\")(\w|\s)(\w|\s|\p{P}|\(|\)|\p{Sm}|~|`|’|\^|\$)+(\'|\")#', $heading_code ) ) {
 
 				$errors[] = $heading_code;
 

@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_img_alt_missing( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_img_alt_missing( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
 	$tags   = array( 'img', 'input' );
@@ -25,11 +25,11 @@ function edac_rule_img_alt_missing( $content, $post ) { // phpcs:ignore Generic.
 			if ( isset( $element )
 			&& ( 'img' === $element->tag
 			&& ! $element->hasAttribute( 'alt' )
-			&& $element->getAttribute( 'role' ) != 'presentation' )
-			&& $element->getAttribute( 'aria-hidden' ) != 'true'
+			&& $element->getAttribute( 'role' ) !== 'presentation' )
+			&& $element->getAttribute( 'aria-hidden' ) !== 'true'
 			|| ( 'input' === $element->tag
 			&& ! $element->hasAttribute( 'alt' )
-			&& $element->getAttribute( 'type' ) == 'image' )
+			&& $element->getAttribute( 'type' ) === 'image' )
 			) {
 
 				$image_code = $element->outertext;
@@ -91,7 +91,7 @@ function edac_img_alt_ignore_inside_valid_caption( $image_code, $content ) {
 	foreach ( $figures as $figure ) {
 		$images = $figure->find( 'img' );
 		foreach ( $images as $image ) {
-			if ( $image->getAttribute( 'src' ) != '' && strstr( $image_code, $image->getAttribute( 'src' ) ) && trim( $figure->plaintext ) != '' ) {
+			if ( $image->getAttribute( 'src' ) !== '' && strstr( $image_code, $image->getAttribute( 'src' ) ) && trim( $figure->plaintext ) !== '' ) {
 				return 1;
 			}
 		}
@@ -103,7 +103,7 @@ function edac_img_alt_ignore_inside_valid_caption( $image_code, $content ) {
 		if ( stristr( $div->getAttribute( 'class' ), 'wp-caption' ) ) {
 			$images = $div->find( 'img' );
 			foreach ( $images as $image ) {
-				if ( $image->getAttribute( 'src' ) != '' && strstr( $image_code, $image->getAttribute( 'src' ) ) && strlen( $div->plaintext ) > 5 ) {
+				if ( $image->getAttribute( 'src' ) !== '' && strstr( $image_code, $image->getAttribute( 'src' ) ) && strlen( $div->plaintext ) > 5 ) {
 					return 1;
 				}
 			}
@@ -113,10 +113,10 @@ function edac_img_alt_ignore_inside_valid_caption( $image_code, $content ) {
 	// anchors with aria-label or title or valid node text.
 	$as = $dom->find( 'a' );
 	foreach ( $as as $a ) {
-		if ( $a->getAttribute( 'aria-label' ) != '' || $a->getAttribute( 'title' ) != '' || strlen( $a->plaintext ) > 5 ) {
+		if ( $a->getAttribute( 'aria-label' ) !== '' || $a->getAttribute( 'title' ) !== '' || strlen( $a->plaintext ) > 5 ) {
 			$images = $a->find( 'img' );
 			foreach ( $images as $image ) {
-				if ( $image->getAttribute( 'src' ) != '' && strstr( $image_code, $image->getAttribute( 'src' ) ) ) {
+				if ( $image->getAttribute( 'src' ) !== '' && strstr( $image_code, $image->getAttribute( 'src' ) ) ) {
 					return 1;
 				}
 			}

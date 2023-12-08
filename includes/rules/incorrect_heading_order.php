@@ -24,7 +24,7 @@ function edac_rule_incorrect_heading_order( $content, $post ) {
 	$previous               = $starting_heading_level;
 
 	if ( $elements ) {
-		foreach ( $elements as $key => $element ) {
+		foreach ( $elements as $element ) {
 			if ( $element->hasAttribute( 'aria-level' ) ) {
 				$current = $element->getAttribute( 'aria-level' );
 			} else {
@@ -32,8 +32,8 @@ function edac_rule_incorrect_heading_order( $content, $post ) {
 			}
 
 			// Only process the logic if $previous is set and $current is not equal to $previous.
-			if ( $previous && $current != $previous ) {
-				if ( $current > $previous && $current != $previous + 1 ) {
+			if ( $previous && $current !== $previous ) {
+				if ( $current > $previous && $current !== $previous + 1 ) {
 					$errors[] = $element->outertext;
 				}
 			}

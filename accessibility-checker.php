@@ -129,12 +129,6 @@ register_activation_hook( __FILE__, 'edac_activation' );
 register_deactivation_hook( __FILE__, 'edac_deactivation' );
 
 /**
- * Define file path and basename
- */
-$edac_plugin_directory = __FILE__;
-$edac_plugin_basename  = plugin_basename( __FILE__ );
-
-/**
  * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
  */
 if ( ! defined( 'MAX_FILE_SIZE' ) ) {
@@ -213,7 +207,7 @@ add_action( 'wp_dashboard_setup', 'edac_wp_dashboard_setup' );
  */
 function edac_init() {
 	// instantiate the classes that need to load hooks early.
-	$rest_api = new \EDAC\Rest_Api();
+	new \EDAC\Rest_Api();
 }
 
 /**
@@ -769,8 +763,8 @@ function edac_before_page_render() {
 
 	global $pagenow;
 
-	if ( 'index.php' == $pagenow && false == is_customize_preview() && current_user_can( 'edit_posts' ) ) {
-	
+	if ( 'index.php' === $pagenow && false === is_customize_preview() && current_user_can( 'edit_posts' ) ) {
+
 		// Check the page if it hasn't already been checked.
 		global $post;
 		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
@@ -792,7 +786,7 @@ function edac_wp_dashboard_setup() {
 		array(
 			'\EDAC\Widgets',
 			'render_dashboard_scan_summary',
-		) 
+		)
 	);
 }
 
@@ -837,19 +831,18 @@ function edac_summary_ajax() {
 	$summary                   = edac_summary( $post_id );
 	$simplified_summary_text   = '';
 	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
-	
-	
+
 	if ( 'none' !== $simplified_summary_prompt ) {
-		
+
 		if ( $summary['content_grade'] <= 9 ) {
 			$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
 		} else {
 			$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
-		}   
+		}
 	} else {
-	
+
 		$simplified_summary_text = 'A Simplified summary has not been included for this content.';
-	
+
 	}
 
 	$html['content'] .= '<div class="edac-summary-total">';
@@ -957,8 +950,8 @@ function edac_summary( $post_id ) {
 			$postid = $post_id;
 			$siteid = get_current_blog_id();
 
-			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-			$rule_count = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM {$table_name} where rule = %s and siteid = %d and postid = %d and ignre = %d", $rule['slug'], $siteid, $postid, 0 ) );
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching  -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+			$rule_count = $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i where rule = %s and siteid = %d and postid = %d and ignre = %d', $table_name, $rule['slug'], $siteid, $postid, 0 ) );
 
 			if ( ! $rule_count ) {
 				$rules_passed[] = $rule['slug'];
@@ -968,10 +961,8 @@ function edac_summary( $post_id ) {
 
 	$summary['passed_tests'] = round( count( $rules_passed ) / count( $rules ) * 100 );
 
-	// count errors.
-	$query = 'SELECT count(*) FROM ' . $table_name . ' where siteid = %d and postid = %d and ruletype = %s and ignre = %d';
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['errors'] = intval( $wpdb->get_var( $wpdb->prepare( $query, get_current_blog_id(), $post_id, 'error', 0 ) ) );
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+	$summary['errors'] = intval( $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i where siteid = %d and postid = %d and ruletype = %s and ignre = %d', $table_name, get_current_blog_id(), $post_id, 'error', 0 ) ) );
 
 	// count warnings.
 	$warnings_parameters = array( get_current_blog_id(), $post_id, 'warning', 0 );
@@ -991,14 +982,12 @@ function edac_summary( $post_id ) {
 		array_push( $ignored_parameters, 'link_blank' );
 		$ignored_where .= ' and rule != %s';
 	}
-	$query = 'SELECT count(*) FROM ' . $table_name . ' ' . $ignored_where;
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['ignored'] = intval( $wpdb->get_var( $wpdb->prepare( $query, $ignored_parameters ) ) );
 
-	// contrast errors.
-	$query = 'SELECT count(*) FROM ' . $table_name . ' where siteid = %d and postid = %d and rule = %s and ignre = %d';
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['contrast_errors'] = intval( $wpdb->get_var( $wpdb->prepare( $query, get_current_blog_id(), $post_id, 'color_contrast_failure', 0 ) ) );
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared , WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+	$summary['ignored'] = intval( $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $table_name $ignored_where", $ignored_parameters ) ) );
+
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+	$summary['contrast_errors'] = intval( $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i where siteid = %d and postid = %d and rule = %s and ignre = %d', $table_name, get_current_blog_id(), $post_id, 'color_contrast_failure', 0 ) ) );
 
 	// remove color contrast from errors count.
 	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
@@ -1007,21 +996,20 @@ function edac_summary( $post_id ) {
 	$issue_count = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'];
 
 	$issue_density_array = get_post_meta( $post_id, '_edac_density_data' );
-	
-	
+
 	if ( is_array( $issue_density_array ) &&
 		count( $issue_density_array ) > 0 &&
-		count( $issue_density_array[0] ) > 0  
+		count( $issue_density_array[0] ) > 0
 	) {
-		
+
 		$element_count  = $issue_density_array[0][0];
 		$content_length = $issue_density_array[0][1];
-		
+
 		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
-	
+
 		if ( ! add_post_meta( $post_id, '_edac_issue_density', $issue_density, true ) ) {
 			update_post_meta( $post_id, '_edac_issue_density', $issue_density );
-		}   
+		}
 	} else {
 		delete_post_meta( $post_id, '_edac_issue_density' );
 	}
@@ -1038,7 +1026,7 @@ function edac_summary( $post_id ) {
 	} else {
 		$summary['content_grade'] = 0;
 	}
-	
+
 	$summary['readability'] = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
@@ -1106,8 +1094,8 @@ function edac_update_post_meta( $rule ) {
 	global $wpdb;
 	$site_id = get_current_blog_id();
 
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$posts = $wpdb->get_results( $wpdb->prepare( 'SELECT postid FROM ' . $wpdb->prefix . 'accessibility_checker WHERE rule = %s and siteid = %d', $rule, $site_id ), ARRAY_A );
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+	$posts = $wpdb->get_results( $wpdb->prepare( 'SELECT postid FROM %i WHERE rule = %s and siteid = %d', $wpdb->prefix . 'accessibility_checker', $rule, $site_id ), ARRAY_A );
 
 	if ( $posts ) {
 		foreach ( $posts as $post ) {
@@ -1190,8 +1178,8 @@ function edac_details_ajax() {
 		// add count, unset passed error rules and add passed rules to array.
 		if ( $error_rules ) {
 			foreach ( $error_rules as $key => $error_rule ) {
-				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-				$count = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d and ignre = %d', $postid, $error_rule['slug'], $siteid, 0 ), ARRAY_A ) );
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+				$count = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM %i where postid = %d and rule = %s and siteid = %d and ignre = %d', $table_name, $postid, $error_rule['slug'], $siteid, 0 ), ARRAY_A ) );
 				if ( $count ) {
 					$error_rules[ $key ]['count'] = $count;
 				} else {
@@ -1205,8 +1193,8 @@ function edac_details_ajax() {
 		// add count, unset passed warning rules and add passed rules to array.
 		if ( $warning_rules ) {
 			foreach ( $warning_rules as $key => $error_rule ) {
-				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-				$count = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d and ignre = %d', $postid, $error_rule['slug'], $siteid, 0 ), ARRAY_A ) );
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+				$count = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM %i where postid = %d and rule = %s and siteid = %d and ignre = %d', $table_name, $postid, $error_rule['slug'], $siteid, 0 ), ARRAY_A ) );
 				if ( $count ) {
 					$warning_rules[ $key ]['count'] = $count;
 				} else {
@@ -1249,15 +1237,13 @@ function edac_details_ajax() {
 	$rules = array_merge( $error_rules, $warning_rules, $passed_rules );
 
 	if ( $rules ) {
-		global $wp_version;
-		$days_active       = edac_days_active();
 		$ignore_permission = true;
 		if ( has_filter( 'edac_ignore_permission' ) ) {
 			$ignore_permission = apply_filters( 'edac_ignore_permission', $ignore_permission );
 		}
 		foreach ( $rules as $rule ) {
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-			$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid ), ARRAY_A );
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+			$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
 			$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
 			$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
 
@@ -1271,8 +1257,8 @@ function edac_details_ajax() {
 				}
 			}
 
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-			$expand_rule = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM ' . $table_name . ' where postid = %d and rule = %s and siteid = %d', $postid, $rule['slug'], $siteid ), ARRAY_A ) );
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+			$expand_rule = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A ) );
 
 			$tool_tip_link = edac_documentation_link( $rule );
 
@@ -1478,7 +1464,7 @@ function edac_readability_ajax() {
 	}
 	$content = wp_filter_nohtml_kses( $content );
 	$content = str_replace( ']]>', ']]&gt;', $content );
-	
+
 	// get readability metadata and determine if a simplified summary is required.
 	$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 	$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
@@ -1491,7 +1477,7 @@ function edac_readability_ajax() {
 	} else {
 		$simplified_summary_grade = 0;
 	}
-	
+
 	$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
 	$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
 
@@ -1520,7 +1506,7 @@ function edac_readability_ajax() {
 		}
 
 		if ( 'none' === $simplified_summary_prompt ) {
-		
+
 			$html .=
 			'<li class="edac-readability-list-item edac-readability-summary-position">
 				<span class="edac-readability-list-item-icon"><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/warning icon yellow.png" alt="" width="22"></span>
@@ -1528,7 +1514,6 @@ function edac_readability_ajax() {
 					<p class="edac-readability-list-item-description">Your Prompt for Simplified Summary is set to "never." If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
 			</li>';
 
-			
 		} elseif ( 'none' !== $simplified_summary_position ) {
 
 			$html .=
@@ -1636,9 +1621,9 @@ function edac_update_simplified_summary() {
  */
 function edac_output_simplified_summary( $content ) {
 	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
-	if ( 'none' == $simplified_summary_prompt ) {
+	if ( 'none' === $simplified_summary_prompt ) {
 		return $content;
-	} 
+	}
 	$simplified_summary          = edac_simplified_summary_markup( get_the_ID() );
 	$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
 	if ( $simplified_summary && 'before' === $simplified_summary_position ) {
@@ -1728,7 +1713,7 @@ function edac_output_accessibility_statement() {
 function edac_dismiss_welcome_cta() {
 	// Update user meta to indicate the button has been clicked.
 	update_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true );
-	
+
 	// Return success response.
 	wp_send_json( 'success' );
 }
@@ -1741,7 +1726,7 @@ function edac_dismiss_welcome_cta() {
 function edac_dismiss_dashboard_cta() {
 	// Update user meta to indicate the button has been clicked.
 	update_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true );
-	
+
 	// Return success response.
 	wp_send_json( 'success' );
 }
@@ -1754,7 +1739,7 @@ function edac_dismiss_dashboard_cta() {
 function edac_email_opt_in() {
 	// Update user meta to indicate the button has been clicked.
 	update_user_meta( get_current_user_id(), 'edac_email_optin', true );
-		
+
 	// Return success response.
 	wp_send_json( 'success' );
 }

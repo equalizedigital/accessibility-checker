@@ -44,7 +44,7 @@ function edac_add_accessibility_statement_page() {
 	global $wpdb;
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
-	if ( null === $wpdb->get_row( "SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'accessibility-statement'", 'ARRAY_A' ) ) {
+	if ( null === $wpdb->get_row( $wpdb->prepare( "SELECT post_name FROM %i WHERE post_name = 'accessibility-statement'", $wpdb->prefix . 'posts' ), 'ARRAY_A' ) ) {
 
 		$current_user = wp_get_current_user();
 		$author_id    = $current_user->ID;

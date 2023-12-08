@@ -311,7 +311,7 @@ function edac_str_get_html(
 	$target_charset = DEFAULT_TARGET_CHARSET,
 	$strip_rn = true,
 	$default_br_text = DEFAULT_BR_TEXT,
-	$default_span_text = DEFAULT_SPAN_TEXT 
+	$default_span_text = DEFAULT_SPAN_TEXT
 ) {
 	$dom = new EDAC_Dom(
 		null,
@@ -341,13 +341,13 @@ function edac_str_get_html(
 function edac_remove_elements( $dom, $css_selectors = array() ) {
 
 	if ( $dom ) {
-		
+
 		foreach ( $css_selectors as $css_selector ) {
 			$elements = $dom->find( $css_selector );
 			foreach ( $elements as $element ) {
 				if ( null !== $element ) {
 					$element->remove();
-				}   
+				}
 			}
 		}
 	}
@@ -362,13 +362,13 @@ function edac_remove_elements( $dom, $css_selectors = array() ) {
  * The function first checks if the provided table name only contains alphanumeric characters, underscores, or hyphens.
  * If not, it returns null.
  *
- * After that, it checks if a table with that name actually exists in the database using the SHOW TABLES LIKE query. 
+ * After that, it checks if a table with that name actually exists in the database using the SHOW TABLES LIKE query.
  * If the table doesn't exist, it also returns null.
  *
  * If both checks are passed, it returns the valid table name.
  *
  * @param string $table_name The name of the table to be validated.
- * 
+ *
  * @return string|null The validated table name, or null if the table name is invalid or the table does not exist.
  */
 function edac_get_valid_table_name( $table_name ) {
@@ -381,8 +381,8 @@ function edac_get_valid_table_name( $table_name ) {
 	}
 
 	// Verify that the table actually exists in the database.
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared 
-	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name ) {
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+	if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ) !== $table_name ) {
 		// Table does not exist.
 		return null;
 	}
@@ -444,7 +444,7 @@ function edac_replace_css_variables( $value, $css_array ) {
 
 /**
  * Generates a nonce that expires after a specified number of seconds.
- * 
+ *
  * @param string $secret secret.
  * @param int    $timeout_seconds The number of seconds after which the nonce expires.
  * @return string
@@ -476,18 +476,18 @@ function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
  * @return boolean
  */
 function edac_is_valid_nonce( $secret, $nonce ) {
-	if ( is_string( $nonce ) == false ) {
+	if ( ! is_string( $nonce ) ) {
 		return false;
 	}
 	$a = explode( ',', $nonce );
-	if ( count( $a ) != 3 ) {
+	if ( count( $a ) !== 3 ) {
 		return false;
 	}
 	$salt     = $a[0];
 	$max_time = intval( $a[1] );
 	$hash     = $a[2];
 	$back     = sha1( $salt . $secret . $max_time );
-	if ( $back != $hash ) {
+	if ( $back !== $hash ) {
 		return false;
 	}
 	if ( time() > $max_time ) {
@@ -507,7 +507,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
 	$key    = 'upcoming_meetups__' . sanitize_title( $meetup ) . '__' . intval( $count );
 	$output = get_transient( $key );
-	
+
 	if ( false === $output ) {
 
 		$query_args = array(
@@ -519,7 +519,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 		$request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
 		$request     = wp_remote_get( add_query_arg( $query_args, $request_uri ) ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- wp_remote_get needed to be compatible with all environments.
 
-		if ( is_wp_error( $request ) || '200' != wp_remote_retrieve_response_code( $request ) ) {
+		if ( is_wp_error( $request ) || 200 !== (int) wp_remote_retrieve_response_code( $request ) ) {
 			return;
 		}
 
@@ -528,7 +528,6 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 			return;
 		}
 
-	
 		set_transient( $key, $output, DAY_IN_SECONDS );
 	}
 
@@ -545,7 +544,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
  * @param  integer $paragraph_count number of paragraphs to return.
  * @return json
  */
-function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed -- $truncate is used in the future.	
+function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) { // phpcs:ignore -- $truncate is used in the future.
 
 	$json = edac_get_upcoming_meetups_json( $meetup, $count );
 
@@ -554,12 +553,9 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, 
 	}
 
 	$html = '<ul class="edac-upcoming-meetup-list">';
-	
-	foreach ( $json as $event ) {
 
-		$desc = edac_truncate_html_content( $event->description, $paragraph_count );
-		
-		$link_text = 'Attend Free';
+	foreach ( $json as $event ) {
+		$link_text = esc_html__( 'Attend Free', 'accessibility-checker' );
 
 		$html .= '
 		<li class="edac-upcoming-meetup-item edac-mb-3">
@@ -594,30 +590,29 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 		'em'     => array(),
 		'i'      => array(),
 	);
-	
 
 	$html = wp_kses( $html, $allowed_tags );
 
 	// Create a new DOMDocument instance.
 	$dom = new DOMDocument();
 	$dom->loadHTML( $html );
-	
+
 	// Find the <body> element.
 	$body_element = $dom->getElementsByTagName( 'body' )->item( 0 );
-	
+
 	if ( $body_element ) {
-		
+
 		$content = array();
-	
+
 		// Loop through the child nodes of the <body> element.
 		// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- DOMDocument uses camelCase.
-		foreach ( $body_element->childNodes as $child_node ) { 
+		foreach ( $body_element->childNodes as $child_node ) {
 			if ( 'p' === $child_node->nodeName || 'div' === $child_node->nodeName ) {
 				$content[] = '<p>' . $child_node->textContent . '</p>';
 			}
 		}
 		// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-		
+
 		if ( count( $content ) > 0 ) {
 			return implode(
 				PHP_EOL,
@@ -648,12 +643,12 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
 
 	$error_elements_percentage = $issue_count / $element_count;
 	$error_content_percentage  = $issue_count / $content_length;
-	
+
 	$score = ( ( $error_elements_percentage * $element_weight ) + ( $error_content_percentage * $content_weight ) );
-	
+
 	return round( $score * 100, 2 );
 }
-	
+
 
 /**
  * Get info from html that we need for calculating density
@@ -663,15 +658,14 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
  */
 function edac_get_body_density_data( $html ) {
 
-			
 	if ( $html && trim( $html ) !== '' ) {
-	
+
 		$density_dom = new simple_html_dom();
 		$density_dom->load( $html );
 
 		$body_element = $density_dom->find( 'body', 0 );
-	
-		if ( null == $body_element ) {
+
+		if ( ! $body_element ) {
 			return false;
 		}
 
@@ -679,22 +673,21 @@ function edac_get_body_density_data( $html ) {
 		foreach ( $body_element->find( '.edac-highlight-panel,#wpadminbar,style,script' ) as $element ) {
 			$element->remove();
 		}
-		
+
 		if ( $body_element ) {
-		
+
 			$body_elements_count = edac_count_dom_descendants( $body_element );
-			
+
 			$body_content = preg_replace( '/[^A-Za-z0-9]/', '', $body_element->plaintext );
 
 			return array(
 				$body_elements_count,
 				strlen( $body_content ),
 			);
-		
-		}   
+
+		}
 	}
-			
-	
+
 	return false;
 }
 
@@ -703,13 +696,13 @@ function edac_get_body_density_data( $html ) {
  * Recursively count elements in a dom
  *
  * @param object $dom_elements dom elements.
- * @return int 
+ * @return int
  */
 function edac_count_dom_descendants( $dom_elements ) {
 	$count = 0;
 
 	foreach ( $dom_elements->children() as $child ) {
-		++$count; 
+		++$count;
 		$count += edac_count_dom_descendants( $child ); // Recursively count descendants.
 	}
 

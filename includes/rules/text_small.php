@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_text_small( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_text_small( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$fontsearchpatterns   = array();
 	$fontsearchpatterns[] = '|font\-size:\s?([\d]+)pt|i';
@@ -43,8 +43,8 @@ function edac_rule_text_small( $content, $post ) { // phpcs:ignore Generic.CodeA
 								preg_match_all( '!\d+!', $absolute_fontsize_errorcode, $matches );
 
 								if (
-									stristr( $absolute_fontsize_errorcode, 'px' ) == 'px' && implode( ' ', $matches[0] ) <= 10
-									|| stristr( $absolute_fontsize_errorcode, 'pt' ) == 'pt' && implode( ' ', $matches[0] ) <= 13
+									stristr( $absolute_fontsize_errorcode, 'px' ) === 'px' && implode( ' ', $matches[0] ) <= 10
+									|| stristr( $absolute_fontsize_errorcode, 'pt' ) === 'pt' && implode( ' ', $matches[0] ) <= 13
 								) {
 									$errors[] = $element;
 								}

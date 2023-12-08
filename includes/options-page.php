@@ -210,8 +210,7 @@ function edac_register_setting() {
  */
 function edac_general_cb() {
 	echo '<p>';
-	
-	
+
 	printf(
 		/* translators: %1$s: link to the plugin documentation website. */
 		esc_html__( 'Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s.', 'accessibility-checker' ),
@@ -364,7 +363,7 @@ function edac_post_types_cb() {
 		</fieldset>
 		<?php if ( EDAC_KEY_VALID === false ) { ?>
 			<p class="edac-description">
-				<?php 
+				<?php
 				echo esc_html__( 'To check content other than posts and pages, please ', 'accessibility-checker' );
 				?>
 				<a href="https://my.equalizedigital.com/" target="_blank" rel="noopener noreferrer"><?php echo esc_html__( 'upgrade to pro', 'accessibility-checker' ); ?></a>
@@ -372,11 +371,11 @@ function edac_post_types_cb() {
 			</p>
 		<?php } else { ?>
 			<p class="edac-description">
-				<?php 
+				<?php
 				esc_html_e( 'Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup.', 'accessibility-checker' );
 				?>
 			</p>
-			<?php 
+			<?php
 		}
 }
 
@@ -421,7 +420,7 @@ function edac_sanitize_post_types( $selected_post_types ) {
 			delete_option( 'edacp_fullscan_completed_at' );
 		}
 	}
-	
+
 	return $selected_post_types;
 }
 

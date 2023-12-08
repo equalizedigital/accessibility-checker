@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_broken_skip_anchor_link( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_broken_skip_anchor_link( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom             = $content['html'];
 	$errors          = array();
@@ -22,11 +22,11 @@ function edac_rule_broken_skip_anchor_link( $content, $post ) { // phpcs:ignore 
 		$href = $anchor_element->getAttribute( 'href' );
 
 		// exclude: '<a href="#"></a>' and '<a></a>' checked by the link_improper rule.
-		if ( trim( $anchor_element->getAttribute( 'href' ) ) == '#' || ( trim( $anchor_element->getAttribute( 'href' ) ) == '#' && $anchor_element->getAttribute( 'role' ) == 'button' ) ) {
+		if ( trim( $anchor_element->getAttribute( 'href' ) ) === '#' || ( trim( $anchor_element->getAttribute( 'href' ) ) === '#' && $anchor_element->getAttribute( 'role' ) === 'button' ) ) {
 			continue;
 		}
 
-		if ( substr( $href, 0, 1 ) == '#' ) {
+		if ( substr( $href, 0, 1 ) === '#' ) {
 			if ( ! $dom->find( $href, 0 ) ) {
 				$errors[] = $anchor_element;
 			}
