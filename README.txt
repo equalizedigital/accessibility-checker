@@ -230,3 +230,5 @@ Updated: reports dashboard widget and welcome page now have improved refresh and
 Updated: the date format on the reports dashboard widget and the welcome page now respects the site's timezone setting
 Updated: Improved performance during the purge of issues after changing the "post types to scan" setting
 Removed: CSS output when a user is logged out
+
+Older versions can be found in the plugins `changelog.txt`.

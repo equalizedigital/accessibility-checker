@@ -1,3 +1,5 @@
+Newer versions can be found in readme.txt.
+
 = 1.5.6 =
 Fixed: reading level ajax timing issue
 
