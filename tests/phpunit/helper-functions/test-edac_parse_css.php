@@ -30,7 +30,7 @@ class EDACParseCSS extends WP_UnitTestCase {
 	 */
 	public function edac_parse_css_data() {
 		return array(
-			'simple'                                 => array(
+			'simple'                                     => array(
 				'css_string' => 'p { font-size: 12px; }',
 				'css_array'  => array(
 					'p' => array(
@@ -38,7 +38,16 @@ class EDACParseCSS extends WP_UnitTestCase {
 					),
 				),
 			),
-			'with comments'                          => array(
+			'declaring the same selector multiple times' => array(
+				'css_string' => 'p { font-size: 12px; } p{color:red;}p    {color:#000; font-size: 14px;}',
+				'css_array'  => array(
+					'p' => array(
+						'font-size' => '14px',
+						'color'     => '#000',
+					),
+				),
+			),
+			'with comments'                              => array(
 				'css_string' => 'p { font-size: 12px; /* comment */ }',
 				'css_array'  => array(
 					'p' => array(
@@ -46,7 +55,7 @@ class EDACParseCSS extends WP_UnitTestCase {
 					),
 				),
 			),
-			'with multiple selectors'                => array(
+			'with multiple selectors'                    => array(
 				'css_string' => 'p, div { font-size: 12px; }',
 				'css_array'  => array(
 					'p, div' => array(
@@ -54,7 +63,7 @@ class EDACParseCSS extends WP_UnitTestCase {
 					),
 				),
 			),
-			'with multiple properties'               => array(
+			'with multiple properties'                   => array(
 				'css_string' => 'p { font-size: 12px; color: #000; }',
 				'css_array'  => array(
 					'p' => array(
@@ -63,7 +72,7 @@ class EDACParseCSS extends WP_UnitTestCase {
 					),
 				),
 			),
-			'with multiple selectors and properties' => array(
+			'with multiple selectors and properties'     => array(
 				'css_string' => 'p, div { font-size: 12px; color: #000; }',
 				'css_array'  => array(
 					'p, div' => array(
