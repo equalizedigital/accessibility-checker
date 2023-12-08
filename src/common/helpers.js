@@ -14,13 +14,6 @@ export const showNotice = (options) => {
     // Showing on a page with the wp option loaded.
     if (window.wp !== undefined && window.wp.data !== undefined && window.wp.data.dispatch !== undefined) {
 
-        const link = document.createElement("link");
-        link.href = 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css';
-        link.type = "text/css";
-        link.rel = "stylesheet";
-        link.media = "screen,print";
-        document.getElementsByTagName("head")[0].appendChild(link);
-    
         var o = { isDismissible: true };
 
         var msg = settings.msg;
@@ -53,8 +46,13 @@ export const showNotice = (options) => {
 
     } else {
 
-        // Used for showing notices on preview pages.
-
+        const link = document.createElement("link");
+        link.href = 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css';
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.media = "screen,print";
+        document.getElementsByTagName("head")[0].appendChild(link);
+    
         var msg = settings.msg;
 
         if (settings.url) {
@@ -64,7 +62,7 @@ export const showNotice = (options) => {
         }
 
         const notyf = new Notyf({
-            position: { x: 'left', y: 'top' },
+            position: { x: 'right', y: 'top' },
             ripple: false,
             types: [
                 {
@@ -78,7 +76,7 @@ export const showNotice = (options) => {
                 {
                     type: 'warning',
                     background: '#fef8ee',
-                    duration: 0,
+                    duration: 200,
                     dismissible: true,
                     icon: false
                 },
