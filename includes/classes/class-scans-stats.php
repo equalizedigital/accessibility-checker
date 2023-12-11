@@ -224,7 +224,7 @@ class Scans_Stats {
 		$data['errors_without_contrast']          = $data['errors'] - $data['contrast_errors'];
 		$data['distinct_errors_without_contrast'] = $data['distinct_errors'] - $data['distinct_contrast_errors'];
 
-		$ignored_issues_query     = new Issues_Query(
+		$ignored_issues_query         = new Issues_Query(
 			array(
 				'post_types' => Settings::get_scannable_post_types(),
 			),
