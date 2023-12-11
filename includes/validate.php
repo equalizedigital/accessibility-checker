@@ -289,7 +289,7 @@ function edac_get_content( $post ) {
 	}
 
 	// http authorization.
-	if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true && $username && $password ) {
+	if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true && $username && $password ) {
 		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- This is a valid use case for base64_encode.
 		$context_opts['http']['header'] = 'Authorization: Basic ' . base64_encode( "$username:$password" );
 	}
@@ -362,7 +362,7 @@ function edac_get_content( $post ) {
 	}
 
 	// check for restricted access plugin.
-	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && edac_check_plugin_active( 'restricted-site-access/restricted_site_access.php' ) ) {
+	if ( ! is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && is_plugin_active( 'restricted-site-access/restricted_site_access.php' ) ) {
 		$content['html'] = false;
 	}
 

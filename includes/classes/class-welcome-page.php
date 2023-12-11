@@ -30,7 +30,7 @@ class Welcome_Page {
 
 		<div id="edac_welcome_page_summary">
 
-			<?php if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) : ?>
+			<?php if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) : ?>
 				<section>
 					<div class="edac-cols edac-cols-header">
 						<div class="edac-cols-left">

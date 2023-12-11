@@ -15,7 +15,7 @@
 			<div class="edac-welcome-header-left">
 				<h1 class="edac-welcome-title">
 					<?php
-					if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) === true && EDAC_KEY_VALID === true ) {
+					if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) === true && EDAC_KEY_VALID === true ) {
 						$welcome_title = __( 'Accessibility Checker Pro', 'accessibility-checker' );
 						$version       = EDACP_VERSION;
 					} else {
@@ -93,7 +93,7 @@
 			<h2><?php esc_html_e( 'Support Information', 'accessibility-checker' ); ?></h2>
 			<div class="edac-flex-container">
 		<?php
-		if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+		if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
 			?>
 				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
 					<h3><?php esc_html_e( 'Plugin Support', 'accessibility-checker' ); ?></h3>
@@ -149,7 +149,7 @@
 	</div>
 
 	<?php
-	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
+	if ( ! is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
 		echo '<div class="edac-cols-right edac-welcome-aside">
 			<div class="edac-has-cta">';
 	} else {
@@ -157,7 +157,7 @@
 			<div>';
 	}
 
-	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
+	if ( ! is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
 		?>
 		<div class="edac-pro-callout edac-mt-3 edac-mb-3">
 			<img class="edac-pro-callout-icon" src="<?php echo esc_url( EDAC_PLUGIN_URL ); ?>assets/images/edac-emblem.png" alt="<?php esc_attr_e( 'Equalize Digital Logo', 'accessibility-checker' ); ?>">

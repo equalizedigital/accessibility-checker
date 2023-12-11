@@ -88,21 +88,6 @@ function edac_check_plugin_installed( $plugin_slug ) {
 }
 
 /**
- * Check if plugin is installed
- *
- * @param string $plugin_slug Slug of the plugin.
- *
- * @return bool
- */
-function edac_check_plugin_active( $plugin_slug ) {
-	if ( is_plugin_active( $plugin_slug ) ) {
-		return true;
-	}
-
-	return false;
-}
-
-/**
  * Convert cardinal number into ordinal number
  *
  * @param int $number Number to make ordinal.
