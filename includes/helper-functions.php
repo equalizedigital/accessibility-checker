@@ -212,12 +212,11 @@ function edac_is_gutenberg_active() {
  */
 function edac_days_active() {
 	$activation_date = get_option( 'edac_activation_date' );
-	$days_active     = 0;
 	if ( $activation_date ) {
 		$diff        = strtotime( $activation_date ) - strtotime( gmdate( 'Y-m-d H:i:s' ) );
-		$days_active = abs( round( $diff / 86400 ) );
+		return abs( round( $diff / 86400 ) );
 	}
-	return $days_active;
+	return 0;
 }
 
 /**
