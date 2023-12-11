@@ -66,6 +66,12 @@ function edac_admin_enqueue_scripts() {
 	
 			$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID;
 	
+			if ( WP_DEBUG || strpos( EDAC_VERSION, '-beta' ) !== false ) {
+				$debug = true;
+			} else {
+				$debug = false;
+			}
+		
 			wp_enqueue_script( 'edac-editor-app', plugin_dir_url( __DIR__ ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 	
 			wp_localize_script(
@@ -79,6 +85,7 @@ function edac_admin_enqueue_scripts() {
 					'baseurl'     => plugin_dir_url( __DIR__ ),
 					'active'      => $active,
 					'pro'         => $pro,
+					'debug'		  => $debug,
 					'scanUrl'     => get_preview_post_link(
 						$post_id, 
 						array( 'edac_pageScanner' => 1 )

@@ -151,13 +151,14 @@ export const init = () => {
 	if (wp.data !== undefined && wp.data.subscribe !== undefined) {
 		wp.data.subscribe(() => {
 
+			
 			if (wp.data.select('core/editor').isAutosavingPost()) {
 				autosaving = true;
 			}
 
 			// Rescan the page if user saves post
 			if (wp.data.select('core/editor').isSavingPost()) {
-
+			
 				saving = true;
 			} else {
 				if (saving) {
@@ -165,6 +166,8 @@ export const init = () => {
 
 					if (!autosaving) {
 						injectIframe(edac_editor_app.scanUrl, edac_editor_app.postID);
+					} else {
+						autosaving = false;
 					}
 				}
 			}

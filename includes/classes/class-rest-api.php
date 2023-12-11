@@ -220,6 +220,25 @@ class REST_Api
 
         }
 
+        // ignore revisions.
+        if (wp_is_post_revision($post_id) ) {
+            return new \WP_REST_Response(
+                array( 
+                'message' => 'The post is a revision so it is not set to be scanned.',
+                ), 400
+            );
+        }
+    
+        // ignore autosaves.
+        if (wp_is_post_autosave($post_id) ) {
+            return new \WP_REST_Response(
+                array( 
+                'message' => 'This post is an autosave so it is not set to be scanned.',
+                ), 400
+            );
+        }
+
+
      //phpcs:ignore Generic.Commenting.Todo.TaskFound			
         // TODO: setup a rules class for loading/filtering rules.
         $rules       = edac_register_rules();
