@@ -39,14 +39,14 @@ function edac_rule_missing_form_label( $content, $post ) { // phpcs:ignore -- $p
 function ac_input_has_label( $field, $dom ) {
 	if ( $field->getAttribute( 'aria-labelledby' ) ) {
 		return true;
-	} elseif ( $field->getAttribute( 'aria-label' ) ) {
-		return true;
-	} elseif ( $dom->find( 'label[for="' . $field->getAttribute( 'id' ) . '"]', -1 ) !== '' ) {
-		return true;
-	} else {
-		return edac_field_has_label_parent( $field );
 	}
-	return false;
+	if ( $field->getAttribute( 'aria-label' ) ) {
+		return true;
+	}
+	if ( $dom->find( 'label[for="' . $field->getAttribute( 'id' ) . '"]', -1 ) !== '' ) {
+		return true;
+	}
+	return edac_field_has_label_parent( $field );
 }
 
 /**
@@ -67,9 +67,9 @@ function edac_field_has_label_parent( $field ) {
 	$tag = $parent->tag;
 	if ( 'label' === $tag ) {
 		return true;
-	} elseif ( 'form' === $tag || 'body' === $tag ) {
+	}
+	if ( 'form' === $tag || 'body' === $tag ) {
 		return false;
 	}
-	$parent = $field->parent();
-	return edac_field_has_label_parent( $parent );
+	return edac_field_has_label_parent( $field->parent() );
 }

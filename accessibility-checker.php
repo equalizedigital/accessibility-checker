@@ -70,21 +70,19 @@ if ( ! defined( 'EDAC_PLUGIN_FILE' ) ) {
 
 // Accessibility New Window Warning Plugin Active.
 if ( ! defined( 'EDAC_ANWW_ACTIVE' ) ) {
-	if ( is_plugin_active( 'accessibility-new-window-warnings/accessibility-new-window-warnings.php' ) ) {
-		define( 'EDAC_ANWW_ACTIVE', true );
-	} else {
-		define( 'EDAC_ANWW_ACTIVE', false );
-	}
+	define(
+		'EDAC_ANWW_ACTIVE',
+		is_plugin_active( 'accessibility-new-window-warnings/accessibility-new-window-warnings.php' )
+	);
 }
 
 /**
  * Key Valid.
  */
-if ( 'valid' === get_option( 'edacp_license_status' ) ) {
-	define( 'EDAC_KEY_VALID', true );
-} else {
-	define( 'EDAC_KEY_VALID', false );
-}
+define(
+	'EDAC_KEY_VALID',
+	'valid' === get_option( 'edacp_license_status' )
+);
 
 // Enable EDAC_DEBUG mode.
 if ( ! defined( 'EDAC_DEBUG' ) ) {
@@ -832,17 +830,13 @@ function edac_summary_ajax() {
 	$simplified_summary_text   = '';
 	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
 
+	$simplified_summary_text = esc_html__( 'A Simplified summary has not been included for this content.', 'accessibility-checker' );
 	if ( 'none' !== $simplified_summary_prompt ) {
-
 		if ( $summary['content_grade'] <= 9 ) {
-			$simplified_summary_text = 'Your content has a reading level at or below 9th grade and does not require a simplified summary.';
-		} else {
-			$simplified_summary_text = $summary['simplified_summary'] ? 'A Simplified summary has been included for this content.' : 'A Simplified summary has not been included for this content.';
+			$simplified_summary_text = esc_html__( 'Your content has a reading level at or below 9th grade and does not require a simplified summary.', 'accessibility-checker' );
+		} elseif ( $summary['simplified_summary'] ) {
+			$simplified_summary_text = esc_html__( 'A Simplified summary has been included for this content.', 'accessibility-checker' );
 		}
-	} else {
-
-		$simplified_summary_text = 'A Simplified summary has not been included for this content.';
-
 	}
 
 	$html['content'] .= '<div class="edac-summary-total">';
@@ -1020,11 +1014,11 @@ function edac_summary( $post_id ) {
 	$content = $content_post->post_content;
 	$content = wp_filter_nohtml_kses( $content );
 	$content = str_replace( ']]>', ']]&gt;', $content );
+
+	$summary['content_grade'] = 0;
 	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
 		$text_statistics          = new DaveChild\TextStatistics\TextStatistics();
 		$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
-	} else {
-		$summary['content_grade'] = 0;
 	}
 
 	$summary['readability'] = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
@@ -1471,11 +1465,10 @@ function edac_readability_ajax() {
 	$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
 	$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
 
+	$simplified_summary_grade = 0;
 	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
 		$text_statistics          = new DaveChild\TextStatistics\TextStatistics();
 		$simplified_summary_grade = edac_ordinal( floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) ) );
-	} else {
-		$simplified_summary_grade = 0;
 	}
 
 	$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
@@ -1628,11 +1621,11 @@ function edac_output_simplified_summary( $content ) {
 	$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
 	if ( $simplified_summary && 'before' === $simplified_summary_position ) {
 		return $simplified_summary . $content;
-	} elseif ( $simplified_summary && 'after' === $simplified_summary_position ) {
-		return $content . $simplified_summary;
-	} else {
-		return $content;
 	}
+	if ( $simplified_summary && 'after' === $simplified_summary_position ) {
+		return $content . $simplified_summary;
+	}
+	return $content;
 }
 
 /**
@@ -1665,9 +1658,8 @@ function edac_simplified_summary_markup( $post ) {
 
 	if ( $simplified_summary ) {
 		return '<div class="edac-simplified-summary"><h2>' . wp_kses_post( $simplified_summary_heading ) . '</h2><p>' . wp_kses_post( $simplified_summary ) . '</p></div>';
-	} else {
-		return;
 	}
+	return '';
 }
 
 /**

@@ -25,11 +25,9 @@ function edac_rule_incorrect_heading_order( $content, $post ) {
 
 	if ( $elements ) {
 		foreach ( $elements as $element ) {
-			if ( $element->hasAttribute( 'aria-level' ) ) {
-				$current = $element->getAttribute( 'aria-level' );
-			} else {
-				$current = str_replace( 'h', '', $element->tag );
-			}
+			$current = ( $element->hasAttribute( 'aria-level' ) )
+				? $element->getAttribute( 'aria-level' )
+				: str_replace( 'h', '', $element->tag );
 
 			// Only process the logic if $previous is set and $current is not equal to $previous.
 			if ( $previous && $current !== $previous ) {

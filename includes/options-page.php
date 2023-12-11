@@ -21,13 +21,9 @@ function edac_user_can_ignore() {
 	$user              = wp_get_current_user();
 	$user_roles        = ( isset( $user->roles ) ) ? $user->roles : array();
 	$ignore_user_roles = get_option( 'edacp_ignore_user_roles' );
-	$interset          = ( $user_roles && $ignore_user_roles ) ? array_intersect( $user_roles, $ignore_user_roles ) : null;
+	$interset          = ( $user_roles && $ignore_user_roles ) ? array_intersect( $user_roles, $ignore_user_roles ) : false;
 
-	if ( $interset ) {
-		return true;
-	} else {
-		return false;
-	}
+	return (bool) $interset;
 }
 
 /**
@@ -398,10 +394,9 @@ function edac_sanitize_post_types( $selected_post_types ) {
 	}
 
 	// get unselected post types.
+	$unselected_post_types = $post_types;
 	if ( $selected_post_types ) {
 		$unselected_post_types = array_diff( $post_types, $selected_post_types );
-	} else {
-		$unselected_post_types = $post_types;
 	}
 
 	// delete unselected post type issues.

@@ -53,11 +53,10 @@ class Settings {
 					unset( $post_types[ $key ] );
 				}
 			}
-		} else {
-			$post_types = \EDACP\Settings::get_scannable_post_types();
+			return $post_types;
 		}
 
-		return $post_types;
+		return \EDACP\Settings::get_scannable_post_types();
 	}
 
 
@@ -81,11 +80,8 @@ class Settings {
 			')';
 
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$scannable_posts_count = $wpdb->get_var( $sql );
-
-		} else {
-			$scannable_posts_count = 0;
+			return $wpdb->get_var( $sql );
 		}
-		return $scannable_posts_count;
+		return 0;
 	}
 }

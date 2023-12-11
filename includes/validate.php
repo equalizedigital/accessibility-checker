@@ -114,9 +114,8 @@ function edac_validate( $post_ID, $post, $action ) {
 	if ( ! $content['html'] ) {
 		add_option( 'edac_password_protected', true );
 		return;
-	} else {
-		delete_option( 'edac_password_protected' );
 	}
+	delete_option( 'edac_password_protected' );
 
 	// set record check flag on previous error records.
 	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 1, 'php' );
@@ -300,13 +299,9 @@ function edac_get_content( $post ) {
 	// sanity check: confirm the permalink url is on this site.
 	if ( $parsed_url['host'] === $parsed_site_url['host'] ) {
 
-		if ( array_key_exists( 'query', $parsed_url ) && $parsed_url['query'] ) {
-			// the permalink structure is using a querystring.
-			$url = get_the_permalink( $post->ID ) . '&edac_cache=' . time();
-		} else {
-			// the permalink structure is not using a querystring.
-			$url = get_the_permalink( $post->ID ) . '?edac_cache=' . time();
-		}
+		$url = ( array_key_exists( 'query', $parsed_url ) && $parsed_url['query'] )
+			? get_the_permalink( $post->ID ) . '&edac_cache=' . time()  // Permalink structure using a querystring.
+			: get_the_permalink( $post->ID ) . '?edac_cache=' . time(); // Permalink structure not using a querystring.
 
 		// set token if post status is 'draft' or 'pending'.
 		if ( 'draft' === $post->post_status || 'pending' === $post->post_status ) {

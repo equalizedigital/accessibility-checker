@@ -112,9 +112,8 @@ function edac_ordinal( $number ) {
 	$ends = array( 'th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th' );
 	if ( ( ( $number % 100 ) >= 11 ) && ( ( $number % 100 ) <= 13 ) ) {
 		return $number . 'th';
-	} else {
-		return $number . $ends[ $number % 10 ];
 	}
+	return $number . $ends[ $number % 10 ];
 }
 
 /**
@@ -168,9 +167,8 @@ function edac_filter_by_value( $items, $index, $value ) {
 
 	if ( isset( $newarray ) && is_array( $newarray ) && count( $newarray ) ) {
 		return array_values( $newarray );
-	} else {
-		return null;
 	}
+	return array();
 }
 
 /**
@@ -214,12 +212,10 @@ function edac_is_gutenberg_active() {
  */
 function edac_days_active() {
 	$activation_date = get_option( 'edac_activation_date' );
+	$days_active     = 0;
 	if ( $activation_date ) {
-		$diff = strtotime( $activation_date ) - strtotime( gmdate( 'Y-m-d H:i:s' ) );
-
+		$diff        = strtotime( $activation_date ) - strtotime( gmdate( 'Y-m-d H:i:s' ) );
 		$days_active = abs( round( $diff / 86400 ) );
-	} else {
-		$days_active = null;
 	}
 	return $days_active;
 }
@@ -435,12 +431,9 @@ function edac_replace_css_variables( $value, $css_array ) {
 
 		if ( ! empty( $found_value ) ) {
 			return $found_value;
-		} else {
-			return $value;
 		}
-	} else {
-		return $value;
 	}
+	return $value;
 }
 
 /**

@@ -185,10 +185,9 @@ class Scans_Stats {
 		}
 		$data['rules_passed'] = $this->rule_count - $data['rules_failed'];
 
+		$data['passed_percentage'] = 0;
 		if ( $data['posts_scanned'] > 0 && $tests_count > 0 ) {
 			$data['passed_percentage'] = round( ( $data['rules_passed'] / $this->rule_count ) * 100, 2 );
-		} else {
-			$data['passed_percentage'] = 0;
 		}
 
 		$warning_issues_query      = new \EDAC\Issues_Query(
@@ -232,12 +231,14 @@ class Scans_Stats {
 			$this->record_limit,
 			Issues_Query::FLAG_ONLY_IGNORED
 		);
-		$data['ignored']          = (int) $ignored_issues_query->count();
-		$data['distinct_ignored'] = (int) $ignored_issues_query->distinct_count();
+		$data['ignored']              = (int) $ignored_issues_query->count();
+		$data['distinct_ignored']     = (int) $ignored_issues_query->distinct_count();
+		$data['posts_without_issues'] = 0;
+		$data['avg_issues_per_post']  = 0;
 
 		if ( $data['posts_scanned'] > 0 &&
-			! empty( Settings::get_scannable_post_types() ) &&
-			! empty( Settings::get_scannable_post_statuses() )
+			! empty( Settings::get_scannable_post_types() )
+			&& ! empty( Settings::get_scannable_post_statuses() )
 		) {
 
 			$sql = "SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}
@@ -252,11 +253,7 @@ class Scans_Stats {
 
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$data['posts_without_issues'] = $wpdb->get_var( $sql );
-
-			$data['avg_issues_per_post'] = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
-		} else {
-			$data['posts_without_issues'] = 0;
-			$data['avg_issues_per_post']  = 0;
+			$data['avg_issues_per_post']  = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
 		}
 
 		$data['avg_issue_density_percentage'] =
@@ -270,15 +267,13 @@ class Scans_Stats {
 			)
 		);
 
-		if ( null === $data['avg_issue_density_percentage'] ) {
-			$data['avg_issue_density_percentage'] = 'N/A';
-		} else {
-			$data['avg_issue_density_percentage'] = round( $data['avg_issue_density_percentage'], 2 );
+		$data['avg_issue_density_percentage'] = ( null === $data['avg_issue_density_percentage'] )
+			? 'N/A'
+			: round( $data['avg_issue_density_percentage'], 2 );
 
-		}
-
-		$data['fullscan_running'] = false;
-		$data['fullscan_state']   = '';
+		$data['fullscan_running']      = false;
+		$data['fullscan_state']        = '';
+		$data['fullscan_completed_at'] = 0;
 
 		if ( class_exists( '\EDACP\Scans' ) ) {
 			$scans      = new \EDACP\Scans();
@@ -291,9 +286,6 @@ class Scans_Stats {
 				$data['fullscan_running'] = true;
 			}
 			$data['fullscan_completed_at'] = $scans->scan_date( 'php' );
-
-		} else {
-			$data['fullscan_completed_at'] = 0;
 		}
 
 		$data['cache_id']   = $transient_name;
@@ -323,10 +315,9 @@ class Scans_Stats {
 		}
 
 		// Handle exceptions.
+		$formatting['fullscan_completed_at_formatted'] = 'N/A';
 		if ( $data['fullscan_completed_at'] > 0 ) {
 			$formatting['fullscan_completed_at_formatted'] = Helpers::format_date( $data['fullscan_completed_at'], true );
-		} else {
-			$formatting['fullscan_completed_at_formatted'] = 'N/A';
 		}
 		$formatting['passed_percentage_formatted']            = Helpers::format_percentage( $data['passed_percentage'] );
 		$formatting['avg_issue_density_percentage_formatted'] = Helpers::format_percentage( $data['avg_issue_density_percentage'] );
