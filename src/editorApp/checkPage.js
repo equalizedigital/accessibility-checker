@@ -142,19 +142,30 @@ export const init = () => {
 
 	});
 
+	
 	//Listen for dispatches from the wp data store so we can trap the update/publish event
 	let saving = false;
+	let autosaving = false;
+
+
 	if (wp.data !== undefined && wp.data.subscribe !== undefined) {
 		wp.data.subscribe(() => {
 
+			if (wp.data.select('core/editor').isAutosavingPost()) {
+				autosaving = true;
+			}
+
 			// Rescan the page if user saves post
 			if (wp.data.select('core/editor').isSavingPost()) {
+
 				saving = true;
 			} else {
 				if (saving) {
 					saving = false;
 
-					injectIframe(edac_editor_app.scanUrl, edac_editor_app.postID);
+					if (!autosaving) {
+						injectIframe(edac_editor_app.scanUrl, edac_editor_app.postID);
+					}
 				}
 			}
 
