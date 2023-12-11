@@ -261,19 +261,25 @@ function edac_update_database() {
 }
 
 /**
- * Register Rules
+ * Gets an array of default filters,
+ * and applies the rules `edac_filter_register_rules` filter to it.
  *
  * @return array
  */
 function edac_register_rules() {
-	$rules = include __DIR__ . '/includes/rules.php';
 
-	// filter rules.
-	if ( has_filter( 'edac_filter_register_rules' ) ) {
-		$rules = apply_filters( 'edac_filter_register_rules', $rules );
+	// Use a static variable to avoid multiple calls to the filesystem.
+	static $default_rules = null;
+	if ( ! is_null( $default_rules ) ) {
+		return $default_rules;
 	}
 
-	return $rules;
+	// If we got this far, this is the 1st time we called this function.
+	// We need to load the rules from the filesystem, and apply any filters.
+	$default_rules = include __DIR__ . '/includes/rules.php';
+	$default_rules = apply_filters( 'edac_filter_register_rules', $default_rules );
+
+	return $default_rules;
 }
 
 /**
