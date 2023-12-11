@@ -23,7 +23,7 @@ function edac_user_can_ignore() {
 	$ignore_user_roles = get_option( 'edacp_ignore_user_roles' );
 	$interset          = ( $user_roles && $ignore_user_roles ) ? array_intersect( $user_roles, $ignore_user_roles ) : false;
 
-	return (bool) $interset;
+	return ( $interset );
 }
 
 /**
