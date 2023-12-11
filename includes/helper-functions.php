@@ -182,10 +182,7 @@ function edac_is_gutenberg_active() {
 	$gutenberg    = false;
 	$block_editor = false;
 
-	if ( has_filter( 'replace_editor', 'gutenberg_init' ) ) {
-		// Gutenberg is installed and activated.
-		$gutenberg = true;
-	}
+	$gutenberg = has_filter( 'replace_editor', 'gutenberg_init' );
 
 	if ( version_compare( $GLOBALS['wp_version'], '5.0-beta', '>' ) ) {
 		// Block editor.
@@ -249,13 +246,7 @@ function edac_custom_post_types() {
  * @return array
  */
 function edac_post_types() {
-
-	$post_types = array( 'post', 'page' );
-
-	// filter post types.
-	if ( has_filter( 'edac_filter_post_types' ) ) {
-		$post_types = apply_filters( 'edac_filter_post_types', $post_types );
-	}
+	$post_types = apply_filters( 'edac_filter_post_types', array( 'post', 'page' ) );
 
 	// remove duplicates.
 	$post_types = array_unique( $post_types );

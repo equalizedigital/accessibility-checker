@@ -49,10 +49,7 @@ function edac_add_options_page() {
 	}
 
 	// settings panel filter.
-	$settings_capability = 'manage_options';
-	if ( has_filter( 'edac_filter_settings_capability' ) ) {
-		$settings_capability = apply_filters( 'edac_filter_settings_capability', $settings_capability );
-	}
+	$settings_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
 
 	add_submenu_page(
 		'accessibility_checker',
