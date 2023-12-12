@@ -24,14 +24,14 @@ class Ajax {
 	 * @return void
 	 */
 	public function init_hooks() {
-		add_action( 'wp_ajax_edac_summary_ajax',                      array( $this, 'summary' ) );
-		add_action( 'wp_ajax_edac_details_ajax',                      array( $this, 'details' ) );
-		add_action( 'wp_ajax_edac_readability_ajax',                  array( $this, 'readability' ) );
-		add_action( 'wp_ajax_edac_insert_ignore_data',                array( $this, 'add_ignore' ) );
-		add_action( 'wp_ajax_edac_update_simplified_summary',         array( $this, 'simplified_summary' ) );
-		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax',          array( $this, 'dismiss_welcome_cta' ) );
-		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax',        array( $this, 'dismiss_dashboard_cta' ) );
-		add_action( 'wp_ajax_edac_email_opt_in_ajax',                 array( $this, 'email_opt_in' ) );
+		add_action( 'wp_ajax_edac_summary_ajax',               array( $this, 'summary' ) );
+		add_action( 'wp_ajax_edac_details_ajax',               array( $this, 'details' ) );
+		add_action( 'wp_ajax_edac_readability_ajax',           array( $this, 'readability' ) );
+		add_action( 'wp_ajax_edac_insert_ignore_data',         array( $this, 'add_ignore' ) );
+		add_action( 'wp_ajax_edac_update_simplified_summary',  array( $this, 'simplified_summary' ) );
+		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax',   array( $this, 'dismiss_welcome_cta' ) );
+		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', array( $this, 'dismiss_dashboard_cta' ) );
+		add_action( 'wp_ajax_edac_email_opt_in_ajax',          array( $this, 'email_opt_in' ) );
 	}
 
 	/**
