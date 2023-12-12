@@ -1,12 +1,13 @@
 <?php
 /**
- * Class SampleTest
+ * Class EDACAdminNoticesTest
  *
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin_Notices;
 /**
- * Sample test case.
+ * Admin Notices test case.
  */
 class EDACAdminNoticesTest extends WP_UnitTestCase {
     
