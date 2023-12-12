@@ -24,14 +24,14 @@ class Ajax {
 	 * @return void
 	 */
 	public function init_hooks() {
-		add_action( 'wp_ajax_edac_summary_ajax',               array( $this, 'summary' ) );
-		add_action( 'wp_ajax_edac_details_ajax',               array( $this, 'details' ) );
-		add_action( 'wp_ajax_edac_readability_ajax',           array( $this, 'readability' ) );
-		add_action( 'wp_ajax_edac_insert_ignore_data',         array( $this, 'add_ignore' ) );
-		add_action( 'wp_ajax_edac_update_simplified_summary',  array( $this, 'simplified_summary' ) );
-		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax',   array( $this, 'dismiss_welcome_cta' ) );
+		add_action( 'wp_ajax_edac_summary_ajax', array( $this, 'summary' ) );
+		add_action( 'wp_ajax_edac_details_ajax', array( $this, 'details' ) );
+		add_action( 'wp_ajax_edac_readability_ajax', array( $this, 'readability' ) );
+		add_action( 'wp_ajax_edac_insert_ignore_data', array( $this, 'add_ignore' ) );
+		add_action( 'wp_ajax_edac_update_simplified_summary', array( $this, 'simplified_summary' ) );
+		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', array( $this, 'dismiss_welcome_cta' ) );
 		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', array( $this, 'dismiss_dashboard_cta' ) );
-		add_action( 'wp_ajax_edac_email_opt_in_ajax',          array( $this, 'email_opt_in' ) );
+		add_action( 'wp_ajax_edac_email_opt_in_ajax', array( $this, 'email_opt_in' ) );
 	}
 
 	/**
@@ -43,7 +43,7 @@ class Ajax {
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that there isn't any summary data to return
 	 */
-	function summary() {
+	public function summary() {
 
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
@@ -169,7 +169,7 @@ class Ajax {
 	 *  - '-3' means that the table name is not valid
 	 *  - '-4' means that there isn't any details to return
 	 */
-	function details() {
+	public function details() {
 
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
@@ -460,7 +460,7 @@ class Ajax {
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that there isn't any readability data to return
 	 */
-	function readability() {
+	public function readability() {
 
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
@@ -600,7 +600,7 @@ class Ajax {
 	 *  - '-1' means that nonce could not be varified
 	 *  - '-2' means that there isn't any ignore data to return
 	 */
-	function add_ignore() {
+	public function add_ignore() {
 
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
@@ -658,7 +658,7 @@ class Ajax {
 	 *  - '-3' means that the summary was not specified
 	 *  - '-4' means that there isn't any summary to return
 	 */
-	function simplified_summary() {
+	public function simplified_summary() {
 
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
@@ -706,7 +706,7 @@ class Ajax {
 	 *
 	 * @return void
 	 */
-	function dismiss_welcome_cta() {
+	public function dismiss_welcome_cta() {
 
 		update_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true ); 
 
@@ -718,7 +718,7 @@ class Ajax {
 	 *
 	 * @return void
 	 */
-	function dismiss_dashboard_cta() {
+	public function dismiss_dashboard_cta() {
 
 		update_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true );
 
@@ -730,7 +730,7 @@ class Ajax {
 	 *
 	 * @return void
 	 */
-	function email_opt_in() {
+	public function email_opt_in() {
 
 		update_user_meta( get_current_user_id(), 'edac_email_optin', true );
 
