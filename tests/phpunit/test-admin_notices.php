@@ -11,8 +11,8 @@ use EDAC\Admin_Notices;
  */
 class EDACAdminNoticesTest extends WP_UnitTestCase {
 	
-	private $admin_notices;
-
+	private $admin_notices; // Instance of the Admin_Notices class.
+	
 	protected function setUp(): void {
 		$this->admin_notices = new Admin_Notices();
 	}
@@ -22,7 +22,7 @@ class EDACAdminNoticesTest extends WP_UnitTestCase {
 	 */
 	public function test_edac_get_black_friday_message_exists() {
 		$this->assertTrue(
-			method_exists( $this->admin_notices, 'edac_get_black_friday_message'),
+			method_exists( $this->admin_notices, 'edac_get_black_friday_message' ),
 			'Class does not have method edac_get_black_friday_message'
 		);
 	}
@@ -48,7 +48,7 @@ class EDACAdminNoticesTest extends WP_UnitTestCase {
 	 */
 	public function test_edac_get_gaad_promo_message_exists() {
 		$this->assertTrue(
-			method_exists($this->admin_notices, 'edac_get_gaad_promo_message'),
+			method_exists( $this->admin_notices, 'edac_get_gaad_promo_message' ),
 			'Class does not have method edac_get_gaad_promo_message'
 		);
 	}
@@ -57,7 +57,7 @@ class EDACAdminNoticesTest extends WP_UnitTestCase {
 	 * Test that the edac_get_gaad_promo_message function returns a string.
 	 */
 	public function test_edac_get_gaad_promo_message_returns_string() {
-		$this->assertIsString($this->admin_notices->edac_get_gaad_promo_message());
+		$this->assertIsString( $this->admin_notices->edac_get_gaad_promo_message() );
 	}
 
 	/**
@@ -76,7 +76,7 @@ class EDACAdminNoticesTest extends WP_UnitTestCase {
 	 */
 	public function test_edac_password_protected_notice_text_exists() {
 		$this->assertTrue(
-			method_exists( $this->admin_notices, 'edac_password_protected_notice_text'),
+			method_exists( $this->admin_notices, 'edac_password_protected_notice_text' ),
 			'Class does not have method edac_password_protected_notice_text'
 		);
 	}
