@@ -67,7 +67,7 @@ class EDACAdminNoticesTest extends WP_UnitTestCase {
 		$message = $this->admin_notices->edac_get_gaad_promo_message();
 		$this->assertStringContainsString( '🎉 Get 30% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', $message );
 		$this->assertStringContainsString( 'Use coupon code GAAD23 from May 18th-May 25th to get access to full-site scanning and other pro features at a special discount.', $message );
-		$this->assertStringContainsString( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD23', $message );
+		$this->assertStringContainsString( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&#038;utm_medium=software&#038;utm_campaign=GAAD23', $message );
 		$this->assertStringContainsString( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD23', $message );
 	}
 
@@ -95,8 +95,7 @@ class EDACAdminNoticesTest extends WP_UnitTestCase {
 		$message = $this->admin_notices->edac_password_protected_notice_text();
 		$this->assertStringContainsString( 'Whoops! It looks like your website is currently password protected.', $message );
 		$this->assertStringContainsString( 'The free version of Accessibility Checker can only scan live websites.', $message );
-		$this->assertStringContainsString( 'To scan this website for accessibility problems either remove the password protection or upgrade to pro.', $message );
+		$this->assertStringContainsString( 'To scan this website for accessibility problems either remove the password protection or <a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="Upgrade to accessibility checker pro. Opens in a new window.">upgrade to pro</a>.', $message );
 		$this->assertStringContainsString( 'Scan results may be stored from a previous scan.', $message );
 	}
-
 }
