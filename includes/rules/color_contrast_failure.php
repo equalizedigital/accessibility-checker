@@ -293,7 +293,8 @@ function edac_deteremine_hierarchy( $rules ) {
 
 	if ( 'background' === $first && edac_check_color_match2( $rules['background'] ) ) {
 		return 'background';
-	} elseif ( array_key_exists( 'background-color', $rules ) ) {
+	}
+	if ( array_key_exists( 'background-color', $rules ) ) {
 		return 'background-color';
 	}
 
@@ -346,13 +347,9 @@ function edac_test_color_diff( $color1, $color2 ) {
 		0.7152 * pow( $color2['g'] / 255, 2.2 ) +
 		0.0722 * pow( $color2['b'] / 255, 2.2 );
 
-	if ( $l1 > $l2 ) {
-		$dif = ( ( $l1 + 0.05 ) / ( $l2 + 0.05 ) ) + 0.05;
-	} else {
-		$dif = ( ( $l2 + 0.05 ) / ( $l1 + 0.05 ) ) + 0.05;
-	}
-
-	return $dif;
+	return ( $l1 > $l2 )
+		? ( ( $l1 + 0.05 ) / ( $l2 + 0.05 ) ) + 0.05
+		: ( ( $l2 + 0.05 ) / ( $l1 + 0.05 ) ) + 0.05;
 }
 
 /**
@@ -545,9 +542,8 @@ function edac_convert_color_names( $color_name ) {
 
 	if ( isset( $colors[ $color_name ] ) ) {
 		return ( '#' . $colors[ $color_name ] );
-	} else {
-		return ( $color_name );
 	}
+	return ( $color_name );
 }
 
 /**

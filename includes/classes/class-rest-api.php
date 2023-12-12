@@ -367,48 +367,37 @@ class REST_Api {
 	 */
 	public function get_scans_stats_by_post_type( $request ) {
 
-		if ( ! isset( $request['slug'] )
-		) {
+		if ( ! isset( $request['slug'] ) ) {
 			return new \WP_REST_Response( array( 'message' => 'A required parameter is missing.' ), 400 );
 		}
 
 		try {
 
-			$post_type = strval( $request['slug'] );
-
+			$post_type            = strval( $request['slug'] );
 			$scannable_post_types = Settings::get_scannable_post_types();
 
 			if ( in_array( $post_type, $scannable_post_types, true ) ) {
 
-					$scans_stats = new Scans_Stats( 60 * 5 );
+				$scans_stats = new Scans_Stats( 60 * 5 );
+				$by_type     = $scans_stats->issues_summary_by_post_type( $post_type );
 
-					$by_type = $scans_stats->issues_summary_by_post_type( $post_type );
-
-					return new \WP_REST_Response(
-						array(
-							'success' => true,
-							'stats'   => $by_type,
-						)
-					);
-
-			} else {
-
-				return new \WP_REST_Response( array( 'message' => 'The post type is not set to be scanned.' ), 400 );
-
+				return new \WP_REST_Response(
+					array(
+						'success' => true,
+						'stats'   => $by_type,
+					)
+				);
 			}
+			return new \WP_REST_Response( array( 'message' => 'The post type is not set to be scanned.' ), 400 );
 		} catch ( \Exception $ex ) {
-
 			return new \WP_REST_Response(
 				array(
 					'message' => $ex->getMessage(),
 				),
 				500
 			);
-
 		}
 	}
-
-
 
 	/**
 	 * REST handler that gets stats about the scans by post types

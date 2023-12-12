@@ -121,10 +121,9 @@ function edac_tools_sysinfo_get() {
 
 	$response = wp_remote_post( 'https://www.paypal.com/cgi-bin/webscr', $params );
 
+	$wp_remote_post = 'wp_remote_post() does not work';
 	if ( ! is_wp_error( $response ) && $response['response']['code'] >= 200 && $response['response']['code'] < 300 ) {
 		$wp_remote_post = 'wp_remote_post() works';
-	} else {
-		$wp_remote_post = 'wp_remote_post() does not work';
 	}
 
 	$return .= 'Remote Post:              ' . $wp_remote_post . "\n";
@@ -315,43 +314,51 @@ function edac_tools_sysinfo_get() {
  * @return mixed string $host if detected, false otherwise
  */
 function edac_get_host() {
-	$host = false;
 
 	if ( defined( 'WPE_APIKEY' ) ) {
-		$host = 'WP Engine';
-	} elseif ( defined( 'PAGELYBIN' ) ) {
-		$host = 'Pagely';
-	} elseif ( defined( 'WPCOM_IS_VIP_ENV' ) ) {
-		$host = 'WordPress VIP';
-	} elseif ( DB_HOST === 'localhost:/tmp/mysql5.sock' ) {
-		$host = 'ICDSoft';
-	} elseif ( DB_HOST === 'mysqlv5' ) {
-		$host = 'NetworkSolutions';
-	} elseif ( strpos( DB_HOST, 'ipagemysql.com' ) !== false ) {
-		$host = 'iPage';
-	} elseif ( strpos( DB_HOST, 'ipowermysql.com' ) !== false ) {
-		$host = 'IPower';
-	} elseif ( strpos( DB_HOST, '.gridserver.com' ) !== false ) {
-		$host = 'MediaTemple Grid';
-	} elseif ( strpos( DB_HOST, '.pair.com' ) !== false ) {
-		$host = 'pair Networks';
-	} elseif ( strpos( DB_HOST, '.stabletransit.com' ) !== false ) {
-		$host = 'Rackspace Cloud';
-	} elseif ( strpos( DB_HOST, '.sysfix.eu' ) !== false ) {
-		$host = 'SysFix.eu Power Hosting';
-	} elseif ( isset( $_SERVER['SERVER_NAME'] ) && strpos( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ), 'Flywheel' ) !== false ) {
-		$host = 'Flywheel';
-	} else {
-
-		// Adding a general fallback for data gathering.
-		if ( isset( $_SERVER['SERVER_NAME'] ) ) {
-			$server_name = sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) );
-		}
-
-		$host = 'DBH: ' . DB_HOST . ', SRV: ' . $server_name;
+		return 'WP Engine';
+	}
+	if ( defined( 'PAGELYBIN' ) ) {
+		return 'Pagely';
+	}
+	if ( defined( 'WPCOM_IS_VIP_ENV' ) ) {
+		return 'WordPress VIP';
+	}
+	if ( DB_HOST === 'localhost:/tmp/mysql5.sock' ) {
+		return 'ICDSoft';
+	}
+	if ( DB_HOST === 'mysqlv5' ) {
+		return 'NetworkSolutions';
+	}
+	if ( strpos( DB_HOST, 'ipagemysql.com' ) !== false ) {
+		return 'iPage';
+	}
+	if ( strpos( DB_HOST, 'ipowermysql.com' ) !== false ) {
+		return 'IPower';
+	}
+	if ( strpos( DB_HOST, '.gridserver.com' ) !== false ) {
+		return 'MediaTemple Grid';
+	}
+	if ( strpos( DB_HOST, '.pair.com' ) !== false ) {
+		return 'pair Networks';
+	}
+	if ( strpos( DB_HOST, '.stabletransit.com' ) !== false ) {
+		return 'Rackspace Cloud';
+	}
+	if ( strpos( DB_HOST, '.sysfix.eu' ) !== false ) {
+		return 'SysFix.eu Power Hosting';
+	}
+	if ( isset( $_SERVER['SERVER_NAME'] ) && strpos( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ), 'Flywheel' ) !== false ) {
+		return 'Flywheel';
 	}
 
-	return $host;
+	// General fallback for data gathering.
+	if ( isset( $_SERVER['SERVER_NAME'] ) ) {
+		$server_name = sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) );
+		return 'DBH: ' . DB_HOST . ', SRV: ' . $server_name;
+	}
+
+	return '';
 }
 
 /**
@@ -429,9 +436,8 @@ function edac_get_posts_count() {
 
 	if ( $output ) {
 		return implode( ', ', $output );
-	} else {
-		return false;
 	}
+	return false;
 }
 
 /**

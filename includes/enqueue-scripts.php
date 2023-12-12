@@ -82,19 +82,15 @@ function edac_enqueue_scripts( $mode = '' ) {
 	);
 
 	if ( '' === $mode ) {
-		if ( ( current_user_can( 'edit_post', $post_id ) && ! is_customize_preview() )
-		) {
-			$mode = 'ui';
-		} else {
+		if ( ! current_user_can( 'edit_post', $post_id ) || is_customize_preview() ) {
 			return;
 		}
+		$mode = 'ui';
 	}
 
 	if ( ( 'full-scan' === $mode && $pro )
-			||
-			( 'ui' === $mode || 'editor-scan' === $mode
-			&&
-			$post_id && current_user_can( 'edit_post', $post_id ) )
+		|| 'ui' === $mode 
+		|| ( 'editor-scan' === $mode && $post_id && current_user_can( 'edit_post', $post_id ) )
 	) {
 
 		wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/app.bundle.js', false, EDAC_VERSION, false );
@@ -105,11 +101,7 @@ function edac_enqueue_scripts( $mode = '' ) {
 			// We are on ui/preview page. Set $active true to have the scanner show.
 			$post_types        = get_option( 'edac_post_types' );
 			$current_post_type = get_post_type();
-			if ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) ) {
-				$active = true;
-			} else {
-				$active = false;
-			}
+			$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 		}
 
 		if ( $pro ) {

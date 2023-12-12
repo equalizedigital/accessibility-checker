@@ -55,10 +55,8 @@ class Helpers {
 			$formatter->setAttribute( \NumberFormatter::GROUPING_USED, 1 ); // Include thousands separator.
 
 			return $formatter->format( $number );
-
-		} else {
-			return number_format( $number );
 		}
+		return number_format( $number );
 	}
 
 	/**
@@ -86,10 +84,8 @@ class Helpers {
 			$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
 
 			return $formatter->format( $number );
-
-		} else {
-			return sprintf( '%.2f%%', $number * 100 );
 		}
+		return sprintf( '%.2f%%', $number * 100 );
 	}
 
 	/**
@@ -101,32 +97,26 @@ class Helpers {
 	 */
 	public static function format_date( $date, $include_time = false ) {
 
+		$timestamp = $date;
 		if ( ! is_numeric( $date ) ) { // date as string.
-
 			$timestamp = strtotime( $date );
-
 			if ( ! $timestamp ) { // The passed string is not a valid date.
 				return $date;
 			}
-		} else { // unix timestamp.
-			$timestamp = $date;
 		}
 
 		$datetime = new \DateTime();
 		$datetime->setTimestamp( $timestamp );
 		$datetime->setTimezone( wp_timezone() );
 
-		if ( ! $include_time ) {
-			$format = get_option( 'date_format' );
-		} else {
-			$format = get_option( 'date_format' ) . ' \a\t ' . get_option( 'time_format' );
-		}
+		$format = ( ! $include_time )
+			? get_option( 'date_format' )
+			: get_option( 'date_format' ) . ' \a\t ' . get_option( 'time_format' );
 
 		if ( ! $format ) {
+			$format = 'j M Y';
 			if ( $include_time ) {
 				$format = 'j M Y \a\t g:i a';
-			} else {
-				$format = 'j M Y';
 			}
 		}
 
@@ -147,14 +137,7 @@ class Helpers {
 
 		if ( is_array( $option ) && ! empty( $option ) ) {
 			return $option;
-		} else {
-			return array();
 		}
-
-		if ( is_string( $option ) ) {
-			return array( $option );
-		}
-
 		return array();
 	}
 

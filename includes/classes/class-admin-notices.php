@@ -344,10 +344,10 @@ class Admin_Notices {
 	 * @return string
 	 */
 	public function edac_password_protected_notice() {
-
-		if ( boolval( get_option( 'edac_password_protected' ) ) === true && boolval( get_option( 'edac_password_protected_notice_dismiss' ) ) === false ) {
+		if ( (bool) get_option( 'edac_password_protected' ) 
+			&& ! (bool) get_option( 'edac_password_protected_notice_dismiss' ) 
+		) {
 			echo wp_kses( '<div class="edac_password_protected_notice notice notice-error is-dismissible"><p>' . $this->edac_password_protected_notice_text() . '</p></div>', 'post' );
-		} else {
 			return;
 		}
 	}
