@@ -5,18 +5,28 @@
  * @package Accessibility_Checker
  */
 
+namespace EDAC;
+
 /**
  * Class EDAC_Frontend_Highlight
  *
  * A class that handles AJAX requests for frontend highlighting of accessibility issues.
  */
-class EDAC_Frontend_Highlight {
+class Frontend_Highlight {
 
 	/**
 	 * Constructor function for the class.
-	 * Adds AJAX action hooks for handling frontend highlighting requests.
 	 */
 	public function __construct() {
+		
+	}
+
+	/**
+	 * Initialize hooks.
+	 *
+	 * @return void
+	 */
+	public function init_hooks() {
 		add_action( 'wp_ajax_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
 		add_action( 'wp_ajax_nopriv_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
 	}
@@ -95,4 +105,7 @@ class EDAC_Frontend_Highlight {
 	}
 }
 
-new EDAC_Frontend_Highlight();
+if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+	$ajax = new \EDAC\Frontend_Highlight();
+	$ajax->init_hooks();
+}
