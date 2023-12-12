@@ -112,7 +112,7 @@ function edac_validate( $post_ID, $post, $action ) {
 	do_action( 'edac_after_get_content', $post_ID, $content, $action );
 
 	if ( ! $content['html'] ) {
-		add_option( 'edac_password_protected', true );
+		update_option( 'edac_password_protected', true );
 		return;
 	}
 	delete_option( 'edac_password_protected' );

@@ -251,11 +251,7 @@ function edac_update_database() {
 	// Update database version option.
 	$option_name = 'edac_db_version';
 	$new_value   = EDAC_DB_VERSION;
-	if ( get_option( $option_name ) !== false ) {
-		update_option( $option_name, $new_value );
-	} else {
-		add_option( $option_name, $new_value );
-	}
+	update_option( $option_name, $new_value );
 }
 
 /**
@@ -607,19 +603,12 @@ function edac_anww_update_post_meta() {
 
 	$option_name = 'edac_anww_update_post_meta';
 
-	if ( get_option( $option_name ) === false && EDAC_ANWW_ACTIVE === true ) {
-
-		add_option( $option_name, true );
-
-		edac_update_post_meta( 'link_blank' );
-
-	} elseif ( get_option( $option_name ) === true && EDAC_ANWW_ACTIVE === false ) {
-
+	if ( get_option( $option_name ) === false && EDAC_ANWW_ACTIVE ) {
+		update_option( $option_name, true );
+	} elseif ( get_option( $option_name ) === true && ! EDAC_ANWW_ACTIVE ) {
 		delete_option( $option_name );
-
-		edac_update_post_meta( 'link_blank' );
-
 	}
+	edac_update_post_meta( 'link_blank' );
 }
 
 /**
