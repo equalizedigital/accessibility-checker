@@ -324,13 +324,18 @@ class Admin_Notices {
 	 * @return string
 	 */
 	public function edac_password_protected_notice_text() {
-		$notice = 'Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or <a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="upgrade to accessibility checker pro, opens in a new window">upgrade to pro</a>. Scan results may be stored from a previous scan.';
-
-		if ( has_filter( 'edac_filter_password_protected_notice_text' ) ) {
-			$notice = apply_filters( 'edac_filter_password_protected_notice_text', $notice );
-		}
-
-		return $notice;
+		return apply_filters(
+			'edac_filter_password_protected_notice_text',
+			sprintf(
+				// translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+				esc_html__( 'Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan.', 'accessibility-checker' ),
+				sprintf(
+					'<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="%1$s">%2$s</a>',
+					esc_attr__( 'Upgrade to accessibility checker pro. Opens in a new window.', 'accessibility-checker' ),
+					esc_html__( 'upgrade to pro', 'accessibility-checker' )
+				)
+			)
+		);
 	}
 
 	/**

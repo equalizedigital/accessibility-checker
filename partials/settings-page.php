@@ -5,23 +5,22 @@
  * @package Accessibility_Checker
  */
 
-// set up tab items.
-$settings_tab_items = array(
+// set up tab items and filter them.
+$settings_tab_items = apply_filters(
+	'edac_filter_settings_tab_items',
 	array(
-		'slug'  => '',
-		'label' => esc_html__( 'General', 'accessibility-checker' ),
-		'order' => 1,
-	),
-	array(
-		'slug'  => 'system_info',
-		'label' => esc_html__( 'System Info', 'accessibility-checker' ),
-		'order' => 4,
-	),
+		array(
+			'slug'  => '',
+			'label' => esc_html__( 'General', 'accessibility-checker' ),
+			'order' => 1,
+		),
+		array(
+			'slug'  => 'system_info',
+			'label' => esc_html__( 'System Info', 'accessibility-checker' ),
+			'order' => 4,
+		),
+	)
 );
-// filter settings tab items.
-if ( has_filter( 'edac_filter_settings_tab_items' ) ) {
-	$settings_tab_items = apply_filters( 'edac_filter_settings_tab_items', $settings_tab_items );
-}
 
 // sort settings tab items.
 if ( is_array( $settings_tab_items ) ) {

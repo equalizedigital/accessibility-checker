@@ -88,9 +88,7 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $rule_obj ) {
 	if ( ! $results ) {
 
 		// filter post types.
-		if ( has_filter( 'edac_filter_insert_rule_data' ) ) {
-			$rule_data = apply_filters( 'edac_filter_insert_rule_data', $rule_data );
-		}
+		$rule_data = apply_filters( 'edac_filter_insert_rule_data', $rule_data );
 
 		// insert.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Using direct query for adding data to database.

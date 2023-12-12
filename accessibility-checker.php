@@ -781,10 +781,7 @@ function edac_details_ajax() {
 	$rules = array_merge( $error_rules, $warning_rules, $passed_rules );
 
 	if ( $rules ) {
-		$ignore_permission = true;
-		if ( has_filter( 'edac_ignore_permission' ) ) {
-			$ignore_permission = apply_filters( 'edac_ignore_permission', $ignore_permission );
-		}
+		$ignore_permission = apply_filters( 'edac_ignore_permission', true );
 		foreach ( $rules as $rule ) {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 			$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
@@ -1003,9 +1000,7 @@ function edac_readability_ajax() {
 		}
 	}
 
-	if ( has_filter( 'edac_filter_readability_content' ) ) {
-		$content = apply_filters( 'edac_filter_readability_content', $content, $post_id );
-	}
+	$content = apply_filters( 'edac_filter_readability_content', $content, $post_id );
 	$content = wp_filter_nohtml_kses( $content );
 	$content = str_replace( ']]>', ']]&gt;', $content );
 
@@ -1200,12 +1195,10 @@ function edac_get_simplified_summary( $post = null ) {
  */
 function edac_simplified_summary_markup( $post ) {
 	$simplified_summary         = get_post_meta( $post, '_edac_simplified_summary', true ) ? get_post_meta( $post, '_edac_simplified_summary', true ) : '';
-	$simplified_summary_heading = 'Simplified Summary';
-
-	// filter title.
-	if ( has_filter( 'edac_filter_simplified_summary_heading' ) ) {
-		$simplified_summary_heading = apply_filters( 'edac_filter_simplified_summary_heading', $simplified_summary_heading );
-	}
+	$simplified_summary_heading = apply_filters(
+		'edac_filter_simplified_summary_heading',
+		esc_html__( 'Simplified Summary', 'accessibility-checker' )
+	);
 
 	if ( $simplified_summary ) {
 		return '<div class="edac-simplified-summary"><h2>' . wp_kses_post( $simplified_summary_heading ) . '</h2><p>' . wp_kses_post( $simplified_summary ) . '</p></div>';
