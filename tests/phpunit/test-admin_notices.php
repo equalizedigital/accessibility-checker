@@ -11,8 +11,16 @@ use EDAC\Admin_Notices;
  */
 class EDACAdminNoticesTest extends WP_UnitTestCase {
 	
-	private $admin_notices; // Instance of the Admin_Notices class.
+	/**
+	 * Instance of the Admin_Notices class.
+	 *
+	 * @var Admin_Notices $admin_notices.
+	 */
+	private $admin_notices;
 	
+	/**
+	 * Set up the test fixture.
+	 */
 	protected function setUp(): void {
 		$this->admin_notices = new Admin_Notices();
 	}
