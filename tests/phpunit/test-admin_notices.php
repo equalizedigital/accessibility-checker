@@ -68,7 +68,7 @@ class EDACAdminNoticesTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( '🎉 Get 30% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', $message );
 		$this->assertStringContainsString( 'Use coupon code GAAD23 from May 18th-May 25th to get access to full-site scanning and other pro features at a special discount.', $message );
 		$this->assertStringContainsString( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&#038;utm_medium=software&#038;utm_campaign=GAAD23', $message );
-		$this->assertStringContainsString( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD23', $message );
+		$this->assertStringContainsString( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&#038;utm_medium=software&#038;utm_campaign=GAAD23', $message );
 	}
 
 	/**
