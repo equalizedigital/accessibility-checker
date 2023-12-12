@@ -151,7 +151,7 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Warning Count:            ' . edac_get_warning_count() . "\n";
 	$return .= 'DB Table Count:           ' . edac_database_table_count( 'accessibility_checker' ) . "\n";
 
-	if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
+	if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
 
 		$return   .= "\n" . '-- Accessibility Checker Pro Configuration' . "\n\n";
 		$return   .= 'Version:                  ' . EDACP_VERSION . "\n";

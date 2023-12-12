@@ -142,6 +142,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend
 /**
  * Import Resources
  */
+require_once plugin_dir_path( __FILE__ ) . 'includes/deprecated.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/activation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
@@ -186,7 +187,7 @@ add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 add_action( 'template_redirect', 'edac_before_page_render' );
 add_action( 'admin_init', 'edac_process_actions' );
 add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
-if ( edac_check_plugin_active( 'oxygen/functions.php' ) ) {
+if ( is_plugin_active( 'oxygen/functions.php' ) ) {
 	add_action( 'added_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 }
