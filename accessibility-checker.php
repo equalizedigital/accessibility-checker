@@ -137,8 +137,6 @@ if ( ! class_exists( 'simple_html_dom' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-dom.php';
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-frontend-highlight.php';
-
 /**
  * Import Resources
  */
@@ -162,6 +160,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.p
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-welcome-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-ajax.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-frontend-highlight.php';
 
 /**
  * Filters and Actions
