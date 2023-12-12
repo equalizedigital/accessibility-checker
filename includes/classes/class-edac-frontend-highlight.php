@@ -28,7 +28,6 @@ class Frontend_Highlight {
 	 */
 	public function init_hooks() {
 		add_action( 'wp_ajax_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
-		add_action( 'wp_ajax_nopriv_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
 	}
 
 	/**
