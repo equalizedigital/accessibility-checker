@@ -18,6 +18,7 @@
     "dist": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && wp-scripts plugin-zip && mv accessibility-checker.zip ./dist && composer install",
     "lint": "./vendor/bin/phpcs && npm run lint:js",
 		"lint:js": "wp-scripts lint-js",
+		"lint:js:fix": "wp-scripts lint-js --fix",
     "test:e2e": "npx wp-env clean tests && npx playwright test ./e2e/specs"
   },
   "files": [
