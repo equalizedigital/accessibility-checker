@@ -295,7 +295,7 @@ function edac_before_page_render() {
 		// Check the page if it hasn't already been checked.
 		global $post;
 		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
-		if ( false === boolval( $checked ) ) {
+		if ( ! $checked ) {
 			edac_validate( $post->ID, $post, $action = 'load' );
 		}
 	}
@@ -348,8 +348,17 @@ function edac_summary( $post_id ) {
 			$postid = $post_id;
 			$siteid = get_current_blog_id();
 
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching  -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-			$rule_count = $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i where rule = %s and siteid = %d and postid = %d and ignre = %d', $table_name, $rule['slug'], $siteid, $postid, 0 ) );
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+			$rule_count = $wpdb->get_var(
+				$wpdb->prepare(
+					'SELECT count(*) FROM %i where rule = %s and siteid = %d and postid = %d and ignre = %d',
+					$table_name,
+					$rule['slug'],
+					$siteid,
+					$postid,
+					0
+				)
+			);
 
 			if ( ! $rule_count ) {
 				$rules_passed[] = $rule['slug'];
@@ -360,7 +369,16 @@ function edac_summary( $post_id ) {
 	$summary['passed_tests'] = round( count( $rules_passed ) / count( $rules ) * 100 );
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['errors'] = intval( $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i where siteid = %d and postid = %d and ruletype = %s and ignre = %d', $table_name, get_current_blog_id(), $post_id, 'error', 0 ) ) );
+	$summary['errors'] = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			'SELECT count(*) FROM %i where siteid = %d and postid = %d and ruletype = %s and ignre = %d',
+			$table_name,
+			get_current_blog_id(),
+			$post_id,
+			'error',
+			0
+		)
+	);
 
 	// count warnings.
 	$warnings_parameters = array( get_current_blog_id(), $post_id, 'warning', 0 );
@@ -369,9 +387,14 @@ function edac_summary( $post_id ) {
 		array_push( $warnings_parameters, 'link_blank' );
 		$warnings_where .= ' and rule != %s';
 	}
-	$query = 'SELECT count(*) FROM ' . $table_name . ' ' . $warnings_where;
-	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['warnings'] = intval( $wpdb->get_var( $wpdb->prepare( $query, $warnings_parameters ) ) );
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+	$summary['warnings'] = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
+			'SELECT count(*) FROM ' . $table_name . ' ' . $warnings_where,
+			$warnings_parameters
+		)
+	);
 
 	// count ignored issues.
 	$ignored_parameters = array( get_current_blog_id(), $post_id, 1 );
@@ -381,11 +404,26 @@ function edac_summary( $post_id ) {
 		$ignored_where .= ' and rule != %s';
 	}
 
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared , WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['ignored'] = intval( $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $table_name $ignored_where", $ignored_parameters ) ) );
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+	$summary['ignored'] = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared , WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
+			"SELECT count(*) FROM $table_name $ignored_where",
+			$ignored_parameters
+		)
+	);
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['contrast_errors'] = intval( $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i where siteid = %d and postid = %d and rule = %s and ignre = %d', $table_name, get_current_blog_id(), $post_id, 'color_contrast_failure', 0 ) ) );
+	$summary['contrast_errors'] = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			'SELECT count(*) FROM %i where siteid = %d and postid = %d and rule = %s and ignre = %d',
+			$table_name,
+			get_current_blog_id(),
+			$post_id,
+			'color_contrast_failure',
+			0
+		)
+	);
 
 	// remove color contrast from errors count.
 	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
@@ -402,8 +440,7 @@ function edac_summary( $post_id ) {
 
 		$element_count  = $issue_density_array[0][0];
 		$content_length = $issue_density_array[0][1];
-
-		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
+		$issue_density  = edac_get_issue_density( $issue_count, $element_count, $content_length );
 
 		if ( ! add_post_meta( $post_id, '_edac_issue_density', $issue_density, true ) ) {
 			update_post_meta( $post_id, '_edac_issue_density', $issue_density );
@@ -421,39 +458,25 @@ function edac_summary( $post_id ) {
 
 	$summary['content_grade'] = 0;
 	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-		$text_statistics          = new DaveChild\TextStatistics\TextStatistics();
-		$summary['content_grade'] = floor( $text_statistics->fleschKincaidGradeLevel( $content ) );
+		$summary['content_grade'] = floor(
+			( new DaveChild\TextStatistics\TextStatistics() )->fleschKincaidGradeLevel( $content )
+		);
 	}
 
-	$summary['readability'] = ( 0 === $summary['content_grade'] ) ? 'N/A' : edac_ordinal( $summary['content_grade'] );
+	$summary['readability'] = 0 === $summary['content_grade']
+		? 'N/A'
+		: edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
-	$summary['simplified_summary'] = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? true : false;
+	$summary['simplified_summary'] = (bool) ( get_post_meta( $post_id, '_edac_simplified_summary', true ) );
 
 	// save summary data as post meta.
-	if ( ! add_post_meta( $post_id, '_edac_summary', $summary, true ) ) {
-		update_post_meta( $post_id, '_edac_summary', $summary );
-	}
-
-	if ( ! add_post_meta( $post_id, '_edac_summary_passed_tests', $summary['passed_tests'], true ) ) {
-		update_post_meta( $post_id, '_edac_summary_passed_tests', $summary['passed_tests'] );
-	}
-
-	if ( ! add_post_meta( $post_id, '_edac_summary_errors', $summary['errors'], true ) ) {
-		update_post_meta( $post_id, '_edac_summary_errors', $summary['errors'] );
-	}
-
-	if ( ! add_post_meta( $post_id, '_edac_summary_warnings', $summary['warnings'], true ) ) {
-		update_post_meta( $post_id, '_edac_summary_warnings', $summary['warnings'] );
-	}
-
-	if ( ! add_post_meta( $post_id, '_edac_summary_ignored', $summary['ignored'], true ) ) {
-		update_post_meta( $post_id, '_edac_summary_ignored', $summary['ignored'] );
-	}
-
-	if ( ! add_post_meta( $post_id, '_edac_summary_contrast_errors', $summary['contrast_errors'], true ) ) {
-		update_post_meta( $post_id, '_edac_summary_contrast_errors', $summary['contrast_errors'] );
-	}
+	update_post_meta( $post_id, '_edac_summary', $summary );
+	update_post_meta( $post_id, '_edac_summary_passed_tests', $summary['passed_tests'] );
+	update_post_meta( $post_id, '_edac_summary_errors', $summary['errors'] );
+	update_post_meta( $post_id, '_edac_summary_warnings', $summary['warnings'] );
+	update_post_meta( $post_id, '_edac_summary_ignored', $summary['ignored'] );
+	update_post_meta( $post_id, '_edac_summary_contrast_errors', $summary['contrast_errors'] );
 
 	return $summary;
 }
@@ -467,9 +490,9 @@ function edac_anww_update_post_meta() {
 
 	$option_name = 'edac_anww_update_post_meta';
 
-	if ( get_option( $option_name ) === false && EDAC_ANWW_ACTIVE ) {
+	if ( ! get_option( $option_name ) && EDAC_ANWW_ACTIVE ) {
 		update_option( $option_name, true );
-	} elseif ( get_option( $option_name ) === true && ! EDAC_ANWW_ACTIVE ) {
+	} elseif ( get_option( $option_name ) && ! EDAC_ANWW_ACTIVE ) {
 		delete_option( $option_name );
 	}
 	edac_update_post_meta( 'link_blank' );
@@ -486,7 +509,15 @@ function edac_update_post_meta( $rule ) {
 	$site_id = get_current_blog_id();
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$posts = $wpdb->get_results( $wpdb->prepare( 'SELECT postid FROM %i WHERE rule = %s and siteid = %d', $wpdb->prefix . 'accessibility_checker', $rule, $site_id ), ARRAY_A );
+	$posts = $wpdb->get_results(
+		$wpdb->prepare(
+			'SELECT postid FROM %i WHERE rule = %s and siteid = %d',
+			$wpdb->prefix . 'accessibility_checker',
+			$rule,
+			$site_id
+		),
+		ARRAY_A
+	);
 
 	if ( $posts ) {
 		foreach ( $posts as $post ) {
@@ -509,7 +540,22 @@ function edac_documentation_link( $rule ) {
 		return '';
 	}
 
-	return $rule['info_url'] . '?utm_source=accessibility-checker&utm_medium=software&utm_term=' . esc_attr( $rule['slug'] ) . '&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . $days_active . '';
+	return add_query_arg(
+		array(
+			'utm_source'       => 'accessibility-checker',
+			'utm_medium'       => 'software',
+			'utm_term'         => esc_attr( $rule['slug'] ),
+			'utm_content'      => 'content-analysis',
+			'utm_campaign'     => 'wordpress-general',
+			'php_version'      => PHP_VERSION,
+			'platform'         => 'wordpress',
+			'platform_version' => $wp_version,
+			'software'         => 'free',
+			'software_version' => EDAC_VERSION,
+			'days_active'      => $days_active,
+		),
+		$rule['info_url']
+	);
 }
 
 /**
@@ -525,11 +571,14 @@ function edac_output_simplified_summary( $content ) {
 	}
 	$simplified_summary          = edac_simplified_summary_markup( get_the_ID() );
 	$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
-	if ( $simplified_summary && 'before' === $simplified_summary_position ) {
-		return $simplified_summary . $content;
-	}
-	if ( $simplified_summary && 'after' === $simplified_summary_position ) {
-		return $content . $simplified_summary;
+
+	if ( $simplified_summary ) {
+		if ( 'before' === $simplified_summary_position ) {
+			return $simplified_summary . $content;
+		}
+		if ( 'after' === $simplified_summary_position ) {
+			return $content . $simplified_summary;
+		}
 	}
 	return $content;
 }
@@ -554,7 +603,10 @@ function edac_get_simplified_summary( $post = null ) {
  * @return string
  */
 function edac_simplified_summary_markup( $post ) {
-	$simplified_summary         = get_post_meta( $post, '_edac_simplified_summary', true ) ? get_post_meta( $post, '_edac_simplified_summary', true ) : '';
+	$simplified_summary = get_post_meta( $post, '_edac_simplified_summary', true )
+		? get_post_meta( $post, '_edac_simplified_summary', true ) 
+		: '';
+
 	$simplified_summary_heading = apply_filters(
 		'edac_filter_simplified_summary_heading',
 		esc_html__( 'Simplified Summary', 'accessibility-checker' )
@@ -576,14 +628,29 @@ function edac_get_accessibility_statement() {
 	$add_footer_statement   = get_option( 'edac_add_footer_accessibility_statement' );
 	$include_statement_link = get_option( 'edac_include_accessibility_statement_link' );
 	$policy_page            = get_option( 'edac_accessibility_policy_page' );
-	$policy_page            = is_numeric( $policy_page ) ? get_page_link( $policy_page ) : $policy_page;
+	$policy_page            = is_numeric( $policy_page ) 
+		? get_page_link( $policy_page )
+		: $policy_page;
 
 	if ( $add_footer_statement ) {
-		$statement .= get_bloginfo( 'name' ) . ' ' . esc_html__( 'uses', 'accessibility-checker' ) . ' <a href="https://equalizedigital.com/accessibility-checker" target="_blank" aria-label="' . esc_attr__( 'Accessibility Checker', 'accessibility-checker' ) . ', opens a new window">' . esc_html__( 'Accessibility Checker', 'accessibility-checker' ) . '</a> ' . esc_html__( 'to monitor our website\'s accessibility. ', 'accessibility-checker' );
+		$statement .= sprintf(
+			// translators: %1$s is the site name, %2$s is a link with the plugin name.
+			esc_html__( '%1$s uses %2$s to monitor our website\'s accessibility.', 'accessibility-checker' ),
+			get_bloginfo( 'name' ),
+			sprintf(
+				'<a href="https://equalizedigital.com/accessibility-checker" target="_blank" aria-label="%1$s">%2$s</a>',
+				esc_attr__( 'Accessibility Checker (opens in a new window)', 'accessibility-checker' ),
+				esc_html__( 'Accessibility Checker', 'accessibility-checker' )
+			)
+		);
 	}
 
 	if ( $include_statement_link && $policy_page ) {
-		$statement .= esc_html__( 'Read our ', 'accessibility-checker' ) . '<a href="' . $policy_page . '">' . esc_html__( 'Accessibility Policy', 'accessibility-checker' ) . '</a>.';
+		$statement .= sprintf(
+			// translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+			esc_html__( 'Read our %s', 'accessibility-checker' ),
+			'<a href="' . $policy_page . '">' . esc_html__( 'Accessibility Policy', 'accessibility-checker' ) . '</a>.'
+		);
 	}
 
 	return $statement;
