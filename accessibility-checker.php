@@ -26,8 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 // Check for WordPress Playground.
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-playground-check.php';
-$plugin_check = new EDAC\Playground_Check();
-if ( ! $plugin_check->should_load ) {
+if ( ! ( new EDAC\Playground_Check() )->should_load ) {
 	return;
 }
 
