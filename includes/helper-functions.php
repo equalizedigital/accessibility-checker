@@ -90,11 +90,12 @@ function edac_check_plugin_installed( $plugin_slug ) {
 /**
  * Convert cardinal number into ordinal number
  *
- * @param int $number Number to make ordinal.
+ * @param int|string $number Number to make ordinal.
  * @return string
  */
 function edac_ordinal( $number ) {
-	$ends = array( 'th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th' );
+	$number = (int) $number;
+	$ends   = array( 'th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th' );
 	if ( ( ( $number % 100 ) >= 11 ) && ( ( $number % 100 ) <= 13 ) ) {
 		return $number . 'th';
 	}
