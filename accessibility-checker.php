@@ -161,6 +161,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-welcome-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-ajax.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-frontend-highlight.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-accessibility-statement.php';
 
 /**
  * Filters and Actions
@@ -176,7 +177,6 @@ add_action( 'admin_init', 'edac_register_setting' );
 add_action( 'admin_head', 'edac_post_on_load' );
 add_filter( 'save_post', 'edac_save_post', 10, 3 );
 add_filter( 'the_content', 'edac_output_simplified_summary' );
-add_action( 'wp_footer', 'edac_output_accessibility_statement' );
 add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 add_action( 'template_redirect', 'edac_before_page_render' );
@@ -564,41 +564,6 @@ function edac_simplified_summary_markup( $post ) {
 		return '<div class="edac-simplified-summary"><h2>' . wp_kses_post( $simplified_summary_heading ) . '</h2><p>' . wp_kses_post( $simplified_summary ) . '</p></div>';
 	}
 	return '';
-}
-
-/**
- * Get accessibility statement
- *
- * @return string
- */
-function edac_get_accessibility_statement() {
-	$statement              = '';
-	$add_footer_statement   = get_option( 'edac_add_footer_accessibility_statement' );
-	$include_statement_link = get_option( 'edac_include_accessibility_statement_link' );
-	$policy_page            = get_option( 'edac_accessibility_policy_page' );
-	$policy_page            = is_numeric( $policy_page ) ? get_page_link( $policy_page ) : $policy_page;
-
-	if ( $add_footer_statement ) {
-		$statement .= get_bloginfo( 'name' ) . ' ' . esc_html__( 'uses', 'accessibility-checker' ) . ' <a href="https://equalizedigital.com/accessibility-checker" target="_blank" aria-label="' . esc_attr__( 'Accessibility Checker', 'accessibility-checker' ) . ', opens a new window">' . esc_html__( 'Accessibility Checker', 'accessibility-checker' ) . '</a> ' . esc_html__( 'to monitor our website\'s accessibility. ', 'accessibility-checker' );
-	}
-
-	if ( $include_statement_link && $policy_page ) {
-		$statement .= esc_html__( 'Read our ', 'accessibility-checker' ) . '<a href="' . $policy_page . '">' . esc_html__( 'Accessibility Policy', 'accessibility-checker' ) . '</a>.';
-	}
-
-	return $statement;
-}
-
-/**
- * Output simplified summary
- *
- * @return void
- */
-function edac_output_accessibility_statement() {
-	$statement = edac_get_accessibility_statement();
-	if ( ! empty( $statement ) ) {
-		echo '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>' . wp_kses_post( $statement ) . '</small></p>';
-	}
 }
 
 // Add a filter for lazyloading images using the perfmatters_lazyload hook.
