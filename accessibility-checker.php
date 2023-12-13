@@ -239,18 +239,22 @@ function edac_register_rules() {
 /**
  * Include Rules
  *
- * @var object $rules
+ * @return void
  */
-$rules = edac_register_rules();
-if ( $rules ) {
+function edac_include_rules_files() {
+	$rules = edac_register_rules();
+	if ( ! $rules ) {
+		return;
+	}
 	foreach ( $rules as $rule ) {
-		if ( ( array_key_exists( 'ruleset', $rule ) && 'php' === $rule['ruleset'] ) ||
-		( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) ) {
+		if ( ( array_key_exists( 'ruleset', $rule ) && 'php' === $rule['ruleset'] )
+			|| ( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) 
+		) {
 			require_once plugin_dir_path( __FILE__ ) . 'includes/rules/' . $rule['slug'] . '.php';
 		}
 	}
 }
-
+edac_include_rules_files();
 
 /**
  * Code that needs to run before the page is rendered
