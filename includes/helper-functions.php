@@ -94,12 +94,12 @@ function edac_check_plugin_installed( $plugin_slug ) {
  * @return string
  */
 function edac_ordinal( $number ) {
-	$number = (int) $number;
-	$ends   = array( 'th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th' );
-	if ( ( ( $number % 100 ) >= 11 ) && ( ( $number % 100 ) <= 13 ) ) {
-		return $number . 'th';
-	}
-	return $number . $ends[ $number % 10 ];
+	return (
+		new NumberFormatter(
+			get_locale(),
+			NumberFormatter::ORDINAL
+		)
+	)->format( (int) $number );
 }
 
 /**
