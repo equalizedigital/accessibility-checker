@@ -82,7 +82,6 @@ function edac_rule_possible_heading( $content, $post ) { // phpcs:ignore Generic
 	}
 
 	return $errors;
-
 }
 
 /**
@@ -151,4 +150,3 @@ function edac_css_font_size_weight_check( $content ) {
 
 	return $errors;
 }
-

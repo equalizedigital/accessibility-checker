@@ -28,7 +28,6 @@ function edac_activation() {
 	}
 
 	edac_add_accessibility_statement_page();
-
 }
 
 /**
@@ -44,6 +43,7 @@ function edac_add_accessibility_statement_page() {
 
 	global $wpdb;
 
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 	if ( null === $wpdb->get_row( "SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'accessibility-statement'", 'ARRAY_A' ) ) {
 
 		$current_user = wp_get_current_user();
@@ -99,5 +99,4 @@ function edac_add_accessibility_statement_page() {
 		wp_insert_post( $page );
 
 	}
-
 }

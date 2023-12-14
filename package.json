@@ -11,7 +11,7 @@
     "hard-reset": "./hard-reset.sh",
     "wp:clean": "npx wp-env clean all",
     "wp:sql": "npx wp-env run cli wp db cli",
-    "start": "npx wp-env start",
+    "start": "./run-composer.sh && npx wp-env start",
     "stop": "npx wp-env stop",
     "build": "npx webpack",
     "dev": "npx webpack --watch --mode development",

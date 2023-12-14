@@ -37,7 +37,7 @@ class Helpers {
 	/**
 	 * Localizes the format of a number.
 	 *
-	 * @param [type]  $number
+	 * @param int     $number number to format.
 	 * @param integer $precision number of decimals.
 	 * @return integer
 	 */
@@ -64,7 +64,7 @@ class Helpers {
 	/**
 	 * Localizes the format of a percentage.
 	 *
-	 * @param [type]  $number
+	 * @param init    $number number to format.
 	 * @param integer $precision number of decimals.
 	 * @return integer
 	 */
@@ -96,8 +96,8 @@ class Helpers {
 	/**
 	 * Localizes the format of a date.
 	 *
-	 * @param [type]  $number
-	 * @param integer $precision number of decimals.
+	 * @param string  $date date to format.
+	 * @param boolean $include_time whether to include time in the formatted date.
 	 * @return integer
 	 */
 	public static function format_date( $date, $include_time = false ) {
@@ -157,5 +157,54 @@ class Helpers {
 		}
 
 		return array();
+	}
+
+
+	/**
+	 * Determine if a domain is hosted on a local loopback
+	 *
+	 * @param string $domain The domain to check.
+	 * @return boolean
+	 */
+	public static function is_domain_loopback( $domain ) {
+	
+		// Check if this is an ipv4 address in the loopback range.  
+	
+		$record         = gethostbyname( $domain );
+		$loopback_start = ip2long( '127.0.0.0' );
+		$loopback_end   = ip2long( '127.255.255.255' );
+		$ip_long        = ip2long( $record );
+	
+		if ( $ip_long >= $loopback_start && $ip_long <= $loopback_end ) {
+			return true;
+		}       
+
+			
+		// Check if this is an ipv6 loopback.
+	
+		try {
+			$records = dns_get_record( $domain, DNS_AAAA );
+		} catch ( \Throwable $th ) {
+			return false;           
+		}
+			
+		foreach ( $records as $record ) {
+		
+			// Do ipv6 check.
+			if ( isset( $record['type'] ) && 'AAAA' === $record['type'] ) {
+			
+				// Normalize the IPv6 address for comparison.
+				$normalized_ipv6 = inet_pton( $record['ipv6'] );
+
+				// Normalize the loopback address.
+				$loopback_ipv6 = inet_pton( '::1' );
+
+				if ( $normalized_ipv6 === $loopback_ipv6 ) {
+					return true;
+				}     
+			}
+		}
+	
+		return false;
 	}
 }
