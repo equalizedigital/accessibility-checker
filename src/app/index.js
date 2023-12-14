@@ -1,12 +1,8 @@
-import {
-	computePosition,
-	autoUpdate,
-	shift,
-	offset,
-	inline,
-} from '@floating-ui/dom';
+/* eslint-disable no-console */
+/* global edac_script_vars, DOMParser, XMLHttpRequest */
+import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
-import { isFocusable, isTabbable } from 'tabbable';
+import { isFocusable } from 'tabbable';
 import { Notyf } from 'notyf';
 
 import { scan } from './scanner';
@@ -16,6 +12,7 @@ const INFO_ENABLED = false;
 const DEBUG_ENABLED = false;
 let SCAN_INTERVAL_IN_SECONDS = 30;
 
+// eslint-disable-next-line camelcase
 if ( edac_script_vars.mode === 'full-scan' ) {
 	SCAN_INTERVAL_IN_SECONDS = 3;
 }
@@ -23,7 +20,7 @@ if ( edac_script_vars.mode === 'full-scan' ) {
 class AccessibilityCheckerHighlight {
 	/**
 	 * Constructor
-	 * @param settings
+	 * @param {Object} settings
 	 */
 	constructor( settings = {} ) {
 		const defaultSettings = {
@@ -91,11 +88,11 @@ class AccessibilityCheckerHighlight {
 	 */
 	init() {
 		// Add event listeners for 'next' and 'previous' buttons
-		this.nextButton.addEventListener( 'click', ( event ) => {
+		this.nextButton.addEventListener( 'click', () => {
 			this.highlightFocusNext();
 			this.focusTrapDescription();
 		} );
-		this.previousButton.addEventListener( 'click', ( event ) => {
+		this.previousButton.addEventListener( 'click', () => {
 			this.highlightFocusPrevious();
 			this.focusTrapDescription();
 		} );
@@ -187,10 +184,13 @@ class AccessibilityCheckerHighlight {
 		return new Promise( function ( resolve, reject ) {
 			const xhr = new XMLHttpRequest();
 			const url =
+				// eslint-disable-next-line camelcase
 				edac_script_vars.ajaxurl +
 				'?action=edac_frontend_highlight_ajax&post_id=' +
+				// eslint-disable-next-line camelcase
 				edac_script_vars.postID +
 				'&nonce=' +
+				// eslint-disable-next-line camelcase
 				edac_script_vars.nonce;
 
 			self.showWait( true );
@@ -203,15 +203,15 @@ class AccessibilityCheckerHighlight {
 
 					const response = JSON.parse( xhr.responseText );
 					if ( true === response.success ) {
-						const response_json = JSON.parse( response.data );
+						const responseJSON = JSON.parse( response.data );
 
 						if ( self.settings.showIgnored ) {
-							resolve( response_json );
+							resolve( responseJSON );
 						} else {
 							resolve(
-								response_json.filter(
+								responseJSON.filter(
 									( item ) =>
-										item.id == self.urlParameter ||
+										item.id === self.urlParameter ||
 										item.rule_type !== 'ignored'
 								)
 							);
@@ -247,7 +247,7 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * This function toggles showing Wait
-	 * @param status
+	 * @param {boolean} status
 	 */
 	showWait( status = true ) {
 		if ( status ) {
@@ -282,10 +282,9 @@ class AccessibilityCheckerHighlight {
 	 *
 	 * @param {HTMLElement} element - The DOM element before which the tooltip button will be inserted.
 	 * @param {Object}      value   - An object containing properties used to customize the tooltip button.
-	 * @param {number}      index   - The index of the element being processed.
 	 * @return {Object} - information about the tooltip
 	 */
-	addTooltip( element, value, index ) {
+	addTooltip( element, value ) {
 		// Create the tooltip.
 		const tooltip = document.createElement( 'button' );
 		tooltip.classList =
@@ -312,20 +311,20 @@ class AccessibilityCheckerHighlight {
 			computePosition( element, tooltip, {
 				placement: 'top-start',
 				middleware: [],
-			} ).then( ( { x, y, middlewareData, placement } ) => {
+			} ).then( ( { x, y } ) => {
 				const elRect = element.getBoundingClientRect();
 				const elHeight =
-					element.offsetHeight == undefined
+					element.offsetHeight === undefined
 						? 0
 						: element.offsetHeight;
 				const elWidth =
-					element.offsetWidth == undefined ? 0 : element.offsetWidth;
+					element.offsetWidth === undefined ? 0 : element.offsetWidth;
 				const tooltipHeight =
-					tooltip.offsetHeight == undefined
+					tooltip.offsetHeight === undefined
 						? 0
 						: tooltip.offsetHeight;
 				const tooltipWidth =
-					tooltip.offsetWidth == undefined ? 0 : tooltip.offsetWidth;
+					tooltip.offsetWidth === undefined ? 0 : tooltip.offsetWidth;
 
 				let top = 0;
 				const left = 0;
@@ -388,7 +387,7 @@ class AccessibilityCheckerHighlight {
 			<button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
 				<div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
 				<div class="edac-highlight-panel-description-content"></div>
-				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
+				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
 			</div>
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
@@ -403,7 +402,7 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite">Disable Styles</button>
 					</div>
 				</div>
-			
+
 			</div>
 			</div>
 		`;
@@ -414,7 +413,7 @@ class AccessibilityCheckerHighlight {
 	 * This function highlights the next element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
 	 */
 	highlightFocusNext = () => {
-		if ( this.currentButtonIndex == null ) {
+		if ( this.currentButtonIndex === null ) {
 			this.currentButtonIndex = 0;
 		} else {
 			this.currentButtonIndex =
@@ -428,7 +427,7 @@ class AccessibilityCheckerHighlight {
 	 * This function highlights the previous element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
 	 */
 	highlightFocusPrevious = () => {
-		if ( this.currentButtonIndex == null ) {
+		if ( this.currentButtonIndex === null ) {
 			this.currentButtonIndex = this.issues.length - 1;
 		} else {
 			this.currentButtonIndex =
@@ -475,9 +474,9 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
-		const issue = this.issues.find( ( issue ) => issue.id == id );
+		const issue = this.issues.find( ( item ) => item.id === id );
 		this.currentButtonIndex = this.issues.findIndex(
-			( issue ) => issue.id == id
+			( item ) => item.id === id
 		);
 
 		const tooltip = issue.tooltip;
@@ -531,7 +530,6 @@ class AccessibilityCheckerHighlight {
 	 * This function checks if a given element is visible on the page.
 	 *
 	 * @param {HTMLElement} el The element to check for visibility
-	 * @return
 	 */
 	checkVisibility = ( el ) => {
 		//checkVisibility is still in draft but well supported on many browsers.
@@ -553,7 +551,7 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * This function opens the accessibility checker panel.
-	 * @param id
+	 * @param {number|string} id
 	 */
 	panelOpen( id ) {
 		this.panelControls.style.display = 'block';
@@ -562,7 +560,7 @@ class AccessibilityCheckerHighlight {
 		// Get the issues for this page.
 		this.highlightAjax()
 			.then( ( json ) => {
-				if ( json.length == 0 ) {
+				if ( json.length === 0 ) {
 					this.nextButton.disabled = true;
 					this.previousButton.disabled = true;
 				} else {
@@ -588,7 +586,7 @@ class AccessibilityCheckerHighlight {
 					this.focusTrapDescription();
 				}
 			} )
-			.catch( ( err ) => {
+			.catch( () => {
 				//TODO:
 			} );
 	}
@@ -633,7 +631,7 @@ class AccessibilityCheckerHighlight {
 				'edac-highlight-element-selected-min-height'
 			);
 
-			if ( selectedElement.classList.length == 0 ) {
+			if ( selectedElement.classList.length === 0 ) {
 				selectedElement.removeAttribute( 'class' );
 			}
 		} );
@@ -748,7 +746,7 @@ class AccessibilityCheckerHighlight {
 	disableStyles() {
 		/*
 		If the site compiles css into a combined file, our method for disabling styles will cause out app's css to break.
-		This checks if the app's css is loading into #edac-app-css as expected. 
+		This checks if the app's css is loading into #edac-app-css as expected.
 		If not, then we assume the css has been combined, so we manually add it to the document.
 		*/
 		if ( ! document.querySelector( '#edac-app-css' ) ) {
@@ -758,6 +756,7 @@ class AccessibilityCheckerHighlight {
 			link.rel = 'stylesheet';
 			link.id = 'edac-app-css';
 			link.type = 'text/css';
+			// eslint-disable-next-line camelcase, no-unused-expressions
 			( link.href = edac_script_vars.appCssUrl ), ( link.media = 'all' );
 			document.head.appendChild( link );
 		}
@@ -863,13 +862,13 @@ class AccessibilityCheckerHighlight {
 	/**
 	 * This function counts the number of issues of a given type.
 	 *
-	 * @param {string} rule_type The type of issue to be counted.
+	 * @param {string} ruleType The type of issue to be counted.
 	 * @return {number} The number of issues of a given type.
 	 */
-	countIssues( rule_type ) {
+	countIssues( ruleType ) {
 		let count = 0;
 		for ( const issue of this.issues ) {
-			if ( issue.rule_type === rule_type ) {
+			if ( issue.rule_type === ruleType ) {
 				count++;
 			}
 		}
@@ -884,7 +883,7 @@ class AccessibilityCheckerHighlight {
 	countIgnored() {
 		let count = 0;
 		for ( const issue of this.issues ) {
-			if ( issue.ignored == 1 ) {
+			if ( issue.ignored === 1 ) {
 				count++;
 			}
 		}
@@ -909,14 +908,14 @@ class AccessibilityCheckerHighlight {
 				textContent +=
 					errorCount +
 					' error' +
-					( errorCount == 1 ? '' : 's' ) +
+					( errorCount === 1 ? '' : 's' ) +
 					', ';
 			}
 			if ( warningCount >= 0 ) {
 				textContent +=
 					warningCount +
 					' warning' +
-					( warningCount == 1 ? '' : 's' ) +
+					( warningCount === 1 ? '' : 's' ) +
 					', ';
 			}
 			if ( ignoredCount >= 0 ) {
@@ -924,7 +923,7 @@ class AccessibilityCheckerHighlight {
 					'and ' +
 					ignoredCount +
 					' ignored issue' +
-					( ignoredCount == 1 ? '' : 's' ) +
+					( ignoredCount === 1 ? '' : 's' ) +
 					' detected.';
 			} else {
 				// Remove the trailing comma and add "detected."
@@ -936,18 +935,21 @@ class AccessibilityCheckerHighlight {
 	}
 }
 
-if ( window.top._scheduledScanRunning == undefined ) {
+if ( window.top._scheduledScanRunning === undefined ) {
 	window.top._scheduledScanRunning = false;
 	window.top._scheduledScanCurrentPost = false;
 }
 
 async function checkApi() {
-	if ( edac_script_vars.edacHeaders.Authorization == 'None' ) {
+	// eslint-disable-next-line camelcase
+	if ( edac_script_vars.edacHeaders.Authorization === 'None' ) {
 		return 401;
 	}
 
+	// eslint-disable-next-line camelcase
 	const response = await fetch( edac_script_vars.edacApiUrl + '/test', {
 		method: 'POST',
+		// eslint-disable-next-line camelcase
 		headers: edac_script_vars.edacHeaders,
 	} );
 
@@ -955,12 +957,14 @@ async function checkApi() {
 }
 
 async function postData( url = '', data = {} ) {
-	if ( edac_script_vars.edacHeaders.Authorization == 'None' ) {
+	// eslint-disable-next-line camelcase
+	if ( edac_script_vars.edacHeaders.Authorization === 'None' ) {
 		return;
 	}
 
 	return await fetch( url, {
 		method: 'POST',
+		// eslint-disable-next-line camelcase
 		headers: edac_script_vars.edacHeaders,
 		body: JSON.stringify( data ),
 	} )
@@ -973,12 +977,14 @@ async function postData( url = '', data = {} ) {
 }
 
 async function getData( url = '' ) {
-	if ( edac_script_vars.edacHeaders.Authorization == 'None' ) {
+	// eslint-disable-next-line camelcase
+	if ( edac_script_vars.edacHeaders.Authorization === 'None' ) {
 		return {};
 	}
 
 	return await fetch( url, {
 		method: 'GET',
+		// eslint-disable-next-line camelcase
 		headers: edac_script_vars.edacHeaders,
 	} )
 		.then( ( res ) => {
@@ -997,8 +1003,8 @@ function info( message ) {
 
 function debug( message ) {
 	if ( DEBUG_ENABLED ) {
-		if ( location.href !== window.top.location.href ) {
-			console.debug( 'DEBUG [ ' + location.href + ' ]' );
+		if ( window.location.href !== window.top.location.href ) {
+			console.debug( 'DEBUG [ ' + window.location.href + ' ]' );
 		}
 		if ( typeof message !== 'object' ) {
 			console.debug( 'DEBUG: ' + message );
@@ -1013,7 +1019,8 @@ function saveScanResults( postId, violations, scheduled = false ) {
 	checkApi()
 		.then( ( status ) => {
 			if ( status >= 400 ) {
-				if ( status == 401 && edac_script_vars.edacpApiUrl == '' ) {
+				// eslint-disable-next-line camelcase
+				if ( status === 401 && edac_script_vars.edacpApiUrl === '' ) {
 					showNotice( {
 						msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
 						type: 'warning',
@@ -1026,8 +1033,9 @@ function saveScanResults( postId, violations, scheduled = false ) {
 						'Error: Password protected scans are not supported in the free version.'
 					);
 				} else if (
-					status == 401 &&
-					edac_script_vars.edacpApiUrl != ''
+					status === 401 &&
+					// eslint-disable-next-line camelcase
+					edac_script_vars.edacpApiUrl !== ''
 				) {
 					showNotice( {
 						msg: 'Whoops! It looks like your website is currently password protected. To scan this website for accessibility problems {link}.',
@@ -1059,6 +1067,7 @@ function saveScanResults( postId, violations, scheduled = false ) {
 
 				// Api is fine so we can send the scan results.
 				postData(
+					// eslint-disable-next-line camelcase
 					edac_script_vars.edacApiUrl +
 						'/post-scan-results/' +
 						postId,
@@ -1102,6 +1111,7 @@ function saveScanResults( postId, violations, scheduled = false ) {
 window.addEventListener(
 	'message',
 	( e ) => {
+		// eslint-disable-next-line camelcase
 		if ( e.origin !== edac_script_vars.edacUrl ) return;
 
 		if ( window === window.top ) {
@@ -1198,9 +1208,11 @@ window.addEventListener(
 );
 
 window.addEventListener( 'DOMContentLoaded', () => {
+	// eslint-disable-next-line camelcase
 	debug( 'We are loading the app in ' + edac_script_vars.mode + ' mode.' );
 
 	if ( JS_SCAN_ENABLED ) {
+		// eslint-disable-next-line camelcase
 		if ( edac_script_vars.mode === 'editor-scan' ) {
 			debug( 'App is loading from within the editor.' );
 
@@ -1210,20 +1222,22 @@ window.addEventListener( 'DOMContentLoaded', () => {
 			// loaded in the iframe to: 1) run the js scan, 2) post the results.
 			const iframe = document.createElement( 'iframe' );
 			iframe.setAttribute( 'id', 'edac_scanner' );
+			// eslint-disable-next-line camelcase
 			iframe.setAttribute( 'src', edac_script_vars.scanUrl );
-			iframe.style.width = screen.width + 'px';
-			iframe.style.height = screen.height + 'px';
+			iframe.style.width = window.screen.width + 'px';
+			iframe.style.height = window.screen.height + 'px';
 			iframe.style.position = 'absolute';
-			iframe.style.left = '-' + screen.width + 'px';
+			iframe.style.left = '-' + window.screen.width + 'px';
 			document.body.append( iframe );
 
-			iframe.addEventListener( 'load', function ( e ) {
+			iframe.addEventListener( 'load', function () {
 				debug( 'Scan iframe loaded.' );
 
 				// The frame has loaded the preview page, so post the message that fires the iframe scan and save.
 				window.postMessage( {
 					sender: 'edac_start_scan',
 					message: {
+						// eslint-disable-next-line camelcase
 						postId: edac_script_vars.postID,
 					},
 				} );
@@ -1241,8 +1255,9 @@ window.addEventListener( 'DOMContentLoaded', () => {
 
 						checkApi().then( ( status ) => {
 							if (
-								status == 401 &&
-								edac_script_vars.edacpApiUrl == ''
+								status === 401 &&
+								// eslint-disable-next-line camelcase
+								edac_script_vars.edacpApiUrl === ''
 							) {
 								showNotice( {
 									msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
@@ -1258,10 +1273,12 @@ window.addEventListener( 'DOMContentLoaded', () => {
 							} else {
 								debug(
 									'Loading scan iframe: ' +
+										// eslint-disable-next-line camelcase
 										edac_script_vars.scanUrl
 								);
 								iframe.setAttribute(
 									'src',
+									// eslint-disable-next-line camelcase
 									edac_script_vars.scanUrl
 								);
 							}
@@ -1274,8 +1291,11 @@ window.addEventListener( 'DOMContentLoaded', () => {
 		}
 
 		if (
+			// eslint-disable-next-line camelcase
 			( edac_script_vars.mode === 'editor-scan' &&
-				edac_script_vars.edacpApiUrl != '' ) || //&& edac_script_vars.pendingFullScan) ||
+				// eslint-disable-next-line camelcase
+				edac_script_vars.edacpApiUrl !== '' ) || //&& edac_script_vars.pendingFullScan) ||
+			// eslint-disable-next-line camelcase
 			edac_script_vars.mode === 'full-scan'
 		) {
 			debug(
@@ -1288,10 +1308,11 @@ window.addEventListener( 'DOMContentLoaded', () => {
 				'id',
 				'edacp_scheduled_scanner'
 			);
-			iframeScheduledScanner.style.width = screen.width + 'px';
-			iframeScheduledScanner.style.height = screen.height + 'px';
+			iframeScheduledScanner.style.width = window.screen.width + 'px';
+			iframeScheduledScanner.style.height = window.screen.height + 'px';
 			iframeScheduledScanner.style.position = 'absolute';
-			iframeScheduledScanner.style.left = '-' + screen.width + 'px';
+			iframeScheduledScanner.style.left =
+				'-' + window.screen.width + 'px';
 
 			const onLoadIframeScheduledScanner = function ( e ) {
 				debug( 'Loading scheduled scan iframe: done' );
@@ -1312,12 +1333,14 @@ window.addEventListener( 'DOMContentLoaded', () => {
 
 			document.body.append( iframeScheduledScanner );
 
+			// eslint-disable-next-line no-unused-vars
 			const scanInterval = setInterval( () => {
 				if ( ! window.top._scheduledScanRunning ) {
 					debug( 'Polling to see if there are any scans pending.' );
 
 					// Poll to see if there are any scans pending.
 					getData(
+						// eslint-disable-next-line camelcase
 						edac_script_vars.edacpApiUrl + '/scheduled-scan-url'
 					).then( ( data ) => {
 						if ( data.code !== 'rest_no_route' ) {
@@ -1355,6 +1378,7 @@ window.addEventListener( 'DOMContentLoaded', () => {
 			}, SCAN_INTERVAL_IN_SECONDS * 1000 );
 		}
 	}
+	// eslint-disable-next-line camelcase
 	if ( edac_script_vars.mode === 'ui' && edac_script_vars.active ) {
 		// We are loading the app in a normal page preview so show the user the ui
 		new AccessibilityCheckerHighlight();
@@ -1389,7 +1413,7 @@ if ( window.top === window && window._showNotice === undefined ) {
 		) {
 			const o = { isDismissible: true };
 
-			var msg = settings.msg;
+			let msg = settings.msg;
 
 			if ( settings.url ) {
 				o.actions = [
@@ -1420,7 +1444,7 @@ if ( window.top === window && window._showNotice === undefined ) {
 		} else {
 			//TODO: do we need to show notices on preview pages? If not we can remove this section and Notyf.
 
-			var msg = settings.msg;
+			let msg = settings.msg;
 
 			if ( settings.url ) {
 				msg = msg.replace(
@@ -1470,6 +1494,7 @@ if ( window.top === window && window._showNotice === undefined ) {
 				notyf.dismissAll();
 			}
 
+			// eslint-disable-next-line no-unused-vars
 			const notification = notyf.open( {
 				type: settings.type,
 				message: msg,

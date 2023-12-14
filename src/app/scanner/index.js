@@ -1,3 +1,4 @@
+/* global axe */
 import 'axe-core';
 import colorContrastFailure from './rules/color-contrast-failure';
 //TODO: examples:
@@ -26,7 +27,7 @@ export async function scan( options = { configOptions: {}, runOptions: {} } ) {
 		},
 		runOptions: {
 			runOnly: [ 'color_contrast_failure' ],
-			/*	
+			/*
 			//TODO:
 			runOnly: {
 				type: 'tag',
@@ -77,7 +78,7 @@ export async function scan( options = { configOptions: {}, runOptions: {} } ) {
 				} );
 			} );
 
-			const rules_min = rules.map( ( r ) => {
+			const rulesMin = rules.map( ( r ) => {
 				return {
 					id: r.id,
 					description: r.description,
@@ -93,6 +94,7 @@ export async function scan( options = { configOptions: {}, runOptions: {} } ) {
 				b = document.querySelector( b.selector );
 
 				if ( a === b ) return 0;
+				// eslint-disable-next-line no-bitwise
 				if ( a.compareDocumentPosition( b ) & 2 ) {
 					// b comes before a
 					return 1;
@@ -100,7 +102,7 @@ export async function scan( options = { configOptions: {}, runOptions: {} } ) {
 				return -1;
 			} );
 
-			return { rules, rules_min, violations };
+			return { rules, rulesMin, violations };
 		} )
 		.catch( ( err ) => {
 			axe.reset();
