@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.7.0-beta1.2
+ * Version:           1.7.0-beta1.7
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -45,7 +45,7 @@ if ( is_admin() && file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.p
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.7.0-beta1.2' );
+	define( 'EDAC_VERSION', '1.7.0-beta1.7' );
 }
 
 // Current database version.
@@ -1000,7 +1000,7 @@ function edac_summary( $post_id ) {
 	$query = 'SELECT count(*) FROM ' . $table_name . ' where siteid = %d and postid = %d and rule = %s and ignre = %d';
 	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	$summary['contrast_errors'] = intval( $wpdb->get_var( $wpdb->prepare( $query, get_current_blog_id(), $post_id, 'color_contrast_failure', 0 ) ) );
-
+	
 	// remove color contrast from errors count.
 	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
 
@@ -1070,6 +1070,7 @@ function edac_summary( $post_id ) {
 		update_post_meta( $post_id, '_edac_summary_contrast_errors', $summary['contrast_errors'] );
 	}
 
+	
 	return $summary;
 }
 

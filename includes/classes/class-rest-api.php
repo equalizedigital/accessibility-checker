@@ -297,11 +297,11 @@ class REST_Api
     
             do_action('edac_after_validate', $post_id, 'js');
     
-            // Update the summary info that is stored in meta this post.
-            $summary = edac_summary($post_id);
-    
             // remove corrected records.
             edac_remove_corrected_posts($post_id, $post->post_type, $pre = 2, 'js');
+
+            // Update the summary info that is stored in meta this post.
+            $summary = edac_summary($post_id);
 
             // store a record of this scan in the post's meta.
             update_post_meta($post_id, '_edac_post_checked_js', time());

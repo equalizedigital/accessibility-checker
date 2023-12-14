@@ -8,29 +8,50 @@ import colorContrastFailure from './rules/color-contrast-failure';
 //TODO: 			
 //see: https://github.com/dequelabs/axe-core/blob/develop/doc/developer-guide.md#api-reference
 //see: https://www.deque.com/axe/core-documentation/api-documentation/
-
-
-export async function scan(
-	options = { configOptions: {}, runOptions: {} }
-) {
-
 	
+
+//NOTE: to get no-axe baseline for memory testing:
+// set SCAN_TIMEOUT_IN_SECONDS = .01
+// comment out scan().then((results) => {
+
+
+const SCAN_TIMEOUT_IN_SECONDS = 30;
+
+
+// Read the data passed from the parent document.
+const body = document.querySelector('body');
+const iframeId = body.getAttribute('data-iframe-id');
+const eventName = body.getAttribute('data-iframe-event-name');
+const postId = body.getAttribute('data-iframe-post-id');
+
+
+
+
+const scan = async (
+	options = { configOptions: {}, runOptions: {} }
+) => {
+
+
 	const context = { exclude: ['#wpadminbar', '.edac-panel-container'] };
 
 	const defaults = {
 		configOptions: {
 			reporter: "raw",
-	
-			rules : [
+
+			rules: [
 				//customRule1,
 				colorContrastFailure
 			],
 			checks: [
 				//alwaysFail,
-			  ],
+			],
+			iframes: false
+		
 		},
+		resultTypes: ['violations'],
 		runOptions: {
 			runOnly: ['color_contrast_failure']
+			
 			/*	
 			//TODO:
 			runOnly: {
@@ -47,6 +68,7 @@ export async function scan(
 				]
 			}
 			*/
+
 		}
 	};
 
@@ -58,20 +80,19 @@ export async function scan(
 	return await axe.run(context, runOptions)
 		.then((rules) => {
 
-			axe.reset();
+		
 
-			
 			let violations = [];
 
 			rules.forEach(item => {
 
 				//Build an array of the dom selectors and ruleIDs for violations/failed tests
-				item.violations.forEach( violation => {
-					if(violation.result === 'failed'){
-				
-			
+				item.violations.forEach(violation => {
+					if (violation.result === 'failed') {
+
+
 						violations.push({
-							selector:violation.node.selector,
+							selector: violation.node.selector,
 							html: document.querySelector(violation.node.selector).outerHTML,
 							ruleId: item.id,
 							impact: item.impact,
@@ -91,65 +112,138 @@ export async function scan(
 					tags: r.tags
 				}
 			});
-			
+
 			//Sort the violations by order they appear in the document
-			violations.sort(function(a,b) {
+			violations.sort(function (a, b) {
 				a = document.querySelector(a.selector);
 				b = document.querySelector(b.selector);
-				
-				if( a === b) return 0;
-				if( a.compareDocumentPosition(b) & 2) {
+
+				if (a === b) return 0;
+				if (a.compareDocumentPosition(b) & 2) {
 					// b comes before a
 					return 1;
 				}
 				return -1;
 			});
-			
-			return { rules, rules_min, violations };
-			
-	
-		}).catch((err) => {
-			axe.reset();
 
-			//TODO:
-			return err;
+			return { rules, rules_min, violations };
+
+
+		}).catch((err) => {
+			throw err;
 		});
 
 
-	
+
 };
 
 
-	// Read the data passed from the parent document.
-	const body = document.querySelector('body');
-	const iframeId = body.getAttribute('data-iframe-id');
-	const eventName = body.getAttribute('data-iframe-event-name');
-	const postId = body.getAttribute('data-iframe-post-id');
-
-
-	scan().then((results) => {
+const onDone = (violations = [], errorMsgs = [], error = false ) => {
 	
-		let violations = JSON.parse(JSON.stringify(results.violations));
+	// cleanup the timeout.
+	clearTimeout(tooLongTimeout);
+	
+	
+	// cleanup axe.
+	if(typeof(axe.cleanup) !== 'undefined'){
+
+		axe.cleanup( 
+			function(){
+				axe.teardown();
+				axe = null;
+
+					// Create a custom event
+					var customEvent = new CustomEvent(eventName, {
+						detail: {
+							iframeId: iframeId,
+							postId: postId,
+							violations,
+							errorMsgs,
+							error
+						},
+						bubbles: false
+					});
+
+				top.dispatchEvent(customEvent);
+
+				customEvent = null;
+
+			}, 		
+			function(){
+				axe.teardown();
+				axe = null;
+
+				// Create a custom event
+				errorMsgs.push( '***** axe.cleanup() failed.' );
+					
+				var customEvent = new CustomEvent(eventName, {
+					detail: {
+						iframeId: iframeId,
+						postId: postId,
+						violations,
+						errorMsgs,
+						error
+					},
+					bubbles: false
+				});
 		
+				top.dispatchEvent(customEvent);
+
+				customEvent = null;
+			}
+		);
+	
+	} else {
+	
+		error = true;
 		
-		
-		// Create a custom event
+		errorMsgs.push( '***** axe.cleanup() does not exist.' );
+		axe = null;
+	
 		var customEvent = new CustomEvent(eventName, {
 			detail: {
 				iframeId: iframeId,
-				postId : postId,
-				violations: violations,
+				postId: postId,
+				violations,
+				errorMsgs,
+				error
 			},
-			bubbles: true, // Allow the event to bubble up the DOM hierarchy
+			bubbles: false
 		});
-	  
-	  // Dispatch the custom event on the top window
-	  top.dispatchEvent(customEvent);
-	  
 	
-	});
-	
+		top.dispatchEvent(customEvent);
+		
+		customEvent = null;
+	}
 
-//});
+}
+
+
+
+// Fire a failed event if the scan doesn't complete on time.
+const tooLongTimeout = setTimeout(function () {
+
+	onDone([], ['***** axe scan took too long.'], true );
+
+}, SCAN_TIMEOUT_IN_SECONDS * 1000);
+
+
+
+
+// Start the scan.
+scan().then((results) => {
+
+	let violations = JSON.parse(JSON.stringify(results.violations));
+	
+	onDone( violations );
+
+
+}).catch((err) => {
+
+	onDone( [], [err.message], true);
+
+});
+
+
 
 
