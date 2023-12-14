@@ -374,7 +374,7 @@ class Scans_Stats {
 
 		$cache = get_transient( $transient_name );
 	
-		if ( $this->cache_time && $cache ) {
+		if ( $this->cache_time && false !== $cache ) {
 
 			if ( $cache['expires_at'] >= time() && $cache['cached_at'] + $this->cache_time >= time() 
 			) {
