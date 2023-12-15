@@ -47,6 +47,16 @@
         "php": ">=7.4",
         "composer/installers": "^1.12.0"
     },
+    "autoload": {
+		"classmap": [
+			"admin/",
+			"includes/inc/"
+		]
+	},
+	"autoload-dev": {
+		"classmap": [
+		]
+	},
     "scripts": {
         "lint": [
             "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude node_modules --exclude .git"

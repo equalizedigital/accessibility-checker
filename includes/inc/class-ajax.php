@@ -5,7 +5,7 @@
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
+namespace EDAC\Admin;
 
 /**
  * Class that handles ajax requests.
@@ -736,9 +736,4 @@ class Ajax {
 
 		wp_send_json( 'success' );
 	}
-}
-
-if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-	$ajax = new \EDAC\Ajax();
-	$ajax->init_hooks();
 }

@@ -34,11 +34,6 @@ if ( ! $plugin_check->should_load ) {
 // Include plugin dependency.
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
-// Load composer packages.
-if ( is_admin() && file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
-	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
-}
-
 /**
  * Setup constants.
  */
@@ -126,6 +121,17 @@ fill="#000000" stroke="none">
 register_activation_hook( __FILE__, 'edac_activation' );
 register_deactivation_hook( __FILE__, 'edac_deactivation' );
 
+/* ***************************** CLASS AUTOLOADING *************************** */
+if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
+	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+}
+
+use EDAC\Inc\Plugin;
+
+if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
+	new Plugin();
+}
+
 /**
  * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
  */
@@ -159,9 +165,9 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-issues-query.
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-welcome-page.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-ajax.php';
+//require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-ajax.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-frontend-highlight.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-accessibility-statement.php';
+//require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-accessibility-statement.php';
 
 /**
  * Filters and Actions
