@@ -50,7 +50,7 @@
     "autoload": {
 		"classmap": [
 			"admin/",
-			"includes/inc/"
+			"includes/classes/"
 		]
 	},
 	"autoload-dev": {
