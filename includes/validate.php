@@ -319,7 +319,7 @@ function edac_get_content( $post ) {
 			// setup the context for the request.
 			// note - if follow_location => false, permalinks that redirect (both offsite and on).
 			// will not be followed, so $content['html] will be false.
-			$merged_context_opts = array_merge( $default_context_opts, $context_opts );
+			$merged_context_opts = array_merge_recursive( $default_context_opts, $context_opts );
 			$context             = stream_context_create( $merged_context_opts );
 
 			$dom             = file_get_html( $url, false, $context );
