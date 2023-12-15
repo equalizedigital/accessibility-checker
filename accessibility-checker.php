@@ -158,12 +158,12 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 //require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-admin-notices.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rest-api.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-helpers.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-settings.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-issues-query.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
+//require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rest-api.php';
+//require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-helpers.php';
+//require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-settings.php';
+//require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-issues-query.php';
+//require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
+//require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
 //require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-welcome-page.php';
 //require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-ajax.php';
 //require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-frontend-highlight.php';
@@ -172,7 +172,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
 /**
  * Filters and Actions
  */
-add_action( 'init', 'edac_init' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
@@ -193,15 +192,6 @@ if ( is_plugin_active( 'oxygen/functions.php' ) ) {
 	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 }
 //add_action( 'admin_init', 'edac_anww_update_post_meta' );
-add_action( 'wp_dashboard_setup', 'edac_wp_dashboard_setup' );
-
-/**
- * Init the plugin
- */
-function edac_init() {
-	// instantiate the classes that need to load hooks early.
-	new \EDAC\Rest_Api();
-}
 
 /**
  * Create/Update database
@@ -305,22 +295,6 @@ function edac_before_page_render() {
 			edac_validate( $post->ID, $post, $action = 'load' );
 		}
 	}
-}
-
-/**
- * Add dashboard widget
- *
- * @return void
- */
-function edac_wp_dashboard_setup() {
-	wp_add_dashboard_widget(
-		'edac_dashboard_scan_summary',
-		'Accessibility Checker',
-		array(
-			'\EDAC\Widgets',
-			'render_dashboard_scan_summary',
-		)
-	);
 }
 
 /**

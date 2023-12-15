@@ -8,7 +8,7 @@
 namespace EDAC;
 
 use EDAC\Scans_Stats;
-use EDAC\Settings;
+use EDAC\Admin\Settings;
 use EDAC\Helpers;
 
 

@@ -7,7 +7,7 @@
 
 namespace EDAC;
 
-use EDAC\Settings;
+use EDAC\Admin\Settings;
 use EDAC\Helpers;
 use EDAC\Issues_Query;
 

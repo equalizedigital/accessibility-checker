@@ -6,6 +6,7 @@
  */
 
 namespace EDAC\Admin;
+use EDAC;
 
 /**
  * Admin handling class.
@@ -28,6 +29,11 @@ class Admin {
 	private function init() {
 		$admin_notices = new \EDAC\Admin\Admin_Notices();
 		$admin_notices->init_hooks();
+
+		$widgets = new \EDAC\Admin\Widgets();
+		$widgets->init_hooks();
+
+		new EDAC\REST_Api();
 	}
 
 	/**
@@ -46,5 +52,4 @@ class Admin {
 		$frontend_highlight = new \EDAC\Admin\Frontend_Highlight();
 		$frontend_highlight->init_hooks();
 	}
-
 }

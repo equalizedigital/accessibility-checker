@@ -5,7 +5,7 @@
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
+namespace EDAC\Admin;
 
 use EDAC\Helpers;
 

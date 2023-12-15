@@ -5,13 +5,34 @@
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
+namespace EDAC\Admin;
 
 /**
  * Class that handles widgets
  */
 class Widgets {
 
+	/**
+	 * Initialize hooks.
+	 *
+	 * @return void
+	 */
+	public function init_hooks() {
+		add_action( 'wp_dashboard_setup', array( $this, 'dashboard_setup' ) );
+	}
+
+	/**
+	 * Add dashboard widget
+	 *
+	 * @return void
+	 */
+	public function dashboard_setup() {
+		wp_add_dashboard_widget(
+			'edac_dashboard_scan_summary',
+			'Accessibility Checker',
+			array( $this, 'render_dashboard_scan_summary' )
+		);
+	}
 
 	/**
 	 * Renders as widget
