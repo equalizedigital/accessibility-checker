@@ -10,12 +10,12 @@ namespace EDAC\Inc;
 use EDAC\Admin\Admin;
 
 /**
- * AccessibilityNewWindowWarnings Class.
+ * Main plugin functionality class.
  */
 class Plugin {
 
 	/**
-	 * EDAC constructor.
+	 * Class constructor.
 	 */
 	public function __construct() {
 		if ( \is_admin() ) {
@@ -26,11 +26,12 @@ class Plugin {
 	}
 
 	/**
-	 * Init.
+	 * Initialize.
+	 *
+	 * @return void
 	 */
-	public function init() {
+	private function init() {
         $accessibility_statement = new \EDAC\Inc\Accessibility_Statement();
         $accessibility_statement->init_hooks();
 	}
-
 }

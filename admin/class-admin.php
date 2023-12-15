@@ -16,18 +16,33 @@ class Admin {
 	 * Class constructor.
 	 */
 	public function __construct() {
-		$this->init_hooks();
-
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			$ajax = new \EDAC\Admin\Ajax();
-			$ajax->init_hooks();
-		}
+		$this->init();
+		$this->init_ajax();
 	}
 
 	/**
-	 * Sets up hooks for admin actions.
+	 * Initialize.
+	 *
+	 * @return void
 	 */
-	public function init_hooks() {
+	private function init() {
+	}
+
+	/**
+	 * Initialize ajax.
+	 *
+	 * @return void
+	 */
+	private function init_ajax() {
+		if ( ! defined('DOING_AJAX') || ! DOING_AJAX ) {
+			return;
+		}
+
+		$ajax = new \EDAC\Admin\Ajax();
+		$ajax->init_hooks();
+
+		$ajax = new \EDAC\Admin\Frontend_Highlight();
+		$ajax->init_hooks();
 	}
 
 }

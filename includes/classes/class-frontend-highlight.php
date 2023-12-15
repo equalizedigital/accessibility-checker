@@ -5,7 +5,7 @@
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
+namespace EDAC\Admin;
 
 /**
  * Class EDAC_Frontend_Highlight
@@ -101,9 +101,4 @@ class Frontend_Highlight {
 
 		wp_send_json_success( wp_json_encode( $output ) );
 	}
-}
-
-if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-	$ajax = new \EDAC\Frontend_Highlight();
-	$ajax->init_hooks();
 }
