@@ -18,10 +18,10 @@ class Admin {
 	public function __construct() {
 		$this->init_hooks();
 
-        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-            $ajax = new \EDAC\Admin\Ajax();
-            $ajax->init_hooks();
-        }
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			$ajax = new \EDAC\Admin\Ajax();
+			$ajax->init_hooks();
+		}
 	}
 
 	/**
