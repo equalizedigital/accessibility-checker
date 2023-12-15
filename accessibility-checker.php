@@ -164,7 +164,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-settings.php'
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-issues-query.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-welcome-page.php';
+//require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-welcome-page.php';
 //require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-ajax.php';
 //require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-frontend-highlight.php';
 //require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-accessibility-statement.php';
