@@ -26,6 +26,8 @@ class Admin {
 	 * @return void
 	 */
 	private function init() {
+		$admin_notices = new \EDAC\Admin\Admin_Notices();
+		$admin_notices->init_hooks();
 	}
 
 	/**
@@ -41,8 +43,8 @@ class Admin {
 		$ajax = new \EDAC\Admin\Ajax();
 		$ajax->init_hooks();
 
-		$ajax = new \EDAC\Admin\Frontend_Highlight();
-		$ajax->init_hooks();
+		$frontend_highlight = new \EDAC\Admin\Frontend_Highlight();
+		$frontend_highlight->init_hooks();
 	}
 
 }

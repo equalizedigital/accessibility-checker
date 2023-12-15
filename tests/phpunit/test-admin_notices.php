@@ -5,7 +5,7 @@
  * @package Accessibility_Checker
  */
 
-use EDAC\Admin_Notices;
+use EDAC\Admin\Admin_Notices;
 /**
  * Admin Notices test case.
  */

@@ -157,7 +157,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-admin-notices.php';
+//require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-admin-notices.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rest-api.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-settings.php';
