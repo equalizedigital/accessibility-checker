@@ -510,8 +510,9 @@ function edac_sanitize_accessibility_policy_page( $page ) {
  * Render the accessibility statement preview
  */
 function edac_accessibility_statement_preview_cb() {
-
-	echo wp_kses_post( edac_get_accessibility_statement() );
+	echo wp_kses_post( 
+		( new \EDAC\Inc\Accessibility_Statement() )->get_accessibility_statement()
+	);
 }
 
 /**

@@ -152,7 +152,7 @@ add_action( 'admin_menu', 'edac_add_options_page' );
 add_action( 'admin_init', 'edac_register_setting' );
 add_action( 'admin_head', 'edac_post_on_load' );
 add_filter( 'save_post', 'edac_save_post', 10, 3 );
-add_filter( 'the_content', 'edac_output_simplified_summary' );
+//add_filter( 'the_content', 'edac_output_simplified_summary' );
 add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 add_action( 'template_redirect', 'edac_before_page_render' );
@@ -487,6 +487,7 @@ function edac_update_post_meta( $rule ) {
  * @param string $content The content.
  * @return string
  */
+/*
 function edac_output_simplified_summary( $content ) {
 	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
 	if ( 'none' === $simplified_summary_prompt ) {
@@ -505,6 +506,7 @@ function edac_output_simplified_summary( $content ) {
 	}
 	return $content;
 }
+*/
 
 /**
  * Get simplified summary
@@ -512,12 +514,14 @@ function edac_output_simplified_summary( $content ) {
  * @param integer $post Post ID.
  * @return void
  */
+/*
 function edac_get_simplified_summary( $post = null ) {
 	if ( null === $post ) {
 		$post = get_the_ID();
 	}
 	echo wp_kses_post( edac_simplified_summary_markup( $post ) );
 }
+*/
 
 /**
  * Simplified summary markup
@@ -525,6 +529,7 @@ function edac_get_simplified_summary( $post = null ) {
  * @param int $post Post ID.
  * @return string
  */
+/*
 function edac_simplified_summary_markup( $post ) {
 	$simplified_summary = get_post_meta( $post, '_edac_simplified_summary', true )
 		? get_post_meta( $post, '_edac_simplified_summary', true ) 
@@ -540,6 +545,7 @@ function edac_simplified_summary_markup( $post ) {
 	}
 	return '';
 }
+*/
 
 // Add a filter for lazyloading images using the perfmatters_lazyload hook.
 add_filter(

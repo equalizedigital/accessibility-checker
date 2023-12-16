@@ -710,3 +710,23 @@ function edac_count_dom_descendants( $dom_elements ) {
 
 	return $count;
 }
+
+/**
+ * Get simplified summary
+ *
+ * @param integer $post Post ID.
+ * @return void
+ */
+function edac_get_simplified_summary( $post = null ) {
+	if ( null === $post ) {
+		$post = get_the_ID();
+	}
+
+	if ( null === $post ) {
+        return;
+    }
+
+	echo wp_kses_post(
+		( new \EDAC\Inc\Simplified_Summary() )->simplified_summary_markup( $post )
+	);
+}
