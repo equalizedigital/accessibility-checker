@@ -469,17 +469,3 @@ function edac_update_post_meta( $rule ) {
 		}
 	}
 }
-
-// Add a filter for lazyloading images using the perfmatters_lazyload hook.
-add_filter(
-	'perfmatters_lazyload',
-	function ( $lazyload ) {
-		if ( ! isset( $_GET['edac_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_GET['edac_nonce'] ), 'edac_highlight' ) ) {
-			return $lazyload;
-		}
-		if ( isset( $_GET['edac'] ) ) {
-			return false;
-		}
-		return $lazyload;
-	}
-);

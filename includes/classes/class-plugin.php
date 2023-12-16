@@ -36,5 +36,8 @@ class Plugin {
 
 		$simplified_summary = new \EDAC\Inc\Simplified_Summary();
         $simplified_summary->init_hooks();
+
+		$lazyload_filter = new \EDAC\Inc\Lazyload_Filter();
+		$lazyload_filter->init_hooks();
 	}
 }
