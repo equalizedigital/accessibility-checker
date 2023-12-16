@@ -1,4 +1,4 @@
-name: Lint
+name: Lint PHP
 
 on:
   # Run on pushes to select branches and on all pull requests.
