@@ -482,38 +482,6 @@ function edac_update_post_meta( $rule ) {
 }
 
 /**
- * Documentation Link.
- *
- * @param array $rule to get link from.
- * @return string markup for link.
- */
-function edac_documentation_link( $rule ) {
-	global $wp_version;
-	$days_active = edac_days_active();
-
-	if ( ! $rule['info_url'] || ! isset( $rule['slug'] ) ) {
-		return '';
-	}
-
-	return add_query_arg(
-		array(
-			'utm_source'       => 'accessibility-checker',
-			'utm_medium'       => 'software',
-			'utm_term'         => esc_attr( $rule['slug'] ),
-			'utm_content'      => 'content-analysis',
-			'utm_campaign'     => 'wordpress-general',
-			'php_version'      => PHP_VERSION,
-			'platform'         => 'wordpress',
-			'platform_version' => $wp_version,
-			'software'         => 'free',
-			'software_version' => EDAC_VERSION,
-			'days_active'      => $days_active,
-		),
-		$rule['info_url']
-	);
-}
-
-/**
  * Output simplified summary
  *
  * @param string $content The content.
