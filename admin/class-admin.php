@@ -6,6 +6,7 @@
  */
 
 namespace EDAC\Admin;
+
 use EDAC;
 
 /**
@@ -42,7 +43,7 @@ class Admin {
 	 * @return void
 	 */
 	private function init_ajax() {
-		if ( ! defined('DOING_AJAX') || ! DOING_AJAX ) {
+		if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
 			return;
 		}
 

@@ -31,11 +31,11 @@ class Plugin {
 	 * @return void
 	 */
 	private function init() {
-        $accessibility_statement = new \EDAC\Inc\Accessibility_Statement();
-        $accessibility_statement->init_hooks();
+		$accessibility_statement = new \EDAC\Inc\Accessibility_Statement();
+		$accessibility_statement->init_hooks();
 
 		$simplified_summary = new \EDAC\Inc\Simplified_Summary();
-        $simplified_summary->init_hooks();
+		$simplified_summary->init_hooks();
 
 		$lazyload_filter = new \EDAC\Inc\Lazyload_Filter();
 		$lazyload_filter->init_hooks();
