@@ -135,7 +135,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rules.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/rules/class-rule.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/rules/class-rule-aria-hidden.php';
-( new EDAC\Rules() )->add_rule( 'aria_hidden', new EDAC\Rules\Rule_Aria_Hidden() );
+( new EDAC\Rules() )->add_rule( new EDAC\Rules\Rule_Aria_Hidden() );
 add_filter(
 	'edac_filter_register_rules',
 	function ( $rules ) {

@@ -22,11 +22,10 @@ class Rules {
 	/**
 	 * Add a rule to the collection.
 	 *
-	 * @param string $id   The rule ID.
 	 * @param object $rule The rule to add.
 	 */
-	public static function add_rule( $id, $rule ) {
-		self::$rules[ $id ] = $rule;
+	public static function add_rule( $rule ) {
+		self::$rules[ $rule->get_slug() ] = $rule;
 	}
 
 	/**
