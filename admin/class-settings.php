@@ -7,8 +7,6 @@
 
 namespace EDAC\Admin;
 
-use EDAC\Helpers;
-
 
 /**
  * Class that handles plugin settings
