@@ -30,7 +30,7 @@ class Accessibility_Statement {
 	 *
 	 * @return string
 	 */
-	function get_accessibility_statement() {
+	public function get_accessibility_statement() {
 		$statement              = '';
 		$add_footer_statement   = get_option( 'edac_add_footer_accessibility_statement' );
 		$include_statement_link = get_option( 'edac_include_accessibility_statement_link' );
@@ -68,7 +68,7 @@ class Accessibility_Statement {
 	 *
 	 * @return void
 	 */
-	function output_accessibility_statement() {
+	public function output_accessibility_statement() {
 		$statement = $this->get_accessibility_statement();
 		if ( ! empty( $statement ) ) {
 			echo '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>' . wp_kses_post( $statement ) . '</small></p>';
