@@ -11,7 +11,7 @@ namespace EDAC\Inc;
  * A class that handles lazyload filter.
  * This class allows for disabling lazyload when highlighting elements.
  * 
- * @since 1.8.0 // TODO: Update with correct version number when released.
+ * @since 1.8.0
  */
 class Lazyload_Filter {
 
