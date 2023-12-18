@@ -172,220 +172,221 @@ No, Accessibility Checker runs completely on your server and does not require yo
 == Changelog ==
 
 = 1.7.0 =
-Added: Enhanced architecture to enable checks to be scanned via JavaScript, providing more efficient and dynamic code analysis.
-Updated: Improved color contrast check now utilizes the axe-core rule for more accurate and reliable accessibility testing.
-Fixed: Resolved an issue where the frontend highlighting panel was blocking user interactions, enhancing the usability of the interface.
-Fixed: Addressed a compatibility issue with PHP 8+, where the automatic conversion of 'false' to an array is deprecated, ensuring smoother operation on newer PHP environments.
-Removed: Deprecated the PHP-based color contrast check in favor of the more advanced axe-core rule implementation for consistency and improved performance.
+* Added: Architecture for JavaScript-based checks for better code analysis
+* Updated: Color contrast check now uses axe-core rule for improved accuracy
+* Fixed: Issue with frontend highlighting panel blocking interactions
+* Fixed: Compatibility issue with PHP 8+ related to 'false' to array conversion
+* Removed: PHP color contrast check replaced with axe-core rule
+* Fixed: Conflict with RSS feeds
 
 = 1.6.8 =
-Updated: system info to stop showing edac_authorization_username & edac_authorization_username
-Updated: system info to show edacp_authorization_username & edacp_authorization_username for pro users
+* Updated: system info to stop showing edac_authorization_username & edac_authorization_username
+* Updated: system info to show edacp_authorization_username & edacp_authorization_username for pro users
 
 = 1.6.7 =
-Updated: logic for Link to MS Office file
-Updated: last full-site scan label and date format
+* Updated: logic for Link to MS Office file
+* Updated: last full-site scan label and date format
 
 = 1.6.6 =
-Added: ability to force refresh welcome screen report
+* Added: ability to force refresh welcome screen report
 
 = 1.6.5 =
-Fixed: function edac_password_protected_notice_text to call from the admin notices class
+* Fixed: function edac_password_protected_notice_text to call from the admin notices class
 
 = 1.6.4 =
-Fixed: password protected admin noticed function call
+* Fixed: password protected admin noticed function call
 
 = 1.6.3 =
-Added: email opt-in to welcome page
-Added: support for formatting numbers and percentages in PHP installs that were build without the intl library
-Added: the see history button for audit history add-on
-Updated: admin notices to load from a custom class
+* Added: email opt-in to welcome page
+* Added: support for formatting numbers and percentages in PHP installs that were build without the intl library
+* Added: the see history button for audit history add-on
+* Updated: admin notices to load from a custom class
 
 = 1.6.2 =
-Added: check for WordPress Playground
+* Added: check for WordPress Playground
 
 = 1.6.1 =
-Updated: passed percentage calculation
-Updated: frontend highlighting disable styles to be compatible with optimization plugins
-Fixed: average issue density percentage not accounting for site ID and ignores
-Updated: body density to receive HTML rather than the dom object
-Updated: empty link check logic
-Added: minor coding standards improvements
+* Updated: passed percentage calculation
+* Updated: frontend highlighting disable styles to be compatible with optimization plugins
+* Fixed: average issue density percentage not accounting for site ID and ignores
+* Updated: body density to receive HTML rather than the dom object
+* Updated: empty link check logic
+* Added: minor coding standards improvements
 
 = 1.6.0 =
-Added: dashboard reports widget
-Added: frontend highlighting page scan trigger
-Added: enhancements to the Low-quality Alternative Text check
-Fixed: adherence to coding standards
-Fixed: frontend highlighting responsiveness on mobile
-Fixed: frontend highlighting's broken ARIA reference
-Fixed: Issue Density bug when creating a new post
-Fixed: a bug on the reports dashboard widget and welcome page when no post types are selected in the settings
-Fixed: settings page tab order bug
-Updated: scanning process to exclude the admin bar and the query monitor
-Updated: improvements to the Ambiguous Anchor check
-Updated: the Browser.php class has been restructured to load via Composer
-Updated: the TextStatistics class is now loaded through Composer
-Updated: text domain and internationalization on user-facing strings
-Updated: reports dashboard widget and welcome page now have improved refresh and caching
-Updated: the date format on the reports dashboard widget and the welcome page now respects the site's timezone setting
-Updated: Improved performance during the purge of issues after changing the "post types to scan" setting
-Removed: CSS output when a user is logged out
+* Added: dashboard reports widget
+* Added: frontend highlighting page scan trigger
+* Added: enhancements to the Low-quality Alternative Text check
+* Fixed: adherence to coding standards
+* Fixed: frontend highlighting responsiveness on mobile
+* Fixed: frontend highlighting's broken ARIA reference
+* Fixed: Issue Density bug when creating a new post
+* Fixed: a bug on the reports dashboard widget and welcome page when no post types are selected in the settings
+* Fixed: settings page tab order bug
+* Updated: scanning process to exclude the admin bar and the query monitor
+* Updated: improvements to the Ambiguous Anchor check
+* Updated: the Browser.php class has been restructured to load via Composer
+* Updated: the TextStatistics class is now loaded through Composer
+* Updated: text domain and internationalization on user-facing strings
+* Updated: reports dashboard widget and welcome page now have improved refresh and caching
+* Updated: the date format on the reports dashboard widget and the welcome page now respects the site's timezone setting
+* Updated: Improved performance during the purge of issues after changing the "post types to scan" setting
+* Removed: CSS output when a user is logged out
 
 = 1.5.6 =
-Fixed: reading level ajax timing issue
+* Fixed: reading level ajax timing issue
 
 = 1.5.5 =
-Fixed: frontend highlighting description panel close button JavaScript error
-Fixed: frontend highlighting no issues detected JavaScript error
-Fixed: frontend highlighting panel close button bug
+* Fixed: frontend highlighting description panel close button JavaScript error
+* Fixed: frontend highlighting no issues detected JavaScript error
+* Fixed: frontend highlighting panel close button bug
 
 = 1.5.4 =
-Updated: welcome page data caching for better performance
-Removed: dashboard reports widget
+* Updated: welcome page data caching for better performance
+* Removed: dashboard reports widget
 
 = 1.5.3 =
-Updated: prevent enqueue scripts from running if global post is not defined
+* Updated: prevent enqueue scripts from running if global post is not defined
 
 = 1.5.2 =
-Fixed: missing class
-Removed: Freemius
+* Fixed: missing class
+* Removed: Freemius
 
 = 1.5.1 =
-Updated: button screen reader text
+* Updated: button screen reader text
 
 = 1.5.0 =
-Added: site wide summary
-Added: accessibility checker dashboard widget
-Updated: welcome page
-Updated: frontend highlighting accessibility
+* Added: site wide summary
+* Added: accessibility checker dashboard widget
+* Updated: welcome page
+* Updated: frontend highlighting accessibility
 
 = 1.4.4 =
-Removed: unused class
+* Removed: unused class
 
 = 1.4.3 =
-Updated: frontend highlighting to allow ignored items accessed via the view on page button
-Updated: frontend highlighting panel logic to match selected post types in the settings
-Updated: frontend highlighting button size and placement improvements
-Updated: frontend highlighting number of issues output
-Updated: frontend highlighting scroll-to improvements
-Fixed: Freemius icon output
-Updated: demo video
+* Updated: frontend highlighting to allow ignored items accessed via the view on page button
+* Updated: frontend highlighting panel logic to match selected post types in the settings
+* Updated: frontend highlighting button size and placement improvements
+* Updated: frontend highlighting number of issues output
+* Updated: frontend highlighting scroll-to improvements
+* Fixed: Freemius icon output
+* Updated: demo video
 
 = 1.4.2 =
-Added: frontend highlighting loading message
-Removed: frontend highlighting ignored issues
-Removed: frontend highlighting from customizer
-Fixed: frontend highlighting link styles
-Updated: frontend highlighting to allow elements that violate multiple rules
-Fixed: frontend highlighting elements not highlighting after closing the controls panel
-Fixed: frontend highlighting not finding images due to extra whitespace
-Updated: ambiguous text check to ignore svgs and icons
-Updated: animated gif check include animated webP images
-Updated: animated gif check to disregard URL parameters
-Fixed: undefined array key "query"
-Fixed: Reading level icon logic
+* Added: frontend highlighting loading message
+* Removed: frontend highlighting ignored issues
+* Removed: frontend highlighting from customizer
+* Fixed: frontend highlighting link styles
+* Updated: frontend highlighting to allow elements that violate multiple rules
+* Fixed: frontend highlighting elements not highlighting after closing the controls panel
+* Fixed: frontend highlighting not finding images due to extra whitespace
+* Updated: ambiguous text check to ignore svgs and icons
+* Updated: animated gif check include animated webP images
+* Updated: animated gif check to disregard URL parameters
+* Fixed: undefined array key "query"
+* Fixed: Reading level icon logic
 
 = 1.4.1 =
-Updated: Freemius SDK to the latest version
+* Updated: Freemius SDK to the latest version
 
 = 1.4.0 =
-Added: frontend issue highlighting
-Updated: simple html dom to use strict on seek call to fix issue with too much recursion with complicated CSS
-Added: description and warning for Post Types to be Checked
+* Added: frontend issue highlighting
+* Updated: simple html dom to use strict on seek call to fix issue with too much recursion with complicated CSS
+* Added: description and warning for Post Types to be Checked
 
 = 1.3.28 =
-Fixed: enqueue error on empty post types
+* Fixed: enqueue error on empty post types
 
 = 1.3.27 =
-Fixed: uninstall delete data
+* Fixed: uninstall delete data
 
 = 1.3.26 =
-Fixed: database creation bug
-Fixed: simplified summary output
+* Fixed: database creation bug
+* Fixed: simplified summary output
 
 = 1.3.25 =
-Fixed: video is present duplicating issues
-Updated: Missing subheadings word count
-Updated: prompt for simplified summary aded never option
-Fixed: minor coding standards
-Updated: Freemius SDK to version 2.5.8
+* Fixed: video is present duplicating issues
+* Updated: Missing subheadings word count
+* Updated: prompt for simplified summary aded never option
+* Fixed: minor coding standards
+* Updated: Freemius SDK to version 2.5.8
 
 = 1.3.24 =
-Added: user_agent to file_get_html context
-Added: follow_location to file_get_html context to prevent scanning of offsite links
-Added: querystring check to file_get_html url to prevent malformed urls when the cache breaker string is appended
-Updated: get CSS via wp_remote_get
+* Added: user_agent to file_get_html context
+* Added: follow_location to file_get_html context to prevent scanning of offsite links
+* Added: querystring check to file_get_html url to prevent malformed urls when the cache breaker string is appended
+* Updated: get CSS via wp_remote_get
 
 = 1.3.23 =
-Added: GAAD Admin Notice
+* Added: GAAD Admin Notice
 
 = 1.3.22 =
-Fixed: conflict with full site editor
-Fixed: bug with the Image Empty Alternative Text check not detecting images
-Fixed: bug with ignore button not working on the open issues and the ignore log
+* Fixed: conflict with full site editor
+* Fixed: bug with the Image Empty Alternative Text check not detecting images
+* Fixed: bug with ignore button not working on the open issues and the ignore log
 
 = 1.3.21 =
-Fixed: issue of reading level & simplified summary mismatching
-Updated: password protected admin notice to be dismissable
-Updated: position of password protected notice on single post
-Fixed: issue with summary panel not showing if password protected
+* Fixed: issue of reading level & simplified summary mismatching
+* Updated: password protected admin notice to be dismissable
+* Updated: position of password protected notice on single post
+* Fixed: issue with summary panel not showing if password protected
 
 = 1.3.20 =
-Updated: freemius to the latest version
+* Updated: freemius to the latest version
 
 = 1.3.19 =
-Updated: color contrast failure check
+* Updated: color contrast failure check
 
 = 1.3.18 =
-Updated: system info custom post type output
+* Updated: system info custom post type output
 
 = 1.3.17 =
-Fixed: license constant conflict
+* Fixed: license constant conflict
 
 = 1.3.16 =
-Fixed: issue with ignored issues being removed on post save
-Fixed: issue with escaped html displaying on simplified summary
-Fixed: Ignored items label
+* Fixed: issue with ignored issues being removed on post save
+* Fixed: issue with escaped html displaying on simplified summary
+* Fixed: Ignored items label
 
 = 1.3.15 =
-Remove: license tab
-Updated: license checks
+* Remove: license tab
+* Updated: license checks
 
 = 1.3.14 =
-Added: security fixes
+* Added: security fixes
 
 = 1.3.13 =
-Fixed: nonce plugin update conflict
+* Fixed: nonce plugin update conflict
 
 = 1.3.12 =
-Added: added security check to system info download
+* Added: added security check to system info download
 
 = 1.3.11 =
-Updated: quick edit save to check if _inline_edit array key is set
+* Updated: quick edit save to check if _inline_edit array key is set
 
 = 1.3.10 =
-Added: image column to details panel to display issue image
-Updated: details rule name to an H3 and added hidden h4 for each issue
-Added: aria-label to details expand button
-Added: space between number and error name in error details list
-Added: aria-expanded and aria-controls to buttons on details panel
+* Added: image column to details panel to display issue image
+* Updated: details rule name to an H3 and added hidden h4 for each issue
+* Added: aria-label to details expand button
+* Added: space between number and error name in error details list
+* Added: aria-expanded and aria-controls to buttons on details panel
 
 = 1.3.9 =
-Added: filter edac_no_verify_ssl to bypass SSL validation. Use: add_filter( 'edac_no_verify_ssl', '__return_true' );
-Fixed: undefined variable error color contrast failure check
+* Added: filter edac_no_verify_ssl to bypass SSL validation. Use: add_filter( 'edac_no_verify_ssl', '__return_true' );
+* Fixed: undefined variable error color contrast failure check
 
 = 1.3.8 =
-Updated: database index on postid for better performance
+* Updated: database index on postid for better performance
 
 = 1.3.7 =
-Fixed: issue when restricted websites fail to generate post meta
+* Fixed: issue when restricted websites fail to generate post meta
 
 = 1.3.6 =
-Fixed: password protection notice logic
+* Fixed: password protection notice logic
 
 = 1.3.5 =
-Fixed: marketing notice logic
+* Fixed: marketing notice logic
 
 = 1.3.4 =
 * Updated: ARIA Hidden check to ignore for core spacer block
