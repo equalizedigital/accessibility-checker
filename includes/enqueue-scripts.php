@@ -85,7 +85,7 @@ function edac_admin_enqueue_scripts() {
 					'baseurl'     => plugin_dir_url( __DIR__ ),
 					'active'      => $active,
 					'pro'         => $pro,
-					'debug'		  => $debug,
+					'debug'       => $debug,
 					'scanUrl'     => get_preview_post_link(
 						$post_id, 
 						array( 'edac_pageScanner' => 1 )
@@ -113,6 +113,7 @@ function edac_enqueue_scripts() {
 	// Handle loading the frontend-highlighter-app.
 
 	// Don't load on admin pages in iframe that is running a pageScan.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	if ( is_admin() || isset( $_GET['edac_pageScanner'] ) && '1' === $_GET['edac_pageScanner'] ) {
 		return;
 	}
