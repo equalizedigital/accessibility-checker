@@ -774,9 +774,16 @@ function edac_before_page_render() {
 	
 		// Check the page if it hasn't already been checked.
 		global $post;
-		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
+
+		$post_id = is_object( $post ) ? $post->ID : null;
+		
+		if ( null === $post_id ) {
+			return;
+		}
+
+		$checked = get_post_meta( $post_id, '_edac_post_checked', true );
 		if ( false === boolval( $checked ) ) {
-			edac_validate( $post->ID, $post, $action = 'load' );
+			edac_validate( $post_id, $post, $action = 'load' );
 		}
 	}
 }
