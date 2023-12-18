@@ -67,7 +67,7 @@ export const showNotice = (options) => {
             types: [
                 {
                     type: 'success',
-                    background: '#eff9f1',
+                    background: '#193EEE',
                     duration: 2000,
                     dismissible: true,
                     icon: false
@@ -75,14 +75,14 @@ export const showNotice = (options) => {
 
                 {
                     type: 'warning',
-                    background: '#fef8ee',
-                    duration: 200,
+                    background: '#454545',
+                    duration: 4000,
                     dismissible: true,
                     icon: false
                 },
                 {
                     type: 'error',
-                    background: '#f4a2a2',
+                    background: '#AD1414',
                     duration: 0,
                     dismissible: true,
                     icon: false

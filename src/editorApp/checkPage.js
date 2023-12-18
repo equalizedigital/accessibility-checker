@@ -2,6 +2,7 @@ import { info, debug } from './helpers';
 import { showNotice } from './../common/helpers';
 
 
+
 const API_URL = edac_editor_app.edacApiUrl;
 
 let HEADERS;
@@ -114,10 +115,15 @@ const injectIframe = (previewUrl, postID) => {
 		body.setAttribute('data-iframe-event-name', 'edac_scan_complete');
 		body.setAttribute('data-iframe-post-id', postID);
 
-		// inject the scanner app.
-		var scriptElement = iframeDocument.createElement('script');
-		scriptElement.src = edac_editor_app.baseurl + '/build/pageScanner.bundle.js';
-		iframeDocument.head.appendChild(scriptElement);
+	
+		if (iframeDocument) {
+
+			// inject the scanner app.
+			var scannerScriptElement = iframeDocument.createElement('script');
+			scannerScriptElement.src = edac_editor_app.baseurl + '/build/pageScanner.bundle.js';
+			iframeDocument.head.appendChild(scannerScriptElement);
+
+		}
 
 	});
 
@@ -125,7 +131,6 @@ const injectIframe = (previewUrl, postID) => {
 
 
 export const init = () => {
-
 
 	// Listen for completed scans.
 	top.addEventListener('edac_scan_complete', function (event) {
@@ -135,7 +140,9 @@ export const init = () => {
 		const iframeId = event.detail.iframeId;
 
 		// remove the iframe.
-		document.getElementById(iframeId).remove();
+		setTimeout(function(){
+			document.getElementById(iframeId).remove();
+		}, 1000);
 
 		// save the scan results.
 		saveScanResults(postId, violations);
