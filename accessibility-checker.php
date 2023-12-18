@@ -150,8 +150,6 @@ if ( is_plugin_active( 'oxygen/functions.php' ) ) {
 	add_action( 'added_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 }
-// TODO: This is causing performance issues, need to find a better way to update post meta when ANWW is installed or uninstalled.
-//add_action( 'admin_init', 'edac_anww_update_post_meta' );
 
 /**
  * Create/Update database
