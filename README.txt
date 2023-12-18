@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 6.2
-Tested up to: 6.4.1
-Stable tag: 1.6.10
+Tested up to: 6.4.2
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,9 +171,12 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
-= 1.7.0-beta1 =
-Added: architecture to switch checks to scan via JavaScript
-Updated: color contrast check to use axe-core rule
+= 1.7.0 =
+Added: Enhanced architecture to enable checks to be scanned via JavaScript, providing more efficient and dynamic code analysis.
+Updated: Improved color contrast check now utilizes the axe-core rule for more accurate and reliable accessibility testing.
+Fixed: Resolved an issue where the frontend highlighting panel was blocking user interactions, enhancing the usability of the interface.
+Fixed: Addressed a compatibility issue with PHP 8+, where the automatic conversion of 'false' to an array is deprecated, ensuring smoother operation on newer PHP environments.
+Removed: Deprecated the PHP-based color contrast check in favor of the more advanced axe-core rule implementation for consistency and improved performance.
 
 = 1.6.8 =
 Updated: system info to stop showing edac_authorization_username & edac_authorization_username
