@@ -723,8 +723,8 @@ function edac_get_simplified_summary( $post = null ) {
 	}
 
 	if ( null === $post ) {
-        return;
-    }
+		return;
+	}
 
 	echo wp_kses_post(
 		( new \EDAC\Inc\Simplified_Summary() )->simplified_summary_markup( $post )
