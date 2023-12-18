@@ -26,7 +26,7 @@ class Lazyload_Filter {
 	 * Add a filter for lazyloading images using the perfmatters_lazyload hook.
 	 *
 	 * @param bool $lazyload Whether to lazyload images.
-	 * @return void
+	 * @return bool Whether to lazyload images.
 	 */
 	public function perfmatters( $lazyload ) {
 		if ( 
