@@ -130,6 +130,30 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 
 /**
+ * Include Rules
+ */
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rules.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/rules/class-rule.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/classes/rules/class-rule-aria-hidden.php';
+( new EDAC\Rules() )->add_rule( 'aria_hidden', new EDAC\Rules\Rule_Aria_Hidden() );
+add_filter(
+	'edac_filter_register_rules',
+	function ( $rules ) {
+		$rules_from_objects = ( new EDAC\Rules() )->get_rules();
+		foreach ( $rules_from_objects as $rule ) {
+			$rules[] = array(
+				'title'     => $rule->get_title(),
+				'info_url'  => $rule->get_info_url(),
+				'slug'      => $rule->get_slug(),
+				'rule_type' => $rule->get_type(),
+				'summary'   => $rule->get_summary(),
+			);
+		}
+		return $rules;
+	}
+);
+
+/**
  * Filters and Actions
  */
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
@@ -231,8 +255,12 @@ function edac_include_rules_files() {
 	}
 	foreach ( $rules as $rule ) {
 		if ( ( array_key_exists( 'ruleset', $rule ) && 'php' === $rule['ruleset'] )
-			|| ( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) 
+			|| ( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] )
 		) {
+			$rule_file_path = plugin_dir_path( __FILE__ ) . 'includes/rules/' . $rule['slug'] . '.php';
+			if ( ! file_exists( $rule_file_path ) ) {
+				continue;
+			}
 			require_once plugin_dir_path( __FILE__ ) . 'includes/rules/' . $rule['slug'] . '.php';
 		}
 	}

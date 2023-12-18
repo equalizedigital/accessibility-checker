@@ -137,7 +137,14 @@ function edac_validate( $post_ID, $post, $action ) {
 				if ( EDAC_DEBUG === true ) {
 					$rule_process_time = microtime( true );
 				}
-				$errors = call_user_func( 'edac_rule_' . $rule['slug'], $content, $post );
+				if ( function_exists( 'edac_rule_' . $rule['slug'] ) ) {
+					$errors = call_user_func( 'edac_rule_' . $rule['slug'], $content, $post );
+				} else {
+					$rule_object = ( new EDAC\Rules() )->get_rule( $rule['slug'] );
+					$rule_object->set_content( $content );
+					$rule_object->validte();
+					$errors = $rule_object->get_errors();
+				}
 
 				if ( $errors && is_array( $errors ) ) {
 					do_action( 'edac_rule_errors', $post_ID, $rule, $errors, $action );
