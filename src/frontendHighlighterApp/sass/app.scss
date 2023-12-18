@@ -77,13 +77,17 @@ body {
             color: $color-white !important;
         }
        
-        width: 400px !important;
+        width: auto;
         max-width: 400px !important;
         position: fixed !important;
         bottom: 15px !important;
         right: 15px !important;
         z-index: 2147483647 !important;
-  
+       
+        &-visible {
+            width: 400px !important;
+        }
+    
         &-toggle{
             width: 50px !important;
             height: 50px !important;

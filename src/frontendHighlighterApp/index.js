@@ -16,7 +16,7 @@ class AccessibilityCheckerHighlight {
 
 		this.settings = { ...defaultSettings, ...settings };
 
-		this.addHighlightPanel();
+		this.highlightPanel = this.addHighlightPanel();
 		this.nextButton = document.querySelector('#edac-highlight-next');
 		this.previousButton = document.querySelector('#edac-highlight-previous');
 		this.panelToggle = document.querySelector('#edac-highlight-panel-toggle');
@@ -355,7 +355,7 @@ class AccessibilityCheckerHighlight {
 	 */
 	addHighlightPanel() {
 		const newElement = `
-			<div class="edac-highlight-panel">
+			<div id="edac-highlight-panel" class="edac-highlight-panel">
 			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
 			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
 			<button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
@@ -380,7 +380,9 @@ class AccessibilityCheckerHighlight {
 			</div>
 			</div>
 		`;
+		
 		document.body.insertAdjacentHTML('afterbegin', newElement);
+		return document.getElementById('edac-highlight-panel');
 	}
 
 	/**
@@ -522,6 +524,7 @@ class AccessibilityCheckerHighlight {
 	 */
 	panelOpen(id) {
 
+		this.highlightPanel.classList.add('edac-highlight-panel-visible');
 		this.panelControls.style.display = 'block';
 		this.panelToggle.style.display = 'none';
 
@@ -569,6 +572,7 @@ class AccessibilityCheckerHighlight {
 	 * This function closes the accessibility checker panel.
 	 */
 	panelClose() {
+		this.highlightPanel.classList.remove('edac-highlight-panel-visible');
 		this.panelControls.style.display = 'none';
 		this.panelDescription.style.display = 'none';
 		this.panelToggle.style.display = 'block';
