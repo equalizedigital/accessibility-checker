@@ -29,7 +29,7 @@ class Lazyload_Filter {
 	 * @return bool Whether to lazyload images.
 	 */
 	public function perfmatters( $lazyload ) {
-		if ( 
+		if (
 			! isset( $_GET['edac_nonce'] ) 
 			|| ! wp_verify_nonce( sanitize_text_field( $_GET['edac_nonce'] ), 'edac_highlight' ) 
 		) {
