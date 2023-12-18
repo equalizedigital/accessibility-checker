@@ -7,8 +7,8 @@
 
 namespace EDAC;
 
-use EDAC\Settings;
-use EDAC\Helpers;
+use EDAC\Admin\Settings;
+use EDAC\Admin\Helpers;
 use EDAC\Issues_Query;
 
 

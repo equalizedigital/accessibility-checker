@@ -7,7 +7,7 @@
  * phpcs:disable WordPress.WP.EnqueuedResources.NonEnqueuedScript
  */
 
-namespace EDAC;
+namespace EDAC\Admin;
 
 use EDAC\Scans_Stats;
 

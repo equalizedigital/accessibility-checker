@@ -5,10 +5,7 @@
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
-
-use EDAC\Helpers;
-
+namespace EDAC\Admin;
 
 /**
  * Class that handles plugin settings

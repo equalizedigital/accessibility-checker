@@ -40,7 +40,7 @@
 			</div>
 		</div>
 
-		<?php \EDAC\Welcome_Page::render_summary(); ?>
+		<?php \EDAC\Admin\Welcome_Page::render_summary(); ?>
 
 		<section class="edac-welcome-section">
 			<div class="edac-welcome-quick-start">
@@ -207,7 +207,7 @@
 
 
 		if ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_email_optin', true ) ) ) {
-			\EDAC\Welcome_Page::render_email_opt_in(
+			\EDAC\Admin\Welcome_Page::render_email_opt_in(
 				'1273a5c7a',
 				'1a0796bc2303c2cb',
 				'',

@@ -8,7 +8,7 @@
 namespace EDAC;
 
 use EDAC\Helpers;
-use EDAC\Settings;
+use EDAC\Admin\Settings;
 
 /**
  * Class that handles calculating scan report data

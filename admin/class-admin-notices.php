@@ -5,7 +5,7 @@
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
+namespace EDAC\Admin;
 
 /**
  * Class that handles admin notices
@@ -390,6 +390,3 @@ class Admin_Notices {
 		wp_send_json_success( wp_json_encode( $results ) );
 	}
 }
-
-$admin_notices = new \EDAC\Admin_Notices();
-$admin_notices->init_hooks();

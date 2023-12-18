@@ -26,17 +26,12 @@ if ( ! defined( 'WPINC' ) ) {
 
 // Check for WordPress Playground.
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-playground-check.php';
-if ( ! ( new EDAC\Playground_Check() )->should_load ) {
+if ( ! ( new EDAC\Inc\Playground_Check() )->should_load ) {
 	return;
 }
 
 // Include plugin dependency.
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
-
-// Load composer packages.
-if ( is_admin() && file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
-	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
-}
 
 /**
  * Setup constants.
@@ -97,6 +92,17 @@ define( 'EDAC_SVG_IGNORE_ICON', file_get_contents( __DIR__ . '/assets/images/ign
 register_activation_hook( __FILE__, 'edac_activation' );
 register_deactivation_hook( __FILE__, 'edac_deactivation' );
 
+/* ***************************** CLASS AUTOLOADING *************************** */
+if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
+	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+}
+
+use EDAC\Inc\Plugin;
+
+if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
+	new Plugin();
+}
+
 /**
  * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
  */
@@ -122,21 +128,10 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-admin-notices.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-rest-api.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-helpers.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-settings.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-issues-query.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-scans-stats.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-widgets.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-welcome-page.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-ajax.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-frontend-highlight.php';
 
 /**
  * Filters and Actions
  */
-add_action( 'init', 'edac_init' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
@@ -146,8 +141,6 @@ add_action( 'admin_menu', 'edac_add_options_page' );
 add_action( 'admin_init', 'edac_register_setting' );
 add_action( 'admin_head', 'edac_post_on_load' );
 add_filter( 'save_post', 'edac_save_post', 10, 3 );
-add_filter( 'the_content', 'edac_output_simplified_summary' );
-add_action( 'wp_footer', 'edac_output_accessibility_statement' );
 add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 add_action( 'template_redirect', 'edac_before_page_render' );
@@ -156,16 +149,6 @@ add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
 if ( is_plugin_active( 'oxygen/functions.php' ) ) {
 	add_action( 'added_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
-}
-add_action( 'admin_init', 'edac_anww_update_post_meta' );
-add_action( 'wp_dashboard_setup', 'edac_wp_dashboard_setup' );
-
-/**
- * Init the plugin
- */
-function edac_init() {
-	// instantiate the classes that need to load hooks early.
-	new \EDAC\Rest_Api();
 }
 
 /**
@@ -274,22 +257,6 @@ function edac_before_page_render() {
 			edac_validate( $post->ID, $post, $action = 'load' );
 		}
 	}
-}
-
-/**
- * Add dashboard widget
- *
- * @return void
- */
-function edac_wp_dashboard_setup() {
-	wp_add_dashboard_widget(
-		'edac_dashboard_scan_summary',
-		'Accessibility Checker',
-		array(
-			'\EDAC\Widgets',
-			'render_dashboard_scan_summary',
-		)
-	);
 }
 
 /**
@@ -500,159 +467,3 @@ function edac_update_post_meta( $rule ) {
 		}
 	}
 }
-
-/**
- * Documentation Link.
- *
- * @param array $rule to get link from.
- * @return string markup for link.
- */
-function edac_documentation_link( $rule ) {
-	global $wp_version;
-	$days_active = edac_days_active();
-
-	if ( ! $rule['info_url'] || ! isset( $rule['slug'] ) ) {
-		return '';
-	}
-
-	return add_query_arg(
-		array(
-			'utm_source'       => 'accessibility-checker',
-			'utm_medium'       => 'software',
-			'utm_term'         => esc_attr( $rule['slug'] ),
-			'utm_content'      => 'content-analysis',
-			'utm_campaign'     => 'wordpress-general',
-			'php_version'      => PHP_VERSION,
-			'platform'         => 'wordpress',
-			'platform_version' => $wp_version,
-			'software'         => 'free',
-			'software_version' => EDAC_VERSION,
-			'days_active'      => $days_active,
-		),
-		$rule['info_url']
-	);
-}
-
-/**
- * Output simplified summary
- *
- * @param string $content The content.
- * @return string
- */
-function edac_output_simplified_summary( $content ) {
-	$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
-	if ( 'none' === $simplified_summary_prompt ) {
-		return $content;
-	}
-	$simplified_summary          = edac_simplified_summary_markup( get_the_ID() );
-	$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
-
-	if ( $simplified_summary ) {
-		if ( 'before' === $simplified_summary_position ) {
-			return $simplified_summary . $content;
-		}
-		if ( 'after' === $simplified_summary_position ) {
-			return $content . $simplified_summary;
-		}
-	}
-	return $content;
-}
-
-/**
- * Get simplified summary
- *
- * @param integer $post Post ID.
- * @return void
- */
-function edac_get_simplified_summary( $post = null ) {
-	if ( null === $post ) {
-		$post = get_the_ID();
-	}
-	echo wp_kses_post( edac_simplified_summary_markup( $post ) );
-}
-
-/**
- * Simplified summary markup
- *
- * @param int $post Post ID.
- * @return string
- */
-function edac_simplified_summary_markup( $post ) {
-	$simplified_summary = get_post_meta( $post, '_edac_simplified_summary', true )
-		? get_post_meta( $post, '_edac_simplified_summary', true ) 
-		: '';
-
-	$simplified_summary_heading = apply_filters(
-		'edac_filter_simplified_summary_heading',
-		esc_html__( 'Simplified Summary', 'accessibility-checker' )
-	);
-
-	if ( $simplified_summary ) {
-		return '<div class="edac-simplified-summary"><h2>' . wp_kses_post( $simplified_summary_heading ) . '</h2><p>' . wp_kses_post( $simplified_summary ) . '</p></div>';
-	}
-	return '';
-}
-
-/**
- * Get accessibility statement
- *
- * @return string
- */
-function edac_get_accessibility_statement() {
-	$statement              = '';
-	$add_footer_statement   = get_option( 'edac_add_footer_accessibility_statement' );
-	$include_statement_link = get_option( 'edac_include_accessibility_statement_link' );
-	$policy_page            = get_option( 'edac_accessibility_policy_page' );
-	$policy_page            = is_numeric( $policy_page ) 
-		? get_page_link( $policy_page )
-		: $policy_page;
-
-	if ( $add_footer_statement ) {
-		$statement .= sprintf(
-			// translators: %1$s is the site name, %2$s is a link with the plugin name.
-			esc_html__( '%1$s uses %2$s to monitor our website\'s accessibility.', 'accessibility-checker' ),
-			get_bloginfo( 'name' ),
-			sprintf(
-				'<a href="https://equalizedigital.com/accessibility-checker" target="_blank" aria-label="%1$s">%2$s</a>',
-				esc_attr__( 'Accessibility Checker (opens in a new window)', 'accessibility-checker' ),
-				esc_html__( 'Accessibility Checker', 'accessibility-checker' )
-			)
-		);
-	}
-
-	if ( $include_statement_link && $policy_page ) {
-		$statement .= sprintf(
-			// translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
-			esc_html__( 'Read our %s', 'accessibility-checker' ),
-			'<a href="' . $policy_page . '">' . esc_html__( 'Accessibility Policy', 'accessibility-checker' ) . '</a>.'
-		);
-	}
-
-	return $statement;
-}
-
-/**
- * Output simplified summary
- *
- * @return void
- */
-function edac_output_accessibility_statement() {
-	$statement = edac_get_accessibility_statement();
-	if ( ! empty( $statement ) ) {
-		echo '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>' . wp_kses_post( $statement ) . '</small></p>';
-	}
-}
-
-// Add a filter for lazyloading images using the perfmatters_lazyload hook.
-add_filter(
-	'perfmatters_lazyload',
-	function ( $lazyload ) {
-		if ( ! isset( $_GET['edac_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_GET['edac_nonce'] ), 'edac_highlight' ) ) {
-			return $lazyload;
-		}
-		if ( isset( $_GET['edac'] ) ) {
-			return false;
-		}
-		return $lazyload;
-	}
-);
