@@ -7,6 +7,9 @@
 
 namespace EDAC\Inc;
 
+/**
+ * A class that handles the simplified summary.
+ */
 class Simplified_Summary {
 
 	/**
