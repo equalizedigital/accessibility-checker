@@ -17,6 +17,7 @@ use EDAC\Helpers;
  */
 class REST_Api {
 
+
 	/**
 	 * If class has already been initialized.
 	 *
@@ -183,7 +184,7 @@ class REST_Api {
 	/**
 	 * REST handler that saves to the DB a list of js rule violations for a post.
 	 *
-	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 * @param WP_REST_Request $request The request passed from the REST call.
 	 * 
 	 * @return \WP_REST_Response 
 	 */
@@ -204,13 +205,41 @@ class REST_Api {
 		$post_type  = get_post_type( $post );
 		$post_types = Helpers::get_option_as_array( 'edac_post_types' );
 
-		if ( ! empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
+		if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 
-			return new \WP_REST_Response( array( 'message' => 'The post type is not set to be scanned.' ), 400 );
+			return new \WP_REST_Response(
+				array( 
+					'message'            => 'The post type is not set to be scanned.',
+					'post_type'          => $post_type,
+					'allowed_post_types' => $post_types,
+				),
+				400
+			);
 
 		}
 
-		//phpcs:ignore Generic.Commenting.Todo.TaskFound			
+		// ignore revisions.
+		if ( wp_is_post_revision( $post_id ) ) {
+			return new \WP_REST_Response(
+				array( 
+					'message' => 'The post is a revision so it is not set to be scanned.',
+				),
+				400
+			);
+		}
+	
+		// ignore autosaves.
+		if ( wp_is_post_autosave( $post_id ) ) {
+			return new \WP_REST_Response(
+				array( 
+					'message' => 'This post is an autosave so it is not set to be scanned.',
+				),
+				400
+			);
+		}
+
+
+     //phpcs:ignore Generic.Commenting.Todo.TaskFound			
 		// TODO: setup a rules class for loading/filtering rules.
 		$rules       = edac_register_rules();
 		$js_rule_ids = array();
@@ -245,7 +274,7 @@ class REST_Api {
 						$html   = $violation['html'];
 						$impact = $violation['impact']; // by default, use the impact setting from the js rule.
 					
-						//phpcs:ignore Generic.Commenting.Todo.TaskFound
+                  //phpcs:ignore Generic.Commenting.Todo.TaskFound
 						// TODO: setup a rules class for loading/filtering rules.
 						foreach ( $rules as $rule ) {
 							if ( $rule['slug'] === $rule_id ) {
@@ -268,11 +297,11 @@ class REST_Api {
 	
 			do_action( 'edac_after_validate', $post_id, 'js' );
 	
-			// Update the summary info that is stored in meta this post.
-			$summary = edac_summary( $post_id );
-	
 			// remove corrected records.
 			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 2, 'js' );
+
+			// Update the summary info that is stored in meta this post.
+			$summary = edac_summary( $post_id );
 
 			// store a record of this scan in the post's meta.
 			update_post_meta( $post_id, '_edac_post_checked_js', time() );
@@ -386,16 +415,16 @@ class REST_Api {
 		
 			if ( in_array( $post_type, $scannable_post_types ) ) {
 			
-					$scans_stats = new Scans_Stats( 60 * 5 );   
+				$scans_stats = new Scans_Stats( 60 * 5 );   
 	
-					$by_type = $scans_stats->issues_summary_by_post_type( $post_type );
+				$by_type = $scans_stats->issues_summary_by_post_type( $post_type );
 
-					return new \WP_REST_Response(
-						array(
-							'success' => true,
-							'stats'   => $by_type,
-						) 
-					);
+				return new \WP_REST_Response(
+					array(
+						'success' => true,
+						'stats'   => $by_type,
+					) 
+				);
 			
 
 			} else {

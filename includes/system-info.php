@@ -170,7 +170,6 @@ function edac_tools_sysinfo_get() {
 		}
 		$return .= 'Ignore Permissions:       ' . ( get_option( 'edacp_ignore_user_roles' ) ? implode( ', ', get_option( 'edacp_ignore_user_roles' ) ) . "\n" : "None\n" );
 		$return .= 'Ignores DB Table Count:   ' . edac_database_table_count( 'accessibility_checker_global_ignores' ) . "\n";
-		$return .= 'Logs DB Table Count:      ' . edac_database_table_count( 'accessibility_checker_logs' ) . "\n";
 	}
 
 	$return = apply_filters( 'edac_sysinfo_after_edac_config', $return );

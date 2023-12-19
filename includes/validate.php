@@ -195,6 +195,16 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 		}
 	}
 	
+	if ( 'php' === $ruleset && 0 === count( $php_rule_ids ) ) {
+		// There are no php rules defined.
+		return;
+	}
+
+	if ( 'js' === $ruleset && 0 === count( $js_rule_ids ) ) {
+		// There are no js rules defined.
+		return;
+	}
+
 	// Build a sql sanitized list from an array
 	// See: https://stackoverflow.com/questions/10634058/wordpress-prepared-statement-with-in-condition .
 	$js_rule_ids = array_map(

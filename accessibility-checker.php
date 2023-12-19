@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.6.10
+ * Version:           1.7.0
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -45,7 +45,7 @@ if ( is_admin() && file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.p
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.6.10' );
+	define( 'EDAC_VERSION', '1.7.0' );
 }
 
 // Current database version.
@@ -645,6 +645,7 @@ function edac_register_rules() {
 			'slug'      => 'color_contrast_failure',
 			'rule_type' => 'error',
 			'summary'   => esc_html( 'Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be "false positives" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors.' ),
+			'ruleset'   => 'js',
 		)
 	);
 
@@ -773,9 +774,16 @@ function edac_before_page_render() {
 	
 		// Check the page if it hasn't already been checked.
 		global $post;
-		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
+
+		$post_id = is_object( $post ) ? $post->ID : null;
+		
+		if ( null === $post_id ) {
+			return;
+		}
+
+		$checked = get_post_meta( $post_id, '_edac_post_checked', true );
 		if ( false === boolval( $checked ) ) {
-			edac_validate( $post->ID, $post, $action = 'load' );
+			edac_validate( $post_id, $post, $action = 'load' );
 		}
 	}
 }
@@ -999,7 +1007,7 @@ function edac_summary( $post_id ) {
 	$query = 'SELECT count(*) FROM ' . $table_name . ' where siteid = %d and postid = %d and rule = %s and ignre = %d';
 	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 	$summary['contrast_errors'] = intval( $wpdb->get_var( $wpdb->prepare( $query, get_current_blog_id(), $post_id, 'color_contrast_failure', 0 ) ) );
-
+	
 	// remove color contrast from errors count.
 	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
 
@@ -1069,6 +1077,7 @@ function edac_summary( $post_id ) {
 		update_post_meta( $post_id, '_edac_summary_contrast_errors', $summary['contrast_errors'] );
 	}
 
+	
 	return $summary;
 }
 
