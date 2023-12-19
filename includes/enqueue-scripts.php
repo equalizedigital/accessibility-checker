@@ -72,6 +72,9 @@ function edac_admin_enqueue_scripts() {
 				$debug = false;
 			}
 		
+			// Force debug off.
+			$debug = false;
+
 			wp_enqueue_script( 'edac-editor-app', plugin_dir_url( __DIR__ ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 	
 			wp_localize_script(
