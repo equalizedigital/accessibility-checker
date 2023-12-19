@@ -5,7 +5,10 @@ import { init as initCheckPage } from './checkPage';
 
 
 window.addEventListener('DOMContentLoaded', () => {
-	if(settings.JS_SCAN_ENABLED){
+
+	const SCANNABLE_POST_TYPE = edac_editor_app.active;
+			
+	if(SCANNABLE_POST_TYPE && settings.JS_SCAN_ENABLED){
 
 
 		if(edac_editor_app.pro === '1'){
