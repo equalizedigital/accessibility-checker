@@ -371,7 +371,7 @@ class Scans_Stats {
 	
 		$transient_name = $this->cache_name_prefix . '_issues_summary_by_post_type_' . $post_type;
 
-		$cache = get_transient( $transient_name );
+		$cache = get_transient( $transient_name, false );
 	
 		if ( $this->cache_time && false !== $cache ) {
 
