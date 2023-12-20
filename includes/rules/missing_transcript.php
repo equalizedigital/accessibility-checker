@@ -18,8 +18,9 @@ function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore -- $c
 		return array();
 	}
 
-	$dom    = edac_str_get_html( $post->post_content );
-	$errors = array();
+	$dom      = edac_str_get_html( $post->post_content );
+	$errors   = array();
+	$elements = array();
 	if ( $dom ) {
 		$elements = $dom->find_media_embeds( true );
 	}
