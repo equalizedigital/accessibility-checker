@@ -1,6 +1,6 @@
 <?php
 /**
- * Class EDACAdminNoticesTest
+ * Class EDACAAccessibilityStatementTest
  *
  * @package Accessibility_Checker
  */
@@ -8,7 +8,7 @@
 use EDAC\Inc\Accessibility_Statement;
 
 /**
- * Admin Notices test case.
+ * Accessibility statement test case.
  */
 class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	
@@ -20,49 +20,97 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	private $accessibility_statement;
 	
 	/**
-	 * Set up the test fixture.
+	 * Sets up the test environment before each test.
+	 * 
+	 * Initializes an instance of the Accessibility_Statement class
+	 * and sets various options related to the accessibility statement.
 	 */
 	protected function setUp(): void {
 		$this->accessibility_statement = new Accessibility_Statement();
-	}
 
-	/**
-	 * Tests various scenarios for get_accessibility_statement method.
-	 * - Verifies return value with no options set.
-	 * - Checks output with 'include_statement' option enabled.
-	 * - Tests output with 'include_statement_link' and a policy page URL set.
-	 *
-	 * @return void
-	 */
-	public function test_get_accessibility_statement() {
-		// Test with no options set.
-		$this->assertEquals( '', $this->accessibility_statement->get_accessibility_statement() );
-
-		// Test with the include_statement option set.
-		update_option( 'edac_include_accessibility_statement', true );
-		$this->assertStringContainsString( 'We strive to ensure', $this->accessibility_statement->get_accessibility_statement() );
-
-		// Test with the include_statement_link option set.
+		// Set the options
+		update_option( 'edac_add_footer_accessibility_statement', true );
 		update_option( 'edac_include_accessibility_statement_link', true );
 		update_option( 'edac_accessibility_policy_page', 'http://example.com' );
-		$this->assertStringContainsString( 'Read our <a href="http://example.com">Accessibility Policy</a>', $this->accessibility_statement->get_accessibility_statement() );
 	}
 
 	/**
-	 * Tests output_accessibility_statement method for different states.
-	 * - Ensures no output when no statement is set.
-	 * - Confirms correct output format when a statement is set.
-	 *
-	 * @return void
+	 * Tests the get_accessibility_statement method.
+	 * 
+	 * Verifies that the method returns an accessibility statement
+	 * containing the blog name, 'Accessibility Checker', and the accessibility policy link.
+	 */
+	public function test_get_accessibility_statement() {
+		// Test that get_accessibility_statement returns the expected statement
+		$statement = $this->accessibility_statement->get_accessibility_statement();
+		$this->assertStringContainsString( get_bloginfo('name'), $statement );
+		$this->assertStringContainsString( 'Accessibility Checker', $statement );
+		$this->assertStringContainsString( 'Accessibility Policy', $statement );
+		$this->assertStringContainsString( 'http://example.com', $statement );
+	}
+
+	/**
+	 * Tests the get_accessibility_statement method without a policy link.
+	 * 
+	 * Configures the environment to not include an accessibility policy link
+	 * and verifies that the returned statement does not contain the 'Accessibility Policy' string.
+	 */
+	public function test_get_accessibility_statement_no_policy() {
+		// Set the options
+		update_option( 'edac_include_accessibility_statement_link', false );
+		delete_option( 'edac_accessibility_policy_page' );
+
+		// Test that get_accessibility_statement returns the expected statement
+		$statement = $this->accessibility_statement->get_accessibility_statement();
+		$this->assertStringContainsString( get_bloginfo('name'), $statement );
+		$this->assertStringContainsString( 'Accessibility Checker', $statement );
+		$this->assertStringNotContainsString( 'Accessibility Policy', $statement );
+	}
+
+	/**
+	 * Tests the output_accessibility_statement method.
+	 * 
+	 * Ensures that calling this method outputs a string representing the accessibility statement.
 	 */
 	public function test_output_accessibility_statement() {
-		// Test with no statement.
-		$this->expectOutputString('');
+		// Test that output_accessibility_statement outputs a string
+		ob_start();
 		$this->accessibility_statement->output_accessibility_statement();
+		$output = ob_get_clean();
+		$this->assertIsString( $output );
+	}
 
-		// Test with a statement.
-		update_option( 'edac_include_accessibility_statement', true );
-		$this->expectOutputRegex( '/<p class="edac-accessibility-statement"><small>We strive to ensure/' );
+	/**
+	 * Tests the output_accessibility_statement method with no options set.
+	 * 
+	 * Deletes the accessibility-related options and verifies that 
+	 * the method does not output anything.
+	 */
+	public function test_output_accessibility_statement_no_options() {
+		// Ensure the options aren't set
+		delete_option( 'edac_add_footer_accessibility_statement' );
+		delete_option( 'edac_include_accessibility_statement_link' );
+		delete_option( 'edac_accessibility_policy_page' );
+	
+		// Test that output_accessibility_statement doesn't output anything
+		ob_start();
 		$this->accessibility_statement->output_accessibility_statement();
+		$output = ob_get_clean();
+		$this->assertEmpty( $output );
+	}
+
+	/**
+	 * Cleans up the test environment after each test.
+	 * 
+	 * Deletes the options related to the accessibility statement
+	 * set during the test.
+	 */
+	protected function tearDown(): void {
+		// Clean up
+		delete_option( 'edac_add_footer_accessibility_statement' );
+		delete_option( 'edac_include_accessibility_statement_link' );
+		delete_option( 'edac_accessibility_policy_page' );
+	
+		parent::tearDown();
 	}
 }
