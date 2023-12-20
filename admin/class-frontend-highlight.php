@@ -55,12 +55,12 @@ class Frontend_Highlight {
 
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-			$error = new WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', 'Permission Denied' );
 			wp_send_json_error( $error );
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
-			$error = new WP_Error( '-2', 'The id value was not set' );
+			$error = new \WP_Error( '-2', 'The id value was not set' );
 			wp_send_json_error( $error );
 		}
 
@@ -68,7 +68,7 @@ class Frontend_Highlight {
 		$results = $this->get_issues( $post_id );
 
 		if ( ! $results ) {
-			$error = new WP_Error( '-3', 'Issue query returned no results' );
+			$error = new \WP_Error( '-3', 'Issue query returned no results' );
 			wp_send_json_error( $error );
 		}
 
@@ -94,7 +94,7 @@ class Frontend_Highlight {
 
 		if ( ! $output ) {
 
-			$error = new WP_Error( '-5', 'Object query returned no results' );
+			$error = new \WP_Error( '-5', 'Object query returned no results' );
 			wp_send_json_error( $error );
 
 		}
