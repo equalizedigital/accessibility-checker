@@ -7,7 +7,7 @@
 
 namespace EDAC;
 
-use EDAC\Helpers;
+use EDAC\Admin\Helpers;
 use EDAC\Admin\Settings;
 
 /**

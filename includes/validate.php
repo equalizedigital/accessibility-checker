@@ -265,7 +265,7 @@ function edac_get_content( $post ) {
 		$parsed_url = wp_parse_url( home_url() );
 
 		if ( isset( $parsed_url['host'] ) ) {
-			$is_local_loopback = \EDAC\Helpers::is_domain_loopback( $parsed_url['host'] );
+			$is_local_loopback = \EDAC\Admin\Helpers::is_domain_loopback( $parsed_url['host'] );
 			update_option( 'edac_local_loopback', $is_local_loopback );
 		}
 	}
