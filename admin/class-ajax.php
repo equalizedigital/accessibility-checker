@@ -65,7 +65,7 @@ class Ajax {
 
 		// password check.
 		if ( boolval( get_option( 'edac_password_protected' ) ) === true ) {
-			$admin_notices              = new \EDAC\Admin_Notices();
+			$admin_notices              = new \EDAC\Admin\Admin_Notices();
 			$notice_text                = $admin_notices->edac_password_protected_notice_text();
 			$html['password_protected'] = $notice_text;
 			$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
