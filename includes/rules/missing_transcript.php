@@ -18,9 +18,11 @@ function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore -- $c
 		return array();
 	}
 
-	$dom      = edac_str_get_html( $post->post_content );
-	$errors   = array();
-	$elements = $dom->find_media_embeds( true );
+	$dom    = edac_str_get_html( $post->post_content );
+	$errors = array();
+	if ( $dom ) {
+		$elements = $dom->find_media_embeds( true );
+	}
 
 	$dom->convert_tag_to_marker( array( 'img', 'iframe', 'audio', 'video', '.is-type-video' ) );
 	foreach ( $elements as $element ) {
