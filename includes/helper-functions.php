@@ -15,7 +15,7 @@
 function edac_compare_strings( $string1, $string2 ) {
 	/**
 	 * Prepare strings for our comparison.
-	 * 
+	 *
 	 * @param string $content String to prepare.
 	 * @return string
 	 */
@@ -307,7 +307,7 @@ function edac_process_actions() {
  * @param boolean $strip_rn strip rn.
  * @param string  $default_br_text default br text.
  * @param string  $default_span_text default span text.
- * @return string
+ * @return object|false
  */
 function edac_str_get_html(
 	$str,
