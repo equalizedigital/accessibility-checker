@@ -35,6 +35,9 @@ class Admin {
 		$widgets->init_hooks();
 
 		new EDAC\REST_Api();
+
+		$site_health_info = new \EDAC\Admin\SiteHealth\Information();
+		$site_health_info->init_hooks();
 	}
 
 	/**
