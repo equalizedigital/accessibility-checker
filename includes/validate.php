@@ -153,12 +153,12 @@ function edac_validate( $post_ID, $post, $action ) {
 			}
 		}
 		if ( EDAC_DEBUG === true ) {
-			edac_log( $rule_performance_results );
+			edacp_log( $rule_performance_results );
 		}
 	}
 	if ( EDAC_DEBUG === true ) {
 		$time_elapsed_secs = microtime( true ) - $all_rules_process_time;
-		edac_log( 'rules validate time: ' . $time_elapsed_secs );
+		edacp_log( 'rules validate time: ' . $time_elapsed_secs );
 	}
 
 	// remove corrected records.
