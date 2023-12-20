@@ -89,11 +89,13 @@ export async function scan( options = { configOptions: {}, runOptions: {} } ) {
 			} );
 
 			//Sort the violations by order they appear in the document
-			violations.sort( function ( a, b ) {
+			violations.sort( function( a, b ) {
 				a = document.querySelector( a.selector );
 				b = document.querySelector( b.selector );
 
-				if ( a === b ) return 0;
+				if ( a === b ) {
+					return 0;
+				}
 				// eslint-disable-next-line no-bitwise
 				if ( a.compareDocumentPosition( b ) & 2 ) {
 					// b comes before a

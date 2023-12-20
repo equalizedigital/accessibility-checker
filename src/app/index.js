@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* global edac_script_vars, DOMParser, XMLHttpRequest */
 import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
@@ -181,7 +180,7 @@ class AccessibilityCheckerHighlight {
 	 */
 	highlightAjax() {
 		const self = this;
-		return new Promise( function ( resolve, reject ) {
+		return new Promise( function( resolve, reject ) {
 			const xhr = new XMLHttpRequest();
 			const url =
 				// eslint-disable-next-line camelcase
@@ -197,7 +196,7 @@ class AccessibilityCheckerHighlight {
 
 			xhr.open( 'GET', url );
 
-			xhr.onload = function () {
+			xhr.onload = function() {
 				if ( xhr.status === 200 ) {
 					self.showWait( false );
 
@@ -232,7 +231,7 @@ class AccessibilityCheckerHighlight {
 				}
 			};
 
-			xhr.onerror = function () {
+			xhr.onerror = function() {
 				self.showWait( false );
 
 				reject( {
@@ -307,7 +306,7 @@ class AccessibilityCheckerHighlight {
 		// Add the tooltip to the page.
 		document.body.append( tooltip );
 
-		const updatePosition = function () {
+		const updatePosition = function() {
 			computePosition( element, tooltip, {
 				placement: 'top-start',
 				middleware: [],
@@ -571,7 +570,7 @@ class AccessibilityCheckerHighlight {
 				this.issues = json;
 
 				json.forEach(
-					function ( value, index ) {
+					function( value, index ) {
 						const element = this.findElement( value, index );
 						if ( element !== null ) {
 							this.issues[ index ].element = element;
@@ -770,11 +769,11 @@ class AccessibilityCheckerHighlight {
 		const elementsWithStyle = document.querySelectorAll(
 			'*[style]:not([class^="edac"])'
 		);
-		elementsWithStyle.forEach( function ( element ) {
+		elementsWithStyle.forEach( function( element ) {
 			element.removeAttribute( 'style' );
 		} );
 
-		this.originalCss = this.originalCss.filter( function ( element ) {
+		this.originalCss = this.originalCss.filter( function( element ) {
 			if (
 				element.id === 'edac-app-css' ||
 				element.id === 'dashicons-css'
@@ -785,7 +784,7 @@ class AccessibilityCheckerHighlight {
 		} );
 
 		document.head.dataset.css = this.originalCss;
-		this.originalCss.forEach( function ( element ) {
+		this.originalCss.forEach( function( element ) {
 			element.remove();
 		} );
 
@@ -801,7 +800,7 @@ class AccessibilityCheckerHighlight {
 	 * This function enables all styles on the page.
 	 */
 	enableStyles() {
-		this.originalCss.forEach( function ( element ) {
+		this.originalCss.forEach( function( element ) {
 			if ( element.tagName === 'STYLE' ) {
 				document.head.appendChild( element.cloneNode( true ) );
 			} else {
@@ -1112,7 +1111,9 @@ window.addEventListener(
 	'message',
 	( e ) => {
 		// eslint-disable-next-line camelcase
-		if ( e.origin !== edac_script_vars.edacUrl ) return;
+		if ( e.origin !== edac_script_vars.edacUrl ) {
+			return;
+		}
 
 		if ( window === window.top ) {
 			//There has been a request to start a scan. Pass the message to the scanner's window.
@@ -1230,7 +1231,7 @@ window.addEventListener( 'DOMContentLoaded', () => {
 			iframe.style.left = '-' + window.screen.width + 'px';
 			document.body.append( iframe );
 
-			iframe.addEventListener( 'load', function () {
+			iframe.addEventListener( 'load', function() {
 				debug( 'Scan iframe loaded.' );
 
 				// The frame has loaded the preview page, so post the message that fires the iframe scan and save.
@@ -1314,7 +1315,7 @@ window.addEventListener( 'DOMContentLoaded', () => {
 			iframeScheduledScanner.style.left =
 				'-' + window.screen.width + 'px';
 
-			const onLoadIframeScheduledScanner = function ( e ) {
+			const onLoadIframeScheduledScanner = function( e ) {
 				debug( 'Loading scheduled scan iframe: done' );
 
 				const data = e.currentTarget.data;
@@ -1393,7 +1394,7 @@ if ( window.top === window && window._showNotice === undefined ) {
 	link.media = 'screen,print';
 	document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
 
-	window._showNotice = function ( options ) {
+	window._showNotice = function( options ) {
 		const settings = Object.assign(
 			{},
 			{
@@ -1436,7 +1437,7 @@ if ( window.top === window && window._showNotice === undefined ) {
 					} );
 			}
 
-			setTimeout( function () {
+			setTimeout( function() {
 				wp.data
 					.dispatch( 'core/notices' )
 					.createNotice( settings.type, msg, o );

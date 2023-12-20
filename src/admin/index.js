@@ -1,22 +1,21 @@
 /* eslint-disable no-unused-vars */
-/* global edac_script_vars, ajaxurl, jQuery */
-( function ( $ ) {
+( function() {
 	'use strict';
 
-	$( function () {
+	jQuery( function() {
 		// Accessibility Statement disable
-		$(
+		jQuery(
 			'input[type=checkbox][name=edac_add_footer_accessibility_statement]'
-		).on( 'change', function () {
+		).on( 'change', function() {
 			if ( this.checked ) {
-				$(
+				jQuery(
 					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
 				).prop( 'disabled', false );
 			} else {
-				$(
+				jQuery(
 					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
 				).prop( 'disabled', true );
-				$(
+				jQuery(
 					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
 				).prop( 'checked', false );
 			}
@@ -25,25 +24,25 @@
 
 		// Show Simplified Summary code on options page
 		if (
-			$(
+			jQuery(
 				'input[type=radio][name=edac_simplified_summary_position]:checked'
 			).val() === 'none'
 		) {
-			$( '#ac-simplified-summary-option-code' ).show();
+			jQuery( '#ac-simplified-summary-option-code' ).show();
 		}
-		$( 'input[type=radio][name=edac_simplified_summary_position]' ).on(
+		jQuery( 'input[type=radio][name=edac_simplified_summary_position]' ).on(
 			'load',
-			function () {
+			function() {
 				if ( this.value === 'none' ) {
-					$( '#ac-simplified-summary-option-code' ).show();
+					jQuery( '#ac-simplified-summary-option-code' ).show();
 				} else {
-					$( '#ac-simplified-summary-option-code' ).hide();
+					jQuery( '#ac-simplified-summary-option-code' ).hide();
 				}
 			}
 		);
 	} );
 
-	$( window ).on( 'load', function () {
+	jQuery( window ).on( 'load', function() {
 		/**
 		 * Tabs
 		 */
@@ -52,31 +51,31 @@
 		const refreshSummaryAndReadability = () => {
 			edacSummaryAjax( () => {
 				edacReadabilityAjax();
-				$( '.edac-panel' ).removeClass( 'edac-panel-loading' );
+				jQuery( '.edac-panel' ).removeClass( 'edac-panel-loading' );
 			} );
 		};
 
-		$( '.edac-tab' ).click( function ( e ) {
+		jQuery( '.edac-tab' ).click( function( e ) {
 			e.preventDefault();
-			const id = $( 'a', this ).attr( 'href' );
+			const id = jQuery( 'a', this ).attr( 'href' );
 
-			$( '.edac-panel' ).hide();
-			$( '.edac-panel' ).removeClass( 'active' );
-			$( '.edac-tab a' )
+			jQuery( '.edac-panel' ).hide();
+			jQuery( '.edac-panel' ).removeClass( 'active' );
+			jQuery( '.edac-tab a' )
 				.removeClass( 'active' )
 				.attr( 'aria-current', false );
-			$( id ).show();
-			$( id ).addClass( 'active' );
-			$( 'a', this ).addClass( 'active' ).attr( 'aria-current', true );
+			jQuery( id ).show();
+			jQuery( id ).addClass( 'active' );
+			jQuery( 'a', this ).addClass( 'active' ).attr( 'aria-current', true );
 		} );
 
 		// Details Tab on click Ajax
-		$( '.edac-tab-details' ).click( function () {
+		jQuery( '.edac-tab-details' ).click( function() {
 			edacDetailsAjax();
 		} );
 
 		// Summary Tab on click Ajax
-		$( '.edac-tab-summary' ).click( function () {
+		jQuery( '.edac-tab-summary' ).click( function() {
 			refreshSummaryAndReadability();
 		} );
 
@@ -92,7 +91,7 @@
 				return;
 			}
 
-			$.ajax( {
+			jQuery.ajax( {
 				url: ajaxurl,
 				method: 'GET',
 				data: {
@@ -101,14 +100,14 @@
 					// eslint-disable-next-line camelcase
 					nonce: edac_script_vars.nonce,
 				},
-			} ).done( function ( response ) {
+			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = $.parseJSON( response.data );
+					const responseJSON = jQuery.parseJSON( response.data );
 
 					/*
           if(responseJSON.password_protected && edacGutenbergActive()){
             wp.data.dispatch('core/notices').createInfoNotice(
-              responseJSON.password_protected, 
+              responseJSON.password_protected,
               {
                 id: 'edac-password-protected-error',
                 type: 'default', //default, or snackbar
@@ -119,7 +118,7 @@
           }
           */
 
-					$( '.edac-summary' ).html( responseJSON.content );
+					jQuery( '.edac-summary' ).html( responseJSON.content );
 
 					if ( typeof callback === 'function' ) {
 						callback();
@@ -142,7 +141,7 @@
 				return;
 			}
 
-			$.ajax( {
+			jQuery.ajax( {
 				url: ajaxurl,
 				method: 'GET',
 				data: {
@@ -151,51 +150,51 @@
 					// eslint-disable-next-line camelcase
 					nonce: edac_script_vars.nonce,
 				},
-			} ).done( function ( response ) {
+			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = $.parseJSON( response.data );
+					const responseJSON = jQuery.parseJSON( response.data );
 
-					$( '.edac-details' ).html( responseJSON );
+					jQuery( '.edac-details' ).html( responseJSON );
 
 					// Rule on click
-					$( '.edac-details-rule-title' ).click( function () {
-						//$('.edac-details-rule-records').slideUp();
-						if ( $( this ).hasClass( 'active' ) ) {
-							$( this ).next().slideUp();
-							$( this ).removeClass( 'active' );
+					jQuery( '.edac-details-rule-title' ).click( function() {
+						// jQuery('.edac-details-rule-records').slideUp();
+						if ( jQuery( this ).hasClass( 'active' ) ) {
+							jQuery( this ).next().slideUp();
+							jQuery( this ).removeClass( 'active' );
 						} else {
-							$( this ).next().slideDown();
-							$( this ).addClass( 'active' );
+							jQuery( this ).next().slideDown();
+							jQuery( this ).addClass( 'active' );
 						}
 					} );
 
 					// Title arrow button on click
-					$( '.edac-details-rule-title-arrow' ).click(
-						function ( e ) {
+					jQuery( '.edac-details-rule-title-arrow' ).click(
+						function( e ) {
 							e.preventDefault();
 							if (
-								$( this ).attr( 'aria-expanded' ) === 'true'
+								jQuery( this ).attr( 'aria-expanded' ) === 'true'
 							) {
-								$( this ).attr( 'aria-expanded', 'false' );
+								jQuery( this ).attr( 'aria-expanded', 'false' );
 							} else {
-								$( this ).attr( 'aria-expanded', 'true' );
+								jQuery( this ).attr( 'aria-expanded', 'true' );
 							}
 						}
 					);
 
 					// Ignore on click
-					$(
+					jQuery(
 						'.edac-details-rule-records-record-actions-ignore'
-					).click( function ( e ) {
+					).click( function( e ) {
 						e.preventDefault();
-						$( this )
+						jQuery( this )
 							.parent()
 							.next( '.edac-details-rule-records-record-ignore' )
 							.slideToggle();
-						if ( $( this ).attr( 'aria-expanded' ) === 'true' ) {
-							$( this ).attr( 'aria-expanded', 'false' );
+						if ( jQuery( this ).attr( 'aria-expanded' ) === 'true' ) {
+							jQuery( this ).attr( 'aria-expanded', 'false' );
 						} else {
-							$( this ).attr( 'aria-expanded', 'true' );
+							jQuery( this ).attr( 'aria-expanded', 'true' );
 						}
 					} );
 
@@ -219,7 +218,7 @@
 				return;
 			}
 
-			$.ajax( {
+			jQuery.ajax( {
 				url: ajaxurl,
 				method: 'GET',
 				data: {
@@ -228,21 +227,21 @@
 					// eslint-disable-next-line camelcase
 					nonce: edac_script_vars.nonce,
 				},
-			} ).done( function ( response ) {
+			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = $.parseJSON( response.data );
+					const responseJSON = jQuery.parseJSON( response.data );
 
-					$( '.edac-readability' ).html( responseJSON );
+					jQuery( '.edac-readability' ).html( responseJSON );
 
 					// Simplified Summary on click
-					$( '.edac-readability-simplified-summary' ).submit(
-						function ( event ) {
+					jQuery( '.edac-readability-simplified-summary' ).submit(
+						function( event ) {
 							event.preventDefault();
 
 							// var postID = wp.data.select("core/editor").getCurrentPostId();
-							const summary = $( '#edac-readability-text' ).val();
+							const summary = jQuery( '#edac-readability-text' ).val();
 
-							$.ajax( {
+							jQuery.ajax( {
 								url: ajaxurl,
 								method: 'GET',
 								data: {
@@ -252,9 +251,9 @@
 									// eslint-disable-next-line camelcase
 									nonce: edac_script_vars.nonce,
 								},
-							} ).done( function ( doneResponse ) {
+							} ).done( function( doneResponse ) {
 								if ( true === doneResponse.success ) {
-									const doneResponseJSON = $.parseJSON(
+									const doneResponseJSON = jQuery.parseJSON(
 										doneResponse.data
 									);
 
@@ -280,21 +279,21 @@
 			const editPost = wp.data.select( 'core/edit-post' );
 			let lastIsSaving = false;
 
-			wp.data.subscribe( function () {
+			wp.data.subscribe( function() {
 				const isSaving = editPost.isSavingMetaBoxes();
 				if ( isSaving ) {
-					$( '.edac-panel' ).addClass( 'edac-panel-loading' );
+					jQuery( '.edac-panel' ).addClass( 'edac-panel-loading' );
 				}
 				if ( isSaving !== lastIsSaving && ! isSaving ) {
 					lastIsSaving = isSaving;
 
 					// reset to first meta box tab
-					$( '.edac-panel' ).hide();
-					$( '.edac-panel' ).removeClass( 'active' );
-					$( '.edac-tab a' ).removeClass( 'active' );
-					$( '#edac-summary' ).show();
-					$( '#edac-summary' ).addClass( 'active' );
-					$( '.edac-tab:first-child a' ).addClass( 'active' );
+					jQuery( '.edac-panel' ).hide();
+					jQuery( '.edac-panel' ).removeClass( 'active' );
+					jQuery( '.edac-tab a' ).removeClass( 'active' );
+					jQuery( '#edac-summary' ).show();
+					jQuery( '#edac-summary' ).addClass( 'active' );
+					jQuery( '.edac-tab:first-child a' ).addClass( 'active' );
 
 					edacDetailsAjax();
 					refreshSummaryAndReadability();
@@ -307,19 +306,19 @@
 		 * Ignore Submit on click
 		 */
 		function ignoreSubmit() {
-			$( '.edac-details-rule-records-record-ignore-submit' ).click(
-				function ( e ) {
+			jQuery( '.edac-details-rule-records-record-ignore-submit' ).click(
+				function( e ) {
 					e.preventDefault();
 
-					const ids = [ $( this ).attr( 'data-id' ) ];
-					const ignoreAction = $( this ).attr( 'data-action' );
-					const ignoreType = $( this ).attr( 'data-type' );
-					const comment = $(
+					const ids = [ jQuery( this ).attr( 'data-id' ) ];
+					const ignoreAction = jQuery( this ).attr( 'data-action' );
+					const ignoreType = jQuery( this ).attr( 'data-type' );
+					const comment = jQuery(
 						'.edac-details-rule-records-record-ignore-comment',
-						$( this ).parent()
+						jQuery( this ).parent()
 					).val();
 
-					$.ajax( {
+					jQuery.ajax( {
 						url: ajaxurl,
 						method: 'GET',
 						data: {
@@ -331,9 +330,9 @@
 							// eslint-disable-next-line camelcase
 							nonce: edac_script_vars.nonce,
 						},
-					} ).done( function ( response ) {
+					} ).done( function( response ) {
 						if ( true === response.success ) {
-							const data = $.parseJSON( response.data );
+							const data = jQuery.parseJSON( response.data );
 
 							const record =
 								'#edac-details-rule-records-record-' +
@@ -355,56 +354,56 @@
 								? '<strong>Date:</strong> ' + data.date
 								: '';
 
-							$(
+							jQuery(
 								record +
 									' .edac-details-rule-records-record-ignore-submit'
 							).attr( 'data-action', doneIgnoreAction );
-							$(
+							jQuery(
 								record +
 									' .edac-details-rule-records-record-ignore-comment'
 							).attr( 'disabled', doneCommentDisabled );
 							if ( data.action !== 'enable' ) {
-								$(
+								jQuery(
 									record +
 										' .edac-details-rule-records-record-ignore-comment'
 								).val( '' );
 							}
-							$(
+							jQuery(
 								record +
 									' .edac-details-rule-records-record-actions-ignore'
 							).toggleClass( 'active' );
-							$(
+							jQuery(
 								".edac-details-rule-records-record-actions-ignore[data-id='" +
 									ids[ 0 ] +
 									"']"
 							).toggleClass( 'active' ); // pro
-							$(
+							jQuery(
 								record +
 									' .edac-details-rule-records-record-actions-ignore-label'
 							).html( doneActionsIgnoreLabel );
-							$(
+							jQuery(
 								".edac-details-rule-records-record-actions-ignore[data-id='" +
 									ids[ 0 ] +
 									"'] .edac-details-rule-records-record-actions-ignore-label"
 							).html( doneActionsIgnoreLabel ); // pro
-							$(
+							jQuery(
 								record +
 									' .edac-details-rule-records-record-ignore-submit-label'
 							).html( ignoreSubmitLabel );
-							$(
+							jQuery(
 								record +
 									' .edac-details-rule-records-record-ignore-info-user'
 							).html( username );
-							$(
+							jQuery(
 								record +
 									' .edac-details-rule-records-record-ignore-info-date'
 							).html( date );
 
 							// Update rule count
 							const rule =
-								$( record ).parents( '.edac-details-rule' );
+								jQuery( record ).parents( '.edac-details-rule' );
 							let count = parseInt(
-								$( '.edac-details-rule-count', rule ).html()
+								jQuery( '.edac-details-rule-count', rule ).html()
 							);
 							if ( data.action === 'enable' ) {
 								count--;
@@ -412,21 +411,21 @@
 								count++;
 							}
 							if ( count === 0 ) {
-								$(
+								jQuery(
 									'.edac-details-rule-count',
 									rule
 								).removeClass( 'active' );
 							} else {
-								$( '.edac-details-rule-count', rule ).addClass(
+								jQuery( '.edac-details-rule-count', rule ).addClass(
 									'active'
 								);
 							}
 							count.toString();
-							$( '.edac-details-rule-count', rule ).html( count );
+							jQuery( '.edac-details-rule-count', rule ).html( count );
 
 							// Update ignore rule count
 							let countIgnore = parseInt(
-								$(
+								jQuery(
 									'.edac-details-rule-count-ignore',
 									rule
 								).html()
@@ -438,27 +437,27 @@
 								countIgnore--;
 							}
 							if ( countIgnore === 0 ) {
-								$(
+								jQuery(
 									'.edac-details-rule-count-ignore',
 									rule
 								).hide();
 							} else {
-								$(
+								jQuery(
 									'.edac-details-rule-count-ignore',
 									rule
 								).show();
 							}
 							countIgnore.toString();
-							$( '.edac-details-rule-count-ignore', rule ).html(
+							jQuery( '.edac-details-rule-count-ignore', rule ).html(
 								countIgnore + ' Ignored Items'
 							);
 
 							// refresh page on ignore or unignore in pro
 							if (
-								$( 'body' ).hasClass(
+								jQuery( 'body' ).hasClass(
 									'accessibility-checker_page_accessibility_checker_issues'
 								) ||
-								$( 'body' ).hasClass(
+								jQuery( 'body' ).hasClass(
 									'accessibility-checker_page_accessibility_checker_ignored'
 								)
 							) {
@@ -479,8 +478,9 @@
 		 */
 		function edacGutenbergActive() {
 			// return false if widgets page
-			if ( document.body.classList.contains( 'widgets-php' ) )
+			if ( document.body.classList.contains( 'widgets-php' ) ) {
 				return false;
+			}
 
 			// check if block editor page
 			return document.body.classList.contains( 'block-editor-page' );
@@ -489,22 +489,22 @@
 		/**
 		 * Review Notice Ajax
 		 */
-		if ( $( '.edac-review-notice' ).length ) {
-			$( '.edac-review-notice-review' ).on( 'click', function () {
+		if ( jQuery( '.edac-review-notice' ).length ) {
+			jQuery( '.edac-review-notice-review' ).on( 'click', function() {
 				edacReviewNoticeAjax( 'stop', true );
 			} );
 
-			$( '.edac-review-notice-remind' ).on( 'click', function () {
+			jQuery( '.edac-review-notice-remind' ).on( 'click', function() {
 				edacReviewNoticeAjax( 'pause', false );
 			} );
 
-			$( '.edac-review-notice-dismiss' ).on( 'click', function () {
+			jQuery( '.edac-review-notice-dismiss' ).on( 'click', function() {
 				edacReviewNoticeAjax( 'stop', false );
 			} );
 		}
 
 		function edacReviewNoticeAjax( reviewAction, redirect ) {
-			$.ajax( {
+			jQuery.ajax( {
 				url: ajaxurl,
 				method: 'GET',
 				data: {
@@ -513,10 +513,10 @@
 					// eslint-disable-next-line camelcase
 					nonce: edac_script_vars.nonce,
 				},
-			} ).done( function ( response ) {
+			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = $.parseJSON( response.data );
-					$( '.edac-review-notice' ).fadeOut();
+					const responseJSON = jQuery.parseJSON( response.data );
+					jQuery( '.edac-review-notice' ).fadeOut();
 					if ( redirect ) {
 						window.location.href =
 							'https://wordpress.org/support/plugin/accessibility-checker/reviews/#new-post';
@@ -530,14 +530,14 @@
 		/**
 		 * Password Protected Notice Ajax
 		 */
-		if ( $( '.edac_password_protected_notice' ).length ) {
-			$( '.edac_password_protected_notice' ).on( 'click', function () {
+		if ( jQuery( '.edac_password_protected_notice' ).length ) {
+			jQuery( '.edac_password_protected_notice' ).on( 'click', function() {
 				edacPasswordProtectedNoticeAjax();
 			} );
 		}
 
 		function edacPasswordProtectedNoticeAjax() {
-			$.ajax( {
+			jQuery.ajax( {
 				url: ajaxurl,
 				method: 'GET',
 				data: {
@@ -545,9 +545,9 @@
 					// eslint-disable-next-line camelcase
 					nonce: edac_script_vars.nonce,
 				},
-			} ).done( function ( response ) {
+			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = $.parseJSON( response.data );
+					const responseJSON = jQuery.parseJSON( response.data );
 				} else {
 					//console.log(response);
 				}
@@ -557,8 +557,8 @@
 		/**
 		 * GAAD Notice Ajax
 		 */
-		if ( $( '.edac_gaad_notice' ).length ) {
-			$( '.edac_gaad_notice .notice-dismiss' ).on( 'click', function () {
+		if ( jQuery( '.edac_gaad_notice' ).length ) {
+			jQuery( '.edac_gaad_notice .notice-dismiss' ).on( 'click', function() {
 				edacGaadNoticeAjax( 'edac_gaad_notice_ajax' );
 			} );
 		}
@@ -566,17 +566,17 @@
 		/**
 		 * Black Friday Notice Ajax
 		 */
-		if ( $( '.edac_black_friday_notice' ).length ) {
-			$( '.edac_black_friday_notice .notice-dismiss' ).on(
+		if ( jQuery( '.edac_black_friday_notice' ).length ) {
+			jQuery( '.edac_black_friday_notice .notice-dismiss' ).on(
 				'click',
-				function () {
+				function() {
 					edacGaadNoticeAjax( 'edac_black_friday_notice_ajax' );
 				}
 			);
 		}
 
 		function edacGaadNoticeAjax( functionName = null ) {
-			$.ajax( {
+			jQuery.ajax( {
 				url: ajaxurl,
 				method: 'GET',
 				data: {
@@ -584,32 +584,32 @@
 					// eslint-disable-next-line camelcase
 					nonce: edac_script_vars.nonce,
 				},
-			} ).done( function ( response ) {
+			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = $.parseJSON( response.data );
+					const responseJSON = jQuery.parseJSON( response.data );
 				} else {
 					//console.log(response);
 				}
 			} );
 		}
 
-		if ( $( '.edac-summary' ).length ) {
+		if ( jQuery( '.edac-summary' ).length ) {
 			refreshSummaryAndReadability();
 		}
-		if ( $( '.edac-details' ).length ) {
+		if ( jQuery( '.edac-details' ).length ) {
 			edacDetailsAjax();
 			ignoreSubmit();
 		}
-		if ( $( '.edac-details-rule-records-record-ignore' ).length ) {
+		if ( jQuery( '.edac-details-rule-records-record-ignore' ).length ) {
 			ignoreSubmit();
 		}
-		if ( $( '.edac-readability' ).length ) {
+		if ( jQuery( '.edac-readability' ).length ) {
 			refreshSummaryAndReadability();
 		}
 
-		$( '#dismiss_welcome_cta' ).on( 'click', function () {
+		jQuery( '#dismiss_welcome_cta' ).on( 'click', function() {
 			// AJAX request to handle button click
-			$.ajax( {
+			jQuery.ajax( {
 				type: 'POST',
 				url: ajaxurl,
 				data: {
@@ -618,7 +618,7 @@
 				success( response ) {
 					if ( response === 'success' ) {
 						// Hide the CTA on button click
-						$( '#edac_welcome_page_summary' ).hide();
+						jQuery( '#edac_welcome_page_summary' ).hide();
 					}
 				},
 			} );
@@ -636,7 +636,7 @@
 
 			document.querySelector( '.edac-summary' ).remove();
 
-			$.ajax( {
+			jQuery.ajax( {
 				type: 'POST',
 				url: ajaxurl,
 				data: {
@@ -654,9 +654,9 @@
 			);
 		}
 	} );
-} )( jQuery );
+}( jQuery ) );
 
-window.addEventListener( 'load', function () {
+window.addEventListener( 'load', function() {
 	if ( this.document.querySelector( '.edac-widget .edac-summary' ) ) {
 		fillDashboardWidget();
 	}
@@ -665,7 +665,7 @@ window.addEventListener( 'load', function () {
 	if ( this.document.querySelector( '#edac_clear_cached_stats' ) ) {
 		this.document
 			.querySelector( '#edac_clear_cached_stats' )
-			.addEventListener( 'click', function () {
+			.addEventListener( 'click', function() {
 				const container = document.querySelector(
 					'#edac_welcome_page_summary .edac-welcome-grid-container'
 				);
@@ -739,7 +739,7 @@ const fillDashboardWidget = () => {
       const mins_to_exp = Math.round((expires_at - Math.floor(now / 1000))/60);
       const cache_hit = data.stats.cache_hit;
       if(completedAtEl && completedAt){
-        completedAtEl.textContent = completedAt; 
+        completedAtEl.textContent = completedAt;
         completedAtEl.setAttribute('data-edac-cache-hit', cache_hit);
         completedAtEl.setAttribute('data-edac-cache-mins-to-expiration', mins_to_exp + ' minutes');
       }
@@ -911,7 +911,7 @@ function edacTimestampToLocal() {
 
 	const elements = document.querySelectorAll( '.edac-timestamp-to-local' );
 
-	elements.forEach( function ( element ) {
+	elements.forEach( function( element ) {
 		if ( /^[0-9]+$/.test( element.textContent ) ) {
 			//if only numbers
 
