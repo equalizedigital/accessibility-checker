@@ -9,7 +9,7 @@ namespace EDAC;
 
 use EDAC\Scans_Stats;
 use EDAC\Admin\Settings;
-use EDAC\Helpers;
+use EDAC\Admin\Helpers;
 
 
 /**
