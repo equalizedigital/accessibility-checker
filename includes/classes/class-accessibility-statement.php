@@ -56,7 +56,7 @@ class Accessibility_Statement {
 			$statement .= sprintf(
 				// translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
 				esc_html__( 'Read our %s', 'accessibility-checker' ),
-				'<a href="' . $policy_page . '">' . esc_html__( 'Accessibility Policy', 'accessibility-checker' ) . '</a>.'
+				'<a href="' . esc_url( $policy_page ) . '">' . esc_html__( 'Accessibility Policy', 'accessibility-checker' ) . '</a>.'
 			);
 		}
 
