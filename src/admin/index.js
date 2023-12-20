@@ -1,4 +1,8 @@
 /* eslint-disable no-unused-vars */
+
+// eslint-disable-next-line camelcase
+const edacScriptVars = edac_script_vars;
+
 ( function() {
 	'use strict';
 
@@ -84,8 +88,7 @@
 		 * @param {Function} callback - Callback function to run after ajax is complete
 		 */
 		function edacSummaryAjax( callback = null ) {
-			// eslint-disable-next-line camelcase
-			const postID = edac_script_vars.postID;
+			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {
 				return;
@@ -97,8 +100,7 @@
 				data: {
 					action: 'edac_summary_ajax',
 					post_id: postID,
-					// eslint-disable-next-line camelcase
-					nonce: edac_script_vars.nonce,
+					nonce: edacScriptVars.nonce,
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
@@ -134,8 +136,7 @@
 		 * Ajax Details
 		 */
 		function edacDetailsAjax() {
-			// eslint-disable-next-line camelcase
-			const postID = edac_script_vars.postID;
+			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {
 				return;
@@ -147,8 +148,7 @@
 				data: {
 					action: 'edac_details_ajax',
 					post_id: postID,
-					// eslint-disable-next-line camelcase
-					nonce: edac_script_vars.nonce,
+					nonce: edacScriptVars.nonce,
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
@@ -211,8 +211,7 @@
 		 * Ajax Readability
 		 */
 		function edacReadabilityAjax() {
-			// eslint-disable-next-line camelcase
-			const postID = edac_script_vars.postID;
+			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {
 				return;
@@ -224,8 +223,7 @@
 				data: {
 					action: 'edac_readability_ajax',
 					post_id: postID,
-					// eslint-disable-next-line camelcase
-					nonce: edac_script_vars.nonce,
+					nonce: edacScriptVars.nonce,
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
@@ -248,8 +246,7 @@
 									action: 'edac_update_simplified_summary',
 									post_id: postID,
 									summary,
-									// eslint-disable-next-line camelcase
-									nonce: edac_script_vars.nonce,
+									nonce: edacScriptVars.nonce,
 								},
 							} ).done( function( doneResponse ) {
 								if ( true === doneResponse.success ) {
@@ -327,8 +324,7 @@
 							comment,
 							ignore_action: ignoreAction,
 							ignore_type: ignoreType,
-							// eslint-disable-next-line camelcase
-							nonce: edac_script_vars.nonce,
+							nonce: edacScriptVars.nonce,
 						},
 					} ).done( function( response ) {
 						if ( true === response.success ) {
@@ -510,8 +506,7 @@
 				data: {
 					action: 'edac_review_notice_ajax',
 					review_action: reviewAction,
-					// eslint-disable-next-line camelcase
-					nonce: edac_script_vars.nonce,
+					nonce: edacScriptVars.nonce,
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
@@ -542,8 +537,7 @@
 				method: 'GET',
 				data: {
 					action: 'edac_password_protected_notice_ajax',
-					// eslint-disable-next-line camelcase
-					nonce: edac_script_vars.nonce,
+					nonce: edacScriptVars.nonce,
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
@@ -581,8 +575,7 @@
 				method: 'GET',
 				data: {
 					action: functionName,
-					// eslint-disable-next-line camelcase
-					nonce: edac_script_vars.nonce,
+					nonce: edacScriptVars.nonce,
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
@@ -674,8 +667,7 @@ window.addEventListener( 'load', function() {
 				}
 
 				postData(
-					// eslint-disable-next-line camelcase
-					edac_script_vars.edacApiUrl + '/clear-cached-scans-stats'
+					edacScriptVars.edacApiUrl + '/clear-cached-scans-stats'
 				).then( ( data ) => {
 					if ( data.success ) {
 						if ( container ) {
@@ -694,8 +686,7 @@ window.addEventListener( 'load', function() {
 
 // Fill the dashboard widget
 const fillDashboardWidget = () => {
-	// eslint-disable-next-line camelcase
-	getData( edac_script_vars.edacApiUrl + '/scans-stats' )
+	getData( edacScriptVars.edacApiUrl + '/scans-stats' )
 		.then( ( data ) => {
 			if ( data.success ) {
 				// Set passed %
@@ -847,8 +838,7 @@ const fillDashboardWidget = () => {
 			//TODO:
 		} );
 
-	// eslint-disable-next-line camelcase
-	getData( edac_script_vars.edacApiUrl + '/scans-stats-by-post-types' )
+	getData( edacScriptVars.edacApiUrl + '/scans-stats-by-post-types' )
 		.then( ( data ) => {
 			if ( data.success ) {
 				Object.entries( data.stats ).forEach( ( [ key, value ] ) => {
@@ -955,8 +945,7 @@ const getData = async ( url = '', data = {} ) => {
 	const response = await fetch( url, {
 		method: 'GET',
 		headers: {
-			// eslint-disable-next-line camelcase
-			'X-WP-Nonce': edac_script_vars.restNonce,
+			'X-WP-Nonce': edacScriptVars.restNonce,
 		},
 	} );
 	return response.json();
@@ -966,8 +955,7 @@ const postData = async ( url = '', data = {} ) => {
 	const response = await fetch( url, {
 		method: 'POST',
 		headers: {
-			// eslint-disable-next-line camelcase
-			'X-WP-Nonce': edac_script_vars.restNonce,
+			'X-WP-Nonce': edacScriptVars.restNonce,
 		},
 		body: JSON.stringify( data ),
 	} );
