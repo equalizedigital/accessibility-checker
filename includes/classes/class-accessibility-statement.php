@@ -71,7 +71,7 @@ class Accessibility_Statement {
 	public function output_accessibility_statement() {
 		$statement = $this->get_accessibility_statement();
 		if ( ! empty( $statement ) ) {
-			echo '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>' . wp_kses_post( $statement ) . '</small></p>';
+			echo '<p class="edac-accessibility-statement"><small>' . wp_kses_post( $statement ) . '</small></p>';
 		}
 	}
 }
