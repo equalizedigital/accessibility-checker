@@ -685,9 +685,7 @@ class Ajax {
 		$post_id = intval( $_REQUEST['post_id'] );
 		$summary = sanitize_text_field( $_REQUEST['summary'] );
 
-		if ( ! add_post_meta( $post_id, '_edac_simplified_summary', $summary, true ) ) {
-			update_post_meta( $post_id, '_edac_simplified_summary', $summary );
-		}
+		update_post_meta( $post_id, '_edac_simplified_summary', $summary );
 
 		$simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
 
@@ -708,7 +706,7 @@ class Ajax {
 	 */
 	public function dismiss_welcome_cta() {
 
-		update_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true ); 
+		update_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true );
 
 		wp_send_json( 'success' );
 	}

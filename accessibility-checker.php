@@ -231,7 +231,7 @@ function edac_include_rules_files() {
 	}
 	foreach ( $rules as $rule ) {
 		if ( ( array_key_exists( 'ruleset', $rule ) && 'php' === $rule['ruleset'] )
-			|| ( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) 
+			|| ( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] )
 		) {
 			require_once plugin_dir_path( __FILE__ ) . 'includes/rules/' . $rule['slug'] . '.php';
 		}
@@ -384,9 +384,7 @@ function edac_summary( $post_id ) {
 		$content_length = $issue_density_array[0][1];
 		$issue_density  = edac_get_issue_density( $issue_count, $element_count, $content_length );
 
-		if ( ! add_post_meta( $post_id, '_edac_issue_density', $issue_density, true ) ) {
-			update_post_meta( $post_id, '_edac_issue_density', $issue_density );
-		}
+		update_post_meta( $post_id, '_edac_issue_density', $issue_density );
 	} else {
 		delete_post_meta( $post_id, '_edac_issue_density' );
 	}

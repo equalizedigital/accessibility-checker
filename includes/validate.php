@@ -165,7 +165,7 @@ function edac_validate( $post_ID, $post, $action ) {
 	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 2, 'php' );
 
 	// set post meta checked.
-	add_post_meta( $post_ID, '_edac_post_checked', true, true );
+	update_post_meta( $post_ID, '_edac_post_checked', true );
 
 	do_action( 'edac_after_validate', $post_ID, $action );
 }
