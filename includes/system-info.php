@@ -126,9 +126,16 @@ function edac_tools_sysinfo_get() {
 		$wp_remote_post = 'wp_remote_post() works';
 	}
 
+	$wp_debug_status = 'Unset';
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+		$wp_debug_status = 'Enabled';
+	} elseif ( defined( 'WP_DEBUG' ) && ! WP_DEBUG ) {
+		$wp_debug_status = 'Disabled';
+	}
+
 	$return .= 'Remote Post:              ' . $wp_remote_post . "\n";
 	$return .= 'Table Prefix:             Length: ' . strlen( $wpdb->prefix ) . '   Status: ' . ( strlen( $wpdb->prefix ) > 16 ? 'ERROR: Too long' : 'Acceptable' ) . "\n";
-	$return .= 'WP_DEBUG:                 ' . ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Unset' ) . "\n";
+	$return .= 'WP_DEBUG:                 ' . $wp_debug_status . "\n";
 	$return .= 'Memory Limit:             ' . WP_MEMORY_LIMIT . "\n";
 	$return .= 'Registered Post Stati:    ' . implode( ', ', get_post_stati() ) . "\n";
 
