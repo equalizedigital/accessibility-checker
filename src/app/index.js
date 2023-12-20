@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* global edac_script_vars, DOMParser, XMLHttpRequest */
 import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
@@ -13,7 +12,9 @@ const DEBUG_ENABLED = false;
 let SCAN_INTERVAL_IN_SECONDS = 30;
 
 // eslint-disable-next-line camelcase
-if ( edac_script_vars.mode === 'full-scan' ) {
+const edacScriptVars = edac_script_vars;
+
+if ( edacScriptVars.mode === 'full-scan' ) {
 	SCAN_INTERVAL_IN_SECONDS = 3;
 }
 
@@ -177,27 +178,19 @@ class AccessibilityCheckerHighlight {
 	/**
 	 * This function makes an AJAX call to the server to retrieve the list of issues.
 	 *
-	 * Note: This function assumes that `edac_script_vars` is a global variable containing necessary data.
+	 * Note: This function assumes that `edacScriptVars` is a global variable containing necessary data.
 	 */
 	highlightAjax() {
 		const self = this;
-		return new Promise( function ( resolve, reject ) {
+		return new Promise( function( resolve, reject ) {
 			const xhr = new XMLHttpRequest();
-			const url =
-				// eslint-disable-next-line camelcase
-				edac_script_vars.ajaxurl +
-				'?action=edac_frontend_highlight_ajax&post_id=' +
-				// eslint-disable-next-line camelcase
-				edac_script_vars.postID +
-				'&nonce=' +
-				// eslint-disable-next-line camelcase
-				edac_script_vars.nonce;
+			const url = `${ edacScriptVars.ajaxurl }?action=edac_frontend_highlight_ajax&post_id=${ edacScriptVars.postID }&nonce=${ edacScriptVars.nonce }`;
 
 			self.showWait( true );
 
 			xhr.open( 'GET', url );
 
-			xhr.onload = function () {
+			xhr.onload = function() {
 				if ( xhr.status === 200 ) {
 					self.showWait( false );
 
@@ -223,7 +216,7 @@ class AccessibilityCheckerHighlight {
 				} else {
 					self.showWait( false );
 
-					info( 'Request failed.  Returned status of ' + xhr.status );
+					info( `Request failed. Returned status of ${ xhr.status }` );
 
 					reject( {
 						status: xhr.status,
@@ -232,7 +225,7 @@ class AccessibilityCheckerHighlight {
 				}
 			};
 
-			xhr.onerror = function () {
+			xhr.onerror = function() {
 				self.showWait( false );
 
 				reject( {
@@ -287,8 +280,7 @@ class AccessibilityCheckerHighlight {
 	addTooltip( element, value ) {
 		// Create the tooltip.
 		const tooltip = document.createElement( 'button' );
-		tooltip.classList =
-			'edac-highlight-btn edac-highlight-btn-' + value.rule_type;
+		tooltip.classList = `edac-highlight-btn edac-highlight-btn-${ value.rule_type }`;
 		tooltip.ariaLabel = value.rule_title;
 		tooltip.ariaExpanded = 'false';
 		//tooltip.ariaControls = 'edac-highlight-tooltip-' + value.id;
@@ -307,7 +299,7 @@ class AccessibilityCheckerHighlight {
 		// Add the tooltip to the page.
 		document.body.append( tooltip );
 
-		const updatePosition = function () {
+		const updatePosition = function() {
 			computePosition( element, tooltip, {
 				placement: 'top-start',
 				middleware: [],
@@ -571,7 +563,7 @@ class AccessibilityCheckerHighlight {
 				this.issues = json;
 
 				json.forEach(
-					function ( value, index ) {
+					function( value, index ) {
 						const element = this.findElement( value, index );
 						if ( element !== null ) {
 							this.issues[ index ].element = element;
@@ -664,9 +656,7 @@ class AccessibilityCheckerHighlight {
 			let content = '';
 
 			// Get the index and total
-			content += ` <div class="edac-highlight-panel-description-index">${
-				this.currentButtonIndex + 1
-			} of ${ this.issues.length }</div>`;
+			content += ` <div class="edac-highlight-panel-description-index">${ this.currentButtonIndex + 1 } of ${ this.issues.length }</div>`;
 
 			// Get the status of the issue
 			if ( this.currentIssueStatus ) {
@@ -683,15 +673,14 @@ class AccessibilityCheckerHighlight {
 			content += `<button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">Show Code</button>`;
 
 			// title and content
-			descriptionTitle.innerHTML =
-				matchingObj.rule_title +
-				' <span class="edac-highlight-panel-description-type edac-highlight-panel-description-type-' +
-				matchingObj.rule_type +
-				'" aria-label=" Issue type: ' +
-				matchingObj.rule_type +
-				'"> ' +
-				matchingObj.rule_type +
-				'</span>';
+			descriptionTitle.innerHTML = `
+				${ matchingObj.rule_title }
+				<span
+					class="edac-highlight-panel-description-type edac-highlight-panel-description-type-${ matchingObj.rule_type }"
+					aria-label="Issue type: ${ matchingObj.rule_type }"
+				>
+					${ matchingObj.rule_type }
+				</span>`;
 
 			// content
 			descriptionContent.innerHTML = content;
@@ -756,8 +745,8 @@ class AccessibilityCheckerHighlight {
 			link.rel = 'stylesheet';
 			link.id = 'edac-app-css';
 			link.type = 'text/css';
-			// eslint-disable-next-line camelcase, no-unused-expressions
-			( link.href = edac_script_vars.appCssUrl ), ( link.media = 'all' );
+			// eslint-disable-next-line no-unused-expressions
+			( link.href = edacScriptVars.appCssUrl ), ( link.media = 'all' );
 			document.head.appendChild( link );
 		}
 
@@ -770,11 +759,11 @@ class AccessibilityCheckerHighlight {
 		const elementsWithStyle = document.querySelectorAll(
 			'*[style]:not([class^="edac"])'
 		);
-		elementsWithStyle.forEach( function ( element ) {
+		elementsWithStyle.forEach( function( element ) {
 			element.removeAttribute( 'style' );
 		} );
 
-		this.originalCss = this.originalCss.filter( function ( element ) {
+		this.originalCss = this.originalCss.filter( function( element ) {
 			if (
 				element.id === 'edac-app-css' ||
 				element.id === 'dashicons-css'
@@ -785,7 +774,7 @@ class AccessibilityCheckerHighlight {
 		} );
 
 		document.head.dataset.css = this.originalCss;
-		this.originalCss.forEach( function ( element ) {
+		this.originalCss.forEach( function( element ) {
 			element.remove();
 		} );
 
@@ -801,7 +790,7 @@ class AccessibilityCheckerHighlight {
 	 * This function enables all styles on the page.
 	 */
 	enableStyles() {
-		this.originalCss.forEach( function ( element ) {
+		this.originalCss.forEach( function( element ) {
 			if ( element.tagName === 'STYLE' ) {
 				document.head.appendChild( element.cloneNode( true ) );
 			} else {
@@ -905,26 +894,15 @@ class AccessibilityCheckerHighlight {
 		if ( errorCount > 0 || warningCount > 0 || ignoredCount > 0 ) {
 			textContent = '';
 			if ( errorCount >= 0 ) {
-				textContent +=
-					errorCount +
-					' error' +
-					( errorCount === 1 ? '' : 's' ) +
-					', ';
+				textContent += errorCount === 1 ? ' error' : ' errors';
 			}
 			if ( warningCount >= 0 ) {
-				textContent +=
-					warningCount +
-					' warning' +
-					( warningCount === 1 ? '' : 's' ) +
-					', ';
+				textContent += warningCount === 1 ? ' warning' : ' warnings';
 			}
 			if ( ignoredCount >= 0 ) {
-				textContent +=
-					'and ' +
-					ignoredCount +
-					' ignored issue' +
-					( ignoredCount === 1 ? '' : 's' ) +
-					' detected.';
+				textContent += ignoredCount === 1
+					? 'and 1 ignored issue detected.'
+					: `and ${ ignoredCount } ignored issues detected.`;
 			} else {
 				// Remove the trailing comma and add "detected."
 				textContent = textContent.slice( 0, -2 ) + ' detected.';
@@ -941,31 +919,26 @@ if ( window.top._scheduledScanRunning === undefined ) {
 }
 
 async function checkApi() {
-	// eslint-disable-next-line camelcase
-	if ( edac_script_vars.edacHeaders.Authorization === 'None' ) {
+	if ( edacScriptVars.edacHeaders.Authorization === 'None' ) {
 		return 401;
 	}
 
-	// eslint-disable-next-line camelcase
-	const response = await fetch( edac_script_vars.edacApiUrl + '/test', {
+	const response = await fetch( edacScriptVars.edacApiUrl + '/test', {
 		method: 'POST',
-		// eslint-disable-next-line camelcase
-		headers: edac_script_vars.edacHeaders,
+		headers: edacScriptVars.edacHeaders,
 	} );
 
 	return response.status;
 }
 
 async function postData( url = '', data = {} ) {
-	// eslint-disable-next-line camelcase
-	if ( edac_script_vars.edacHeaders.Authorization === 'None' ) {
+	if ( edacScriptVars.edacHeaders.Authorization === 'None' ) {
 		return;
 	}
 
 	return await fetch( url, {
 		method: 'POST',
-		// eslint-disable-next-line camelcase
-		headers: edac_script_vars.edacHeaders,
+		headers: edacScriptVars.edacHeaders,
 		body: JSON.stringify( data ),
 	} )
 		.then( ( res ) => {
@@ -977,15 +950,13 @@ async function postData( url = '', data = {} ) {
 }
 
 async function getData( url = '' ) {
-	// eslint-disable-next-line camelcase
-	if ( edac_script_vars.edacHeaders.Authorization === 'None' ) {
+	if ( edacScriptVars.edacHeaders.Authorization === 'None' ) {
 		return {};
 	}
 
 	return await fetch( url, {
 		method: 'GET',
-		// eslint-disable-next-line camelcase
-		headers: edac_script_vars.edacHeaders,
+		headers: edacScriptVars.edacHeaders,
 	} )
 		.then( ( res ) => {
 			return res.json();
@@ -1004,10 +975,10 @@ function info( message ) {
 function debug( message ) {
 	if ( DEBUG_ENABLED ) {
 		if ( window.location.href !== window.top.location.href ) {
-			console.debug( 'DEBUG [ ' + window.location.href + ' ]' );
+			console.debug( `DEBUG [ ${ window.location.href } ]` );
 		}
 		if ( typeof message !== 'object' ) {
-			console.debug( 'DEBUG: ' + message );
+			console.debug( `DEBUG: ${ message }` );
 		} else {
 			console.debug( message );
 		}
@@ -1019,8 +990,7 @@ function saveScanResults( postId, violations, scheduled = false ) {
 	checkApi()
 		.then( ( status ) => {
 			if ( status >= 400 ) {
-				// eslint-disable-next-line camelcase
-				if ( status === 401 && edac_script_vars.edacpApiUrl === '' ) {
+				if ( status === 401 && edacScriptVars.edacpApiUrl === '' ) {
 					showNotice( {
 						msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
 						type: 'warning',
@@ -1032,11 +1002,7 @@ function saveScanResults( postId, violations, scheduled = false ) {
 					debug(
 						'Error: Password protected scans are not supported in the free version.'
 					);
-				} else if (
-					status === 401 &&
-					// eslint-disable-next-line camelcase
-					edac_script_vars.edacpApiUrl !== ''
-				) {
+				} else if ( status === 401 && edacScriptVars.edacpApiUrl !== '' ) {
 					showNotice( {
 						msg: 'Whoops! It looks like your website is currently password protected. To scan this website for accessibility problems {link}.',
 						type: 'warning',
@@ -1057,30 +1023,21 @@ function saveScanResults( postId, violations, scheduled = false ) {
 						closeOthers: true,
 					} );
 
-					debug(
-						'Error: Cannot connect to API. Status code is: ' +
-							status
-					);
+					debug( `Error: Cannot connect to API. Status code is: ${ status }` );
 				}
 			} else {
-				info( 'Saving ' + postId + ': started' );
+				info( `Saving ${ postId }: started` );
 
 				// Api is fine so we can send the scan results.
-				postData(
-					// eslint-disable-next-line camelcase
-					edac_script_vars.edacApiUrl +
-						'/post-scan-results/' +
-						postId,
-					{
-						violations,
-					}
-				).then( ( data ) => {
+				postData( `${ edacScriptVars.edacApiUrl }/post-scan-results/${ postId }`, {
+					violations,
+				} ).then( ( data ) => {
 					debug( data );
 
-					info( 'Saving ' + postId + ': done' );
+					info( `Saving ${ postId }: done` );
 
 					if ( ! data.success ) {
-						info( 'Saving ' + postId + ': error' );
+						info( `Saving ${ postId }: error` );
 
 						showNotice( {
 							msg: 'Whoops! It looks like there was a problem updating. Please try again.',
@@ -1097,7 +1054,7 @@ function saveScanResults( postId, violations, scheduled = false ) {
 			}
 		} )
 		.catch( ( error ) => {
-			info( 'Saving ' + postId + ': error' );
+			info( `Saving ${ postId }: error` );
 
 			debug( error );
 			showNotice( {
@@ -1111,8 +1068,9 @@ function saveScanResults( postId, violations, scheduled = false ) {
 window.addEventListener(
 	'message',
 	( e ) => {
-		// eslint-disable-next-line camelcase
-		if ( e.origin !== edac_script_vars.edacUrl ) return;
+		if ( e.origin !== edacScriptVars.edacUrl ) {
+			return;
+		}
 
 		if ( window === window.top ) {
 			//There has been a request to start a scan. Pass the message to the scanner's window.
@@ -1153,10 +1111,10 @@ window.addEventListener(
 				// back to the top window so we can use that cookie to authenticate the rest post.
 				// See: https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
 
-				info( 'Scan ' + postId + ': started' );
+				info( `Scan ${ postId }: started` );
 
 				scan().then( ( results ) => {
-					info( 'Scan ' + postId + ': done' );
+					info( `Scan ${ postId }: done` );
 
 					const violations = JSON.parse(
 						JSON.stringify( results.violations )
@@ -1182,11 +1140,11 @@ window.addEventListener(
 
 				window.top._scheduledScanRunning = true;
 
-				info( 'Scheduled scan: started ' + postId );
+				info( `Scheduled scan: started ${ postId }` );
 				debug( '_scheduledScanRunning: true' );
 
 				scan().then( ( results ) => {
-					info( 'Scheduled scan: done ' + postId );
+					info( `Scheduled scan: done ${ postId }` );
 
 					const violations = JSON.parse(
 						JSON.stringify( results.violations )
@@ -1208,12 +1166,10 @@ window.addEventListener(
 );
 
 window.addEventListener( 'DOMContentLoaded', () => {
-	// eslint-disable-next-line camelcase
-	debug( 'We are loading the app in ' + edac_script_vars.mode + ' mode.' );
+	debug( `We are loading the app in ${ edacScriptVars.mode } mode.` );
 
 	if ( JS_SCAN_ENABLED ) {
-		// eslint-disable-next-line camelcase
-		if ( edac_script_vars.mode === 'editor-scan' ) {
+		if ( edacScriptVars.mode === 'editor-scan' ) {
 			debug( 'App is loading from within the editor.' );
 
 			// We are loading the app from within the editor (rather than the page preview).
@@ -1222,23 +1178,21 @@ window.addEventListener( 'DOMContentLoaded', () => {
 			// loaded in the iframe to: 1) run the js scan, 2) post the results.
 			const iframe = document.createElement( 'iframe' );
 			iframe.setAttribute( 'id', 'edac_scanner' );
-			// eslint-disable-next-line camelcase
-			iframe.setAttribute( 'src', edac_script_vars.scanUrl );
+			iframe.setAttribute( 'src', edacScriptVars.scanUrl );
 			iframe.style.width = window.screen.width + 'px';
 			iframe.style.height = window.screen.height + 'px';
 			iframe.style.position = 'absolute';
 			iframe.style.left = '-' + window.screen.width + 'px';
 			document.body.append( iframe );
 
-			iframe.addEventListener( 'load', function () {
+			iframe.addEventListener( 'load', function() {
 				debug( 'Scan iframe loaded.' );
 
 				// The frame has loaded the preview page, so post the message that fires the iframe scan and save.
 				window.postMessage( {
 					sender: 'edac_start_scan',
 					message: {
-						// eslint-disable-next-line camelcase
-						postId: edac_script_vars.postID,
+						postId: edacScriptVars.postID,
 					},
 				} );
 			} );
@@ -1256,8 +1210,7 @@ window.addEventListener( 'DOMContentLoaded', () => {
 						checkApi().then( ( status ) => {
 							if (
 								status === 401 &&
-								// eslint-disable-next-line camelcase
-								edac_script_vars.edacpApiUrl === ''
+								edacScriptVars.edacpApiUrl === ''
 							) {
 								showNotice( {
 									msg: ' Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or {link}. Scan results may be stored from a previous scan.',
@@ -1271,16 +1224,8 @@ window.addEventListener( 'DOMContentLoaded', () => {
 									'Password protected scans are not supported on the free version.'
 								);
 							} else {
-								debug(
-									'Loading scan iframe: ' +
-										// eslint-disable-next-line camelcase
-										edac_script_vars.scanUrl
-								);
-								iframe.setAttribute(
-									'src',
-									// eslint-disable-next-line camelcase
-									edac_script_vars.scanUrl
-								);
+								debug( `Loading scan iframe: ${ edacScriptVars.scanUrl }` );
+								iframe.setAttribute( 'src', edacScriptVars.scanUrl );
 							}
 						} );
 					}
@@ -1291,12 +1236,8 @@ window.addEventListener( 'DOMContentLoaded', () => {
 		}
 
 		if (
-			// eslint-disable-next-line camelcase
-			( edac_script_vars.mode === 'editor-scan' &&
-				// eslint-disable-next-line camelcase
-				edac_script_vars.edacpApiUrl !== '' ) || //&& edac_script_vars.pendingFullScan) ||
-			// eslint-disable-next-line camelcase
-			edac_script_vars.mode === 'full-scan'
+			( edacScriptVars.mode === 'editor-scan' && edacScriptVars.edacpApiUrl !== '' ) ||
+			edacScriptVars.mode === 'full-scan'
 		) {
 			debug(
 				'App is loading either from the editor page or from the scheduled full scan page.'
@@ -1314,7 +1255,7 @@ window.addEventListener( 'DOMContentLoaded', () => {
 			iframeScheduledScanner.style.left =
 				'-' + window.screen.width + 'px';
 
-			const onLoadIframeScheduledScanner = function ( e ) {
+			const onLoadIframeScheduledScanner = function( e ) {
 				debug( 'Loading scheduled scan iframe: done' );
 
 				const data = e.currentTarget.data;
@@ -1339,17 +1280,11 @@ window.addEventListener( 'DOMContentLoaded', () => {
 					debug( 'Polling to see if there are any scans pending.' );
 
 					// Poll to see if there are any scans pending.
-					getData(
-						// eslint-disable-next-line camelcase
-						edac_script_vars.edacpApiUrl + '/scheduled-scan-url'
-					).then( ( data ) => {
+					getData( `${ edacScriptVars.edacpApiUrl }/scheduled-scan-url` ).then( ( data ) => {
 						if ( data.code !== 'rest_no_route' ) {
 							if ( data.data !== undefined ) {
 								if ( data.data.scanUrl !== undefined ) {
-									info(
-										'A post needs scanning: ' +
-											data.data.scanUrl
-									);
+									info( `A post needs scanning: ${ data.data.scanUrl }` );
 									debug( data );
 
 									//set the data so we can pass it to the onload handler
@@ -1363,12 +1298,8 @@ window.addEventListener( 'DOMContentLoaded', () => {
 								}
 							}
 						} else {
-							info(
-								'There was a problem connecting to the API.'
-							);
-
+							info( 'There was a problem connecting to the API.' );
 							window.top._scheduledScanRunning = false;
-
 							debug( '_scheduledScanRunning: false' );
 						}
 					} );
@@ -1378,8 +1309,7 @@ window.addEventListener( 'DOMContentLoaded', () => {
 			}, SCAN_INTERVAL_IN_SECONDS * 1000 );
 		}
 	}
-	// eslint-disable-next-line camelcase
-	if ( edac_script_vars.mode === 'ui' && edac_script_vars.active ) {
+	if ( edacScriptVars.mode === 'ui' && edacScriptVars.active ) {
 		// We are loading the app in a normal page preview so show the user the ui
 		new AccessibilityCheckerHighlight();
 	}
@@ -1393,7 +1323,7 @@ if ( window.top === window && window._showNotice === undefined ) {
 	link.media = 'screen,print';
 	document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
 
-	window._showNotice = function ( options ) {
+	window._showNotice = function( options ) {
 		const settings = Object.assign(
 			{},
 			{
@@ -1436,7 +1366,7 @@ if ( window.top === window && window._showNotice === undefined ) {
 					} );
 			}
 
-			setTimeout( function () {
+			setTimeout( function() {
 				wp.data
 					.dispatch( 'core/notices' )
 					.createNotice( settings.type, msg, o );
@@ -1449,13 +1379,7 @@ if ( window.top === window && window._showNotice === undefined ) {
 			if ( settings.url ) {
 				msg = msg.replace(
 					'{link}',
-					'<a href="' +
-						settings.url +
-						'" target="_blank" arial-label="' +
-						settings.label +
-						'">' +
-						settings.label +
-						'</a>'
+					`<a href="${ settings.url }" target="_blank" arial-label="${ settings.label }">${ settings.label }</a>`
 				);
 			} else {
 				msg = msg.replace( '{link}', '' );
