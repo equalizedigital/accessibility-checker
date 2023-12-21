@@ -8,7 +8,6 @@
 namespace EDAC\Inc;
 
 use EDAC\Admin\Admin;
-use EDAC\Inc\REST_Api;
 
 /**
  * Main plugin functionality class.
