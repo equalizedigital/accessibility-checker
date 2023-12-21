@@ -46,10 +46,35 @@ const edacScriptVars = edac_script_vars;
 		);
 	} );
 
-	jQuery( window ).on( 'load', function() {
-		/**
-		 * Tabs
-		 */
+
+
+
+  jQuery(window).on('load', function () {
+
+
+    // Allow other js to trigger a tab refresh thru an event listener. Refactor.
+    const refreshTabDetails = () => {
+
+      // reset to first meta box tab
+      $(".edac-panel").hide();
+      $(".edac-panel").removeClass("active");
+      $(".edac-tab a").removeClass("active");
+      $("#edac-summary").show();
+      $("#edac-summary").addClass("active");
+      $(".edac-tab:first-child a").addClass("active");
+
+      edac_details_ajax();
+      refresh_summary_and_readability();
+    };
+    top.addEventListener('edac_js_scan_save_complete', function (event) {
+      refresh_tab_details();
+    });
+
+
+
+    /**
+     * Tabs
+     */
 
 		// Refresh data on summary and readability tabs
 		const refreshSummaryAndReadability = () => {
@@ -284,20 +309,12 @@ const edacScriptVars = edac_script_vars;
 				if ( isSaving !== lastIsSaving && ! isSaving ) {
 					lastIsSaving = isSaving;
 
-					// reset to first meta box tab
-					jQuery( '.edac-panel' ).hide();
-					jQuery( '.edac-panel' ).removeClass( 'active' );
-					jQuery( '.edac-tab a' ).removeClass( 'active' );
-					jQuery( '#edac-summary' ).show();
-					jQuery( '#edac-summary' ).addClass( 'active' );
-					jQuery( '.edac-tab:first-child a' ).addClass( 'active' );
+          refreshTabDetails();
 
-					edacDetailsAjax();
-					refreshSummaryAndReadability();
-				}
-				lastIsSaving = isSaving;
-			} );
-		}
+        }
+        lastIsSaving = isSaving;
+      });
+    }
 
 		/**
 		 * Ignore Submit on click

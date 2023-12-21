@@ -9,6 +9,16 @@ module.exports = {
 	mode: 'none', //development | production
 	watch: false,
 	entry: {
+		'frontendHighlighterApp': [
+			'./src/frontendHighlighterApp/index.js',
+			'./src/frontendHighlighterApp/sass/app.scss',
+		  ],
+		  'editorApp': [
+			'./src/editorApp/index.js',
+		  ],
+		  'pageScanner': [
+			'./src/pageScanner/index.js',
+		  ],
 		app: [
 			'./src/app/index.js',
 			'./src/app/sass/accessibility-checker.scss',

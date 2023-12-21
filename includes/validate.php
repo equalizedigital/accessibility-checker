@@ -193,6 +193,10 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 		}
 	}
 
+	if(0 === count($rule_slugs)){
+		return;
+	}
+	
 	if ( 1 === $pre ) {
 
 		// Set record flag before validating content.

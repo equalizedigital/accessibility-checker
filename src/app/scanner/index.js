@@ -113,3 +113,4 @@ export async function scan( options = { configOptions: {}, runOptions: {} } ) {
 			return err;
 		} );
 }
+
