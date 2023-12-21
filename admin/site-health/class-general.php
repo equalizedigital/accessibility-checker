@@ -31,7 +31,7 @@ class General {
 		return array(
 			'label'  => __( 'Accessibility Checker &mdash; General', 'accessibility-checker' ),
 			'fields' => array(
-				'version'           => array(
+				'version'            => array(
 					'label' => 'EDAC Version',
 					'value' => EDAC_VERSION,
 				),
