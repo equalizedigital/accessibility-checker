@@ -2,7 +2,7 @@
 /**
  * Class file for site health info.
  *
- * @since 1.7.1 TODO: Update to the correct version.
+ * @since 1.8.0
  * @package Accessibility_Checker
  */
 
@@ -25,13 +25,13 @@ class Information {
 	 * @return void
 	 */
 	public function init_hooks() {
-        add_filter( 'debug_information', array( $this, 'get_data' ) );
+		add_filter( 'debug_information', array( $this, 'get_data' ) );
 	}
 
-    /**
+	/**
 	 * Gets the array of sections for the Site Health.
 	 *
-	 * @since 1.7.1 TODO: Update to the correct version.
+	 * @since 1.8.0
 	 * @param array $information The debug information.
 	 * @return array
 	 */
@@ -39,16 +39,15 @@ class Information {
 		return array_merge( $information, $this->get_edac_data() );
 	}
 
-    /**
+	/**
 	 * Gets all of the data for the Site Health.
 	 *
-	 * @since 1.7.1 TODO: Update to the correct version.
+	 * @since 1.8.0
 	 * @return array
 	 */
 	private function get_edac_data() {
 		$collectors = array(
-			'edac_general'   => new General(),
-			//'edac_tables'    => new Tables(),
+			'edac_general' => new General(),
 		);
 
 		$information = array();
