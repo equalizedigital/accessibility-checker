@@ -5,11 +5,12 @@
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
+namespace EDAC\Inc;
 
-use EDAC\Scans_Stats;
-use EDAC\Admin\Settings;
 use EDAC\Admin\Helpers;
+use EDAC\Admin\Scans_Stats;
+use EDAC\Admin\Settings;
+
 
 
 /**
@@ -17,28 +18,28 @@ use EDAC\Admin\Helpers;
  */
 class REST_Api {
 
-	/**
-	 * If class has already been initialized.
-	 *
-	 * @var boolean
-	 */
-	private static $initialized = false;
 
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
-
-		if ( ! self::$initialized ) {
-			$this->initialize();
-		}
 	}
 
 
 	/**
-	 * Adds the actions.
+	 * Add the class the hooks.
 	 */
-	private function initialize() {
+	public function init_hooks() {
+		add_action( 'init', array( $this, 'init_rest_routes' ) );
+	}
+
+
+	/**
+	 * Add the rest routes.
+	 *
+	 * @return void
+	 */
+	public function init_rest_routes() {
 
 		$ns      = 'accessibility-checker/';
 		$version = 'v1';
@@ -132,23 +133,6 @@ class REST_Api {
 					'/scans-stats-by-post-type/(?P<slug>[a-zA-Z0-9_-]+)',
 					array(
 						'methods'             => 'GET',
-						'callback'            => array( $this, 'get_scans_stats' ),
-						'permission_callback' => function () {
-							return current_user_can( 'read' ); // able to access the admin dashboard.
-						},
-					)
-				);
-			}
-		);
-
-		add_action(
-			'rest_api_init',
-			function () use ( $ns, $version ) {
-				register_rest_route(
-					$ns . $version,
-					'/scans-stats-by-post-type/(?P<slug>[a-zA-Z0-9_-]+)',
-					array(
-						'methods'             => 'GET',
 						'callback'            => array( $this, 'get_scans_stats_by_post_type' ),
 						'permission_callback' => function () {
 							return current_user_can( 'read' ); // able to access the admin dashboard.
@@ -201,8 +185,7 @@ class REST_Api {
 
 		$post_type  = get_post_type( $post );
 		$post_types = Helpers::get_option_as_array( 'edac_post_types' );
-
-		if ( ! empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
+		if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 
 			return new \WP_REST_Response( array( 'message' => 'The post type is not set to be scanned.' ), 400 );
 
@@ -212,7 +195,7 @@ class REST_Api {
 		// TODO: setup a rules class for loading/filtering rules.
 		$rules       = edac_register_rules();
 		$js_rule_ids = array();
-		foreach ( $rules as $rule ) {
+		foreach ( $rules as $rule ) {   
 			if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
 				$js_rule_ids[] = $rule['slug'];
 			}
@@ -262,11 +245,11 @@ class REST_Api {
 
 			do_action( 'edac_after_validate', $post_id, 'js' );
 
-			// Update the summary info that is stored in meta this post.
-			edac_summary( $post_id );
-
 			// remove corrected records.
 			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 2, 'js' );
+
+			// Update the summary info that is stored in meta this post.
+			edac_summary( $post_id );
 
 			// store a record of this scan in the post's meta.
 			update_post_meta( $post_id, '_edac_post_checked_js', time() );

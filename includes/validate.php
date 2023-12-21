@@ -5,6 +5,8 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin\Helpers;
+
 /**
  * Oxygen Builder on save
  *
@@ -193,6 +195,10 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 		}
 	}
 
+	if ( 0 === count( $rule_slugs ) ) {
+		return;
+	}
+	
 	if ( 1 === $pre ) {
 
 		// Set record flag before validating content.
@@ -265,7 +271,7 @@ function edac_get_content( $post ) {
 		$parsed_url = wp_parse_url( home_url() );
 
 		if ( isset( $parsed_url['host'] ) ) {
-			$is_local_loopback = \EDAC\Admin\Helpers::is_domain_loopback( $parsed_url['host'] );
+			$is_local_loopback = Helpers::is_domain_loopback( $parsed_url['host'] );
 			update_option( 'edac_local_loopback', $is_local_loopback );
 		}
 	}

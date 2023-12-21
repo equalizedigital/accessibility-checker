@@ -9,8 +9,6 @@
 
 namespace EDAC\Admin;
 
-use EDAC\Scans_Stats;
-
 /**
  * Class that handles welcome page
  */
@@ -339,7 +337,7 @@ class Welcome_Page {
 		$form_id = 'sf' . $zc_form_ix;
 		?>
 
-		<script type="text/javascript" src="https://zmp-glf.maillist-manage.com/js/optin.min.js" onload="setupSF(\'<?php echo esc_attr( $form_id ); ?>\',\'ZCFORMVIEW\',false,\'light\',false,\'0\')"></script>
+		<script type="text/javascript" src="https://zmp-glf.maillist-manage.com/js/optin.min.js" onload="setupSF('<?php echo esc_attr( $form_id ); ?>','ZCFORMVIEW',false,'light',false,'0')"></script>
 		<script type="text/javascript">
 			var _edac_email_opt_in_email = "";
 			function runOnFormSubmit_<?php echo esc_html( $form_id ); ?>(th) {

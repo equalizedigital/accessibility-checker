@@ -46,15 +46,54 @@ function edac_admin_enqueue_scripts() {
 		);
 
 		if ( 'post.php' === $pagenow ) {
-			// Load the app in scan mode when editing a post/page.
-			edac_enqueue_scripts( 'editor-scan' );
-		}
+		
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
-		if ( 'accessibility-checker_page_accessibility_checker_settings' === get_current_screen()->id && isset( $_GET['tab'] ) && 'scan' === sanitize_text_field( $_GET['tab'] ) ) {
-			// Load the app in scan mode on the scan tab in the settings.
-			edac_enqueue_scripts( 'full-scan' );
-		}
+			// Is this posttype setup to be checked?
+			$post_types        = get_option( 'edac_post_types' );
+			$current_post_type = get_post_type();
+			$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
+		
+			$headers = array(
+				'Content-Type'  => 'application/json',
+				'X-WP-Nonce'    => wp_create_nonce( 'wp_rest' ),
+				'Authorization' => 'None',
+			
+			);
+	
+			$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID;
+	
+			if ( EDAC_DEBUG || strpos( EDAC_VERSION, '-beta' ) !== false ) {
+				$debug = true;
+			} else {
+				$debug = false;
+			}
+		
+			wp_enqueue_script( 'edac-editor-app', plugin_dir_url( __DIR__ ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
+	
+			wp_localize_script(
+				'edac-editor-app',
+				'edacEditorApp',
+				array(
+					'postID'      => $post_id,
+					'edacUrl'     => esc_url_raw( get_site_url() ),
+					'edacHeaders' => $headers,
+					'edacApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+					'baseurl'     => plugin_dir_url( __DIR__ ),
+					'active'      => $active,
+					'pro'         => $pro,
+					'debug'       => $debug,
+					'scanUrl'     => get_preview_post_link(
+						$post_id, 
+						array( 'edac_pageScanner' => 1 )
+					),
+				)
+			);
+	
+	
+
+
+
+		}   
 	}
 }
 
@@ -62,11 +101,21 @@ function edac_admin_enqueue_scripts() {
 /**
  * Enqueue scripts
  *
- * @param string $mode The enqueue scripts mode (ui, full-scan, editor-scan).
  * @return void
  */
-function edac_enqueue_scripts( $mode = '' ) {
+function edac_enqueue_scripts() {
 
+	
+	// Handle loading the frontend-highlighter-app.
+
+	// Don't load on admin pages in iframe that is running a pageScan.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( is_admin() || isset( $_GET['edac_pageScanner'] ) && '1' === $_GET['edac_pageScanner'] ) {
+		return;
+	}
+
+
+	// Don't load on customizer pages or if the user is not able to edit this page.
 	global $post;
 	$post_id = is_object( $post ) ? $post->ID : null;
 
@@ -74,76 +123,33 @@ function edac_enqueue_scripts( $mode = '' ) {
 		return;
 	}
 
-	$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID === true;
-
-	$headers = array(
-		'Content-Type' => 'application/json',
-		'X-WP-Nonce'   => wp_create_nonce( 'wp_rest' ),
-	);
-
-	if ( '' === $mode ) {
-		if ( ! current_user_can( 'edit_post', $post_id ) || is_customize_preview() ) {
-			return;
-		}
-		$mode = 'ui';
+	if ( is_customize_preview() || ! ( $post_id && current_user_can( 'edit_post', $post_id ) ) ) {
+		return;
 	}
+	
 
-	if ( ( 'full-scan' === $mode && $pro )
-		|| 'ui' === $mode 
-		|| ( 'editor-scan' === $mode && $post_id && current_user_can( 'edit_post', $post_id ) )
-	) {
+	// Don't load if this pagetype is not setup to be scanned.
+	$post_types        = get_option( 'edac_post_types' );
+	$current_post_type = get_post_type();
+	$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
+	
 
-		wp_enqueue_script( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/app.bundle.js', false, EDAC_VERSION, false );
+	if ( $active ) {
 
-		$active = null;
-
-		if ( 'ui' === $mode ) {
-			// We are on ui/preview page. Set $active true to have the scanner show.
-			$post_types        = get_option( 'edac_post_types' );
-			$current_post_type = get_post_type();
-			$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
-		}
-
-		if ( $pro ) {
-
-			$username = get_option( 'edacp_authorization_username' );
-			$password = get_option( 'edacp_authorization_password' );
-			if ( $username && $password ) {
-				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
-				$headers['Authorization'] = 'Basic ' . base64_encode( "$username:$password" );
-			}
-		} else {
-
-			$server_headers = getallheaders();
-			if ( isset( $server_headers['Authorization'] ) ) {
-				$headers['Authorization'] = 'None';
-			}
-		}
-
-		wp_enqueue_style( 'edac-app', plugin_dir_url( __DIR__ ) . 'build/css/app.css', false, EDAC_VERSION, 'all' );
+	
+		wp_enqueue_style( 'edac-frontend-highlighter-app', plugin_dir_url( __DIR__ ) . 'build/css/frontendHighlighterApp.css', false, EDAC_VERSION, 'all' );
+		wp_enqueue_script( 'edac-frontend-highlighter-app', plugin_dir_url( __DIR__ ) . 'build/frontendHighlighterApp.bundle.js', false, EDAC_VERSION, false );
 
 		wp_localize_script(
-			'edac-app',
-			'edac_script_vars',
+			'edac-frontend-highlighter-app',
+			'edacFrontendHighlighterApp',
 			array(
-				'postID'      => $post_id,
-				'nonce'       => wp_create_nonce( 'ajax-nonce' ),
-				'edacUrl'     => esc_url_raw( get_site_url() ),
-				'edacApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-				'edacHeaders' => $headers,
-				'edacpApiUrl' => $pro ? esc_url_raw( rest_url() . 'accessibility-checker-pro/v1' ) : '',
-				'ajaxurl'     => admin_url( 'admin-ajax.php' ),
-				'loggedIn'    => is_user_logged_in(),
-				'active'      => $active,
-				'mode'        => $mode,
-				'scanUrl'     => get_preview_post_link(
-					$post_id,
-					array(
-						'edac-action'        => 'js-scan',
-						'edac-preview-nonce' => wp_create_nonce( 'edac-preview_nonce' ),
-					)
-				),
-				'appCssUrl'   => plugin_dir_url( __DIR__ ) . 'build/css/app.css?ver=' . EDAC_VERSION,
+				'postID'    => $post_id,
+				'nonce'     => wp_create_nonce( 'ajax-nonce' ),
+				'edacUrl'   => esc_url_raw( get_site_url() ),
+				'ajaxurl'   => admin_url( 'admin-ajax.php' ),
+				'loggedIn'  => is_user_logged_in(),
+				'appCssUrl' => plugin_dir_url( __DIR__ ) . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
 			)
 		);
 
