@@ -5,12 +5,7 @@
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
-
-use EDAC\Admin\Settings;
-use EDAC\Admin\Helpers;
-use EDAC\Issues_Query;
-
+namespace EDAC\Admin;
 
 /**
  * Class that handles calculating scans stats
@@ -156,7 +151,7 @@ class Scans_Stats {
 
 		$data['public_post_types_count'] = (int) count( $post_types );
 
-		$issues_query = new \EDAC\Issues_Query( array(), $this->record_limit, Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES );
+		$issues_query = new Issues_Query( array(), $this->record_limit, Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES );
 
 		$data['is_truncated']  = $issues_query->has_truncated_results();
 		$data['posts_scanned'] = (int) $issues_query->distinct_posts_count();
@@ -171,7 +166,7 @@ class Scans_Stats {
 		);
 
 		foreach ( $rule_slugs as $rule_slug ) {
-			$rule_query = new \EDAC\Issues_Query(
+			$rule_query = new Issues_Query(
 				array(
 					'rule_slugs' => array( $rule_slug ),
 				),
@@ -190,7 +185,7 @@ class Scans_Stats {
 			$data['passed_percentage'] = round( ( $data['rules_passed'] / $this->rule_count ) * 100, 2 );
 		}
 
-		$warning_issues_query      = new \EDAC\Issues_Query(
+		$warning_issues_query      = new Issues_Query(
 			array(
 				'post_types' => Settings::get_scannable_post_types(),
 				'rule_types' => array( Issues_Query::RULETYPE_WARNING ),
@@ -200,7 +195,7 @@ class Scans_Stats {
 		$data['warnings']          = (int) $warning_issues_query->count();
 		$data['distinct_warnings'] = (int) $warning_issues_query->distinct_count();
 
-		$contrast_issues_query = new \EDAC\Issues_Query(
+		$contrast_issues_query = new Issues_Query(
 			array(
 				'post_types' => Settings::get_scannable_post_types(),
 				'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ),
@@ -211,7 +206,7 @@ class Scans_Stats {
 		$data['contrast_errors']          = (int) $contrast_issues_query->count();
 		$data['distinct_contrast_errors'] = (int) $contrast_issues_query->distinct_count();
 
-		$error_issues_query      = new \EDAC\Issues_Query(
+		$error_issues_query      = new Issues_Query(
 			array(
 				'post_types' => Settings::get_scannable_post_types(),
 				'rule_types' => array( Issues_Query::RULETYPE_ERROR ),
@@ -362,7 +357,7 @@ class Scans_Stats {
 
 		$data = array();
 
-		$error_issues_query      = new \EDAC\Issues_Query(
+		$error_issues_query      = new Issues_Query(
 			array(
 				'rule_types' => array( Issues_Query::RULETYPE_ERROR ),
 				'post_types' => array( $post_type ),
@@ -372,7 +367,7 @@ class Scans_Stats {
 		$data['errors']          = $error_issues_query->count();
 		$data['distinct_errors'] = $error_issues_query->distinct_count();
 
-		$warning_issues_query      = new \EDAC\Issues_Query(
+		$warning_issues_query      = new Issues_Query(
 			array(
 				'rule_types' => array( Issues_Query::RULETYPE_WARNING ),
 				'post_types' => array( $post_type ),
@@ -382,7 +377,7 @@ class Scans_Stats {
 		$data['warnings']          = $warning_issues_query->count();
 		$data['distinct_warnings'] = $warning_issues_query->distinct_count();
 
-		$color_contrast_issues_query      = new \EDAC\Issues_Query(
+		$color_contrast_issues_query      = new Issues_Query(
 			array(
 				'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ),
 				'post_types' => array( $post_type ),

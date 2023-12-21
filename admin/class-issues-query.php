@@ -5,10 +5,7 @@
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
-
-use EDAC\Admin\Helpers;
-use EDAC\Admin\Settings;
+namespace EDAC\Admin;
 
 /**
  * Class that handles calculating scan report data

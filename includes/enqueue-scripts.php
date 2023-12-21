@@ -51,7 +51,7 @@ function edac_admin_enqueue_scripts() {
 			// Is this posttype setup to be checked?
 			$post_types        = get_option( 'edac_post_types' );
 			$current_post_type = get_post_type();
-			$active = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
+			$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 		
 			$headers = array(
 				'Content-Type'  => 'application/json',
@@ -60,22 +60,19 @@ function edac_admin_enqueue_scripts() {
 			
 			);
 	
-			$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID;
+			$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID;
 	
-			if ( WP_DEBUG || strpos( EDAC_VERSION, '-beta' ) !== false ) {
+			if ( EDAC_DEBUG || strpos( EDAC_VERSION, '-beta' ) !== false ) {
 				$debug = true;
 			} else {
 				$debug = false;
 			}
 		
-			// Force debug off.
-			$debug = false;
-
 			wp_enqueue_script( 'edac-editor-app', plugin_dir_url( __DIR__ ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 	
 			wp_localize_script(
 				'edac-editor-app',
-				'edac_editor_app',
+				'edacEditorApp',
 				array(
 					'postID'      => $post_id,
 					'edacUrl'     => esc_url_raw( get_site_url() ),
@@ -134,7 +131,7 @@ function edac_enqueue_scripts() {
 	// Don't load if this pagetype is not setup to be scanned.
 	$post_types        = get_option( 'edac_post_types' );
 	$current_post_type = get_post_type();
-	$active = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
+	$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 	
 
 	if ( $active ) {
@@ -145,7 +142,7 @@ function edac_enqueue_scripts() {
 
 		wp_localize_script(
 			'edac-frontend-highlighter-app',
-			'edac_frontend_highlighter_app',
+			'edacFrontendHighlighterApp',
 			array(
 				'postID'    => $post_id,
 				'nonce'     => wp_create_nonce( 'ajax-nonce' ),

@@ -19,6 +19,8 @@
  * Domain Path:       /languages
  */
 
+use EDAC\Inc\Plugin;
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -86,6 +88,7 @@ if ( ! defined( 'EDAC_DEBUG' ) ) {
 // SVG Icons.
 define( 'EDAC_SVG_IGNORE_ICON', file_get_contents( __DIR__ . '/assets/images/ignore-icon.svg' ) );
 
+
 /**
  * Plugin Activation & Deactivation
  */
@@ -97,11 +100,10 @@ if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 }
 
-use EDAC\Inc\Plugin;
-
 if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
 	new Plugin();
 }
+
 
 /**
  * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
@@ -252,7 +254,7 @@ function edac_before_page_render() {
 
 		// Check the page if it hasn't already been checked.
 		global $post;
-		$post_id = is_object( $post ) ? $post->ID : null;		
+		$post_id = is_object( $post ) ? $post->ID : null;       
 		if ( null === $post_id ) {
 			return;
 		}
