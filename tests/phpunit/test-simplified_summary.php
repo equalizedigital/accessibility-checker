@@ -35,17 +35,6 @@ class EDACSimplifiedSummaryTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Tear down the test fixture.
-	 * 
-	 * Cleans up the testing environment after each test.
-	 *
-	 * @return void
-	 */
-	public function tearDown(): void {
-		parent::tearDown();
-	}
-
-	/**
 	 * Tests output of simplified_summary_markup with a summary.
 	 * 
 	 * Verifies that the correct HTML markup is returned when a post 
@@ -75,7 +64,6 @@ class EDACSimplifiedSummaryTest extends WP_UnitTestCase {
 	public function test_simplified_summary_markup_without_summary() {
 		$post_id = self::factory()->post->create();
 
-		// Test that simplified_summary_markup returns an empty string
 		$output = $this->simplified_summary->simplified_summary_markup( $post_id );
 		$this->assertEmpty( $output );
 	}
