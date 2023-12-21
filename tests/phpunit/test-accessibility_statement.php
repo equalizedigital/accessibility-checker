@@ -28,7 +28,6 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	protected function setUp(): void {
 		$this->accessibility_statement = new Accessibility_Statement();
 
-		// Set the options
 		update_option( 'edac_add_footer_accessibility_statement', true );
 		update_option( 'edac_include_accessibility_statement_link', true );
 		update_option( 'edac_accessibility_policy_page', 'http://example.com' );
@@ -41,9 +40,8 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	 * containing the blog name, 'Accessibility Checker', and the accessibility policy link.
 	 */
 	public function test_get_accessibility_statement() {
-		// Test that get_accessibility_statement returns the expected statement
 		$statement = $this->accessibility_statement->get_accessibility_statement();
-		$this->assertStringContainsString( get_bloginfo('name'), $statement );
+		$this->assertStringContainsString( get_bloginfo( 'name' ), $statement );
 		$this->assertStringContainsString( 'Accessibility Checker', $statement );
 		$this->assertStringContainsString( 'Accessibility Policy', $statement );
 		$this->assertStringContainsString( 'http://example.com', $statement );
@@ -56,13 +54,12 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	 * and verifies that the returned statement does not contain the 'Accessibility Policy' string.
 	 */
 	public function test_get_accessibility_statement_no_policy() {
-		// Set the options
+
 		update_option( 'edac_include_accessibility_statement_link', false );
 		delete_option( 'edac_accessibility_policy_page' );
 
-		// Test that get_accessibility_statement returns the expected statement
 		$statement = $this->accessibility_statement->get_accessibility_statement();
-		$this->assertStringContainsString( get_bloginfo('name'), $statement );
+		$this->assertStringContainsString( get_bloginfo( 'name' ), $statement );
 		$this->assertStringContainsString( 'Accessibility Checker', $statement );
 		$this->assertStringNotContainsString( 'Accessibility Policy', $statement );
 	}
@@ -73,7 +70,6 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	 * Ensures that calling this method outputs a string representing the accessibility statement.
 	 */
 	public function test_output_accessibility_statement() {
-		// Test that output_accessibility_statement outputs a string
 		ob_start();
 		$this->accessibility_statement->output_accessibility_statement();
 		$output = ob_get_clean();
@@ -87,12 +83,11 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	 * the method does not output anything.
 	 */
 	public function test_output_accessibility_statement_no_options() {
-		// Ensure the options aren't set
+
 		delete_option( 'edac_add_footer_accessibility_statement' );
 		delete_option( 'edac_include_accessibility_statement_link' );
 		delete_option( 'edac_accessibility_policy_page' );
 	
-		// Test that output_accessibility_statement doesn't output anything
 		ob_start();
 		$this->accessibility_statement->output_accessibility_statement();
 		$output = ob_get_clean();
@@ -106,7 +101,6 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	 * set during the test.
 	 */
 	protected function tearDown(): void {
-		// Clean up
 		delete_option( 'edac_add_footer_accessibility_statement' );
 		delete_option( 'edac_include_accessibility_statement_link' );
 		delete_option( 'edac_accessibility_policy_page' );
