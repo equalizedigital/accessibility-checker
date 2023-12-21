@@ -422,8 +422,8 @@ class AccessibilityCheckerHighlight {
 		}
 
 		const issue = this.issues.find( ( i ) => i.id === id );
-		this.currentButtonIndex = this.issues.findIndex( ( ) => issue.id === id );
-
+		this.currentButtonIndex = this.issues.findIndex( ( i ) => i.id === id );
+		
 		const tooltip = issue.tooltip;
 		const element = issue.element;
 
