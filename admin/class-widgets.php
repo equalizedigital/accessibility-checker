@@ -39,7 +39,7 @@ class Widgets {
 	 *
 	 * @return void
 	 */
-	public static function render_dashboard_scan_summary() {
+	public function render_dashboard_scan_summary() {
 
 		$html  = '';
 		$html .= '

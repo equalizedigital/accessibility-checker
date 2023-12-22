@@ -47,6 +47,23 @@ const edacScriptVars = edac_script_vars;
 	} );
 
 	jQuery( window ).on( 'load', function() {
+		// Allow other js to trigger a tab refresh thru an event listener. Refactor.
+		const refreshTabDetails = () => {
+			// reset to first meta box tab
+			jQuery( '.edac-panel' ).hide();
+			jQuery( '.edac-panel' ).removeClass( 'active' );
+			jQuery( '.edac-tab a' ).removeClass( 'active' );
+			jQuery( '#edac-summary' ).show();
+			jQuery( '#edac-summary' ).addClass( 'active' );
+			jQuery( '.edac-tab:first-child a' ).addClass( 'active' );
+
+			edacDetailsAjax();
+			refreshSummaryAndReadability();
+		};
+		top.addEventListener( 'edac_js_scan_save_complete', function( event ) {
+			refreshTabDetails();
+		} );
+
 		/**
 		 * Tabs
 		 */
@@ -105,20 +122,6 @@ const edacScriptVars = edac_script_vars;
 			} ).done( function( response ) {
 				if ( true === response.success ) {
 					const responseJSON = jQuery.parseJSON( response.data );
-
-					/*
-          if(responseJSON.password_protected && edacGutenbergActive()){
-            wp.data.dispatch('core/notices').createInfoNotice(
-              responseJSON.password_protected,
-              {
-                id: 'edac-password-protected-error',
-                type: 'default', //default, or snackbar
-                speak: true,
-                __unstableHTML: true,
-              },
-            );
-          }
-          */
 
 					jQuery( '.edac-summary' ).html( responseJSON.content );
 
@@ -284,16 +287,7 @@ const edacScriptVars = edac_script_vars;
 				if ( isSaving !== lastIsSaving && ! isSaving ) {
 					lastIsSaving = isSaving;
 
-					// reset to first meta box tab
-					jQuery( '.edac-panel' ).hide();
-					jQuery( '.edac-panel' ).removeClass( 'active' );
-					jQuery( '.edac-tab a' ).removeClass( 'active' );
-					jQuery( '#edac-summary' ).show();
-					jQuery( '#edac-summary' ).addClass( 'active' );
-					jQuery( '.edac-tab:first-child a' ).addClass( 'active' );
-
-					edacDetailsAjax();
-					refreshSummaryAndReadability();
+					refreshTabDetails();
 				}
 				lastIsSaving = isSaving;
 			} );
