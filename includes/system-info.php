@@ -464,7 +464,7 @@ function edac_get_error_count() {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-		$stored_errors = intval( $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'error' ) ) );
+		$stored_errors = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'error' ) );
 
 		// Save the result in the cache for future use.
 		wp_cache_set( $cache_key, $stored_errors );
@@ -491,7 +491,7 @@ function edac_get_warning_count() {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-		$stored_warnings = intval( $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'warning' ) ) );
+		$stored_warnings = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'warning' ) );
 
 		// Save the result in the cache for future use.
 		wp_cache_set( $cache_key, $stored_warnings );

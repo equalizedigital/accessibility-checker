@@ -206,7 +206,7 @@
 		<?php
 
 
-		if ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_email_optin', true ) ) ) {
+		if ( true !== (bool) get_user_meta( get_current_user_id(), 'edac_email_optin', true ) ) {
 			\EDAC\Admin\Welcome_Page::render_email_opt_in(
 				'1273a5c7a',
 				'1a0796bc2303c2cb',

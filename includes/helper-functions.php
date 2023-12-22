@@ -486,7 +486,7 @@ function edac_is_valid_nonce( $secret, $nonce ) {
 		return false;
 	}
 	$salt     = $a[0];
-	$max_time = intval( $a[1] );
+	$max_time = (int) $a[1];
 	$hash     = $a[2];
 	$back     = sha1( $salt . $secret . $max_time );
 	if ( $back !== $hash ) {
@@ -507,7 +507,7 @@ function edac_is_valid_nonce( $secret, $nonce ) {
  */
 function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
-	$key    = 'upcoming_meetups__' . sanitize_title( $meetup ) . '__' . intval( $count );
+	$key    = 'upcoming_meetups__' . sanitize_title( $meetup ) . '__' . (int) $count;
 	$output = get_transient( $key );
 
 	if ( false === $output ) {
@@ -515,7 +515,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 		$query_args = array(
 			'sign'       => 'true',
 			'photo-host' => 'public',
-			'page'       => intval( $count ),
+			'page'       => (int) $count,
 		);
 
 		$request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
@@ -562,7 +562,7 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, 
 		$html .= '
 		<li class="edac-upcoming-meetup-item edac-mb-3">
 			<h4 class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h4>
-			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . ( intval( $event->time ) / 1000 ) . '</div>
+			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . ( (int) $event->time / 1000 ) . '</div>
 			<a aria-label="' . esc_attr( $link_text . ': ' . $event->name ) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '">' . $link_text . '</a>
 		</li>';
 	}

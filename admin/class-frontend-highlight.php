@@ -39,7 +39,7 @@ class Frontend_Highlight {
 	public function get_issues( $post_id ) {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'accessibility_checker';
-		$post_id    = intval( $post_id );
+		$post_id    = (int) $post_id;
 		$siteid     = get_current_blog_id();
 		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
 		if ( ! $results ) {
@@ -64,7 +64,7 @@ class Frontend_Highlight {
 			wp_send_json_error( $error );
 		}
 
-		$post_id = isset( $_REQUEST['post_id'] ) ? intval( $_REQUEST['post_id'] ) : 0;
+		$post_id = isset( $_REQUEST['post_id'] ) ? (int) $_REQUEST['post_id'] : 0;
 		$results = $this->get_issues( $post_id );
 
 		if ( ! $results ) {
@@ -78,7 +78,7 @@ class Frontend_Highlight {
 		foreach ( $results as $result ) {
 			$array     = array();
 			$rule      = edac_filter_by_value( $rules, 'slug', $result['rule'] );
-			$rule_type = ( true === boolval( $result['ignre'] ) ) ? 'ignored' : $rule[0]['rule_type'];
+			$rule_type = ( true === (bool) $result['ignre'] ) ? 'ignored' : $rule[0]['rule_type'];
 
 			$array['rule_type']  = $rule_type;
 			$array['slug']       = $rule[0]['slug'];

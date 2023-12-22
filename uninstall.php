@@ -12,7 +12,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 // check if the delte data option is checked. If not, don't delete data.
 $delete_data = get_option( 'edac_delete_data' );
-if ( true === boolval( $delete_data ) ) {
+if ( true === (bool) $delete_data ) {
 
 	// drop database.
 	global $wpdb;

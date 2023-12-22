@@ -64,14 +64,14 @@ class Ajax {
 		$html['content'] = '';
 
 		// password check.
-		if ( boolval( get_option( 'edac_password_protected' ) ) === true ) {
+		if ( (bool) get_option( 'edac_password_protected' ) === true ) {
 			$admin_notices              = new \EDAC\Admin\Admin_Notices();
 			$notice_text                = $admin_notices->edac_password_protected_notice_text();
 			$html['password_protected'] = $notice_text;
 			$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
 		}
 
-		$post_id                   = intval( $_REQUEST['post_id'] );
+		$post_id                   = (int) $_REQUEST['post_id'];
 		$summary                   = edac_summary( $post_id );
 		$simplified_summary_text   = '';
 		$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
@@ -189,7 +189,7 @@ class Ajax {
 		$html = '';
 		global $wpdb;
 		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
-		$postid     = intval( $_REQUEST['post_id'] );
+		$postid     = (int) $_REQUEST['post_id'];
 		$siteid     = get_current_blog_id();
 
 		// Send error if table name is not valid.
@@ -332,11 +332,11 @@ class Ajax {
 
 					foreach ( $results as $row ) {
 
-						$id                      = intval( $row['id'] );
-						$ignore                  = intval( $row['ignre'] );
+						$id                      = (int) $row['id'];
+						$ignore                  = (int) $row['ignre'];
 						$ignore_class            = $ignore ? ' active' : '';
 						$ignore_label            = $ignore ? 'Ignored' : 'Ignore';
-						$ignore_user             = intval( $row['ignre_user'] );
+						$ignore_user             = (int) $row['ignre_user'];
 						$ignore_user_info        = get_userdata( $ignore_user );
 						$ignore_username         = is_object( $ignore_user_info ) ? '<strong>Username:</strong> ' . $ignore_user_info->user_login : '';
 						$ignore_date             = ( $row['ignre_date'] && '0000-00-00 00:00:00' !== $row['ignre_date'] ) ? '<strong>Date:</strong> ' . gmdate( 'F j, Y g:i a', strtotime( esc_html( $row['ignre_date'] ) ) ) : '';
@@ -345,7 +345,7 @@ class Ajax {
 						$ignore_type             = $rule['rule_type'];
 						$ignore_submit_label     = $ignore ? 'Stop Ignoring' : 'Ignore This ' . $ignore_type;
 						$ignore_comment_disabled = $ignore ? 'disabled' : '';
-						$ignore_global           = intval( $row['ignre_global'] );
+						$ignore_global           = (int) $row['ignre_global'];
 
 						// check for images and svgs in object code.
 						$object_img      = null;
@@ -477,7 +477,7 @@ class Ajax {
 
 		}
 
-		$post_id                        = intval( $_REQUEST['post_id'] );
+		$post_id                        = (int) $_REQUEST['post_id'];
 		$html                           = '';
 		$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
 		$simplified_summary_position    = get_option( 'edac_simplified_summary_position', $default = false );
@@ -613,7 +613,7 @@ class Ajax {
 		global $wpdb;
 		$table_name           = $wpdb->prefix . 'accessibility_checker';
 		$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
-		$ids                  = array_map( 'intval', $raw_ids ); // Sanitizing array elements to integers.
+		$ids                  = array_map( function($value) { return (int) $value; }, $raw_ids ); // Sanitizing array elements to integers.
 		$action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( $_REQUEST['ignore_action'] ) : '';
 		$type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( $_REQUEST['ignore_type'] ) : '';
 		$siteid               = get_current_blog_id();
@@ -682,7 +682,7 @@ class Ajax {
 
 		}
 
-		$post_id = intval( $_REQUEST['post_id'] );
+		$post_id = (int) $_REQUEST['post_id'];
 		$summary = sanitize_text_field( $_REQUEST['summary'] );
 
 		update_post_meta( $post_id, '_edac_simplified_summary', $summary );

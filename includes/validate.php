@@ -38,7 +38,7 @@ function edac_post_on_load() {
 	if ( 'post.php' === $pagenow ) {
 		global $post;
 		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
-		if ( false === boolval( $checked ) ) {
+		if ( false === (bool) $checked ) {
 			edac_validate( $post->ID, $post, $action = 'load' );
 		}
 	}
