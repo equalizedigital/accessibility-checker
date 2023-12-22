@@ -12,7 +12,7 @@ if [ "$response" = "yes" ]; then
   echo "y" | npx wp-env destroy
   rm .wp-env.json
   rm -r ./.wp-env
-  npm install
+  npm install      #Note, this also runs the prepare script.
 else
   echo "Ok, no changes were made."
 fi
