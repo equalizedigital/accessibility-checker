@@ -613,7 +613,12 @@ class Ajax {
 		global $wpdb;
 		$table_name           = $wpdb->prefix . 'accessibility_checker';
 		$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
-		$ids                  = array_map( function($value) { return (int) $value; }, $raw_ids ); // Sanitizing array elements to integers.
+		$ids                  = array_map( 
+			function ( $value ) { 
+				return (int) $value;
+			},
+			$raw_ids
+		); // Sanitizing array elements to integers.
 		$action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( $_REQUEST['ignore_action'] ) : '';
 		$type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( $_REQUEST['ignore_type'] ) : '';
 		$siteid               = get_current_blog_id();
