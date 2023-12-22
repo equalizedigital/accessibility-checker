@@ -21,6 +21,7 @@
     "lint:php": "./vendor/bin/phpcs",
 		"lint:js": "wp-scripts lint-js",
     "lint:js:fix": "wp-scripts lint-js --fix",
+    "test:php": "npx wp-env run tests-cli ./source/vendor/phpunit/phpunit/phpunit -c ./source/phpunit.dev.xml ./source/tests/phpunit",
     "test:e2e": "npx wp-env clean tests && npx playwright test ./e2e/specs"
   },
   "files": [

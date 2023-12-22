@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ae1d25ee0951c6f4189ec3a6e72415d",
+    "content-hash": "e50c1eae463f8b31ebbc4477180b6a86",
     "packages": [
         {
             "name": "cbschuld/browser.php",
@@ -588,16 +588,16 @@
         },
         {
             "name": "equalizedigital/accessibility-checker-wp-env",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/equalizedigital/accessibility-checker-wp-env.git",
-                "reference": "fd3a97365c258749692fbb900b90e9129deb4a15"
+                "reference": "d041ce7c440b32dbcb1f6aa1085b8f95a389828b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/equalizedigital/accessibility-checker-wp-env/zipball/fd3a97365c258749692fbb900b90e9129deb4a15",
-                "reference": "fd3a97365c258749692fbb900b90e9129deb4a15",
+                "url": "https://api.github.com/repos/equalizedigital/accessibility-checker-wp-env/zipball/d041ce7c440b32dbcb1f6aa1085b8f95a389828b",
+                "reference": "d041ce7c440b32dbcb1f6aa1085b8f95a389828b",
                 "shasum": ""
             },
             "type": "library",
@@ -612,10 +612,10 @@
             ],
             "description": "This package is a customized version of wp-env used for development and testing of Accessibility Checker, Accessibility Checker Pro and Accessibility Checker Audit History.",
             "support": {
-                "source": "https://github.com/equalizedigital/accessibility-checker-wp-env/tree/v1.0.0",
+                "source": "https://github.com/equalizedigital/accessibility-checker-wp-env/tree/v1.0.1",
                 "issues": "https://github.com/equalizedigital/accessibility-checker-wp-env/issues"
             },
-            "time": "2023-10-23T23:58:23+00:00"
+            "time": "2023-12-22T21:06:00+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -3013,6 +3013,54 @@
                 }
             ],
             "time": "2023-09-14T07:06:09+00:00"
+        },
+        {
+            "name": "wp-phpunit/wp-phpunit",
+            "version": "6.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wp-phpunit/wp-phpunit.git",
+                "reference": "aa3c8f5d1b7efc295fd2b37c7264d2356a8c1099"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wp-phpunit/wp-phpunit/zipball/aa3c8f5d1b7efc295fd2b37c7264d2356a8c1099",
+                "reference": "aa3c8f5d1b7efc295fd2b37c7264d2356a8c1099",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "__loaded.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Evan Mattson",
+                    "email": "me@aaemnnost.tv"
+                },
+                {
+                    "name": "WordPress Community",
+                    "homepage": "https://wordpress.org/about/"
+                }
+            ],
+            "description": "WordPress core PHPUnit library",
+            "homepage": "https://github.com/wp-phpunit",
+            "keywords": [
+                "phpunit",
+                "test",
+                "wordpress"
+            ],
+            "support": {
+                "docs": "https://github.com/wp-phpunit/docs",
+                "issues": "https://github.com/wp-phpunit/issues",
+                "source": "https://github.com/wp-phpunit/wp-phpunit"
+            },
+            "time": "2023-12-07T00:50:08+00:00"
         },
         {
             "name": "yoast/phpunit-polyfills",
