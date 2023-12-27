@@ -51,7 +51,7 @@ class Widgets {
 			$pro_modal_html = '';
 			if ( ( ! is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ||
 			false === EDAC_KEY_VALID ) &&
-			true !== boolval( get_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true ) )
+			true !== (bool) get_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true )
 			) {
 				$pro_modal_html = '
 			<div class="edac-modal">

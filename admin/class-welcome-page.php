@@ -275,7 +275,7 @@ class Welcome_Page {
 					<?php endif; ?>
 				</section>
 
-			<?php elseif ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true ) ) ) : ?>
+			<?php elseif ( true !== (bool) get_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true ) ) : ?>
 
 				<section>
 					<div class="edac-cols edac-cols-header">

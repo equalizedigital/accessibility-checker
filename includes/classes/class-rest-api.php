@@ -176,7 +176,7 @@ class REST_Api {
 			return new \WP_REST_Response( array( 'message' => 'A required parameter is missing.' ), 400 );
 		}
 
-		$post_id = intval( $request['id'] );
+		$post_id = (int) $request['id'];
 		$post    = get_post( $post_id );
 		if ( ! is_object( $post ) ) {
 
