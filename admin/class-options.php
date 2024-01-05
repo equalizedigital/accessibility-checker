@@ -86,7 +86,7 @@ class Options {
 	 * @param [array]  $default_values     Default values for the options in the list.
 	 * @param [array]  $casts              Data type for the options in the list. Defaults to string.
 	 */
-	public function __construct( $options_list_name, $default_values = null, $casts = null ) {
+	private function __construct( $options_list_name, $default_values = null, $casts = null ) {
 		
 		$this->options_list_name = $options_list_name;
 

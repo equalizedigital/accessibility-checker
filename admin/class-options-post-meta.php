@@ -60,13 +60,15 @@ class Options_Post_Meta {
 	/**
 	 * Class constructor.
 	 *
-	 * @param [integer] $post_id            ID of he WordPress post we're using.
+	 * @param [integer] $post_id            ID of the WordPress post we're using.
 	 * @param [string]  $options_list_name  Name of the WordPress option we're using.
 	 * @param [array]   $default_values     Default values for the options in the list.
 	 * @param [array]   $casts              Data type for the options in the list. Defaults to string.
 	 */
-	public function __construct( $post_id, $options_list_name, $default_values = null, $casts = null ) {
+	private function __construct( $post_id, $options_list_name, $default_values = null, $casts = null ) {
 		
+		$this->post_id = $post_id;
+
 		$this->options_list_name = $options_list_name;
 
 		if ( ! is_null( $default_values ) ) {
@@ -83,7 +85,7 @@ class Options_Post_Meta {
 	/**
 	 * Singleton to get or create an instance of this class.
 	 *
-	 * @param [integer] $post_id            ID of he WordPress post we're using.
+	 * @param [integer] $post_id            ID of the WordPress post we're using.
 	 * @param [string]  $options_list_name  Name of the WordPress option we're using.
 	 * @param [array]   $default_values     Default values for the options in the list.
 	 * @param [array]   $casts              Data type for the options in the list. Defaults to string.
