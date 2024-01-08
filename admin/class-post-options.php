@@ -10,7 +10,7 @@ namespace EDAC\Admin;
 /**
  * Class that handles WP post meta options for the plugin.
  */
-class Options_Post_Meta {
+class Post_Options {
 
 	/**
 	 * The default values.
@@ -18,31 +18,46 @@ class Options_Post_Meta {
 	 * @var array [name => value]
 	 */
 	private $default_values = array(
-		'test' => 'value',
+		'_edac_issue_density'          => '',
+		'_edac_post_checked'           => false,
+		'_edac_post_checked_js'        => false,
+		'_edac_summary'                => '',
+		'_edac_summary_contrast_error' => '',
+		'_edac_summary_errors'         => '',
+		'_edac_summary_ignored'        => '',
+		'_edac_summary_passed_tests'   => '',
+		'_edac_summary_warnings'       => '',
+		'edac_anww_update_post_meta'   => false,
+		'link_blank'                   => false,
+	);
+	
+	/**
+	 * The variable type for the stored value.
+	 *
+	 * @var array [name => string|number|bool|array] defaults to string if empty.
+	 */
+	private $casts = array(
+		'_edac_issue_density'          => 'number',
+		'_edac_post_checked'           => 'bool',
+		'_edac_post_checked_js'        => 'bool',
+		'_edac_summary'                => '',
+		'_edac_summary_contrast_error' => 'number',
+		'_edac_summary_errors'         => 'number',
+		'_edac_summary_ignored'        => 'number',
+		'_edac_summary_passed_tests'   => 'number',
+		'_edac_summary_warnings'       => 'number',
+		'edac_anww_update_post_meta'   => 'bool',
+		'link_blank'                   => 'bool',
 	);
 	
 
 	/**
-	 * The variable type for the stored value.
+	 * The id of the post to which these options are associated.
 	 *
-	 * @var array [name => string|bool|array|json]
-	 */
-	private $casts = array();
-	
-	/**
-	 * Active instance of this class (singleton).
-	 *
-	 * @var object
-	 */
-	private static $instance;
-
-	/**
-	 * ID of the WordPress post we're using.
-	 *
-	 * @var string
+	 * @var integer 
 	 */
 	private $post_id;
-	
+
 	/**
 	 * Name of the WordPress option we're using.
 	 *
@@ -55,20 +70,19 @@ class Options_Post_Meta {
 	 *
 	 * @var array
 	 */
-	public $options_list = array();
+	private $options_list = array();
 
 	/**
 	 * Class constructor.
 	 *
-	 * @param [integer] $post_id            ID of the WordPress post we're using.
+	 * @param [integer] $post_id           The id of the post to which these options are associated.
 	 * @param [string]  $options_list_name  Name of the WordPress option we're using.
 	 * @param [array]   $default_values     Default values for the options in the list.
 	 * @param [array]   $casts              Data type for the options in the list. Defaults to string.
 	 */
-	private function __construct( $post_id, $options_list_name, $default_values = null, $casts = null ) {
+	public function __construct( $post_id, $options_list_name, $default_values = null, $casts = null ) {
 		
-		$this->post_id = $post_id;
-
+		$this->post_id           = $post_id;
 		$this->options_list_name = $options_list_name;
 
 		if ( ! is_null( $default_values ) ) {
@@ -83,23 +97,6 @@ class Options_Post_Meta {
 	}
 
 	/**
-	 * Singleton to get or create an instance of this class.
-	 *
-	 * @param [integer] $post_id            ID of the WordPress post we're using.
-	 * @param [string]  $options_list_name  Name of the WordPress option we're using.
-	 * @param [array]   $default_values     Default values for the options in the list.
-	 * @param [array]   $casts              Data type for the options in the list. Defaults to string.
-	 * @return Options_Post_Meta;
-	 */
-	public static function instance( $post_id = null, $options_list_name = null, $default_values = null, $casts = null ) {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new Options_Post_Meta( $post_id, $options_list_name, $default_values, $casts );
-		}
-
-		return self::$instance;
-	}
-
-	/**
 	 * Fill list with either the passed array or from the values stored in WordPress. 
 	 *
 	 * @param [array] $options_list Array of values to load into the list.
@@ -109,24 +106,25 @@ class Options_Post_Meta {
 	
 		if ( is_null( $options_list ) ) {
 			// Load from WordPress.
-			$options_list = get_post_meta( $this->post_id, $this->options_list_name, null );
+			$options_list = get_post_meta( $this->post_id, $this->options_list_name );
+		}
+	
+		if ( is_array( $options_list ) && ! empty( $options_list ) ) {
+
+			$keys = array_keys( $options_list );
+			if ( ! is_string( $keys[0] ) ) {
+				$options_list = $options_list[0];
+			}
+		
+			$options_list = array_merge( $this->default_values, $options_list );
+		} else {
+			$options_list = $this->default_values;
 		}
 		
-	
-		if ( ! is_array( $options_list ) ) {
-			if ( ! is_null( $options_list ) ) {
-				$options_list = array( $options_list );
-			} else {
-				$options_list = array();
-			}
-		} 
-
-		
-		$options_list = array_merge( $this->default_values, $options_list );
 		
 		foreach ( $options_list as $name => $value ) {
 
-			$cast_value                  = $this->transform_for_set( $name, $value );
+			$cast_value                  = $this->cast( $name, $value );
 			$this->options_list[ $name ] = $cast_value;
 
 		}
@@ -134,23 +132,17 @@ class Options_Post_Meta {
 
 
 	/**
-	 * Returns the value from the list.
+	 * Returns the value from the list. If the value doesn't exist, returns null.
 	 *
 	 * @param string $name of the value to return.
-	 * @throws \Exception If the name doesn't exist in the list.
 	 * @return mixed 
 	 */
 	public function get( $name ) {
 
 		if ( array_key_exists( $name, $this->options_list ) ) {
-
-			$value = $this->options_list[ $name ];
-
-			return $this->transform_for_get( $name, $value );
-			
+			return $this->options_list[ $name ];            
 		} else {
-
-			throw new \Exception( esc_html( $name . ' is not a valid option.' ) );
+			return null;
 		}
 	}
 
@@ -163,10 +155,10 @@ class Options_Post_Meta {
 	 */
 	public function set( $name, $value ) {
 		
-		$sanitized_value             = $this->transform_for_set( $name, $value );
+		$sanitized_value             = $this->cast( $name, $value );
 		$this->options_list[ $name ] = $sanitized_value;
 		
-		update_post_meta( $this->post_id, $this->options_list_name, $this->options_list );
+		update_option( $this->options_list_name, $this->options_list );
 	}
 
 	/**
@@ -190,8 +182,17 @@ class Options_Post_Meta {
 	 * @return void
 	 */
 	public function delete_all() {
-		$this->options_list_name = array();
-		delete_post_meta( $this->post_id, $this->options_list_name );
+		$this->options_list = array();
+		delete_option( $this->options_list_name );
+	}
+
+	/**
+	 * Gets the name of the list. This is the WordPress option's name.
+	 *
+	 * @return string
+	 */
+	public function list_name() {
+		return $this->options_list_name;
 	}
 
 	/**
@@ -211,7 +212,7 @@ class Options_Post_Meta {
 	public function as_array() {
 		return $this->options_list;
 	}
-
+	
 	/**
 	 * Forces the value stored in the list to be of the type that we expect.
 	 *
@@ -220,7 +221,7 @@ class Options_Post_Meta {
 	 * @throws \Exception When cast fails.
 	 * @return mixed
 	 */
-	private function transform_for_set( $name, $value ) {
+	private function cast( $name, $value ) {
 		
 		$type = $this->casts[ $name ];
 
@@ -238,41 +239,9 @@ class Options_Post_Meta {
 				}
 				throw new \Exception( esc_html( $name . ' cannot be cast to array.' ) );
 
-			case 'json':
-				return wp_json_encode( $value );
-				
 			default:
 				return (string) $value;
 
-		}
-	}
-
-
-	/**
-	 * Forces the returned value to be of the type that we expect.
-	 *
-	 * @param [string] $name Name of the list item.
-	 * @param [mixed]  $value Value of the list item.
-	 * @throws \Exception When the item doesn't exist in the list.
-	 * @return mixed
-	 */
-	private function transform_for_get( $name, $value ) {
-		
-		if ( ! array_key_exists( $name, $this->casts ) ) {
-			throw new \Exception( esc_html( $name . ' is not a valid option.' ) );
-		}
-		
-		$type = $this->casts[ $name ];
-
-		switch ( $type ) {
-	
-			case 'json': 
-				// transforms json to an array.
-				return json_decode( (string) $value, true );
-	
-			default:
-				return $value;
-				
 		}
 	}
 }

@@ -7,19 +7,30 @@
 
 namespace EDAC\Admin;
 
+//phpcs:disable Generic.Commenting.Todo.TaskFound
+
 /**
  * Class that handles WP options for the plugin.
+ * Note: The instance of this class is a Singleton.
+ * TODO: Implement a DI Container so we can avoid the use of Singletons.
  */
 class Options {
 
+	/**
+	 * Name of the WordPress option we're using.
+	 *
+	 * @var string
+	 */
+	const OPTIONS_LIST_NAME = 'edac';
+	
 	/**
 	 * The default values.
 	 *
 	 * @var array [name => value]
 	 */
-	private $default_values = array(
+	const DEFAULT_VALUES = array(
 		'edac_accessibility_policy_page'            => '',
-		'edac_activation_date'                      => '',
+		'edac_activation_date'                      => 0,
 		'edac_add_footer_accessibility_statement'   => '',
 		'edac_anww_update_post_meta'                => '',
 		'edac_black_friday_2023_notice_dismiss'     => '',
@@ -38,11 +49,11 @@ class Options {
 	/**
 	 * The variable type for the stored value.
 	 *
-	 * @var array [name => string|bool|array|json]
+	 * @var array [name => string|number|bool|array] defaults to string if empty.
 	 */
-	private $casts = array(
+	const CASTS = array(
 		'edac_accessibility_policy_page'            => '',
-		'edac_activation_date'                      => '',
+		'edac_activation_date'                      => 'number',
 		'edac_add_footer_accessibility_statement'   => '',
 		'edac_anww_update_post_meta'                => '',
 		'edac_black_friday_2023_notice_dismiss'     => 'bool',
@@ -58,6 +69,7 @@ class Options {
 		'edac_simplified_summary_prompt'            => '',  
 	);
 	
+
 	/**
 	 * Active instance of this class (singleton).
 	 *
@@ -65,12 +77,6 @@ class Options {
 	 */
 	private static $instance;
 
-	/**
-	 * Name of the WordPress option we're using.
-	 *
-	 * @var string
-	 */
-	private $options_list_name;
 	
 	/**
 	 * Array that holds the actual option values.
@@ -80,38 +86,22 @@ class Options {
 	private $options_list = array();
 
 	/**
-	 * Class constructor.
-	 *
-	 * @param [string] $options_list_name  Name of the WordPress option we're using.
-	 * @param [array]  $default_values     Default values for the options in the list.
-	 * @param [array]  $casts              Data type for the options in the list. Defaults to string.
+	 * Constructor for the class.
+	 * 
+	 * @return void
 	 */
-	private function __construct( $options_list_name, $default_values = null, $casts = null ) {
-		
-		$this->options_list_name = $options_list_name;
-
-		if ( ! is_null( $default_values ) ) {
-			$this->default_values = $default_values;
-		}
-	
-		if ( ! is_null( $casts ) ) {
-			$this->casts = $casts;
-		}
-		
+	private function __construct() {
 		$this->fill();
 	}
 
 	/**
-	 * Singleton to get or create an instance of this class.
+	 * Singleton instance of this class.
 	 *
-	 * @param [string] $options_list_name  Name of the WordPress option we're using.
-	 * @param [array]  $default_values     Default values for the options in the list.
-	 * @param [array]  $casts              Data type for the options in the list. Defaults to string.
-	 * @return Options
+	 * @return Options class instance.
 	 */
-	public static function instance( $options_list_name = null, $default_values = null, $casts = null ) {
+	public static function instance() {
 		if ( is_null( self::$instance ) ) {
-			self::$instance = new Options( $options_list_name, $default_values, $casts );
+			self::$instance = new Options();
 		}
 
 		return self::$instance;
@@ -127,24 +117,25 @@ class Options {
 	
 		if ( is_null( $options_list ) ) {
 			// Load from WordPress.
-			$options_list = get_option( $this->options_list_name, null );
+			$options_list = get_option( self::OPTIONS_LIST_NAME );
+		}
+	
+		if ( is_array( $options_list ) && ! empty( $options_list ) ) {
+
+			$keys = array_keys( $options_list );
+			if ( ! is_string( $keys[0] ) ) {
+				$options_list = $options_list[0];
+			}
+		
+			$options_list = array_merge( self::DEFAULT_VALUES, $options_list );
+		} else {
+			$options_list = self::DEFAULT_VALUES;
 		}
 		
-	
-		if ( ! is_array( $options_list ) ) {
-			if ( ! is_null( $options_list ) ) {
-				$options_list = array( $options_list );
-			} else {
-				$options_list = array();
-			}
-		} 
-
-		
-		$options_list = array_merge( $this->default_values, $options_list );
 		
 		foreach ( $options_list as $name => $value ) {
 
-			$cast_value                  = $this->transform_for_set( $name, $value );
+			$cast_value                  = $this->cast( $name, $value );
 			$this->options_list[ $name ] = $cast_value;
 
 		}
@@ -152,23 +143,17 @@ class Options {
 
 
 	/**
-	 * Returns the value from the list.
+	 * Returns the value from the list. If the value doesn't exist, returns null.
 	 *
 	 * @param string $name of the value to return.
-	 * @throws \Exception If the name doesn't exist in the list.
 	 * @return mixed 
 	 */
 	public function get( $name ) {
 
 		if ( array_key_exists( $name, $this->options_list ) ) {
-
-			$value = $this->options_list[ $name ];
-
-			return $this->transform_for_get( $name, $value );
-			
+			return $this->options_list[ $name ];            
 		} else {
-
-			throw new \Exception( esc_html( $name . ' is not a valid option.' ) );
+			return null;
 		}
 	}
 
@@ -181,10 +166,10 @@ class Options {
 	 */
 	public function set( $name, $value ) {
 		
-		$sanitized_value             = $this->transform_for_set( $name, $value );
+		$sanitized_value             = $this->cast( $name, $value );
 		$this->options_list[ $name ] = $sanitized_value;
 		
-		update_option( $this->options_list_name, $this->options_list );
+		update_option( self::OPTIONS_LIST_NAME, $this->options_list );
 	}
 
 	/**
@@ -198,7 +183,7 @@ class Options {
 		if ( array_key_exists( $name, $this->options_list ) ) {
 			unset( $this->options_list[ $name ] );
 			
-			update_option( $this->options_list_name, $this->options_list );
+			update_option( self::OPTIONS_LIST_NAME, $this->options_list );
 		}
 	}
 
@@ -208,8 +193,17 @@ class Options {
 	 * @return void
 	 */
 	public function delete_all() {
-		$this->options_list_name = array();
-		delete_option( $this->options_list_name );
+		$this->options_list = array();
+		delete_option( self::OPTIONS_LIST_NAME );
+	}
+
+	/**
+	 * Gets the name of the list. This is the WordPress option's name.
+	 *
+	 * @return string
+	 */
+	public function list_name() {
+		return self::OPTIONS_LIST_NAME;
 	}
 
 	/**
@@ -238,9 +232,9 @@ class Options {
 	 * @throws \Exception When cast fails.
 	 * @return mixed
 	 */
-	private function transform_for_set( $name, $value ) {
+	private function cast( $name, $value ) {
 		
-		$type = $this->casts[ $name ];
+		$type = self::CASTS[ $name ];
 
 		switch ( $type ) {
 		
@@ -256,41 +250,9 @@ class Options {
 				}
 				throw new \Exception( esc_html( $name . ' cannot be cast to array.' ) );
 
-			case 'json':
-				return wp_json_encode( $value );
-				
 			default:
 				return (string) $value;
 
-		}
-	}
-
-
-	/**
-	 * Forces the returned value to be of the type that we expect.
-	 *
-	 * @param [string] $name Name of the list item.
-	 * @param [mixed]  $value Value of the list item.
-	 * @throws \Exception When the item doesn't exist in the list.
-	 * @return mixed
-	 */
-	private function transform_for_get( $name, $value ) {
-		
-		if ( ! array_key_exists( $name, $this->casts ) ) {
-			throw new \Exception( esc_html( $name . ' is not a valid option.' ) );
-		}
-		
-		$type = $this->casts[ $name ];
-
-		switch ( $type ) {
-	
-			case 'json': 
-				// transforms json to an array.
-				return json_decode( (string) $value, true );
-	
-			default:
-				return $value;
-				
 		}
 	}
 }
