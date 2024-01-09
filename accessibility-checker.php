@@ -101,10 +101,6 @@ if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 }
 
-if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
-	new Plugin();
-}
-
 
 /**
  * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
@@ -131,6 +127,10 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
+
+if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
+	new Plugin();
+}
 
 /**
  * Filters and Actions

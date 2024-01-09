@@ -41,9 +41,9 @@ class Options {
 		'local_loopback'                       => false,
 		'password_protected'                   => '',
 		'password_protected_notice_dismiss'    => '',
-		'post_types'                           => array(),
-		'simplified_summary_position'          => '',
-		'simplified_summary_prompt'            => '',
+		'post_types'                           => array('post','page'),
+		'simplified_summary_position'          => 'after',
+		'simplified_summary_prompt'            => 'when required',
 	);
 	
 	/**
@@ -272,7 +272,7 @@ class Options {
 
 	
 	/**
-	 * Forces the value stored in the list to be of the type that we expect.
+	 * Forces the value stored in the list to be of the type and value we expect.
 	 *
 	 * @param [string] $name Name of the list item.
 	 * @param [mixed]  $value Value of the list item.
@@ -281,8 +281,57 @@ class Options {
 	 */
 	private static function cast( $name, $value ) {
 		
-		$type = self::CASTS[ $name ];
 
+		switch ( $name ) {
+			case 'simplified_summary_position':
+				if ( ! in_array( $value, array( 'before', 'after' ), true ) ) {
+					$value = self::DEFAULT_VALUES[ $name ];
+				}
+
+				break;
+
+			case 'simplified_summary_prompt':
+				if ( ! in_array( $value, array( 'always', 'when required', 'none' ), true ) ) {
+					$value = self::DEFAULT_VALUES[ $name ];
+				}
+
+				break;
+
+			case 'post_types':
+				$selected_post_types = array();
+		
+				$all_post_types = \edac_post_types();
+				
+				if ( is_array( $value ) ) {
+					foreach ( $value as $post_type ) {
+						if ( ! in_array( $post_type, $all_post_types, true ) ) {
+							$selected_post_types[] = $post_type;
+						}
+					}
+				}
+
+				$value = $selected_post_types;
+
+				break;
+		
+			case 'add_footer_accessibility_statement':
+				$value = (bool) $value;
+				break;
+
+			case 'accessibility_policy_page':
+				$value = esc_url( $value );
+				break;
+
+			case 'delete_data':
+				$value = (bool) $value;
+				break;
+		
+		}
+
+
+		
+
+		$type = self::CASTS[ $name ];
 		switch ( $type ) {
 		
 			case 'bool':
