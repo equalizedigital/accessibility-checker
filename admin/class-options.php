@@ -244,15 +244,14 @@ class Options {
 	 */
 	public static function maybe_migrate_legacy_options() {
 		
-		if(get_option(LEGACY_OPTION_NAMES_MAPPING[0])) {
+		if ( get_option( LEGACY_OPTION_NAMES_MAPPING[0] ) ) {
 	
 			// Legacy options exist. Migrate them.
 			foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
 				$value = get_option( $old_name );
 				self::set( $new_name, $value );
-			}
-		
-		}		
+			}       
+		}       
 	
 	
 		foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
