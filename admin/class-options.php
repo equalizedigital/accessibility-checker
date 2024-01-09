@@ -41,7 +41,7 @@ class Options {
 		'local_loopback'                       => false,
 		'password_protected'                   => '',
 		'password_protected_notice_dismiss'    => '',
-		'post_types'                           => array('post','page'),
+		'post_types'                           => array( 'post', 'page' ),
 		'simplified_summary_position'          => 'after',
 		'simplified_summary_prompt'            => 'when required',
 	);

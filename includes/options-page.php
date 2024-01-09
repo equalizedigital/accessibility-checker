@@ -176,8 +176,6 @@ function edac_register_setting() {
 		'edac',
 		'sanitize_settings_callback'
 	);
-
-	
 }
 
 /**
@@ -447,13 +445,10 @@ function edac_delete_data_cb() {
  * Sanitize the data before saving to database.
  *
  * @param array $input The array of data to sanitize.
- * @return void
+ * @return array
  */
 function edac_sanitize_settings_callback( $input ) {
 
-
-	return $input;
-	/*
 	// Santize the post types and handle any changes.
 	$selected_post_types = $input['post_types'];
 	$post_types          = edac_post_types();
@@ -495,6 +490,5 @@ function edac_sanitize_settings_callback( $input ) {
 
 	// return all the sanitized $input data now ready for saving.
 	return $input;
-	*/
 }
 
