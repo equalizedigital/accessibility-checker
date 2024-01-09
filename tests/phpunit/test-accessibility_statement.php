@@ -6,6 +6,7 @@
  */
 
 use EDAC\Inc\Accessibility_Statement;
+use EDAC\Admin\Options;
 
 /**
  * Accessibility statement test case.
@@ -28,9 +29,9 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	protected function setUp(): void {
 		$this->accessibility_statement = new Accessibility_Statement();
 
-		update_option( 'edac_add_footer_accessibility_statement', true );
-		update_option( 'edac_include_accessibility_statement_link', true );
-		update_option( 'edac_accessibility_policy_page', 'http://example.com' );
+		Options::update( 'add_footer_accessibility_statement', true );
+		Options::update( 'include_accessibility_statement_link', true );
+		Options::update( 'accessibility_policy_page', 'http://example.com' );
 	}
 
 	/**
@@ -55,8 +56,8 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	 */
 	public function test_get_accessibility_statement_no_policy() {
 
-		update_option( 'edac_include_accessibility_statement_link', false );
-		delete_option( 'edac_accessibility_policy_page' );
+		Options::update( 'include_accessibility_statement_link', false );
+		Options::delete( 'accessibility_policy_page' );
 
 		$statement = $this->accessibility_statement->get_accessibility_statement();
 		$this->assertStringContainsString( get_bloginfo( 'name' ), $statement );
@@ -84,9 +85,9 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	 */
 	public function test_output_accessibility_statement_no_options() {
 
-		delete_option( 'edac_add_footer_accessibility_statement' );
-		delete_option( 'edac_include_accessibility_statement_link' );
-		delete_option( 'edac_accessibility_policy_page' );
+		Options::delete( 'add_footer_accessibility_statement' );
+		Options::delete( 'include_accessibility_statement_link' );
+		Options::delete( 'accessibility_policy_page' );
 	
 		ob_start();
 		$this->accessibility_statement->output_accessibility_statement();
@@ -101,9 +102,9 @@ class EDACAAccessibilityStatementTest extends WP_UnitTestCase {
 	 * set during the test.
 	 */
 	protected function tearDown(): void {
-		delete_option( 'edac_add_footer_accessibility_statement' );
-		delete_option( 'edac_include_accessibility_statement_link' );
-		delete_option( 'edac_accessibility_policy_page' );
+		Options::delete( 'add_footer_accessibility_statement' );
+		Options::delete( 'include_accessibility_statement_link' );
+		Options::delete( 'accessibility_policy_page' );
 	
 		parent::tearDown();
 	}

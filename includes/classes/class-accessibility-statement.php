@@ -7,6 +7,8 @@
 
 namespace EDAC\Inc;
 
+use EDAC\Admin\Options;
+
 /**
  * A class that handles accessibility statement.
  */
@@ -32,9 +34,9 @@ class Accessibility_Statement {
 	 */
 	public function get_accessibility_statement() {
 		$statement              = '';
-		$add_footer_statement   = get_option( 'edac_add_footer_accessibility_statement' );
-		$include_statement_link = get_option( 'edac_include_accessibility_statement_link' );
-		$policy_page            = get_option( 'edac_accessibility_policy_page' );
+		$add_footer_statement   = Options::get( 'add_footer_accessibility_statement' );
+		$include_statement_link = Options::get( 'include_accessibility_statement_link' );
+		$policy_page            = Options::get( 'accessibility_policy_page' );
 		$policy_page            = is_numeric( $policy_page ) 
 			? get_page_link( $policy_page )
 			: $policy_page;

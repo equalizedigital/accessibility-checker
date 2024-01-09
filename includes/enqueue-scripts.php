@@ -18,7 +18,7 @@ function edac_admin_enqueue_styles() {
 function edac_admin_enqueue_scripts() {
 
 	global $pagenow;
-	$post_types        = get_option( 'edac_post_types' );
+	$post_types        = \EDAC\Admin\Options::get( 'post_types' );
 	$current_post_type = get_post_type();
 	$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
 	$pages             = array(
@@ -49,7 +49,7 @@ function edac_admin_enqueue_scripts() {
 		
 
 			// Is this posttype setup to be checked?
-			$post_types        = get_option( 'edac_post_types' );
+			$post_types        = \EDAC\Admin\Options::get( 'post_types' );
 			$current_post_type = get_post_type();
 			$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 		
@@ -129,7 +129,7 @@ function edac_enqueue_scripts() {
 	
 
 	// Don't load if this pagetype is not setup to be scanned.
-	$post_types        = get_option( 'edac_post_types' );
+	$post_types        = \EDAC\Admin\Options::get( 'post_types' );
 	$current_post_type = get_post_type();
 	$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 	

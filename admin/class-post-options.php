@@ -151,28 +151,28 @@ class Post_Options {
 	 *
 	 * @param [string] $name The name of the list item.
 	 * @param [mixed]  $value The value of the list item.
-	 * @return void
+	 * @return boolean True if the value was updated.
 	 */
 	public function set( $name, $value ) {
 		
 		$sanitized_value             = $this->cast( $name, $value );
 		$this->options_list[ $name ] = $sanitized_value;
 		
-		update_option( $this->options_list_name, $this->options_list );
+		return update_option( $this->options_list_name, $this->options_list );
 	}
 
 	/**
 	 * Remove the value from the list then saves the entire list in the WP database.
 	 *
 	 * @param [string] $name The name of list item.
-	 * @return void
+	 * @return boolean True if the value was deleted.
 	 */
 	public function delete( $name ) {
 
 		if ( array_key_exists( $name, $this->options_list ) ) {
 			unset( $this->options_list[ $name ] );
 			
-			update_post_meta( $this->post_id, $this->options_list_name, $this->options_list );
+			return update_post_meta( $this->post_id, $this->options_list_name, $this->options_list );
 		}
 	}
 

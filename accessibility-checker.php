@@ -19,6 +19,7 @@
  * Domain Path:       /languages
  */
 
+use EDAC\Admin\Options;
 use EDAC\Inc\Plugin;
 
 // If this file is called directly, abort.
@@ -165,7 +166,7 @@ function edac_update_database() {
 
 	$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
 	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Prepare above, Safe variable used for table name, caching not required for one time operation.
-	if ( get_option( 'edac_db_version' ) !== EDAC_DB_VERSION || $wpdb->get_var( $query ) !== $table_name ) {
+	if ( Options::get( 'db_version' ) !== EDAC_DB_VERSION || $wpdb->get_var( $query ) !== $table_name ) {
 
 		$charset_collate = $wpdb->get_charset_collate();
 		$sql             = "CREATE TABLE $table_name (
@@ -194,9 +195,9 @@ function edac_update_database() {
 	}
 
 	// Update database version option.
-	$option_name = 'edac_db_version';
+	$option_name = 'db_version';
 	$new_value   = EDAC_DB_VERSION;
-	update_option( $option_name, $new_value );
+	Options::set( $option_name, $new_value );
 }
 
 /**
@@ -437,10 +438,10 @@ function edac_anww_update_post_meta() {
 
 	$option_name = 'edac_anww_update_post_meta';
 
-	if ( ! get_option( $option_name ) && EDAC_ANWW_ACTIVE ) {
-		update_option( $option_name, true );
-	} elseif ( get_option( $option_name ) && ! EDAC_ANWW_ACTIVE ) {
-		delete_option( $option_name );
+	if ( ! Options::get( $option_name ) && EDAC_ANWW_ACTIVE ) {
+		Options::set( $option_name, true );
+	} elseif ( Options::get( $option_name ) && ! EDAC_ANWW_ACTIVE ) {
+		Options::delete( $option_name );
 	}
 	edac_update_post_meta( 'link_blank' );
 }

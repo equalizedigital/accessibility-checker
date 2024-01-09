@@ -11,5 +11,5 @@
  * @return void
  */
 function edac_deactivation() {
-	delete_option( 'edac_activation_date' );
+	\EDAC\Admin\Options::delete( 'activation_date' );
 }

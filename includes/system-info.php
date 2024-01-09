@@ -144,15 +144,15 @@ function edac_tools_sysinfo_get() {
 	// EDAC configuration.
 	$return .= "\n" . '-- Accessibility Checker Configuration' . "\n\n";
 	$return .= 'Version:                  ' . EDAC_VERSION . "\n";
-	$return .= 'Database Version:         ' . get_option( 'edac_db_version' ) . "\n";
-	$return .= 'Policy Page:              ' . ( get_option( 'edac_accessibility_policy_page' ) ? get_option( 'edac_accessibility_policy_page' ) . "\n" : "Unset\n" );
-	$return .= 'Activation Date:          ' . get_option( 'edac_activation_date' ) . "\n";
-	$return .= 'Footer Statement:         ' . ( get_option( 'edac_add_footer_accessibility_statement' ) ? "Enabled\n" : "Disabled\n" );
-	$return .= 'Delete Data:              ' . ( get_option( 'edac_delete_data' ) ? "Enabled\n" : "Disabled\n" );
-	$return .= 'Include Statement Link:   ' . ( get_option( 'edac_include_accessibility_statement_link' ) ? "Enabled\n" : "Disabled\n" );
-	$return .= 'Post Types:               ' . ( get_option( 'edac_post_types' ) ? implode( ', ', get_option( 'edac_post_types' ) ) . "\n" : "Unset\n" );
-	$return .= 'Simplified Sum Position:  ' . get_option( 'edac_simplified_summary_position' ) . "\n";
-	$return .= 'Simplified Sum Prompt:    ' . get_option( 'edac_simplified_summary_prompt' ) . "\n";
+	$return .= 'Database Version:         ' . \EDAC\Admin\Options::get( 'db_version' ) . "\n";
+	$return .= 'Policy Page:              ' . ( \EDAC\Admin\Options::get( 'accessibility_policy_page' ) ? \EDAC\Admin\Options::get( 'accessibility_policy_page' ) . "\n" : "Unset\n" );
+	$return .= 'Activation Date:          ' . \EDAC\Admin\Options::get( 'activation_date' ) . "\n";
+	$return .= 'Footer Statement:         ' . ( \EDAC\Admin\Options::get( 'add_footer_accessibility_statement' ) ? "Enabled\n" : "Disabled\n" );
+	$return .= 'Delete Data:              ' . ( \EDAC\Admin\Options::get( 'delete_data' ) ? "Enabled\n" : "Disabled\n" );
+	$return .= 'Include Statement Link:   ' . ( \EDAC\Admin\Options::get( 'include_accessibility_statement_link' ) ? "Enabled\n" : "Disabled\n" );
+	$return .= 'Post Types:               ' . ( \EDAC\Admin\Options::get( 'post_types' ) ? implode( ', ', \EDAC\Admin\Options::get( 'post_types' ) ) . "\n" : "Unset\n" );
+	$return .= 'Simplified Sum Position:  ' . \EDAC\Admin\Options::get( 'simplified_summary_position' ) . "\n";
+	$return .= 'Simplified Sum Prompt:    ' . \EDAC\Admin\Options::get( 'simplified_summary_prompt' ) . "\n";
 	$return .= 'Post Count:               ' . edac_get_posts_count() . "\n";
 	$return .= 'Error Count:              ' . edac_get_error_count() . "\n";
 	$return .= 'Warning Count:            ' . edac_get_warning_count() . "\n";
@@ -413,7 +413,7 @@ function edac_get_posts_count() {
 
 	$output = array();
 
-	$post_types = get_option( 'edac_post_types' );
+	$post_types = \EDAC\Admin\Options::get( 'post_types' );
 	if ( $post_types ) {
 		foreach ( $post_types as $post_type ) {
 

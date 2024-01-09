@@ -194,7 +194,7 @@ function edac_is_gutenberg_active() {
  * @return int
  */
 function edac_days_active() {
-	$activation_date = get_option( 'edac_activation_date' );
+	$activation_date = \EDAC\Admin\Options::get( 'activation_date' );
 	if ( $activation_date ) {
 		$diff = strtotime( $activation_date ) - strtotime( gmdate( 'Y-m-d H:i:s' ) );
 		return abs( round( $diff / 86400 ) );

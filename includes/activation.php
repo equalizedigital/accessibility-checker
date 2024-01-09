@@ -12,9 +12,9 @@
  */
 function edac_activation() {
 	// set options.
-	update_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s' ) );
-	update_option( 'edac_post_types', array( 'post', 'page' ) );
-	update_option( 'edac_simplified_summary_position', 'after' );
+	\EDAC\Admin\Options::set( 'activation_date', gmdate( 'Y-m-d H:i:s' ) );
+	\EDAC\Admin\Options::set( 'post_types', array( 'post', 'page' ) );
+	\EDAC\Admin\Options::set( 'simplified_summary_position', 'after' );
 
 	// Sanitize the input.
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce is not required.

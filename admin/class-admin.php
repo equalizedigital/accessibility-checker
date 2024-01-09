@@ -31,6 +31,9 @@ class Admin {
 		$widgets = new Widgets();
 		$widgets->init_hooks();
 
+		Options::boot();
+		
+		
 		$this->init_ajax();
 	}
 

@@ -11,7 +11,7 @@ namespace EDAC\Admin;
 
 /**
  * Class that handles WP options for the plugin.
- * Note: The instance of this class is a Singleton.
+ * Note: This class is a Singleton.
  * TODO: Implement a DI Container so we can avoid the use of Singletons.
  */
 class Options {
@@ -29,21 +29,21 @@ class Options {
 	 * @var array [name => value]
 	 */
 	const DEFAULT_VALUES = array(
-		'edac_accessibility_policy_page'            => '',
-		'edac_activation_date'                      => 0,
-		'edac_add_footer_accessibility_statement'   => '',
-		'edac_anww_update_post_meta'                => '',
-		'edac_black_friday_2023_notice_dismiss'     => '',
-		'edac_db_version'                           => '',
-		'edac_delete_data'                          => '',
-		'edac_gaad_notice_dismiss'                  => '',
-		'edac_include_accessibility_statement_link' => '',
-		'edac_local_loopback'                       => false,
-		'edac_password_protected'                   => '',
-		'edac_password_protected_notice_dismiss'    => '',
-		'edac_post_types'                           => array(),
-		'edac_simplified_summary_position'          => '',
-		'edac_simplified_summary_prompt'            => '',
+		'accessibility_policy_page'            => '',
+		'activation_date'                      => 0,
+		'add_footer_accessibility_statement'   => '',
+		'anww_update_post_meta'                => '',
+		'black_friday_2023_notice_dismiss'     => '',
+		'db_version'                           => '',
+		'delete_data'                          => '',
+		'gaad_notice_dismiss'                  => '',
+		'include_accessibility_statement_link' => '',
+		'local_loopback'                       => false,
+		'password_protected'                   => '',
+		'password_protected_notice_dismiss'    => '',
+		'post_types'                           => array(),
+		'simplified_summary_position'          => '',
+		'simplified_summary_prompt'            => '',
 	);
 	
 	/**
@@ -52,30 +52,40 @@ class Options {
 	 * @var array [name => string|number|bool|array] defaults to string if empty.
 	 */
 	const CASTS = array(
-		'edac_accessibility_policy_page'            => '',
-		'edac_activation_date'                      => 'number',
-		'edac_add_footer_accessibility_statement'   => '',
-		'edac_anww_update_post_meta'                => '',
-		'edac_black_friday_2023_notice_dismiss'     => 'bool',
-		'edac_db_version'                           => '',
-		'edac_delete_data'                          => 'bool',
-		'edac_gaad_notice_dismiss'                  => 'bool',
-		'edac_include_accessibility_statement_link' => 'bool',
-		'edac_local_loopback'                       => 'bool',
-		'edac_password_protected'                   => 'bool',
-		'edac_password_protected_notice_dismiss'    => 'bool',
-		'edac_post_types'                           => 'array',
-		'edac_simplified_summary_position'          => '',
-		'edac_simplified_summary_prompt'            => '',  
+		'accessibility_policy_page'            => '',
+		'activation_date'                      => 'number',
+		'add_footer_accessibility_statement'   => '',
+		'anww_update_post_meta'                => '',
+		'black_friday_2023_notice_dismiss'     => 'bool',
+		'db_version'                           => '',
+		'delete_data'                          => 'bool',
+		'gaad_notice_dismiss'                  => 'bool',
+		'include_accessibility_statement_link' => 'bool',
+		'local_loopback'                       => 'bool',
+		'password_protected'                   => 'bool',
+		'password_protected_notice_dismiss'    => 'bool',
+		'post_types'                           => 'array',
+		'simplified_summary_position'          => '',
+		'simplified_summary_prompt'            => '',  
 	);
 	
-
-	/**
-	 * Active instance of this class (singleton).
-	 *
-	 * @var object
-	 */
-	private static $instance;
+	const LEGACY_OPTION_NAMES_MAPPING = array(
+		'edac_accessibility_policy_page'            => 'accessibility_policy_page',
+		'edac_activation_date'                      => 'activation_date',
+		'edac_add_footer_accessibility_statement'   => 'add_footer_accessibility_statement',
+		'edac_anww_update_post_meta'                => 'anww_update_post_meta',
+		'edac_black_friday_2023_notice_dismiss'     => 'black_friday_2023_notice_dismiss',
+		'edac_db_version'                           => 'db_version',
+		'edac_delete_data'                          => 'delete_data',
+		'edac_gaad_notice_dismiss'                  => 'gaad_notice_dismiss',
+		'edac_include_accessibility_statement_link' => 'include_accessibility_statement_link',
+		'edac_local_loopback'                       => 'local_loopback',
+		'edac_password_protected'                   => 'password_protected',
+		'edac_password_protected_notice_dismiss'    => 'password_protected_notice_dismiss',
+		'edac_post_types'                           => 'post_types',
+		'edac_simplified_summary_position'          => 'simplified_summary_position',
+		'edac_simplified_summary_prompt'            => 'simplified_summary_prompt',
+	);
 
 	
 	/**
@@ -83,7 +93,7 @@ class Options {
 	 *
 	 * @var array
 	 */
-	private $options_list = array();
+	private static $options_list = array();
 
 	/**
 	 * Constructor for the class.
@@ -91,29 +101,25 @@ class Options {
 	 * @return void
 	 */
 	private function __construct() {
-		$this->fill();
 	}
 
 	/**
-	 * Singleton instance of this class.
+	 * Boot the class.
 	 *
-	 * @return Options class instance.
+	 * @return void
 	 */
-	public static function instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new Options();
-		}
-
-		return self::$instance;
+	public static function boot() {
+		self::fill();   
 	}
 
+	
 	/**
 	 * Fill list with either the passed array or from the values stored in WordPress. 
 	 *
 	 * @param [array] $options_list Array of values to load into the list.
 	 * @return void
 	 */
-	public function fill( $options_list = null ) {
+	public static function fill( $options_list = null ) {
 	
 		if ( is_null( $options_list ) ) {
 			// Load from WordPress.
@@ -135,8 +141,8 @@ class Options {
 		
 		foreach ( $options_list as $name => $value ) {
 
-			$cast_value                  = $this->cast( $name, $value );
-			$this->options_list[ $name ] = $cast_value;
+			$cast_value                  = self::cast( $name, $value );
+			self::$options_list[ $name ] = $cast_value;
 
 		}
 	}
@@ -148,10 +154,10 @@ class Options {
 	 * @param string $name of the value to return.
 	 * @return mixed 
 	 */
-	public function get( $name ) {
+	public static function get( $name ) {
 
-		if ( array_key_exists( $name, $this->options_list ) ) {
-			return $this->options_list[ $name ];            
+		if ( array_key_exists( $name, self::$options_list ) ) {
+			return self::$options_list[ $name ];            
 		} else {
 			return null;
 		}
@@ -162,39 +168,46 @@ class Options {
 	 *
 	 * @param [string] $name The name of the list item.
 	 * @param [mixed]  $value The value of the list item.
-	 * @return void
+	 * @return boolean True if successful.
 	 */
-	public function set( $name, $value ) {
-		
-		$sanitized_value             = $this->cast( $name, $value );
-		$this->options_list[ $name ] = $sanitized_value;
-		
-		update_option( self::OPTIONS_LIST_NAME, $this->options_list );
+	public static function set( $name, $value ) {
+		$sanitized_value             = self::cast( $name, $value );
+		self::$options_list[ $name ] = $sanitized_value;
+		update_option( self::OPTIONS_LIST_NAME, self::$options_list );
+		return false;
 	}
 
 	/**
 	 * Remove the value from the list then saves the entire list in the WP database.
 	 *
 	 * @param [string] $name The name of list item.
-	 * @return void
+	 * @return boolean True if successful.
 	 */
-	public function delete( $name ) {
+	public static function delete( $name ) {
 
-		if ( array_key_exists( $name, $this->options_list ) ) {
-			unset( $this->options_list[ $name ] );
+		if ( array_key_exists( $name, self::$options_list ) ) {
+			unset( self::$options_list[ $name ] );
 			
-			update_option( self::OPTIONS_LIST_NAME, $this->options_list );
+			return update_option( self::OPTIONS_LIST_NAME, self::$options_list );
 		}
 	}
 
 	/**
 	 * Remove all values from the list then deletes the option in the WP database.
 	 *
-	 * @return void
+	 * @param boolean $multisite Whether to delete the option from the network.
+	 * @return boolean True if successful.
 	 */
-	public function delete_all() {
-		$this->options_list = array();
-		delete_option( self::OPTIONS_LIST_NAME );
+	public static function delete_all( $multisite = false ) {
+		self::$options_list = array();
+		
+		$retval = delete_option( self::OPTIONS_LIST_NAME );
+
+		if ( $multisite ) {
+			delete_site_option( self::OPTIONS_LIST_NAME );
+		}
+
+		return $retval;
 	}
 
 	/**
@@ -202,7 +215,7 @@ class Options {
 	 *
 	 * @return string
 	 */
-	public function list_name() {
+	public static function list_name() {
 		return self::OPTIONS_LIST_NAME;
 	}
 
@@ -211,8 +224,8 @@ class Options {
 	 *
 	 * @return array
 	 */
-	public function names() {
-		return array_keys( $this->options_list );
+	public static function names() {
+		return array_keys( self::$options_list );
 	}
 
 	/**
@@ -220,9 +233,44 @@ class Options {
 	 *
 	 * @return array
 	 */
-	public function as_array() {
-		return $this->options_list;
+	public static function as_array() {
+		return self::$options_list;
 	}
+	
+	/**
+	 * If needed, migrate legacy options to use this Options class.
+	 *
+	 * @return void
+	 */
+	public static function maybe_migrate_legacy_options() {
+		
+		if(get_option(LEGACY_OPTION_NAMES_MAPPING[0])) {
+	
+			// Legacy options exist. Migrate them.
+			foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
+				$value = get_option( $old_name );
+				self::set( $new_name, $value );
+			}
+		
+		}		
+	
+	
+		foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
+	
+			// TODO remove this.
+			// trigger an exception when a legacy option is read so we can find and fix.
+			add_filter(
+				'pre_option_' . $old_name,
+				function ( $legacy_value, $legacy_name ) {
+					throw new \Exception( esc_html( 'Legacy option "' . $legacy_name . '" is being read.' ) );
+				},
+				10,
+				2
+			);
+
+		}
+	}
+
 	
 	/**
 	 * Forces the value stored in the list to be of the type that we expect.
@@ -232,7 +280,7 @@ class Options {
 	 * @throws \Exception When cast fails.
 	 * @return mixed
 	 */
-	private function cast( $name, $value ) {
+	private static function cast( $name, $value ) {
 		
 		$type = self::CASTS[ $name ];
 
@@ -247,6 +295,12 @@ class Options {
 			case 'array':
 				if ( is_array( $value ) ) {
 					return $value;
+				}
+				if ( is_string( $value ) ) {
+					return array( $value );
+				}
+				if ( ! $value || is_null( $value ) ) {
+					return array();
 				}
 				throw new \Exception( esc_html( $name . ' cannot be cast to array.' ) );
 

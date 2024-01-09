@@ -31,7 +31,7 @@ class Settings {
 
 		if ( ! class_exists( '\EDACP\Settings' ) ) {
 
-			$post_types = Helpers::get_option_as_array( 'edac_post_types' );
+			$post_types = Options::get( 'post_types' );
 
 			// remove duplicates.
 			$post_types = array_unique( $post_types );

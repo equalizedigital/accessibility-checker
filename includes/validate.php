@@ -55,7 +55,7 @@ function edac_post_on_load() {
  */
 function edac_save_post( $post_ID, $post, $update ) {
 	// check post type.
-	$post_types = get_option( 'edac_post_types' );
+	$post_types = \EDAC\Admin\Options::get( 'post_types' );
 	if ( is_array( $post_types ) && ! in_array( $post->post_type, $post_types, true ) ) {
 		return;
 	}
@@ -102,7 +102,7 @@ function edac_save_post( $post_ID, $post, $update ) {
  */
 function edac_validate( $post_ID, $post, $action ) {
 	// check post type.
-	$post_types = get_option( 'edac_post_types' );
+	$post_types = \EDAC\Admin\Options::get( 'post_types' );
 	if ( is_array( $post_types ) && ! in_array( $post->post_type, $post_types, true ) ) {
 		return;
 	}
@@ -114,10 +114,10 @@ function edac_validate( $post_ID, $post, $action ) {
 	do_action( 'edac_after_get_content', $post_ID, $content, $action );
 
 	if ( ! $content['html'] ) {
-		update_option( 'edac_password_protected', true );
+		\EDAC\Admin\Options::set( 'password_protected', true );
 		return;
 	}
-	delete_option( 'edac_password_protected' );
+	\EDAC\Admin\Options::delete( 'password_protected' );
 
 	// set record check flag on previous error records.
 	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 1, 'php' );
@@ -264,7 +264,7 @@ function edac_get_content( $post ) {
 
 	$no_verify_ssl = false; // Verify by default.
 
-	$is_local_loopback = get_option( 'edac_local_loopback', null );
+	$is_local_loopback = \EDAC\Admin\Options::get( 'local_loopback', null );
 
 	if ( null === $is_local_loopback ) {
 
@@ -272,7 +272,7 @@ function edac_get_content( $post ) {
 
 		if ( isset( $parsed_url['host'] ) ) {
 			$is_local_loopback = Helpers::is_domain_loopback( $parsed_url['host'] );
-			update_option( 'edac_local_loopback', $is_local_loopback );
+			\EDAC\Admin\Options::set( 'local_loopback', $is_local_loopback );
 		}
 	}
 

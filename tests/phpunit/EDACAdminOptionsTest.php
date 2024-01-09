@@ -14,12 +14,6 @@ use EDAC\Admin\Options;
 class EDACAdminOptionsTest extends WP_UnitTestCase {
 	
 
-	/**
-	 * Instance of the Options class.
-	 *
-	 * @var Options $options.
-	 */
-	private $options;
 	
 	/**
 	 * The name of the list.
@@ -33,7 +27,7 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 	 * Set up the test fixture.
 	 */
 	protected function setUp(): void {
-		$this->options = Options::instance();
+		Options::boot();
 	}
 
 	/**
@@ -68,19 +62,19 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 			list($name, $default_value) = $retval;
 
 				// Test that the default value is returned.
-			$this->assertEquals( $default_value, $this->options->get( $name ) );
+			$this->assertEquals( $default_value, Options::get( $name ) );
 
 			// Test that a new empty value is returned.
-			$this->options->set( $name, 'a new string' );
-			$this->assertEquals( 'a new string', $this->options->get( $name ) );
+			Options::set( $name, 'a new string' );
+			$this->assertEquals( 'a new string', Options::get( $name ) );
 
 			// Test that the value is deleted and returns null.
-			$this->options->delete( $name );
-			$this->assertEquals( null, $this->options->get( $name ) );
+			Options::delete( $name );
+			$this->assertEquals( null, Options::get( $name ) );
 
 			// Test that a new value is returned.
-			$this->options->set( $name, 'another new string' );
-			$this->assertEquals( 'another new string', $this->options->get( $name ) );
+			Options::set( $name, 'another new string' );
+			$this->assertEquals( 'another new string', Options::get( $name ) );
 		
 		}
 	}
@@ -96,19 +90,19 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 			list($name, $default_value) = $retval;
 
 			// Test that the default value is returned.
-			$this->assertEquals( $default_value, $this->options->get( $name ) );
+			$this->assertEquals( $default_value, Options::get( $name ) );
 
 			// Test that a new false value is returned.
-			$this->options->set( $name, false );
-			$this->assertEquals( false, $this->options->get( $name ) );
+			Options::set( $name, false );
+			$this->assertEquals( false, Options::get( $name ) );
 
 			// Test that the value is deleted and returns null.
-			$this->options->delete( $name );
-			$this->assertEquals( null, $this->options->get( $name ) );
+			Options::delete( $name );
+			$this->assertEquals( null, Options::get( $name ) );
 
 			// Test that a new value is returned.
-			$this->options->set( $name, true );
-			$this->assertEquals( true, $this->options->get( $name ) );
+			Options::set( $name, true );
+			$this->assertEquals( true, Options::get( $name ) );
 		}
 	}
 
@@ -124,19 +118,19 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 
 
 			// Test that the default value is returned.
-			$this->assertEquals( $default_value, $this->options->get( $name ) );
+			$this->assertEquals( $default_value, Options::get( $name ) );
 
 			// Test that a new value is returned.
-			$this->options->set( $name, 2 );
-			$this->assertEquals( 2, $this->options->get( $name ) );
+			Options::set( $name, 2 );
+			$this->assertEquals( 2, Options::get( $name ) );
 
 			// Test that the value is deleted and returns null.
-			$this->options->delete( $name );
-			$this->assertEquals( null, $this->options->get( $name ) );
+			Options::delete( $name );
+			$this->assertEquals( null, Options::get( $name ) );
 
 			// Test that a new value is returned.
-			$this->options->set( $name, 3 );
-			$this->assertEquals( 3, $this->options->get( $name ) );
+			Options::set( $name, 3 );
+			$this->assertEquals( 3, Options::get( $name ) );
 		}
 	}
 
@@ -151,19 +145,19 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 			list($name, $default_value) = $retval;
 
 			// Test that the default value is returned.
-			$this->assertEquals( $default_value, $this->options->get( $name ) );
+			$this->assertEquals( $default_value, Options::get( $name ) );
 
 			// Test that a new value is returned.
-			$this->options->set( $name, array( 'd', 'e', 'f' ) );
-			$this->assertEquals( array( 'd', 'e', 'f' ), $this->options->get( $name ) );
+			Options::set( $name, array( 'd', 'e', 'f' ) );
+			$this->assertEquals( array( 'd', 'e', 'f' ), Options::get( $name ) );
 
 			// Test that the value is deleted and returns null.
-			$this->options->delete( $name );
-			$this->assertEquals( null, $this->options->get( $name ) );
+			Options::delete( $name );
+			$this->assertEquals( null, Options::get( $name ) );
 
 			// Test that a new value is returned.
-			$this->options->set( $name, array( 'g', 'h', 'i' ) );
-			$this->assertEquals( array( 'g', 'h', 'i' ), $this->options->get( $name ) );
+			Options::set( $name, array( 'g', 'h', 'i' ) );
+			$this->assertEquals( array( 'g', 'h', 'i' ), Options::get( $name ) );
 	
 		}
 	}
@@ -203,24 +197,24 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 		}       
 	
 		// Test that the values are filled.
-		$this->options->fill(
+		Options::fill(
 			$fill_array
 		);
 
 		if ( isset( $string_name ) ) {
-			$this->assertEquals( 'a_filled_string', $this->options->get( $string_name ) );
+			$this->assertEquals( 'a_filled_string', Options::get( $string_name ) );
 		}
 
 		if ( isset( $bool_name ) ) {
-			$this->assertEquals( false, $this->options->get( $bool_name ) );
+			$this->assertEquals( false, Options::get( $bool_name ) );
 		}
 
 		if ( isset( $number_name ) ) {
-			$this->assertEquals( -1, $this->options->get( $number_name ) );
+			$this->assertEquals( -1, Options::get( $number_name ) );
 		}
 
 		if ( isset( $array_name ) ) {
-			$this->assertEquals( array( 'a filled value 1', 'a filled value 2', 'a filled value 3' ), $this->options->get( $array_name ) );
+			$this->assertEquals( array( 'a filled value 1', 'a filled value 2', 'a filled value 3' ), Options::get( $array_name ) );
 		}   
 	}
 
@@ -229,7 +223,7 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 	 */
 	public function test_get_names_list() {
 	
-		$names = $this->options->names();
+		$names = Options::names();
 
 		$this->assertIsArray( $names );
 		foreach ( $names as $name ) {
@@ -273,11 +267,11 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 	
 	
 	
-		$this->options->fill(
+		Options::fill(
 			$fill_array
 		);
 
-		$as_array = $this->options->as_array();
+		$as_array = Options::as_array();
 
 	
 
@@ -295,7 +289,7 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 	 */
 	public function test_delete_all() {
 		
-		$this->options->delete_all();
+		Options::delete_all();
 		$this->assertEquals( false, get_option( $this->list_name ) );
 	}
 }

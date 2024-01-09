@@ -64,7 +64,7 @@ class Ajax {
 		$html['content'] = '';
 
 		// password check.
-		if ( (bool) get_option( 'edac_password_protected' ) === true ) {
+		if ( (bool) Options::get( 'password_protected' ) === true ) {
 			$admin_notices              = new \EDAC\Admin\Admin_Notices();
 			$notice_text                = $admin_notices->edac_password_protected_notice_text();
 			$html['password_protected'] = $notice_text;
@@ -74,7 +74,7 @@ class Ajax {
 		$post_id                   = (int) $_REQUEST['post_id'];
 		$summary                   = edac_summary( $post_id );
 		$simplified_summary_text   = '';
-		$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
+		$simplified_summary_prompt = Options::get( 'simplified_summary_prompt' );
 
 		$simplified_summary_text = esc_html__( 'A Simplified summary has not been included for this content.', 'accessibility-checker' );
 		if ( 'none' !== $simplified_summary_prompt ) {
@@ -480,7 +480,7 @@ class Ajax {
 		$post_id                        = (int) $_REQUEST['post_id'];
 		$html                           = '';
 		$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
-		$simplified_summary_position    = get_option( 'edac_simplified_summary_position', $default = false );
+		$simplified_summary_position    = Options::get( 'simplified_summary_position', $default = false );
 		$content_post                   = get_post( $post_id );
 		$content                        = $content_post->post_content;
 		$content                        = apply_filters( 'the_content', $content );
@@ -511,7 +511,7 @@ class Ajax {
 		}
 
 		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
-		$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
+		$simplified_summary_prompt       = Options::get( 'simplified_summary_prompt' );
 
 		$html .= '<ul class="edac-readability-list">';
 

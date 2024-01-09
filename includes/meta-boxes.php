@@ -11,7 +11,7 @@
  * @return void
  */
 function edac_register_meta_boxes() {
-	$post_types = get_option( 'edac_post_types' );
+	$post_types = \EDAC\Admin\Options::get( 'post_types' );
 	if ( $post_types ) {
 		foreach ( $post_types as $post_type ) {
 			add_meta_box(

@@ -70,7 +70,7 @@ class Admin_Notices {
 		}
 
 		// Get the value of the 'edac_gaad_notice_dismiss' option and sanitize it.
-		$dismissed = absint( get_option( 'edac_black_friday_2023_notice_dismiss', 0 ) );
+		$dismissed = absint( Options::get( 'black_friday_2023_notice_dismiss', 0 ) );
 
 		// Check if the notice has been dismissed.
 		if ( $dismissed ) {
@@ -129,7 +129,7 @@ class Admin_Notices {
 
 		}
 
-		$results = update_option( 'edac_black_friday_2023_notice_dismiss', true );
+		$results = Options::set( 'black_friday_2023_notice_dismiss', true );
 
 		if ( ! $results ) {
 
@@ -159,7 +159,7 @@ class Admin_Notices {
 		}
 
 		// Get the value of the 'edac_gaad_notice_dismiss' option and sanitize it.
-		$dismissed = absint( get_option( 'edac_gaad_notice_dismiss', 0 ) );
+		$dismissed = absint( Options::get( 'gaad_notice_dismiss', 0 ) );
 
 		// Check if the notice has been dismissed.
 		if ( $dismissed ) {
@@ -217,7 +217,7 @@ class Admin_Notices {
 
 		}
 
-		$results = update_option( 'edac_gaad_notice_dismiss', true );
+		$results = Options::set( 'gaad_notice_dismiss', true );
 
 		if ( ! $results ) {
 
@@ -310,7 +310,7 @@ class Admin_Notices {
 
 		}
 
-		$results = update_option( 'edac_review_notice', sanitize_text_field( $_REQUEST['review_action'] ) );
+		$results = Options::set( 'review_notice', sanitize_text_field( $_REQUEST['review_action'] ) );
 
 		if ( 'pause' === $_REQUEST['review_action'] ) {
 			set_transient( 'edac_review_notice_reminder', true, 14 * DAY_IN_SECONDS );
@@ -352,8 +352,8 @@ class Admin_Notices {
 	 * @return string
 	 */
 	public function edac_password_protected_notice() {
-		if ( (bool) get_option( 'edac_password_protected' ) 
-			&& ! (bool) get_option( 'edac_password_protected_notice_dismiss' ) 
+		if ( (bool) Options::get( 'password_protected' ) 
+			&& ! (bool) Options::get( 'password_protected_notice_dismiss' ) 
 		) {
 			echo wp_kses( '<div class="edac_password_protected_notice notice notice-error is-dismissible"><p>' . $this->edac_password_protected_notice_text() . '</p></div>', 'post' );
 			return;
@@ -378,7 +378,7 @@ class Admin_Notices {
 
 		}
 
-		$results = update_option( 'edac_password_protected_notice_dismiss', true );
+		$results = Options::set( 'password_protected_notice_dismiss', true );
 
 		if ( ! $results ) {
 

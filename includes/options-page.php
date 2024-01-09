@@ -131,7 +131,7 @@ function edac_register_setting() {
 		'edac_simplified_summary_position_cb',
 		'edac_settings',
 		'edac_simplified_summary',
-		array( 'label_for' => 'edac_simplified_summary_position' )
+		array( 'label_for' => 'edac[simplified_summary_position]' )
 	);
 
 	add_settings_field(
@@ -243,21 +243,25 @@ function edac_footer_accessibility_statement_cb() {
  * Render the radio input field for position option
  */
 function edac_simplified_summary_position_cb() {
-	$position = get_option( 'edac_simplified_summary_position' );
+
+	$key   = 'simplified_summary_position';
+	$ns    = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
+	$name  = $ns . '[' . $key . ']';
+	$value = \EDAC\Admin\Options::get( $key );
 	?>
 		<fieldset>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" id="<?php echo 'edac_simplified_summary_position'; ?>" value="before" <?php checked( $position, 'before' ); ?>>
+				<input type="radio" name="<?php echo esc_attr( $name ); ?>" value="before" <?php checked( $value, 'before' ); ?>>
 				<?php esc_html_e( 'Before the content', 'accessibility-checker' ); ?>
 			</label>
 			<br>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" value="after" <?php checked( $position, 'after' ); ?>>
+				<input type="radio" name="<?php echo esc_attr( $name ); ?>" value="after" <?php checked( $value, 'after' ); ?>>
 				<?php esc_html_e( 'After the content', 'accessibility-checker' ); ?>
 			</label>
 			<br>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" value="none" <?php checked( $position, 'none' ); ?>>
+				<input type="radio" name="<?php echo esc_attr( $name ); ?>" value="none" <?php checked( $value, 'none' ); ?>>
 				<?php esc_html_e( 'Insert manually', 'accessibility-checker' ); ?>
 			</label>
 		</fieldset>
@@ -287,7 +291,7 @@ function edac_sanitize_simplified_summary_position( $position ) {
  * Render the radio input field for position option
  */
 function edac_simplified_summary_prompt_cb() {
-	$prompt = get_option( 'edac_simplified_summary_prompt' );
+	$prompt = \EDAC\Admin\Options::get( 'simplified_summary_prompt' );
 	?>
 		<fieldset>
 			<label>
@@ -326,7 +330,7 @@ function edac_sanitize_simplified_summary_prompt( $prompt ) {
  */
 function edac_post_types_cb() {
 
-	$selected_post_types = get_option( 'edac_post_types' ) ? get_option( 'edac_post_types' ) : array();
+	$selected_post_types = \EDAC\Admin\Options::get( 'post_types' ) ? \EDAC\Admin\Options::get( 'post_types' ) : array();
 	$post_types          = edac_post_types();
 	$custom_post_types   = edac_custom_post_types();
 	$all_post_types      = ( is_array( $post_types ) && is_array( $custom_post_types ) ) ? array_merge( $post_types, $custom_post_types ) : array();
@@ -402,7 +406,7 @@ function edac_sanitize_post_types( $selected_post_types ) {
 	}
 
 	// clear cached stats if selected posts types change.
-	if ( get_option( 'edac_post_types' ) !== $selected_post_types ) {
+	if ( \EDAC\Admin\Options::get( 'post_types' ) !== $selected_post_types ) {
 		$scan_stats = new \EDAC\Admin\Scans_Stats();
 		$scan_stats->clear_cache();
 
@@ -419,7 +423,7 @@ function edac_sanitize_post_types( $selected_post_types ) {
  */
 function edac_add_footer_accessibility_statement_cb() {
 
-	$option = get_option( 'edac_add_footer_accessibility_statement' ) ? get_option( 'edac_add_footer_accessibility_statement' ) : false;
+	$option = \EDAC\Admin\Options::get( 'add_footer_accessibility_statement' ) ? \EDAC\Admin\Options::get( 'add_footer_accessibility_statement' ) : false;
 
 	?>
 	<fieldset>
@@ -448,8 +452,8 @@ function edac_sanitize_add_footer_accessibility_statement( $option ) {
  */
 function edac_include_accessibility_statement_link_cb() {
 
-	$option   = get_option( 'edac_include_accessibility_statement_link' ) ? get_option( 'edac_include_accessibility_statement_link' ) : false;
-	$disabled = get_option( 'edac_add_footer_accessibility_statement' ) ? get_option( 'edac_add_footer_accessibility_statement' ) : false;
+	$option   = \EDAC\Admin\Options::get( 'include_accessibility_statement_link' ) ? \EDAC\Admin\Options::get( 'include_accessibility_statement_link' ) : false;
+	$disabled = \EDAC\Admin\Options::get( 'add_footer_accessibility_statement' ) ? \EDAC\Admin\Options::get( 'add_footer_accessibility_statement' ) : false;
 
 	?>
 	<fieldset>
@@ -483,7 +487,7 @@ function edac_sanitize_include_accessibility_statement_link( $option ) {
  */
 function edac_accessibility_policy_page_cb() {
 
-	$policy_page = get_option( 'edac_accessibility_policy_page' );
+	$policy_page = \EDAC\Admin\Options::get( 'accessibility_policy_page' );
 	$policy_page = is_numeric( $policy_page ) ? get_page_link( $policy_page ) : $policy_page;
 	?>
 
@@ -518,7 +522,7 @@ function edac_accessibility_statement_preview_cb() {
  */
 function edac_delete_data_cb() {
 
-	$option = get_option( 'edac_delete_data' ) ? get_option( 'edac_delete_data' ) : false;
+	$option = \EDAC\Admin\Options::get( 'delete_data' ) ? \EDAC\Admin\Options::get( 'delete_data' ) : false;
 
 	?>
 	<fieldset>
