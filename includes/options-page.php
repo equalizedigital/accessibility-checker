@@ -230,11 +230,11 @@ function edac_simplified_summary_position_cb() {
 	$ns    = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
 	$name  = $ns . '[' . $key . ']';
 	$value = \EDAC\Admin\Options::get( $key );
-
+	
 	?>
 		<fieldset>
 			<label>
-				<input type="radio" name="<?php echo esc_attr( $name ); ?>" value="before" <?php checked( $value, 'before' ); ?>>
+				<input type="radio" id="<?php echo esc_attr( 'edac_' . $key ); ?>" name="<?php echo esc_attr( $name ); ?>" value="before" <?php checked( $value, 'before' ); ?>>
 				<?php esc_html_e( 'Before the content', 'accessibility-checker' ); ?>
 			</label>
 			<br>
@@ -272,7 +272,7 @@ function edac_simplified_summary_prompt_cb() {
 	?>
 		<fieldset>
 			<label>
-				<input type="radio" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $name ); ?>" value="when required" <?php checked( $value, 'when required' ); ?>>
+				<input type="radio" id="<?php echo esc_attr( 'edac_' . $key ); ?>" name="<?php echo esc_attr( $name ); ?>" value="when required" <?php checked( $value, 'when required' ); ?>>
 				<?php esc_html_e( 'When Required', 'accessibility-checker' ); ?>
 			</label>
 			<br>
@@ -311,7 +311,7 @@ function edac_post_types_cb() {
 					$disabled = in_array( $post_type, $post_types, true ) ? '' : 'disabled';
 					?>
 					<label>
-						<input type="checkbox" id="<?php echo esc_attr( $key ); ?>[]" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $post_type ); ?>" 
+						<input type="checkbox" id="<?php echo esc_attr( 'edac_' . $key ); ?>[]" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $post_type ); ?>" 
 																<?php
 																checked( in_array( $post_type, $selected_post_types, true ), 1 );
 																echo esc_attr( $disabled );
@@ -406,7 +406,7 @@ function edac_accessibility_policy_page_cb() {
 	$policy_page = is_numeric( $value ) ? get_page_link( $value ) : $value;
 	?>
 
-	<input style="width: 100%;" type="text" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $policy_page ); ?>">
+	<input style="width: 100%;" type="text" id="<?php echo esc_attr( 'edac_' . $key ); ?>" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $policy_page ); ?>">
 
 	<?php
 }

@@ -284,7 +284,7 @@ class Options {
 
 		switch ( $name ) {
 			case 'simplified_summary_position':
-				if ( ! in_array( $value, array( 'before', 'after' ), true ) ) {
+				if ( ! in_array( $value, array( 'before', 'after', 'none' ), true ) ) {
 					$value = self::DEFAULT_VALUES[ $name ];
 				}
 
