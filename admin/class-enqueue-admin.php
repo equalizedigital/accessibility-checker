@@ -35,7 +35,7 @@ class Enqueue_Admin {
 	 * @return void
 	 */
 	public static function enqueue_styles() {
-		wp_enqueue_style( 'edac', plugin_dir_url( __DIR__ ) . 'build/css/admin.css', array(), EDAC_VERSION, 'all' );
+		wp_enqueue_style( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/admin.css', array(), EDAC_VERSION, 'all' );
 	}   
 	
 	/**
@@ -61,7 +61,7 @@ class Enqueue_Admin {
 
 			global $post;
 			$post_id = is_object( $post ) ? $post->ID : null;
-			wp_enqueue_script( 'edac', plugin_dir_url( __DIR__ ) . 'build/admin.bundle.js', array( 'jquery' ), EDAC_VERSION, false );
+			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', array( 'jquery' ), EDAC_VERSION, false );
 
 		
 			wp_localize_script(
@@ -99,7 +99,7 @@ class Enqueue_Admin {
 					$debug = false;
 				}
 		
-				wp_enqueue_script( 'edac-editor-app', plugin_dir_url( __DIR__ ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
+				wp_enqueue_script( 'edac-editor-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 	
 				wp_localize_script(
 					'edac-editor-app',
@@ -109,7 +109,7 @@ class Enqueue_Admin {
 						'edacUrl'     => esc_url_raw( get_site_url() ),
 						'edacHeaders' => $headers,
 						'edacApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-						'baseurl'     => plugin_dir_url( __DIR__ ),
+						'baseurl'     => plugin_dir_url( EDAC_PLUGIN_FILE ),
 						'active'      => $active,
 						'pro'         => $pro,
 						'debug'       => $debug,
@@ -147,9 +147,11 @@ class Enqueue_Admin {
 						'zcld'       => '1a0796bc2303c2cb',
 						'zctd'       => '',
 						'zc_form_ix' => '3zdf37c20714225fe975e2772c61e00bf3a196e8e7f12fdcb55c14b48b8778764e',
-					)
+					)                   
+				);
+
 			
-			}       
+			}  
 		}
 	}
 }
