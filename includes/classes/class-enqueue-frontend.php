@@ -24,7 +24,7 @@ class Enqueue_Frontend {
 	 * Enqueue the scripts and styles.
 	 */
 	public static function enqueue() {
-		self::enqueue_frontend_highlighter();
+		self::maybe_enqueue_frontend_highlighter();
 	}
 	
 	/**
@@ -32,7 +32,7 @@ class Enqueue_Frontend {
 	 *
 	 * @return void
 	 */
-	public static function enqueue_frontend_highlighter() {
+	public static function maybe_enqueue_frontend_highlighter() {
 		
 		// This loads on all pages, so bail as early as possible. Do checks that don't require DB calls first.
 

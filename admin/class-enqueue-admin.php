@@ -131,27 +131,23 @@ class Enqueue_Admin {
 	 */
 	public static function maybe_enqueue_email_opt_in_script() {
 
-		if ( true !== (bool) get_user_meta( get_current_user_id(), 'edac_email_optin', true ) ) {
-	
-			$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
-			if ( 'accessibility_checker' === $page ) {
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+		if ( 'accessibility_checker' === $page 
+			&& true !== (bool) get_user_meta( get_current_user_id(), 'edac_email_optin', true ) 
+		) {
 
-			
-				wp_enqueue_script( 'edac-email-opt-in', 'https://zmp-glf.maillist-manage.com/js/optin.min.js', false, EDAC_VERSION, false );
+				wp_enqueue_style( 'email-opt-in-form', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/emailOptIn.css', false, EDAC_VERSION, 'all' );
+				wp_enqueue_script( 'email-opt-in-form', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/emailOptIn.bundle.js', false, EDAC_VERSION, true );
 		
 				wp_localize_script(
-					'edac-email-opt-in',
-					'edacEmailOptIn',
+					'email-opt-in-form',
+					'edac_email_opt_in_form',
 					array(
-						'zx'         => '1273a5c7a',
-						'zcld'       => '1a0796bc2303c2cb',
-						'zctd'       => '',
-						'zc_form_ix' => '3zdf37c20714225fe975e2772c61e00bf3a196e8e7f12fdcb55c14b48b8778764e',
-					)                   
+						'nonce'   => wp_create_nonce( 'ajax-nonce' ),
+						'ajaxurl' => admin_url( 'admin-ajax.php' ),
+					)
 				);
-
-			
-			}  
+	
 		}
 	}
 }
