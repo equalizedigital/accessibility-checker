@@ -84,6 +84,7 @@ function edac_admin_enqueue_scripts() {
 					'postID'      => $post_id,
 					'edacUrl'     => esc_url_raw( get_site_url() ),
 					'edacHeaders' => $headers,
+					'basicAuth'   => true === $pro ? false : EDAC\Helpers::is_basic_auth(),
 					'edacApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
 					'baseurl'     => plugin_dir_url( __DIR__ ),
 					'active'      => $active,
