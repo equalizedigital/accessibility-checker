@@ -835,7 +835,7 @@ function edac_summary_ajax() {
 
 	// password check.
 	if (
-		!(
+		! (
 			EDAC_KEY_VALID === true &&
 			edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' )
 		) &&

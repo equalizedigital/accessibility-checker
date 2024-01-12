@@ -80,7 +80,6 @@ function edac_display_options_page() {
 
 	// force edac_auth_type to reset in case user updates auth options.
 	delete_transient( 'edac_auth_type' );
-
 }
 
 /**
