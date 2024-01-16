@@ -133,8 +133,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 /**
  * Filters and Actions
  */
-add_action( 'admin_enqueue_scripts', array( 'EDAC\Admin\Enqueue_Admin', 'enqueue' ) );
-add_action( 'wp_enqueue_scripts', array( 'EDAC\Inc\Enqueue_Frontend', 'enqueue' ) );
 add_action( 'admin_init', 'edac_update_database', 10 );
 add_action( 'add_meta_boxes', 'edac_register_meta_boxes' );
 add_action( 'admin_menu', 'edac_add_options_page' );

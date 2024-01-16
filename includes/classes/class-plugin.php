@@ -36,7 +36,9 @@ class Plugin {
 	 * @return void
 	 */
 	private function init() {
-
+		
+		add_action( 'wp_enqueue_scripts', array( 'EDAC\Inc\Enqueue_Frontend', 'enqueue' ) );
+		
 		$accessibility_statement = new Accessibility_Statement();
 		$accessibility_statement->init_hooks();
 
