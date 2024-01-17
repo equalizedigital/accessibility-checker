@@ -5,11 +5,12 @@ import { showNotice } from './../common/helpers';
 
 const API_URL = edac_editor_app.edacApiUrl;
 
+
 let HEADERS;
-if (typeof (edacp_full_site_scan_app) === 'undefined') {
+if (typeof (edacpFullSiteScanApp) === 'undefined') {
 	HEADERS = edac_editor_app.edacHeaders;
 } else {
-	HEADERS = edacp_full_site_scan_app.edacpHeaders;
+	HEADERS = edacpFullSiteScanApp.edacpHeaders;
 }
 
 

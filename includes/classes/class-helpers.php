@@ -207,4 +207,41 @@ class Helpers {
 	
 		return false;
 	}
+
+	/**
+	 * Determine if this site is using basic auth.
+	 *
+	 * @return boolean
+	 */
+	public static function is_basic_auth() {
+		
+		$key = 'edac_auth_type';
+
+		$status = get_transient( $key );
+
+		$status = false;
+
+		if ( false === $status ) {
+
+			//phpcs:disable WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get
+			$response = wp_remote_get( home_url() );
+			if ( ! is_wp_error( $response ) ) {
+				$code = wp_remote_retrieve_response_code( $response );
+		
+				if ( 401 === $code || 403 === $code ) {
+					$status = 'basic';
+				}
+			}
+			
+			// cache results for up to 30 seconds.
+			set_transient( $key, $status, 30 );
+
+		}
+
+		if ( 'basic' === $status ) {
+			return true;
+		}
+
+		return false;
+	}
 }
