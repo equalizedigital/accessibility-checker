@@ -17,6 +17,7 @@ use EDAC\Issues_Query;
  */
 class Scans_Stats {
 
+
 	/**
 	 * Number of seconds to return results from cache.
 	 *
@@ -189,7 +190,7 @@ class Scans_Stats {
 			);
 
 			if ( $rule_query->count() ) {
-				++$data['rules_failed'];
+					++$data['rules_failed'];
 			}       
 		}
 		$data['rules_passed'] = $this->rule_count - $data['rules_failed'];
@@ -247,9 +248,9 @@ class Scans_Stats {
 		
 		
 		
-		if ( $data['posts_scanned'] > 0 && 
-			! empty( Settings::get_scannable_post_types() ) && 
-			! empty( Settings::get_scannable_post_statuses() ) 
+		if ( $data['posts_scanned'] > 0  
+			&& ! empty( Settings::get_scannable_post_types() )  
+			&& ! empty( Settings::get_scannable_post_statuses() ) 
 		) {
 		
 			$sql = "SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}  
@@ -262,7 +263,7 @@ class Scans_Stats {
 				Settings::get_scannable_post_statuses()
 			) . ')';
 		
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+         // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$data['posts_without_issues'] = $wpdb->get_var( $sql );
 
 			$data['avg_issues_per_post'] = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
@@ -364,7 +365,7 @@ class Scans_Stats {
 	/**
 	 * Gets issues summary information about a post type
 	 *
-	 * @param string $post_type post type.
+	 * @param  string $post_type post type.
 	 * @return array .
 	 */
 	public function issues_summary_by_post_type( $post_type ) {
@@ -437,7 +438,7 @@ class Scans_Stats {
 		$data['cache_id']   = $transient_name; 
 		$data['cached_at']  = time(); 
 		$data['expires_at'] = time() + $this->cache_time; 
-		$data['cache_hit'] = false;
+		$data['cache_hit']  = false;
 
 		set_transient( $transient_name, $data, $this->cache_time );
 
