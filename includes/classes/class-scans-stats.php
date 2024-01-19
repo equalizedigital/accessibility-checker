@@ -437,7 +437,7 @@ class Scans_Stats {
 		$data['cache_id']   = $transient_name; 
 		$data['cached_at']  = time(); 
 		$data['expires_at'] = time() + $this->cache_time; 
-		$cache['cache_hit'] = false;
+		$data['cache_hit'] = false;
 
 		set_transient( $transient_name, $data, $this->cache_time );
 
