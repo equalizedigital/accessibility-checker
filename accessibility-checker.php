@@ -834,13 +834,8 @@ function edac_summary_ajax() {
 	$html['content'] = '';
 
 	// password check.
-	if (
-		! (
-			EDAC_KEY_VALID === true &&
-			edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' )
-		) &&
-		\EDAC\Helpers::is_basic_auth() 
-	) {
+	$is_pasword_protected = (bool) get_option( 'edac_password_protected', false );
+	if ( $is_pasword_protected ) {
 		$admin_notices              = new \EDAC\Admin_Notices();
 		$notice_text                = $admin_notices->edac_password_protected_notice_text();
 		$html['password_protected'] = $notice_text;
