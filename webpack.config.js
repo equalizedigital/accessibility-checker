@@ -23,6 +23,11 @@ module.exports = {
 		pageScanner: [
 			'./src/pageScanner/index.js',
 		],
+		emailOptIn: [
+			'./src/emailOptIn/index.js',
+			'./src/emailOptIn/sass/email-opt-in.scss',
+		],
+
 	},
 
 	output: {

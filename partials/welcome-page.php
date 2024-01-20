@@ -204,17 +204,9 @@
 		</div>
 
 		<?php
-
-
-		if ( true !== (bool) get_user_meta( get_current_user_id(), 'edac_email_optin', true ) ) {
-			\EDAC\Admin\Welcome_Page::render_email_opt_in(
-				'1273a5c7a',
-				'1a0796bc2303c2cb',
-				'',
-				'3zdf37c20714225fe975e2772c61e00bf3a196e8e7f12fdcb55c14b48b8778764e'
-			);
-		}
+			\EDAC\Admin\Welcome_Page::maybe_render_email_opt_in();  
 		?>
+
 	</div>
 </div>
 
