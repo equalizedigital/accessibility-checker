@@ -137,7 +137,10 @@ export const init = () => {
 	if (wp.data !== undefined && wp.data.subscribe !== undefined) {
 		wp.data.subscribe(() => {
 
-			
+			if(wp.data.select('core/editor') === undefined) {
+				return;
+			}
+
 			if (wp.data.select('core/editor').isAutosavingPost()) {
 				autosaving = true;
 			}

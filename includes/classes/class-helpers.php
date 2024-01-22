@@ -207,5 +207,4 @@ class Helpers {
 	
 		return false;
 	}
-
 }

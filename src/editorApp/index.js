@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	const SCANNABLE_POST_TYPE = edac_editor_app.active;
 
-	if (SCANNABLE_POST_TYPE && settings.JS_SCAN_ENABLED) {
+	if (SCANNABLE_POST_TYPE) {
 
 		if (edac_editor_app.authOk === '1' ) {
 

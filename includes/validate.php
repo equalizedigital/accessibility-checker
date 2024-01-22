@@ -111,9 +111,6 @@ function edac_validate( $post_ID, $post, $action ) {
 	$content = edac_get_content( $post );
 	do_action( 'edac_after_get_content', $post_ID, $content, $action );
 
-	// TODO:
-	error_log( $content['html'] );
-
 	if ( ! $content['html'] ) {
 		add_option( 'edac_password_protected', true );
 		return;
