@@ -111,8 +111,10 @@ function edac_validate( $post_ID, $post, $action ) {
 	$content = edac_get_content( $post );
 	do_action( 'edac_after_get_content', $post_ID, $content, $action );
 
+	// TODO:
+	error_log( $content['html'] );
+
 	if ( ! $content['html'] ) {
-		delete_transient( 'edac_auth_type' );
 		add_option( 'edac_password_protected', true );
 		return;
 	} else {
@@ -357,9 +359,8 @@ function edac_get_content( $post ) {
 			// will not be followed, so $content['html] will be false.
 			$merged_context_opts = array_merge( $default_context_opts, $context_opts );
 			$context             = stream_context_create( $merged_context_opts );
-			
-			$dom             = file_get_html( $url, false, $context );      
-			$content['html'] = edac_remove_elements(
+			$dom                 = file_get_html( $url, false, $context );   
+			$content['html']     = edac_remove_elements(
 				$dom, 
 				array(
 					'#wpadminbar',            // wp admin bar.

@@ -840,7 +840,8 @@ const getData = async (url = "", data = {}) => {
   const response = await fetch(url, {
     method: "GET",
     headers: {
-      'X-WP-Nonce': edac_script_vars.restNonce
+      'X-WP-Nonce': edac_script_vars.restNonce,
+      'Content-Type': 'application/json'
     }
   });
   return response.json();
@@ -854,7 +855,8 @@ const postData = async (url = "", data = {}) => {
   const response = await fetch(url, {
     method: "POST",
     headers: {
-      'X-WP-Nonce': edac_script_vars.restNonce
+      'X-WP-Nonce': edac_script_vars.restNonce,
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(data),
   });
