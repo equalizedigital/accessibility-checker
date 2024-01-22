@@ -5,21 +5,11 @@ import { showNotice } from './../common/helpers';
 
 const API_URL = edac_editor_app.edacApiUrl;
 
-
-let HEADERS;
-if (typeof (edacpFullSiteScanApp) === 'undefined') {
-	HEADERS = edac_editor_app.edacHeaders;
-} else {
-	HEADERS = edacpFullSiteScanApp.edacpHeaders;
-}
-
-
 const postData = async (url = "", data = {}) => {
 
 
 	return await fetch(url, {
 		method: "POST",
-		headers: HEADERS,
 		body: JSON.stringify(data),
 	}).then((res) => {
 		return res.json();
@@ -33,7 +23,6 @@ const getData = async (url = "") => {
 
 	return await fetch(url, {
 		method: "GET",
-		headers: HEADERS
 	}).then((res) => {
 		return res.json();
 	}).catch(() => {
