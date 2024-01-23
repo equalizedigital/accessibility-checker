@@ -1,33 +1,32 @@
 /* eslint-disable padded-blocks, no-multiple-empty-lines */
-/* global edacEditorApp, edacpFullSiteScanApp */
+/* global edac_editor_app */
 
 import { info, debug } from './helpers';
 import { showNotice } from './../common/helpers';
 
-const API_URL = edac_editor_app.edacApiUrl;
-
-const postData = async (url = "", data = {}) => {
+const postData = async ( url = '', data = {} ) => {
 
 
-	return await fetch(url, {
-		method: "POST",
+	return await fetch( url, {
+		method: 'POST',
 		headers: {
+			// eslint-disable-next-line camelcase
 			'X-WP-Nonce': edac_script_vars.restNonce,
-			'Content-Type': 'application/json'
-		},	  
-		body: JSON.stringify(data),
-	}).then((res) => {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify( data ),
+	} ).then( ( res ) => {
 		return res.json();
 	} ).catch( () => {
 		return {};
-	});
+	} );
 
-}
+};
 
-
+const saveScanResults = ( postId, violations ) => {
 	document.querySelector( '.edac-panel' ).classList.add( 'edac-panel-loading' );
 
-	postData( edacEditorApp.edacApiUrl + '/post-scan-results/' + postId, {
+	postData( edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
 		violations,
 	} ).then( ( data ) => {
 		info( 'Saving ' + postId + ': done' );
@@ -82,7 +81,7 @@ const injectIframe = ( previewUrl, postID ) => {
 		if ( iframeDocument ) {
 			// inject the scanner app.
 			const scannerScriptElement = iframeDocument.createElement( 'script' );
-			scannerScriptElement.src = edacEditorApp.baseurl + '/build/pageScanner.bundle.js';
+			scannerScriptElement.src = edac_editor_app.baseurl + '/build/pageScanner.bundle.js';
 			iframeDocument.head.appendChild( scannerScriptElement );
 		}
 	} );
@@ -109,14 +108,14 @@ export const init = () => {
 	let autosaving = false;
 
 
-	if (wp.data !== undefined && wp.data.subscribe !== undefined) {
-		wp.data.subscribe(() => {
+	if ( wp.data !== undefined && wp.data.subscribe !== undefined ) {
+		wp.data.subscribe( () => {
 
-			if(wp.data.select('core/editor') === undefined) {
+			if ( wp.data.select( 'core/editor' ) === undefined ) {
 				return;
 			}
 
-			if (wp.data.select('core/editor').isAutosavingPost()) {
+			if ( wp.data.select( 'core/editor' ).isAutosavingPost() ) {
 				autosaving = true;
 			}
 
@@ -127,7 +126,7 @@ export const init = () => {
 				saving = false;
 
 				if ( ! autosaving ) {
-					injectIframe( edacEditorApp.scanUrl, edacEditorApp.postID );
+					injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
 				} else {
 					autosaving = false;
 				}
@@ -137,6 +136,6 @@ export const init = () => {
 		debug( 'Gutenberg is not enabled.' );
 	}
 
-	injectIframe( edacEditorApp.scanUrl, edacEditorApp.postID );
+	injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
 };
 
