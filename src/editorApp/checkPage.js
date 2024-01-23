@@ -25,7 +25,7 @@ const postData = async ( url = '', data = {} ) => {
 
 const saveScanResults = ( postId, violations ) => {
 	document.querySelector( '.edac-panel' ).classList.add( 'edac-panel-loading' );
-
+	// eslint-disable-next-line camelcase
 	postData( edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
 		violations,
 	} ).then( ( data ) => {
@@ -81,6 +81,7 @@ const injectIframe = ( previewUrl, postID ) => {
 		if ( iframeDocument ) {
 			// inject the scanner app.
 			const scannerScriptElement = iframeDocument.createElement( 'script' );
+			// eslint-disable-next-line camelcase
 			scannerScriptElement.src = edac_editor_app.baseurl + '/build/pageScanner.bundle.js';
 			iframeDocument.head.appendChild( scannerScriptElement );
 		}
@@ -126,6 +127,7 @@ export const init = () => {
 				saving = false;
 
 				if ( ! autosaving ) {
+					// eslint-disable-next-line camelcase
 					injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
 				} else {
 					autosaving = false;
@@ -136,6 +138,7 @@ export const init = () => {
 		debug( 'Gutenberg is not enabled.' );
 	}
 
+	// eslint-disable-next-line camelcase
 	injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
 };
 
