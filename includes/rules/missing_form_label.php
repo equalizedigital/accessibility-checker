@@ -12,16 +12,14 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_missing_form_label( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
-	
-	$dom          = $content['html'];
-	$labels       = $dom->find( 'label' );
-	$fields       = $dom->find( 'input' );
-	$ignore_types = array( 'submit', 'hidden', 'button', 'reset' );
-	$errors       = array();
-	
+function edac_rule_missing_form_label( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
+
+	$dom    = $content['html'];
+	$fields = $dom->find( 'input' );
+	$errors = array();
+
 	foreach ( $fields as $field ) {
-		if ( in_array( $field->getAttribute( 'type' ), $ignore_types ) ) {
+		if ( in_array( $field->getAttribute( 'type' ), array( 'submit', 'hidden', 'button', 'reset' ), true ) ) {
 			continue;
 		}
 		if ( ! ac_input_has_label( $field, $dom ) ) {
@@ -41,14 +39,14 @@ function edac_rule_missing_form_label( $content, $post ) { // phpcs:ignore Gener
 function ac_input_has_label( $field, $dom ) {
 	if ( $field->getAttribute( 'aria-labelledby' ) ) {
 		return true;
-	} elseif ( $field->getAttribute( 'aria-label' ) ) {
-		return true;
-	} elseif ( $dom->find( 'label[for="' . $field->getAttribute( 'id' ) . '"]', -1 ) != '' ) {
-		return true;
-	} else {
-		return edac_field_has_label_parent( $field );
 	}
-	return false;
+	if ( $field->getAttribute( 'aria-label' ) ) {
+		return true;
+	}
+	if ( $dom->find( 'label[for="' . $field->getAttribute( 'id' ) . '"]', -1 ) !== '' ) {
+		return true;
+	}
+	return edac_field_has_label_parent( $field );
 }
 
 /**
@@ -65,13 +63,13 @@ function edac_field_has_label_parent( $field ) {
 	if ( null === $parent ) {
 		return false;
 	}
-	
+
 	$tag = $parent->tag;
 	if ( 'label' === $tag ) {
 		return true;
-	} elseif ( 'form' === $tag || 'body' === $tag ) {
+	}
+	if ( 'form' === $tag || 'body' === $tag ) {
 		return false;
 	}
-	$parent = $field->parent();
-	return edac_field_has_label_parent( $parent );
+	return edac_field_has_label_parent( $field->parent() );
 }

@@ -3,49 +3,129 @@
 	<description>Accessibility Checker Wordpress Coding Standards</description>
 
 	<!-- Scan all files in directory -->
-    <file>.</file>
+	<file>.</file>
 
-    <!-- Folders to exclude -->
-    <exclude-pattern>./dist/</exclude-pattern>
-    <exclude-pattern>./vendor/</exclude-pattern>
-    <exclude-pattern>./node_modules/</exclude-pattern>
-    <exclude-pattern>./.wp-env/</exclude-pattern>
-    <exclude-pattern>./simple_html_dom.php</exclude-pattern>
-    <exclude-pattern>./update-composer-config.php</exclude-pattern>
+	<!-- Folders to exclude -->
+	<exclude-pattern>./dist/</exclude-pattern>
+	<exclude-pattern>./vendor/</exclude-pattern>
+	<exclude-pattern>./node_modules/</exclude-pattern>
+	<exclude-pattern>./.wp-env/</exclude-pattern>
+	<exclude-pattern>./simple_html_dom.php</exclude-pattern>
+	<exclude-pattern>./update-composer-config.php</exclude-pattern>
 
-    <!-- Scan only PHP files -->
-    <arg name="extensions" value="php"/>
+	<!-- Scan only PHP files -->
+	<arg name="extensions" value="php"/>
 
-    <!-- Show colors in console -->
-    <arg value="-colors"/>
+	<!-- Show colors in console -->
+	<arg value="-colors"/>
 
-    <!-- Show progress, show the error codes for each message (source). -->
-    <arg value="sp"/>
+	<!-- Show progress, show the error codes for each message (source). -->
+	<arg value="sp"/>
 
-    <!-- Include the WordPress-Extra standard. -->
-    <rule ref="WordPress-Extra" />
+	<!-- Include the WordPress-Extra standard. -->
+	<rule ref="WordPress-Extra" />
 
-    <!-- Let's also check that everything is properly documented. -->
-    <rule ref="WordPress-Docs"/>
+	<!-- Let's also check that everything is properly documented. -->
+	<rule ref="WordPress-Docs"/>
 
-    <!-- Add in some extra rules from other standards. -->
-    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
-    <rule ref="Generic.Commenting.Todo"/>
+	<!-- Add in some extra rules from other standards. -->
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+	<rule ref="Generic.Commenting.Todo"/>
 
-    <!-- Add the WordPress-VIP-Go standard -->
-    <rule ref="WordPress-VIP-Go"/>
+	<!-- Add the WordPress-VIP-Go standard -->
+	<rule ref="WordPress-VIP-Go"/>
 
-    <!-- Run against the PHPCompatibility ruleset -->
-    <rule ref="PHPCompatibility">
-        <!-- WP supports down to 7.0 : https://wordpress.org/about/requirements/ -->
-        <config name="testVersion" value="7.0-"/>
-    </rule>
+	<!-- Run against the PHPCompatibility ruleset -->
+	<rule ref="PHPCompatibility">
+		<!-- WP supports down to 7.0 : https://wordpress.org/about/requirements/ -->
+		<config name="testVersion" value="7.0-"/>
+	</rule>
 
-    <config name="minimum_wp_version" value="6.2"/>
+	<config name="minimum_wp_version" value="6.2"/>
 
-    <!--
+	<rule ref="WordPress-Core"/>
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="accessibility-checker"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Run against the PHPCompatibility ruleset -->
+	<rule ref="PHPCompatibility">
+		<!-- WP supports down to 7.0 : https://wordpress.org/about/requirements/ -->
+		<config name="testVersion" value="7.0-"/>
+	</rule>
+
+	<!-- The %i placeholder is supported in WP since v6.2. -->
+	<rule ref="WordPress.DB.PreparedSQLPlaceholders.UnsupportedIdentifierPlaceholder">
+		<severity>1</severity>
+	</rule>
+
+	<!-- Thw WP VIP ruleset disables some of the default rules, so we re-enable them
+	as they may not be "required", but are still good practices. -->
+	<rule ref="Internal.LineEndings.Mixed">
+		<severity>6</severity>
+	</rule>
+	<rule ref="Generic.CodeAnalysis.AssignmentInCondition">
+		<severity>6</severity>
+	</rule>
+	<rule ref="WordPress.CodeAnalysis.AssignmentInTernaryCondition.FoundInTernaryCondition">
+		<severity>6</severity>
+	</rule>
+	<rule ref="WordPress.PHP.DiscouragedPHPFunctions.urlencode_urlencode">
+		<severity>6</severity>
+	</rule>
+	<rule ref="WordPress.PHP.DontExtract">
+		<severity>6</severity>
+	</rule>
+	<rule ref="Universal.Operators.StrictComparisons">
+		<severity>6</severity>
+	</rule>
+	<rule ref="WordPress.PHP.StrictInArray.MissingTrueStrict">
+		<severity>6</severity>
+	</rule>
+	<rule ref="WordPress.Security.EscapeOutput.UnsafePrintingFunction">
+		<!-- We trust that translations are safe on VIP Go -->
+		<severity>6</severity>
+	</rule>
+	<rule ref="Generic.PHP.NoSilencedErrors">
+		<severity>6</severity>
+	</rule>
+	<rule ref="VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable">
+		<severity>5</severity>
+	</rule>
+
+	<rule ref="WordPress.DB.SlowDBQuery.slow_db_query_meta_key">
+		<severity>6</severity>
+	</rule>
+	<rule ref="Generic.PHP.DisallowShortOpenTag.EchoFound">
+		<severity>6</severity>
+	</rule>
+	<rule ref="WordPress.WP.AlternativeFunctions.file_system_operations_readfile">
+		<severity>4</severity>
+	</rule>
+	<rule ref="WordPress.WP.AlternativeFunctions.file_system_operations_fclose">
+		<severity>4</severity>
+	</rule>
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines"/>
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+
+	<rule ref="VariableAnalysis.CodeAnalysis.VariableAnalysis">
+		<properties>
+			<!-- Do not report on unused variables before require nor usused or undefined variables in file scope. -->
+			<property name="allowUnusedVariablesBeforeRequire" value="false"/>
+			<property name="allowUndefinedVariablesInFileScope" value="false"/>
+		</properties>
+	</rule>
+	<!-- End of VIP resets -->
+
+	<config name="minimum_supported_wp_version" value="6.2.0"/>
+
+	<!--
     Prevent errors caused by WordPress Coding Standards not supporting PHP 8.0+.
-    See https://github.com/WordPress/WordPress-Coding-Standards/issues/2035
+    See: https://github.com/WordPress/WordPress-Coding-Standards/issues/2035#issuecomment-1289516545
     -->
     <ini name="error_reporting" value="E_ALL &#38; ~E_DEPRECATED" />
 

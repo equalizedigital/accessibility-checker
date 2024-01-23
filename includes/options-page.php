@@ -5,8 +5,6 @@
  * @package Accessibility_Checker
  */
 
-use EDAC\Scans_Stats;
-
 /**
  * Check if user can ignore or can manage options
  *
@@ -21,13 +19,9 @@ function edac_user_can_ignore() {
 	$user              = wp_get_current_user();
 	$user_roles        = ( isset( $user->roles ) ) ? $user->roles : array();
 	$ignore_user_roles = get_option( 'edacp_ignore_user_roles' );
-	$interset          = ( $user_roles && $ignore_user_roles ) ? array_intersect( $user_roles, $ignore_user_roles ) : null;
+	$interset          = ( $user_roles && $ignore_user_roles ) ? array_intersect( $user_roles, $ignore_user_roles ) : false;
 
-	if ( $interset ) {
-		return true;
-	} else {
-		return false;
-	}
+	return ( $interset );
 }
 
 /**
@@ -49,10 +43,7 @@ function edac_add_options_page() {
 	}
 
 	// settings panel filter.
-	$settings_capability = 'manage_options';
-	if ( has_filter( 'edac_filter_settings_capability' ) ) {
-		$settings_capability = apply_filters( 'edac_filter_settings_capability', $settings_capability );
-	}
+	$settings_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
 
 	add_submenu_page(
 		'accessibility_checker',
@@ -210,8 +201,7 @@ function edac_register_setting() {
  */
 function edac_general_cb() {
 	echo '<p>';
-	
-	
+
 	printf(
 		/* translators: %1$s: link to the plugin documentation website. */
 		esc_html__( 'Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s.', 'accessibility-checker' ),
@@ -364,7 +354,7 @@ function edac_post_types_cb() {
 		</fieldset>
 		<?php if ( EDAC_KEY_VALID === false ) { ?>
 			<p class="edac-description">
-				<?php 
+				<?php
 				echo esc_html__( 'To check content other than posts and pages, please ', 'accessibility-checker' );
 				?>
 				<a href="https://my.equalizedigital.com/" target="_blank" rel="noopener noreferrer"><?php echo esc_html__( 'upgrade to pro', 'accessibility-checker' ); ?></a>
@@ -372,11 +362,11 @@ function edac_post_types_cb() {
 			</p>
 		<?php } else { ?>
 			<p class="edac-description">
-				<?php 
+				<?php
 				esc_html_e( 'Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup.', 'accessibility-checker' );
 				?>
 			</p>
-			<?php 
+			<?php
 		}
 }
 
@@ -399,10 +389,9 @@ function edac_sanitize_post_types( $selected_post_types ) {
 	}
 
 	// get unselected post types.
+	$unselected_post_types = $post_types;
 	if ( $selected_post_types ) {
 		$unselected_post_types = array_diff( $post_types, $selected_post_types );
-	} else {
-		$unselected_post_types = $post_types;
 	}
 
 	// delete unselected post type issues.
@@ -414,14 +403,14 @@ function edac_sanitize_post_types( $selected_post_types ) {
 
 	// clear cached stats if selected posts types change.
 	if ( get_option( 'edac_post_types' ) !== $selected_post_types ) {
-		$scan_stats = new \EDAC\Scans_Stats();
+		$scan_stats = new \EDAC\Admin\Scans_Stats();
 		$scan_stats->clear_cache();
 
 		if ( class_exists( '\EDACP\Scans' ) ) {
 			delete_option( 'edacp_fullscan_completed_at' );
 		}
 	}
-	
+
 	return $selected_post_types;
 }
 
@@ -449,7 +438,7 @@ function edac_add_footer_accessibility_statement_cb() {
  * @return int
  */
 function edac_sanitize_add_footer_accessibility_statement( $option ) {
-	if ( 1 === intval( $option ) ) {
+	if ( 1 === (int) $option ) {
 		return $option;
 	}
 }
@@ -484,7 +473,7 @@ function edac_include_accessibility_statement_link_cb() {
  * @return int
  */
 function edac_sanitize_include_accessibility_statement_link( $option ) {
-	if ( 1 === intval( $option ) ) {
+	if ( 1 === (int) $option ) {
 		return $option;
 	}
 }
@@ -519,8 +508,9 @@ function edac_sanitize_accessibility_policy_page( $page ) {
  * Render the accessibility statement preview
  */
 function edac_accessibility_statement_preview_cb() {
-
-	echo wp_kses_post( edac_get_accessibility_statement() );
+	echo wp_kses_post( 
+		( new \EDAC\Inc\Accessibility_Statement() )->get_accessibility_statement()
+	);
 }
 
 /**

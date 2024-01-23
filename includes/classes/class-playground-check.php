@@ -1,11 +1,11 @@
 <?php
 /**
  * Class file for Plugin Check
- * 
+ *
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
+namespace EDAC\Inc;
 
 /**
  * Plugin Check class.

@@ -1,14 +1,11 @@
 <?php
 /**
  * Class file for querying issues from the db
- * 
+ *
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
-
-use EDAC\Helpers;
-use EDAC\Settings;
+namespace EDAC\Admin;
 
 /**
  * Class that handles calculating scan report data
@@ -18,30 +15,30 @@ class Issues_Query {
 	const FLAG_EXCLUDE_IGNORED        = 0; // default.
 	const FLAG_INCLUDE_IGNORED        = 1;
 	const FLAG_ONLY_IGNORED           = 2;
-	const FLAG_INCLUDE_ALL_POST_TYPES = 4;  // If enabled, will ignore the post_type filter and return results for all post types. 
-	
+	const FLAG_INCLUDE_ALL_POST_TYPES = 4;  // If enabled, will ignore the post_type filter and return results for all post types.
+
 
 	const RULETYPE_WARNING        = 'warning';
 	const RULETYPE_ERROR          = 'error';
 	const RULETYPE_COLOR_CONTRAST = 'color_contrast';
-	
-	
+
+
 	/**
 	 * Name of table that stores issues
-	 * 
+	 *
 	 * @var string
 	 */
 	private $table;
 
-	
+
 	/**
 	 * Holds the max number of records we'll query
 	 *
 	 * @var [integer]
 	 */
 	private $record_limit;
-	
-	
+
+
 	/**
 	 * Holds the sql safe elements used to build the query
 	 *
@@ -72,56 +69,50 @@ class Issues_Query {
 
 		$validated_filters = array();
 		foreach ( $filter as $key => $val ) {
-			if ( in_array( $key, $valid_filters ) ) {
+			if ( in_array( $key, $valid_filters, true ) ) {
 				$validated_filters[ $key ] = $val;
 			}
 		}
-	
+
 		$this->record_limit = $record_limit;
 
 		// Setup FROM.
 		global $wpdb;
 		$this->table         = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 		$this->query['from'] = " FROM {$this->table} ";
-		
+
 		// Setup base WHERE.
 		$siteid = get_current_blog_id();
 
-		
 		if ( $flags & self::FLAG_INCLUDE_IGNORED ) {
 			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d', array( $siteid ) );
-		
+
 		} elseif ( $flags & self::FLAG_ONLY_IGNORED ) {
 			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and (ignre=%d or ignre_global=%d) ', array( $siteid, 1, 1 ) );
-		
+
 		} else { // This is the default.
 			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and ignre=%d and ignre_global=%d ', array( $siteid, 0, 0 ) );
 		}
 
-		
 		$filter_defaults = array(
 			'post_types' => array(),
 			'rule_types' => array(),
 			'rule_slugs' => array(),
 		);
-		
-		
+
 		$filter = array_replace_recursive( $filter_defaults, $validated_filters );
 
 		// flag for including all post types is set, so remove that from the filters.
 		if ( $flags & self::FLAG_INCLUDE_ALL_POST_TYPES ) {
-			unset( $filter['post_types'] );      
+			unset( $filter['post_types'] );
 		}
-		
+
 		$this->add_filters( $filter );
 
-	
-		if ( empty( $filter['post_types'] ) && false == ( $flags & self::FLAG_INCLUDE_ALL_POST_TYPES ) ) {
+		if ( empty( $filter['post_types'] ) && false === ( $flags & self::FLAG_INCLUDE_ALL_POST_TYPES ) ) {
 			// no post_types were pass in, but the flag for including all post types is not set.
 			$this->query['filters'] .= ' and 1!=1'; // forces false so no results are returned.
 		}
-		
-
 
 		// Setup LIMIT.
 		$this->query['limit'] = $wpdb->prepare( 'LIMIT %d', array( $record_limit ) );
@@ -135,7 +126,7 @@ class Issues_Query {
 	 */
 	public function get_sql() {
 		$sql = $this->query['select'] . ' ' . $this->query['from'] . ' ' . $this->query['where_base'] . ' ' . $this->query['filters'] . ' ' . $this->query['limit'];
-		
+
 		return $sql;
 	}
 
@@ -156,7 +147,7 @@ class Issues_Query {
 	 */
 	public function has_truncated_results() {
 		global $wpdb;
-		
+
 		$sql = 'SELECT COUNT(*) ' . $this->query['from'];
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -170,7 +161,7 @@ class Issues_Query {
 
 	/**
 	 * Gets issue count.
-	 *    
+	 *
 	 * @return integer issue_count .
 	 */
 	public function count() {
@@ -178,7 +169,7 @@ class Issues_Query {
 		global $wpdb;
 
 		$this->query['select'] = 'SELECT COUNT(id) ';
-		
+
 		$sql = $this->get_sql();
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -187,7 +178,7 @@ class Issues_Query {
 
 	/**
 	 * Gets distinct issue count.
-	 *    
+	 *
 	 * @return integer issue_count .
 	 */
 	public function distinct_count() {
@@ -195,7 +186,7 @@ class Issues_Query {
 		global $wpdb;
 
 		$this->query['select'] = 'SELECT COUNT( DISTINCT rule, object ) ';
-		
+
 		$sql = $this->get_sql();
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -204,7 +195,7 @@ class Issues_Query {
 
 	/**
 	 * Gets distinct posts count.
-	 *    
+	 *
 	 * @return integer posts_count .
 	 */
 	public function distinct_posts_count() {
@@ -212,7 +203,7 @@ class Issues_Query {
 		global $wpdb;
 
 		$this->query['select'] = 'SELECT COUNT( DISTINCT postid ) ';
-		
+
 		$sql = $this->get_sql();
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -221,7 +212,7 @@ class Issues_Query {
 
 	/**
 	 * Get the ids of the issues.
-	 *    
+	 *
 	 * @return array issues .
 	 */
 	public function get_ids() {
@@ -229,9 +220,9 @@ class Issues_Query {
 		global $wpdb;
 
 		$this->query['select'] = 'SELECT id';
-		
+
 		$sql = $this->get_sql();
-		
+
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		return $wpdb->get_results( $sql );
 	}
@@ -239,13 +230,13 @@ class Issues_Query {
 
 	/**
 	 * Adds the filters to be used by the query.
-	 * 
+	 *
 	 * @param array $filter .
-	 * 
+	 *
 	 * @return void
 	 */
 	private function add_filters( $filter ) {
-		
+
 		if ( array_key_exists( 'post_types', $filter ) && count( $filter['post_types'] ) ) {
 
 			$scannable_post_types = Settings::get_scannable_post_types();
@@ -254,24 +245,24 @@ class Issues_Query {
 				$this->query['filters'] .= ' and type IN (' . Helpers::array_to_sql_safe_list( $post_types ) . ') ';
 			}
 		}
-	
+
 		if ( array_key_exists( 'rule_types', $filter ) && ! empty( $filter['rule_types'] ) ) {
 
 			// Special handler for color contrast rule/ruletype.
-			if ( in_array( self::RULETYPE_COLOR_CONTRAST, $filter['rule_types'] ) ) {
-				
+			if ( in_array( self::RULETYPE_COLOR_CONTRAST, $filter['rule_types'], true ) ) {
+
 				// We are filtering by color contrast but color contrast is a rule not a ruletype.
 				// Remove color_contrast from the rule_type filter.
-				$key = array_search( self::RULETYPE_COLOR_CONTRAST, $filter['rule_types'] );
+				$key = array_search( self::RULETYPE_COLOR_CONTRAST, $filter['rule_types'], true );
 				if ( false !== $key ) {
 					unset( $filter['rule_types'][ $key ] );
 				}
 
 				// Then add color_contrast_failure to the rule_slugs filter.
-				$key = array_search( 'color_contrast_failure', $filter['rule_slugs'] );
-				if ( false == $key ) {
+				$key = array_search( 'color_contrast_failure', $filter['rule_slugs'], true );
+				if ( ! $key ) {
 					$filter['rule_slugs'][] = 'color_contrast_failure';
-				}           
+				}
 			}
 
 			if ( ! empty( $filter['rule_types'] ) ) {
@@ -279,7 +270,6 @@ class Issues_Query {
 			}
 		}
 
-	
 		if ( array_key_exists( 'rule_slugs', $filter ) && ! empty( $filter['rule_slugs'] ) ) {
 			$this->query['filters'] .= ' and rule IN (' . Helpers::array_to_sql_safe_list( $filter['rule_slugs'] ) . ') ';
 		}

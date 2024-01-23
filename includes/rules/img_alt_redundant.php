@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$content = $content['html'];
 	$dom     = $content;
@@ -24,7 +24,7 @@ function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore Generi
 	 */
 	$images = $dom->find( 'img' );
 	foreach ( $images as $image ) {
-		if ( $image->getAttribute( 'alt' ) != '' ) {
+		if ( $image->getAttribute( 'alt' ) !== '' ) {
 			$pattern = '/' . "(.*?)alt=[\"\']\b" . preg_quote( strtolower( trim( $image->getAttribute( 'alt' ) ) ), '/' ) . "\b[\"\'](.*?)\b" . preg_quote( strtolower( trim( $image->getAttribute( 'alt' ) ) ), '/' ) . "\b" . '/';
 			if ( preg_match( $pattern, $content, $matches ) ) {
 				if ( ! stristr( $matches[0], '<a' ) ) {
@@ -40,7 +40,7 @@ function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore Generi
 	 */
 	$images = $dom->find( 'img' );
 	foreach ( $images as $image ) {
-		if ( $image->getAttribute( 'alt' ) != '' && $image->getAttribute( 'title' ) != '' ) {
+		if ( $image->getAttribute( 'alt' ) !== '' && $image->getAttribute( 'title' ) !== '' ) {
 			if ( isset( $image ) && edac_compare_strings( $image->getAttribute( 'title' ), $image->getAttribute( 'alt' ) ) ) {
 				$errors[] = $image->outertext;
 			}
@@ -55,9 +55,9 @@ function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore Generi
 	foreach ( $links as $link ) {
 		$images = $link->getElementsByTagName( 'img' );
 		foreach ( $images as $image ) {
-			if ( $image->getAttribute( 'alt' ) != '' ) {
+			if ( $image->getAttribute( 'alt' ) !== '' ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- Simple HTML DOM Parser uses camelCase.
-				if ( isset( $link ) && isset( $image ) && ( strtolower( trim( $link->nodeValue ) ) === strtolower( trim( $image->getAttribute( 'alt' ) ) ) || strtolower( trim( $image->getAttribute( 'title' ) ) ) == strtolower( trim( $image->getAttribute( 'alt' ) ) )
+				if ( isset( $link ) && isset( $image ) && ( strtolower( trim( $link->nodeValue ) ) === strtolower( trim( $image->getAttribute( 'alt' ) ) ) || strtolower( trim( $image->getAttribute( 'title' ) ) ) === strtolower( trim( $image->getAttribute( 'alt' ) ) )
 					)
 				) {
 					$errors[] = $link->outertext;
@@ -82,8 +82,8 @@ function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore Generi
 				$image          = $figure->getElementsByTagName( 'img' )[0];
 				$figcaptioncode = $figurecaption->plaintext;
 				if ( isset( $image )
-					&& strtolower( trim( $figcaptioncode ) ) == strtolower( trim( $image->getAttribute( 'alt' ) ) )
-					&& $image->getAttribute( 'alt' ) != '' ) {
+					&& strtolower( trim( $figcaptioncode ) ) === strtolower( trim( $image->getAttribute( 'alt' ) ) )
+					&& $image->getAttribute( 'alt' ) !== '' ) {
 
 					$errors[] = $figure;
 				}

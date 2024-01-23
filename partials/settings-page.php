@@ -5,23 +5,22 @@
  * @package Accessibility_Checker
  */
 
-// set up tab items.
-$settings_tab_items = array(
+// set up tab items and filter them.
+$settings_tab_items = apply_filters(
+	'edac_filter_settings_tab_items',
 	array(
-		'slug'  => '',
-		'label' => esc_html__( 'General', 'accessibility-checker' ),
-		'order' => 1,
-	),
-	array(
-		'slug'  => 'system_info',
-		'label' => esc_html__( 'System Info', 'accessibility-checker' ),
-		'order' => 4,
-	),
+		array(
+			'slug'  => '',
+			'label' => esc_html__( 'General', 'accessibility-checker' ),
+			'order' => 1,
+		),
+		array(
+			'slug'  => 'system_info',
+			'label' => esc_html__( 'System Info', 'accessibility-checker' ),
+			'order' => 4,
+		),
+	)
 );
-// filter settings tab items.
-if ( has_filter( 'edac_filter_settings_tab_items' ) ) {
-	$settings_tab_items = apply_filters( 'edac_filter_settings_tab_items', $settings_tab_items );
-}
 
 // sort settings tab items.
 if ( is_array( $settings_tab_items ) ) {
@@ -30,11 +29,11 @@ if ( is_array( $settings_tab_items ) ) {
 		function ( $a, $b ) {
 			if ( $a['order'] < $b['order'] ) {
 				return -1;
-			} elseif ( $a['order'] == $b['order'] ) {
-				return 0;
-			} else {
-				return 1;
 			}
+			if ( $a['order'] === $b['order'] ) {
+				return 0;
+			}
+			return 1;
 		}
 	);
 }
@@ -42,7 +41,7 @@ if ( is_array( $settings_tab_items ) ) {
 // Get the active tab from the $_GET param.
 $default_tab  = null;
 $settings_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : $default_tab; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Nonce verification and sanitization not required for tab display.
-$settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items, 'slug' ) ) !== false ) ? $settings_tab : $default_tab;
+$settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items, 'slug' ), true ) !== false ) ? $settings_tab : $default_tab;
 ?>
 
 <div class="wrap edac-settings">
@@ -57,12 +56,12 @@ $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items
 			$query_var = $slug ? '&tab=' . $slug : '';
 			$label     = $settings_tab_item['label'];
 			?>
-			<a 
-			<?php 
+			<a
+			<?php
 			if ( $settings_tab === $slug ) :
 				?>
-				aria-current="true" <?php endif; ?>href="?page=accessibility_checker_settings<?php echo esc_html( $query_var ); ?>" class="nav-tab 
-				<?php 
+				aria-current="true" <?php endif; ?>href="?page=accessibility_checker_settings<?php echo esc_html( $query_var ); ?>" class="nav-tab
+				<?php
 				if ( $settings_tab === $slug ) :
 					?>
 				nav-tab-active<?php endif; ?>"><?php echo esc_html( $label ); ?></a>
@@ -75,7 +74,7 @@ $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items
 	<div class="tab-content">
 
 		<?php if ( null === $settings_tab ) { ?>
-			<div class="edac-settings-general 
+			<div class="edac-settings-general
 			<?php
 			if ( EDAC_KEY_VALID === false ) {
 				echo 'edac-show-pro-callout';}
@@ -95,13 +94,13 @@ $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items
 		<?php } ?>
 
 		<?php if ( 'system_info' === $settings_tab ) { ?>
-			<h2><?php esc_html_e( 'System Info', 'accessibility-checker' ); ?></h2>	
+			<h2><?php esc_html_e( 'System Info', 'accessibility-checker' ); ?></h2>
 			<div class="edac-settings-system-info">
 				<?php edac_sysinfo_display(); ?>
-			</div>	
+			</div>
 		<?php } ?>
 
-		<?php do_action( 'edac_settings_tab_content', $settings_tab ); ?>	
+		<?php do_action( 'edac_settings_tab_content', $settings_tab ); ?>
 	</div>
 
 </div>

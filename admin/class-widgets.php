@@ -1,36 +1,57 @@
 <?php
 /**
  * Class file for widgets
- * 
+ *
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
+namespace EDAC\Admin;
 
 /**
  * Class that handles widgets
  */
 class Widgets {
-	
+
+	/**
+	 * Initialize hooks.
+	 *
+	 * @return void
+	 */
+	public function init_hooks() {
+		add_action( 'wp_dashboard_setup', array( $this, 'dashboard_setup' ) );
+	}
+
+	/**
+	 * Add dashboard widget
+	 *
+	 * @return void
+	 */
+	public function dashboard_setup() {
+		wp_add_dashboard_widget(
+			'edac_dashboard_scan_summary',
+			'Accessibility Checker',
+			array( $this, 'render_dashboard_scan_summary' )
+		);
+	}
 
 	/**
 	 * Renders as widget
 	 *
 	 * @return void
 	 */
-	public static function render_dashboard_scan_summary() {
+	public function render_dashboard_scan_summary() {
 
 		$html  = '';
 		$html .= '
-	
+
 		<div class="edac-widget">';
-		
+
 		if ( Settings::get_scannable_post_types() && Settings::get_scannable_post_statuses() ) {
-		
+
 			$pro_modal_html = '';
-			if ( ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || 
-			false == EDAC_KEY_VALID ) &&
-			true !== boolval( get_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true ) ) 
+			if ( ( ! is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ||
+			false === EDAC_KEY_VALID ) &&
+			true !== (bool) get_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true )
 			) {
 				$pro_modal_html = '
 			<div class="edac-modal">
@@ -44,36 +65,36 @@ class Widgets {
 				</div>
 			</div>';
 			}
-	
-			if ( ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) || '' != $pro_modal_html ) {
-	
+
+			if ( ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) || '' !== $pro_modal_html ) {
+
 				$html .= '
 			<div class="edac-summary edac-modal-container edac-hidden">';
 
 				$html .= $pro_modal_html;
-		
+
 				$html .= '
-			<h3 class="edac-summary-header">' . 
-				__( 'Full Site Accessibility Status', 'accessibility-checker' ) . 
+			<h3 class="edac-summary-header">' .
+				__( 'Full Site Accessibility Status', 'accessibility-checker' ) .
 				'</h3>
 			<div class="edac-summary-passed">
-				<div id="edac-summary-passed" class="edac-circle-progress" role="progressbar" aria-valuenow="0" 
+				<div id="edac-summary-passed" class="edac-circle-progress" role="progressbar" aria-valuenow="0"
 					aria-valuemin="0" aria-valuemax="100"
-					style="text-align: center; 
-					background: radial-gradient(closest-side, white 85%, transparent 80% 100%), 
+					style="text-align: center;
+					background: radial-gradient(closest-side, white 85%, transparent 80% 100%),
 					conic-gradient(#006600 0%, #e2e4e7 0);">
 					<div class="edac-progress-percentage">-</div>
-					<div class="edac-progress-label">' . 
-					__( 'Passed Tests', 'accessibility-checker' ) . 
+					<div class="edac-progress-label">' .
+					__( 'Passed Tests', 'accessibility-checker' ) .
 					'</div>
 				</div>
 			</div>
-		
+
 			<div class="edac-summary-info">
 				<div class="edac-summary-info-date">
 					<div class="edac-summary-info-date-label">' . __( 'Report Last Updated:', 'accessibility-checker' ) . '</div>
 					<div id="edac-summary-info-date" class="edac-summary-info-date-date edac-timestamp-to-local">-</div>';
-		
+
 				$html .= '
 				</div>
 
@@ -101,7 +122,7 @@ class Widgets {
 				</div>
 			</div>
 			';
-			
+
 				$html .= '
 			<div class="edac-summary-notice edac-summary-notice-has-issues edac-hidden">
 				' . __( 'Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines.', 'accessibility-checker' ) . '
@@ -109,21 +130,21 @@ class Widgets {
 			 <div class="edac-summary-notice edac-summary-notice-no-issues edac-hidden">
 				' . __( 'Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don\'t forget to', 'accessibility-checker' ) . ' <a href="https://equalizedigital.com/accessibility-checker/how-to-manually-check-your-website-for-accessibility/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'manually test your site', 'accessibility-checker' ) . '</a>.
 			</div>';
-		
+
 				$html .= '
 		</div>
 		<hr class="edac-hr" />';
-		
+
 			}
 		}
-	
+
 		$html .= '
-		
+
 		<div class="edac-issues-summary edac-hidden">
 
 			<h3 class="edac-issues-summary-header">
 				' . __( 'Issues By Post Type', 'accessibility-checker' ) . '
-			</h3> 
+			</h3>
 
 			<table class="widefat striped">
 				<thead>
@@ -144,25 +165,24 @@ class Widgets {
 				</thead>
 
 				<tbody>';
-			
+
 				$scannable_post_types = Settings::get_scannable_post_types();
-			
+
 				$post_types = get_post_types(
 					array(
 						'public' => true,
-					) 
+					)
 				);
 				unset( $post_types['attachment'] );
-					
-			
+
 		foreach ( $post_types as $post_type ) {
 
 			$post_types_to_check = array_merge( array( 'post', 'page' ), $scannable_post_types );
-				
-			if ( in_array( $post_type, $post_types_to_check ) ) {
-		
-				if ( in_array( $post_type, $scannable_post_types ) ) {
-		
+
+			if ( in_array( $post_type, $post_types_to_check, true ) ) {
+
+				if ( in_array( $post_type, $scannable_post_types, true ) ) {
+
 					$html .= '
 							<tr>
 								<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
@@ -178,10 +198,10 @@ class Widgets {
 								<td>-</td>
 								<td>-</td>
 							</tr>';
-							
-				}           
-			} elseif ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
-						
+
+				}
+			} elseif ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+
 				$html .= '
 						<tr >
 							<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
@@ -189,7 +209,7 @@ class Widgets {
 							<td>-</td>
 							<td>-</td>
 						</tr>';
-			
+
 			} else {
 
 				$html .= '
@@ -203,35 +223,32 @@ class Widgets {
 								</div>
 							</td>
 						</tr>';
-				
-			}       
-		}   
+
+			}
+		}
 
 		$html .= '
 				</tbody>
 			</table>
 		</div>';
-		
+
 		$html .= '<div class="edac-summary-notice edac-summary-notice-is-truncated edac-hidden">Your site has a large number of issues. For performance reasons, not all issues have been included in this report.</div>';
-	
+
 		if ( ! Settings::get_scannable_post_types() || ! Settings::get_scannable_post_statuses() ) {
 
-			$html .= '<div class="edac-summary-notice edac-summary-notice-no-posts">There are no pages set to be checked. Update the post types to be checked under the 
+			$html .= '<div class="edac-summary-notice edac-summary-notice-no-posts">There are no pages set to be checked. Update the post types to be checked under the
 			<a href="/wp-admin/admin.php?page=accessibility_checker_settings">general settings</a> tab.</div>';
-	
+
 		}
 
-		
 		$html .= '
 		<div class="edac-buttons-container edac-mt-3 edac-mb-3">
 		';
 
-		if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+		if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
 			$html .= '
 			<a class="button edac-mr-1" href="/wp-admin/admin.php?page=accessibility_checker">' . __( 'See More Reports', 'accessibility-checker' ) . '</a>';
 		}
-			
-		
 
 		$html .= '
 		<a href="/wp-admin/admin.php?page=accessibility_checker_settings">Edit Accessibility Checker Settings</a>

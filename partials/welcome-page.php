@@ -15,7 +15,7 @@
 			<div class="edac-welcome-header-left">
 				<h1 class="edac-welcome-title">
 					<?php
-					if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) === true && EDAC_KEY_VALID === true ) {
+					if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) === true && EDAC_KEY_VALID === true ) {
 						$welcome_title = __( 'Accessibility Checker Pro', 'accessibility-checker' );
 						$version       = EDACP_VERSION;
 					} else {
@@ -27,7 +27,7 @@
 					?>
 				</h1>
 				<p>
-					<?php 
+					<?php
 					echo( esc_html__( 'version ', 'accessibility-checker' ) . esc_html( $version ) );
 					?>
 				</p>
@@ -40,7 +40,7 @@
 			</div>
 		</div>
 
-		<?php \EDAC\Welcome_Page::render_summary(); ?>
+		<?php \EDAC\Admin\Welcome_Page::render_summary(); ?>
 
 		<section class="edac-welcome-section">
 			<div class="edac-welcome-quick-start">
@@ -48,14 +48,14 @@
 				<p><?php esc_html_e( 'Follow these steps to get started checking your content:', 'accessibility-checker' ); ?></p>
 				<ol>
 					<li>
-						<?php 
-						printf( 
+						<?php
+						printf(
 							wp_kses(
 								// translators: %s: path to settings page.
-								__( 'On the <a href="%s">Settings Page</a>, choose which post types you want to scan.', 'accessibility-checker' ), 
+								__( 'On the <a href="%s">Settings Page</a>, choose which post types you want to scan.', 'accessibility-checker' ),
 								array( 'a' => array( 'href' => array() ) )
 							),
-							esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ) 
+							esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) )
 						);
 						?>
 					</li>
@@ -93,7 +93,7 @@
 			<h2><?php esc_html_e( 'Support Information', 'accessibility-checker' ); ?></h2>
 			<div class="edac-flex-container">
 		<?php
-		if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+		if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
 			?>
 				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
 					<h3><?php esc_html_e( 'Plugin Support', 'accessibility-checker' ); ?></h3>
@@ -149,7 +149,7 @@
 	</div>
 
 	<?php
-	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
+	if ( ! is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
 		echo '<div class="edac-cols-right edac-welcome-aside">
 			<div class="edac-has-cta">';
 	} else {
@@ -157,7 +157,7 @@
 			<div>';
 	}
 
-	if ( ! edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
+	if ( ! is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) || ! EDAC_KEY_VALID ) {
 		?>
 		<div class="edac-pro-callout edac-mt-3 edac-mb-3">
 			<img class="edac-pro-callout-icon" src="<?php echo esc_url( EDAC_PLUGIN_URL ); ?>assets/images/edac-emblem.png" alt="<?php esc_attr_e( 'Equalize Digital Logo', 'accessibility-checker' ); ?>">
@@ -178,7 +178,7 @@
 				<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?> 
 				<span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
 			</a>
-		<?php	
+		<?php
 		if ( edac_check_plugin_installed( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
 			?>
 			<br /><a class="edac-pro-callout-activate" href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=license' ) ); ?>">
@@ -190,7 +190,7 @@
 		</div>
 		<?php
 	}
-	
+
 	?>
 
 		<div class="edac-panel">
@@ -203,18 +203,10 @@
 			?>
 		</div>
 
-		<?php 
-		
-		
-		if ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_email_optin', true ) ) ) {
-			\EDAC\Welcome_Page::render_email_opt_in( 
-				'1273a5c7a',
-				'1a0796bc2303c2cb', 
-				'', 
-				'3zdf37c20714225fe975e2772c61e00bf3a196e8e7f12fdcb55c14b48b8778764e' 
-			); 
-		}
+		<?php
+			\EDAC\Admin\Welcome_Page::maybe_render_email_opt_in();  
 		?>
+
 	</div>
 </div>
 

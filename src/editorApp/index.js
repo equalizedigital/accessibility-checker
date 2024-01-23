@@ -2,8 +2,11 @@ import { settings } from './settings';
 import { init as initCheckPage } from './checkPage';
 
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener( 'DOMContentLoaded', () => {
 
+	const SCANNABLE_POST_TYPE = edacEditorApp.active;
+
+	if ( SCANNABLE_POST_TYPE && settings.JS_SCAN_ENABLED ) {
 	const SCANNABLE_POST_TYPE = edac_editor_app.active;
 
 	if (SCANNABLE_POST_TYPE) {
