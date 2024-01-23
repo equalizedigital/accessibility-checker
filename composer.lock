@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36328aa3065e60c85418e6198e600470",
+    "content-hash": "08eec440286165ad4abf980b171ce491",
     "packages": [
         {
             "name": "cbschuld/browser.php",
@@ -400,16 +400,16 @@
         },
         {
             "name": "equalizedigital/accessibility-checker-wp-env",
-            "version": "v1.0.0",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/equalizedigital/accessibility-checker-wp-env.git",
-                "reference": "fd3a97365c258749692fbb900b90e9129deb4a15"
+                "reference": "abb9403cbcb5d5edeefe005f19bd6f697b195048"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/equalizedigital/accessibility-checker-wp-env/zipball/fd3a97365c258749692fbb900b90e9129deb4a15",
-                "reference": "fd3a97365c258749692fbb900b90e9129deb4a15",
+                "url": "https://api.github.com/repos/equalizedigital/accessibility-checker-wp-env/zipball/abb9403cbcb5d5edeefe005f19bd6f697b195048",
+                "reference": "abb9403cbcb5d5edeefe005f19bd6f697b195048",
                 "shasum": ""
             },
             "type": "library",
@@ -424,10 +424,10 @@
             ],
             "description": "This package is a customized version of wp-env used for development and testing of Accessibility Checker, Accessibility Checker Pro and Accessibility Checker Audit History.",
             "support": {
-                "source": "https://github.com/equalizedigital/accessibility-checker-wp-env/tree/v1.0.0",
+                "source": "https://github.com/equalizedigital/accessibility-checker-wp-env/tree/v1.0.5",
                 "issues": "https://github.com/equalizedigital/accessibility-checker-wp-env/issues"
             },
-            "time": "2023-10-23T23:58:23+00:00"
+            "time": "2024-01-16T19:47:48+00:00"
         },
         {
             "name": "php-parallel-lint/php-parallel-lint",
