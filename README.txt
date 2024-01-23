@@ -172,8 +172,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 == Changelog ==
 
 = 1.7.1 =
-* Fixes: classic editor save conflict
-* Fixes: password protection message displaying repeatedly
+* Fixed: classic editor save conflict
+* Fixed: password protection message displaying repeatedly
+* Fixed: frontend highlighting asset url and debug error
 
 = 1.7.0 =
 * Added: Architecture for JavaScript-based checks for better code analysis
