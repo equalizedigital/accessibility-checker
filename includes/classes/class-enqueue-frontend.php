@@ -78,7 +78,7 @@ class Enqueue_Frontend {
 					'edacUrl'   => esc_url_raw( get_site_url() ),
 					'ajaxurl'   => admin_url( 'admin-ajax.php' ),
 					'loggedIn'  => is_user_logged_in(),
-					'appCssUrl' => plugin_dir_url( __DIR__ ) . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
+					'appCssUrl' => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
 				)
 			);
 
