@@ -116,6 +116,8 @@ function edac_validate( $post_ID, $post, $action ) {
 	if ( ! $content['html'] ) {
 		update_option( 'edac_password_protected', true );
 		return;
+	} else {
+		update_option( 'edac_password_protected', false );
 	}
 	delete_option( 'edac_password_protected' );
 

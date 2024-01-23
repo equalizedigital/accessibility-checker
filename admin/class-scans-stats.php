@@ -12,6 +12,7 @@ namespace EDAC\Admin;
  */
 class Scans_Stats {
 
+
 	/**
 	 * Number of seconds to return results from cache.
 	 *
@@ -175,8 +176,8 @@ class Scans_Stats {
 			);
 
 			if ( $rule_query->count() ) {
-				++$data['rules_failed'];
-			}
+					++$data['rules_failed'];
+			}       
 		}
 		$data['rules_passed'] = $this->rule_count - $data['rules_failed'];
 
@@ -332,7 +333,7 @@ class Scans_Stats {
 	/**
 	 * Gets issues summary information about a post type
 	 *
-	 * @param string $post_type post type.
+	 * @param  string $post_type post type.
 	 * @return array .
 	 */
 	public function issues_summary_by_post_type( $post_type ) {

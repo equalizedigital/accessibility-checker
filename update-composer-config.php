@@ -18,7 +18,7 @@ if ( 'true' === $env ) {
 } else {
 	// Not running in GitHub Actions, assuming local environment.
 	// Add your local specific packages.
-	$composer_config['require-dev']['equalizedigital/accessibility-checker-wp-env'] = '1.0.1';
+	$composer_config['require-dev']['equalizedigital/accessibility-checker-wp-env'] = '*';
 }
 
 file_put_contents( $composer_json_path, json_encode( $composer_config, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) );

@@ -1,36 +1,32 @@
 /* eslint-disable padded-blocks, no-multiple-empty-lines */
-/* global edacEditorApp, edacpFullSiteScanApp */
+/* global edac_editor_app */
 
 import { info, debug } from './helpers';
 import { showNotice } from './../common/helpers';
 
-
-let HEADERS;
-if ( typeof ( edacpFullSiteScanApp ) === 'undefined' ) {
-	HEADERS = edacEditorApp.edacHeaders;
-} else {
-	HEADERS = edacpFullSiteScanApp.edacpHeaders;
-}
-
 const postData = async ( url = '', data = {} ) => {
+
+
 	return await fetch( url, {
 		method: 'POST',
-		headers: HEADERS,
+		headers: {
+			// eslint-disable-next-line camelcase
+			'X-WP-Nonce': edac_script_vars.restNonce,
+			'Content-Type': 'application/json',
+		},
 		body: JSON.stringify( data ),
 	} ).then( ( res ) => {
 		return res.json();
 	} ).catch( () => {
 		return {};
 	} );
+
 };
 
-
 const saveScanResults = ( postId, violations ) => {
-	info( 'Saving ' + postId + ': started' );
-
 	document.querySelector( '.edac-panel' ).classList.add( 'edac-panel-loading' );
-
-	postData( edacEditorApp.edacApiUrl + '/post-scan-results/' + postId, {
+	// eslint-disable-next-line camelcase
+	postData( edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
 		violations,
 	} ).then( ( data ) => {
 		info( 'Saving ' + postId + ': done' );
@@ -85,7 +81,8 @@ const injectIframe = ( previewUrl, postID ) => {
 		if ( iframeDocument ) {
 			// inject the scanner app.
 			const scannerScriptElement = iframeDocument.createElement( 'script' );
-			scannerScriptElement.src = edacEditorApp.baseurl + '/build/pageScanner.bundle.js';
+			// eslint-disable-next-line camelcase
+			scannerScriptElement.src = edac_editor_app.baseurl + '/build/pageScanner.bundle.js';
 			iframeDocument.head.appendChild( scannerScriptElement );
 		}
 	} );
@@ -111,8 +108,14 @@ export const init = () => {
 	let saving = false;
 	let autosaving = false;
 
+
 	if ( wp.data !== undefined && wp.data.subscribe !== undefined ) {
 		wp.data.subscribe( () => {
+
+			if ( wp.data.select( 'core/editor' ) === undefined ) {
+				return;
+			}
+
 			if ( wp.data.select( 'core/editor' ).isAutosavingPost() ) {
 				autosaving = true;
 			}
@@ -124,7 +127,8 @@ export const init = () => {
 				saving = false;
 
 				if ( ! autosaving ) {
-					injectIframe( edacEditorApp.scanUrl, edacEditorApp.postID );
+					// eslint-disable-next-line camelcase
+					injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
 				} else {
 					autosaving = false;
 				}
@@ -134,6 +138,7 @@ export const init = () => {
 		debug( 'Gutenberg is not enabled.' );
 	}
 
-	injectIframe( edacEditorApp.scanUrl, edacEditorApp.postID );
+	// eslint-disable-next-line camelcase
+	injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
 };
 
