@@ -4,25 +4,25 @@
 import { info, debug } from './helpers';
 import { showNotice } from './../common/helpers';
 
+const API_URL = edac_editor_app.edacApiUrl;
 
-let HEADERS;
-if ( typeof ( edacpFullSiteScanApp ) === 'undefined' ) {
-	HEADERS = edacEditorApp.edacHeaders;
-} else {
-	HEADERS = edacpFullSiteScanApp.edacpHeaders;
-}
+const postData = async (url = "", data = {}) => {
 
-const postData = async ( url = '', data = {} ) => {
-	return await fetch( url, {
-		method: 'POST',
-		headers: HEADERS,
-		body: JSON.stringify( data ),
-	} ).then( ( res ) => {
+
+	return await fetch(url, {
+		method: "POST",
+		headers: {
+			'X-WP-Nonce': edac_script_vars.restNonce,
+			'Content-Type': 'application/json'
+		},	  
+		body: JSON.stringify(data),
+	}).then((res) => {
 		return res.json();
 	} ).catch( () => {
 		return {};
-	} );
-};
+	});
+
+}
 
 
 const saveScanResults = ( postId, violations ) => {
@@ -111,9 +111,15 @@ export const init = () => {
 	let saving = false;
 	let autosaving = false;
 
-	if ( wp.data !== undefined && wp.data.subscribe !== undefined ) {
-		wp.data.subscribe( () => {
-			if ( wp.data.select( 'core/editor' ).isAutosavingPost() ) {
+
+	if (wp.data !== undefined && wp.data.subscribe !== undefined) {
+		wp.data.subscribe(() => {
+
+			if(wp.data.select('core/editor') === undefined) {
+				return;
+			}
+
+			if (wp.data.select('core/editor').isAutosavingPost()) {
 				autosaving = true;
 			}
 

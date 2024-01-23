@@ -648,10 +648,8 @@ class AccessibilityCheckerHighlight {
 		This checks if the app's css is loading into #edac-app-css as expected.
 		If not, then we assume the css has been combined, so we manually add it to the document.
 		*/
-		if ( ! document.querySelector( '#edac-app-css' ) ) {
-			//console.log( 'css is combined, so adding app.css to page.' );
-
-			const link = document.createElement( 'link' );
+		if( ! document.querySelector('#edac-app-css') ){
+			var link = document.createElement('link');
 			link.rel = 'stylesheet';
 			link.id = 'edac-app-css';
 			link.type = 'text/css';

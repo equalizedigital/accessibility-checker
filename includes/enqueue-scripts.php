@@ -74,15 +74,15 @@ function edac_admin_enqueue_scripts() {
 				'edac-editor-app',
 				'edacEditorApp',
 				array(
-					'postID'      => $post_id,
-					'edacUrl'     => esc_url_raw( get_site_url() ),
-					'edacHeaders' => $headers,
-					'edacApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-					'baseurl'     => plugin_dir_url( __DIR__ ),
-					'active'      => $active,
-					'pro'         => $pro,
-					'debug'       => $debug,
-					'scanUrl'     => get_preview_post_link(
+					'postID'     => $post_id,
+					'edacUrl'    => esc_url_raw( get_site_url() ),
+					'edacApiUrl' => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+					'baseurl'    => plugin_dir_url( __DIR__ ),
+					'active'     => $active,
+					'pro'        => $pro,
+					'authOk'     => false === (bool) get_option( 'edac_password_protected', false ),
+					'debug'      => $debug,
+					'scanUrl'    => get_preview_post_link(
 						$post_id, 
 						array( 'edac_pageScanner' => 1 )
 					),
@@ -149,7 +149,7 @@ function edac_enqueue_scripts() {
 				'edacUrl'   => esc_url_raw( get_site_url() ),
 				'ajaxurl'   => admin_url( 'admin-ajax.php' ),
 				'loggedIn'  => is_user_logged_in(),
-				'appCssUrl' => plugin_dir_url( __DIR__ ) . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
+				'appCssUrl' => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
 			)
 		);
 
