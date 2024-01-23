@@ -81,7 +81,7 @@ function edac_admin_enqueue_scripts() {
 					'baseurl'    => plugin_dir_url( __DIR__ ),
 					'active'     => $active,
 					'pro'        => $pro,
-					'authOk'     => false === get_option( 'edac_password_protected', false ),
+					'authOk'     => false === (bool) get_option( 'edac_password_protected', false ),
 					'debug'      => $debug,
 					'scanUrl'    => get_preview_post_link(
 						$post_id, 
