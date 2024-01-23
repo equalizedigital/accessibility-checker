@@ -698,8 +698,6 @@ class AccessibilityCheckerHighlight {
 		If not, then we assume the css has been combined, so we manually add it to the document.
 		*/
 		if( ! document.querySelector('#edac-app-css') ){
-			debug('css is combined, so adding app.css to page.');
-
 			var link = document.createElement('link');
 			link.rel = 'stylesheet';
 			link.id = 'edac-app-css';
