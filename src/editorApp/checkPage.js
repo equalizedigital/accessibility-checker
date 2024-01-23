@@ -1,25 +1,17 @@
 import { info, debug } from './helpers';
 import { showNotice } from './../common/helpers';
 
-
-
 const API_URL = edac_editor_app.edacApiUrl;
-
-
-let HEADERS;
-if (typeof (edacpFullSiteScanApp) === 'undefined') {
-	HEADERS = edac_editor_app.edacHeaders;
-} else {
-	HEADERS = edacpFullSiteScanApp.edacpHeaders;
-}
-
 
 const postData = async (url = "", data = {}) => {
 
 
 	return await fetch(url, {
 		method: "POST",
-		headers: HEADERS,
+		headers: {
+			'X-WP-Nonce': edac_script_vars.restNonce,
+			'Content-Type': 'application/json'
+		},	  
 		body: JSON.stringify(data),
 	}).then((res) => {
 		return res.json();
@@ -28,20 +20,6 @@ const postData = async (url = "", data = {}) => {
 	});
 
 }
-
-const getData = async (url = "") => {
-
-	return await fetch(url, {
-		method: "GET",
-		headers: HEADERS
-	}).then((res) => {
-		return res.json();
-	}).catch(() => {
-		return {};
-	});
-
-}
-
 
 
 const saveScanResults = (postId, violations) => {

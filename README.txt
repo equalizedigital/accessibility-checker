@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 6.2
 Tested up to: 6.4.2
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.7.1 =
+* Fixed: classic editor save conflict
+* Fixed: password protection message displaying repeatedly
+* Fixed: frontend highlighting asset url and debug error
 
 = 1.7.0 =
 * Added: Architecture for JavaScript-based checks for better code analysis
