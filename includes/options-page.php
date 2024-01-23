@@ -77,9 +77,6 @@ function edac_display_welcome_page() {
  */
 function edac_display_options_page() {
 	include_once plugin_dir_path( __DIR__ ) . 'partials/settings-page.php';
-
-	// force edac_auth_type to reset in case user updates auth options.
-	delete_transient( 'edac_auth_type' );
 }
 
 /**

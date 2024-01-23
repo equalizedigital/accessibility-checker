@@ -57,12 +57,6 @@ function edac_admin_enqueue_scripts() {
 				$active = false;
 			}
 
-			$headers = array(
-				'Content-Type'  => 'application/json',
-				'X-WP-Nonce'    => wp_create_nonce( 'wp_rest' ),
-				'Authorization' => 'None',
-			
-			);
 	
 			$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID;
 	
@@ -81,16 +75,15 @@ function edac_admin_enqueue_scripts() {
 				'edac-editor-app',
 				'edac_editor_app',
 				array(
-					'postID'      => $post_id,
-					'edacUrl'     => esc_url_raw( get_site_url() ),
-					'edacHeaders' => $headers,
-					'edacApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-					'baseurl'     => plugin_dir_url( __DIR__ ),
-					'active'      => $active,
-					'pro'         => $pro,
-					'hasAuth'     => (bool) get_option( 'edac_password_protected', false ),
-					'debug'       => $debug,
-					'scanUrl'     => get_preview_post_link(
+					'postID'     => $post_id,
+					'edacUrl'    => esc_url_raw( get_site_url() ),
+					'edacApiUrl' => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+					'baseurl'    => plugin_dir_url( __DIR__ ),
+					'active'     => $active,
+					'pro'        => $pro,
+					'authOk'     => false === (bool) get_option( 'edac_password_protected', false ),
+					'debug'      => $debug,
+					'scanUrl'    => get_preview_post_link(
 						$post_id, 
 						array( 'edac_pageScanner' => 1 )
 					),
