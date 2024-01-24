@@ -172,6 +172,50 @@ No, Accessibility Checker runs completely on your server and does not require yo
 == Changelog ==
 
 = 1.8.0-beta.1 =
+* Updated: missing_title summary
+* Updated: SQL prepare queries to use %i placeholder
+* Updated: incorrect textdomains and made strings translatible
+* Removed: single-use variables where possible
+* Added: PHPUnit framework and workflow
+* Added: unit test for the `edac_compare_strings` function
+* Added: unit test for the `edac_parse_css` function
+* Updated: the `edac_compare_strings` function to be more efficient, return the correct type, and fix the failing tests
+* Updated: `readme.txt` to only have the latest major and minor changelog
+* Added: `changelog.txt` file.
+* Added: `includes/rules.php` file that contains all rules and returns them as an array
+* Added a static var in the `edac_register_rules` function to avoid re-reading the `includes/rules.php` file every time the method is called
+* Removed: `has_filter` check before calling `apply_filters`
+* Added: `edac_register_rules` unit test
+* Added: `edac_check_plugin_active` deprecated function
+* Updated: `edac_check_plugin_active` calls with `is_plugin_active`
+* Removed: calls to `add_option` and replaced with `update_option`
+* Updated: Use of `else` statement and bailed early when needed
+* Removed: `has_filter()` before applying apply_filters
+* Removed: hooks from `EDAC\Admin_Notices` constructor and call them from the `init_hooks` method
+* Added: `EDAC\Admin_Notices` unit tests
+* Added: `EDAC\Ajax` class and moved AJAX functions into this class
+* Removed: unnecessary `wp_ajax_nopriv_` hooks
+* Added: namespace to `Frontend_Highlight` class and only instantiated on `DOING_AJAX`
+* Removed: `EDAC_SVG_IGNORE_ICON` string and pulled it from the file
+* Removed: `$plugin_check` global variable
+* Removed: `$rules` global variable
+* Updated: `edac_ordinal` function to support all locales, safeguards against improper inputs, number format
+* Updated: JavaScript coding standards
+* Added: `includes/classes` directory to autoloader
+* Added: new directory admin to autoloader
+* Removed: `require_once` class calls
+* Created: `class-plugin.php` to load frontend classes
+* Created: `class-admin.php` to load admin classes
+* Updated: classes to follow new `EDAC\Admin` and `EDAC\Inc` namespaces
+* Updated: accessibility statement functions to a class
+* Updated: simplified summary functions to a class
+* Updated: lazyload Filter function into a class
+* Removed: removes calls to `add_post_meta` and uses `update_post_meta` where appropriate
+* Added: `EDAC\Inc\Accessibility_Statement` unit test
+* Added: `EDAC\Inc\Simplified_Summary` unit test
+* Added: local PHPUnit to run on wp-env test
+* Updated: enqueue scripts and styles setup to only load assets in the proper environments
+* Updated: email signup form
 
 = 1.7.1 =
 * Fixed: classic editor save conflict
