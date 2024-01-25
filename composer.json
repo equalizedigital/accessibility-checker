@@ -27,8 +27,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/equalizedigital/accessibility-checker-wp-env"
-            "type": "vcs",
-            "url": "https://github.com/equalizedigital/accessibility-checker-wp-env"
         }
     ],
     "require-dev": {
