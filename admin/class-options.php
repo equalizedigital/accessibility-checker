@@ -33,7 +33,7 @@ class Options {
 		'activation_date'                      => 0,
 		'add_footer_accessibility_statement'   => '',
 		'anww_update_post_meta'                => '',
-		'black_friday_2023_notice_dismiss'     => '',
+		'black_friday_2023_notice_dismiss'     => false,
 		'db_version'                           => '',
 		'delete_data'                          => '',
 		'gaad_notice_dismiss'                  => '',
@@ -45,7 +45,6 @@ class Options {
 		'simplified_summary_position'          => 'after',
 		'simplified_summary_prompt'            => 'when required',
 		'review_notice'                        => '',
-		'black_friday_2023_notice_dismiss'     => false,
 	);
 	
 	/**
@@ -70,7 +69,6 @@ class Options {
 		'simplified_summary_position'          => '',
 		'simplified_summary_prompt'            => '', 
 		'review_notice'                        => '',
-		'black_friday_2023_notice_dismiss'     => 'bool',
 	);
 	
 	const LEGACY_OPTION_NAMES_MAPPING = array(
