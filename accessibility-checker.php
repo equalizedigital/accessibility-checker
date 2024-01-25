@@ -120,7 +120,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/deprecated.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/activation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/enqueue-scripts.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/meta-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
@@ -135,9 +134,6 @@ if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
 /**
  * Filters and Actions
  */
-add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
-add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
-add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
 add_action( 'admin_init', 'edac_update_database', 10 );
 add_action( 'add_meta_boxes', 'edac_register_meta_boxes' );
 add_action( 'admin_menu', 'edac_add_options_page' );

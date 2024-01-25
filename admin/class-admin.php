@@ -25,6 +25,8 @@ class Admin {
 	 */
 	public function init() {
 		
+		add_action( 'admin_enqueue_scripts', array( 'EDAC\Admin\Enqueue_Admin', 'enqueue' ) );
+
 		$admin_notices = new Admin_Notices();
 		$admin_notices->init_hooks();
 

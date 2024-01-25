@@ -116,8 +116,9 @@ function edac_validate( $post_ID, $post, $action ) {
 	if ( ! $content['html'] ) {
 		\EDAC\Admin\Options::set( 'password_protected', true );
 		return;
+	} else {
+		\EDAC\Admin\Options::set( 'password_protected', false );
 	}
-	\EDAC\Admin\Options::delete( 'password_protected' );
 
 	// set record check flag on previous error records.
 	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 1, 'php' );

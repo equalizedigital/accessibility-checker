@@ -69,7 +69,7 @@ class Admin_Notices {
 			return;
 		}
 
-		// Get the value of the 'edac_gaad_notice_dismiss' option and sanitize it.
+		// Get the value of the 'black_friday_2023_notice_dismiss' option and sanitize it.
 		$dismissed = absint( Options::get( 'black_friday_2023_notice_dismiss', 0 ) );
 
 		// Check if the notice has been dismissed.
@@ -236,8 +236,8 @@ class Admin_Notices {
 	 */
 	public function edac_review_notice() {
 
-		$option             = 'edac_review_notice';
-		$edac_review_notice = get_option( $option );
+		$option             = 'review_notice';
+		$edac_review_notice = Options::set( $option );
 
 		// exit if option is set to stop.
 		if ( 'stop' === $edac_review_notice ) {
@@ -251,22 +251,22 @@ class Admin_Notices {
 		if ( false === $edac_review_notice_reminder && false === $edac_review_notice ) {
 			// if option isn't set and plugin has been active for more than 14 days show notice. This is for current users.
 			if ( edac_days_active() > 14 ) {
-				update_option( $option, 'play' );
+				Options::set( $option, 'play' );
 			} else {
 				// if plugin has been active less than 14 days set transient for 14 days.
 				set_transient( $transient, true, 14 * DAY_IN_SECONDS );
 				// set option to pause.
-				update_option( $option, 'pause' );
+				Options::set( $option, 'pause' );
 			}
 		}
 
 		// if transient has expired and option is set to pause update option to play.
 		if ( false === $edac_review_notice_reminder && 'pause' === $edac_review_notice ) {
-			update_option( $option, 'play' );
+			Options::set( $option, 'play' );
 		}
 
 		// if option is not set to play exit.
-		if ( get_option( $option ) !== 'play' ) {
+		if ( Options::get( $option ) !== 'play' ) {
 			return;
 		}
 

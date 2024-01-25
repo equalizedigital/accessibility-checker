@@ -44,6 +44,8 @@ class Options {
 		'post_types'                           => array( 'post', 'page' ),
 		'simplified_summary_position'          => 'after',
 		'simplified_summary_prompt'            => 'when required',
+		'review_notice'                        => '',
+		'black_friday_2023_notice_dismiss'     => false,
 	);
 	
 	/**
@@ -66,7 +68,9 @@ class Options {
 		'password_protected_notice_dismiss'    => 'bool',
 		'post_types'                           => 'array',
 		'simplified_summary_position'          => '',
-		'simplified_summary_prompt'            => '',  
+		'simplified_summary_prompt'            => '', 
+		'review_notice'                        => '',
+		'black_friday_2023_notice_dismiss'     => 'bool',
 	);
 	
 	const LEGACY_OPTION_NAMES_MAPPING = array(
@@ -85,6 +89,8 @@ class Options {
 		'edac_post_types'                           => 'post_types',
 		'edac_simplified_summary_position'          => 'simplified_summary_position',
 		'edac_simplified_summary_prompt'            => 'simplified_summary_prompt',
+		'edac_review_notice'                        => 'review_notice',
+
 	);
 
 	

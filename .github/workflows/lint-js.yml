@@ -30,8 +30,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Cache the Node.js modules to speed up the workflow.
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       # The lint stage doesn't run the unit tests or use code style, so no need for PHPUnit, WPCS or phpcompatibility.
       - name: 'Install NPM packages'
         run: npm install
+
+      # Only run ESLint on changed JavaScript files.
+      - name: 'Get changed JavaScript files'
+        id: jsfiles
+        run: |
+          echo "JS_FILES<<EOF" >> $GITHUB_ENV
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.js$' || echo ""
+          echo "EOF" >> $GITHUB_ENV
+
       - name: 'Run ESLint'
-        run: npm run lint:js
+        if: env.JS_FILES != ''
+        run: npm run lint:js -- ${{ env.JS_FILES }}
