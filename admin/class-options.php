@@ -49,12 +49,12 @@ class Options {
 	/**
 	 * The variable type for the stored value.
 	 *
-	 * @var array [name => string|number|bool|array] defaults to string if empty.
+	 * @var array [name => string|number|bool|array,url] defaults to string if empty.
 	 */
 	const CASTS = array(
-		'accessibility_policy_page'            => '',
+		'accessibility_policy_page'            => 'url',
 		'activation_date'                      => 'number',
-		'add_footer_accessibility_statement'   => '',
+		'add_footer_accessibility_statement'   => 'bool',
 		'anww_update_post_meta'                => '',
 		'black_friday_2023_notice_dismiss'     => 'bool',
 		'db_version'                           => '',
@@ -141,7 +141,7 @@ class Options {
 		
 		foreach ( $options_list as $name => $value ) {
 
-			$cast_value                  = self::cast( $name, $value );
+			$cast_value                  = self::cast_and_validate( $name, $value );
 			self::$options_list[ $name ] = $cast_value;
 
 		}
@@ -171,7 +171,7 @@ class Options {
 	 * @return boolean True if successful.
 	 */
 	public static function set( $name, $value ) {
-		$sanitized_value             = self::cast( $name, $value );
+		$sanitized_value             = self::cast_and_validate( $name, $value );
 		self::$options_list[ $name ] = $sanitized_value;
 		update_option( self::OPTIONS_LIST_NAME, self::$options_list );
 		return false;
@@ -244,7 +244,7 @@ class Options {
 	 */
 	public static function maybe_migrate_legacy_options() {
 		
-		if ( get_option( LEGACY_OPTION_NAMES_MAPPING[0] ) ) {
+		if ( get_option( self::LEGACY_OPTION_NAMES_MAPPING[0] ) ) {
 	
 			// Legacy options exist. Migrate them.
 			foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
@@ -279,7 +279,7 @@ class Options {
 	 * @throws \Exception When cast fails.
 	 * @return mixed
 	 */
-	private static function cast( $name, $value ) {
+	private static function cast_and_validate( $name, $value ) {
 		
 
 		switch ( $name ) {
@@ -301,10 +301,10 @@ class Options {
 				$selected_post_types = array();
 		
 				$all_post_types = \edac_post_types();
-				
+		
 				if ( is_array( $value ) ) {
 					foreach ( $value as $post_type ) {
-						if ( ! in_array( $post_type, $all_post_types, true ) ) {
+						if ( in_array( $post_type, $all_post_types, true ) ) {
 							$selected_post_types[] = $post_type;
 						}
 					}
@@ -316,10 +316,6 @@ class Options {
 		
 			case 'add_footer_accessibility_statement':
 				$value = (bool) $value;
-				break;
-
-			case 'accessibility_policy_page':
-				$value = esc_url( $value );
 				break;
 
 			case 'delete_data':
@@ -334,9 +330,12 @@ class Options {
 		$type = self::CASTS[ $name ];
 		switch ( $type ) {
 		
+			case 'string':
+				return (string) $value;
+
 			case 'bool':
 				return (bool) $value;
-
+			
 			case 'number':
 				return (float) $value;
 			
@@ -352,6 +351,15 @@ class Options {
 				}
 				throw new \Exception( esc_html( $name . ' cannot be cast to array.' ) );
 
+			case 'url':
+				if ( is_string( $value ) ) {
+					return esc_url_raw( $value );
+				}
+				if ( ! $value || is_null( $value ) ) {
+					return '';
+				}
+				throw new \Exception( esc_html( $name . ' cannot be cast to url.' ) );
+	
 			default:
 				return (string) $value;
 

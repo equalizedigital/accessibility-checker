@@ -174,7 +174,7 @@ function edac_register_setting() {
 	register_setting(
 		'edac_settings',
 		'edac',
-		'sanitize_settings_callback'
+		array( 'sanitize_callback' => 'edac_sanitize_settings_callback' )
 	);
 }
 
@@ -296,9 +296,10 @@ function edac_simplified_summary_prompt_cb() {
  */
 function edac_post_types_cb() {
 
-	$key                 = 'post_types';
-	$ns                  = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
-	$name                = $ns . '[' . $key . '][]';
+	$key  = 'post_types';
+	$ns   = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
+	$name = $ns . '[' . $key . '][]';
+	
 	$selected_post_types = \EDAC\Admin\Options::get( $key );
 	$post_types          = edac_post_types();
 	$custom_post_types   = edac_custom_post_types();
@@ -306,16 +307,17 @@ function edac_post_types_cb() {
 	?>
 		<fieldset>
 			<?php
+
 			if ( $all_post_types ) {
 				foreach ( $all_post_types as $post_type ) {
 					$disabled = in_array( $post_type, $post_types, true ) ? '' : 'disabled';
 					?>
 					<label>
 						<input type="checkbox" id="<?php echo esc_attr( 'edac_' . $key ); ?>[]" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $post_type ); ?>" 
-																<?php
-																checked( in_array( $post_type, $selected_post_types, true ), 1 );
-																echo esc_attr( $disabled );
-																?>
+							<?php
+							checked( in_array( $post_type, $selected_post_types, true ), 1 );
+							echo esc_attr( $disabled );
+							?>
 						>
 						<?php echo esc_html( $post_type ); ?>
 					</label>
@@ -448,11 +450,21 @@ function edac_delete_data_cb() {
  * @return array
  */
 function edac_sanitize_settings_callback( $input ) {
+	
+	/**
+	 * If there are changes to the selected post types we need to:
+	 * 1) delete the unselected post types from the accessibility_checker database
+	 * 2) clear cached stats
+	*/
+	
+	if ( array_key_exists( 'post_types', $input ) ) {
+		$selected_post_types = $input['post_types'];
+	} else {
+		$selected_post_types = array();
+	}
+	$post_types = edac_post_types();
 
-	// Santize the post types and handle any changes.
-	$selected_post_types = $input['post_types'];
-	$post_types          = edac_post_types();
-
+		
 	if ( $selected_post_types ) {
 		foreach ( $selected_post_types as $key => $post_type ) {
 			if ( ! in_array( $post_type, $post_types, true ) ) {
@@ -484,10 +496,10 @@ function edac_sanitize_settings_callback( $input ) {
 		}
 	}
 
-	$input['post_type'] = $selected_post_types;
+	$input['post_types'] = $selected_post_types;
 
 
-
+	
 	// return all the sanitized $input data now ready for saving.
 	return $input;
 }

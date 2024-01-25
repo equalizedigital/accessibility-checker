@@ -53,13 +53,6 @@ function edac_admin_enqueue_scripts() {
 			$current_post_type = get_post_type();
 			$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 		
-			$headers = array(
-				'Content-Type'  => 'application/json',
-				'X-WP-Nonce'    => wp_create_nonce( 'wp_rest' ),
-				'Authorization' => 'None',
-			
-			);
-	
 			$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID;
 	
 			if ( EDAC_DEBUG || strpos( EDAC_VERSION, '-beta' ) !== false ) {

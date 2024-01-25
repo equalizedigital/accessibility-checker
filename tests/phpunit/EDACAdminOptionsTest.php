@@ -61,10 +61,11 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 		if ( $retval ) {
 			list($name, $default_value) = $retval;
 
-				// Test that the default value is returned.
+			// Test that the default value is returned.
 			$this->assertEquals( $default_value, Options::get( $name ) );
 
-			// Test that a new empty value is returned.
+			
+			// Test that a new value is returned.
 			Options::set( $name, 'a new string' );
 			$this->assertEquals( 'a new string', Options::get( $name ) );
 
@@ -148,19 +149,47 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 			$this->assertEquals( $default_value, Options::get( $name ) );
 
 			// Test that a new value is returned.
-			Options::set( $name, array( 'd', 'e', 'f' ) );
-			$this->assertEquals( array( 'd', 'e', 'f' ), Options::get( $name ) );
+			Options::set( $name, array( 'page', 'post' ) );
+			$this->assertEquals( array( 'page', 'post' ), Options::get( $name ) );
 
 			// Test that the value is deleted and returns null.
 			Options::delete( $name );
 			$this->assertEquals( null, Options::get( $name ) );
 
 			// Test that a new value is returned.
-			Options::set( $name, array( 'g', 'h', 'i' ) );
-			$this->assertEquals( array( 'g', 'h', 'i' ), Options::get( $name ) );
+			Options::set( $name, array( 'post', 'page' ) );
+			$this->assertEquals( array( 'post', 'page' ), Options::get( $name ) );
 	
 		}
 	}
+
+	/**
+	 * Test that an url value can be set/gotten/deleted/set-again.
+	 */
+	public function test_set_get_delete_for_url_value() {
+		
+		$retval = $this->get_name_default_value_by_type( 'url' );
+		
+		if ( $retval ) {
+			list($name, $default_value) = $retval;
+
+			// Test that the default value is returned.
+			$this->assertEquals( $default_value, Options::get( $name ) );
+
+			// Test that a new false value is returned.
+			Options::set( $name, false );
+			$this->assertEquals( false, Options::get( $name ) );
+
+			// Test that the value is deleted and returns null.
+			Options::delete( $name );
+			$this->assertEquals( null, Options::get( $name ) );
+
+			// Test that a new value is returned.
+			Options::set( $name, 'test' );
+			$this->assertEquals( 'http://test', Options::get( $name ) );
+		}
+	}
+
 
 	/**
 	 * Test that the list can be filled with an array of values.
@@ -193,7 +222,13 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 		$retval = $this->get_name_default_value_by_type( 'array' ); 
 		if ( $retval ) {
 			list($array_name, $array_default_value) = $retval;
-			$fill_array[ $array_name ]              = array( 'a filled value 1', 'a filled value 2', 'a filled value 3' );
+			$fill_array[ $array_name ]              = array( 'page', 'post' );
+		}       
+	
+		$retval = $this->get_name_default_value_by_type( 'url' ); 
+		if ( $retval ) {
+			list($url_name, $array_default_value) = $retval;
+			$fill_array[ $url_name ]              = 'test';
 		}       
 	
 		// Test that the values are filled.
@@ -214,7 +249,11 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 		}
 
 		if ( isset( $array_name ) ) {
-			$this->assertEquals( array( 'a filled value 1', 'a filled value 2', 'a filled value 3' ), Options::get( $array_name ) );
+			$this->assertEquals( array( 'page', 'post' ), Options::get( $array_name ) );
+		}   
+
+		if ( isset( $url_name ) ) {
+			$this->assertEquals( 'http://test', Options::get( $url_name ) );
 		}   
 	}
 
@@ -262,9 +301,14 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 		$retval = $this->get_name_default_value_by_type( 'array' ); 
 		if ( $retval ) {
 			list($array_name, $array_default_value) = $retval;
-			$fill_array[ $array_name ]              = array( 'a filled value 1', 'a filled value 2', 'a filled value 3' );
+			$fill_array[ $array_name ]              = array( 'post', 'page' );
 		}       
 	
+		$retval = $this->get_name_default_value_by_type( 'url' ); 
+		if ( $retval ) {
+			list($array_name, $array_default_value) = $retval;
+			$fill_array[ $array_name ]              = 'http://test';
+		}       
 	
 	
 		Options::fill(
