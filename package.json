@@ -19,10 +19,11 @@
     "dist": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh && composer install",
     "lint": "./vendor/bin/phpcs && npm run lint:js",
     "lint:php": "./vendor/bin/phpcs",
-		"lint:js": "wp-scripts lint-js",
+    "lint:js": "wp-scripts lint-js",
     "lint:js:fix": "wp-scripts lint-js --fix",
     "test:php": "npx wp-env run tests-cli ./source/vendor/phpunit/phpunit/phpunit -c ./source/phpunit.dev.xml ./source/tests/phpunit",
-    "test:e2e": "npx wp-env clean tests && npx playwright test ./e2e/specs"
+    "test:e2e": "npx wp-env clean tests && npx playwright test ./e2e/specs",
+    "prepare": "husky"
   },
   "files": [
     "LICENSE.txt",
@@ -50,6 +51,7 @@
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.0",
     "focus-trap": "^7.4.3",
+    "husky": "^9.0.6",
     "mini-css-extract-plugin": "^2.7.6",
     "node-sass": "^7.0.3",
     "notyf": "^3.10.0",
