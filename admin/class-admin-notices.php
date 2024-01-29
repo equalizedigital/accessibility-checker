@@ -237,7 +237,7 @@ class Admin_Notices {
 	public function edac_review_notice() {
 
 		$option             = 'review_notice';
-		$edac_review_notice = Options::set( $option );
+		$edac_review_notice = Options::get( $option );
 
 		// exit if option is set to stop.
 		if ( 'stop' === $edac_review_notice ) {

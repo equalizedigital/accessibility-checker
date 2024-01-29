@@ -7,6 +7,8 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Inc\Scannable_Posts;
+
 /**
  * Class that handles calculating scans stats
  */
@@ -63,7 +65,7 @@ class Scans_Stats {
 		$this->summary();
 
 		// Cache the post_types.
-		$scannable_post_types = Settings::get_scannable_post_types();
+		$scannable_post_types = Scannable_Posts::get_allowed_types();
 
 		$post_types = get_post_types(
 			array(
@@ -133,14 +135,14 @@ class Scans_Stats {
 
 		$data = array();
 
-		$scannable_posts_count = Settings::get_scannable_posts_count();
+		$scannable_posts_count = Scannable_Posts::get_count();
 		$tests_count           = $scannable_posts_count * $this->rule_count;
 		$siteid                = get_current_blog_id();
 
 		$data['scannable_posts_count']      = (int) $scannable_posts_count;
 		$data['rule_count']                 = (int) $this->rule_count;
 		$data['tests_count']                = (int) $tests_count;
-		$data['scannable_post_types_count'] = (int) count( Settings::get_scannable_post_types() );
+		$data['scannable_post_types_count'] = (int) count( Scannable_Posts::get_allowed_types() );
 
 		$post_types = get_post_types(
 			array(
@@ -187,7 +189,7 @@ class Scans_Stats {
 
 		$warning_issues_query      = new Issues_Query(
 			array(
-				'post_types' => Settings::get_scannable_post_types(),
+				'post_types' => Scannable_Posts::get_allowed_types(),
 				'rule_types' => array( Issues_Query::RULETYPE_WARNING ),
 			),
 			$this->record_limit
@@ -197,7 +199,7 @@ class Scans_Stats {
 
 		$contrast_issues_query = new Issues_Query(
 			array(
-				'post_types' => Settings::get_scannable_post_types(),
+				'post_types' => Scannable_Posts::get_allowed_types(),
 				'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ),
 			),
 			$this->record_limit
@@ -208,7 +210,7 @@ class Scans_Stats {
 
 		$error_issues_query      = new Issues_Query(
 			array(
-				'post_types' => Settings::get_scannable_post_types(),
+				'post_types' => Scannable_Posts::get_allowed_types(),
 				'rule_types' => array( Issues_Query::RULETYPE_ERROR ),
 			),
 			$this->record_limit
@@ -221,7 +223,7 @@ class Scans_Stats {
 
 		$ignored_issues_query         = new Issues_Query(
 			array(
-				'post_types' => Settings::get_scannable_post_types(),
+				'post_types' => Scannable_Posts::get_allowed_types(),
 			),
 			$this->record_limit,
 			Issues_Query::FLAG_ONLY_IGNORED
@@ -232,8 +234,8 @@ class Scans_Stats {
 		$data['avg_issues_per_post']  = 0;
 
 		if ( $data['posts_scanned'] > 0 &&
-			! empty( Settings::get_scannable_post_types() )
-			&& ! empty( Settings::get_scannable_post_statuses() )
+			count( Scannable_Posts::get_allowed_types() ) > 0 &&
+			count( Scannable_Posts::ALLOWED_STATUSES ) > 0
 		) {
 
 			$sql = "SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}
@@ -241,9 +243,9 @@ class Scans_Stats {
 			$wpdb->prefix . 'accessibility_checker.postid WHERE ' .
 			$wpdb->prefix . 'accessibility_checker.postid IS NULL and post_type IN(' .
 			Helpers::array_to_sql_safe_list(
-				Settings::get_scannable_post_types()
+				Scannable_Posts::get_allowed_types()
 			) . ') and post_status IN(' . Helpers::array_to_sql_safe_list(
-				Settings::get_scannable_post_statuses()
+				Scannable_Posts::ALLOWED_STATUSES
 			) . ')';
 
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.

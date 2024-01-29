@@ -177,8 +177,7 @@ class Options {
 	public static function set( $name, $value ) {
 		$sanitized_value             = self::cast_and_validate( $name, $value );
 		self::$options_list[ $name ] = $sanitized_value;
-		update_option( self::OPTIONS_LIST_NAME, self::$options_list );
-		return false;
+		return update_option( self::OPTIONS_LIST_NAME, self::$options_list );
 	}
 
 	/**

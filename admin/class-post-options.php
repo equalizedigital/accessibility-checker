@@ -1,70 +1,90 @@
 <?php
 /**
- * Class file for managing options
+ * Class file for managing post options
  *
  * @package Accessibility_Checker
  */
 
 namespace EDAC\Admin;
 
+//phpcs:disable Generic.Commenting.Todo.TaskFound
+
 /**
- * Class that handles WP post meta options for the plugin.
+ * Class that handles WP post options for the plugin.
  */
 class Post_Options {
-
-	/**
-	 * The default values.
-	 *
-	 * @var array [name => value]
-	 */
-	private $default_values = array(
-		'_edac_issue_density'          => '',
-		'_edac_post_checked'           => false,
-		'_edac_post_checked_js'        => false,
-		'_edac_summary'                => '',
-		'_edac_summary_contrast_error' => '',
-		'_edac_summary_errors'         => '',
-		'_edac_summary_ignored'        => '',
-		'_edac_summary_passed_tests'   => '',
-		'_edac_summary_warnings'       => '',
-		'edac_anww_update_post_meta'   => false,
-		'link_blank'                   => false,
-	);
-	
-	/**
-	 * The variable type for the stored value.
-	 *
-	 * @var array [name => string|number|bool|array] defaults to string if empty.
-	 */
-	private $casts = array(
-		'_edac_issue_density'          => 'number',
-		'_edac_post_checked'           => 'bool',
-		'_edac_post_checked_js'        => 'bool',
-		'_edac_summary'                => '',
-		'_edac_summary_contrast_error' => 'number',
-		'_edac_summary_errors'         => 'number',
-		'_edac_summary_ignored'        => 'number',
-		'_edac_summary_passed_tests'   => 'number',
-		'_edac_summary_warnings'       => 'number',
-		'edac_anww_update_post_meta'   => 'bool',
-		'link_blank'                   => 'bool',
-	);
-	
-
-	/**
-	 * The id of the post to which these options are associated.
-	 *
-	 * @var integer 
-	 */
-	private $post_id;
 
 	/**
 	 * Name of the WordPress option we're using.
 	 *
 	 * @var string
 	 */
-	private $options_list_name;
+	const OPTIONS_LIST_NAME = 'edac';
 	
+	/**
+	 * The default values.
+	 *
+	 * @var array [name => value]
+	 */
+	const DEFAULT_VALUES = array(
+		'issue_density'          => 0,
+		'issue_density_elements' => 0,
+		'issue_density_strlen'   => 0,
+		'post_checked'           => false,
+		'post_checked_js'        => false,
+		'summary'                => '',
+		'simplified_summary'     => '',
+		'summary_contrast_error' => 0,
+		'summary_errors'         => 0,
+		'summary_ignored'        => 0,
+		'summary_passed_tests'   => 0,
+		'summary_warnings'       => 0,
+		'anww_update_post_meta'  => false,
+		'link_blank'             => false,
+	);
+	
+	/**
+	 * The variable type for the stored value.
+	 *
+	 * @var array [name => string|number|bool|array,url] defaults to string if empty.
+	 */
+	const CASTS = array(
+		'issue_density'          => 'number',
+		'issue_density_elements' => 'number',
+		'issue_density_strlen'   => 'number',
+		'post_checked'           => 'bool',
+		'post_checked_js'        => 'bool',
+		'summary'                => '',
+		'simplified_summary'     => '',
+		'summary_contrast_error' => 'number',
+		'summary_errors'         => 'number',
+		'summary_ignored'        => 'number',
+		'summary_passed_tests'   => 'number',
+		'summary_warnings'       => 'number',
+		'anww_update_post_meta'  => 'bool',
+		'link_blank'             => 'bool',
+	);
+	
+	const LEGACY_OPTION_NAMES_MAPPING = array(
+		'_edac_issue_density'          => 'issue_density',
+		'_edac_post_checked'           => 'post_checked',
+		'_edac_post_checked_js'        => 'post_checked_js',
+		'_edac_summary'                => 'summary',
+		'_edac_summary_contrast_error' => 'contrast_error',
+		'_edac_summary_errors'         => 'summary_errors',
+		'_edac_summary_ignored'        => 'summary_ignored',
+		'_edac_summary_passed_tests'   => 'summary_passed_tests',
+		'_edac_summary_warnings'       => 'summary_warnings',
+		'edac_anww_update_post_meta'   => 'anww_update_post_meta',
+	);
+
+	/**
+	 * Id of the post we are working with.
+	 *
+	 * @var integer
+	 */
+	private $post_id;
+
 	/**
 	 * Array that holds the actual option values.
 	 *
@@ -73,29 +93,17 @@ class Post_Options {
 	private $options_list = array();
 
 	/**
-	 * Class constructor.
-	 *
-	 * @param [integer] $post_id           The id of the post to which these options are associated.
-	 * @param [string]  $options_list_name  Name of the WordPress option we're using.
-	 * @param [array]   $default_values     Default values for the options in the list.
-	 * @param [array]   $casts              Data type for the options in the list. Defaults to string.
+	 * Constructor for the class.
+	 * 
+	 * @param integer $post_id The post id we are working with.
+	 * @return void
 	 */
-	public function __construct( $post_id, $options_list_name, $default_values = null, $casts = null ) {
-		
-		$this->post_id           = $post_id;
-		$this->options_list_name = $options_list_name;
-
-		if ( ! is_null( $default_values ) ) {
-			$this->default_values = $default_values;
-		}
-	
-		if ( ! is_null( $casts ) ) {
-			$this->casts = $casts;
-		}
-		
+	public function __construct( $post_id ) {
+		$this->post_id = $post_id;
 		$this->fill();
 	}
 
+	
 	/**
 	 * Fill list with either the passed array or from the values stored in WordPress. 
 	 *
@@ -106,7 +114,7 @@ class Post_Options {
 	
 		if ( is_null( $options_list ) ) {
 			// Load from WordPress.
-			$options_list = get_post_meta( $this->post_id, $this->options_list_name );
+			$options_list = get_post_meta( $this->post_id, self::OPTIONS_LIST_NAME );
 		}
 	
 		if ( is_array( $options_list ) && ! empty( $options_list ) ) {
@@ -116,15 +124,15 @@ class Post_Options {
 				$options_list = $options_list[0];
 			}
 		
-			$options_list = array_merge( $this->default_values, $options_list );
+			$options_list = array_merge( self::DEFAULT_VALUES, $options_list );
 		} else {
-			$options_list = $this->default_values;
+			$options_list = self::DEFAULT_VALUES;
 		}
 		
 		
 		foreach ( $options_list as $name => $value ) {
 
-			$cast_value                  = $this->cast( $name, $value );
+			$cast_value                  = $this->cast_and_validate( $name, $value );
 			$this->options_list[ $name ] = $cast_value;
 
 		}
@@ -151,39 +159,38 @@ class Post_Options {
 	 *
 	 * @param [string] $name The name of the list item.
 	 * @param [mixed]  $value The value of the list item.
-	 * @return boolean True if the value was updated.
+	 * @return boolean True if successful.
 	 */
 	public function set( $name, $value ) {
-		
-		$sanitized_value             = $this->cast( $name, $value );
+		$sanitized_value             = $this->cast_and_validate( $name, $value );
 		$this->options_list[ $name ] = $sanitized_value;
-		
-		return update_option( $this->options_list_name, $this->options_list );
+		return update_post_meta( $this->post_id, self::OPTIONS_LIST_NAME, $this->options_list );
 	}
 
 	/**
 	 * Remove the value from the list then saves the entire list in the WP database.
 	 *
 	 * @param [string] $name The name of list item.
-	 * @return boolean True if the value was deleted.
+	 * @return boolean True if successful.
 	 */
 	public function delete( $name ) {
 
 		if ( array_key_exists( $name, $this->options_list ) ) {
 			unset( $this->options_list[ $name ] );
 			
-			return update_post_meta( $this->post_id, $this->options_list_name, $this->options_list );
+			return update_post_meta( $this->post_id, self::OPTIONS_LIST_NAME, $this->options_list );
 		}
 	}
 
 	/**
 	 * Remove all values from the list then deletes the option in the WP database.
 	 *
-	 * @return void
+	 * @return boolean True if successful.
 	 */
 	public function delete_all() {
 		$this->options_list = array();
-		delete_option( $this->options_list_name );
+		
+		return delete_post_meta( $this->post_id, self::OPTIONS_LIST_NAME );
 	}
 
 	/**
@@ -192,7 +199,7 @@ class Post_Options {
 	 * @return string
 	 */
 	public function list_name() {
-		return $this->options_list_name;
+		return self::OPTIONS_LIST_NAME;
 	}
 
 	/**
@@ -214,22 +221,58 @@ class Post_Options {
 	}
 	
 	/**
-	 * Forces the value stored in the list to be of the type that we expect.
+	 * If needed, migrate legacy options to use this Options class.
+	 *
+	 * @return void
+	 */
+	public function maybe_migrate_legacy_options() {
+		
+		if ( get_option( self::LEGACY_OPTION_NAMES_MAPPING[0] ) ) {
+	
+			// Legacy options exist. Migrate them.
+			foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
+				$value = get_post_meta( $this->post_id, $old_name );
+				$this->set( $new_name, $value );
+			}       
+		}       
+	
+	
+		foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
+	
+			// TODO remove this.
+			// trigger an exception when a legacy option is read so we can find and fix.
+			add_filter(
+				'get_post_meta_' . $old_name,
+				function ( $legacy_value, $legacy_name ) {
+					throw new \Exception( esc_html( 'Legacy post meta "' . $legacy_name . '" is being read.' ) );
+				},
+				10,
+				2
+			);
+
+		}
+	}
+
+	
+	/**
+	 * Forces the value stored in the list to be of the type and value we expect.
 	 *
 	 * @param [string] $name Name of the list item.
 	 * @param [mixed]  $value Value of the list item.
 	 * @throws \Exception When cast fails.
 	 * @return mixed
 	 */
-	private function cast( $name, $value ) {
+	private function cast_and_validate( $name, $value ) {
 		
-		$type = $this->casts[ $name ];
-
+		$type = self::CASTS[ $name ];
 		switch ( $type ) {
 		
+			case 'string':
+				return (string) $value;
+
 			case 'bool':
 				return (bool) $value;
-
+			
 			case 'number':
 				return (float) $value;
 			
@@ -237,8 +280,23 @@ class Post_Options {
 				if ( is_array( $value ) ) {
 					return $value;
 				}
+				if ( is_string( $value ) ) {
+					return array( $value );
+				}
+				if ( ! $value || is_null( $value ) ) {
+					return array();
+				}
 				throw new \Exception( esc_html( $name . ' cannot be cast to array.' ) );
 
+			case 'url':
+				if ( is_string( $value ) ) {
+					return esc_url_raw( $value );
+				}
+				if ( ! $value || is_null( $value ) ) {
+					return '';
+				}
+				throw new \Exception( esc_html( $name . ' cannot be cast to url.' ) );
+	
 			default:
 				return (string) $value;
 

@@ -7,8 +7,8 @@
 
 namespace EDAC\Inc;
 
+use EDAC\Inc\Scannable_Posts;
 use EDAC\Admin\Scans_Stats;
-use EDAC\Admin\Settings;
 use EDAC\Admin\Options;
 
 
@@ -252,7 +252,8 @@ class REST_Api {
 			edac_summary( $post_id );
 
 			// store a record of this scan in the post's meta.
-			update_post_meta( $post_id, '_edac_post_checked_js', time() );
+			$post_options = new \EDAC\Admin\Post_Options( $post_id );
+			$post_options->set( 'post_checked_js', time() );
 
 			return new \WP_REST_Response(
 				array(
@@ -357,8 +358,8 @@ class REST_Api {
 		try {
 
 			$post_type            = strval( $request['slug'] );
-			$scannable_post_types = Settings::get_scannable_post_types();
-
+			$scannable_post_types = Scannable_Posts::get_allowed_types();
+			
 			if ( in_array( $post_type, $scannable_post_types, true ) ) {
 
 				$scans_stats = new Scans_Stats( 60 * 5 );
@@ -395,8 +396,8 @@ class REST_Api {
 
 			$scans_stats = new Scans_Stats( 60 * 5 );
 
-			$scannable_post_types = Settings::get_scannable_post_types();
-
+			$scannable_post_types = Scannable_Posts::get_allowed_types();
+		
 			$post_types = get_post_types(
 				array(
 					'public' => true,

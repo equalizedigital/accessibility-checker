@@ -7,6 +7,8 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Inc\Scannable_Posts;
+
 /**
  * Class that handles calculating scan report data
  */
@@ -239,7 +241,7 @@ class Issues_Query {
 
 		if ( array_key_exists( 'post_types', $filter ) && count( $filter['post_types'] ) ) {
 
-			$scannable_post_types = Settings::get_scannable_post_types();
+			$scannable_post_types = Scannable_Posts::get_allowed_types();
 			$post_types           = array_intersect( $filter['post_types'], $scannable_post_types );
 			if ( count( $post_types ) ) {
 				$this->query['filters'] .= ' and type IN (' . Helpers::array_to_sql_safe_list( $post_types ) . ') ';

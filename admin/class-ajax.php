@@ -478,8 +478,9 @@ class Ajax {
 		}
 
 		$post_id                        = (int) $_REQUEST['post_id'];
+		$post_options                   = new Post_Options( $post_id );     
 		$html                           = '';
-		$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
+		$simplified_summary             = $post_options->get( 'simplified_summary', true ) ? $post_options->get( 'simplified_summary', true ) : '';
 		$simplified_summary_position    = Options::get( 'simplified_summary_position', $default = false );
 		$content_post                   = get_post( $post_id );
 		$content                        = $content_post->post_content;
@@ -499,7 +500,7 @@ class Ajax {
 		$content = str_replace( ']]>', ']]&gt;', $content );
 
 		// get readability metadata and determine if a simplified summary is required.
-		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
+		$edac_summary           = $post_options->get( 'summary', true );
 		$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
 		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
@@ -687,12 +688,11 @@ class Ajax {
 
 		}
 
-		$post_id = (int) $_REQUEST['post_id'];
-		$summary = sanitize_text_field( $_REQUEST['summary'] );
+		$post_id            = (int) $_REQUEST['post_id'];
+		$post_options       = new Post_Options( $post_id );
+		$simplified_summary = sanitize_text_field( $_REQUEST['summary'] );
 
-		update_post_meta( $post_id, '_edac_simplified_summary', $summary );
-
-		$simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
+		$post_options->set( 'simplified_summary', $simplified_summary );
 
 		if ( ! $simplified_summary ) {
 

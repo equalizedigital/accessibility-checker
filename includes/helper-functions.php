@@ -683,8 +683,8 @@ function edac_get_body_density_data( $html ) {
 			$body_content = preg_replace( '/[^A-Za-z0-9]/', '', $body_element->plaintext );
 
 			return array(
-				$body_elements_count,
-				strlen( $body_content ),
+				'issue_density_elements' => $body_elements_count,
+				'issue_density_strlen'   => strlen( $body_content ),
 			);
 
 		}

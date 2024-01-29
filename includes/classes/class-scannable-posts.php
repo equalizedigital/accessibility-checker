@@ -1,36 +1,38 @@
 <?php
 /**
- * Class file for scan settings
+ * Class file for dealing with scannable posts
  *
  * @package Accessibility_Checker
  */
 
-namespace EDAC\Admin;
+namespace EDAC\Inc;
+
+use EDAC\Admin\Options;
+use EDAC\Admin\Helpers;
 
 /**
- * Class that handles plugin settings
+ * Class tha deals with scannable posts
  */
-class Settings {
+class Scannable_Posts {
 
 	/**
-	 * Gets a list of post statuses that are scannable.
-	 *
-	 * @var array
-	 */
-	public static function get_scannable_post_statuses() {
-		return array( 'publish', 'future', 'draft', 'pending', 'private' );
-	}
-
-
-	/**
-	 * Gets a list of post types that are scannable.
+	 * A list of post statuses that are scannable.
 	 *
 	 * @return array
 	 */
-	public static function get_scannable_post_types() {
+	const ALLOWED_STATUSES = array( 'publish', 'future', 'draft', 'pending', 'private' );
+
+	/**
+	 * Get a list of post types that are scannable.
+	 *
+	 * @return array
+	 */
+	public static function get_allowed_types() {
 
 		if ( ! class_exists( '\EDACP\Settings' ) ) {
 
+			// Not pro.
+	
 			$post_types = Options::get( 'post_types' );
 
 			// remove duplicates.
@@ -53,6 +55,7 @@ class Settings {
 			return $post_types;
 		}
 
+		// Pro.
 		return \EDACP\Settings::get_scannable_post_types();
 	}
 
@@ -62,14 +65,16 @@ class Settings {
 	 *
 	 * @return integer
 	 */
-	public static function get_scannable_posts_count() {
+	public static function get_count() {
 
 		global $wpdb;
 
-		$post_types = self::get_scannable_post_types();
+		$post_types = self::get_allowed_types();
 
-		$post_statuses = self::get_scannable_post_statuses();
+		$post_statuses = self::ALLOWED_STATUSES;
 
+		//phpcs:ignore Generic.Commenting.Todo.TaskFound
+		// TODO: can we replace array_to_sql_safe_list?
 		if ( ! empty( $post_types ) && ! empty( $post_statuses ) ) {
 			$sql = "SELECT COUNT(id) FROM {$wpdb->posts}  WHERE post_type IN(" .
 				Helpers::array_to_sql_safe_list( $post_types ) . ') and post_status IN(' .

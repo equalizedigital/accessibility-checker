@@ -20,6 +20,7 @@
  */
 
 use EDAC\Admin\Options;
+use EDAC\Admin\Post_Options;
 use EDAC\Inc\Plugin;
 
 // If this file is called directly, abort.
@@ -256,7 +257,8 @@ function edac_before_page_render() {
 			return;
 		}
 
-		$checked = get_post_meta( $post_id, '_edac_post_checked', true );
+		$post_options = new Post_Options( $post_id );
+		$checked      = $post_options->get( 'post_checked' );
 		if ( ! $checked ) {
 			edac_validate( $post->ID, $post, $action = 'load' );
 		}
@@ -279,6 +281,8 @@ function edac_summary( $post_id ) {
 		return $summary;
 	}
 
+	$post_options = new Post_Options( $post_id );
+	
 	// Passed Tests.
 	$rules = edac_register_rules();
 
@@ -375,22 +379,14 @@ function edac_summary( $post_id ) {
 	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
 
 	// issue density.
-	$issue_count = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'];
-
-	$issue_density_array = get_post_meta( $post_id, '_edac_density_data' );
-
-	if ( is_array( $issue_density_array ) &&
-		count( $issue_density_array ) > 0 &&
-		count( $issue_density_array[0] ) > 0
-	) {
-
-		$element_count  = $issue_density_array[0][0];
-		$content_length = $issue_density_array[0][1];
-		$issue_density  = edac_get_issue_density( $issue_count, $element_count, $content_length );
-
-		update_post_meta( $post_id, '_edac_issue_density', $issue_density );
+	$issue_count    = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'];
+	$element_count  = $post_options->get( 'issue_density_elements' );
+	$content_length = $post_options->get( 'issue_density_strlen' );
+	if ( ( $element_count + $content_length ) > 0 ) {
+		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
+		$post_options->set( 'issue_density', $issue_density );
 	} else {
-		delete_post_meta( $post_id, '_edac_issue_density' );
+		$post_options->delete( 'issue_density' );
 	}
 
 	// reading grade level.
@@ -412,15 +408,15 @@ function edac_summary( $post_id ) {
 		: edac_ordinal( $summary['content_grade'] );
 
 	// simplified summary.
-	$summary['simplified_summary'] = (bool) ( get_post_meta( $post_id, '_edac_simplified_summary', true ) );
+	$summary['simplified_summary'] = (bool) ( $post_options->set( 'simplified_summary', true ) );
 
-	// save summary data as post meta.
-	update_post_meta( $post_id, '_edac_summary', $summary );
-	update_post_meta( $post_id, '_edac_summary_passed_tests', $summary['passed_tests'] );
-	update_post_meta( $post_id, '_edac_summary_errors', $summary['errors'] );
-	update_post_meta( $post_id, '_edac_summary_warnings', $summary['warnings'] );
-	update_post_meta( $post_id, '_edac_summary_ignored', $summary['ignored'] );
-	update_post_meta( $post_id, '_edac_summary_contrast_errors', $summary['contrast_errors'] );
+	
+	$post_options->set( 'summary', $summary );
+	$post_options->set( 'summary_passed_tests', $summary['passed_tests'] );
+	$post_options->set( 'summary_errors', $summary['errors'] );
+	$post_options->set( 'summary_warnings', $summary['warnings'] );
+	$post_options->set( 'summary_ignored', $summary['ignored'] );
+	$post_options->set( 'summary_contrast_error', $summary['contrast_errors'] );
 
 	return $summary;
 }

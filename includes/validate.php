@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Helpers;
+use EDAC\Admin\Post_Options;
 
 /**
  * Oxygen Builder on save
@@ -37,7 +38,9 @@ function edac_post_on_load() {
 	global $pagenow;
 	if ( 'post.php' === $pagenow ) {
 		global $post;
-		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
+
+		$post_options = new Post_Options( $post->ID );
+		$checked      = $post_options->get( 'post_checked', true );
 		if ( false === (bool) $checked ) {
 			edac_validate( $post->ID, $post, $action = 'load' );
 		}
@@ -168,7 +171,8 @@ function edac_validate( $post_ID, $post, $action ) {
 	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 2, 'php' );
 
 	// set post meta checked.
-	update_post_meta( $post_ID, '_edac_post_checked', true );
+	$post_options = new Post_Options( $post_ID );
+	$post_options->set( 'post_checked', true );
 
 	do_action( 'edac_after_validate', $post_ID, $action );
 }
@@ -256,6 +260,8 @@ function edac_get_content( $post ) {
 
 	$username = get_option( 'edacp_authorization_username' );
 	$password = get_option( 'edacp_authorization_password' );
+
+	$post_options = new Post_Options( $post->ID );
 
 	// Check if server returns that the domain IP is a local/loopback address.
 	// If so then file_get_contents calls from this server to this domain will
@@ -347,18 +353,23 @@ function edac_get_content( $post ) {
 				$body_density_data = edac_get_body_density_data( $page_html );
 
 				if ( false !== $body_density_data ) {
-					update_post_meta( $post->ID, '_edac_density_data', $body_density_data );
+					$post_options->set( 'issue_density_elements', $body_density_data['issue_density_elements'] );
+					$post_options->set( 'issue_density_strlen', $body_density_data['issue_density_strlen'] );
+					
 				} else {
-					delete_post_meta( $post->ID, '_edac_density_data' );
+					$post_options->set( 'issue_density_elements', 0 );
+					$post_options->set( 'issue_density_strlen', 0 );
 				}
 			}
 		} catch ( Exception $e ) {
-			update_post_meta( $post->ID, '_edac_density_data', '0,0' );
-
+			$post_options->set( 'issue_density_elements', 0 );
+			$post_options->set( 'issue_density_strlen', 0 );
+	
 			$content['html'] = false;
 		}
 	} else {
-		update_post_meta( $post->ID, '_edac_density_data', '0,0' );
+		$post_options->set( 'issue_density_elements', 0 );
+		$post_options->set( 'issue_density_strlen', 0 );
 
 		$content['html'] = false;
 	}

@@ -34,14 +34,8 @@ function edac_delete_post_meta( $post_id ) {
 		return;
 	}
 
-	$post_meta = get_post_meta( $post_id );
-	if ( $post_meta ) {
-		foreach ( $post_meta as $key => $value ) {
-			if ( substr( $key, 0, 5 ) === '_edac' || substr( $key, 0, 6 ) === '_edacp' ) {
-				delete_post_meta( $post_id, $key );
-			}
-		}
-	}
+	$post_options = new \EDAC\Admin\Post_Options( $post_id );
+	$post_options->delete_all();
 }
 
 /**
