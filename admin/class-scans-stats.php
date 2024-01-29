@@ -12,8 +12,6 @@ namespace EDAC\Admin;
  */
 class Scans_Stats {
 
-
-
 	/**
 	 * Number of seconds to return results from cache.
 	 *
