@@ -18,7 +18,7 @@ class Scans_Stats {
 	 *
 	 * @var boolean
 	 */
-	private $force_deprecation = false;
+	const FORCE_DEPRECATION = false;
 	
 	/**
 	 * Instance of the new class.
@@ -34,7 +34,7 @@ class Scans_Stats {
 	 * @deprecated 1.8.0
 	 */
 	public function __construct( $cache_time = 60 * 60 * 24 ) {
-		if ( $this->force_deprecation ) {
+		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
 		$this->instance = new Admin\Scans_Stats( $cache_time );
@@ -49,7 +49,7 @@ class Scans_Stats {
 	 * @return function
 	 */
 	public function __call( $method, $arguments ) {
-		if ( $this->force_deprecation ) {
+		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
 		return call_user_func_array( array( $this->instance, $method ), $arguments );
@@ -64,7 +64,7 @@ class Scans_Stats {
 	 * @return function
 	 */
 	public static function __callStatic( $method, $arguments ) {
-		if ( $this->force_deprecation ) {
+		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
 		return call_user_func_array( array( self::$instance, $method ), $arguments );
@@ -78,7 +78,7 @@ class Scans_Stats {
 	 * @return function
 	 */
 	public function __get( $property ) {
-		if ( $this->force_deprecation ) {
+		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
 		return $this->instance->$property;
@@ -93,7 +93,7 @@ class Scans_Stats {
 	 * @return void
 	 */
 	public function __set( $property, $value ) {
-		if ( $this->force_deprecation ) {
+		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
 		$this->instance->$property = $value;

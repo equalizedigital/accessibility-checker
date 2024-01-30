@@ -27,7 +27,7 @@ class Issues_Query {
 	 *
 	 * @var boolean
 	 */
-	private $force_deprecation = false;
+	const FORCE_DEPRECATION = false;
 	
 	/**
 	 * Instance of the new class.
@@ -45,7 +45,7 @@ class Issues_Query {
 	 * @deprecated 1.8.0
 	 */
 	public function __construct( $filter = array(), $record_limit = 100000, $flags = self::FLAG_EXCLUDE_IGNORED ) {
-		if ( $this->force_deprecation ) {
+		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
 		$this->instance = new Admin\Issues_Query( $filter, $record_limit, $flags );
@@ -60,7 +60,7 @@ class Issues_Query {
 	 * @return function
 	 */
 	public function __call( $method, $arguments ) {
-		if ( $this->force_deprecation ) {
+		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
 		return call_user_func_array( array( $this->instance, $method ), $arguments );
@@ -75,7 +75,7 @@ class Issues_Query {
 	 * @return function
 	 */
 	public static function __callStatic( $method, $arguments ) {
-		if ( $this->force_deprecation ) {
+		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
 		return call_user_func_array( array( self::$instance, $method ), $arguments );
@@ -89,7 +89,7 @@ class Issues_Query {
 	 * @return function
 	 */
 	public function __get( $property ) {
-		if ( $this->force_deprecation ) {
+		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
 		return $this->instance->$property;
@@ -104,7 +104,7 @@ class Issues_Query {
 	 * @return void
 	 */
 	public function __set( $property, $value ) {
-		if ( $this->force_deprecation ) {
+		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
 		$this->instance->$property = $value;
