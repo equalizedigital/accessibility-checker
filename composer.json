@@ -51,7 +51,8 @@
     "autoload": {
         "classmap": [
             "admin/",
-            "includes/classes/"
+            "includes/classes/",
+            "includes/deprecated/"
         ]
     },
     "autoload-dev": {

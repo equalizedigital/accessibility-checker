@@ -588,16 +588,16 @@
         },
         {
             "name": "equalizedigital/accessibility-checker-wp-env",
-            "version": "v1.0.5",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/equalizedigital/accessibility-checker-wp-env.git",
-                "reference": "abb9403cbcb5d5edeefe005f19bd6f697b195048"
+                "reference": "9a4f397605def84e54e1dc7fdcf511568f22dad3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/equalizedigital/accessibility-checker-wp-env/zipball/abb9403cbcb5d5edeefe005f19bd6f697b195048",
-                "reference": "abb9403cbcb5d5edeefe005f19bd6f697b195048",
+                "url": "https://api.github.com/repos/equalizedigital/accessibility-checker-wp-env/zipball/9a4f397605def84e54e1dc7fdcf511568f22dad3",
+                "reference": "9a4f397605def84e54e1dc7fdcf511568f22dad3",
                 "shasum": ""
             },
             "type": "library",
@@ -612,10 +612,10 @@
             ],
             "description": "This package is a customized version of wp-env used for development and testing of Accessibility Checker, Accessibility Checker Pro and Accessibility Checker Audit History.",
             "support": {
-                "source": "https://github.com/equalizedigital/accessibility-checker-wp-env/tree/v1.0.5",
+                "source": "https://github.com/equalizedigital/accessibility-checker-wp-env/tree/v1.0.6",
                 "issues": "https://github.com/equalizedigital/accessibility-checker-wp-env/issues"
             },
-            "time": "2024-01-16T19:47:48+00:00"
+            "time": "2024-01-24T20:02:01+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",

@@ -119,7 +119,7 @@ if ( ! class_exists( 'simple_html_dom' ) ) {
 /**
  * Import Resources
  */
-require_once plugin_dir_path( __FILE__ ) . 'includes/deprecated.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/deprecated/deprecated.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/activation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
