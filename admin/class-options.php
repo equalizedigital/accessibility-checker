@@ -113,7 +113,9 @@ class Options {
 	 * @return void
 	 */
 	public static function boot() {
-		self::fill();   
+		if ( empty( self::$options_list ) ) {
+			self::fill();   
+		}
 	}
 
 	

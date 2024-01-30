@@ -23,11 +23,14 @@ class REST_Api {
 	 * Constructor
 	 */
 	public function __construct() {
+		
+		// Some of the REST api calls need to access the options, so boot to fill.
+		Options::boot();
 	}
 
 
 	/**
-	 * Add the class the hooks.
+	 * Add the class hooks.
 	 */
 	public function init_hooks() {
 		add_action( 'init', array( $this, 'init_rest_routes' ) );
@@ -56,7 +59,6 @@ class REST_Api {
 							$messages = array();
 							$messages['time'] = time();
 							$messages['perms'] = current_user_can( 'edit_posts' );
-
 							return new \WP_REST_Response( array( 'messages' => $messages ), 200 );
 						},
 						'permission_callback' => function () {
