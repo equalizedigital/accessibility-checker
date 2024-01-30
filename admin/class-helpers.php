@@ -1,11 +1,11 @@
 <?php
 /**
  * Class file for helpers
- * 
+ *
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
+namespace EDAC\Admin;
 
 /**
  * Class that holds helpers
@@ -46,19 +46,17 @@ class Helpers {
 		if ( ( ! is_numeric( $number ) ) ) {
 			return $number;
 		}
-		
+
 		$locale = get_locale();
 
 		if ( class_exists( 'NumberFormatter' ) ) {
 			$formatter = new \NumberFormatter( $locale, \NumberFormatter::DECIMAL );
 			$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
 			$formatter->setAttribute( \NumberFormatter::GROUPING_USED, 1 ); // Include thousands separator.
-		
-			return $formatter->format( $number );
 
-		} else {
-			return number_format( $number );
+			return $formatter->format( $number );
 		}
+		return number_format( $number );
 	}
 
 	/**
@@ -78,19 +76,16 @@ class Helpers {
 			$number = $number / 100;
 		}
 
-		
 		$locale = get_locale();
 
 		if ( class_exists( 'NumberFormatter' ) ) {
-	
+
 			$formatter = new \NumberFormatter( $locale, \NumberFormatter::PERCENT );
 			$formatter->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, $precision ); // decimals to include.
-			
+
 			return $formatter->format( $number );
-		
-		} else {
-			return sprintf( '%.2f%%', $number * 100 );
 		}
+		return sprintf( '%.2f%%', $number * 100 );
 	}
 
 	/**
@@ -102,32 +97,26 @@ class Helpers {
 	 */
 	public static function format_date( $date, $include_time = false ) {
 
+		$timestamp = $date;
 		if ( ! is_numeric( $date ) ) { // date as string.
-			
-			$timestamp = strtotime( $date ); 
-
+			$timestamp = strtotime( $date );
 			if ( ! $timestamp ) { // The passed string is not a valid date.
 				return $date;
-			}       
-		} else { // unix timestamp.
-			$timestamp = $date; 
+			}
 		}
 
 		$datetime = new \DateTime();
 		$datetime->setTimestamp( $timestamp );
 		$datetime->setTimezone( wp_timezone() );
 
-		if ( ! $include_time ) {
-			$format = get_option( 'date_format' );
-		} else {
-			$format = get_option( 'date_format' ) . ' \a\t ' . get_option( 'time_format' );
-		}
+		$format = ( ! $include_time )
+			? get_option( 'date_format' )
+			: get_option( 'date_format' ) . ' \a\t ' . get_option( 'time_format' );
 
 		if ( ! $format ) {
+			$format = 'j M Y';
 			if ( $include_time ) {
 				$format = 'j M Y \a\t g:i a';
-			} else {
-				$format = 'j M Y';
 			}
 		}
 
@@ -148,14 +137,7 @@ class Helpers {
 
 		if ( is_array( $option ) && ! empty( $option ) ) {
 			return $option;
-		} else {
-			return array();
 		}
-
-		if ( is_string( $option ) ) {
-			return array( $option );
-		}
-
 		return array();
 	}
 
@@ -167,32 +149,31 @@ class Helpers {
 	 * @return boolean
 	 */
 	public static function is_domain_loopback( $domain ) {
-	
-		// Check if this is an ipv4 address in the loopback range.  
-	
+
+		// Check if this is an ipv4 address in the loopback range.
+
 		$record         = gethostbyname( $domain );
 		$loopback_start = ip2long( '127.0.0.0' );
 		$loopback_end   = ip2long( '127.255.255.255' );
 		$ip_long        = ip2long( $record );
-	
+
 		if ( $ip_long >= $loopback_start && $ip_long <= $loopback_end ) {
 			return true;
-		}       
+		}
 
-			
 		// Check if this is an ipv6 loopback.
-	
+
 		try {
 			$records = dns_get_record( $domain, DNS_AAAA );
 		} catch ( \Throwable $th ) {
-			return false;           
+			return false;
 		}
-			
+
 		foreach ( $records as $record ) {
-		
+
 			// Do ipv6 check.
 			if ( isset( $record['type'] ) && 'AAAA' === $record['type'] ) {
-			
+
 				// Normalize the IPv6 address for comparison.
 				$normalized_ipv6 = inet_pton( $record['ipv6'] );
 
@@ -201,10 +182,10 @@ class Helpers {
 
 				if ( $normalized_ipv6 === $loopback_ipv6 ) {
 					return true;
-				}     
+				}
 			}
 		}
-	
+
 		return false;
 	}
 }

@@ -34,13 +34,29 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
         "phpcompatibility/php-compatibility": "*",
         "php-parallel-lint/php-parallel-lint": "^1.3",
-        "equalizedigital/accessibility-checker-wp-env": "*"
+        "yoast/phpunit-polyfills": "^1.1.0",
+        "yoast/wp-test-utils": "^1.2",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "wp-coding-standards/wpcs": "^3.0",
+        "equalizedigital/accessibility-checker-wp-env": "*",
+        "doctrine/instantiator": "^1.3.1",
+        "wp-phpunit/wp-phpunit": "*"
     },
     "require": {
         "cbschuld/browser.php": "^1.9",
-        "davechild/textstatistics": "1.0.2",
+        "davechild/textstatistics": "^1.0",
         "php": ">=7.4",
         "composer/installers": "^1.12.0"
+    },
+    "autoload": {
+        "classmap": [
+            "admin/",
+            "includes/classes/",
+            "includes/deprecated/"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": []
     },
     "scripts": {
         "lint": [

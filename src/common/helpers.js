@@ -1,134 +1,114 @@
 import { Notyf } from 'notyf';
 
+export const showNotice = ( options ) => {
+	const settings = Object.assign( {}, {
+		msg: '',
+		type: 'warning',
+		url: false,
+		label: '',
+		closeOthers: true,
+	}, options );
 
-export const showNotice = (options) => {
+	// Showing on a page with the wp option loaded.
+	if ( window.wp !== undefined && window.wp.data !== undefined && window.wp.data.dispatch !== undefined ) {
+		const o = { isDismissible: true };
 
-    const settings = Object.assign({}, {
-        msg: '',
-        type: 'warning',
-        url: false,
-        label: '',
-        closeOthers: true
-    }, options);
+		let msg = settings.msg;
 
-    // Showing on a page with the wp option loaded.
-    if (window.wp !== undefined && window.wp.data !== undefined && window.wp.data.dispatch !== undefined) {
+		if ( settings.url ) {
+			o.actions = [ {
+				url: settings.url,
+				label: settings.label,
+			} ];
 
-        var o = { isDismissible: true };
+			msg = msg.replace( '{link}', 'follow the link below' );
+		} else {
+			msg = msg.replace( '{link}', '' );
+		}
 
-        var msg = settings.msg;
+		if ( settings.closeOthers ) {
+			document.querySelectorAll( '.components-notice' ).forEach( ( element ) => {
+				element.style.display = 'none';
+			} );
+		}
 
-        if (settings.url) {
-            o.actions = [{
-                url: settings.url,
-                label: settings.label
-            }];
+		setTimeout( function() {
+			wp.data.dispatch( 'core/notices' ).createNotice( settings.type, msg, o );
+		}, 10 );
+	} else {
+		const link = document.createElement( 'link' );
+		link.href = 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css';
+		link.type = 'text/css';
+		link.rel = 'stylesheet';
+		link.media = 'screen,print';
+		document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
 
-            msg = msg.replace('{link}', 'follow the link below');
-        } else {
-            msg = msg.replace('{link}', '');
-        }
+		let msg = settings.msg;
 
+		if ( settings.url ) {
+			msg = msg.replace( '{link}', '<a href="' + settings.url + '" target="_blank" arial-label="' + settings.label + '">' + settings.label + '</a>' );
+		} else {
+			msg = msg.replace( '{link}', '' );
+		}
 
-        if (settings.closeOthers) {
-            document.querySelectorAll('.components-notice').forEach((element) => {
-                element.style.display = 'none';
-            });
-        }
+		const notyf = new Notyf( {
+			position: { x: 'right', y: 'top' },
+			ripple: false,
+			types: [
+				{
+					type: 'success',
+					background: '#193EEE',
+					duration: 2000,
+					dismissible: true,
+					icon: false,
+				},
 
-        setTimeout(function () {
-            wp.data.dispatch("core/notices").createNotice(settings.type, msg, o);
-        }, 10);
+				{
+					type: 'warning',
+					background: '#454545',
+					duration: 4000,
+					dismissible: true,
+					icon: false,
+				},
+				{
+					type: 'error',
+					background: '#AD1414',
+					duration: 0,
+					dismissible: true,
+					icon: false,
+				},
+			],
+		} );
 
+		if ( settings.closeOthers ) {
+			notyf.dismissAll();
+		}
 
-
-
-
-    } else {
-
-        const link = document.createElement("link");
-        link.href = 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css';
-        link.type = "text/css";
-        link.rel = "stylesheet";
-        link.media = "screen,print";
-        document.getElementsByTagName("head")[0].appendChild(link);
-    
-        var msg = settings.msg;
-
-        if (settings.url) {
-            msg = msg.replace('{link}', '<a href="' + settings.url + '" target="_blank" arial-label="' + settings.label + '">' + settings.label + '</a>');
-        } else {
-            msg = msg.replace('{link}', '');
-        }
-
-        const notyf = new Notyf({
-            position: { x: 'right', y: 'top' },
-            ripple: false,
-            types: [
-                {
-                    type: 'success',
-                    background: '#193EEE',
-                    duration: 2000,
-                    dismissible: true,
-                    icon: false
-                },
-
-                {
-                    type: 'warning',
-                    background: '#454545',
-                    duration: 4000,
-                    dismissible: true,
-                    icon: false
-                },
-                {
-                    type: 'error',
-                    background: '#AD1414',
-                    duration: 0,
-                    dismissible: true,
-                    icon: false
-                }
-            ]
-        });
-
-        if (settings.closeOthers) {
-            notyf.dismissAll();
-        }
-
-       const notification = notyf.open({
-            type: settings.type,
-            message: msg
-        });
-
-
-    }
-
-
-
-
-
+		notyf.open( {
+			type: settings.type,
+			message: msg,
+		} );
+	}
 };
 
-
-export const debounce = (fn, wait) => {
-    let timer;
-    return function (...args) {
-        if (timer) {
-            clearTimeout(timer);
-        }
-        const context = this;
-        timer = setTimeout(() => {
-            fn.apply(context, args);
-        }, wait);
-    }
+export const debounce = ( fn, wait ) => {
+	let timer;
+	return function( ...args ) {
+		if ( timer ) {
+			clearTimeout( timer );
+		}
+		const context = this;
+		timer = setTimeout( () => {
+			fn.apply( context, args );
+		}, wait );
+	};
 };
 
+export const isValidDateFormat = ( inputString ) => {
+	// Define a regular expression pattern for the format yyyy-mm-dd
+	const regexPattern = /^\d{4}-\d{2}-\d{2}$/;
 
-export const isValidDateFormat = (inputString) => {
-    // Define a regular expression pattern for the format yyyy-mm-dd
-    const regexPattern = /^\d{4}-\d{2}-\d{2}$/;
-
-    // Test the input string against the regular expression
-    return regexPattern.test(inputString);
-}
-
+	// Test the input string against the regular expression
+	return regexPattern.test( inputString );
+};
 

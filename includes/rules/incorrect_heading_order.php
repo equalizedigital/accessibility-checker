@@ -24,16 +24,14 @@ function edac_rule_incorrect_heading_order( $content, $post ) {
 	$previous               = $starting_heading_level;
 
 	if ( $elements ) {
-		foreach ( $elements as $key => $element ) {
-			if ( $element->hasAttribute( 'aria-level' ) ) {
-				$current = $element->getAttribute( 'aria-level' );
-			} else {
-				$current = str_replace( 'h', '', $element->tag );
-			}
+		foreach ( $elements as $element ) {
+			$current = ( $element->hasAttribute( 'aria-level' ) )
+				? $element->getAttribute( 'aria-level' )
+				: str_replace( 'h', '', $element->tag );
 
 			// Only process the logic if $previous is set and $current is not equal to $previous.
-			if ( $previous && $current != $previous ) {
-				if ( $current > $previous && $current != $previous + 1 ) {
+			if ( $previous && $current !== $previous ) {
+				if ( $current > $previous && $current !== $previous + 1 ) {
 					$errors[] = $element->outertext;
 				}
 			}

@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_duplicate_form_label( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_duplicate_form_label( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
 	$errors = array();
@@ -24,7 +24,7 @@ function edac_rule_duplicate_form_label( $content, $post ) { // phpcs:ignore Gen
 	foreach ( $labels as $label ) {
 		$for_attr = $label->getAttribute( 'for' );
 		if ( count( $dom->find( 'label[for="' . $for_attr . '"]' ) ) > 1 ) {
-			$errors[] = __( 'Duplicate label', 'accessibility_checker' ) . ' for="' . $for_attr . '"';
+			$errors[] = __( 'Duplicate label', 'accessibility-checker' ) . ' for="' . $for_attr . '"';
 		}
 	}
 	return $errors;

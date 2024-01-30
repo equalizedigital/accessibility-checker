@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_empty_table_header( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_empty_table_header( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	// rule vars.
 	$dom            = $content['html'];

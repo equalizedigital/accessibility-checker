@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_img_alt_empty( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_img_alt_empty( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
 	$tags   = array( 'img', 'input' );
@@ -24,14 +24,14 @@ function edac_rule_img_alt_empty( $content, $post ) { // phpcs:ignore Generic.Co
 			foreach ( $elements as $element ) {
 				if (
 					isset( $element )
-					&& 'img' == $element->tag
+					&& 'img' === $element->tag
 					&& $element->hasAttribute( 'alt' )
-					&& $element->getAttribute( 'alt' ) == ''
-					&& $element->getAttribute( 'role' ) != 'presentation'
-					|| ( 'input' == $element->tag
+					&& $element->getAttribute( 'alt' ) === ''
+					&& $element->getAttribute( 'role' ) !== 'presentation'
+					|| ( 'input' === $element->tag
 						&& $element->hasAttribute( 'alt' )
-						&& $element->getAttribute( 'type' ) == 'image'
-						&& $element->getAttribute( 'alt' ) == '' )
+						&& $element->getAttribute( 'type' ) === 'image'
+						&& $element->getAttribute( 'alt' ) === '' )
 				) {
 
 					$image_code = $element->outertext;

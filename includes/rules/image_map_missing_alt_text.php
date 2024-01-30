@@ -12,7 +12,7 @@
  * @param object $post Object to check.
  * @return array
  */
-function edac_rule_image_map_missing_alt_text( $content, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $post is reserved for future use or for compliance with a specific interface.
+function edac_rule_image_map_missing_alt_text( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
 	$maps   = $dom->find( 'map' );
@@ -20,8 +20,7 @@ function edac_rule_image_map_missing_alt_text( $content, $post ) { // phpcs:igno
 
 	foreach ( $maps as $map ) {
 
-		$mapcode = $map->outertext;
-		$areas   = $map->find( 'area' );
+		$areas = $map->find( 'area' );
 
 		foreach ( $areas as $area ) {
 

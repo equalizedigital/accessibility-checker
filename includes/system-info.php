@@ -99,7 +99,7 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Show On Front:            ' . get_option( 'show_on_front' ) . "\n";
 
 	// Only show page specs if frontpage is set to 'page'.
-	if ( get_option( 'show_on_front' ) == 'page' ) {
+	if ( get_option( 'show_on_front' ) === 'page' ) {
 		$front_page_id = get_option( 'page_on_front' );
 		$blog_page_id  = get_option( 'page_for_posts' );
 
@@ -121,15 +121,21 @@ function edac_tools_sysinfo_get() {
 
 	$response = wp_remote_post( 'https://www.paypal.com/cgi-bin/webscr', $params );
 
+	$wp_remote_post = 'wp_remote_post() does not work';
 	if ( ! is_wp_error( $response ) && $response['response']['code'] >= 200 && $response['response']['code'] < 300 ) {
 		$wp_remote_post = 'wp_remote_post() works';
-	} else {
-		$wp_remote_post = 'wp_remote_post() does not work';
+	}
+
+	$wp_debug_status = 'Unset';
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+		$wp_debug_status = 'Enabled';
+	} elseif ( defined( 'WP_DEBUG' ) && ! WP_DEBUG ) {
+		$wp_debug_status = 'Disabled';
 	}
 
 	$return .= 'Remote Post:              ' . $wp_remote_post . "\n";
 	$return .= 'Table Prefix:             Length: ' . strlen( $wpdb->prefix ) . '   Status: ' . ( strlen( $wpdb->prefix ) > 16 ? 'ERROR: Too long' : 'Acceptable' ) . "\n";
-	$return .= 'WP_DEBUG:                 ' . ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Unset' ) . "\n";
+	$return .= 'WP_DEBUG:                 ' . $wp_debug_status . "\n";
 	$return .= 'Memory Limit:             ' . WP_MEMORY_LIMIT . "\n";
 	$return .= 'Registered Post Stati:    ' . implode( ', ', get_post_stati() ) . "\n";
 
@@ -152,7 +158,7 @@ function edac_tools_sysinfo_get() {
 	$return .= 'Warning Count:            ' . edac_get_warning_count() . "\n";
 	$return .= 'DB Table Count:           ' . edac_database_table_count( 'accessibility_checker' ) . "\n";
 
-	if ( edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
+	if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
 
 		$return   .= "\n" . '-- Accessibility Checker Pro Configuration' . "\n\n";
 		$return   .= 'Version:                  ' . EDACP_VERSION . "\n";
@@ -209,7 +215,7 @@ function edac_tools_sysinfo_get() {
 	$active_plugins = get_option( 'active_plugins', array() );
 
 	foreach ( $plugins as $plugin_path => $plugin ) {
-		if ( ! in_array( $plugin_path, $active_plugins ) ) {
+		if ( ! in_array( $plugin_path, $active_plugins, true ) ) {
 			continue;
 		}
 
@@ -223,7 +229,7 @@ function edac_tools_sysinfo_get() {
 	$return .= "\n" . '-- WordPress Inactive Plugins' . "\n\n";
 
 	foreach ( $plugins as $plugin_path => $plugin ) {
-		if ( in_array( $plugin_path, $active_plugins ) ) {
+		if ( in_array( $plugin_path, $active_plugins, true ) ) {
 			continue;
 		}
 
@@ -314,43 +320,51 @@ function edac_tools_sysinfo_get() {
  * @return mixed string $host if detected, false otherwise
  */
 function edac_get_host() {
-	$host = false;
 
 	if ( defined( 'WPE_APIKEY' ) ) {
-		$host = 'WP Engine';
-	} elseif ( defined( 'PAGELYBIN' ) ) {
-		$host = 'Pagely';
-	} elseif ( defined( 'WPCOM_IS_VIP_ENV' ) ) {
-		$host = 'WordPress VIP';
-	} elseif ( DB_HOST == 'localhost:/tmp/mysql5.sock' ) {
-		$host = 'ICDSoft';
-	} elseif ( DB_HOST == 'mysqlv5' ) {
-		$host = 'NetworkSolutions';
-	} elseif ( strpos( DB_HOST, 'ipagemysql.com' ) !== false ) {
-		$host = 'iPage';
-	} elseif ( strpos( DB_HOST, 'ipowermysql.com' ) !== false ) {
-		$host = 'IPower';
-	} elseif ( strpos( DB_HOST, '.gridserver.com' ) !== false ) {
-		$host = 'MediaTemple Grid';
-	} elseif ( strpos( DB_HOST, '.pair.com' ) !== false ) {
-		$host = 'pair Networks';
-	} elseif ( strpos( DB_HOST, '.stabletransit.com' ) !== false ) {
-		$host = 'Rackspace Cloud';
-	} elseif ( strpos( DB_HOST, '.sysfix.eu' ) !== false ) {
-		$host = 'SysFix.eu Power Hosting';
-	} elseif ( isset( $_SERVER['SERVER_NAME'] ) && strpos( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ), 'Flywheel' ) !== false ) {
-		$host = 'Flywheel';
-	} else {
-
-		// Adding a general fallback for data gathering.
-		if ( isset( $_SERVER['SERVER_NAME'] ) ) {
-			$server_name = sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) );
-		}
-
-		$host = 'DBH: ' . DB_HOST . ', SRV: ' . $server_name;
+		return 'WP Engine';
+	}
+	if ( defined( 'PAGELYBIN' ) ) {
+		return 'Pagely';
+	}
+	if ( defined( 'WPCOM_IS_VIP_ENV' ) ) {
+		return 'WordPress VIP';
+	}
+	if ( DB_HOST === 'localhost:/tmp/mysql5.sock' ) {
+		return 'ICDSoft';
+	}
+	if ( DB_HOST === 'mysqlv5' ) {
+		return 'NetworkSolutions';
+	}
+	if ( strpos( DB_HOST, 'ipagemysql.com' ) !== false ) {
+		return 'iPage';
+	}
+	if ( strpos( DB_HOST, 'ipowermysql.com' ) !== false ) {
+		return 'IPower';
+	}
+	if ( strpos( DB_HOST, '.gridserver.com' ) !== false ) {
+		return 'MediaTemple Grid';
+	}
+	if ( strpos( DB_HOST, '.pair.com' ) !== false ) {
+		return 'pair Networks';
+	}
+	if ( strpos( DB_HOST, '.stabletransit.com' ) !== false ) {
+		return 'Rackspace Cloud';
+	}
+	if ( strpos( DB_HOST, '.sysfix.eu' ) !== false ) {
+		return 'SysFix.eu Power Hosting';
+	}
+	if ( isset( $_SERVER['SERVER_NAME'] ) && strpos( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ), 'Flywheel' ) !== false ) {
+		return 'Flywheel';
 	}
 
-	return $host;
+	// General fallback for data gathering.
+	if ( isset( $_SERVER['SERVER_NAME'] ) ) {
+		$server_name = sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) );
+		return 'DBH: ' . DB_HOST . ', SRV: ' . $server_name;
+	}
+
+	return '';
 }
 
 /**
@@ -407,6 +421,7 @@ function edac_get_posts_count() {
 
 			if ( $counts ) {
 				foreach ( $counts as $key => $value ) {
+					// phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
 					if ( 0 == $value ) {
 						unset( $counts->{$key} );
 					}
@@ -427,9 +442,8 @@ function edac_get_posts_count() {
 
 	if ( $output ) {
 		return implode( ', ', $output );
-	} else {
-		return false;
 	}
+	return false;
 }
 
 /**
@@ -448,11 +462,9 @@ function edac_get_error_count() {
 	if ( false === $stored_errors ) {
 		// If not, perform the database query.
 		$table_name = $wpdb->prefix . 'accessibility_checker';
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		$query = $wpdb->prepare( 'SELECT count(*) FROM ' . $table_name . ' WHERE siteid = %d AND ruletype = %s', get_current_blog_id(), 'error' );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
-		$stored_errors = intval( $wpdb->get_var( $query ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$stored_errors = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'error' ) );
 
 		// Save the result in the cache for future use.
 		wp_cache_set( $cache_key, $stored_errors );
@@ -477,11 +489,9 @@ function edac_get_warning_count() {
 	if ( false === $stored_warnings ) {
 		// If not, perform the database query.
 		$table_name = $wpdb->prefix . 'accessibility_checker';
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		$query = $wpdb->prepare( 'SELECT count(*) FROM ' . $table_name . ' WHERE siteid = %d AND ruletype = %s', get_current_blog_id(), 'warning' );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
-		$stored_warnings = intval( $wpdb->get_var( $query ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$stored_warnings = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'warning' ) );
 
 		// Save the result in the cache for future use.
 		wp_cache_set( $cache_key, $stored_warnings );
@@ -502,18 +512,15 @@ function edac_database_table_count( $table ) {
 
 	// Create a unique cache key based on the table's name.
 	$cache_key = 'edac_table_count_' . $table;
-	
+
 	// Try to get the count from the cache first.
 	$count = wp_cache_get( $cache_key );
 
 	if ( false === $count ) {
 		// If the count is not in the cache, perform the database query.
-		$table_name  = $wpdb->prefix . $table;
-		$count_query = "SELECT count(*) FROM $table_name";
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$count = $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i', $wpdb->prefix . $table ) );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
-		$count = $wpdb->get_var( $count_query );
-		
 		// Save the count to the cache for future use.
 		wp_cache_set( $cache_key, $count );
 	}

@@ -1,11 +1,11 @@
 <?php
 /**
  * Class file for admin notices
- * 
+ *
  * @package Accessibility_Checker
  */
 
-namespace EDAC;
+namespace EDAC\Admin;
 
 /**
  * Class that handles admin notices
@@ -16,6 +16,14 @@ class Admin_Notices {
 	 * Initialize the class and set its properties.
 	 */
 	public function __construct() {
+	}
+	
+	/**
+	 * Initialize class hooks.
+	 *
+	 * @return void
+	 */
+	public function init_hooks() {
 		add_action( 'in_admin_header', array( $this, 'edac_remove_admin_notices' ), 1000 );
 		add_action( 'admin_notices', array( $this, 'edac_black_friday_notice' ) );
 		add_action( 'wp_ajax_edac_black_friday_notice_ajax', array( $this, 'edac_black_friday_notice_ajax' ) );
@@ -56,7 +64,7 @@ class Admin_Notices {
 	public function edac_black_friday_notice() {
 
 		// check if accessibility checker pro is active.
-		$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
+		$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
 		if ( $pro ) {
 			return;
 		}
@@ -145,7 +153,7 @@ class Admin_Notices {
 		define( 'EDAC_GAAD_NOTICE_END_DATE', '2023-05-24' );
 
 		// Check if Accessibility Checker Pro is active.
-		$pro = edac_check_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
+		$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
 		if ( $pro ) {
 			return;
 		}
@@ -324,13 +332,18 @@ class Admin_Notices {
 	 * @return string
 	 */
 	public function edac_password_protected_notice_text() {
-		$notice = 'Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or <a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="upgrade to accessibility checker pro, opens in a new window">upgrade to pro</a>. Scan results may be stored from a previous scan.';
-
-		if ( has_filter( 'edac_filter_password_protected_notice_text' ) ) {
-			$notice = apply_filters( 'edac_filter_password_protected_notice_text', $notice );
-		}
-
-		return $notice;
+		return apply_filters(
+			'edac_filter_password_protected_notice_text',
+			sprintf(
+				// translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+				esc_html__( 'Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan.', 'accessibility-checker' ),
+				sprintf(
+					'<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="%1$s">%2$s</a>',
+					esc_attr__( 'Upgrade to accessibility checker pro. Opens in a new window.', 'accessibility-checker' ),
+					esc_html__( 'upgrade to pro', 'accessibility-checker' )
+				)
+			)
+		);
 	}
 
 	/**
@@ -339,10 +352,10 @@ class Admin_Notices {
 	 * @return string
 	 */
 	public function edac_password_protected_notice() {
-
-		if ( boolval( get_option( 'edac_password_protected' ) ) === true && boolval( get_option( 'edac_password_protected_notice_dismiss' ) ) === false ) {
+		if ( (bool) get_option( 'edac_password_protected' ) 
+			&& ! (bool) get_option( 'edac_password_protected_notice_dismiss' ) 
+		) {
 			echo wp_kses( '<div class="edac_password_protected_notice notice notice-error is-dismissible"><p>' . $this->edac_password_protected_notice_text() . '</p></div>', 'post' );
-		} else {
 			return;
 		}
 	}
@@ -377,5 +390,3 @@ class Admin_Notices {
 		wp_send_json_success( wp_json_encode( $results ) );
 	}
 }
-
-new Admin_Notices();

@@ -1,0 +1,13 @@
+{
+	"extends": [ "plugin:@wordpress/eslint-plugin/esnext" ],
+	"env": {
+		"browser": true,
+		"node": false
+	},
+	"globals": {
+		"wp": true,
+		"jQuery": true,
+		"edac_script_vars": true,
+		"ajaxurl": true
+	}
+}
