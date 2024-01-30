@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 6.2
 Tested up to: 6.4.2
-Stable tag: 1.8.0-beta.1
+Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,7 +171,8 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
-= 1.8.0-beta.1 =
+= 1.8.0 =
+* Updated: heading order on welcome screen
 * Updated: missing_title summary
 * Updated: SQL prepare queries to use %i placeholder
 * Updated: incorrect textdomains and made strings translatible
