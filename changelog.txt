@@ -1,5 +1,59 @@
 Newer versions can be found in readme.txt.
 
+= 1.6.8 =
+* Updated: system info to stop showing edac_authorization_username & edac_authorization_username
+* Updated: system info to show edacp_authorization_username & edacp_authorization_username for pro users
+
+= 1.6.7 =
+* Updated: logic for Link to MS Office file
+* Updated: last full-site scan label and date format
+
+= 1.6.6 =
+* Added: ability to force refresh welcome screen report
+
+= 1.6.5 =
+* Fixed: function edac_password_protected_notice_text to call from the admin notices class
+
+= 1.6.4 =
+* Fixed: password protected admin noticed function call
+
+= 1.6.3 =
+* Added: email opt-in to welcome page
+* Added: support for formatting numbers and percentages in PHP installs that were build without the intl library
+* Added: the see history button for audit history add-on
+* Updated: admin notices to load from a custom class
+
+= 1.6.2 =
+* Added: check for WordPress Playground
+
+= 1.6.1 =
+* Updated: passed percentage calculation
+* Updated: frontend highlighting disable styles to be compatible with optimization plugins
+* Fixed: average issue density percentage not accounting for site ID and ignores
+* Updated: body density to receive HTML rather than the dom object
+* Updated: empty link check logic
+* Added: minor coding standards improvements
+
+= 1.6.0 =
+* Added: dashboard reports widget
+* Added: frontend highlighting page scan trigger
+* Added: enhancements to the Low-quality Alternative Text check
+* Fixed: adherence to coding standards
+* Fixed: frontend highlighting responsiveness on mobile
+* Fixed: frontend highlighting's broken ARIA reference
+* Fixed: Issue Density bug when creating a new post
+* Fixed: a bug on the reports dashboard widget and welcome page when no post types are selected in the settings
+* Fixed: settings page tab order bug
+* Updated: scanning process to exclude the admin bar and the query monitor
+* Updated: improvements to the Ambiguous Anchor check
+* Updated: the Browser.php class has been restructured to load via Composer
+* Updated: the TextStatistics class is now loaded through Composer
+* Updated: text domain and internationalization on user-facing strings
+* Updated: reports dashboard widget and welcome page now have improved refresh and caching
+* Updated: the date format on the reports dashboard widget and the welcome page now respects the site's timezone setting
+* Updated: Improved performance during the purge of issues after changing the "post types to scan" setting
+* Removed: CSS output when a user is logged out
+
 = 1.5.6 =
 Fixed: reading level ajax timing issue
 
