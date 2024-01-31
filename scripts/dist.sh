@@ -10,6 +10,7 @@ unzip accessibility-checker.zip -d ./dist/accessibility-checker
 
 # plugin-zip includes package.json which is not needed for the plugin, so remove.
 rm ./dist/accessibility-checker/package.json
+rm ./dist/accessibility-checker/README.md
 
 #remove the original zip
 rm accessibility-checker.zip
