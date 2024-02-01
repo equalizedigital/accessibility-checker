@@ -19,7 +19,7 @@
     "dist": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh && composer install",
     "lint": "./vendor/bin/phpcs && npm run lint:js",
     "lint:php": "./vendor/bin/phpcs",
-		"lint:js": "wp-scripts lint-js",
+    "lint:js": "wp-scripts lint-js",
     "lint:fix": "npm run lint:php:fix && npm run lint:js:fix",
     "lint:php:fix": "./vendor/bin/phpcbf",
     "lint:js:fix": "wp-scripts lint-js --fix",
@@ -59,7 +59,14 @@
     "sass-loader": "^13.3.1",
     "tabbable": "^6.1.2",
     "unique-selector": "^0.5.0",
+    "vue-loader": "^17.2.2",
     "webpack": "^5.84.1",
     "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.15",
+    "vue-i18n": "^9.9.1"
   }
 }

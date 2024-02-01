@@ -6,6 +6,8 @@
  */
 
 ?>
+<div id="edac_editor_app"></div>
+
 <div id="edac-tabs">
 	<ul class="edac-tabs">
 		<li class="edac-tab"><a role="button" aria-current="true" class="edac-tab-summary active" href="#edac-summary"><?php esc_html_e( 'Summary', 'accessibility-checker' ); ?></a></li>

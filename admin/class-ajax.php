@@ -78,9 +78,9 @@ class Ajax {
 
 		$simplified_summary_text = esc_html__( 'A Simplified summary has not been included for this content.', 'accessibility-checker' );
 		if ( 'none' !== $simplified_summary_prompt ) {
-			if ( $summary['content_grade'] <= 9 ) {
+			if ( (int) $summary['readability'] <= 9 ) {
 				$simplified_summary_text = esc_html__( 'Your content has a reading level at or below 9th grade and does not require a simplified summary.', 'accessibility-checker' );
-			} elseif ( $summary['simplified_summary'] ) {
+			} elseif ( '' !== trim( $summary['simplified_summary'] ) ) {
 				$simplified_summary_text = esc_html__( 'A Simplified summary has been included for this content.', 'accessibility-checker' );
 			}
 		}
@@ -500,7 +500,7 @@ class Ajax {
 		$content = str_replace( ']]>', ']]&gt;', $content );
 
 		// get readability metadata and determine if a simplified summary is required.
-		$edac_summary           = $post_options->get( 'summary', true );
+		$edac_summary           = $post_options->get( 'simplified_summary', true );
 		$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
 		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;

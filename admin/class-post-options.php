@@ -22,6 +22,28 @@ class Post_Options {
 	const OPTIONS_LIST_NAME = 'edac';
 	
 	/**
+	 * The variable type for the stored value.
+	 *
+	 * @var array [name => string|number|bool|array,url] defaults to string if empty.
+	 */
+	const CASTS = array(
+		'issue_density'          => 'number',
+		'issue_density_elements' => 'number',
+		'issue_density_strlen'   => 'number',
+		'post_checked'           => 'bool',
+		'post_checked_js'        => 'bool',
+		'simplified_summary'     => '',
+		'readability'            => '',
+		'contrast_errors'        => 'number',
+		'errors'                 => 'number',
+		'ignored'                => 'number',
+		'passed_tests'           => 'number',
+		'warnings'               => 'number',
+		'anww_update_post_meta'  => 'bool',
+		'link_blank'             => 'bool',
+	);
+
+	/**
 	 * The default values.
 	 *
 	 * @var array [name => value]
@@ -34,48 +56,27 @@ class Post_Options {
 		'post_checked_js'        => false,
 		'summary'                => '',
 		'simplified_summary'     => '',
-		'summary_contrast_error' => 0,
-		'summary_errors'         => 0,
-		'summary_ignored'        => 0,
-		'summary_passed_tests'   => 0,
-		'summary_warnings'       => 0,
+		'readability'            => '',
+		'contrast_error'         => 0,
+		'errors'                 => 0,
+		'ignored'                => 0,
+		'passed_tests'           => 0,
+		'warnings'               => 0,
 		'anww_update_post_meta'  => false,
 		'link_blank'             => false,
 	);
-	
-	/**
-	 * The variable type for the stored value.
-	 *
-	 * @var array [name => string|number|bool|array,url] defaults to string if empty.
-	 */
-	const CASTS = array(
-		'issue_density'          => 'number',
-		'issue_density_elements' => 'number',
-		'issue_density_strlen'   => 'number',
-		'post_checked'           => 'bool',
-		'post_checked_js'        => 'bool',
-		'summary'                => '',
-		'simplified_summary'     => '',
-		'summary_contrast_error' => 'number',
-		'summary_errors'         => 'number',
-		'summary_ignored'        => 'number',
-		'summary_passed_tests'   => 'number',
-		'summary_warnings'       => 'number',
-		'anww_update_post_meta'  => 'bool',
-		'link_blank'             => 'bool',
-	);
-	
+		
 	const LEGACY_OPTION_NAMES_MAPPING = array(
-		'_edac_issue_density'          => 'issue_density',
-		'_edac_post_checked'           => 'post_checked',
-		'_edac_post_checked_js'        => 'post_checked_js',
-		'_edac_summary'                => 'summary',
-		'_edac_summary_contrast_error' => 'contrast_error',
-		'_edac_summary_errors'         => 'summary_errors',
-		'_edac_summary_ignored'        => 'summary_ignored',
-		'_edac_summary_passed_tests'   => 'summary_passed_tests',
-		'_edac_summary_warnings'       => 'summary_warnings',
-		'edac_anww_update_post_meta'   => 'anww_update_post_meta',
+		'_edac_post_checked'            => 'post_checked',
+		'_edac_issue_density'           => 'issue_density',
+		'_edac_post_checked_js'         => 'post_checked_js',
+		'_edac_simplified_summary'      => 'simplified_summary',
+		'_edac_summary_contrast_errors' => 'contrast_errors',
+		'_edac_summary_errors'          => 'errors',
+		'_edac_summary_ignored'         => 'ignored',
+		'_edac_summary_passed_tests'    => 'passed_tests',
+		'_edac_summary_warnings'        => 'warnings',
+		'edac_anww_update_post_meta'    => 'anww_update_post_meta',
 	);
 
 	/**
@@ -100,6 +101,7 @@ class Post_Options {
 	 */
 	public function __construct( $post_id ) {
 		$this->post_id = $post_id;
+		$this->maybe_migrate_legacy_options();
 		$this->fill();
 	}
 
@@ -132,9 +134,11 @@ class Post_Options {
 		
 		foreach ( $options_list as $name => $value ) {
 
-			$cast_value                  = $this->cast_and_validate( $name, $value );
-			$this->options_list[ $name ] = $cast_value;
-
+			// only allow setting of known options.
+			if ( array_key_exists( $name, self::CASTS ) ) {
+				$cast_value                  = $this->cast_and_validate( $name, $value );
+				$this->options_list[ $name ] = $cast_value;
+			}       
 		}
 	}
 
@@ -162,6 +166,12 @@ class Post_Options {
 	 * @return boolean True if successful.
 	 */
 	public function set( $name, $value ) {
+		
+		// only allow setting of known options.
+		if ( ! array_key_exists( $name, self::CASTS ) ) {
+			throw new \Exception( esc_html( $name . ' is not a valid post option.' ) );
+		}
+
 		$sanitized_value             = $this->cast_and_validate( $name, $value );
 		$this->options_list[ $name ] = $sanitized_value;
 		return update_post_meta( $this->post_id, self::OPTIONS_LIST_NAME, $this->options_list );

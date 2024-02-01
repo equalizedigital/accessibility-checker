@@ -74,6 +74,58 @@ class REST_Api {
 			function () use ( $ns, $version ) {
 				register_rest_route(
 					$ns . $version,
+					'/get-post-options/(?P<id>\d+)',
+					array(
+						'methods'             => 'GET',
+						'callback'            => function ( $data ) {
+							$post_id = $data['id'];
+							$post_options = new \EDAC\Admin\Post_Options( $post_id ); 
+							return new \WP_REST_Response( array( 'data' => $post_options->as_array() ), 200 );
+						},
+						'args'                => array(
+							'id' => array(
+								'validate_callback' => function ( $param ) {
+									return is_numeric( $param );
+								},
+							),
+						),
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
+						},
+					)
+				);
+			}
+		);
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/set-post-options/(?P<id>\d+)',
+					array(
+						'methods'             => 'POST',
+						'callback'            => array( $this, 'set_post_options' ),
+						'args'                => array(
+							'id' => array(
+								'validate_callback' => function ( $param ) {
+									return is_numeric( $param );
+								},
+							),
+						),
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
+						},
+					)
+				);
+			}
+		);
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
 					'/post-scan-results/(?P<id>\d+)',
 					array(
 						'methods'             => 'POST',
@@ -162,6 +214,46 @@ class REST_Api {
 		);
 	}
 
+
+
+	/**
+	 * REST handler that sets the post options.
+	 *
+	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 *
+	 * @return \WP_REST_Response
+	 */
+
+	public function set_post_options( $request ) {
+
+		try {
+			$post_id = (int) $request['id'];
+			$data = $request->get_json_params();
+		
+			$post_options = new \EDAC\Admin\Post_Options( $post_id );
+			
+			foreach($data as $key => $value) {
+				$post_options->set( $key, $value );
+			}
+	
+			return new \WP_REST_Response(
+				array(
+					'success'   => true,
+					'timestamp' => time(),
+				)
+			);
+
+		} catch ( \Exception $ex ) {
+
+			return new \WP_REST_Response(
+				array(
+					'message' => $ex->getMessage(),
+				),
+				500
+			);
+
+		}
+	}
 
 
 	/**

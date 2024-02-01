@@ -316,10 +316,10 @@ function edac_summary( $post_id ) {
 		}
 	}
 
-	$summary['passed_tests'] = round( count( $rules_passed ) / count( $rules ) * 100 );
+	$passed_tests = round( count( $rules_passed ) / count( $rules ) * 100 );
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['errors'] = (int) $wpdb->get_var(
+	$errors = (int) $wpdb->get_var(
 		$wpdb->prepare(
 			'SELECT count(*) FROM %i where siteid = %d and postid = %d and ruletype = %s and ignre = %d',
 			$table_name,
@@ -338,7 +338,7 @@ function edac_summary( $post_id ) {
 		$warnings_where .= ' and rule != %s';
 	}
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['warnings'] = (int) $wpdb->get_var(
+	$warnings = (int) $wpdb->get_var(
 		$wpdb->prepare(
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
 			'SELECT count(*) FROM ' . $table_name . ' ' . $warnings_where,
@@ -355,7 +355,7 @@ function edac_summary( $post_id ) {
 	}
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['ignored'] = (int) $wpdb->get_var(
+	$ignored = (int) $wpdb->get_var(
 		$wpdb->prepare(
 			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared , WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
 			"SELECT count(*) FROM $table_name $ignored_where",
@@ -364,7 +364,7 @@ function edac_summary( $post_id ) {
 	);
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['contrast_errors'] = (int) $wpdb->get_var(
+	$contrast_errors = (int) $wpdb->get_var(
 		$wpdb->prepare(
 			'SELECT count(*) FROM %i where siteid = %d and postid = %d and rule = %s and ignre = %d',
 			$table_name,
@@ -376,16 +376,17 @@ function edac_summary( $post_id ) {
 	);
 
 	// remove color contrast from errors count.
-	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
+	$errors = $errors - $contrast_errors;
 
 	// issue density.
-	$issue_count    = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'];
+	$issue_count    = $warnings + $errors + $contrast_errors;
 	$element_count  = $post_options->get( 'issue_density_elements' );
 	$content_length = $post_options->get( 'issue_density_strlen' );
 	if ( ( $element_count + $content_length ) > 0 ) {
 		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
 		$post_options->set( 'issue_density', $issue_density );
 	} else {
+		//TODO: delete or set to 0???
 		$post_options->delete( 'issue_density' );
 	}
 
@@ -396,29 +397,24 @@ function edac_summary( $post_id ) {
 	$content = wp_filter_nohtml_kses( $content );
 	$content = str_replace( ']]>', ']]&gt;', $content );
 
-	$summary['content_grade'] = 0;
+	$content_grade = 0;
 	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-		$summary['content_grade'] = floor(
+		$content_grade = floor(
 			( new DaveChild\TextStatistics\TextStatistics() )->fleschKincaidGradeLevel( $content )
 		);
 	}
 
-	$summary['readability'] = 0 === $summary['content_grade']
-		? 'N/A'
-		: edac_ordinal( $summary['content_grade'] );
-
-	// simplified summary.
-	$summary['simplified_summary'] = (bool) ( $post_options->set( 'simplified_summary', true ) );
+	$readability = 0 === $content_grade ? 'N/A' : edac_ordinal( $content_grade );
 
 	
-	$post_options->set( 'summary', $summary );
-	$post_options->set( 'summary_passed_tests', $summary['passed_tests'] );
-	$post_options->set( 'summary_errors', $summary['errors'] );
-	$post_options->set( 'summary_warnings', $summary['warnings'] );
-	$post_options->set( 'summary_ignored', $summary['ignored'] );
-	$post_options->set( 'summary_contrast_error', $summary['contrast_errors'] );
+	$post_options->set( 'readability', $readability );
+	$post_options->set( 'passed_tests', $passed_tests );
+	$post_options->set( 'errors', $errors );
+	$post_options->set( 'warnings', $warnings );
+	$post_options->set( 'ignored', $ignored );
+	$post_options->set( 'contrast_errors', $contrast_errors );
 
-	return $summary;
+	return $post_options->as_array();
 }
 
 /**

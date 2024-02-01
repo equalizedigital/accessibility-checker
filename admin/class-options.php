@@ -24,30 +24,6 @@ class Options {
 	const OPTIONS_LIST_NAME = 'edac';
 	
 	/**
-	 * The default values.
-	 *
-	 * @var array [name => value]
-	 */
-	const DEFAULT_VALUES = array(
-		'accessibility_policy_page'            => '',
-		'activation_date'                      => 0,
-		'add_footer_accessibility_statement'   => '',
-		'anww_update_post_meta'                => '',
-		'black_friday_2023_notice_dismiss'     => false,
-		'db_version'                           => '',
-		'delete_data'                          => '',
-		'gaad_notice_dismiss'                  => '',
-		'include_accessibility_statement_link' => '',
-		'local_loopback'                       => false,
-		'password_protected'                   => '',
-		'password_protected_notice_dismiss'    => '',
-		'post_types'                           => array( 'post', 'page' ),
-		'simplified_summary_position'          => 'after',
-		'simplified_summary_prompt'            => 'when required',
-		'review_notice'                        => '',
-	);
-	
-	/**
 	 * The variable type for the stored value.
 	 *
 	 * @var array [name => string|number|bool|array,url] defaults to string if empty.
@@ -68,6 +44,30 @@ class Options {
 		'post_types'                           => 'array',
 		'simplified_summary_position'          => '',
 		'simplified_summary_prompt'            => '', 
+		'review_notice'                        => '',
+	);
+
+	/**
+	 * The default values.
+	 *
+	 * @var array [name => value]
+	 */
+	const DEFAULT_VALUES = array(
+		'accessibility_policy_page'            => '',
+		'activation_date'                      => 0,
+		'add_footer_accessibility_statement'   => '',
+		'anww_update_post_meta'                => '',
+		'black_friday_2023_notice_dismiss'     => false,
+		'db_version'                           => '',
+		'delete_data'                          => '',
+		'gaad_notice_dismiss'                  => '',
+		'include_accessibility_statement_link' => '',
+		'local_loopback'                       => false,
+		'password_protected'                   => '',
+		'password_protected_notice_dismiss'    => '',
+		'post_types'                           => array( 'post', 'page' ),
+		'simplified_summary_position'          => 'after',
+		'simplified_summary_prompt'            => 'when required',
 		'review_notice'                        => '',
 	);
 	
@@ -114,6 +114,7 @@ class Options {
 	 */
 	public static function boot() {
 		if ( empty( self::$options_list ) ) {
+			self::maybe_migrate_legacy_options();
 			self::fill();   
 		}
 	}
@@ -147,9 +148,11 @@ class Options {
 		
 		foreach ( $options_list as $name => $value ) {
 
-			$cast_value                  = self::cast_and_validate( $name, $value );
-			self::$options_list[ $name ] = $cast_value;
-
+			// only allow setting of known options.
+			if ( array_key_exists( $name, self::CASTS ) ) {
+				$cast_value                  = self::cast_and_validate( $name, $value );
+				self::$options_list[ $name ] = $cast_value;
+			}       
 		}
 	}
 
@@ -179,6 +182,12 @@ class Options {
 	public static function set( $name, $value ) {
 		$sanitized_value             = self::cast_and_validate( $name, $value );
 		self::$options_list[ $name ] = $sanitized_value;
+
+		// only allow setting of known options.
+		if ( ! array_key_exists( $name, self::CASTS ) ) {
+			throw new \Exception( esc_html( $name . ' is not a valid option.' ) );
+		}
+
 		return update_option( self::OPTIONS_LIST_NAME, self::$options_list );
 	}
 
@@ -261,12 +270,12 @@ class Options {
 	
 		foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
 	
-			// TODO remove this.
+			// TODO enable this.
 			// trigger an exception when a legacy option is read so we can find and fix.
 			add_filter(
 				'pre_option_' . $old_name,
 				function ( $legacy_value, $legacy_name ) {
-					throw new \Exception( esc_html( 'Legacy option "' . $legacy_name . '" is being read.' ) );
+				//	throw new \Exception( esc_html( 'Legacy option "' . $legacy_name . '" is being read.' ) );
 				},
 				10,
 				2
