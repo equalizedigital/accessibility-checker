@@ -260,7 +260,7 @@ class Widgets {
 			' . __( 'Learn Accessibility', 'accessibility-checker' ) . '
 		</h3>';
 
-		$html .= edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );
+		$html .= edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2, 4 );
 
 		$html .= '
 		<hr class="edac-hr" />

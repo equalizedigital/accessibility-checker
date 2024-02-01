@@ -1439,7 +1439,6 @@
     }
   }
 
-
   .edac-upcoming-meetup {
 
     &-item-name {
@@ -1453,7 +1452,6 @@
 
   }
 
-
   .edac-widget-footer-link-list-spacer {
     border-left: 2px solid #ccc;
     padding: 0;
@@ -1461,10 +1459,6 @@
   }
 
 }
-
-
-
-
 
 
 .edac-welcome-container {
@@ -1477,12 +1471,19 @@
     width: 320px;
   }
 
+  .edac-upcoming-meetup {
+
+    &-item-name {
+      font-size: 1em;
+      line-height: 1.25em;
+    }
+
+  }
 
   @media screen and (max-width: $large-screen-width ) {
 
     >.edac-cols {
       //gap: 0;
-
 
       flex-direction: column !important;
 

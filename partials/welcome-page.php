@@ -161,7 +161,7 @@
 		?>
 		<div class="edac-pro-callout edac-mt-3 edac-mb-3">
 			<img class="edac-pro-callout-icon" src="<?php echo esc_url( EDAC_PLUGIN_URL ); ?>assets/images/edac-emblem.png" alt="<?php esc_attr_e( 'Equalize Digital Logo', 'accessibility-checker' ); ?>">
-			<h4 class="edac-pro-callout-title"><?php esc_html_e( 'Upgrade to Accessibility Checker Pro', 'accessibility-checker' ); ?></h4>
+			<h2 class="edac-pro-callout-title"><?php esc_html_e( 'Upgrade to Accessibility Checker Pro', 'accessibility-checker' ); ?></h2>
 			<div>
 				<ul class="edac-pro-callout-list">
 					<li><?php esc_html_e( 'Scan all post types', 'accessibility-checker' ); ?></li>

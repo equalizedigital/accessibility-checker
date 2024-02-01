@@ -28,7 +28,8 @@
   },
   "files": [
     "LICENSE.txt",
-    "README.txt",
+    "readme.txt",
+    "changelog.txt",
     "accessibility-checker.php",
     "uninstall.php",
     "assets",

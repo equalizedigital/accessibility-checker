@@ -279,9 +279,9 @@ class Welcome_Page {
 
 				<section>
 					<div class="edac-cols edac-cols-header">
-						<h3 class="edac-cols-left">
+						<h2 class="edac-cols-left">
 							<?php esc_html_e( 'Site-Wide Accessibility Reports', 'accessibility-checker' ); ?>
-						</h3>
+						</h2>
 
 						<p class="edac-cols-right">
 							<button id="dismiss_welcome_cta" class="button">

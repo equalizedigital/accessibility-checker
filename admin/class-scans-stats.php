@@ -248,7 +248,7 @@ class Scans_Stats {
 				Scannable_Posts::ALLOWED_STATUSES
 			) . ')';
 
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+         // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$data['posts_without_issues'] = $wpdb->get_var( $sql );
 			$data['avg_issues_per_post']  = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
 		}
@@ -265,8 +265,8 @@ class Scans_Stats {
 		);
 
 		$data['avg_issue_density_percentage'] = ( null === $data['avg_issue_density_percentage'] )
-			? 'N/A'
-			: round( $data['avg_issue_density_percentage'], 2 );
+		? 'N/A'
+		: round( $data['avg_issue_density_percentage'], 2 );
 
 		$data['fullscan_running']      = false;
 		$data['fullscan_state']        = '';
@@ -399,7 +399,7 @@ class Scans_Stats {
 		$data['cache_id']   = $transient_name;
 		$data['cached_at']  = time();
 		$data['expires_at'] = time() + $this->cache_time;
-		$cache['cache_hit'] = false;
+		$data['cache_hit']  = false;
 
 		set_transient( $transient_name, $data, $this->cache_time );
 
