@@ -223,16 +223,15 @@ class REST_Api {
 	 *
 	 * @return \WP_REST_Response
 	 */
-
 	public function set_post_options( $request ) {
 
 		try {
 			$post_id = (int) $request['id'];
-			$data = $request->get_json_params();
+			$data    = $request->get_json_params();
 		
 			$post_options = new \EDAC\Admin\Post_Options( $post_id );
 			
-			foreach($data as $key => $value) {
+			foreach ( $data as $key => $value ) {
 				$post_options->set( $key, $value );
 			}
 	

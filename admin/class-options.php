@@ -162,6 +162,7 @@ class Options {
 	 *
 	 * @param string $name of the value to return.
 	 * @return mixed 
+	 * @throws \Exception When the option is not valid.
 	 */
 	public static function get( $name ) {
 
@@ -178,6 +179,7 @@ class Options {
 	 * @param [string] $name The name of the list item.
 	 * @param [mixed]  $value The value of the list item.
 	 * @return boolean True if successful.
+	 * @throws \Exception When the option is not valid.
 	 */
 	public static function set( $name, $value ) {
 		$sanitized_value             = self::cast_and_validate( $name, $value );
@@ -268,20 +270,21 @@ class Options {
 		}       
 	
 	
+		// TODO: enable this.
+		/* phpcs:ignore CommentedOutCode.Found
 		foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
-	
-			// TODO enable this.
 			// trigger an exception when a legacy option is read so we can find and fix.
 			add_filter(
 				'pre_option_' . $old_name,
 				function ( $legacy_value, $legacy_name ) {
-				//	throw new \Exception( esc_html( 'Legacy option "' . $legacy_name . '" is being read.' ) );
+					throw new \Exception( esc_html( 'Legacy option "' . $legacy_name . '" is being read.' ) );
 				},
 				10,
 				2
 			);
-
+		
 		}
+		*/
 	}
 
 	

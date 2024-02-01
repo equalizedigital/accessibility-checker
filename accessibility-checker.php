@@ -386,8 +386,7 @@ function edac_summary( $post_id ) {
 		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
 		$post_options->set( 'issue_density', $issue_density );
 	} else {
-		//TODO: delete or set to 0???
-		$post_options->delete( 'issue_density' );
+		$post_options->set( 'issue_density', 0 );
 	}
 
 	// reading grade level.

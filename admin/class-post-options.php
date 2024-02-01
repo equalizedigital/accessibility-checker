@@ -164,6 +164,7 @@ class Post_Options {
 	 * @param [string] $name The name of the list item.
 	 * @param [mixed]  $value The value of the list item.
 	 * @return boolean True if successful.
+	 * @throws \Exception When cast fails.
 	 */
 	public function set( $name, $value ) {
 		
