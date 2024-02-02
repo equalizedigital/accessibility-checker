@@ -22,7 +22,7 @@ class REST_Api {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {	
+	public function __construct() { 
 	}
 
 

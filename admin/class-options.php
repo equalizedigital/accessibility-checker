@@ -112,7 +112,7 @@ class Options {
 	 *
 	 * @return void
 	 */
-	public static function boot() {		
+	public static function boot() {     
 		if ( empty( self::$options_list ) ) {
 			self::maybe_migrate_legacy_options();
 			self::handle_legacy_get_option_calls();
@@ -267,9 +267,9 @@ class Options {
 
 			// Legacy options exist. Migrate them.
 			foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
-				$value = get_option( $old_name );
+				$value  = get_option( $old_name );
 				$retval = self::set( $new_name, $value );
-				if($retval){
+				if ( $retval ) {
 					delete_option( $old_name );
 				}
 			}       

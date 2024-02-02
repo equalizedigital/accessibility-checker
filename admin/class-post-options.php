@@ -111,7 +111,7 @@ class Post_Options {
 	 * @return void
 	 */
 	public static function init_hooks() {
-		self::handle_legacy_get_post_meta_calls();	
+		self::handle_legacy_get_post_meta_calls();  
 	}
 
 	/**
@@ -125,7 +125,7 @@ class Post_Options {
 
 		add_filter(
 			'get_post_metadata',
-			function ( $metadata, $post_id, $name, $single) use( $names, $map ) {
+			function ( $metadata, $post_id, $name, $single ) use( $names, $map ) {
 				
 				// special case for _edac_summary b/c it was stored as an array.
 				if ( '_edac_summary' === $name ) {
@@ -139,8 +139,8 @@ class Post_Options {
 						'ignored'         => $post_options->get( 'ignored' ),
 					);
 					
-					if($single){
-						return array($metadata);
+					if ( $single ) {
+						return array( $metadata );
 					} else {
 						return $metadata;
 			
@@ -297,7 +297,7 @@ class Post_Options {
 
 			// Legacy options exist. Migrate them.
 			foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
-				$value = get_post_meta( $this->post_id, $old_name );
+				$value  = get_post_meta( $this->post_id, $old_name );
 				$retval = $this->set( $new_name, $value );
 				if ( $retval ) {
 					delete_post_meta( $this->post_id, $old_name );

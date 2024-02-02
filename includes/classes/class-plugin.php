@@ -34,8 +34,6 @@ class Plugin {
 		// options and post_options must load if admin or not.
 		Options::boot();
 		Post_Options::init_hooks();
-
-		
 	}
 
 	/**
@@ -55,6 +53,5 @@ class Plugin {
 
 		$lazyload_filter = new Lazyload_Filter();
 		$lazyload_filter->init_hooks();
-
 	}
 }
