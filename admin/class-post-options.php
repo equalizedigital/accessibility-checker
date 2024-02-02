@@ -105,7 +105,60 @@ class Post_Options {
 		$this->fill();
 	}
 
+	/**
+	 * Boot the class.
+	 *
+	 * @return void
+	 */
+	public static function init_hooks() {
+		self::handle_legacy_get_post_meta_calls();	
+	}
+
+	/**
+	 * If there is a legacy get_post_meta call for one of our items, return the correct value from the list.
+	 *
+	 * @return mixed
+	 */
+	private static function handle_legacy_get_post_meta_calls() {
+		$names = array_keys( self::LEGACY_OPTION_NAMES_MAPPING );
+		$map   = self::LEGACY_OPTION_NAMES_MAPPING;
+
+		add_filter(
+			'get_post_metadata',
+			function ( $metadata, $post_id, $name, $single) use( $names, $map ) {
+				
+				// special case for _edac_summary b/c it was stored as an array.
+				if ( '_edac_summary' === $name ) {
+					$post_options = new Post_Options( $post_id );
+		
+					$metadata = array(
+						'passed_tests'    => $post_options->get( 'passed_tests' ),
+						'errors'          => $post_options->get( 'errors' ),
+						'contrast_errors' => $post_options->get( 'contrast_errors' ),
+						'warnings'        => $post_options->get( 'warnings' ),
+						'ignored'         => $post_options->get( 'ignored' ),
+					);
+					
+					if($single){
+						return array($metadata);
+					} else {
+						return $metadata;
+			
+					}
+				}
 	
+				if ( in_array( $name, $names, true ) ) {
+					$post_options = new Post_Options( $post_id );
+					$metadata     = $post_options->get( $map[ $name ] );
+				}
+			
+				return $metadata;
+			},
+			PHP_INT_MAX,
+			4
+		);
+	}
+
 	/**
 	 * Fill list with either the passed array or from the values stored in WordPress. 
 	 *
@@ -236,35 +289,23 @@ class Post_Options {
 	 *
 	 * @return void
 	 */
-	public function maybe_migrate_legacy_options() {
+	private function maybe_migrate_legacy_options() {
 		
-		if ( get_option( self::LEGACY_OPTION_NAMES_MAPPING[0] ) ) {
-	
+		$first_key = key( self::LEGACY_OPTION_NAMES_MAPPING );
+
+		if ( get_option( $first_key ) ) {
+
 			// Legacy options exist. Migrate them.
 			foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
 				$value = get_post_meta( $this->post_id, $old_name );
-				$this->set( $new_name, $value );
+				$retval = $this->set( $new_name, $value );
+				if ( $retval ) {
+					delete_post_meta( $this->post_id, $old_name );
+				}
 			}       
 		}       
-	
-	
-		foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
-	
-			// TODO remove this.
-			// trigger an exception when a legacy option is read so we can find and fix.
-			add_filter(
-				'get_post_meta_' . $old_name,
-				function ( $legacy_value, $legacy_name ) {
-					throw new \Exception( esc_html( 'Legacy post meta "' . $legacy_name . '" is being read.' ) );
-				},
-				10,
-				2
-			);
-
-		}
 	}
 
-	
 	/**
 	 * Forces the value stored in the list to be of the type and value we expect.
 	 *

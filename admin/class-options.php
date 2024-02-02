@@ -112,9 +112,10 @@ class Options {
 	 *
 	 * @return void
 	 */
-	public static function boot() {
+	public static function boot() {		
 		if ( empty( self::$options_list ) ) {
 			self::maybe_migrate_legacy_options();
+			self::handle_legacy_get_option_calls();
 			self::fill();   
 		}
 	}
@@ -260,31 +261,42 @@ class Options {
 	 */
 	public static function maybe_migrate_legacy_options() {
 		
-		if ( get_option( self::LEGACY_OPTION_NAMES_MAPPING[0] ) ) {
-	
+		$first_key = key( self::LEGACY_OPTION_NAMES_MAPPING );
+
+		if ( get_option( $first_key ) ) {
+
 			// Legacy options exist. Migrate them.
 			foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
 				$value = get_option( $old_name );
-				self::set( $new_name, $value );
+				$retval = self::set( $new_name, $value );
+				if($retval){
+					delete_option( $old_name );
+				}
 			}       
 		}       
-	
-	
-		// TODO: enable this.
-		/* phpcs:ignore CommentedOutCode.Found
+	}
+
+	/**
+	 * If there is a legacy get_option call for one of our items, return the correct value from the list.
+	 *
+	 * @return mixed
+	 */
+	public static function handle_legacy_get_option_calls() {
+
 		foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
-			// trigger an exception when a legacy option is read so we can find and fix.
 			add_filter(
 				'pre_option_' . $old_name,
-				function ( $legacy_value, $legacy_name ) {
-					throw new \Exception( esc_html( 'Legacy option "' . $legacy_name . '" is being read.' ) );
+				function ( $pre_option, $option, $the_default ) use( $new_name ) {
+
+					$pre_option = self::get( $new_name, $the_default );
+
+					return $pre_option;
 				},
-				10,
-				2
+				PHP_INT_MAX,
+				3
 			);
 		
 		}
-		*/
 	}
 
 	

@@ -8,6 +8,8 @@
 namespace EDAC\Inc;
 
 use EDAC\Admin\Admin;
+use EDAC\Admin\Options;
+use EDAC\Admin\Post_Options;
 
 /**
  * Main plugin functionality class.
@@ -28,6 +30,12 @@ class Plugin {
 		// The REST api must load if admin or not.
 		$rest_api = new REST_Api();
 		$rest_api->init_hooks();
+
+		// options and post_options must load if admin or not.
+		Options::boot();
+		Post_Options::init_hooks();
+
+		
 	}
 
 	/**
@@ -47,5 +55,6 @@ class Plugin {
 
 		$lazyload_filter = new Lazyload_Filter();
 		$lazyload_filter->init_hooks();
+
 	}
 }

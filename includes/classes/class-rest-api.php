@@ -22,10 +22,7 @@ class REST_Api {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
-		
-		// Some of the REST api calls need to access the options, so boot to fill.
-		Options::boot();
+	public function __construct() {	
 	}
 
 
