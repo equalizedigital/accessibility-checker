@@ -7,10 +7,16 @@
 
 namespace EDAC\Admin;
 
-//phpcs:disable Generic.Commenting.Todo.TaskFound
-
 /**
- * Class that handles WP post options for the plugin.
+ * Class that handles WP post options (meta) for the plugin.
+ * 
+ * This class provides a standard way to handle the edac data we store for a post. ie:
+ *  - Uses a single interface to set/get/delete the data items.
+ *  - Lets us define how each data item is stored (grouped into a single record or as separate records).
+ *  - Lets us set the default values for grouped items.
+ *  - Insures data is of the datatype and value we expect.
+ *  - Handles backward compatibility for legacy _edac_summary data.
+ *  - Handles backward compatibility when user is running an older version of Pro or Audit that directly accesses options with get_post_metadata/update_post_metadata/delete_post_metadata. 
  */
 class Post_Options {
 
@@ -19,65 +25,105 @@ class Post_Options {
 	 *
 	 * @var string
 	 */
-	const OPTIONS_LIST_NAME = 'edac';
+	const OPTION_NAME = 'edac';
 	
-	/**
-	 * The variable type for the stored value.
-	 *
-	 * @var array [name => string|number|bool|array,url] defaults to string if empty.
-	 */
-	const CASTS = array(
-		'issue_density'          => 'number',
-		'issue_density_elements' => 'number',
-		'issue_density_strlen'   => 'number',
-		'post_checked'           => 'bool',
-		'post_checked_js'        => 'bool',
-		'simplified_summary'     => '',
-		'readability'            => '',
-		'contrast_errors'        => 'number',
-		'errors'                 => 'number',
-		'ignored'                => 'number',
-		'passed_tests'           => 'number',
-		'warnings'               => 'number',
-		'anww_update_post_meta'  => 'bool',
-		'link_blank'             => 'bool',
+	const DATATYPE_NUMBER  = 'number';
+	const DATATYPE_STRING  = 'string';
+	const DATATYPE_ARRAY   = 'array';
+	const DATATYPE_BOOLEAN = 'boolean';
+	
+	
+
+	const ITEMS = array(
+		'issue_density'          => array(
+			'grouped'  => true,
+			'datatype' => self::DATATYPE_NUMBER,
+			'default'  => 0,
+		),
+		'issue_density_elements' => array(
+			'grouped'  => true,
+			'datatype' => self::DATATYPE_NUMBER,
+			'default'  => 0,
+		),
+		'issue_density_strlen'   => array(
+			'grouped'  => true,
+			'datatype' => self::DATATYPE_NUMBER,
+			'default'  => 0,
+		),
+		'simplified_summary'     => array(
+			'grouped'  => true,
+			'datatype' => self::DATATYPE_STRING,
+			'default'  => '',
+		),
+		'readability'            => array(
+			'grouped'  => true,
+			'datatype' => self::DATATYPE_STRING,
+			'default'  => '',
+		),
+		'anww_update_post_meta'  => array(
+			'grouped'  => false,
+			'datatype' => self::DATATYPE_BOOLEAN,
+			'default'  => false,
+		),
+		'link_blank'             => array(
+			'grouped'  => false,
+			'datatype' => self::DATATYPE_BOOLEAN,
+			'default'  => false,
+		),
+	
+		'contrast_errors'        => array(
+			'grouped'  => false,
+			'datatype' => self::DATATYPE_NUMBER,
+			'default'  => 0,
+		),
+		'errors'                 => array(
+			'grouped'  => false,
+			'datatype' => self::DATATYPE_NUMBER,
+			'default'  => 0,
+		),
+		'ignored'                => array(
+			'grouped'  => false,
+			'datatype' => self::DATATYPE_NUMBER,
+			'default'  => 0,
+		),
+		'passed_tests'           => array(
+			'grouped'  => false,
+			'datatype' => self::DATATYPE_NUMBER,
+			'default'  => 0,
+		),
+		'warnings'               => array(
+			'grouped'  => false,
+			'datatype' => self::DATATYPE_NUMBER,
+			'default'  => 0,
+		),
+		'post_checked'           => array(
+			'grouped'  => false,
+			'datatype' => self::DATATYPE_BOOLEAN,
+			'default'  => false,
+		),
+		'post_checked_js'        => array(
+			'grouped'  => false,
+			'datatype' => self::DATATYPE_BOOLEAN,
+			'default'  => false,
+		),
 	);
 
-	/**
-	 * The default values.
-	 *
-	 * @var array [name => value]
-	 */
-	const DEFAULT_VALUES = array(
-		'issue_density'          => 0,
-		'issue_density_elements' => 0,
-		'issue_density_strlen'   => 0,
-		'post_checked'           => false,
-		'post_checked_js'        => false,
-		'summary'                => '',
-		'simplified_summary'     => '',
-		'readability'            => '',
-		'contrast_error'         => 0,
-		'errors'                 => 0,
-		'ignored'                => 0,
-		'passed_tests'           => 0,
-		'warnings'               => 0,
-		'anww_update_post_meta'  => false,
-		'link_blank'             => false,
-	);
-		
-	const LEGACY_OPTION_NAMES_MAPPING = array(
-		'_edac_post_checked'            => 'post_checked',
+	const LEGACY_NAMES_MAPPING = array(
+		// These are stored in a grouped meta record.   
 		'_edac_issue_density'           => 'issue_density',
-		'_edac_post_checked_js'         => 'post_checked_js',
 		'_edac_simplified_summary'      => 'simplified_summary',
+	
+		// These are stored as separate meta records.   
+		'edac_anww_update_post_meta'    => 'anww_update_post_meta',
 		'_edac_summary_contrast_errors' => 'contrast_errors',
 		'_edac_summary_errors'          => 'errors',
 		'_edac_summary_ignored'         => 'ignored',
 		'_edac_summary_passed_tests'    => 'passed_tests',
 		'_edac_summary_warnings'        => 'warnings',
-		'edac_anww_update_post_meta'    => 'anww_update_post_meta',
+		'_edac_post_checked'            => 'post_checked',
+		'_edac_post_checked_js'         => 'post_checked_js',
 	);
+	
 
 	/**
 	 * Id of the post we are working with.
@@ -87,11 +133,39 @@ class Post_Options {
 	private $post_id;
 
 	/**
+	 * A list of the grouped items.
+	 *
+	 * @var array
+	 */
+	public $grouped_items = array();
+
+	/**
+	 * A list of the ungrouped items.
+	 *
+	 * @var array
+	 */
+	public $ungrouped_items = array();
+
+	/**
+	 * A list of the default values for the grouped items.
+	 *
+	 * @var array
+	 */
+	public $grouped_default_values = array();
+
+	/**
+	 * A list of the data types for all the items.
+	 *
+	 * @var array
+	 */
+	private $data_types = array();
+
+	/**
 	 * Array that holds the actual option values.
 	 *
 	 * @var array
 	 */
-	private $options_list = array();
+	private $grouped_items_list = array();
 
 	/**
 	 * Constructor for the class.
@@ -100,9 +174,30 @@ class Post_Options {
 	 * @return void
 	 */
 	public function __construct( $post_id ) {
+
+		
+		$this->grouped_items = array_filter( 
+			self::ITEMS, 
+			fn( $item ) => true === $item['grouped']
+		);
+	
+		$this->ungrouped_items = array_filter( 
+			self::ITEMS, 
+			fn( $item ) => false === $item['grouped']
+		);
+	
+		$this->grouped_default_values = array_map(
+			fn( $item ) => $item['default'],
+			$this->grouped_items
+		);
+	
+		$this->data_types = array_map(
+			fn( $item ) => $item['datatype'],
+			self::ITEMS
+		);
+	
 		$this->post_id = $post_id;
-		$this->maybe_migrate_legacy_options();
-		$this->fill();
+		$this->fill_grouped_items();
 	}
 
 	/**
@@ -111,103 +206,301 @@ class Post_Options {
 	 * @return void
 	 */
 	public static function init_hooks() {
-		self::handle_legacy_get_post_meta_calls();  
+		add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+		add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
+		add_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10, 4 );
 	}
+
 
 	/**
 	 * If there is a legacy get_post_meta call for one of our items, return the correct value from the list.
 	 *
+	 * @param [mixed]   $value The value.
+	 * @param [integer] $post_id The post ID.
+	 * @param [string]  $name The meta key.
+	 * @param [boolean] $single Whether to return a single value.
 	 * @return mixed
 	 */
-	private static function handle_legacy_get_post_meta_calls() {
-		$names = array_keys( self::LEGACY_OPTION_NAMES_MAPPING );
-		$map   = self::LEGACY_OPTION_NAMES_MAPPING;
-
-		add_filter(
-			'get_post_metadata',
-			function ( $metadata, $post_id, $name, $single ) use( $names, $map ) {
-				
-				// special case for _edac_summary b/c it was stored as an array.
-				if ( '_edac_summary' === $name ) {
-					$post_options = new Post_Options( $post_id );
-		
-					$metadata = array(
-						'passed_tests'    => $post_options->get( 'passed_tests' ),
-						'errors'          => $post_options->get( 'errors' ),
-						'contrast_errors' => $post_options->get( 'contrast_errors' ),
-						'warnings'        => $post_options->get( 'warnings' ),
-						'ignored'         => $post_options->get( 'ignored' ),
-					);
-					
-					if ( $single ) {
-						return array( $metadata );
-					} else {
-						return $metadata;
-			
-					}
-				}
+	public static function get_post_metadata_hook( $value, $post_id, $name, $single ) {
 	
-				if ( in_array( $name, $names, true ) ) {
-					$post_options = new Post_Options( $post_id );
-					$metadata     = $post_options->get( $map[ $name ] );
-				}
+		if ( self::OPTION_NAME === $name ) {
+			return $value;
+		}
+	
+		if ( '_edac_summary' === $name ) {
+			// special case for legacy _edac_summary b/c it was stored as an array.
+
+			// Prevent a recursive loop.
+			remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10 );
+
+			$post_options = new Post_Options( $post_id );
+
+			$value = array(
+				'passed_tests'    => $post_options->get( 'passed_tests' ),
+				'errors'          => $post_options->get( 'errors' ),
+				'contrast_errors' => $post_options->get( 'contrast_errors' ),
+				'warnings'        => $post_options->get( 'warnings' ),
+				'ignored'         => $post_options->get( 'ignored' ),
+			);
 			
-				return $metadata;
-			},
-			PHP_INT_MAX,
-			4
-		);
+			// re-add the action we removed.
+			add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+
+			if ( $single ) {
+				return array( $value );
+			} else {
+				return $value;
+			}
+		}
+
+		// Handle the other legacy options.
+		$map      = self::LEGACY_NAMES_MAPPING;
+		$map_keys = array_keys( $map );
+
+		if ( in_array( $name, $map_keys, true ) ) {
+			// The call is for a legacy name, pass the value from the list.
+
+			// Prevent a recursive loop.
+			remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10 );
+
+			$post_options = new Post_Options( $post_id );
+			$value        = $post_options->get( $map[ $name ] );
+		
+			// re-add the action we removed.
+			add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+	
+		}
+	
+		return $value;
 	}
 
 	/**
-	 * Fill list with either the passed array or from the values stored in WordPress. 
+	 * If there is a legacy update_post_meta call for one of our items, update the correct value in the list.
 	 *
-	 * @param [array] $options_list Array of values to load into the list.
-	 * @return void
+	 * @param [integer] $meta_id The meta ID.
+	 * @param [integer] $post_id The post ID.
+	 * @param [string]  $name The key.
+	 * @param [mixed]   $value The value to update.
+	 * @return boolean
 	 */
-	public function fill( $options_list = null ) {
-	
-		if ( is_null( $options_list ) ) {
-			// Load from WordPress.
-			$options_list = get_post_meta( $this->post_id, self::OPTIONS_LIST_NAME );
+	public static function update_post_metadata_hook( $meta_id, $post_id, $name, $value ) {
+
+		if ( self::OPTION_NAME === $name ) {
+			return;
 		}
 	
-		if ( is_array( $options_list ) && ! empty( $options_list ) ) {
+		// Handle updating the legacy named _edac_summary.
+		// Special case for legacy _edac_summary b/c it was stored as an array.
+		if ( '_edac_summary' === $name ) {
 
-			$keys = array_keys( $options_list );
-			if ( ! is_string( $keys[0] ) ) {
-				$options_list = $options_list[0];
+			// Prevent a recursive loop.
+			remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10 );
+	
+			// Read the values from legacy _edac_summary array and write to the list.
+			$keys         = array( 'passed_tests', 'errors', 'contrast_errors', 'warnings', 'ignored' );
+			$retval       = true;
+			$post_options = new Post_Options( $post_id );
+			foreach ( $keys as $key ) {
+				if ( array_key_exists( $key, $value ) ) {
+					$result = $post_options->set( $key, $value[ $key ] );
+					if ( false === $result ) {
+						$retval = false;
+					}
+				}
+			}
+
+		
+			// re-add the action we removed.
+			add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
+			return $retval;
+			
+		}
+
+
+		// Handle the other legacy options.
+		$map      = self::LEGACY_NAMES_MAPPING;
+		$map_keys = array_keys( $map );
+		$retval   = true;
+
+		if ( in_array( $name, $map_keys, true ) ) {
+			// This is an update to a legacy named option.
+	
+			// Prevent a recursive loop.
+			remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10 );
+	
+		
+			$grouped_items = array_filter( 
+				self::ITEMS, 
+				fn( $item ) => true === $item['grouped']
+			);
+		
+			if ( array_key_exists( $map[ $name ], $grouped_items ) ) {
+				// This is an update for a grouped item.
+
+				// set the list option using the non-legacy name.
+				$post_options = new Post_Options( $post_id );
+				$retval       = $post_options->set( $map[ $name ], $value );
+			
+			} else {
+
+				$ungrouped_items = array_filter( 
+					self::ITEMS, 
+					fn( $item ) => false === $item['grouped']
+				);
+			
+				if ( array_key_exists( $map[ $name ], $ungrouped_items ) ) {
+					// This is an update for an ungrouped item.
+	
+					remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+					
+					// set the non-legacy option.
+					remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
+					update_post_meta( $post_id, self::OPTION_NAME . '_' . $map[ $name ], $value );
+					add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
+				
+					add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+		
+				}           
 			}
 		
-			$options_list = array_merge( self::DEFAULT_VALUES, $options_list );
-		} else {
-			$options_list = self::DEFAULT_VALUES;
-		}
 		
-		
-		foreach ( $options_list as $name => $value ) {
+	
+			// re-add the action we removed.
+			add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
 
-			// only allow setting of known options.
-			if ( array_key_exists( $name, self::CASTS ) ) {
-				$cast_value                  = $this->cast_and_validate( $name, $value );
-				$this->options_list[ $name ] = $cast_value;
-			}       
+			return $retval;
+	
+		}
+	}
+	
+	/**
+	 * If there is a legacy delete_post_meta call for one of our items, delete the correct value from the list.
+	 *
+	 * @param [mixed]   $meta_ids The meta ids.
+	 * @param [integer] $post_id The post ID.
+	 * @param [string]  $name The key.
+	 * @param [mixed]   $value The value to delete.
+	 * @return boolean
+	 */
+	public static function delete_post_metadata_hook( $meta_ids, $post_id, $name, $value ) {
+		
+		if ( self::OPTION_NAME === $name ) {
+			return;
+		}
+	
+		// special case for legacy _edac_summary b/c it was stored as an array.
+		if ( '_edac_summary' === $name ) {
+
+			// This function does not support the $value parameter.
+			if ( '' !== $value ) {
+				return false;
+			}
+
+			// Prevent a recursive loop.
+			remove_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10 );
+
+			$keys         = array( 'passed_tests', 'errors', 'contrast_errors', 'warnings', 'ignored' );
+			$retval       = true;
+			$post_options = new Post_Options( $post_id );
+			
+			foreach ( $keys as $key ) {
+				if ( array_key_exists( $key, $value ) ) {
+		
+					$result = $post_options->delete( $key );
+					if ( false === $result ) {
+						$retval = false;
+					}
+				}
+			}
+
+			$post_options->delete( $name );
+
+			// re-add the action we removed.
+			add_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10, 4 );
+			return $retval;
+			
+		}
+
+
+		// Handle the other legacy options.
+		$map      = self::LEGACY_NAMES_MAPPING;
+		$map_keys = array_keys( $map );
+
+		if ( in_array( $name, $map_keys, true ) ) {
+			// The call is for a legacy name.
+
+			// This function does not support the $meta_value parameter.
+			if ( '' !== $value ) {
+				return false;
+			}
+
+			// Prevent a recursive loop.
+			remove_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10 );
+
+			$post_options = new Post_Options( $post_id );
+			$retval       = $post_options->delete( $map[ $name ] );
+
+			// re-add the action we removed.
+			add_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10, 3 );
+
 		}
 	}
 
+	/**
+	 * Fill list with the group item values stored in WordPress. 
+	 *
+	 * @return void
+	 */
+	public function fill_grouped_items() {
+	
+		$grouped_items_list = get_post_meta( $this->post_id, self::OPTION_NAME, true );
+		if ( ! is_array( $grouped_items_list ) ) {
+			$grouped_items_list = array_fill_keys( array_keys( $this->grouped_items ), null );
+		}
+	
+		foreach ( $this->grouped_items as $name => $value ) {
+			if ( array_key_exists( $name, $grouped_items_list ) ) {
+				$cast_value                        = $this->cast_and_validate( $name, $grouped_items_list[ $name ] );
+				$this->grouped_items_list[ $name ] = $cast_value;
+			} else {
+				$this->grouped_items_list[ $name ] = $this->default_value( $name );
+			}
+		}
+	}
+
+	/**
+	 * Returns the default value for the given name.
+	 *
+	 * @param string $name The name of the value to return.
+	 * @return mixed
+	 */
+	public function default_value( $name ) {
+		return $this->grouped_default_values[ $name ];
+	}
 
 	/**
 	 * Returns the value from the list. If the value doesn't exist, returns null.
 	 *
-	 * @param string $name of the value to return.
+	 * @param string  $name of the value to return.
+	 * @param boolean $single Whether to return a single value.
 	 * @return mixed 
 	 */
-	public function get( $name ) {
+	public function get( $name, $single = true ) {
 
-		if ( array_key_exists( $name, $this->options_list ) ) {
-			return $this->options_list[ $name ];            
+		if ( array_key_exists( $name, $this->grouped_items ) ) {
+			$this->fill_grouped_items(); // in case the list has been updated by update hook or another process.
+			$value           = $this->grouped_items_list[ $name ];  
+			$sanitized_value = $this->cast_and_validate( $name, $value );
+			return $sanitized_value;
+   
+
+		} elseif ( metadata_exists( 'post', $this->post_id, self::OPTION_NAME . '_' . $name ) ) {
+				// non-legacy named upgrouped item.
+				$value           = get_post_meta( $this->post_id, self::OPTION_NAME . '_' . $name, $single );
+				$sanitized_value = $this->cast_and_validate( $name, $value );
+				return $sanitized_value;
 		} else {
-			return null;
+			return get_post_meta( $this->post_id, $name, $single );
 		}
 	}
 
@@ -217,18 +510,51 @@ class Post_Options {
 	 * @param [string] $name The name of the list item.
 	 * @param [mixed]  $value The value of the list item.
 	 * @return boolean True if successful.
-	 * @throws \Exception When cast fails.
 	 */
 	public function set( $name, $value ) {
 		
-		// only allow setting of known options.
-		if ( ! array_key_exists( $name, self::CASTS ) ) {
-			throw new \Exception( esc_html( $name . ' is not a valid post option.' ) );
-		}
+		if ( array_key_exists( $name, $this->grouped_items ) ) {
+			$sanitized_value                   = $this->cast_and_validate( $name, $value );
+			$this->grouped_items_list[ $name ] = $sanitized_value;
+			$retval_1                          = update_post_meta( $this->post_id, self::OPTION_NAME, $this->grouped_items_list );
+	
+			$retval_2 = true;
+			$key      = array_search( $name, self::LEGACY_NAMES_MAPPING, true );
 
-		$sanitized_value             = $this->cast_and_validate( $name, $value );
-		$this->options_list[ $name ] = $sanitized_value;
-		return update_post_meta( $this->post_id, self::OPTIONS_LIST_NAME, $this->options_list );
+			remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+			if ( metadata_exists( 'post', $this->post_id, $key ) ) {
+				remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
+				$retval_2 = update_post_meta( $this->post_id, $key, $value );
+				add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
+			}
+			add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+			return ( true === $retval_1 ) && ( true === $retval_2 );
+		
+		
+		} else {
+	
+			// this is not a grouped item, so use the standard update_post_meta.
+			if ( array_key_exists( $name, $this->ungrouped_items ) ) {
+	
+				$retval_1 = update_post_meta( $this->post_id, self::OPTION_NAME . '_' . $name, $value );
+		
+				// Check if this item has a non-grouped legacy named wp option. If so, update it for backward compatibility.
+				$retval_2 = true;
+				$key      = array_search( $name, self::LEGACY_NAMES_MAPPING, true );
+				remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+				if ( metadata_exists( 'post', $this->post_id, $key ) ) {
+					remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
+					$retval_2 = update_post_meta( $this->post_id, $key, $value );
+					add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
+				}
+				add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+				return ( true === $retval_1 ) && ( true === $retval_2 );
+			}   
+	
+			// the name is not in the list of items, so we can't set it.
+			return false;
+			
+		}
 	}
 
 	/**
@@ -239,73 +565,46 @@ class Post_Options {
 	 */
 	public function delete( $name ) {
 
-		if ( array_key_exists( $name, $this->options_list ) ) {
-			unset( $this->options_list[ $name ] );
-			
-			return update_post_meta( $this->post_id, self::OPTIONS_LIST_NAME, $this->options_list );
+		if ( array_key_exists( $name, $this->grouped_items ) ) {
+			unset( $this->grouped_items_list[ $name ] );
+			return update_post_meta( $this->post_id, self::OPTION_NAME, $this->grouped_items_list );
+		} else {
+			// this is not a grouped item, so use the standard delete_post_meta.
+			$retval_1 = delete_post_meta( $this->post_id, self::OPTION_NAME . '_' . $name );
+		
+			// Check if this item has a non-grouped legacy named wp option. If so, delete it for backward compatibility.
+			$retval_2 = true;
+			$key      = array_search( $name, self::LEGACY_NAMES_MAPPING, true );
+			remove_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10, 4 );
+			if ( metadata_exists( 'post', $this->post_id, $key ) ) {
+				$retval_2 = delete_post_meta( $this->post_id, $key );
+			}
+			add_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10, 4 );
+			return ( true === $retval_1 ) && ( true === $retval_2 );
 		}
 	}
 
 	/**
-	 * Remove all values from the list then deletes the option in the WP database.
+	 * Remove all values from the list then delete the option in the WP database.
 	 *
 	 * @return boolean True if successful.
 	 */
 	public function delete_all() {
-		$this->options_list = array();
+		$this->grouped_items_list = array();
 		
-		return delete_post_meta( $this->post_id, self::OPTIONS_LIST_NAME );
+		return delete_post_meta( $this->post_id, self::OPTION_NAME );
 	}
-
-	/**
-	 * Gets the name of the list. This is the WordPress option's name.
-	 *
-	 * @return string
-	 */
-	public function list_name() {
-		return self::OPTIONS_LIST_NAME;
-	}
-
-	/**
-	 * Gets a list of all the list item names.
-	 *
-	 * @return array
-	 */
-	public function names() {
-		return array_keys( $this->options_list );
-	}
-
+	
 	/**
 	 * Gets a list of all the name/value pairs in the list.
 	 *
 	 * @return array
 	 */
 	public function as_array() {
-		return $this->options_list;
+		$this->fill_grouped_items();
+		return $this->grouped_items_list;
 	}
 	
-	/**
-	 * If needed, migrate legacy options to use this Options class.
-	 *
-	 * @return void
-	 */
-	private function maybe_migrate_legacy_options() {
-		
-		$first_key = key( self::LEGACY_OPTION_NAMES_MAPPING );
-
-		if ( get_option( $first_key ) ) {
-
-			// Legacy options exist. Migrate them.
-			foreach ( self::LEGACY_OPTION_NAMES_MAPPING as $old_name => $new_name ) {
-				$value  = get_post_meta( $this->post_id, $old_name );
-				$retval = $this->set( $new_name, $value );
-				if ( $retval ) {
-					delete_post_meta( $this->post_id, $old_name );
-				}
-			}       
-		}       
-	}
-
 	/**
 	 * Forces the value stored in the list to be of the type and value we expect.
 	 *
@@ -316,19 +615,19 @@ class Post_Options {
 	 */
 	private function cast_and_validate( $name, $value ) {
 		
-		$type = self::CASTS[ $name ];
+		$type = $this->data_types[ $name ];
 		switch ( $type ) {
 		
-			case 'string':
+			case self::DATATYPE_STRING:
 				return (string) $value;
 
-			case 'bool':
+			case self::DATATYPE_BOOLEAN:
 				return (bool) $value;
 			
-			case 'number':
+			case self::DATATYPE_NUMBER:
 				return (float) $value;
 			
-			case 'array':
+			case self::DATATYPE_ARRAY:
 				if ( is_array( $value ) ) {
 					return $value;
 				}
@@ -340,15 +639,6 @@ class Post_Options {
 				}
 				throw new \Exception( esc_html( $name . ' cannot be cast to array.' ) );
 
-			case 'url':
-				if ( is_string( $value ) ) {
-					return esc_url_raw( $value );
-				}
-				if ( ! $value || is_null( $value ) ) {
-					return '';
-				}
-				throw new \Exception( esc_html( $name . ' cannot be cast to url.' ) );
-	
 			default:
 				return (string) $value;
 
