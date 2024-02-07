@@ -109,7 +109,6 @@ function edac_ordinal( $number ) {
 		if ( $number % 100 >= 11 && $number % 100 <= 13 ) {
 			$ordinal = $number . 'th';
 		} else {
-			// Regular rules for other numbers
 			switch ( $number % 10 ) {
 				case 1:
 					$ordinal = $number . 'st';
