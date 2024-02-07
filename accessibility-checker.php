@@ -189,12 +189,12 @@ function edac_update_database() {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
 
-	}
+		// Update database version option.
+		$option_name = 'db_version';
+		$new_value   = EDAC_DB_VERSION;
+		Options::set( $option_name, $new_value );
 
-	// Update database version option.
-	$option_name = 'db_version';
-	$new_value   = EDAC_DB_VERSION;
-	Options::set( $option_name, $new_value );
+	}
 }
 
 /**

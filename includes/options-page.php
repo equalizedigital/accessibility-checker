@@ -227,7 +227,7 @@ function edac_footer_accessibility_statement_cb() {
 function edac_simplified_summary_position_cb() {
 
 	$key   = 'simplified_summary_position';
-	$ns    = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
 	$name  = $ns . '[' . $key . ']';
 	$value = \EDAC\Admin\Options::get( $key );
 	
@@ -265,7 +265,7 @@ function edac_simplified_summary_position_cb() {
 function edac_simplified_summary_prompt_cb() {
 
 	$key   = 'simplified_summary_prompt';
-	$ns    = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
 	$name  = $ns . '[' . $key . ']';
 	$value = \EDAC\Admin\Options::get( $key );
 
@@ -297,7 +297,7 @@ function edac_simplified_summary_prompt_cb() {
 function edac_post_types_cb() {
 
 	$key  = 'post_types';
-	$ns   = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
+	$ns   = \EDAC\Admin\Options::OPTION_NAME;
 	$name = $ns . '[' . $key . '][]';
 	
 	$selected_post_types = \EDAC\Admin\Options::get( $key );
@@ -352,7 +352,7 @@ function edac_post_types_cb() {
 function edac_add_footer_accessibility_statement_cb() {
 
 	$key   = 'add_footer_accessibility_statement';
-	$ns    = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
 	$name  = $ns . '[' . $key . ']';
 	$value = \EDAC\Admin\Options::get( $key );
 
@@ -373,7 +373,7 @@ function edac_add_footer_accessibility_statement_cb() {
 function edac_include_accessibility_statement_link_cb() {
 
 	$key   = 'include_accessibility_statement_link';
-	$ns    = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
 	$name  = $ns . '[' . $key . ']';
 	$value = \EDAC\Admin\Options::get( $key );
 
@@ -401,7 +401,7 @@ function edac_include_accessibility_statement_link_cb() {
 function edac_accessibility_policy_page_cb() {
 
 	$key   = 'accessibility_policy_page';
-	$ns    = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
 	$name  = $ns . '[' . $key . ']';
 	$value = \EDAC\Admin\Options::get( $key );
 
@@ -429,7 +429,7 @@ function edac_accessibility_statement_preview_cb() {
 function edac_delete_data_cb() {
 
 	$key   = 'delete_data';
-	$ns    = \EDAC\Admin\Options::OPTIONS_LIST_NAME;
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
 	$name  = $ns . '[' . $key . ']';
 	$value = \EDAC\Admin\Options::get( $key );
 

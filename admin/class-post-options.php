@@ -510,9 +510,14 @@ class Post_Options {
 	 * @param [string] $name The name of the list item.
 	 * @param [mixed]  $value The value of the list item.
 	 * @return boolean True if successful.
+	 * @throws \Exception When the option is not valid.
 	 */
 	public function set( $name, $value ) {
-		
+	
+		if ( '_edac_summary' !== $name && ! array_key_exists( $name, self::ITEMS ) ) {
+			throw new \Exception( esc_html( $name . ' is not a valid option.' ) );
+		}
+
 		if ( array_key_exists( $name, $this->grouped_items ) ) {
 			$sanitized_value                   = $this->cast_and_validate( $name, $value );
 			$this->grouped_items_list[ $name ] = $sanitized_value;
@@ -531,30 +536,23 @@ class Post_Options {
 			return ( true === $retval_1 ) && ( true === $retval_2 );
 		
 		
-		} else {
-	
-			// this is not a grouped item, so use the standard update_post_meta.
-			if ( array_key_exists( $name, $this->ungrouped_items ) ) {
-	
+		} elseif ( array_key_exists( $name, $this->ungrouped_items ) ) {
+				// this is not a grouped item, so use the standard update_post_meta.
+			
 				$retval_1 = update_post_meta( $this->post_id, self::OPTION_NAME . '_' . $name, $value );
 		
 				// Check if this item has a non-grouped legacy named wp option. If so, update it for backward compatibility.
 				$retval_2 = true;
 				$key      = array_search( $name, self::LEGACY_NAMES_MAPPING, true );
 				remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
-				if ( metadata_exists( 'post', $this->post_id, $key ) ) {
-					remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
-					$retval_2 = update_post_meta( $this->post_id, $key, $value );
-					add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
-				}
+			if ( metadata_exists( 'post', $this->post_id, $key ) ) {
+				remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
+				$retval_2 = update_post_meta( $this->post_id, $key, $value );
+				add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
+			}
 				add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
 				return ( true === $retval_1 ) && ( true === $retval_2 );
-			}   
-	
-			// the name is not in the list of items, so we can't set it.
-			return false;
-			
-		}
+		}       
 	}
 
 	/**
@@ -638,7 +636,7 @@ class Post_Options {
 					return array();
 				}
 				throw new \Exception( esc_html( $name . ' cannot be cast to array.' ) );
-
+		
 			default:
 				return (string) $value;
 

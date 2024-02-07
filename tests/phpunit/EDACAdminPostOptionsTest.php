@@ -89,8 +89,12 @@ class EDACAdminPostOptionsTest extends WP_UnitTestCase {
 		$value = $this->getRandomValueByDatatype( Post_Options::DATATYPE_NUMBER );
 		
 		$post_options = new Post_Options( self::$post_id );
-		$post_options->set( $name, $value );
-		$this->assertEquals( false, metadata_exists( 'post', self::$post_id, $name ) );
+
+		try {
+			$post_options->set( $name, $value );
+		} catch ( Exception $e ) {
+			$this->assertStringContainsString( 'is not a valid option', $e->getMessage() );
+		}
 	}
 	
 	
