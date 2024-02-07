@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 6.2
-Tested up to: 6.4.2
-Stable tag: 1.8.0
+Tested up to: 6.4.3
+Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,10 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.8.1 =
+* Fixed: false positives on the incorrect heading order rule
+* Added: fallback to determine ordinal when php intl extension is not installed
 
 = 1.8.0 =
 * Updated: heading order on welcome screen
