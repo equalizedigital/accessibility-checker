@@ -94,12 +94,40 @@ function edac_check_plugin_installed( $plugin_slug ) {
  * @return string
  */
 function edac_ordinal( $number ) {
-	return (
-		new NumberFormatter(
-			get_locale(),
-			NumberFormatter::ORDINAL
-		)
-	)->format( (int) $number );
+
+	$number = (int) $number;
+
+	if ( class_exists( 'NumberFormatter' ) ) {
+		return (
+			new NumberFormatter(
+				get_locale(),
+				NumberFormatter::ORDINAL
+			)
+		)->format( $number );
+	
+	} else {
+		if ( $number % 100 >= 11 && $number % 100 <= 13 ) {
+			$ordinal = $number . 'th';
+		} else {
+			// Regular rules for other numbers
+			switch ( $number % 10 ) {
+				case 1:
+					$ordinal = $number . 'st';
+					break;
+				case 2:
+					$ordinal = $number . 'nd';
+					break;
+				case 3:
+					$ordinal = $number . 'rd';
+					break;
+				default:
+					$ordinal = $number . 'th';
+					break;
+			}
+		}
+		return $ordinal;
+	
+	}
 }
 
 /**
