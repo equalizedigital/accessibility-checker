@@ -174,7 +174,7 @@
 					<li><?php esc_html_e( '...and more', 'accessibility-checker' ); ?></li>
 				</ul>
 			</div>
-			<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank">
+			<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
 				<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?> 
 				<span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
 			</a>
