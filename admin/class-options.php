@@ -193,7 +193,7 @@ class Options {
 			}
 		
 			self::init_hooks();
-
+		
 
 		}
 	}
@@ -206,158 +206,68 @@ class Options {
 	public static function init_hooks() {
 
 		// Hook into pre_update_option_ so we can cast and validate the values before they are saved by options.php.
-		add_filter( 'pre_update_option_' . self::OPTION_NAME, self::class . '::pre_update_option_hook', 10, 3 );
-	
-		// Hook into get_option, update_option and delete_option so we can handle those calls if they use a legacy named item.
-		add_action( 'get_option', self::class . '::get_option_hook', 10, 3 );
-		add_action( 'update_option', self::class . '::update_option_hook', 10, 3 );
-		add_action( 'delete_option', self::class . '::delete_option_hook', 10, 1 );
-	}
+		add_filter(
+			'pre_update_option_' . self::OPTION_NAME,
+			function ( $new_value ) {
 
-	/**
-	 * Handle the casting and validating before options.php saves the option.
-	 *
-	 * @param [mixed]  $new_value The new value of the option.
-	 * @param [mixed]  $old_value The old value of the option.
-	 * @param [string] $name The name of the option.
-	 * @return array
-	 */
-	public static function pre_update_option_hook( $new_value, $old_value, $name ) {
-	
-		if ( self::OPTION_NAME === $name ) {
+				$items = Options::$items_list;
 			
-			$items = self::$items_list;
+				foreach ( $new_value as $key => $value ) {
+					// adds the new value to the list if has an expected name.
+					if ( array_key_exists( $key, Options::ITEMS ) ) {
+						// cast and validate the value.
+						$items[ $key ] = Options::cast_and_validate( $key, $value );
+					}           
+				}
 			
-			foreach ( $new_value as $key => $value ) {
-				// adds the new value to the list if has an expected name.
-				if ( array_key_exists( $key, self::ITEMS ) ) {
-					// cast and validate the value.
-					$items[ $key ] = self::cast_and_validate( $key, $value );
-				}           
-			}
-			
-			// update our list with the new values.
-			self::$items_list = $items;
+				// update our list with the new values.
+				Options::$items_list = $items;
 
-			return $items;
+				return $items;
+			},
+			10,
+			1
+		);
 
-		}
-	}           
 
-	//phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-	//phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
-	/**
-	 * Return the correct value in case get_option is called directly using a legacy name item.
-	 *
-	 * @param [mixed]   $value The value.
-	 * @param [string]  $name The meta key.
-	 * @param [boolean] $single Whether to return a single value.
-	 * 
-	 * @return mixed
-	 */
-	public static function get_option_hook( $value, $name, $single ) {
-	
-		if ( self::OPTION_NAME === $name ) {
-			return $value;
-		}
-	
-		// Handle the other legacy options.
-		$map      = self::LEGACY_NAMES_MAPPING;
-		$map_keys = array_keys( $map );
-
-		if ( in_array( $name, $map_keys, true ) ) {
-			// The call is for a legacy name, pass the value from the list.
-
-			// Prevent a recursive loop.
-			remove_action( 'get_option', self::class . '::get_option_hook', 10 );
-
-			$value = Options::get( $map[ $name ] );
+		// add hooks for legacy named items.
+		$legacy_names = array_keys( self::LEGACY_NAMES_MAPPING );
 		
-			// re-add the action we removed.
-			add_action( 'get_option', self::class . '::get_option_hook', 10, 3 );
+		foreach ( $legacy_names as $legacy_name ) {
+
+			$item_name = self::LEGACY_NAMES_MAPPING[ $legacy_name ];
+
+			add_filter(
+				'pre_option_' . $legacy_name,
+				function ( $value ) use ( $item_name ) {
+					$value = Options::get( $item_name );
+					return $value;
+				},
+				10,
+				1
+			);
 	
-		}
-	
-		return $value;
-	}
-	//phpcs:enable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-	//phpcs:enable Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
-	
-
-	/**
-	 * Update the correct value in case update_option is called directly using a legacy name item.
-	 *
-	 * @param [mixed]  $name The meta key.
-	 * @param [string] $old_value The old value.
-	 * @param [string] $value The new value.
-	 * @return boolean
-	 */
-	public static function update_option_hook( $name, $old_value, $value ) {
-
-		if ( self::OPTION_NAME === $name ) {
-			return;
-		}
-
-		// Handle the other legacy options.
-		$map      = self::LEGACY_NAMES_MAPPING;
-		$map_keys = array_keys( $map );
-	
-		if ( in_array( $name, $map_keys, true ) ) {
-			// This is an update to a legacy named option.
-
-			// Prevent a recursive loop.
-			remove_action( 'update_option', self::class . '::update_hook', 10 );
-
-			if ( array_key_exists( $map[ $name ], self::$items_list ) ) {
-		
-				// set the list option using the non-legacy name.
-				$retval = Options::set( $map[ $name ], $value );
-	
-				// re-add the action we removed.
-				add_action( 'update_option', self::class . '::update_hook', 10, 3 );
-
-				return $retval;
-
-			}
-		}
-	}
-
-	/**
-	 * Delete the correct value in case delete_option is called directly using a legacy name item.
-	 *
-	 * @param [string] $name The meta key.
-	 * @return boolean
-	 */
-	public static function delete_option_hook( $name ) {
-
-		if ( self::OPTION_NAME === $name ) {
-			return;
-		}
-	
-		// Handle the other legacy options.
-		$map      = self::LEGACY_NAMES_MAPPING;
-		$map_keys = array_keys( $map );
-		
-		if ( in_array( $name, $map_keys, true ) ) {
-			// This is a delete to a legacy named option.
-	
-			// Prevent a recursive loop.
-			remove_action( 'delete_option', self::class . '::delete_hook', 10 );
-	
-			if ( array_key_exists( $map[ $name ], self::$items_list ) ) {
+			add_filter(
+				'pre_update_option_' . $legacy_name,
+				function ( $name, $old_value, $new_value ) use ( $item_name ) {
+					Options::set( $item_name, $new_value );
+				},
+				10,
+				3
+			);
 			
-				// set the list option using the non-legacy name.
-				$retval = Options::delete( $map[ $name ] );
-			
-				// re-add the action we removed.
-				add_action( 'delete_option', self::class . '::delete_hook', 10, 1 );
+			add_action(
+				'delete_option_' . $legacy_name,
+				function () use ( $item_name ) {
+					Options::delete( $item_name );
+				},
+				10,
+				0
+			);
 	
-				return $retval;
-	
-			}
 		}
 	}
-	
+
 	/**
 	 * Fill list from the values stored in WordPress. 
 	 *
