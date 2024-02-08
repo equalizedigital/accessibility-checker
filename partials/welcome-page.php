@@ -77,15 +77,47 @@
 			<div class="edac-welcome-documentation">
 				<h2><?php esc_html_e( 'Documentation and FAQs', 'accessibility-checker' ); ?></h2>
 				<ul>
-					<li><a href="https://a11ychecker.com/help4279" target="_blank"><?php esc_html_e( 'Why do we say 100% Passed Tests, Not 100% Accessible?', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4280" target="_blank"><?php esc_html_e( 'How to Manually Check Your Website for Accessibility', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4206" target="_blank"><?php esc_html_e( 'When to Ignore Accessibility Errors', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4114" target="_blank"><?php esc_html_e( 'What to do if a Plugin You’re Using has Accessibility Errors', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4386" target="_blank"><?php esc_html_e( 'What to do if there are Accessibility Errors in Your Theme', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4293" target="_blank"><?php esc_html_e( 'Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4285" target="_blank"><?php esc_html_e( 'Additional Resources for Learning About Accessibility', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/passed-tests/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'Why do we say 100% Passed Tests, Not 100% Accessible?', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/how-to-manually-check-your-website-for-accessibility/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'How to Manually Check Your Website for Accessibility', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/when-to-ignore-accessibility-errors/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'When to Ignore Accessibility Errors', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/errors-in-plugin/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'What to do if a Plugin You’re Using has Accessibility Errors', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/errors-in-theme/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'What to do if there are Accessibility Errors in Your Theme', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/hire-equalize-digital/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/additional-resources-for-learning-about-accessibility/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'Additional Resources for Learning About Accessibility', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
 				</ul>
-				<p><a class="button" href="https://a11ychecker.com/" target="_blank"><?php esc_html_e( 'Read Full Documentation', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></p>
+				<p>
+					<a class="button" href="https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+						<?php esc_html_e( 'Read Full Documentation', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+					</a>
+				</p>
 			</div>
 		</section>
 
@@ -144,8 +176,7 @@
 				</div>
 
 			</div>		
-	</section>
-
+		</section>
 	</div>
 
 	<?php
@@ -190,7 +221,6 @@
 		</div>
 		<?php
 	}
-
 	?>
 
 		<div class="edac-panel">
