@@ -108,6 +108,9 @@ class Post_Options {
 		),
 	);
 
+	// This is a mapping of the legacy named options to the new named options.
+	// We need to handle backward compatibility for legacy named options, ie:
+	// get_post_metadata/update_post_metadata/delete_post_metadata must get/update/delete the correct item.
 	const LEGACY_NAMES_MAPPING = array(
 		// These are stored in a grouped meta record.   
 		'_edac_issue_density'           => 'issue_density',
@@ -201,38 +204,180 @@ class Post_Options {
 	}
 
 	/**
-	 * Boot the class.
+	 * Init the hooks.
 	 *
 	 * @return void
 	 */
 	public static function init_hooks() {
-		add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
-		add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
-		add_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10, 4 );
+		
+		// See: https://www.ibenic.com/hook-wordpress-metadata/ .
+		
+		// Handles determining if post metadata should be added to the database.
+		add_filter( 'add_post_metadata', self::class . '::filter_add_post_metadata', 10, 3 );
+		add_filter( 'update_post_metadata', self::class . '::filter_update_post_metadata', 10, 4 );
+		
+		// Handles logic we want to run after after post metadata has been added.
+		add_action( 'added_post_meta', self::class . '::on_added_post_meta', 10, 3 );
+		add_action( 'updated_post_meta', self::class . '::on_updated_post_meta', 10, 4 );
+		
+		// Handles modifying post metadata read from the database.
+		add_filter( 'get_post_metadata', self::class . '::get_post_metadata', 10, 4 );       
+		
+		// Handles logic we want to run when the post metadata is deleted.
+		add_action( 'delete_post_metadata', self::class . '::delete_post_metadata', 10, 3 );
 	}
 
+	public static function disable_hooks() {
+		
+		// Handles determining if post metadata should be added to the database.
+		remove_filter( 'add_post_metadata', self::class . '::filter_add_post_metadata', 10 );
+		remove_filter( 'update_post_metadata', self::class . '::filter_update_post_metadata', 10 );
+		
+		// Handles logic we want to run after after post metadata has been added.
+		remove_action( 'added_post_meta', self::class . '::on_added_post_meta', 10 );
+		remove_action( 'updated_post_meta', self::class . '::on_updated_post_meta', 10 );
+		
+		// Handles modifying post metadata read from the database.
+		remove_filter( 'get_post_metadata', self::class . '::get_post_metadata', 10 );       
+		
+		// Handles logic we want to run when the post metadata is deleted.
+		remove_action( 'delete_post_metadata', self::class . '::delete_post_metadata', 10 );
+	}
 
-	/**
-	 * If there is a legacy get_post_meta call for one of our items, return the correct value from the list.
-	 *
-	 * @param [mixed]   $value The value.
-	 * @param [integer] $post_id The post ID.
-	 * @param [string]  $name The meta key.
-	 * @param [boolean] $single Whether to return a single value.
-	 * @return mixed
-	 */
-	public static function get_post_metadata_hook( $value, $post_id, $name, $single ) {
+	public static function filter_add_post_metadata( $post_id, $name, $value ) {
+		return self::filter_add_or_update_post_metadata( $post_id, $name, $value );
+	}
+
+	public static function filter_update_post_metadata( $meta_id, $post_id, $name, $value ) {
+		return self::filter_add_or_update_post_metadata( $post_id, $name, $value );
+	}
 	
-		if ( self::OPTION_NAME === $name ) {
-			return $value;
+	public static function filter_add_or_update_post_metadata( $post_id, $name, $value ) {
+
+		if ( null !== self::filter_edac_summary_metadata( $post_id, $name, $value ) ) {
+			return false;
+		}
+		if ( null !== self::filter_legacy_named_metadata( $post_id, $name, $value ) ) {
+			return false;
+		}
+
+		return null;
+	}
+
+	public static function filter_edac_summary_metadata( $post_id, $name, $value ) {
+		
+		// Special case for legacy _edac_summary b/c it was stored as an array.
+		if ( '_edac_summary' === $name ) {
+		
+			self::disable_hooks();
+
+			// Read the values from legacy _edac_summary array and write to the list.
+			$keys         = array( 'passed_tests', 'errors', 'contrast_errors', 'warnings', 'ignored' );
+			$post_options = new Post_Options( $post_id );
+			foreach ( $keys as $key ) {
+				if ( array_key_exists( $key, $value ) ) {
+					$post_options->set( $key, $value[ $key ] );
+				}
+			}   
+
+			self::init_hooks();
+		
+			// Don't write the legacy _edac_summary to the database.
+			return true;
 		}
 	
+		return null;
+	}
+
+	public static function filter_legacy_named_metadata( $post_id, $name, $value ) {
+
+		$legacy_names = array_keys( self::LEGACY_NAMES_MAPPING );
+			
+		if ( in_array( $name, $legacy_names, true ) ) {
+			// This is an update to a legacy named option.
+		
+			$grouped_items = array_filter( 
+				self::ITEMS, 
+				fn( $item ) => true === $item['grouped']
+			);
+			
+			if ( array_key_exists( self::LEGACY_NAMES_MAPPING[ $name ], $grouped_items ) ) {
+
+				// This is an update for a grouped item.
+	
+				self::disable_hooks();
+
+				// set the list option using the non-legacy name.
+				$post_options = new Post_Options( $post_id );
+				$post_options->set( self::LEGACY_NAMES_MAPPING[ $name ], $value );
+
+				self::init_hooks();
+
+				// Don't write this legacy named meta to the database.
+				return false;
+		
+			
+			} else {
+	
+				$ungrouped_items = array_filter( 
+					self::ITEMS, 
+					fn( $item ) => false === $item['grouped']
+				);
+				
+				if ( array_key_exists( self::LEGACY_NAMES_MAPPING[ $name ], $ungrouped_items ) ) {
+
+					// This is an update for an ungrouped item.
+
+					self::disable_hooks();
+
+					update_post_meta( $post_id, self::OPTION_NAME . '_' . self::LEGACY_NAMES_MAPPING[ $name ], $value );
+
+					self::init_hooks();
+
+					if ( ! metadata_exists( 'post', $post_id, self::LEGACY_NAMES_MAPPING[ $name ] ) ) {
+						// This legacy name meta already exists in this post, so leave it in place.
+						return null;
+					}
+
+					// Don't write this legacy named meta to the database.
+					return false;
+							
+				}           
+			}       
+		}
+
+		return null;
+	}
+
+	public static function on_added_post_meta( $post_id, $name, $value ) {
+		self::on_added_or_updated_post_meta( $post_id, $name, $value );
+	}
+
+	public static function on_updated_post_meta( $meta_id, $post_id, $name, $value ) {
+		self::on_added_or_updated_post_meta( $post_id, $name, $value );
+	}
+
+	public static function on_added_or_updated_post_meta( $post_id, $name, $value ) {
+		
+		// Special case for post_checked_js. We need to copy to _post_checked_js as it is used as a named field in sql for Pro.
+		if ( 'edac_post_checked_js' === $name ) {
+		
+			// save a copy to _edac_post_checked_js.
+			self::disable_hooks();
+			update_post_meta( $post_id, '_edac_post_checked_js', $value );
+			self::init_hooks();
+		}
+	}
+
+	public static function get_post_metadata( $check, $post_id, $name, $value ) {
+	
+		$value = null;
+
 		if ( '_edac_summary' === $name ) {
 			// special case for legacy _edac_summary b/c it was stored as an array.
 
-			// Prevent a recursive loop.
-			remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10 );
-
+			self::disable_hooks();
+	
 			$post_options = new Post_Options( $post_id );
 
 			$value = array(
@@ -243,137 +388,31 @@ class Post_Options {
 				'ignored'         => $post_options->get( 'ignored' ),
 			);
 			
-			// re-add the action we removed.
-			add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+			self::init_hooks();
 
-			if ( $single ) {
-				return array( $value );
-			} else {
-				return $value;
-			}
+			return $value;
 		}
+		/*
+		// Handle the legacy options.
+		$legacy_names = array_keys( self::LEGACY_NAMES_MAPPING );
 
-		// Handle the other legacy options.
-		$map      = self::LEGACY_NAMES_MAPPING;
-		$map_keys = array_keys( $map );
-
-		if ( in_array( $name, $map_keys, true ) ) {
-			// The call is for a legacy name, pass the value from the list.
-
-			// Prevent a recursive loop.
-			remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10 );
+		
+		if ( in_array( $name, $legacy_names, true ) ) {
+			die(self::LEGACY_NAMES_MAPPING[ $name ]);
+			die('1234');
+			self::disable_hooks();
 
 			$post_options = new Post_Options( $post_id );
-			$value        = $post_options->get( $map[ $name ] );
-		
-			// re-add the action we removed.
-			add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+			$value        = $post_options->get( self::LEGACY_NAMES_MAPPING[ $name ] );
+
+			self::init_hooks();
 	
-		}
-	
+		} 
+		*/
 		return $value;
 	}
 
-	/**
-	 * If there is a legacy update_post_meta call for one of our items, update the correct value in the list.
-	 *
-	 * @param [integer] $meta_id The meta ID.
-	 * @param [integer] $post_id The post ID.
-	 * @param [string]  $name The key.
-	 * @param [mixed]   $value The value to update.
-	 * @return boolean
-	 */
-	public static function update_post_metadata_hook( $meta_id, $post_id, $name, $value ) {
-
-		if ( self::OPTION_NAME === $name ) {
-			return;
-		}
-	
-		// Handle updating the legacy named _edac_summary.
-		// Special case for legacy _edac_summary b/c it was stored as an array.
-		if ( '_edac_summary' === $name ) {
-
-			// Prevent a recursive loop.
-			remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10 );
-	
-			// Read the values from legacy _edac_summary array and write to the list.
-			$keys         = array( 'passed_tests', 'errors', 'contrast_errors', 'warnings', 'ignored' );
-			$retval       = true;
-			$post_options = new Post_Options( $post_id );
-			foreach ( $keys as $key ) {
-				if ( array_key_exists( $key, $value ) ) {
-					$result = $post_options->set( $key, $value[ $key ] );
-					if ( false === $result ) {
-						$retval = false;
-					}
-				}
-			}
-
-		
-			// re-add the action we removed.
-			add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
-			return $retval;
-			
-		}
-
-
-		// Handle the other legacy options.
-		$map      = self::LEGACY_NAMES_MAPPING;
-		$map_keys = array_keys( $map );
-		$retval   = true;
-
-		if ( in_array( $name, $map_keys, true ) ) {
-			// This is an update to a legacy named option.
-	
-			// Prevent a recursive loop.
-			remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10 );
-	
-		
-			$grouped_items = array_filter( 
-				self::ITEMS, 
-				fn( $item ) => true === $item['grouped']
-			);
-		
-			if ( array_key_exists( $map[ $name ], $grouped_items ) ) {
-				// This is an update for a grouped item.
-
-				// set the list option using the non-legacy name.
-				$post_options = new Post_Options( $post_id );
-				$retval       = $post_options->set( $map[ $name ], $value );
-			
-			} else {
-
-				$ungrouped_items = array_filter( 
-					self::ITEMS, 
-					fn( $item ) => false === $item['grouped']
-				);
-			
-				if ( array_key_exists( $map[ $name ], $ungrouped_items ) ) {
-					// This is an update for an ungrouped item.
-	
-					remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
-					
-					// set the non-legacy option.
-					remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
-					update_post_meta( $post_id, self::OPTION_NAME . '_' . $map[ $name ], $value );
-					add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
-				
-					add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
-		
-				}           
-			}
-		
-		
-	
-			// re-add the action we removed.
-			add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
-
-			return $retval;
-	
-		}
-	}
-	
-	/**
+	/*
 	 * If there is a legacy delete_post_meta call for one of our items, delete the correct value from the list.
 	 *
 	 * @param [mixed]   $meta_ids The meta ids.
@@ -382,7 +421,7 @@ class Post_Options {
 	 * @param [mixed]   $value The value to delete.
 	 * @return boolean
 	 */
-	public static function delete_post_metadata_hook( $meta_ids, $post_id, $name, $value ) {
+	public static function delete_post_metadata( $check, $post_id, $name ) {
 		
 		if ( self::OPTION_NAME === $name ) {
 			return;
@@ -391,13 +430,8 @@ class Post_Options {
 		// special case for legacy _edac_summary b/c it was stored as an array.
 		if ( '_edac_summary' === $name ) {
 
-			// This function does not support the $value parameter.
-			if ( '' !== $value ) {
-				return false;
-			}
-
-			// Prevent a recursive loop.
-			remove_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10 );
+		
+			self::disable_hooks();
 
 			$keys         = array( 'passed_tests', 'errors', 'contrast_errors', 'warnings', 'ignored' );
 			$retval       = true;
@@ -415,8 +449,8 @@ class Post_Options {
 
 			$post_options->delete( $name );
 
-			// re-add the action we removed.
-			add_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10, 4 );
+			self::init_hooks();
+			
 			return $retval;
 			
 		}
@@ -434,15 +468,13 @@ class Post_Options {
 				return false;
 			}
 
-			// Prevent a recursive loop.
-			remove_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10 );
-
+			self::disable_hooks();
 			$post_options = new Post_Options( $post_id );
 			$retval       = $post_options->delete( $map[ $name ] );
 
-			// re-add the action we removed.
-			add_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10, 3 );
+			self::enable_hooks();
 
+			return $retval;
 		}
 	}
 
@@ -468,10 +500,11 @@ class Post_Options {
 		}
 	}
 
+
 	/**
-	 * Returns the default value for the given name.
+	 * Returns the default value for a given item.
 	 *
-	 * @param string $name The name of the value to return.
+	 * @param string $name The name of the item.
 	 * @return mixed
 	 */
 	public function default_value( $name ) {
@@ -479,7 +512,28 @@ class Post_Options {
 	}
 
 	/**
-	 * Returns the value from the list. If the value doesn't exist, returns null.
+	 * Returns the legacy name for a given item or false if there is no legacy name.
+	 *
+	 * @param string $name The name of the item.
+	 * @return mixed
+	 */
+	public function legacy_name( $name ) {
+		return array_search( $name, self::LEGACY_NAMES_MAPPING, true );
+	}
+
+	/**
+	 * Returns the datatype for a given item.
+	 *
+	 * @param string $name The name of the item.
+	 * @return mixed
+	 */
+	public function data_type( $name ) {
+		return $this->data_types[ $name ];
+	}
+
+
+	/**
+	 * Returns the value from the list.
 	 *
 	 * @param string  $name of the value to return.
 	 * @param boolean $single Whether to return a single value.
@@ -488,11 +542,11 @@ class Post_Options {
 	public function get( $name, $single = true ) {
 
 		if ( array_key_exists( $name, $this->grouped_items ) ) {
+			// non-legacy named grouped item.
 			$this->fill_grouped_items(); // in case the list has been updated by update hook or another process.
 			$value           = $this->grouped_items_list[ $name ];  
 			$sanitized_value = $this->cast_and_validate( $name, $value );
 			return $sanitized_value;
-   
 
 		} elseif ( metadata_exists( 'post', $this->post_id, self::OPTION_NAME . '_' . $name ) ) {
 				// non-legacy named upgrouped item.
@@ -500,7 +554,15 @@ class Post_Options {
 				$sanitized_value = $this->cast_and_validate( $name, $value );
 				return $sanitized_value;
 		} else {
-			return get_post_meta( $this->post_id, $name, $single );
+			// legacy named ungrouped item.
+			self::disable_hooks();
+			if ( metadata_exists( 'post', $this->post_id, $name ) ) {
+				self::init_hooks();
+				return get_post_meta( $this->post_id, $name, $single );
+			}
+			self::init_hooks();
+
+			return null;
 		}
 	}
 
@@ -514,11 +576,17 @@ class Post_Options {
 	 */
 	public function set( $name, $value ) {
 	
-		if ( '_edac_summary' !== $name && ! array_key_exists( $name, self::ITEMS ) ) {
+		if ( ! array_key_exists( $name, self::ITEMS ) ) {
 			throw new \Exception( esc_html( $name . ' is not a valid option.' ) );
 		}
 
+		
 		if ( array_key_exists( $name, $this->grouped_items ) ) {
+
+			// This is a grouped item.
+
+			self::disable_hooks();
+
 			$sanitized_value                   = $this->cast_and_validate( $name, $value );
 			$this->grouped_items_list[ $name ] = $sanitized_value;
 			$retval_1                          = update_post_meta( $this->post_id, self::OPTION_NAME, $this->grouped_items_list );
@@ -526,31 +594,32 @@ class Post_Options {
 			$retval_2 = true;
 			$key      = array_search( $name, self::LEGACY_NAMES_MAPPING, true );
 
-			remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
 			if ( metadata_exists( 'post', $this->post_id, $key ) ) {
-				remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
 				$retval_2 = update_post_meta( $this->post_id, $key, $value );
-				add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
 			}
-			add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+		
+			self::init_hooks();
+			
 			return ( true === $retval_1 ) && ( true === $retval_2 );
 		
 		
 		} elseif ( array_key_exists( $name, $this->ungrouped_items ) ) {
 				// this is not a grouped item, so use the standard update_post_meta.
+
+				self::disable_hooks();
 			
 				$retval_1 = update_post_meta( $this->post_id, self::OPTION_NAME . '_' . $name, $value );
 		
 				// Check if this item has a non-grouped legacy named wp option. If so, update it for backward compatibility.
 				$retval_2 = true;
 				$key      = array_search( $name, self::LEGACY_NAMES_MAPPING, true );
-				remove_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+	
 			if ( metadata_exists( 'post', $this->post_id, $key ) ) {
-				remove_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
 				$retval_2 = update_post_meta( $this->post_id, $key, $value );
-				add_action( 'update_post_metadata', self::class . '::update_post_metadata_hook', 10, 4 );
 			}
-				add_action( 'get_post_metadata', self::class . '::get_post_metadata_hook', 10, 4 );
+			
+				self::init_hooks();
+			
 				return ( true === $retval_1 ) && ( true === $retval_2 );
 		}       
 	}
@@ -564,20 +633,30 @@ class Post_Options {
 	public function delete( $name ) {
 
 		if ( array_key_exists( $name, $this->grouped_items ) ) {
-			unset( $this->grouped_items_list[ $name ] );
-			return update_post_meta( $this->post_id, self::OPTION_NAME, $this->grouped_items_list );
+		
+			self::disable_hooks();
+
+			update_post_meta( $this->post_id, self::OPTION_NAME, $this->grouped_items_list );
+			
+			self::init_hooks();
+
+			return true;
+		
 		} else {
 			// this is not a grouped item, so use the standard delete_post_meta.
+			self::disable_hooks();
+
 			$retval_1 = delete_post_meta( $this->post_id, self::OPTION_NAME . '_' . $name );
 		
 			// Check if this item has a non-grouped legacy named wp option. If so, delete it for backward compatibility.
 			$retval_2 = true;
 			$key      = array_search( $name, self::LEGACY_NAMES_MAPPING, true );
-			remove_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10, 4 );
 			if ( metadata_exists( 'post', $this->post_id, $key ) ) {
 				$retval_2 = delete_post_meta( $this->post_id, $key );
 			}
-			add_action( 'delete_post_metadata', self::class . '::delete_post_metadata_hook', 10, 4 );
+
+			self::init_hooks();
+
 			return ( true === $retval_1 ) && ( true === $retval_2 );
 		}
 	}
@@ -589,8 +668,14 @@ class Post_Options {
 	 */
 	public function delete_all() {
 		$this->grouped_items_list = array();
-		
-		return delete_post_meta( $this->post_id, self::OPTION_NAME );
+
+		self::disable_hooks();
+
+		$retval = delete_post_meta( $this->post_id, self::OPTION_NAME );
+
+		self::init_hooks();
+
+		return $retval;
 	}
 	
 	/**
@@ -611,7 +696,7 @@ class Post_Options {
 	 * @throws \Exception When cast fails.
 	 * @return mixed
 	 */
-	private function cast_and_validate( $name, $value ) {
+	public function cast_and_validate( $name, $value ) {
 		
 		$type = $this->data_types[ $name ];
 		switch ( $type ) {

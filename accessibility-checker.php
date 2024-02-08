@@ -132,6 +132,7 @@ if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
 	new Plugin();
 }
 
+
 /**
  * Filters and Actions
  */
@@ -405,7 +406,6 @@ function edac_summary( $post_id ) {
 
 	$readability = 0 === $content_grade ? 'N/A' : edac_ordinal( $content_grade );
 
-	
 	$post_options->set( 'readability', $readability );
 	$post_options->set( 'passed_tests', $passed_tests );
 	$post_options->set( 'errors', $errors );
@@ -413,7 +413,18 @@ function edac_summary( $post_id ) {
 	$post_options->set( 'ignored', $ignored );
 	$post_options->set( 'contrast_errors', $contrast_errors );
 
-	return $post_options->as_array();
+	$retval = array_merge(
+		 $post_options->as_array(),
+		 array(
+		 'passed_tests' => $post_options->get('passed_tests'),
+		 'errors' => $post_options->get('errors'),
+		 'warnings' => $post_options->get('warnings'),
+		 'contrast_errors' => $post_options->get('contrast_errors'),
+		 'ignored' => $post_options->get('ignored')
+		 )
+	);
+
+	return $retval;
 }
 
 /**
