@@ -39,7 +39,7 @@ class Widgets {
 	 *
 	 * @return void
 	 */
-	public static function render_dashboard_scan_summary() {
+	public function render_dashboard_scan_summary() {
 
 		$html  = '';
 		$html .= '
@@ -51,7 +51,7 @@ class Widgets {
 			$pro_modal_html = '';
 			if ( ( ! is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ||
 			false === EDAC_KEY_VALID ) &&
-			true !== boolval( get_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true ) )
+			true !== (bool) get_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true )
 			) {
 				$pro_modal_html = '
 			<div class="edac-modal">
@@ -260,7 +260,7 @@ class Widgets {
 			' . __( 'Learn Accessibility', 'accessibility-checker' ) . '
 		</h3>';
 
-		$html .= edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );
+		$html .= edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2, 4 );
 
 		$html .= '
 		<hr class="edac-hr" />

@@ -64,24 +64,36 @@ class Ajax {
 		$html['content'] = '';
 
 		// password check.
-		if ( boolval( get_option( 'edac_password_protected' ) ) === true ) {
-			$admin_notices              = new \EDAC\Admin_Notices();
+		if ( (bool) get_option( 'edac_password_protected' ) === true ) {
+			$admin_notices              = new \EDAC\Admin\Admin_Notices();
 			$notice_text                = $admin_notices->edac_password_protected_notice_text();
 			$html['password_protected'] = $notice_text;
 			$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
 		}
 
-		$post_id                   = intval( $_REQUEST['post_id'] );
+		$post_id                   = (int) $_REQUEST['post_id'];
 		$summary                   = edac_summary( $post_id );
 		$simplified_summary_text   = '';
 		$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
+		$simplified_summary        = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
+
+		$simplified_summary_grade = 0;
+		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
+			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
+			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
+		}
+		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
 
 		$simplified_summary_text = esc_html__( 'A Simplified summary has not been included for this content.', 'accessibility-checker' );
 		if ( 'none' !== $simplified_summary_prompt ) {
 			if ( $summary['content_grade'] <= 9 ) {
 				$simplified_summary_text = esc_html__( 'Your content has a reading level at or below 9th grade and does not require a simplified summary.', 'accessibility-checker' );
 			} elseif ( $summary['simplified_summary'] ) {
-				$simplified_summary_text = esc_html__( 'A Simplified summary has been included for this content.', 'accessibility-checker' );
+				if ( $simplified_summary_grade_failed ) {
+					$simplified_summary_text = esc_html__( 'The reading level of the simplified summary is too high.', 'accessibility-checker' );
+				} else {
+					$simplified_summary_text = esc_html__( 'A simplified summary has been included for this content.', 'accessibility-checker' );
+				}
 			}
 		}
 
@@ -136,14 +148,14 @@ class Ajax {
 		<div class="edac-summary-readability">
 			<div class="edac-summary-readability-level">
 				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability icon navy.png" alt="" width="54"></div>
-				<div class="edac-panel-number' . ( ( (int) $summary['readability'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
+				<div class="edac-panel-number' . ( ( (int) $summary['content_grade'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
 					' . $summary['readability'] . '
 				</div>
 				<div class="edac-panel-number-label' . ( ( (int) $summary['readability'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
 			</div>
 			<div class="edac-summary-readability-summary">
-				<div class="edac-summary-readability-summary-icon' . ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['readability'] <= 9 ) ? ' active' : '' ) . '"></div>
-				<div class="edac-summary-readability-summary-text' . ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['readability'] <= 9 ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
+				<div class="edac-summary-readability-summary-icon' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '"></div>
+				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>
 		<div class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
@@ -189,7 +201,7 @@ class Ajax {
 		$html = '';
 		global $wpdb;
 		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
-		$postid     = intval( $_REQUEST['post_id'] );
+		$postid     = (int) $_REQUEST['post_id'];
 		$siteid     = get_current_blog_id();
 
 		// Send error if table name is not valid.
@@ -332,11 +344,11 @@ class Ajax {
 
 					foreach ( $results as $row ) {
 
-						$id                      = intval( $row['id'] );
-						$ignore                  = intval( $row['ignre'] );
+						$id                      = (int) $row['id'];
+						$ignore                  = (int) $row['ignre'];
 						$ignore_class            = $ignore ? ' active' : '';
 						$ignore_label            = $ignore ? 'Ignored' : 'Ignore';
-						$ignore_user             = intval( $row['ignre_user'] );
+						$ignore_user             = (int) $row['ignre_user'];
 						$ignore_user_info        = get_userdata( $ignore_user );
 						$ignore_username         = is_object( $ignore_user_info ) ? '<strong>Username:</strong> ' . $ignore_user_info->user_login : '';
 						$ignore_date             = ( $row['ignre_date'] && '0000-00-00 00:00:00' !== $row['ignre_date'] ) ? '<strong>Date:</strong> ' . gmdate( 'F j, Y g:i a', strtotime( esc_html( $row['ignre_date'] ) ) ) : '';
@@ -345,7 +357,7 @@ class Ajax {
 						$ignore_type             = $rule['rule_type'];
 						$ignore_submit_label     = $ignore ? 'Stop Ignoring' : 'Ignore This ' . $ignore_type;
 						$ignore_comment_disabled = $ignore ? 'disabled' : '';
-						$ignore_global           = intval( $row['ignre_global'] );
+						$ignore_global           = (int) $row['ignre_global'];
 
 						// check for images and svgs in object code.
 						$object_img      = null;
@@ -477,7 +489,7 @@ class Ajax {
 
 		}
 
-		$post_id                        = intval( $_REQUEST['post_id'] );
+		$post_id                        = (int) $_REQUEST['post_id'];
 		$html                           = '';
 		$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
 		$simplified_summary_position    = get_option( 'edac_simplified_summary_position', $default = false );
@@ -507,7 +519,7 @@ class Ajax {
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
 			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
-			$simplified_summary_grade = edac_ordinal( floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) ) );
+			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 
 		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
@@ -532,8 +544,8 @@ class Ajax {
 			if ( $simplified_summary && 'none' !== $simplified_summary_prompt ) {
 				$html .= '<li class="edac-readability-list-item edac-readability-summary-grade-level">
 					<span class="edac-readability-list-item-icon dashicons ' . ( ( $simplified_summary_grade_failed ) ? 'dashicons-no-alt' : 'dashicons-saved' ) . '"></span>
-					<p class="edac-readability-list-item-title">Simplified Summary Reading Grade Level: <strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . $simplified_summary_grade . '</strong></p>
-					<p class="edac-readability-list-item-description">Your simplified summary has a reading level ' . ( ( $simplified_summary_grade_failed > 9 ) ? 'higher' : 'lower' ) . ' than 9th grade.</p>
+					<p class="edac-readability-list-item-title">Simplified Summary Reading Grade Level: <strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . edac_ordinal( $simplified_summary_grade ) . '</strong></p>
+					<p class="edac-readability-list-item-description">Your simplified summary has a reading level ' . ( ( $simplified_summary_grade_failed ) ? 'higher' : 'lower' ) . ' than 9th grade.</p>
 				</li>';
 			}
 
@@ -575,7 +587,7 @@ class Ajax {
 			<form action="/" class="edac-readability-simplified-summary">
 				<label for="edac-readability-text">Simplified Summary</label>
 				<textarea name="" id="edac-readability-text" cols="30" rows="10">' . $simplified_summary . '</textarea>
-				<input type="submit">
+				<input type="submit" value="Submit">
 			</form>';
 		}
 
@@ -613,7 +625,12 @@ class Ajax {
 		global $wpdb;
 		$table_name           = $wpdb->prefix . 'accessibility_checker';
 		$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
-		$ids                  = array_map( 'intval', $raw_ids ); // Sanitizing array elements to integers.
+		$ids                  = array_map( 
+			function ( $value ) { 
+				return (int) $value;
+			},
+			$raw_ids
+		); // Sanitizing array elements to integers.
 		$action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( $_REQUEST['ignore_action'] ) : '';
 		$type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( $_REQUEST['ignore_type'] ) : '';
 		$siteid               = get_current_blog_id();
@@ -656,7 +673,6 @@ class Ajax {
 	 *  - '-1' means that nonce could not be varified
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that the summary was not specified
-	 *  - '-4' means that there isn't any summary to return
 	 */
 	public function simplified_summary() {
 
@@ -682,21 +698,13 @@ class Ajax {
 
 		}
 
-		$post_id = intval( $_REQUEST['post_id'] );
+		$post_id = (int) $_REQUEST['post_id'];
 		$summary = sanitize_text_field( $_REQUEST['summary'] );
 
-		if ( ! add_post_meta( $post_id, '_edac_simplified_summary', $summary, true ) ) {
-			update_post_meta( $post_id, '_edac_simplified_summary', $summary );
-		}
+		update_post_meta( $post_id, '_edac_simplified_summary', $summary );
 
-		$simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
-
-		if ( ! $simplified_summary ) {
-
-			$error = new \WP_Error( '-4', 'No simplified summary to return' );
-			wp_send_json_error( $error );
-
-		}
+		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
+		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
 
 		wp_send_json_success( wp_json_encode( $simplified_summary ) );
 	}
@@ -708,7 +716,7 @@ class Ajax {
 	 */
 	public function dismiss_welcome_cta() {
 
-		update_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true ); 
+		update_user_meta( get_current_user_id(), 'edac_welcome_cta_dismissed', true );
 
 		wp_send_json( 'success' );
 	}

@@ -5,6 +5,8 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin\Helpers;
+
 /**
  * Oxygen Builder on save
  *
@@ -36,7 +38,7 @@ function edac_post_on_load() {
 	if ( 'post.php' === $pagenow ) {
 		global $post;
 		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
-		if ( false === boolval( $checked ) ) {
+		if ( false === (bool) $checked ) {
 			edac_validate( $post->ID, $post, $action = 'load' );
 		}
 	}
@@ -114,6 +116,8 @@ function edac_validate( $post_ID, $post, $action ) {
 	if ( ! $content['html'] ) {
 		update_option( 'edac_password_protected', true );
 		return;
+	} else {
+		update_option( 'edac_password_protected', false );
 	}
 	delete_option( 'edac_password_protected' );
 
@@ -153,19 +157,19 @@ function edac_validate( $post_ID, $post, $action ) {
 			}
 		}
 		if ( EDAC_DEBUG === true ) {
-			edac_log( $rule_performance_results );
+			edacp_log( $rule_performance_results );
 		}
 	}
 	if ( EDAC_DEBUG === true ) {
 		$time_elapsed_secs = microtime( true ) - $all_rules_process_time;
-		edac_log( 'rules validate time: ' . $time_elapsed_secs );
+		edacp_log( 'rules validate time: ' . $time_elapsed_secs );
 	}
 
 	// remove corrected records.
 	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 2, 'php' );
 
 	// set post meta checked.
-	add_post_meta( $post_ID, '_edac_post_checked', true, true );
+	update_post_meta( $post_ID, '_edac_post_checked', true );
 
 	do_action( 'edac_after_validate', $post_ID, $action );
 }
@@ -193,6 +197,10 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 		}
 	}
 
+	if ( 0 === count( $rule_slugs ) ) {
+		return;
+	}
+	
 	if ( 1 === $pre ) {
 
 		// Set record flag before validating content.
@@ -265,7 +273,7 @@ function edac_get_content( $post ) {
 		$parsed_url = wp_parse_url( home_url() );
 
 		if ( isset( $parsed_url['host'] ) ) {
-			$is_local_loopback = \EDAC\Admin\Helpers::is_domain_loopback( $parsed_url['host'] );
+			$is_local_loopback = Helpers::is_domain_loopback( $parsed_url['host'] );
 			update_option( 'edac_local_loopback', $is_local_loopback );
 		}
 	}

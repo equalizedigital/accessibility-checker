@@ -1,5 +1,5 @@
-@import "../../globals/sass/variables" ;
-@import "../../globals/sass/helpers";
+@import "../../common/sass/variables" ;
+@import "../../common/sass/helpers";
 
 
 body {
@@ -77,13 +77,17 @@ body {
             color: $color-white !important;
         }
        
-        width: 400px !important;
+        width: auto;
         max-width: 400px !important;
         position: fixed !important;
         bottom: 15px !important;
         right: 15px !important;
         z-index: 2147483647 !important;
-  
+       
+        &-visible {
+            width: 400px !important;
+        }
+    
         &-toggle{
             width: 50px !important;
             height: 50px !important;
@@ -332,4 +336,11 @@ body {
 
 .notyf__dismiss-btn:before, .notyf__dismiss-btn:after {
     background: #000000 !important;
+}
+
+.edac-accessibility-statement {
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+    padding: 15px;
 }

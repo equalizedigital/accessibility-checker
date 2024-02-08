@@ -20,7 +20,10 @@ function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore -- $c
 
 	$dom      = edac_str_get_html( $post->post_content );
 	$errors   = array();
-	$elements = $dom->find_media_embeds( true );
+	$elements = array();
+	if ( $dom ) {
+		$elements = $dom->find_media_embeds( true );
+	}
 
 	$dom->convert_tag_to_marker( array( 'img', 'iframe', 'audio', 'video', '.is-type-video' ) );
 	foreach ( $elements as $element ) {
@@ -32,6 +35,17 @@ function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore -- $c
 	$linked_media = $dom->find_linked_media( true );
 
 	foreach ( $linked_media as $media_link ) {
+		$href = $media_link->href;
+
+		// Skip certain types of links.
+		if ( strpos( $href, 'mailto:' ) === 0 
+			|| strpos( $href, 'tel:' ) === 0 
+			|| strpos( $href, '#' ) === 0 
+			|| strpos( $href, 'javascript:' ) === 0
+		) {
+			continue;
+		}
+		
 		if ( ! $dom->text_around_element_contains( $media_link, __( 'transcript', 'accessibility-checker' ), 25 ) ) {
 			$errors[] = $media_link;
 		}

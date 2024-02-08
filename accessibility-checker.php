@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.6.10
+ * Version:           1.8.1
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -18,6 +18,8 @@
  * Text Domain:       accessibility-checker
  * Domain Path:       /languages
  */
+
+use EDAC\Inc\Plugin;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -39,7 +41,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.6.10' );
+	define( 'EDAC_VERSION', '1.8.1' );
 }
 
 // Current database version.
@@ -86,6 +88,7 @@ if ( ! defined( 'EDAC_DEBUG' ) ) {
 // SVG Icons.
 define( 'EDAC_SVG_IGNORE_ICON', file_get_contents( __DIR__ . '/assets/images/ignore-icon.svg' ) );
 
+
 /**
  * Plugin Activation & Deactivation
  */
@@ -97,11 +100,10 @@ if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 }
 
-use EDAC\Inc\Plugin;
-
 if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
 	new Plugin();
 }
+
 
 /**
  * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
@@ -117,11 +119,10 @@ if ( ! class_exists( 'simple_html_dom' ) ) {
 /**
  * Import Resources
  */
-require_once plugin_dir_path( __FILE__ ) . 'includes/deprecated.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/deprecated/deprecated.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/activation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/enqueue-scripts.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/meta-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
@@ -132,9 +133,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 /**
  * Filters and Actions
  */
-add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_scripts' );
-add_action( 'admin_enqueue_scripts', 'edac_admin_enqueue_styles' );
-add_action( 'wp_enqueue_scripts', 'edac_enqueue_scripts' );
 add_action( 'admin_init', 'edac_update_database', 10 );
 add_action( 'add_meta_boxes', 'edac_register_meta_boxes' );
 add_action( 'admin_menu', 'edac_add_options_page' );
@@ -231,7 +229,7 @@ function edac_include_rules_files() {
 	}
 	foreach ( $rules as $rule ) {
 		if ( ( array_key_exists( 'ruleset', $rule ) && 'php' === $rule['ruleset'] )
-			|| ( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] ) 
+			|| ( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] )
 		) {
 			require_once plugin_dir_path( __FILE__ ) . 'includes/rules/' . $rule['slug'] . '.php';
 		}
@@ -252,6 +250,11 @@ function edac_before_page_render() {
 
 		// Check the page if it hasn't already been checked.
 		global $post;
+		$post_id = is_object( $post ) ? $post->ID : null;       
+		if ( null === $post_id ) {
+			return;
+		}
+
 		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
 		if ( ! $checked ) {
 			edac_validate( $post->ID, $post, $action = 'load' );
@@ -384,9 +387,7 @@ function edac_summary( $post_id ) {
 		$content_length = $issue_density_array[0][1];
 		$issue_density  = edac_get_issue_density( $issue_count, $element_count, $content_length );
 
-		if ( ! add_post_meta( $post_id, '_edac_issue_density', $issue_density, true ) ) {
-			update_post_meta( $post_id, '_edac_issue_density', $issue_density );
-		}
+		update_post_meta( $post_id, '_edac_issue_density', $issue_density );
 	} else {
 		delete_post_meta( $post_id, '_edac_issue_density' );
 	}

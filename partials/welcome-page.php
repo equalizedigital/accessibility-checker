@@ -77,15 +77,47 @@
 			<div class="edac-welcome-documentation">
 				<h2><?php esc_html_e( 'Documentation and FAQs', 'accessibility-checker' ); ?></h2>
 				<ul>
-					<li><a href="https://a11ychecker.com/help4279" target="_blank"><?php esc_html_e( 'Why do we say 100% Passed Tests, Not 100% Accessible?', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4280" target="_blank"><?php esc_html_e( 'How to Manually Check Your Website for Accessibility', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4206" target="_blank"><?php esc_html_e( 'When to Ignore Accessibility Errors', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4114" target="_blank"><?php esc_html_e( 'What to do if a Plugin You’re Using has Accessibility Errors', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4386" target="_blank"><?php esc_html_e( 'What to do if there are Accessibility Errors in Your Theme', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4293" target="_blank"><?php esc_html_e( 'Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
-					<li><a href="https://a11ychecker.com/help4285" target="_blank"><?php esc_html_e( 'Additional Resources for Learning About Accessibility', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/passed-tests/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'Why do we say 100% Passed Tests, Not 100% Accessible?', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/how-to-manually-check-your-website-for-accessibility/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'How to Manually Check Your Website for Accessibility', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/when-to-ignore-accessibility-errors/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'When to Ignore Accessibility Errors', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/errors-in-plugin/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'What to do if a Plugin You’re Using has Accessibility Errors', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/errors-in-theme/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'What to do if there are Accessibility Errors in Your Theme', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/hire-equalize-digital/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
+					<li>
+						<a href="https://equalizedigital.com/accessibility-checker/additional-resources-for-learning-about-accessibility/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+							<?php esc_html_e( 'Additional Resources for Learning About Accessibility', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+						</a>
+					</li>
 				</ul>
-				<p><a class="button" href="https://a11ychecker.com/" target="_blank"><?php esc_html_e( 'Read Full Documentation', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span></a></p>
+				<p>
+					<a class="button" href="https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
+						<?php esc_html_e( 'Read Full Documentation', 'accessibility-checker' ); ?> <span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
+					</a>
+				</p>
 			</div>
 		</section>
 
@@ -144,8 +176,7 @@
 				</div>
 
 			</div>		
-	</section>
-
+		</section>
 	</div>
 
 	<?php
@@ -161,7 +192,7 @@
 		?>
 		<div class="edac-pro-callout edac-mt-3 edac-mb-3">
 			<img class="edac-pro-callout-icon" src="<?php echo esc_url( EDAC_PLUGIN_URL ); ?>assets/images/edac-emblem.png" alt="<?php esc_attr_e( 'Equalize Digital Logo', 'accessibility-checker' ); ?>">
-			<h4 class="edac-pro-callout-title"><?php esc_html_e( 'Upgrade to Accessibility Checker Pro', 'accessibility-checker' ); ?></h4>
+			<h2 class="edac-pro-callout-title"><?php esc_html_e( 'Upgrade to Accessibility Checker Pro', 'accessibility-checker' ); ?></h2>
 			<div>
 				<ul class="edac-pro-callout-list">
 					<li><?php esc_html_e( 'Scan all post types', 'accessibility-checker' ); ?></li>
@@ -174,7 +205,7 @@
 					<li><?php esc_html_e( '...and more', 'accessibility-checker' ); ?></li>
 				</ul>
 			</div>
-			<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank">
+			<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
 				<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?> 
 				<span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
 			</a>
@@ -190,7 +221,6 @@
 		</div>
 		<?php
 	}
-
 	?>
 
 		<div class="edac-panel">
@@ -204,17 +234,9 @@
 		</div>
 
 		<?php
-
-
-		if ( true !== boolval( get_user_meta( get_current_user_id(), 'edac_email_optin', true ) ) ) {
-			\EDAC\Admin\Welcome_Page::render_email_opt_in(
-				'1273a5c7a',
-				'1a0796bc2303c2cb',
-				'',
-				'3zdf37c20714225fe975e2772c61e00bf3a196e8e7f12fdcb55c14b48b8778764e'
-			);
-		}
+			\EDAC\Admin\Welcome_Page::maybe_render_email_opt_in();  
 		?>
+
 	</div>
 </div>
 

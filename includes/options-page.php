@@ -5,8 +5,6 @@
  * @package Accessibility_Checker
  */
 
-use EDAC\Scans_Stats;
-
 /**
  * Check if user can ignore or can manage options
  *
@@ -405,7 +403,7 @@ function edac_sanitize_post_types( $selected_post_types ) {
 
 	// clear cached stats if selected posts types change.
 	if ( get_option( 'edac_post_types' ) !== $selected_post_types ) {
-		$scan_stats = new \EDAC\Scans_Stats();
+		$scan_stats = new \EDAC\Admin\Scans_Stats();
 		$scan_stats->clear_cache();
 
 		if ( class_exists( '\EDACP\Scans' ) ) {
@@ -440,7 +438,7 @@ function edac_add_footer_accessibility_statement_cb() {
  * @return int
  */
 function edac_sanitize_add_footer_accessibility_statement( $option ) {
-	if ( 1 === intval( $option ) ) {
+	if ( 1 === (int) $option ) {
 		return $option;
 	}
 }
@@ -475,7 +473,7 @@ function edac_include_accessibility_statement_link_cb() {
  * @return int
  */
 function edac_sanitize_include_accessibility_statement_link( $option ) {
-	if ( 1 === intval( $option ) ) {
+	if ( 1 === (int) $option ) {
 		return $option;
 	}
 }

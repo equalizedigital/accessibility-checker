@@ -6,8 +6,7 @@
  */
 
 namespace EDAC\Admin;
-
-use EDAC;
+use EDAC\Admin\SiteHealth\Information;
 
 /**
  * Admin handling class.
@@ -18,8 +17,6 @@ class Admin {
 	 * Class constructor.
 	 */
 	public function __construct() {
-		$this->init();
-		$this->init_ajax();
 	}
 
 	/**
@@ -27,17 +24,20 @@ class Admin {
 	 *
 	 * @return void
 	 */
-	private function init() {
-		$admin_notices = new \EDAC\Admin\Admin_Notices();
+	public function init() {
+		
+		add_action( 'admin_enqueue_scripts', array( 'EDAC\Admin\Enqueue_Admin', 'enqueue' ) );
+
+		$admin_notices = new Admin_Notices();
 		$admin_notices->init_hooks();
 
-		$widgets = new \EDAC\Admin\Widgets();
+		$widgets = new Widgets();
 		$widgets->init_hooks();
 
-		new EDAC\REST_Api();
-
-		$site_health_info = new \EDAC\Admin\SiteHealth\Information();
+		$site_health_info = new Information();
 		$site_health_info->init_hooks();
+		
+		$this->init_ajax();
 	}
 
 	/**
@@ -50,10 +50,10 @@ class Admin {
 			return;
 		}
 
-		$ajax = new \EDAC\Admin\Ajax();
+		$ajax = new Ajax();
 		$ajax->init_hooks();
 
-		$frontend_highlight = new \EDAC\Admin\Frontend_Highlight();
+		$frontend_highlight = new Frontend_Highlight();
 		$frontend_highlight->init_hooks();
 	}
 }

@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 6.2
-Tested up to: 6.4.1
-Stable tag: 1.6.10
+Tested up to: 6.4.3
+Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,64 +171,68 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
-= 1.6.10 =
-Fixed: coding standards
+= 1.8.1 =
+* Fixed: false positives on the incorrect heading order rule
+* Added: fallback to determine ordinal when php intl extension is not installed
 
-= 1.6.9 =
-Added: functionality to handle loopback environments
+= 1.8.0 =
+* Updated: heading order on welcome screen
+* Updated: missing_title summary
+* Updated: SQL prepare queries to use %i placeholder
+* Updated: incorrect textdomains and made strings translatible
+* Removed: single-use variables where possible
+* Added: PHPUnit framework and workflow
+* Added: unit test for the `edac_compare_strings` function
+* Added: unit test for the `edac_parse_css` function
+* Updated: the `edac_compare_strings` function to be more efficient, return the correct type, and fix the failing tests
+* Updated: `readme.txt` to only have the latest major and minor changelog
+* Added: `changelog.txt` file.
+* Added: `includes/rules.php` file that contains all rules and returns them as an array
+* Added a static var in the `edac_register_rules` function to avoid re-reading the `includes/rules.php` file every time the method is called
+* Removed: `has_filter` check before calling `apply_filters`
+* Added: `edac_register_rules` unit test
+* Added: `edac_check_plugin_active` deprecated function
+* Updated: `edac_check_plugin_active` calls with `is_plugin_active`
+* Removed: calls to `add_option` and replaced with `update_option`
+* Updated: Use of `else` statement and bailed early when needed
+* Removed: `has_filter()` before applying apply_filters
+* Removed: hooks from `EDAC\Admin_Notices` constructor and call them from the `init_hooks` method
+* Added: `EDAC\Admin_Notices` unit tests
+* Added: `EDAC\Ajax` class and moved AJAX functions into this class
+* Removed: unnecessary `wp_ajax_nopriv_` hooks
+* Added: namespace to `Frontend_Highlight` class and only instantiated on `DOING_AJAX`
+* Removed: `EDAC_SVG_IGNORE_ICON` string and pulled it from the file
+* Removed: `$plugin_check` global variable
+* Removed: `$rules` global variable
+* Updated: `edac_ordinal` function to support all locales, safeguards against improper inputs, number format
+* Updated: JavaScript coding standards
+* Added: `includes/classes` directory to autoloader
+* Added: new directory admin to autoloader
+* Removed: `require_once` class calls
+* Created: `class-plugin.php` to load frontend classes
+* Created: `class-admin.php` to load admin classes
+* Updated: classes to follow new `EDAC\Admin` and `EDAC\Inc` namespaces
+* Updated: accessibility statement functions to a class
+* Updated: simplified summary functions to a class
+* Updated: lazyload Filter function into a class
+* Removed: removes calls to `add_post_meta` and uses `update_post_meta` where appropriate
+* Added: `EDAC\Inc\Accessibility_Statement` unit test
+* Added: `EDAC\Inc\Simplified_Summary` unit test
+* Added: local PHPUnit to run on wp-env test
+* Updated: enqueue scripts and styles setup to only load assets in the proper environments
+* Updated: email signup form
 
-= 1.6.8 =
-Updated: system info to stop showing edac_authorization_username & edac_authorization_username
-Updated: system info to show edacp_authorization_username & edacp_authorization_username for pro users
+= 1.7.1 =
+* Fixed: classic editor save conflict
+* Fixed: password protection message displaying repeatedly
+* Fixed: frontend highlighting asset url and debug error
 
-= 1.6.7 =
-Updated: logic for Link to MS Office file
-Updated: last full-site scan label and date format
-
-= 1.6.6 =
-Added: ability to force refresh welcome screen report
-
-= 1.6.5 =
-Fixed: function edac_password_protected_notice_text to call from the admin notices class
-
-= 1.6.4 =
-Fixed: password protected admin noticed function call
-
-= 1.6.3 =
-Added: email opt-in to welcome page
-Added: support for formatting numbers and percentages in PHP installs that were build without the intl library
-Added: the see history button for audit history add-on
-Updated: admin notices to load from a custom class
-
-= 1.6.2 =
-Added: check for WordPress Playground
-
-= 1.6.1 =
-Updated: passed percentage calculation
-Updated: frontend highlighting disable styles to be compatible with optimization plugins
-Fixed: average issue density percentage not accounting for site ID and ignores
-Updated: body density to receive HTML rather than the dom object
-Updated: empty link check logic
-Added: minor coding standards improvements
-
-= 1.6.0 =
-Added: dashboard reports widget
-Added: frontend highlighting page scan trigger
-Added: enhancements to the Low-quality Alternative Text check
-Fixed: adherence to coding standards
-Fixed: frontend highlighting responsiveness on mobile
-Fixed: frontend highlighting's broken ARIA reference
-Fixed: Issue Density bug when creating a new post
-Fixed: a bug on the reports dashboard widget and welcome page when no post types are selected in the settings
-Fixed: settings page tab order bug
-Updated: scanning process to exclude the admin bar and the query monitor
-Updated: improvements to the Ambiguous Anchor check
-Updated: the Browser.php class has been restructured to load via Composer
-Updated: the TextStatistics class is now loaded through Composer
-Updated: text domain and internationalization on user-facing strings
-Updated: reports dashboard widget and welcome page now have improved refresh and caching
-Updated: the date format on the reports dashboard widget and the welcome page now respects the site's timezone setting
-Updated: Improved performance during the purge of issues after changing the "post types to scan" setting
-Removed: CSS output when a user is logged out
+= 1.7.0 =
+* Added: Architecture for JavaScript-based checks for better code analysis
+* Updated: Color contrast check now uses axe-core rule for improved accuracy
+* Fixed: Issue with frontend highlighting panel blocking interactions
+* Fixed: Compatibility issue with PHP 8+ related to 'false' to array conversion
+* Removed: PHP color contrast check replaced with axe-core rule
+* Fixed: Conflict with RSS feeds
 
 Older versions can be found in the plugins `changelog.txt`.

@@ -53,10 +53,10 @@ class Accessibility_Statement {
 		}
 
 		if ( $include_statement_link && $policy_page ) {
-			$statement .= sprintf(
+			$statement .= ( ! empty( $statement ) ? ' ' : '' ) . sprintf(
 				// translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
 				esc_html__( 'Read our %s', 'accessibility-checker' ),
-				'<a href="' . $policy_page . '">' . esc_html__( 'Accessibility Policy', 'accessibility-checker' ) . '</a>.'
+				'<a href="' . esc_url( $policy_page ) . '">' . esc_html__( 'Accessibility Policy', 'accessibility-checker' ) . '</a>.'
 			);
 		}
 
@@ -71,7 +71,7 @@ class Accessibility_Statement {
 	public function output_accessibility_statement() {
 		$statement = $this->get_accessibility_statement();
 		if ( ! empty( $statement ) ) {
-			echo '<p class="edac-accessibility-statement" style="text-align: center; max-width: 800px; margin: auto; padding: 15px;"><small>' . wp_kses_post( $statement ) . '</small></p>';
+			echo '<p class="edac-accessibility-statement"><small>' . wp_kses_post( $statement ) . '</small></p>';
 		}
 	}
 }

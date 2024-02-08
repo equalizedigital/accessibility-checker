@@ -37,8 +37,8 @@ function edac_rule_broken_aria_reference( $content, $post ) { // phpcs:ignore --
 /**
  * Checks whether has all referenced elements
  *
- * @param string $element the element.
- * @param string $dom the document.
+ * @param object $element the element.
+ * @param object $dom the document.
  * @param string $attr attribute.
  * @return bool
  */

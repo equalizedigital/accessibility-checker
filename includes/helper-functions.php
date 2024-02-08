@@ -15,7 +15,7 @@
 function edac_compare_strings( $string1, $string2 ) {
 	/**
 	 * Prepare strings for our comparison.
-	 * 
+	 *
 	 * @param string $content String to prepare.
 	 * @return string
 	 */
@@ -94,12 +94,39 @@ function edac_check_plugin_installed( $plugin_slug ) {
  * @return string
  */
 function edac_ordinal( $number ) {
-	return (
-		new NumberFormatter(
-			get_locale(),
-			NumberFormatter::ORDINAL
-		)
-	)->format( (int) $number );
+
+	$number = (int) $number;
+
+	if ( class_exists( 'NumberFormatter' ) ) {
+		return (
+			new NumberFormatter(
+				get_locale(),
+				NumberFormatter::ORDINAL
+			)
+		)->format( $number );
+	
+	} else {
+		if ( $number % 100 >= 11 && $number % 100 <= 13 ) {
+			$ordinal = $number . 'th';
+		} else {
+			switch ( $number % 10 ) {
+				case 1:
+					$ordinal = $number . 'st';
+					break;
+				case 2:
+					$ordinal = $number . 'nd';
+					break;
+				case 3:
+					$ordinal = $number . 'rd';
+					break;
+				default:
+					$ordinal = $number . 'th';
+					break;
+			}
+		}
+		return $ordinal;
+	
+	}
 }
 
 /**
@@ -307,7 +334,7 @@ function edac_process_actions() {
  * @param boolean $strip_rn strip rn.
  * @param string  $default_br_text default br text.
  * @param string  $default_span_text default span text.
- * @return string
+ * @return object|false
  */
 function edac_str_get_html(
 	$str,
@@ -486,7 +513,7 @@ function edac_is_valid_nonce( $secret, $nonce ) {
 		return false;
 	}
 	$salt     = $a[0];
-	$max_time = intval( $a[1] );
+	$max_time = (int) $a[1];
 	$hash     = $a[2];
 	$back     = sha1( $salt . $secret . $max_time );
 	if ( $back !== $hash ) {
@@ -507,7 +534,7 @@ function edac_is_valid_nonce( $secret, $nonce ) {
  */
 function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
-	$key    = 'upcoming_meetups__' . sanitize_title( $meetup ) . '__' . intval( $count );
+	$key    = 'upcoming_meetups__' . sanitize_title( $meetup ) . '__' . (int) $count;
 	$output = get_transient( $key );
 
 	if ( false === $output ) {
@@ -515,7 +542,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 		$query_args = array(
 			'sign'       => 'true',
 			'photo-host' => 'public',
-			'page'       => intval( $count ),
+			'page'       => (int) $count,
 		);
 
 		$request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
@@ -542,11 +569,10 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
  *
  * @param  string  $meetup meetup name.
  * @param  integer $count number of meetups to return.
- * @param  boolean $truncate truncate description.
- * @param  integer $paragraph_count number of paragraphs to return.
+ * @param  string  $heading heading level.
  * @return json
  */
-function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, $paragraph_count = 1 ) { // phpcs:ignore -- $truncate is used in the future.
+function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
 
 	$json = edac_get_upcoming_meetups_json( $meetup, $count );
 
@@ -561,8 +587,8 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $truncate = true, 
 
 		$html .= '
 		<li class="edac-upcoming-meetup-item edac-mb-3">
-			<h4 class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h4>
-			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . ( intval( $event->time ) / 1000 ) . '</div>
+			<h' . esc_html( $heading ) . ' class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h' . esc_html( $heading ) . '>
+			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . ( (int) $event->time / 1000 ) . '</div>
 			<a aria-label="' . esc_attr( $link_text . ': ' . $event->name ) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '">' . $link_text . '</a>
 		</li>';
 	}

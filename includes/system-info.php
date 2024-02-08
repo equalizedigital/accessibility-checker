@@ -126,9 +126,16 @@ function edac_tools_sysinfo_get() {
 		$wp_remote_post = 'wp_remote_post() works';
 	}
 
+	$wp_debug_status = 'Unset';
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+		$wp_debug_status = 'Enabled';
+	} elseif ( defined( 'WP_DEBUG' ) && ! WP_DEBUG ) {
+		$wp_debug_status = 'Disabled';
+	}
+
 	$return .= 'Remote Post:              ' . $wp_remote_post . "\n";
 	$return .= 'Table Prefix:             Length: ' . strlen( $wpdb->prefix ) . '   Status: ' . ( strlen( $wpdb->prefix ) > 16 ? 'ERROR: Too long' : 'Acceptable' ) . "\n";
-	$return .= 'WP_DEBUG:                 ' . ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Unset' ) . "\n";
+	$return .= 'WP_DEBUG:                 ' . $wp_debug_status . "\n";
 	$return .= 'Memory Limit:             ' . WP_MEMORY_LIMIT . "\n";
 	$return .= 'Registered Post Stati:    ' . implode( ', ', get_post_stati() ) . "\n";
 
@@ -169,7 +176,6 @@ function edac_tools_sysinfo_get() {
 		}
 		$return .= 'Ignore Permissions:       ' . ( get_option( 'edacp_ignore_user_roles' ) ? implode( ', ', get_option( 'edacp_ignore_user_roles' ) ) . "\n" : "None\n" );
 		$return .= 'Ignores DB Table Count:   ' . edac_database_table_count( 'accessibility_checker_global_ignores' ) . "\n";
-		$return .= 'Logs DB Table Count:      ' . edac_database_table_count( 'accessibility_checker_logs' ) . "\n";
 	}
 
 	$return = apply_filters( 'edac_sysinfo_after_edac_config', $return );
@@ -458,7 +464,7 @@ function edac_get_error_count() {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-		$stored_errors = intval( $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'error' ) ) );
+		$stored_errors = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'error' ) );
 
 		// Save the result in the cache for future use.
 		wp_cache_set( $cache_key, $stored_errors );
@@ -485,7 +491,7 @@ function edac_get_warning_count() {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-		$stored_warnings = intval( $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'warning' ) ) );
+		$stored_warnings = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'warning' ) );
 
 		// Save the result in the cache for future use.
 		wp_cache_set( $cache_key, $stored_warnings );

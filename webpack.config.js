@@ -1,3 +1,4 @@
+/* global require, __dirname, module */
 const webpack = require( 'webpack' ); // to access built-in plugins
 const path = require( 'path' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
@@ -8,14 +9,25 @@ module.exports = {
 	mode: 'none', //development | production
 	watch: false,
 	entry: {
-		app: [
-			'./src/app/index.js',
-			'./src/app/sass/accessibility-checker.scss',
-		],
 		admin: [
 			'./src/admin/index.js',
 			'./src/admin/sass/accessibility-checker-admin.scss',
 		],
+		editorApp: [
+			'./src/editorApp/index.js',
+		],
+		frontendHighlighterApp: [
+			'./src/frontendHighlighterApp/index.js',
+			'./src/frontendHighlighterApp/sass/app.scss',
+		],
+		pageScanner: [
+			'./src/pageScanner/index.js',
+		],
+		emailOptIn: [
+			'./src/emailOptIn/index.js',
+			'./src/emailOptIn/sass/email-opt-in.scss',
+		],
+
 	},
 
 	output: {
