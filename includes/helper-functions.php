@@ -302,29 +302,6 @@ function edac_post_types() {
 }
 
 /**
- * Processes all EDAC actions sent via POST and GET by looking for the 'edac-action'
- * request and running do_action() to call the function
- *
- * @return void
- */
-function edac_process_actions() {
-
-	// if this fails, check_admin_referer() will automatically print a "failed" page and die.
-	if ( ! empty( $_POST ) && isset( $_POST['edac_download_sysinfo_nonce'] ) && check_admin_referer( 'edac_download_sysinfo', 'edac_download_sysinfo_nonce' ) ) {
-
-		$edac_action = isset( $_POST['edac-action'] ) ? sanitize_key( $_POST['edac-action'] ) : '';
-
-		if ( isset( $_POST['edac-action'] ) ) {
-			do_action( 'edac_' . $edac_action, $_POST );
-		}
-
-		if ( isset( $_GET['edac-action'] ) ) {
-			do_action( 'edac_' . $edac_action, $_GET );
-		}
-	}
-}
-
-/**
  * String Get HTML
  *
  * @param string  $str string to parse.
