@@ -111,6 +111,9 @@ class Post_Options {
 	// This is a mapping of the legacy named options to the new named options.
 	// We need to handle backward compatibility for legacy named options, ie:
 	// get_post_metadata/update_post_metadata/delete_post_metadata must get/update/delete the correct item.
+	// This is a mapping of the legacy named options to the new named options.
+	// We need to handle backward compatibility for legacy named options, ie:
+	// get_post_metadata/update_post_metadata/delete_post_metadata must get/update/delete the correct item.
 	const LEGACY_NAMES_MAPPING = array(
 		// These are stored in a grouped meta record.   
 		'_edac_issue_density'           => 'issue_density',
@@ -124,7 +127,6 @@ class Post_Options {
 		'_edac_summary_passed_tests'    => 'passed_tests',
 		'_edac_summary_warnings'        => 'warnings',
 		'_edac_post_checked'            => 'post_checked',
-		'_edac_post_checked_js'         => 'post_checked_js',
 	);
 	
 
@@ -209,16 +211,11 @@ class Post_Options {
 	 * @return void
 	 */
 	public static function init_hooks() {
-		
 		// See: https://www.ibenic.com/hook-wordpress-metadata/ .
 		
 		// Handles determining if post metadata should be added to the database.
 		add_filter( 'add_post_metadata', self::class . '::filter_add_post_metadata', 10, 3 );
 		add_filter( 'update_post_metadata', self::class . '::filter_update_post_metadata', 10, 4 );
-		
-		// Handles logic we want to run after after post metadata has been added.
-		add_action( 'added_post_meta', self::class . '::on_added_post_meta', 10, 3 );
-		add_action( 'updated_post_meta', self::class . '::on_updated_post_meta', 10, 4 );
 	}
 
 	/**
@@ -231,10 +228,6 @@ class Post_Options {
 		// Handles determining if post metadata should be added to the database.
 		remove_filter( 'add_post_metadata', self::class . '::filter_add_post_metadata', 10 );
 		remove_filter( 'update_post_metadata', self::class . '::filter_update_post_metadata', 10 );
-		
-		// Handles logic we want to run after after post metadata has been added.
-		remove_action( 'added_post_meta', self::class . '::on_added_post_meta', 10 );
-		remove_action( 'updated_post_meta', self::class . '::on_updated_post_meta', 10 );
 	}
 
 	/**
@@ -378,51 +371,6 @@ class Post_Options {
 		return null;
 	}
 
-	/**
-	 * Action that is called after a post metadata has been added to the database.
-	 *
-	 * @param [integer] $post_id The post ID.
-	 * @param [string]  $name The key.
-	 * @param [mixed]   $value The value to add.
-	 * @return void
-	 */ 
-	public static function on_added_post_meta( $post_id, $name, $value ) {
-		self::on_added_or_updated_post_meta( $post_id, $name, $value );
-	}
-
-	/**
-	 * Action that is called after a post metadata has been updated in the database.
-	 *  
-	 * @param [integer] $meta_id The meta ID.
-	 * @param [integer] $post_id The post ID.
-	 * @param [string]  $name The key.
-	 * @param [mixed]   $value The value to add.
-	 * @return void
-	 */ 
-	public static function on_updated_post_meta( $meta_id, $post_id, $name, $value ) {
-		self::on_added_or_updated_post_meta( $post_id, $name, $value );
-	}
-
-	/**
-	 * Helper that on_added_post_meta and on_updated_post_meta can both call so we don't duplicate the code.
-	 * Handles the actions that run after a post metadata has been added or updated in the database.
-	 *
-	 * @param [integer] $post_id The post ID.
-	 * @param [string]  $name The key.
-	 * @param [mixed]   $value The value to add.
-	 * @return void
-	 */
-	public static function on_added_or_updated_post_meta( $post_id, $name, $value ) {
-		
-		// Special case for post_checked_js. We need to copy to _post_checked_js as it is used as a named field in sql for Pro.
-		if ( 'edac_post_checked_js' === $name ) {
-		
-			// save a copy to _edac_post_checked_js.
-			self::disable_hooks();
-			update_post_meta( $post_id, '_edac_post_checked_js', $value );
-			self::init_hooks();
-		}
-	}
 	
 	/**
 	 * Fill list with the group item values stored in WordPress. 
@@ -501,6 +449,14 @@ class Post_Options {
 
 		}
 
+		if ( 'post_checked_js' === $name ) {
+			// special case for legacy _edac_post_checked_js b/c it was originally named with a _ prefix.
+			$new_name        = '_edac_post_checked_js';
+			$value           = get_post_meta( $this->post_id, $new_name, $single );
+			$sanitized_value = $this->cast_and_validate( $name, $value );
+			return $sanitized_value;
+		}
+
 		if ( array_key_exists( $name, $this->grouped_items ) ) {
 			// non-legacy named grouped item.
 			$this->fill_grouped_items(); // in case the list has been updated by update hook or another process.
@@ -535,12 +491,20 @@ class Post_Options {
 	 * @throws \Exception When the option is not valid.
 	 */
 	public function set( $name, $value ) {
-	
 
 		if ( ! array_key_exists( $name, self::ITEMS ) ) {
 			throw new \Exception( esc_html( $name . ' is not a valid option.' ) );
 		}
 
+		if ( 'post_checked_js' === $name ) {
+			// special case for legacy _edac_post_checked_js b/c it was originally named with a _ prefix.
+			$name = '_edac_post_checked_js';
+			self::disable_hooks();
+			$retval = update_post_meta( $this->post_id, $name, $value );
+			self::init_hooks();
+
+			return $retval;
+		}
 		
 		if ( array_key_exists( $name, $this->grouped_items ) ) {
 
@@ -590,6 +554,7 @@ class Post_Options {
 	 *
 	 * @param [string] $name The name of list item.
 	 * @return boolean True if successful.
+	 * @throws \Exception When the option is not valid.
 	 */
 	public function delete( $name ) {
 
@@ -605,6 +570,20 @@ class Post_Options {
 			return true;
 		}
 
+		if ( ! array_key_exists( $name, self::ITEMS ) ) {
+			throw new \Exception( esc_html( $name . ' is not a valid option.' ) );
+		}
+
+		if ( 'post_checked_js' === $name ) {
+			// special case for legacy _edac_post_checked_js b/c it was originally named with a _ prefix.
+			$name = '_edac_post_checked_js';
+			self::disable_hooks();
+			$retval = delete_post_meta( $this->post_id, $name );
+			self::init_hooks();
+
+			return ( true === $retval );
+		}
+	
 		if ( array_key_exists( $name, $this->grouped_items ) ) {
 		
 			unset( $this->grouped_items_list[ $name ] );
