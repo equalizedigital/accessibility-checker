@@ -136,14 +136,14 @@ class Ajax {
 		<div class="edac-summary-readability">
 			<div class="edac-summary-readability-level">
 				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability icon navy.png" alt="" width="54"></div>
-				<div class="edac-panel-number' . ( ( (int) $summary['readability'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
+				<div class="edac-panel-number' . ( ( (int) $summary['content_grade'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
 					' . $summary['readability'] . '
 				</div>
 				<div class="edac-panel-number-label' . ( ( (int) $summary['readability'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
 			</div>
 			<div class="edac-summary-readability-summary">
-				<div class="edac-summary-readability-summary-icon' . ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['readability'] <= 9 ) ? ' active' : '' ) . '"></div>
-				<div class="edac-summary-readability-summary-text' . ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['readability'] <= 9 ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
+				<div class="edac-summary-readability-summary-icon' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '"></div>
+				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>
 		<div class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
@@ -508,7 +508,7 @@ class Ajax {
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
 			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
-			$simplified_summary_grade = edac_ordinal( floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) ) );
+			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 
 		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
@@ -533,8 +533,8 @@ class Ajax {
 			if ( $simplified_summary && 'none' !== $simplified_summary_prompt ) {
 				$html .= '<li class="edac-readability-list-item edac-readability-summary-grade-level">
 					<span class="edac-readability-list-item-icon dashicons ' . ( ( $simplified_summary_grade_failed ) ? 'dashicons-no-alt' : 'dashicons-saved' ) . '"></span>
-					<p class="edac-readability-list-item-title">Simplified Summary Reading Grade Level: <strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . $simplified_summary_grade . '</strong></p>
-					<p class="edac-readability-list-item-description">Your simplified summary has a reading level ' . ( ( $simplified_summary_grade_failed > 9 ) ? 'higher' : 'lower' ) . ' than 9th grade.</p>
+					<p class="edac-readability-list-item-title">Simplified Summary Reading Grade Level: <strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . edac_ordinal( $simplified_summary_grade ) . '</strong></p>
+					<p class="edac-readability-list-item-description">Your simplified summary has a reading level ' . ( ( $simplified_summary_grade_failed ) ? 'higher' : 'lower' ) . ' than 9th grade.</p>
 				</li>';
 			}
 
@@ -576,7 +576,7 @@ class Ajax {
 			<form action="/" class="edac-readability-simplified-summary">
 				<label for="edac-readability-text">Simplified Summary</label>
 				<textarea name="" id="edac-readability-text" cols="30" rows="10">' . $simplified_summary . '</textarea>
-				<input type="submit">
+				<input type="submit" value="Submit">
 			</form>';
 		}
 
@@ -662,7 +662,6 @@ class Ajax {
 	 *  - '-1' means that nonce could not be varified
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that the summary was not specified
-	 *  - '-4' means that there isn't any summary to return
 	 */
 	public function simplified_summary() {
 

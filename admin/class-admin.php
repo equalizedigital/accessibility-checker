@@ -7,6 +7,8 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Admin\SiteHealth\Information;
+
 /**
  * Admin handling class.
  */
@@ -33,6 +35,9 @@ class Admin {
 		$widgets = new Widgets();
 		$widgets->init_hooks();
 
+		$site_health_info = new Information();
+		$site_health_info->init_hooks();
+		
 		Options::boot();
 		
 		

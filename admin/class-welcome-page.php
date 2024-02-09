@@ -300,7 +300,7 @@ class Welcome_Page {
 									<?php esc_html_e( 'Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster.', 'accessibility-checker' ); ?>
 								</p>
 								<p class="edac-align-center">
-									<a class="button button-primary" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
+									<a class="button button-primary" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page">
 										<?php esc_html_e( 'Upgrade Accessibility Checker', 'accessibility-checker' ); ?>
 									</a>
 								</p>
