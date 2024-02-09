@@ -6,6 +6,7 @@
  */
 
 namespace EDAC\Admin;
+
 use EDAC\Admin\SiteHealth\Information;
 
 /**

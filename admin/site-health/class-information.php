@@ -2,7 +2,7 @@
 /**
  * Class file for site health info.
  *
- * @since 1.8.0
+ * @since 1.9.0
  * @package Accessibility_Checker
  */
 
@@ -31,7 +31,7 @@ class Information {
 	/**
 	 * Gets the array of sections for the Site Health.
 	 *
-	 * @since 1.8.0
+	 * @since 1.9.0
 	 * @param array $information The debug information.
 	 * @return array
 	 */
@@ -42,13 +42,21 @@ class Information {
 	/**
 	 * Gets all of the data for the Site Health.
 	 *
-	 * @since 1.8.0
+	 * @since 1.9.0
 	 * @return array
 	 */
 	private function get_edac_data() {
 		$collectors = array(
-			'edac_general' => new General(),
+			'edac_free' => new Free(),
 		);
+
+		if ( defined( 'EDACP_VERSION' ) ) {
+			$collectors['edac_pro'] = new Pro();
+		}
+
+		if ( defined( 'EDACAH_VERSION' ) ) {
+			$collectors['edac_audit_history'] = new Audit_History();
+		}
 
 		$information = array();
 		foreach ( $collectors as $key => $class ) {
