@@ -38,17 +38,6 @@ class EDACAdminOptionsTest extends WP_UnitTestCase {
 		
 		// create a post.
 		self::$post_id = $factory->post->create();
-
-		// add legacy named options to the post to simulate a site with existing legacy named options.
-
-		// Turn off our actions so we get a straight update_post_meta call, otherwise the hook will update the non-legacy (new named) item.
-		remove_action( 'update_option', 'EDAC\Admin\Options::update_option_hook', 10, 3 );
-	
-		foreach ( Options::LEGACY_NAMES_MAPPING as $legacy_name => $name ) {
-			$value = wp_generate_password( 25 );
-			update_option( $legacy_name, $value );
-		}
-		add_action( 'update_option', 'EDAC\Admin\Options::update_option_hook', 10, 3 );
 	}
 
 	/**
