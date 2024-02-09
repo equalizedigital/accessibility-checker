@@ -14,11 +14,6 @@ $settings_tab_items = apply_filters(
 			'label' => esc_html__( 'General', 'accessibility-checker' ),
 			'order' => 1,
 		),
-		array(
-			'slug'  => 'system_info',
-			'label' => esc_html__( 'System Info', 'accessibility-checker' ),
-			'order' => 4,
-		),
 	)
 );
 
@@ -90,13 +85,6 @@ $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items
 				<?php if ( EDAC_KEY_VALID === false ) { ?>
 					<div><?php include 'pro-callout.php'; ?></div>
 				<?php } ?>
-			</div>
-		<?php } ?>
-
-		<?php if ( 'system_info' === $settings_tab ) { ?>
-			<h2><?php esc_html_e( 'System Info', 'accessibility-checker' ); ?></h2>
-			<div class="edac-settings-system-info">
-				<?php edac_sysinfo_display(); ?>
 			</div>
 		<?php } ?>
 

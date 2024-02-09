@@ -128,7 +128,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/system-info.php';
 
 /**
  * Filters and Actions
@@ -142,8 +141,6 @@ add_filter( 'save_post', 'edac_save_post', 10, 3 );
 add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 add_action( 'template_redirect', 'edac_before_page_render' );
-add_action( 'admin_init', 'edac_process_actions' );
-add_action( 'edac_download_sysinfo', 'edac_tools_sysinfo_download' );
 if ( is_plugin_active( 'oxygen/functions.php' ) ) {
 	add_action( 'added_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
