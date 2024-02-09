@@ -7,6 +7,9 @@
 
 namespace EDAC\Inc;
 
+use EDAC\Admin\Options;
+use EDAC\Admin\Post_Options;
+
 /**
  * A class that handles the simplified summary.
  */
@@ -32,12 +35,12 @@ class Simplified_Summary {
 	 * @return string
 	 */
 	public function output_simplified_summary( $content ) {
-		$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
+		$simplified_summary_prompt = Options::get( 'simplified_summary_prompt' );
 		if ( 'none' === $simplified_summary_prompt ) {
 			return $content;
 		}
 		$simplified_summary          = $this->simplified_summary_markup( get_the_ID() );
-		$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
+		$simplified_summary_position = Options::get( 'simplified_summary_position' );
 
 		if ( $simplified_summary ) {
 			if ( 'before' === $simplified_summary_position ) {
@@ -53,20 +56,19 @@ class Simplified_Summary {
 	/**
 	 * Simplified summary markup
 	 *
-	 * @param int $post Post ID.
+	 * @param int $post_id Post ID.
 	 * @return string
 	 */
-	public function simplified_summary_markup( $post ) {
-		$simplified_summary = get_post_meta( $post, '_edac_simplified_summary', true )
-			? get_post_meta( $post, '_edac_simplified_summary', true ) 
-			: '';
-
-		$simplified_summary_heading = apply_filters(
-			'edac_filter_simplified_summary_heading',
-			esc_html__( 'Simplified Summary', 'accessibility-checker' )
-		);
-
-		if ( $simplified_summary ) {
+	public function simplified_summary_markup( $post_id ) {
+		$post_options       = new Post_Options( $post_id );
+		$simplified_summary = $post_options->get( 'simplified_summary' );
+		
+		if ( '' !== trim( $simplified_summary ) ) {
+			$simplified_summary_heading = apply_filters(
+				'edac_filter_simplified_summary_heading',
+				esc_html__( 'Simplified Summary', 'accessibility-checker' )
+			);
+	
 			return '<div class="edac-simplified-summary"><h2>' . wp_kses_post( $simplified_summary_heading ) . '</h2><p>' . wp_kses_post( $simplified_summary ) . '</p></div>';
 		}
 		return '';

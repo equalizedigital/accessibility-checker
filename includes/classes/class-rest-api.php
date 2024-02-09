@@ -7,9 +7,9 @@
 
 namespace EDAC\Inc;
 
-use EDAC\Admin\Helpers;
+use EDAC\Inc\Scannable_Posts;
 use EDAC\Admin\Scans_Stats;
-use EDAC\Admin\Settings;
+use EDAC\Admin\Options;
 
 
 
@@ -22,12 +22,12 @@ class REST_Api {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct() { 
 	}
 
 
 	/**
-	 * Add the class the hooks.
+	 * Add the class hooks.
 	 */
 	public function init_hooks() {
 		add_action( 'init', array( $this, 'init_rest_routes' ) );
@@ -56,11 +56,62 @@ class REST_Api {
 							$messages = array();
 							$messages['time'] = time();
 							$messages['perms'] = current_user_can( 'edit_posts' );
-
 							return new \WP_REST_Response( array( 'messages' => $messages ), 200 );
 						},
 						'permission_callback' => function () {
 							return true;
+						},
+					)
+				);
+			}
+		);
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/get-post-options/(?P<id>\d+)',
+					array(
+						'methods'             => 'GET',
+						'callback'            => function ( $data ) {
+							$post_id = $data['id'];
+							$post_options = new \EDAC\Admin\Post_Options( $post_id ); 
+							return new \WP_REST_Response( array( 'data' => $post_options->as_array() ), 200 );
+						},
+						'args'                => array(
+							'id' => array(
+								'validate_callback' => function ( $param ) {
+									return is_numeric( $param );
+								},
+							),
+						),
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
+						},
+					)
+				);
+			}
+		);
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/set-post-options/(?P<id>\d+)',
+					array(
+						'methods'             => 'POST',
+						'callback'            => array( $this, 'set_post_options' ),
+						'args'                => array(
+							'id' => array(
+								'validate_callback' => function ( $param ) {
+									return is_numeric( $param );
+								},
+							),
+						),
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
 						},
 					)
 				);
@@ -163,6 +214,45 @@ class REST_Api {
 
 
 	/**
+	 * REST handler that sets the post options.
+	 *
+	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function set_post_options( $request ) {
+
+		try {
+			$post_id = (int) $request['id'];
+			$data    = $request->get_json_params();
+		
+			$post_options = new \EDAC\Admin\Post_Options( $post_id );
+			
+			foreach ( $data as $key => $value ) {
+				$post_options->set( $key, $value );
+			}
+	
+			return new \WP_REST_Response(
+				array(
+					'success'   => true,
+					'timestamp' => time(),
+				)
+			);
+
+		} catch ( \Exception $ex ) {
+
+			return new \WP_REST_Response(
+				array(
+					'message' => $ex->getMessage(),
+				),
+				500
+			);
+
+		}
+	}
+
+
+	/**
 	 * REST handler that saves to the DB a list of js rule violations for a post.
 	 *
 	 * @param WP_REST_Request $request  The request passed from the REST call.
@@ -184,7 +274,7 @@ class REST_Api {
 		}
 
 		$post_type  = get_post_type( $post );
-		$post_types = Helpers::get_option_as_array( 'edac_post_types' );
+		$post_types = Options::get( 'post_types' );
 		if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 
 			return new \WP_REST_Response( array( 'message' => 'The post type is not set to be scanned.' ), 400 );
@@ -252,7 +342,8 @@ class REST_Api {
 			edac_summary( $post_id );
 
 			// store a record of this scan in the post's meta.
-			update_post_meta( $post_id, '_edac_post_checked_js', time() );
+			$post_options = new \EDAC\Admin\Post_Options( $post_id );
+			$post_options->set( 'post_checked_js', time() );
 
 			return new \WP_REST_Response(
 				array(
@@ -357,8 +448,8 @@ class REST_Api {
 		try {
 
 			$post_type            = strval( $request['slug'] );
-			$scannable_post_types = Settings::get_scannable_post_types();
-
+			$scannable_post_types = Scannable_Posts::get_allowed_types();
+			
 			if ( in_array( $post_type, $scannable_post_types, true ) ) {
 
 				$scans_stats = new Scans_Stats( 60 * 5 );
@@ -395,8 +486,8 @@ class REST_Api {
 
 			$scans_stats = new Scans_Stats( 60 * 5 );
 
-			$scannable_post_types = Settings::get_scannable_post_types();
-
+			$scannable_post_types = Scannable_Posts::get_allowed_types();
+		
 			$post_types = get_post_types(
 				array(
 					'public' => true,

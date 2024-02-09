@@ -64,7 +64,7 @@ class Ajax {
 		$html['content'] = '';
 
 		// password check.
-		if ( (bool) get_option( 'edac_password_protected' ) === true ) {
+		if ( (bool) Options::get( 'password_protected' ) === true ) {
 			$admin_notices              = new \EDAC\Admin\Admin_Notices();
 			$notice_text                = $admin_notices->edac_password_protected_notice_text();
 			$html['password_protected'] = $notice_text;
@@ -74,26 +74,14 @@ class Ajax {
 		$post_id                   = (int) $_REQUEST['post_id'];
 		$summary                   = edac_summary( $post_id );
 		$simplified_summary_text   = '';
-		$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
-		$simplified_summary        = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
-
-		$simplified_summary_grade = 0;
-		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
-			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
-		}
-		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
+		$simplified_summary_prompt = Options::get( 'simplified_summary_prompt' );
 
 		$simplified_summary_text = esc_html__( 'A Simplified summary has not been included for this content.', 'accessibility-checker' );
 		if ( 'none' !== $simplified_summary_prompt ) {
-			if ( $summary['content_grade'] <= 9 ) {
+			if ( (int) $summary['readability'] <= 9 ) {
 				$simplified_summary_text = esc_html__( 'Your content has a reading level at or below 9th grade and does not require a simplified summary.', 'accessibility-checker' );
-			} elseif ( $summary['simplified_summary'] ) {
-				if ( $simplified_summary_grade_failed ) {
-					$simplified_summary_text = esc_html__( 'The reading level of the simplified summary is too high.', 'accessibility-checker' );
-				} else {
-					$simplified_summary_text = esc_html__( 'A simplified summary has been included for this content.', 'accessibility-checker' );
-				}
+			} elseif ( '' !== trim( $summary['simplified_summary'] ) ) {
+				$simplified_summary_text = esc_html__( 'A Simplified summary has been included for this content.', 'accessibility-checker' );
 			}
 		}
 
@@ -490,9 +478,10 @@ class Ajax {
 		}
 
 		$post_id                        = (int) $_REQUEST['post_id'];
+		$post_options                   = new Post_Options( $post_id );     
 		$html                           = '';
-		$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
-		$simplified_summary_position    = get_option( 'edac_simplified_summary_position', $default = false );
+		$simplified_summary             = $post_options->get( 'simplified_summary', true ) ? $post_options->get( 'simplified_summary', true ) : '';
+		$simplified_summary_position    = Options::get( 'simplified_summary_position', $default = false );
 		$content_post                   = get_post( $post_id );
 		$content                        = $content_post->post_content;
 		$content                        = apply_filters( 'the_content', $content );
@@ -511,7 +500,7 @@ class Ajax {
 		$content = str_replace( ']]>', ']]&gt;', $content );
 
 		// get readability metadata and determine if a simplified summary is required.
-		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
+		$edac_summary           = $post_options->get( 'simplified_summary', true );
 		$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
 		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
@@ -523,7 +512,7 @@ class Ajax {
 		}
 
 		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
-		$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
+		$simplified_summary_prompt       = Options::get( 'simplified_summary_prompt' );
 
 		$html .= '<ul class="edac-readability-list">';
 
@@ -698,13 +687,18 @@ class Ajax {
 
 		}
 
-		$post_id = (int) $_REQUEST['post_id'];
-		$summary = sanitize_text_field( $_REQUEST['summary'] );
+		$post_id            = (int) $_REQUEST['post_id'];
+		$post_options       = new Post_Options( $post_id );
+		$simplified_summary = sanitize_text_field( $_REQUEST['summary'] );
 
-		update_post_meta( $post_id, '_edac_simplified_summary', $summary );
+		$post_options->set( 'simplified_summary', $simplified_summary );
 
-		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
-		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
+		if ( ! $simplified_summary ) {
+
+			$error = new \WP_Error( '-4', 'No simplified summary to return' );
+			wp_send_json_error( $error );
+
+		}
 
 		wp_send_json_success( wp_json_encode( $simplified_summary ) );
 	}

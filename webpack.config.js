@@ -4,6 +4,7 @@ const path = require( 'path' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
+const { VueLoaderPlugin } = require( 'vue-loader' );
 
 module.exports = {
 	mode: 'none', //development | production
@@ -58,14 +59,23 @@ module.exports = {
 					filename: './img/[name][ext]',
 				},
 			},
+			{
+				test: /\.vue$/,
+				loader: 'vue-loader',
+			},
 		],
 	},
 	plugins: [
+		new VueLoaderPlugin(),
 		new webpack.ProgressPlugin(),
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin( {
 			filename: './css/[name].css',
 		} ),
 		new CssMinimizerPlugin(),
+		new webpack.DefinePlugin( {
+			__VUE_OPTIONS_API__: false,
+			__VUE_PROD_DEVTOOLS__: false,
+		} ),
 	],
 };

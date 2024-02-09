@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Helpers;
+use EDAC\Admin\Post_Options;
 
 /**
  * Oxygen Builder on save
@@ -37,7 +38,9 @@ function edac_post_on_load() {
 	global $pagenow;
 	if ( 'post.php' === $pagenow ) {
 		global $post;
-		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
+
+		$post_options = new Post_Options( $post->ID );
+		$checked      = $post_options->get( 'post_checked', true );
 		if ( false === (bool) $checked ) {
 			edac_validate( $post->ID, $post, $action = 'load' );
 		}
@@ -55,7 +58,7 @@ function edac_post_on_load() {
  */
 function edac_save_post( $post_ID, $post, $update ) {
 	// check post type.
-	$post_types = get_option( 'edac_post_types' );
+	$post_types = \EDAC\Admin\Options::get( 'post_types' );
 	if ( is_array( $post_types ) && ! in_array( $post->post_type, $post_types, true ) ) {
 		return;
 	}
@@ -102,7 +105,7 @@ function edac_save_post( $post_ID, $post, $update ) {
  */
 function edac_validate( $post_ID, $post, $action ) {
 	// check post type.
-	$post_types = get_option( 'edac_post_types' );
+	$post_types = \EDAC\Admin\Options::get( 'post_types' );
 	if ( is_array( $post_types ) && ! in_array( $post->post_type, $post_types, true ) ) {
 		return;
 	}
@@ -114,12 +117,11 @@ function edac_validate( $post_ID, $post, $action ) {
 	do_action( 'edac_after_get_content', $post_ID, $content, $action );
 
 	if ( ! $content['html'] ) {
-		update_option( 'edac_password_protected', true );
+		\EDAC\Admin\Options::set( 'password_protected', true );
 		return;
 	} else {
-		update_option( 'edac_password_protected', false );
+		\EDAC\Admin\Options::set( 'password_protected', false );
 	}
-	delete_option( 'edac_password_protected' );
 
 	// set record check flag on previous error records.
 	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 1, 'php' );
@@ -169,7 +171,8 @@ function edac_validate( $post_ID, $post, $action ) {
 	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 2, 'php' );
 
 	// set post meta checked.
-	update_post_meta( $post_ID, '_edac_post_checked', true );
+	$post_options = new Post_Options( $post_ID );
+	$post_options->set( 'post_checked', true );
 
 	do_action( 'edac_after_validate', $post_ID, $action );
 }
@@ -258,6 +261,8 @@ function edac_get_content( $post ) {
 	$username = get_option( 'edacp_authorization_username' );
 	$password = get_option( 'edacp_authorization_password' );
 
+	$post_options = new Post_Options( $post->ID );
+
 	// Check if server returns that the domain IP is a local/loopback address.
 	// If so then file_get_contents calls from this server to this domain will
 	// likely not be able to verify ssl. So we need to use a context that
@@ -266,7 +271,7 @@ function edac_get_content( $post ) {
 
 	$no_verify_ssl = false; // Verify by default.
 
-	$is_local_loopback = get_option( 'edac_local_loopback', null );
+	$is_local_loopback = \EDAC\Admin\Options::get( 'local_loopback', null );
 
 	if ( null === $is_local_loopback ) {
 
@@ -274,7 +279,7 @@ function edac_get_content( $post ) {
 
 		if ( isset( $parsed_url['host'] ) ) {
 			$is_local_loopback = Helpers::is_domain_loopback( $parsed_url['host'] );
-			update_option( 'edac_local_loopback', $is_local_loopback );
+			\EDAC\Admin\Options::set( 'local_loopback', $is_local_loopback );
 		}
 	}
 
@@ -348,18 +353,23 @@ function edac_get_content( $post ) {
 				$body_density_data = edac_get_body_density_data( $page_html );
 
 				if ( false !== $body_density_data ) {
-					update_post_meta( $post->ID, '_edac_density_data', $body_density_data );
+					$post_options->set( 'issue_density_elements', $body_density_data['issue_density_elements'] );
+					$post_options->set( 'issue_density_strlen', $body_density_data['issue_density_strlen'] );
+					
 				} else {
-					delete_post_meta( $post->ID, '_edac_density_data' );
+					$post_options->set( 'issue_density_elements', 0 );
+					$post_options->set( 'issue_density_strlen', 0 );
 				}
 			}
 		} catch ( Exception $e ) {
-			update_post_meta( $post->ID, '_edac_density_data', '0,0' );
-
+			$post_options->set( 'issue_density_elements', 0 );
+			$post_options->set( 'issue_density_strlen', 0 );
+	
 			$content['html'] = false;
 		}
 	} else {
-		update_post_meta( $post->ID, '_edac_density_data', '0,0' );
+		$post_options->set( 'issue_density_elements', 0 );
+		$post_options->set( 'issue_density_strlen', 0 );
 
 		$content['html'] = false;
 	}

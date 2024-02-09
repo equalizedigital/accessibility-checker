@@ -9,18 +9,18 @@ const edacScriptVars = edac_script_vars;
 	jQuery( function() {
 		// Accessibility Statement disable
 		jQuery(
-			'input[type=checkbox][name=edac_add_footer_accessibility_statement]'
+			'input[type=checkbox][name="edac[add_footer_accessibility_statement]"]'
 		).on( 'change', function() {
 			if ( this.checked ) {
 				jQuery(
-					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
+					'input[type=checkbox][name="edac[include_accessibility_statement_link]"]'
 				).prop( 'disabled', false );
 			} else {
 				jQuery(
-					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
+					'input[type=checkbox][name="edac[include_accessibility_statement_link]"]'
 				).prop( 'disabled', true );
 				jQuery(
-					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
+					'input[type=checkbox][name="edac[include_accessibility_statement_link]"]'
 				).prop( 'checked', false );
 			}
 			//
@@ -29,13 +29,13 @@ const edacScriptVars = edac_script_vars;
 		// Show Simplified Summary code on options page
 		if (
 			jQuery(
-				'input[type=radio][name=edac_simplified_summary_position]:checked'
+				'input[type=radio][name="edac[simplified_summary_position]"]:checked'
 			).val() === 'none'
 		) {
 			jQuery( '#ac-simplified-summary-option-code' ).show();
 		}
-		jQuery( 'input[type=radio][name=edac_simplified_summary_position]' ).on(
-			'load',
+		jQuery( 'input[type=radio][name="edac[simplified_summary_position]"]' ).on(
+			'change',
 			function() {
 				if ( this.value === 'none' ) {
 					jQuery( '#ac-simplified-summary-option-code' ).show();

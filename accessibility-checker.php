@@ -19,6 +19,8 @@
  * Domain Path:       /languages
  */
 
+use EDAC\Admin\Options;
+use EDAC\Admin\Post_Options;
 use EDAC\Inc\Plugin;
 
 // If this file is called directly, abort.
@@ -100,10 +102,6 @@ if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 }
 
-if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
-	new Plugin();
-}
-
 
 /**
  * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
@@ -128,6 +126,12 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
+
+if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
+	new Plugin();
+}
+
+
 
 /**
  * Filters and Actions
@@ -158,7 +162,7 @@ function edac_update_database() {
 
 	$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
 	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Prepare above, Safe variable used for table name, caching not required for one time operation.
-	if ( get_option( 'edac_db_version' ) !== EDAC_DB_VERSION || $wpdb->get_var( $query ) !== $table_name ) {
+	if ( Options::get( 'db_version' ) !== EDAC_DB_VERSION || $wpdb->get_var( $query ) !== $table_name ) {
 
 		$charset_collate = $wpdb->get_charset_collate();
 		$sql             = "CREATE TABLE $table_name (
@@ -184,12 +188,12 @@ function edac_update_database() {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
 
-	}
+		// Update database version option.
+		$option_name = 'db_version';
+		$new_value   = EDAC_DB_VERSION;
+		Options::set( $option_name, $new_value );
 
-	// Update database version option.
-	$option_name = 'edac_db_version';
-	$new_value   = EDAC_DB_VERSION;
-	update_option( $option_name, $new_value );
+	}
 }
 
 /**
@@ -252,7 +256,8 @@ function edac_before_page_render() {
 			return;
 		}
 
-		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
+		$post_options = new Post_Options( $post_id );
+		$checked      = $post_options->get( 'post_checked' );
 		if ( ! $checked ) {
 			edac_validate( $post->ID, $post, $action = 'load' );
 		}
@@ -275,6 +280,8 @@ function edac_summary( $post_id ) {
 		return $summary;
 	}
 
+	$post_options = new Post_Options( $post_id );
+	
 	// Passed Tests.
 	$rules = edac_register_rules();
 
@@ -308,10 +315,10 @@ function edac_summary( $post_id ) {
 		}
 	}
 
-	$summary['passed_tests'] = round( count( $rules_passed ) / count( $rules ) * 100 );
+	$passed_tests = round( count( $rules_passed ) / count( $rules ) * 100 );
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['errors'] = (int) $wpdb->get_var(
+	$errors = (int) $wpdb->get_var(
 		$wpdb->prepare(
 			'SELECT count(*) FROM %i where siteid = %d and postid = %d and ruletype = %s and ignre = %d',
 			$table_name,
@@ -330,7 +337,7 @@ function edac_summary( $post_id ) {
 		$warnings_where .= ' and rule != %s';
 	}
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['warnings'] = (int) $wpdb->get_var(
+	$warnings = (int) $wpdb->get_var(
 		$wpdb->prepare(
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
 			'SELECT count(*) FROM ' . $table_name . ' ' . $warnings_where,
@@ -347,7 +354,7 @@ function edac_summary( $post_id ) {
 	}
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['ignored'] = (int) $wpdb->get_var(
+	$ignored = (int) $wpdb->get_var(
 		$wpdb->prepare(
 			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared , WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
 			"SELECT count(*) FROM $table_name $ignored_where",
@@ -356,7 +363,7 @@ function edac_summary( $post_id ) {
 	);
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-	$summary['contrast_errors'] = (int) $wpdb->get_var(
+	$contrast_errors = (int) $wpdb->get_var(
 		$wpdb->prepare(
 			'SELECT count(*) FROM %i where siteid = %d and postid = %d and rule = %s and ignre = %d',
 			$table_name,
@@ -368,25 +375,17 @@ function edac_summary( $post_id ) {
 	);
 
 	// remove color contrast from errors count.
-	$summary['errors'] = $summary['errors'] - $summary['contrast_errors'];
+	$errors = $errors - $contrast_errors;
 
 	// issue density.
-	$issue_count = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'];
-
-	$issue_density_array = get_post_meta( $post_id, '_edac_density_data' );
-
-	if ( is_array( $issue_density_array ) &&
-		count( $issue_density_array ) > 0 &&
-		count( $issue_density_array[0] ) > 0
-	) {
-
-		$element_count  = $issue_density_array[0][0];
-		$content_length = $issue_density_array[0][1];
-		$issue_density  = edac_get_issue_density( $issue_count, $element_count, $content_length );
-
-		update_post_meta( $post_id, '_edac_issue_density', $issue_density );
+	$issue_count    = $warnings + $errors + $contrast_errors;
+	$element_count  = $post_options->get( 'issue_density_elements' );
+	$content_length = $post_options->get( 'issue_density_strlen' );
+	if ( ( $element_count + $content_length ) > 0 ) {
+		$issue_density = edac_get_issue_density( $issue_count, $element_count, $content_length );
+		$post_options->set( 'issue_density', $issue_density );
 	} else {
-		delete_post_meta( $post_id, '_edac_issue_density' );
+		$post_options->set( 'issue_density', 0 );
 	}
 
 	// reading grade level.
@@ -396,29 +395,34 @@ function edac_summary( $post_id ) {
 	$content = wp_filter_nohtml_kses( $content );
 	$content = str_replace( ']]>', ']]&gt;', $content );
 
-	$summary['content_grade'] = 0;
+	$content_grade = 0;
 	if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-		$summary['content_grade'] = floor(
+		$content_grade = floor(
 			( new DaveChild\TextStatistics\TextStatistics() )->fleschKincaidGradeLevel( $content )
 		);
 	}
 
-	$summary['readability'] = 0 === $summary['content_grade']
-		? 'N/A'
-		: edac_ordinal( $summary['content_grade'] );
+	$readability = 0 === $content_grade ? 'N/A' : edac_ordinal( $content_grade );
 
-	// simplified summary.
-	$summary['simplified_summary'] = (bool) ( get_post_meta( $post_id, '_edac_simplified_summary', true ) );
+	$post_options->set( 'readability', $readability );
+	$post_options->set( 'passed_tests', $passed_tests );
+	$post_options->set( 'errors', $errors );
+	$post_options->set( 'warnings', $warnings );
+	$post_options->set( 'ignored', $ignored );
+	$post_options->set( 'contrast_errors', $contrast_errors );
 
-	// save summary data as post meta.
-	update_post_meta( $post_id, '_edac_summary', $summary );
-	update_post_meta( $post_id, '_edac_summary_passed_tests', $summary['passed_tests'] );
-	update_post_meta( $post_id, '_edac_summary_errors', $summary['errors'] );
-	update_post_meta( $post_id, '_edac_summary_warnings', $summary['warnings'] );
-	update_post_meta( $post_id, '_edac_summary_ignored', $summary['ignored'] );
-	update_post_meta( $post_id, '_edac_summary_contrast_errors', $summary['contrast_errors'] );
+	$retval = array_merge(
+		$post_options->as_array(),
+		array(
+			'passed_tests'    => $post_options->get( 'passed_tests' ),
+			'errors'          => $post_options->get( 'errors' ),
+			'warnings'        => $post_options->get( 'warnings' ),
+			'contrast_errors' => $post_options->get( 'contrast_errors' ),
+			'ignored'         => $post_options->get( 'ignored' ),
+		)
+	);
 
-	return $summary;
+	return $retval;
 }
 
 /**
@@ -430,10 +434,10 @@ function edac_anww_update_post_meta() {
 
 	$option_name = 'edac_anww_update_post_meta';
 
-	if ( ! get_option( $option_name ) && EDAC_ANWW_ACTIVE ) {
-		update_option( $option_name, true );
-	} elseif ( get_option( $option_name ) && ! EDAC_ANWW_ACTIVE ) {
-		delete_option( $option_name );
+	if ( ! Options::get( $option_name ) && EDAC_ANWW_ACTIVE ) {
+		Options::set( $option_name, true );
+	} elseif ( Options::get( $option_name ) && ! EDAC_ANWW_ACTIVE ) {
+		Options::delete( $option_name );
 	}
 	edac_update_post_meta( 'link_blank' );
 }

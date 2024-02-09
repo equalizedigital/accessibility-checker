@@ -47,7 +47,7 @@ class Enqueue_Admin {
 
 
 		global $pagenow;
-		$post_types        = get_option( 'edac_post_types' );
+		$post_types        = Options::get( 'post_types' );
 		$current_post_type = get_post_type();
 		$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
 		$enabled_pages     = array(
@@ -80,7 +80,7 @@ class Enqueue_Admin {
 		
 
 				// Is this posttype setup to be checked?
-				$post_types        = get_option( 'edac_post_types' );
+				$post_types        = Options::get( 'post_types' );
 				$current_post_type = get_post_type();
 				$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 	
@@ -101,10 +101,11 @@ class Enqueue_Admin {
 						'postID'     => $post_id,
 						'edacUrl'    => esc_url_raw( get_site_url() ),
 						'edacApiUrl' => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+						'restNonce'  => wp_create_nonce( 'wp_rest' ),
 						'baseurl'    => plugin_dir_url( __DIR__ ),
 						'active'     => $active,
 						'pro'        => $pro,
-						'authOk'     => false === (bool) get_option( 'edac_password_protected', false ),
+						'authOk'     => false === (bool) Options::get( 'password_protected', false ),
 						'debug'      => $debug,
 						'scanUrl'    => get_preview_post_link(
 							$post_id, 

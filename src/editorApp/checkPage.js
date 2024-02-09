@@ -1,27 +1,9 @@
 /* eslint-disable padded-blocks, no-multiple-empty-lines */
 /* global edac_editor_app */
 
-import { info, debug } from './helpers';
+import { info, debug, postData } from './helpers';
 import { showNotice } from './../common/helpers';
 
-const postData = async ( url = '', data = {} ) => {
-
-
-	return await fetch( url, {
-		method: 'POST',
-		headers: {
-			// eslint-disable-next-line camelcase
-			'X-WP-Nonce': edac_script_vars.restNonce,
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify( data ),
-	} ).then( ( res ) => {
-		return res.json();
-	} ).catch( () => {
-		return {};
-	} );
-
-};
 
 const saveScanResults = ( postId, violations ) => {
 	document.querySelector( '.edac-panel' ).classList.add( 'edac-panel-loading' );

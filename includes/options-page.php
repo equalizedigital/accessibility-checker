@@ -104,7 +104,7 @@ function edac_register_setting() {
 		'edac_post_types_cb',
 		'edac_settings',
 		'edac_general',
-		array( 'label_for' => 'edac_post_types' )
+		array( 'label_for' => 'edac[post_types]' )
 	);
 
 	add_settings_field(
@@ -113,7 +113,7 @@ function edac_register_setting() {
 		'edac_delete_data_cb',
 		'edac_settings',
 		'edac_general',
-		array( 'label_for' => 'edac_delete_data' )
+		array( 'label_for' => 'edac[delete_data]' )
 	);
 
 	add_settings_field(
@@ -122,7 +122,7 @@ function edac_register_setting() {
 		'edac_simplified_summary_prompt_cb',
 		'edac_settings',
 		'edac_simplified_summary',
-		array( 'label_for' => 'edac_simplified_summary_prompt' )
+		array( 'label_for' => 'edac[simplified_summary_prompt]' )
 	);
 
 	add_settings_field(
@@ -131,7 +131,7 @@ function edac_register_setting() {
 		'edac_simplified_summary_position_cb',
 		'edac_settings',
 		'edac_simplified_summary',
-		array( 'label_for' => 'edac_simplified_summary_position' )
+		array( 'label_for' => 'edac[simplified_summary_position]' )
 	);
 
 	add_settings_field(
@@ -140,7 +140,7 @@ function edac_register_setting() {
 		'edac_add_footer_accessibility_statement_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
-		array( 'label_for' => 'edac_add_footer_accessibility_statement' )
+		array( 'label_for' => 'edac[add_footer_accessibility_statement]' )
 	);
 
 	add_settings_field(
@@ -149,7 +149,7 @@ function edac_register_setting() {
 		'edac_include_accessibility_statement_link_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
-		array( 'label_for' => 'edac_include_accessibility_statement_link' )
+		array( 'label_for' => 'edac[include_accessibility_statement_link]' )
 	);
 
 	add_settings_field(
@@ -158,7 +158,7 @@ function edac_register_setting() {
 		'edac_accessibility_policy_page_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
-		array( 'label_for' => 'edac_accessibility_policy_page' )
+		array( 'label_for' => 'edac[accessibility_policy_page]' )
 	);
 
 	add_settings_field(
@@ -167,33 +167,15 @@ function edac_register_setting() {
 		'edac_accessibility_statement_preview_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
-		array( 'label_for' => 'edac_accessibility_statement_preview' )
+		array( 'label_for' => 'edac[accessibility_statement_preview]' )
 	);
 
 	// Register settings.
-	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
-	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_delete_data' );
 	register_setting(
 		'edac_settings',
-		'edac_simplified_summary_prompt',
-		array(
-			'type'              => 'string',
-			'sanitize_callback' => 'edac_sanitize_simplified_summary_prompt',
-			'default'           => 'when required',
-		)
+		'edac',
+		array( 'sanitize_callback' => 'edac_sanitize_settings_callback' )
 	);
-	register_setting(
-		'edac_settings',
-		'edac_simplified_summary_position',
-		array(
-			'type'              => 'string',
-			'sanitize_callback' => 'edac_sanitize_simplified_summary_position',
-			'default'           => 'after',
-		)
-	);
-	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', 'edac_sanitize_add_footer_accessibility_statement' );
-	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', 'edac_sanitize_include_accessibility_statement_link' );
-	register_setting( 'edac_settings', 'edac_accessibility_policy_page', 'edac_sanitize_accessibility_policy_page' );
 }
 
 /**
@@ -243,21 +225,26 @@ function edac_footer_accessibility_statement_cb() {
  * Render the radio input field for position option
  */
 function edac_simplified_summary_position_cb() {
-	$position = get_option( 'edac_simplified_summary_position' );
+
+	$key   = 'simplified_summary_position';
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
+	$name  = $ns . '[' . $key . ']';
+	$value = \EDAC\Admin\Options::get( $key );
+	
 	?>
 		<fieldset>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" id="<?php echo 'edac_simplified_summary_position'; ?>" value="before" <?php checked( $position, 'before' ); ?>>
+				<input type="radio" id="<?php echo esc_attr( 'edac_' . $key ); ?>" name="<?php echo esc_attr( $name ); ?>" value="before" <?php checked( $value, 'before' ); ?>>
 				<?php esc_html_e( 'Before the content', 'accessibility-checker' ); ?>
 			</label>
 			<br>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" value="after" <?php checked( $position, 'after' ); ?>>
+				<input type="radio" name="<?php echo esc_attr( $name ); ?>" value="after" <?php checked( $value, 'after' ); ?>>
 				<?php esc_html_e( 'After the content', 'accessibility-checker' ); ?>
 			</label>
 			<br>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" value="none" <?php checked( $position, 'none' ); ?>>
+				<input type="radio" name="<?php echo esc_attr( $name ); ?>" value="none" <?php checked( $value, 'none' ); ?>>
 				<?php esc_html_e( 'Insert manually', 'accessibility-checker' ); ?>
 			</label>
 		</fieldset>
@@ -271,37 +258,31 @@ function edac_simplified_summary_position_cb() {
 	<?php
 }
 
-/**
- * Sanitize the text position value before being saved to database
- *
- * @param array $position Position value.
- * @return array
- */
-function edac_sanitize_simplified_summary_position( $position ) {
-	if ( in_array( $position, array( 'before', 'after', 'none' ), true ) ) {
-		return $position;
-	}
-}
 
 /**
  * Render the radio input field for position option
  */
 function edac_simplified_summary_prompt_cb() {
-	$prompt = get_option( 'edac_simplified_summary_prompt' );
+
+	$key   = 'simplified_summary_prompt';
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
+	$name  = $ns . '[' . $key . ']';
+	$value = \EDAC\Admin\Options::get( $key );
+
 	?>
 		<fieldset>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_prompt'; ?>" id="<?php echo 'edac_simplified_summary_prompt'; ?>" value="when required" <?php checked( $prompt, 'when required' ); ?>>
+				<input type="radio" id="<?php echo esc_attr( 'edac_' . $key ); ?>" name="<?php echo esc_attr( $name ); ?>" value="when required" <?php checked( $value, 'when required' ); ?>>
 				<?php esc_html_e( 'When Required', 'accessibility-checker' ); ?>
 			</label>
 			<br>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_prompt'; ?>" value="always" <?php checked( $prompt, 'always' ); ?>>
+				<input type="radio" name="<?php echo esc_attr( $name ); ?>" value="always" <?php checked( $value, 'always' ); ?>>
 				<?php esc_html_e( 'Always', 'accessibility-checker' ); ?>
 			</label>
 			<br>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_prompt'; ?>" value="none" <?php checked( $prompt, 'none' ); ?>>
+				<input type="radio" name="<?php echo esc_attr( $name ); ?>" value="none" <?php checked( $value, 'none' ); ?>>
 				<?php esc_html_e( 'Never', 'accessibility-checker' ); ?>
 			</label>
 		</fieldset>
@@ -309,40 +290,34 @@ function edac_simplified_summary_prompt_cb() {
 	<?php
 }
 
-/**
- * Sanitize the text position value before being saved to database
- *
- * @param array $prompt The text.
- * @return array
- */
-function edac_sanitize_simplified_summary_prompt( $prompt ) {
-	if ( in_array( $prompt, array( 'when required', 'always', 'none' ), true ) ) {
-		return $prompt;
-	}
-}
 
 /**
  * Render the checkbox input field for post_types option
  */
 function edac_post_types_cb() {
 
-	$selected_post_types = get_option( 'edac_post_types' ) ? get_option( 'edac_post_types' ) : array();
+	$key  = 'post_types';
+	$ns   = \EDAC\Admin\Options::OPTION_NAME;
+	$name = $ns . '[' . $key . '][]';
+	
+	$selected_post_types = \EDAC\Admin\Options::get( $key );
 	$post_types          = edac_post_types();
 	$custom_post_types   = edac_custom_post_types();
 	$all_post_types      = ( is_array( $post_types ) && is_array( $custom_post_types ) ) ? array_merge( $post_types, $custom_post_types ) : array();
 	?>
 		<fieldset>
 			<?php
+
 			if ( $all_post_types ) {
 				foreach ( $all_post_types as $post_type ) {
 					$disabled = in_array( $post_type, $post_types, true ) ? '' : 'disabled';
 					?>
 					<label>
-						<input type="checkbox" name="<?php echo 'edac_post_types[]'; ?>" value="<?php echo esc_attr( $post_type ); ?>" 
-																<?php
-																checked( in_array( $post_type, $selected_post_types, true ), 1 );
-																echo esc_attr( $disabled );
-																?>
+						<input type="checkbox" id="<?php echo esc_attr( 'edac_' . $key ); ?>[]" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $post_type ); ?>" 
+							<?php
+							checked( in_array( $post_type, $selected_post_types, true ), 1 );
+							echo esc_attr( $disabled );
+							?>
 						>
 						<?php echo esc_html( $post_type ); ?>
 					</label>
@@ -370,16 +345,126 @@ function edac_post_types_cb() {
 		}
 }
 
+
 /**
- * Sanitize the post type value before being saved to database
+ * Render the checkbox input field for add footer accessibility statement option
+ */
+function edac_add_footer_accessibility_statement_cb() {
+
+	$key   = 'add_footer_accessibility_statement';
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
+	$name  = $ns . '[' . $key . ']';
+	$value = \EDAC\Admin\Options::get( $key );
+
+	?>
+	<fieldset>
+		<label>
+			<input type="checkbox" name="<?php echo esc_attr( $name ); ?>" value="1" <?php checked( $value, 1 ); ?>>
+			<?php esc_html_e( 'Add Footer Accessibility Statement', 'accessibility-checker' ); ?>
+		</label>
+	</fieldset>
+	<?php
+}
+
+
+/**
+ * Render the checkbox input field for add footer accessibility statement option
+ */
+function edac_include_accessibility_statement_link_cb() {
+
+	$key   = 'include_accessibility_statement_link';
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
+	$name  = $ns . '[' . $key . ']';
+	$value = \EDAC\Admin\Options::get( $key );
+
+	$disabled = \EDAC\Admin\Options::get( 'add_footer_accessibility_statement' ) ? \EDAC\Admin\Options::get( 'add_footer_accessibility_statement' ) : false;
+
+	?>
+	<fieldset>
+		<label>
+			<input type="checkbox" name="<?php echo esc_attr( $name ); ?>" value="<?php echo '1'; ?>" 
+													<?php
+													checked( $value, 1 );
+													disabled( $disabled, false );
+													?>
+			>
+			<?php esc_html_e( 'Include Link to Accessibility Policy', 'accessibility-checker' ); ?>
+		</label>
+	</fieldset>
+	<?php
+}
+
+
+/**
+ * Render the select field for accessibility policy page option
+ */
+function edac_accessibility_policy_page_cb() {
+
+	$key   = 'accessibility_policy_page';
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
+	$name  = $ns . '[' . $key . ']';
+	$value = \EDAC\Admin\Options::get( $key );
+
+	$policy_page = is_numeric( $value ) ? get_page_link( $value ) : $value;
+	?>
+
+	<input style="width: 100%;" type="text" id="<?php echo esc_attr( 'edac_' . $key ); ?>" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $policy_page ); ?>">
+
+	<?php
+}
+
+
+/**
+ * Render the accessibility statement preview
+ */
+function edac_accessibility_statement_preview_cb() {
+	echo wp_kses_post( 
+		( new \EDAC\Inc\Accessibility_Statement() )->get_accessibility_statement()
+	);
+}
+
+/**
+ * Render the checkbox input field for delete data option
+ */
+function edac_delete_data_cb() {
+
+	$key   = 'delete_data';
+	$ns    = \EDAC\Admin\Options::OPTION_NAME;
+	$name  = $ns . '[' . $key . ']';
+	$value = \EDAC\Admin\Options::get( $key );
+
+	?>
+	<fieldset>
+		<label>
+			<input type="checkbox" name="<?php echo esc_attr( $name ); ?>" value="1" <?php checked( $value, 1 ); ?>>
+			<?php esc_html_e( 'Delete all Accessibility Checker data when the plugin is uninstalled.', 'accessibility-checker' ); ?>
+		</label>
+	</fieldset>
+	<?php
+}
+
+/**
+ * Sanitize the data before saving to database.
  *
- * @param array $selected_post_types Post types to sanitize.
+ * @param array $input The array of data to sanitize.
  * @return array
  */
-function edac_sanitize_post_types( $selected_post_types ) {
-
+function edac_sanitize_settings_callback( $input ) {
+	
+	/**
+	 * If there are changes to the selected post types we need to:
+	 * 1) delete the unselected post types from the accessibility_checker database
+	 * 2) clear cached stats
+	*/
+	
+	if ( array_key_exists( 'post_types', $input ) ) {
+		$selected_post_types = $input['post_types'];
+	} else {
+		$selected_post_types = array();
+	}
 	$post_types = edac_post_types();
 
+		
 	if ( $selected_post_types ) {
 		foreach ( $selected_post_types as $key => $post_type ) {
 			if ( ! in_array( $post_type, $post_types, true ) ) {
@@ -402,7 +487,7 @@ function edac_sanitize_post_types( $selected_post_types ) {
 	}
 
 	// clear cached stats if selected posts types change.
-	if ( get_option( 'edac_post_types' ) !== $selected_post_types ) {
+	if ( \EDAC\Admin\Options::get( 'post_types' ) !== $selected_post_types ) {
 		$scan_stats = new \EDAC\Admin\Scans_Stats();
 		$scan_stats->clear_cache();
 
@@ -411,133 +496,11 @@ function edac_sanitize_post_types( $selected_post_types ) {
 		}
 	}
 
-	return $selected_post_types;
+	$input['post_types'] = $selected_post_types;
+
+
+	
+	// return all the sanitized $input data now ready for saving.
+	return $input;
 }
 
-/**
- * Render the checkbox input field for add footer accessibility statement option
- */
-function edac_add_footer_accessibility_statement_cb() {
-
-	$option = get_option( 'edac_add_footer_accessibility_statement' ) ? get_option( 'edac_add_footer_accessibility_statement' ) : false;
-
-	?>
-	<fieldset>
-		<label>
-			<input type="checkbox" name="edac_add_footer_accessibility_statement" value="1" <?php checked( $option, 1 ); ?>>
-			<?php esc_html_e( 'Add Footer Accessibility Statement', 'accessibility-checker' ); ?>
-		</label>
-	</fieldset>
-	<?php
-}
-
-/**
- * Sanitize add footer accessibility statement values before being saved to database
- *
- * @param int $option Option value to sanitize.
- * @return int
- */
-function edac_sanitize_add_footer_accessibility_statement( $option ) {
-	if ( 1 === (int) $option ) {
-		return $option;
-	}
-}
-
-/**
- * Render the checkbox input field for add footer accessibility statement option
- */
-function edac_include_accessibility_statement_link_cb() {
-
-	$option   = get_option( 'edac_include_accessibility_statement_link' ) ? get_option( 'edac_include_accessibility_statement_link' ) : false;
-	$disabled = get_option( 'edac_add_footer_accessibility_statement' ) ? get_option( 'edac_add_footer_accessibility_statement' ) : false;
-
-	?>
-	<fieldset>
-		<label>
-			<input type="checkbox" name="<?php echo 'edac_include_accessibility_statement_link'; ?>" value="<?php echo '1'; ?>" 
-													<?php
-													checked( $option, 1 );
-													disabled( $disabled, false );
-													?>
-			>
-			<?php esc_html_e( 'Include Link to Accessibility Policy', 'accessibility-checker' ); ?>
-		</label>
-	</fieldset>
-	<?php
-}
-
-/**
- * Sanitize add footer accessibility statement values before being saved to database
- *
- * @param int $option Option to sanitize.
- * @return int
- */
-function edac_sanitize_include_accessibility_statement_link( $option ) {
-	if ( 1 === (int) $option ) {
-		return $option;
-	}
-}
-
-/**
- * Render the select field for accessibility policy page option
- */
-function edac_accessibility_policy_page_cb() {
-
-	$policy_page = get_option( 'edac_accessibility_policy_page' );
-	$policy_page = is_numeric( $policy_page ) ? get_page_link( $policy_page ) : $policy_page;
-	?>
-
-	<input style="width: 100%;" type="text" name="edac_accessibility_policy_page" id="edac_accessibility_policy_page" value="<?php echo esc_attr( $policy_page ); ?>">
-
-	<?php
-}
-
-/**
- * Sanitize accessibility policy page values before being saved to database
- *
- * @param string $page Page to sanitize.
- * @return string
- */
-function edac_sanitize_accessibility_policy_page( $page ) {
-	if ( $page ) {
-		return esc_url( $page );
-	}
-}
-
-/**
- * Render the accessibility statement preview
- */
-function edac_accessibility_statement_preview_cb() {
-	echo wp_kses_post( 
-		( new \EDAC\Inc\Accessibility_Statement() )->get_accessibility_statement()
-	);
-}
-
-/**
- * Render the checkbox input field for delete data option
- */
-function edac_delete_data_cb() {
-
-	$option = get_option( 'edac_delete_data' ) ? get_option( 'edac_delete_data' ) : false;
-
-	?>
-	<fieldset>
-		<label>
-			<input type="checkbox" name="edac_delete_data" value="1" <?php checked( $option, 1 ); ?>>
-			<?php esc_html_e( 'Delete all Accessibility Checker data when the plugin is uninstalled.', 'accessibility-checker' ); ?>
-		</label>
-	</fieldset>
-	<?php
-}
-
-/**
- * Sanitize delete data values before being saved to database
- *
- * @param int $option Option to sanitize.
- * @return int
- */
-function edac_sanitize_delete_data_cb( $option ) {
-	if ( 1 === $option ) {
-		return $option;
-	}
-}

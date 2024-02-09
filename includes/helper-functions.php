@@ -221,7 +221,7 @@ function edac_is_gutenberg_active() {
  * @return int
  */
 function edac_days_active() {
-	$activation_date = get_option( 'edac_activation_date' );
+	$activation_date = \EDAC\Admin\Options::get( 'activation_date' );
 	if ( $activation_date ) {
 		$diff = strtotime( $activation_date ) - strtotime( gmdate( 'Y-m-d H:i:s' ) );
 		return abs( round( $diff / 86400 ) );
@@ -686,8 +686,8 @@ function edac_get_body_density_data( $html ) {
 			$body_content = preg_replace( '/[^A-Za-z0-9]/', '', $body_element->plaintext );
 
 			return array(
-				$body_elements_count,
-				strlen( $body_content ),
+				'issue_density_elements' => $body_elements_count,
+				'issue_density_strlen'   => strlen( $body_content ),
 			);
 
 		}

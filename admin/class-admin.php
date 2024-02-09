@@ -38,6 +38,9 @@ class Admin {
 		$site_health_info = new Information();
 		$site_health_info->init_hooks();
 		
+		Options::boot();
+		
+		
 		$this->init_ajax();
 	}
 
