@@ -26,6 +26,9 @@ class Admin {
 	 * @return void
 	 */
 	public function init() {
+
+		$update_database = new Update_Database();
+		$update_database->init_hooks();
 		
 		add_action( 'admin_enqueue_scripts', array( 'EDAC\Admin\Enqueue_Admin', 'enqueue' ) );
 
