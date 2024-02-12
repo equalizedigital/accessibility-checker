@@ -84,6 +84,6 @@ class EDACFrontendValidateTest extends WP_UnitTestCase {
 		$this->frontend_validate->validate();
 
 		// Assert that the edac_validate function was called.
-		$this->assertTrue( has_action( 'load', 'edac_validate' ) );
+		$this->assertIsNumeric( has_action( 'load', 'edac_validate' ) );
 	}
 }
