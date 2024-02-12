@@ -139,7 +139,6 @@ add_action( 'admin_head', 'edac_post_on_load' );
 add_filter( 'save_post', 'edac_save_post', 10, 3 );
 add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
-add_action( 'template_redirect', 'edac_before_page_render' );
 if ( is_plugin_active( 'oxygen/functions.php' ) ) {
 	add_action( 'added_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
@@ -186,31 +185,6 @@ function edac_include_rules_files() {
 	}
 }
 edac_include_rules_files();
-
-/**
- * Code that needs to run before the page is rendered
- *
- * @return void
- */
-function edac_before_page_render() {
-
-	global $pagenow;
-
-	if ( 'index.php' === $pagenow && false === is_customize_preview() && current_user_can( 'edit_posts' ) ) {
-
-		// Check the page if it hasn't already been checked.
-		global $post;
-		$post_id = is_object( $post ) ? $post->ID : null;       
-		if ( null === $post_id ) {
-			return;
-		}
-
-		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
-		if ( ! $checked ) {
-			edac_validate( $post->ID, $post, $action = 'load' );
-		}
-	}
-}
 
 /**
  * Summary Data
