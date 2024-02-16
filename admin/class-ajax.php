@@ -7,6 +7,8 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Inc\Summary_Generator;
+
 /**
  * Class that handles ajax requests.
  */
@@ -70,9 +72,9 @@ class Ajax {
 			$html['password_protected'] = $notice_text;
 			$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
 		}
-
+		
 		$post_id                   = (int) $_REQUEST['post_id'];
-		$summary                   = edac_summary( $post_id );
+		$summary                   = ( new Summary_Generator( $post_id ) )->generate_summary();
 		$simplified_summary_text   = '';
 		$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
 		$simplified_summary        = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
