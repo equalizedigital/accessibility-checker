@@ -9,9 +9,7 @@ namespace EDAC\Inc;
 
 use EDAC\Admin\Helpers;
 use EDAC\Admin\Scans_Stats;
-use EDAC\Admin\Settings;
-
-
+use EDAC\Admin\Scannable_Posts;
 
 /**
  * Class that initializes and handles the REST api
@@ -53,8 +51,8 @@ class REST_Api {
 					array(
 						'methods'             => array( 'GET', 'POST' ),
 						'callback'            => function () {
-							$messages = array();
-							$messages['time'] = time();
+							$messages          = array();
+							$messages['time']  = time();
 							$messages['perms'] = current_user_can( 'edit_posts' );
 
 							return new \WP_REST_Response( array( 'messages' => $messages ), 200 );
@@ -161,11 +159,10 @@ class REST_Api {
 	}
 
 
-
 	/**
 	 * REST handler that saves to the DB a list of js rule violations for a post.
 	 *
-	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 * @param WP_REST_Request $request The request passed from the REST call.
 	 *
 	 * @return \WP_REST_Response
 	 */
@@ -195,7 +192,7 @@ class REST_Api {
 		// TODO: setup a rules class for loading/filtering rules.
 		$rules       = edac_register_rules();
 		$js_rule_ids = array();
-		foreach ( $rules as $rule ) {   
+		foreach ( $rules as $rule ) {
 			if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
 				$js_rule_ids[] = $rule['slug'];
 			}
@@ -357,7 +354,7 @@ class REST_Api {
 		try {
 
 			$post_type            = strval( $request['slug'] );
-			$scannable_post_types = Settings::get_scannable_post_types();
+			$scannable_post_types = Scannable_Posts::get_scannable_post_types();
 
 			if ( in_array( $post_type, $scannable_post_types, true ) ) {
 
@@ -371,6 +368,7 @@ class REST_Api {
 					)
 				);
 			}
+
 			return new \WP_REST_Response( array( 'message' => 'The post type is not set to be scanned.' ), 400 );
 		} catch ( \Exception $ex ) {
 			return new \WP_REST_Response(
@@ -395,7 +393,7 @@ class REST_Api {
 
 			$scans_stats = new Scans_Stats( 60 * 5 );
 
-			$scannable_post_types = Settings::get_scannable_post_types();
+			$scannable_post_types = Scannable_Posts::get_scannable_post_types();
 
 			$post_types = get_post_types(
 				array(

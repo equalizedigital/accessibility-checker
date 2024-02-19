@@ -7,10 +7,12 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Admin\Helpers;
+
 /**
- * Class that handles plugin settings
+ * Class that handles scannable posts
  */
-class Settings {
+class Scannable_Posts {
 
 	/**
 	 * Gets a list of post statuses that are scannable.
@@ -20,7 +22,6 @@ class Settings {
 	public static function get_scannable_post_statuses() {
 		return array( 'publish', 'future', 'draft', 'pending', 'private' );
 	}
-
 
 	/**
 	 * Gets a list of post types that are scannable.
@@ -56,7 +57,6 @@ class Settings {
 		return \EDACP\Settings::get_scannable_post_types();
 	}
 
-
 	/**
 	 * Gets a count of posts that are scannable.
 	 *
@@ -71,10 +71,7 @@ class Settings {
 		$post_statuses = self::get_scannable_post_statuses();
 
 		if ( ! empty( $post_types ) && ! empty( $post_statuses ) ) {
-			$sql = "SELECT COUNT(id) FROM {$wpdb->posts}  WHERE post_type IN(" .
-				Helpers::array_to_sql_safe_list( $post_types ) . ') and post_status IN(' .
-				Helpers::array_to_sql_safe_list( $post_statuses ) .
-			')';
+			$sql = "SELECT COUNT(id) FROM {$wpdb->posts}  WHERE post_type IN(" . Helpers::array_to_sql_safe_list( $post_types ) . ') and post_status IN(' . Helpers::array_to_sql_safe_list( $post_statuses ) . ')';
 
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			return $wpdb->get_var( $sql );
