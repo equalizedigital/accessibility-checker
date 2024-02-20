@@ -250,7 +250,6 @@ class AccessibilityCheckerHighlight {
 		const onClick = ( e ) => {
 			const id = e.currentTarget.dataset.id;
 			this.showIssue( id );
-			this.focusTrapDescription();
 		};
 
 		tooltip.addEventListener( 'click', onClick );
@@ -335,7 +334,7 @@ class AccessibilityCheckerHighlight {
 			<button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
 				<div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
 				<div class="edac-highlight-panel-description-content"></div>
-				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>			
+				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
 			</div>
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
@@ -350,7 +349,7 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite">Disable Styles</button>
 					</div>
 				</div>
-			
+
 			</div>
 			</div>
 		`;
