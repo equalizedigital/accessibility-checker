@@ -56,21 +56,21 @@ By default, the Dev server maps these plugin folders if they exist:
 ```
 
 ### Package scripts
-`npm start` - starts wp-env
-`npm stop` - stops wp-env
-`npm run hard-reset` - destroys and rebuilds wp-env
-`npm run build` - builds JavaScript & CSS
-`npm run dev` - watches and automatically builds JavaScript & CSS
-`npm run lint` - lints the plugin's PHP and JavaScript
-`npm run lint:php` - lints the plugin's PHP
-`npm run lint:php:fix` - fixes linting issues in the plugin's PHP
-`npm run lint:js` - lints the plugin's JavaScript
-`npm run lint:js:fix` - fixes linting issues in the plugin's JavaScript
-`npm run dist` - builds a distributable .zip for the plugin into ./dist
-`npm run wp:clean` - resets the wp database for the Dev server 
-`npm run wp:sql` - opens a my-sql cli for the Dev server database
-`test:php` - runs the plugin's PHP unit test
-`test:e2e` - runs the plugin's End-to-End test
+- `npm start` - starts wp-env
+- `npm stop` - stops wp-env
+- `npm run hard-reset` - destroys and rebuilds wp-env
+- `npm run build` - builds JavaScript & CSS
+- `npm run dev` - watches and automatically builds JavaScript & CSS
+- `npm run lint` - lints the plugin's PHP and JavaScript
+- `npm run lint:php` - lints the plugin's PHP
+- `npm run lint:php:fix` - fixes linting issues in the plugin's PHP
+- `npm run lint:js` - lints the plugin's JavaScript
+- `npm run lint:js:fix` - fixes linting issues in the plugin's JavaScript
+- `npm run dist` - builds a distributable .zip for the plugin into ./dist
+- `npm run wp:clean` - resets the wp database for the Dev server 
+- `npm run wp:sql` - opens a my-sql cli for the Dev server database
+- `test:php` - runs the plugin's PHP unit test
+- `test:e2e` - runs the plugin's End-to-End test
 
 ## Support
 
