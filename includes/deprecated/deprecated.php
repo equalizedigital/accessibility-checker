@@ -18,3 +18,17 @@ function edac_check_plugin_active( $plugin_slug ) {
 	_deprecated_function( __FUNCTION__, '1.6.11', 'is_plugin_active()' );
 	return is_plugin_active( $plugin_slug );
 }
+
+/**
+ * Summary Data
+ * 
+ * @deprecated 1.9.0
+ *
+ * @param int $post_id ID of the post.
+ * @return array
+ */
+function edac_summary( $post_id ) {
+	_deprecated_function( __FUNCTION__, '1.9.0', 'EDAC\Inc\Summary_Generator' );
+
+	return ( new EDAC\Inc\Summary_Generator( $post_id ) )->generate_summary();
+}

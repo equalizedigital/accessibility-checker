@@ -249,7 +249,7 @@ class REST_Api {
 			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 2, 'js' );
 
 			// Update the summary info that is stored in meta this post.
-			edac_summary( $post_id );
+			( new Summary_Generator( $post_id ) )->generate_summary();
 
 			// store a record of this scan in the post's meta.
 			update_post_meta( $post_id, '_edac_post_checked_js', time() );
