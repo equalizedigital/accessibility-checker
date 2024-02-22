@@ -1,5 +1,18 @@
 Newer versions can be found in readme.txt.
 
+= 1.7.1 =
+* Fixed: classic editor save conflict
+* Fixed: password protection message displaying repeatedly
+* Fixed: frontend highlighting asset url and debug error
+
+= 1.7.0 =
+* Added: Architecture for JavaScript-based checks for better code analysis
+* Updated: Color contrast check now uses axe-core rule for improved accuracy
+* Fixed: Issue with frontend highlighting panel blocking interactions
+* Fixed: Compatibility issue with PHP 8+ related to 'false' to array conversion
+* Removed: PHP color contrast check replaced with axe-core rule
+* Fixed: Conflict with RSS feeds
+
 = 1.6.8 =
 * Updated: system info to stop showing edac_authorization_username & edac_authorization_username
 * Updated: system info to show edacp_authorization_username & edacp_authorization_username for pro users

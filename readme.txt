@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 6.2
 Tested up to: 6.4.3
-Stable tag: 1.8.1
+Stable tag: 1.9.0-beta.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,6 +171,28 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.9.0-beta.1 =
+* Created: class that creates the accessibility statement on activation
+* Removed: custom database query that checked for existing accessibility statement in exchange for the `get_page_by_path()` function
+* Fixed: bug with trying to compare the simplified summary ordinal value and added fallback
+* Removed: `wp_send_json_error()` from `simplified_summary` Ajax function when the simplified summary is empty
+* Added: simplified summary grade*level, message, and icon logic to the `summary()` Ajax
+* Fixed: issue with the submit button text showing as `Submit Query` in Firefox.
+* Updated: missing transcript rule to skip certain types of links
+* Added: missing UTM parameters to the welcome page URLs.
+* Removed: legacy system information code
+* Removed: cbschuld/browser.php composer package
+* Added: class structure for site health
+* Added: site health health information for free, pro, and audit history plugins
+* Added: update database class
+* Removed: `edac_before_page_render` functions from the main file
+* Added: frontend validate class
+* Added: frontend validate unit tests
+* Removed: unused new window warning meta update functions
+* Fixed: front end highlight focus issue
+* Added: summary generator class to replace the `edac_summary()` function
+* Deprecated: `edac_summary()` function
+
 = 1.8.1 =
 * Fixed: false positives on the incorrect heading order rule
 * Added: fallback to determine ordinal when php intl extension is not installed
@@ -221,18 +243,5 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Added: local PHPUnit to run on wp-env test
 * Updated: enqueue scripts and styles setup to only load assets in the proper environments
 * Updated: email signup form
-
-= 1.7.1 =
-* Fixed: classic editor save conflict
-* Fixed: password protection message displaying repeatedly
-* Fixed: frontend highlighting asset url and debug error
-
-= 1.7.0 =
-* Added: Architecture for JavaScript-based checks for better code analysis
-* Updated: Color contrast check now uses axe-core rule for improved accuracy
-* Fixed: Issue with frontend highlighting panel blocking interactions
-* Fixed: Compatibility issue with PHP 8+ related to 'false' to array conversion
-* Removed: PHP color contrast check replaced with axe-core rule
-* Fixed: Conflict with RSS feeds
 
 Older versions can be found in the plugins `changelog.txt`.
