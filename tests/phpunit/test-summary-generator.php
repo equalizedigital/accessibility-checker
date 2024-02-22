@@ -31,7 +31,7 @@ class EDACSummaryGeneratorTest extends WP_UnitTestCase {
 	 * 
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->post_id           = self::factory()->post->create();
 		$this->summary_generator = new Summary_Generator( $this->post_id );
@@ -42,7 +42,7 @@ class EDACSummaryGeneratorTest extends WP_UnitTestCase {
 	 *
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		wp_delete_post( $this->post_id, true );
 	}
