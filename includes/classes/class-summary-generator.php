@@ -118,7 +118,7 @@ class Summary_Generator {
 			);
 
 			// If count is zero, it means the rule has passed for this post.
-			if ( 0 === $count ) {
+			if ( 0 === (int) $count ) {
 				++$passed_count;
 			}
 		}
