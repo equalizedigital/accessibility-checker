@@ -45,7 +45,7 @@ class PurgePostDataTest extends TestCase {
 		);
 
 		// Insert data into the 'accessibility_checker' table.
-		$wpdb->insert( // phpcs:ignore WordPress.DB -- this is just one-time use date for testing.
+		$wpdb->insert( // phpcs:ignore WordPress.DB -- this is just one-time use data for testing.
 			$table_name,
 			array(
 				'postid' => $this->valid_post_id,
