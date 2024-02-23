@@ -58,7 +58,7 @@ class Purge_Post_Data {
 	 *
 	 * @param string $post_type Post Type.
 	 *
-	 * @return void
+	 * @return bool|int|\mysqli_result|void
 	 */
 	public static function delete_cpt_posts( string $post_type ) {
 
