@@ -62,7 +62,7 @@ class Purge_Post_Data {
 	 */
 	public static function delete_cpt_posts( string $post_type ) {
 
-		if ( ! $post_type ) {
+		if ( ! $post_type || ! post_type_exists( $post_type ) ) {
 			return;
 		}
 
