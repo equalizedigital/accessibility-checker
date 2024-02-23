@@ -128,7 +128,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/meta-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
 
 /**
  * Filters and Actions
