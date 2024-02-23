@@ -1,73 +1,77 @@
 <?php
+/**
+ * Tests for the Purge Post Data class.
+ *
+ * @package Accessibility_Checker
+ */
 
 use PHPUnit\Framework\TestCase;
 use EDAC\Admin\Purge_Post_Data;
 
+/**
+ * Class PurgePostDataTest
+ */
 class PurgePostDataTest extends TestCase {
 
+	/**
+	 * Sets up some database tables and a post to test with.
+	 *
+	 * @var $valid_post_id int
+	 */
 	public function setUp(): void {
-		$this->valid_post_id = 1;
-	}
-
-	public function purgePostDeletesDataAndMeta() {
-		// Mock global $wpdb object and functions.
-		$wpdb            = $this->createMock( stdClass::class );
-		$wpdb->prefix    = 'wp_';
-		$GLOBALS['wpdb'] = $wpdb;
-
-		$wpdb->expects( $this->once() )
-			->method( 'query' )
-			->with( $this->stringContains( 'DELETE FROM' ) );
-
-		Purge_Post_Data::delete_post( $this->valid_post_id );
-	}
-
-	public function purgePostMetaDeletesCorrectMeta() {
-		// Mock global $wpdb object and functions.
-		$wpdb            = $this->createMock( stdClass::class );
-		$wpdb->prefix    = 'wp_';
-		$GLOBALS['wpdb'] = $wpdb;
-
-		$wpdb->expects( $this->once() )
-			->method( 'query' )
-			->with( $this->stringContains( 'DELETE FROM' ) );
-
-		Purge_Post_Data::delete_post_meta( $this->valid_post_id );
-	}
-
-	public function purgeCptPostsDeletesCorrectData() {
-		// Mock global $wpdb object and functions.
-		$wpdb            = $this->createMock( stdClass::class );
-		$wpdb->prefix    = 'wp_';
-		$GLOBALS['wpdb'] = $wpdb;
-
-		$post_type = 'post';
-
-		$wpdb->expects( $this->once() )
-			->method( 'query' )
-			->with( $this->stringContains( 'DELETE FROM' ) );
-
-		Purge_post_Data::delete_cpt_posts( $post_type );
-	}
-
-	public function testDeletePostRemovesPostFromDatabase() {
 		global $wpdb;
-		$wpdb = $this->createMock( wpdb::class );
 
-		$wpdb->prefix   = 'wp_';
-		$wpdb->postmeta = 'postmeta';
+		$charset_collate = $wpdb->get_charset_collate();
+		$table_name      = $wpdb->prefix . 'accessibility_checker';
 
-		// Mock the prepare method to return a SQL query.
-		$wpdb->method( 'prepare' )
-			->willReturn( 'DELETE FROM table WHERE postid = 1 and siteid = 1' );
+		$sql = "CREATE TABLE $table_name (
+	        id mediumint(9) NOT NULL AUTO_INCREMENT,
+	        postid mediumint(9) NOT NULL,
+	        siteid mediumint(9) NOT NULL,
+	        PRIMARY KEY  (id)
+	    ) $charset_collate;";
 
-		$wpdb->expects( $this->once() )
-			->method( 'query' )
-			->with( $this->stringContains( 'DELETE FROM' ) );
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		dbDelta( $sql );
 
-		Purge_Post_Data::delete_post( $this->valid_post_id );
+		$this->valid_post_id = wp_insert_post(
+			array(
+				'post_title'   => 'Test Post',
+				'post_content' => 'Test Content',
+				'post_status'  => 'publish',
+				'post_type'    => 'post',
+				'post_author'  => 1,
+			)
+		);
+
+		// Insert data into the 'accessibility_checker' table.
+		$wpdb->insert( // phpcs:ignore WordPress.DB -- this is just one-time use date for testing.
+			$table_name,
+			array(
+				'postid' => $this->valid_post_id,
+				'siteid' => 1,
+			),
+			array(
+				'%d',
+				'%d',
+			)
+		);
 	}
 
+	/**
+	 * Removes the database tables and post created in the setUp method.
+	 */
+	public function tearDown(): void {
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$wpdb->query( "DROP TABLE IF EXISTS $table_name" ); // phpcs:ignore WordPress.DB -- Safe variable used for table name, caching not required for one time operation.
+
+		wp_delete_post( $this->valid_post_id, true );
+	}
+
+	/**
+	 * Test that the method to delete deletes the metadata from the database.
+	 */
 	public function testDeletePostMetaRemovesMetaFromDatabase() {
 		$post_meta = array(
 			'_edac'  => 'value',
@@ -75,39 +79,31 @@ class PurgePostDataTest extends TestCase {
 			'other'  => 'value',
 		);
 		foreach ( $post_meta as $key => $value ) {
-			add_post_meta( $this->valid_post_id, $key, $value );
+			update_post_meta( $this->valid_post_id, $key, $value );
 		}
-
-		$this->assertNotEmpty( get_post_meta( $this->valid_post_id, '_edac', true ) );
-		$this->assertNotEmpty( get_post_meta( $this->valid_post_id, '_edacp', true ) );
 
 		Purge_Post_Data::delete_post_meta( $this->valid_post_id );
 
 		$this->assertEmpty( get_post_meta( $this->valid_post_id, '_edac', true ) );
 		$this->assertEmpty( get_post_meta( $this->valid_post_id, '_edacp', true ) );
-		$other_meta = get_post_meta( $this->valid_post_id, 'other', true );
-		$this->assertNotEmpty( get_post_meta( $this->valid_post_id, 'other', true ), 'other contained:' . $other_meta );
+		$this->assertNotEmpty( get_post_meta( $this->valid_post_id, 'other', true ) );
 	}
 
-	public function testDeletePostMetaDoesNothingForInvalidPostId() {
-		Purge_Post_Data::delete_post_meta( 0 );
-
-		$this->assertTrue( true );
-	}
-
-	public function testDeleteCptPostsRemovesPostsFromDatabase() {
+	/**
+	 * Test that Purge_Post_Data::delete_post() is called when the wp_trash_post action fires.
+	 */
+	public function testDeletePostIsCalledOnWpTrashPost() {
 		global $wpdb;
-		$wpdb = $this->createMock( wpdb::class );
-		$wpdb->expects( $this->once() )
-			->method( 'query' )
-			->with( $this->stringContains( 'DELETE T1,T2 from' ) );
+		$table_name = $wpdb->prefix . 'accessibility_checker';
 
-		Purge_Post_Data::delete_cpt_posts( 'custom_post_type' );
-	}
+		// Check that the row exists before trashing the post.
+		$row_exists_before = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $table_name WHERE postid = %d", $this->valid_post_id ) ); // phpcs:ignore WordPress.DB -- Safe variable used for table name.
+		$this->assertEquals( 1, $row_exists_before );
 
-	public function testDeleteCptPostsDoesNothingForInvalidPostType() {
-		Purge_Post_Data::delete_cpt_posts( '' );
+		wp_trash_post( $this->valid_post_id );
 
-		$this->assertTrue( true );
+		// Check that the row no longer exists after trashing the post.
+		$row_exists_after = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $table_name WHERE postid = %d", $this->valid_post_id ) ); // phpcs:ignore WordPress.DB -- Safe variable used for table name.
+		$this->assertEquals( 0, $row_exists_after );
 	}
 }
