@@ -22,7 +22,7 @@ class Insert_Rule_Data {
 	 *
 	 * @return void|int
 	 */
-	public function insert( $post, $rule, $ruletype, $rule_obj ) {
+	public function insert( object $post, string $rule, string $ruletype, string $rule_obj ) {
 
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'accessibility_checker';
