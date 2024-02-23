@@ -24,6 +24,10 @@ class Insert_Rule_Data {
 	 */
 	public function insert( object $post, string $rule, string $ruletype, string $rule_obj ) {
 
+		if ( ! $post || ! $rule || ! $ruletype || ! $rule_obj ) {
+			return;
+		}
+
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 
