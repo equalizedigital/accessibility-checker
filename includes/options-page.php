@@ -5,6 +5,8 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin\Purge_Post_Data;
+
 /**
  * Check if user can ignore or can manage options
  *
@@ -338,7 +340,7 @@ function edac_post_types_cb() {
 					$disabled = in_array( $post_type, $post_types, true ) ? '' : 'disabled';
 					?>
 					<label>
-						<input type="checkbox" name="<?php echo 'edac_post_types[]'; ?>" value="<?php echo esc_attr( $post_type ); ?>" 
+						<input type="checkbox" name="<?php echo 'edac_post_types[]'; ?>" value="<?php echo esc_attr( $post_type ); ?>"
 																<?php
 																checked( in_array( $post_type, $selected_post_types, true ), 1 );
 																echo esc_attr( $disabled );
@@ -397,7 +399,7 @@ function edac_sanitize_post_types( $selected_post_types ) {
 	// delete unselected post type issues.
 	if ( $unselected_post_types ) {
 		foreach ( $unselected_post_types as $unselected_post_type ) {
-			edac_delete_cpt_posts( $unselected_post_type );
+			Purge_Post_Data::delete_cpt_posts( $unselected_post_type );
 		}
 	}
 
@@ -454,7 +456,7 @@ function edac_include_accessibility_statement_link_cb() {
 	?>
 	<fieldset>
 		<label>
-			<input type="checkbox" name="<?php echo 'edac_include_accessibility_statement_link'; ?>" value="<?php echo '1'; ?>" 
+			<input type="checkbox" name="<?php echo 'edac_include_accessibility_statement_link'; ?>" value="<?php echo '1'; ?>"
 													<?php
 													checked( $option, 1 );
 													disabled( $disabled, false );
@@ -508,7 +510,7 @@ function edac_sanitize_accessibility_policy_page( $page ) {
  * Render the accessibility statement preview
  */
 function edac_accessibility_statement_preview_cb() {
-	echo wp_kses_post( 
+	echo wp_kses_post(
 		( new \EDAC\Inc\Accessibility_Statement() )->get_accessibility_statement()
 	);
 }
