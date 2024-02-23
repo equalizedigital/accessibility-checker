@@ -15,11 +15,11 @@ class Purge_Post_Data {
 	/**
 	 * Purge deleted posts
 	 *
-	 * @param init $post_id ID of the post.
+	 * @param int $post_id ID of the post.
 	 *
 	 * @return void
 	 */
-	public static function delete_post( $post_id ) {
+	public static function delete_post( int $post_id ) {
 		global $wpdb;
 		$site_id    = get_current_blog_id();
 		$table_name = $wpdb->prefix . 'accessibility_checker';
@@ -37,7 +37,7 @@ class Purge_Post_Data {
 	 *
 	 * @return void
 	 */
-	public static function delete_post_meta( $post_id ) {
+	public static function delete_post_meta( int $post_id ) {
 
 		if ( ! $post_id ) {
 			return;
@@ -57,9 +57,10 @@ class Purge_Post_Data {
 	 * Purge issues by post type
 	 *
 	 * @param string $post_type Post Type.
+	 *
 	 * @return void
 	 */
-	public static function delete_cpt_posts( $post_type ) {
+	public static function delete_cpt_posts( string $post_type ) {
 
 		if ( ! $post_type ) {
 			return;
