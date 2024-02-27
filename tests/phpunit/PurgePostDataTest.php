@@ -107,6 +107,10 @@ class PurgePostDataTest extends TestCase {
 		$row_exists_before = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $table_name WHERE postid = %d", $this->valid_post_id ) ); // phpcs:ignore WordPress.DB -- Safe variable used for table name.
 		$this->assertEquals( 1, $row_exists_before );
 
+		// The action is now added in the init method the Admin class which is
+		// not loaded here in this test class so need to manually hos this in.
+		add_action( 'wp_trash_post', array( Purge_Post_Data::class, 'delete_post' ) );
+
 		wp_trash_post( $this->valid_post_id );
 
 		// Check that the row no longer exists after trashing the post.
