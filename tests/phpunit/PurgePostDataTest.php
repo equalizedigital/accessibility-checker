@@ -14,6 +14,13 @@ use EDAC\Admin\Purge_Post_Data;
 class PurgePostDataTest extends TestCase {
 
 	/**
+	 * The ID of a post that can be used for testing.
+	 *
+	 * @var int
+	 */
+	public $valid_post_id;
+
+	/**
 	 * Sets up some database tables and a post to test with.
 	 *
 	 * @var $valid_post_id int
