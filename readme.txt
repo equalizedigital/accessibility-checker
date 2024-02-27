@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
 Requires at least: 6.2
 Tested up to: 6.4.3
-Stable tag: 1.9.0-beta.1
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,7 +171,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
-= 1.9.0-beta.1 =
+= 1.9.0 =
 * Created: class that creates the accessibility statement on activation
 * Removed: custom database query that checked for existing accessibility statement in exchange for the `get_page_by_path()` function
 * Fixed: bug with trying to compare the simplified summary ordinal value and added fallback
