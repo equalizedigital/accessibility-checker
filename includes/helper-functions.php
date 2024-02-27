@@ -302,29 +302,6 @@ function edac_post_types() {
 }
 
 /**
- * Processes all EDAC actions sent via POST and GET by looking for the 'edac-action'
- * request and running do_action() to call the function
- *
- * @return void
- */
-function edac_process_actions() {
-
-	// if this fails, check_admin_referer() will automatically print a "failed" page and die.
-	if ( ! empty( $_POST ) && isset( $_POST['edac_download_sysinfo_nonce'] ) && check_admin_referer( 'edac_download_sysinfo', 'edac_download_sysinfo_nonce' ) ) {
-
-		$edac_action = isset( $_POST['edac-action'] ) ? sanitize_key( $_POST['edac-action'] ) : '';
-
-		if ( isset( $_POST['edac-action'] ) ) {
-			do_action( 'edac_' . $edac_action, $_POST );
-		}
-
-		if ( isset( $_GET['edac-action'] ) ) {
-			do_action( 'edac_' . $edac_action, $_GET );
-		}
-	}
-}
-
-/**
  * String Get HTML
  *
  * @param string  $str string to parse.
@@ -755,4 +732,128 @@ function edac_get_simplified_summary( $post = null ) {
 	echo wp_kses_post(
 		( new \EDAC\Inc\Simplified_Summary() )->simplified_summary_markup( $post )
 	);
+}
+
+/**
+ * Get Post Count by available custom post types
+ *
+ * @return mixed
+ */
+function edac_get_posts_count() {
+
+	$output = array();
+
+	$post_types = get_option( 'edac_post_types' );
+	if ( $post_types ) {
+		foreach ( $post_types as $post_type ) {
+
+			$counts = wp_count_posts( $post_type );
+
+			if ( $counts ) {
+				foreach ( $counts as $key => $value ) {
+					// phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+					if ( 0 == $value ) {
+						unset( $counts->{$key} );
+					}
+				}
+			}
+
+			if ( $counts ) {
+				$array = array();
+				foreach ( $counts as $key => $value ) {
+					$array[] = $key . ' = ' . $value;
+				}
+				if ( $array ) {
+					$output[] = $post_type . ': ' . implode( ', ', $array );
+				}
+			}
+		}
+	}
+
+	if ( $output ) {
+		return implode( ', ', $output );
+	}
+	return false;
+}
+
+/**
+ * Get Raw Global Error Count
+ *
+ * @return array
+ */
+function edac_get_error_count() {
+	global $wpdb;
+
+	// Define a unique cache key for our data.
+	$cache_key     = 'edac_errors_' . get_current_blog_id();
+	$stored_errors = wp_cache_get( $cache_key );
+
+	// Check if the result exists in the cache.
+	if ( false === $stored_errors ) {
+		// If not, perform the database query.
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$stored_errors = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'error' ) );
+
+		// Save the result in the cache for future use.
+		wp_cache_set( $cache_key, $stored_errors );
+	}
+
+	return $stored_errors;
+}
+
+/**
+ * Get Raw Global Warning Count
+ *
+ * @return array Array of.
+ */
+function edac_get_warning_count() {
+	global $wpdb;
+
+	// Define a unique cache key for our data.
+	$cache_key       = 'edac_warnings_' . get_current_blog_id();
+	$stored_warnings = wp_cache_get( $cache_key );
+
+	// Check if the result exists in the cache.
+	if ( false === $stored_warnings ) {
+		// If not, perform the database query.
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$stored_warnings = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i WHERE siteid = %d AND ruletype = %s', $table_name, get_current_blog_id(), 'warning' ) );
+
+		// Save the result in the cache for future use.
+		wp_cache_set( $cache_key, $stored_warnings );
+	}
+
+	return $stored_warnings;
+}
+
+
+/**
+ * Get Database Table Count
+ *
+ * @param string $table Database table.
+ * @return int
+ */
+function edac_database_table_count( $table ) {
+	global $wpdb;
+
+	// Create a unique cache key based on the table's name.
+	$cache_key = 'edac_table_count_' . $table;
+
+	// Try to get the count from the cache first.
+	$count = wp_cache_get( $cache_key );
+
+	if ( false === $count ) {
+		// If the count is not in the cache, perform the database query.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$count = $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM %i', $wpdb->prefix . $table ) );
+
+		// Save the count to the cache for future use.
+		wp_cache_set( $cache_key, $count );
+	}
+
+	return $count;
 }
