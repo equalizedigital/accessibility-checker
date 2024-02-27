@@ -38,7 +38,7 @@ function edac_summary( $post_id ) {
 /**
  * Purge deleted posts
  *
- * @deprecated 1.9.0
+ * @deprecated 2.0.0
  *
  * @param int $post_id ID of the post.
  * @return void
@@ -51,7 +51,7 @@ function edac_delete_post( $post_id ) {
 /**
  * Delete post meta
  *
- * @deprecated 1.9.0
+ * @deprecated 2.0.0
  *
  * @param int $post_id ID of the post.
  * @return void
@@ -64,7 +64,7 @@ function edac_delete_post_meta( $post_id ) {
 /**
  * Purge issues by post type
  *
- * @deprecated 1.9.0
+ * @deprecated 2.0.0
  *
  * @param string $post_type Post Type.
  * @return void
