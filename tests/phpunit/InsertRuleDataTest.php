@@ -87,7 +87,7 @@ class InsertRuleDataTest extends WP_UnitTestCase {
 
 		// should throw an exception because of missing parameters.
 		$this->expectException( TypeError::class );
-		$rule_inserter->insert();
+		$rule_inserter->insert(); // phpcs:ignore -- intentionally passing something that will cause an exception.
 
 		// check that row count has not increased since last check.
 		$current_row_count = $wpdb->get_var( "SELECT COUNT(*) FROM $this->table_name" ); // phpcs:ignore WordPress.DB -- caching not required for one time operation.
