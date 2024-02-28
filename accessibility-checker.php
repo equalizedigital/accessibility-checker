@@ -124,7 +124,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/activation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/meta-boxes.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
@@ -133,8 +132,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
  * Filters and Actions
  */
 add_action( 'add_meta_boxes', 'edac_register_meta_boxes' );
-add_action( 'admin_menu', 'edac_add_options_page' );
-add_action( 'admin_init', 'edac_register_setting' );
 add_action( 'admin_head', 'edac_post_on_load' );
 add_filter( 'save_post', 'edac_save_post', 10, 3 );
 add_action( 'wp_trash_post', 'edac_delete_post' );

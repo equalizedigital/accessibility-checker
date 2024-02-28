@@ -7,6 +7,8 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Admin\Scannable_Posts;
+
 /**
  * Class that handles widgets
  */
@@ -46,7 +48,7 @@ class Widgets {
 
 		<div class="edac-widget">';
 
-		if ( Settings::get_scannable_post_types() && Settings::get_scannable_post_statuses() ) {
+		if ( Scannable_Posts::get_scannable_post_types() && Scannable_Posts::get_scannable_post_statuses() ) {
 
 			$pro_modal_html = '';
 			if ( ( ! is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ||
@@ -166,7 +168,7 @@ class Widgets {
 
 				<tbody>';
 
-				$scannable_post_types = Settings::get_scannable_post_types();
+				$scannable_post_types = Scannable_Posts::get_scannable_post_types();
 
 				$post_types = get_post_types(
 					array(
@@ -234,7 +236,7 @@ class Widgets {
 
 		$html .= '<div class="edac-summary-notice edac-summary-notice-is-truncated edac-hidden">Your site has a large number of issues. For performance reasons, not all issues have been included in this report.</div>';
 
-		if ( ! Settings::get_scannable_post_types() || ! Settings::get_scannable_post_statuses() ) {
+		if ( ! Scannable_Posts::get_scannable_post_types() || ! Scannable_Posts::get_scannable_post_statuses() ) {
 
 			$html .= '<div class="edac-summary-notice edac-summary-notice-no-posts">There are no pages set to be checked. Update the post types to be checked under the
 			<a href="/wp-admin/admin.php?page=accessibility_checker_settings">general settings</a> tab.</div>';
