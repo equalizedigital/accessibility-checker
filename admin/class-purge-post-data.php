@@ -26,11 +26,16 @@ class Purge_Post_Data {
 	 */
 	public static function delete_post( int $post_id ) {
 		global $wpdb;
-		$site_id    = get_current_blog_id();
-		$table_name = $wpdb->prefix . 'accessibility_checker';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-		$wpdb->query( $wpdb->prepare( 'DELETE FROM %i WHERE postid = %d and siteid = %d', $table_name, $post_id, $site_id ) );
+		$wpdb->query(
+			$wpdb->prepare(
+				'DELETE FROM %i WHERE postid = %d and siteid = %d',
+				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
+				$post_id,
+				get_current_blog_id()
+			)
+		);
 
 		self::delete_post_meta( $post_id );
 	}
@@ -76,7 +81,6 @@ class Purge_Post_Data {
 		}
 
 		global $wpdb;
-		$site_id = get_current_blog_id();
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 		return $wpdb->query(
@@ -84,7 +88,7 @@ class Purge_Post_Data {
 				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON T1.post_id = T2.postid WHERE T1.meta_key like %s and T2.siteid=%d and T2.type=%s",
 				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
 				'_edac%',
-				$site_id,
+				get_current_blog_id(),
 				$post_type
 			)
 		);
