@@ -44,7 +44,7 @@ function edac_summary( $post_id ) {
  * @return void
  */
 function edac_delete_post( $post_id ) {
-	_deprecated_function( __FUNCTION__, '1.9.0', 'EDAC\Admin\Purge_Post_Data::delete_post' );
+	_deprecated_function( __FUNCTION__, '2.0.0', 'EDAC\Admin\Purge_Post_Data::delete_post' );
 	Purge_Post_Data::delete_post( $post_id );
 }
 
@@ -57,7 +57,7 @@ function edac_delete_post( $post_id ) {
  * @return void
  */
 function edac_delete_post_meta( $post_id ) {
-	_deprecated_function( __FUNCTION__, '1.9.0', 'EDAC\Admin\Purge_Post_Data::delete_post_meta' );
+	_deprecated_function( __FUNCTION__, '2.0.0', 'EDAC\Admin\Purge_Post_Data::delete_post_meta' );
 	Purge_Post_Data::delete_post_meta( $post_id );
 }
 
@@ -70,6 +70,6 @@ function edac_delete_post_meta( $post_id ) {
  * @return void
  */
 function edac_delete_cpt_posts( $post_type ) {
-	_deprecated_function( __FUNCTION__, '1.9.0', 'EDAC\Admin\Purge_Post_Data::delete_cpt_posts' );
+	_deprecated_function( __FUNCTION__, '2.0.0', 'EDAC\Admin\Purge_Post_Data::delete_cpt_posts' );
 	Purge_Post_Data::delete_cpt_posts( $post_type );
 }
