@@ -64,7 +64,6 @@ class InsertRuleDataTest extends WP_UnitTestCase {
 		$ruletype = 'ruletype';
 		$rule_obj = 'rule_obj';
 
-		sleep( 2 );
 		global $wpdb;
 
 		$rule_inserter     = new Insert_Rule_Data();
