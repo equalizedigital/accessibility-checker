@@ -18,7 +18,7 @@
     "dev": "npx webpack --watch --mode development",
     "dist": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh && composer install",
     "lint": "./vendor/bin/phpcs && npm run lint:js",
-	"lint-staged-precommit": "lint-staged && npm run lint:js",
+    "lint-staged-precommit": "lint-staged && npm run lint:js",
     "lint:php": "./vendor/bin/phpcs",
     "lint:php:fix": "./vendor/bin/phpcbf",
     "lint:js": "wp-scripts lint-js",
