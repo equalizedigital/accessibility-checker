@@ -11,7 +11,7 @@ use EDAC\Admin\Purge_Post_Data;
 /**
  * Class PurgePostDataTest
  */
-class PurgePostDataTest extends TestCase {
+class PurgePostDataTest extends WP_UnitTestCase {
 
 	/**
 	 * The ID of a post that can be used for testing.
@@ -41,15 +41,7 @@ class PurgePostDataTest extends TestCase {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
 
-		$this->valid_post_id = wp_insert_post(
-			array(
-				'post_title'   => 'Test Post',
-				'post_content' => 'Test Content',
-				'post_status'  => 'publish',
-				'post_type'    => 'post',
-				'post_author'  => 1,
-			)
-		);
+		$this->valid_post_id = $this->factory()->post->create();
 
 		// Insert data into the 'accessibility_checker' table.
 		$wpdb->insert( // phpcs:ignore WordPress.DB -- this is just one-time use data for testing.
