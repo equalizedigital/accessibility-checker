@@ -81,7 +81,7 @@ class Purge_Post_Data {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 		return $wpdb->query(
 			$wpdb->prepare(
-				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON t1.post_id = T2.postid WHERE t1.meta_key like %s and T2.siteid=%d and T2.type=%s",
+				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON T1.post_id = T2.postid WHERE T1.meta_key like %s and T2.siteid=%d and T2.type=%s",
 				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
 				'_edac%',
 				$site_id,
