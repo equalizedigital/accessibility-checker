@@ -38,7 +38,7 @@ function edac_summary( $post_id ) {
 /**
  * Insert rule date into database
  *
- * @deprecated 1.9.0
+ * @deprecated 2.0.0
  *
  * @param object $post     The post object.
  * @param string $rule     The rule.
@@ -47,6 +47,6 @@ function edac_summary( $post_id ) {
  * @return void|int
  */
 function edac_insert_rule_data( $post, $rule, $ruletype, $rule_obj ) {
-	_deprecated_function( __FUNCTION__, '1.9.0', 'EDAC\Admin\Insert_Rule_Data' );
+	_deprecated_function( __FUNCTION__, '2.0.0', 'EDAC\Admin\Insert_Rule_Data' );
 	return ( new Insert_Rule_Data() )->insert( $post, $rule, $ruletype, $rule_obj );
 }

@@ -2,6 +2,8 @@
 /**
  * Inserts rule data about a post to the database
  *
+ * @since 2.0.0
+ *
  * @package Accessibility_Checker
  */
 
@@ -9,11 +11,15 @@ namespace EDAC\Admin;
 
 /**
  * Class for inserting rule data into the database
+ *
+ * @since 2.0.0
  */
 class Insert_Rule_Data {
 
 	/**
 	 * Insert rule data into database
+	 *
+	 * @since 2.0.0
 	 *
 	 * @param object $post     The post object.
 	 * @param string $rule     The rule.
