@@ -184,4 +184,4 @@ function edac_include_rules_files() {
 		}
 	}
 }
-edac_include_rules_files();
+add_action( 'init', 'edac_include_rules_files' );
