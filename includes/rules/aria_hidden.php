@@ -18,11 +18,18 @@ function edac_rule_aria_hidden( $content, $post ) { // phpcs:ignore -- $post is 
 	$errors   = array();
 	$elements = $dom->find( '[aria-hidden="true"]' );
 
+	$attributes_that_make_this_valid_hidden_use = array(
+		'class' => 'wp-block-spacer',
+		'role'  => 'presentation',
+	);
+
 	if ( $elements ) {
 		foreach ( $elements as $element ) {
 
-			if ( stristr( $element->getAttribute( 'class' ), 'wp-block-spacer' ) ) {
-				continue;
+			foreach ( $attributes_that_make_this_valid_hidden_use as $attribute => $value ) {
+				if ( stristr( $element->getAttribute( $attribute ), $value ) ) {
+					continue 2;
+				}
 			}
 
 			$errors[] = $element;
