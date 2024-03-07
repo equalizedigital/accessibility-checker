@@ -60,6 +60,43 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Tests the edac_rule_aria_hidden function detects aria-hidden="true".
+	 */
+	public function test_edac_rule_aria_hidden_finds_hidden() {
+
+		$errors = $this->get_errors_from_rule_check( $this->get_test_markup( 'element_with_aria-hidden' ) );
+		$this->assertNotEmpty( $errors );
+
+		// can handle single quotes.
+		$errors = $this->get_errors_from_rule_check( str_replace( '"', "'", $this->get_test_markup( 'element_with_aria-hidden' ) ) );
+		$this->assertNotEmpty( $errors );
+	}
+
+	/**
+	 * Tests the edac_rule_aria_hidden function doesn't detect an issue when aria-hidden="false".
+	 */
+	public function test_edac_rule_aria_hidden_skips_hidden_false() {
+
+		$this->assertEmpty(
+			$this->get_errors_from_rule_check(
+				$this->get_test_markup( 'element_with_aria-hidden_false' )
+			)
+		);
+	}
+
+	/**
+	 * Tests that aria-hidden="true" is ignored when the element is a spacer block.
+	 */
+	public function test_edac_rule_aria_hidden_skips_spacer_block() {
+
+		$this->assertEmpty(
+			$this->get_errors_from_rule_check(
+				$this->get_test_markup( 'element_that_is_wp-block-spacer' )
+			)
+		);
+	}
+
+	/**
 	 * Wrapper to generate dom objects that match the shape of the object in the plugin.
 	 *
 	 * @param string $html_string HTML string.
