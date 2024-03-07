@@ -7,6 +7,8 @@
 
 /**
  * Various different test cases and situations to be run against the aria-hidden rule.
+ *
+ * @group rules
  */
 class AriaHiddenTest extends WP_UnitTestCase {
 
@@ -92,6 +94,71 @@ class AriaHiddenTest extends WP_UnitTestCase {
 		$this->assertEmpty(
 			$this->get_errors_from_rule_check(
 				$this->get_test_markup( 'element_that_is_wp-block-spacer' )
+			)
+		);
+	}
+	/**
+	 * Tests that aria-hidden="true" is ignored when the element is flagged presentational.
+	 */
+	public function test_edac_rule_aria_hidden_skips_presentational() {
+
+		$this->assertEmpty(
+			$this->get_errors_from_rule_check(
+				$this->get_test_markup( 'image_that_is_presentational' )
+			)
+		);
+	}
+
+	/**
+	 * Tests that aria-hidden="true" is allowed when the parent has an aria-label that is not empty.
+	 */
+	public function test_edac_rule_aria_hidden_allows_hidden_with_parent_that_has_label() {
+
+		$button_with_aria_label    = $this->get_test_markup( 'button_with_aria-label' );
+		$button_without_aria_label = preg_replace( '/aria-label="[^"]+"/', '', $button_with_aria_label );
+
+		$this->assertEmpty( $this->get_errors_from_rule_check( $button_with_aria_label ) );
+		$this->assertNotEmpty( $this->get_errors_from_rule_check( $button_without_aria_label ) );
+
+		$link_with_aria_label    = $this->get_test_markup( 'link_with_aria-label' );
+		$link_without_aria_label = preg_replace( '/aria-label="[^"]+"/', '', $button_with_aria_label );
+
+		$this->assertEmpty( $this->get_errors_from_rule_check( $link_with_aria_label ) );
+		$this->assertNotEmpty( $this->get_errors_from_rule_check( $link_without_aria_label ) );
+	}
+
+	/**
+	 * Tests that aria-hidden="true" is allowed when the parent has a screen reader text.
+	 */
+	public function test_edac_rule_aria_hidden_allows_hidden_with_parent_that_has_screen_reader_text() {
+
+		$this->assertEmpty(
+			$this->get_errors_from_rule_check(
+				$this->get_test_markup( 'button_with_screen_reader_text' )
+			)
+		);
+
+		$this->assertEmpty(
+			$this->get_errors_from_rule_check(
+				$this->get_test_markup( 'link_with_screen_reader_text' )
+			)
+		);
+	}
+
+	/**
+	 * Tests that aria-hidden="true" is allowed when the parent has visible text.
+	 */
+	public function test_edac_rule_aria_hidden_allows_hidden_with_parent_that_has_visible_text() {
+
+		$this->assertEmpty(
+			$this->get_errors_from_rule_check(
+				$this->get_test_markup( 'button_with_visible_text' )
+			)
+		);
+
+		$this->assertEmpty(
+			$this->get_errors_from_rule_check(
+				$this->get_test_markup( 'link_with_visible_text' )
 			)
 		);
 	}
