@@ -58,4 +58,44 @@ class AriaHiddenTest extends WP_UnitTestCase {
 		);
 		return $markup_fragments[ $type ] ?? '';
 	}
+
+	/**
+	 * Wrapper to generate dom objects that match the shape of the object in the plugin.
+	 *
+	 * @param string $html_string HTML string.
+	 * @return EDAC_Dom
+	 */
+	private function get_DOM( string $html_string = '' ) {
+		$lowercase         = true;
+		$force_tags_closed = true;
+		$target_charset    = DEFAULT_TARGET_CHARSET;
+		$strip_rn          = true;
+		$default_br_text   = DEFAULT_BR_TEXT;
+		$default_span_text = DEFAULT_SPAN_TEXT;
+
+		$dom = new EDAC_Dom(
+			$html_string,
+			$lowercase,
+			$force_tags_closed,
+			$target_charset,
+			$strip_rn,
+			$default_br_text,
+			$default_span_text
+		);
+		return $dom;
+	}
+
+	/**
+	 * Wrapper to produce $dom nodes and run the rule check.
+	 *
+	 * @param string $html_string HTML string.
+	 * @return array
+	 */
+	private function get_errors_from_rule_check( string $html_string = '' ) {
+		$dom             = $this->get_DOM( $html_string );
+		$content['html'] = $dom;
+		$post            = $this->factory()->post->create_and_get();
+
+		return edac_rule_aria_hidden( $content, $post );
+	}
 }
