@@ -45,7 +45,8 @@ class Frontend_Highlight {
 		if ( ! $results ) {
 			return null;
 		}
-		return $results;
+
+		return Helpers::filter_results_to_only_active_rules( $results );
 	}
 
 	/**
@@ -76,8 +77,15 @@ class Frontend_Highlight {
 
 		$output = array();
 		foreach ( $results as $result ) {
-			$array     = array();
-			$rule      = edac_filter_by_value( $rules, 'slug', $result['rule'] );
+			$array = array();
+			$rule  = edac_filter_by_value( $rules, 'slug', $result['rule'] );
+
+			// When rules are filtered out, they are not in the rules array and this can be empty. Skip when the rule
+			// is empty to avoid php warnings and passing null values to the frontend highlighter.
+			if ( ! $rule ) {
+				continue;
+			}
+
 			$rule_type = ( true === (bool) $result['ignre'] ) ? 'ignored' : $rule[0]['rule_type'];
 
 			$array['rule_type']  = $rule_type;
