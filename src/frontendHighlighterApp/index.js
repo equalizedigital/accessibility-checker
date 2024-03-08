@@ -498,16 +498,13 @@ class AccessibilityCheckerHighlight {
 		this.panelControls.style.display = 'block';
 		this.panelToggle.style.display = 'none';
 
+		// previous and next buttons are disabled until we have issues to show.
+		this.nextButton.disabled = true;
+		this.previousButton.disabled = true;
+
 		// Get the issues for this page.
 		this.highlightAjax().then(
 			( json ) => {
-				if ( json.length === 0 ) {
-					this.nextButton.disabled = true;
-					this.previousButton.disabled = true;
-				} else {
-					this.nextButton.disabled = false;
-					this.previousButton.disabled = false;
-				}
 
 				this.issues = json;
 
@@ -790,6 +787,10 @@ class AccessibilityCheckerHighlight {
 		let textContent = 'No issues detected.';
 		if ( errorCount > 0 || warningCount > 0 || ignoredCount > 0 ) {
 			textContent = '';
+			// show buttons since we have issues.
+			this.nextButton.disabled = false;
+			this.previousButton.disabled = false;
+
 			if ( errorCount >= 0 ) {
 				textContent += errorCount + ' error' + ( errorCount === 1 ? '' : 's' ) + ', ';
 			}
