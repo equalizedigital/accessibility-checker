@@ -165,7 +165,15 @@ class AccessibilityCheckerHighlight {
 							resolve( responseJson );
 						} else {
 							resolve(
-								responseJson.filter( ( item ) => ( item.id === self.urlParameter || item.rule_type !== 'ignored' ) )
+								responseJson.filter( ( item ) => {
+									// When rules are filtered off from php we can get null values for some properties
+									// here. This should be fixed upstream but handling it here as well for robustness.
+									if ( item.rule_type === null ) {
+										return false;
+									}
+
+									return ( item.id === self.urlParameter || item.rule_type !== 'ignored' );
+								} )
 							);
 						}
 					} else {
