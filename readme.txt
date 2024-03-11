@@ -1,14 +1,14 @@
 === Equalize Digital Accessibility Checker - Audit Your Website for WCAG, ADA, and Section 508 Accessibility Errors ===
 Contributors: equalizedigital, alh0319, stevejonesdev
-Tags: accessibility, accessible, wcag, ada, WP accessibility, section 508, aoda, a11y, audit, readability, content analysis
+Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.4.3
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
-Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance for WCAG compliance. No API or per page fees.
+Ensure your site's accessibility with a pre-publish audit. Get in-post WCAG compliance help without API or per-page fees.
 
 == Description ==
 
@@ -170,6 +170,12 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.9.2 =
+* Fixed: filtered rules are not passed to the frontend highlighter, avoiding 'null' state issues
+* Updated: frontend highlighter buttons to be disabled until issues are confirmed
+* Updated: frontend highlighter buttons to show only after we know there are issues to display
+* Updated: frontend highlighter to not show buttons if none are returned
 
 = 1.9.1 =
 * Updated: `edac_include_rules_files to fire on init action to fix the `edac_filter_register_rules` filter timing
