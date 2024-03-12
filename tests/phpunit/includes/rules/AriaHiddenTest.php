@@ -158,7 +158,7 @@ class AriaHiddenTest extends WP_UnitTestCase {
 
 		$this->assertEmpty(
 			$this->get_errors_from_rule_check(
-				$this->get_test_markup( 'link_with_visible_text' )
+				$this->get_test_markup( 'element_with_aria_hidden' )
 			)
 		);
 	}
@@ -195,7 +195,7 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	 * @param string $html_string HTML string.
 	 * @return array
 	 */
-	private function get_errors_from_rule_check( string $html_string = '' ) {
+	private function get_errors_from_rule_check( string $html_string = '' ): array {
 		$dom             = $this->get_DOM( $html_string );
 		$content['html'] = $dom;
 		$post            = $this->factory()->post->create_and_get();
