@@ -13,55 +13,6 @@
 class AriaHiddenTest extends WP_UnitTestCase {
 
 	/**
-	 * Collection of different markup to use for test cases.
-	 *
-	 * @param string $type a key to the array of markup fragments.
-	 * @return string
-	 */
-	private function get_test_markup( string $type = '' ): string {
-		$markup_fragments = array(
-			'element_with_aria-hidden'        => '<div aria-hidden="true"></div>',
-			'element_with_aria-hidden_false'  => '<div aria-hidden="false"></div>',
-			'element_that_is_wp-block-spacer' => '<div aria-hidden="true" class="wp-block-spacer"></div>',
-			'button_with_aria-label'          => <<<EOT
-				<button type="button" aria-haspopup="true" aria-label="Open menu" class="components-button wp-block-navigation__responsive-container-open" inert="true">
-				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
-				</button>
-			EOT,
-			'link_with_aria-label'            => <<<EOT
-				<a href="http://example.com" aria-label="label">
-					    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
-				</a>
-			EOT,
-			'link_with_screen_reader_text'    => <<<EOT
-				<a href="/about" >
-				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
-				<span class="sr-only">About Us</span>
-			EOT,
-			'button_with_screen_reader_text'  => <<<EOT
-				<button type="button" aria-haspopup="true" class="components-button wp-block-navigation__responsive-container-open" inert="true">
-				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
-				<span class="sr-only">Open menu</span>
-				</button>
-			EOT,
-			'link_with_visible_text'          => <<<EOT
-				<a href="/about" >
-				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
-				About Us
-				</a>
-			EOT,
-			'button_with_visible_text'        => <<<EOT
-				<button type="button" aria-haspopup="true" class="components-button wp-block-navigation__responsive-container-open" inert="true">
-				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
-				Menu
-				</button>
-			EOT,
-			'image_that_is_presentational'    => '<img src="http://example.com/image.jpg" aria-hidden="true" role="presentation" />',
-		);
-		return $markup_fragments[ $type ] ?? '';
-	}
-
-	/**
 	 * Tests the edac_rule_aria_hidden function detects aria-hidden="true".
 	 */
 	public function test_edac_rule_aria_hidden_finds_hidden() {
@@ -146,24 +97,6 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Tests that aria-hidden="true" is allowed when the parent has visible text.
-	 */
-	public function test_edac_rule_aria_hidden_allows_hidden_with_parent_that_has_visible_text() {
-
-		$this->assertEmpty(
-			$this->get_errors_from_rule_check(
-				$this->get_test_markup( 'button_with_visible_text' )
-			)
-		);
-
-		$this->assertEmpty(
-			$this->get_errors_from_rule_check(
-				$this->get_test_markup( 'element_with_aria_hidden' )
-			)
-		);
-	}
-
-	/**
 	 * Wrapper to generate dom objects that match the shape of the object in the plugin.
 	 *
 	 * @param string $html_string HTML string.
@@ -193,5 +126,136 @@ class AriaHiddenTest extends WP_UnitTestCase {
 		$post            = $this->factory()->post->create_and_get();
 
 		return edac_rule_aria_hidden( $content, $post );
+	}
+
+	/**
+	 * Tests that the screen reader text classes are detected.
+	 *
+	 * @dataProvider screen_reader_test_classes
+	 *
+	 * @param string $sibling_class class name.
+	 * @param bool   $pass pass or fail.
+	 */
+	public function test_screen_reader_text_classes( string $sibling_class, bool $pass ) {
+		$markup   = <<<EOT
+			<div class="parent">
+				<div aria-hidden="true"></div>
+				<div class="$sibling_class">Some text maybe for screenreaders</div>
+			</div>;
+		EOT;
+		$dom      = $this->get_DOM( $markup );
+		$siblings = $dom->find( '.parent > *' );
+		$this->assertEquals( $pass, edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( $siblings ) );
+	}
+
+	/**
+	 * Collection of different markup to use for test cases.
+	 *
+	 * @param string $type a key to the array of markup fragments.
+	 * @return string
+	 */
+	private function get_test_markup( string $type = '' ): string {
+		$markup_fragments = array(
+			'element_with_aria-hidden'        => '<div aria-hidden="true"></div>',
+			'element_with_aria-hidden_false'  => '<div aria-hidden="false"></div>',
+			'element_that_is_wp-block-spacer' => '<div aria-hidden="true" class="wp-block-spacer"></div>',
+			'button_with_aria-label'          => <<<EOT
+				<button type="button" aria-haspopup="true" aria-label="Open menu" class="components-button wp-block-navigation__responsive-container-open" inert="true">
+				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
+				</button>
+			EOT,
+			'link_with_aria-label'            => <<<EOT
+				<a href="http://example.com" aria-label="label">
+					    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
+				</a>
+			EOT,
+			'link_with_screen_reader_text'    => <<<EOT
+				<a href="/about" >
+				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
+				<span class="sr-only">About Us</span>
+			EOT,
+			'button_with_screen_reader_text'  => <<<EOT
+				<button type="button" aria-haspopup="true" class="components-button wp-block-navigation__responsive-container-open" inert="true">
+				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
+				<span class="sr-only">Open menu</span>
+				</button>
+			EOT,
+			'link_with_visible_text'          => <<<EOT
+				<a href="/about" >
+				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
+				About Us
+				</a>
+			EOT,
+			'button_with_visible_text'        => <<<EOT
+				<button type="button" aria-haspopup="true" class="components-button wp-block-navigation__responsive-container-open" inert="true">
+				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
+				Menu
+				</button>
+			EOT,
+			'image_that_is_presentational'    => '<img src="http://example.com/image.jpg" aria-hidden="true" role="presentation" />',
+		);
+		return $markup_fragments[ $type ] ?? '';
+	}
+
+	/**
+	 * Tests that the screen reader text classes are detected.
+	 *
+	 * @dataProvider screen_reader_test_classes
+	 */
+	public function screen_reader_test_classes(): array {
+		return array(
+			array(
+				'sibling_class' => 'screen-reader-text',
+				'pass'          => true,
+			),
+			array(
+				'sibling_class' => 'sr-only',
+				'pass'          => true,
+			),
+			array(
+				'sibling_class' => 'show-for-sr',
+				'pass'          => true,
+			),
+			array(
+				'sibling_class' => 'visuallyhidden',
+				'pass'          => true,
+			),
+			array(
+				'sibling_class' => 'visually-hidden',
+				'pass'          => true,
+			),
+			array(
+				'sibling_class' => 'hidden-visually',
+				'pass'          => true,
+			),
+			array(
+				'sibling_class' => 'invisible',
+				'pass'          => true,
+			),
+			array(
+				'sibling_class' => 'accessibly-hidden',
+				'pass'          => true,
+			),
+			array(
+				'sibling_class' => 'hide',
+				'pass'          => true,
+			),
+			array(
+				'sibling_class' => 'hidden',
+				'pass'          => true,
+			),
+			array(
+				'sibling_class' => 'not-screen-reader-text',
+				'pass'          => false,
+			),
+			array(
+				'sibling_class' => 'hide-for-sr',
+				'pass'          => false,
+			),
+			array(
+				'sibling_class' => 'anotherClass anything-else and-anotherClass',
+				'pass'          => false,
+			),
+		);
 	}
 }
