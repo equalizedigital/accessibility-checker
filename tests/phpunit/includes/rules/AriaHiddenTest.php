@@ -170,23 +170,15 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	 * @return EDAC_Dom
 	 */
 	private function get_DOM( string $html_string = '' ) {
-		$lowercase         = true;
-		$force_tags_closed = true;
-		$target_charset    = DEFAULT_TARGET_CHARSET;
-		$strip_rn          = true;
-		$default_br_text   = DEFAULT_BR_TEXT;
-		$default_span_text = DEFAULT_SPAN_TEXT;
-
-		$dom = new EDAC_Dom(
+		return new EDAC_Dom(
 			$html_string,
-			$lowercase,
-			$force_tags_closed,
-			$target_charset,
-			$strip_rn,
-			$default_br_text,
-			$default_span_text
+			true,
+			true,
+			DEFAULT_TARGET_CHARSET,
+			true,
+			DEFAULT_BR_TEXT,
+			DEFAULT_SPAN_TEXT
 		);
-		return $dom;
 	}
 
 	/**
