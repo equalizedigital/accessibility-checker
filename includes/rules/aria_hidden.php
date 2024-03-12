@@ -73,7 +73,7 @@ function edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( array $
 
 	foreach ( $siblings as $sibling ) {
 		foreach ( $common_screen_reader_classes as $class ) {
-			if ( stristr( $sibling->getAttribute( 'class' ), $class ) ) {
+			if ( strtolower( $sibling->getAttribute( 'class' ) ) === $class ) {
 				return true;
 			}
 		}
