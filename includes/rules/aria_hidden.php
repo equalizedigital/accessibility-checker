@@ -52,6 +52,8 @@ function edac_rule_aria_hidden( $content, $post ) { // phpcs:ignore -- $post is 
 /**
  * Check if the siblings are screen reader text elements.
  *
+ * @since 1.10.0
+ *
  * @param array $siblings Array of siblings.
  * @return bool
  */
@@ -81,6 +83,8 @@ function edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( array $
 
 /**
  * Check if the parent has a valid situation to avoid flagging aria-hidden="true" warning.
+ *
+ * @since 1.10.0
  *
  * @param object $parent_node  The parent element.
  * @param object $element The element.
