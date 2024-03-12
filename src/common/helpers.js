@@ -1,4 +1,5 @@
 import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
 
 export const showNotice = ( options ) => {
 	const settings = Object.assign( {}, {
@@ -36,12 +37,14 @@ export const showNotice = ( options ) => {
 			wp.data.dispatch( 'core/notices' ).createNotice( settings.type, msg, o );
 		}, 10 );
 	} else {
-		const link = document.createElement( 'link' );
-		link.href = 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css';
-		link.type = 'text/css';
-		link.rel = 'stylesheet';
-		link.media = 'screen,print';
-		document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
+		if ( window.edac_editor_app && window.edac_editor_app.baseurl ) {
+			// output the css file build/css/editorApp.css that contains notyf styles.
+			const link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.edac_editor_app.baseurl + '/build/css/editorApp.css';
+			document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
+		}
 
 		let msg = settings.msg;
 

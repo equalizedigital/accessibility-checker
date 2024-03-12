@@ -50,6 +50,11 @@ module.exports = {
 					'sass-loader',
 				],
 			},
+			// test for just css files so that they are extracted from css in js.
+			{
+				test: /\.css$/i,
+				use: [ MiniCssExtractPlugin.loader, 'css-loader' ],
+			},
 			// loader for images and icons (required if css references image files)
 			{
 				test: /\.(svg|png|jpg|gif)$/,
