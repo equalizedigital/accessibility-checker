@@ -37,11 +37,46 @@ function edac_rule_aria_hidden( $content, $post ) { // phpcs:ignore -- $post is 
 				continue;
 			}
 
+			$siblings = $parent_node->children();
+			if ( $siblings && edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( $siblings ) ) {
+				continue;
+			}
+
 			$errors[] = $element;
 		}
 	}
 
 	return $errors;
+}
+
+/**
+ * Check if the siblings are screen reader text elements.
+ *
+ * @param array $siblings Array of siblings.
+ * @return bool
+ */
+function edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( array $siblings ): bool {
+	$common_screen_reader_classes = array(
+		'screen-reader-text',
+		'sr-only',
+		'show-for-sr',
+		'visuallyhidden',
+		'visually-hidden',
+		'hidden-visually',
+		'invisible',
+		'accessibly-hidden',
+		'hide',
+		'hidden',
+	);
+
+	foreach ( $siblings as $sibling ) {
+		foreach ( $common_screen_reader_classes as $class ) {
+			if ( stristr( $sibling->getAttribute( 'class' ), $class ) ) {
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 /**
