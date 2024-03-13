@@ -17,13 +17,14 @@ class Admin_Notices {
 	 */
 	public function __construct() {
 	}
-	
+
 	/**
 	 * Initialize class hooks.
 	 *
 	 * @return void
 	 */
 	public function init_hooks() {
+
 		add_action( 'in_admin_header', array( $this, 'edac_remove_admin_notices' ), 1000 );
 		add_action( 'admin_notices', array( $this, 'edac_black_friday_notice' ) );
 		add_action( 'wp_ajax_edac_black_friday_notice_ajax', array( $this, 'edac_black_friday_notice_ajax' ) );
@@ -236,6 +237,10 @@ class Admin_Notices {
 	 */
 	public function edac_review_notice() {
 
+		if ( ! Helpers::current_user_can_see_widget() ) {
+			return;
+		}
+
 		$option             = 'edac_review_notice';
 		$edac_review_notice = get_option( $option );
 
@@ -352,8 +357,8 @@ class Admin_Notices {
 	 * @return string
 	 */
 	public function edac_password_protected_notice() {
-		if ( (bool) get_option( 'edac_password_protected' ) 
-			&& ! (bool) get_option( 'edac_password_protected_notice_dismiss' ) 
+		if ( (bool) get_option( 'edac_password_protected' )
+			&& ! (bool) get_option( 'edac_password_protected_notice_dismiss' )
 		) {
 			echo wp_kses( '<div class="edac_password_protected_notice notice notice-error is-dismissible"><p>' . $this->edac_password_protected_notice_text() . '</p></div>', 'post' );
 			return;
