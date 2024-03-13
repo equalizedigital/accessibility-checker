@@ -30,7 +30,11 @@ class Insert_Rule_Data {
 	 */
 	public function insert( object $post, string $rule, string $ruletype, string $rule_obj ) {
 
-		if ( ! $post || ! $rule || ! $ruletype || ! $rule_obj ) {
+		if ( ! isset( $post->ID, $post->post_type )
+			|| empty( $rule )
+			|| empty( $ruletype )
+			|| empty( $rule_obj )
+		) {
 			return;
 		}
 
