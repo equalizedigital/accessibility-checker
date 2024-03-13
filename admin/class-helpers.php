@@ -218,7 +218,7 @@ class Helpers {
 	 *
 	 * @since 1.9.3
 	 */
-	public static function current_user_can_see_widget(): bool {
+	public static function current_user_can_see_widgets_and_notices(): bool {
 		/**
 		 * Filter the capability required to view the dashboard widget.
 		 *
