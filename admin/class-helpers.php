@@ -226,9 +226,6 @@ class Helpers {
 		 *
 		 * @param string $capability The capability required to view the dashboard widget.
 		 */
-		if ( current_user_can( apply_filters( 'edac_filter_dashboard_widget_capability', 'edit_posts' ) ) ) {
-			return true;
-		}
-		return false;
+		return current_user_can( apply_filters( 'edac_filter_dashboard_widget_capability', 'edit_posts' ) );
 	}
 }
