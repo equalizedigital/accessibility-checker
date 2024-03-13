@@ -217,6 +217,8 @@ class Helpers {
 	 * to see various widgets or notices.
 	 *
 	 * @since 1.9.3
+	 *
+	 * @return bool True if the current user has capabilities required, false otherwise.
 	 */
 	public static function current_user_can_see_widgets_and_notices(): bool {
 		/**
