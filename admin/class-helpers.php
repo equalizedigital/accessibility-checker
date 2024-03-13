@@ -211,4 +211,24 @@ class Helpers {
 		}
 		return $results;
 	}
+
+	/**
+	 * Do a capability check for the current user to ensure they have the required capability
+	 * to see various widgets or notices.
+	 *
+	 * @since 1.9.3
+	 */
+	public static function current_user_can_see_widget(): bool {
+		/**
+		 * Filter the capability required to view the dashboard widget.
+		 *
+		 * @since 1.9.3
+		 *
+		 * @param string $capability The capability required to view the dashboard widget.
+		 */
+		if ( current_user_can( apply_filters( 'edac_filter_dashboard_widget_capability', 'edit_posts' ) ) ) {
+			return true;
+		}
+		return false;
+	}
 }

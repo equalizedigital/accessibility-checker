@@ -27,14 +27,8 @@ class Widgets {
 	 * @return void
 	 */
 	public function dashboard_setup() {
-		/**
-		 * Filter the capability required to view the dashboard widget.
-		 *
-		 * @since 1.10.0
-		 *
-		 * @param string $capability The capability required to view the dashboard widget.
-		 */
-		if ( ! current_user_can( apply_filters( 'edac_filter_dashboard_widget_capability', 'edit_posts' ) ) ) {
+
+		if ( ! Helpers::current_user_can_see_widget() ) {
 			return;
 		}
 		wp_add_dashboard_widget(
