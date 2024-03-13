@@ -252,10 +252,6 @@ class Admin_Notices {
 	 */
 	public function edac_review_notice() {
 
-		if ( ! Helpers::current_user_can_see_widget() ) {
-			return;
-		}
-
 		$option             = 'edac_review_notice';
 		$edac_review_notice = get_option( $option );
 
