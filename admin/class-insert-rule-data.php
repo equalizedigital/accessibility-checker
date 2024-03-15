@@ -113,9 +113,27 @@ class Insert_Rule_Data {
 			// filter post types.
 			$rule_data = apply_filters( 'edac_filter_insert_rule_data', $rule_data );
 
-			// insert.
+			// Sanitize rule data since it is filtered, and we can't be sure
+			// the data is still as valid as it was when it was first set.
+			// Sanitize the filtered data.
+			$rule_data_sanitized = array(
+				'postid'        => absint( $rule_data['postid'] ),
+				'siteid'        => absint( $rule_data['siteid'] ),
+				'type'          => sanitize_text_field( $rule_data['type'] ),
+				'rule'          => sanitize_text_field( $rule_data['rule'] ),
+				'ruletype'      => sanitize_text_field( $rule_data['ruletype'] ),
+				'object'        => esc_attr( $rule_data['object'] ),
+				'recordcheck'   => absint( $rule_data['recordcheck'] ),
+				'user'          => absint( $rule_data['user'] ),
+				'ignre'         => absint( $rule_data['ignore'] ),
+				'ignre_user'    => isset( $rule_data['ignore_user'] ) ? absint( $rule_data['ignore_user'] ) : null,
+				'ignre_date'    => isset( $rule_data['ignore_date'] ) ? sanitize_text_field( $rule_data['ignore_date'] ) : null,
+				'ignre_comment' => isset( $rule_data['ignore_comment'] ) ? sanitize_text_field( $rule_data['ignore_comment'] ) : null,
+				'ignre_global'  => absint( $rule_data['ignore_global'] ),
+			);
+
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Using direct query for adding data to database.
-			$wpdb->insert( $table_name, $rule_data );
+			$wpdb->insert( $table_name, $rule_data_sanitized );
 
 			// Return insert id or error.
 			return $wpdb->insert_id;
