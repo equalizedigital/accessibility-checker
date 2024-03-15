@@ -44,32 +44,32 @@ function edac_summary( $post_id ) {
  * @return void
  */
 function edac_delete_post( $post_id ) {
-	_deprecated_function( __FUNCTION__, '2.0.0', 'EDAC\Admin\Purge_Post_Data::delete_post' );
+	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Purge_Post_Data::delete_post' );
 	Purge_Post_Data::delete_post( $post_id );
 }
 
 /**
  * Delete post meta
  *
- * @deprecated 2.0.0
+ * @deprecated 1.10.0
  *
  * @param int $post_id ID of the post.
  * @return void
  */
 function edac_delete_post_meta( $post_id ) {
-	_deprecated_function( __FUNCTION__, '2.0.0', 'EDAC\Admin\Purge_Post_Data::delete_post_meta' );
+	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Purge_Post_Data::delete_post_meta' );
 	Purge_Post_Data::delete_post_meta( $post_id );
 }
 
 /**
  * Purge issues by post type
  *
- * @deprecated 2.0.0
+ * @deprecated 1.10.0
  *
  * @param string $post_type Post Type.
  * @return void
  */
 function edac_delete_cpt_posts( $post_type ) {
-	_deprecated_function( __FUNCTION__, '2.0.0', 'EDAC\Admin\Purge_Post_Data::delete_cpt_posts' );
+	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Purge_Post_Data::delete_cpt_posts' );
 	Purge_Post_Data::delete_cpt_posts( $post_type );
 }

@@ -11,14 +11,14 @@ namespace EDAC\Admin;
  * Uses sql queries to get and purge post data from the database for given post
  * ids or for custom posts by post_type string.
  *
- * @since 2.0.0
+ * @since 1.10.0
  */
 class Purge_Post_Data {
 
 	/**
 	 * Purge deleted posts
 	 *
-	 * @since 2.0.0
+	 * @since 1.10.0
 	 *
 	 * @param int $post_id ID of the post.
 	 *
@@ -43,7 +43,7 @@ class Purge_Post_Data {
 	/**
 	 * Delete post meta
 	 *
-	 * @since 2.0.0
+	 * @since 1.10.0
 	 *
 	 * @param int $post_id ID of the post.
 	 *
@@ -68,7 +68,7 @@ class Purge_Post_Data {
 	/**
 	 * Purge issues by post type
 	 *
-	 * @since 2.0.0
+	 * @since 1.10.0
 	 *
 	 * @param string $post_type Post Type.
 	 *
