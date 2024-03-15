@@ -21,12 +21,13 @@ class Insert_Rule_Data {
 	 *
 	 * @since 1.10.0
 	 *
-	 * @param object $post     The post object.
+	 * @param object $post     The post object. Must have a valid ID.
 	 * @param string $rule     The rule.
 	 * @param string $ruletype The rule type.
 	 * @param string $rule_obj The object.
 	 *
-	 * @return void|int
+	 * @return void|int|\WP_Error The ID of the inserted record, void if no
+	 * record was inserted or a WP_Error if the insert failed.
 	 */
 	public function insert( object $post, string $rule, string $ruletype, string $rule_obj ) {
 
