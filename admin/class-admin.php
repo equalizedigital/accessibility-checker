@@ -8,6 +8,7 @@
 namespace EDAC\Admin;
 
 use EDAC\Admin\SiteHealth\Information;
+use EDAC\Admin\Purge_Post_Data;
 
 /**
  * Admin handling class.
@@ -29,8 +30,9 @@ class Admin {
 
 		$update_database = new Update_Database();
 		$update_database->init_hooks();
-		
+
 		add_action( 'admin_enqueue_scripts', array( 'EDAC\Admin\Enqueue_Admin', 'enqueue' ) );
+		add_action( 'wp_trash_post', array( Purge_Post_Data::class, 'delete_post' ) );
 
 		$admin_notices = new Admin_Notices();
 		$admin_notices->init_hooks();
@@ -40,7 +42,7 @@ class Admin {
 
 		$site_health_info = new Information();
 		$site_health_info->init_hooks();
-		
+
 		$this->init_ajax();
 	}
 
