@@ -190,13 +190,6 @@ return array(
 		'summary'   => esc_html__( 'An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then "Ignore" the warning.', 'accessibility-checker' ),
 	),
 	array(
-		'title'     => esc_html__( 'ARIA Hidden', 'accessibility-checker' ),
-		'info_url'  => 'https://a11ychecker.com/help1979',
-		'slug'      => 'aria_hidden',
-		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden="true" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, "Ignore" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden="true" attribute to resolve the warning.', 'accessibility-checker' ),
-	),
-	array(
 		'title'     => esc_html__( 'Empty Table Header', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1963',
 		'slug'      => 'empty_table_header',
