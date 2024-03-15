@@ -44,7 +44,6 @@ function edac_rule_aria_hidden( $content, $post ) { // phpcs:ignore -- $post is 
 				}
 			}
 
-
 			$errors[] = $element;
 		}
 	}
