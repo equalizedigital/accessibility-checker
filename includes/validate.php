@@ -51,6 +51,8 @@ function edac_post_on_load() {
  * @param object $post    The post object being saved.
  * @param bool   $update  Whether this is an existing post being updated.
  *
+ * @modified 1.10.0 to add a return when post_status is trash.
+ *
  * @return void
  */
 function edac_save_post( $post_ID, $post, $update ) {
@@ -62,6 +64,11 @@ function edac_save_post( $post_ID, $post, $update ) {
 
 	// prevents first past of save_post due to meta boxes on post editor in gutenberg.
 	if ( empty( $_POST ) ) {
+		return;
+	}
+
+	// Ignore posts in, or going to, trash.
+	if ( 'trash' === $post->post_status ) {
 		return;
 	}
 
@@ -200,7 +207,7 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 	if ( 0 === count( $rule_slugs ) ) {
 		return;
 	}
-	
+
 	if ( 1 === $pre ) {
 
 		// Set record flag before validating content.
