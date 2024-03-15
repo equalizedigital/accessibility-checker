@@ -151,14 +151,34 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	/**
 	 * Test elements with aria-label that are not links or buttons still error.
 	 */
-	public function test_parent_with_lable_that_is_not_link_or_button_errors() {
+	public function test_parent_with_label_that_is_not_link_or_button_errors() {
 
 		$test_elements = array( 'div', 'span', 'section' );
 		foreach ( $test_elements as $element ) {
 			$markup = "<$element aria-label='label'><div aria-hidden='true'></div></$element>";
-			$errors = $this->get_errors_from_rule_check( $markup );
+			$dom    = $this->get_DOM( $markup );
+			$errors = $this->get_errors_from_rule_check( $dom );
 			$this->assertNotEmpty( $errors );
 		}
+	}
+
+	/**
+	 * Test that parents with likely visible text pass.
+	 */
+	public function test_parent_with_likely_visible_text_passes() {
+		$link_dom     = $this->get_DOM( $this->get_test_markup( 'link_with_visible_text' ) );
+		$link_element = $link_dom->find( '[aria-hidden="true"]' );
+		$link_parent  = $link_element[0]->parent();
+		$this->assertNotEmpty( edac_rule_aria_hidden_strip_markup_and_return_text( $link_parent ) );
+
+		$button_dom     = $this->get_DOM( $this->get_test_markup( 'button_with_visible_text' ) );
+		$button_element = $button_dom->find( '[aria-hidden="true"]' );
+		$button_parent  = $button_element[0]->parent();
+		$this->assertNotEmpty( edac_rule_aria_hidden_strip_markup_and_return_text( $button_parent ) );
+
+		// pass the 2 doms through the rule check as well to validate the whole process.
+		$this->assertEmpty( $this->get_errors_from_rule_check( $link_dom ) );
+		$this->assertEmpty( $this->get_errors_from_rule_check( $button_dom ) );
 	}
 
 	/**
