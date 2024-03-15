@@ -39,7 +39,21 @@ function edac_rule_aria_hidden( $content, $post ) { // phpcs:ignore -- $post is 
 				}
 
 				$siblings = $parent_node->children();
-				if ( $siblings && edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( $siblings ) ) {
+
+				// if there's only 1 sibling then it's the element itself, and
+				// we can assume it's neither screen reader text nor visible.
+				if ( ! $siblings || 1 === $siblings ) {
+					$errors[] = $element;
+					continue;
+				}
+
+				if ( edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( $siblings ) ) {
+					continue;
+				}
+
+				// if the parent node has any text after stripping the tags then
+				// assume it's visible text making the aria-hidden="true" valid.
+				if ( ! empty( edac_rule_aria_hidden_strip_markup_and_return_text( $parent_node ) ) ) {
 					continue;
 				}
 			}
@@ -105,4 +119,21 @@ function edac_rule_aria_hidden_valid_parentnode_condition_check( object $parent_
 	}
 
 	return false;
+}
+
+/**
+ * Strip the markup and return the text if there is any leftover.
+ *
+ * @since 1.10.0
+ *
+ * @param object $parent_node A simple_html_dom_node of a parent container.
+ *
+ * @return string empty string for invalid parent node, string of text if some
+ * is leftover running through tag stripping.
+ */
+function edac_rule_aria_hidden_strip_markup_and_return_text( object $parent_node ): string {
+	if ( ! ( $parent_node instanceof simple_html_dom_node ) ) {
+		return '';
+	}
+	return trim( wp_strip_all_tags( $parent_node->innertext() ) );
 }
