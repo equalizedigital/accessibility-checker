@@ -149,6 +149,19 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test elements with aria-label that are not links or buttons still error.
+	 */
+	public function test_parent_with_lable_that_is_not_link_or_button_errors() {
+
+		$test_elements = array( 'div', 'span', 'section' );
+		foreach ( $test_elements as $element ) {
+			$markup = "<$element aria-label='label'><div aria-hidden='true'></div></$element>";
+			$errors = $this->get_errors_from_rule_check( $markup );
+			$this->assertNotEmpty( $errors );
+		}
+	}
+
+	/**
 	 * Collection of different markup to use for test cases.
 	 *
 	 * @param string $type a key to the array of markup fragments.
@@ -156,43 +169,48 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	 */
 	private function get_test_markup( string $type = '' ): string {
 		$markup_fragments = array(
-			'element_with_aria-hidden'        => '<div aria-hidden="true"></div>',
-			'element_with_aria-hidden_false'  => '<div aria-hidden="false"></div>',
-			'element_that_is_wp-block-spacer' => '<div aria-hidden="true" class="wp-block-spacer"></div>',
-			'button_with_aria-label'          => <<<EOT
+			'element_with_aria-hidden'          => '<div aria-hidden="true"></div>',
+			'element_with_aria-hidden_false'    => '<div aria-hidden="false"></div>',
+			'element_that_is_wp-block-spacer'   => '<div aria-hidden="true" class="wp-block-spacer"></div>',
+			'button_with_aria-label'            => <<<EOT
 				<button type="button" aria-haspopup="true" aria-label="Open menu" class="components-button wp-block-navigation__responsive-container-open" inert="true">
 				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
 				</button>
 			EOT,
-			'link_with_aria-label'            => <<<EOT
+			'link_with_aria-label'              => <<<EOT
 				<a href="http://example.com" aria-label="label">
 					    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
 				</a>
 			EOT,
-			'link_with_screen_reader_text'    => <<<EOT
+			'link_with_screen_reader_text'      => <<<EOT
 				<a href="/about" >
 				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
 				<span class="sr-only">About Us</span>
 			EOT,
-			'button_with_screen_reader_text'  => <<<EOT
+			'button_with_screen_reader_text'    => <<<EOT
 				<button type="button" aria-haspopup="true" class="components-button wp-block-navigation__responsive-container-open" inert="true">
 				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
 				<span class="sr-only">Open menu</span>
 				</button>
 			EOT,
-			'link_with_visible_text'          => <<<EOT
+			'link_with_visible_text'            => <<<EOT
 				<a href="/about" >
 				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
 				About Us
 				</a>
 			EOT,
-			'button_with_visible_text'        => <<<EOT
+			'button_with_visible_text'          => <<<EOT
 				<button type="button" aria-haspopup="true" class="components-button wp-block-navigation__responsive-container-open" inert="true">
 				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg>
 				Menu
 				</button>
 			EOT,
-			'image_that_is_presentational'    => '<img src="http://example.com/image.jpg" aria-hidden="true" role="presentation" />',
+			'element_with_aria_label_on_parent' => <<<EOT
+				<div aria-label="label">
+					<div aria-hidden="true"></div>
+				</div>
+			EOT,
+			'image_that_is_presentational'      => '<img src="http://example.com/image.jpg" aria-hidden="true" role="presentation" />',
 		);
 		return $markup_fragments[ $type ] ?? '';
 	}

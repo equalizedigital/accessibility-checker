@@ -33,14 +33,17 @@ function edac_rule_aria_hidden( $content, $post ) { // phpcs:ignore -- $post is 
 			}
 
 			$parent_node = $element->parent();
-			if ( $parent_node && edac_rule_aria_hidden_valid_parentnode_condition_check( $parent_node, $element ) ) {
-				continue;
+			if ( $parent_node && ( strtolower( $parent_node->tag ) === 'button' || strtolower( $parent_node->tag ) === 'a' ) ) {
+				if ( edac_rule_aria_hidden_valid_parentnode_condition_check( $parent_node, $element ) ) {
+					continue;
+				}
+
+				$siblings = $parent_node->children();
+				if ( $siblings && edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( $siblings ) ) {
+					continue;
+				}
 			}
 
-			$siblings = $parent_node->children();
-			if ( $siblings && edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( $siblings ) ) {
-				continue;
-			}
 
 			$errors[] = $element;
 		}
