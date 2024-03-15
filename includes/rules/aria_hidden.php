@@ -32,8 +32,15 @@ function edac_rule_aria_hidden( $content, $post ) { // phpcs:ignore -- $post is 
 				}
 			}
 
-			$parent_node = $element->parent();
-			if ( $parent_node && ( strtolower( $parent_node->tag ) === 'button' || strtolower( $parent_node->tag ) === 'a' ) ) {
+			$parent_node             = $element->parent();
+			$tags_for_further_checks = array(
+				'button',
+				'a',
+			);
+			if (
+				$parent_node &&
+				in_array( strtolower( $parent_node->tag ), $tags_for_further_checks, true )
+			) {
 				if ( edac_rule_aria_hidden_valid_parentnode_condition_check( $parent_node, $element ) ) {
 					continue;
 				}
@@ -109,7 +116,10 @@ function edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( array $
  */
 function edac_rule_aria_hidden_valid_parentnode_condition_check( object $parent_node, object $element ): bool {
 	// bail early if we don't have a parent node or an element node.
-	if ( ! $parent_node || ! $element ) {
+	if (
+		! $parent_node ||
+		! $element
+	) {
 		return false;
 	}
 
