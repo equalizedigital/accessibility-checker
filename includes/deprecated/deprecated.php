@@ -38,7 +38,7 @@ function edac_summary( $post_id ) {
 /**
  * Insert rule date into database
  *
- * @deprecated 2.0.0
+ * @deprecated 1.10.0
  *
  * @param object $post     The post object.
  * @param string $rule     The rule.
