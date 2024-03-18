@@ -15,6 +15,15 @@ namespace EDAC\Admin;
 class Meta_Boxes {
 
 	/**
+	 * Initialize the hooks for the editor meta box.
+	 *
+	 * @return void
+	 */
+	public function init_hooks(): void {
+		add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
+	}
+
+	/**
 	 * Register custom meta boxes for each post type.
 	 *
 	 * @since 1.10.0
@@ -45,6 +54,8 @@ class Meta_Boxes {
 	 * @return void
 	 */
 	public function render(): void {
+		do_action( 'edac_before_meta_box' );
 		include_once plugin_dir_path( __DIR__ ) . 'partials/custom-meta-box.php';
+		do_action( 'edac_after_meta_box' );
 	}
 }
