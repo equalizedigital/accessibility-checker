@@ -87,6 +87,6 @@ function edac_delete_cpt_posts( $post_type ) {
  * @return void|int
  */
 function edac_insert_rule_data( $post, $rule, $ruletype, $rule_obj ) {
-	_deprecated_function( __FUNCTION__, '2.0.0', 'EDAC\Admin\Insert_Rule_Data' );
+	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Insert_Rule_Data' );
 	return ( new Insert_Rule_Data() )->insert( $post, $rule, $ruletype, $rule_obj );
 }
