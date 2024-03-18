@@ -16,9 +16,21 @@ use EDAC\Admin\Purge_Post_Data;
 class Admin {
 
 	/**
-	 * Class constructor.
+	 * Meta boxes instance.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @var Meta_Boxes
 	 */
-	public function __construct() {
+	private Meta_Boxes $meta_boxes;
+
+	/**
+	 * Class constructor for injecting dependencies.
+	 *
+	 * @param Meta_Boxes|null $meta_boxes Meta boxes instance.
+	 */
+	public function __construct( Meta_Boxes $meta_boxes = null ) {
+		$this->meta_boxes = $meta_boxes;
 	}
 
 	/**
@@ -26,7 +38,7 @@ class Admin {
 	 *
 	 * @return void
 	 */
-	public function init() {
+	public function init(): void {
 
 		$update_database = new Update_Database();
 		$update_database->init_hooks();
@@ -44,6 +56,8 @@ class Admin {
 		$site_health_info->init_hooks();
 
 		$this->init_ajax();
+
+		$this->meta_boxes->init_hooks();
 	}
 
 	/**
@@ -51,7 +65,7 @@ class Admin {
 	 *
 	 * @return void
 	 */
-	private function init_ajax() {
+	private function init_ajax(): void {
 		if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
 			return;
 		}
