@@ -32,14 +32,13 @@ function edac_rule_aria_hidden( $content, $post ) { // phpcs:ignore -- $post is 
 				}
 			}
 
-			$parent_node             = $element->parent();
-			$tags_for_further_checks = array(
-				'button',
-				'a',
-			);
+			$parent_node = $element->parent();
 			if (
 				$parent_node &&
-				in_array( strtolower( $parent_node->tag ), $tags_for_further_checks, true )
+				(
+					strtolower( $parent_node->tag ) === 'button' ||
+					strtolower( $parent_node->tag ) === 'a'
+				)
 			) {
 				if ( edac_rule_aria_hidden_valid_parentnode_condition_check( $parent_node, $element ) ) {
 					continue;
