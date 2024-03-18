@@ -27,6 +27,10 @@ class Widgets {
 	 * @return void
 	 */
 	public function dashboard_setup() {
+
+		if ( ! Helpers::current_user_can_see_widgets_and_notices() ) {
+			return;
+		}
 		wp_add_dashboard_widget(
 			'edac_dashboard_scan_summary',
 			'Accessibility Checker',
