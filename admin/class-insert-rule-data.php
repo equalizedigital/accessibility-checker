@@ -125,11 +125,11 @@ class Insert_Rule_Data {
 				'object'        => esc_attr( $rule_data['object'] ),
 				'recordcheck'   => absint( $rule_data['recordcheck'] ),
 				'user'          => absint( $rule_data['user'] ),
-				'ignre'         => absint( $rule_data['ignore'] ),
-				'ignre_user'    => isset( $rule_data['ignore_user'] ) ? absint( $rule_data['ignore_user'] ) : null,
-				'ignre_date'    => isset( $rule_data['ignore_date'] ) ? sanitize_text_field( $rule_data['ignore_date'] ) : null,
-				'ignre_comment' => isset( $rule_data['ignore_comment'] ) ? sanitize_text_field( $rule_data['ignore_comment'] ) : null,
-				'ignre_global'  => absint( $rule_data['ignore_global'] ),
+				'ignre'         => absint( $rule_data['ignre'] ),
+				'ignre_user'    => isset( $rule_data['ignre_user'] ) ? absint( $rule_data['ignre_user'] ) : null,
+				'ignre_date'    => isset( $rule_data['ignre_date'] ) ? sanitize_text_field( $rule_data['ignre_date'] ) : null,
+				'ignre_comment' => isset( $rule_data['ignre_comment'] ) ? sanitize_text_field( $rule_data['ignre_comment'] ) : null,
+				'ignre_global'  => absint( $rule_data['ignre_global'] ),
 			);
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Using direct query for adding data to database.
