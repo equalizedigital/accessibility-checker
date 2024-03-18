@@ -188,4 +188,27 @@ class Helpers {
 
 		return false;
 	}
+
+	/**
+	 * Filter out inactive rules from the results returned.
+	 *
+	 * @param array $results The results to filter.
+	 */
+	public static function filter_results_to_only_active_rules( $results ): array {
+		// determine which rules are active.
+		$active_rule_slugs = array_map(
+			function ( $rule ) {
+				return $rule['slug'];
+			},
+			edac_register_rules()
+		);
+
+		// filter out inactive rules from the results returned.
+		foreach ( $results as $index => $result ) {
+			if ( ! in_array( $result['rule'], $active_rule_slugs, true ) ) {
+				unset( $results[ $index ] );
+			}
+		}
+		return $results;
+	}
 }
