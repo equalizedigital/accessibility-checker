@@ -10,11 +10,11 @@ use EDAC\Inc\Simplified_Summary;
 /**
  * Simplified_Summary test case.
  */
-class EDACSimplifiedSummaryTest extends WP_UnitTestCase {
-	
+class SimplifiedSummaryTest extends WP_UnitTestCase {
+
 	/**
 	 * Instance of the Simplified_Summary class.
-	 * 
+	 *
 	 * Holds an instance of the Simplified_Summary class
 	 * which is used to test its methods.
 	 *
@@ -24,7 +24,7 @@ class EDACSimplifiedSummaryTest extends WP_UnitTestCase {
 
 	/**
 	 * Set up the test fixture.
-	 * 
+	 *
 	 * Initializes the testing environment before each test.
 	 *
 	 * @return void
@@ -36,8 +36,8 @@ class EDACSimplifiedSummaryTest extends WP_UnitTestCase {
 
 	/**
 	 * Tests output of simplified_summary_markup with a summary.
-	 * 
-	 * Verifies that the correct HTML markup is returned when a post 
+	 *
+	 * Verifies that the correct HTML markup is returned when a post
 	 * has a simplified summary.
 	 *
 	 * @return void
@@ -55,7 +55,7 @@ class EDACSimplifiedSummaryTest extends WP_UnitTestCase {
 
 	/**
 	 * Tests output of simplified_summary_markup without a summary.
-	 * 
+	 *
 	 * Ensures that an empty string is returned when a post does not
 	 * have a simplified summary.
 	 *

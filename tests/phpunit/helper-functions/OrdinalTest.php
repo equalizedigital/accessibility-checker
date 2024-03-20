@@ -8,13 +8,13 @@
 /**
  * Sample test case.
  */
-class EDACOrdinal extends WP_UnitTestCase {
+class OrdinalTest extends WP_UnitTestCase {
 
 	/**
 	 * Tests the edac_ordinal function.
-	 * 
+	 *
 	 * @dataProvider edac_ordinal_data
-	 * 
+	 *
 	 * @param int|string $numeric_value The number we want to convert to ordinal.
 	 * @param string     $ordinal_value The ordinal number that should be returned.
 	 * @param string     $locale        The locale to use.

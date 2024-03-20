@@ -8,20 +8,20 @@
 /**
  * Sample test case.
  */
-class EDACParseCSS extends WP_UnitTestCase {
+class ParseCSSTest extends WP_UnitTestCase {
 
 	/**
 	 * Tests the edac_parse_css function.
-	 * 
+	 *
 	 * @dataProvider edac_parse_css_data
-	 * 
+	 *
 	 * @param string $css_string The CSS we want to parse.
 	 * @param string $css_array  The CSS array that should be returned.
 	 */
 	public function test_edac_parse_css( $css_string, $css_array ) {
 		$this->assertSame(
-			$css_array, 
-			edac_parse_css( $css_string ) 
+			$css_array,
+			edac_parse_css( $css_string )
 		);
 	}
 
@@ -107,13 +107,13 @@ class EDACParseCSS extends WP_UnitTestCase {
 			),
 			'with multiple selectors and multiple properties and comments and newlines' => array(
 				'css_string'             => 'p, div {
-					font-size: 12px; 
+					font-size: 12px;
 					/**
-					 *  comment 
-					 */ 
-					color: #000; 
-				} 
-				a 
+					 *  comment
+					 */
+					color: #000;
+				}
+				a
 				{ font-size: 14px; }',
 				'css_array'              => array(
 					'p, div' => array(
