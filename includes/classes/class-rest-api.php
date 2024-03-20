@@ -8,6 +8,7 @@
 namespace EDAC\Inc;
 
 use EDAC\Admin\Helpers;
+use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 
@@ -195,7 +196,7 @@ class REST_Api {
 		// TODO: setup a rules class for loading/filtering rules.
 		$rules       = edac_register_rules();
 		$js_rule_ids = array();
-		foreach ( $rules as $rule ) {   
+		foreach ( $rules as $rule ) {
 			if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
 				$js_rule_ids[] = $rule['slug'];
 			}
@@ -235,7 +236,7 @@ class REST_Api {
 
 						do_action( 'edac_before_rule', $post_id, $rule_id, 'js' );
 
-						edac_insert_rule_data( $post, $rule_id, $impact, $html );
+						( new Insert_Rule_Data() )->insert( $post, $rule_id, $impact, $html );
 
 						do_action( 'edac_after_rule', $post_id, $rule_id, 'js' );
 

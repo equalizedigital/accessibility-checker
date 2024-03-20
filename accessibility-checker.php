@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.9.3
+ * Version:           1.10.0
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -41,7 +41,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.9.3' );
+	define( 'EDAC_VERSION', '1.10.0' );
 }
 
 // Current database version.
@@ -126,9 +126,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/meta-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/insert.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/purge.php';
-
 /**
  * Filters and Actions
  */
@@ -137,7 +134,6 @@ add_action( 'admin_menu', 'edac_add_options_page' );
 add_action( 'admin_init', 'edac_register_setting' );
 add_action( 'admin_head', 'edac_post_on_load' );
 add_filter( 'save_post', 'edac_save_post', 10, 3 );
-add_action( 'wp_trash_post', 'edac_delete_post' );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 if ( is_plugin_active( 'oxygen/functions.php' ) ) {
 	add_action( 'added_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );

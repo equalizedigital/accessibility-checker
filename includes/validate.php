@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Helpers;
+use EDAC\Admin\Insert_Rule_Data;
 
 /**
  * Oxygen Builder on save
@@ -146,7 +147,7 @@ function edac_validate( $post_ID, $post, $action ) {
 				if ( $errors && is_array( $errors ) ) {
 					do_action( 'edac_rule_errors', $post_ID, $rule, $errors, $action );
 					foreach ( $errors as $error ) {
-						edac_insert_rule_data( $post, $rule['slug'], $rule['rule_type'], $object = $error );
+						( new Insert_Rule_Data() )->insert( $post, $rule['slug'], $rule['rule_type'], $object = $error );
 					}
 				}
 				if ( EDAC_DEBUG === true ) {
@@ -200,7 +201,7 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 	if ( 0 === count( $rule_slugs ) ) {
 		return;
 	}
-	
+
 	if ( 1 === $pre ) {
 
 		// Set record flag before validating content.

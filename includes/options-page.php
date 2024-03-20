@@ -5,6 +5,8 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin\Purge_Post_Data;
+
 /**
  * Check if user can ignore or can manage options
  *
@@ -402,7 +404,7 @@ function edac_sanitize_post_types( $selected_post_types ) {
 	// delete unselected post type issues.
 	if ( $unselected_post_types ) {
 		foreach ( $unselected_post_types as $unselected_post_type ) {
-			edac_delete_cpt_posts( $unselected_post_type );
+			Purge_Post_Data::delete_cpt_posts( $unselected_post_type );
 		}
 	}
 
