@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.4.3
-Stable tag: 1.9.3
+Stable tag: 1.10.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,19 +14,19 @@ Ensure your site's accessibility with a pre-publish audit. Get in-post WCAG comp
 
 [Plugin Website](https://equalizedigital.com/accessibility-checker/) | [Documentation](https://equalizedigital.com/accessibility-checker/documentation/) | [Compare Free to Pro](https://equalizedigital.com/accessibility-checker/features/#comparison) | [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/) | [WP Accessibility Meetup](https://equalizedigital.com/wordpress-accessibility-meetup/) | [WP Accessibility Facebook Group](https://www.facebook.com/groups/wordpress.accessibility)
 
-### Make Your Website Accessible with Accessibility Checker 
+### Make Your Website Accessible with Accessibility Checker
 
-Equalize Digital's Accessibility Checker provides accessibility error and warning notifications right on your post and/or page edit screen. 
+Equalize Digital's Accessibility Checker provides accessibility error and warning notifications right on your post and/or page edit screen.
 
-Accessibility Checker automatically scans your content each time you save a draft or hit publish, giving you real-time feedback on your post's or page's accessibility. Receive a visual overview of how your content stacks up against more than 40 different accessibility checks created to meet Web Content Accessibility Guidelines (WCAG) 2.1 success criteria. 
+Accessibility Checker automatically scans your content each time you save a draft or hit publish, giving you real-time feedback on your post's or page's accessibility. Receive a visual overview of how your content stacks up against more than 40 different accessibility checks created to meet Web Content Accessibility Guidelines (WCAG) 2.1 success criteria.
 
 For each error or warning flagged, Accessibility Checker lists the code that triggered the error or warning. Each item is identified as an error or warning depending upon its severity, so that you can prioritize your fixes. Thorough documentation is available to guide you on how to fix accessibility problems on your website and personalized accessibility remediation assistance and accessibility consulting is available if desired.
 
 ### Ensure Ongoing ADA, Section 508, AODA, & WCAG Compliance
 
-For already accessible websites, Accessibility Checker is an excellent tool for ensuring ongoing compliance and accessibility. 
+For already accessible websites, Accessibility Checker is an excellent tool for ensuring ongoing compliance and accessibility.
 
-The in-page tests help content managers and contributors confirm they have entered their content in an accessible manner. There's no need to be an accessibility expert or memorize long lists of WCAG success criteria - Accessibility Checker provides an easy to understand accessibility checklist and reading level checks so that you can ensure you're not adding accessibility problems as new content is added. 
+The in-page tests help content managers and contributors confirm they have entered their content in an accessible manner. There's no need to be an accessibility expert or memorize long lists of WCAG success criteria - Accessibility Checker provides an easy to understand accessibility checklist and reading level checks so that you can ensure you're not adding accessibility problems as new content is added.
 
 Content area scans are visible on each post's or page's edit screen as you type - no need to go elsewhere on your site to view results or visit a third-party website. These scans allow your team to create accessibile websites from the start, reducing the need for costly retroactive remediation.
 
@@ -34,7 +34,7 @@ Content area scans are visible on each post's or page's edit screen as you type 
 
 Accessibility Checker is the best automated tool to run along with your manual accessibility tests. It's perfect for **small business websites**, **large enterprise organizations**, and everything in between. Whether you're running a small brochure website, an **eCommerce** store with thousands of products, or a **multi-site** network for a university, Accessibility Checker is the right tool for your website.
 
-* **No limits on pages scanned.** Have hundreds of blog posts or pages on your website? No problem! 
+* **No limits on pages scanned.** Have hundreds of blog posts or pages on your website? No problem!
 * **Coded and tested by accessibility experts.** Equalize Digital is a corporate member of the International Association of Accessibility Professionals and experts at building accessible WordPress websites.
 * **WCAG 2.1 A, AA, & AAA guidance.** Flags errors and warnings for accessibility problems according to WCAG 2.1.
 * **Readability analysis & auto insertion of simplified summary.** Includes a Flesch Kincaid grade level analysis and place to enter a simplified summary to meet WCAG Success Criterion 3.1.5 Reading Level.
@@ -60,7 +60,7 @@ To get started with Accessibility Checker or learn more about how it works, plea
 
 The Equalize Digital team aims to provide regular support for Accessibility Checker on the WordPress.org forums. If you have a question about the plugin or its use, please post in the support forum, and we will do our best to help you in a timely manner. Our support hours are Monday-Friday, 9:00 AM to 5:00 PM U.S. central time. Please understand that we do prioritize support for purchasers of Accessibility Checker Pro.
 
-If you need one-on-one email support, please consider purchasing [Accessibility Checker Pro](https://equalizedigital.com/accessibility-checker/pricing/). Accessibility Checker Pro customers receive unlimited personal support on plugin usage and features. 
+If you need one-on-one email support, please consider purchasing [Accessibility Checker Pro](https://equalizedigital.com/accessibility-checker/pricing/). Accessibility Checker Pro customers receive unlimited personal support on plugin usage and features.
 
 Join our [WordPress Accessibility Facebook group](https://www.facebook.com/groups/wordpress.accessibility) for community support and to connect with other developers, designers, and content creators who are working to make their websites more accessible. This is a great place to get free WP accessibility remediation assistance from others in the community.
 
@@ -92,7 +92,7 @@ These free virtual meetups are held twice per month via Zoom and are live captio
 
 == Installation ==
 
-Getting started with Accessibility Checker is as easy as installing and activating the plugin, then configuring a few basic settings.  
+Getting started with Accessibility Checker is as easy as installing and activating the plugin, then configuring a few basic settings.
 
 ### Installing Accessibility Checker Within WordPress
 1. Visit the plugins page within your dashboard and select ‘Add New’.
@@ -171,6 +171,19 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.10.0 =
+* Updated: Improved aria-hidden scanning rule
+* Fixed: Prevent missing_transcript rule from flagging on certain links
+* Fixed: Prevent duplicate scan and ensure cleanup runs when post is trashed from the block editor
+* Fixed: Fix case where error may be thrown resulting in password protection message and logged error when creating new posts
+* Updated: Use local styles for notyf in frontend highlighter
+* Created: Class to insert scan result rules to the database
+* Deprecated: `edac_insert_rule_data` function
+* Created: Class to handle data purging and cleanup
+* Deprecated: `edac_delete_post`, `edac_delete_post_meta`, `edac_delete_cpt_posts` functions
+* Created: Class to handle the editor meta box for scan results
+* Deprecated: `edac_register_meta_boxes`, `edac_custom_meta_box_cb` functions
+
 = 1.9.3 =
 * Updated: capability checks for the welcome page, dashboard widget, and admin notices
 
@@ -204,56 +217,5 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Fixed: front end highlight focus issue
 * Added: summary generator class to replace the `edac_summary()` function
 * Deprecated: `edac_summary()` function
-
-= 1.8.1 =
-* Fixed: false positives on the incorrect heading order rule
-* Added: fallback to determine ordinal when php intl extension is not installed
-
-= 1.8.0 =
-* Updated: heading order on welcome screen
-* Updated: missing_title summary
-* Updated: SQL prepare queries to use %i placeholder
-* Updated: incorrect textdomains and made strings translatible
-* Removed: single-use variables where possible
-* Added: PHPUnit framework and workflow
-* Added: unit test for the `edac_compare_strings` function
-* Added: unit test for the `edac_parse_css` function
-* Updated: the `edac_compare_strings` function to be more efficient, return the correct type, and fix the failing tests
-* Updated: `readme.txt` to only have the latest major and minor changelog
-* Added: `changelog.txt` file.
-* Added: `includes/rules.php` file that contains all rules and returns them as an array
-* Added a static var in the `edac_register_rules` function to avoid re-reading the `includes/rules.php` file every time the method is called
-* Removed: `has_filter` check before calling `apply_filters`
-* Added: `edac_register_rules` unit test
-* Added: `edac_check_plugin_active` deprecated function
-* Updated: `edac_check_plugin_active` calls with `is_plugin_active`
-* Removed: calls to `add_option` and replaced with `update_option`
-* Updated: Use of `else` statement and bailed early when needed
-* Removed: `has_filter()` before applying apply_filters
-* Removed: hooks from `EDAC\Admin_Notices` constructor and call them from the `init_hooks` method
-* Added: `EDAC\Admin_Notices` unit tests
-* Added: `EDAC\Ajax` class and moved AJAX functions into this class
-* Removed: unnecessary `wp_ajax_nopriv_` hooks
-* Added: namespace to `Frontend_Highlight` class and only instantiated on `DOING_AJAX`
-* Removed: `EDAC_SVG_IGNORE_ICON` string and pulled it from the file
-* Removed: `$plugin_check` global variable
-* Removed: `$rules` global variable
-* Updated: `edac_ordinal` function to support all locales, safeguards against improper inputs, number format
-* Updated: JavaScript coding standards
-* Added: `includes/classes` directory to autoloader
-* Added: new directory admin to autoloader
-* Removed: `require_once` class calls
-* Created: `class-plugin.php` to load frontend classes
-* Created: `class-admin.php` to load admin classes
-* Updated: classes to follow new `EDAC\Admin` and `EDAC\Inc` namespaces
-* Updated: accessibility statement functions to a class
-* Updated: simplified summary functions to a class
-* Updated: lazyload Filter function into a class
-* Removed: removes calls to `add_post_meta` and uses `update_post_meta` where appropriate
-* Added: `EDAC\Inc\Accessibility_Statement` unit test
-* Added: `EDAC\Inc\Simplified_Summary` unit test
-* Added: local PHPUnit to run on wp-env test
-* Updated: enqueue scripts and styles setup to only load assets in the proper environments
-* Updated: email signup form
 
 Older versions can be found in the plugins `changelog.txt`.
