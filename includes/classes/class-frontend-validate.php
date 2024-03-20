@@ -32,10 +32,10 @@ class Frontend_Validate {
 	/**
 	 * Validates the current post on the WordPress dashboard home under specific conditions.
 	 *
-	 * This function is triggered only when viewing the dashboard home ('index.php'), not in a customizer preview,
-	 * and if the current user has permissions to edit posts. It checks if the current post has been previously
-	 * validated based on a specific post meta key ('_edac_post_checked'). If the post has not been validated,
-	 * it initiates the validation process.
+	 * This function is triggered only by the `template_redirect` hook. It returns early if not 'index.php', in a
+	 * customizer preview,  or if the current user does not have permissions to edit posts. It checks if the current
+	 * post has been previously validated based on a specific post meta key ('_edac_post_checked'). If the post has not
+	 * been validated, it initiates the validation process.
 	 *
 	 * @modified 1.10.0 Return early if post is an auto-draft.
 	 *
