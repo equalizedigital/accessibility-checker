@@ -175,6 +175,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Updated: Improved aria-hidden scanning rule
 * Fixed: Prevent missing_transcript rule from flagging on certain links
 * Fixed: Prevent duplicate scan and ensure cleanup runs when post is trashed from the block editor
+* Fixed: Fix case where error may be thrown resulting in password protection message and logged error when creating new posts
 * Updated: Use local styles for notyf in frontend highlighter
 * Created: Class to insert scan result rules to the database
 * Deprecated: `edac_insert_rule_data` function
