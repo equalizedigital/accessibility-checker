@@ -13,4 +13,14 @@
 			<directory suffix="Test.php">./tests/</directory>
 		</testsuite>
 	</testsuites>
+	<coverage>
+		<include>
+			<directory suffix=".php">./</directory>
+		</include>
+		<exclude>
+			<directory>./tests/</directory>
+			<directory>./vendor/</directory>
+			<directory>./node_modules/</directory>
+		</exclude>
+	</coverage>
 </phpunit>
