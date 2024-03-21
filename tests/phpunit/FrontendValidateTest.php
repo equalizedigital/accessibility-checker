@@ -10,8 +10,8 @@ use EDAC\Inc\Frontend_Validate;
 /**
  * Frontend Validate test case.
  */
-class EDACFrontendValidateTest extends WP_UnitTestCase {
-	
+class FrontendValidateTest extends WP_UnitTestCase {
+
 	/**
 	 * Instance of the Frontend_Validate class.
 	 *
