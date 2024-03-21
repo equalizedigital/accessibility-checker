@@ -6,6 +6,7 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Purge_Post_Data;
 
 /**
@@ -72,4 +73,44 @@ function edac_delete_post_meta( $post_id ) {
 function edac_delete_cpt_posts( $post_type ) {
 	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Purge_Post_Data::delete_cpt_posts' );
 	Purge_Post_Data::delete_cpt_posts( $post_type );
+}
+
+/**
+ * Register custom meta boxes
+ *
+ * @deprecated 1.10.0
+ *
+ * @return void
+ */
+function edac_register_meta_boxes() {
+	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Meta_Boxes::register_meta_boxes' );
+	( new EDAC\Admin\Meta_Boxes() )->register_meta_boxes();
+}
+
+/**
+ * Render the custom meta box html
+ *
+ * @deprecated 1.10.0
+ *
+ * @return void
+ */
+function edac_custom_meta_box_cb() {
+	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Meta_Boxes::render' );
+	( new EDAC\Admin\Meta_Boxes() )->render();
+}
+
+/**
+ * Insert rule date into database
+ *
+ * @deprecated 1.10.0
+ *
+ * @param object $post     The post object.
+ * @param string $rule     The rule.
+ * @param string $ruletype The rule type.
+ * @param string $rule_obj The object.
+ * @return void|int
+ */
+function edac_insert_rule_data( $post, $rule, $ruletype, $rule_obj ) {
+	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Insert_Rule_Data' );
+	return ( new Insert_Rule_Data() )->insert( $post, $rule, $ruletype, $rule_obj );
 }

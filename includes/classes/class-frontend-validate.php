@@ -30,12 +30,14 @@ class Frontend_Validate {
 	}
 
 	/**
-	 * Validates the current post on the WordPress dashboard home under specific conditions.
+	 * Validates the current post on the WordPress dashboard, under specific conditions.
 	 *
-	 * This function is triggered only when viewing the dashboard home ('index.php'), not in a customizer preview,
-	 * and if the current user has permissions to edit posts. It checks if the current post has been previously 
-	 * validated based on a specific post meta key ('_edac_post_checked'). If the post has not been validated, 
-	 * it initiates the validation process.
+	 * This function is triggered only by the `template_redirect` hook. It returns early if not 'index.php', in a
+	 * customizer preview, the post is an 'auto-draft' or if the current user does not have permissions to edit posts.
+	 * It checks if the current post has been previously validated based on a specific post meta key
+	 * ('_edac_post_checked'). If the post has not been validated, it initiates the validation process.
+	 *
+	 * @modified 1.10.0 Return early if post is an auto-draft.
 	 *
 	 * @return void The function does not return a value. It triggers validation for an unvalidated post or does nothing.
 	 * @since 1.9.0
@@ -47,8 +49,8 @@ class Frontend_Validate {
 		if ( 'index.php' === $pagenow && false === is_customize_preview() && current_user_can( 'edit_posts' ) ) {
 
 			global $post;
-			$post_id = is_object( $post ) ? $post->ID : null;       
-			if ( null === $post_id ) {
+			$post_id = is_object( $post ) ? $post->ID : null;
+			if ( null === $post_id || 'auto-draft' === $post->post_status ) {
 				return;
 			}
 
