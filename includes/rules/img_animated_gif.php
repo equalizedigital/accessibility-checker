@@ -74,26 +74,9 @@ function edac_rule_img_animated_gif( $content, $post ) { // phpcs:ignore -- $pos
  * @param  string $filename The filename.
  * @return bool
  */
-function edac_img_gif_is_animated( $filename ) {
+function edac_img_gif_is_animated( string $filename ): bool {
 
-	$upload_dir_info  = wp_get_upload_dir();
-	$uploads_base_dir = trailingslashit( $upload_dir_info['basedir'] );
-
-	// Get WordPress base URL and remove it from the filename to get the relative path.
-	$base_url      = trailingslashit( get_site_url() );
-	$relative_path = str_replace( $base_url, '', $filename );
-
-	// Construct the full file system path.
-	$file_system_path = $uploads_base_dir . $relative_path;
-
-	// Check if the file is within the WordPress uploads directory.
-	if ( 0 !== strpos( $file_system_path, $uploads_base_dir ) ) {
-		return false;
-	}
-
-	// First, attempt to open the file.
-	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen, WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- path validated above.
-	$fh = fopen( $filename, 'rb' );
+	$fh = edac_get_file_opened_as_binary( $filename );
 
 	// Then, check if the file handle is false, indicating an error.
 	if ( false === $fh ) {
@@ -133,24 +116,7 @@ function edac_img_gif_is_animated( $filename ) {
  */
 function edac_img_webp_is_animated( $filename ) {
 
-	$upload_dir_info  = wp_get_upload_dir();
-	$uploads_base_dir = trailingslashit( $upload_dir_info['basedir'] );
-
-	// Get WordPress base URL and remove it from the filename to get the relative path.
-	$base_url      = trailingslashit( get_site_url() );
-	$relative_path = str_replace( $base_url, '', $filename );
-
-	// Construct the full file system path.
-	$file_system_path = $uploads_base_dir . $relative_path;
-
-	// Check if the file is within the WordPress uploads directory.
-	if ( 0 !== strpos( $file_system_path, $uploads_base_dir ) ) {
-		return false;
-	}
-
-	// First, attempt to open the file.
-	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen, WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- path validated above.
-	$fh = fopen( $filename, 'rb' );
+	$fh = edac_get_file_opened_as_binary( $filename );
 
 	// Then, check if the file handle is false, indicating an error.
 	if ( false === $fh ) {
