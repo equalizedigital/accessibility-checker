@@ -900,3 +900,40 @@ function edac_url_exists( string $url ): bool {
 
 	return true;
 }
+
+/**
+ * Get a file from local or remote source as a binary file handle.
+ *
+ * @since 1.10.1
+ *
+ * @param string $filename The file location, either local or a remote URL.
+ * @return resource|bool The file binary string or false if the file could not be opened.
+ */
+function edac_get_file_opened_as_binary( string $filename ) {
+	// If the file name looks like a url without a scheme add https and check if the file exists.
+	if ( ! str_starts_with( $filename, '//' ) ) {
+		$file = $filename;
+	} else {
+		$file       = edac_url_add_scheme_if_not_existing( $filename );
+		$url_exists = edac_url_exists( $file );
+		// if the https version does not exist, try http.
+		if ( false === $url_exists ) {
+			$file       = edac_url_add_scheme_if_not_existing( $filename, 'http' );
+			$url_exists = edac_url_exists( $file );
+		}
+	}
+
+	// if this url doesn't exist, return false.
+	if ( isset( $url_exists ) && false === $url_exists ) {
+		return false;
+	}
+
+	try {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen, WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- path validated above.
+		$fh = fopen( $file, 'rb' );
+	} catch ( Exception $e ) {
+		return false;
+	}
+
+	return $fh;
+}
