@@ -104,7 +104,7 @@ function edac_ordinal( $number ) {
 				NumberFormatter::ORDINAL
 			)
 		)->format( $number );
-	
+
 	} else {
 		if ( $number % 100 >= 11 && $number % 100 <= 13 ) {
 			$ordinal = $number . 'th';
@@ -125,7 +125,7 @@ function edac_ordinal( $number ) {
 			}
 		}
 		return $ordinal;
-	
+
 	}
 }
 
@@ -856,4 +856,47 @@ function edac_database_table_count( $table ) {
 	}
 
 	return $count;
+}
+
+/**
+ * Add a scheme to file it looks like a url but doesn't have one.
+ *
+ * @since 1.10.1
+ *
+ * @param  string $file The filename.
+ * @param string $site_protocol The site protocol. Default is 'https'.
+ *
+ * @return string The filename unchanged if it doesn't look like a URL, or with a scheme added if it does.
+ */
+function edac_url_add_scheme_if_not_existing( string $file, string $site_protocol = 'https' ): string {
+	if ( str_starts_with( $file, $site_protocol ) || ! str_starts_with( $file, '//' ) ) {
+		return $file;
+	}
+
+	return "{$site_protocol}:{$file}";
+}
+
+/**
+ * Requests the headers of a URL to check if it exists.
+ *
+ * @since 1.10.1
+ *
+ * @param string $url the url to check.
+ * @return bool
+ */
+function edac_url_exists( string $url ): bool {
+
+	$response = wp_remote_head( $url );
+
+	if (
+		is_wp_error( $response ) ||
+		( // Check if the response code is not in the 2xx range.
+			wp_remote_retrieve_response_code( $response ) < 200 ||
+			wp_remote_retrieve_response_code( $response ) > 299
+		)
+	) {
+		return false;
+	}
+
+	return true;
 }
