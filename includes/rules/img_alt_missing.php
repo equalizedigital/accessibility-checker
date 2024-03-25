@@ -22,15 +22,19 @@ function edac_rule_img_alt_missing( $content, $post ) { // phpcs:ignore -- $post
 		$elements = $dom->find( $tag );
 
 		foreach ( $elements as $element ) {
-			if ( ( isset( $element )
-					&& ( 'img' === $element->tag
+			if (
+				(
+					isset( $element ) &&
+					(
+						'img' === $element->tag
 						&& ! $element->hasAttribute( 'alt' )
-						&& $element->getAttribute( 'role' ) !== 'presentation' )
-					&& $element->getAttribute( 'aria-hidden' ) !== 'true' )
-				|| (
-				'input' === $element->tag
-				&& ! $element->hasAttribute( 'alt' )
-				&& $element->getAttribute( 'type' ) === 'image'
+						&& $element->getAttribute( 'role' ) !== 'presentation'
+					)
+					&& $element->getAttribute( 'aria-hidden' ) !== 'true'
+				) || (
+					'input' === $element->tag
+					&& ! $element->hasAttribute( 'alt' )
+					&& $element->getAttribute( 'type' ) === 'image'
 				)
 			) {
 

@@ -41,7 +41,13 @@ function edac_rule_empty_button( $content, $post ) { // phpcs:ignore -- $post is
 				'' !== $error_code
 				&& ( ! isset( $image[0] ) || trim( $image[0]->getAttribute( 'alt' ) ) === '' )
 				&& ( ! isset( $input[0] ) || trim( $input[0]->getAttribute( 'value' ) ) === '' )
-				&& ( ! isset( $i[0] ) || ( ( trim( $i[0]->getAttribute( 'title' ) ) === '' ) && ( trim( $i[0]->getAttribute( 'aria-label' ) ) === '' ) ) )
+				&& (
+					! isset( $i[0] ) ||
+					(
+						( trim( $i[0]->getAttribute( 'title' ) ) === '' ) &&
+						( trim( $i[0]->getAttribute( 'aria-label' ) ) === '' )
+					)
+				)
 			) {
 				$errors[] = $error_code;
 			}

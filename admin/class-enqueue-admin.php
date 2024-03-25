@@ -57,7 +57,17 @@ class Enqueue_Admin {
 			'accessibility_checker_ignored',
 		);
 
-		if ( ( is_array( $post_types ) && count( $post_types ) && ( in_array( $current_post_type, $post_types, true ) || in_array( $page, $enabled_pages, true ) ) ) || ( 'site-editor.php' !== $pagenow ) ) {
+		if (
+			(
+				is_array( $post_types ) &&
+				count( $post_types ) &&
+				(
+					in_array( $current_post_type, $post_types, true ) ||
+					in_array( $page, $enabled_pages, true )
+				)
+			) ||
+			'site-editor.php' !== $pagenow
+		) {
 
 			global $post;
 			$post_id = is_object( $post ) ? $post->ID : null;

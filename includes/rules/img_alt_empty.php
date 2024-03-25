@@ -23,15 +23,18 @@ function edac_rule_img_alt_empty( $content, $post ) { // phpcs:ignore -- $post i
 			$elements = $dom->find( $tag );
 			foreach ( $elements as $element ) {
 				if (
-					( isset( $element )
+					(
+						isset( $element )
 						&& 'img' === $element->tag
 						&& $element->hasAttribute( 'alt' )
 						&& $element->getAttribute( 'alt' ) === ''
-						&& $element->getAttribute( 'role' ) !== 'presentation' )
-					|| ( 'input' === $element->tag
+						&& $element->getAttribute( 'role' ) !== 'presentation'
+					) || (
+						'input' === $element->tag
 						&& $element->hasAttribute( 'alt' )
 						&& $element->getAttribute( 'type' ) === 'image'
-						&& $element->getAttribute( 'alt' ) === '' )
+						&& $element->getAttribute( 'alt' ) === ''
+					)
 				) {
 
 					$image_code = $element->outertext;

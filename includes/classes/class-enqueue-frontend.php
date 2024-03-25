@@ -38,8 +38,13 @@ class Enqueue_Frontend {
 
 
 		// Don't load on admin pages in iframe that is running a pageScan.
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( is_admin() || ( isset( $_GET['edac_pageScanner'] ) && '1' === $_GET['edac_pageScanner'] ) ) {
+		if (
+			is_admin() ||
+			(
+				isset( $_GET['edac_pageScanner'] ) && // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				'1' === $_GET['edac_pageScanner'] // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			)
+		) {
 			return;
 		}
 
