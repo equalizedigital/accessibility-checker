@@ -249,15 +249,12 @@ class Summary_Generator {
 	 */
 	private function update_issue_density( $summary ) {
 		$issue_density_array = get_post_meta( $this->post_id, '_edac_density_data' );
-		// due to data in a previous version saving a string instead of an array this is added
-		// to ensure that the data is in the correct format.
-		if ( ! is_array( $issue_density_array ) ) {
-			$issue_density_array = array( 0, 0 );
-		}
 
 		if (
-			count( $issue_density_array ) > 0 &&
 			(
+				is_array( $issue_density_array ) &&
+				count( $issue_density_array ) > 0
+			) && (
 				is_array( $issue_density_array[0] ) &&
 				count( $issue_density_array[0] ) > 0
 			)
