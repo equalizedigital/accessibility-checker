@@ -69,7 +69,7 @@ function edac_rule_img_animated_gif( $content, $post ) { // phpcs:ignore -- $pos
 }
 
 /**
- * Checks if a gif image is anaimated
+ * Checks if a gif image is animated
  *
  * @param  string $filename The filename.
  * @return bool
