@@ -35,3 +35,6 @@ tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
 // Start up the WP testing environment.
 require "{$_tests_dir}/includes/bootstrap.php";
+
+// Helpers are not autoloaded in the plugin.
+require_once dirname( __DIR__ ) . '/tests/phpunit/TestHelpers/GetDomHelperTrait.php';
