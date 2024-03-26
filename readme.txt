@@ -175,6 +175,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Fixed: Prevent scheme-relative URLs from causing an error when scanning for animated gif of webp files
 * Fixed: Potential edge case where an issue density calculation could cause a PHP warning and cause a failed scan
 * Fixed: Ensure that missing form labels are reported in the scan results appropriately
+* Fixed: Avoid error log when trashing posts in the block editor
 * Created: Class to handle the editor meta box for scan results
 * Deprecated: `edac_register_meta_boxes`, `edac_custom_meta_box_cb` functions
 
