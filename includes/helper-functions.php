@@ -104,7 +104,7 @@ function edac_ordinal( $number ) {
 				NumberFormatter::ORDINAL
 			)
 		)->format( $number );
-	
+
 	} else {
 		if ( $number % 100 >= 11 && $number % 100 <= 13 ) {
 			$ordinal = $number . 'th';
@@ -125,7 +125,7 @@ function edac_ordinal( $number ) {
 			}
 		}
 		return $ordinal;
-	
+
 	}
 }
 
@@ -649,7 +649,10 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
 	$error_elements_percentage = $issue_count / $element_count;
 	$error_content_percentage  = $issue_count / $content_length;
 
-	$score = ( ( $error_elements_percentage * $element_weight ) + ( $error_content_percentage * $content_weight ) );
+	$score = (
+		( $error_elements_percentage * $element_weight ) +
+		( $error_content_percentage * $content_weight )
+	);
 
 	return round( $score * 100, 2 );
 }

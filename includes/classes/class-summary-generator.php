@@ -9,7 +9,7 @@ namespace EDAC\Inc;
 
 /**
  * Class that handles summary generator
- * 
+ *
  * @since 1.9.0
  */
 class Summary_Generator {
@@ -21,7 +21,7 @@ class Summary_Generator {
 	 * @since 1.9.0
 	 */
 	private $post_id;
-	
+
 	/**
 	 * Specifies the site ID in a multisite WordPress environment.
 	 *
@@ -33,10 +33,10 @@ class Summary_Generator {
 	/**
 	 * Summary_Generator constructor.
 	 * Initializes the class by setting up its properties with the provided parameters.
-	 * 
-	 * @param int $post_id The ID of the post for which the summary will be generated. 
+	 *
+	 * @param int $post_id The ID of the post for which the summary will be generated.
 	 *            This is used to retrieve and store data related to the specific post.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	public function __construct( $post_id ) {
@@ -48,16 +48,16 @@ class Summary_Generator {
 	 * Generates a summary of accessibility tests for a specific post.
 	 * This method compiles a summary including passed tests, errors, warnings, and other relevant
 	 * information by querying the database and applying logic based on the set of rules and the post's content.
-	 * 
+	 *
 	 * @return array An associative array containing the summary of accessibility checks, such as
 	 *               passed tests, errors, warnings, ignored checks, contrast errors, content grade,
 	 *               readability, and whether a simplified summary is enabled.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	public function generate_summary() {
 		global $wpdb;
-		
+
 		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 		$summary    = array();
 
@@ -90,10 +90,10 @@ class Summary_Generator {
 	 * Calculates the percentage of passed tests based on the provided rules.
 	 * This method queries the database to find which rules have not been violated (passed) for
 	 * the current post and calculates the percentage of these passed tests.
-	 * 
+	 *
 	 * @param array $rules An array of rules against which the post's accessibility is checked.
 	 * @return int The percentage of rules that have passed.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	private function calculate_passed_tests( $rules ) {
@@ -130,9 +130,9 @@ class Summary_Generator {
 	/**
 	 * Counts the number of errors found for the current post.
 	 * This method queries the database to count the number of accessibility issues classified as 'error'.
-	 * 
+	 *
 	 * @return int The count of errors.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	private function count_errors() {
@@ -156,9 +156,9 @@ class Summary_Generator {
 	/**
 	 * Counts the number of warnings found for the current post.
 	 * This method queries the database to count the number of accessibility issues classified as 'warning'.
-	 * 
+	 *
 	 * @return int The count of warnings.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	private function count_warnings() {
@@ -185,9 +185,9 @@ class Summary_Generator {
 	/**
 	 * Counts the number of ignored issues for the current post.
 	 * This method queries the database to count the number of accessibility issues that have been ignored.
-	 * 
+	 *
 	 * @return int The count of ignored issues.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	private function count_ignored() {
@@ -215,9 +215,9 @@ class Summary_Generator {
 	/**
 	 * Counts the number of contrast errors for the current post.
 	 * This method queries the database to count the number of accessibility issues specifically related to color contrast failures.
-	 * 
+	 *
 	 * @return int The count of contrast errors.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	private function count_contrast_errors() {
@@ -242,17 +242,22 @@ class Summary_Generator {
 	 * Updates the issue density metadata for the current post.
 	 * This method calculates and updates the issue density based on the summary of accessibility issues
 	 * and the content length of the post.
-	 * 
+	 *
 	 * @param array $summary An associative array containing the summary of accessibility checks.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	private function update_issue_density( $summary ) {
 		$issue_density_array = get_post_meta( $this->post_id, '_edac_density_data' );
 
-		if ( is_array( $issue_density_array ) &&
-			count( $issue_density_array ) > 0 &&
-			count( $issue_density_array[0] ) > 0
+		if (
+			(
+				is_array( $issue_density_array ) &&
+				count( $issue_density_array ) > 0
+			) && (
+				is_array( $issue_density_array[0] ) &&
+				count( $issue_density_array[0] ) > 0
+			)
 		) {
 			$issue_count    = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'];
 			$element_count  = $issue_density_array[0][0];
@@ -268,9 +273,9 @@ class Summary_Generator {
 	/**
 	 * Calculates the content grade of the post's content.
 	 * This method uses the Flesch-Kincaid Grade Level formula to determine the readability grade of the post's content.
-	 * 
+	 *
 	 * @return int The content grade, based on the Flesch-Kincaid Grade Level.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	private function calculate_content_grade() {
@@ -293,10 +298,10 @@ class Summary_Generator {
 	 * Determines the readability of the post's content based on the content grade.
 	 * This method translates the content grade into a human-readable format, indicating the level of education
 	 * required to understand the content.
-	 * 
+	 *
 	 * @param array $summary An associative array containing the summary of accessibility checks, including the content grade.
 	 * @return string The readability level of the post's content, or 'N/A' if the content grade is 0.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	private function get_readability( $summary ) {
@@ -309,9 +314,9 @@ class Summary_Generator {
 	 * Saves the summary metadata for the current post.
 	 * This method saves the summary of accessibility checks as post metadata, including the number of passed tests,
 	 * errors, warnings, ignored checks, contrast errors, content grade, readability, and whether a simplified summary is enabled.
-	 * 
+	 *
 	 * @param array $summary An associative array containing the summary of accessibility checks.
-	 * 
+	 *
 	 * @since 1.9.0
 	 */
 	private function save_summary_meta_data( $summary ) {
