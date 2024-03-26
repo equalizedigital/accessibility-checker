@@ -8,7 +8,7 @@
 /**
  * IMG ALT Redundant
  *
- * @modified 1.11.0 Updated various conditions to use `empty` checks instead of checking for empty strings, since SimpleHTMLDom returns `false` for non-exist` attributes.
+ * @modified 1.11.0 Updated various conditions to use `empty` checks instead of checking for empty strings since Simple HTML Dom returns `false` for non-existent attributes.
  *
  * @param array  $content Array of content to check.
  * @param object $post Object to check.
