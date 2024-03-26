@@ -175,6 +175,8 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Fixed: Prevent scheme-relative URLs from causing an error when scanning for animated gif of webp files
 * Fixed: Potential edge case where an issue density calculation could cause a PHP warning and cause a failed scan
 * Fixed: Ensure that missing form labels are reported in the scan results appropriately
+* Created: Class to handle the editor meta box for scan results
+* Deprecated: `edac_register_meta_boxes`, `edac_custom_meta_box_cb` functions
 
 = 1.10.0 =
 * Updated: Improved aria-hidden scanning rule
@@ -186,8 +188,6 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Deprecated: `edac_insert_rule_data` function
 * Created: Class to handle data purging and cleanup
 * Deprecated: `edac_delete_post`, `edac_delete_post_meta`, `edac_delete_cpt_posts` functions
-* Created: Class to handle the editor meta box for scan results
-* Deprecated: `edac_register_meta_boxes`, `edac_custom_meta_box_cb` functions
 
 = 1.9.3 =
 * Updated: capability checks for the welcome page, dashboard widget, and admin notices
