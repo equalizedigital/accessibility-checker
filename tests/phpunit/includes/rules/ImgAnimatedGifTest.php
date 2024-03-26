@@ -8,6 +8,8 @@
 /**
  * Test that the animated gif rule detects animated gif and webp and does not count
  * static gif and webp as an error.
+ *
+ * @group rules
  */
 class ImgAnimatedGifTest extends WP_UnitTestCase {
 
