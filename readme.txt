@@ -171,6 +171,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.10.1 =
+* Fixed: Prevent scheme-relative URLs from causing an error when scanning for animated gif of webp files
+* Fixed: Potential edge case where an issue density calculation could cause a PHP warning and cause a failed scan
+* Fixed: Ensure that missing form labels are reported in the scan results appropriately
+
 = 1.10.0 =
 * Updated: Improved aria-hidden scanning rule
 * Fixed: Prevent missing_transcript rule from flagging on certain links
