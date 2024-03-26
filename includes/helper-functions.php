@@ -927,17 +927,14 @@ function edac_url_exists( string $url ): bool {
  * @return resource|bool The file binary string or false if the file could not be opened.
  */
 function edac_get_file_opened_as_binary( string $filename ) {
-	// If the file name looks like a url without a scheme add https and check if the file exists.
-	if ( ! str_starts_with( $filename, '//' ) ) {
+	if (
+		str_starts_with( $filename, 'http' ) ||
+		preg_match( '/^\/[a-zA-Z0-9]/', $filename )
+	) {
 		$file = $filename;
 	} else {
 		$file       = edac_url_add_scheme_if_not_existing( $filename );
 		$url_exists = edac_url_exists( $file );
-		// if the https version does not exist, try http.
-		if ( false === $url_exists ) {
-			$file       = edac_url_add_scheme_if_not_existing( $filename, 'http' );
-			$url_exists = edac_url_exists( $file );
-		}
 	}
 
 	// if this url doesn't exist, return false.
