@@ -12,16 +12,22 @@
 class UrlAddSchemeIfNotExistingTest extends WP_UnitTestCase {
 
 	/**
-	 * Test that the function adds a scheme to a url that doesn't have one.
+	 * Test that the function adds a scheme to a url that doesn't have one and returns relative urls unchanged.
 	 */
 	public function test_url_add_scheme_if_not_existing() {
 		$url      = '//example.com';
 		$expected = 'https://example.com';
-		$this->assertEquals( $expected, edac_url_add_scheme_if_not_existing( $url ) );
+		$this->assertEquals( $expected, edac_url_add_scheme_if_not_existing( $url, 'https' ) );
 
 		$url_http = '//example.com';
 		$expected = 'http://example.com';
 		$this->assertEquals( $expected, edac_url_add_scheme_if_not_existing( $url_http, 'http' ) );
+
+		$url_one_slash = '/example.com';
+		$this->assertEquals( $url_one_slash, edac_url_add_scheme_if_not_existing( $url_one_slash ) );
+
+		$url_no_slash = 'example.com';
+		$this->assertStringStartsWith( 'http', edac_url_add_scheme_if_not_existing( $url_no_slash ) );
 	}
 
 	/**
