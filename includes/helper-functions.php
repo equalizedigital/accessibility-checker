@@ -864,16 +864,33 @@ function edac_database_table_count( $table ) {
  * @since 1.10.1
  *
  * @param  string $file The filename.
- * @param string $site_protocol The site protocol. Default is 'https'.
+ * @param  string $site_protocol The site protocol. Default is 'https'.
  *
  * @return string The filename unchanged if it doesn't look like a URL, or with a scheme added if it does.
  */
-function edac_url_add_scheme_if_not_existing( string $file, string $site_protocol = 'https' ): string {
-	if ( str_starts_with( $file, $site_protocol ) || ! str_starts_with( $file, '//' ) ) {
+function edac_url_add_scheme_if_not_existing( string $file, string $site_protocol = '' ): string {
+
+	// if it starts with some valid scheme return unchanged.
+	$valid_schemes = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'tel', 'file', 'data', 'irc', 'ssh', 'sftp' );
+	$start_of_file = substr( $file, 0, 6 );
+	foreach ( $valid_schemes as $scheme ) {
+		if ( str_starts_with( $start_of_file, $scheme ) ) {
+			return $file;
+		}
+	}
+
+	// if it starts with / followed by any alphanumeric assume it's a relative url.
+	if ( preg_match( '/^\/[a-zA-Z0-9]/', $file ) ) {
 		return $file;
 	}
 
-	return "{$site_protocol}:{$file}";
+	// by this point it doesn't seem like a url or a relative path so make it into one.
+	$file_location = ltrim( $file, '/' );
+	$site_scheme   = ( ! empty( $site_protocol ) )
+		? $site_protocol
+		: ( is_ssl() ? 'https' : 'http' );
+
+	return "{$site_scheme}://{$file_location}";
 }
 
 /**
