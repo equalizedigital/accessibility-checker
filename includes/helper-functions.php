@@ -104,7 +104,7 @@ function edac_ordinal( $number ) {
 				NumberFormatter::ORDINAL
 			)
 		)->format( $number );
-	
+
 	} else {
 		if ( $number % 100 >= 11 && $number % 100 <= 13 ) {
 			$ordinal = $number . 'th';
@@ -125,7 +125,7 @@ function edac_ordinal( $number ) {
 			}
 		}
 		return $ordinal;
-	
+
 	}
 }
 
@@ -649,7 +649,10 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
 	$error_elements_percentage = $issue_count / $element_count;
 	$error_content_percentage  = $issue_count / $content_length;
 
-	$score = ( ( $error_elements_percentage * $element_weight ) + ( $error_content_percentage * $content_weight ) );
+	$score = (
+		( $error_elements_percentage * $element_weight ) +
+		( $error_content_percentage * $content_weight )
+	);
 
 	return round( $score * 100, 2 );
 }
@@ -856,4 +859,98 @@ function edac_database_table_count( $table ) {
 	}
 
 	return $count;
+}
+
+/**
+ * Add a scheme to file it looks like a url but doesn't have one.
+ *
+ * @since 1.10.1
+ *
+ * @param  string $file The filename.
+ * @param  string $site_protocol The site protocol. Default is 'https'.
+ *
+ * @return string The filename unchanged if it doesn't look like a URL, or with a scheme added if it does.
+ */
+function edac_url_add_scheme_if_not_existing( string $file, string $site_protocol = '' ): string {
+
+	// if it starts with some valid scheme return unchanged.
+	$valid_schemes = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'tel', 'file', 'data', 'irc', 'ssh', 'sftp' );
+	$start_of_file = substr( $file, 0, 6 );
+	foreach ( $valid_schemes as $scheme ) {
+		if ( str_starts_with( $start_of_file, $scheme ) ) {
+			return $file;
+		}
+	}
+
+	// if it starts with / followed by any alphanumeric assume it's a relative url.
+	if ( preg_match( '/^\/[a-zA-Z0-9]/', $file ) ) {
+		return $file;
+	}
+
+	// by this point it doesn't seem like a url or a relative path so make it into one.
+	$file_location = ltrim( $file, '/' );
+	$site_scheme   = ( ! empty( $site_protocol ) )
+		? $site_protocol
+		: ( is_ssl() ? 'https' : 'http' );
+
+	return "{$site_scheme}://{$file_location}";
+}
+
+/**
+ * Requests the headers of a URL to check if it exists.
+ *
+ * @since 1.10.1
+ *
+ * @param string $url the url to check.
+ * @return bool
+ */
+function edac_url_exists( string $url ): bool {
+
+	$response = wp_remote_head( $url );
+
+	if (
+		is_wp_error( $response ) ||
+		( // Check if the response code is not in the 2xx range.
+			wp_remote_retrieve_response_code( $response ) < 200 ||
+			wp_remote_retrieve_response_code( $response ) > 299
+		)
+	) {
+		return false;
+	}
+
+	return true;
+}
+
+/**
+ * Get a file from local or remote source as a binary file handle.
+ *
+ * @since 1.10.1
+ *
+ * @param string $filename The file location, either local or a remote URL.
+ * @return resource|bool The file binary string or false if the file could not be opened.
+ */
+function edac_get_file_opened_as_binary( string $filename ) {
+	if (
+		str_starts_with( $filename, 'http' ) ||
+		preg_match( '/^\/[a-zA-Z0-9]/', $filename )
+	) {
+		$file = $filename;
+	} else {
+		$file       = edac_url_add_scheme_if_not_existing( $filename );
+		$url_exists = edac_url_exists( $file );
+	}
+
+	// if this url doesn't exist, return false.
+	if ( isset( $url_exists ) && false === $url_exists ) {
+		return false;
+	}
+
+	try {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen, WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- path validated above.
+		$fh = fopen( $file, 'rb' );
+	} catch ( Exception $e ) {
+		return false;
+	}
+
+	return $fh;
 }

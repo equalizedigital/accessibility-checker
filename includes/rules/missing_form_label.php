@@ -43,7 +43,8 @@ function ac_input_has_label( $field, $dom ) {
 	if ( $field->getAttribute( 'aria-label' ) ) {
 		return true;
 	}
-	if ( $dom->find( 'label[for="' . $field->getAttribute( 'id' ) . '"]', -1 ) !== '' ) {
+	if ( $dom->find( 'label[for="' . $field->getAttribute( 'id' ) . '"]', -1 ) !== null ) {
+
 		return true;
 	}
 	return edac_field_has_label_parent( $field );

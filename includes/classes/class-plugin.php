@@ -8,6 +8,7 @@
 namespace EDAC\Inc;
 
 use EDAC\Admin\Admin;
+use EDAC\Admin\Meta_Boxes;
 
 /**
  * Main plugin functionality class.
@@ -19,7 +20,8 @@ class Plugin {
 	 */
 	public function __construct() {
 		if ( \is_admin() ) {
-			$admin = new Admin();
+			$meta_boxes = new Meta_Boxes();
+			$admin      = new Admin( $meta_boxes );
 			$admin->init();
 		} else {
 			$this->init();
@@ -36,9 +38,9 @@ class Plugin {
 	 * @return void
 	 */
 	private function init() {
-		
+
 		add_action( 'wp_enqueue_scripts', array( 'EDAC\Inc\Enqueue_Frontend', 'enqueue' ) );
-		
+
 		$accessibility_statement = new Accessibility_Statement();
 		$accessibility_statement->init_hooks();
 

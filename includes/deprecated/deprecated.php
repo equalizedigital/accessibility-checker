@@ -76,6 +76,30 @@ function edac_delete_cpt_posts( $post_type ) {
 }
 
 /**
+ * Register custom meta boxes
+ *
+ * @deprecated 1.10.0
+ *
+ * @return void
+ */
+function edac_register_meta_boxes() {
+	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Meta_Boxes::register_meta_boxes' );
+	( new EDAC\Admin\Meta_Boxes() )->register_meta_boxes();
+}
+
+/**
+ * Render the custom meta box html
+ *
+ * @deprecated 1.10.0
+ *
+ * @return void
+ */
+function edac_custom_meta_box_cb() {
+	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Meta_Boxes::render' );
+	( new EDAC\Admin\Meta_Boxes() )->render();
+}
+
+/**
  * Insert rule date into database
  *
  * @deprecated 1.10.0
