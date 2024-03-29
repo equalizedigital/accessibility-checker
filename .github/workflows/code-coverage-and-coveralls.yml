@@ -49,6 +49,10 @@ jobs:
       run: |
         composer global require php-coveralls/php-coveralls
         ~/.composer/vendor/bin/php-coveralls -v -x ./coverage/clover.xml -o ./coverage/coveralls.json
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        GITHUB_EVENT_NAME: ${{ github.event_name }}
+        GITHUB_RUN_ID: ${{ github.run_id }}
 
     - name: Upload coverage to Coveralls
       uses: coverallsapp/github-action@v2
