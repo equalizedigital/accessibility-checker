@@ -1,11 +1,13 @@
 name: Deploy to WordPress.org Repository
 
+# Allow manual triggering for testing but also trigger on release for real run
 on:
   workflow_dispatch:
   release:
     types: [released]
 
 jobs:
+  # This job is based on and relies on the 10up action-wordpress-plugin-deploy action
   deploy_to_wp_repository:
     name: Deploy to WP.org
     runs-on: ubuntu-latest
@@ -37,7 +39,7 @@ jobs:
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         with:
-          dry-run: true
+          dry-run: true # exists to prevent accidental deploys during testing
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
