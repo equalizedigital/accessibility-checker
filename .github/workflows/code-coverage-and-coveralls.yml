@@ -10,6 +10,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=10
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -22,6 +31,10 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Install WP
+      shell: bash
+      run: tests/bin/install-wp-tests.sh wordpress_tests root '' 127.0.0.1:3306 ${{ matrix.wp_version }}
 
     - name: Run PHPUnit and generate reports in clover and html format
       run: ./vendor/bin/phpunit --coverage-clover=./coverage/clover.xml --coverage-html=./coverage/html
