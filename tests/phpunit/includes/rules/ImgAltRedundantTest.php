@@ -11,14 +11,13 @@
  * @group rules
  */
 class ImgAltRedundantTest extends WP_UnitTestCase {
-	use GetDomHelperTrait;
 
 	/**
 	 * Test the rule catches redundant alt attributes on images.
 	 */
 	public function test_does_not_flag_duplicate_alt_when_alt_is_not_present() {
 		$html   = '<img src="image.jpg">';
-		$dom    = $this->get_DOM( $html );
+		$dom    = str_get_html( $html );
 		$errors = edac_rule_img_alt_redundant( array( 'html' => $dom ), null );
 		$this->assertEmpty( $errors );
 	}
@@ -30,7 +29,7 @@ class ImgAltRedundantTest extends WP_UnitTestCase {
 	 */
 	public function test_idoes_not_flag_duplicate_alt_when_alt_is_empty_string() {
 		$html   = '<img src="image.jpg" alt="">';
-		$dom    = $this->get_DOM( $html );
+		$dom    = str_get_html( $html );
 		$errors = edac_rule_img_alt_redundant( array( 'html' => $dom ), null );
 		$this->assertEmpty( $errors );
 	}
@@ -42,7 +41,7 @@ class ImgAltRedundantTest extends WP_UnitTestCase {
 	 */
 	public function test_does_not_flag_duplicate_alt_when_alt_and_title_are_empty_strings() {
 		$html   = '<img src="image.jpg" alt="" title="">';
-		$dom    = $this->get_DOM( $html );
+		$dom    = str_get_html( $html );
 		$errors = edac_rule_img_alt_redundant( array( 'html' => $dom ), null );
 		$this->assertEmpty( $errors );
 	}
@@ -52,7 +51,7 @@ class ImgAltRedundantTest extends WP_UnitTestCase {
 	 */
 	public function test_flags_images_where_alt_and_title_are_the_same() {
 		$html   = '<img src="image.jpg" alt="test" title="test">';
-		$dom    = $this->get_DOM( $html );
+		$dom    = str_get_html( $html );
 		$errors = edac_rule_img_alt_redundant( array( 'html' => $dom ), null );
 		$this->assertNotEmpty( $errors );
 	}
@@ -62,7 +61,7 @@ class ImgAltRedundantTest extends WP_UnitTestCase {
 	 */
 	public function test_img_alt_redundant_rule_does_not_flag_duplicate_alt_when_alt_and_title_are_different() {
 		$html   = '<img src="image.jpg" alt="test" title="different">';
-		$dom    = $this->get_DOM( $html );
+		$dom    = str_get_html( $html );
 		$errors = edac_rule_img_alt_redundant( array( 'html' => $dom ), null );
 		$this->assertEmpty( $errors );
 	}
