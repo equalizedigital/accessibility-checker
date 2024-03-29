@@ -1,3 +1,25 @@
+#!/bin/bash
+
+# Define the flag variable and set default value
+KEEP_BUILD_FOLDER=false
+
+# Parse command-line options
+while getopts ":-:" opt; do
+  case $opt in
+    -)
+      case "${OPTARG}" in
+        keep-build-folder)
+          val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
+          KEEP_BUILD_FOLDER=$val
+          ;;
+        *)
+          ;;
+      esac;;
+    *)
+      ;;
+  esac
+done
+
 #Remove the contents of the dist folder
 rm -frd ./dist
 mkdir ./dist
@@ -20,5 +42,8 @@ cd ./dist
 zip -r accessibility-checker.zip ./accessibility-checker
 
 #cleanup and drop back into the original dir
-rm -r ./accessibility-checker
+# Skip this step if the 'keep-build-folder' flag is true
+if [ "$KEEP_BUILD_FOLDER" = false ] ; then
+  rm -r ./accessibility-checker
+fi
 cd ..
