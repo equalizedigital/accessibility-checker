@@ -6,18 +6,19 @@
  */
 
 use EDAC\Admin\Admin_Notices;
+
 /**
  * Admin Notices test case.
  */
-class EDACAdminNoticesTest extends WP_UnitTestCase {
-	
+class AdminNoticesTest extends WP_UnitTestCase {
+
 	/**
 	 * Instance of the Admin_Notices class.
 	 *
 	 * @var Admin_Notices $admin_notices.
 	 */
 	private $admin_notices;
-	
+
 	/**
 	 * Set up the test fixture.
 	 */
