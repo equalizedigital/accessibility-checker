@@ -362,12 +362,12 @@ function edac_get_content( $post ) {
 				}
 			}
 		} catch ( Exception $e ) {
-			update_post_meta( $post->ID, '_edac_density_data', '0,0' );
+			update_post_meta( $post->ID, '_edac_density_data', array( 0, 0 ) );
 
 			$content['html'] = false;
 		}
 	} else {
-		update_post_meta( $post->ID, '_edac_density_data', '0,0' );
+		update_post_meta( $post->ID, '_edac_density_data', array( 0, 0 ) );
 
 		$content['html'] = false;
 	}
