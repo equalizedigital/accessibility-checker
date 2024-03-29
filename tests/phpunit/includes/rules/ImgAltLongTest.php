@@ -5,10 +5,14 @@
  * @package Accessibility_Checker
  */
 
+namespace rules;
+
+use WP_UnitTestCase;
+
 /**
  * Admin Notices test case.
  */
-class EDACRuleImgAltLongTest extends WP_UnitTestCase {
+class ImgAltLongTest extends WP_UnitTestCase {
 
 	/**
 	 * Test that edac_rule_img_alt_long function returns an empty array when all images have alt text within the allowed length.
