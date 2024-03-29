@@ -5,8 +5,6 @@ on:
     branches: [ develop ]
   pull_request:
     branches: [ main ]
-  pull_request_target: # this is added just to test this workflow on the PR that adds it
-      branches: [ develop ]
 
 jobs:
   test:
