@@ -8,21 +8,21 @@
 /**
  * Sample test case.
  */
-class EDACCompareStrings extends WP_UnitTestCase {
+class CompareStringsTest extends WP_UnitTestCase {
 
 	/**
 	 * Tests the edac_compare_strings function.
-	 * 
+	 *
 	 * @dataProvider edac_compare_strings_data
-	 * 
+	 *
 	 * @param string $string1  The 1st string to compare.
 	 * @param string $string2  The 2nd string to compare.
 	 * @param string $expected The expected result of the comparison.
 	 */
 	public function test_edac_compare_strings( $string1, $string2, $expected ) {
 		$this->assertSame(
-			$expected, 
-			edac_compare_strings( $string1, $string2 ) 
+			$expected,
+			edac_compare_strings( $string1, $string2 )
 		);
 	}
 

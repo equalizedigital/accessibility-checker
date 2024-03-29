@@ -129,4 +129,15 @@
     -->
     <ini name="error_reporting" value="E_ALL &#38; ~E_DEPRECATED" />
 
+	<!-- Exclude these rules from the tests directory only -->
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter">
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+
 </ruleset>

@@ -8,7 +8,7 @@
 /**
  * Sample test case.
  */
-class EDACRegisterRules extends WP_UnitTestCase {
+class RegisterRulesTest extends WP_UnitTestCase {
 
 	/**
 	 * Tests the edac_register_rules function.
