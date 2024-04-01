@@ -2,6 +2,7 @@
 [![Lint](https://github.com/equalizedigital/accessibility-checker/actions/workflows/lint.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/lint.yml)
 [![Security](https://github.com/equalizedigital/accessibility-checker/actions/workflows/security.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/security.yml)
 [![Test](https://github.com/equalizedigital/accessibility-checker/actions/workflows/phpunit.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/phpunit.yml)
+[![Coverage Status](https://coveralls.io/repos/github/equalizedigital/accessibility-checker/badge.svg?branch=develop)](https://coveralls.io/github/equalizedigital/accessibility-checker?branch=develop)
 
 # Equalize Digital Accessibility Checker
 
