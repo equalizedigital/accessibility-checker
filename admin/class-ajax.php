@@ -85,7 +85,7 @@ class Ajax {
 			$text_statistics          = new TextStatistics();
 			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
-		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
+		$simplified_summary_grade_failed = $simplified_summary_grade > 9;
 
 		$simplified_summary_text = esc_html__( 'A Simplified summary has not been included for this content.', 'accessibility-checker' );
 		if ( 'none' !== $simplified_summary_prompt ) {
@@ -495,7 +495,7 @@ class Ajax {
 		$post_id                        = (int) $_REQUEST['post_id'];
 		$html                           = '';
 		$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
-		$simplified_summary_position    = get_option( 'edac_simplified_summary_position', $default = false );
+		$simplified_summary_position    = get_option( 'edac_simplified_summary_position', false );
 		$content_post                   = get_post( $post_id );
 		$content                        = $content_post->post_content;
 		$content                        = apply_filters( 'the_content', $content );
