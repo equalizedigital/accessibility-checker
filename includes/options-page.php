@@ -21,9 +21,9 @@ function edac_user_can_ignore() {
 	$user              = wp_get_current_user();
 	$user_roles        = ( isset( $user->roles ) ) ? $user->roles : array();
 	$ignore_user_roles = get_option( 'edacp_ignore_user_roles' );
-	$interset          = ( $user_roles && $ignore_user_roles ) ? array_intersect( $user_roles, $ignore_user_roles ) : false;
+	$intersect         = ( $user_roles && $ignore_user_roles ) ? array_intersect( $user_roles, $ignore_user_roles ) : false;
 
-	return ( $interset );
+	return ( $intersect );
 }
 
 /**
