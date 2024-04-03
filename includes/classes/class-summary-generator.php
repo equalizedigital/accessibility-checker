@@ -320,11 +320,33 @@ class Summary_Generator {
 	 * @since 1.9.0
 	 */
 	private function save_summary_meta_data( $summary ) {
-		update_post_meta( $this->post_id, '_edac_summary', $summary );
+		update_post_meta( $this->post_id, '_edac_summary', $this->sanitize_summary_meta_data( $summary ) );
 		update_post_meta( $this->post_id, '_edac_summary_passed_tests', absint( $summary['passed_tests'] ) );
 		update_post_meta( $this->post_id, '_edac_summary_errors', absint( $summary['errors'] ) );
 		update_post_meta( $this->post_id, '_edac_summary_warnings', absint( $summary['warnings'] ) );
 		update_post_meta( $this->post_id, '_edac_summary_ignored', absint( $summary['ignored'] ) );
 		update_post_meta( $this->post_id, '_edac_summary_contrast_errors', absint( $summary['contrast_errors'] ) );
+	}
+
+	/**
+	 * Sanitizes the summary metadata before saving it to the database.
+	 *
+	 * @param array $summary An associative array containing the summary of accessibility checks.
+	 *
+	 * @return array The sanitized summary metadata.
+	 *
+	 * @since 1.11.0
+	 */
+	private function sanitize_summary_meta_data( array $summary ): array {
+		return array(
+			'passed_tests'       => absint( $summary['passed_tests'] ?? 0 ),
+			'errors'             => absint( $summary['errors'] ?? 0 ),
+			'warnings'           => absint( $summary['warnings'] ?? 0 ),
+			'ignored'            => absint( $summary['ignored'] ?? 0 ),
+			'contrast_errors'    => absint( $summary['contrast_errors'] ?? 0 ),
+			'content_grade'      => absint( $summary['content_grade'] ?? 0 ),
+			'readability'        => sanitize_text_field( $summary['readability'] ?? '' ),
+			'simplified_summary' => filter_var( $summary['simplified_summary'] ?? false, FILTER_VALIDATE_BOOLEAN ),
+		);
 	}
 }
