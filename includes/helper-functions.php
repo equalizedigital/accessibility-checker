@@ -504,7 +504,7 @@ function edac_is_valid_nonce( $secret, $nonce ) {
  *
  * @param string  $meetup meetup name.
  * @param integer $count number of meetups to return.
- * @return json
+ * @return string|void a string of json data when successful, void otherwise.
  */
 function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
@@ -544,7 +544,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
  * @param  string  $meetup meetup name.
  * @param  integer $count number of meetups to return.
  * @param  string  $heading heading level.
- * @return json
+ * @return string|void a string of json data when successful, void otherwise.
  */
 function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
 
