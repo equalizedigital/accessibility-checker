@@ -167,7 +167,7 @@ function edac_remove_element_with_value( $items, $key, $value ) {
  * @return array
  */
 function edac_filter_by_value( $items, $index, $value ) {
-	if ( is_array( $items ) && count( $items ) > 0 ) {
+	if ( is_array( $items ) && ! empty( $items ) ) {
 		foreach ( array_keys( $items ) as $key ) {
 			$temp[ $key ] = $items[ $key ][ $index ];
 
@@ -615,7 +615,7 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 		}
 		// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
-		if ( count( $content ) > 0 ) {
+		if ( empty( $content ) ) {
 			return implode(
 				PHP_EOL,
 				array_slice( $content, 0, $paragraph_count )
