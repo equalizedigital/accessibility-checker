@@ -58,7 +58,7 @@ class Purge_Post_Data {
 		$post_meta = get_post_meta( $post_id );
 		if ( $post_meta ) {
 			foreach ( $post_meta as $key => $value ) {
-				if ( substr( $key, 0, 5 ) === '_edac' || substr( $key, 0, 6 ) === '_edacp' ) {
+				if ( str_starts_with( $key, '_edac' ) ) {
 					delete_post_meta( $post_id, $key );
 				}
 			}
