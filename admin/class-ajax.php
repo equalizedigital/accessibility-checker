@@ -7,6 +7,7 @@
 
 namespace EDAC\Admin;
 
+use DaveChild\TextStatistics\TextStatistics;
 use EDAC\Inc\Summary_Generator;
 
 /**
@@ -67,7 +68,7 @@ class Ajax {
 
 		// password check.
 		if ( (bool) get_option( 'edac_password_protected' ) === true ) {
-			$admin_notices              = new \EDAC\Admin\Admin_Notices();
+			$admin_notices              = new Admin_Notices();
 			$notice_text                = $admin_notices->edac_password_protected_notice_text();
 			$html['password_protected'] = $notice_text;
 			$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
@@ -81,7 +82,7 @@ class Ajax {
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
+			$text_statistics          = new TextStatistics();
 			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
@@ -520,7 +521,7 @@ class Ajax {
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
+			$text_statistics          = new TextStatistics();
 			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 
