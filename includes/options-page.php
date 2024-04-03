@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Purge_Post_Data;
+use EDAC\Inc\Accessibility_Statement;
 
 /**
  * Check if user can ignore or can manage options
@@ -179,7 +180,7 @@ function edac_register_setting() {
 
 	// Register settings.
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
-	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_delete_data' );
+	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_checkbox' );
 	register_setting(
 		'edac_settings',
 		'edac_simplified_summary_prompt',
@@ -198,8 +199,8 @@ function edac_register_setting() {
 			'default'           => 'after',
 		)
 	);
-	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', 'edac_sanitize_add_footer_accessibility_statement' );
-	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', 'edac_sanitize_include_accessibility_statement_link' );
+	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', 'edac_sanitize_checkbox' );
+	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', 'edac_sanitize_checkbox' );
 	register_setting( 'edac_settings', 'edac_accessibility_policy_page', 'edac_sanitize_accessibility_policy_page' );
 }
 
@@ -282,7 +283,8 @@ function edac_simplified_summary_position_cb() {
  * Sanitize the text position value before being saved to database
  *
  * @param array $position Position value.
- * @return array
+ *
+ * @return string
  */
 function edac_sanitize_simplified_summary_position( $position ) {
 	if ( in_array( $position, array( 'before', 'after', 'none' ), true ) ) {
@@ -320,7 +322,8 @@ function edac_simplified_summary_prompt_cb() {
  * Sanitize the text position value before being saved to database
  *
  * @param array $prompt The text.
- * @return array
+ *
+ * @return string
  */
 function edac_sanitize_simplified_summary_prompt( $prompt ) {
 	if ( in_array( $prompt, array( 'when required', 'always', 'none' ), true ) ) {
@@ -439,18 +442,6 @@ function edac_add_footer_accessibility_statement_cb() {
 }
 
 /**
- * Sanitize add footer accessibility statement values before being saved to database
- *
- * @param int $option Option value to sanitize.
- * @return int
- */
-function edac_sanitize_add_footer_accessibility_statement( $option ) {
-	if ( 1 === (int) $option ) {
-		return $option;
-	}
-}
-
-/**
  * Render the checkbox input field for add footer accessibility statement option
  */
 function edac_include_accessibility_statement_link_cb() {
@@ -471,18 +462,6 @@ function edac_include_accessibility_statement_link_cb() {
 		</label>
 	</fieldset>
 	<?php
-}
-
-/**
- * Sanitize add footer accessibility statement values before being saved to database
- *
- * @param int $option Option to sanitize.
- * @return int
- */
-function edac_sanitize_include_accessibility_statement_link( $option ) {
-	if ( 1 === (int) $option ) {
-		return $option;
-	}
 }
 
 /**
@@ -516,7 +495,7 @@ function edac_sanitize_accessibility_policy_page( $page ) {
  */
 function edac_accessibility_statement_preview_cb() {
 	echo wp_kses_post(
-		( new \EDAC\Inc\Accessibility_Statement() )->get_accessibility_statement()
+		( new Accessibility_Statement() )->get_accessibility_statement()
 	);
 }
 
@@ -538,13 +517,15 @@ function edac_delete_data_cb() {
 }
 
 /**
- * Sanitize delete data values before being saved to database
+ * Sanitize checkbox values before being saved to database
  *
- * @param int $option Option to sanitize.
- * @return int
+ * These are passed in as strings, but we will save them as integers.
+ *
+ * @since 1.11.0
+ *
+ * @param string $input Input to sanitize.
+ * @return int either 1 for checked or 0 for unchecked
  */
-function edac_sanitize_delete_data_cb( $option ) {
-	if ( 1 === $option ) {
-		return $option;
-	}
+function edac_sanitize_checkbox( $input ) {
+	return ( isset( $input ) && '1' === $input ) ? 1 : 0;
 }
