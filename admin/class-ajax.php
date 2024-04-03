@@ -79,11 +79,7 @@ class Ajax {
 		$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
 		$simplified_summary        = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
 
-		$simplified_summary_grade = 0;
-		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-			$text_statistics          = new TextStatistics();
-			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
-		}
+		$simplified_summary_grade        = Helpers::try_get_flesch_kincaid_grade_level( $simplified_summary );
 		$simplified_summary_grade_failed = $simplified_summary_grade > 9;
 
 		$simplified_summary_text = esc_html__( 'A Simplified summary has not been included for this content.', 'accessibility-checker' );
@@ -518,12 +514,7 @@ class Ajax {
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
 		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
 
-		$simplified_summary_grade = 0;
-		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-			$text_statistics          = new TextStatistics();
-			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
-		}
-
+		$simplified_summary_grade        = Helpers::try_get_flesch_kincaid_grade_level( $simplified_summary );
 		$simplified_summary_grade_failed = $simplified_summary_grade > 9;
 		$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
 

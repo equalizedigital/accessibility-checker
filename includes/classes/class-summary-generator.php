@@ -7,6 +7,8 @@
 
 namespace EDAC\Inc;
 
+use EDAC\Admin\Helpers;
+
 /**
  * Class that handles summary generator
  *
@@ -279,19 +281,12 @@ class Summary_Generator {
 	 * @since 1.9.0
 	 */
 	private function calculate_content_grade() {
-		$content_post  = get_post( $this->post_id );
-		$content       = $content_post->post_content;
-		$content       = wp_filter_nohtml_kses( $content );
-		$content       = str_replace( ']]>', ']]&gt;', $content );
-		$content_grade = 0;
+		$content_post = get_post( $this->post_id );
+		$content      = $content_post->post_content;
+		$content      = wp_filter_nohtml_kses( $content );
+		$content      = str_replace( ']]>', ']]&gt;', $content );
 
-		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-			$content_grade = floor(
-				( new \DaveChild\TextStatistics\TextStatistics() )->fleschKincaidGradeLevel( $content )
-			);
-		}
-
-		return $content_grade;
+		return Helpers::try_get_flesch_kincaid_grade_level( $content );
 	}
 
 	/**
