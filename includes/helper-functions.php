@@ -138,8 +138,7 @@ function edac_ordinal( $number ) {
 function edac_simple_dom_remove_child( simple_html_dom_node $parent_node ) {
 	$parent_node->innertext = '';
 
-	$error = $parent_node->save();
-	return $error;
+	return $parent_node->save();
 }
 
 /**
@@ -210,9 +209,7 @@ function edac_is_gutenberg_active() {
 		return true;
 	}
 
-	$use_block_editor = ( get_option( 'classic-editor-replace' ) === 'no-replace' );
-
-	return $use_block_editor;
+	return ( get_option( 'classic-editor-replace' ) === 'no-replace' );
 }
 
 /**
@@ -470,8 +467,8 @@ function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
 
 	$time     = time();
 	$max_time = $time + $timeout_seconds;
-	$nonce    = $salt . ',' . $max_time . ',' . sha1( $salt . $secret . $max_time );
-	return $nonce;
+
+	return $salt . ',' . $max_time . ',' . sha1( $salt . $secret . $max_time );
 }
 
 /**
