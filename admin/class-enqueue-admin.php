@@ -45,7 +45,6 @@ class Enqueue_Admin {
 	 */
 	public static function maybe_enqueue_admin_and_editor_app_scripts() {
 
-
 		global $pagenow;
 		$post_types        = get_option( 'edac_post_types' );
 		$current_post_type = get_post_type();
