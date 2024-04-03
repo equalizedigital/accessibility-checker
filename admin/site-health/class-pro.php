@@ -33,11 +33,11 @@ class Pro {
 			'fields' => array(
 				'version'                => array(
 					'label' => 'Version',
-					'value' => EDACP_VERSION,
+					'value' => defined( 'EDACP_VERSION' ) ? esc_html( EDACP_VERSION ) : 'Unset',
 				),
 				'database_version'       => array(
 					'label' => 'Database Version',
-					'value' => EDACP_DB_VERSION,
+					'value' => defined( 'EDACP_DB_VERSION' ) ? esc_html( EDACP_DB_VERSION ) : 'Unset',
 				),
 				'license_status'         => array(
 					'label' => 'License Status',
