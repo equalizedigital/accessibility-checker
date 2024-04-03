@@ -321,10 +321,10 @@ class Summary_Generator {
 	 */
 	private function save_summary_meta_data( $summary ) {
 		update_post_meta( $this->post_id, '_edac_summary', $summary );
-		update_post_meta( $this->post_id, '_edac_summary_passed_tests', $summary['passed_tests'] );
-		update_post_meta( $this->post_id, '_edac_summary_errors', $summary['errors'] );
-		update_post_meta( $this->post_id, '_edac_summary_warnings', $summary['warnings'] );
-		update_post_meta( $this->post_id, '_edac_summary_ignored', $summary['ignored'] );
-		update_post_meta( $this->post_id, '_edac_summary_contrast_errors', $summary['contrast_errors'] );
+		update_post_meta( $this->post_id, '_edac_summary_passed_tests', absint( $summary['passed_tests'] ) );
+		update_post_meta( $this->post_id, '_edac_summary_errors', absint( $summary['errors'] ) );
+		update_post_meta( $this->post_id, '_edac_summary_warnings', absint( $summary['warnings'] ) );
+		update_post_meta( $this->post_id, '_edac_summary_ignored', absint( $summary['ignored'] ) );
+		update_post_meta( $this->post_id, '_edac_summary_contrast_errors', absint( $summary['contrast_errors'] ) );
 	}
 }
