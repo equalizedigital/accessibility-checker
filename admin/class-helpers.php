@@ -7,6 +7,8 @@
 
 namespace EDAC\Admin;
 
+use DaveChild\TextStatistics\TextStatistics;
+
 /**
  * Class that holds helpers
  */
@@ -229,5 +231,28 @@ class Helpers {
 		 * @param string $capability The capability required to view the dashboard widget.
 		 */
 		return current_user_can( apply_filters( 'edac_filter_dashboard_widget_capability', 'edit_posts' ) );
+	}
+
+	/**
+	 * Get the Flesch-Kincaid Grade Level of a given text.
+	 *
+	 * This relies on the DaveChild/TextStatistics library, which can produce
+	 * valueError on php 8+ if the mbstring extension is not returning a list
+	 * of encodings.
+	 *
+	 * @param string $text The text to analyze.
+	 * @return int The Flesch-Kincaid Grade Level of the text, or 0 if we can't calculate it
+	 */
+	public static function try_get_flesch_kincaid_grade_level( $text ) {
+		$content_grade = 0;
+		if (
+			class_exists( 'DaveChild\TextStatistics\TextStatistics' ) &&
+			! empty( mb_list_encodings() )
+		) {
+			$content_grade = (int) floor(
+				( new TextStatistics() )->fleschKincaidGradeLevel( $text )
+			);
+		}
+		return $content_grade;
 	}
 }
