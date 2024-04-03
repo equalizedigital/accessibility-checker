@@ -1,6 +1,6 @@
 <?php
 /**
- * Accessibility Checker pluign file.
+ * Accessibility Checker plugin file.
  *
  * @package Accessibility_Checker
  */
@@ -10,7 +10,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	die;
 }
 
-// check if the delte data option is checked. If not, don't delete data.
+// check if the delete data option is checked. If not, don't delete data.
 $delete_data = get_option( 'edac_delete_data' );
 if ( true === (bool) $delete_data ) {
 

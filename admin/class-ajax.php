@@ -42,7 +42,7 @@ class Ajax {
 	 *
 	 * @return void
 	 *
-	 *  - '-1' means that nonce could not be varified
+	 *  - '-1' means that nonce could not be verified
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that there isn't any summary data to return
 	 */
@@ -179,7 +179,7 @@ class Ajax {
 	 *
 	 * @return void
 	 *
-	 *  - '-1' means that nonce could not be varified
+	 *  - '-1' means that nonce could not be verified
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that the table name is not valid
 	 *  - '-4' means that there isn't any details to return
@@ -471,7 +471,7 @@ class Ajax {
 	 *
 	 * @return void
 	 *
-	 *  - '-1' means that nonce could not be varified
+	 *  - '-1' means that nonce could not be verified
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that there isn't any readability data to return
 	 */
@@ -612,7 +612,7 @@ class Ajax {
 	 *
 	 * @return void
 	 *
-	 *  - '-1' means that nonce could not be varified
+	 *  - '-1' means that nonce could not be verified
 	 *  - '-2' means that there isn't any ignore data to return
 	 */
 	public function add_ignore() {
@@ -673,7 +673,7 @@ class Ajax {
 	 *
 	 * @return void
 	 *
-	 *  - '-1' means that nonce could not be varified
+	 *  - '-1' means that nonce could not be verified
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that the summary was not specified
 	 */
