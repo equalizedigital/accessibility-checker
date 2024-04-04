@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
-Tested up to: 6.4.3
-Stable tag: 1.10.1
+Tested up to: 6.5.0
+Stable tag: 1.10.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.10.2 =
+* Updated: Tested up to WP 6.5.0
 
 = 1.10.1 =
 * Fixed: Prevent scheme-relative URLs from causing an error when scanning for animated gif of webp files
