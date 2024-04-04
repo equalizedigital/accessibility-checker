@@ -282,6 +282,7 @@ function edac_get_content( $post ) {
 
 		if ( isset( $parsed_url['host'] ) ) {
 			$is_local_loopback = Helpers::is_domain_loopback( $parsed_url['host'] );
+			// can only be bool.
 			update_option( 'edac_local_loopback', $is_local_loopback );
 		}
 	}
@@ -356,7 +357,11 @@ function edac_get_content( $post ) {
 				$body_density_data = edac_get_body_density_data( $page_html );
 
 				if ( false !== $body_density_data ) {
-					update_post_meta( $post->ID, '_edac_density_data', $body_density_data );
+					update_post_meta(
+						$post->ID,
+						'_edac_density_data',
+						array_map( 'intval', $body_density_data )
+					);
 				} else {
 					delete_post_meta( $post->ID, '_edac_density_data' );
 				}

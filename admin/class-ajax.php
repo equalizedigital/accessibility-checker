@@ -72,7 +72,7 @@ class Ajax {
 			$html['password_protected'] = $notice_text;
 			$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
 		}
-		
+
 		$post_id                   = (int) $_REQUEST['post_id'];
 		$summary                   = ( new Summary_Generator( $post_id ) )->generate_summary();
 		$simplified_summary_text   = '';
@@ -627,8 +627,8 @@ class Ajax {
 		global $wpdb;
 		$table_name           = $wpdb->prefix . 'accessibility_checker';
 		$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
-		$ids                  = array_map( 
-			function ( $value ) { 
+		$ids                  = array_map(
+			function ( $value ) {
 				return (int) $value;
 			},
 			$raw_ids
@@ -701,9 +701,11 @@ class Ajax {
 		}
 
 		$post_id = (int) $_REQUEST['post_id'];
-		$summary = sanitize_text_field( $_REQUEST['summary'] );
-
-		update_post_meta( $post_id, '_edac_simplified_summary', $summary );
+		update_post_meta(
+			$post_id,
+			'_edac_simplified_summary',
+			sanitize_text_field( $_REQUEST['summary'] )
+		);
 
 		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
 		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
