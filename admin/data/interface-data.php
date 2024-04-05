@@ -12,7 +12,7 @@ namespace EDAC\Admin\Data;
 /**
  * Interface for data classes
  */
-interface Data_Interface {
+interface Interface_Data {
 
 	/**
 	 * Get data
