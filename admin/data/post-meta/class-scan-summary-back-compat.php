@@ -1,6 +1,10 @@
 <?php
 /**
- * Data handler for scan summary
+ * Data handler for scan summary with back compat support.
+ *
+ * This class will ideally be removable after enough time has passed or enough
+ * updated versions have been released where we can be confident that all data
+ * in users systems has been updated to be stored in the singular root key.
  *
  * @since 1.11.0
  *
@@ -12,7 +16,7 @@ namespace EDAC\Admin\Data\Post_Meta;
 use EDAC\Admin\Data\Interface_Data;
 
 /**
- * Handle scan summary data
+ * Handle scan summary data in a backwards compatible way.
  *
  * @since 1.11.0
  */
