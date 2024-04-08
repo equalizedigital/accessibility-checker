@@ -9,35 +9,44 @@
 
 namespace EDAC\Admin\Data\Post_Meta;
 
-use EDAC\Admin\Data\Data_Interface;
+use EDAC\Admin\Data\Abstract_Data;
+use EDAC\Admin\Data\Interface_Data;
 
 /**
  * Handle scan summary data
  *
  * @since 1.11.0
  */
-class Scan_Summary implements Data_Interface {
-	const SUMMARY_KEY = '_edac_summary';
+class Scan_Summary extends Abstract_Data implements Interface_Data {
+	const KEY = '_summary';
+
+	/**
+	 * Storage key
+	 *
+	 * @var string
+	 */
+	public string $root_key = self::PREFIX . self::KEY;
+
 	/**
 	 * Scan summary data
 	 *
 	 * @var array
 	 */
-	private array $summary;
+	protected array $summary;
 
 	/**
 	 * Post ID
 	 *
 	 * @var int
 	 */
-	private int $post_id;
+	public int $post_id;
 
 	/**
 	 * Column sort keys to store as individual post_meta values
 	 *
 	 * @var string[]
 	 */
-	private array $column_sort_keys;
+	public array $column_sort_keys;
 
 	/**
 	 * Set up the post ID and colum sort keys.
@@ -47,6 +56,10 @@ class Scan_Summary implements Data_Interface {
 	public function __construct( int $post_id = 0 ) {
 		$this->post_id          = $post_id;
 		$this->column_sort_keys = array( 'passed', 'error', 'warning', 'ignored', 'contrast_errors' );
+
+		// There is no reason to create an instance of this class without wanting this data.
+		$summary       = get_post_meta( $this->post_id, $this->root_key, true );
+		$this->summary = ! empty( $summary ) ? $summary : array();
 	}
 
 	/**
@@ -57,10 +70,6 @@ class Scan_Summary implements Data_Interface {
 	 * @return array|string
 	 */
 	public function get( string $key = '' ) {
-		if ( ! $this->summary ) {
-			$this->summary = get_post_meta( $this->post_id, self::SUMMARY_KEY, true );
-		}
-
 		if ( ! empty( $key ) ) {
 			return $this->summary[ $key ] ?? '';
 		}
@@ -73,6 +82,10 @@ class Scan_Summary implements Data_Interface {
 	 *
 	 * Also saves the keys we want to sort by as individual post_meta values.
 	 *
+	 * It may be confusing to have the data paramiter before the key parameter but this
+	 * is done so that data can be passed without a key to save the entire summary. The
+	 * key just allows a chunk to be saved.
+	 *
 	 * @param mixed  $data Data to save.
 	 * @param string $key Optional. Key to save specific data.
 	 *
@@ -80,14 +93,22 @@ class Scan_Summary implements Data_Interface {
 	 */
 	public function save( $data, string $key = '' ): void { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- some implementations may need a key.
 		$this->summary = $this->sanitize_summary(
-			array_merge( $this->summary, $data )
+			// If a key is passed, only update that key.
+			array_merge(
+				$this->summary,
+				empty( $key ) ? $data : array( $key => $data )
+			)
 		);
-		update_post_meta( $this->post_id, self::SUMMARY_KEY, $this->summary );
+		update_post_meta( $this->post_id, $this->root_key, $this->summary );
 
 		// save the keys we want to sort by as individual post_meta values.
 		foreach ( $this->column_sort_keys as $column ) {
 			$value_to_store = $this->summary[ $column ] ?? 0;
-			update_post_meta( $this->post_id, self::SUMMARY_KEY . '_' . $column, $value_to_store );
+			update_post_meta(
+				$this->post_id,
+				$this->root_key . '_' . $column,
+				$value_to_store
+			);
 		}
 	}
 
@@ -99,9 +120,12 @@ class Scan_Summary implements Data_Interface {
 	 * @return void
 	 */
 	public function delete( string $key = '' ): void { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- some implementations may need a key.
-		delete_post_meta( $this->post_id, self::SUMMARY_KEY );
+		delete_post_meta( $this->post_id, $this->root_key );
 		foreach ( $this->column_sort_keys as $column ) {
-			delete_post_meta( $this->post_id, self::SUMMARY_KEY . '_' . $column );
+			delete_post_meta(
+				$this->post_id,
+				$this->root_key . '_' . $column
+			);
 		}
 	}
 
@@ -114,7 +138,7 @@ class Scan_Summary implements Data_Interface {
 	 *
 	 * @since 1.11.0
 	 */
-	private function sanitize_summary( array $summary ): array {
+	public function sanitize_summary( array $summary ): array {
 		return array(
 			'passed_tests'            => absint( $summary['passed_tests'] ?? 0 ),
 			'errors'                  => absint( $summary['errors'] ?? 0 ),
@@ -129,36 +153,5 @@ class Scan_Summary implements Data_Interface {
 			),
 			'simplified_summary_text' => wp_kses_post( $summary['simplified_summary_text'] ?? '' ),
 		);
-	}
-
-	/**
-	 * For back compat with older data that was stored as individual post_meta values.
-	 *
-	 * This method should be removed after the next major release, or after a year, whichever comes first.
-	 *
-	 * @since 1.11.0
-	 *
-	 * @param string $key The key to get.
-	 *
-	 * @return mixed
-	 */
-	private function back_compat_get( string $key ) {
-		$maybe_back_compat_key = $this->get_key_for_back_compat( $key );
-		$meta_from_old_key     = get_post_meta( $this->post_id, $maybe_back_compat_key, true );
-		return $meta_from_old_key ?? '';
-	}
-
-	/**
-	 * Remap new keys to old keys to preserve back compat with older data.
-	 *
-	 * @param string $key - a key to check for a back compat equivalent.
-	 *
-	 * @return string - the back compat key if it exists, otherwise the original key.
-	 */
-	private function get_key_for_back_compat( string $key ): string {
-		$back_compat_keys = array(
-			'simplified_summary_text' => '_edac_simplified_summary',
-		);
-		return $back_compat_keys[ $key ] ?? $key;
 	}
 }
