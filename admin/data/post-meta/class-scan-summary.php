@@ -124,6 +124,11 @@ class Scan_Summary extends Abstract_Data implements Interface_Data {
 	 * @return void
 	 */
 	public function delete( string $key = '' ): void { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- some implementations may need a key for back compat.
+		if ( ! empty( $key ) ) {
+			unset( $this->summary[ $key ] );
+			$this->save( $this->summary );
+			return;
+		}
 		delete_post_meta( $this->post_id, $this->root_key );
 		foreach ( $this->column_sort_keys as $column ) {
 			delete_post_meta(
