@@ -86,12 +86,16 @@ class Scan_Summary extends Abstract_Data implements Interface_Data {
 	 * is done so that data can be passed without a key to save the entire summary. The
 	 * key just allows a chunk to be saved.
 	 *
-	 * @param mixed  $data Data to save.
+	 * @param mixed  $data Data to save. This is expected to be an associative array if a key is not passed.
 	 * @param string $key Optional. Key to save specific data.
 	 *
 	 * @return void
 	 */
 	public function save( $data, string $key = '' ): void {
+		if ( empty( $key ) && ! is_array( $data ) ) {
+			// this is a fail, we may need to bubble a WP_Error back up.
+			return;
+		}
 		$this->summary = $this->sanitize_summary(
 			// If a key is passed, only update that key.
 			array_merge(
