@@ -7,7 +7,7 @@
 
 namespace EDAC\Inc;
 
-use EDAC\Admin\Data\Post_Meta\Scan_Summary;
+use EDAC\Admin\Data\Post_Meta\{ Scan_Summary, Scan_Summary_Back_Compat };
 
 /**
  * Class that handles summary generator
@@ -81,7 +81,7 @@ class Summary_Generator {
 		$summary['errors']            -= $summary['contrast_errors'];
 		$summary['content_grade']      = $this->calculate_content_grade();
 		$summary['readability']        = $this->get_readability( $summary );
-		$summary['simplified_summary'] = (bool) ( ( new Scan_Summary() )->get( 'simplified_summary_text' ) );
+		$summary['simplified_summary'] = (bool) ( ( new Scan_Summary_Back_Compat( $this->post_id ) )->get( 'simplified_summary_text' ) );
 		$this->update_issue_density( $summary );
 		$this->save_summary_meta_data( $summary );
 
