@@ -7,6 +7,7 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Admin\Data\Post_Meta\Scan_Summary;
 use EDAC\Inc\Summary_Generator;
 
 /**
@@ -75,9 +76,8 @@ class Ajax {
 
 		$post_id                   = (int) $_REQUEST['post_id'];
 		$summary                   = ( new Summary_Generator( $post_id ) )->generate_summary();
-		$simplified_summary_text   = '';
 		$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
-		$simplified_summary        = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
+		$simplified_summary        = ( new Scan_Summary( $post_id ) )->get( 'simplified_summary_text' );
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
@@ -493,7 +493,7 @@ class Ajax {
 
 		$post_id                        = (int) $_REQUEST['post_id'];
 		$html                           = '';
-		$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
+		$simplified_summary             = ( new Scan_Summary( $post_id ) )->get( 'simplified_summary_text' );
 		$simplified_summary_position    = get_option( 'edac_simplified_summary_position', $default = false );
 		$content_post                   = get_post( $post_id );
 		$content                        = $content_post->post_content;
@@ -513,7 +513,7 @@ class Ajax {
 		$content = str_replace( ']]>', ']]&gt;', $content );
 
 		// get readability metadata and determine if a simplified summary is required.
-		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
+		$edac_summary           = ( new Scan_Summary( $post_id ) )->get();
 		$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
 		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
@@ -700,17 +700,11 @@ class Ajax {
 
 		}
 
-		$post_id = (int) $_REQUEST['post_id'];
-		update_post_meta(
-			$post_id,
-			'_edac_simplified_summary',
-			sanitize_text_field( $_REQUEST['summary'] )
-		);
+		$post_id           = (int) $_REQUEST['post_id'];
+		$sanitized_summary = isset( $_REQUEST['summary'] ) ? sanitize_text_field( $_REQUEST['summary'] ) : '';
 
-		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
-		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
-
-		wp_send_json_success( wp_json_encode( $simplified_summary ) );
+		( new Scan_Summary( $post_id ) )->save( 'simplified_summary_text', $sanitized_summary );
+		wp_send_json_success( wp_json_encode( $sanitized_summary ) );
 	}
 
 	/**

@@ -5,6 +5,7 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin\Data\Post_Meta\Scan_Summary;
 use EDAC\Inc\Simplified_Summary;
 
 /**
@@ -44,6 +45,7 @@ class SimplifiedSummaryTest extends WP_UnitTestCase {
 	 */
 	public function test_simplified_summary_markup_with_summary() {
 		$post_id = self::factory()->post->create();
+		( new Scan_Summary( $post_id ) )->save( 'This is a simplified summary.', 'simplified_summary_text' );
 		update_post_meta( $post_id, '_edac_simplified_summary', 'This is a simplified summary.' );
 
 		$output = $this->simplified_summary->simplified_summary_markup( $post_id );
@@ -51,6 +53,22 @@ class SimplifiedSummaryTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( '<h2>Simplified Summary</h2>', $output );
 		$this->assertStringContainsString( '<p>This is a simplified summary.</p>', $output );
 		$this->assertStringContainsString( '</div>', $output );
+	}
+
+	/**
+	 * Tests output of simplified_summary_markup with a summary that passes through back compat methods.
+	 *
+	 * Verifies that the correct HTML markup is returned when a post
+	 * has a simplified summary.
+	 *
+	 * @return void
+	 */
+	public function test_simplified_summary_markup_with_summary_back_compat() {
+		$post_id = self::factory()->post->create();
+		update_post_meta( $post_id, '_edac_simplified_summary', 'This is a simplified summary.' );
+
+		$output = $this->simplified_summary->simplified_summary_markup( $post_id );
+		$this->assertStringContainsString( '<div class="edac-simplified-summary">', $output );
 	}
 
 	/**
