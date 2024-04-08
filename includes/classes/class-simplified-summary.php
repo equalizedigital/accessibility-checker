@@ -59,9 +59,11 @@ class Simplified_Summary {
 	 * @return string
 	 */
 	public function simplified_summary_markup( $post ) {
-		$simplified_summary = get_post_meta( $post, '_edac_simplified_summary', true )
-			? get_post_meta( $post, '_edac_simplified_summary', true ) 
-			: '';
+		$simplified_summary = ( new Scan_Summary( $post ) )->get( 'simplified_summary_text' );
+
+		if ( ! $simplified_summary ) {
+			return '';
+		}
 
 		$simplified_summary_heading = apply_filters(
 			'edac_filter_simplified_summary_heading',
