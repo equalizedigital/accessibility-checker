@@ -76,7 +76,7 @@ class Scan_Summary_Back_Compat extends Scan_Summary implements Interface_Data {
 	 *
 	 * @return void
 	 */
-	public function delete( string $key = '' ): void { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- some implementations may need a key.
+	public function delete( string $key = '' ): void {
 		parent::delete( $key );
 		foreach ( $this->column_sort_keys as $column ) {
 			// delete the old keys for back compat.
