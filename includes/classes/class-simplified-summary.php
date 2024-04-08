@@ -7,6 +7,8 @@
 
 namespace EDAC\Inc;
 
+use EDAC\Admin\Data\Post_Meta\Scan_Summary;
+
 /**
  * A class that handles the simplified summary.
  */
