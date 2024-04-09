@@ -13,6 +13,8 @@ use EDAC\Admin\Data\Post_Meta\Scan_Summary_Back_Compat;
  *
  * The bulk of the functionality is in the parent class, Scan_Summary
  * which has tests covering most of the functionality.
+ *
+ * @group scan-summary
  */
 class ScanSummaryBackCompatTest extends WP_UnitTestCase {
 
@@ -73,5 +75,23 @@ class ScanSummaryBackCompatTest extends WP_UnitTestCase {
 		$this->assertEquals( $simplified_summary_text, $this->scan_summary_back_compat->get( $new_key ) );
 		// meta should be deleted after saving the new key.
 		$this->assertEquals( '', get_post_meta( $this->post_id, $old_key, true ) );
+	}
+
+	/**
+	 * Test that the delete method removes the post meta data.
+	 */
+	public function test_delete_method_removes_post_meta_data(): void {
+		$simplified_summary_text = '<p>Simplified summary</p>';
+		$key                     = 'simplified_summary_text';
+		$this->scan_summary_back_compat->save( $simplified_summary_text, $key );
+
+		// Assert that the data was saved correctly.
+		$this->assertEquals( $simplified_summary_text, $this->scan_summary_back_compat->get( $key ) );
+
+		// Call the delete method.
+		$this->scan_summary_back_compat->delete( $key );
+
+		// Assert that the data was deleted.
+		$this->assertEmpty( $this->scan_summary_back_compat->get( $key ) );
 	}
 }

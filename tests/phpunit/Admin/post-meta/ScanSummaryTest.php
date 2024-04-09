@@ -9,6 +9,8 @@ use EDAC\Admin\Data\Post_Meta\Scan_Summary;
 
 /**
  * Test cases for the Scan Summary class.
+ *
+ * @group scan-summary
  */
 class ScanSummaryTest extends WP_UnitTestCase {
 
@@ -140,6 +142,41 @@ class ScanSummaryTest extends WP_UnitTestCase {
 		$expected = $this->get_a_valid_summary();
 
 		$this->assertEquals( $expected, $this->scan_summary->sanitize_summary( $summary ) );
+	}
+
+	/**
+	 * Test that it can fully delete all the meta data for a post.
+	 */
+	public function test_delete_all_data(): void {
+		$valid_summary_array = $this->get_a_valid_summary();
+		$this->scan_summary->save( $valid_summary_array );
+
+		$sort_keys = $this->scan_summary->column_sort_keys;
+
+		$this->assertNotEmpty( get_post_meta( $this->post_id, $this->scan_summary->get_root_key(), true ) );
+		foreach ( $sort_keys as $col ) {
+			$this->assertNotEmpty( get_post_meta( $this->post_id, $this->scan_summary->get_root_key() . '_' . $col, true ) );
+		}
+
+		$this->scan_summary->delete();
+		$this->assertEquals( '', get_post_meta( $this->post_id, $this->scan_summary->get_root_key(), true ) );
+		foreach ( $sort_keys as $col ) {
+			$this->assertEquals( '', get_post_meta( $this->post_id, $this->scan_summary::PREFIX . '_' . $col, true ) );
+		}
+	}
+
+	/**
+	 * Test that passing empty key and non-array data to save does nothing.
+	 */
+	public function test_save_does_nothing_with_empty_key_and_non_array_data(): void {
+		$valid_summary_array = $this->get_a_valid_summary();
+		$this->scan_summary->save( $valid_summary_array );
+
+		$summary_before = $this->scan_summary->get();
+		$this->scan_summary->save( 'not an array', '' );
+		$summary_after = $this->scan_summary->get();
+
+		$this->assertEquals( $summary_before, $summary_after );
 	}
 
 	/**
