@@ -13,7 +13,7 @@ namespace EDAC\Admin\Data;
  * Abstract data class showing the basic structure and requirements for a data class.
  */
 abstract class Abstract_Data implements Interface_Data {
-	const PREFIX = 'edac_';
+	const PREFIX = '_edac_';
 	const KEY    = '';
 
 	/**

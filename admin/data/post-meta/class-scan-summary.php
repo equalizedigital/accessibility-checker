@@ -18,7 +18,7 @@ use EDAC\Admin\Data\Interface_Data;
  * @since 1.11.0
  */
 class Scan_Summary extends Abstract_Data implements Interface_Data {
-	const KEY = '_summary';
+	const KEY = 'summary';
 
 	/**
 	 * Storage key
