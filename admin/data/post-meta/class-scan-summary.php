@@ -161,6 +161,11 @@ class Scan_Summary extends Abstract_Data implements Interface_Data {
 				FILTER_VALIDATE_BOOLEAN
 			),
 			'simplified_summary_text' => wp_kses_post( $summary['simplified_summary_text'] ?? '' ),
+			'post_checked'            => filter_var(
+				$summary['post_checked'] ?? false,
+				FILTER_VALIDATE_BOOLEAN
+			),
+			'post_checked_time_js'    => absint( $summary['post_checked_time_js'] ?? 0 ),
 		);
 	}
 

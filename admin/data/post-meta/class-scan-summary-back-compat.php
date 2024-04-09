@@ -116,6 +116,8 @@ class Scan_Summary_Back_Compat extends Scan_Summary implements Interface_Data {
 	private function get_key_for_back_compat( string $key ): string {
 		$back_compat_keys = array(
 			'simplified_summary_text' => '_edac_simplified_summary',
+			'post_checked'            => '_edac_post_checked',
+			'post_checked_time_js'    => '_edac_post_checked_js',
 		);
 		return $back_compat_keys[ $key ] ?? $key;
 	}
