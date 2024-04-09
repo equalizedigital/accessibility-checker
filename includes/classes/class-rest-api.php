@@ -7,12 +7,11 @@
 
 namespace EDAC\Inc;
 
+use EDAC\Admin\Data\Post_Meta\Scan_Summary_Back_Compat;
 use EDAC\Admin\Helpers;
 use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
-
-
 
 /**
  * Class that initializes and handles the REST api
@@ -253,7 +252,7 @@ class REST_Api {
 			( new Summary_Generator( $post_id ) )->generate_summary();
 
 			// store a record of this scan in the post's meta.
-			update_post_meta( $post_id, '_edac_post_checked_js', time() );
+			( new Scan_Summary_Back_Compat( $post->ID ) )->save( time(), 'post_checked_time_js' );
 
 			return new \WP_REST_Response(
 				array(

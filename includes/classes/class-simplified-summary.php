@@ -7,6 +7,8 @@
 
 namespace EDAC\Inc;
 
+use EDAC\Admin\Data\Post_Meta\Scan_Summary_Back_Compat;
+
 /**
  * A class that handles the simplified summary.
  */
@@ -53,13 +55,18 @@ class Simplified_Summary {
 	/**
 	 * Simplified summary markup
 	 *
+	 * @modified 1.11.0 - Use new Scan_Summary_Back_Compat class to get simplified summary text.
+	 * @modified 1.11.0 - Added filter edac_filter_simplified_summary_header_element.
+	 *
 	 * @param int $post Post ID.
 	 * @return string
 	 */
 	public function simplified_summary_markup( $post ) {
-		$simplified_summary = get_post_meta( $post, '_edac_simplified_summary', true )
-			? get_post_meta( $post, '_edac_simplified_summary', true ) 
-			: '';
+		$simplified_summary = ( new Scan_Summary_Back_Compat( $post ) )->get( 'simplified_summary_text' );
+
+		if ( ! $simplified_summary ) {
+			return '';
+		}
 
 		$simplified_summary_heading = apply_filters(
 			'edac_filter_simplified_summary_heading',
