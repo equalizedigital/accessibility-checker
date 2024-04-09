@@ -5,6 +5,7 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin\Data\Post_Meta\Scan_Summary_Back_Compat;
 use EDAC\Admin\Helpers;
 use EDAC\Admin\Insert_Rule_Data;
 
@@ -38,8 +39,7 @@ function edac_post_on_load() {
 	global $pagenow;
 	if ( 'post.php' === $pagenow ) {
 		global $post;
-		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
-		if ( false === (bool) $checked ) {
+		if ( ( new Scan_Summary_Back_Compat( $post->ID ) )->get( 'post_checked' ) ) {
 			edac_validate( $post->ID, $post, $action = 'load' );
 		}
 	}
@@ -177,7 +177,7 @@ function edac_validate( $post_ID, $post, $action ) {
 	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 2, 'php' );
 
 	// set post meta checked.
-	update_post_meta( $post_ID, '_edac_post_checked', true );
+	( new Scan_Summary_Back_Compat( $post->ID ) )->save( true, 'post_checked' );
 
 	do_action( 'edac_after_validate', $post_ID, $action );
 }

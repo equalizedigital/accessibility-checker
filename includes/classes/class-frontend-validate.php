@@ -7,6 +7,8 @@
 
 namespace EDAC\Inc;
 
+use EDAC\Admin\Data\Post_Meta\Scan_Summary_Back_Compat;
+
 /**
  * A class that handles the validation of the page on the frontend.
  *
@@ -34,8 +36,8 @@ class Frontend_Validate {
 	 *
 	 * This function is triggered only by the `template_redirect` hook. It returns early if not 'index.php', in a
 	 * customizer preview, the post is an 'auto-draft' or if the current user does not have permissions to edit posts.
-	 * It checks if the current post has been previously validated based on a specific post meta key
-	 * ('_edac_post_checked'). If the post has not been validated, it initiates the validation process.
+	 * It checks if the current post has been previously validated based on a specific value in a meta key
+	 * ('_edac_summary[post_checked]'). If the post has not been validated, it initiates the validation process.
 	 *
 	 * @modified 1.10.0 Return early if post is an auto-draft.
 	 *
@@ -54,8 +56,7 @@ class Frontend_Validate {
 				return;
 			}
 
-			$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
-			if ( ! $checked ) {
+			if ( ! ( new Scan_Summary_Back_Compat( $post->ID ) )->get( 'post_checked' ) ) {
 				edac_validate( $post->ID, $post, $action = 'load' );
 			}
 		}

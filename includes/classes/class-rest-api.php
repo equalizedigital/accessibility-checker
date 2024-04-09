@@ -12,8 +12,6 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 
-
-
 /**
  * Class that initializes and handles the REST api
  */
