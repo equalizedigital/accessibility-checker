@@ -163,4 +163,13 @@ class Scan_Summary extends Abstract_Data implements Interface_Data {
 			'simplified_summary_text' => wp_kses_post( $summary['simplified_summary_text'] ?? '' ),
 		);
 	}
+
+	/**
+	 * Return the root key that data is stored under.
+	 *
+	 * This was found to be useful in tests.
+	 */
+	public function get_root_key(): string {
+		return $this->root_key;
+	}
 }
