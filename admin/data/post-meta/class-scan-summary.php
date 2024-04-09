@@ -55,7 +55,7 @@ class Scan_Summary extends Abstract_Data implements Interface_Data {
 	 */
 	public function __construct( int $post_id = 0 ) {
 		$this->post_id          = $post_id;
-		$this->column_sort_keys = array( 'passed', 'error', 'warning', 'ignored', 'contrast_errors' );
+		$this->column_sort_keys = array( 'passed_tests', 'errors', 'warnings', 'ignored', 'contrast_errors' );
 
 		// There is no reason to create an instance of this class without wanting this data.
 		$summary       = get_post_meta( $this->post_id, $this->root_key, true );
