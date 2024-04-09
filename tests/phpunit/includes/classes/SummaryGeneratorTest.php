@@ -39,4 +39,39 @@ class SummaryGeneratorTest extends WP_UnitTestCase {
 			get_post_meta( $post_id, '_edac_density_data', true )
 		);
 	}
+
+	/**
+	 * Verify that the expected post_meta values exist when the summary data is saved.
+	 *
+	 * @throws ReflectionException If the method does not exist this is thrown.
+	 */
+	public function test_summary_data_is_saved() {
+
+		$post_id           = self::factory()->post->create();
+		$summary_generator = new Summary_Generator( $post_id );
+
+		// Reflection means that the method was hard to test in isolation and
+		// likely warrants a refactor so that the method is more testable.
+		$method = ( new ReflectionClass( get_class( $summary_generator ) ) )
+			->getMethod( 'save_summary_meta_data' );
+		$method->setAccessible( true );
+
+		$method->invoke(
+			$summary_generator,
+			array(
+				'passed_tests'    => 1,
+				'errors'          => 2,
+				'warnings'        => 3,
+				'ignored'         => 4,
+				'contrast_errors' => 5,
+			)
+		);
+
+		$this->assertNotEmpty( get_post_meta( $post_id, '_edac_summary', true ) );
+		$this->assertNotEmpty( get_post_meta( $post_id, '_edac_summary_passed_tests', true ) );
+		$this->assertNotEmpty( get_post_meta( $post_id, '_edac_summary_errors', true ) );
+		$this->assertNotEmpty( get_post_meta( $post_id, '_edac_summary_warnings', true ) );
+		$this->assertNotEmpty( get_post_meta( $post_id, '_edac_summary_ignored', true ) );
+		$this->assertNotEmpty( get_post_meta( $post_id, '_edac_summary_contrast_errors', true ) );
+	}
 }
