@@ -356,23 +356,20 @@ function edac_get_content( $post ) {
 				$page_html         = $content['html']->save();
 				$body_density_data = edac_get_body_density_data( $page_html );
 
+				$scan_summary = new Scan_Summary_Back_Compat( $post->ID );
 				if ( false !== $body_density_data ) {
-					update_post_meta(
-						$post->ID,
-						'_edac_density_data',
-						array_map( 'intval', $body_density_data )
-					);
+					$scan_summary->save( $body_density_data, 'density_data' );
 				} else {
-					delete_post_meta( $post->ID, '_edac_density_data' );
+					$scan_summary->delete( 'density_data' );
 				}
 			}
 		} catch ( Exception $e ) {
-			update_post_meta( $post->ID, '_edac_density_data', array( 0, 0 ) );
+			( new Scan_Summary_Back_Compat( $post->ID ) )->save( array( 0, 0 ), 'density_data' );
 
 			$content['html'] = false;
 		}
 	} else {
-		update_post_meta( $post->ID, '_edac_density_data', array( 0, 0 ) );
+		( new Scan_Summary_Back_Compat( $post->ID ) )->save( array( 0, 0 ), 'density_data' );
 
 		$content['html'] = false;
 	}

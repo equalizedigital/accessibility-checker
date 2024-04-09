@@ -137,6 +137,13 @@ class ScanSummaryTest extends WP_UnitTestCase {
 			'readability'             => '9th Grade',
 			'simplified_summary'      => 'true',
 			'simplified_summary_text' => '<p>Test</p>',
+			'post_checked'            => 'false',
+			'post_checked_time_js'    => '0',
+			'issue_density'           => '5',
+			'density_data'            => array(
+				'5.5',
+				'6.6',
+			),
 		);
 
 		$expected = $this->get_a_valid_summary();
@@ -193,6 +200,13 @@ class ScanSummaryTest extends WP_UnitTestCase {
 			'readability'             => '9th Grade',
 			'simplified_summary'      => true,
 			'simplified_summary_text' => '<p>Test</p>',
+			'post_checked'            => false,
+			'post_checked_time_js'    => '0',
+			'issue_density'           => 5,
+			'density_data'            => array(
+				5.5,
+				6.6,
+			),
 		);
 	}
 }

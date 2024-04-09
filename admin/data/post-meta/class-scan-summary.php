@@ -167,6 +167,7 @@ class Scan_Summary extends Abstract_Data implements Interface_Data {
 			),
 			'post_checked_time_js'    => absint( $summary['post_checked_time_js'] ?? 0 ),
 			'issue_density'           => floatval( $summary['issue_density'] ?? 0 ),
+			'density_data'            => array_map( 'floatval', $summary['density_data'] ?? array( 0, 0 ) ),
 		);
 	}
 
