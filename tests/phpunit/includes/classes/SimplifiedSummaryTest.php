@@ -46,7 +46,6 @@ class SimplifiedSummaryTest extends WP_UnitTestCase {
 	public function test_simplified_summary_markup_with_summary() {
 		$post_id = self::factory()->post->create();
 		( new Scan_Summary( $post_id ) )->save( 'This is a simplified summary.', 'simplified_summary_text' );
-		update_post_meta( $post_id, '_edac_simplified_summary', 'This is a simplified summary.' );
 
 		$output = $this->simplified_summary->simplified_summary_markup( $post_id );
 		$this->assertStringContainsString( '<div class="edac-simplified-summary">', $output );
