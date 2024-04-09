@@ -266,9 +266,9 @@ class Summary_Generator {
 			$content_length = $issue_density_array[0][1];
 			$issue_density  = edac_get_issue_density( $issue_count, $element_count, $content_length );
 
-			update_post_meta( $this->post_id, '_edac_issue_density', floatval( $issue_density ) );
+			( new Scan_Summary_Back_Compat( $this->post_id ) )->save( 'issue_density', floatval( $issue_density ) );
 		} else {
-			delete_post_meta( $this->post_id, '_edac_issue_density' );
+			( new Scan_Summary_Back_Compat( $this->post_id ) )->delete( 'issue_density' );
 		}
 	}
 

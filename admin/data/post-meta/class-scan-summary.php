@@ -166,6 +166,7 @@ class Scan_Summary extends Abstract_Data implements Interface_Data {
 				FILTER_VALIDATE_BOOLEAN
 			),
 			'post_checked_time_js'    => absint( $summary['post_checked_time_js'] ?? 0 ),
+			'issue_density'           => floatval( $summary['issue_density'] ?? 0 ),
 		);
 	}
 
