@@ -125,6 +125,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
+
 /**
  * Filters and Actions
  */
@@ -133,6 +134,8 @@ add_action( 'admin_init', 'edac_register_setting' );
 add_action( 'admin_head', 'edac_post_on_load' );
 add_filter( 'save_post', 'edac_save_post', 10, 3 );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
+add_filter( 'nonce_life', 'edac_nonce_life_for_validate', 10, 2 );
+
 if ( is_plugin_active( 'oxygen/functions.php' ) ) {
 	add_action( 'added_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
 	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
