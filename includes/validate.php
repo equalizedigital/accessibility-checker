@@ -8,6 +8,8 @@
 use EDAC\Admin\Helpers;
 use EDAC\Admin\Insert_Rule_Data;
 
+const EDAC_VALIDATE_NONCE_ACTION = 'edac-validate-draft-or-pending-status';
+
 /**
  * Oxygen Builder on save
  *
@@ -471,4 +473,20 @@ function edac_show_draft_posts( $query ) {
 
 	// If we've reached this point, alter the query to include 'publish', 'draft', and 'pending' posts.
 	$query->set( 'post_status', array( 'publish', 'draft', 'pending' ) );
+}
+
+/**
+ * Sets the nonce life for the 'edac-validate-draft-or-pending-status' action
+ * to a really low TTL.
+ *
+ * @param int    $seconds The time the nonce is valid for.
+ * @param string $action  The nonce action.
+ *
+ * @return int
+ */
+function edac_nonce_life_for_validate( int $seconds, string $action ) {
+	if ( EDAC_VALIDATE_NONCE_ACTION === $action ) {
+		return MINUTE_IN_SECONDS * 2;
+	}
+	return $seconds;
 }
