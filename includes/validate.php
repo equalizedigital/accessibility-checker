@@ -331,6 +331,9 @@ function edac_get_content( $post ) {
 			// Add the token to the URL.
 			$url = add_query_arg( 'edac_token', $token, $url );
 
+			// Since this uses a wp nonce we need to send along the cookies of the user making the request.
+			$context_opts['http']['header'] = 'Cookie: ' . edac_get_current_user_cookies();
+
 		}
 
 		try {
@@ -473,6 +476,20 @@ function edac_show_draft_posts( $query ) {
 
 	// If we've reached this point, alter the query to include 'publish', 'draft', and 'pending' posts.
 	$query->set( 'post_status', array( 'publish', 'draft', 'pending' ) );
+}
+
+/**
+ * Get current user cookies
+ *
+ * @return string
+ */
+function edac_get_current_user_cookies(): string {
+	$cookies = array();
+	// phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.cache_constraints___COOKIE -- User must be logged in to trigger this so it's a valid use for cookies on the server.
+	foreach ( $_COOKIE as $key => $value ) {
+		$cookies[] = $key . '=' . $value;
+	}
+	return implode( '; ', $cookies );
 }
 
 /**
