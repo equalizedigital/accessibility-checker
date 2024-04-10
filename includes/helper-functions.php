@@ -449,60 +449,6 @@ function edac_replace_css_variables( $value, $css_array ) {
 }
 
 /**
- * Generates a nonce that expires after a specified number of seconds.
- *
- * @param string $secret secret.
- * @param int    $timeout_seconds The number of seconds after which the nonce expires.
- * @return string
- */
-function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
-
-	$length      = 10;
-	$chars       = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
-	$ll          = strlen( $chars ) - 1;
-	$salt        = '';
-	$salt_length = 0;
-
-	while ( $salt_length < $length ) {
-		$salt       .= $chars[ wp_rand( 0, $ll ) ];
-		$salt_length = strlen( $salt );
-	}
-
-	$time     = time();
-	$max_time = $time + $timeout_seconds;
-	$nonce    = $salt . ',' . $max_time . ',' . sha1( $salt . $secret . $max_time );
-	return $nonce;
-}
-
-/**
- * Verifies if the nonce is valid and not expired.
- *
- * @param string $secret secret.
- * @param string $nonce nonce.
- * @return boolean
- */
-function edac_is_valid_nonce( $secret, $nonce ) {
-	if ( ! is_string( $nonce ) ) {
-		return false;
-	}
-	$a = explode( ',', $nonce );
-	if ( count( $a ) !== 3 ) {
-		return false;
-	}
-	$salt     = $a[0];
-	$max_time = (int) $a[1];
-	$hash     = $a[2];
-	$back     = sha1( $salt . $secret . $max_time );
-	if ( $back !== $hash ) {
-		return false;
-	}
-	if ( time() > $max_time ) {
-		return false;
-	}
-	return true;
-}
-
-/**
  * Upcoming meetups in json format
  *
  * @param string  $meetup meetup name.
@@ -539,7 +485,6 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
 	return $output;
 }
-
 
 /**
  * Upcoming meetups in html
