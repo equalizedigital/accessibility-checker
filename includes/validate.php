@@ -326,7 +326,7 @@ function edac_get_content( $post ) {
 		if ( 'draft' === $post->post_status || 'pending' === $post->post_status ) {
 
 			// Generate a token that is valid for a short period of time.
-			$token = edac_generate_nonce( 'draft-or-pending-status', 120 );
+			$token = wp_create_nonce( EDAC_VALIDATE_NONCE_ACTION );
 
 			// Add the token to the URL.
 			$url = add_query_arg( 'edac_token', $token, $url );
@@ -467,7 +467,7 @@ function edac_show_draft_posts( $query ) {
 	}
 
 	// If the passed token is no longer valid, we do nothing and return early.
-	if ( false === edac_is_valid_nonce( 'draft-or-pending-status', $url_token ) ) {
+	if ( ! wp_verify_nonce( $url_token, EDAC_VALIDATE_NONCE_ACTION ) ) {
 		return;
 	}
 
