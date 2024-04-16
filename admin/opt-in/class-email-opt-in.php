@@ -158,4 +158,38 @@ class Email_Opt_In {
 		</div>
 		<?php
 	}
+
+	/**
+	 * Registers the ajax handlers for dealing with opt-in subscribe and modal showing.
+	 *
+	 * @return void
+	 */
+	public function register_ajax_handlers() {
+		add_action( 'wp_ajax_edac_email_opt_in_ajax', array( $this, 'handle_email_opt_in' ) );
+		add_action( 'wp_ajax_edac_email_opt_in_closed_modal_ajax', array( $this, 'handle_email_opt_in_closed_modal' ) );
+	}
+
+	/**
+	 * Handle AJAX request to opt in to email
+	 *
+	 * Once users have opted in they should no longer see an opt-in form.
+	 *
+	 * @return void
+	 */
+	public function handle_email_opt_in() {
+		update_user_meta( get_current_user_id(), 'edac_email_optin', true );
+		wp_send_json( 'success' );
+	}
+
+	/**
+	 * Handle AJAX request to indicate user has seen the email opt-in modal and closed it.
+	 *
+	 * This is used to prevent the modal from showing again for the current user.
+	 *
+	 * @return void
+	 */
+	public function handle_email_opt_in_closed_modal() {
+		update_user_meta( get_current_user_id(), Email_Opt_In::EDAC_USER_OPTIN_SHOW_MODAL_KEY, true );
+		wp_send_json( 'success' );
+	}
 }
