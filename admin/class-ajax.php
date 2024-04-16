@@ -7,6 +7,7 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Admin\OptIn\Email_Opt_In;
 use EDAC\Inc\Summary_Generator;
 
 /**
@@ -34,6 +35,7 @@ class Ajax {
 		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', array( $this, 'dismiss_welcome_cta' ) );
 		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', array( $this, 'dismiss_dashboard_cta' ) );
 		add_action( 'wp_ajax_edac_email_opt_in_ajax', array( $this, 'email_opt_in' ) );
+		add_action( 'wp_ajax_edac_email_opt_in_closed_modal_ajax', array( $this, 'handle_email_opt_in_closed_modal' ) );
 	}
 
 	/**
@@ -746,6 +748,18 @@ class Ajax {
 
 		update_user_meta( get_current_user_id(), 'edac_email_optin', true );
 
+		wp_send_json( 'success' );
+	}
+
+	/**
+	 * Handle AJAX request to indicate user has seen the email opt-in modal and closed it.
+	 *
+	 * This prevents the modal from showing again for the current user.
+	 *
+	 * @return void
+	 */
+	public function handle_email_opt_in_closed_modal() {
+		update_user_meta( get_current_user_id(), Email_Opt_In::EDAC_USER_OPTIN_SHOW_MODAL_KEY, true );
 		wp_send_json( 'success' );
 	}
 }
