@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+import {initOptInModal} from "./modal";
+
 const edac_on_submit_ok = function () {
 	const data = { action: "edac_email_opt_in_ajax", nonce: edac_email_opt_in_form.nonce };
 	const queryString = Object.keys(data)
@@ -498,4 +500,8 @@ window._load_script = function (url, callback, isSubmit) {
 		return false;
 	};
 	addEvent(form_to_submit, 'submit', form_submit);
+	// Added in plugin version 1.11.0 and triggers through `window.onload` event.
+	if ( window.edac_email_opt_in_form.showModal ) {
+		initOptInModal();
+	}
 })();
