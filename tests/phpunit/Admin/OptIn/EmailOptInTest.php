@@ -28,13 +28,7 @@ class EmailOptInTest extends WP_UnitTestCase {
 	 * Set up the user for tests.
 	 */
 	protected function setUp(): void {
-		$this->current_user_id = $this->factory()->user->create(
-			array(
-				'role'       => 'administrator',
-				'user_email' => self::TEST_USER_EMAIL,
-				'first_name' => self::TEST_USER_FIRST_NAME,
-			)
-		);
+		$this->current_user_id = $this->factory()->user->create();
 
 		if ( is_wp_error( $this->current_user_id ) ) {
 			$this->fail( $this->current_user_id->get_error_message() );
@@ -120,6 +114,19 @@ class EmailOptInTest extends WP_UnitTestCase {
 	 * Test that the form renders and contains the expected email and user first name.
 	 */
 	public function test_form_renders_and_contains_expected_email_and_user_name() {
+		$maybe_existing_user = get_user_by( 'email', self::TEST_USER_EMAIL );
+		// set the users first name to test that it is pre-filled in the form.
+		if ( $maybe_existing_user && ! get_user_meta( $maybe_existing_user->ID, 'first_name', true ) ) {
+			update_user_meta( $maybe_existing_user->ID, 'first_name', self::TEST_USER_FIRST_NAME );
+		}
+
+		$user_id = $maybe_existing_user ? $maybe_existing_user->ID : $this->factory()->user->create(
+			array(
+				'user_email' => self::TEST_USER_EMAIL,
+				'first_name' => self::TEST_USER_FIRST_NAME,
+			)
+		);
+		wp_set_current_user( $user_id );
 		$email_opt_in = new Email_Opt_In();
 		$email_opt_in->render_form();
 		$this->expectOutputRegex( '/.*?value="' . self::TEST_USER_EMAIL . '".*?/' );
