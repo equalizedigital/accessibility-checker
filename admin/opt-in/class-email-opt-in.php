@@ -15,7 +15,7 @@ namespace EDAC\Admin\OptIn;
 class Email_Opt_In {
 
 	const EDAC_USER_OPTIN_META_KEY       = 'edac_email_optin';
-	const EDAC_USER_OPTIN_SHOW_MODAL_KEY = 'edac_email_optin_seen_modal';
+	const EDAC_USER_OPTIN_SEEN_MODAL_KEY = 'edac_email_optin_seen_modal';
 
 	/**
 	 * Checks if the current user already opted in.
@@ -38,7 +38,7 @@ class Email_Opt_In {
 	public static function should_show_modal(): bool {
 		return ! (bool) get_user_meta(
 			get_current_user_id(),
-			self::EDAC_USER_OPTIN_SHOW_MODAL_KEY,
+			self::EDAC_USER_OPTIN_SEEN_MODAL_KEY,
 			true
 		);
 	}
@@ -189,7 +189,7 @@ class Email_Opt_In {
 	 * @return void
 	 */
 	public function handle_email_opt_in_closed_modal() {
-		update_user_meta( get_current_user_id(), Email_Opt_In::EDAC_USER_OPTIN_SHOW_MODAL_KEY, true );
+		update_user_meta( get_current_user_id(), Email_Opt_In::EDAC_USER_OPTIN_SEEN_MODAL_KEY, true );
 		wp_send_json( 'success' );
 	}
 }
