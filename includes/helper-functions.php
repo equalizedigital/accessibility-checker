@@ -902,11 +902,17 @@ function edac_url_add_scheme_if_not_existing( string $file, string $site_protoco
  * @since 1.10.1
  *
  * @param string $url the url to check.
+ * @param int    $timeout the timeout in seconds. Default is 5.
  * @return bool
  */
-function edac_url_exists( string $url ): bool {
+function edac_url_exists( string $url, int $timeout = 5 ): bool {
 
-	$response = wp_remote_head( $url );
+	$response = wp_remote_head(
+		$url,
+		array(
+			'timeout' => $timeout,
+		)
+	);
 
 	if (
 		is_wp_error( $response ) ||
