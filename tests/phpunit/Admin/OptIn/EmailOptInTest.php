@@ -144,7 +144,7 @@ class EmailOptInTest extends WP_UnitTestCase {
 			ob_start();
 			$email_opt_in->handle_email_opt_in();
 		} catch ( Exception $e ) {
-			// We expected this, just clear the buffer..
+			// We expected this, just clear the buffer.
 			ob_end_clean();
 		}
 
@@ -191,11 +191,21 @@ class EmailOptInTest extends WP_UnitTestCase {
 		add_filter( 'wp_doing_ajax', '__return_true' );
 		add_filter(
 			'wp_die_ajax_handler',
-			function () {
-				return new Exception( 'wp_die called' );
-			},
+			array( $this, 'throw_exception_instead_of_dying' ),
 			1,
 			1
 		);
+	}
+
+	/**
+	 * Throw an exception instead of actually dying.
+	 *
+	 * @return Closure
+	 */
+	public function throw_exception_instead_of_dying() {
+		return function ( $message ) {
+			// phpcs:ignore WordPress.Security -- this is just a test.
+			throw new Exception( $message );
+		};
 	}
 }
