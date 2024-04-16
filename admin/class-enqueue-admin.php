@@ -7,6 +7,8 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Admin\OptIn\Email_Opt_In;
+
 /**
  * Class that initializes and handles enqueueing styles and scripts for the admin.
  */
@@ -135,22 +137,16 @@ class Enqueue_Admin {
 	public static function maybe_enqueue_email_opt_in_script() {
 
 		$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
-		if ( 'accessibility_checker' === $page
-			&& true !== (bool) get_user_meta( get_current_user_id(), 'edac_email_optin', true )
-		) {
-
-				wp_enqueue_style( 'email-opt-in-form', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/emailOptIn.css', false, EDAC_VERSION, 'all' );
-				wp_enqueue_script( 'email-opt-in-form', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/emailOptIn.bundle.js', false, EDAC_VERSION, true );
-
-				wp_localize_script(
-					'email-opt-in-form',
-					'edac_email_opt_in_form',
-					array(
-						'nonce'   => wp_create_nonce( 'ajax-nonce' ),
-						'ajaxurl' => admin_url( 'admin-ajax.php' ),
-					)
-				);
-
+		if ( 'accessibility_checker' !== $page ) {
+			return;
 		}
+
+		$user_already_opted_in = (bool) get_user_meta( get_current_user_id(), Email_Opt_In::EDAC_USER_OPTIN_META_KEY, true );
+		if ( $user_already_opted_in ) {
+			return;
+		}
+
+		$email_opt_in = new Email_Opt_In();
+		$email_opt_in->enqueue_scripts();
 	}
 }
