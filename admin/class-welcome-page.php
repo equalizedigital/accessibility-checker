@@ -317,9 +317,8 @@ class Welcome_Page {
 		<?php
 	}
 
-
 	/**
-	 * Render the ActiveCamapaign email opt form in panel
+	 * Render the ActiveCampaign email opt form in panel
 	 *
 	 * @return void
 	 */
