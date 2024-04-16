@@ -35,6 +35,11 @@ class EmailOptInTest extends WP_UnitTestCase {
 				'first_name' => self::TEST_USER_FIRST_NAME,
 			)
 		);
+
+		if ( is_wp_error( $this->current_user_id ) ) {
+			$this->fail( $this->current_user_id->get_error_message() );
+		}
+
 		wp_set_current_user( $this->current_user_id );
 	}
 
