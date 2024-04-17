@@ -25,7 +25,7 @@ export const initOptInModal = () => {
 				const focusTrap = createFocusTrap( modal );
 				focusTrap.activate();
 
-				jQuery( document ).off( 'tb_unload' ).on(
+				jQuery( document ).one(
 					'tb_unload',
 					function() {
 						onModalClose( focusTrap );
