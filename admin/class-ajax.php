@@ -7,6 +7,7 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Admin\OptIn\Email_Opt_In;
 use EDAC\Inc\Summary_Generator;
 
 /**
@@ -33,7 +34,7 @@ class Ajax {
 		add_action( 'wp_ajax_edac_update_simplified_summary', array( $this, 'simplified_summary' ) );
 		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', array( $this, 'dismiss_welcome_cta' ) );
 		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', array( $this, 'dismiss_dashboard_cta' ) );
-		add_action( 'wp_ajax_edac_email_opt_in_ajax', array( $this, 'email_opt_in' ) );
+		( new Email_Opt_In() )->register_ajax_handlers();
 	}
 
 	/**
@@ -313,25 +314,25 @@ class Ajax {
 
 				$html .= '<div class="edac-details-rule">';
 
-					$html .= '<div class="edac-details-rule-title">';
+				$html .= '<div class="edac-details-rule-title">';
 
-						$html     .= '<h3>';
-							$html .= '<span class="edac-details-rule-count' . $count_classes . '">' . $rule['count'] . '</span> ';
-							$html .= esc_html( $rule['title'] );
+				$html .= '<h3>';
+				$html .= '<span class="edac-details-rule-count' . $count_classes . '">' . $rule['count'] . '</span> ';
+				$html .= esc_html( $rule['title'] );
 				if ( $count_ignored > 0 ) {
 					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' Ignored Items</span>';
 				}
-						$html .= '</h3>';
-						$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '"><span class="dashicons dashicons-info"></span></a>';
-						$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="Expand issues for ' . esc_html( $rule['title'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
+				$html .= '</h3>';
+				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '"><span class="dashicons dashicons-info"></span></a>';
+				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="Expand issues for ' . esc_html( $rule['title'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 
-					$html .= '</div>';
+				$html .= '</div>';
 
 				if ( $results ) {
 
 					$html .= '<div id="edac-details-rule-records-' . $rule['slug'] . '" class="edac-details-rule-records">';
 
-						$html .=
+					$html .=
 						'<div class="edac-details-rule-records-labels">
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
 								Affected Code
@@ -387,13 +388,13 @@ class Ajax {
 
 						$html .= '<div id="edac-details-rule-records-record-' . $id . '" class="edac-details-rule-records-record">';
 
-							$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-object">';
+						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-object">';
 
-								$html .= '<code>' . esc_html( $row['object'] ) . '</code>';
+						$html .= '<code>' . esc_html( $row['object'] ) . '</code>';
 
-							$html .= '</div>';
+						$html .= '</div>';
 
-							$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-image">';
+						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-image">';
 
 						if ( $object_img ) {
 							$html .= '<img src="' . $object_img . '" alt="image for issue ' . $id . '" />';
@@ -401,11 +402,11 @@ class Ajax {
 							$html .= $object_svg;
 						}
 
-							$html .= '</div>';
+						$html .= '</div>';
 
-							$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
+						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
 
-								$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
+						$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
 
 						if ( 'missing_headings' !== $rule['slug'] ) {
 
@@ -420,18 +421,18 @@ class Ajax {
 							$html .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . __( 'View, opens a new window', 'accessibility-checker' ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>View on page</a>';
 						}
 
-							$html .= '</div>';
+						$html .= '</div>';
 
-							$html .= '<div id="edac-details-rule-records-record-ignore-' . $row['id'] . '" class="edac-details-rule-records-record-ignore">';
+						$html .= '<div id="edac-details-rule-records-record-ignore-' . $row['id'] . '" class="edac-details-rule-records-record-ignore">';
 
-								$html     .= '<div class="edac-details-rule-records-record-ignore-info">';
-									$html .= '<span class="edac-details-rule-records-record-ignore-info-user">' . $ignore_username . '</span>';
+						$html .= '<div class="edac-details-rule-records-record-ignore-info">';
+						$html .= '<span class="edac-details-rule-records-record-ignore-info-user">' . $ignore_username . '</span>';
 
-									$html .= ' <span class="edac-details-rule-records-record-ignore-info-date">' . $ignore_date . '</span>';
-								$html     .= '</div>';
+						$html .= ' <span class="edac-details-rule-records-record-ignore-info-date">' . $ignore_date . '</span>';
+						$html .= '</div>';
 
-								$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<label for="edac-details-rule-records-record-ignore-comment-' . $id . '">Comment</label><br>' : '';
-								$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<textarea rows="4" class="edac-details-rule-records-record-ignore-comment" id="edac-details-rule-records-record-ignore-comment-' . $id . '" ' . $ignore_comment_disabled . '>' . $ignore_comment . '</textarea>' : '';
+						$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<label for="edac-details-rule-records-record-ignore-comment-' . $id . '">Comment</label><br>' : '';
+						$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<textarea rows="4" class="edac-details-rule-records-record-ignore-comment" id="edac-details-rule-records-record-ignore-comment-' . $id . '" ' . $ignore_comment_disabled . '>' . $ignore_comment . '</textarea>' : '';
 
 						if ( $ignore_global ) {
 							$html .= ( true === $ignore_permission ) ? '<a href="' . admin_url( 'admin.php?page=accessibility_checker_ignored&tab=global' ) . '" class="edac-details-rule-records-record-ignore-global">Manage Globally Ignored</a>' : '';
@@ -439,9 +440,9 @@ class Ajax {
 							$html .= ( true === $ignore_permission ) ? '<button class="edac-details-rule-records-record-ignore-submit" data-id=' . $id . ' data-action=' . $ignore_action . ' data-type=' . $ignore_type . '>' . EDAC_SVG_IGNORE_ICON . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . $ignore_submit_label . '<span></button>' : '';
 						}
 
-								$html .= ( false === $ignore_permission && false === $ignore ) ? __( 'Your user account doesn\'t have permission to ignore this issue.', 'accessibility-checker' ) : '';
+						$html .= ( false === $ignore_permission && false === $ignore ) ? __( 'Your user account doesn\'t have permission to ignore this issue.', 'accessibility-checker' ) : '';
 
-							$html .= '</div>';
+						$html .= '</div>';
 
 						$html .= '</div>';
 
@@ -539,7 +540,7 @@ class Ajax {
 		} else {
 			$html .= '<p class="edac-readability-list-item-description">A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page.</p>';
 		}
-			$html .= '</li>';
+		$html .= '</li>';
 
 		if ( $post_grade_failed ) {
 
@@ -554,7 +555,7 @@ class Ajax {
 			if ( 'none' === $simplified_summary_prompt ) {
 
 				$html .=
-				'<li class="edac-readability-list-item edac-readability-summary-position">
+					'<li class="edac-readability-list-item edac-readability-summary-position">
 					<span class="edac-readability-list-item-icon"><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/warning icon yellow.png" alt="" width="22"></span>
 					<p class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</p>
 						<p class="edac-readability-list-item-description">Your Prompt for Simplified Summary is set to "never." If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
@@ -563,7 +564,7 @@ class Ajax {
 			} elseif ( 'none' !== $simplified_summary_position ) {
 
 				$html .=
-				'<li class="edac-readability-list-item edac-readability-summary-position">
+					'<li class="edac-readability-list-item edac-readability-summary-position">
 					<span class="edac-readability-list-item-icon dashicons dashicons-saved"></span>
 					<p class="edac-readability-list-item-title">Simplified summary is being automatically inserted <strong>' . $simplified_summary_position . ' the content</strong>.</p>
 						<p class="edac-readability-list-item-description">Set where the Simplified Summary is inserted into the content on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
@@ -572,7 +573,7 @@ class Ajax {
 			} else {
 
 				$html .=
-				'<li class="edac-readability-list-item edac-readability-summary-position">
+					'<li class="edac-readability-list-item edac-readability-summary-position">
 					<span class="edac-readability-list-item-icon"><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/warning icon yellow.png" alt="" width="22"></span>
 					<p class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</p>
 						<p class="edac-readability-list-item-description">Your Simplified Summary location is set to "manually" which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
@@ -585,7 +586,7 @@ class Ajax {
 
 		if ( ( $post_grade_failed || 'always' === $simplified_summary_prompt ) && ( 'none' !== $simplified_summary_prompt ) ) {
 			$html .=
-			'</form>
+				'</form>
 			<form action="/" class="edac-readability-simplified-summary">
 				<label for="edac-readability-text">Simplified Summary</label>
 				<textarea name="" id="edac-readability-text" cols="30" rows="10">' . $simplified_summary . '</textarea>
@@ -733,18 +734,6 @@ class Ajax {
 	public function dismiss_dashboard_cta() {
 
 		update_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true );
-
-		wp_send_json( 'success' );
-	}
-
-	/**
-	 * Handle AJAX request to opt in to email
-	 *
-	 * @return void
-	 */
-	public function email_opt_in() {
-
-		update_user_meta( get_current_user_id(), 'edac_email_optin', true );
 
 		wp_send_json( 'success' );
 	}
