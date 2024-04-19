@@ -30,7 +30,7 @@ jobs:
 
       - name: NPM install, build and generate release artefacts
         run: |
-          npm install
+          npm install --ignore-scripts
           npm run build
           npm run dist:dotorg
           echo "::set-output name=zip-path::./dist/${{ github.event.repository.name }}/${{ github.event.repository.name }}.zip"
