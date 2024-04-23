@@ -283,6 +283,18 @@ return array(
 		),
 	),
 	array(
+		'title'     => esc_html__( 'Underlined Text JS', 'accessibility-checker' ),
+		'info_url'  => 'https://a11ychecker.com/help1978',
+		'slug'      => 'underlined_text_failure',
+		'rule_type' => 'warning',
+		'summary'   => sprintf(
+		// translators: %s is <code>&lt;u&gt;</code>.
+			esc_html__( 'An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considerd a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases.', 'accessibility-checker' ),
+			'<code>&lt;u&gt;</code>'
+		),
+		'ruleset'   => 'js',
+	),
+	array(
 		'title'     => esc_html__( 'Broken Skip or Anchor Link', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1962',
 		'slug'      => 'broken_skip_anchor_link',
