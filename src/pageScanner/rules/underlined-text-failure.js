@@ -14,7 +14,7 @@ export default {
 			element.tagName.toLowerCase() === 'u'
 		);
 	},
-	tags: [],
+	tags: [ 'wcag324', 'wcag21aa', 'cat.text', 'custom' ],
 	metadata: {
 		description: 'Text elements should not be underlined unless they are links.',
 	},
