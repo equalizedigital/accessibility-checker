@@ -3,6 +3,10 @@
 
 import 'axe-core';
 import colorContrastFailure from './rules/color-contrast-failure';
+import underlinedTextFailure from './rules/underlined-text-failure';
+import elementWithUnderline from './checks/element-with-underline';
+import elementIsAUTag from './checks/element-is-u-tag';
+
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
 //import alwaysFail from './checks/always-fail';
@@ -33,18 +37,27 @@ const scan = async (
 			reporter: 'raw',
 
 			rules: [
-				//customRule1,
+				// customRule1,
 				colorContrastFailure,
+				underlinedTextFailure,
 			],
 			checks: [
 				//alwaysFail,
+				elementIsAUTag,
+				elementWithUnderline,
 			],
 			iframes: false,
 
 		},
 		resultTypes: [ 'violations' ],
 		runOptions: {
-			runOnly: [ 'color_contrast_failure' ],
+			runOnly: {
+				type: 'rule',
+				values: [
+					'color_contrast_failure',
+					'underlined_text_failure',
+				],
+			},
 
 			/*
 			//TODO:
