@@ -14,9 +14,9 @@
  */
 function edac_rule_text_justified( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
-	$fontsearchpatterns   = array();
+	$fontsearchpatterns   = [];
 	$fontsearchpatterns[] = '|(text-)?align:\s?justify|i';
-	$errors               = array();
+	$errors               = [];
 
 	/*
 	 * check for justify font-size styles
@@ -60,7 +60,7 @@ function edac_rule_text_justified( $content, $post ) { // phpcs:ignore -- $post 
 function edac_css_justified_text_check( $content ) {
 
 	$dom        = $content['html'];
-	$errors     = array();
+	$errors     = [];
 	$error_code = '';
 	$css_array  = $content['css_parsed'];
 

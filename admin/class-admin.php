@@ -43,8 +43,8 @@ class Admin {
 		$update_database = new Update_Database();
 		$update_database->init_hooks();
 
-		add_action( 'admin_enqueue_scripts', array( 'EDAC\Admin\Enqueue_Admin', 'enqueue' ) );
-		add_action( 'wp_trash_post', array( Purge_Post_Data::class, 'delete_post' ) );
+		add_action( 'admin_enqueue_scripts', [ 'EDAC\Admin\Enqueue_Admin', 'enqueue' ] );
+		add_action( 'wp_trash_post', [ Purge_Post_Data::class, 'delete_post' ] );
 
 		$admin_notices = new Admin_Notices();
 		$admin_notices->init_hooks();

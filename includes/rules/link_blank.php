@@ -15,7 +15,7 @@
 function edac_rule_link_blank( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$content  = $content['html'];
-	$errors   = array();
+	$errors   = [];
 	$elements = $content->find( 'a[target="_blank"]' );
 	if ( $elements ) {
 		foreach ( $elements as $a ) {
@@ -35,7 +35,7 @@ function edac_rule_link_blank( $content, $post ) { // phpcs:ignore -- $post is r
 				// get aria-labelledby and explode into array since aria-labelledby allows for multiple element ids.
 				$label_string = $a->getAttribute( 'aria-labelledby' );
 				$labels       = explode( ' ', $label_string );
-				$label_text   = array();
+				$label_text   = [];
 
 				if ( $labels ) {
 					foreach ( $labels as $label ) {
@@ -92,12 +92,12 @@ function edac_check_link_blank_text( $text ) {
 	$text = strtolower( $text );
 
 	// phrases.
-	$allowed_phrases = array(
+	$allowed_phrases = [
 		__( 'opens a new window', 'accessibility-checker' ),
 		__( 'opens a new tab', 'accessibility-checker' ),
 		__( 'opens new window', 'accessibility-checker' ),
 		__( 'opens new tab', 'accessibility-checker' ),
-	);
+	];
 
 	// check if text contains any of the allowed phrases.
 	foreach ( $allowed_phrases as $allowed_phrase ) {

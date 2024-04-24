@@ -25,7 +25,7 @@ class Update_Database {
 	 * Initialize WordPress hooks
 	 */
 	public function init_hooks() {
-		add_action( 'admin_init', array( $this, 'edac_update_database' ), 10 );
+		add_action( 'admin_init', [ $this, 'edac_update_database' ], 10 );
 	}
 
 	/**

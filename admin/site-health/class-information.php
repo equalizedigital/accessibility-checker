@@ -25,7 +25,7 @@ class Information {
 	 * @return void
 	 */
 	public function init_hooks() {
-		add_filter( 'debug_information', array( $this, 'get_data' ) );
+		add_filter( 'debug_information', [ $this, 'get_data' ] );
 	}
 
 	/**
@@ -46,9 +46,9 @@ class Information {
 	 * @return array
 	 */
 	private function get_edac_data() {
-		$collectors = array(
+		$collectors = [
 			'edac_free' => new Free(),
-		);
+		];
 
 		if ( defined( 'EDACP_VERSION' ) ) {
 			$collectors['edac_pro'] = new Pro();
@@ -58,7 +58,7 @@ class Information {
 			$collectors['edac_audit_history'] = new Audit_History();
 		}
 
-		$information = array();
+		$information = [];
 		foreach ( $collectors as $key => $class ) {
 			$information[ $key ] = $class->get();
 		}

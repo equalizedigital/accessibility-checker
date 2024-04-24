@@ -18,7 +18,7 @@
 function edac_rule_img_animated_gif( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$errors = array();
+	$errors = [];
 
 	// check for image gifs.
 	$gifs = $dom->find( 'img[src$=.gif],img[src*=.gif?],img[src*=.gif#]' );

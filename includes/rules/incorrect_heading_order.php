@@ -14,12 +14,12 @@
  */
 function edac_rule_incorrect_heading_order( $content, $post ) {
 	if ( empty( $post->post_content ) ) {
-		return array();
+		return [];
 	}
 
 	$dom                    = $content['html'];
 	$starting_heading_level = 1;
-	$errors                 = array();
+	$errors                 = [];
 	$elements               = $dom->find( 'h1,[role=heading][aria-level=1],h2,[role=heading][aria-level=2],h3,[role=heading][aria-level=3],h4,[role=heading][aria-level=4],h5,[role=heading][aria-level=5],h6,[role=heading][aria-level=6]' );
 	$previous               = $starting_heading_level;
 

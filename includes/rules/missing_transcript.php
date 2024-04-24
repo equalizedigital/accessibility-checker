@@ -15,17 +15,17 @@
 function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore -- $content is reserved for future use or for compliance with a specific interface.
 
 	if ( empty( $post->post_content ) ) {
-		return array();
+		return [];
 	}
 
 	$dom      = edac_str_get_html( $post->post_content );
-	$errors   = array();
-	$elements = array();
+	$errors   = [];
+	$elements = [];
 	if ( $dom ) {
 		$elements = $dom->find_media_embeds( true );
 	}
 
-	$dom->convert_tag_to_marker( array( 'img', 'iframe', 'audio', 'video', '.is-type-video' ) );
+	$dom->convert_tag_to_marker( [ 'img', 'iframe', 'audio', 'video', '.is-type-video' ] );
 	foreach ( $elements as $element ) {
 		if ( ! $dom->text_around_element_contains( $element, __( 'transcript', 'accessibility-checker' ), 25 ) ) {
 			$element->innertext = '';

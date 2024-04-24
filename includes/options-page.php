@@ -20,7 +20,7 @@ function edac_user_can_ignore() {
 	}
 
 	$user              = wp_get_current_user();
-	$user_roles        = ( isset( $user->roles ) ) ? $user->roles : array();
+	$user_roles        = ( isset( $user->roles ) ) ? $user->roles : [];
 	$ignore_user_roles = get_option( 'edacp_ignore_user_roles' );
 	$interset          = ( $user_roles && $ignore_user_roles ) ? array_intersect( $user_roles, $ignore_user_roles ) : false;
 
@@ -112,7 +112,7 @@ function edac_register_setting() {
 		'edac_post_types_cb',
 		'edac_settings',
 		'edac_general',
-		array( 'label_for' => 'edac_post_types' )
+		[ 'label_for' => 'edac_post_types' ]
 	);
 
 	add_settings_field(
@@ -121,7 +121,7 @@ function edac_register_setting() {
 		'edac_delete_data_cb',
 		'edac_settings',
 		'edac_general',
-		array( 'label_for' => 'edac_delete_data' )
+		[ 'label_for' => 'edac_delete_data' ]
 	);
 
 	add_settings_field(
@@ -130,7 +130,7 @@ function edac_register_setting() {
 		'edac_simplified_summary_prompt_cb',
 		'edac_settings',
 		'edac_simplified_summary',
-		array( 'label_for' => 'edac_simplified_summary_prompt' )
+		[ 'label_for' => 'edac_simplified_summary_prompt' ]
 	);
 
 	add_settings_field(
@@ -139,7 +139,7 @@ function edac_register_setting() {
 		'edac_simplified_summary_position_cb',
 		'edac_settings',
 		'edac_simplified_summary',
-		array( 'label_for' => 'edac_simplified_summary_position' )
+		[ 'label_for' => 'edac_simplified_summary_position' ]
 	);
 
 	add_settings_field(
@@ -148,7 +148,7 @@ function edac_register_setting() {
 		'edac_add_footer_accessibility_statement_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
-		array( 'label_for' => 'edac_add_footer_accessibility_statement' )
+		[ 'label_for' => 'edac_add_footer_accessibility_statement' ]
 	);
 
 	add_settings_field(
@@ -157,7 +157,7 @@ function edac_register_setting() {
 		'edac_include_accessibility_statement_link_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
-		array( 'label_for' => 'edac_include_accessibility_statement_link' )
+		[ 'label_for' => 'edac_include_accessibility_statement_link' ]
 	);
 
 	add_settings_field(
@@ -166,7 +166,7 @@ function edac_register_setting() {
 		'edac_accessibility_policy_page_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
-		array( 'label_for' => 'edac_accessibility_policy_page' )
+		[ 'label_for' => 'edac_accessibility_policy_page' ]
 	);
 
 	add_settings_field(
@@ -175,7 +175,7 @@ function edac_register_setting() {
 		'edac_accessibility_statement_preview_cb',
 		'edac_settings',
 		'edac_footer_accessibility_statement',
-		array( 'label_for' => 'edac_accessibility_statement_preview' )
+		[ 'label_for' => 'edac_accessibility_statement_preview' ]
 	);
 
 	// Register settings.
@@ -184,20 +184,20 @@ function edac_register_setting() {
 	register_setting(
 		'edac_settings',
 		'edac_simplified_summary_prompt',
-		array(
+		[
 			'type'              => 'string',
 			'sanitize_callback' => 'edac_sanitize_simplified_summary_prompt',
 			'default'           => 'when required',
-		)
+		]
 	);
 	register_setting(
 		'edac_settings',
 		'edac_simplified_summary_position',
-		array(
+		[
 			'type'              => 'string',
 			'sanitize_callback' => 'edac_sanitize_simplified_summary_position',
 			'default'           => 'after',
-		)
+		]
 	);
 	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', 'edac_sanitize_checkbox' );
 	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', 'edac_sanitize_checkbox' );
@@ -287,7 +287,7 @@ function edac_simplified_summary_position_cb() {
  * @return string
  */
 function edac_sanitize_simplified_summary_position( $position ) {
-	if ( in_array( $position, array( 'before', 'after', 'none' ), true ) ) {
+	if ( in_array( $position, [ 'before', 'after', 'none' ], true ) ) {
 		return $position;
 	}
 }
@@ -326,7 +326,7 @@ function edac_simplified_summary_prompt_cb() {
  * @return string
  */
 function edac_sanitize_simplified_summary_prompt( $prompt ) {
-	if ( in_array( $prompt, array( 'when required', 'always', 'none' ), true ) ) {
+	if ( in_array( $prompt, [ 'when required', 'always', 'none' ], true ) ) {
 		return $prompt;
 	}
 }
@@ -336,10 +336,10 @@ function edac_sanitize_simplified_summary_prompt( $prompt ) {
  */
 function edac_post_types_cb() {
 
-	$selected_post_types = get_option( 'edac_post_types' ) ? get_option( 'edac_post_types' ) : array();
+	$selected_post_types = get_option( 'edac_post_types' ) ? get_option( 'edac_post_types' ) : [];
 	$post_types          = edac_post_types();
 	$custom_post_types   = edac_custom_post_types();
-	$all_post_types      = ( is_array( $post_types ) && is_array( $custom_post_types ) ) ? array_merge( $post_types, $custom_post_types ) : array();
+	$all_post_types      = ( is_array( $post_types ) && is_array( $custom_post_types ) ) ? array_merge( $post_types, $custom_post_types ) : [];
 	?>
 		<fieldset>
 			<?php
