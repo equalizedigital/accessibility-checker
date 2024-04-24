@@ -29,7 +29,7 @@ class SummaryGeneratorTest extends WP_UnitTestCase {
 			->getMethod( 'update_issue_density' );
 		$method->setAccessible( true );
 
-		$method->invoke( $simplified_summary, array() );
+		$method->invoke( $simplified_summary, [] );
 
 		// We are really testing here that the method does not throw an error,
 		// but we may as well check that the meta didn't change as well since
