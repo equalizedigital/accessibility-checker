@@ -52,8 +52,8 @@ const scan = async (
 			runOnly: {
 				type: 'rule',
 				values: [
-					'color_contrast_failure',
-					'paragraph_should_not_be_empty',
+					colorContrastFailure.id,
+					paragraphShouldNotBeEmpty.id,
 				],
 			},
 
