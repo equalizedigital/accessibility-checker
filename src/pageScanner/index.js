@@ -3,6 +3,9 @@
 
 import 'axe-core';
 import colorContrastFailure from './rules/color-contrast-failure';
+import paragraphShouldNotBeEmpty from './rules/paragraph-should-not-be-empty';
+import paragraphNotEmpty from './checks/paragraph-not-empty';
+
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
 //import alwaysFail from './checks/always-fail';
@@ -35,16 +38,24 @@ const scan = async (
 			rules: [
 				//customRule1,
 				colorContrastFailure,
+				paragraphShouldNotBeEmpty,
 			],
 			checks: [
 				//alwaysFail,
+				paragraphNotEmpty,
 			],
 			iframes: false,
 
 		},
 		resultTypes: [ 'violations' ],
 		runOptions: {
-			runOnly: [ 'color_contrast_failure' ],
+			runOnly: {
+				type: 'rule',
+				values: [
+					'color_contrast_failure',
+					'paragraph_should_not_be_empty',
+				],
+			},
 
 			/*
 			//TODO:
