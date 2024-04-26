@@ -34,7 +34,7 @@ class Playground_Check {
 
 		if ( strpos( $site_url, 'playground.wordpress.net' ) !== false ) {
 			// This is the playground site, show an admin notice.
-			add_action( 'admin_notices', array( $this, 'show_playground_notice' ) );
+			add_action( 'admin_notices', [ $this, 'show_playground_notice' ] );
 
 			// Set should_load to false.
 			$this->should_load = false;

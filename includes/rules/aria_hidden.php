@@ -15,13 +15,13 @@
 function edac_rule_aria_hidden( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom      = $content['html'];
-	$errors   = array();
+	$errors   = [];
 	$elements = $dom->find( '[aria-hidden="true"]' );
 
-	$attributes_that_make_this_valid_hidden_use = array(
+	$attributes_that_make_this_valid_hidden_use = [
 		'class' => 'wp-block-spacer',
 		'role'  => 'presentation',
-	);
+	];
 
 	if ( $elements ) {
 		foreach ( $elements as $element ) {
@@ -80,7 +80,7 @@ function edac_rule_aria_hidden( $content, $post ) { // phpcs:ignore -- $post is 
  * @return bool
  */
 function edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( array $siblings ): bool {
-	$common_screen_reader_classes = array(
+	$common_screen_reader_classes = [
 		'screen-reader-text',
 		'sr-only',
 		'show-for-sr',
@@ -91,7 +91,7 @@ function edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( array $
 		'accessibly-hidden',
 		'hide',
 		'hidden',
-	);
+	];
 
 	foreach ( $siblings as $sibling ) {
 		foreach ( $common_screen_reader_classes as $class ) {

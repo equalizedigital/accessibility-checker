@@ -27,13 +27,13 @@ class Ajax {
 	 * @return void
 	 */
 	public function init_hooks() {
-		add_action( 'wp_ajax_edac_summary_ajax', array( $this, 'summary' ) );
-		add_action( 'wp_ajax_edac_details_ajax', array( $this, 'details' ) );
-		add_action( 'wp_ajax_edac_readability_ajax', array( $this, 'readability' ) );
-		add_action( 'wp_ajax_edac_insert_ignore_data', array( $this, 'add_ignore' ) );
-		add_action( 'wp_ajax_edac_update_simplified_summary', array( $this, 'simplified_summary' ) );
-		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', array( $this, 'dismiss_welcome_cta' ) );
-		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', array( $this, 'dismiss_dashboard_cta' ) );
+		add_action( 'wp_ajax_edac_summary_ajax', [ $this, 'summary' ] );
+		add_action( 'wp_ajax_edac_details_ajax', [ $this, 'details' ] );
+		add_action( 'wp_ajax_edac_readability_ajax', [ $this, 'readability' ] );
+		add_action( 'wp_ajax_edac_insert_ignore_data', [ $this, 'add_ignore' ] );
+		add_action( 'wp_ajax_edac_update_simplified_summary', [ $this, 'simplified_summary' ] );
+		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', [ $this, 'dismiss_welcome_cta' ] );
+		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', [ $this, 'dismiss_dashboard_cta' ] );
 		( new Email_Opt_In() )->register_ajax_handlers();
 	}
 
@@ -63,7 +63,7 @@ class Ajax {
 
 		}
 
-		$html            = array();
+		$html            = [];
 		$html['content'] = '';
 
 		// password check.
@@ -224,7 +224,7 @@ class Ajax {
 			}
 
 			// separate rule types.
-			$passed_rules  = array();
+			$passed_rules  = [];
 			$error_rules   = edac_remove_element_with_value( $rules, 'rule_type', 'warning' );
 			$warning_rules = edac_remove_element_with_value( $rules, 'rule_type', 'error' );
 
@@ -411,10 +411,10 @@ class Ajax {
 						if ( 'missing_headings' !== $rule['slug'] ) {
 
 							$url = add_query_arg(
-								array(
+								[
 									'edac'       => $id,
 									'edac_nonce' => wp_create_nonce( 'edac_highlight' ),
-								),
+								],
 								get_the_permalink( $postid )
 							);
 
@@ -627,7 +627,7 @@ class Ajax {
 
 		global $wpdb;
 		$table_name           = $wpdb->prefix . 'accessibility_checker';
-		$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
+		$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
 		$ids                  = array_map(
 			function ( $value ) {
 				return (int) $value;
@@ -651,13 +651,13 @@ class Ajax {
 			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
 		}
 
-		$data = array(
+		$data = [
 			'ids'    => $ids,
 			'action' => $action,
 			'type'   => $type,
 			'user'   => $ignre_username,
 			'date'   => $ignre_date_formatted,
-		);
+		];
 
 		if ( ! $data ) {
 

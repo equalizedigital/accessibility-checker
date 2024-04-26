@@ -26,7 +26,7 @@ class Frontend_Validate {
 	 * @since 1.9.0
 	 */
 	public function init_hooks() {
-		add_action( 'template_redirect', array( $this, 'validate' ) );
+		add_action( 'template_redirect', [ $this, 'validate' ] );
 	}
 
 	/**

@@ -15,8 +15,8 @@
 function edac_rule_img_alt_missing( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$tags   = array( 'img', 'input' );
-	$errors = array();
+	$tags   = [ 'img', 'input' ];
+	$errors = [];
 
 	foreach ( $tags as $tag ) {
 		$elements = $dom->find( $tag );

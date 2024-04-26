@@ -52,7 +52,7 @@ class Scans_Stats {
 		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
-		return call_user_func_array( array( $this->instance, $method ), $arguments );
+		return call_user_func_array( [ $this->instance, $method ], $arguments );
 	}
 	
 	/**
@@ -67,7 +67,7 @@ class Scans_Stats {
 		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
-		return call_user_func_array( array( self::$instance, $method ), $arguments );
+		return call_user_func_array( [ self::$instance, $method ], $arguments );
 	}
 	
 	/**

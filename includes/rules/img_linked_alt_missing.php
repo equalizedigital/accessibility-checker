@@ -15,7 +15,7 @@
 function edac_rule_img_linked_alt_missing( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$errors = array();
+	$errors = [];
 	$as     = $dom->find( 'a' );
 
 	foreach ( $as as $a ) {

@@ -46,14 +46,14 @@ class PurgePostDataTest extends WP_UnitTestCase {
 		// Insert data into the 'accessibility_checker' table.
 		$wpdb->insert( // phpcs:ignore WordPress.DB -- this is just one-time use data for testing.
 			$table_name,
-			array(
+			[
 				'postid' => $this->valid_post_id,
 				'siteid' => 1,
-			),
-			array(
+			],
+			[
 				'%d',
 				'%d',
-			)
+			]
 		);
 	}
 
@@ -94,7 +94,7 @@ class PurgePostDataTest extends WP_UnitTestCase {
 
 		// The action is now added in the init method the Admin class which is
 		// not loaded here in this test class so need to manually hos this in.
-		add_action( 'wp_trash_post', array( Purge_Post_Data::class, 'delete_post' ) );
+		add_action( 'wp_trash_post', [ Purge_Post_Data::class, 'delete_post' ] );
 
 		wp_trash_post( $this->valid_post_id );
 
@@ -124,17 +124,17 @@ class PurgePostDataTest extends WP_UnitTestCase {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
 
-		$data = array(
+		$data = [
 			'postid' => $this->valid_post_id,
 			'siteid' => get_current_blog_id(),
 			'type'   => 'post',
-		);
+		];
 
-		$format = array(
+		$format = [
 			'%d',
 			'%d',
 			'%s',
-		);
+		];
 
 		$wpdb->insert( $table_name, $data, $format ); // phpcs:ignore WordPress.DB -- this is just one-time use data for testing.
 
@@ -179,11 +179,11 @@ class PurgePostDataTest extends WP_UnitTestCase {
 	 * @param int $post_id The post ID to set the post meta for.
 	 */
 	private function set_edac_post_meta( $post_id ) {
-		$post_meta = array(
+		$post_meta = [
 			'_edac'  => 'value',
 			'_edacp' => 'value',
 			'other'  => 'value',
-		);
+		];
 		foreach ( $post_meta as $key => $value ) {
 			update_post_meta( $post_id, $key, $value );
 		}

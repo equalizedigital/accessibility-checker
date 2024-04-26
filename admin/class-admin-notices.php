@@ -25,8 +25,8 @@ class Admin_Notices {
 	 */
 	public function init_hooks() {
 
-		add_action( 'in_admin_header', array( $this, 'edac_remove_admin_notices' ), 1000 );
-		add_action( 'init', array( $this, 'hook_notices' ) );
+		add_action( 'in_admin_header', [ $this, 'edac_remove_admin_notices' ], 1000 );
+		add_action( 'init', [ $this, 'hook_notices' ] );
 	}
 
 	/**
@@ -41,14 +41,14 @@ class Admin_Notices {
 			return;
 		}
 
-		add_action( 'admin_notices', array( $this, 'edac_black_friday_notice' ) );
-		add_action( 'wp_ajax_edac_black_friday_notice_ajax', array( $this, 'edac_black_friday_notice_ajax' ) );
-		add_action( 'admin_notices', array( $this, 'edac_gaad_notice' ) );
-		add_action( 'wp_ajax_edac_gaad_notice_ajax', array( $this, 'edac_gaad_notice_ajax' ) );
-		add_action( 'admin_notices', array( $this, 'edac_review_notice' ) );
-		add_action( 'wp_ajax_edac_review_notice_ajax', array( $this, 'edac_review_notice_ajax' ) );
-		add_action( 'admin_notices', array( $this, 'edac_password_protected_notice' ) );
-		add_action( 'wp_ajax_edac_password_protected_notice_ajax', array( $this, 'edac_password_protected_notice_ajax' ) );
+		add_action( 'admin_notices', [ $this, 'edac_black_friday_notice' ] );
+		add_action( 'wp_ajax_edac_black_friday_notice_ajax', [ $this, 'edac_black_friday_notice_ajax' ] );
+		add_action( 'admin_notices', [ $this, 'edac_gaad_notice' ] );
+		add_action( 'wp_ajax_edac_gaad_notice_ajax', [ $this, 'edac_gaad_notice_ajax' ] );
+		add_action( 'admin_notices', [ $this, 'edac_review_notice' ] );
+		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
+		add_action( 'admin_notices', [ $this, 'edac_password_protected_notice' ] );
+		add_action( 'wp_ajax_edac_password_protected_notice_ajax', [ $this, 'edac_password_protected_notice_ajax' ] );
 	}
 
 	/**
@@ -59,12 +59,12 @@ class Admin_Notices {
 	public function edac_remove_admin_notices() {
 
 		$current_screen = get_current_screen();
-		$screens        = array(
+		$screens        = [
 			'toplevel_page_accessibility_checker',
 			'accessibility-checker_page_accessibility_checker_issues',
 			'accessibility-checker_page_accessibility_checker_ignored',
 			'accessibility-checker_page_accessibility_checker_settings',
-		);
+		];
 
 		if ( in_array( $current_screen->id, $screens, true ) ) {
 			remove_all_actions( 'admin_notices' );
