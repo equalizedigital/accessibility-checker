@@ -75,6 +75,14 @@ return array(
 		),
 	),
 	array(
+		'title'     => esc_html__( 'Empty Paragraph Tags', 'accessibility-checker' ),
+		'info_url'  => 'https://a11ychecker.com/help###',
+		'slug'      => 'paragraph_should_not_be_empty',
+		'rule_type' => 'error',
+		'summary'   => esc_html__( 'Paragraph tags that are empty get announced to screen readers with empty content creating unnecessary noise. Paragraphs should never be used for layout purposes.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+	),
+	array(
 		'title'     => esc_html__( 'iFrame Missing Title', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1953',
 		'slug'      => 'iframe_missing_title',
