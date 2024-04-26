@@ -14,7 +14,7 @@
  */
 function edac_rule_underlined_text( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
-	$errors   = array();
+	$errors   = [];
 	$elements = $content['html']->find( 'u' );
 
 	/*
@@ -62,7 +62,7 @@ function edac_rule_underlined_text( $content, $post ) { // phpcs:ignore -- $post
 function edac_css_underlined_text_check( $content ) {
 
 	$dom        = $content['html'];
-	$errors     = array();
+	$errors     = [];
 	$error_code = '';
 	$css_array  = $content['css_parsed'];
 

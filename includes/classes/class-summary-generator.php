@@ -59,7 +59,7 @@ class Summary_Generator {
 		global $wpdb;
 
 		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
-		$summary    = array();
+		$summary    = [];
 
 		if ( ! $table_name ) {
 			return $summary;
@@ -164,7 +164,7 @@ class Summary_Generator {
 	private function count_warnings() {
 		global $wpdb;
 
-		$warnings_parameters = array( get_current_blog_id(), $this->post_id, 'warning', 0 );
+		$warnings_parameters = [ get_current_blog_id(), $this->post_id, 'warning', 0 ];
 		$warnings_where      = 'WHERE siteid = siteid = %d and postid = %d and ruletype = %s and ignre = %d';
 		if ( EDAC_ANWW_ACTIVE ) {
 			array_push( $warnings_parameters, 'link_blank' );
@@ -193,7 +193,7 @@ class Summary_Generator {
 	private function count_ignored() {
 		global $wpdb;
 
-		$ignored_parameters = array( get_current_blog_id(), $this->post_id, 1 );
+		$ignored_parameters = [ get_current_blog_id(), $this->post_id, 1 ];
 		$ignored_where      = 'WHERE siteid = %d and postid = %d and ignre = %d';
 		if ( EDAC_ANWW_ACTIVE ) {
 			array_push( $ignored_parameters, 'link_blank' );
@@ -338,7 +338,7 @@ class Summary_Generator {
 	 * @since 1.11.0
 	 */
 	private function sanitize_summary_meta_data( array $summary ): array {
-		return array(
+		return [
 			'passed_tests'       => absint( $summary['passed_tests'] ?? 0 ),
 			'errors'             => absint( $summary['errors'] ?? 0 ),
 			'warnings'           => absint( $summary['warnings'] ?? 0 ),
@@ -347,6 +347,6 @@ class Summary_Generator {
 			'content_grade'      => absint( $summary['content_grade'] ?? 0 ),
 			'readability'        => sanitize_text_field( $summary['readability'] ?? '' ),
 			'simplified_summary' => filter_var( $summary['simplified_summary'] ?? false, FILTER_VALIDATE_BOOLEAN ),
-		);
+		];
 	}
 }

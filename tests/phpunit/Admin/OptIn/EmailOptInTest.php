@@ -83,7 +83,7 @@ class EmailOptInTest extends WP_UnitTestCase {
 		$this->assertTrue( wp_script_is( 'email-opt-in-form', 'enqueued' ) );
 		$this->assertTrue( wp_style_is( 'email-opt-in-form', 'enqueued' ) );
 		// check that admin footer has been hooked and thickbox is enqueued.
-		$this->assertEquals( 10, has_action( 'admin_footer', array( $email_opt_in, 'render_modal' ) ) );
+		$this->assertEquals( 10, has_action( 'admin_footer', [ $email_opt_in, 'render_modal' ] ) );
 		$this->assertTrue( wp_script_is( 'thickbox', 'enqueued' ) );
 	}
 
@@ -98,7 +98,7 @@ class EmailOptInTest extends WP_UnitTestCase {
 		$this->assertTrue( wp_style_is( 'email-opt-in-form', 'enqueued' ) );
 
 		// check that admin footer has NOT been hooked.
-		$this->assertFalse( has_action( 'admin_footer', array( $email_opt_in, 'render_modal' ) ) );
+		$this->assertFalse( has_action( 'admin_footer', [ $email_opt_in, 'render_modal' ] ) );
 	}
 
 	/**
@@ -121,10 +121,10 @@ class EmailOptInTest extends WP_UnitTestCase {
 		}
 
 		$user_id = $maybe_existing_user ? $maybe_existing_user->ID : $this->factory()->user->create(
-			array(
+			[
 				'user_email' => self::TEST_USER_EMAIL,
 				'first_name' => self::TEST_USER_FIRST_NAME,
-			)
+			]
 		);
 		wp_set_current_user( $user_id );
 		$email_opt_in = new Email_Opt_In();
@@ -139,8 +139,8 @@ class EmailOptInTest extends WP_UnitTestCase {
 	public function test_ajax_handlers_registered() {
 		$email_opt_in = new Email_Opt_In();
 		$email_opt_in->register_ajax_handlers();
-		$this->assertEquals( 10, has_action( 'wp_ajax_edac_email_opt_in_ajax', array( $email_opt_in, 'handle_email_opt_in' ) ) );
-		$this->assertEquals( 10, has_action( 'wp_ajax_edac_email_opt_in_closed_modal_ajax', array( $email_opt_in, 'handle_email_opt_in_closed_modal' ) ) );
+		$this->assertEquals( 10, has_action( 'wp_ajax_edac_email_opt_in_ajax', [ $email_opt_in, 'handle_email_opt_in' ] ) );
+		$this->assertEquals( 10, has_action( 'wp_ajax_edac_email_opt_in_closed_modal_ajax', [ $email_opt_in, 'handle_email_opt_in_closed_modal' ] ) );
 	}
 
 	/**
@@ -203,7 +203,7 @@ class EmailOptInTest extends WP_UnitTestCase {
 		add_filter( 'wp_doing_ajax', '__return_true' );
 		add_filter(
 			'wp_die_ajax_handler',
-			array( $this, 'throw_exception_instead_of_dying' ),
+			[ $this, 'throw_exception_instead_of_dying' ],
 			1,
 			1
 		);

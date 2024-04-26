@@ -26,7 +26,7 @@ class Frontend_Highlight {
 	 * @return void
 	 */
 	public function init_hooks() {
-		add_action( 'wp_ajax_edac_frontend_highlight_ajax', array( $this, 'ajax' ) );
+		add_action( 'wp_ajax_edac_frontend_highlight_ajax', [ $this, 'ajax' ] );
 	}
 
 	/**
@@ -75,9 +75,9 @@ class Frontend_Highlight {
 
 		$rules = edac_register_rules();
 
-		$output = array();
+		$output = [];
 		foreach ( $results as $result ) {
-			$array = array();
+			$array = [];
 			$rule  = edac_filter_by_value( $rules, 'slug', $result['rule'] );
 
 			// When rules are filtered out, they are not in the rules array and this can be empty. Skip when the rule

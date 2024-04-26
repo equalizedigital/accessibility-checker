@@ -15,7 +15,7 @@
 function edac_rule_broken_skip_anchor_link( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom             = $content['html'];
-	$errors          = array();
+	$errors          = [];
 	$anchor_elements = $dom->find( 'a' );
 
 	foreach ( $anchor_elements as $anchor_element ) {

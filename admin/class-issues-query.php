@@ -44,13 +44,13 @@ class Issues_Query {
 	 *
 	 * @var array
 	 */
-	private $query = array(
+	private $query = [
 		'select'     => 'select count(*)',
 		'from'       => '',
 		'where_base' => '',
 		'filters'    => '',
 		'limit'      => '',
-	);
+	];
 
 
 	/**
@@ -60,14 +60,14 @@ class Issues_Query {
 	 * @param integer $record_limit Max number of records we'll query.
 	 * @param string  $flags Flag used to determine how ignored issues sould be handled.
 	 */
-	public function __construct( $filter = array(), $record_limit = 100000, $flags = self::FLAG_EXCLUDE_IGNORED ) {
-		$valid_filters = array(
+	public function __construct( $filter = [], $record_limit = 100000, $flags = self::FLAG_EXCLUDE_IGNORED ) {
+		$valid_filters = [
 			'post_types',
 			'rule_types',
 			'rule_slugs',
-		);
+		];
 
-		$validated_filters = array();
+		$validated_filters = [];
 		foreach ( $filter as $key => $val ) {
 			if ( in_array( $key, $valid_filters, true ) ) {
 				$validated_filters[ $key ] = $val;
@@ -85,20 +85,20 @@ class Issues_Query {
 		$siteid = get_current_blog_id();
 
 		if ( $flags & self::FLAG_INCLUDE_IGNORED ) {
-			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d', array( $siteid ) );
+			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d', [ $siteid ] );
 
 		} elseif ( $flags & self::FLAG_ONLY_IGNORED ) {
-			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and (ignre=%d or ignre_global=%d) ', array( $siteid, 1, 1 ) );
+			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and (ignre=%d or ignre_global=%d) ', [ $siteid, 1, 1 ] );
 
 		} else { // This is the default.
-			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and ignre=%d and ignre_global=%d ', array( $siteid, 0, 0 ) );
+			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and ignre=%d and ignre_global=%d ', [ $siteid, 0, 0 ] );
 		}
 
-		$filter_defaults = array(
-			'post_types' => array(),
-			'rule_types' => array(),
-			'rule_slugs' => array(),
-		);
+		$filter_defaults = [
+			'post_types' => [],
+			'rule_types' => [],
+			'rule_slugs' => [],
+		];
 
 		$filter = array_replace_recursive( $filter_defaults, $validated_filters );
 
@@ -115,7 +115,7 @@ class Issues_Query {
 		}
 
 		// Setup LIMIT.
-		$this->query['limit'] = $wpdb->prepare( 'LIMIT %d', array( $record_limit ) );
+		$this->query['limit'] = $wpdb->prepare( 'LIMIT %d', [ $record_limit ] );
 	}
 
 

@@ -59,18 +59,18 @@ class Email_Opt_In {
 		wp_localize_script(
 			'email-opt-in-form',
 			'edac_email_opt_in_form',
-			array(
+			[
 				'nonce'     => wp_create_nonce( 'ajax-nonce' ),
 				'ajaxurl'   => admin_url( 'admin-ajax.php' ),
 				'showModal' => self::should_show_modal(),
-			)
+			]
 		);
 
 		if ( self::should_show_modal() ) {
 			// user modal needs thickbox (and thus jquery).
 			add_thickbox();
 			// Also needs to output the markup for use in the modal.
-			add_action( 'admin_footer', array( $this, 'render_modal' ) );
+			add_action( 'admin_footer', [ $this, 'render_modal' ] );
 		}
 	}
 
@@ -165,8 +165,8 @@ class Email_Opt_In {
 	 * @return void
 	 */
 	public function register_ajax_handlers() {
-		add_action( 'wp_ajax_edac_email_opt_in_ajax', array( $this, 'handle_email_opt_in' ) );
-		add_action( 'wp_ajax_edac_email_opt_in_closed_modal_ajax', array( $this, 'handle_email_opt_in_closed_modal' ) );
+		add_action( 'wp_ajax_edac_email_opt_in_ajax', [ $this, 'handle_email_opt_in' ] );
+		add_action( 'wp_ajax_edac_email_opt_in_closed_modal_ajax', [ $this, 'handle_email_opt_in_closed_modal' ] );
 	}
 
 	/**
@@ -189,7 +189,7 @@ class Email_Opt_In {
 	 * @return void
 	 */
 	public function handle_email_opt_in_closed_modal() {
-		update_user_meta( get_current_user_id(), Email_Opt_In::EDAC_USER_OPTIN_SEEN_MODAL_KEY, true );
+		update_user_meta( get_current_user_id(), self::EDAC_USER_OPTIN_SEEN_MODAL_KEY, true );
 		wp_send_json( 'success' );
 	}
 }

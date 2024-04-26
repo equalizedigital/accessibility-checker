@@ -15,7 +15,7 @@ class EDAC_Dom extends simple_html_dom {
 	 *
 	 * @var array $video_ext Video extensions.
 	 */
-	protected $video_ext = array(
+	protected $video_ext = [
 		'.3gp',
 		'.asf',
 		'.asx',
@@ -37,14 +37,14 @@ class EDAC_Dom extends simple_html_dom {
 		'.wmv',
 		'.wmp',
 		'.wmx',
-	);
+	];
 
 	/**
 	 * List of supported audio file extensions.
 	 *
 	 * @var array $audio_ext Audio extensions.
 	 */
-	protected $audio_ext = array(
+	protected $audio_ext = [
 		'.aif',
 		'.aiff',
 		'.m4a',
@@ -56,14 +56,14 @@ class EDAC_Dom extends simple_html_dom {
 		'.ram',
 		'.wav',
 		'.wma',
-	);
+	];
 
 	/**
 	 * Array containing URLs of embed sources.
 	 *
 	 * @var array $embed_sources Embed source URLs.
 	 */
-	protected $embed_sources = array(
+	protected $embed_sources = [
 		'mixcloud.com',
 		'reverbnation.com',
 		'screencast.com',
@@ -75,7 +75,7 @@ class EDAC_Dom extends simple_html_dom {
 		'youtu.be',
 		'videopress.com',
 		'vimeo.com',
-	);
+	];
 
 	/**
 	 * Convert Tag to Marker
@@ -84,7 +84,7 @@ class EDAC_Dom extends simple_html_dom {
 	 * @return void
 	 */
 	public function convert_tag_to_marker( $tags ) {
-		$elements = array();
+		$elements = [];
 
 		foreach ( $tags as $tag ) {
 			$elements = array_merge( $elements, $this->find( $tag ) );
@@ -129,8 +129,8 @@ class EDAC_Dom extends simple_html_dom {
 	public function find_media_embeds( $include_audio = true ) {
 		// all elements with sources.
 		$elements_with_src = $this->find( '[src]' );
-		$elements          = array();
-		$audio             = $include_audio ? $this->audio_ext : array();
+		$elements          = [];
+		$audio             = $include_audio ? $this->audio_ext : [];
 		$extensions        = array_merge( $this->video_ext, $this->embed_sources, $audio );
 		if ( $elements_with_src ) {
 			$elements = array_filter(
@@ -154,8 +154,8 @@ class EDAC_Dom extends simple_html_dom {
 	 */
 	public function find_linked_media( $include_audio = true ) {
 		$elements_with_href = $this->find( '[href]' );
-		$elements           = array();
-		$audio              = $include_audio ? $this->audio_ext : array();
+		$elements           = [];
+		$audio              = $include_audio ? $this->audio_ext : [];
 		$extensions         = array_merge( $this->video_ext, $audio );
 		if ( $elements_with_href ) {
 			$elements = array_filter(
