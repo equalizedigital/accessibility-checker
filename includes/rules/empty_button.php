@@ -22,12 +22,12 @@ function edac_rule_empty_button( $content, $post ) { // phpcs:ignore -- $post is
 	$dom     = $content['html'];
 	$buttons = $dom->find( 'button, [role=button]' );
 	$inputs  = $dom->find( 'input[type=button], input[type=submit], input[type=reset]' );
-	$errors  = array();
+	$errors  = [];
 
 	// check buttons.
 	foreach ( $buttons as $button ) {
 		if (
-			str_ireplace( array( ' ', '&nbsp;', '-', '_' ), '', trim( $button->plaintext ) ) === ''
+			str_ireplace( [ ' ', '&nbsp;', '-', '_' ], '', trim( $button->plaintext ) ) === ''
 			&& $button->getAttribute( 'aria-label' ) === ''
 			&& $button->getAttribute( 'title' ) === ''
 		) {

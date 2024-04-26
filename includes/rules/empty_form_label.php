@@ -17,11 +17,11 @@ function edac_rule_empty_form_label( $content, $post ) { // phpcs:ignore -- $pos
 	// rule vars.
 	$dom    = $content['html'];
 	$labels = $dom->find( 'label' );
-	$errors = array();
+	$errors = [];
 
 	foreach ( $labels as $label ) {
 
-		$label_text = str_ireplace( array( '*', __( 'required', 'accessibility-checker' ) ), '', $label->plaintext );
+		$label_text = str_ireplace( [ '*', __( 'required', 'accessibility-checker' ) ], '', $label->plaintext );
 		if ( empty( preg_replace( '/\s+/', '', $label_text ) ) ) {
 			$errors[] = $label->outertext;
 		}

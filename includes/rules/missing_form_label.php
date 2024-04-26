@@ -16,10 +16,10 @@ function edac_rule_missing_form_label( $content, $post ) { // phpcs:ignore -- $p
 
 	$dom    = $content['html'];
 	$fields = $dom->find( 'input' );
-	$errors = array();
+	$errors = [];
 
 	foreach ( $fields as $field ) {
-		if ( in_array( $field->getAttribute( 'type' ), array( 'submit', 'hidden', 'button', 'reset' ), true ) ) {
+		if ( in_array( $field->getAttribute( 'type' ), [ 'submit', 'hidden', 'button', 'reset' ], true ) ) {
 			continue;
 		}
 		if ( ! ac_input_has_label( $field, $dom ) ) {

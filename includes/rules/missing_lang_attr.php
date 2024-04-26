@@ -14,7 +14,7 @@
  */
 function edac_rule_missing_lang_attr( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
-	$errors   = array();
+	$errors   = [];
 	$elements = $content['html']->find( 'html' );
 	if ( $elements[0] ) {
 		if ( ( $elements[0]->hasAttribute( 'lang' ) && $elements[0]->getAttribute( 'lang' ) !== '' ) || ( $elements[0]->hasAttribute( 'xml:lang' ) && $elements[0]->getAttribute( 'xml:lang' ) !== '' ) ) {

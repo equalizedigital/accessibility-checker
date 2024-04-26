@@ -15,8 +15,8 @@
 function edac_rule_tab_order_modified( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$tags   = array( 'a', 'input', 'select', 'textarea', 'button', 'datalist', 'output', 'area' );
-	$errors = array();
+	$tags   = [ 'a', 'input', 'select', 'textarea', 'button', 'datalist', 'output', 'area' ];
+	$errors = [];
 
 	foreach ( $tags as $tag ) {
 		$elements = $dom->find( $tag );

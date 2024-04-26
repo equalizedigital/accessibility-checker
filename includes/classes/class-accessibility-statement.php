@@ -22,7 +22,7 @@ class Accessibility_Statement {
 	 * Initialize WordPress hooks.
 	 */
 	public function init_hooks() {
-		add_action( 'wp_footer', array( $this, 'output_accessibility_statement' ) );
+		add_action( 'wp_footer', [ $this, 'output_accessibility_statement' ] );
 	}
 
 	/**

@@ -22,9 +22,9 @@ class ImgAltLongTest extends WP_UnitTestCase {
 	public function test_empty_array_when_alt_text_is_within_allowed_length() {
 		$html    = '<img src="test.jpg" alt="This is a test image">';
 		$dom     = str_get_html( $html );
-		$content = array(
+		$content = [
 			'html' => $dom,
-		);
+		];
 		$post    = null;
 		$errors  = edac_rule_img_alt_long( $content, $post );
 		$this->assertEmpty( $errors );
@@ -38,9 +38,9 @@ class ImgAltLongTest extends WP_UnitTestCase {
 	public function test_returns_errors_when_alt_text_is_longer_than_allowed_length() {
 		$html    = '<img src="test.jpg" alt="' . str_repeat( 'a', 301 ) . '">';
 		$dom     = str_get_html( $html );
-		$content = array(
+		$content = [
 			'html' => $dom,
-		);
+		];
 		$post    = null;
 		$errors  = edac_rule_img_alt_long( $content, $post );
 		$this->assertNotEmpty( $errors );
@@ -62,9 +62,9 @@ class ImgAltLongTest extends WP_UnitTestCase {
 
 		$html    = '<img src="test.jpg" alt="This is a long alt text">';
 		$dom     = str_get_html( $html );
-		$content = array(
+		$content = [
 			'html' => $dom,
-		);
+		];
 		$post    = null;
 		$errors  = edac_rule_img_alt_long( $content, $post );
 

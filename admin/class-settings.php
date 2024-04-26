@@ -18,7 +18,7 @@ class Settings {
 	 * @var array
 	 */
 	public static function get_scannable_post_statuses() {
-		return array( 'publish', 'future', 'draft', 'pending', 'private' );
+		return [ 'publish', 'future', 'draft', 'pending', 'private' ];
 	}
 
 
@@ -37,10 +37,10 @@ class Settings {
 			$post_types = array_unique( $post_types );
 
 			// validate post types.
-			$args             = array(
+			$args             = [
 				'public'   => true,
 				'_builtin' => true,
-			);
+			];
 			$valid_post_types = get_post_types( $args, 'names', 'and' );
 			unset( $valid_post_types['attachment'] );
 

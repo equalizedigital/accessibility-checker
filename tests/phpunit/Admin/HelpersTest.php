@@ -22,7 +22,7 @@ class HelpersTest extends WP_UnitTestCase {
 	 * @dataProvider userDataProvider
 	 */
 	public function test_capability_check_for_widgets_and_notices( string $role, bool $expected ) {
-		$user_id = $this->factory()->user->create( array( 'role' => $role ) );
+		$user_id = $this->factory()->user->create( [ 'role' => $role ] );
 		wp_set_current_user( $user_id );
 		$this->assertEquals( $expected, Helpers::current_user_can_see_widgets_and_notices() );
 	}
@@ -47,7 +47,7 @@ class HelpersTest extends WP_UnitTestCase {
 					return $capability;
 				}
 			);
-			$user_id = $this->factory()->user->create( array( 'role' => $role ) );
+			$user_id = $this->factory()->user->create( [ 'role' => $role ] );
 			wp_set_current_user( $user_id );
 			$this->assertEquals( $expected, Helpers::current_user_can_see_widgets_and_notices() );
 		}
@@ -62,39 +62,39 @@ class HelpersTest extends WP_UnitTestCase {
 	 * @dataProvider userDataProvider
 	 */
 	public function userDataProvider(): array {
-		return array(
-			array(
+		return [
+			[
 				'role'      => 'administrator',
 				'default'   => true,
-				'extra_cap' => array( 'manage_options' => true ),
-			),
-			array(
+				'extra_cap' => [ 'manage_options' => true ],
+			],
+			[
 				'role'      => 'editor',
 				'default'   => true,
-				'extra_cap' => array( 'manage_options' => false ),
-			),
-			array(
+				'extra_cap' => [ 'manage_options' => false ],
+			],
+			[
 				'role'      => 'author',
 				'default'   => true,
-				'extra_cap' => array(
+				'extra_cap' => [
 					'manage_options' => false,
 					'publish_posts'  => true,
 					'upload_files'   => true,
-				),
-			),
-			array(
+				],
+			],
+			[
 				'role'      => 'contributor',
 				'default'   => true,
-				'extra_cap' => array(
+				'extra_cap' => [
 					'publish_posts' => false,
 					'upload_files'  => false,
-				),
-			),
-			array(
+				],
+			],
+			[
 				'role'      => 'subscriber',
 				'default'   => false,
-				'extra_cap' => array( 'manage_options' => false ),
-			),
-		);
+				'extra_cap' => [ 'manage_options' => false ],
+			],
+		];
 	}
 }

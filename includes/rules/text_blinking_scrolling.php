@@ -15,7 +15,7 @@
 function edac_rule_text_blinking_scrolling( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$errors = array();
+	$errors = [];
 
 	/**
 	 * Check for blink tag
@@ -67,7 +67,7 @@ function edac_rule_text_blinking_scrolling( $content, $post ) { // phpcs:ignore 
 function ac_css_text_decoration_blink_check( $content ) {
 
 	$dom        = $content['html'];
-	$errors     = array();
+	$errors     = [];
 	$error_code = '';
 	$css_array  = $content['css_parsed'];
 

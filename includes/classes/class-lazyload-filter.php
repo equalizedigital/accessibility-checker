@@ -19,7 +19,7 @@ class Lazyload_Filter {
 	 * Initialize WordPress hooks.
 	 */
 	public function init_hooks() {
-		add_filter( 'perfmatters_lazyload', array( $this, 'perfmatters' ) );
+		add_filter( 'perfmatters_lazyload', [ $this, 'perfmatters' ] );
 	}
 
 	/**

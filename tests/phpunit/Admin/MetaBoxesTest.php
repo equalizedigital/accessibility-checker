@@ -21,7 +21,7 @@ class MetaBoxesTest extends WP_UnitTestCase {
 	public function test_meta_boxes_are_registered_in_admin(): void {
 
 		$meta_boxes = $this->getMockBuilder( Meta_Boxes::class )
-			->onlyMethods( array( 'register_meta_boxes' ) )
+			->onlyMethods( [ 'register_meta_boxes' ] )
 			->getMock();
 
 		$meta_boxes->expects( $this->once() )
@@ -44,10 +44,10 @@ class MetaBoxesTest extends WP_UnitTestCase {
 			10,
 			has_action(
 				'add_meta_boxes',
-				array(
+				[
 					$meta_boxes,
 					'register_meta_boxes',
-				)
+				]
 			)
 		);
 	}

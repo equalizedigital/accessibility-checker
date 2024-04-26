@@ -135,7 +135,7 @@ function edac_validate( $post_ID, $post, $action ) {
 	// check and validate content.
 	$rules = edac_register_rules();
 	if ( EDAC_DEBUG === true ) {
-		$rule_performance_results = array();
+		$rule_performance_results = [];
 		$all_rules_process_time   = microtime( true );
 	}
 	if ( $rules ) {
@@ -196,7 +196,7 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 	global $wpdb;
 
 	$rules      = edac_register_rules();
-	$rule_slugs = array();
+	$rule_slugs = [];
 	foreach ( $rules as $rule ) {
 		if ( 'js' === $ruleset && isset( $rule['ruleset'] ) && 'js' === $rule['ruleset'] ) {
 			$rule_slugs[] = $rule['slug'];
@@ -220,7 +220,7 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 					implode( ',', array_fill( 0, count( $rule_slugs ), '%s' ) )
 				),
 				array_merge(
-					array( 0, get_current_blog_id(), $post_ID, $type ),
+					[ 0, get_current_blog_id(), $post_ID, $type ],
 					$rule_slugs
 				)
 			)
@@ -235,7 +235,7 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 					implode( ',', array_fill( 0, count( $rule_slugs ), '%s' ) )
 				),
 				array_merge(
-					array( get_current_blog_id(), $post_ID, $type, 0 ),
+					[ get_current_blog_id(), $post_ID, $type, 0 ],
 					$rule_slugs
 				)
 			)
@@ -250,18 +250,18 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
  * @return simple_html_dom|bool Returns the parsed HTML content or false on failure.
  */
 function edac_get_content( $post ) {
-	$content         = array();
+	$content         = [];
 	$content['html'] = false;
 
 	$context              = '';
-	$context_opts         = array();
-	$default_context_opts = array(
+	$context_opts         = [];
+	$default_context_opts = [
 		// See: https://www.php.net/manual/en/context.http.php.
-		'http' => array(
+		'http' => [
 			'user_agent'      => 'PHP Accessibility Checker',
 			'follow_location' => false,
-		),
-	);
+		],
+	];
 
 	$username = get_option( 'edacp_authorization_username' );
 	$password = get_option( 'edacp_authorization_password' );
@@ -298,10 +298,10 @@ function edac_get_content( $post ) {
 	$no_verify_ssl = apply_filters( 'edac_no_verify_ssl', $is_local_loopback );
 
 	if ( $no_verify_ssl ) {
-		$context_opts['ssl'] = array(
+		$context_opts['ssl'] = [
 			'verify_peer'      => false,
 			'verify_peer_name' => false,
-		);
+		];
 	}
 
 	// http authorization.
@@ -342,12 +342,12 @@ function edac_get_content( $post ) {
 			$dom             = file_get_html( $url, false, $context );
 			$content['html'] = edac_remove_elements(
 				$dom,
-				array(
+				[
 					'#wpadminbar',            // wp admin bar.
 					'.edac-highlight-panel',  // frontend highlighter.
 					'#query-monitor-main',    // query-monitor.
 					'#qm-icon-container',     // query-monitor.
-				)
+				]
 			);
 
 			// Write density data to post meta.
@@ -367,12 +367,12 @@ function edac_get_content( $post ) {
 				}
 			}
 		} catch ( Exception $e ) {
-			update_post_meta( $post->ID, '_edac_density_data', array( 0, 0 ) );
+			update_post_meta( $post->ID, '_edac_density_data', [ 0, 0 ] );
 
 			$content['html'] = false;
 		}
 	} else {
-		update_post_meta( $post->ID, '_edac_density_data', array( 0, 0 ) );
+		update_post_meta( $post->ID, '_edac_density_data', [ 0, 0 ] );
 
 		$content['html'] = false;
 	}
@@ -470,5 +470,5 @@ function edac_show_draft_posts( $query ) {
 	}
 
 	// If we've reached this point, alter the query to include 'publish', 'draft', and 'pending' posts.
-	$query->set( 'post_status', array( 'publish', 'draft', 'pending' ) );
+	$query->set( 'post_status', [ 'publish', 'draft', 'pending' ] );
 }

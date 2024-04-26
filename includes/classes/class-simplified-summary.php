@@ -22,7 +22,7 @@ class Simplified_Summary {
 	 * Initialize WordPress hooks.
 	 */
 	public function init_hooks() {
-		add_filter( 'the_content', array( $this, 'output_simplified_summary' ) );
+		add_filter( 'the_content', [ $this, 'output_simplified_summary' ] );
 	}
 
 	/**

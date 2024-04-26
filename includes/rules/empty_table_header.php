@@ -16,7 +16,7 @@ function edac_rule_empty_table_header( $content, $post ) { // phpcs:ignore -- $p
 
 	// rule vars.
 	$dom            = $content['html'];
-	$errors         = array();
+	$errors         = [];
 	$table_headings = $dom->find( 'th' );
 
 	foreach ( $table_headings as $table_heading ) {

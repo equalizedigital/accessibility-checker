@@ -140,4 +140,11 @@
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 
+	<!-- Allow and enforce shorthand arrays -->
+	<rule ref="WordPress">
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+	</rule>
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+
 </ruleset>
