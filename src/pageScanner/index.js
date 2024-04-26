@@ -44,7 +44,13 @@ const scan = async (
 		},
 		resultTypes: [ 'violations' ],
 		runOptions: {
-			runOnly: [ 'color_contrast_failure' ],
+			runOnly: {
+				type: 'rule',
+				values: [
+					'color_contrast_failure',
+					'meta-viewport',
+				],
+			},
 
 			/*
 			//TODO:
