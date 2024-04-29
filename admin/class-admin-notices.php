@@ -175,7 +175,7 @@ class Admin_Notices {
 		}
 
 		// Get the value of the 'edac_gaad_notice_dismiss' option and sanitize it.
-		$dismissed = absint( get_option( 'edac_gaad_notice_dismiss', 0 ) );
+		$dismissed = absint( get_option( 'edac_gaad_notice_dismiss_2024', 0 ) );
 
 		// Check if the notice has been dismissed.
 		if ( $dismissed ) {
@@ -233,7 +233,9 @@ class Admin_Notices {
 
 		}
 
-		$results = update_option( 'edac_gaad_notice_dismiss', true );
+		$results = update_option( 'edac_gaad_notice_dismiss_2024', true );
+		// delete old meta key.
+		delete_option( 'edac_gaad_notice_dismiss' );
 
 		if ( ! $results ) {
 
