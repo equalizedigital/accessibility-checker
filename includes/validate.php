@@ -8,6 +8,8 @@
 use EDAC\Admin\Helpers;
 use EDAC\Admin\Insert_Rule_Data;
 
+const EDAC_VALIDATE_NONCE_ACTION = 'edac-validate-draft-or-pending-status';
+
 /**
  * Oxygen Builder on save
  *
@@ -324,10 +326,13 @@ function edac_get_content( $post ) {
 		if ( 'draft' === $post->post_status || 'pending' === $post->post_status ) {
 
 			// Generate a token that is valid for a short period of time.
-			$token = edac_generate_nonce( 'draft-or-pending-status', 120 );
+			$token = wp_create_nonce( EDAC_VALIDATE_NONCE_ACTION );
 
 			// Add the token to the URL.
 			$url = add_query_arg( 'edac_token', $token, $url );
+
+			// Since this uses a wp nonce we need to send along the cookies of the user making the request.
+			$context_opts['http']['header'] = 'Cookie: ' . edac_get_current_user_cookies();
 
 		}
 
@@ -465,10 +470,40 @@ function edac_show_draft_posts( $query ) {
 	}
 
 	// If the passed token is no longer valid, we do nothing and return early.
-	if ( false === edac_is_valid_nonce( 'draft-or-pending-status', $url_token ) ) {
+	if ( ! wp_verify_nonce( $url_token, EDAC_VALIDATE_NONCE_ACTION ) ) {
 		return;
 	}
 
 	// If we've reached this point, alter the query to include 'publish', 'draft', and 'pending' posts.
 	$query->set( 'post_status', [ 'publish', 'draft', 'pending' ] );
+}
+
+/**
+ * Get current user cookies
+ *
+ * @return string
+ */
+function edac_get_current_user_cookies(): string {
+	$cookies = array();
+	// phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.cache_constraints___COOKIE -- User must be logged in to trigger this so it's a valid use for cookies on the server.
+	foreach ( $_COOKIE as $key => $value ) {
+		$cookies[] = $key . '=' . $value;
+	}
+	return implode( '; ', $cookies );
+}
+
+/**
+ * Sets the nonce life for the 'edac-validate-draft-or-pending-status' action
+ * to a really low TTL.
+ *
+ * @param int    $seconds The time the nonce is valid for.
+ * @param string $action  The nonce action.
+ *
+ * @return int
+ */
+function edac_nonce_life_for_validate( int $seconds, string $action ) {
+	if ( EDAC_VALIDATE_NONCE_ACTION === $action ) {
+		return MINUTE_IN_SECONDS * 2;
+	}
+	return $seconds;
 }
