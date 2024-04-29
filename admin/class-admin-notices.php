@@ -165,8 +165,8 @@ class Admin_Notices {
 	public function edac_gaad_notice() {
 
 		// Define constants for start and end dates.
-		define( 'EDAC_GAAD_NOTICE_START_DATE', '2023-05-11' );
-		define( 'EDAC_GAAD_NOTICE_END_DATE', '2023-05-24' );
+		define( 'EDAC_GAAD_NOTICE_START_DATE', '2024-04-06' );
+		define( 'EDAC_GAAD_NOTICE_END_DATE', '2024-05-23' );
 
 		// Check if Accessibility Checker Pro is active.
 		$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
