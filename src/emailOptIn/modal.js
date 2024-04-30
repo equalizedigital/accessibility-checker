@@ -18,8 +18,8 @@ export const initOptInModal = () => {
 		// a small delay is needed to ensure the modal is fully loaded before creating a focus trap.
 		setTimeout(
 			function() {
-				const modal = document.getElementById( 'TB_window' )
-					.querySelector( '.tb-close-icon' )
+				const modal = document.getElementById( 'TB_window' );
+				modal.querySelector( '.tb-close-icon' )
 					.setAttribute( 'aria-hidden', 'true' );
 
 				const focusTrap = createFocusTrap( modal );
