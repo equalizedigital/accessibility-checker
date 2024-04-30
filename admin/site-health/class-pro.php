@@ -28,50 +28,50 @@ class Pro {
 	 * @return array
 	 */
 	public function get() {
-		return array(
+		return [
 			'label'  => __( 'Accessibility Checker &mdash; Pro', 'accessibility-checker' ),
-			'fields' => array(
-				'version'                => array(
+			'fields' => [
+				'version'                => [
 					'label' => 'Version',
 					'value' => defined( 'EDACP_VERSION' ) ? esc_html( EDACP_VERSION ) : 'Unset',
-				),
-				'database_version'       => array(
+				],
+				'database_version'       => [
 					'label' => 'Database Version',
 					'value' => defined( 'EDACP_DB_VERSION' ) ? esc_html( EDACP_DB_VERSION ) : 'Unset',
-				),
-				'license_status'         => array(
+				],
+				'license_status'         => [
 					'label' => 'License Status',
 					'value' => esc_html( get_option( 'edacp_license_status' ) ),
-				),
-				'authorization_username' => array(
+				],
+				'authorization_username' => [
 					'label' => 'Authorization Username',
 					'value' => esc_html( get_option( 'edacp_authorization_username' ) ? get_option( 'edacp_authorization_username' ) : 'Unset' ),
-				),
-				'authorization_password' => array(
+				],
+				'authorization_password' => [
 					'label' => 'Authorization Password',
 					'value' => esc_html( get_option( 'edacp_authorization_password' ) ? get_option( 'edacp_authorization_password' ) : 'Unset' ),
-				),
-				'scan_id'                => array(
+				],
+				'scan_id'                => [
 					'label' => 'Scan ID',
 					'value' => esc_html( get_transient( 'edacp_scan_id' ) ),
-				),
-				'scan_total'             => array(
+				],
+				'scan_total'             => [
 					'label' => 'Scan Total',
 					'value' => absint( get_transient( 'edacp_scan_total' ) ),
-				),
-				'simplified_sum_heading' => array(
+				],
+				'simplified_sum_heading' => [
 					'label' => 'Simplified Sum Heading',
 					'value' => esc_html( get_option( 'edacp_simplified_summary_heading' ) ),
-				),
-				'ignore_permissions'     => array(
+				],
+				'ignore_permissions'     => [
 					'label' => 'Ignore Permissions',
 					'value' => esc_html( get_option( 'edacp_ignore_user_roles' ) ? implode( ', ', get_option( 'edacp_ignore_user_roles' ) ) : 'None' ),
-				),
-				'ignores_db_table_count' => array(
+				],
+				'ignores_db_table_count' => [
 					'label' => 'Ignores DB Table Count',
 					'value' => absint( edac_database_table_count( 'accessibility_checker_global_ignores' ) ),
-				),
-			),
-		);
+				],
+			],
+		];
 	}
 }

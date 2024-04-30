@@ -19,7 +19,7 @@ function edac_rule_color_contrast_failure( $content, $post ) { // phpcs:ignore -
 
 	// check links in content for style tags.
 	$dom    = $content['html'];
-	$errors = array();
+	$errors = [];
 
 	$elements = $dom->find( '*' );
 	foreach ( $elements as $element ) {
@@ -149,7 +149,7 @@ function edac_rule_color_contrast_failure( $content, $post ) { // phpcs:ignore -
  */
 function edac_check_contrast( $content ) {
 	$dom        = $content['html'];
-	$errors     = array();
+	$errors     = [];
 	$error_code = '';
 	$css_array  = $content['css_parsed'];
 
@@ -387,7 +387,7 @@ function edac_convert_color_names( $color_name ) {
 	}
 
 	// standard 147 HTML color names.
-	$colors = array(
+	$colors = [
 		'aliceblue'            => 'F0F8FF',
 		'antiquewhite'         => 'FAEBD7',
 		'aqua'                 => '00FFFF',
@@ -535,7 +535,7 @@ function edac_convert_color_names( $color_name ) {
 		'whitesmoke'           => 'F5F5F5',
 		'yellow'               => 'FFFF00',
 		'yellowgreen'          => '9ACD32',
-	);
+	];
 
 	$color_name = strtolower( $color_name );
 	$color_name = trim( str_replace( '!important', '', $color_name ) );
@@ -555,7 +555,7 @@ function edac_convert_color_names( $color_name ) {
 function edac_check_color_match2( $background_rule ) {
 
 	// standard 147 HTML color names.
-	$colors = array(
+	$colors = [
 		'aliceblue'            => 'F0F8FF',
 		'antiquewhite'         => 'FAEBD7',
 		'aqua'                 => '00FFFF',
@@ -703,7 +703,7 @@ function edac_check_color_match2( $background_rule ) {
 		'whitesmoke'           => 'F5F5F5',
 		'yellow'               => 'FFFF00',
 		'yellowgreen'          => '9ACD32',
-	);
+	];
 
 	$background_rule = strtolower( $background_rule );
 	$background_rule = trim( str_replace( '!important', '', $background_rule ) );

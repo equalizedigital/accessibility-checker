@@ -23,9 +23,9 @@ class MissingTranscriptTest extends WP_UnitTestCase {
 		$attachment_id = $this->factory()->attachment->create_object(
 			'video.mp4',
 			$post_id,
-			array(
+			[
 				'post_mime_type' => 'video/mp4',
-			)
+			]
 		);
 
 		// add the attachement to the post content.
@@ -34,7 +34,7 @@ class MissingTranscriptTest extends WP_UnitTestCase {
 		wp_update_post( $post );
 
 		// Run the rule.
-		$errors = edac_rule_missing_transcript( array(), $post );
+		$errors = edac_rule_missing_transcript( [], $post );
 
 		$this->assertNotEmpty( $errors );
 	}
@@ -51,7 +51,7 @@ class MissingTranscriptTest extends WP_UnitTestCase {
 		wp_update_post( $post );
 
 		// Run the rule.
-		$errors = edac_rule_missing_transcript( array(), $post );
+		$errors = edac_rule_missing_transcript( [], $post );
 
 		$this->assertEmpty( $errors );
 	}
@@ -67,16 +67,16 @@ class MissingTranscriptTest extends WP_UnitTestCase {
 		$attachment_id = $this->factory()->attachment->create_object(
 			'video.mp4',
 			$post_id,
-			array(
+			[
 				'post_mime_type' => 'video/mp4',
-			)
+			]
 		);
 
 		// add the attachment to the post content.
 		$post               = get_post( $post_id );
 		$post->post_content = '<a href="' . wp_get_attachment_url( $attachment_id ) . '">Video</a>';
 
-		$this->assertNotEmpty( edac_rule_missing_transcript( array(), $post ) );
+		$this->assertNotEmpty( edac_rule_missing_transcript( [], $post ) );
 	}
 
 	/**
@@ -88,15 +88,15 @@ class MissingTranscriptTest extends WP_UnitTestCase {
 		$attachment_id = $this->factory()->attachment->create_object(
 			'video.mp4',
 			$post_id,
-			array(
+			[
 				'post_mime_type' => 'video/mp4',
-			)
+			]
 		);
 
 		$post               = get_post( $post_id );
 		$post->post_content = '<a href="' . wp_get_attachment_url( $attachment_id ) . '">Video</a><p>Transcript</p>';
 
-		$this->assertEmpty( edac_rule_missing_transcript( array(), $post ) );
+		$this->assertEmpty( edac_rule_missing_transcript( [], $post ) );
 	}
 
 	/**
@@ -110,9 +110,9 @@ class MissingTranscriptTest extends WP_UnitTestCase {
 		$attachment_id = $this->factory()->attachment->create_object(
 			'video.mp4',
 			$post_id,
-			array(
+			[
 				'post_mime_type' => 'video/mp4',
-			)
+			]
 		);
 
 		$attachment_string = '<a href="' . wp_get_attachment_url( $attachment_id ) . '">Video</a>';
@@ -123,22 +123,22 @@ class MissingTranscriptTest extends WP_UnitTestCase {
 		$post->post_content = $attachment_string . $transcript_string;
 
 		// should detect the transcript.
-		$this->assertEmpty( edac_rule_missing_transcript( array(), $post ) );
+		$this->assertEmpty( edac_rule_missing_transcript( [], $post ) );
 
 		// still should find it.
 		$post->post_content = $attachment_string . 'Some short text' . $transcript_string;
-		$this->assertEmpty( edac_rule_missing_transcript( array(), $post ) );
+		$this->assertEmpty( edac_rule_missing_transcript( [], $post ) );
 
 		// should find even if there is a tag with a lot of characters in the attributes between the two.
 		$post->post_content = $attachment_string . '<span class="aReallyReallyLongClassname" aria-hidden="true">Icon</span>' . $transcript_string;
-		$this->assertEmpty( edac_rule_missing_transcript( array(), $post ) );
+		$this->assertEmpty( edac_rule_missing_transcript( [], $post ) );
 
 		// should still find it even with a long svg and long attributes between both.
 		$post->post_content = $attachment_string . '<span class="aReallyReallyLongClassname" aria-hidden="true"><svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" /></svg></span>' . $transcript_string;
-		$this->assertEmpty( edac_rule_missing_transcript( array(), $post ) );
+		$this->assertEmpty( edac_rule_missing_transcript( [], $post ) );
 
 		// should not find it since it's over 25 characters of content away.
 		$post->post_content = $attachment_string . 'Some long text that is longer than 25 characters' . $transcript_string;
-		$this->assertNotEmpty( edac_rule_missing_transcript( array(), $post ) );
+		$this->assertNotEmpty( edac_rule_missing_transcript( [], $post ) );
 	}
 }

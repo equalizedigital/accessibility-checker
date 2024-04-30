@@ -16,7 +16,7 @@ function edac_rule_broken_aria_reference( $content, $post ) { // phpcs:ignore --
 
 	// rule vars.
 	$dom                 = $content['html'];
-	$errors              = array();
+	$errors              = [];
 	$labelledby_elements = $dom->find( '[aria-labelledby]' );
 
 	foreach ( $labelledby_elements as $labelledby_element ) {

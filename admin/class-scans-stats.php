@@ -66,9 +66,9 @@ class Scans_Stats {
 		$scannable_post_types = Settings::get_scannable_post_types();
 
 		$post_types = get_post_types(
-			array(
+			[
 				'public' => true,
-			)
+			]
 		);
 
 		unset( $post_types['attachment'] );
@@ -93,9 +93,9 @@ class Scans_Stats {
 
 		// Delete the cached post_type stats.
 		$post_types = get_post_types(
-			array(
+			[
 				'public' => true,
-			)
+			]
 		);
 		unset( $post_types['attachment'] );
 		foreach ( $post_types as $post_type ) {
@@ -131,7 +131,7 @@ class Scans_Stats {
 			}
 		}
 
-		$data = array();
+		$data = [];
 
 		$scannable_posts_count = Settings::get_scannable_posts_count();
 		$tests_count           = $scannable_posts_count * $this->rule_count;
@@ -143,15 +143,15 @@ class Scans_Stats {
 		$data['scannable_post_types_count'] = (int) count( Settings::get_scannable_post_types() );
 
 		$post_types = get_post_types(
-			array(
+			[
 				'public' => true,
-			)
+			]
 		);
 		unset( $post_types['attachment'] );
 
 		$data['public_post_types_count'] = (int) count( $post_types );
 
-		$issues_query = new Issues_Query( array(), $this->record_limit, Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES );
+		$issues_query = new Issues_Query( [], $this->record_limit, Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES );
 
 		$data['is_truncated']  = $issues_query->has_truncated_results();
 		$data['posts_scanned'] = (int) $issues_query->distinct_posts_count();
@@ -167,9 +167,9 @@ class Scans_Stats {
 
 		foreach ( $rule_slugs as $rule_slug ) {
 			$rule_query = new Issues_Query(
-				array(
-					'rule_slugs' => array( $rule_slug ),
-				),
+				[
+					'rule_slugs' => [ $rule_slug ],
+				],
 				1,
 				Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES
 			);
@@ -186,20 +186,20 @@ class Scans_Stats {
 		}
 
 		$warning_issues_query      = new Issues_Query(
-			array(
+			[
 				'post_types' => Settings::get_scannable_post_types(),
-				'rule_types' => array( Issues_Query::RULETYPE_WARNING ),
-			),
+				'rule_types' => [ Issues_Query::RULETYPE_WARNING ],
+			],
 			$this->record_limit
 		);
 		$data['warnings']          = (int) $warning_issues_query->count();
 		$data['distinct_warnings'] = (int) $warning_issues_query->distinct_count();
 
 		$contrast_issues_query = new Issues_Query(
-			array(
+			[
 				'post_types' => Settings::get_scannable_post_types(),
-				'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ),
-			),
+				'rule_types' => [ Issues_Query::RULETYPE_COLOR_CONTRAST ],
+			],
 			$this->record_limit
 		);
 
@@ -207,10 +207,10 @@ class Scans_Stats {
 		$data['distinct_contrast_errors'] = (int) $contrast_issues_query->distinct_count();
 
 		$error_issues_query      = new Issues_Query(
-			array(
+			[
 				'post_types' => Settings::get_scannable_post_types(),
-				'rule_types' => array( Issues_Query::RULETYPE_ERROR ),
-			),
+				'rule_types' => [ Issues_Query::RULETYPE_ERROR ],
+			],
 			$this->record_limit
 		);
 		$data['errors']          = (int) $error_issues_query->count();
@@ -220,9 +220,9 @@ class Scans_Stats {
 		$data['distinct_errors_without_contrast'] = $data['distinct_errors'] - $data['distinct_contrast_errors'];
 
 		$ignored_issues_query         = new Issues_Query(
-			array(
+			[
 				'post_types' => Settings::get_scannable_post_types(),
-			),
+			],
 			$this->record_limit,
 			Issues_Query::FLAG_ONLY_IGNORED
 		);
@@ -258,7 +258,7 @@ class Scans_Stats {
 				JOIN ' . $wpdb->prefix . 'accessibility_checker ON postid=post_id
 				WHERE meta_key = %s and meta_value > %d
 				and ' . $wpdb->prefix . 'accessibility_checker.siteid=%d and ignre=%d and ignre_global=%d LIMIT %d',
-				array( '_edac_issue_density', 0, $siteid, 0, 0, $this->record_limit )
+				[ '_edac_issue_density', 0, $siteid, 0, 0, $this->record_limit ]
 			)
 		);
 
@@ -289,8 +289,8 @@ class Scans_Stats {
 		$data['cache_hit']  = false;
 
 		// Handle formatting. Assumes all are numbers except for those listed in exceptions.
-		$formatting            = array();
-		$formatting_exceptions = array(
+		$formatting            = [];
+		$formatting_exceptions = [
 			'is_truncated',
 			'passed_percentage',
 			'avg_issue_density_percentage',
@@ -301,7 +301,7 @@ class Scans_Stats {
 			'cached_at',
 			'expires_at',
 			'cache_hit',
-		);
+		];
 
 		foreach ( $data as $key => $value ) {
 			if ( ! in_array( $key, $formatting_exceptions, true ) ) {
@@ -355,33 +355,33 @@ class Scans_Stats {
 			}
 		}
 
-		$data = array();
+		$data = [];
 
 		$error_issues_query      = new Issues_Query(
-			array(
-				'rule_types' => array( Issues_Query::RULETYPE_ERROR ),
-				'post_types' => array( $post_type ),
-			),
+			[
+				'rule_types' => [ Issues_Query::RULETYPE_ERROR ],
+				'post_types' => [ $post_type ],
+			],
 			$this->record_limit
 		);
 		$data['errors']          = $error_issues_query->count();
 		$data['distinct_errors'] = $error_issues_query->distinct_count();
 
 		$warning_issues_query      = new Issues_Query(
-			array(
-				'rule_types' => array( Issues_Query::RULETYPE_WARNING ),
-				'post_types' => array( $post_type ),
-			),
+			[
+				'rule_types' => [ Issues_Query::RULETYPE_WARNING ],
+				'post_types' => [ $post_type ],
+			],
 			$this->record_limit
 		);
 		$data['warnings']          = $warning_issues_query->count();
 		$data['distinct_warnings'] = $warning_issues_query->distinct_count();
 
 		$color_contrast_issues_query      = new Issues_Query(
-			array(
-				'rule_types' => array( Issues_Query::RULETYPE_COLOR_CONTRAST ),
-				'post_types' => array( $post_type ),
-			),
+			[
+				'rule_types' => [ Issues_Query::RULETYPE_COLOR_CONTRAST ],
+				'post_types' => [ $post_type ],
+			],
 			$this->record_limit
 		);
 		$data['contrast_errors']          = $color_contrast_issues_query->count();
