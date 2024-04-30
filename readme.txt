@@ -171,6 +171,12 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.11.0 =
+* Updated: Tested up to WP 6.5.2
+* Improved: Better detection of the underlined text rule for more accurate results
+* Improved: PHP 8.2 compatibility with the TextStatistics library
+* Added: Opt-in modal for users to subscribe to the Equalize Digital newsletter with less steps
+
 = 1.10.2 =
 * Updated: Tested up to WP 6.5.0
 
@@ -228,3 +234,4 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Deprecated: `edac_summary()` function
 
 Older versions can be found in the plugins `changelog.txt`.
+
