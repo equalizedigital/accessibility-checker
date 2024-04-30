@@ -3,7 +3,7 @@
 
 import 'axe-core';
 import colorContrastFailure from './rules/color-contrast-failure';
-import underlinedTextFailure from './rules/underlined-text-failure';
+import underlinedText from './rules/underlined-text';
 import elementWithUnderline from './checks/element-with-underline';
 import elementIsAUTag from './checks/element-is-u-tag';
 
@@ -39,7 +39,7 @@ const scan = async (
 			rules: [
 				// customRule1,
 				colorContrastFailure,
-				underlinedTextFailure,
+				underlinedText,
 			],
 			checks: [
 				//alwaysFail,
@@ -55,7 +55,7 @@ const scan = async (
 				type: 'rule',
 				values: [
 					'color_contrast_failure',
-					'underlined_text_failure',
+					'underlined_text',
 				],
 			},
 

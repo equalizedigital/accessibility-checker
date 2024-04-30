@@ -6,7 +6,7 @@
  */
 
 export default {
-	id: 'underlined_text_failure',
+	id: 'underlined_text',
 	impact: 'moderate',
 	matches: ( element ) => {
 		return (
