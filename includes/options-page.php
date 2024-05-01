@@ -50,7 +50,13 @@ function edac_add_options_page() {
 		return;
 	}
 
-	// settings panel filter.
+	/**
+	 * Filter the capability required to access the settings page.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @param string $settings_capability The capability required to access the settings page.
+	 */
 	$settings_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
 
 	add_submenu_page(
