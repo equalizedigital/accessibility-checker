@@ -8,6 +8,8 @@
 /**
  * IMG ALT Redundant
  *
+ * @modified 1.11.0 Updated various conditions to use `empty` checks instead of checking for empty strings since Simple HTML Dom returns `false` for non-existent attributes.
+ *
  * @param array  $content Array of content to check.
  * @param object $post Object to check.
  * @return array
@@ -16,7 +18,7 @@ function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore -- $po
 
 	$content = $content['html'];
 	$dom     = $content;
-	$errors  = array();
+	$errors  = [];
 
 	/*
 	 * validate redundant alt attributes on images
@@ -24,7 +26,7 @@ function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore -- $po
 	 */
 	$images = $dom->find( 'img' );
 	foreach ( $images as $image ) {
-		if ( $image->getAttribute( 'alt' ) !== '' ) {
+		if ( ! empty( $image->getAttribute( 'alt' ) ) ) {
 			$pattern = '/' . "(.*?)alt=[\"\']\b" . preg_quote( strtolower( trim( $image->getAttribute( 'alt' ) ) ), '/' ) . "\b[\"\'](.*?)\b" . preg_quote( strtolower( trim( $image->getAttribute( 'alt' ) ) ), '/' ) . "\b" . '/';
 			if ( preg_match( $pattern, $content, $matches ) ) {
 				if ( ! stristr( $matches[0], '<a' ) ) {
@@ -40,8 +42,16 @@ function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore -- $po
 	 */
 	$images = $dom->find( 'img' );
 	foreach ( $images as $image ) {
-		if ( $image->getAttribute( 'alt' ) !== '' && $image->getAttribute( 'title' ) !== '' ) {
-			if ( isset( $image ) && edac_compare_strings( $image->getAttribute( 'title' ), $image->getAttribute( 'alt' ) ) ) {
+		if (
+			! empty( $image->getAttribute( 'alt' ) ) &&
+			! empty( $image->getAttribute( 'title' ) )
+		) {
+			if (
+				edac_compare_strings(
+					$image->getAttribute( 'title' ),
+					$image->getAttribute( 'alt' )
+				)
+			) {
 				$errors[] = $image->outertext;
 			}
 		}
@@ -55,9 +65,12 @@ function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore -- $po
 	foreach ( $links as $link ) {
 		$images = $link->getElementsByTagName( 'img' );
 		foreach ( $images as $image ) {
-			if ( $image->getAttribute( 'alt' ) !== '' ) {
-				// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- Simple HTML DOM Parser uses camelCase.
-				if ( isset( $link ) && isset( $image ) && ( strtolower( trim( $link->nodeValue ) ) === strtolower( trim( $image->getAttribute( 'alt' ) ) ) || strtolower( trim( $image->getAttribute( 'title' ) ) ) === strtolower( trim( $image->getAttribute( 'alt' ) ) )
+			if ( ! empty( $image->getAttribute( 'alt' ) ) ) {
+				if (
+					isset( $link ) &&
+					(
+						strtolower( trim( $link->nodeValue ) ) === strtolower( trim( $image->getAttribute( 'alt' ) ) ) || // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- Simple HTML DOM Parser uses camelCase.
+						strtolower( trim( $image->getAttribute( 'title' ) ) ) === strtolower( trim( $image->getAttribute( 'alt' ) ) )
 					)
 				) {
 					$errors[] = $link->outertext;

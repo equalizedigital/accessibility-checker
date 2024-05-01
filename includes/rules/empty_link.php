@@ -15,14 +15,14 @@
 function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$errors = array();
+	$errors = [];
 	$links  = $dom->find( 'a' );
 
 	foreach ( $links as $link ) {
 		$error = false;
 
 		if (
-			str_ireplace( array( ' ', '&nbsp;', '-', '_' ), '', trim( $link->plaintext ) ) === ''
+			str_ireplace( [ ' ', '&nbsp;', '-', '_' ], '', trim( $link->plaintext ) ) === ''
 			&& $link->hasAttribute( 'href' )
 			&& $link->getAttribute( 'aria-label' ) === ''
 			&& $link->getAttribute( 'title' ) === ''

@@ -16,7 +16,7 @@ function edac_rule_image_map_missing_alt_text( $content, $post ) { // phpcs:igno
 
 	$dom    = $content['html'];
 	$maps   = $dom->find( 'map' );
-	$errors = array();
+	$errors = [];
 
 	foreach ( $maps as $map ) {
 

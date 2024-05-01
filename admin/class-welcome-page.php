@@ -9,6 +9,8 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Admin\OptIn\Email_Opt_In;
+
 /**
  * Class that handles welcome page
  */
@@ -315,87 +317,21 @@ class Welcome_Page {
 		<?php
 	}
 
-
 	/**
-	 * Render the ActiveCamapaign email opt form in panel
+	 * Render the ActiveCampaign email opt form in panel
 	 *
 	 * @return void
 	 */
 	public static function maybe_render_email_opt_in() {
-		
-		if ( true === (bool) get_user_meta( get_current_user_id(), 'edac_email_optin', true ) ) {
+
+		if ( Email_Opt_In::user_already_subscribed() ) {
 			return;
 		}
-	
-		$current_user = wp_get_current_user();
-		$email        = $current_user->user_email;
-		$first_name   = $current_user->first_name;
 
-		if ( empty( $email ) ) {
-			$email = '';
+		if ( Email_Opt_In::should_show_modal() ) {
+			return;
 		}
 
-		if ( empty( $first_name ) ) {
-			$first_name = '';
-		}
-
-		?>
-		
-		<div class="edac-panel edac-mt-1 edac-pb-3">
-			<form method="POST" action="https://equalizedigital.activehosted.com/proc.php" id="_form_1_" class="_form _form_1 _inline-form  _dark" novalidate data-styles-version="4">
-				<input type="hidden" name="u" value="1" />
-				<input type="hidden" name="f" value="1" />
-				<input type="hidden" name="s" />
-				<input type="hidden" name="c" value="0" />
-				<input type="hidden" name="m" value="0" />
-				<input type="hidden" name="act" value="sub" />
-				<input type="hidden" name="v" value="2" />
-				<input type="hidden" name="or" value="b39789e838d79bbdbe094b6ec4b523cf" />
-				<div class="_form-content">
-					<div class="_form_element _x66524317 _full_width _clear" >
-						<h2 class="_form-title">
-							<?php esc_html_e( 'Accessibility Events &amp; News in Your Inbox', 'accessibility-checker' ); ?>
-						</h2>
-					</div>
-					<div class="_form_element _x20909711 _full_width _clear" >
-						<div class="_html-code">
-							<p>
-								<?php esc_html_e( 'Subscribe to Equalize Digital\'s email list to get access to free accessibility webinars and training resources.', 'accessibility-checker' ); ?>
-							</p>
-						</div>
-					</div>
-					<div class="_form_element _x35928214 _full_width " >
-						<label for="email" class="_form-label">
-							<?php esc_html_e( 'Email*', 'accessibility-checker' ); ?>
-						</label>
-						<div class="_field-wrapper">
-							<input type="text" id="email" name="email" 
-								placeholder="<?php esc_attr_e( 'Type your email', 'accessibility-checker' ); ?>" 
-								value="<?php echo esc_attr( $email ); ?>" required />
-						</div>
-					</div>
-					<div class="_form_element _x31419797 _full_width edac-mt-1" >
-						<label for="firstname" class="_form-label">
-							<?php esc_html_e( 'First Name', 'accessibility-checker' ); ?>
-						</label>
-						<div class="_field-wrapper">
-							<input type="text" id="firstname" name="firstname" 
-							placeholder="<?php esc_attr_e( 'Type your first name', 'accessibility-checker' ); ?>" 
-							value="<?php echo esc_attr( $first_name ); ?>" />
-						</div>
-					</div>
-					<div class="_button-wrapper _full_width edac-mt-3 edac-mb-3">
-						<button id="_form_1_submit" class="_submit button button-primary" type="submit">
-							Subscribe
-						</button>
-					</div>
-					<div class="_clear-element">
-					</div>
-				</div>
-				<div class="_form-thank-you" style="display:none;" aria-live="polite" id="polite-announcement">
-				</div>
-			</form>		
-		</div>
-		<?php
+		Email_Opt_In::render_form();
 	}
 }

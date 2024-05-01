@@ -28,50 +28,50 @@ class Pro {
 	 * @return array
 	 */
 	public function get() {
-		return array(
+		return [
 			'label'  => __( 'Accessibility Checker &mdash; Pro', 'accessibility-checker' ),
-			'fields' => array(
-				'version'                => array(
+			'fields' => [
+				'version'                => [
 					'label' => 'Version',
-					'value' => EDACP_VERSION,
-				),
-				'database_version'       => array(
+					'value' => defined( 'EDACP_VERSION' ) ? esc_html( EDACP_VERSION ) : 'Unset',
+				],
+				'database_version'       => [
 					'label' => 'Database Version',
-					'value' => EDACP_DB_VERSION,
-				),
-				'license_status'         => array(
+					'value' => defined( 'EDACP_DB_VERSION' ) ? esc_html( EDACP_DB_VERSION ) : 'Unset',
+				],
+				'license_status'         => [
 					'label' => 'License Status',
-					'value' => get_option( 'edacp_license_status' ),
-				),
-				'authorization_username' => array(
+					'value' => esc_html( get_option( 'edacp_license_status' ) ),
+				],
+				'authorization_username' => [
 					'label' => 'Authorization Username',
-					'value' => ( get_option( 'edacp_authorization_username' ) ? get_option( 'edacp_authorization_username' ) : 'Unset' ),
-				),
-				'authorization_password' => array(
+					'value' => esc_html( get_option( 'edacp_authorization_username' ) ? get_option( 'edacp_authorization_username' ) : 'Unset' ),
+				],
+				'authorization_password' => [
 					'label' => 'Authorization Password',
-					'value' => ( get_option( 'edacp_authorization_password' ) ? get_option( 'edacp_authorization_password' ) : 'Unset' ),
-				),
-				'scan_id'                => array(
+					'value' => esc_html( get_option( 'edacp_authorization_password' ) ? get_option( 'edacp_authorization_password' ) : 'Unset' ),
+				],
+				'scan_id'                => [
 					'label' => 'Scan ID',
-					'value' => get_transient( 'edacp_scan_id' ),
-				),
-				'scan_total'             => array(
+					'value' => esc_html( get_transient( 'edacp_scan_id' ) ),
+				],
+				'scan_total'             => [
 					'label' => 'Scan Total',
-					'value' => get_transient( 'edacp_scan_total' ),
-				),
-				'simplified_sum_heading' => array(
+					'value' => absint( get_transient( 'edacp_scan_total' ) ),
+				],
+				'simplified_sum_heading' => [
 					'label' => 'Simplified Sum Heading',
-					'value' => get_option( 'edacp_simplified_summary_heading' ),
-				),
-				'ignore_permissions'     => array(
+					'value' => esc_html( get_option( 'edacp_simplified_summary_heading' ) ),
+				],
+				'ignore_permissions'     => [
 					'label' => 'Ignore Permissions',
-					'value' => ( get_option( 'edacp_ignore_user_roles' ) ? implode( ', ', get_option( 'edacp_ignore_user_roles' ) ) : 'None' ),
-				),
-				'ignores_db_table_count' => array(
+					'value' => esc_html( get_option( 'edacp_ignore_user_roles' ) ? implode( ', ', get_option( 'edacp_ignore_user_roles' ) ) : 'None' ),
+				],
+				'ignores_db_table_count' => [
 					'label' => 'Ignores DB Table Count',
-					'value' => edac_database_table_count( 'accessibility_checker_global_ignores' ),
-				),
-			),
-		);
+					'value' => absint( edac_database_table_count( 'accessibility_checker_global_ignores' ) ),
+				],
+			],
+		];
 	}
 }

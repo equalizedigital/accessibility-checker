@@ -5,6 +5,8 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin\Welcome_Page;
+
 ?>
 
 <div class="wrap edac-welcome-container">
@@ -40,7 +42,7 @@
 			</div>
 		</div>
 
-		<?php \EDAC\Admin\Welcome_Page::render_summary(); ?>
+		<?php Welcome_Page::render_summary(); ?>
 
 		<section class="edac-welcome-section">
 			<div class="edac-welcome-quick-start">
@@ -53,7 +55,7 @@
 							wp_kses(
 								// translators: %s: path to settings page.
 								__( 'On the <a href="%s">Settings Page</a>, choose which post types you want to scan.', 'accessibility-checker' ),
-								array( 'a' => array( 'href' => array() ) )
+								[ 'a' => [ 'href' => [] ] ]
 							),
 							esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) )
 						);
@@ -175,7 +177,7 @@
 					</p>
 				</div>
 
-			</div>		
+			</div>
 		</section>
 	</div>
 
@@ -206,7 +208,7 @@
 				</ul>
 			</div>
 			<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
-				<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?> 
+				<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?>
 				<span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
 			</a>
 		<?php
@@ -233,9 +235,7 @@
 			?>
 		</div>
 
-		<?php
-			\EDAC\Admin\Welcome_Page::maybe_render_email_opt_in();  
-		?>
+		<?php Welcome_Page::maybe_render_email_opt_in(); ?>
 
 	</div>
 </div>

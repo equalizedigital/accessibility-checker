@@ -19,7 +19,7 @@
 function edac_rule_possible_heading( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$errors = array();
+	$errors = [];
 
 	/*
 	 * check for inline styles
@@ -31,7 +31,7 @@ function edac_rule_possible_heading( $content, $post ) { // phpcs:ignore -- $pos
 	 * <p style="font-size: 16px;"><i>Possible Heading</i></p>
 	 * <p style="font-size: 16px;"><em>Possible Heading</em></p>
 	 */
-	$fontsearchpatterns   = array();
+	$fontsearchpatterns   = [];
 	$fontsearchpatterns[] = '|font\-size:\s?([\d]+)pt|i';
 	$fontsearchpatterns[] = '|font\-size:\s?([\d]+)px|i';
 	$fontsearchpatterns[] = '|font:\s?[\w\s\d*\s]*([\d]+)pt|i';
@@ -92,7 +92,7 @@ function edac_rule_possible_heading( $content, $post ) { // phpcs:ignore -- $pos
  */
 function edac_css_font_size_weight_check( $content ) {
 	$dom       = $content['html'];
-	$errors    = array();
+	$errors    = [];
 	$css_array = $content['css_parsed'];
 
 	if ( $css_array ) {
@@ -111,7 +111,7 @@ function edac_css_font_size_weight_check( $content ) {
 						if ( array_key_exists( 'font-weight', $rules ) ) {
 							// replace CSS variables.
 							$rules['font-weight'] = edac_replace_css_variables( $rules['font-weight'], $css_array );
-							if ( in_array( $rules['font-weight'], array( 'bold', 'bolder', '700', '800', '900' ), true ) ) {
+							if ( in_array( $rules['font-weight'], [ 'bold', 'bolder', '700', '800', '900' ], true ) ) {
 								$has_bold_or_italic = true;
 							}
 						}

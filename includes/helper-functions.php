@@ -21,11 +21,11 @@ function edac_compare_strings( $string1, $string2 ) {
 	 */
 	$prepare_strings = function ( $content ) {
 		// Text to remove.
-		$remove_text = array(
+		$remove_text = [
 			__( 'permalink of ', 'accessibility-checker' ),
 			__( 'permalink to ', 'accessibility-checker' ),
 			__( '&nbsp;', 'accessibility-checker' ),
-		);
+		];
 
 		$content = strtolower( $content );
 		$content = str_ireplace( $remove_text, '', $content );
@@ -48,7 +48,7 @@ function edac_compare_strings( $string1, $string2 ) {
 function edac_parse_css( $css ) {
 	$css       = str_replace( '@charset "UTF-8";', '', $css );
 	$css       = preg_replace( '%/\*(?:(?!\*/).)*\*/%s', ' ', $css );
-	$css_array = array(); // master array to hold all values.
+	$css_array = []; // master array to hold all values.
 	$element   = explode( '}', $css );
 	foreach ( $element as $element ) {
 		// get the name of the CSS element.
@@ -181,7 +181,7 @@ function edac_filter_by_value( $items, $index, $value ) {
 	if ( isset( $newarray ) && is_array( $newarray ) && count( $newarray ) ) {
 		return array_values( $newarray );
 	}
-	return array();
+	return [];
 }
 
 /**
@@ -244,7 +244,7 @@ function edac_documentation_link( $rule ) {
 	}
 
 	return add_query_arg(
-		array(
+		[
 			'utm_source'       => 'accessibility-checker',
 			'utm_medium'       => 'software',
 			'utm_term'         => esc_attr( $rule['slug'] ),
@@ -256,7 +256,7 @@ function edac_documentation_link( $rule ) {
 			'software'         => 'free',
 			'software_version' => EDAC_VERSION,
 			'days_active'      => $days_active,
-		),
+		],
 		$rule['info_url']
 	);
 }
@@ -267,10 +267,10 @@ function edac_documentation_link( $rule ) {
  * @return array
  */
 function edac_custom_post_types() {
-	$args = array(
+	$args = [
 		'public'   => true,
 		'_builtin' => false,
-	);
+	];
 
 	$output   = 'names'; // names or objects, note names is the default.
 	$operator = 'and'; // Options 'and' or 'or'.
@@ -286,7 +286,7 @@ function edac_custom_post_types() {
  * @return array
  */
 function edac_post_types() {
-	$post_types = apply_filters( 'edac_filter_post_types', array( 'post', 'page' ) );
+	$post_types = apply_filters( 'edac_filter_post_types', [ 'post', 'page' ] );
 
 	// remove duplicates.
 	$post_types = array_unique( $post_types );
@@ -347,7 +347,7 @@ function edac_str_get_html(
  * @param array           $css_selectors array .
  * @return simple_html_dom
  */
-function edac_remove_elements( $dom, $css_selectors = array() ) {
+function edac_remove_elements( $dom, $css_selectors = [] ) {
 
 	if ( $dom ) {
 
@@ -516,11 +516,11 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
 	if ( false === $output ) {
 
-		$query_args = array(
+		$query_args = [
 			'sign'       => 'true',
 			'photo-host' => 'public',
 			'page'       => (int) $count,
-		);
+		];
 
 		$request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
 		$request     = wp_remote_get( add_query_arg( $query_args, $request_uri ) ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- wp_remote_get needed to be compatible with all environments.
@@ -584,17 +584,17 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
  */
 function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 
-	$allowed_tags = array(
-		'div'    => array(),
-		'p'      => array(),
-		'span'   => array(),
-		'br'     => array(),
-		'hr'     => array(),
-		'strong' => array(),
-		'b'      => array(),
-		'em'     => array(),
-		'i'      => array(),
-	);
+	$allowed_tags = [
+		'div'    => [],
+		'p'      => [],
+		'span'   => [],
+		'br'     => [],
+		'hr'     => [],
+		'strong' => [],
+		'b'      => [],
+		'em'     => [],
+		'i'      => [],
+	];
 
 	$html = wp_kses( $html, $allowed_tags );
 
@@ -607,7 +607,7 @@ function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
 
 	if ( $body_element ) {
 
-		$content = array();
+		$content = [];
 
 		// Loop through the child nodes of the <body> element.
 		// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- DOMDocument uses camelCase.
@@ -688,10 +688,10 @@ function edac_get_body_density_data( $html ) {
 
 			$body_content = preg_replace( '/[^A-Za-z0-9]/', '', $body_element->plaintext );
 
-			return array(
+			return [
 				$body_elements_count,
 				strlen( $body_content ),
-			);
+			];
 
 		}
 	}
@@ -744,7 +744,7 @@ function edac_get_simplified_summary( $post = null ) {
  */
 function edac_get_posts_count() {
 
-	$output = array();
+	$output = [];
 
 	$post_types = get_option( 'edac_post_types' );
 	if ( $post_types ) {
@@ -762,7 +762,7 @@ function edac_get_posts_count() {
 			}
 
 			if ( $counts ) {
-				$array = array();
+				$array = [];
 				foreach ( $counts as $key => $value ) {
 					$array[] = $key . ' = ' . $value;
 				}
@@ -874,7 +874,7 @@ function edac_database_table_count( $table ) {
 function edac_url_add_scheme_if_not_existing( string $file, string $site_protocol = '' ): string {
 
 	// if it starts with some valid scheme return unchanged.
-	$valid_schemes = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'tel', 'file', 'data', 'irc', 'ssh', 'sftp' );
+	$valid_schemes = [ 'http', 'https', 'ftp', 'ftps', 'mailto', 'tel', 'file', 'data', 'irc', 'ssh', 'sftp' ];
 	$start_of_file = substr( $file, 0, 6 );
 	foreach ( $valid_schemes as $scheme ) {
 		if ( str_starts_with( $start_of_file, $scheme ) ) {
@@ -902,11 +902,17 @@ function edac_url_add_scheme_if_not_existing( string $file, string $site_protoco
  * @since 1.10.1
  *
  * @param string $url the url to check.
+ * @param int    $timeout the timeout in seconds. Default is 5.
  * @return bool
  */
-function edac_url_exists( string $url ): bool {
+function edac_url_exists( string $url, int $timeout = 5 ): bool {
 
-	$response = wp_remote_head( $url );
+	$response = wp_remote_head(
+		$url,
+		[
+			'timeout' => $timeout,
+		]
+	);
 
 	if (
 		is_wp_error( $response ) ||

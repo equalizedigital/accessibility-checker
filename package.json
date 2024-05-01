@@ -1,6 +1,6 @@
 {
   "name": "accessibility-checker",
-  "version": "1.3.27",
+  "version": "1.11.0",
   "description": "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.",
   "author": "Equalize Digital",
   "license": "GPL-2.0+",
@@ -17,6 +17,7 @@
     "build": "npx webpack",
     "dev": "npx webpack --watch --mode development",
     "dist": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh && composer install",
+    "dist:dotorg": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh --keep-build-folder",
     "lint": "./vendor/bin/phpcs && npm run lint:js",
     "lint-staged-precommit": "lint-staged && npm run lint:js",
     "lint:php": "./vendor/bin/phpcs",

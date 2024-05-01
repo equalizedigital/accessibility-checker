@@ -6,18 +6,19 @@
  */
 
 use EDAC\Admin\Admin_Notices;
+
 /**
  * Admin Notices test case.
  */
-class EDACAdminNoticesTest extends WP_UnitTestCase {
-	
+class AdminNoticesTest extends WP_UnitTestCase {
+
 	/**
 	 * Instance of the Admin_Notices class.
 	 *
 	 * @var Admin_Notices $admin_notices.
 	 */
 	private $admin_notices;
-	
+
 	/**
 	 * Set up the test fixture.
 	 */
@@ -73,10 +74,10 @@ class EDACAdminNoticesTest extends WP_UnitTestCase {
 	 */
 	public function test_edac_get_gaad_promo_message_contains_promo_message() {
 		$message = $this->admin_notices->edac_get_gaad_promo_message();
-		$this->assertStringContainsString( '🎉 Get 30% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', $message );
-		$this->assertStringContainsString( 'Use coupon code GAAD23 from May 18th-May 25th to get access to full-site scanning and other pro features at a special discount.', $message );
-		$this->assertStringContainsString( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&#038;utm_medium=software&#038;utm_campaign=GAAD23', $message );
-		$this->assertStringContainsString( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&#038;utm_medium=software&#038;utm_campaign=GAAD23', $message );
+		$this->assertStringContainsString( 'Accessibility Checker Pro in honor of Global Accessibility Awareness Day', $message );
+		$this->assertStringContainsString( 'get access to full-site scanning', $message );
+		$this->assertStringContainsString( 'https://my.equalizedigital.com/support/pre-sale-questions/', $message );
+		$this->assertStringContainsString( 'https://equalizedigital.com/accessibility-checker/pricing/', $message );
 	}
 
 	/**

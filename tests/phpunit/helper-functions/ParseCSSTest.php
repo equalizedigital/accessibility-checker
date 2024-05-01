@@ -8,20 +8,20 @@
 /**
  * Sample test case.
  */
-class EDACParseCSS extends WP_UnitTestCase {
+class ParseCSSTest extends WP_UnitTestCase {
 
 	/**
 	 * Tests the edac_parse_css function.
-	 * 
+	 *
 	 * @dataProvider edac_parse_css_data
-	 * 
+	 *
 	 * @param string $css_string The CSS we want to parse.
 	 * @param string $css_array  The CSS array that should be returned.
 	 */
 	public function test_edac_parse_css( $css_string, $css_array ) {
 		$this->assertSame(
-			$css_array, 
-			edac_parse_css( $css_string ) 
+			$css_array,
+			edac_parse_css( $css_string )
 		);
 	}
 
@@ -29,102 +29,102 @@ class EDACParseCSS extends WP_UnitTestCase {
 	 * Data provider for test_edac_parse_css.
 	 */
 	public function edac_parse_css_data() {
-		return array(
-			'simple'                                     => array(
+		return [
+			'simple'                                     => [
 				'css_string' => 'p { font-size: 12px; }',
-				'css_array'  => array(
-					'p' => array(
+				'css_array'  => [
+					'p' => [
 						'font-size' => '12px',
-					),
-				),
-			),
-			'declaring the same selector multiple times' => array(
+					],
+				],
+			],
+			'declaring the same selector multiple times' => [
 				'css_string' => 'p { font-size: 12px; } p{color:red;}p    {color:#000; font-size: 14px;}',
-				'css_array'  => array(
-					'p' => array(
+				'css_array'  => [
+					'p' => [
 						'font-size' => '14px',
 						'color'     => '#000',
-					),
-				),
-			),
-			'with comments'                              => array(
+					],
+				],
+			],
+			'with comments'                              => [
 				'css_string' => 'p { font-size: 12px; /* comment */ }',
-				'css_array'  => array(
-					'p' => array(
+				'css_array'  => [
+					'p' => [
 						'font-size' => '12px',
-					),
-				),
-			),
-			'with multiple selectors'                    => array(
+					],
+				],
+			],
+			'with multiple selectors'                    => [
 				'css_string' => 'p, div { font-size: 12px; }',
-				'css_array'  => array(
-					'p, div' => array(
+				'css_array'  => [
+					'p, div' => [
 						'font-size' => '12px',
-					),
-				),
-			),
-			'with multiple properties'                   => array(
+					],
+				],
+			],
+			'with multiple properties'                   => [
 				'css_string' => 'p { font-size: 12px; color: #000; }',
-				'css_array'  => array(
-					'p' => array(
+				'css_array'  => [
+					'p' => [
 						'font-size' => '12px',
 						'color'     => '#000',
-					),
-				),
-			),
-			'with multiple selectors and properties'     => array(
+					],
+				],
+			],
+			'with multiple selectors and properties'     => [
 				'css_string' => 'p, div { font-size: 12px; color: #000; }',
-				'css_array'  => array(
-					'p, div' => array(
+				'css_array'  => [
+					'p, div' => [
 						'font-size' => '12px',
 						'color'     => '#000',
-					),
-				),
-			),
-			'with multiple selectors and multiple properties' => array(
+					],
+				],
+			],
+			'with multiple selectors and multiple properties' => [
 				'css_string' => 'p, div { font-size: 12px; color: #000; } a { font-size: 14px; }',
-				'css_array'  => array(
-					'p, div' => array(
+				'css_array'  => [
+					'p, div' => [
 						'font-size' => '12px',
 						'color'     => '#000',
-					),
-					'a'      => array(
+					],
+					'a'      => [
 						'font-size' => '14px',
-					),
-				),
-			),
-			'with multiple selectors and multiple properties and comments' => array(
+					],
+				],
+			],
+			'with multiple selectors and multiple properties and comments' => [
 				'css_string' => 'p, div { font-size: 12px; /* comment */ color: #000; } a { font-size: 14px; }',
-				'css_array'  => array(
-					'p, div' => array(
+				'css_array'  => [
+					'p, div' => [
 						'font-size' => '12px',
 						'color'     => '#000',
-					),
-					'a'      => array(
+					],
+					'a'      => [
 						'font-size' => '14px',
-					),
-				),
-			),
-			'with multiple selectors and multiple properties and comments and newlines' => array(
+					],
+				],
+			],
+			'with multiple selectors and multiple properties and comments and newlines' => [
 				'css_string'             => 'p, div {
-					font-size: 12px; 
+					font-size: 12px;
 					/**
-					 *  comment 
-					 */ 
-					color: #000; 
-				} 
-				a 
+					 *  comment
+					 */
+					color: #000;
+				}
+				a
 				{ font-size: 14px; }',
-				'css_array'              => array(
-					'p, div' => array(
+				'css_array'              => [
+					'p, div' => [
 						'font-size' => '12px',
 						'color'     => '#000',
-					),
-					'a'      => array(
+					],
+					'a'      => [
 						'font-size' => '14px',
-					),
-				),
-				'a more complex example' => array(
+					],
+				],
+				'a more complex example' => [
 					'css_string' => '
 					div.foo {
 						background-image: url("foo.png");
@@ -149,19 +149,19 @@ class EDACParseCSS extends WP_UnitTestCase {
 						background-image: url("https://example.com/foo.png");
 					}
 					',
-					'css_array'  => array(
-						'div.foo'       => array(
+					'css_array'  => [
+						'div.foo'       => [
 							'background-image'    => 'url("foo.png")',
 							'background-color'    => '#000',
 							'background-repeat'   => 'no-repeat',
 							'background-position' => 'center center',
 							'background-size'     => 'cover',
-						),
-						'div.foo a'     => array(
+						],
+						'div.foo a'     => [
 							'color'           => '#fff',
 							'text-decoration' => 'none',
-						),
-						'div.foo:after' => array(
+						],
+						'div.foo:after' => [
 							'content'          => '""',
 							'display'          => 'block',
 							'position'         => 'absolute',
@@ -171,10 +171,10 @@ class EDACParseCSS extends WP_UnitTestCase {
 							'height'           => '100%',
 							'background-color' => 'rgba(0,0,0,0.5)',
 							'background-image' => 'url("https://example.com/foo.png")',
-						),
-					),
-				),
-			),
-		);
+						],
+					],
+				],
+			],
+		];
 	}
 }

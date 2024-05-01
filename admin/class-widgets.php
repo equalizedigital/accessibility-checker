@@ -18,7 +18,7 @@ class Widgets {
 	 * @return void
 	 */
 	public function init_hooks() {
-		add_action( 'wp_dashboard_setup', array( $this, 'dashboard_setup' ) );
+		add_action( 'wp_dashboard_setup', [ $this, 'dashboard_setup' ] );
 	}
 
 	/**
@@ -34,7 +34,7 @@ class Widgets {
 		wp_add_dashboard_widget(
 			'edac_dashboard_scan_summary',
 			'Accessibility Checker',
-			array( $this, 'render_dashboard_scan_summary' )
+			[ $this, 'render_dashboard_scan_summary' ]
 		);
 	}
 
@@ -173,15 +173,15 @@ class Widgets {
 				$scannable_post_types = Settings::get_scannable_post_types();
 
 				$post_types = get_post_types(
-					array(
+					[
 						'public' => true,
-					)
+					]
 				);
 				unset( $post_types['attachment'] );
 
 		foreach ( $post_types as $post_type ) {
 
-			$post_types_to_check = array_merge( array( 'post', 'page' ), $scannable_post_types );
+			$post_types_to_check = array_merge( [ 'post', 'page' ], $scannable_post_types );
 
 			if ( in_array( $post_type, $post_types_to_check, true ) ) {
 

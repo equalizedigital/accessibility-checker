@@ -17,7 +17,7 @@ class UrlExistsTest extends WP_UnitTestCase {
 	 */
 	public function test_url_exists() {
 		$url = 'https://httpbin.org/status/200';
-		$this->assertTrue( edac_url_exists( $url ) );
+		$this->assertTrue( edac_url_exists( $url, 20 ) );
 	}
 
 	/**

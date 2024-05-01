@@ -35,7 +35,7 @@
 function edac_rule_link_ambiguous_text( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$errors = array();
+	$errors = [];
 
 	// get and loop through anchor links.
 	$as = $dom->find( 'a' );
@@ -56,7 +56,7 @@ function edac_rule_link_ambiguous_text( $content, $post ) { // phpcs:ignore -- $
 			// get aria-labelledby and explode into array since aria-labelledby allows for multiple element ids.
 			$label_string = $a->getAttribute( 'aria-labelledby' );
 			$labels       = explode( ' ', $label_string );
-			$label_text   = array();
+			$label_text   = [];
 
 			if ( $labels ) {
 				foreach ( $labels as $label ) {
@@ -115,7 +115,7 @@ function edac_check_ambiguous_phrase( $text ) {
 	$text = strtolower( $text );
 
 	// phrases.
-	$ambiguous_phrases = array(
+	$ambiguous_phrases = [
 		__( 'click', 'accessibility-checker' ),
 		__( 'click here', 'accessibility-checker' ),
 		__( 'here', 'accessibility-checker' ),
@@ -134,7 +134,7 @@ function edac_check_ambiguous_phrase( $text ) {
 		__( 'button', 'accessibility-checker' ),
 		__( 'keep reading', 'accessibility-checker' ),
 		__( 'learn more', 'accessibility-checker' ),
-	);
+	];
 
 	// remove all but letters.
 	$text = preg_replace( '/[^a-z]+/i', ' ', $text );

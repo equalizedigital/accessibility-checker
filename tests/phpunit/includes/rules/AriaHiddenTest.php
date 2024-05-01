@@ -97,31 +97,13 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Wrapper to generate dom objects that match the shape of the object in the plugin.
-	 *
-	 * @param string $html_string HTML string.
-	 * @return EDAC_Dom
-	 */
-	private function get_DOM( string $html_string = '' ) {
-		return new EDAC_Dom(
-			$html_string,
-			true,
-			true,
-			DEFAULT_TARGET_CHARSET,
-			true,
-			DEFAULT_BR_TEXT,
-			DEFAULT_SPAN_TEXT
-		);
-	}
-
-	/**
 	 * Wrapper to produce $dom nodes and run the rule check.
 	 *
 	 * @param string $html_string HTML string.
 	 * @return array
 	 */
 	private function get_errors_from_rule_check( string $html_string = '' ): array {
-		$dom             = $this->get_DOM( $html_string );
+		$dom             = str_get_html( $html_string );
 		$content['html'] = $dom;
 		$post            = $this->factory()->post->create_and_get();
 
@@ -143,7 +125,7 @@ class AriaHiddenTest extends WP_UnitTestCase {
 				<div class="$sibling_class">Some text maybe for screenreaders</div>
 			</div>;
 		EOT;
-		$dom      = $this->get_DOM( $markup );
+		$dom      = str_get_html( $markup );
 		$siblings = $dom->find( '.parent > *' );
 		$this->assertEquals( $pass, edac_rule_aria_hidden_siblings_are_screen_reader_text_elements( $siblings ) );
 	}
@@ -153,10 +135,10 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	 */
 	public function test_parent_with_label_that_is_not_link_or_button_errors() {
 
-		$test_elements = array( 'div', 'span', 'section' );
+		$test_elements = [ 'div', 'span', 'section' ];
 		foreach ( $test_elements as $element ) {
 			$markup = "<$element aria-label='label'><div aria-hidden='true'></div></$element>";
-			$dom    = $this->get_DOM( $markup );
+			$dom    = str_get_html( $markup );
 			$errors = $this->get_errors_from_rule_check( $dom );
 			$this->assertNotEmpty( $errors );
 		}
@@ -166,12 +148,12 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	 * Test that parents with likely visible text pass.
 	 */
 	public function test_parent_with_likely_visible_text_passes() {
-		$link_dom     = $this->get_DOM( $this->get_test_markup( 'link_with_visible_text' ) );
+		$link_dom     = str_get_html( $this->get_test_markup( 'link_with_visible_text' ) );
 		$link_element = $link_dom->find( '[aria-hidden="true"]' );
 		$link_parent  = $link_element[0]->parent();
 		$this->assertNotEmpty( edac_rule_aria_hidden_strip_markup_and_return_text( $link_parent ) );
 
-		$button_dom     = $this->get_DOM( $this->get_test_markup( 'button_with_visible_text' ) );
+		$button_dom     = str_get_html( $this->get_test_markup( 'button_with_visible_text' ) );
 		$button_element = $button_dom->find( '[aria-hidden="true"]' );
 		$button_parent  = $button_element[0]->parent();
 		$this->assertNotEmpty( edac_rule_aria_hidden_strip_markup_and_return_text( $button_parent ) );
@@ -188,7 +170,7 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	 * @return string
 	 */
 	private function get_test_markup( string $type = '' ): string {
-		$markup_fragments = array(
+		$markup_fragments = [
 			'element_with_aria-hidden'          => '<div aria-hidden="true"></div>',
 			'element_with_aria-hidden_false'    => '<div aria-hidden="false"></div>',
 			'element_that_is_wp-block-spacer'   => '<div aria-hidden="true" class="wp-block-spacer"></div>',
@@ -231,7 +213,7 @@ class AriaHiddenTest extends WP_UnitTestCase {
 				</div>
 			EOT,
 			'image_that_is_presentational'      => '<img src="http://example.com/image.jpg" aria-hidden="true" role="presentation" />',
-		);
+		];
 		return $markup_fragments[ $type ] ?? '';
 	}
 
@@ -241,59 +223,59 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	 * @dataProvider screen_reader_test_classes
 	 */
 	public function screen_reader_test_classes(): array {
-		return array(
-			array(
+		return [
+			[
 				'sibling_class' => 'screen-reader-text',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'sr-only',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'show-for-sr',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'visuallyhidden',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'visually-hidden',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'hidden-visually',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'invisible',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'accessibly-hidden',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'hide',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'hidden',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'not-screen-reader-text',
 				'pass'          => false,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'hide-for-sr',
 				'pass'          => false,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'anotherClass anything-else and-anotherClass',
 				'pass'          => false,
-			),
-		);
+			],
+		];
 	}
 }

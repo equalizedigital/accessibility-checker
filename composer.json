@@ -27,7 +27,11 @@
         {
             "type": "vcs",
             "url": "https://github.com/equalizedigital/accessibility-checker-wp-env"
-        }
+        },
+		{
+			"type": "vcs",
+			"url": "https://github.com/equalizedigital/textstatistics"
+		}
     ],
     "require-dev": {
         "automattic/vipwpcs": "^3",
@@ -43,7 +47,7 @@
         "wp-phpunit/wp-phpunit": "*"
     },
     "require": {
-        "davechild/textstatistics": "^1.0",
+        "davechild/textstatistics": "dev-master",
         "php": ">=7.4",
         "composer/installers": "^1.12.0"
     },
@@ -68,7 +72,7 @@
             "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
         ],
         "test": [
-            "@php ./vendor/phpunit/phpunit/phpunit"
+            "@php ./vendor/phpunit/phpunit/phpunit --testdox"
         ]
     }
 }

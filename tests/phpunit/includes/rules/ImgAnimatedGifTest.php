@@ -50,8 +50,8 @@ class ImgAnimatedGifTest extends WP_UnitTestCase {
 	 */
 	public function testRuleWithAnimatedGifInContent() {
 		$html    = '<img src="' . EDAC_TEST_ASSETS_DIR . 'animated.gif">';
-		$dom     = $this->get_DOM( $html );
-		$content = array( 'html' => $dom );
+		$dom     = str_get_html( $html );
+		$content = [ 'html' => $dom ];
 		$post    = new stdClass();
 		$errors  = edac_rule_img_animated_gif( $content, $post );
 		$this->assertNotEmpty( $errors );
@@ -62,8 +62,8 @@ class ImgAnimatedGifTest extends WP_UnitTestCase {
 	 */
 	public function testRuleWithStaticGifInContent() {
 		$html    = '<img src="' . EDAC_TEST_ASSETS_DIR . 'static.gif">';
-		$dom     = $this->get_DOM( $html );
-		$content = array( 'html' => $dom );
+		$dom     = str_get_html( $html );
+		$content = [ 'html' => $dom ];
 		$post    = new stdClass();
 		$errors  = edac_rule_img_animated_gif( $content, $post );
 		$this->assertEmpty( $errors );
@@ -74,8 +74,8 @@ class ImgAnimatedGifTest extends WP_UnitTestCase {
 	 */
 	public function testRuleWithAnimatedWebpInContent() {
 		$html    = '<img src="' . EDAC_TEST_ASSETS_DIR . 'animated.webp">';
-		$dom     = $this->get_DOM( $html );
-		$content = array( 'html' => $dom );
+		$dom     = str_get_html( $html );
+		$content = [ 'html' => $dom ];
 		$post    = new stdClass();
 		$errors  = edac_rule_img_animated_gif( $content, $post );
 		$this->assertNotEmpty( $errors );
@@ -87,28 +87,10 @@ class ImgAnimatedGifTest extends WP_UnitTestCase {
 	public function testRuleWithStaticWebpInContent() {
 
 		$html    = '<img src="' . EDAC_TEST_ASSETS_DIR . 'static.webp">';
-		$dom     = $this->get_DOM( $html );
-		$content = array( 'html' => $dom );
+		$dom     = str_get_html( $html );
+		$content = [ 'html' => $dom ];
 		$post    = new stdClass();
 		$errors  = edac_rule_img_animated_gif( $content, $post );
 		$this->assertEmpty( $errors );
-	}
-
-	/**
-	 * Wrapper to generate dom objects that match the shape of the object in the plugin.
-	 *
-	 * @param string $html_string HTML string.
-	 * @return EDAC_Dom
-	 */
-	private function get_DOM( string $html_string = '' ) {
-		return new EDAC_Dom(
-			$html_string,
-			true,
-			true,
-			DEFAULT_TARGET_CHARSET,
-			true,
-			DEFAULT_BR_TEXT,
-			DEFAULT_SPAN_TEXT
-		);
 	}
 }

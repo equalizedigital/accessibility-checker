@@ -28,66 +28,66 @@ class Free {
 	 * @return array
 	 */
 	public function get() {
-		return array(
+		return [
 			'label'  => __( 'Accessibility Checker &mdash; Free', 'accessibility-checker' ),
-			'fields' => array(
-				'version'                 => array(
+			'fields' => [
+				'version'                 => [
 					'label' => 'Version',
-					'value' => EDAC_VERSION,
-				),
-				'database_version'        => array(
+					'value' => esc_html( EDAC_VERSION ),
+				],
+				'database_version'        => [
 					'label' => 'Database Version',
-					'value' => EDAC_DB_VERSION,
-				),
-				'policy_page'             => array(
+					'value' => esc_html( EDAC_DB_VERSION ),
+				],
+				'policy_page'             => [
 					'label' => 'Policy Page',
-					'value' => ( get_option( 'edac_accessibility_policy_page' ) ? get_option( 'edac_accessibility_policy_page' ) : "Unset\n" ),
-				),
-				'activation_date'         => array(
+					'value' => esc_html( get_option( 'edac_accessibility_policy_page' ) ? get_option( 'edac_accessibility_policy_page' ) : "Unset\n" ),
+				],
+				'activation_date'         => [
 					'label' => 'Activation Date',
-					'value' => get_option( 'edac_activation_date' ),
-				),
-				'footer_statement'        => array(
+					'value' => esc_html( get_option( 'edac_activation_date' ) ),
+				],
+				'footer_statement'        => [
 					'label' => 'Footer Statement',
-					'value' => ( get_option( 'edac_add_footer_accessibility_statement' ) ? 'Enabled' : 'Disabled' ),
-				),
-				'delete_data'             => array(
+					'value' => esc_html( get_option( 'edac_add_footer_accessibility_statement' ) ? 'Enabled' : 'Disabled' ),
+				],
+				'delete_data'             => [
 					'label' => 'Delete Data',
-					'value' => ( get_option( 'edac_delete_data' ) ? 'Enabled' : 'Disabled' ),
-				),
-				'include_statement_link'  => array(
+					'value' => esc_html( get_option( 'edac_delete_data' ) ? 'Enabled' : 'Disabled' ),
+				],
+				'include_statement_link'  => [
 					'label' => 'Include Statement Link',
-					'value' => ( get_option( 'edac_include_accessibility_statement_link' ) ? 'Enabled' : 'Disabled' ),
-				),
-				'post_types'              => array(
+					'value' => esc_url( get_option( 'edac_include_accessibility_statement_link' ) ? 'Enabled' : 'Disabled' ),
+				],
+				'post_types'              => [
 					'label' => 'Post Types',
-					'value' => ( get_option( 'edac_post_types' ) ? implode( ', ', get_option( 'edac_post_types' ) ) : 'Unset' ),
-				),
-				'simplified_sum_position' => array(
+					'value' => esc_html( get_option( 'edac_post_types' ) ? implode( ', ', get_option( 'edac_post_types' ) ) : 'Unset' ),
+				],
+				'simplified_sum_position' => [
 					'label' => 'Simplified Sum Position',
-					'value' => get_option( 'edac_simplified_summary_position' ),
-				),
-				'simplified_sum_prompt'   => array(
+					'value' => esc_html( get_option( 'edac_simplified_summary_position' ) ),
+				],
+				'simplified_sum_prompt'   => [
 					'label' => 'Simplified Sum Prompt',
-					'value' => get_option( 'edac_simplified_summary_prompt' ),
-				),
-				'post_count'              => array(
+					'value' => esc_html( get_option( 'edac_simplified_summary_prompt' ) ),
+				],
+				'post_count'              => [
 					'label' => 'Post Count',
-					'value' => edac_get_posts_count(),
-				),
-				'error_count'             => array(
+					'value' => esc_html( edac_get_posts_count() ),
+				],
+				'error_count'             => [
 					'label' => 'Error Count',
-					'value' => edac_get_error_count(),
-				),
-				'warning_count'           => array(
+					'value' => absint( edac_get_error_count() ),
+				],
+				'warning_count'           => [
 					'label' => 'Warning Count',
-					'value' => edac_get_warning_count(),
-				),
-				'db_table_count'          => array(
+					'value' => absint( edac_get_warning_count() ),
+				],
+				'db_table_count'          => [
 					'label' => 'DB Table Count',
-					'value' => edac_database_table_count( 'accessibility_checker' ),
-				),
-			),
-		);
+					'value' => absint( edac_database_table_count( 'accessibility_checker' ) ),
+				],
+			],
+		];
 	}
 }

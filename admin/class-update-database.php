@@ -25,7 +25,7 @@ class Update_Database {
 	 * Initialize WordPress hooks
 	 */
 	public function init_hooks() {
-		add_action( 'admin_init', array( $this, 'edac_update_database' ), 10 );
+		add_action( 'admin_init', [ $this, 'edac_update_database' ], 10 );
 	}
 
 	/**
@@ -69,8 +69,6 @@ class Update_Database {
 		}
 
 		// Update database version option.
-		$option_name = 'edac_db_version';
-		$new_value   = EDAC_DB_VERSION;
-		update_option( $option_name, $new_value );
+		update_option( 'edac_db_version', sanitize_text_field( EDAC_DB_VERSION ) );
 	}
 }

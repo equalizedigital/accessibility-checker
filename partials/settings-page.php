@@ -8,13 +8,13 @@
 // set up tab items and filter them.
 $settings_tab_items = apply_filters(
 	'edac_filter_settings_tab_items',
-	array(
-		array(
+	[
+		[
 			'slug'  => '',
 			'label' => esc_html__( 'General', 'accessibility-checker' ),
 			'order' => 1,
-		),
-	)
+		],
+	]
 );
 
 // sort settings tab items.
