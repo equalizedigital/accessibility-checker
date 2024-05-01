@@ -1,10 +1,19 @@
 /* eslint-disable no-unused-vars */
 
+import { initSummaryTabKeyboardHandler } from './summary/summary-tab-keyboard-handler';
+
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
 
 ( function() {
 	'use strict';
+
+	window.onload = () => {
+		if ( document.getElementById( 'edac-tabs' ) ) {
+			// bind keyboard events for the summary metabox tabs.
+			initSummaryTabKeyboardHandler();
+		}
+	};
 
 	jQuery( function() {
 		// Accessibility Statement disable
@@ -609,7 +618,7 @@ const edacScriptVars = edac_script_vars;
 		if ( jQuery( '.edac-details-rule-records-record-ignore' ).length ) {
 			ignoreSubmit();
 		}
-		if ( jQuery( '.edac-readability' ).length ) {
+		if ( jQuery( '#edac-readability-panel' ).length ) {
 			refreshSummaryAndReadability();
 		}
 
