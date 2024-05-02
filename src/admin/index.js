@@ -86,16 +86,6 @@ const edacScriptVars = edac_script_vars;
 			} );
 		};
 
-		// Details Tab on click Ajax
-		jQuery( '.edac-details-tab' ).click( function() {
-			edacDetailsAjax();
-		} );
-
-		// Summary Tab on click Ajax
-		jQuery( '.edac-summary-tab' ).click( function() {
-			refreshSummaryAndReadability();
-		} );
-
 		/**
 		 * Ajax Summary
 		 * @param {Function} callback - Callback function to run after ajax is complete
