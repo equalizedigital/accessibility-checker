@@ -1,3 +1,17 @@
+/**
+ * Summary Tab Input Event Handlers
+ *
+ * @since 1.12.0
+ */
+
+/**
+ * Initialize the Summary Tab keyboard and click event handlers.
+ *
+ * Gets all tabs, adds click and keydown event listeners to each tab to support
+ * proper keyboard navigation and aria attributes.
+ *
+ * @since 1.12.0
+ */
 export const initSummaryTabKeyboardAndClickHandlers = () => {
 	const tabs = document.querySelectorAll( '.edac-tab button' );
 
@@ -16,7 +30,6 @@ export const initSummaryTabKeyboardAndClickHandlers = () => {
 			}
 
 			event.preventDefault();
-
 			clearAllTabsAndPanelState();
 
 			panel.style.display = 'block';
@@ -56,6 +69,11 @@ export const initSummaryTabKeyboardAndClickHandlers = () => {
 	} );
 };
 
+/**
+ * Clear all tabs and panels state to inactive then set a default active tab and panel.
+ *
+ * @since 1.12.0
+ */
 export const clearAllTabsAndPanelState = () => {
 	const panels = document.querySelectorAll( '.edac-panel' );
 	if ( ! panels.length ) {
