@@ -61,7 +61,10 @@ class MetaBoxesTest extends WP_UnitTestCase {
 		$meta_boxes = new Meta_Boxes();
 		$meta_boxes->render();
 
-		$this->expectOutputRegex( '/^<div id="edac-tabs">/' );
+		$this->expectOutputRegex( '/^<div id="edac-tabs"/' );
+		$this->expectOutputRegex( '/role="tablist"/' );
+		$this->expectOutputRegex( '/role="tab"/' );
+		$this->expectOutputRegex( '/role="tabpanel"/' );
 	}
 
 	/**
