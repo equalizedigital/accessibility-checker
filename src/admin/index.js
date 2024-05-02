@@ -1,19 +1,15 @@
 /* eslint-disable no-unused-vars */
 
-import { initSummaryTabKeyboardHandler } from './summary/summary-tab-keyboard-handler';
+import {
+	clearAllTabsAndPanelState,
+	initSummaryTabKeyboardAndClickHandlers,
+} from './summary/summary-tab-input-event-handlers';
 
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
 
 ( function() {
 	'use strict';
-
-	window.onload = () => {
-		if ( document.getElementById( 'edac-tabs' ) ) {
-			// bind keyboard events for the summary metabox tabs.
-			initSummaryTabKeyboardHandler();
-		}
-	};
 
 	jQuery( function() {
 		// Accessibility Statement disable
@@ -55,20 +51,6 @@ const edacScriptVars = edac_script_vars;
 		);
 	} );
 
-	const clearAllTabsAndPanelState = () => {
-		jQuery( '.edac-panel' ).each( ( index, item ) => {
-			jQuery( item )
-				.hide()
-				.removeClass( 'active' )
-				.attr( 'aria-selected', 'false' );
-			const panelTab = '#' + jQuery( item ).attr( 'aria-labelledby' );
-			jQuery( panelTab )
-				.removeClass( 'active' )
-				.attr( 'aria-selected', 'false' )
-				.attr( 'tabindex', '-1' );
-		} );
-	};
-
 	jQuery( window ).on( 'load', function() {
 		// Allow other js to trigger a tab refresh thru an event listener. Refactor.
 		const refreshTabDetails = () => {
@@ -103,20 +85,6 @@ const edacScriptVars = edac_script_vars;
 				jQuery( '.edac-panel' ).removeClass( 'edac-panel-loading' );
 			} );
 		};
-
-		jQuery( '.edac-tab' ).click( function( e ) {
-			e.preventDefault();
-			const id = '#' + jQuery( e.target ).attr( 'aria-controls' );
-
-			clearAllTabsAndPanelState();
-			jQuery( id )
-				.show()
-				.addClass( 'active' );
-			jQuery( e.target )
-				.addClass( 'active' )
-				.attr( 'aria-selected', true )
-				.removeAttr( 'tabindex' );
-		} );
 
 		// Details Tab on click Ajax
 		jQuery( '.edac-details-tab' ).click( function() {
@@ -672,6 +640,11 @@ const edacScriptVars = edac_script_vars;
 }( jQuery ) );
 
 window.addEventListener( 'load', function() {
+	if ( document.getElementById( 'edac-tabs' ) ) {
+		// bind events for the summary metabox tabs and panels.
+		initSummaryTabKeyboardAndClickHandlers();
+	}
+
 	if ( this.document.querySelector( '.edac-widget .edac-summary' ) ) {
 		fillDashboardWidget();
 	}
