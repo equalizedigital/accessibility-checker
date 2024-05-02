@@ -18,7 +18,7 @@ export const initSummaryTabKeyboardAndClickHandlers = () => {
 	tabs.forEach( ( tab, index ) => {
 		tab.addEventListener( 'click', ( event ) => {
 			if (
-				! ( event.target instanceof 'HTMLButtonElement' ) &&
+				! ( event.target instanceof HTMLButtonElement ) &&
 				'undefined' !== event.target.getAttribute( 'aria-controls' )
 			) {
 				return;
