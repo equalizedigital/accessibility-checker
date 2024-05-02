@@ -568,11 +568,10 @@ const edacScriptVars = edac_script_vars;
 
 		if ( jQuery( '#edac-summary-panel' ).length ) {
 			refreshSummaryAndReadability();
-		}
-		if ( jQuery( '#edac-details-panel' ).length ) {
 			edacDetailsAjax();
 			ignoreSubmit();
 		}
+
 		if ( jQuery( '.edac-details-rule-records-record-ignore' ).length ) {
 			ignoreSubmit();
 		}
