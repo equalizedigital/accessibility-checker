@@ -55,7 +55,7 @@ export const initSummaryTabKeyboardAndClickHandlers = () => {
 				if ( newTabIndex > tabs.length ) {
 					newTabIndex = 0;
 				}
-				tabs[ newTabIndex ].click().focus();
+				tabs[ newTabIndex ].click();
 			}
 
 			if ( event.key === 'ArrowLeft' || event.keyCode === 37 ) {
@@ -63,7 +63,7 @@ export const initSummaryTabKeyboardAndClickHandlers = () => {
 				if ( newTabIndex < 0 ) {
 					newTabIndex = tabs.length - 1;
 				}
-				tabs[ newTabIndex ].click().focus();
+				tabs[ newTabIndex ].click();
 			}
 		} );
 	} );
