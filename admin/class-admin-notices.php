@@ -110,7 +110,7 @@ class Admin_Notices {
 	}
 
 	/**
-	 * Get GAAD Promo Message
+	 * Get Black Friday Promo Message
 	 *
 	 * @return string
 	 */
@@ -216,7 +216,7 @@ class Admin_Notices {
 	}
 
 	/**
-	 * Review Admin Notice Ajax
+	 * GAAD Admin Notice Ajax
 	 *
 	 * @return void
 	 *
@@ -379,7 +379,7 @@ class Admin_Notices {
 	}
 
 	/**
-	 * Review Admin Notice Ajax
+	 * Password Protected Admin Notice Ajax
 	 *
 	 * @return void
 	 *
