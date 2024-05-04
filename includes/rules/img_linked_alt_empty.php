@@ -21,7 +21,7 @@ function edac_rule_img_linked_alt_empty( $content, $post ) { // phpcs:ignore -- 
 	foreach ( $as as $a ) {
 
 		// anchors with aria-label or title or valid node text.
-		if ( $a->getAttribute( 'aria-label' ) === '' && $a->getAttribute( 'title' ) === '' && strlen( $a->plaintext ) <= 5 ) {
+		if ( empty( $a->getAttribute( 'aria-label' ) ) && empty( $a->getAttribute( 'title' ) ) && strlen( $a->plaintext ) <= 5 ) {
 
 			$images = $a->find( 'img' );
 			foreach ( $images as $image ) {
