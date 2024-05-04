@@ -266,7 +266,7 @@ class Admin_Notices {
 		$edac_review_notice_reminder = get_transient( $transient );
 
 		// first time if notice has never been shown wait 14 days.
-		if ( false === $edac_review_notice_reminder && false === $edac_review_notice ) {
+		if ( false === $edac_review_notice_reminder && empty( $edac_review_notice ) ) {
 			// if option isn't set and plugin has been active for more than 14 days show notice. This is for current users.
 			if ( edac_days_active() > 14 ) {
 				update_option( $option, 'play' );
