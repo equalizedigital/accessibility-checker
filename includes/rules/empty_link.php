@@ -22,10 +22,10 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 		$error = false;
 
 		if (
-			str_ireplace( [ ' ', '&nbsp;', '-', '_' ], '', trim( $link->plaintext ) ) === ''
+			(string) str_ireplace( [ ' ', '&nbsp;', '-', '_' ], '', trim( $link->plaintext ) ) === ''
 			&& $link->hasAttribute( 'href' )
-			&& $link->getAttribute( 'aria-label' ) === ''
-			&& $link->getAttribute( 'title' ) === ''
+			&& empty( $link->getAttribute( 'aria-label' ) )
+			&& empty( $link->getAttribute( 'title' ) )
 		) {
 
 			// This link does not have plaintext within the tag &
@@ -45,7 +45,7 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 				// does not have a name.
 
 				$image = $link->find( 'img' );
-				if ( ! $error && isset( $input[0] ) && trim( $image[0]->getAttribute( 'alt' ) ) === '' ) {
+				if ( ! $error && isset( $input[0] ) && empty( trim( $image[0]->getAttribute( 'alt' ) ) ) ) {
 
 					// The first image inside the link does not have an alt.
 					// Throw error.
@@ -53,7 +53,7 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 				}
 
 				$input = $link->find( 'input' );
-				if ( ! $error && isset( $input[0] ) && trim( $image[0]->getAttribute( 'value' ) ) === '' ) {
+				if ( ! $error && isset( $input[0] ) && empty( trim( $image[0]->getAttribute( 'value' ) ) ) ) {
 
 					// The first input inside the link does not have a value.
 					// Throw error.
@@ -62,8 +62,8 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 
 				$i = $link->find( 'i' );
 				if ( ! $error && isset( $input[0] ) &&
-				trim( $i[0]->getAttribute( 'title' ) ) === '' &&
-				trim( $i[0]->getAttribute( 'aria-label' ) ) === ''
+				empty( trim( $i[0]->getAttribute( 'title' ) ) ) &&
+				empty( trim( $i[0]->getAttribute( 'aria-label' ) ) )
 				) {
 
 					// The first i inside the link does not have a title &
