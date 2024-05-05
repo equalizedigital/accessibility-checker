@@ -30,6 +30,7 @@ function edac_rule_empty_heading_tag( $content, $post ) { // phpcs:ignore -- $po
 					empty( str_ireplace( [ ' ', '&nbsp;', '-', '_' ], '', htmlentities( trim( $heading->plaintext ) ) ) ) || 
 					empty( str_ireplace( [ ' ', '&nbsp;', '-', '_' ], '', trim( $heading->plaintext ) ) )
 				) && 
+					empty( $heading->getAttribute( 'aria-label' ) ) &&
 					! preg_match(
 						'#<img(\S|\s)*alt=(\'|\")(\w|\s)(\w|\s|\p{P}|\(|\)|\p{Sm}|~|`|’|\^|\$)+(\'|\")#',
 						$heading_code 
