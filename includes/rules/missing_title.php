@@ -22,7 +22,7 @@ function edac_rule_missing_title( $content, $post ) {
 		return [ "Missing Title - Post ID: $post->ID" ];
 	}
 	if ( ( ! isset( $title ) || '' === $title->innertext || '-' === $title->innertext )
-		&& ( ! isset( $meta_title ) || ( $meta_title->hasAttribute( 'content' ) && ( $meta_title->getAttribute( 'content' ) === '' || strlen( $meta_title->getAttribute( 'content' ) ) <= 1 ) ) )
+		&& ( ! isset( $meta_title ) || ( $meta_title->hasAttribute( 'content' ) && ( (string) $meta_title->getAttribute( 'content' ) === '' || strlen( $meta_title->getAttribute( 'content' ) ) <= 1 ) ) )
 	) {
 		return [ "Missing title tag or meta title tag - Post ID: $post->ID" ];
 	}

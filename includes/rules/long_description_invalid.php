@@ -28,7 +28,7 @@ function edac_rule_long_description_invalid( $content, $post ) { // phpcs:ignore
 				$file_parts = pathinfo( $longdesc );
 				$valid_url  = filter_var( $longdesc, FILTER_VALIDATE_URL );
 
-				if ( $image->getAttribute( 'longdesc' ) === ''
+				if ( (string) $image->getAttribute( 'longdesc' ) === ''
 				|| ! $valid_url
 				|| ! $file_parts['extension']
 				|| ! $file_parts['filename']
