@@ -22,7 +22,7 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 		$error = false;
 
 		if (
-			str_ireplace( [ ' ', '&nbsp;', '-', '_' ], '', trim( $link->plaintext ) ) === ''
+			(string) str_ireplace( [ ' ', '&nbsp;', '-', '_' ], '', trim( $link->plaintext ) ) === ''
 			&& $link->hasAttribute( 'href' )
 			&& empty( $link->getAttribute( 'aria-label' ) )
 			&& empty( $link->getAttribute( 'title' ) )
