@@ -28,7 +28,7 @@ function edac_rule_img_linked_alt_empty( $content, $post ) { // phpcs:ignore -- 
 
 				if ( isset( $image )
 					&& $image->hasAttribute( 'alt' )
-					&& $image->getAttribute( 'alt' ) === ''
+					&& (string) $image->getAttribute( 'alt' ) === ''
 					&& $image->getAttribute( 'role' ) !== 'presentation' ) {
 
 					$image_code = $a;
