@@ -29,6 +29,7 @@ jobs:
           cache: 'npm'
 
       - name: NPM install, build and generate release artefacts
+        id: dist-build
         run: |
           npm install --ignore-scripts
           npm run build
@@ -52,6 +53,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ steps.deploy.outputs.zip-path }}
+          asset_path: ${{ steps.dist-build.outputs.zip-path }}
           asset_name: ${{ github.event.repository.name }}.zip
           asset_content_type: application/zip
