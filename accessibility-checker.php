@@ -26,12 +26,6 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-// Check for WordPress Playground.
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-playground-check.php';
-if ( ! ( new EDAC\Inc\Playground_Check() )->should_load ) {
-	return;
-}
-
 // Include plugin dependency.
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
