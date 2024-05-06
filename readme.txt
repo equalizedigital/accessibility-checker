@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.5.2
-Stable tag: 1.11.1
+Stable tag: 1.11.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,7 +171,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
-+ 1.11.1 =
+= 1.11.2
+* Fixed: Avoid displaying `0th` for readability score
+* Removed: Some custom WP Playground detection code
+
+= 1.11.1 =
 * Fixed: type Casting on several rules
 * Fixed: strict data comparison on several rules
 * Updated: empty heading tag rule to consider aria-label
