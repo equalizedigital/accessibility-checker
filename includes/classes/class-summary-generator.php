@@ -291,7 +291,7 @@ class Summary_Generator {
 			);
 		}
 
-		return $content_grade;
+		return (int) round( $content_grade );
 	}
 
 	/**
