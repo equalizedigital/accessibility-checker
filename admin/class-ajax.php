@@ -152,7 +152,7 @@ class Ajax {
 			<div class="edac-summary-readability-level">
 				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability icon navy.png" alt="" width="54"></div>
 				<div class="edac-panel-number' . ( ( (int) $summary['content_grade'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
-					' . ( 0 === (int) $summary['readability'] ? esc_html__( 'N/A', 'accessibility-checker' ) : esc_html( $summary['readability'] ) ) . '
+					' . $summary['readability'] . '
 				</div>
 				<div class="edac-panel-number-label' . ( ( (int) $summary['readability'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
 			</div>
