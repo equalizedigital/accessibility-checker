@@ -709,26 +709,10 @@ const fillDashboardWidget = () => {
 						passedPercentageFormatted;
 				}
 
-				// Set completedAt
-				const completedAt = data.stats.fullscan_completed_at;
-				const completedAtFormatted =
-					data.stats.fullscan_completed_at_formatted;
-				const completedAtEl = document.querySelector(
-					'#edac-summary-info-date'
-				);
-				completedAtEl.textContent = completedAtFormatted;
-
-				/*
-      const expires_at = data.stats.expires_at;
-      const now = Date.now();
-      const mins_to_exp = Math.round((expires_at - Math.floor(now / 1000))/60);
-      const cache_hit = data.stats.cache_hit;
-      if(completedAtEl && completedAt){
-        completedAtEl.textContent = completedAt;
-        completedAtEl.setAttribute('data-edac-cache-hit', cache_hit);
-        completedAtEl.setAttribute('data-edac-cache-mins-to-expiration', mins_to_exp + ' minutes');
-      }
-      */
+				// Set the summary cached at time for display in the dashboard widget.
+				const summaryCachedAt = data.stats.cached_at_formatted || data.stats.fullscan_completed_at_formatted;
+				const summaryCachedAtEl = document.getElementById( 'edac-summary-info-date' );
+				summaryCachedAtEl.textContent = summaryCachedAt;
 
 				// scanned
 				const postsScanned = data.stats.posts_scanned;
