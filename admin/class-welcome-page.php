@@ -207,7 +207,7 @@ class Welcome_Page {
 							<div class="edac-inner-row">
 								<?php if ( $summary['fullscan_completed_at'] > 0 ) : ?>
 									<div class="edac-stat-number edac-timestamp-to-local">
-										<?php echo esc_html( $summary['fullscan_completed_at_formatted'] ); ?>
+										<?php echo isset( $summary['cached_at_formatted'] ) ? esc_html( $summary['cached_at_formatted'] ) : esc_html( $summary['fullscan_completed_at_formatted'] ); ?>
 									</div>
 								<?php else : ?>
 									<div class="edac-stat-number">
