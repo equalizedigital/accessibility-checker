@@ -79,14 +79,22 @@
         border-bottom: none;
         text-decoration: none;
         font-size: 14px;
+		color: $color-blue;
 
         @include breakpoint(xs) {
           width: auto;
         }
 
+		&:hover,
+		&:focus {
+		  color: $color-blue-dark;
+		}
+
         &.active {
           padding: 14px 18px;
           background-color: $color-white;
+		  box-shadow: 0 0 0 2px $color-blue;
+          color: $color-blue-dark;
         }
       }
     }
