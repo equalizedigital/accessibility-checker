@@ -65,6 +65,16 @@ export const initSummaryTabKeyboardAndClickHandlers = () => {
 				}
 				tabs[ newTabIndex ].click();
 			}
+
+			if ( event.key === 'Home' || event.keyCode === 36 ) {
+				tabs[ 0 ].click();
+				event.preventDefault();
+			}
+
+			if ( event.key === 'End' || event.keyCode === 35 ) {
+				tabs[ tabs.length - 1 ].click();
+				event.preventDefault();
+			}
 		} );
 	} );
 };
