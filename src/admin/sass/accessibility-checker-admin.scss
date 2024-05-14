@@ -63,6 +63,8 @@
 
     .edac-tabs {
       margin-bottom: 0;
+      position: relative;
+      z-index: 2;
     }
 
     .edac-tab {
@@ -79,7 +81,7 @@
         border-bottom: none;
         text-decoration: none;
         font-size: 14px;
-		color: $color-blue;
+        color: $color-blue;
 
         @include breakpoint(xs) {
           width: auto;
@@ -87,14 +89,19 @@
 
 		&:hover,
 		&:focus {
-		  color: $color-blue-dark;
+      color: $color-black;
+      cursor: pointer;
 		}
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: 2px;
+    }
 
         &.active {
           padding: 14px 18px;
-          background-color: $color-white;
-		  box-shadow: 0 0 0 2px $color-blue;
-          color: $color-blue-dark;
+          color: $color-white;
+          background-color: $color-blue;
         }
       }
     }
