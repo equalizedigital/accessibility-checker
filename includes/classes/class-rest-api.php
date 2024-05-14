@@ -32,7 +32,7 @@ class REST_Api {
 	 */
 	public function init_hooks() {
 		add_action( 'init', array( $this, 'init_rest_routes' ) );
-		add_filter( 'edac_filter_js_violation_html', 'filter_js_validation_html', 10, 3 );
+		add_filter( 'edac_filter_js_violation_html', array( $this, 'filter_js_validation_html' ), 10, 3 );
 	}
 
 
