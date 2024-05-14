@@ -6,8 +6,9 @@
  */
 
 ?>
-<div id="edac-tabs" role="tablist">
-	<ul class="edac-tabs">
+<div id="edac-tabs">
+	<p id="edac-tabs-label" class="screen-reader-text"><?php esc_html_e( 'Accessibility Checker issues panels', 'accessibility-checker' ); ?></p>
+	<ul class="edac-tabs" role="tablist" aria-labelledby="edac-tabs-label">
 		<li class="edac-tab">
 			<button
 				role="tab"
