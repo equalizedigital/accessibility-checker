@@ -52,7 +52,7 @@ const edacScriptVars = edac_script_vars;
 	} );
 
 	jQuery( window ).on( 'load', function() {
-		// Allow other js to trigger a tab refresh thru an event listener. Refactor.
+		// Allow other js to trigger a tab refresh through an event listener. Refactor.
 		const refreshTabDetails = () => {
 			// reset to first meta box tab
 			clearAllTabsAndPanelState();
