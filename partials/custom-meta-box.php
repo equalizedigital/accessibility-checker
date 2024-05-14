@@ -52,11 +52,13 @@
 		aria-labelledby="edac-details-tab"
 		id="edac-details-panel"
 		class="edac-panel edac-details"
+		style="display: none;"
 	></div>
 	<div
 		role="tabpanel"
 		aria-labelledby="edac-readability-tab"
 		id="edac-readability-panel"
 		class="edac-panel edac-readability"
+		style="display: none;"
 	></div>
 </div>
