@@ -75,11 +75,11 @@ return array(
 		),
 	),
 	array(
-		'title'     => esc_html__( 'Empty Paragraph Tags', 'accessibility-checker' ),
-		'info_url'  => 'https://a11ychecker.com/help###',
+		'title'     => esc_html__( 'Empty Paragraph Tag', 'accessibility-checker' ),
+		'info_url'  => 'https://a11ychecker.com/',
 		'slug'      => 'paragraph_should_not_be_empty',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'Paragraph tags that are empty get announced to screen readers with empty content creating unnecessary noise. Paragraphs should never be used for layout purposes.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'An Empty Paragraph Tag error means there is a paragraph tag present that does not contain content. These may be announced by screen readers and create unnecessary noise for blind users. To fix this error, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block.', 'accessibility-checker' ),
 		'ruleset'   => 'js',
 	),
 	array(
