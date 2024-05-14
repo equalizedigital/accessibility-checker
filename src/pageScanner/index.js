@@ -6,6 +6,8 @@ import colorContrastFailure from './rules/color-contrast-failure';
 import underlinedText from './rules/underlined-text';
 import elementWithUnderline from './checks/element-with-underline';
 import elementIsAUTag from './checks/element-is-u-tag';
+import possibleHeading from './rules/possible-heading';
+import paragraphStyledAsHeader from './checks/paragraph-styled-as-header';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -40,11 +42,13 @@ const scan = async (
 				// customRule1,
 				colorContrastFailure,
 				underlinedText,
+				possibleHeading,
 			],
 			checks: [
 				//alwaysFail,
 				elementIsAUTag,
 				elementWithUnderline,
+				paragraphStyledAsHeader,
 			],
 			iframes: false,
 
@@ -56,6 +60,7 @@ const scan = async (
 				values: [
 					'color_contrast_failure',
 					'underlined_text',
+					possibleHeading.id,
 				],
 			},
 
