@@ -10,7 +10,7 @@
  * Plugin Name:       Accessibility Checker
  * Plugin URI:        https://a11ychecker.com
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.11.2
+ * Version:           1.12.0
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.11.2' );
+	define( 'EDAC_VERSION', '1.12.0' );
 }
 
 // Current database version.
@@ -149,6 +149,17 @@ function edac_register_rules() {
 	// If we got this far, this is the 1st time we called this function.
 	// We need to load the rules from the filesystem, and apply any filters.
 	$default_rules = include __DIR__ . '/includes/rules.php';
+	/**
+	 * Filter the default rules.
+	 *
+	 * Allows removing or adding rules. If you are adding a rule make
+	 * sure you have added a function matching the pattern:
+	 * `edac_rule_{$rule_id}`.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @param array $default_rules The default rules.
+	 */
 	$default_rules = apply_filters( 'edac_filter_register_rules', $default_rules );
 
 	return $default_rules;

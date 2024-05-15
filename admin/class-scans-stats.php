@@ -317,6 +317,8 @@ class Scans_Stats {
 		$formatting['passed_percentage_formatted']            = Helpers::format_percentage( $data['passed_percentage'] );
 		$formatting['avg_issue_density_percentage_formatted'] = Helpers::format_percentage( $data['avg_issue_density_percentage'] );
 
+		$formatting['cached_at_formatted'] = Helpers::format_date( $data['cached_at'], true );
+
 		$data = array_merge( $data, $formatting );
 
 		if ( $data['posts_scanned'] > 0 ) {

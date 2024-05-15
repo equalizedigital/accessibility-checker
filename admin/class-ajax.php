@@ -290,6 +290,13 @@ class Ajax {
 		$rules = array_merge( $error_rules, $warning_rules, $passed_rules );
 
 		if ( $rules ) {
+			/**
+			 * Filters if a user can ignore issues.
+			 *
+			 * @since 1.4.0
+			 *
+			 * @allowed bool True if allowed, false if not
+			 */
 			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
@@ -509,6 +516,14 @@ class Ajax {
 			}
 		}
 
+		/**
+		 * Filter the content used for reading grade readability analysis.
+		 *
+		 * @since 1.4.0
+		 *
+		 * @param string $content The content to be filtered.
+		 * @param int    $post_id The post ID.
+		 */
 		$content = apply_filters( 'edac_filter_readability_content', $content, $post_id );
 		$content = wp_filter_nohtml_kses( $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
