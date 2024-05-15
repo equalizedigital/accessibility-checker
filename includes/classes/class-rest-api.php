@@ -176,7 +176,7 @@ class REST_Api {
 	public function filter_js_validation_html( string $html, string $rule_id, array $violation ): string {
 		// Add the selector to the violation message as empty paragraphs are almost always
 		// duplicate html fragments. Adding the selector makes it unique, so it can be saved.
-		if ( 'paragraph_should_not_be_empty' === $rule_id ) {
+		if ( 'empty_paragraph' === $rule_id ) {
 			$html .= $violation['selector'][0]
 				? '// {{ ' . $violation['selector'][0] . ' }}'
 				: '';

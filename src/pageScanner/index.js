@@ -3,7 +3,7 @@
 
 import 'axe-core';
 import colorContrastFailure from './rules/color-contrast-failure';
-import paragraphShouldNotBeEmpty from './rules/paragraph-should-not-be-empty';
+import emptyParagraph from './rules/empty-paragraph';
 import paragraphNotEmpty from './checks/paragraph-not-empty';
 
 //TODO: examples:
@@ -38,7 +38,7 @@ const scan = async (
 			rules: [
 				//customRule1,
 				colorContrastFailure,
-				paragraphShouldNotBeEmpty,
+				emptyParagraph,
 			],
 			checks: [
 				//alwaysFail,
@@ -53,7 +53,7 @@ const scan = async (
 				type: 'rule',
 				values: [
 					colorContrastFailure.id,
-					paragraphShouldNotBeEmpty.id,
+					emptyParagraph.id,
 				],
 			},
 

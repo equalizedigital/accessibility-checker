@@ -1,5 +1,5 @@
 export default {
-	id: 'paragraph_should_not_be_empty',
+	id: 'empty_paragraph',
 	selector: 'p',
 	excludeHidden: false,
 	tags: [
