@@ -213,39 +213,5 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Created: Class to handle data purging and cleanup
 * Deprecated: `edac_delete_post`, `edac_delete_post_meta`, `edac_delete_cpt_posts` functions
 
-= 1.9.3 =
-* Updated: capability checks for the welcome page, dashboard widget, and admin notices
-
-= 1.9.2 =
-* Fixed: filtered rules are not passed to the frontend highlighter, avoiding 'null' state issues
-* Updated: frontend highlighter buttons to be disabled until issues are confirmed
-* Updated: frontend highlighter buttons to show only after we know there are issues to display
-* Updated: frontend highlighter to not show buttons if none are returned
-
-= 1.9.1 =
-* Updated: `edac_include_rules_files to fire on init action to fix the `edac_filter_register_rules` filter timing
-
-= 1.9.0 =
-* Created: class that creates the accessibility statement on activation
-* Removed: custom database query that checked for existing accessibility statement in exchange for the `get_page_by_path()` function
-* Fixed: bug with trying to compare the simplified summary ordinal value and added fallback
-* Removed: `wp_send_json_error()` from `simplified_summary` Ajax function when the simplified summary is empty
-* Added: simplified summary grade*level, message, and icon logic to the `summary()` Ajax
-* Fixed: issue with the submit button text showing as `Submit Query` in Firefox.
-* Updated: missing transcript rule to skip certain types of links
-* Added: missing UTM parameters to the welcome page URLs.
-* Removed: legacy system information code
-* Removed: cbschuld/browser.php composer package
-* Added: class structure for site health
-* Added: site health health information for free, pro, and audit history plugins
-* Added: update database class
-* Removed: `edac_before_page_render` functions from the main file
-* Added: frontend validate class
-* Added: frontend validate unit tests
-* Removed: unused new window warning meta update functions
-* Fixed: front end highlight focus issue
-* Added: summary generator class to replace the `edac_summary()` function
-* Deprecated: `edac_summary()` function
-
 Older versions can be found in the plugins `changelog.txt`.
 
