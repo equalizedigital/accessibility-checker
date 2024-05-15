@@ -1,5 +1,10 @@
 /* eslint-disable no-unused-vars */
 
+import {
+	clearAllTabsAndPanelState,
+	initSummaryTabKeyboardAndClickHandlers,
+} from './summary/summary-tab-input-event-handlers';
+
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
 
@@ -47,15 +52,20 @@ const edacScriptVars = edac_script_vars;
 	} );
 
 	jQuery( window ).on( 'load', function() {
-		// Allow other js to trigger a tab refresh thru an event listener. Refactor.
+		// Allow other js to trigger a tab refresh through an event listener. Refactor.
 		const refreshTabDetails = () => {
 			// reset to first meta box tab
-			jQuery( '.edac-panel' ).hide();
-			jQuery( '.edac-panel' ).removeClass( 'active' );
-			jQuery( '.edac-tab a' ).removeClass( 'active' );
-			jQuery( '#edac-summary' ).show();
-			jQuery( '#edac-summary' ).addClass( 'active' );
-			jQuery( '.edac-tab:first-child a' ).addClass( 'active' );
+			clearAllTabsAndPanelState();
+
+			const summaryPanel = jQuery( '#edac-summary-panel' );
+			jQuery( summaryPanel )
+				.show()
+				.addClass( 'active' );
+			const summaryTab = '#' + jQuery( summaryPanel ).attr( 'aria-labelledby' );
+			jQuery( summaryTab )
+				.addClass( 'active' )
+				.attr( 'aria-selected', 'true' )
+				.removeAttr( 'tabindex' );
 
 			edacDetailsAjax();
 			refreshSummaryAndReadability();
@@ -75,30 +85,6 @@ const edacScriptVars = edac_script_vars;
 				jQuery( '.edac-panel' ).removeClass( 'edac-panel-loading' );
 			} );
 		};
-
-		jQuery( '.edac-tab' ).click( function( e ) {
-			e.preventDefault();
-			const id = jQuery( 'a', this ).attr( 'href' );
-
-			jQuery( '.edac-panel' ).hide();
-			jQuery( '.edac-panel' ).removeClass( 'active' );
-			jQuery( '.edac-tab a' )
-				.removeClass( 'active' )
-				.attr( 'aria-current', false );
-			jQuery( id ).show();
-			jQuery( id ).addClass( 'active' );
-			jQuery( 'a', this ).addClass( 'active' ).attr( 'aria-current', true );
-		} );
-
-		// Details Tab on click Ajax
-		jQuery( '.edac-tab-details' ).click( function() {
-			edacDetailsAjax();
-		} );
-
-		// Summary Tab on click Ajax
-		jQuery( '.edac-tab-summary' ).click( function() {
-			refreshSummaryAndReadability();
-		} );
 
 		/**
 		 * Ajax Summary
@@ -157,7 +143,7 @@ const edacScriptVars = edac_script_vars;
 				if ( true === response.success ) {
 					const responseJSON = jQuery.parseJSON( response.data );
 
-					jQuery( '.edac-details' ).html( responseJSON );
+					jQuery( '#edac-details-panel' ).html( responseJSON );
 
 					// Rule on click
 					jQuery( '.edac-details-rule-title' ).click( function() {
@@ -232,7 +218,7 @@ const edacScriptVars = edac_script_vars;
 				if ( true === response.success ) {
 					const responseJSON = jQuery.parseJSON( response.data );
 
-					jQuery( '.edac-readability' ).html( responseJSON );
+					jQuery( '#edac-readability-panel' ).html( responseJSON );
 
 					// Simplified Summary on click
 					jQuery( '.edac-readability-simplified-summary' ).submit(
@@ -580,17 +566,16 @@ const edacScriptVars = edac_script_vars;
 			} );
 		}
 
-		if ( jQuery( '.edac-summary' ).length ) {
+		if ( jQuery( '#edac-summary-panel' ).length ) {
 			refreshSummaryAndReadability();
-		}
-		if ( jQuery( '.edac-details' ).length ) {
 			edacDetailsAjax();
 			ignoreSubmit();
 		}
+
 		if ( jQuery( '.edac-details-rule-records-record-ignore' ).length ) {
 			ignoreSubmit();
 		}
-		if ( jQuery( '.edac-readability' ).length ) {
+		if ( jQuery( '#edac-readability-panel' ).length ) {
 			refreshSummaryAndReadability();
 		}
 
@@ -644,6 +629,11 @@ const edacScriptVars = edac_script_vars;
 }( jQuery ) );
 
 window.addEventListener( 'load', function() {
+	if ( document.getElementById( 'edac-tabs' ) ) {
+		// bind events for the summary metabox tabs and panels.
+		initSummaryTabKeyboardAndClickHandlers();
+	}
+
 	if ( this.document.querySelector( '.edac-widget .edac-summary' ) ) {
 		fillDashboardWidget();
 	}
