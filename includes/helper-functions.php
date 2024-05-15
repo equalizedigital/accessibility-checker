@@ -286,6 +286,13 @@ function edac_custom_post_types() {
  * @return array
  */
 function edac_post_types() {
+	/**
+	 * Filter the post types that the plugin will check.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @param array $post_types post types.
+	 */
 	$post_types = apply_filters( 'edac_filter_post_types', [ 'post', 'page' ] );
 
 	// remove duplicates.

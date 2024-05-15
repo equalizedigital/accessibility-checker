@@ -204,6 +204,16 @@ class REST_Api {
 
 		try {
 
+			/**
+			 * Fires before the validation process starts.
+			 *
+			 * This is only running in the JS check context.
+			 *
+			 * @since 1.5.0
+			 *
+			 * @param int    $post_id The post ID.
+			 * @param string $type    The type of validation which is always 'js' in this path.
+			 */
 			do_action( 'edac_before_validate', $post_id, 'js' );
 
 			$violations = $request['violations'];
@@ -234,16 +244,48 @@ class REST_Api {
 						//phpcs:ignore Generic.Commenting.Todo.TaskFound, Squiz.PHP.CommentedOutCode.Found
 						// TODO: add support storing $violation['selector'], $violation['tags'].
 
+						/**
+						 * Fires before a rule is run against the content.
+						 *
+						 * This is only running in the JS check context.
+						 *
+						 * @since 1.5.0
+						 *
+						 * @param int    $post_id The post ID.
+						 * @param string $rule_id The rule ID.
+						 * @param string $type    The type of validation which is always 'js' in this path.
+						 */
 						do_action( 'edac_before_rule', $post_id, $rule_id, 'js' );
 
 						( new Insert_Rule_Data() )->insert( $post, $rule_id, $impact, $html );
 
+						/**
+						 * Fires after a rule is run against the content.
+						 *
+						 * This is only running in the JS check context.
+						 *
+						 * @since 1.5.0
+						 *
+						 * @param int    $post_id The post ID.
+						 * @param string $rule_id The rule ID.
+						 * @param string $type    The type of validation which is always 'js' in this path.
+						 */
 						do_action( 'edac_after_rule', $post_id, $rule_id, 'js' );
 
 					}
 				}
 			}
 
+			/**
+			 * Fires after the validation process is complete.
+			 *
+			 * This is only running in the JS check context.
+			 *
+			 * @since 1.5.0
+			 *
+			 * @param int    $post_id The post ID.
+			 * @param string $type    The type of validation which is always 'js' in this path.
+			 */
 			do_action( 'edac_after_validate', $post_id, 'js' );
 
 			// remove corrected records.
