@@ -171,6 +171,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.12.0 =
+* Fixed: Use the last generation time in summary widgets rather than last completed scan time
+* Improved: More accessible panels in the editor
+* Improved: Filter and action docs added/improved
+
 = 1.11.2
 * Fixed: Avoid displaying `0th` for readability score
 * Removed: Some custom WP Playground detection code
