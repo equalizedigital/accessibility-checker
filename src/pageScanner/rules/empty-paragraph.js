@@ -4,6 +4,7 @@ export default {
 	excludeHidden: false,
 	tags: [
 		'cat.text',
+		'best-practices',
 	],
 	impact: 'moderate',
 	metadata: {
