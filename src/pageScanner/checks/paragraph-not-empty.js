@@ -17,10 +17,7 @@ export default {
 			return true;
 		}
 
-		if ( node.textContent.trim() !== '' ) {
-			return true;
-		}
-
-		return false;
+		// if there is text content then it passes, false otherwise.
+		return node.textContent.trim() !== '';
 	},
 };
