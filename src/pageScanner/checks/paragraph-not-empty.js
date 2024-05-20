@@ -1,19 +1,26 @@
 /**
- * Check if a paragraph is empty.
+ * Check that a paragraph is NOT empty.
  *
  * @param {Node} node The paragraph element to evaluate.
- * @return {boolean} Returns true if the paragraph is empty, false otherwise.
+ * @return {boolean} Returns true if the paragraph has content, false if empty.
  */
 
 export default {
 	id: 'paragraph_not_empty',
 	evaluate: ( node ) => {
-		// if not a paragraph this immediately passes.
 		if ( 'p' !== node.tagName.toLowerCase() ) {
 			return true;
 		}
 
-		// if the paragraph has text content it is a pass, otherwise it is a fail.
-		return !! node.textContent.trim();
+		// if there are child nodes then it passes.
+		if ( node.childNodes.length ) {
+			return true;
+		}
+
+		if ( node.textContent.trim() !== '' ) {
+			return true;
+		}
+
+		return false;
 	},
 };
