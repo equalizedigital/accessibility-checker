@@ -15,14 +15,15 @@
  *                   are shorter than 50 characters, or are short with large font size are considered headers.
  */
 
+import { fontSizeInPx } from '../helpers/helpers.js';
+
 export default {
 	id: 'paragraph_styled_as_header',
 	evaluate: ( node ) => {
-		const text = node.textContent.trim();
-		const pixelSize = parseFloat( window.getComputedStyle( node ).fontSize );
+		const pixelSize = fontSizeInPx( node );
 
 		// long paragraphs or with size under 16px are unlikely to be headers.
-		if ( text.length > 50 || pixelSize <= 16 ) {
+		if ( node.textContent.trim().length > 50 || pixelSize <= 16 ) {
 			return false;
 		}
 
