@@ -23,7 +23,7 @@ export default {
 		const pixelSize = fontSizeInPx( node );
 
 		// long paragraphs or with size under 16px are unlikely to be headers.
-		if ( node.textContent.trim().length > 50 || pixelSize <= 16 ) {
+		if ( node.textContent.trim().length > 50 || pixelSize < 16 ) {
 			return false;
 		}
 
