@@ -110,7 +110,15 @@ class Insert_Rule_Data {
 		// Insert new records.
 		if ( ! $results ) {
 
-			// filter post types.
+			/**
+			 * Filter the rule data before inserting it into the database.
+			 *
+			 * This data will be sanitized after the filter is applied.
+			 *
+			 * @since 1.4.0
+			 *
+			 * @param array $rule_data The rule data.
+			 */
 			$rule_data = apply_filters( 'edac_filter_insert_rule_data', $rule_data );
 
 			// Sanitize rule data since it is filtered, and we can't be sure

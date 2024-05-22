@@ -350,6 +350,13 @@ class Admin_Notices {
 	 * @return string
 	 */
 	public function edac_password_protected_notice_text() {
+		/**
+		 * Filter the password protected notice text.
+		 *
+		 * @since 1.4.0
+		 *
+		 * @param string $text The password protected notice text.
+		 */
 		return apply_filters(
 			'edac_filter_password_protected_notice_text',
 			sprintf(

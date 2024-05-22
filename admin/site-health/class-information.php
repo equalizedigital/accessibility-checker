@@ -18,7 +18,7 @@ class Information {
 	 */
 	public function __construct() {
 	}
-	
+
 	/**
 	 * Initialize class hooks.
 	 *
@@ -63,7 +63,15 @@ class Information {
 			$information[ $key ] = $class->get();
 		}
 
-		// Allow extensions to add their own debug information that's specific to EDAC.
+		/**
+		 * Filter the debug information.
+		 *
+		 * Allows extensions to add their own debug information that's specific to EDAC.
+		 *
+		 * @since 1.6.10
+		 *
+		 * @param array $information The debug information.
+		 */
 		return apply_filters( 'edac_debug_information', $information );
 	}
 }
