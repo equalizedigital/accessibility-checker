@@ -346,6 +346,8 @@ return [
 			'<code>&lt;marquee&gt;</code>',
 			'<code>text-decoration: blink</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [ 'blink', 'marquee' ],
 	],
 	[
 		'title'     => esc_html__( 'Insufficient Color Contrast', 'accessibility-checker' ),

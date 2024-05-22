@@ -215,11 +215,19 @@ class REST_Api {
 
 		//phpcs:ignore Generic.Commenting.Todo.TaskFound
 		// TODO: setup a rules class for loading/filtering rules.
-		$rules       = edac_register_rules();
-		$js_rule_ids = [];
+		$rules             = edac_register_rules();
+		$js_rule_ids       = [];
+		$combined_rule_ids = [];
 		foreach ( $rules as $rule ) {
 			if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
 				$js_rule_ids[] = $rule['slug'];
+
+				// Some rules can be a grouping of other checks with different ids. This tracks those combined check IDs for later mapping.
+				if ( array_key_exists( 'combines', $rule ) && ! empty( $rule['combines'] ) ) {
+					foreach ( $rule['combines'] as $combine_rule_id ) {
+						$combined_rule_ids[ $combine_rule_id ] = $rule['slug'];
+					}
+				}
 			}
 		}
 
@@ -247,17 +255,20 @@ class REST_Api {
 				foreach ( $violations as $violation ) {
 					$rule_id = $violation['ruleId'];
 
-					if ( in_array( $rule_id, $js_rule_ids, true ) ) {
+					// If this rule is a combined rule then map it to the actual reporting rule ID.
+					$actual_rule_id = array_key_exists( $rule_id, $combined_rule_ids ) ? $combined_rule_ids[ $rule_id ] : $rule_id;
+
+					if ( in_array( $actual_rule_id, $js_rule_ids, true ) ) {
 
 						// This rule is one that we've included in our js ruleset.
 
-						$html   = apply_filters( 'edac_filter_js_violation_html', $violation['html'], $rule_id, $violation );
+						$html   = $violation['html'];
 						$impact = $violation['impact']; // by default, use the impact setting from the js rule.
 
 						//phpcs:ignore Generic.Commenting.Todo.TaskFound
 						// TODO: setup a rules class for loading/filtering rules.
 						foreach ( $rules as $rule ) {
-							if ( $rule['slug'] === $rule_id ) {
+							if ( $rule['slug'] === $actual_rule_id ) {
 								$impact = $rule['rule_type']; // if we are defining the rule_type in php rules config, use that instead of the js rule's impact setting.
 							}
 						}
@@ -276,9 +287,9 @@ class REST_Api {
 						 * @param string $rule_id The rule ID.
 						 * @param string $type    The type of validation which is always 'js' in this path.
 						 */
-						do_action( 'edac_before_rule', $post_id, $rule_id, 'js' );
+						do_action( 'edac_before_rule', $post_id, $actual_rule_id, 'js' );
 
-						( new Insert_Rule_Data() )->insert( $post, $rule_id, $impact, $html );
+						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html );
 
 						/**
 						 * Fires after a rule is run against the content.
@@ -291,7 +302,7 @@ class REST_Api {
 						 * @param string $rule_id The rule ID.
 						 * @param string $type    The type of validation which is always 'js' in this path.
 						 */
-						do_action( 'edac_after_rule', $post_id, $rule_id, 'js' );
+						do_action( 'edac_after_rule', $post_id, $actual_rule_id, 'js' );
 
 					}
 				}

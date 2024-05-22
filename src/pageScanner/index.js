@@ -71,6 +71,8 @@ const scan = async (
 				type: 'rule',
 				values: [
 					'meta-viewport',
+					'blink',
+					'marquee',
 					colorContrastFailure.id,
 					underlinedText.id,
 					emptyParagraph.id,
