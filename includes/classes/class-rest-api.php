@@ -32,6 +32,7 @@ class REST_Api {
 	 */
 	public function init_hooks() {
 		add_action( 'init', [ $this, 'init_rest_routes' ] );
+		add_filter( 'edac_filter_js_violation_html', [ $this, 'filter_js_validation_html' ], 10, 3 );
 	}
 
 
@@ -161,7 +162,27 @@ class REST_Api {
 		);
 	}
 
-
+	/**
+	 * Filter the html of the js validation violation.
+	 *
+	 * This can be used to store additional data in the html of the violation.
+	 *
+	 * @param string $html      The html of the violation.
+	 * @param string $rule_id   The id of the rule.
+	 * @param array  $violation The violation data.
+	 *
+	 * @return string
+	 */
+	public function filter_js_validation_html( string $html, string $rule_id, array $violation ): string {
+		// Add the selector to the violation message as empty paragraphs are almost always
+		// duplicate html fragments. Adding the selector makes it unique, so it can be saved.
+		if ( 'empty_paragraph_tag' === $rule_id ) {
+			$html .= $violation['selector'][0]
+				? '// {{ ' . $violation['selector'][0] . ' }}'
+				: '';
+		}
+		return $html;
+	}
 
 	/**
 	 * REST handler that saves to the DB a list of js rule violations for a post.
@@ -230,7 +251,7 @@ class REST_Api {
 
 						// This rule is one that we've included in our js ruleset.
 
-						$html   = $violation['html'];
+						$html   = apply_filters( 'edac_filter_js_violation_html', $violation['html'], $rule_id, $violation );
 						$impact = $violation['impact']; // by default, use the impact setting from the js rule.
 
 						//phpcs:ignore Generic.Commenting.Todo.TaskFound

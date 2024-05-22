@@ -6,6 +6,8 @@ import colorContrastFailure from './rules/color-contrast-failure';
 import underlinedText from './rules/underlined-text';
 import elementWithUnderline from './checks/element-with-underline';
 import elementIsAUTag from './checks/element-is-u-tag';
+import emptyParagraph from './rules/empty-paragraph';
+import paragraphNotEmpty from './checks/paragraph-not-empty';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -37,14 +39,16 @@ const scan = async (
 			reporter: 'raw',
 
 			rules: [
-				//customRule1,
+				// customRule1,
 				colorContrastFailure,
 				underlinedText,
+				emptyParagraph,
 			],
 			checks: [
 				//alwaysFail,
 				elementIsAUTag,
 				elementWithUnderline,
+				paragraphNotEmpty,
 			],
 			iframes: false,
 
@@ -54,9 +58,10 @@ const scan = async (
 			runOnly: {
 				type: 'rule',
 				values: [
-					'color_contrast_failure',
-					'underlined_text',
 					'meta-viewport',
+					colorContrastFailure.id,
+					underlinedText.id,
+					emptyParagraph.id,
 				],
 			},
 
