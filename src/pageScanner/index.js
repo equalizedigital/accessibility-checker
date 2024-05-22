@@ -12,6 +12,8 @@ import possibleHeading from './rules/possible-heading';
 import paragraphStyledAsHeader from './checks/paragraph-styled-as-header';
 import textSmall from './rules/text-small';
 import textSizeTooSmall from './checks/text-size-too-small';
+import textJustified from './rules/text-justified';
+import textIsJustified from './checks/text-is-justified';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -49,6 +51,7 @@ const scan = async (
 				possibleHeading,
 				emptyParagraph,
 				textSmall,
+				textJustified,
 			],
 			checks: [
 				//alwaysFail,
@@ -57,6 +60,7 @@ const scan = async (
 				textSizeTooSmall,
 				paragraphStyledAsHeader,
 				paragraphNotEmpty,
+				textIsJustified,
 			],
 			iframes: false,
 
@@ -72,6 +76,7 @@ const scan = async (
 					emptyParagraph.id,
 					possibleHeading.id,
 					textSmall.id,
+					textJustified.id,
 				],
 			},
 
