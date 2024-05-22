@@ -10,6 +10,8 @@ import emptyParagraph from './rules/empty-paragraph';
 import paragraphNotEmpty from './checks/paragraph-not-empty';
 import possibleHeading from './rules/possible-heading';
 import paragraphStyledAsHeader from './checks/paragraph-styled-as-header';
+import textSmall from './rules/text-small';
+import textSizeTooSmall from './checks/text-size-too-small';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -46,11 +48,13 @@ const scan = async (
 				underlinedText,
 				possibleHeading,
 				emptyParagraph,
+				textSmall,
 			],
 			checks: [
 				//alwaysFail,
 				elementIsAUTag,
 				elementWithUnderline,
+				textSizeTooSmall,
 				paragraphStyledAsHeader,
 				paragraphNotEmpty,
 			],
@@ -67,6 +71,7 @@ const scan = async (
 					underlinedText.id,
 					emptyParagraph.id,
 					possibleHeading.id,
+					textSmall.id,
 				],
 			},
 
