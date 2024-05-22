@@ -167,6 +167,7 @@ class REST_Api {
 	 *
 	 * This can be used to store additional data in the html of the violation.
 	 *
+	 * @since 1.13.0
 	 * @param string $html      The html of the violation.
 	 * @param string $rule_id   The id of the rule.
 	 * @param array  $violation The violation data.
