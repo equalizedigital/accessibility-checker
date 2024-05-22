@@ -138,7 +138,7 @@ class Helpers {
 		if ( is_array( $option ) && ! empty( $option ) ) {
 			return $option;
 		}
-		return array();
+		return [];
 	}
 
 

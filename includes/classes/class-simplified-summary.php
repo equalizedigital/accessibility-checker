@@ -22,7 +22,7 @@ class Simplified_Summary {
 	 * Initialize WordPress hooks.
 	 */
 	public function init_hooks() {
-		add_filter( 'the_content', array( $this, 'output_simplified_summary' ) );
+		add_filter( 'the_content', [ $this, 'output_simplified_summary' ] );
 	}
 
 	/**
@@ -58,9 +58,16 @@ class Simplified_Summary {
 	 */
 	public function simplified_summary_markup( $post ) {
 		$simplified_summary = get_post_meta( $post, '_edac_simplified_summary', true )
-			? get_post_meta( $post, '_edac_simplified_summary', true ) 
+			? get_post_meta( $post, '_edac_simplified_summary', true )
 			: '';
 
+		/**
+		 * Filter the heading that gets output before the simplified summary inside an <h2> tag.
+		 *
+		 * @since 1.4.0
+		 *
+		 * @param string $simplified_summary_heading The simplified summary heading.
+		 */
 		$simplified_summary_heading = apply_filters(
 			'edac_filter_simplified_summary_heading',
 			esc_html__( 'Simplified Summary', 'accessibility-checker' )

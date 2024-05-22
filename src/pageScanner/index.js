@@ -3,6 +3,9 @@
 
 import 'axe-core';
 import colorContrastFailure from './rules/color-contrast-failure';
+import underlinedText from './rules/underlined-text';
+import elementWithUnderline from './checks/element-with-underline';
+import elementIsAUTag from './checks/element-is-u-tag';
 import emptyParagraph from './rules/empty-paragraph';
 import paragraphNotEmpty from './checks/paragraph-not-empty';
 
@@ -38,10 +41,13 @@ const scan = async (
 			rules: [
 				//customRule1,
 				colorContrastFailure,
+				underlinedText,
 				emptyParagraph,
 			],
 			checks: [
 				//alwaysFail,
+				elementIsAUTag,
+				elementWithUnderline,
 				paragraphNotEmpty,
 			],
 			iframes: false,
@@ -53,6 +59,7 @@ const scan = async (
 				type: 'rule',
 				values: [
 					colorContrastFailure.id,
+					underlinedText.id,
 					emptyParagraph.id,
 				],
 			},

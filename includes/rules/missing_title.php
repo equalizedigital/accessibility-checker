@@ -19,12 +19,12 @@ function edac_rule_missing_title( $content, $post ) {
 	$meta_title = $content['html']->find( 'meta[property="og:title"]', 0 );
 
 	if ( ! $the_title || '' === $the_title || 'Untitled' === $the_title || strlen( $the_title ) <= 1 ) {
-		return array( "Missing Title - Post ID: $post->ID" );
+		return [ "Missing Title - Post ID: $post->ID" ];
 	}
 	if ( ( ! isset( $title ) || '' === $title->innertext || '-' === $title->innertext )
-		&& ( ! isset( $meta_title ) || ( $meta_title->hasAttribute( 'content' ) && ( $meta_title->getAttribute( 'content' ) === '' || strlen( $meta_title->getAttribute( 'content' ) ) <= 1 ) ) )
+		&& ( ! isset( $meta_title ) || ( $meta_title->hasAttribute( 'content' ) && ( (string) $meta_title->getAttribute( 'content' ) === '' || strlen( $meta_title->getAttribute( 'content' ) ) <= 1 ) ) )
 	) {
-		return array( "Missing title tag or meta title tag - Post ID: $post->ID" );
+		return [ "Missing title tag or meta title tag - Post ID: $post->ID" ];
 	}
-	return array();
+	return [];
 }

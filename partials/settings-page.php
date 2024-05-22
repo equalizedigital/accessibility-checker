@@ -5,16 +5,22 @@
  * @package Accessibility_Checker
  */
 
-// set up tab items and filter them.
+/**
+ * Filter the settings tab items.
+ *
+ * @since 1.4.0
+ *
+ * @param array $settings_tab_items The settings tab items as an array of arrays. Needs a 'slug', 'label', and 'order'.
+ */
 $settings_tab_items = apply_filters(
 	'edac_filter_settings_tab_items',
-	array(
-		array(
+	[
+		[
 			'slug'  => '',
 			'label' => esc_html__( 'General', 'accessibility-checker' ),
 			'order' => 1,
-		),
-	)
+		],
+	]
 );
 
 // sort settings tab items.
@@ -88,7 +94,19 @@ $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items
 			</div>
 		<?php } ?>
 
-		<?php do_action( 'edac_settings_tab_content', $settings_tab ); ?>
+		<?php
+		/**
+		 * Fires after the settings tab content has maybe been displayed.
+		 *
+		 * This can be used to add content after a settings tab or to include
+		 * a new settings tab content for custom tabs.
+		 *
+		 * @since 1.4.0
+		 *
+		 * @param string $settings_tab The current settings tab.
+		 */
+		do_action( 'edac_settings_tab_content', $settings_tab );
+		?>
 	</div>
 
 </div>

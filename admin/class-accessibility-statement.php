@@ -66,14 +66,14 @@ class Accessibility_Statement {
 				sprintf( __( 'We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues.', 'accessibility-checker' ) )
 			);
 
-			$page = array(
+			$page = [
 				'post_title'   => $title,
 				'post_status'  => 'draft',
 				'post_author'  => $author_id,
 				'post_name'    => $slug,
 				'post_content' => $content,
 				'post_type'    => 'page',
-			);
+			];
 
 			wp_insert_post( $page );
 		}

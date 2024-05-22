@@ -28,18 +28,18 @@ class Audit_History {
 	 * @return array
 	 */
 	public function get() {
-		return array(
+		return [
 			'label'  => __( 'Accessibility Checker &mdash; Audit History', 'accessibility-checker' ),
-			'fields' => array(
-				'version'                => array(
+			'fields' => [
+				'version'                => [
 					'label' => 'Version',
 					'value' => EDACAH_VERSION,
-				),
-				'ignores_db_table_count' => array(
+				],
+				'ignores_db_table_count' => [
 					'label' => 'DB Table Count',
 					'value' => edac_database_table_count( 'accessibility_checker_audit_history' ),
-				),
-			),
-		);
+				],
+			],
+		];
 	}
 }

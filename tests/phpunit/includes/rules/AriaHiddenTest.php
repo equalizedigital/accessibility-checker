@@ -135,7 +135,7 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	 */
 	public function test_parent_with_label_that_is_not_link_or_button_errors() {
 
-		$test_elements = array( 'div', 'span', 'section' );
+		$test_elements = [ 'div', 'span', 'section' ];
 		foreach ( $test_elements as $element ) {
 			$markup = "<$element aria-label='label'><div aria-hidden='true'></div></$element>";
 			$dom    = str_get_html( $markup );
@@ -170,7 +170,7 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	 * @return string
 	 */
 	private function get_test_markup( string $type = '' ): string {
-		$markup_fragments = array(
+		$markup_fragments = [
 			'element_with_aria-hidden'          => '<div aria-hidden="true"></div>',
 			'element_with_aria-hidden_false'    => '<div aria-hidden="false"></div>',
 			'element_that_is_wp-block-spacer'   => '<div aria-hidden="true" class="wp-block-spacer"></div>',
@@ -213,7 +213,7 @@ class AriaHiddenTest extends WP_UnitTestCase {
 				</div>
 			EOT,
 			'image_that_is_presentational'      => '<img src="http://example.com/image.jpg" aria-hidden="true" role="presentation" />',
-		);
+		];
 		return $markup_fragments[ $type ] ?? '';
 	}
 
@@ -223,59 +223,59 @@ class AriaHiddenTest extends WP_UnitTestCase {
 	 * @dataProvider screen_reader_test_classes
 	 */
 	public function screen_reader_test_classes(): array {
-		return array(
-			array(
+		return [
+			[
 				'sibling_class' => 'screen-reader-text',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'sr-only',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'show-for-sr',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'visuallyhidden',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'visually-hidden',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'hidden-visually',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'invisible',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'accessibly-hidden',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'hide',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'hidden',
 				'pass'          => true,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'not-screen-reader-text',
 				'pass'          => false,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'hide-for-sr',
 				'pass'          => false,
-			),
-			array(
+			],
+			[
 				'sibling_class' => 'anotherClass anything-else and-anotherClass',
 				'pass'          => false,
-			),
-		);
+			],
+		];
 	}
 }

@@ -15,7 +15,7 @@
 function edac_rule_duplicate_form_label( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$errors = array();
+	$errors = [];
 	$labels = $dom->find( 'label' );
 
 	if ( ! $labels ) {

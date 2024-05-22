@@ -44,7 +44,7 @@ class Issues_Query {
 	 * @param integer $flags .
 	 * @deprecated 1.8.0
 	 */
-	public function __construct( $filter = array(), $record_limit = 100000, $flags = self::FLAG_EXCLUDE_IGNORED ) {
+	public function __construct( $filter = [], $record_limit = 100000, $flags = self::FLAG_EXCLUDE_IGNORED ) {
 		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
@@ -63,7 +63,7 @@ class Issues_Query {
 		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
-		return call_user_func_array( array( $this->instance, $method ), $arguments );
+		return call_user_func_array( [ $this->instance, $method ], $arguments );
 	}
 	
 	/**
@@ -78,7 +78,7 @@ class Issues_Query {
 		if ( self::FORCE_DEPRECATION ) {
 			_deprecated_function( __FUNCTION__, '1.8.0' );
 		}
-		return call_user_func_array( array( self::$instance, $method ), $arguments );
+		return call_user_func_array( [ self::$instance, $method ], $arguments );
 	}
 	
 	/**

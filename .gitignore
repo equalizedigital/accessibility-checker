@@ -1,8 +1,5 @@
 # Exclude these files from the git repo
 .sass-cache/
-#.codekit-config.json
-#config.codekit
-config.codekit3
 edac_log.txt
 #composer.lock
 package-lock.json
