@@ -111,6 +111,7 @@ return [
 			'<code>&lt;div&gt;</code>',
 			'<code>&lt;td&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Link Opens New Window or Tab', 'accessibility-checker' ),
