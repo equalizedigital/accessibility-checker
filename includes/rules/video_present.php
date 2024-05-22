@@ -15,10 +15,10 @@
 function edac_rule_video_present( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom             = $content['html'];
-	$file_extensions = array( '.3gp', '.asf', '.asx', '.avi', '.flv', '.m4p', '.mov', '.mp4', '.mpeg', '.mpeg2', '.mpg', '.mpv', '.ogg', '.ogv', '.qtl', '.smi', '.smil', '.wax', '.webm', '.wmv', '.wmp', '.wmx' );
-	$keywords        = array( 'youtube', 'youtu.be', 'vimeo' );
-	$errors          = array();
-	$videos_found    = array();
+	$file_extensions = [ '.3gp', '.asf', '.asx', '.avi', '.flv', '.m4p', '.mov', '.mp4', '.mpeg', '.mpeg2', '.mpg', '.mpv', '.ogg', '.ogv', '.qtl', '.smi', '.smil', '.wax', '.webm', '.wmv', '.wmp', '.wmx' ];
+	$keywords        = [ 'youtube', 'youtu.be', 'vimeo' ];
+	$errors          = [];
+	$videos_found    = [];
 
 	// check for video blocks.
 	$elements = $dom->find( '.is-type-video' );

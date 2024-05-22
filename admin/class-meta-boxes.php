@@ -20,7 +20,7 @@ class Meta_Boxes {
 	 * @return void
 	 */
 	public function init_hooks(): void {
-		add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
+		add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
 	}
 
 	/**
@@ -37,7 +37,7 @@ class Meta_Boxes {
 				add_meta_box(
 					'edac-meta-box',
 					__( 'Accessibility Checker', 'accessibility-checker' ),
-					array( $this, 'render' ),
+					[ $this, 'render' ],
 					$post_type,
 					'normal',
 					'high'
@@ -54,8 +54,18 @@ class Meta_Boxes {
 	 * @return void
 	 */
 	public function render(): void {
+		/**
+		 * Fires before the meta box is rendered.
+		 *
+		 * @since 1.10.0
+		 */
 		do_action( 'edac_before_meta_box' );
 		include_once plugin_dir_path( __DIR__ ) . 'partials/custom-meta-box.php';
+		/**
+		 * Fires after the meta box is rendered.
+		 *
+		 * @since 1.10.0
+		 */
 		do_action( 'edac_after_meta_box' );
 	}
 }

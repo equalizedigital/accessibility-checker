@@ -17,7 +17,7 @@
 function edac_rule_link_improper( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$errors = array();
+	$errors = [];
 	$links  = $dom->find( 'a' );
 	foreach ( $links as $link ) {
 		if ( ( ! $link->hasAttribute( 'href' ) || trim( $link->getAttribute( 'href' ) ) === '#' ) && $link->getAttribute( 'role' ) !== 'button' ) {

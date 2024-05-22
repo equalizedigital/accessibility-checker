@@ -7,13 +7,58 @@
 
 ?>
 <div id="edac-tabs">
-	<ul class="edac-tabs">
-		<li class="edac-tab"><a role="button" aria-current="true" class="edac-tab-summary active" href="#edac-summary"><?php esc_html_e( 'Summary', 'accessibility-checker' ); ?></a></li>
-		<li class="edac-tab"><a role="button" class="edac-tab-details" href="#edac-details"><?php esc_html_e( 'Details', 'accessibility-checker' ); ?></a></li>
-		<li class="edac-tab"><a role="button" class="edac-tab-readability" href="#edac-readability"><?php esc_html_e( 'Readability', 'accessibility-checker' ); ?></a></li>
+	<p id="edac-tabs-label" class="screen-reader-text"><?php esc_html_e( 'Accessibility Checker issues panels', 'accessibility-checker' ); ?></p>
+	<ul class="edac-tabs" role="tablist" aria-labelledby="edac-tabs-label">
+		<li class="edac-tab">
+			<button
+				role="tab"
+				aria-selected="true"
+				aria-controls="edac-summary-panel"
+				id="edac-summary-tab"
+				class="active"
+			>
+				<?php esc_html_e( 'Summary', 'accessibility-checker' ); ?>
+			</button>
+		</li>
+		<li class="edac-tab">
+			<button
+				role="tab"
+				aria-selected="false"
+				aria-controls="edac-details-panel"
+				id="edac-details-tab"
+			>
+				<?php esc_html_e( 'Details', 'accessibility-checker' ); ?>
+			</button>
+		</li>
+		<li class="edac-tab">
+			<button
+				role="tab"
+				aria-selected="false"
+				aria-controls="edac-readability-panel"
+				id="edac-readability-tab"
+			>
+				<?php esc_html_e( 'Readability', 'accessibility-checker' ); ?>
+			</button>
+		</li>
 	</ul>
-	<div class="edac-panel edac-summary" id="edac-summary"></div>
-	<div class="edac-panel edac-details hidden" id="edac-details"></div>
-	<div class="edac-panel edac-readability hidden" id="edac-readability"></div>
+	<div
+		role="tabpanel"
+		aria-labelledby="edac-summary-tab"
+		id="edac-summary-panel"
+		class="edac-panel edac-summary"
+	></div>
+	<div
+		role="tabpanel"
+		aria-labelledby="edac-details-tab"
+		id="edac-details-panel"
+		class="edac-panel edac-details"
+		style="display: none;"
+	></div>
+	<div
+		role="tabpanel"
+		aria-labelledby="edac-readability-tab"
+		id="edac-readability-panel"
+		class="edac-panel edac-readability"
+		style="display: none;"
+	></div>
 </div>
-

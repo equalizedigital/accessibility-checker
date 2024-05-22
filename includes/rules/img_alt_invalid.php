@@ -16,18 +16,18 @@ function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore -- $post
 
 	$dom = $content['html'];
 
-	$starts_with_keywords = array(
+	$starts_with_keywords = [
 		__( 'graphic of', 'accessibility-checker' ),
 		__( 'bullet', 'accessibility-checker' ),
 		__( 'image of', 'accessibility-checker' ),
-	);
+	];
 
-	$ends_with_keywords = array(
+	$ends_with_keywords = [
 		__( 'image', 'accessibility-checker' ),
 		__( 'graphic', 'accessibility-checker' ),
-	);
+	];
 
-	$image_extensions = array(
+	$image_extensions = [
 		__( '.apng', 'accessibility-checker' ),
 		__( '.bmp', 'accessibility-checker' ),
 		__( '.gif', 'accessibility-checker' ),
@@ -43,9 +43,9 @@ function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore -- $post
 		__( '.tif', 'accessibility-checker' ),
 		__( '.tiff', 'accessibility-checker' ),
 		__( '.webp', 'accessibility-checker' ),
-	);
+	];
 
-	$keywords = array(
+	$keywords = [
 		__( 'graphic of', 'accessibility-checker' ),
 		__( 'bullet', 'accessibility-checker' ),
 		__( 'image of', 'accessibility-checker' ),
@@ -70,9 +70,9 @@ function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore -- $post
 		__( 'diagram', 'accessibility-checker' ),
 		__( 'graph', 'accessibility-checker' ),
 		__( '*', 'accessibility-checker' ),
-	);
+	];
 
-	$contains = array(
+	$contains = [
 		'_',
 		'img',
 		'jpg',
@@ -81,9 +81,9 @@ function edac_rule_img_alt_invalid( $content, $post ) { // phpcs:ignore -- $post
 		'png',
 		'svg',
 		'webp',
-	);
+	];
 
-	$errors = array();
+	$errors = [];
 
 	$images = $dom->find( 'img' );
 	if ( $images ) {

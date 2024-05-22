@@ -55,7 +55,7 @@ use EDAC\Admin\Welcome_Page;
 							wp_kses(
 								// translators: %s: path to settings page.
 								__( 'On the <a href="%s">Settings Page</a>, choose which post types you want to scan.', 'accessibility-checker' ),
-								array( 'a' => array( 'href' => array() ) )
+								[ 'a' => [ 'href' => [] ] ]
 							),
 							esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) )
 						);

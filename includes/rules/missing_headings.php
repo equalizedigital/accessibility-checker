@@ -30,6 +30,6 @@ function edac_rule_missing_headings( $content, $post ) { // phpcs:ignore -- $con
 
 	if ( 0 === $headings ) {
 		$errorcode = __( 'Missing headings - Post ID: ', 'accessibility-checker' ) . $post->ID;
-		return array( $errorcode );
+		return [ $errorcode ];
 	}
 }

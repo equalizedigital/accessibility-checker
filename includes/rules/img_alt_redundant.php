@@ -18,7 +18,7 @@ function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore -- $po
 
 	$content = $content['html'];
 	$dom     = $content;
-	$errors  = array();
+	$errors  = [];
 
 	/*
 	 * validate redundant alt attributes on images

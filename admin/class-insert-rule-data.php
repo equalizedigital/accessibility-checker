@@ -43,7 +43,7 @@ class Insert_Rule_Data {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 
 		// set up rule data array.
-		$rule_data = array(
+		$rule_data = [
 			'postid'        => $post->ID,
 			'siteid'        => get_current_blog_id(),
 			'type'          => $post->post_type,
@@ -57,7 +57,7 @@ class Insert_Rule_Data {
 			'ignre_date'    => null,
 			'ignre_comment' => null,
 			'ignre_global'  => 0,
-		);
+		];
 
 		// return if revision.
 		if ( 'revision' === $rule_data['type'] ) {
@@ -110,13 +110,21 @@ class Insert_Rule_Data {
 		// Insert new records.
 		if ( ! $results ) {
 
-			// filter post types.
+			/**
+			 * Filter the rule data before inserting it into the database.
+			 *
+			 * This data will be sanitized after the filter is applied.
+			 *
+			 * @since 1.4.0
+			 *
+			 * @param array $rule_data The rule data.
+			 */
 			$rule_data = apply_filters( 'edac_filter_insert_rule_data', $rule_data );
 
 			// Sanitize rule data since it is filtered, and we can't be sure
 			// the data is still as valid as it was when it was first set.
 			// Sanitize the filtered data.
-			$rule_data_sanitized = array(
+			$rule_data_sanitized = [
 				'postid'        => absint( $rule_data['postid'] ),
 				'siteid'        => absint( $rule_data['siteid'] ),
 				'type'          => sanitize_text_field( $rule_data['type'] ),
@@ -130,7 +138,7 @@ class Insert_Rule_Data {
 				'ignre_date'    => isset( $rule_data['ignre_date'] ) ? sanitize_text_field( $rule_data['ignre_date'] ) : null,
 				'ignre_comment' => isset( $rule_data['ignre_comment'] ) ? sanitize_text_field( $rule_data['ignre_comment'] ) : null,
 				'ignre_global'  => absint( $rule_data['ignre_global'] ),
-			);
+			];
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Using direct query for adding data to database.
 			$wpdb->insert( $table_name, $rule_data_sanitized );

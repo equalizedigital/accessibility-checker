@@ -18,14 +18,14 @@ class Information {
 	 */
 	public function __construct() {
 	}
-	
+
 	/**
 	 * Initialize class hooks.
 	 *
 	 * @return void
 	 */
 	public function init_hooks() {
-		add_filter( 'debug_information', array( $this, 'get_data' ) );
+		add_filter( 'debug_information', [ $this, 'get_data' ] );
 	}
 
 	/**
@@ -46,9 +46,9 @@ class Information {
 	 * @return array
 	 */
 	private function get_edac_data() {
-		$collectors = array(
+		$collectors = [
 			'edac_free' => new Free(),
-		);
+		];
 
 		if ( defined( 'EDACP_VERSION' ) ) {
 			$collectors['edac_pro'] = new Pro();
@@ -58,12 +58,20 @@ class Information {
 			$collectors['edac_audit_history'] = new Audit_History();
 		}
 
-		$information = array();
+		$information = [];
 		foreach ( $collectors as $key => $class ) {
 			$information[ $key ] = $class->get();
 		}
 
-		// Allow extensions to add their own debug information that's specific to EDAC.
+		/**
+		 * Filter the debug information.
+		 *
+		 * Allows extensions to add their own debug information that's specific to EDAC.
+		 *
+		 * @since 1.6.10
+		 *
+		 * @param array $information The debug information.
+		 */
 		return apply_filters( 'edac_debug_information', $information );
 	}
 }

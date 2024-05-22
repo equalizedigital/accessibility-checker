@@ -22,14 +22,14 @@ function edac_rule_empty_button( $content, $post ) { // phpcs:ignore -- $post is
 	$dom     = $content['html'];
 	$buttons = $dom->find( 'button, [role=button]' );
 	$inputs  = $dom->find( 'input[type=button], input[type=submit], input[type=reset]' );
-	$errors  = array();
+	$errors  = [];
 
 	// check buttons.
 	foreach ( $buttons as $button ) {
 		if (
-			str_ireplace( array( ' ', '&nbsp;', '-', '_' ), '', trim( $button->plaintext ) ) === ''
-			&& $button->getAttribute( 'aria-label' ) === ''
-			&& $button->getAttribute( 'title' ) === ''
+			empty( str_ireplace( [ ' ', '&nbsp;', '-', '_' ], '', trim( $button->plaintext ) ) )
+			&& empty( $button->getAttribute( 'aria-label' ) )
+			&& empty( $button->getAttribute( 'title' ) )
 		) {
 
 			$error_code = $button->outertext;
@@ -39,13 +39,13 @@ function edac_rule_empty_button( $content, $post ) { // phpcs:ignore -- $post is
 
 			if (
 				'' !== $error_code
-				&& ( ! isset( $image[0] ) || trim( $image[0]->getAttribute( 'alt' ) ) === '' )
-				&& ( ! isset( $input[0] ) || trim( $input[0]->getAttribute( 'value' ) ) === '' )
+				&& ( ! isset( $image[0] ) || empty( trim( $image[0]->getAttribute( 'alt' ) ) ) )
+				&& ( ! isset( $input[0] ) || empty( trim( $input[0]->getAttribute( 'value' ) ) ) )
 				&& (
 					! isset( $i[0] ) ||
 					(
-						( trim( $i[0]->getAttribute( 'title' ) ) === '' ) &&
-						( trim( $i[0]->getAttribute( 'aria-label' ) ) === '' )
+						( empty( trim( $i[0]->getAttribute( 'title' ) ) ) ) &&
+						( empty( trim( $i[0]->getAttribute( 'aria-label' ) ) ) )
 					)
 				)
 			) {
@@ -56,7 +56,7 @@ function edac_rule_empty_button( $content, $post ) { // phpcs:ignore -- $post is
 
 	// check inputs.
 	foreach ( $inputs as $input ) {
-		if ( $input->getAttribute( 'value' ) === '' ) {
+		if ( empty( $input->getAttribute( 'value' ) ) ) {
 			$errors[] = $input->outertext;
 		}
 	}

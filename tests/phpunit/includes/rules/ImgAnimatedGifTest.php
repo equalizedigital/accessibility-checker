@@ -51,7 +51,7 @@ class ImgAnimatedGifTest extends WP_UnitTestCase {
 	public function testRuleWithAnimatedGifInContent() {
 		$html    = '<img src="' . EDAC_TEST_ASSETS_DIR . 'animated.gif">';
 		$dom     = str_get_html( $html );
-		$content = array( 'html' => $dom );
+		$content = [ 'html' => $dom ];
 		$post    = new stdClass();
 		$errors  = edac_rule_img_animated_gif( $content, $post );
 		$this->assertNotEmpty( $errors );
@@ -63,7 +63,7 @@ class ImgAnimatedGifTest extends WP_UnitTestCase {
 	public function testRuleWithStaticGifInContent() {
 		$html    = '<img src="' . EDAC_TEST_ASSETS_DIR . 'static.gif">';
 		$dom     = str_get_html( $html );
-		$content = array( 'html' => $dom );
+		$content = [ 'html' => $dom ];
 		$post    = new stdClass();
 		$errors  = edac_rule_img_animated_gif( $content, $post );
 		$this->assertEmpty( $errors );
@@ -75,7 +75,7 @@ class ImgAnimatedGifTest extends WP_UnitTestCase {
 	public function testRuleWithAnimatedWebpInContent() {
 		$html    = '<img src="' . EDAC_TEST_ASSETS_DIR . 'animated.webp">';
 		$dom     = str_get_html( $html );
-		$content = array( 'html' => $dom );
+		$content = [ 'html' => $dom ];
 		$post    = new stdClass();
 		$errors  = edac_rule_img_animated_gif( $content, $post );
 		$this->assertNotEmpty( $errors );
@@ -88,7 +88,7 @@ class ImgAnimatedGifTest extends WP_UnitTestCase {
 
 		$html    = '<img src="' . EDAC_TEST_ASSETS_DIR . 'static.webp">';
 		$dom     = str_get_html( $html );
-		$content = array( 'html' => $dom );
+		$content = [ 'html' => $dom ];
 		$post    = new stdClass();
 		$errors  = edac_rule_img_animated_gif( $content, $post );
 		$this->assertEmpty( $errors );

@@ -15,8 +15,8 @@
 function edac_rule_img_alt_empty( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$tags   = array( 'img', 'input' );
-	$errors = array();
+	$tags   = [ 'img', 'input' ];
+	$errors = [];
 
 	if ( $tags ) {
 		foreach ( $tags as $tag ) {
@@ -27,13 +27,13 @@ function edac_rule_img_alt_empty( $content, $post ) { // phpcs:ignore -- $post i
 						isset( $element )
 						&& 'img' === $element->tag
 						&& $element->hasAttribute( 'alt' )
-						&& $element->getAttribute( 'alt' ) === ''
+						&& (string) $element->getAttribute( 'alt' ) === ''
 						&& $element->getAttribute( 'role' ) !== 'presentation'
 					) || (
 						'input' === $element->tag
 						&& $element->hasAttribute( 'alt' )
 						&& $element->getAttribute( 'type' ) === 'image'
-						&& $element->getAttribute( 'alt' ) === ''
+						&& (string) $element->getAttribute( 'alt' ) === ''
 					)
 				) {
 

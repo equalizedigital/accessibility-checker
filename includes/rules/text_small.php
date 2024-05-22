@@ -14,12 +14,12 @@
  */
 function edac_rule_text_small( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
-	$fontsearchpatterns   = array();
+	$fontsearchpatterns   = [];
 	$fontsearchpatterns[] = '|font\-size:\s?([\d]+)pt|i';
 	$fontsearchpatterns[] = '|font\-size:\s?([\d]+)px|i';
 	$fontsearchpatterns[] = '|font:\s?[\w\s\d*\s]*([\d]+)pt|i';
 	$fontsearchpatterns[] = '|font:\s?[\w\s\d*\s]*([\d]+)px|i';
-	$errors               = array();
+	$errors               = [];
 
 	/*
 	 * check for inline font-size styles
@@ -78,7 +78,7 @@ function edac_rule_text_small( $content, $post ) { // phpcs:ignore -- $post is r
 function ac_css_small_text_check( $content ) {
 
 	$dom        = $content['html'];
-	$errors     = array();
+	$errors     = [];
 	$error_code = '';
 	$css_array  = $content['css_parsed'];
 
