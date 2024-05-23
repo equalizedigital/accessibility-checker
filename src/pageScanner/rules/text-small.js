@@ -12,7 +12,7 @@ export default {
 		// only run checks on elements with text content
 		return element.textContent.trim().length;
 	},
-	tags: [ 'cat.text' ],
+	tags: [ 'wcag2aaa', 'wcag144', 'wcag148', 'cat.text' ],
 	metadata: {
 		description: 'Text elements should not be too small.',
 	},
