@@ -82,7 +82,7 @@ const injectIframe = ( previewUrl, postID ) => {
 			// inject the scanner app.
 			const scannerScriptElement = iframeDocument.createElement( 'script' );
 			// eslint-disable-next-line camelcase
-			scannerScriptElement.src = edac_editor_app.baseurl + '/build/pageScanner.bundle.js';
+			scannerScriptElement.src = edac_editor_app.baseurl + '/build/pageScanner.bundle.js?v=' + edac_editor_app.version;
 			iframeDocument.head.appendChild( scannerScriptElement );
 		}
 	} );
