@@ -262,7 +262,7 @@ class REST_Api {
 
 						// This rule is one that we've included in our js ruleset.
 
-						$html   = $violation['html'];
+						$html   = apply_filters( 'edac_filter_js_violation_html', $violation['html'], $rule_id, $violation );
 						$impact = $violation['impact']; // by default, use the impact setting from the js rule.
 
 						//phpcs:ignore Generic.Commenting.Todo.TaskFound
