@@ -12,12 +12,12 @@ export default {
 			return true;
 		}
 
-		// if there are child nodes then it passes.
-		if ( node.childNodes.length ) {
+		// Pass if there are child nodes and the first child is not a text node (notType of 3).
+		if ( node.childNodes.length && node.childNodes[ 0 ].nodeType !== 3 ) {
 			return true;
 		}
 
-		// if there is text content then it passes, false otherwise.
+		// If there is text content then it passes.
 		return node.textContent.trim() !== '';
 	},
 };
