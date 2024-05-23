@@ -76,7 +76,7 @@ return [
 	],
 	[
 		'title'     => esc_html__( 'Empty Paragraph Tag', 'accessibility-checker' ),
-		'info_url'  => 'https://a11ychecker.com/',
+		'info_url'  => 'https://equalizedigital.com/accessibility-checker/empty-paragraph-tag/',
 		'slug'      => 'empty_paragraph_tag',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block.', 'accessibility-checker' ),
