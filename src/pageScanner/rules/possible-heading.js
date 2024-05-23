@@ -1,6 +1,10 @@
 export default {
 	id: 'possible_heading',
 	selector: 'p',
+	matches: ( node ) => {
+		// not inside a blockquote, figcaption or table cell
+		return ! node.closest( 'blockquote, figcaption, td' );
+	},
 	excludeHidden: false,
 	tags: [
 		'cat.text',
