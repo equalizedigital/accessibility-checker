@@ -4,7 +4,7 @@
  * Text elements should not be justified because it interferes with readability.
  */
 
-const TEXT_JUSTIFIED_CHECK_THRESHOLD = 500;
+const TEXT_JUSTIFIED_CHECK_THRESHOLD = 200;
 export default {
 	id: 'text_justified',
 	selector: 'p, div, td',
