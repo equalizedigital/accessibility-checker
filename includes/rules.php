@@ -106,6 +106,7 @@ return [
 			'<code>&lt;h1&gt;</code>',
 			'<code>&lt;h6&gt;</code>'
 		),
+		'viewable'  => false,
 	],
 	[
 		'title'     => esc_html__( 'Text Justified', 'accessibility-checker' ),
@@ -435,5 +436,6 @@ return [
 		'summary'   => esc_html__( 'Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier.', 'accessibility-checker' ),
 		'ruleset'   => 'js',
 		'combines'  => [ 'meta-viewport' ],
+		'viewable'  => false,
 	],
 ];
