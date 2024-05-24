@@ -1,5 +1,5 @@
 export const fontSizeInPx = ( node ) => {
-	if ( ! node || node.nodeType !== Node.ELEMENT_NODE ) {
+	if ( ! node || node.nodeType !== Node.ELEMENT_NODE )  {
 		return 0;
 	}
 
