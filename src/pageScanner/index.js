@@ -60,6 +60,8 @@ const scan = async (
 				values: [
 					'color_contrast_failure',
 					'underlined_text',
+					'blink',
+					'marquee',
 					'meta-viewport',
 					textJustified.id,
 				],

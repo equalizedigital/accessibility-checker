@@ -199,6 +199,7 @@ class REST_Api {
 			if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
 				$js_rule_ids[] = $rule['slug'];
 
+				// Some rules can be a grouping of other checks with different ids. This tracks those combined check IDs for later mapping.
 				if ( array_key_exists( 'combines', $rule ) && ! empty( $rule['combines'] ) ) {
 					foreach ( $rule['combines'] as $combine_rule_id ) {
 						$combined_rule_ids[ $combine_rule_id ] = $rule['slug'];
@@ -231,6 +232,7 @@ class REST_Api {
 				foreach ( $violations as $violation ) {
 					$rule_id = $violation['ruleId'];
 
+					// If this rule is a combined rule then map it to the actual reporting rule ID.
 					$actual_rule_id = array_key_exists( $rule_id, $combined_rule_ids ) ? $combined_rule_ids[ $rule_id ] : $rule_id;
 
 					if ( in_array( $actual_rule_id, $js_rule_ids, true ) ) {
