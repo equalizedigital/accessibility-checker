@@ -306,6 +306,10 @@ class REST_Api {
 			// store a record of this scan in the post's meta.
 			update_post_meta( $post_id, '_edac_post_checked_js', time() );
 
+			if ( true === $request['isFailure'] ) {
+				update_post_meta( $post_id, '_edac_post_checked_js_failure', time() );
+			}
+
 			return new \WP_REST_Response(
 				[
 					'success'   => true,

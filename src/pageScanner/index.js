@@ -6,6 +6,8 @@ import colorContrastFailure from './rules/color-contrast-failure';
 import underlinedText from './rules/underlined-text';
 import elementWithUnderline from './checks/element-with-underline';
 import elementIsAUTag from './checks/element-is-u-tag';
+import textJustified from './rules/text-justified';
+import textIsJustified from './checks/text-is-justified';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -37,14 +39,16 @@ const scan = async (
 			reporter: 'raw',
 
 			rules: [
-				// customRule1,
+				//customRule1,
 				colorContrastFailure,
 				underlinedText,
+				textJustified,
 			],
 			checks: [
 				//alwaysFail,
 				elementIsAUTag,
 				elementWithUnderline,
+				textIsJustified,
 			],
 			iframes: false,
 
@@ -58,6 +62,8 @@ const scan = async (
 					'underlined_text',
 					'blink',
 					'marquee',
+					'meta-viewport',
+					textJustified.id,
 				],
 			},
 
