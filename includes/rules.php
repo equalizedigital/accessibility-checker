@@ -75,6 +75,14 @@ return [
 		),
 	],
 	[
+		'title'     => esc_html__( 'Empty Paragraph Tag', 'accessibility-checker' ),
+		'info_url'  => 'https://a11ychecker.com/help7870',
+		'slug'      => 'empty_paragraph_tag',
+		'rule_type' => 'warning',
+		'summary'   => esc_html__( 'An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+	],
+	[
 		'title'     => esc_html__( 'iFrame Missing Title', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1953',
 		'slug'      => 'iframe_missing_title',
@@ -104,13 +112,8 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1980',
 		'slug'      => 'text_justified',
 		'rule_type' => 'warning',
-		'summary'   => sprintf(
-			// translators: %s is <code>&lt;p&gt;</code>, %s is <code>&lt;div&gt;</code>, %s is <code>&lt;td&gt;</code>.
-			esc_html__( 'A Text Justified warning shows up in Accessibility Checker when the text on your post or page, either a %1$s, %2$s, or %3$s element, with more than 500 characters has been styled with a justified alignment (text-align:justify). To fix this warning, you will need to remove the justified styling from the specified text elements.', 'accessibility-checker' ),
-			'<code>&lt;p&gt;</code>',
-			'<code>&lt;div&gt;</code>',
-			'<code>&lt;td&gt;</code>'
-		),
+		'summary'   => esc_html__( 'A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Link Opens New Window or Tab', 'accessibility-checker' ),
@@ -315,6 +318,7 @@ return [
 		'slug'      => 'text_small',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Possible Heading', 'accessibility-checker' ),
@@ -336,6 +340,8 @@ return [
 			'<code>&lt;marquee&gt;</code>',
 			'<code>text-decoration: blink</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [ 'blink', 'marquee' ],
 	],
 	[
 		'title'     => esc_html__( 'Insufficient Color Contrast', 'accessibility-checker' ),
@@ -420,5 +426,14 @@ return [
 			'<code>role="button"</code>',
 			'<code>&lt;a&gt;</code>'
 		),
+	],
+	[
+		'title'     => esc_html__( 'Zooming and scaling is disabled', 'accessibility-checker' ),
+		'info_url'  => 'https://a11ychecker.com/help###',
+		'slug'      => 'meta_viewport',
+		'rule_type' => 'error',
+		'summary'   => esc_html__( 'Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+		'combines'  => [ 'meta-viewport' ],
 	],
 ];

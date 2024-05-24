@@ -8,6 +8,12 @@ import elementWithUnderline from './checks/element-with-underline';
 import elementIsAUTag from './checks/element-is-u-tag';
 import possibleHeading from './rules/possible-heading';
 import paragraphStyledAsHeader from './checks/paragraph-styled-as-header';
+import emptyParagraph from './rules/empty-paragraph';
+import paragraphNotEmpty from './checks/paragraph-not-empty';
+import textSmall from './rules/text-small';
+import textSizeTooSmall from './checks/text-size-too-small';
+import textJustified from './rules/text-justified';
+import textIsJustified from './checks/text-is-justified';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -39,16 +45,22 @@ const scan = async (
 			reporter: 'raw',
 
 			rules: [
-				// customRule1,
+				//customRule1,
 				colorContrastFailure,
 				underlinedText,
 				possibleHeading,
+				emptyParagraph,
+				textSmall,
+				textJustified,
 			],
 			checks: [
 				//alwaysFail,
 				elementIsAUTag,
 				elementWithUnderline,
 				paragraphStyledAsHeader,
+				paragraphNotEmpty,
+				textSizeTooSmall,
+				textIsJustified,
 			],
 			iframes: false,
 
@@ -60,7 +72,15 @@ const scan = async (
 				values: [
 					'color_contrast_failure',
 					'underlined_text',
-					possibleHeading.id,
+					'blink',
+					'marquee',
+					'meta-viewport',
+					textJustified.id,
+          textSmall.id,
+          colorContrastFailure.id,
+					underlinedText.id,
+					emptyParagraph.id,
+          possibleHeading.id,
 				],
 			},
 
