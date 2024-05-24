@@ -8,6 +8,10 @@ import elementWithUnderline from './checks/element-with-underline';
 import elementIsAUTag from './checks/element-is-u-tag';
 import emptyParagraph from './rules/empty-paragraph';
 import paragraphNotEmpty from './checks/paragraph-not-empty';
+import textSmall from './rules/text-small';
+import textSizeTooSmall from './checks/text-size-too-small';
+import textJustified from './rules/text-justified';
+import textIsJustified from './checks/text-is-justified';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -43,12 +47,16 @@ const scan = async (
 				colorContrastFailure,
 				underlinedText,
 				emptyParagraph,
+				textSmall,
+				textJustified,
 			],
 			checks: [
 				//alwaysFail,
 				elementIsAUTag,
 				elementWithUnderline,
 				paragraphNotEmpty,
+				textSizeTooSmall,
+				textIsJustified,
 			],
 			iframes: false,
 
@@ -58,7 +66,14 @@ const scan = async (
 			runOnly: {
 				type: 'rule',
 				values: [
-					colorContrastFailure.id,
+					'color_contrast_failure',
+					'underlined_text',
+					'blink',
+					'marquee',
+					'meta-viewport',
+					textJustified.id,
+          textSmall.id,
+          colorContrastFailure.id,
 					underlinedText.id,
 					emptyParagraph.id,
 				],
