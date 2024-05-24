@@ -6,6 +6,8 @@ import colorContrastFailure from './rules/color-contrast-failure';
 import underlinedText from './rules/underlined-text';
 import elementWithUnderline from './checks/element-with-underline';
 import elementIsAUTag from './checks/element-is-u-tag';
+import textSmall from './rules/text-small';
+import textSizeTooSmall from './checks/text-size-too-small';
 import textJustified from './rules/text-justified';
 import textIsJustified from './checks/text-is-justified';
 
@@ -42,12 +44,14 @@ const scan = async (
 				//customRule1,
 				colorContrastFailure,
 				underlinedText,
+				textSmall,
 				textJustified,
 			],
 			checks: [
 				//alwaysFail,
 				elementIsAUTag,
 				elementWithUnderline,
+				textSizeTooSmall,
 				textIsJustified,
 			],
 			iframes: false,
@@ -64,6 +68,7 @@ const scan = async (
 					'marquee',
 					'meta-viewport',
 					textJustified.id,
+          textSmall.id,
 				],
 			},
 
