@@ -6,6 +6,8 @@ import colorContrastFailure from './rules/color-contrast-failure';
 import underlinedText from './rules/underlined-text';
 import elementWithUnderline from './checks/element-with-underline';
 import elementIsAUTag from './checks/element-is-u-tag';
+import emptyParagraph from './rules/empty-paragraph';
+import paragraphNotEmpty from './checks/paragraph-not-empty';
 import textSmall from './rules/text-small';
 import textSizeTooSmall from './checks/text-size-too-small';
 import textJustified from './rules/text-justified';
@@ -44,6 +46,7 @@ const scan = async (
 				//customRule1,
 				colorContrastFailure,
 				underlinedText,
+				emptyParagraph,
 				textSmall,
 				textJustified,
 			],
@@ -51,6 +54,7 @@ const scan = async (
 				//alwaysFail,
 				elementIsAUTag,
 				elementWithUnderline,
+				paragraphNotEmpty,
 				textSizeTooSmall,
 				textIsJustified,
 			],
@@ -69,6 +73,9 @@ const scan = async (
 					'meta-viewport',
 					textJustified.id,
           textSmall.id,
+          colorContrastFailure.id,
+					underlinedText.id,
+					emptyParagraph.id,
 				],
 			},
 
