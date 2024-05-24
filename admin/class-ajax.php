@@ -415,7 +415,7 @@ class Ajax {
 
 						$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
 
-						if ( 'missing_headings' !== $rule['slug'] ) {
+						if ( ! isset( $rule['viewable'] ) || $rule['viewable'] ) {
 
 							$url = add_query_arg(
 								[
