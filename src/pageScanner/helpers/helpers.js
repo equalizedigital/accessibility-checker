@@ -3,5 +3,6 @@ export const fontSizeInPx = ( node ) => {
 		return 0;
 	}
 
-	return parseFloat( window.getComputedStyle( node ).fontSize );
+	const fontSize = parseFloat( window.getComputedStyle( node ).fontSize );
+	return fontSize instanceof Number ? fontSize : 0;
 };
