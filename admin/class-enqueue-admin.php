@@ -122,6 +122,7 @@ class Enqueue_Admin {
 							$post_id,
 							[ 'edac_pageScanner' => 1 ]
 						),
+						'version'    => EDAC_VERSION,
 					]
 				);
 
