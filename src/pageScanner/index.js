@@ -39,7 +39,7 @@ const scan = async (
 			reporter: 'raw',
 
 			rules: [
-				// customRule1,
+				//customRule1,
 				colorContrastFailure,
 				underlinedText,
 				textJustified,
@@ -60,6 +60,7 @@ const scan = async (
 				values: [
 					'color_contrast_failure',
 					'underlined_text',
+					'meta-viewport',
 					textJustified.id,
 				],
 			},
