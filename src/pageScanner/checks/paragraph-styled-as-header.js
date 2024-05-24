@@ -22,12 +22,12 @@ export default {
 	evaluate: ( node ) => {
 		const pixelSize = fontSizeInPx( node );
 
-		// long paragraphs or with size under 16px are unlikely to be headers.
+		// Long paragraphs or those with font size under 16px are unlikely to be headers.
 		if ( node.textContent.trim().length > 50 || pixelSize < 16 ) {
 			return false;
 		}
 
-		// paragraphs that are 20px or more are probably headers.
+		// Paragraphs that are 20px or more are probably headers.
 		if ( pixelSize >= 20 ) {
 			return true;
 		}
@@ -46,7 +46,7 @@ export default {
 			return true;
 		}
 
-		// didn't find anything indicating this is a possible header.
+		// Didn't find anything indicating this is a possible header.
 		return false;
 	},
 };
