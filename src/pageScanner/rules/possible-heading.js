@@ -7,7 +7,10 @@ export default {
 	},
 	excludeHidden: false,
 	tags: [
-		'cat.text',
+		'wcag2a',
+		'wcag131',
+		'wcag241',
+		'cat.semantics',
 	],
 	metadata: {
 		description: 'Headings should be used to convey the structure of the page, not styled paragraphs',
