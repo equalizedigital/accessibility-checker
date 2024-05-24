@@ -45,7 +45,7 @@ const scan = async (
 			reporter: 'raw',
 
 			rules: [
-				// customRule1,
+				//customRule1,
 				colorContrastFailure,
 				underlinedText,
 				possibleHeading,
@@ -57,9 +57,9 @@ const scan = async (
 				//alwaysFail,
 				elementIsAUTag,
 				elementWithUnderline,
-				textSizeTooSmall,
 				paragraphStyledAsHeader,
 				paragraphNotEmpty,
+				textSizeTooSmall,
 				textIsJustified,
 			],
 			iframes: false,

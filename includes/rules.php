@@ -76,7 +76,7 @@ return [
 	],
 	[
 		'title'     => esc_html__( 'Empty Paragraph Tag', 'accessibility-checker' ),
-		'info_url'  => 'https://equalizedigital.com/accessibility-checker/empty-paragraph-tag/',
+		'info_url'  => 'https://a11ychecker.com/help7870',
 		'slug'      => 'empty_paragraph_tag',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block.', 'accessibility-checker' ),
@@ -112,13 +112,7 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1980',
 		'slug'      => 'text_justified',
 		'rule_type' => 'warning',
-		'summary'   => sprintf(
-			// translators: %s is <code>&lt;p&gt;</code>, %s is <code>&lt;div&gt;</code>, %s is <code>&lt;td&gt;</code>.
-			esc_html__( 'A Text Justified warning shows up in Accessibility Checker when the text on your post or page, either a %1$s, %2$s, or %3$s element, with more than 500 characters has been styled with a justified alignment (text-align:justify). To fix this warning, you will need to remove the justified styling from the specified text elements.', 'accessibility-checker' ),
-			'<code>&lt;p&gt;</code>',
-			'<code>&lt;div&gt;</code>',
-			'<code>&lt;td&gt;</code>'
-		),
+		'summary'   => esc_html__( 'A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements.', 'accessibility-checker' ),
 		'ruleset'   => 'js',
 	],
 	[
