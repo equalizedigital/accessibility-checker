@@ -171,6 +171,17 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.13.0 =
+* Added: Meta Viewport zoom-able and scale-able check
+* Added: Empty Paragraph warning
+* Fixed: Properly determine possible headings with computed styles
+* Improved: Better detection of the underlined text
+* Improved: Better detection of small text
+* Improved: Better detection of justified text
+* Improved: Better detection of blink and marquee tags
+* Improved: No longer flagging GTM iframes as missing title since they are display: none and visibility: hidden
+* Enhancement: Do not show 'View on page' link to frontend when the issues cannot be viewed
+
 = 1.12.0 =
 * Fixed: Use the last generation time in summary widgets rather than last completed scan time
 * Improved: More accessible panels in the editor
