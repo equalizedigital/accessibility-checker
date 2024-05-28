@@ -41,7 +41,11 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1930',
 		'slug'      => 'img_linked_alt_missing',
 		'rule_type' => 'error',
-		'summary'   => esc_html__( 'A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as "image" or "graphic"), a file extension (such as .JPG), that may be describing a decorative image (such as "spacer" or "arrow"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank.', 'accessibility-checker' ),
+		'summary'   => sprintf(
+		// translators: %s is <code>alt=""</code>.
+			esc_html__( 'A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
+			'<code>alt=""</code>'
+		),
 	],
 	[
 		'title'     => esc_html__( 'Linked Image Empty Alternative Text', 'accessibility-checker' ),
@@ -59,7 +63,7 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1976',
 		'slug'      => 'img_alt_redundant',
 		'rule_type' => 'warning',
-		'summary'   => '',
+		'summary'   => esc_html__( 'Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions.', 'accessibility-checker' ),
 	],
 	[
 		'title'     => esc_html__( 'Incorrect Heading Order', 'accessibility-checker' ),
