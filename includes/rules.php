@@ -429,8 +429,8 @@ return [
 		),
 	],
 	[
-		'title'     => esc_html__( 'Zooming and scaling is disabled', 'accessibility-checker' ),
-		'info_url'  => 'https://a11ychecker.com/help###',
+		'title'     => esc_html__( 'Zooming and Scaling Disabled', 'accessibility-checker' ),
+		'info_url'  => 'https://a11ychecker.com/help7947',
 		'slug'      => 'meta_viewport',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier.', 'accessibility-checker' ),
