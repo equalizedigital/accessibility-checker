@@ -41,7 +41,11 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1930',
 		'slug'      => 'img_linked_alt_missing',
 		'rule_type' => 'error',
-		'summary'   => esc_html__( 'A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as "image" or "graphic"), a file extension (such as .JPG), that may be describing a decorative image (such as "spacer" or "arrow"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank.', 'accessibility-checker' ),
+		'summary'   => sprintf(
+		// translators: %s is <code>alt=""</code>.
+			esc_html__( 'A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
+			'<code>alt=""</code>'
+		),
 	],
 	[
 		'title'     => esc_html__( 'Linked Image Empty Alternative Text', 'accessibility-checker' ),
@@ -49,7 +53,7 @@ return [
 		'slug'      => 'img_linked_alt_empty',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %s is <code>alt=""</code>.
+		// translators: %s is <code>alt=""</code>.
 			esc_html__( 'A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
 			'<code>alt=""</code>'
 		),
@@ -59,7 +63,7 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1976',
 		'slug'      => 'img_alt_redundant',
 		'rule_type' => 'warning',
-		'summary'   => '',
+		'summary'   => esc_html__( 'Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions.', 'accessibility-checker' ),
 	],
 	[
 		'title'     => esc_html__( 'Incorrect Heading Order', 'accessibility-checker' ),
@@ -75,16 +79,22 @@ return [
 		),
 	],
 	[
+		'title'     => esc_html__( 'Empty Paragraph Tag', 'accessibility-checker' ),
+		'info_url'  => 'https://a11ychecker.com/help7870',
+		'slug'      => 'empty_paragraph_tag',
+		'rule_type' => 'warning',
+		'summary'   => esc_html__( 'An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+	],
+	[
 		'title'     => esc_html__( 'iFrame Missing Title', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1953',
 		'slug'      => 'iframe_missing_title',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
-			esc_html__( 'An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an Incorrect Heading Order error will be flagged because there is no %3$s tag between the H1 and H2. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels.', 'accessibility-checker' ),
-			'<code>&lt;h3&gt;</code>',
-			'<code>&lt;h1&gt;</code>',
-			'<code>&lt;h2&gt;</code>'
+			// translators: %1$s is <code>&lt;frame&gt;</code>.
+			esc_html__( 'An iFrame Missing title error means that one or more of the iFrames on your post or page does not have an accessible title describing the contents of the iFrame. An iFrame title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iFrame title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iFrame.', 'accessibility-checker' ),
+			'<code>&lt;iframe&gt;</code>',
 		),
 	],
 	[
@@ -98,19 +108,15 @@ return [
 			'<code>&lt;h1&gt;</code>',
 			'<code>&lt;h6&gt;</code>'
 		),
+		'viewable'  => false,
 	],
 	[
 		'title'     => esc_html__( 'Text Justified', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1980',
 		'slug'      => 'text_justified',
 		'rule_type' => 'warning',
-		'summary'   => sprintf(
-			// translators: %s is <code>&lt;p&gt;</code>, %s is <code>&lt;div&gt;</code>, %s is <code>&lt;td&gt;</code>.
-			esc_html__( 'A Text Justified warning shows up in Accessibility Checker when the text on your post or page, either a %1$s, %2$s, or %3$s element, with more than 500 characters has been styled with a justified alignment (text-align:justify). To fix this warning, you will need to remove the justified styling from the specified text elements.', 'accessibility-checker' ),
-			'<code>&lt;p&gt;</code>',
-			'<code>&lt;div&gt;</code>',
-			'<code>&lt;td&gt;</code>'
-		),
+		'summary'   => esc_html__( 'A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Link Opens New Window or Tab', 'accessibility-checker' ),
@@ -258,7 +264,7 @@ return [
 		'rule_type' => 'error',
 		'summary'   => sprintf(
 			// translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
-			esc_html__( 'A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to exisiting labels that are not connected to a field.', 'accessibility-checker' ),
+			esc_html__( 'A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field.', 'accessibility-checker' ),
 			'<code>&lt;input&gt;</code>',
 			'<code>&lt;label&gt;</code>',
 			'<code>for=""</code>'
@@ -278,7 +284,7 @@ return [
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
 			// translators: %s is <code>&lt;u&gt;</code>.
-			esc_html__( 'An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considerd a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases.', 'accessibility-checker' ),
+			esc_html__( 'An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases.', 'accessibility-checker' ),
 			'<code>&lt;u&gt;</code>'
 		),
 		'ruleset'   => 'js',
@@ -315,6 +321,7 @@ return [
 		'slug'      => 'text_small',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Possible Heading', 'accessibility-checker' ),
@@ -322,6 +329,7 @@ return [
 		'slug'      => 'possible_heading',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Blinking or Scrolling Content', 'accessibility-checker' ),
@@ -335,6 +343,8 @@ return [
 			'<code>&lt;marquee&gt;</code>',
 			'<code>text-decoration: blink</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [ 'blink', 'marquee' ],
 	],
 	[
 		'title'     => esc_html__( 'Insufficient Color Contrast', 'accessibility-checker' ),
@@ -365,7 +375,7 @@ return [
 		'rule_type' => 'error',
 		'summary'   => sprintf(
 			// translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
-			esc_html__( 'A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Lanaguage Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme.', 'accessibility-checker' ),
+			esc_html__( 'A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme.', 'accessibility-checker' ),
 			'<code>&lt;html&gt;</code>',
 			'<code>lang</code>',
 			'<code>xml:lang</code>'
@@ -383,14 +393,14 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help4414',
 		'slug'      => 'video_present',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibilty. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
 	],
 	[
 		'title'     => esc_html__( 'A Slider is Present', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help3264',
 		'slug'      => 'slider_present',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibilty. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
 	],
 	[
 		'title'     => esc_html__( 'Missing Title', 'accessibility-checker' ),
@@ -419,5 +429,15 @@ return [
 			'<code>role="button"</code>',
 			'<code>&lt;a&gt;</code>'
 		),
+	],
+	[
+		'title'     => esc_html__( 'Zooming and Scaling Disabled', 'accessibility-checker' ),
+		'info_url'  => 'https://a11ychecker.com/help7947',
+		'slug'      => 'meta_viewport',
+		'rule_type' => 'error',
+		'summary'   => esc_html__( 'Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+		'combines'  => [ 'meta-viewport' ],
+		'viewable'  => false,
 	],
 ];

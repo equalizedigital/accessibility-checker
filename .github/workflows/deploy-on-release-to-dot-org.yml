@@ -39,8 +39,6 @@ jobs:
       - name: WordPress plugin deploy
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
-        with:
-          dry-run: true # exists to prevent accidental deploys during testing
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
