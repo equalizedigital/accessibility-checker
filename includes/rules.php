@@ -92,11 +92,9 @@ return [
 		'slug'      => 'iframe_missing_title',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
-			esc_html__( 'An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an Incorrect Heading Order error will be flagged because there is no %3$s tag between the H1 and H2. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels.', 'accessibility-checker' ),
-			'<code>&lt;h3&gt;</code>',
-			'<code>&lt;h1&gt;</code>',
-			'<code>&lt;h2&gt;</code>'
+			// translators: %1$s is <code>&lt;frame&gt;</code>.
+			esc_html__( 'An iFrame Missing title error means that one or more of the iFrames on your post or page does not have an accessible title describing the contents of the iFrame. An iFrame title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iFrame title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iFrame.', 'accessibility-checker' ),
+			'<code>&lt;iframe&gt;</code>',
 		),
 	],
 	[
