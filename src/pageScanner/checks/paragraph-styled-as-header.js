@@ -40,9 +40,15 @@ export default {
 		const fontStyle = style.getPropertyValue( 'font-style' );
 		const isItalic = [ 'italic', 'oblique' ].includes( fontStyle );
 
-		const hasBoldOrItalicTag = node.querySelector( 'b, strong, i, em' ) !== null;
+		let wrappedByBoldOrItalicTag = false;
+		const boldOrItalicTags = node.querySelectorAll( 'b, strong, i, em' );
+		boldOrItalicTags.forEach( ( tag ) => {
+			if ( tag.textContent === node.textContent ) {
+				wrappedByBoldOrItalicTag = true;
+			}
+		} );
 
-		if ( isBold || isItalic || hasBoldOrItalicTag ) {
+		if ( isBold || isItalic || wrappedByBoldOrItalicTag ) {
 			return true;
 		}
 
