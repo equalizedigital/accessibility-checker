@@ -255,7 +255,7 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 	foreach ( $rules as $rule ) {
 		if ( 'js' === $ruleset && isset( $rule['ruleset'] ) && 'js' === $rule['ruleset'] ) {
 			$rule_slugs[] = $rule['slug'];
-		} elseif ( 'js' !== $ruleset ) {
+		} elseif ( 'js' !== $ruleset && ( ! isset( $rule['ruleset'] ) || 'js' !== $rule['ruleset'] ) ) {
 			$rule_slugs[] = $rule['slug'];
 		}
 	}
