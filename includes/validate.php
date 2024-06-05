@@ -250,16 +250,19 @@ function edac_validate( $post_ID, $post, $action ) {
 function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php' ) {
 	global $wpdb;
 
-	$rules      = edac_register_rules();
-	$rule_slugs = [];
+	$rules          = edac_register_rules();
+	$js_rule_slugs  = [];
+	$php_rule_slugs = [];
+	// Separate the JS rules and the PHP rules.
 	foreach ( $rules as $rule ) {
-		if ( 'js' === $ruleset && isset( $rule['ruleset'] ) && 'js' === $rule['ruleset'] ) {
-			$rule_slugs[] = $rule['slug'];
-		} elseif ( 'js' !== $ruleset && ( ! isset( $rule['ruleset'] ) || 'js' !== $rule['ruleset'] ) ) {
-			$rule_slugs[] = $rule['slug'];
+		if ( isset( $rule['ruleset'] ) && 'js' === $rule['ruleset'] ) {
+			$js_rule_slugs[] = $rule['slug'];
+		} else {
+			$php_rule_slugs[] = $rule['slug'];
 		}
 	}
-
+	// Operate only on the slugs for the ruleset we are checking in this call.
+	$rule_slugs = 'js' === $ruleset ? $js_rule_slugs : $php_rule_slugs;
 	if ( 0 === count( $rule_slugs ) ) {
 		return;
 	}
