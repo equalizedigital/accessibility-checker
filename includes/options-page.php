@@ -111,6 +111,13 @@ function edac_register_setting() {
 		'edac_settings'
 	);
 
+	add_settings_section(
+		'edac_frontend_highlighter',
+		__( 'Frontend Accessibility Checker', 'accessibility-checker' ),
+		'edac_frontend_highlighter_section_cb',
+		'edac_settings'
+	);
+
 	// Add fields.
 	add_settings_field(
 		'edac_post_types',
@@ -184,6 +191,16 @@ function edac_register_setting() {
 		[ 'label_for' => 'edac_accessibility_statement_preview' ]
 	);
 
+	add_settings_field(
+		'edac_frontend_highlighter_position',
+		__( 'Frontend Accessibility Checker Position', 'accessibility-checker' ),
+		'edac_frontend_highlighter_position_cb',
+		'edac_settings',
+		'edac_frontend_highlighter',
+		[ 'label_for' => 'edac_frontend_highlighter_position' ]
+	);
+
+
 	// Register settings.
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
 	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_checkbox' );
@@ -208,6 +225,8 @@ function edac_register_setting() {
 	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', 'edac_sanitize_checkbox' );
 	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', 'edac_sanitize_checkbox' );
 	register_setting( 'edac_settings', 'edac_accessibility_policy_page', 'edac_sanitize_accessibility_policy_page' );
+
+	register_setting( 'edac_settings', 'edac_frontend_highlighter_position', 'edac_sanitize_frontend_highlighter_position' );
 }
 
 /**
@@ -230,6 +249,17 @@ function edac_general_cb() {
 		);
 	}
 
+	echo '</p>';
+}
+
+/**
+ * Render the copy used to explain the frontend highlighter section.
+ *
+ * @return void
+ */
+function edac_frontend_highlighter_section_cb() {
+	echo '<p>';
+	esc_html_e( 'Use the settings below to configure the frontend accessibility checker.', 'accessibility-checker' );
 	echo '</p>';
 }
 
@@ -286,6 +316,30 @@ function edac_simplified_summary_position_cb() {
 }
 
 /**
+ * Renders radio inputs for the frontend highlighter position option.
+ *
+ * @return void
+ */
+function edac_frontend_highlighter_position_cb() {
+	$position = get_option( 'edac_frontend_highlighter_position', 'right' );
+	?>
+		<fieldset>
+			<label>
+				<input type="radio" name="<?php echo 'edac_frontend_highlighter_position'; ?>" id="edac_frontend_highlighter_position" value="right" <?php checked( $position, 'right' ); ?>>
+				<?php esc_html_e( 'Bottom Right Corner (default)', 'accessibility-checker' ); ?>
+			</label>
+			<br>
+			<label>
+				<input type="radio" name="edac_frontend_highlighter_position" value="left" <?php checked( $position, 'left' ); ?>>
+				<?php esc_html_e( 'Bottom Left Corner', 'accessibility-checker' ); ?>
+			</label>
+			<br>
+		</fieldset>
+		<p class="edac-description"><?php echo esc_html__( 'Set where you would like the frontend accessibility checker to appear on the page.', 'accessibility-checker' ); ?></p>
+	<?php
+}
+
+/**
  * Sanitize the text position value before being saved to database
  *
  * @param array $position Position value.
@@ -296,6 +350,20 @@ function edac_sanitize_simplified_summary_position( $position ) {
 	if ( in_array( $position, [ 'before', 'after', 'none' ], true ) ) {
 		return $position;
 	}
+}
+
+/**
+ * Sanitize the frontend highlighter position value before being saved to database.
+ *
+ * @param string $position the position to save. Can only be 'right' or 'left'.
+ *
+ * @return string
+ */
+function edac_sanitize_frontend_highlighter_position( string $position ): string {
+	if ( in_array( $position, [ 'right', 'left' ], true ) ) {
+		return $position;
+	}
+	return 'right';
 }
 
 /**
