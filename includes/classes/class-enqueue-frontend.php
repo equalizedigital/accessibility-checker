@@ -78,12 +78,13 @@ class Enqueue_Frontend {
 				'edac-frontend-highlighter-app',
 				'edacFrontendHighlighterApp',
 				[
-					'postID'    => $post_id,
-					'nonce'     => wp_create_nonce( 'ajax-nonce' ),
-					'edacUrl'   => esc_url_raw( get_site_url() ),
-					'ajaxurl'   => admin_url( 'admin-ajax.php' ),
-					'loggedIn'  => is_user_logged_in(),
-					'appCssUrl' => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
+					'postID'         => $post_id,
+					'nonce'          => wp_create_nonce( 'ajax-nonce' ),
+					'edacUrl'        => esc_url_raw( get_site_url() ),
+					'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+					'loggedIn'       => is_user_logged_in(),
+					'appCssUrl'      => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
+					'widgetPosition' => get_option( 'edac_frontend_highlighter_position', 'right' ),
 				]
 			);
 
