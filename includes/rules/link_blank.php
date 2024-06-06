@@ -91,15 +91,11 @@ function edac_check_link_blank_text( $text ) {
 
 	$text = strtolower( $text );
 
-	// phrases.
 	$allowed_phrases = [
-		__( 'opens a new window', 'accessibility-checker' ),
-		__( 'opens a new tab', 'accessibility-checker' ),
-		__( 'opens new window', 'accessibility-checker' ),
-		__( 'opens new tab', 'accessibility-checker' ),
+		__( 'new window', 'accessibility-checker' ),
+		__( 'new tab', 'accessibility-checker' ),
 	];
 
-	// check if text contains any of the allowed phrases.
 	foreach ( $allowed_phrases as $allowed_phrase ) {
 		if ( strpos( $text, $allowed_phrase ) !== false ) {
 			return true;
