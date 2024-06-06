@@ -16,16 +16,16 @@ body {
 .edac-highlight {
 
     all: unset;
-   
+
     * {
         all: unset;
     }
 
-    
+
     display: inline-block;
     clear: both;
 
-   
+
     &-element-selected{
         outline: dashed 4px transparent !important;
         outline-offset: 5px !important;
@@ -33,7 +33,7 @@ body {
 
         &-min-width {
             min-width: 25px !important;
-            display: inline-block !important;    
+            display: inline-block !important;
         }
         &-min-height {
             min-height: 16px !important;
@@ -61,33 +61,40 @@ body {
         &-ignored{
             background: transparent url("../images/highlight-icon-ignored.svg") center center no-repeat !important;
         }
-       
+
         &-selected, &:hover, &:focus {
            outline: solid 5px rgba(0,208,255,.75) !important;
         }
     }
     &-panel{
-        
+
         * {
             all: unset;
         }
 
-        a:not(.edac-highlight-panel-description-reference) { 
-            all: revert !important; 
+        a:not(.edac-highlight-panel-description-reference) {
+            all: revert !important;
             color: $color-white !important;
         }
-       
+
         width: auto;
         max-width: 400px !important;
         position: fixed !important;
-        bottom: 15px !important;
-        right: 15px !important;
         z-index: 2147483647 !important;
-       
+		bottom: 15px !important;
+
+		&--right {
+			right: 15px !important;
+		}
+
+		&--left {
+			left: 15px !important;
+		}
+
         &-visible {
             width: 400px !important;
         }
-    
+
         &-toggle{
             width: 50px !important;
             height: 50px !important;
@@ -100,7 +107,7 @@ body {
             float: right !important;
             &:hover, &:focus {
                 cursor: pointer !important;
-                outline: solid 5px rgba(0,208,255,.75) !important; 
+                outline: solid 5px rgba(0,208,255,.75) !important;
             }
         }
         &-description {
@@ -276,7 +283,7 @@ body {
                     &:disabled {
                         display: none !important;
                     }
-                
+
                 }
             }
             .edac-highlight-disable-styles{
@@ -297,7 +304,7 @@ body {
             .edac-highlight-panel-controls-buttons {
              //   display: flex !important;
                 justify-content: space-around;
-                
+
                 button {
                     padding: 4px 7px !important;
                     margin-right: 0px !important;
@@ -305,13 +312,13 @@ body {
             }
 
         }
-   
+
         @media screen and (max-width: calc($extra-small-screen-width ) ) {
 
             .edac-highlight-panel-controls-buttons {
                 display: flex !important;
                 justify-content: space-around;
-                
+
                 button {
                     padding: 4px 7px !important;
                     margin-right: 0px !important;
@@ -319,7 +326,7 @@ body {
             }
 
         }
-   
+
     }
 }
 

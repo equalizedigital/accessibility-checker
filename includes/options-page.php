@@ -325,7 +325,7 @@ function edac_frontend_highlighter_position_cb() {
 	?>
 		<fieldset>
 			<label>
-				<input type="radio" name="<?php echo 'edac_frontend_highlighter_position'; ?>" id="edac_frontend_highlighter_position" value="right" <?php checked( $position, 'right' ); ?>>
+				<input type="radio" name="edac_frontend_highlighter_position" value="right" <?php checked( $position, 'right' ); ?>>
 				<?php esc_html_e( 'Bottom Right Corner (default)', 'accessibility-checker' ); ?>
 			</label>
 			<br>
