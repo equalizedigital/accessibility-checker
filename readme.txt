@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
-Tested up to: 6.5.3
-Stable tag: 1.13.0
+Tested up to: 6.5.4
+Stable tag: 1.13.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.13.1 =
+* Enhancement: Make the new window warning detection less rigid
+* Fixed: Avoid flagging possible headings when the entire text is not wrapped
+* Fixed: Allow JS checked rules to retain ignored state between scans
 
 = 1.13.0 =
 * Added: Meta Viewport zoom-able and scale-able check
