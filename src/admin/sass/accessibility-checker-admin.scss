@@ -802,11 +802,20 @@
 }
 
 .edac-settings {
+  max-width: 800px;
   .edac-description {
     font-size: 13px;
   }
 
+  .tab-content {
+    background-color: $color-white;
+    padding: 15px;
+    border: solid 1px $color-gray-mid;
+    border-top: 0;
+  }
+
   &-general {
+
     &.edac-show-pro-callout {
       @include breakpoint(md) {
         display: grid;
@@ -816,6 +825,23 @@
 
       @include breakpoint(lg) {
         grid-template-columns: fit-content(800px) 500px;
+      }
+    }
+
+    .form-table {
+      display: block;
+      margin-bottom: 50px;
+      tr {
+        border: solid 1px $color-gray-light;
+        margin-bottom: 10px;
+        display: block;
+      }
+      th {
+        padding: 10px;
+        background-color: $color-gray-lightest;
+      }
+      td {
+        padding: 10px;
       }
     }
   }
