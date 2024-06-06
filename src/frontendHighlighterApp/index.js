@@ -335,8 +335,10 @@ class AccessibilityCheckerHighlight {
 	 * This function adds a new div element to the DOM, which contains the accessibility checker panel.
 	 */
 	addHighlightPanel() {
+		const widgetPosition = edacFrontendHighlighterApp.widgetPosition || 'right';
+
 		const newElement = `
-			<div id="edac-highlight-panel" class="edac-highlight-panel">
+			<div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
 			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
 			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
 			<button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
