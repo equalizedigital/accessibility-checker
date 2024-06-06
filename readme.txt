@@ -171,6 +171,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.13.1 =
+* Enhancement: Make the new window warning detection less rigid
+* Fixed: Avoid flagging possible headings when the entire text is not wrapped
+* Fixed: Allow JS checked rules to retain ignored state between scans
+
 = 1.13.0 =
 * Added: Meta Viewport zoom-able and scale-able check
 * Added: Empty Paragraph warning
