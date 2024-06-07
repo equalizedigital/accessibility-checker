@@ -807,11 +807,11 @@
     font-size: 13px;
   }
 
-  .tab-content {
+  .tab-content:not( :has( .edacp-scan ) ) {
     background-color: $color-white;
     padding: 15px;
-    border: solid 1px $color-gray-mid;
-    border-top: 0;
+    border: solid 1px $color-gray-light;
+    margin-top: 20px;
   }
 
   &-general {
