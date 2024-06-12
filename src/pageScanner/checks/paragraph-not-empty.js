@@ -12,8 +12,8 @@ export default {
 			return true;
 		}
 
-		// Pass if there are child nodes and the first child is not a text node (notType of 3).
-		if ( node.childNodes.length && node.childNodes[ 0 ].nodeType !== 3 ) {
+		// Pass if there are child nodes and any child nodes are not text nodes (not Type of 3).
+		if ( node.childNodes.length && Array.from( node.childNodes ).some( ( child ) => child.nodeType !== 3 ) ) {
 			return true;
 		}
 
