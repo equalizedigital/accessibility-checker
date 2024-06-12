@@ -66,6 +66,15 @@ class Admin_Notices {
 			'accessibility-checker_page_accessibility_checker_settings',
 		];
 
+		/**
+		 * Filter the screens where admin notices should be removed.
+		 *
+		 * @since 1.14.0
+		 *
+		 * @param array $screens The screens where admin notices should be removed.
+		 */
+		$screens = apply_filters( 'edac_filter_remove_admin_notices_screens', $screens );
+
 		if ( in_array( $current_screen->id, $screens, true ) ) {
 			remove_all_actions( 'admin_notices' );
 			remove_all_actions( 'all_admin_notices' );
