@@ -61,6 +61,18 @@ class Enqueue_Frontend {
 		if (
 			is_customize_preview() ||
 			(
+				/**
+				 * Filter the visibility of the frontend highlighter.
+				 *
+				 * 'edac_filter_frontend_highlighter_visibility' is a filter that can be used
+				 * to allow users without edit permissions on the post to see the frontend
+				 * highlighter. You can use the filter to perform additional permission checks
+				 * on who can see it.
+				 *
+				 * @since 1.x.x
+				 *
+				 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
+				 */
 				! apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) &&
 				! ( $post_id && current_user_can( 'edit_post', $post_id ) )
 			)

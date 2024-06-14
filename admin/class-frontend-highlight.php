@@ -27,7 +27,21 @@ class Frontend_Highlight {
 	 */
 	public function init_hooks() {
 		add_action( 'wp_ajax_edac_frontend_highlight_ajax', [ $this, 'ajax' ] );
+
+		/**
+		 * Filter the visibility of the frontend highlighter.
+		 *
+		 * 'edac_filter_frontend_highlighter_visibility' is a filter that can be used
+		 * to allow users without edit permissions on the post to see the frontend
+		 * highlighter. You can use the filter to perform additional permission checks
+		 * on who can see it.
+		 *
+		 * @since 1.x.x
+		 *
+		 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
+		 */
 		if ( apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) ) {
+			// A nopriv endpoint allows logged-out users to access the endpoint.
 			add_action( 'wp_ajax_nopriv_edac_frontend_highlight_ajax', [ $this, 'ajax' ] );
 		}
 	}
