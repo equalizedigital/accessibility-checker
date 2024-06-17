@@ -802,11 +802,20 @@
 }
 
 .edac-settings {
+  max-width: 800px;
   .edac-description {
     font-size: 13px;
   }
 
+  .tab-content:not( :has( .edacp-scan ) ) {
+    background-color: $color-white;
+    padding: 15px;
+    border: solid 1px $color-gray-light;
+    margin-top: 20px;
+  }
+
   &-general {
+
     &.edac-show-pro-callout {
       @include breakpoint(md) {
         display: grid;
@@ -818,6 +827,23 @@
         grid-template-columns: fit-content(800px) 500px;
       }
     }
+
+    .form-table {
+      display: block;
+      margin-bottom: 50px;
+      tr {
+        border: solid 1px $color-gray-light;
+        margin-bottom: 10px;
+        display: block;
+      }
+      th {
+        padding: 10px;
+        background-color: $color-gray-lightest;
+      }
+      td {
+        padding: 10px;
+      }
+    }
   }
 
   .edac-pro-callout {
@@ -825,19 +851,6 @@
     border: 1px solid $color-gray-light;
     margin-top: 30px;
     max-width: 500px;
-  }
-
-  &-system-info {
-    textarea {
-      width: 100%;
-      background: none;
-      font-family: Menlo, Monaco, monospace;
-      display: block;
-      overflow: auto;
-      white-space: pre;
-      width: 800px;
-      height: 400px;
-    }
   }
 }
 
