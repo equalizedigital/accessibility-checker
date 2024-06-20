@@ -204,19 +204,16 @@
           background-color: $color-gray-light;
           border-radius: 50%;
           line-height: $progress-circle-size;
-
-          /* Text inside the control */
-          //transform: scale(.7, .7);
           display: none;
-
-
+          a {
+            color: $color-dark-gray;
+            text-decoration: none;
+          }
           @include breakpoint(xs) {
             display: inline-block;
-            //transform: scale(1, 1);
           }
 
           @include breakpoint(xl) {
-            //transform: scale(1, 1);
           }
 
           &:after {

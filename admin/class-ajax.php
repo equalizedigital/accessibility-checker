@@ -107,7 +107,7 @@ class Ajax {
 				$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
 					<div class="edac-summary-total-progress-circle-label">
 						<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-						<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
+						<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
 					</div>
 					<div class="left-half-clipper">
 						<div class="first50-bar"></div>
@@ -117,7 +117,7 @@ class Ajax {
 
 				$html['content'] .= '<div class="edac-summary-total-mobile">
 					<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-					<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
+					<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
 					<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
 				</div>';
 
@@ -163,7 +163,7 @@ class Ajax {
 				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>
-		<div class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
+		<div id="edac-summary-disclaimer" class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
 		';
 
 		if ( ! $html ) {
