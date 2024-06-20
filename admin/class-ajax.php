@@ -100,54 +100,56 @@ class Ajax {
 			}
 		}
 
-		$html['content'] .= '<div class="edac-summary-total">';
+		$html['content'] .= '<ul>';
+		
+			$html['content'] .= '<li class="edac-summary-total" aria-label="' . $summary['passed_tests'] . '% Passed Tests">';
 
-		$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
-			<div class="edac-summary-total-progress-circle-label">
-				<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-				<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
-			</div>
-			<div class="left-half-clipper">
-				<div class="first50-bar"></div>
-				<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
-			</div>
-		</div>';
+				$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
+					<div class="edac-summary-total-progress-circle-label">
+						<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
+						<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
+					</div>
+					<div class="left-half-clipper">
+						<div class="first50-bar"></div>
+						<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
+					</div>
+				</div>';
 
-		$html['content'] .= '<div class="edac-summary-total-mobile">
-			<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-			<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
-			<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
-		</div>';
+				$html['content'] .= '<div class="edac-summary-total-mobile">
+					<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
+					<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
+					<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
+				</div>';
 
-		$html['content'] .= '</div>';
+			$html['content'] .= '</li>';
 
-		$html['content'] .= '
-		<div class="edac-summary-stats">
-			<div class="edac-summary-stat edac-summary-errors' . ( ( $summary['errors'] > 0 ) ? ' has-errors' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['errors'] . '
-				</div>
-				<div class="edac-panel-number-label">Error' . ( ( 1 !== $summary['errors'] ) ? 's' : '' ) . '</div>
+			$html['content'] .= '<div class="edac-summary-stats">
+				' . edac_generate_summary_stat(
+				'edac-summary-errors',
+				$summary['errors'],
+				/* translators: %s: Number of errors */
+					sprintf( _n( '%s Error', '%s Errors', $summary['errors'], 'accessibility-checker' ), $summary['errors'] )
+			) . '
+				' . edac_generate_summary_stat(
+				'edac-summary-contrast',
+				$summary['contrast_errors'],
+				/* translators: %s: Number of contrast errors */
+					sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $summary['contrast_errors'], 'accessibility-checker' ), $summary['contrast_errors'] )
+			) . '
+				' . edac_generate_summary_stat(
+				'edac-summary-warnings',
+				$summary['warnings'],
+				/* translators: %s: Number of warnings */
+					sprintf( _n( '%s Warning', '%s Warnings', $summary['warnings'], 'accessibility-checker' ), $summary['warnings'] )
+			) . '
+				' . edac_generate_summary_stat(
+				'edac-summary-ignored',
+				$summary['ignored'],
+				/* translators: %s: Number of ignored items */
+					sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
+			) . '
 			</div>
-			<div class="edac-summary-stat edac-summary-contrast' . ( ( $summary['contrast_errors'] > 0 ) ? ' has-errors' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['contrast_errors'] . '
-				</div>
-				<div class="edac-panel-number-label">Contrast Error' . ( ( 1 !== $summary['contrast_errors'] ) ? 's' : '' ) . '</div>
-			</div>
-			<div class="edac-summary-stat edac-summary-warnings' . ( ( $summary['warnings'] > 0 ) ? ' has-warning' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['warnings'] . '
-				</div>
-				<div class="edac-panel-number-label">Warning' . ( ( 1 !== $summary['warnings'] ) ? 's' : '' ) . '</div>
-			</div>
-			<div class="edac-summary-stat edac-summary-ignored">
-				<div class="edac-panel-number">
-					' . $summary['ignored'] . '
-				</div>
-				<div class="edac-panel-number-label">Ignored Item' . ( ( 1 !== $summary['ignored'] ) ? 's' : '' ) . '</div>
-			</div>
-		</div>
+		</ul>
 		<div class="edac-summary-readability">
 			<div class="edac-summary-readability-level">
 				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability icon navy.png" alt="" width="54"></div>

@@ -338,34 +338,38 @@
         &:nth-child(4) {
           margin-right: 0;
         }
-
-        &.has-errors {
-          background-color: $color-red;
-        }
-
-        &.has-warning {
-          color: $color-blue-dark;
-          background-color: $color-yellow;
-          background-image: url("../images/warning icon navy.png");
-        }
       }
 
       &-errors {
         color: $color-white;
         background-color: $color-green;
         background-image: url("../images/error icon white.png");
+
+        &.has-errors {
+          background-color: $color-red;
+        }
       }
 
       &-contrast {
         color: $color-white;
         background-color: $color-green;
         background-image: url("../images/contrast icon white.png");
+
+        &.has-errors {
+          background-color: $color-red;
+        }
       }
 
       &-warnings {
         color: $color-white;
         background-color: $color-green;
         background-image: url("../images/warning icon white.png");
+
+        &.has-errors {
+          color: $color-blue-dark;
+          background-color: $color-yellow;
+          background-image: url("../images/warning icon navy.png");
+        }
       }
 
       &-ignored {
