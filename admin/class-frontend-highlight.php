@@ -36,7 +36,7 @@ class Frontend_Highlight {
 		 * highlighter. You can use the filter to perform additional permission checks
 		 * on who can see it.
 		 *
-		 * @since 1.x.x
+		 * @since 1.4.0
 		 *
 		 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
 		 */
