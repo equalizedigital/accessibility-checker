@@ -425,7 +425,9 @@ class Ajax {
 								get_the_permalink( $postid )
 							);
 
-							$html .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . __( 'View, opens a new window', 'accessibility-checker' ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>View on page</a>';
+							// Translators: %d is the issue ID.
+							$aria_label = sprintf( __( 'View Issue ID %d on website, opens a new window', 'accessibility-checker' ), $id );
+							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>' . __( 'View on page', 'accessibility-checker' ) . '</a>';
 						}
 
 						$html .= '</div>';
