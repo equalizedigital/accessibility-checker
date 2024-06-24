@@ -9,6 +9,7 @@ namespace EDAC\Inc;
 
 use EDAC\Admin\Admin;
 use EDAC\Admin\Meta_Boxes;
+use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 
 /**
  * Main plugin functionality class.
@@ -52,5 +53,10 @@ class Plugin {
 
 		$frontend_validate = new Frontend_Validate();
 		$frontend_validate->init_hooks();
+
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			$cli = new BootstrapCLI();
+			$cli->register();
+		}
 	}
 }
