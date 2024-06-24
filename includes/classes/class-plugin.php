@@ -31,6 +31,12 @@ class Plugin {
 		// The REST api must load if admin or not.
 		$rest_api = new REST_Api();
 		$rest_api->init_hooks();
+
+		// When WP CLI is enabled, load the CLI commands.
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			$cli = new BootstrapCLI();
+			$cli->register();
+		}
 	}
 
 	/**
@@ -53,10 +59,5 @@ class Plugin {
 
 		$frontend_validate = new Frontend_Validate();
 		$frontend_validate->init_hooks();
-
-		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			$cli = new BootstrapCLI();
-			$cli->register();
-		}
 	}
 }
