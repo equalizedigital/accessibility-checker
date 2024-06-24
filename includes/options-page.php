@@ -490,7 +490,8 @@ function edac_sanitize_post_types( $selected_post_types ) {
 		$scan_stats = new \EDAC\Admin\Scans_Stats();
 		$scan_stats->clear_cache();
 
-		if ( class_exists( '\EDACP\Scans' ) ) {
+		// EDACP\Scans is the old namespace, kept for back compat but should be removed after a few releases.
+		if ( class_exists( '\EDACP\Scans' ) || class_exists( '\EqualizeDigital\AccessibilityCheckerPro\Admin\Scans' ) ) {
 			delete_option( 'edacp_fullscan_completed_at' );
 		}
 	}
