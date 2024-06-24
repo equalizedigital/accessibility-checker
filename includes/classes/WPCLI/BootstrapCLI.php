@@ -69,12 +69,14 @@ class BootstrapCLI {
 					$command::get_args()
 				);
 			} catch ( Exception $e ) {
-				WP_CLI::warning( sprintf(
-					// translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
-					__( 'Failed to register command %1$s because %2$s', 'accessibility-checker' ),
-					get_class( $command ),
-					$e->getMessage()
-				) );
+				WP_CLI::warning(
+					sprintf(
+						// translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+						__( 'Failed to register command %1$s because %2$s', 'accessibility-checker' ),
+						get_class( $command ),
+						$e->getMessage()
+					)
+				);
 			}
 		}
 	}
