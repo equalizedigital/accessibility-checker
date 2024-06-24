@@ -58,7 +58,8 @@ class BootstrapCLI {
 
 		foreach ( $commands as $command ) {
 			// All commands must follow the interface.
-			if ( ! ( $command instanceof CLICommandInterface ) ) {
+			if ( ! is_subclass_of( $command, CLICommandInterface::class, true ) ) {
+				error_log('not a cli');
 				continue;
 			}
 
