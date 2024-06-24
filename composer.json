@@ -57,7 +57,7 @@
             "includes/classes/",
             "includes/deprecated/"
         ],
-		"Psr-4": {
+		"psr-4": {
 			"EqualizeDigital\\AccessibilityChecker\\": "includes/classes/"
 		}
     },
