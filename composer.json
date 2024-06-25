@@ -28,10 +28,10 @@
             "type": "vcs",
             "url": "https://github.com/equalizedigital/accessibility-checker-wp-env"
         },
-		{
-			"type": "vcs",
-			"url": "https://github.com/equalizedigital/textstatistics"
-		}
+        {
+            "type": "vcs",
+            "url": "https://github.com/equalizedigital/textstatistics"
+        }
     ],
     "require-dev": {
         "automattic/vipwpcs": "^3",

@@ -967,3 +967,26 @@ function edac_get_file_opened_as_binary( string $filename ) {
 
 	return $fh;
 }
+
+/**
+ * Generate a summary statistic list item.
+ * 
+ * @since 1.14.0
+ *
+ * @param string $item_class     The base CSS class for the list item.
+ * @param int    $count     The count of items to display.
+ * @param string $label      The translated label with count included.
+ *
+ * @return string The generated HTML list item.
+ */
+function edac_generate_summary_stat( string $item_class, int $count, string $label ): string {
+	$has_error_class = ( $count > 0 ) ? ' has-errors' : '';
+
+	return '
+        <li class="edac-summary-stat ' . $item_class . $has_error_class . '" aria-label="' . $label . '">
+            <div class="edac-panel-number">
+                ' . $count . '
+            </div>
+            <div class="edac-panel-number-label">' . $label . '</div>
+        </li>';
+}

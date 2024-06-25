@@ -29,7 +29,10 @@ class Settings {
 	 */
 	public static function get_scannable_post_types() {
 
-		if ( ! class_exists( '\EDACP\Settings' ) ) {
+		// Check if the new settings class exists. This is added to allow for backwards compatibility
+		// with the old settings class. The old settings class check should be removed after a few releases.
+		$new_settings_class_exists = class_exists( 'EqualizeDigital\AccessibilityCheckerPro\Admin\Settings' );
+		if ( ! class_exists( '\EDACP\Settings' ) || ! $new_settings_class_exists ) {
 
 			$post_types = Helpers::get_option_as_array( 'edac_post_types' );
 
@@ -53,7 +56,9 @@ class Settings {
 			return $post_types;
 		}
 
-		return \EDACP\Settings::get_scannable_post_types();
+		return $new_settings_class_exists
+			? \EqualizeDigital\AccessibilityCheckerPro\Admin\Settings::get_scannable_post_types()
+			: \EDACP\Settings::get_scannable_post_types();
 	}
 
 

@@ -7,6 +7,8 @@
 
 namespace EDAC\Admin;
 
+use EqualizeDigital\AccessibilityCheckerPro\Admin\Scans;
+
 /**
  * Class that handles calculating scans stats
  */
@@ -176,7 +178,7 @@ class Scans_Stats {
 
 			if ( $rule_query->count() ) {
 					++$data['rules_failed'];
-			}       
+			}
 		}
 		$data['rules_passed'] = $this->rule_count - $data['rules_failed'];
 
@@ -231,7 +233,7 @@ class Scans_Stats {
 		$data['posts_without_issues'] = 0;
 		$data['avg_issues_per_post']  = 0;
 
-		if ( $data['posts_scanned'] > 0 
+		if ( $data['posts_scanned'] > 0
 			&& ! empty( Settings::get_scannable_post_types() )
 			&& ! empty( Settings::get_scannable_post_statuses() )
 		) {
@@ -270,7 +272,20 @@ class Scans_Stats {
 		$data['fullscan_state']        = '';
 		$data['fullscan_completed_at'] = 0;
 
-		if ( class_exists( '\EDACP\Scans' ) ) {
+		// For back compat reasons the old class_exists is kept and moved to an else block.
+		// After a few releases the else should be removed.
+		if ( class_exists( '\EqualizeDigital\AccessibilityCheckerPro\Admin\Scans' ) ) {
+			$scans      = new Scans();
+			$scan_state = $scans->scan_state();
+
+			$data['fullscan_state'] = $scan_state;
+			if ( Scans::SCAN_STATE_PHP_SCAN_RUNNING === $scan_state
+				|| Scans::SCAN_STATE_JS_SCAN_RUNNING === $scan_state
+			) {
+				$data['fullscan_running'] = true;
+			}
+			$data['fullscan_completed_at'] = $scans->scan_date( 'php' );
+		} elseif ( class_exists( '\EDACP\Scans' ) ) {
 			$scans      = new \EDACP\Scans();
 			$scan_state = $scans->scan_state();
 
@@ -281,6 +296,7 @@ class Scans_Stats {
 				$data['fullscan_running'] = true;
 			}
 			$data['fullscan_completed_at'] = $scans->scan_date( 'php' );
+
 		}
 
 		$data['cache_id']   = $transient_name;

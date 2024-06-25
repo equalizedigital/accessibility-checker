@@ -330,9 +330,16 @@ class REST_Api {
 			// store a record of this scan in the post's meta.
 			update_post_meta( $post_id, '_edac_post_checked_js', time() );
 
-			if ( true === $request['isFailure'] ) {
-				update_post_meta( $post_id, '_edac_post_checked_js_failure', time() );
-			}
+			/**
+			 * Fires before sending the REST response ending the validation process.
+			 *
+			 * @since 1.14.0
+			 *
+			 * @param int             $post_id The post ID.
+			 * @param string          $type    The type of validation which is always 'js' in this path.
+			 * @param WP_REST_Request $request The request passed from the REST call.
+			 */
+			do_action( 'edac_validate_before_sending_rest_response', $post_id, 'js', $request );
 
 			return new \WP_REST_Response(
 				[

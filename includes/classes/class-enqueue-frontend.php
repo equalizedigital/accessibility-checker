@@ -37,7 +37,7 @@ class Enqueue_Frontend {
 		// This loads on all pages, so bail as early as possible. Do checks that don't require DB calls first.
 
 
-		// Don't load on admin pages in iframe that is running a pageScan.
+		// Don't load on admin pages or in an iframe that is running a pageScan.
 		if (
 			is_admin() ||
 			(
@@ -48,7 +48,7 @@ class Enqueue_Frontend {
 			return;
 		}
 
-		// Don't load on customizer pages or if the user is not able to edit this page.
+		// Don't load on the frontend if we don't have a post to work with.
 		global $post;
 		$post_id = is_object( $post ) ? $post->ID : null;
 
@@ -56,8 +56,27 @@ class Enqueue_Frontend {
 			return;
 		}
 
-		// Dont load if the user is not able to edit this page or if we are in a customizer preview.
-		if ( is_customize_preview() || ! ( $post_id && current_user_can( 'edit_post', $post_id ) ) ) {
+		// Don't load in a customizer preview or user can't edit the page. A filter
+		// can override the edit requirement to allow anyone to see it.
+		if (
+			is_customize_preview() ||
+			(
+				/**
+				 * Filter the visibility of the frontend highlighter.
+				 *
+				 * 'edac_filter_frontend_highlighter_visibility' is a filter that can be used
+				 * to allow users without edit permissions on the post to see the frontend
+				 * highlighter. You can use the filter to perform additional permission checks
+				 * on who can see it.
+				 *
+				 * @since 1.14.0
+				 *
+				 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
+				 */
+				! apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) &&
+				! ( $post_id && current_user_can( 'edit_post', $post_id ) )
+			)
+		) {
 			return;
 		}
 
@@ -78,12 +97,13 @@ class Enqueue_Frontend {
 				'edac-frontend-highlighter-app',
 				'edacFrontendHighlighterApp',
 				[
-					'postID'    => $post_id,
-					'nonce'     => wp_create_nonce( 'ajax-nonce' ),
-					'edacUrl'   => esc_url_raw( get_site_url() ),
-					'ajaxurl'   => admin_url( 'admin-ajax.php' ),
-					'loggedIn'  => is_user_logged_in(),
-					'appCssUrl' => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
+					'postID'         => $post_id,
+					'nonce'          => wp_create_nonce( 'ajax-nonce' ),
+					'edacUrl'        => esc_url_raw( get_site_url() ),
+					'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+					'loggedIn'       => is_user_logged_in(),
+					'appCssUrl'      => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
+					'widgetPosition' => get_option( 'edac_frontend_highlighter_position', 'right' ),
 				]
 			);
 

@@ -100,54 +100,56 @@ class Ajax {
 			}
 		}
 
-		$html['content'] .= '<div class="edac-summary-total">';
+		$html['content'] .= '<ul class="edac-summary-grid">';
 
-		$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
-			<div class="edac-summary-total-progress-circle-label">
-				<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-				<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
-			</div>
-			<div class="left-half-clipper">
-				<div class="first50-bar"></div>
-				<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
-			</div>
-		</div>';
+			$html['content'] .= '<li class="edac-summary-total" aria-label="' . $summary['passed_tests'] . '% Passed Tests">';
 
-		$html['content'] .= '<div class="edac-summary-total-mobile">
-			<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-			<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
-			<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
-		</div>';
+				$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
+					<div class="edac-summary-total-progress-circle-label">
+						<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
+						<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
+					</div>
+					<div class="left-half-clipper">
+						<div class="first50-bar"></div>
+						<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
+					</div>
+				</div>';
 
-		$html['content'] .= '</div>';
+				$html['content'] .= '<div class="edac-summary-total-mobile">
+					<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
+					<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
+					<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
+				</div>';
 
-		$html['content'] .= '
-		<div class="edac-summary-stats">
-			<div class="edac-summary-stat edac-summary-errors' . ( ( $summary['errors'] > 0 ) ? ' has-errors' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['errors'] . '
-				</div>
-				<div class="edac-panel-number-label">Error' . ( ( 1 !== $summary['errors'] ) ? 's' : '' ) . '</div>
-			</div>
-			<div class="edac-summary-stat edac-summary-contrast' . ( ( $summary['contrast_errors'] > 0 ) ? ' has-errors' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['contrast_errors'] . '
-				</div>
-				<div class="edac-panel-number-label">Contrast Error' . ( ( 1 !== $summary['contrast_errors'] ) ? 's' : '' ) . '</div>
-			</div>
-			<div class="edac-summary-stat edac-summary-warnings' . ( ( $summary['warnings'] > 0 ) ? ' has-warning' : '' ) . '">
-				<div class="edac-panel-number">
-					' . $summary['warnings'] . '
-				</div>
-				<div class="edac-panel-number-label">Warning' . ( ( 1 !== $summary['warnings'] ) ? 's' : '' ) . '</div>
-			</div>
-			<div class="edac-summary-stat edac-summary-ignored">
-				<div class="edac-panel-number">
-					' . $summary['ignored'] . '
-				</div>
-				<div class="edac-panel-number-label">Ignored Item' . ( ( 1 !== $summary['ignored'] ) ? 's' : '' ) . '</div>
-			</div>
-		</div>
+			$html['content'] .= '</li>';
+
+			$html['content'] .= '
+				' . edac_generate_summary_stat(
+				'edac-summary-errors',
+				$summary['errors'],
+				/* translators: %s: Number of errors */
+					sprintf( _n( '%s Error', '%s Errors', $summary['errors'], 'accessibility-checker' ), $summary['errors'] )
+			) . '
+				' . edac_generate_summary_stat(
+				'edac-summary-contrast',
+				$summary['contrast_errors'],
+				/* translators: %s: Number of contrast errors */
+					sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $summary['contrast_errors'], 'accessibility-checker' ), $summary['contrast_errors'] )
+			) . '
+				' . edac_generate_summary_stat(
+				'edac-summary-warnings',
+				$summary['warnings'],
+				/* translators: %s: Number of warnings */
+					sprintf( _n( '%s Warning', '%s Warnings', $summary['warnings'], 'accessibility-checker' ), $summary['warnings'] )
+			) . '
+				' . edac_generate_summary_stat(
+				'edac-summary-ignored',
+				$summary['ignored'],
+				/* translators: %s: Number of ignored items */
+					sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
+			) . '
+
+		</ul>
 		<div class="edac-summary-readability">
 			<div class="edac-summary-readability-level">
 				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability icon navy.png" alt="" width="54"></div>
@@ -161,7 +163,7 @@ class Ajax {
 				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>
-		<div class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
+		<div id="edac-summary-disclaimer" class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
 		';
 
 		if ( ! $html ) {
@@ -425,7 +427,9 @@ class Ajax {
 								get_the_permalink( $postid )
 							);
 
-							$html .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . __( 'View, opens a new window', 'accessibility-checker' ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>View on page</a>';
+							// Translators: %d is the issue ID.
+							$aria_label = sprintf( __( 'View Issue ID %d on website, opens a new window', 'accessibility-checker' ), $id );
+							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>' . __( 'View on page', 'accessibility-checker' ) . '</a>';
 						}
 
 						$html .= '</div>';
@@ -661,9 +665,27 @@ class Ajax {
 		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( $_REQUEST['comment'] ) : null;
 		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( $_REQUEST['ignore_global'] ) : 0;
 
-		foreach ( $ids as $id ) {
+		// If largeBatch is set and 'true', we need to perform an update using the 'object'
+		// instead of IDs. It is a much less efficient query than by IDs - but many IDs run
+		// into request size limits which caused this to not function at all.
+		if ( isset( $_REQUEST['largeBatch'] ) && 'true' === $_REQUEST['largeBatch'] ) {
+			// Get the 'object' from the first id.
+			$first_id = $ids[0];
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- We need to get the latest value, not a cached value.
+			$object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $first_id ) );
+
+			if ( ! $object ) {
+				$error = new \WP_Error( '-2', 'No ignore data to return' );
+				wp_send_json_error( $error );
+			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
+			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object ) );
+		} else {
+			// For small batches of IDs, we can just loop through.
+			foreach ( $ids as $id ) {
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
+				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
+			}
 		}
 
 		$data = [
