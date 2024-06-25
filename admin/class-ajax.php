@@ -100,8 +100,8 @@ class Ajax {
 			}
 		}
 
-		$html['content'] .= '<ul>';
-		
+		$html['content'] .= '<ul class="edac-summary-grid">';
+
 			$html['content'] .= '<li class="edac-summary-total" aria-label="' . $summary['passed_tests'] . '% Passed Tests">';
 
 				$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
@@ -123,7 +123,7 @@ class Ajax {
 
 			$html['content'] .= '</li>';
 
-			$html['content'] .= '<div class="edac-summary-stats">
+			$html['content'] .= '
 				' . edac_generate_summary_stat(
 				'edac-summary-errors',
 				$summary['errors'],
@@ -148,7 +148,7 @@ class Ajax {
 				/* translators: %s: Number of ignored items */
 					sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
 			) . '
-			</div>
+
 		</ul>
 		<div class="edac-summary-readability">
 			<div class="edac-summary-readability-level">
