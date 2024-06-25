@@ -216,27 +216,5 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Improved: PHP 8.2 compatibility with the TextStatistics library
 * Added: Opt-in modal for users to subscribe to the Equalize Digital newsletter with less steps
 
-= 1.10.2 =
-* Updated: Tested up to WP 6.5.0
-
-= 1.10.1 =
-* Fixed: Prevent scheme-relative URLs from causing an error when scanning for animated gif of webp files
-* Fixed: Potential edge case where an issue density calculation could cause a PHP warning and cause a failed scan
-* Fixed: Ensure that missing form labels are reported in the scan results appropriately
-* Fixed: Avoid error log when trashing posts in the block editor
-* Created: Class to handle the editor meta box for scan results
-* Deprecated: `edac_register_meta_boxes`, `edac_custom_meta_box_cb` functions
-
-= 1.10.0 =
-* Updated: Improved aria-hidden scanning rule
-* Fixed: Prevent missing_transcript rule from flagging on certain links
-* Fixed: Prevent duplicate scan and ensure cleanup runs when post is trashed from the block editor
-* Fixed: Fix case where error may be thrown resulting in password protection message and logged error when creating new posts
-* Updated: Use local styles for notyf in frontend highlighter
-* Created: Class to insert scan result rules to the database
-* Deprecated: `edac_insert_rule_data` function
-* Created: Class to handle data purging and cleanup
-* Deprecated: `edac_delete_post`, `edac_delete_post_meta`, `edac_delete_cpt_posts` functions
-
 Older versions can be found in the plugins `changelog.txt`.
 
