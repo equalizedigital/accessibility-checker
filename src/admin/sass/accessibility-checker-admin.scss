@@ -144,12 +144,6 @@
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 10px;
 
-        @include breakpoint(md) {
-          grid-template-columns: 2fr 1fr 1fr;
-          grid-template-rows: repeat(2, 1fr);
-          grid-gap: 10px;
-        }
-
         @include breakpoint(lg) {
           grid-template-columns: 2fr 1.5fr 1.5fr;
         }
@@ -162,7 +156,7 @@
             grid-row: span 2;
             display: flex;
 
-            @include breakpoint(md) {
+            @include breakpoint(lg) {
               grid-column: span 1;
             }
           }
