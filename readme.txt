@@ -171,6 +171,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.14.1 =
+* Fixed: Prevent settings page layout issue
+
 = 1.14.0 =
 * Added: Option to move front-end highlighter to opposite side of the window
 * Fixed: Prevent image from overspilling container in issue view
