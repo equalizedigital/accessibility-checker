@@ -45,7 +45,7 @@ $settings_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : $d
 $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items, 'slug' ), true ) !== false ) ? $settings_tab : $default_tab;
 ?>
 
-<div class="wrap edac-settings">
+<div class="wrap edac-settings <?php echo EDAC_KEY_VALID ? '' : 'pro-callout-wrapper'; ?>">
 
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
