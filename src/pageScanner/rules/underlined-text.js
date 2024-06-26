@@ -8,6 +8,7 @@
 export default {
 	id: 'underlined_text',
 	impact: 'moderate',
+	selector: '*:not(a):not(html):not(head):not(body)',
 	matches: ( element ) => {
 		return (
 			! element.hasAttribute( 'href' ) ||
