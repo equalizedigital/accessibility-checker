@@ -19,7 +19,7 @@ export default {
 		let parent = element.parentNode;
 		let isInsideAnchor = false;
 		for ( let i = 0; i < 3; i++ ) {
-			// can't go further up the dom if the parent is the html element.
+			// Can't go further up the dom if the parent is the html element.
 			if ( parent.tagName.toLowerCase() === 'html' ) {
 				break;
 			}
