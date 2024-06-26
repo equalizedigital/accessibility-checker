@@ -137,11 +137,16 @@ body {
             box-shadow: 0 0 5px rgba($color-black,.5) !important;
             border-radius: 50% !important;
             position: relative !important;
-            float: right !important;
             &:hover, &:focus {
                 cursor: pointer !important;
                 outline: solid 5px rgba(0,208,255,.75) !important;
             }
+
+			@media screen and (max-width: $small-screen-width ) {
+				.edac-highlight-panel--right & {
+					float: right !important;
+				}
+			}
         }
 
         &-description {
