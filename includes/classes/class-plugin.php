@@ -9,6 +9,7 @@ namespace EDAC\Inc;
 
 use EDAC\Admin\Admin;
 use EDAC\Admin\Meta_Boxes;
+use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 
 /**
  * Main plugin functionality class.
@@ -30,6 +31,12 @@ class Plugin {
 		// The REST api must load if admin or not.
 		$rest_api = new REST_Api();
 		$rest_api->init_hooks();
+
+		// When WP CLI is enabled, load the CLI commands.
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			$cli = new BootstrapCLI();
+			$cli->register();
+		}
 	}
 
 	/**

@@ -56,7 +56,10 @@
             "admin/",
             "includes/classes/",
             "includes/deprecated/"
-        ]
+        ],
+        "psr-4": {
+            "EqualizeDigital\\AccessibilityChecker\\": "includes/classes/"
+        }
     },
     "autoload-dev": {
         "classmap": []
