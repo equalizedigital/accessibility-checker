@@ -171,9 +171,10 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
-= 1.15.0 =
-* Fixed: Frontend highlighter could not be moved to the right side of the window on mobile
+= 1.14.2 =
 * Enhancement: Reduce false positives for underlined text check
+* Fixed: Frontend highlighter could not be moved to the right side of the window on mobile
+* Fixed: Issue where ignores were not being saved and failing silently
 
 = 1.14.1 =
 * Fixed: Prevent settings page layout issue
