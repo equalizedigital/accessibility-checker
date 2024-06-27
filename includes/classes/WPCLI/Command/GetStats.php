@@ -73,7 +73,7 @@ class GetStats implements CLICommandInterface {
 				[
 					'type'        => 'assoc',
 					'name'        => 'stat',
-					'description' => 'Keys to show in the results. Defaults to all keys. "passed_tests", "errors", "warnings", "ignored", "contrast_errors", "content_grade", "readability", "simplified_summary"',
+					'description' => 'Keys to show in the results. Defaults to all keys. Pass items in as a comma separated list if you want multiple. Valid keys are: ' . implode( ', ', ( new self() )->valid_stats ) . '.',
 					'optional'    => true,
 					'default'     => null,
 					'repeating'   => true,
@@ -99,7 +99,7 @@ class GetStats implements CLICommandInterface {
 		$post_exists = (bool) get_post( $post_id );
 
 		if ( ! $post_exists ) {
-			WP_CLI::error( "Post ID {$post_id} does not exist.\n" );
+			WP_CLI::error( "Post ID {$post_id} does not exist." );
 		}
 
 		if ( class_exists( 'EDAC\Inc\Summary_Generator' ) === false ) {
@@ -109,13 +109,34 @@ class GetStats implements CLICommandInterface {
 		$stats = ( new Summary_Generator( $post_id ) )->generate_summary();
 
 		if ( empty( $stats ) ) {
-			WP_CLI::error( "No stats found for post ID {$post_id}.\n" );
+			WP_CLI::error( "No stats found for post ID {$post_id}." );
 		}
 
-		$value = $arguments['stat'] && in_array( $arguments['stat'], $this->valid_stats, true )
-			? [ $arguments['stat'] => $stats[ $arguments['stat'] ] ]
-			: $stats;
+		if ( 100 === (int) $stats['passed_tests'] && 0 === (int) $stats['ignored'] ) {
+			WP_CLI::success( "Either the post is not yet scanned or all tests passed for post ID {$post_id}." );
+			return;
+		}
 
-		WP_CLI::success( wp_json_encode( $value ) . "\n" );
+		if ( ! empty( $arguments['stat'] ) ) {
+			$items_to_return = [];
+			$requested_stats = explode( ',', $arguments['stat'] );
+			foreach ( $requested_stats as $key ) {
+				$stats_key = trim( $key );
+				if ( ! in_array( $stats_key, $this->valid_stats, true ) ) {
+					WP_CLI::error( "Invalid stat key: {$stats_key}. Valid keys are: " . implode( ', ', $this->valid_stats ) . '.' );
+				}
+				if ( ! isset( $stats[ $stats_key ] ) ) {
+					WP_CLI::error( "Stat key: {$stats_key} not found in stats." );
+				}
+				$items_to_return[ $stats_key ] = $stats[ $stats_key ];
+			}
+
+			if ( $items_to_return ) {
+				WP_CLI::success( wp_json_encode( $items_to_return, JSON_PRETTY_PRINT ) );
+				return;
+			}
+		}
+
+		WP_CLI::success( wp_json_encode( $stats, JSON_PRETTY_PRINT ) );
 	}
 }
