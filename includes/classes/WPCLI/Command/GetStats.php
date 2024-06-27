@@ -96,12 +96,6 @@ class GetStats implements CLICommandInterface {
 	public function __invoke( array $options = [], array $arguments = [] ) {
 		$post_id = $options[0] ?? null;
 
-		if ( 0 === $post_id ) {
-			$all_stats_json = $this->get_all_stats();
-
-			WP_CLI::success( $all_stats_json );
-		}
-
 		$post_exists = (bool) get_post( $post_id );
 
 		if ( ! $post_exists ) {
@@ -123,29 +117,5 @@ class GetStats implements CLICommandInterface {
 			: $stats;
 
 		WP_CLI::success( wp_json_encode( $value ) . "\n" );
-	}
-
-	/**
-	 * Gets the sites from the entire site.
-	 *
-	 * A limitation is this can only stats for scanned pages, if some pages are not scanned they are not reflected in the stats.
-	 *
-	 * @since 1.15.0
-	 *
-	 * @throws ExitException If ScanStats class is not found or no stats are found.
-	 */
-	private function get_all_stats() {
-
-		if ( class_exists( 'EDAC\Admin\Scans_Stats' ) === false ) {
-			WP_CLI::error( "Scans_Stats class not found, is Accessibility Checker installed and activated?.\n" );
-		}
-
-		$stats = ( new Scans_Stats() )->summary();
-
-		if ( empty( $stats ) ) {
-			WP_CLI::error( "No stats found.\n" );
-		}
-
-		return wp_json_encode( $stats );
 	}
 }
