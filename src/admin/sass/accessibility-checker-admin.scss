@@ -820,6 +820,11 @@
 
 .edac-settings {
   max-width: 800px;
+
+  &.pro-callout-wrapper {
+    max-width: fit-content;
+  }
+
   .edac-description {
     font-size: 13px;
   }
