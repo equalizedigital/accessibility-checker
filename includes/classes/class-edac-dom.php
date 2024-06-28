@@ -161,9 +161,7 @@ class EDAC_Dom extends simple_html_dom {
 			$elements = array_filter(
 				$elements_with_href,
 				function ( $element ) use ( $extensions ) {
-					$href      = $element->getAttribute( 'href' );
-					$extension = pathinfo( $href, PATHINFO_EXTENSION );
-					return in_array( '.' . $extension, $extensions, true );
+					return is_item_using_matching_extension( $element->getAttribute( 'href' ), $extensions );
 				}
 			);
 		}
