@@ -22,6 +22,12 @@ function edac_rule_missing_form_label( $content, $post ) { // phpcs:ignore -- $p
 		if ( in_array( $field->getAttribute( 'type' ), [ 'submit', 'hidden', 'button', 'reset' ], true ) ) {
 			continue;
 		}
+
+		// Not an error if it's an image input with an alt.
+		if ( 'image' === $field->getAttribute( 'type' ) && ! empty( $field->getAttribute( 'alt' ) ) ) {
+			continue;
+		}
+
 		if ( ! ac_input_has_label( $field, $dom ) ) {
 			$errors[] = $field->outertext;
 		}
