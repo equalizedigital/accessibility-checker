@@ -45,6 +45,14 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 				// does not have a name.
 
 				$image = $link->find( 'img' );
+				$input = $link->find( 'input' );
+				$i     = $link->find( 'i' );
+
+				// If there's no image, input or i tag it's just an empty link and should be flagged.
+				if ( empty( $image ) && empty( $input ) && empty( $i ) ) {
+					$error = $a_tag_code;
+				}
+
 				if ( ! $error && isset( $image[0] ) && empty( trim( $image[0]->getAttribute( 'alt' ) ) ) ) {
 
 					// The first image inside the link does not have an alt.
@@ -52,7 +60,6 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 					$error = $a_tag_code;
 				}
 
-				$input = $link->find( 'input' );
 				if ( ! $error && isset( $input[0] ) && empty( trim( $input[0]->getAttribute( 'value' ) ) ) ) {
 
 					// The first input inside the link does not have a value.
@@ -60,7 +67,6 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 					$error = $a_tag_code;
 				}
 
-				$i = $link->find( 'i' );
 				if ( ! $error &&
 					isset( $i[0] ) &&
 					empty( trim( $i[0]->getAttribute( 'title' ) ) ) &&
