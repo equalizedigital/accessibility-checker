@@ -45,7 +45,7 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 				// does not have a name.
 
 				$image = $link->find( 'img' );
-				if ( ! $error && isset( $input[0] ) && empty( trim( $image[0]->getAttribute( 'alt' ) ) ) ) {
+				if ( ! $error && isset( $image[0] ) && empty( trim( $image[0]->getAttribute( 'alt' ) ) ) ) {
 
 					// The first image inside the link does not have an alt.
 					// Throw error.
@@ -53,7 +53,7 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 				}
 
 				$input = $link->find( 'input' );
-				if ( ! $error && isset( $input[0] ) && empty( trim( $image[0]->getAttribute( 'value' ) ) ) ) {
+				if ( ! $error && isset( $input[0] ) && empty( trim( $input[0]->getAttribute( 'value' ) ) ) ) {
 
 					// The first input inside the link does not have a value.
 					// Throw error.
@@ -61,9 +61,10 @@ function edac_rule_empty_link( $content, $post ) { // phpcs:ignore -- $post is r
 				}
 
 				$i = $link->find( 'i' );
-				if ( ! $error && isset( $input[0] ) &&
-				empty( trim( $i[0]->getAttribute( 'title' ) ) ) &&
-				empty( trim( $i[0]->getAttribute( 'aria-label' ) ) )
+				if ( ! $error &&
+					isset( $i[0] ) &&
+					empty( trim( $i[0]->getAttribute( 'title' ) ) ) &&
+					empty( trim( $i[0]->getAttribute( 'aria-label' ) ) )
 				) {
 
 					// The first i inside the link does not have a title &
