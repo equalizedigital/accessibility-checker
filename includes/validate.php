@@ -7,6 +7,7 @@
 
 use EDAC\Admin\Helpers;
 use EDAC\Admin\Insert_Rule_Data;
+use EDAC\Admin\Purge_Post_Data;
 
 /**
  * Oxygen Builder on save
@@ -68,11 +69,6 @@ function edac_save_post( $post_ID, $post, $update ) {
 		return;
 	}
 
-	// Ignore posts in, or going to, trash.
-	if ( 'trash' === $post->post_status ) {
-		return;
-	}
-
 	// ignore revisions.
 	if ( wp_is_post_revision( $post_ID ) ) {
 		return;
@@ -94,6 +90,16 @@ function edac_save_post( $post_ID, $post, $update ) {
 		if ( wp_verify_nonce( $inline_edit, 'inlineeditnonce' ) ) {
 			return;
 		}
+	}
+
+	// Post in, or going to, trash.
+	if ( 'trash' === $post->post_status ) {
+		// Gutenberg does not fire the `wp_trash_post` action when moving posts to the
+		// trash. Instead it uses `rest_delete_{$post_type}` which passes a different shape
+		// so instead of hooking in there for every post type supported the data gets
+		// purged here instead which produces the same result.
+		Purge_Post_Data::delete_post( $post_ID );
+		return;
 	}
 
 	edac_validate( $post_ID, $post, $action = 'save' );
