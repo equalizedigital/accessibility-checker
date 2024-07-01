@@ -970,7 +970,7 @@ function edac_get_file_opened_as_binary( string $filename ) {
 
 /**
  * Generate a summary statistic list item.
- * 
+ *
  * @since 1.14.0
  *
  * @param string $item_class     The base CSS class for the list item.
@@ -989,4 +989,19 @@ function edac_generate_summary_stat( string $item_class, int $count, string $lab
             </div>
             <div class="edac-panel-number-label">' . $label . '</div>
         </li>';
+}
+
+/**
+ * Check if an element has an extension that matches the provided list.
+ *
+ * @since 1.15.0
+ *
+ * @param string $item A file path or URL to check.
+ * @param array  $extensions An array of extensions to check for.
+ *
+ * @return bool
+ */
+function is_item_using_matching_extension( string $item, array $extensions ): bool {
+	$extension = pathinfo( $item, PATHINFO_EXTENSION );
+	return in_array( '.' . $extension, $extensions, true );
 }
