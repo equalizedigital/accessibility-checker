@@ -136,7 +136,7 @@ class EDAC_Dom extends simple_html_dom {
 			$elements = array_filter(
 				$elements_with_src,
 				function ( $element ) use ( $extensions ) {
-					return is_item_using_matching_extension( $element->getAttribute( 'href' ), $extensions );
+					return edac_is_item_using_matching_extension( $element->getAttribute( 'href' ), $extensions );
 				}
 			);
 		}
@@ -159,7 +159,7 @@ class EDAC_Dom extends simple_html_dom {
 			$elements = array_filter(
 				$elements_with_href,
 				function ( $element ) use ( $extensions ) {
-					return is_item_using_matching_extension( $element->getAttribute( 'href' ), $extensions );
+					return edac_is_item_using_matching_extension( $element->getAttribute( 'href' ), $extensions );
 				}
 			);
 		}

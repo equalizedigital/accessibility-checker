@@ -1001,7 +1001,7 @@ function edac_generate_summary_stat( string $item_class, int $count, string $lab
  *
  * @return bool
  */
-function is_item_using_matching_extension( string $item, array $extensions ): bool {
+function edac_is_item_using_matching_extension( string $item, array $extensions ): bool {
 	$extension = pathinfo( $item, PATHINFO_EXTENSION );
 	return in_array( '.' . $extension, $extensions, true );
 }

@@ -65,7 +65,7 @@ function edac_rule_video_present( $content, $post ) { // phpcs:ignore -- $post i
 				continue;
 			}
 
-			if ( is_item_using_matching_extension( $src_text, $file_extensions ) ) {
+			if ( edac_is_item_using_matching_extension( $src_text, $file_extensions ) ) {
 				$errors[] = $element->outertext;
 			}
 		}
