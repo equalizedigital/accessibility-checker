@@ -1386,44 +1386,34 @@
           width: 100%;
           color: #ffffff;
 
-
-
           &-error {
-            background: url('.././images/error%20icon%20white.png') no-repeat top left;
-            background-position: calc(0% + 5px) 50%;
-            background-size: 1rem 1rem;
-            background-color: $color-green;
+			  background-size: 1rem 1rem;
+			  background: $color-green url('.././images/error%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
 
-            &.has-errors {
+			  &.has-errors {
               background-color: $color-red;
             }
 
           }
 
           &-contrast {
-            background: url('.././images/contrast%20icon%20white.png') no-repeat top left;
-            background-position: calc(0% + 5px) 50%;
-            background-size: 1rem 1rem;
-            background-color: $color-green;
+			  background-size: 1rem 1rem;
+			  background: $color-green url('.././images/contrast%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
 
-            &.has-errors {
+			  &.has-errors {
               background-color: $color-red;
             }
 
           }
 
           &-warning {
-            background: url('.././images/warning%20icon%20white.png') no-repeat top left;
-            background-position: calc(0% + 5px) 50%;
-            background-size: 1rem 1rem;
-            background-color: $color-green;
+			  background-size: 1rem 1rem;
+			  background: $color-green url('.././images/warning%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
 
-            &.has-warning {
-              background: url('.././images/warning%20icon%20navy.png') no-repeat top left;
-              background-position: calc(0% + 5px) 50%;
-              background-size: 1rem 1rem;
-              background-color: $color-yellow;
-              color: $color-blue-dark;
+			  &.has-warning {
+				  background-size: 1rem 1rem;
+				  background: $color-yellow url('.././images/warning%20icon%20navy.png') no-repeat calc(0% + 5px) 50%;
+				  color: $color-blue-dark;
             }
 
           }
