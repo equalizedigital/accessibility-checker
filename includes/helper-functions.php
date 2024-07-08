@@ -999,7 +999,7 @@ function edac_generate_summary_stat( string $item_class, int $count, string $lab
  * @param string $item A file path or URL to check.
  * @param array  $extensions An array of extensions to check for.
  *
- * @return bool
+ * @return bool True if the item has an extension that matches the list, false otherwise.
  */
 function edac_is_item_using_matching_extension( string $item, array $extensions ): bool {
 	$extension = pathinfo( $item, PATHINFO_EXTENSION );
