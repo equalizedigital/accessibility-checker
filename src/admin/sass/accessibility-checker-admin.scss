@@ -1390,7 +1390,6 @@
 
           &-error {
             background: url('.././images/error%20icon%20white.png') no-repeat top left;
-            background-size: contain;
             background-position: calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
             background-color: $color-green;
@@ -1403,7 +1402,6 @@
 
           &-contrast {
             background: url('.././images/contrast%20icon%20white.png') no-repeat top left;
-            background-size: contain;
             background-position: calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
             background-color: $color-green;
@@ -1416,14 +1414,12 @@
 
           &-warning {
             background: url('.././images/warning%20icon%20white.png') no-repeat top left;
-            background-size: contain;
             background-position: calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
             background-color: $color-green;
 
             &.has-warning {
               background: url('.././images/warning%20icon%20navy.png') no-repeat top left;
-              background-size: contain;
               background-position: calc(0% + 5px) 50%;
               background-size: 1rem 1rem;
               background-color: $color-yellow;
@@ -1431,7 +1427,6 @@
             }
 
           }
-
 
           &-label {
             line-height: 2rem;
