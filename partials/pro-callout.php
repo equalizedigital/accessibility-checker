@@ -7,9 +7,9 @@
 
 ?>
 <div class="edac-pro-callout">
-	<img 
-		class="edac-pro-callout-icon" 
-		src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/edac-emblem.png" 
+	<img
+		class="edac-pro-callout-icon"
+		src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/edac-emblem.png"
 		alt="<?php esc_attr_e( 'Equalize Digital Logo', 'accessibility-checker' ); ?>"
 	>
 	<h4 class="edac-pro-callout-title">
@@ -27,18 +27,20 @@
 			<li><?php esc_html_e( '...and more', 'accessibility-checker' ); ?></li>
 		</ul>
 	</div>
-	<a 
-		class="edac-pro-callout-button" 
-		href="https://equalizedigital.com/accessibility-checker/pricing/" 
-		target="_blank"
-	>
-		<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?>
-	</a>
+	<div class="edac-pro-callout-button--wrapper">
+		<a
+			class="edac-pro-callout-button"
+			href="https://equalizedigital.com/accessibility-checker/pricing/"
+			target="_blank"
+		>
+			<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?>
+		</a>
+	</div>
 
 	<?php if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) : ?>
 		<br />
-		<a 
-			class="edac-pro-callout-activate" 
+		<a
+			class="edac-pro-callout-activate"
 			href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=license' ) ); ?>"
 		>
 			<?php esc_html_e( 'Or activate your license key here.', 'accessibility-checker' ); ?>
