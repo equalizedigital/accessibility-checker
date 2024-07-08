@@ -527,7 +527,7 @@
             float: right;
             background: none;
             border: none;
-            border-radius: none;
+            border-radius: 0;
 
             &:hover,
             &:focus {
@@ -1596,7 +1596,7 @@
       background-image: url("../images/welcome-screenshot-standard.png");
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: top-left;
+      background-position: top left;
 
       @media screen and (max-width: calc($medium-screen-width - 1px)) {
         background-image: url("../images/welcome-screenshot-medium.png");
