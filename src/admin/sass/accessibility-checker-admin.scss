@@ -1410,7 +1410,7 @@
             background-size: 1rem 1rem;
             background: $color-green url('.././images/warning%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
 
-              &.has-warning {
+            &.has-warning {
                 background-size: 1rem 1rem;
                 background: $color-yellow url('.././images/warning%20icon%20navy.png') no-repeat calc(0% + 5px) 50%;
                 color: $color-blue-dark;
