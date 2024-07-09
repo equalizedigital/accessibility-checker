@@ -1022,8 +1022,19 @@
     border: 3px solid #072446;
     border-radius: 0;
     position: relative;
-    z-index: 1;
     @include transition(background .3s, color .3s);
+
+    // firefox sizing fix to prevent wrapping due to differences in
+    // font sizing and paddings with different fonts
+    @-moz-document url-prefix() {
+      padding: 15px 22px;
+    }
+
+    &--wrapper {
+		position: relative;
+		z-index: 1;
+		display: inline;
+    }
 
     &:after {
       content: '';
