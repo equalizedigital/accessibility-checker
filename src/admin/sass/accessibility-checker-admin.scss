@@ -59,7 +59,7 @@
   }
 
   #edac-tabs {
-    margin: 15px 0px;
+    margin: 15px 0;
 
     .edac-tabs {
       margin-bottom: 0;
@@ -165,7 +165,7 @@
 
       &-notice {
         background-color: $color-gray-lightest;
-        box-shadow: inset 0px 0px 0px 1px $color-gray-light;
+        box-shadow: inset 0 0 0 1px $color-gray-light;
         padding: 15px;
         text-align: left;
         margin-bottom: 20px;
@@ -174,7 +174,7 @@
 
       &-total {
         background-color: $color-gray-lightest;
-        box-shadow: inset 0px 0px 0px 1px $color-gray-light;
+        box-shadow: inset 0 0 0 1px $color-gray-light;
         padding: 15px;
         text-align: center;
         $progress-circle-size: 250px;
@@ -389,7 +389,7 @@
       &-readability {
         width: 100%;
         background-color: $color-gray-lightest;
-        box-shadow: inset 0px 0px 0px 1px $color-gray-light;
+        box-shadow: inset 0 0 0 1px $color-gray-light;
         clear: both;
         padding: 10px;
 
@@ -416,7 +416,7 @@
 
           @include breakpoint(lg) {
             border-right: solid 3px $color-gray-light;
-            margin-bottom: 0px;
+            margin-bottom: 0;
           }
 
           img {
@@ -467,7 +467,7 @@
           grid-column-gap: 10px;
           font-size: 16px;
           align-items: center;
-          padding-left: 0px;
+          padding-left: 0;
           text-align: left;
 
           @include breakpoint(lg) {
@@ -527,7 +527,7 @@
             float: right;
             background: none;
             border: none;
-            border-radius: none;
+            border-radius: 0;
 
             &:hover,
             &:focus {
@@ -649,13 +649,13 @@
                 background: transparent;
                 display: flex;
                 align-items: center;
-                padding-left: 0px;
+                padding-left: 0;
 
                 svg {
                   width: 18px;
                   height: auto;
                   display: inline-block;
-                  margin: 0px 2px 0px 3px;
+                  margin: 0 2px 0 3px;
 
                   path {
                     fill: $color-blue;
@@ -927,7 +927,7 @@
       font-size: 21px;
 
       &:first-child {
-        margin-top: 0px;
+        margin-top: 0;
       }
     }
 
@@ -1386,14 +1386,9 @@
           width: 100%;
           color: #ffffff;
 
-
-
           &-error {
-            background: url('.././images/error%20icon%20white.png') no-repeat top left;
-            background-size: contain;
-            background-position: calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
-            background-color: $color-green;
+            background: $color-green url('.././images/error%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
 
             &.has-errors {
               background-color: $color-red;
@@ -1402,11 +1397,8 @@
           }
 
           &-contrast {
-            background: url('.././images/contrast%20icon%20white.png') no-repeat top left;
-            background-size: contain;
-            background-position: calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
-            background-color: $color-green;
+            background: $color-green url('.././images/contrast%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
 
             &.has-errors {
               background-color: $color-red;
@@ -1415,23 +1407,16 @@
           }
 
           &-warning {
-            background: url('.././images/warning%20icon%20white.png') no-repeat top left;
-            background-size: contain;
-            background-position: calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
-            background-color: $color-green;
+            background: $color-green url('.././images/warning%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
 
             &.has-warning {
-              background: url('.././images/warning%20icon%20navy.png') no-repeat top left;
-              background-size: contain;
-              background-position: calc(0% + 5px) 50%;
-              background-size: 1rem 1rem;
-              background-color: $color-yellow;
-              color: $color-blue-dark;
+                background-size: 1rem 1rem;
+                background: $color-yellow url('.././images/warning%20icon%20navy.png') no-repeat calc(0% + 5px) 50%;
+                color: $color-blue-dark;
             }
 
           }
-
 
           &-label {
             line-height: 2rem;
@@ -1596,7 +1581,7 @@
       background-image: url("../images/welcome-screenshot-standard.png");
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: top-left;
+      background-position: top left;
 
       @media screen and (max-width: calc($medium-screen-width - 1px)) {
         background-image: url("../images/welcome-screenshot-medium.png");
