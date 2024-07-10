@@ -99,7 +99,7 @@ class GetSiteStats implements CLICommandInterface {
 			}
 		}
 
-		if ( $items_to_return ) {
+		if ( isset( $items_to_return ) ) {
 			$this->wp_cli::success( wp_json_encode( $items_to_return, JSON_PRETTY_PRINT ) );
 			return;
 		}
