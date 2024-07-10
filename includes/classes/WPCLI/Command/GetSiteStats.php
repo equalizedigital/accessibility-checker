@@ -106,7 +106,7 @@ class GetSiteStats implements CLICommandInterface {
 			foreach ( $requested_stats as $key ) {
 				$stats_key = trim( $key );
 				if ( ! isset( $all_stats[ $stats_key ] ) ) {
-					WP_CLI::error( "Stat key: {$stats_key} not found in stats." );
+					$this->wp_cli::error( "Stat key: {$stats_key} not found in stats." );
 				}
 				$items_to_return[ $stats_key ] = $all_stats[ $stats_key ];
 			}
