@@ -120,11 +120,6 @@ class GetStats implements CLICommandInterface {
 			return;
 		}
 
-		if ( class_exists( 'EDAC\Inc\Summary_Generator' ) === false ) {
-			$this->wp_cli::error( "Summary_Generator class not found, is Accessibility Checker installed and activated?.\n" );
-			return;
-		}
-
 		$stats = ( new Summary_Generator( $post_id ) )->generate_summary();
 
 		if (
