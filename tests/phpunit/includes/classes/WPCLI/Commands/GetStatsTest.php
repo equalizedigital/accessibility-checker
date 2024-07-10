@@ -6,7 +6,8 @@
  */
 
 use EDAC\Admin\Update_Database;
-use EqualizeDigital\AccessibilityChecker\Tests\Mocks\Mock_WP_CLI;
+use EqualizeDigital\AccessibilityChecker\Tests\TestHelpers\DatabaseHelpers;
+use EqualizeDigital\AccessibilityChecker\Tests\TestHelpers\Mocks\Mock_WP_CLI;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\WPCLI\Command\GetStats;
 
@@ -21,7 +22,6 @@ class GetStatsTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	protected function setUp(): void {
-		require_once dirname( __DIR__, 4 ) . '/Mocks/Mock_WP_CLI.php';
 		// since this is a synthetic run on WP-CLI, we need to define WP_CLI.
 		if ( ! defined( 'WP_CLI' ) ) {
 			define( 'WP_CLI', true );
@@ -33,7 +33,7 @@ class GetStatsTest extends WP_UnitTestCase {
 		$this->get_stats = new GetStats( $wp_cli );
 
 		// create database tables if they don't exist.
-		( new Update_Database() )->edac_update_database();
+		DatabaseHelpers::create_table();
 
 		parent::setUp();
 	}
@@ -44,7 +44,7 @@ class GetStatsTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	protected function tearDown(): void {
-		$this->drop_table();
+		DatabaseHelpers::drop_table();
 
 		parent::tearDown();
 	}
@@ -85,7 +85,7 @@ class GetStatsTest extends WP_UnitTestCase {
 		$post_id = $this->factory()->post->create();
 		$post    = get_post( $post_id );
 
-		$this->insert_issue_to_db( $post );
+		DatabaseHelpers::insert_test_issue_to_db( $post );
 
 		ob_start();
 		$this->get_stats->__invoke( [ $post_id ], [] );
@@ -103,7 +103,7 @@ class GetStatsTest extends WP_UnitTestCase {
 		$post_id = $this->factory()->post->create();
 		$post    = get_post( $post_id );
 
-		$this->insert_issue_to_db( $post );
+		DatabaseHelpers::insert_test_issue_to_db( $post );
 
 		ob_start();
 		$this->get_stats->__invoke( [ $post_id ], [ 'stat' => 'passed_tests' ] );
@@ -151,56 +151,12 @@ class GetStatsTest extends WP_UnitTestCase {
 		$post_id = $this->factory()->post->create();
 		$post    = get_post( $post_id );
 
-		$this->insert_issue_to_db( $post );
+		DatabaseHelpers::insert_test_issue_to_db( $post );
 
 		ob_start();
 		$this->get_stats->__invoke( [ $post_id ], [ 'stat' => 'a_non_existant_stat' ] );
 		$stats = ob_get_clean();
 
 		$this->assertStringStartsWith( 'Error: Invalid stat key', $stats );
-	}
-
-	/**
-	 * Insert a record to the database for a given post.
-	 *
-	 * @param WP_Post $post The post to insert the record for.
-	 *
-	 * @return void
-	 */
-	private function insert_issue_to_db( WP_Post $post ): void {
-
-		global $wpdb;
-		$table_name = $wpdb->prefix . 'accessibility_checker';
-		$wpdb->insert( // phpcs:ignore WordPress.DB -- using direct query for testing.
-			$table_name,
-			[
-				'postid'        => $post->ID,
-				'siteid'        => get_current_blog_id(),
-				'type'          => $post->post_type,
-				'rule'          => 'empty_paragraph_tag',
-				'ruletype'      => 'warning',
-				'object'        => '<p></p>',
-				'recordcheck'   => 1,
-				'user'          => get_current_user_id(),
-				'ignre'         => 0,
-				'ignre_user'    => null,
-				'ignre_date'    => null,
-				'ignre_comment' => null,
-				'ignre_global'  => 0,
-			]
-		);
-	}
-
-	/**
-	 * Drops the table for the plugin if it exists.
-	 *
-	 * Used for cleanup after tests.
-	 *
-	 * @return void
-	 */
-	private function drop_table() {
-		global $wpdb;
-		$table_name = $wpdb->prefix . 'accessibility_checker';
-		$wpdb->query( 'DROP TABLE IF EXISTS ' . $table_name ); // phpcs:ignore WordPress.DB -- query for a unit test.
 	}
 }

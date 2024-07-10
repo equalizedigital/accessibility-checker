@@ -62,7 +62,10 @@
         }
     },
     "autoload-dev": {
-        "classmap": []
+        "classmap": [],
+		"psr-4": {
+			"EqualizeDigital\\AccessibilityChecker\\Tests\\": "tests/phpunit/"
+		}
     },
     "scripts": {
         "lint": [

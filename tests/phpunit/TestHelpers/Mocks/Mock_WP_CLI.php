@@ -5,7 +5,7 @@
  * @package Accessibility_Checker
  */
 
-namespace EqualizeDigital\AccessibilityChecker\Tests\Mocks;
+namespace EqualizeDigital\AccessibilityChecker\Tests\TestHelpers\Mocks;
 
 use Exception;
 use stdClass;

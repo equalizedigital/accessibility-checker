@@ -5,7 +5,7 @@
  * @package Accessibility_Checker
  */
 
-use EqualizeDigital\AccessibilityChecker\Tests\Mocks\Mock_WP_CLI as WP_CLI;
+use EqualizeDigital\AccessibilityChecker\Tests\TestHelpers\Mocks\Mock_WP_CLI as WP_CLI;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 
 /**
@@ -20,8 +20,6 @@ class BootstrapCLITest extends WP_UnitTestCase {
 	 * Makes the mock available and sets the constant like WP_CLI would in a real environment.
 	 */
 	protected function setUp(): void {
-		require_once dirname( __DIR__, 3 ) . '/Mocks/Mock_WP_CLI.php';
-		// since this is a synthetic run on WP-CLI, we need to define WP_CLI.
 		if ( ! defined( 'WP_CLI' ) ) {
 			define( 'WP_CLI', true );
 		}
