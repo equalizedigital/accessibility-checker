@@ -30,7 +30,7 @@ class BootstrapCLITest extends WP_UnitTestCase {
 
 	/**
 	 * Set the should_throw flag back to false after each test.
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function tearDown(): void {

@@ -65,24 +65,6 @@ class GetStatsTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test the get stats command errors if it can't get the stats like if the
-	 * database is broken.
-	 */
-	public function test_get_stats_command_errors_when_issues_query_cant_complete() {
-
-		$post_id = $this->factory()->post->create();
-
-		ob_start();
-		$this->get_stats->__invoke( [ $post_id ], [] );
-		$stats = ob_get_clean();
-
-		$this->drop_table();
-
-		// check we have the expected error.
-		$this->assertEquals( 'Error: Post ID ' . $post_id . ' does not exist.', $stats );
-	}
-
-	/**
 	 * Test the get stats command can complete when no stats exist for a post.
 	 */
 	public function test_get_stats_command_completes_when_no_stats_exist_for_post() {

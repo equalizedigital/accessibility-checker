@@ -127,12 +127,10 @@ class GetStats implements CLICommandInterface {
 
 		$stats = ( new Summary_Generator( $post_id ) )->generate_summary();
 
-		if ( empty( $stats ) ) {
-			$this->wp_cli::error( "No stats found for post ID {$post_id}." );
-			return;
-		}
-
-		if ( 100 === (int) $stats['passed_tests'] && 0 === (int) $stats['ignored'] ) {
+		if (
+			empty( $stats ) ||
+			( 100 === (int) $stats['passed_tests'] && 0 === (int) $stats['ignored'] )
+		) {
 			$this->wp_cli::success( "Either the post is not yet scanned or all tests passed for post ID {$post_id}." );
 			return;
 		}
