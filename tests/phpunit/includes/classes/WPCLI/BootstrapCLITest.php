@@ -29,6 +29,16 @@ class BootstrapCLITest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Set the should_throw flag back to false after each test.
+	 * 
+	 * @return void
+	 */
+	protected function tearDown(): void {
+		WP_CLI::set_add_command_should_throw( false );
+		parent::tearDown();
+	}
+
+	/**
 	 * Test the bootstrap CLI command.
 	 */
 	public function test_bootstrap_cli_command() {
