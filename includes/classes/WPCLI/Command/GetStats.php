@@ -9,7 +9,6 @@
 
 namespace EqualizeDigital\AccessibilityChecker\WPCLI\Command;
 
-use EDAC\Admin\Scans_Stats;
 use EDAC\Inc\Summary_Generator;
 use WP_CLI;
 use WP_CLI\ExitException;
@@ -24,13 +23,22 @@ use WP_CLI\ExitException;
 class GetStats implements CLICommandInterface {
 
 	/**
+	 * The WP-CLI instance.
+	 *
+	 * This lets a mock be passed in for testing.
+	 *
+	 * @var mixed|WP_CLI
+	 */
+	private $wp_cli;
+
+	/**
 	 * An array of valid stats keys.
 	 *
 	 * @since 1.15.0
 	 *
 	 * @var array|string[]
 	 */
-	private array $valid_stats = [
+	private static array $valid_stats = [
 		'passed_tests',
 		'errors',
 		'warnings',
@@ -40,6 +48,15 @@ class GetStats implements CLICommandInterface {
 		'readability',
 		'simplified_summary',
 	];
+
+	/**
+	 * GetStats constructor.
+	 *
+	 * @param mixed|WP_CLI $wp_cli The WP-CLI instance.
+	 */
+	public function __construct( $wp_cli = null ) {
+		$this->wp_cli = $wp_cli ?? new WP_CLI();
+	}
 
 	/**
 	 * Get the name of the command.
@@ -73,7 +90,7 @@ class GetStats implements CLICommandInterface {
 				[
 					'type'        => 'assoc',
 					'name'        => 'stat',
-					'description' => 'Keys to show in the results. Defaults to all keys. Pass items in as a comma separated list if you want multiple. Valid keys are: ' . implode( ', ', ( new self() )->valid_stats ) . '.',
+					'description' => 'Keys to show in the results. Defaults to all keys. Pass items in as a comma separated list if you want multiple. Valid keys are: ' . implode( ', ', self::$valid_stats ) . '.',
 					'optional'    => true,
 					'default'     => null,
 					'repeating'   => true,
@@ -99,21 +116,24 @@ class GetStats implements CLICommandInterface {
 		$post_exists = (bool) get_post( $post_id );
 
 		if ( ! $post_exists ) {
-			WP_CLI::error( "Post ID {$post_id} does not exist." );
+			$this->wp_cli::error( "Post ID {$post_id} does not exist." );
+			return;
 		}
 
 		if ( class_exists( 'EDAC\Inc\Summary_Generator' ) === false ) {
-			WP_CLI::error( "Summary_Generator class not found, is Accessibility Checker installed and activated?.\n" );
+			$this->wp_cli::error( "Summary_Generator class not found, is Accessibility Checker installed and activated?.\n" );
+			return;
 		}
 
 		$stats = ( new Summary_Generator( $post_id ) )->generate_summary();
 
 		if ( empty( $stats ) ) {
-			WP_CLI::error( "No stats found for post ID {$post_id}." );
+			$this->wp_cli::error( "No stats found for post ID {$post_id}." );
+			return;
 		}
 
 		if ( 100 === (int) $stats['passed_tests'] && 0 === (int) $stats['ignored'] ) {
-			WP_CLI::success( "Either the post is not yet scanned or all tests passed for post ID {$post_id}." );
+			$this->wp_cli::success( "Either the post is not yet scanned or all tests passed for post ID {$post_id}." );
 			return;
 		}
 
@@ -122,21 +142,23 @@ class GetStats implements CLICommandInterface {
 			$requested_stats = explode( ',', $arguments['stat'] );
 			foreach ( $requested_stats as $key ) {
 				$stats_key = trim( $key );
-				if ( ! in_array( $stats_key, $this->valid_stats, true ) ) {
-					WP_CLI::error( "Invalid stat key: {$stats_key}. Valid keys are: " . implode( ', ', $this->valid_stats ) . '.' );
+				if ( ! in_array( $stats_key, self::$valid_stats, true ) ) {
+					$this->wp_cli::error( "Invalid stat key: {$stats_key}. Valid keys are: " . implode( ', ', $this->valid_stats ) . '.' );
+					return;
 				}
 				if ( ! isset( $stats[ $stats_key ] ) ) {
-					WP_CLI::error( "Stat key: {$stats_key} not found in stats." );
+					$this->wp_cli::error( "Stat key: {$stats_key} not found in stats." );
+					return;
 				}
 				$items_to_return[ $stats_key ] = $stats[ $stats_key ];
 			}
 
 			if ( $items_to_return ) {
-				WP_CLI::success( wp_json_encode( $items_to_return, JSON_PRETTY_PRINT ) );
+				$this->wp_cli::success( wp_json_encode( $items_to_return, JSON_PRETTY_PRINT ) );
 				return;
 			}
 		}
 
-		WP_CLI::success( wp_json_encode( $stats, JSON_PRETTY_PRINT ) );
+		$this->wp_cli::success( wp_json_encode( $stats, JSON_PRETTY_PRINT ) );
 	}
 }
