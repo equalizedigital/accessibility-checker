@@ -24,6 +24,17 @@ use WP_CLI;
 class BootstrapCLI {
 
 	/**
+	 * The WP-CLI instance.
+	 *
+	 * This allows injecting a mock WP-CLI instance for testing.
+	 *
+	 * @since 1.15.0
+	 *
+	 * @var WP_CLI
+	 */
+	private $wp_cli;
+
+	/**
 	 * The boot method on this class will use this array to register custom WP-CLI commands.
 	 *
 	 * @since 1.15.0
@@ -35,6 +46,17 @@ class BootstrapCLI {
 		GetSiteStats::class,
 		GetStats::class,
 	];
+
+	/**
+	 * Set up the internal wp_cli property.
+	 *
+	 * @since 1.15.0
+	 *
+	 * @param WP_CLI|null $wp_cli The WP-CLI instance.
+	 */
+	public function __construct( $wp_cli = null ) {
+		$this->wp_cli = $wp_cli ? $wp_cli : new WP_CLI();
+	}
 
 	/**
 	 * Register the WP-CLI commands by looping through the commands array and adding each command.
@@ -65,17 +87,17 @@ class BootstrapCLI {
 			}
 
 			try {
-				WP_CLI::add_command(
+				$this->wp_cli::add_command(
 					$command::get_name(),
 					$command,
 					$command::get_args()
 				);
 			} catch ( Exception $e ) {
-				WP_CLI::warning(
+				$this->wp_cli::warning(
 					sprintf(
 						// translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
 						__( 'Failed to register command %1$s because %2$s', 'accessibility-checker' ),
-						get_class( $command ),
+						$command,
 						$e->getMessage()
 					)
 				);
