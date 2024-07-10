@@ -82,7 +82,7 @@ class GetStats implements CLICommandInterface {
 				[
 					'type'        => 'positional',
 					'name'        => 'post_id',
-					'description' => 'The ID of the post to get stats for.',
+					'description' => esc_html__( 'The ID of the post to get stats for.', 'accessibility-checker' ),
 					'optional'    => true,
 					'default'     => 0,
 					'repeating'   => false,
@@ -90,7 +90,11 @@ class GetStats implements CLICommandInterface {
 				[
 					'type'        => 'assoc',
 					'name'        => 'stat',
-					'description' => 'Keys to show in the results. Defaults to all keys. Pass items in as a comma separated list if you want multiple. Valid keys are: ' . implode( ', ', self::$valid_stats ) . '.',
+					'description' => sprintf(
+						// translators: 1: a comma separated list of valid stats keys that should not be translated.
+						'Keys to show in the results. Defaults to all keys. Pass items in as a comma separated list if you want multiple. Valid keys are: %1$s.',
+						implode( ', ', self::$valid_stats )
+					),
 					'optional'    => true,
 					'default'     => null,
 					'repeating'   => true,
@@ -116,7 +120,13 @@ class GetStats implements CLICommandInterface {
 		$post_exists = (bool) get_post( $post_id );
 
 		if ( ! $post_exists ) {
-			$this->wp_cli::error( "Post ID {$post_id} does not exist." );
+			$this->wp_cli::error(
+				sprintf(
+					// translators: 1: a post ID.
+					esc_html__( 'Post ID %1$d does not exist.', 'accessibility-checker' ),
+					$post_id
+				)
+			);
 			return;
 		}
 
@@ -126,7 +136,13 @@ class GetStats implements CLICommandInterface {
 			empty( $stats ) ||
 			( 100 === (int) $stats['passed_tests'] && 0 === (int) $stats['ignored'] )
 		) {
-			$this->wp_cli::success( "Either the post is not yet scanned or all tests passed for post ID {$post_id}." );
+			$this->wp_cli::success(
+				sprintf(
+					// translators: 1: a post ID.
+					esc_html__( 'Either the post is not yet scanned or all tests passed for post ID %1$d.', 'accessibility-checker' ),
+					$post_id
+				)
+			);
 			return;
 		}
 
@@ -136,7 +152,15 @@ class GetStats implements CLICommandInterface {
 			foreach ( $requested_stats as $key ) {
 				$stats_key = trim( $key );
 				if ( ! in_array( $stats_key, self::$valid_stats, true ) || ! isset( $stats[ $stats_key ] ) ) {
-					$this->wp_cli::error( "Invalid stat key: {$stats_key}. Valid keys are: " . implode( ', ', self::$valid_stats ) . '.' );
+					$this->wp_cli::error(
+						sprintf(
+						// translators: 1: a stat key, 2: a comma separated list of valid stats keys.
+							'Invalid stat key: %1$s. Valid keys are: %2$s.',
+							$stats_key,
+							implode( ', ', self::$valid_stats )
+						)
+					);
+
 					return;
 				}
 				$items_to_return[ $stats_key ] = $stats[ $stats_key ];

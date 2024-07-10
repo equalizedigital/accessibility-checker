@@ -64,7 +64,7 @@ class GetSiteStats implements CLICommandInterface {
 				[
 					'type'        => 'assoc',
 					'name'        => 'stat',
-					'description' => 'Keys to show in the results. Defaults to all keys.',
+					'description' => esc_html__( 'Keys to show in the results. Defaults to all keys.', 'accessibility-checker' ),
 					'optional'    => true,
 					'default'     => null,
 					'repeating'   => true,
@@ -72,7 +72,7 @@ class GetSiteStats implements CLICommandInterface {
 				[
 					'type'        => 'assoc',
 					'name'        => 'clear-cache',
-					'description' => 'Clear the cache before retrieving the stats (can be intensive).',
+					'description' => esc_html__( 'Clear the cache before retrieving the stats (can be intensive).', 'accessibility-checker' ),
 					'optional'    => true,
 					'default'     => true,
 					'repeating'   => false,
@@ -106,7 +106,13 @@ class GetSiteStats implements CLICommandInterface {
 			foreach ( $requested_stats as $key ) {
 				$stats_key = trim( $key );
 				if ( ! isset( $all_stats[ $stats_key ] ) ) {
-					$this->wp_cli::error( "Stat key: {$stats_key} not found in stats." );
+					$this->wp_cli::error(
+						sprintf(
+							// translators: 1: a stat key that was requested but not found.
+							esc_html__( 'Stat key: %1$s not found in stats.', 'accessibility-checker' ),
+							$stats_key
+						)
+					);
 					return;
 				}
 				$items_to_return[ $stats_key ] = $all_stats[ $stats_key ];

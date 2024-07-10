@@ -96,7 +96,7 @@ class BootstrapCLI {
 				$this->wp_cli::warning(
 					sprintf(
 						// translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
-						__( 'Failed to register command %1$s because %2$s', 'accessibility-checker' ),
+						esc_html__( 'Failed to register command %1$s because %2$s', 'accessibility-checker' ),
 						$command,
 						$e->getMessage()
 					)

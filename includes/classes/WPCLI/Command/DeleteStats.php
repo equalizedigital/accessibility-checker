@@ -58,7 +58,7 @@ class DeleteStats implements CLICommandInterface {
 				[
 					'type'        => 'positional',
 					'name'        => 'post_id',
-					'description' => 'The ID of the post to delete stats for.',
+					'description' => esc_html__( 'The ID of the post to delete stats for.', 'accessibility-checker' ),
 					'optional'    => true,
 					'default'     => 0,
 					'repeating'   => false,
@@ -80,17 +80,29 @@ class DeleteStats implements CLICommandInterface {
 		$post_id = $options[0] ?? 0;
 
 		if ( 0 === $post_id ) {
-			$this->wp_cli::error( "No Post ID provided.\n" );
+			$this->wp_cli::error( esc_html__( 'No Post ID provided.', 'accessibility-checker' ) );
 		}
 
 		$post_exists = (bool) get_post( $post_id );
 
 		if ( ! $post_exists ) {
-			$this->wp_cli::error( "Post ID {$post_id} does not exist.\n" );
+			$this->wp_cli::error(
+				sprintf(
+					// translators: 1: a post ID.
+					esc_html__( 'Post ID %1$s does not exist.', 'accessibility-checker' ),
+					$post_id
+				)
+			);
 			return;
 		}
 
 		Purge_Post_Data::delete_post( $post_id );
-		$this->wp_cli::success( "Stats of {$post_id} deleted! \n" );
+		$this->wp_cli::success(
+			sprintf(
+				// translators: 1: a post ID.
+				esc_html__( 'Stats of %1$s deleted.', 'accessibility-checker' ),
+				$post_id
+			)
+		);
 	}
 }
