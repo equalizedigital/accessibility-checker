@@ -23,6 +23,24 @@ use WP_CLI\ExitException;
 class GetSiteStats implements CLICommandInterface {
 
 	/**
+	 * The WP-CLI instance.
+	 *
+	 * This lets a mock be passed in for testing.
+	 *
+	 * @var mixed|WP_CLI
+	 */
+	private $wp_cli;
+
+	/**
+	 * GetStats constructor.
+	 *
+	 * @param mixed|WP_CLI $wp_cli The WP-CLI instance.
+	 */
+	public function __construct( $wp_cli = null ) {
+		$this->wp_cli = $wp_cli ?? new WP_CLI();
+	}
+
+	/**
 	 * Get the name of the command.
 	 *
 	 * @since 1.15.0
@@ -82,11 +100,11 @@ class GetSiteStats implements CLICommandInterface {
 		}
 
 		if ( $items_to_return ) {
-			WP_CLI::success( wp_json_encode( $items_to_return, JSON_PRETTY_PRINT ) );
+			$this->wp_cli::success( wp_json_encode( $items_to_return, JSON_PRETTY_PRINT ) );
 			return;
 		}
 
-		WP_CLI::success( wp_json_encode( $all_stats, JSON_PRETTY_PRINT ) );
+		$this->wp_cli::success( wp_json_encode( $all_stats, JSON_PRETTY_PRINT ) );
 	}
 
 	/**
@@ -104,13 +122,13 @@ class GetSiteStats implements CLICommandInterface {
 	private function get_all_stats(): array {
 
 		if ( class_exists( 'EDAC\Admin\Scans_Stats' ) === false ) {
-			WP_CLI::error( "Scans_Stats class not found, is Accessibility Checker installed and activated?.\n" );
+			$this->wp_cli::error( "Scans_Stats class not found, is Accessibility Checker installed and activated?.\n" );
 		}
 
 		$stats = ( new Scans_Stats() )->summary();
 
 		if ( empty( $stats ) ) {
-			WP_CLI::error( "No stats found.\n" );
+			$this->wp_cli::error( "No stats found.\n" );
 		}
 
 		return $stats;

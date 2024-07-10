@@ -21,6 +21,24 @@ use WP_CLI\ExitException;
 class DeleteStats implements CLICommandInterface {
 
 	/**
+	 * The WP-CLI instance.
+	 *
+	 * This lets a mock be passed in for testing.
+	 *
+	 * @var mixed|WP_CLI
+	 */
+	private $wp_cli;
+
+	/**
+	 * GetStats constructor.
+	 *
+	 * @param mixed|WP_CLI $wp_cli The WP-CLI instance.
+	 */
+	public function __construct( $wp_cli = null ) {
+		$this->wp_cli = $wp_cli ?? new WP_CLI();
+	}
+
+	/**
 	 * Get the name of the command
 	 *
 	 * @return string
@@ -59,23 +77,20 @@ class DeleteStats implements CLICommandInterface {
 	 * @throws ExitException If the post ID is not provided, does not exist, or the class we need isn't available.
 	 */
 	public function __invoke( array $options = [], array $arguments = [] ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-		$post_id = $options[0] ?? null;
+		$post_id = $options[0] ?? 0;
 
 		if ( 0 === $post_id ) {
-			WP_CLI::error( "No Post ID provided, getting all stats not implemented yet.\n" );
+			$this->wp_cli::error( "No Post ID provided.\n" );
 		}
 
 		$post_exists = (bool) get_post( $post_id );
 
 		if ( ! $post_exists ) {
-			WP_CLI::error( "Post ID {$post_id} does not exist.\n" );
-		}
-
-		if ( class_exists( 'EDAC\Admin\Purge_Post_Data' ) === false ) {
-			WP_CLI::error( "Purge_Post_Data class not found, is Accessibility Checker installed and activated?\n" );
+			$this->wp_cli::error( "Post ID {$post_id} does not exist.\n" );
+			return;
 		}
 
 		Purge_Post_Data::delete_post( $post_id );
-		WP_CLI::success( "Stats of {$post_id} deleted! \n" );
+		$this->wp_cli::success( "Stats of {$post_id} deleted! \n" );
 	}
 }
