@@ -95,6 +95,72 @@ class GetStatsTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that the get stats command can get just the requested stats keys.
+	 *
+	 * @return void
+	 */
+	public function test_get_stats_can_get_filtered_stats_when_requested() {
+		$post_id = $this->factory()->post->create();
+		$post    = get_post( $post_id );
+
+		$this->insert_issue_to_db( $post );
+
+		ob_start();
+		$this->get_stats->__invoke( [ $post_id ], [ 'stat' => 'passed_tests' ] );
+		$stats = ob_get_clean();
+
+		// check the output is still a success message.
+		$this->assertStringStartsWith( 'Success: {', $stats );
+
+		$stats_array = json_decode(
+			html_entity_decode(
+				str_replace( 'Success: ', '', $stats )
+			),
+			true
+		);
+
+		// is only one key long and is the key we requested.
+		$this->assertCount( 1, $stats_array );
+		$this->assertArrayHasKey( 'passed_tests', $stats_array );
+
+		ob_start();
+		$this->get_stats->__invoke( [ $post_id ], [ 'stat' => 'passed_tests, errors, warnings' ] );
+		$stats = ob_get_clean();
+
+		// check the output is still a success message.
+		$this->assertStringStartsWith( 'Success: {', $stats );
+
+		$stats_array = json_decode(
+			html_entity_decode(
+				str_replace( 'Success: ', '', $stats )
+			),
+			true
+		);
+
+		// is 3 keys.
+		$this->assertCount( 3, $stats_array );
+		$this->assertArrayHasKey( 'passed_tests', $stats_array );
+		$this->assertArrayHasKey( 'errors', $stats_array );
+		$this->assertArrayHasKey( 'warnings', $stats_array );
+	}
+
+	/**
+	 * Test the get stats command errors when filtered stats are requested for non-existent keys.
+	 */
+	public function test_get_stats_errors_when_filtered_stats_are_requested_for_non_existent_keys() {
+		$post_id = $this->factory()->post->create();
+		$post    = get_post( $post_id );
+
+		$this->insert_issue_to_db( $post );
+
+		ob_start();
+		$this->get_stats->__invoke( [ $post_id ], [ 'stat' => 'a_non_existant_stat' ] );
+		$stats = ob_get_clean();
+
+		$this->assertStringStartsWith( 'Error: Invalid stat key', $stats );
+	}
+
+	/**
 	 * Insert a record to the database for a given post.
 	 *
 	 * @param WP_Post $post The post to insert the record for.
