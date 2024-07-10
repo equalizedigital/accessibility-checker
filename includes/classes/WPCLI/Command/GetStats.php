@@ -140,12 +140,8 @@ class GetStats implements CLICommandInterface {
 			$requested_stats = explode( ',', $arguments['stat'] );
 			foreach ( $requested_stats as $key ) {
 				$stats_key = trim( $key );
-				if ( ! in_array( $stats_key, self::$valid_stats, true ) ) {
-					$this->wp_cli::error( "Invalid stat key: {$stats_key}. Valid keys are: " . implode( ', ', $this->valid_stats ) . '.' );
-					return;
-				}
-				if ( ! isset( $stats[ $stats_key ] ) ) {
-					$this->wp_cli::error( "Stat key: {$stats_key} not found in stats." );
+				if ( ! in_array( $stats_key, self::$valid_stats, true ) || ! isset( $stats[ $stats_key ] ) ) {
+					$this->wp_cli::error( "Invalid stat key: {$stats_key}. Valid keys are: " . implode( ', ', self::$valid_stats ) . '.' );
 					return;
 				}
 				$items_to_return[ $stats_key ] = $stats[ $stats_key ];
