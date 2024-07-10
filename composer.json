@@ -64,7 +64,7 @@
     "autoload-dev": {
         "classmap": [],
 		"psr-4": {
-			"EqualizeDigital\\AccessibilityChecker\\Tests\\": "tests/phpunit/"
+			"EqualizeDigital\\AccessibilityChecker\\Tests\\TestHelpers\\": "tests/phpunit/TestHelpers/"
 		}
     },
     "scripts": {
