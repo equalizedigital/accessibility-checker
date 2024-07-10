@@ -69,6 +69,14 @@ class GetSiteStats implements CLICommandInterface {
 					'default'     => null,
 					'repeating'   => true,
 				],
+				[
+					'type'        => 'assoc',
+					'name'        => 'clear-cache',
+					'description' => 'Clear the cache before retrieving the stats (can be intensive).',
+					'optional'    => true,
+					'default'     => true,
+					'repeating'   => false,
+				],
 			],
 		];
 	}
@@ -85,6 +93,11 @@ class GetSiteStats implements CLICommandInterface {
 	 * @throws ExitException If the post ID does not exist, or the class we need isn't available.
 	 */
 	public function __invoke( array $options = [], array $arguments = [] ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+		if ( ! empty( $arguments['clear-cache'] ) ) {
+			// Clear the cache.
+			( new Scans_Stats() )->clear_cache();
+		}
+
 		$all_stats = $this->get_all_stats();
 
 		if ( ! empty( $arguments['stat'] ) ) {
