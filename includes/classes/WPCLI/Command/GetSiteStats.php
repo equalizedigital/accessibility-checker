@@ -98,7 +98,7 @@ class GetSiteStats implements CLICommandInterface {
 			( new Scans_Stats() )->clear_cache();
 		}
 
-		$all_stats = $this->get_all_stats();
+		$all_stats = ( new Scans_Stats() )->summary();
 
 		if ( ! empty( $arguments['stat'] ) ) {
 			$items_to_return = [];
@@ -118,32 +118,5 @@ class GetSiteStats implements CLICommandInterface {
 		}
 
 		$this->wp_cli::success( wp_json_encode( $all_stats, JSON_PRETTY_PRINT ) );
-	}
-
-	/**
-	 * Gets the sites from the entire site.
-	 *
-	 * A limitation is this can only provide the stats for scanned pages, if
-	 * some pages are not scanned they are not reflected in the stats. Use the
-	 * 'scannable_posts_count' and the 'posts_scanned' values to determine if
-	 * the whole site is reflected or not.
-	 *
-	 * @since 1.15.0
-	 *
-	 * @throws ExitException If ScanStats class is not found or no stats are found.
-	 */
-	private function get_all_stats(): array {
-
-		if ( class_exists( 'EDAC\Admin\Scans_Stats' ) === false ) {
-			$this->wp_cli::error( "Scans_Stats class not found, is Accessibility Checker installed and activated?.\n" );
-		}
-
-		$stats = ( new Scans_Stats() )->summary();
-
-		if ( empty( $stats ) ) {
-			$this->wp_cli::error( "No stats found.\n" );
-		}
-
-		return $stats;
 	}
 }
