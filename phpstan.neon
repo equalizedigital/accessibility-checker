@@ -1,0 +1,13 @@
+parameters:
+    level: 2
+    paths:
+        - .
+    scanDirectories:
+        - %currentWorkingDirectory%/vendor
+    excludePaths:
+        analyse:
+            - %currentWorkingDirectory%/vendor/*
+            - %currentWorkingDirectory%/node_modules/*
+            - %currentWorkingDirectory%/tests/*
+    fileExtensions:
+        - php
