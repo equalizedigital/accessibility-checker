@@ -68,7 +68,7 @@ class DeleteStats implements CLICommandInterface {
 	}
 
 	/**
-	 * Run the command to delete stats for a given post id.
+	 * Delete the accessibility-checker stats for a given post ID.
 	 *
 	 * @param array $options This is the positional argument, the post ID in this case.
 	 * @param array $arguments This is the associative argument, not used in this command but kept for consistency with cli commands using this pattern.

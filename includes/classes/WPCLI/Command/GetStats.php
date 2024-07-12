@@ -104,7 +104,7 @@ class GetStats implements CLICommandInterface {
 	}
 
 	/**
-	 * Run the command that gets the stats for a post ID or the stats for the whole site.
+	 * Gets the accessibility-checker stats for a given post ID.
 	 *
 	 * @since 1.15.0
 	 *

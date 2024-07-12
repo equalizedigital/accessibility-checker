@@ -82,7 +82,7 @@ class GetSiteStats implements CLICommandInterface {
 	}
 
 	/**
-	 * Run the command that gets the stats for the whole site.
+	 * Gets the accessibility-checker stats for the whole site. Use the --clear-cache flag to clear the cache before retrieving the stats.
 	 *
 	 * @since 1.15.0
 	 *
