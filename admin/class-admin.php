@@ -27,7 +27,7 @@ class Admin {
 	/**
 	 * Class constructor for injecting dependencies.
 	 *
-	 * @param Meta_Boxes|null $meta_boxes Meta boxes instance.
+	 * @param Meta_Boxes $meta_boxes Meta boxes instance.
 	 */
 	public function __construct( Meta_Boxes $meta_boxes ) {
 		$this->meta_boxes = $meta_boxes;
