@@ -22,6 +22,11 @@ class GetFileOpenedAsBinaryTest extends WP_UnitTestCase {
 
 		$fh = edac_get_file_opened_as_binary( $file );
 
+		// since this external service can be flaky we try again if it fails.
+		if ( ! $fh ) {
+			$fh = edac_get_file_opened_as_binary( $file );
+		}
+
 		$this->assertNotFalse( $fh );
 		fclose( $fh );
 	}
