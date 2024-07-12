@@ -70,11 +70,9 @@ class GetSiteStats implements CLICommandInterface {
 					'repeating'   => true,
 				],
 				[
-					'type'        => 'assoc',
+					'type'        => 'flag',
 					'name'        => 'clear-cache',
 					'description' => esc_html__( 'Clear the cache before retrieving the stats (can be intensive).', 'accessibility-checker' ),
-					'optional'    => true,
-					'default'     => true,
 					'repeating'   => false,
 				],
 			],
