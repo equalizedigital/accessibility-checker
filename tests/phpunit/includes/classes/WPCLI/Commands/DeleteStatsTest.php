@@ -71,7 +71,7 @@ class DeleteStatsTest extends WP_UnitTestCase {
 		$this->delete_stats->__invoke( [ $post_id ], [] );
 		$output = ob_get_clean();
 
-		$this->assertStringStartsWith( 'Success: Stats of ' . $post_id . ' deleted!', $output );
+		$this->assertStringStartsWith( 'Success: Stats of ' . $post_id . ' deleted', $output );
 
 		// make sure the issue is actually deleted from the database.
 		$stats_after = $wpdb->get_results( "SELECT * FROM $table_name WHERE postid = $post_id" ); // phpcs:ignore WordPress.DB -- Querying for testing purposes.
