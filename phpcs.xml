@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="WordPress Coding Standards for Accessibility Checker">
-	<description>Accessibility Checker Wordpress Coding Standards</description>
+	<description>Accessibility Checker WordPress Coding Standards</description>
 
 	<!-- Scan all files in directory -->
 	<file>.</file>
@@ -146,5 +146,13 @@
 		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
 	</rule>
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+
+	<!-- Exclude rules that block PSR-4 compliance -->
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+	</rule>
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+	</rule>
 
 </ruleset>

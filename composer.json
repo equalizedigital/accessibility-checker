@@ -59,10 +59,16 @@
             "admin/",
             "includes/classes/",
             "includes/deprecated/"
-        ]
+        ],
+        "psr-4": {
+            "EqualizeDigital\\AccessibilityChecker\\": "includes/classes/"
+        }
     },
     "autoload-dev": {
-        "classmap": []
+        "classmap": [],
+		"psr-4": {
+			"EqualizeDigital\\AccessibilityChecker\\Tests\\TestHelpers\\": "tests/phpunit/TestHelpers/"
+		}
     },
     "scripts": {
         "lint": [
