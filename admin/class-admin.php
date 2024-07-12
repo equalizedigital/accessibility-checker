@@ -29,7 +29,7 @@ class Admin {
 	 *
 	 * @param Meta_Boxes|null $meta_boxes Meta boxes instance.
 	 */
-	public function __construct( Meta_Boxes $meta_boxes = null ) {
+	public function __construct( Meta_Boxes $meta_boxes ) {
 		$this->meta_boxes = $meta_boxes;
 	}
 
