@@ -1398,8 +1398,8 @@
           color: #ffffff;
 
           &-error {
-            background-size: 1rem 1rem;
             background: $color-green url('.././images/error%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
+            background-size: 1rem 1rem;
 
             &.has-errors {
               background-color: $color-red;
@@ -1408,8 +1408,8 @@
           }
 
           &-contrast {
-            background-size: 1rem 1rem;
             background: $color-green url('.././images/contrast%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
+            background-size: 1rem 1rem;
 
             &.has-errors {
               background-color: $color-red;
@@ -1418,12 +1418,12 @@
           }
 
           &-warning {
-            background-size: 1rem 1rem;
             background: $color-green url('.././images/warning%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
+            background-size: 1rem 1rem;
 
             &.has-warning {
-                background-size: 1rem 1rem;
                 background: $color-yellow url('.././images/warning%20icon%20navy.png') no-repeat calc(0% + 5px) 50%;
+                background-size: 1rem 1rem;
                 color: $color-blue-dark;
             }
 
