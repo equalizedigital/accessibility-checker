@@ -220,20 +220,5 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Improved: More accessible panels in the editor
 * Improved: Filter and action docs added/improved
 
-= 1.11.2
-* Fixed: Avoid displaying `0th` for readability score
-* Removed: Some custom WP Playground detection code
-
-= 1.11.1 =
-* Fixed: type Casting on several rules
-* Fixed: strict data comparison on several rules
-* Updated: empty heading tag rule to consider aria-label
-
-= 1.11.0 =
-* Updated: Tested up to WP 6.5.2
-* Improved: Better detection of the underlined text rule for more accurate results
-* Improved: PHP 8.2 compatibility with the TextStatistics library
-* Added: Opt-in modal for users to subscribe to the Equalize Digital newsletter with less steps
-
 Older versions can be found in the plugins `changelog.txt`.
 
