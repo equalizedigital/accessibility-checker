@@ -171,6 +171,14 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.15.0 =
+* Added: WP-CLI commands to get stats and delete stats
+* Enhancement: Image inputs with alt text shouldn't flag for missing_form_label
+* Fixed: Don't flag .avif as missing transcript or video present
+* Fixed: Purge the post data if the saved post is in or is moving to the trash
+* Fixed: Handle stacking contexts for callout button in admin correctly
+* Fixed: PHP 8.4 deprecation notice fix for implicitly nullable Meta_Boxes
+
 = 1.14.3 =
 * Fixed: Allow empty_link rule to detect actually empty links
 
