@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
-Tested up to: 6.5.5
-Stable tag: 1.14.3
+Tested up to: 6.6.0
+Stable tag: 1.15.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,6 +171,14 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.15.0 =
+* Added: WP-CLI commands to get stats and delete stats
+* Enhancement: Image inputs with alt text shouldn't flag for missing_form_label
+* Fixed: Don't flag .avif as missing transcript or video present
+* Fixed: Purge the post data if the saved post is in or is moving to the trash
+* Fixed: Handle stacking contexts for callout button in admin correctly
+* Fixed: PHP 8.4 deprecation notice fix for implicitly nullable Meta_Boxes
+
 = 1.14.3 =
 * Fixed: Allow empty_link rule to detect actually empty links
 
@@ -211,21 +219,6 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Fixed: Use the last generation time in summary widgets rather than last completed scan time
 * Improved: More accessible panels in the editor
 * Improved: Filter and action docs added/improved
-
-= 1.11.2
-* Fixed: Avoid displaying `0th` for readability score
-* Removed: Some custom WP Playground detection code
-
-= 1.11.1 =
-* Fixed: type Casting on several rules
-* Fixed: strict data comparison on several rules
-* Updated: empty heading tag rule to consider aria-label
-
-= 1.11.0 =
-* Updated: Tested up to WP 6.5.2
-* Improved: Better detection of the underlined text rule for more accurate results
-* Improved: PHP 8.2 compatibility with the TextStatistics library
-* Added: Opt-in modal for users to subscribe to the Equalize Digital newsletter with less steps
 
 Older versions can be found in the plugins `changelog.txt`.
 
