@@ -31,9 +31,8 @@ function edac_compare_strings( $string1, $string2 ) {
 		$content = str_ireplace( $remove_text, '', $content );
 		$content = wp_strip_all_tags( $content );
 		$content = trim( $content, " \t\n\r\0\x0B\xC2\xA0" );
-		$content = html_entity_decode( $content );
 
-		return $content;
+		return html_entity_decode( $content );
 	};
 
 	return $prepare_strings( $string1 ) === $prepare_strings( $string2 );
@@ -138,8 +137,7 @@ function edac_ordinal( $number ) {
 function edac_simple_dom_remove_child( simple_html_dom_node $parent_node ) {
 	$parent_node->innertext = '';
 
-	$error = $parent_node->save();
-	return $error;
+	return $parent_node->save();
 }
 
 /**
@@ -210,9 +208,7 @@ function edac_is_gutenberg_active() {
 		return true;
 	}
 
-	$use_block_editor = ( get_option( 'classic-editor-replace' ) === 'no-replace' );
-
-	return $use_block_editor;
+	return ( get_option( 'classic-editor-replace' ) === 'no-replace' );
 }
 
 /**
@@ -275,9 +271,7 @@ function edac_custom_post_types() {
 	$output   = 'names'; // names or objects, note names is the default.
 	$operator = 'and'; // Options 'and' or 'or'.
 
-	$post_types = get_post_types( $args, $output, $operator );
-
-	return $post_types;
+	return get_post_types( $args, $output, $operator );
 }
 
 /**
@@ -477,8 +471,8 @@ function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
 
 	$time     = time();
 	$max_time = $time + $timeout_seconds;
-	$nonce    = $salt . ',' . $max_time . ',' . sha1( $salt . $secret . $max_time );
-	return $nonce;
+
+	return $salt . ',' . $max_time . ',' . sha1( $salt . $secret . $max_time );
 }
 
 /**
@@ -970,7 +964,7 @@ function edac_get_file_opened_as_binary( string $filename ) {
 
 /**
  * Generate a summary statistic list item.
- * 
+ *
  * @since 1.14.0
  *
  * @param string $item_class     The base CSS class for the list item.
@@ -989,4 +983,19 @@ function edac_generate_summary_stat( string $item_class, int $count, string $lab
             </div>
             <div class="edac-panel-number-label">' . $label . '</div>
         </li>';
+}
+
+/**
+ * Check if an element has an extension that matches the provided list.
+ *
+ * @since 1.15.0
+ *
+ * @param string $item A file path or URL to check.
+ * @param array  $extensions An array of extensions to check for.
+ *
+ * @return bool True if the item has an extension that matches the list, false otherwise.
+ */
+function edac_is_item_using_matching_extension( string $item, array $extensions ): bool {
+	$extension = pathinfo( $item, PATHINFO_EXTENSION );
+	return in_array( '.' . $extension, $extensions, true );
 }

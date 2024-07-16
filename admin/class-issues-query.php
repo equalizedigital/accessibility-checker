@@ -125,9 +125,7 @@ class Issues_Query {
 	 * @return string $sql .
 	 */
 	public function get_sql() {
-		$sql = $this->query['select'] . ' ' . $this->query['from'] . ' ' . $this->query['where_base'] . ' ' . $this->query['filters'] . ' ' . $this->query['limit'];
-
-		return $sql;
+		return $this->query['select'] . ' ' . $this->query['from'] . ' ' . $this->query['where_base'] . ' ' . $this->query['filters'] . ' ' . $this->query['limit'];
 	}
 
 

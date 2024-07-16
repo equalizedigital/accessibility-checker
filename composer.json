@@ -44,7 +44,10 @@
         "wp-coding-standards/wpcs": "^3.0",
         "equalizedigital/accessibility-checker-wp-env": "*",
         "doctrine/instantiator": "^1.3.1",
-        "wp-phpunit/wp-phpunit": "*"
+        "wp-phpunit/wp-phpunit": "*",
+        "phpstan/phpstan": "^1.11",
+		"phpstan/extension-installer": "^1.4",
+        "szepeviktor/phpstan-wordpress": "^1.3"
     },
     "require": {
         "davechild/textstatistics": "dev-master",
@@ -56,10 +59,16 @@
             "admin/",
             "includes/classes/",
             "includes/deprecated/"
-        ]
+        ],
+        "psr-4": {
+            "EqualizeDigital\\AccessibilityChecker\\": "includes/classes/"
+        }
     },
     "autoload-dev": {
-        "classmap": []
+        "classmap": [],
+		"psr-4": {
+			"EqualizeDigital\\AccessibilityChecker\\Tests\\TestHelpers\\": "tests/phpunit/TestHelpers/"
+		}
     },
     "scripts": {
         "lint": [

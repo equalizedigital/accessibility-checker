@@ -120,9 +120,7 @@ class Helpers {
 			}
 		}
 
-		$formatted_date = $datetime->format( $format );
-
-		return $formatted_date;
+		return $datetime->format( $format );
 	}
 
 	/**
