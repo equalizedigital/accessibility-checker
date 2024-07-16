@@ -88,7 +88,7 @@ class Enqueue_Admin {
 			);
 
 
-			if ( 'post.php' === $pagenow ) {
+			if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 
 
 				// Is this posttype setup to be checked?
