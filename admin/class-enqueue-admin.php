@@ -95,7 +95,7 @@ class Enqueue_Admin {
 				$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID;
 
 				if ( EDAC_DEBUG || strpos( EDAC_VERSION, '-beta' ) !== false ) {
-					$debug = true;
+					$debug = true; // @codeCoverageIgnore
 				} else {
 					$debug = false;
 				}
