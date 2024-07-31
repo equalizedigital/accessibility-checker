@@ -47,7 +47,6 @@ class Enqueue_Admin {
 	 */
 	public static function maybe_enqueue_admin_and_editor_app_scripts() {
 
-
 		global $pagenow;
 		$post_types        = get_option( 'edac_post_types' );
 		$current_post_type = get_post_type();
@@ -75,7 +74,6 @@ class Enqueue_Admin {
 			$post_id = is_object( $post ) ? $post->ID : null;
 			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery' ], EDAC_VERSION, false );
 
-
 			wp_localize_script(
 				'edac',
 				'edac_script_vars',
@@ -87,9 +85,7 @@ class Enqueue_Admin {
 				]
 			);
 
-
-			if ( 'post.php' === $pagenow ) {
-
+			if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 
 				// Is this posttype setup to be checked?
 				$post_types        = get_option( 'edac_post_types' );
@@ -99,7 +95,7 @@ class Enqueue_Admin {
 				$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID;
 
 				if ( EDAC_DEBUG || strpos( EDAC_VERSION, '-beta' ) !== false ) {
-					$debug = true;
+					$debug = true; // @codeCoverageIgnore
 				} else {
 					$debug = false;
 				}

@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
-Tested up to: 6.6.0
-Stable tag: 1.15.0
+Tested up to: 6.6.1
+Stable tag: 1.15.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,10 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.15.1 =
+* Fixed: Issue where a modal could result in JS error preventing display
+* Fixed: Situations where Gutenberg created new posts may not trigger the JS scan when publishing
 
 = 1.15.0 =
 * Added: WP-CLI commands to get stats and delete stats
