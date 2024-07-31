@@ -35,7 +35,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.15.0' );
+	define( 'EDAC_VERSION', '1.14.4' );
 }
 
 // Current database version.
