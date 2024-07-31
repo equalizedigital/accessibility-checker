@@ -28,7 +28,7 @@ export const initOptInModal = () => {
 
 const bindFocusTrap = () => {
 	const modal = document.getElementById( 'TB_window' );
-	const closeicon = modal?.querySelector( '.tb-close-icon' );
+	const closeIcon = modal?.querySelector( '.tb-close-icon' );
 	if ( ! modal || ! close ) {
 		return false;
 	}
