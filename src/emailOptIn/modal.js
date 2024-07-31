@@ -33,7 +33,7 @@ const bindFocusTrap = () => {
 		return false;
 	}
 
-	closeicon.setAttribute( 'aria-hidden', 'true' );
+	closeIcon.setAttribute( 'aria-hidden', 'true' );
 
 	const focusTrap = createFocusTrap( modal );
 	focusTrap.activate();
