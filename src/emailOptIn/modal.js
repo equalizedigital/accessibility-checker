@@ -15,26 +15,37 @@ export const initOptInModal = () => {
 	window.onload = function() {
 		tb_show( 'Accessibility Checker', '#TB_inline?width=600&inlineId=edac-opt-in-modal', null );
 
-		// a small delay is needed to ensure the modal is fully loaded before creating a focus trap.
-		setTimeout(
-			function() {
-				const modal = document.getElementById( 'TB_window' );
-				modal.querySelector( '.tb-close-icon' )
-					.setAttribute( 'aria-hidden', 'true' );
-
-				const focusTrap = createFocusTrap( modal );
-				focusTrap.activate();
-
-				jQuery( document ).one(
-					'tb_unload',
-					function() {
-						onModalClose( focusTrap );
-					}
-				);
-			},
-			200
-		);
+		// create a loop that will wait to find the close button before trying to bind the focus trap
+		let attempts = 0;
+		const intervalId = setInterval( () => {
+			if ( bindFocusTrap() || attempts >= 10 ) {
+				clearInterval( intervalId );
+			}
+			attempts++;
+		}, 250 );
 	};
+};
+
+const bindFocusTrap = () => {
+	const modal = document.getElementById( 'TB_window' );
+	const closeIcon = modal?.querySelector( '.tb-close-icon' );
+	if ( ! modal || ! closeIcon ) {
+		return false;
+	}
+
+	closeIcon.setAttribute( 'aria-hidden', 'true' );
+
+	const focusTrap = createFocusTrap( modal );
+	focusTrap.activate();
+
+	jQuery( document ).one(
+		'tb_unload',
+		function() {
+			onModalClose( focusTrap );
+		}
+	);
+
+	return true;
 };
 
 const onModalClose = ( focusTrap ) => {
