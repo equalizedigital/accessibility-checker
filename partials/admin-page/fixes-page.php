@@ -16,6 +16,6 @@
 		?>
 	</form>
 	<?php if ( EDAC_KEY_VALID === false ) { ?>
-		<div><?php include 'pro-callout.php'; ?></div>
+		<div><?php include EDAC_PLUGIN_DIR . 'partials/pro-callout.php'; ?></div>
 	<?php } ?>
 </div>
