@@ -7,6 +7,7 @@
 
 use EDAC\Admin\Purge_Post_Data;
 use EDAC\Inc\Accessibility_Statement;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 
 /**
  * Check if user can ignore or can manage options
@@ -68,6 +69,9 @@ function edac_add_options_page() {
 		'edac_display_options_page'
 		// The submenu doesn't typically require a separate icon.
 	);
+
+	$fixes_page = new FixesPage( $settings_capability );
+	$fixes_page->add_page();
 }
 
 /**
