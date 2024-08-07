@@ -171,6 +171,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.15.2 =
+* Fixed: Issue where CPT results would not be reflected in dashboard widgets and reports
+
 = 1.15.1 =
 * Fixed: Issue where a modal could result in JS error preventing display
 * Fixed: Situations where Gutenberg created new posts may not trigger the JS scan when publishing
