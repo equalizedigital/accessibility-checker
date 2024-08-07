@@ -54,10 +54,10 @@ class FixesManager {
 		$fixes = apply_filters( 'edac_filter_fixes', [] );
 		foreach ( $fixes as $fix ) {
 			if ( is_subclass_of( $fix, '\EqualizeDigital\AccessibilityChecker\Fixes\FixInterface' ) ) {
-				if ( ! isset( $this->fixes[ $fix_class::get_slug() ] ) ) {
+				if ( ! isset( $this->fixes[ $fix::get_slug() ] ) ) {
 					$fix_class = new $fix();
 					$fix_class->register();
-					$this->fixes[ $fix_class::get_slug() ] = $fix_class;
+					$this->fixes[ $fix::get_slug() ] = $fix_class;
 				}
 			}
 		}
