@@ -124,7 +124,7 @@ class AccessibilityCheckerHighlight {
 
 		for ( const element of allElements ) {
 			if ( element.outerHTML.replace( /\W/g, '' ) === htmlToFind.replace( /\W/g, '' ) ) {
-				const tooltip = this.addTooltip( element, value, index );
+				const tooltip = this.addTooltip( element, value, index, this.issues.length );
 
 				this.issues[ index ].tooltip = tooltip.tooltip;
 
@@ -244,13 +244,13 @@ class AccessibilityCheckerHighlight {
 	 * @return {Object} - information about the tooltip
 	 */
 	/* eslint-disable no-unused-vars */
-	addTooltip( element, value, index ) {
+	addTooltip( element, value, index, totalItems ) {
 		// Create the tooltip.
 		const tooltip = document.createElement( 'button' );
 		tooltip.classList = 'edac-highlight-btn edac-highlight-btn-' + value.rule_type;
-		tooltip.ariaLabel = value.rule_title;
-		tooltip.ariaExpanded = 'false';
-		//tooltip.ariaControls = 'edac-highlight-tooltip-' + value.id;
+		tooltip.setAttribute( 'aria-label', `Open details for ${ value.rule_title }, ${ index + 1 } of ${ totalItems }` );
+		tooltip.setAttribute( 'aria-expanded', 'false' );
+		tooltip.setAttribute( 'aria-haspopup', 'dialog' );
 
 		//add data-id to the tooltip/button so we can find it later.
 		tooltip.dataset.id = value.id;
