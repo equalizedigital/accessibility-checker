@@ -20,7 +20,6 @@
  */
 
 use EDAC\Inc\Plugin;
-use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -185,19 +184,3 @@ function edac_include_rules_files() {
 	}
 }
 add_action( 'init', 'edac_include_rules_files' );
-
-/**
- * Init the FixesManager.
- *
- * This is done on the plugins_loaded hook with a priority of 20 to ensure that fixes that
- * rely on running early, like on init or before init, can be hooked in and ready to go.
- * Fixes should be registered to the manager using the the plugins_loaded hook with a
- * priority of less than 20.
- *
- * @return void
- */
-function edac_init_fixes_manager() {
-	$fixes_manager = FixesManager::get_instance();
-	$fixes_manager->register_fixes();
-}
-add_action( 'plugins_loaded', 'edac_init_fixes_manager', 20 );
