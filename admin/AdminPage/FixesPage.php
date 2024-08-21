@@ -51,8 +51,9 @@ class FixesPage implements PageInterface {
 			__( 'Accessibility Checker Settings', 'accessibility-checker' ),
 			__( 'Accessibility Fixes', 'accessibility-checker' ),
 			$this->settings_capability,
-			'accessibility_checker_fixes',
+			'accessibility_checker_' . self::PAGE_TAB_SLUG,
 			[ $this, 'render_page' ],
+			1
 		);
 
 		$this->register_settings_sections();
