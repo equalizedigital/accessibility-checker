@@ -58,6 +58,31 @@ class FixesPage implements PageInterface {
 
 		$this->register_settings_sections();
 		$this->register_fields_and_settings();
+
+		add_filter( 'edac_filter_admin_scripts_slugs', [ $this, 'add_slug_to_admin_scripts' ] );
+		add_filter( 'edac_filter_remove_admin_notices_screens', [ $this, 'add_slug_to_admin_notices' ] );
+	}
+
+	/**
+	 * Add the fixes slug to the admin scripts.
+	 *
+	 * @param array $slugs The slugs that are already added.
+	 * @return array
+	 */
+	public function add_slug_to_admin_scripts( $slugs ) {
+		$slugs[] = 'accessibility_checker_' . self::PAGE_TAB_SLUG;
+		return $slugs;
+	}
+
+	/**
+	 * Add the fixes slug to the admin notices.
+	 *
+	 * @param array $slugs The slugs that are already added.
+	 * @return array
+	 */
+	public function add_slug_to_admin_notices( $slugs ) {
+		$slugs[] = 'accessibility-checker_page_accessibility_checker_' . self::PAGE_TAB_SLUG;
+		return $slugs;
 	}
 
 	/**

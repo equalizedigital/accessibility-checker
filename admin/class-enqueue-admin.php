@@ -51,12 +51,15 @@ class Enqueue_Admin {
 		$post_types        = get_option( 'edac_post_types' );
 		$current_post_type = get_post_type();
 		$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
-		$enabled_pages     = [
-			'accessibility_checker',
-			'accessibility_checker_settings',
-			'accessibility_checker_issues',
-			'accessibility_checker_ignored',
-		];
+		$enabled_pages     = apply_filters(
+			'edac_filter_admin_scripts_slugs',
+			[
+				'accessibility_checker',
+				'accessibility_checker_settings',
+				'accessibility_checker_issues',
+				'accessibility_checker_ignored',
+			]
+		);
 
 		if (
 			(
