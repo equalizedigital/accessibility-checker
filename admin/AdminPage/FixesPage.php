@@ -49,7 +49,7 @@ class FixesPage implements PageInterface {
 		add_submenu_page(
 			'accessibility_checker',
 			__( 'Accessibility Checker Settings', 'accessibility-checker' ),
-			__( 'Fixes', 'accessibility-checker' ),
+			__( 'Accessibility Fixes', 'accessibility-checker' ),
 			$this->settings_capability,
 			'accessibility_checker_fixes',
 			[ $this, 'render_page' ],
