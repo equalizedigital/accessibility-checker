@@ -6,7 +6,7 @@
  */
 
 ?>
-<div class="wrap edac-settings <?php echo EDAC_KEY_VALID ? '' : 'pro-callout-wrapper'; ?>">
+<div id="edac-fixes-page" class="wrap edac-settings <?php echo EDAC_KEY_VALID ? '' : 'pro-callout-wrapper'; ?>">
 	<h1><?php esc_html_e( 'Accessibility Fixes', 'accessibility-checker' ); ?></h1>
 
 	<div class="tab-content">
