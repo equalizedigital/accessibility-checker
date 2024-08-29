@@ -7,6 +7,8 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
+
 /**
  * Manager class for fixes.
  *
@@ -51,7 +53,12 @@ class FixesManager {
 	 * Load the fixes.
 	 */
 	private function load_fixes() {
-		$fixes = apply_filters( 'edac_filter_fixes', [] );
+		$fixes = apply_filters(
+			'edac_filter_fixes',
+			[
+				SkipLinkFix::class,
+			]
+		);
 		foreach ( $fixes as $fix ) {
 			if ( is_subclass_of( $fix, '\EqualizeDigital\AccessibilityChecker\Fixes\FixInterface' ) ) {
 				if ( ! isset( $this->fixes[ $fix::get_slug() ] ) ) {
