@@ -139,14 +139,6 @@ class SkipLinkFix implements FixInterface {
 				width: 1px;
 				word-wrap: normal !important;
 			}
-			.admin-bar .edac-bypass-block {
-				top: 37px;
-			}
-			@media screen and (max-width: 782px) {
-				.admin-bar .edac-bypass-block {
-					top: 51px;
-				}
-			}
 
 			.edac-bypass-block:focus-within,
 			.edac-bypass-block-always-visible {
@@ -163,6 +155,18 @@ class SkipLinkFix implements FixInterface {
 				top: 5px;
 				width: auto;
 				z-index: 100000;
+			}
+
+			.admin-bar .edac-bypass-block,
+			.admin-bar .edac-bypass-block:focus-within {
+				top: 37px;
+			}
+
+			@media screen and (max-width: 782px) {
+				.admin-bar .edac-bypass-block,
+				.admin-bar .edac-bypass-block:focus-within {
+					top: 51px;
+				}
 			}
 
 			.edac-bypass-block > a {
@@ -215,7 +219,6 @@ class SkipLinkFix implements FixInterface {
 				<?php get_option( 'edac_fix_disable_skip_link_styles', false ) ? '' : $this->add_skip_link_styles(); ?>
 			</div>
 		</template>
-
 		<?php
 	}
 }
