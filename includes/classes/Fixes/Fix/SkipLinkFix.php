@@ -179,7 +179,7 @@ class SkipLinkFix implements FixInterface {
 			.edac-bypass-block > a:hover,
 			.edac-bypass-block > a:focus {
 				text-decoration: none;
-				color: #0073aa;
+				color: #006595;
 			}
 
 			.edac-bypass-block > a:focus {
