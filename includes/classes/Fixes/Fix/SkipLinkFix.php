@@ -120,9 +120,20 @@ class SkipLinkFix implements FixInterface {
 
 			const edacSkipLinkTargets = <?php echo wp_json_encode( $targets ); ?>;
 
+			const findFirstLinkOutsideContainer = (containerSelector) => {
+				const links = document.querySelectorAll('body a');
+				for (const link of links) {
+					if (!link.closest(containerSelector)) {
+						return link;
+					}
+				}
+				return null;
+			};
+
 			const tryDetectSkipLink = () => {
+
 				// get the very first link on the page.
-				const firstLink = document.querySelector('a');
+				firstLink = findFirstLinkOutsideContainer('#wpadminbar');
 
 				// does the first link point to an anchor on the page?
 				if (firstLink && firstLink.href && firstLink.href.indexOf('#') !== -1) {
