@@ -80,7 +80,7 @@ class SkipLinkFix implements FixInterface {
 					'label'       => esc_html__( 'Disable Skip Link Bundled Styles', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => 'disable_skip_link_styles',
-					'description' => esc_html__( 'Disable output of the bundled styles, you will need to provide your own style rules if you enable this.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Disable output of the bundled styles. This makes the "Always Visible Skip Link" setting above irrelevent.', 'accessibility-checker' ),
 					'condition'   => 'edac_fix_add_skip_link',
 				];
 
