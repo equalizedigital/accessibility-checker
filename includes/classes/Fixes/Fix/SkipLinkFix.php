@@ -88,6 +88,23 @@ class SkipLinkFix implements FixInterface {
 				width: 1px;
 				word-wrap: normal !important;
 			}
+			.edac-skip-link:focus {
+				background-color: #ddd;
+				clip: auto !important;
+				-webkit-clip-path: none;
+				clip-path: none;
+				color: #444;
+				display: block;
+				font-size: 1em;
+				height: auto;
+				left: 5px;
+				line-height: normal;
+				padding: 15px 23px 14px;
+				text-decoration: none;
+				top: 5px;
+				width: auto;
+				z-index: 100000;
+			}
 		</style>
 		<?php
 	}
