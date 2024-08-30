@@ -34,7 +34,7 @@ class FixesManager {
 	 * Private constructor to prevent direct instantiation.
 	 */
 	private function __construct() {
-		// stub.
+		$this->maybe_enqueue_frontend_scripts();
 	}
 
 	/**
@@ -47,6 +47,26 @@ class FixesManager {
 			self::$instance = new self();
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Maybe enqueue the frontend scripts.
+	 */
+	private function maybe_enqueue_frontend_scripts() {
+		// Consider adding this only if we can determine at least 1 of the fixes are enabled.
+		if ( ! is_admin() ) {
+			add_action(
+				'wp_enqueue_scripts',
+				function () {
+					wp_enqueue_script( 'edac-frontend-fixes', EDAC_PLUGIN_URL . 'build/frontendFixes.bundle.js', [], EDAC_VERSION, true );
+					wp_localize_script(
+						'edac-frontend-fixes',
+						'edac_frontend_fixes',
+						apply_filters( 'edac_filter_frontend_fixes_data', [] )
+					);
+				}
+			);
+		}
 	}
 
 	/**
