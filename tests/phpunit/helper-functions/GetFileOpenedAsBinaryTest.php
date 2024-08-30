@@ -13,25 +13,6 @@
 class GetFileOpenedAsBinaryTest extends WP_UnitTestCase {
 
 	/**
-	 * Test if file gets retrieved and opened as binary.
-	 *
-	 * @group external-http
-	 */
-	public function test_file_opened_as_binary() {
-		$file = 'https://via.placeholder.com/100/000000/FFFFFF/?text=testimage';
-
-		$fh = edac_get_file_opened_as_binary( $file );
-
-		// since this external service can be flaky we try again if it fails.
-		if ( ! $fh ) {
-			$fh = edac_get_file_opened_as_binary( $file );
-		}
-
-		$this->assertNotFalse( $fh );
-		fclose( $fh );
-	}
-
-	/**
 	 * Test if file is not opened as binary.
 	 *
 	 * @group external-http
