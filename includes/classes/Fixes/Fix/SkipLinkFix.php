@@ -12,7 +12,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 /**
  * Allows the user to add a skip link to the site if their theme does not already include them.
  *
- * @since x.x.x
+ * @since 1.16.0
  */
 class SkipLinkFix implements FixInterface {
 
