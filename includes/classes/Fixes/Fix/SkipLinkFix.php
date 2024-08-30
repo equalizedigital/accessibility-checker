@@ -54,7 +54,7 @@ class SkipLinkFix implements FixInterface {
 					'label'             => esc_html__( 'Skip Link Target ID', 'accessibility-checker' ),
 					'type'              => 'text',
 					'labelledby'        => 'skip_link_target_id',
-					'description'       => esc_html__( 'The ID for the skip links to target.', 'accessibility-checker' ),
+					'description'       => esc_html__( 'The ID for the skip links to target. Enter multiple ids seporated by commas and it will cascade through the list to find the appropriate one for that page.', 'accessibility-checker' ),
 					'sanitize_callback' => 'sanitize_text_field',
 					'condition'         => 'edac_fix_add_skip_link',
 				];
