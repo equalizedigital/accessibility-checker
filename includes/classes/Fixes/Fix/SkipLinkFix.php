@@ -65,7 +65,6 @@ class SkipLinkFix implements FixInterface {
 
 		if ( get_option( 'edac_fix_add_skip_link', false ) ) {
 			add_action( 'wp_body_open', [ $this, 'add_skip_link' ] );
-			remove_action( 'wp_footer', 'the_block_template_skip_link' );
 		}
 	}
 
