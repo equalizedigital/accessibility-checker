@@ -33,6 +33,7 @@ trait Checkbox {
 				id="<?php echo esc_attr( $args['name'] ); ?>"
 				name="<?php echo esc_attr( $args['name'] ); ?>"
 				<?php checked( 1, $option_value ); ?>
+				<?php echo isset( $args['condition'] ) ? 'data-condition="' . esc_attr( $args['condition'] ) . '"' : ''; ?>
 			/>
 			<?php echo esc_html( $args['description'] ); ?>
 		</label>
