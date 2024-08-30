@@ -18,7 +18,7 @@ class GetFileOpenedAsBinaryTest extends WP_UnitTestCase {
 	 * @group external-http
 	 */
 	public function test_file_opened_as_binary() {
-		$file = 'https://httpbin.org/image/webp';
+		$file = 'https://via.placeholder.com/100/000000/FFFFFF/?text=testimage';
 
 		$fh = edac_get_file_opened_as_binary( $file );
 
@@ -37,7 +37,7 @@ class GetFileOpenedAsBinaryTest extends WP_UnitTestCase {
 	 * @group external-http
 	 */
 	public function test_file_not_opened_as_binary() {
-		$file = 'https://httpbin.org/status/404';
+		$file = 'https://postman-echo.com/status/404';
 
 		$fh = edac_get_file_opened_as_binary( $file );
 
