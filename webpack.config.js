@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
 
 module.exports = {
-	mode: 'none', //development | production
+	mode: 'production', //development | production
 	watch: false,
 	entry: {
 		admin: [
