@@ -44,19 +44,44 @@ class SkipLinkFix implements FixInterface {
 			'edac_filter_fixes_settings_fields',
 			function ( $fields ) {
 				$fields['edac_fix_add_skip_link'] = [
-					'label'       => esc_html__( 'Add Skip Link', 'accessibility-checker' ),
+					'label'       => esc_html__( 'Enable Skip Link', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => 'add_skip_link',
 					'description' => esc_html__( 'Add a skip link to all of your site pages.', 'accessibility-checker' ),
+				];
+
+				$fields['edac_fix_add_skip_link_always_visible'] = [
+					'label'       => esc_html__( 'Always Visible Skip Link', 'accessibility-checker' ),
+					'type'        => 'checkbox',
+					'labelledby'  => 'add_skip_link_always_visible',
+					'description' => esc_html__( 'Make the skip link always visible.', 'accessibility-checker' ),
+					'condition'   => 'edac_fix_add_skip_link',
 				];
 
 				$fields['edac_fix_add_skip_link_target_id'] = [
 					'label'             => esc_html__( 'Skip Link Target ID', 'accessibility-checker' ),
 					'type'              => 'text',
 					'labelledby'        => 'skip_link_target_id',
-					'description'       => esc_html__( 'The ID for the skip links to target. Enter multiple ids seporated by commas and it will cascade through the list to find the appropriate one for that page.', 'accessibility-checker' ),
+					'description'       => esc_html__( 'The ID for the skip links to target the main content, starting with "#". Enter multiple ids seporated by commas and it will cascade through the list to find the appropriate one for that page if you have several different main content areas on your site.', 'accessibility-checker' ),
 					'sanitize_callback' => 'sanitize_text_field',
 					'condition'         => 'edac_fix_add_skip_link',
+				];
+
+				$fields['edac_fix_add_skip_link_nav_target_id'] = [
+					'label'             => esc_html__( 'Skip Link Target ID', 'accessibility-checker' ),
+					'type'              => 'text',
+					'labelledby'        => 'skip_link_nav_target_id',
+					'description'       => esc_html__( 'ID attribute for the navigation, starting with "#"', 'accessibility-checker' ),
+					'sanitize_callback' => 'sanitize_text_field',
+					'condition'         => 'edac_fix_add_skip_link',
+				];
+
+				$fields['edac_fix_disable_skip_link_styles'] = [
+					'label'       => esc_html__( 'Disable Skip Link Bundled Styles', 'accessibility-checker' ),
+					'type'        => 'checkbox',
+					'labelledby'  => 'disable_skip_link_styles',
+					'description' => esc_html__( 'Disable output of the bundled styles, you will need to provide your own style rules if you enable this.', 'accessibility-checker' ),
+					'condition'   => 'edac_fix_add_skip_link',
 				];
 
 				return $fields;
