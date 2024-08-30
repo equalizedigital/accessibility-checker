@@ -168,6 +168,7 @@ class FixesPage implements PageInterface {
 					'name'        => $field_id,
 					'labelledby'  => $field_id,
 					'description' => $field['description'] ?? '',
+					'condition'   => $field['condition'] ?? '',
 				]
 			);
 
