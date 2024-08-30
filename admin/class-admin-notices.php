@@ -59,12 +59,15 @@ class Admin_Notices {
 	public function edac_remove_admin_notices() {
 
 		$current_screen = get_current_screen();
-		$screens        = [
-			'toplevel_page_accessibility_checker',
-			'accessibility-checker_page_accessibility_checker_issues',
-			'accessibility-checker_page_accessibility_checker_ignored',
-			'accessibility-checker_page_accessibility_checker_settings',
-		];
+		$screens        = apply_filters(
+			'edac_filter_remove_admin_notices_screens',
+			[
+				'toplevel_page_accessibility_checker',
+				'accessibility-checker_page_accessibility_checker_issues',
+				'accessibility-checker_page_accessibility_checker_ignored',
+				'accessibility-checker_page_accessibility_checker_settings',
+			]
+		);
 
 		/**
 		 * Filter the screens where admin notices should be removed.
