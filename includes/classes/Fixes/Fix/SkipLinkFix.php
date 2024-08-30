@@ -168,6 +168,7 @@ class SkipLinkFix implements FixInterface {
 				const foundTarget = edacSkipLinkTargets.find(target => document.querySelector(target));
 
 				if (!foundTarget) {
+					console.log( '<?php esc_html_e( 'EDAC: Did not find a matching target ID on the page for the skip link.', 'accessibility-checker' ); ?>' );
 					return;
 				}
 
