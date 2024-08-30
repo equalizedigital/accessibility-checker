@@ -55,7 +55,7 @@ const SkipLinkFixInit = () => {
 
 	const skipLink = skipLinkTemplate.content.cloneNode( true );
 	// set the href to the first target.
-	skipLink.querySelector( '.edac-skip-link' ).href = foundTarget;
+	skipLink.querySelector( '.edac-skip-link--content' ).href = foundTarget;
 	document.body.prepend( skipLink );
 };
 
