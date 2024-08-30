@@ -65,6 +65,32 @@ class SkipLinkFix implements FixInterface {
 
 		if ( get_option( 'edac_fix_add_skip_link', false ) ) {
 			add_action( 'wp_body_open', [ $this, 'add_skip_link' ] );
+
+			$targets_string = get_option( 'edac_fix_add_skip_link_target_id', '' );
+			if ( ! $targets_string ) {
+				return;
+			}
+
+			$targets_list = explode( ',', $targets_string );
+
+			foreach ( $targets_list as $target ) {
+				// trim whitespace the target.
+				$trimmed = trim( ltrim( $target, '#' ) );
+				if ( empty( $trimmed ) ) {
+					continue;
+				}
+				$targets[] = '#' . trim( ltrim( $target, '#' ) );
+			}
+			add_filter(
+				'edac_filter_frontend_fixes_data',
+				function ( $data ) use ( $targets ) {
+					$data['skip_link'] = [
+						'enabled' => true,
+						'targets' => $targets,
+					];
+					return $data;
+				}
+			);
 		}
 	}
 
@@ -120,80 +146,7 @@ class SkipLinkFix implements FixInterface {
 		if ( ! $targets_string ) {
 			return;
 		}
-
-		$targets_list = explode( ',', $targets_string );
-
-		foreach ( $targets_list as $target ) {
-			// trim whitespace the target.
-			$trimmed = trim( ltrim( $target, '#' ) );
-			if ( empty( $trimmed ) ) {
-				continue;
-			}
-			$targets[] = '#' . trim( ltrim( $target, '#' ) );
-		}
-
 		?>
-		<script>
-
-			const edacSkipLinkTargets = <?php echo wp_json_encode( $targets ); ?>;
-
-			const findFirstLinkOutsideContainer = (containerSelector) => {
-				const links = document.querySelectorAll('body a:not(.ab-item)');
-				for (const link of links) {
-					if (!link.closest(containerSelector)) {
-						return link;
-					}
-				}
-				return null;
-			};
-
-			const tryDetectSkipLink = () => {
-
-				// get the very first link on the page.
-				firstLink = findFirstLinkOutsideContainer('#wpadminbar');
-
-				// does the first link point to an anchor on the page?
-				if (firstLink && firstLink.href && firstLink.href.indexOf('#') !== -1) {
-					// if it does, then does that anchor id exist on the page?
-					const anchorTarget = firstLink.href.split('#')[1];
-					const anchor = document.getElementById(anchorTarget);
-					if (anchor) {
-						// if it does, then we don't need to add a skip link.
-						return true;
-					} else {
-						return false;
-					}
-				} else {
-					return false;
-				}
-			}
-
-			document.addEventListener('DOMContentLoaded', () => {
-				const skipLinkTemplate = document.getElementById('skip-link-template');
-				if (!skipLinkTemplate) {
-					return;
-				}
-
-				const skipLinkFound = tryDetectSkipLink();
-
-				if (skipLinkFound) {
-					return;
-				}
-
-				// try to find one the targets on the page.
-				const foundTarget = edacSkipLinkTargets.find(target => document.querySelector(target));
-
-				if (!foundTarget) {
-					console.log( '<?php esc_html_e( 'EDAC: Did not find a matching target ID on the page for the skip link.', 'accessibility-checker' ); ?>' );
-					return;
-				}
-
-				const skipLink = skipLinkTemplate.content.cloneNode(true);
-				// set the href to the first target.
-				skipLink.querySelector('.edac-skip-link').href = foundTarget;
-				document.body.prepend(skipLink);
-			});
-		</script>
 		<template id="skip-link-template">
 			<a class="edac-skip-link" href=""><?php esc_html_e( 'Skip to content', 'accessibility-checker' ); ?></a>
 			<?php $this->add_skip_link_styles(); ?>
