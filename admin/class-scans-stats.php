@@ -182,7 +182,7 @@ class Scans_Stats {
 		}
 		$data['rules_passed'] = $this->rule_count - $data['rules_failed'];
 
-		$data['passed_percentage'] = 0;
+		$data['passed_percentage'] = 100;
 		if ( $data['posts_scanned'] > 0 && $tests_count > 0 ) {
 			$data['passed_percentage'] = round( ( $data['rules_passed'] / $this->rule_count ) * 100, 2 );
 		}
