@@ -127,7 +127,7 @@ class SkipLinkFix implements FixInterface {
 	public function add_skip_link_styles() {
 		?>
 		<style id="edac-fix-skip-link-styles">
-			.edac-skip-link {
+			.edac-bypass-block {
 				border: 0;
 				clip: rect(1px, 1px, 1px, 1px);
 				clip-path: inset(50%);
@@ -139,22 +139,48 @@ class SkipLinkFix implements FixInterface {
 				width: 1px;
 				word-wrap: normal !important;
 			}
-			.edac-skip-link:focus {
+			.admin-bar .edac-bypass-block {
+				top: 37px;
+			}
+			@media screen and (max-width: 782px) {
+				.admin-bar .edac-bypass-block {
+					top: 51px;
+				}
+			}
+
+			.edac-bypass-block:focus-within,
+			.edac-bypass-block-always-visible {
 				background-color: #ddd;
 				clip: auto !important;
 				-webkit-clip-path: none;
 				clip-path: none;
-				color: #444;
 				display: block;
-				font-size: 1em;
+				font-size: 1rem;
 				height: auto;
 				left: 5px;
 				line-height: normal;
-				padding: 15px 23px 14px;
-				text-decoration: none;
+				padding: 8px 22px 10px;
 				top: 5px;
 				width: auto;
 				z-index: 100000;
+			}
+
+			.edac-bypass-block > a {
+				display: block;
+				margin: 0.5rem 0;
+				color: #444;
+				text-decoration: underline;
+			}
+
+			.edac-bypass-block > a:hover,
+			.edac-bypass-block > a:focus {
+				text-decoration: none;
+				color: #0073aa;
+			}
+
+			.edac-bypass-block > a:focus {
+				outline: 2px solid #000;
+				outline-offset: 2px;
 			}
 		</style>
 		<?php
@@ -168,13 +194,26 @@ class SkipLinkFix implements FixInterface {
 	public function add_skip_link() {
 
 		$targets_string = get_option( 'edac_fix_add_skip_link_target_id', '' );
-		if ( ! $targets_string ) {
+
+		$nav_targets_string = get_option( 'edac_fix_add_skip_link_nav_target_id', '' );
+
+		if ( ! $targets_string && ! $nav_targets_string ) {
 			return;
 		}
 		?>
 		<template id="skip-link-template">
-			<a class="edac-skip-link" href=""><?php esc_html_e( 'Skip to content', 'accessibility-checker' ); ?></a>
-			<?php $this->add_skip_link_styles(); ?>
+			<div class="edac-bypass-block <?php echo get_option( 'edac_fix_add_skip_link_always_visible', false ) ? 'edac-bypass-block-always-visible' : ''; ?>">
+				<?php if ( $targets_string ) : ?>
+					<a class="edac-skip-link--content" href=""><?php esc_html_e( 'Skip to content', 'accessibility-checker' ); ?></a>
+				<?php endif; ?>
+				<?php
+				if ( $nav_targets_string ) :
+					$nav_target = ltrim( trim( $nav_targets_string ), '#' );
+					?>
+					<a class="edac-skip-link--navigation" href="#<?php echo esc_attr( $nav_target ); ?>"><?php esc_html_e( 'Skip to navigation', 'accessibility-checker' ); ?></a>
+				<?php endif; ?>
+				<?php get_option( 'edac_fix_disable_skip_link_styles', false ) ? '' : $this->add_skip_link_styles(); ?>
+			</div>
 		</template>
 
 		<?php
