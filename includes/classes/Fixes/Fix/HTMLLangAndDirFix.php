@@ -64,7 +64,7 @@ class HTMLLangAndDirFix implements FixInterface {
 	 * @return void
 	 */
 	public function run() {
-		if ( ! get_option( 'edac_fix_add_read_more_title', false ) ) {
+		if ( ! get_option( 'edac_fix_add_lang_and_dir', false ) ) {
 			return;
 		}
 
