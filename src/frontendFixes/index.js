@@ -6,3 +6,10 @@ if ( edacFrontendFixes.skip_link.enabled ) {
 		skipLinkFix.default();
 	} );
 }
+
+if ( edacFrontendFixes.lang_and_dir.enabled ) {
+	// lazy inport the module
+	import( /* webpackChunkName: "aria-hidden" */ './Fixes/langAndDirFix' ).then( ( langAndDirFix ) => {
+		langAndDirFix.default();
+	} );
+}
