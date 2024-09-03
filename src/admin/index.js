@@ -4,6 +4,7 @@ import {
 	clearAllTabsAndPanelState,
 	initSummaryTabKeyboardAndClickHandlers,
 } from './summary/summary-tab-input-event-handlers';
+import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
 
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
@@ -12,6 +13,10 @@ const edacScriptVars = edac_script_vars;
 	'use strict';
 
 	jQuery( function() {
+		if ( document.getElementById( 'edac-fixes-page' ) ) {
+			initFixesInputStateHandler();
+		}
+
 		// Accessibility Statement disable
 		jQuery(
 			'input[type=checkbox][name=edac_add_footer_accessibility_statement]'
