@@ -161,7 +161,7 @@ class SkipLinkFix implements FixInterface {
 
 			.edac-bypass-block:focus-within,
 			.edac-bypass-block-always-visible {
-				background-color: #ddd;
+				background-color: #ededed;
 				clip: auto !important;
 				-webkit-clip-path: none;
 				clip-path: none;
