@@ -40,6 +40,20 @@ class SkipLinkFix implements FixInterface {
 	 * @return void
 	 */
 	public function register(): void {
+
+		add_filter(
+			'edac_filter_fixes_settings_sections',
+			function ( $sections ) {
+				$sections['skip_link'] = [
+					'title'       => esc_html__( 'Skip Link', 'accessibility-checker' ),
+					'description' => esc_html__( 'Add a skip link to all of your site pages.', 'accessibility-checker' ),
+					'callback'    => [ $this, 'skip_link_section_callback' ],
+				];
+
+				return $sections;
+			}
+		);
+
 		add_filter(
 			'edac_filter_fixes_settings_fields',
 			function ( $fields ) {
@@ -48,6 +62,7 @@ class SkipLinkFix implements FixInterface {
 					'type'        => 'checkbox',
 					'labelledby'  => 'add_skip_link',
 					'description' => esc_html__( 'Add a skip link to all of your site pages.', 'accessibility-checker' ),
+					'section'     => 'skip_link',
 				];
 
 				$fields['edac_fix_add_skip_link_always_visible'] = [
@@ -55,6 +70,7 @@ class SkipLinkFix implements FixInterface {
 					'type'        => 'checkbox',
 					'labelledby'  => 'add_skip_link_always_visible',
 					'description' => esc_html__( 'Make the skip link always visible.', 'accessibility-checker' ),
+					'section'     => 'skip_link',
 					'condition'   => 'edac_fix_add_skip_link',
 				];
 
@@ -64,6 +80,7 @@ class SkipLinkFix implements FixInterface {
 					'labelledby'        => 'skip_link_target_id',
 					'description'       => esc_html__( 'The ID for the skip links to target the main content, starting with "#". Enter multiple ids seporated by commas and it will cascade through the list to find the appropriate one for that page if you have several different main content areas on your site.', 'accessibility-checker' ),
 					'sanitize_callback' => 'sanitize_text_field',
+					'section'           => 'skip_link',
 					'condition'         => 'edac_fix_add_skip_link',
 				];
 
@@ -73,6 +90,7 @@ class SkipLinkFix implements FixInterface {
 					'labelledby'        => 'skip_link_nav_target_id',
 					'description'       => esc_html__( 'ID attribute for the navigation, starting with "#"', 'accessibility-checker' ),
 					'sanitize_callback' => 'sanitize_text_field',
+					'section'           => 'skip_link',
 					'condition'         => 'edac_fix_add_skip_link',
 				];
 
@@ -81,6 +99,7 @@ class SkipLinkFix implements FixInterface {
 					'type'        => 'checkbox',
 					'labelledby'  => 'disable_skip_link_styles',
 					'description' => esc_html__( 'Disable output of the bundled styles. This makes the "Always Visible Skip Link" setting above irrelevent.', 'accessibility-checker' ),
+					'section'     => 'skip_link',
 					'condition'   => 'edac_fix_add_skip_link',
 				];
 
@@ -187,6 +206,17 @@ class SkipLinkFix implements FixInterface {
 				outline-offset: 2px;
 			}
 		</style>
+		<?php
+	}
+
+	/**
+	 * Callback for the skip link section.
+	 *
+	 * @return void
+	 */
+	public function skip_link_section_callback() {
+		?>
+		<p><?php esc_html_e( 'Settings related to the skip link fixes.', 'accessibility-checker' ); ?></p>
 		<?php
 	}
 
