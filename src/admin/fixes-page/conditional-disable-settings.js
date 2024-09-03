@@ -22,9 +22,7 @@ const setInputStates = () => {
 };
 
 export const initFixesInputStateHandler = () => {
-	document.addEventListener( 'DOMContentLoaded', () => {
-		setInputStates();
-	} );
+	setInputStates();
 
 	// Find all checkboxes inside the form.
 	const checkboxes = document.querySelectorAll( '.edac-settings form input[type="checkbox"]' );
