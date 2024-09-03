@@ -35,7 +35,7 @@ class CommentSearchLabelFix implements FixInterface {
 	}
 
 	/**
-	 * Registers everything needed for the skip link fix.
+	 * Registers everything needed for the fix.
 	 *
 	 * @return void
 	 */
@@ -79,7 +79,7 @@ class CommentSearchLabelFix implements FixInterface {
 	}
 
 	/**
-	 * Callback for the skip link section.
+	 * Callback for the fix settings section.
 	 *
 	 * @return void
 	 */
