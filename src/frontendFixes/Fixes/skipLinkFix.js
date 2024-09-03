@@ -45,17 +45,20 @@ const SkipLinkFixInit = () => {
 	}
 
 	// try to find one the targets on the page.
-	const foundTarget = window.edac_frontend_fixes.skip_link.targets.find( ( target ) => document.querySelector( target ) );
+	const foundMainTarget = window.edac_frontend_fixes.skip_link.targets.find( ( target ) => document.querySelector( target ) );
 
-	if ( ! foundTarget ) {
+	if ( ! foundMainTarget ) {
 		// eslint-disable-next-line
 		console.log( __( 'EDAC: Did not find a matching target ID on the page for the skip link.', 'accessibility-checker' ) );
-		return;
 	}
 
 	const skipLink = skipLinkTemplate.content.cloneNode( true );
-	// set the href to the first target.
-	skipLink.querySelector( '.edac-skip-link--content' ).href = foundTarget;
+	// set the href to the first target if found or remove it if not.
+	if ( foundMainTarget ) {
+		skipLink.querySelector( '.edac-skip-link--content' ).href = foundMainTarget;
+	} else {
+		skipLink.querySelector( '.edac-skip-link--content' ).remove();
+	}
 	document.body.prepend( skipLink );
 };
 
