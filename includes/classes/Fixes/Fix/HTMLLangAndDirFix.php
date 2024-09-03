@@ -47,7 +47,7 @@ class HTMLLangAndDirFix implements FixInterface {
 					'type'        => 'checkbox',
 					'label'       => esc_html__( 'Add "lang" and "dir" attribributes', 'accessibility-checker' ),
 					'labelledby'  => 'add_read_more_title',
-					'description' => esc_html__( 'Adds "lang" and "dir" attribributes to the HTML element on pages.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Add Site Language and text direction to the HTML element.', 'accessibility-checker' ),
 				];
 
 				return $fields;
