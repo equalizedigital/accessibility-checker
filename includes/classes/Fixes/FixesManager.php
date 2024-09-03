@@ -7,6 +7,7 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
 
 /**
@@ -77,6 +78,7 @@ class FixesManager {
 			'edac_filter_fixes',
 			[
 				SkipLinkFix::class,
+				HTMLLangAndDirFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
