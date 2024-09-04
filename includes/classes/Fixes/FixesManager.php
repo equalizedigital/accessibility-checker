@@ -9,6 +9,7 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 
 /**
  * Manager class for fixes.
@@ -78,6 +79,7 @@ class FixesManager {
 			'edac_filter_fixes',
 			[
 				SkipLinkFix::class,
+				CommentSearchLabelFix::class,
 				HTMLLangAndDirFix::class,
 			]
 		);
