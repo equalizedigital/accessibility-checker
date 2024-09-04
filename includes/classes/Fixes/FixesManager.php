@@ -7,9 +7,11 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ReadMoreAddTitleFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
 
 /**
  * Manager class for fixes.
@@ -64,9 +66,9 @@ class FixesManager {
 			( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 		) {
 			return;
-		}
+    }
 
-		// Consider adding this only if we can determine at least 1 of the fixes are enabled.
+    // Consider adding this only if we can determine at least 1 of the fixes are enabled.
 		add_action(
 			'wp_enqueue_scripts',
 			function () {
@@ -88,8 +90,10 @@ class FixesManager {
 			'edac_filter_fixes',
 			[
 				SkipLinkFix::class,
+				CommentSearchLabelFix::class,
 				HTMLLangAndDirFix::class,
 				ReadMoreAddTitleFix::class,
+				TabindexFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
