@@ -106,36 +106,43 @@ class SkipLinkFix implements FixInterface {
 				return $fields;
 			}
 		);
+	}
 
-		if ( get_option( 'edac_fix_add_skip_link', false ) ) {
-			add_action( 'wp_body_open', [ $this, 'add_skip_link' ] );
-
-			$targets_string = get_option( 'edac_fix_add_skip_link_target_id', '' );
-			if ( ! $targets_string ) {
-				return;
-			}
-
-			$targets_list = explode( ',', $targets_string );
-
-			foreach ( $targets_list as $target ) {
-				// trim whitespace and any leading '#'.
-				$trimmed = ltrim( trim( $target ), '#' );
-				if ( empty( $trimmed ) ) {
-					continue;
-				}
-				$targets[] = '#' . $trimmed;
-			}
-			add_filter(
-				'edac_filter_frontend_fixes_data',
-				function ( $data ) use ( $targets ) {
-					$data['skip_link'] = [
-						'enabled' => true,
-						'targets' => $targets,
-					];
-					return $data;
-				}
-			);
+	/**
+	 * Run the fix for adding the skip link to the site.
+	 */
+	public function run() {
+		if ( ! get_option( 'edac_fix_add_skip_link', false ) ) {
+			return null;
 		}
+
+		add_action( 'wp_body_open', [ $this, 'add_skip_link' ] );
+
+		$targets_string = get_option( 'edac_fix_add_skip_link_target_id', '' );
+		if ( ! $targets_string ) {
+			return;
+		}
+
+		$targets_list = explode( ',', $targets_string );
+
+		foreach ( $targets_list as $target ) {
+			// trim whitespace and any leading '#'.
+			$trimmed = ltrim( trim( $target ), '#' );
+			if ( empty( $trimmed ) ) {
+				continue;
+			}
+			$targets[] = '#' . $trimmed;
+		}
+		add_filter(
+			'edac_filter_frontend_fixes_data',
+			function ( $data ) use ( $targets ) {
+				$data['skip_link'] = [
+					'enabled' => true,
+					'targets' => $targets,
+				];
+				return $data;
+			}
+		);
 	}
 
 	/**
@@ -161,7 +168,7 @@ class SkipLinkFix implements FixInterface {
 
 			.edac-bypass-block:focus-within,
 			.edac-bypass-block-always-visible {
-				background-color: #ededed;
+				background-color: #ececec;
 				clip: auto !important;
 				-webkit-clip-path: none;
 				clip-path: none;
