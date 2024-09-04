@@ -56,7 +56,7 @@ class FixesManager {
 	 */
 	private function maybe_enqueue_frontend_scripts() {
 		// Consider adding this only if we can determine at least 1 of the fixes are enabled.
-		if ( ! is_admin() ) {
+		if ( ! is_admin() && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 			add_action(
 				'wp_enqueue_scripts',
 				function () {
