@@ -9,6 +9,7 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
 
 /**
  * Manager class for fixes.
@@ -79,6 +80,7 @@ class FixesManager {
 			[
 				SkipLinkFix::class,
 				HTMLLangAndDirFix::class,
+				TabindexFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {

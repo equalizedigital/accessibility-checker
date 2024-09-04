@@ -13,3 +13,10 @@ if ( edacFrontendFixes.lang_and_dir.enabled ) {
 		langAndDirFix.default();
 	} );
 }
+
+if ( edacFrontendFixes.tabindex.enabled ) {
+	// lazy inport the module
+	import( /* webpackChunkName: "tabindex" */ './Fixes/tabindexFix' ).then( ( tabindexFix ) => {
+		tabindexFix.default();
+	} );
+}
