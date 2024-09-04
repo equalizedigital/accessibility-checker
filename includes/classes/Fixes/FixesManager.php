@@ -7,6 +7,7 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
 
 /**
@@ -77,14 +78,13 @@ class FixesManager {
 			'edac_filter_fixes',
 			[
 				SkipLinkFix::class,
+				HTMLLangAndDirFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
 			if ( is_subclass_of( $fix, '\EqualizeDigital\AccessibilityChecker\Fixes\FixInterface' ) ) {
 				if ( ! isset( $this->fixes[ $fix::get_slug() ] ) ) {
-					$fix_class = new $fix();
-					$fix_class->register();
-					$this->fixes[ $fix::get_slug() ] = $fix_class;
+					$this->fixes[ $fix::get_slug() ] = ( new $fix() );
 				}
 			}
 		}
@@ -108,13 +108,23 @@ class FixesManager {
 		$this->load_fixes();
 
 		foreach ( $this->fixes as $fix ) {
-			if ( 'backend' === $fix::get_type() && is_admin() ) {
-				$fix->register();
-			} elseif ( 'frontend' === $fix::get_type() && ! is_admin() ) {
-				$fix->register();
-			} elseif ( 'everywhere' === $fix::get_type() ) {
-				$fix->register();
-			}
+			$fix->register();
+			$this->maybe_run_fix( $fix );
+		}
+	}
+
+	/**
+	 * Maybe run a fix depending on current context.
+	 *
+	 * @param FixInterface $fix The fix to maybe run.
+	 */
+	public function maybe_run_fix( $fix ) {
+		if ( 'backend' === $fix::get_type() && is_admin() ) {
+			$fix->run();
+		} elseif ( 'frontend' === $fix::get_type() && ! is_admin() ) {
+			$fix->run();
+		} elseif ( 'everywhere' === $fix::get_type() ) {
+			$fix->run();
 		}
 	}
 }

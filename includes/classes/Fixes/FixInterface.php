@@ -35,4 +35,11 @@ interface FixInterface {
 	 * if they are not just simple hooks.
 	 */
 	public function register(): void;
+
+	/**
+	 * Run the fix.
+	 *
+	 * This will be called in admin only, frontend only or everywhere depending on the fix type.
+	 */
+	public function run();
 }
