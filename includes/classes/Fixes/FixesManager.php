@@ -9,6 +9,7 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 
 /**
@@ -56,7 +57,7 @@ class FixesManager {
 	 */
 	private function maybe_enqueue_frontend_scripts() {
 		// Consider adding this only if we can determine at least 1 of the fixes are enabled.
-		if ( ! is_admin() ) {
+		if ( ! is_admin() && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 			add_action(
 				'wp_enqueue_scripts',
 				function () {
@@ -81,6 +82,7 @@ class FixesManager {
 				SkipLinkFix::class,
 				CommentSearchLabelFix::class,
 				HTMLLangAndDirFix::class,
+				TabindexFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
