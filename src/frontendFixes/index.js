@@ -20,3 +20,10 @@ if ( edacFrontendFixes.tabindex.enabled ) {
 		tabindexFix.default();
 	} );
 }
+
+if ( edacFrontendFixes.underline.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "underline" */ './Fixes/underlineFix' ).then( ( underlineFix ) => {
+		underlineFix.default();
+	} );
+}
