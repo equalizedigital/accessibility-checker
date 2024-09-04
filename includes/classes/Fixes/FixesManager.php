@@ -88,8 +88,10 @@ class FixesManager {
 			'edac_filter_fixes',
 			[
 				SkipLinkFix::class,
+				CommentSearchLabelFix::class,
 				HTMLLangAndDirFix::class,
 				ReadMoreAddTitleFix::class,
+				TabindexFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
