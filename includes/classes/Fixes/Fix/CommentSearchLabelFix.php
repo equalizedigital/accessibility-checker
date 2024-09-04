@@ -76,7 +76,13 @@ class CommentSearchLabelFix implements FixInterface {
 				return $fields;
 			}
 		);
+	}
 
+	/**
+	 * Run the fix for adding the comment and search form labels.
+	 */
+	public function run(): void {
+		
 		// Add the actual fixes if enabled in settings.
 		if ( get_option( 'edac_fix_comment_label', false ) ) {
 			add_filter( 'comment_form_defaults', [ $this, 'fix_comment_form_labels' ], PHP_INT_MAX );
