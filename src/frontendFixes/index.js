@@ -23,7 +23,7 @@ if ( edacFrontendFixes?.tabindex?.enabled ) {
 
 if ( edacFrontendFixes?.prevent_links_opening_in_new_window?.enabled ) {
 	// lazy import the module
-	import( /* webpackChunkName: "prevent-links-opening-in-new-window" */ './Fixes/preventLinksOpeningNewWindowFix' ).then( ( preventLinksOpeningInNewWindow ) => {
-		preventLinksOpeningInNewWindow.preventLinksOpeningNewWindowFix();
+	import( /* webpackChunkName: "prevent-links-opening-in-new-window" */ './Fixes/preventLinksOpeningNewWindowFix' ).then( ( preventLinksOpeningNewWindowFix ) => {
+		preventLinksOpeningNewWindowFix.default();
 	} );
 }
