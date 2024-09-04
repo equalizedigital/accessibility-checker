@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ReadMoreAddTitleFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
 
 /**
@@ -54,20 +55,29 @@ class FixesManager {
 	 * Maybe enqueue the frontend scripts.
 	 */
 	private function maybe_enqueue_frontend_scripts() {
-		// Consider adding this only if we can determine at least 1 of the fixes are enabled.
-		if ( ! is_admin() ) {
-			add_action(
-				'wp_enqueue_scripts',
-				function () {
-					wp_enqueue_script( 'edac-frontend-fixes', EDAC_PLUGIN_URL . 'build/frontendFixes.bundle.js', [], EDAC_VERSION, true );
-					wp_localize_script(
-						'edac-frontend-fixes',
-						'edac_frontend_fixes',
-						apply_filters( 'edac_filter_frontend_fixes_data', [] )
-					);
-				}
-			);
+
+		if (
+			is_admin() ||
+			( defined( 'REST_REQUEST' ) && REST_REQUEST ) ||
+			( defined( 'DOING_AJAX' ) && DOING_AJAX ) ||
+			( defined( 'DOING_CRON' ) && DOING_CRON ) ||
+			( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+		) {
+			return;
 		}
+
+		// Consider adding this only if we can determine at least 1 of the fixes are enabled.
+		add_action(
+			'wp_enqueue_scripts',
+			function () {
+				wp_enqueue_script( 'edac-frontend-fixes', EDAC_PLUGIN_URL . 'build/frontendFixes.bundle.js', [], EDAC_VERSION, true );
+				wp_localize_script(
+					'edac-frontend-fixes',
+					'edac_frontend_fixes',
+					apply_filters( 'edac_filter_frontend_fixes_data', [] )
+				);
+			}
+		);
 	}
 
 	/**
@@ -79,6 +89,7 @@ class FixesManager {
 			[
 				SkipLinkFix::class,
 				HTMLLangAndDirFix::class,
+				ReadMoreAddTitleFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
