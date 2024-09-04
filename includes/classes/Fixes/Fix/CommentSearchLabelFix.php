@@ -138,12 +138,12 @@ class CommentSearchLabelFix implements FixInterface {
 				$input_id    = 'search-form-' . uniqid(); // Generate a unique ID if the input field doesn't have one.
 				$input_field = '<input type="search" id="' . esc_attr( $input_id ) . '" class="search-field" placeholder="' . esc_attr__( 'Search …', 'accessibility-checker' ) . '" value="' . get_search_query() . '" name="s" />';
 			}
-	
+
 			// Rebuild the form with a visible <label> and ensure the "for" attribute matches the input's id.
 			$form = '<form role="search" method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
-				<label for="' . esc_attr( $input_id ) . '">' . esc_html__( 'Search for:', 'accessibility-checker' ) . '</label>
-				' . $input_field . '
-				<button type="submit" class="search-submit">' . esc_attr__( 'Search', 'accessibility-checker' ) . '</button>
+			<label for="' . esc_attr( $input_id ) . '">' . esc_html__( 'Search for:', 'accessibility-checker' ) . '</label>
+			' . $input_field . '
+			<button type="submit" class="search-submit">' . esc_attr__( 'Search', 'accessibility-checker' ) . '</button>
 			</form>';
 		}
 	
