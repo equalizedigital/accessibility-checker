@@ -20,3 +20,10 @@ if ( edacFrontendFixes.tabindex.enabled ) {
 		tabindexFix.default();
 	} );
 }
+
+if ( edacFrontendFixes.missing_or_empty_page_title.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "missing-or-empty-page-title" */ './Fixes/missingOrEmptyPageTitleFix' ).then( ( missingOrEmptyPageTitleFix ) => {
+		missingOrEmptyPageTitleFix.default();
+	} );
+}
