@@ -22,8 +22,11 @@ const MissingOrEmptyPageTitleFix = () => {
 		const header = headers[ i ];
 		if ( header.innerText.trim() !== '' ) {
 			document.title = header.innerText;
-			if ( MissingOrEmptyPageTitle.site_name && MissingOrEmptyPageTitle.site_name.trim() !== '' ) {
-				document.title += ' ' + MissingOrEmptyPageTitle.seporator + ' ' + MissingOrEmptyPageTitle.site_name;
+			if (
+				( MissingOrEmptyPageTitle.site_name && MissingOrEmptyPageTitle.site_name.trim() !== '' ) &&
+				( MissingOrEmptyPageTitle.site_name.trim() !== document.title.trim() )
+			) {
+				document.title += ' ' + MissingOrEmptyPageTitle.title_seporator + ' ' + MissingOrEmptyPageTitle.site_name;
 			}
 			break;
 		}
