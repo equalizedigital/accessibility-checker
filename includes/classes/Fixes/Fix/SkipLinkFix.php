@@ -75,7 +75,7 @@ class SkipLinkFix implements FixInterface {
 				];
 
 				$fields['edac_fix_add_skip_link_target_id'] = [
-					'label'             => esc_html__( 'Skip Link Target ID', 'accessibility-checker' ),
+					'label'             => esc_html__( 'Main Content Target', 'accessibility-checker' ),
 					'type'              => 'text',
 					'labelledby'        => 'skip_link_target_id',
 					'description'       => esc_html__( 'The ID for the skip links to target the main content, starting with "#". Enter multiple ids seporated by commas and it will cascade through the list to find the appropriate one for that page if you have several different main content areas on your site.', 'accessibility-checker' ),
@@ -85,7 +85,7 @@ class SkipLinkFix implements FixInterface {
 				];
 
 				$fields['edac_fix_add_skip_link_nav_target_id'] = [
-					'label'             => esc_html__( 'Skip Link Target ID', 'accessibility-checker' ),
+					'label'             => esc_html__( 'Navigation Target', 'accessibility-checker' ),
 					'type'              => 'text',
 					'labelledby'        => 'skip_link_nav_target_id',
 					'description'       => esc_html__( 'ID attribute for the navigation, starting with "#"', 'accessibility-checker' ),
