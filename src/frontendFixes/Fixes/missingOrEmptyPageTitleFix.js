@@ -32,7 +32,7 @@ const MissingOrEmptyPageTitleFix = () => {
 		}
 	}
 
-	if ( ! document.title && MissingOrEmptyPageTitle.site_name && MissingOrEmptyPageTitle.site_name.trim() !== '' ) {
+	if ( ! document.title && ( MissingOrEmptyPageTitle.site_name && MissingOrEmptyPageTitle.site_name.trim() !== '' ) ) {
 		document.title = MissingOrEmptyPageTitle.site_name;
 	}
 };
