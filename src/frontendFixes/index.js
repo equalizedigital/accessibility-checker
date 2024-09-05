@@ -20,3 +20,10 @@ if ( edacFrontendFixes.tabindex.enabled ) {
 		tabindexFix.default();
 	} );
 }
+
+if ( edacFrontendFixes.meta_viewport_scalable.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "meta-viewport-scalable" */ './Fixes/metaViewportScalableFix' ).then( ( metaViewportScalableFix ) => {
+		metaViewportScalableFix.default();
+	} );
+}
