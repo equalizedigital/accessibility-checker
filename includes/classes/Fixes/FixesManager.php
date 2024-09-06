@@ -13,7 +13,6 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\RemoveTitleIfPrefferedAccessi
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\PreventLinksOpeningNewWindowFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
-use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\LinkUnderline;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\MetaViewportScalableFix;
 
