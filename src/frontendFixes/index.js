@@ -21,10 +21,18 @@ if ( edacFrontendFixes?.tabindex?.enabled ) {
 	} );
 }
 
+if ( edacFrontendFixes?.underline?.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "underline" */ './Fixes/underlineFix' ).then( ( underlineFix ) => {
+		underlineFix.default();
+  } );
+}
+
 if ( edacFrontendFixes.meta_viewport_scalable.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "meta-viewport-scalable" */ './Fixes/metaViewportScalableFix' ).then( ( metaViewportScalableFix ) => {
 		metaViewportScalableFix.default();
+  } );
 }
     
 if ( edacFrontendFixes?.prevent_links_opening_in_new_window?.enabled ) {
