@@ -25,11 +25,19 @@ if ( edacFrontendFixes.meta_viewport_scalable.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "meta-viewport-scalable" */ './Fixes/metaViewportScalableFix' ).then( ( metaViewportScalableFix ) => {
 		metaViewportScalableFix.default();
+	} );
 }
-    
+
 if ( edacFrontendFixes?.prevent_links_opening_in_new_window?.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "prevent-links-opening-in-new-window" */ './Fixes/preventLinksOpeningNewWindowFix' ).then( ( preventLinksOpeningNewWindowFix ) => {
 		preventLinksOpeningNewWindowFix.default();
+	} );
+}
+
+if ( edacFrontendFixes?.focus_outline?.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "focus_outline" */ './Fixes/focusOutlineFix' ).then( ( FocusOutlineFix ) => {
+		FocusOutlineFix.default();
 	} );
 }

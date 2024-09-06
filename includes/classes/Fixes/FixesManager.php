@@ -13,6 +13,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\MetaViewportScalableFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\FocusOutlineFix;
 
 /**
  * Manager class for fixes.
@@ -87,6 +88,7 @@ class FixesManager {
 				TabindexFix::class,
 				MetaViewportScalableFix::class,
 				PreventLinksOpeningNewWindowFix::class,
+				FocusOutlineFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
