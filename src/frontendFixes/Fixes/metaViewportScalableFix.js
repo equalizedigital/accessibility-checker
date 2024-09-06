@@ -11,12 +11,11 @@ const MetaViewportScalableFix = () => {
 	const metaViewport = document.querySelector( 'meta[name="viewport"]' );
 	if ( metaViewport ) {
 		// check if it has scalable set to no.
-		if ( metaViewport.content.includes( 'user-scalable=no' ) ) {
-			// Remove the meta viewport tag to allow it to be recreated.
-		} else {
-			// Tag is fine, return.
+		if ( ! metaViewport.content.includes( 'user-scalable=no' ) ) {
 			return;
 		}
+		// remove the meta viewport tag as it blocks scaling.
+		metaViewport.remove();
 	}
 
 	// Create a new meta viewport tag.
