@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\PreventLinksOpeningNewWindowFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
@@ -83,6 +84,7 @@ class FixesManager {
 				CommentSearchLabelFix::class,
 				HTMLLangAndDirFix::class,
 				TabindexFix::class,
+				PreventLinksOpeningNewWindowFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
