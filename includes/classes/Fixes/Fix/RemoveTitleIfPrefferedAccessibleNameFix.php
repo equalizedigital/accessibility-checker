@@ -1,0 +1,78 @@
+<?php
+/**
+ * Accessible Name Fix Class
+ *
+ * @package accessibility-checker
+ */
+
+namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
+
+use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
+
+/**
+ * Finds elements with a preferred accessible name.
+ *
+ * @since 1.16.0
+ */
+class RemoveTitleIfPrefferedAccessibleNameFix implements FixInterface {
+	/**
+	 * The slug of the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_slug(): string {
+		return 'remove_title_if_preferred_accessible_name';
+	}
+
+	/**
+	 * The type of the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_type(): string {
+		return 'frontend';
+	}
+
+	/**
+	 * Registers the settings field for the accessible name fix.
+	 *
+	 * @return void
+	 */
+	public function register(): void {
+		add_filter(
+			'edac_filter_fixes_settings_fields',
+			function ( $fields ) {
+				$fields[ 'edac_fix_' . $this->get_slug() ] = [
+					'type'        => 'checkbox',
+					'label'       => esc_html__( 'Prefer Accessible Names', 'accessibility-checker' ),
+					'labelledby'  => 'accessible_name',
+					'description' => esc_html__( 'Remove "title" attributes from elements with a preffered accessible name.', 'accessibility-checker' ),
+				];
+
+				return $fields;
+			}
+		);
+	}
+
+	/**
+	 * Outputs the feature flag for the fix on the frontend for JS to use.
+	 *
+	 * @return void
+	 */
+	public function run() {
+		if ( ! get_option( 'edac_fix_' . $this->get_slug(), false ) ) {
+			return;
+		}
+
+		// Adds the accessible name data to be used in JS if necessary.
+		add_filter(
+			'edac_filter_frontend_fixes_data',
+			function ( $data ) {
+				$data[ $this->get_slug() ] = [
+					'enabled' => true,
+				];
+				return $data;
+			}
+		);
+	}
+}

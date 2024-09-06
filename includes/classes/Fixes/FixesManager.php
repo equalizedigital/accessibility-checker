@@ -7,10 +7,11 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\RemoveTitleIfPrefferedAccessibleNameFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
-use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 
 /**
  * Manager class for fixes.
@@ -83,6 +84,7 @@ class FixesManager {
 				CommentSearchLabelFix::class,
 				HTMLLangAndDirFix::class,
 				TabindexFix::class,
+				RemoveTitleIfPrefferedAccessibleNameFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
