@@ -14,6 +14,13 @@ if ( edacFrontendFixes?.lang_and_dir?.enabled ) {
 	} );
 }
 
+if ( edacFrontendFixes?.add_label_to_unlabeled_form_fields?.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "add-label-to-unlabeled-form-fields" */ './Fixes/addLabelToUnlabledFormFieldsFix' ).then( ( addLabelToUnlabledFormFieldsFix ) => {
+		addLabelToUnlabledFormFieldsFix.default();
+	} );
+}
+
 if ( edacFrontendFixes?.tabindex?.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "tabindex" */ './Fixes/tabindexFix' ).then( ( tabindexFix ) => {
@@ -34,7 +41,7 @@ if ( edacFrontendFixes.meta_viewport_scalable.enabled ) {
 		metaViewportScalableFix.default();
   } );
 }
-    
+
 if ( edacFrontendFixes?.prevent_links_opening_in_new_window?.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "prevent-links-opening-in-new-window" */ './Fixes/preventLinksOpeningNewWindowFix' ).then( ( preventLinksOpeningNewWindowFix ) => {
