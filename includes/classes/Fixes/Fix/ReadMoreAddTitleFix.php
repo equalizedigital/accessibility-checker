@@ -7,6 +7,7 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 
+use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
 /**
@@ -88,6 +89,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 		if ( ! get_option( 'edac_fix_add_read_more_title', false ) ) {
 			return;
 		}
+
 		add_action( 'the_content_more_link', [ $this, 'add_title_to_read_more' ], 100, 2 );
 		add_filter( 'get_the_excerpt', [ $this, 'add_title_link_to_excerpts' ], 100 );
 		add_filter( 'excerpt_more', [ $this, 'add_title_to_excerpt_more' ], 100 );
@@ -151,7 +153,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 	 */
 	public function add_title_to_excerpt_more(): string {
 		global $id;
-		return '&hellip;' . $this->generate_read_more_string( $id );
+		return '&hellip; <a href="' . get_the_permalink( $id ) . '">' . $this->generate_read_more_string( $id ) . '</a>';
 	}
 
 
@@ -198,6 +200,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 	 * @return void
 	 */
 	public function read_more_section_callback() {
+		FixesManager::maybe_show_accessibility_ready_conflict_notice();
 		?>
 		<p><?php esc_html_e( 'This fix adds the post title to the "Read More" links in post lists at the "More" block and in excerpts.', 'accessibility-checker' ); ?></p>
 		<?php
