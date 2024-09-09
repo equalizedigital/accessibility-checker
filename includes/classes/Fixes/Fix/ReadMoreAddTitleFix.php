@@ -108,6 +108,11 @@ class ReadMoreAddTitleFix implements FixInterface {
 
 		global $id;
 
+		// If the $text already contains the title, we won't add it again.
+		if ( str_contains( strtolower( $text ), strtolower( get_the_title( $id ) ) ) ) {
+			return $link;
+		}
+
 		return str_replace(
 			$text,
 			$text . ' ' . $this->generate_read_more_string( $id ),
@@ -124,6 +129,15 @@ class ReadMoreAddTitleFix implements FixInterface {
 	public function add_title_link_to_excerpts( $excerpt ): string {
 		if ( has_excerpt() && ! is_attachment() ) {
 			global $id;
+
+			$post_title = get_the_title( $id );
+
+			// If the last part of the excerpt contains the post title, we won't add it again.
+			$exceprt_fragment = strtolower( substr( $excerpt, ( -100 - strlen( $post_title ) ) ) );
+			if ( str_contains( $exceprt_fragment, strtolower( $post_title ) ) ) {
+				return $excerpt;
+			}
+
 			$excerpt .= ' ' . $this->generate_read_more_string( $id, true );
 		}
 
