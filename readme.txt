@@ -171,6 +171,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.16.0 =
+* New: Introduced a system to handle automated fixes for issues that the scanner would discover.
+
 = 1.15.1 =
 * Fixed: Issue where a modal could result in JS error preventing display
 * Fixed: Situations where Gutenberg created new posts may not trigger the JS scan when publishing

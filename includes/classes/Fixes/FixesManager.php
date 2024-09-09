@@ -8,8 +8,13 @@
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
-use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ReadMoreAddTitleFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\PreventLinksOpeningNewWindowFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\LinkUnderline;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\MetaViewportScalableFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ReadMoreAddTitleFix;
 
 /**
  * Manager class for fixes.
@@ -101,6 +106,9 @@ class FixesManager {
 				HTMLLangAndDirFix::class,
 				ReadMoreAddTitleFix::class,
 				TabindexFix::class,
+				LinkUnderline::class,
+				MetaViewportScalableFix::class,
+				PreventLinksOpeningNewWindowFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
