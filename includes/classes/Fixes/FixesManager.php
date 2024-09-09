@@ -26,6 +26,13 @@ class FixesManager {
 	private static $instance = null;
 
 	/**
+	 * Whether the theme has the accessibility-ready tag.
+	 *
+	 * @var bool|null
+	 */
+	private static $theme_is_accessibility_ready = null;
+
+	/**
 	 * The fixes.
 	 *
 	 * @var array
@@ -37,6 +44,8 @@ class FixesManager {
 	 */
 	private function __construct() {
 		$this->maybe_enqueue_frontend_scripts();
+
+		self::$theme_is_accessibility_ready = self::is_theme_accessibility_ready();
 	}
 
 	/**
@@ -138,6 +147,38 @@ class FixesManager {
 			$fix->run();
 		} elseif ( 'everywhere' === $fix::get_type() ) {
 			$fix->run();
+		}
+	}
+
+	/**
+	 * Check if the theme is accessibility ready.
+	 *
+	 * True if the theme has the tag, false otherwise.
+	 *
+	 * @return bool
+	 */
+	public static function is_theme_accessibility_ready() {
+		if ( null !== self::$theme_is_accessibility_ready ) {
+			return self::$theme_is_accessibility_ready;
+		}
+
+		$theme = wp_get_theme();
+		$tags  = $theme->get( 'Tags' );
+
+		self::$theme_is_accessibility_ready = in_array( 'accessibility-ready', $tags, true );
+		return self::$theme_is_accessibility_ready;
+	}
+
+	/**
+	 * Maybe show a notice if the theme is accessibility-ready.
+	 */
+	public static function maybe_show_accessibility_ready_conflict_notice() {
+		if ( self::is_theme_accessibility_ready() ) {
+			?>
+			<span class="edac-notice--accessibility-ready-conflict">
+				<?php esc_html_e( 'This setting is not recommended for themes that are already accessibility-ready.', 'accessibility-checker' ); ?>
+			</span>
+			<?php
 		}
 	}
 }
