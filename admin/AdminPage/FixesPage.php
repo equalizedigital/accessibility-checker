@@ -18,6 +18,7 @@ class FixesPage implements PageInterface {
 
 	use FixesSettingType\Checkbox;
 	use FixesSettingType\Text;
+	use FixesSettingType\Color;
 
 	/**
 	 * The capability required to access the settings page.
@@ -169,6 +170,7 @@ class FixesPage implements PageInterface {
 					'labelledby'  => $field_id,
 					'description' => $field['description'] ?? '',
 					'condition'   => $field['condition'] ?? '',
+					'default'     => $field['default'] ?? '',
 				]
 			);
 
