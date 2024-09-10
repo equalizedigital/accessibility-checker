@@ -7,7 +7,7 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
-use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddLabelToUnlabeledFormFieldsFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddLabelToUnlabelledFormFieldsFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\PreventLinksOpeningNewWindowFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
@@ -87,7 +87,7 @@ class FixesManager {
 				CommentSearchLabelFix::class,
 				HTMLLangAndDirFix::class,
 				TabindexFix::class,
-				AddLabelToUnlabeledFormFieldsFix::class,
+				AddLabelToUnlabelledFormFieldsFix::class,
 				LinkUnderline::class,
 				MetaViewportScalableFix::class,
 				PreventLinksOpeningNewWindowFix::class,

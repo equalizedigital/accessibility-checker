@@ -1,16 +1,15 @@
-const AddLabelToUnlabledFormFieldsFixData = window.edac_frontend_fixes?.add_label_to_unlabeled_form_fields || {
+const AddLabelToUnlablledFormFieldsFixData = window.edac_frontend_fixes?.add_label_to_unlabelled_form_fields || {
 	enabled: false,
 };
 
-const AddLabelToUnlabledFormFieldsFix = () => {
-	if ( ! AddLabelToUnlabledFormFieldsFixData.enabled ) {
+const AddLabelToUnlabelledFormFieldsFix = () => {
+	if ( ! AddLabelToUnlablledFormFieldsFixData.enabled ) {
 		return;
 	}
 
-	// find all form fields on the page
+	// find all form fields on the page, excluding submit buttons.
 	const formFields = document.querySelectorAll( 'input:not([type="submit"]), select, textarea' );
 
-	// loop through each form field
 	formFields.forEach( ( field ) => {
 		// If the field is hidden, skip it.
 		if ( field.offsetParent === null ) {
@@ -97,4 +96,4 @@ const wrapFieldInLabel = ( field, labelData ) => {
 	field.removeAttribute( labelData.attribute );
 };
 
-export default AddLabelToUnlabledFormFieldsFix;
+export default AddLabelToUnlabelledFormFieldsFix;

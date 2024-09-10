@@ -14,7 +14,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
  *
  * @since 1.16.0
  */
-class AddLabelToUnlabeledFormFieldsFix implements FixInterface {
+class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 
 	/**
 	 * The slug of the fix.
@@ -22,7 +22,7 @@ class AddLabelToUnlabeledFormFieldsFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_slug(): string {
-		return 'add_label_to_unlabeled_form_fields';
+		return 'add_label_to_unlabelled_form_fields';
 	}
 
 	/**
@@ -45,8 +45,8 @@ class AddLabelToUnlabeledFormFieldsFix implements FixInterface {
 			'edac_filter_fixes_settings_sections',
 			function ( $sections ) {
 				$sections[ $this->get_slug() ] = [
-					'title'       => esc_html__( 'Unlabled Form Fields', 'accessibility-checker' ),
-					'description' => esc_html__( 'Add labels to unlabeled form fields', 'accessibility-checker' ),
+					'title'       => esc_html__( 'Unlablled Form Fields', 'accessibility-checker' ),
+					'description' => esc_html__( 'Add labels to unlabelled form fields', 'accessibility-checker' ),
 					'callback'    => [ $this, $this->get_slug() . '_section_callback' ],
 				];
 
@@ -58,10 +58,10 @@ class AddLabelToUnlabeledFormFieldsFix implements FixInterface {
 			'edac_filter_fixes_settings_fields',
 			function ( $fields ) {
 				$fields[ 'edac_' . $this->get_slug() ] = [
-					'label'       => esc_html__( 'Unlabeled Form Fields', 'accessibility-checker' ),
+					'label'       => esc_html__( 'Unlabelled Form Fields', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => $this->get_slug(),
-					'description' => esc_html__( 'Try add labels to unlabeled form fields.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Try add labels to unlabelled form fields.', 'accessibility-checker' ),
 					'section'     => $this->get_slug(),
 				];
 
@@ -119,7 +119,7 @@ class AddLabelToUnlabeledFormFieldsFix implements FixInterface {
 	 *
 	 * @return void
 	 */
-	public function add_label_to_unlabeled_form_fields_section_callback() {
+	public function add_label_to_unlabelled_form_fields_section_callback() {
 		?>
 		<p>
 			<?php
