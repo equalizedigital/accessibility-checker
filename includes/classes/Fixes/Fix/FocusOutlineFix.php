@@ -76,6 +76,7 @@ class FocusOutlineFix implements FixInterface {
 					),
 					'sanitize_callback' => 'sanitize_hex_color',
 					'section'           => 'focus_outline',
+					'condition'         => 'edac_fix_focus_outline',
 					'default'           => '#005FCC',
 				];
 
