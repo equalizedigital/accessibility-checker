@@ -1936,4 +1936,11 @@
 		opacity: 0.5;
 		display: none !important;
 	}
+
+	.edac-notice {
+		&--accessibility-ready-conflict {
+			font-style: italic;
+			font-weight: 600;
+		}
+	}
 }

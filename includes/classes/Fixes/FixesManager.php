@@ -14,6 +14,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\LinkUnderline;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\MetaViewportScalableFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ReadMoreAddTitleFix;
 
 /**
  * Manager class for fixes.
@@ -30,6 +31,13 @@ class FixesManager {
 	private static $instance = null;
 
 	/**
+	 * Whether the theme has the accessibility-ready tag.
+	 *
+	 * @var bool|null
+	 */
+	private static $theme_is_accessibility_ready = null;
+
+	/**
 	 * The fixes.
 	 *
 	 * @var array
@@ -41,6 +49,8 @@ class FixesManager {
 	 */
 	private function __construct() {
 		$this->maybe_enqueue_frontend_scripts();
+
+		self::$theme_is_accessibility_ready = self::is_theme_accessibility_ready();
 	}
 
 	/**
@@ -59,20 +69,29 @@ class FixesManager {
 	 * Maybe enqueue the frontend scripts.
 	 */
 	private function maybe_enqueue_frontend_scripts() {
-		// Consider adding this only if we can determine at least 1 of the fixes are enabled.
-		if ( ! is_admin() && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
-			add_action(
-				'wp_enqueue_scripts',
-				function () {
-					wp_enqueue_script( 'edac-frontend-fixes', EDAC_PLUGIN_URL . 'build/frontendFixes.bundle.js', [], EDAC_VERSION, true );
-					wp_localize_script(
-						'edac-frontend-fixes',
-						'edac_frontend_fixes',
-						apply_filters( 'edac_filter_frontend_fixes_data', [] )
-					);
-				}
-			);
+
+		if (
+			is_admin() ||
+			( defined( 'REST_REQUEST' ) && REST_REQUEST ) ||
+			( defined( 'DOING_AJAX' ) && DOING_AJAX ) ||
+			( defined( 'DOING_CRON' ) && DOING_CRON ) ||
+			( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+		) {
+			return;
 		}
+
+		// Consider adding this only if we can determine at least 1 of the fixes are enabled.
+		add_action(
+			'wp_enqueue_scripts',
+			function () {
+				wp_enqueue_script( 'edac-frontend-fixes', EDAC_PLUGIN_URL . 'build/frontendFixes.bundle.js', [], EDAC_VERSION, true );
+				wp_localize_script(
+					'edac-frontend-fixes',
+					'edac_frontend_fixes',
+					apply_filters( 'edac_filter_frontend_fixes_data', [] )
+				);
+			}
+		);
 	}
 
 	/**
@@ -85,6 +104,7 @@ class FixesManager {
 				SkipLinkFix::class,
 				CommentSearchLabelFix::class,
 				HTMLLangAndDirFix::class,
+				ReadMoreAddTitleFix::class,
 				TabindexFix::class,
 				LinkUnderline::class,
 				MetaViewportScalableFix::class,
@@ -135,6 +155,38 @@ class FixesManager {
 			$fix->run();
 		} elseif ( 'everywhere' === $fix::get_type() ) {
 			$fix->run();
+		}
+	}
+
+	/**
+	 * Check if the theme is accessibility ready.
+	 *
+	 * True if the theme has the tag, false otherwise.
+	 *
+	 * @return bool
+	 */
+	public static function is_theme_accessibility_ready() {
+		if ( null !== self::$theme_is_accessibility_ready ) {
+			return self::$theme_is_accessibility_ready;
+		}
+
+		$theme = wp_get_theme();
+		$tags  = $theme->get( 'Tags' );
+
+		self::$theme_is_accessibility_ready = in_array( 'accessibility-ready', $tags, true );
+		return self::$theme_is_accessibility_ready;
+	}
+
+	/**
+	 * Maybe show a notice if the theme is accessibility-ready.
+	 */
+	public static function maybe_show_accessibility_ready_conflict_notice() {
+		if ( self::is_theme_accessibility_ready() ) {
+			?>
+			<span class="edac-notice--accessibility-ready-conflict">
+				<?php esc_html_e( 'This setting is not recommended for themes that are already accessibility-ready.', 'accessibility-checker' ); ?>
+			</span>
+			<?php
 		}
 	}
 }
