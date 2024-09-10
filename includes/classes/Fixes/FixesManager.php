@@ -7,6 +7,7 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddFileSizeAndTypeToLinkedFilesFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\RemoveTitleIfPrefferedAccessibleNameFix;
@@ -114,6 +115,7 @@ class FixesManager {
 				MetaViewportScalableFix::class,
 				PreventLinksOpeningNewWindowFix::class,
 				FocusOutlineFix::class,
+				AddFileSizeAndTypeToLinkedFilesFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {
