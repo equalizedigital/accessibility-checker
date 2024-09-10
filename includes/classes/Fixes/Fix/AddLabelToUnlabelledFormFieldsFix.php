@@ -1,6 +1,6 @@
 <?php
 /**
- * Comment Search Label Fix Class
+ * Try label unlabelled form fields.
  *
  * @package accessibility-checker
  */
@@ -10,7 +10,7 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
 /**
- * Try to add labels to unlabeled form fields.
+ * Try to add labels to unlabelled form fields.
  *
  * @since 1.16.0
  */
