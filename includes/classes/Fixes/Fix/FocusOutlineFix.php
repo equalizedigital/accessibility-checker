@@ -94,17 +94,6 @@ class FocusOutlineFix implements FixInterface {
 		}
 
 		$this->css();
-
-		// Adds the tabindex removal data to be used in JS if necessary.
-		add_filter(
-			'edac_filter_frontend_fixes_data',
-			function ( $data ) {
-				$data['focus_outline'] = [
-					'enabled' => true,
-				];
-				return $data;
-			}
-		);
 	}
 
 	/**

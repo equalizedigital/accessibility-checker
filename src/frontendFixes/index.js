@@ -34,10 +34,3 @@ if ( edacFrontendFixes?.prevent_links_opening_in_new_window?.enabled ) {
 		preventLinksOpeningNewWindowFix.default();
 	} );
 }
-
-if ( edacFrontendFixes?.focus_outline?.enabled ) {
-	// lazy import the module
-	import( /* webpackChunkName: "focus_outline" */ './Fixes/focusOutlineFix' ).then( ( FocusOutlineFix ) => {
-		FocusOutlineFix.default();
-	} );
-}
