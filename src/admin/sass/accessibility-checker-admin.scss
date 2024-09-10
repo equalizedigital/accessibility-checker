@@ -853,15 +853,22 @@
     .form-table {
       display: block;
       margin-bottom: 50px;
+
+      tbody {
+        display: block;
+      }
+
       tr {
         border: solid 1px $color-gray-light;
         margin-bottom: 10px;
         display: block;
       }
+
       th {
         padding: 10px;
         background-color: $color-gray-lightest;
       }
+
       td {
         padding: 10px;
       }
