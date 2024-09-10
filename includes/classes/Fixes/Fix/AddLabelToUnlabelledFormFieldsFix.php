@@ -79,6 +79,8 @@ class AddLabelToUnlabeledFormFieldsFix implements FixInterface {
 			return;
 		}
 
+		add_action( 'wp_head', [ $this, 'output_styles' ] );
+
 		add_filter(
 			'edac_filter_frontend_fixes_data',
 			function ( $data ) {
@@ -88,6 +90,28 @@ class AddLabelToUnlabeledFormFieldsFix implements FixInterface {
 				return $data;
 			}
 		);
+	}
+
+	/**
+	 * Output the styles for the fix.
+	 *
+	 * @return void
+	 */
+	public function output_styles() {
+		?>
+		<style>
+			.edac-generated-label {
+				display: inline-block;
+				margin-bottom: 0.2rem;
+			}
+
+			.edac-generated-label input,
+			.edac-generated-label select,
+			.edac-generated-label textarea {
+				display: block;
+			}
+		</style>
+		<?php
 	}
 
 	/**
