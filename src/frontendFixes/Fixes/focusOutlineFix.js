@@ -4,7 +4,7 @@ const FocusOutlineFixData = window.edac_frontend_fixes?.focus_outline || {
 
 const FocusOutlineFix = () => {
 	if ( ! FocusOutlineFixData.enabled ) {
-		//return;
+
 	}
 };
 
