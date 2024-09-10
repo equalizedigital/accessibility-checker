@@ -75,33 +75,47 @@ const tryGetLabelData = ( field ) => {
 		}
 
 		const attributeText = field.getAttribute( attributeToCheck )?.trim();
-		if ( attributeText ) {
+		if ( attributeText.length ) {
 			labelData.attribute = attributeToCheck;
 			labelData.text = attributeText;
 		}
 	} );
 
 	if ( labelData.text !== '' ) {
-		// replace underscores with spaces
+		// Replace underscores with spaces.
 		labelData.text = labelData.text.replace( /_/g, ' ' );
-		// seporate words with spaces if camelcase
+		// Seporate words with spaces if camelCase.
 		labelData.text = labelData.text.replace( /([a-z])([A-Z])/g, '$1 $2' );
-		// capitalize first letter
+		// Capitalize first letter.
 		labelData.text = labelData.text.charAt( 0 ).toUpperCase() + labelData.text.slice( 1 );
 	}
 
 	return labelData;
 };
 
+/**
+ * Wrap the field in a label element.
+ *
+ * The label will have a class of 'edac-generated-label' and a data attribute of 'data-edac-generated-label-from' with the attribute used to generate the label.
+ *
+ * @param {HTMLElement} field
+ * @param {Object}      labelData - {attribute: string, text: string}
+ */
 const wrapFieldInLabel = ( field, labelData ) => {
+	// Create a label with the text, and add a class and some data to it.
 	const label = document.createElement( 'label' );
 	label.classList.add( 'edac-generated-label' );
-	// add data attribute to the label showing which attribute the label was generated from
 	label.setAttribute( 'data-edac-generated-label-from', labelData.attribute );
 	label.innerText = labelData.text;
+
+	// Insert the label and put the field inside it.
 	field.parentNode.insertBefore( label, field );
 	label.appendChild( field );
-	field.removeAttribute( labelData.attribute );
+
+	// Remove the attribute the label was generated from, unless it is a placeholder.
+	if ( labelData.attribute !== 'placeholder' ) {
+		field.removeAttribute( labelData.attribute );
+	}
 };
 
 export default AddLabelToUnlabelledFormFieldsFix;
