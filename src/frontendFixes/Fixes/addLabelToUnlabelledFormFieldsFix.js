@@ -74,6 +74,15 @@ const tryGetLabelData = ( field ) => {
 		}
 	} );
 
+	if ( labelData.text !== '' ) {
+		// replace underscores with spaces
+		labelData.text = labelData.text.replace( /_/g, ' ' );
+		// seporate words with spaces if camelcase
+		labelData.text = labelData.text.replace( /([a-z])([A-Z])/g, '$1 $2' );
+		// capitalize first letter
+		labelData.text = labelData.text.charAt( 0 ).toUpperCase() + labelData.text.slice( 1 );
+	}
+
 	return labelData;
 };
 
