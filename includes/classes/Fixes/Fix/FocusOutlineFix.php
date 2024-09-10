@@ -10,7 +10,7 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
 /**
- * Handles the removal of tabindex attributes from focusable elements.
+ * Handles adding a focus outline to focusable elements.
  *
  * @since 1.16.0
  */
@@ -34,7 +34,7 @@ class FocusOutlineFix implements FixInterface {
 	}
 
 	/**
-	 * Registers the settings field for the tabindex removal fix.
+	 * Registers the settings field for the focus outline fix.
 	 *
 	 * @return void
 	 */
@@ -66,16 +66,17 @@ class FocusOutlineFix implements FixInterface {
 				];
 
 				$fields['edac_fix_focus_outline_color'] = [
-					'type'              => 'text',
+					'type'              => 'color',
 					'label'             => esc_html__( 'Focus Outline Color', 'accessibility-checker' ),
 					'labelledby'        => 'fix_focus_outline_color',
 					'description'       => esc_html__(
-						'Hexadecimal Focus outline color. Default is #005FCC.
+						'Set the focus outline color. Default is #005FCC.
 					',
 						'accessibility-checker' 
 					),
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => 'sanitize_hex_color',
 					'section'           => 'focus_outline',
+					'default'           => '#005FCC',
 				];
 
 				return $fields;
@@ -84,7 +85,7 @@ class FocusOutlineFix implements FixInterface {
 	}
 
 	/**
-	 * Executes the tabindex removal fix on the frontend.
+	 * Executes the focus outline fix on the frontend.
 	 *
 	 * @return void
 	 */
