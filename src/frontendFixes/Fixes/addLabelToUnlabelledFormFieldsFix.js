@@ -16,7 +16,15 @@ const AddLabelToUnlabelledFormFieldsFix = () => {
 			return;
 		}
 
-		// Look at up to 3 parent elements to see if any are a label and if so don't add another.
+		// If the field has an ID check if there are labels with a for attribute that matches the ID and skip if found.
+		if ( field.id ) {
+			const label = document.querySelector( `label[for="${ field.id }"]` );
+			if ( label ) {
+				return;
+			}
+		}
+
+		// Look at up to 3 parent elements to see if the field is in a label and if so don't add another.
 		let parentElement = field.parentElement;
 		let parentElementCount = 0;
 		while ( parentElementCount < 3 ) {
