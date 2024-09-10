@@ -28,6 +28,20 @@ if ( edacFrontendFixes?.tabindex?.enabled ) {
 	} );
 }
 
+if ( edacFrontendFixes?.meta_viewport_scalable?.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "meta-viewport-scalable" */ './Fixes/metaViewportScalableFix' ).then( ( metaViewportScalableFix ) => {
+		metaViewportScalableFix.default();
+	} );
+}
+
+if ( edacFrontendFixes?.remove_title_if_preferred_accessible_name?.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "remove-title-if-preferred-accessible-name" */ './Fixes/removeTitleIfPrefferedAccessibleNameFix' ).then( ( removeTitleIfPreferredAccessibleNameFix ) => {
+		removeTitleIfPreferredAccessibleNameFix.default();
+	} );
+}
+
 if ( edacFrontendFixes?.underline?.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "underline" */ './Fixes/underlineFix' ).then( ( underlineFix ) => {
