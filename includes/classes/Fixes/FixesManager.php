@@ -92,6 +92,7 @@ class FixesManager {
 					'edac_frontend_fixes',
 					apply_filters( 'edac_filter_frontend_fixes_data', [] )
 				);
+				do_action( 'edac_action_enqueue_frontend_fixes' );
 			}
 		);
 	}
