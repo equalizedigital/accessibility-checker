@@ -97,7 +97,15 @@ class AddLabelToUnlabeledFormFieldsFix implements FixInterface {
 	 */
 	public function add_label_to_unlabeled_form_fields_section_callback() {
 		?>
-		<p><?php esc_html_e( 'Try add labels to unlabeled form fields.', 'accessibility-checker' ); ?></p>
+		<p>
+			<?php
+			printf(
+				// translators: %1$s: a CSS class name wrapped in a <code> tag.
+				esc_html__( 'Try add labels to unlabelled form fields. You may need to add styles targeting the %1$s class if adding labeles affects the layout of your forms.', 'accessibility-checker' ),
+				'<code>.edac-generated-label</code>'
+			);
+			?>
+		</p>
 		<?php
 	}
 }
