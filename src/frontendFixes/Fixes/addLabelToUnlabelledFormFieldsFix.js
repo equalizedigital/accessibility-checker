@@ -17,9 +17,15 @@ const AddLabelToUnlabledFormFieldsFix = () => {
 			return;
 		}
 
-		// If the field is already inside a label, don't add another label.
-		if ( field.parentNode.tagName.toLowerCase() === 'label' ) {
-			return;
+		// Look at up to 3 parent elements to see if any are a label and if so don't add another.
+		let parentElement = field.parentElement;
+		let parentElementCount = 0;
+		while ( parentElementCount < 3 ) {
+			if ( parentElement.tagName.toLowerCase() === 'label' ) {
+				return;
+			}
+			parentElement = parentElement.parentElement;
+			parentElementCount++;
 		}
 
 		// Is there a labelledby attribute?
