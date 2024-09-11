@@ -35,7 +35,8 @@ trait Checkbox {
 				<?php checked( 1, $option_value ); ?>
 				<?php echo isset( $args['condition'] ) ? 'data-condition="' . esc_attr( $args['condition'] ) . '"' : ''; ?>
 			/>
-			<?php echo esc_html( $args['description'] ); ?>
+			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
+		</label>
 		</label>
 		<?php
 	}

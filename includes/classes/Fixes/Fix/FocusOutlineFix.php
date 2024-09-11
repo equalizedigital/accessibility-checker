@@ -45,7 +45,7 @@ class FocusOutlineFix implements FixInterface {
 			function ( $sections ) {
 				$sections['focus_outline'] = [
 					'title'       => esc_html__( 'Focus Outline', 'accessibility-checker' ),
-					'description' => esc_html__( 'Add a skip link to all of your site pages.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Adds an outline to elements when they receive keyboard focus.', 'accessibility-checker' ),
 					'callback'    => [ $this, 'focus_outline_section_callback' ],
 				];
 
@@ -61,7 +61,7 @@ class FocusOutlineFix implements FixInterface {
 					'type'        => 'checkbox',
 					'label'       => esc_html__( 'Focus Outline', 'accessibility-checker' ),
 					'labelledby'  => 'fix_focus_outline',
-					'description' => esc_html__( 'Add outline to elements on keyboard focus.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Adds an outline to elements when they receive keyboard focus.', 'accessibility-checker' ),
 					'section'     => 'focus_outline',
 				];
 
@@ -69,13 +69,14 @@ class FocusOutlineFix implements FixInterface {
 					'type'              => 'color',
 					'label'             => esc_html__( 'Focus Outline Color', 'accessibility-checker' ),
 					'labelledby'        => 'fix_focus_outline_color',
-					'description'       => esc_html__(
-						'Set the focus outline color. Default is #005FCC.
-					',
-						'accessibility-checker'
+					'description'       => sprintf(
+						// translators: %1$s: a color code wrapped in a <code> tag.
+						__( 'Sets the color for the focus outline. Default is %1$s.', 'accessibility-checker' ),
+						'<code>#005FCC</code>' 
 					),
 					'sanitize_callback' => 'sanitize_hex_color',
 					'section'           => 'focus_outline',
+					'condition'         => 'edac_fix_focus_outline',
 					'default'           => '#005FCC',
 				];
 
@@ -104,7 +105,7 @@ class FocusOutlineFix implements FixInterface {
 	 */
 	public function focus_outline_section_callback() {
 		?>
-		<p><?php esc_html_e( 'Settings related to the focus outline fixes.', 'accessibility-checker' ); ?></p>
+		<p><?php esc_html_e( 'Settings related to enhancing focus outlines for better keyboard accessibility.', 'accessibility-checker' ); ?></p>
 		<?php
 	}
 

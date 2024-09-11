@@ -30,7 +30,7 @@ trait Color {
 			for="<?php echo esc_attr( $args['name'] ); ?>"
 			style="display: block; margin-bottom: 6px;"
 		>
-			<?php echo esc_html( $args['description'] ); ?>
+			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 		</label>
 		<input
 			type="color"

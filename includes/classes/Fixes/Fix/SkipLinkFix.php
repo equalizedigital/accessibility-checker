@@ -46,7 +46,7 @@ class SkipLinkFix implements FixInterface {
 			function ( $sections ) {
 				$sections['skip_link'] = [
 					'title'       => esc_html__( 'Skip Link', 'accessibility-checker' ),
-					'description' => esc_html__( 'Add a skip link to all of your site pages.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Adds a skip link to all site pages, allowing users to skip directly to the main content.', 'accessibility-checker' ),
 					'callback'    => [ $this, 'skip_link_section_callback' ],
 				];
 
@@ -61,7 +61,7 @@ class SkipLinkFix implements FixInterface {
 					'label'       => esc_html__( 'Enable Skip Link', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => 'add_skip_link',
-					'description' => esc_html__( 'Add a skip link to all of your site pages.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Adds a skip link to all site pages, allowing users to skip directly to the main content.', 'accessibility-checker' ),
 					'section'     => 'skip_link',
 				];
 
@@ -69,7 +69,7 @@ class SkipLinkFix implements FixInterface {
 					'label'       => esc_html__( 'Always Visible Skip Link', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => 'add_skip_link_always_visible',
-					'description' => esc_html__( 'Make the skip link always visible.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Makes the skip link always visible.', 'accessibility-checker' ),
 					'section'     => 'skip_link',
 					'condition'   => 'edac_fix_add_skip_link',
 				];
@@ -78,7 +78,7 @@ class SkipLinkFix implements FixInterface {
 					'label'             => esc_html__( 'Main Content Target', 'accessibility-checker' ),
 					'type'              => 'text',
 					'labelledby'        => 'skip_link_target_id',
-					'description'       => esc_html__( 'The ID for the skip links to target the main content, starting with "#". Enter multiple ids seporated by commas and it will cascade through the list to find the appropriate one for that page if you have several different main content areas on your site.', 'accessibility-checker' ),
+					'description'       => esc_html__( 'Defines the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page.', 'accessibility-checker' ),
 					'sanitize_callback' => 'sanitize_text_field',
 					'section'           => 'skip_link',
 					'condition'         => 'edac_fix_add_skip_link',
@@ -88,7 +88,8 @@ class SkipLinkFix implements FixInterface {
 					'label'             => esc_html__( 'Navigation Target', 'accessibility-checker' ),
 					'type'              => 'text',
 					'labelledby'        => 'skip_link_nav_target_id',
-					'description'       => esc_html__( 'ID attribute for the navigation, starting with "#"', 'accessibility-checker' ),
+					// translators: %1$s: ampersand character wrapped in a <code> tag.
+					'description'       => sprintf( __( 'Sets the ID attribute of the navigation element, starting with %1$s.', 'accessibility-checker' ), '<code>#</code>' ),
 					'sanitize_callback' => 'sanitize_text_field',
 					'section'           => 'skip_link',
 					'condition'         => 'edac_fix_add_skip_link',
@@ -98,7 +99,7 @@ class SkipLinkFix implements FixInterface {
 					'label'       => esc_html__( 'Disable Skip Link Bundled Styles', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => 'disable_skip_link_styles',
-					'description' => esc_html__( 'Disable output of the bundled styles. This makes the "Always Visible Skip Link" setting above irrelevent.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Disables the default styles for skip links. Note: This makes the "Always Visible Skip Link" setting irrelevant.', 'accessibility-checker' ),
 					'section'     => 'skip_link',
 					'condition'   => 'edac_fix_add_skip_link',
 				];
@@ -223,7 +224,7 @@ class SkipLinkFix implements FixInterface {
 	 */
 	public function skip_link_section_callback() {
 		?>
-		<p><?php esc_html_e( 'Settings related to the skip link fixes.', 'accessibility-checker' ); ?></p>
+		<p><?php esc_html_e( 'Settings related to the addition and styling of skip links.', 'accessibility-checker' ); ?></p>
 		<?php
 	}
 

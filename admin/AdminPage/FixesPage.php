@@ -114,7 +114,7 @@ class FixesPage implements PageInterface {
 			'edac_filter_fixes_settings_sections',
 			[
 				'edac_fixes_general' => [
-					'title'    => __( 'General Settings', 'accessibility-checker' ),
+					'title'    => __( 'General Fixes', 'accessibility-checker' ),
 					'callback' => [ $this, 'fixes_section_general_cb' ],
 				],
 			]
@@ -182,6 +182,6 @@ class FixesPage implements PageInterface {
 	 * Callback for the general settings section that renders a description for it.
 	 */
 	public function fixes_section_general_cb() {
-		echo '<p>' . esc_html__( 'General settings for the fixes.', 'accessibility-checker' ) . '</p>';
+		echo '<p>' . esc_html__( 'These fixes help improve accessibility by modifying HTML elements and behaviors on your site.', 'accessibility-checker' ) . '</p>';
 	}
 }
