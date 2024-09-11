@@ -12,10 +12,14 @@ const ForceUnderlineFix = () => {
 	const targets = document.querySelectorAll( ForceUnderlineFixData.target );
 
 	targets.forEach( function( target ) {
-		if ( ! target.closest( 'nav' ) ) {
-			target.style.textDecoration = 'underline';
+    
+		// Early return if the element is inside a `nav` element or an element with role="navigation"
+		if ( target.closest( 'nav' ) || target.closest( '[role="navigation"]' ) ) {
 			return;
 		}
+
+		// Apply underline style
+		target.style.textDecoration = 'underline';
 
 		// Store the original styles in data-* attributes
 		target.setAttribute( 'data-original-outline', target.style.outlineWidth );
