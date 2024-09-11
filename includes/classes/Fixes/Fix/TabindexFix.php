@@ -47,7 +47,8 @@ class TabindexFix implements FixInterface {
 					'type'        => 'checkbox',
 					'label'       => esc_html__( 'Remove Tab Index', 'accessibility-checker' ),
 					'labelledby'  => 'remove_tabindex',
-					'description' => esc_html__( 'Remove tabindex from focusable elements.', 'accessibility-checker' ),
+					// translators: %1$s: a attribute name wrapped in a <code> tag.
+					'description' => sprintf( __( 'Removes the %1$s attribute from focusable elements.', 'accessibility-checker' ), '<code>tabindex</code>' ),
 				];
 
 				return $fields;

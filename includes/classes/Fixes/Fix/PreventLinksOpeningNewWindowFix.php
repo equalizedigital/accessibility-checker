@@ -48,7 +48,7 @@ class PreventLinksOpeningNewWindowFix implements FixInterface {
 					'label'       => esc_html__( 'Links Opening New Windows', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => 'prevent_links_opening_in_new_windows',
-					'description' => esc_html__( 'Prevents links from opening in a new window.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Prevents links from opening in a new window without user intent.', 'accessibility-checker' ),
 				];
 
 				return $fields;

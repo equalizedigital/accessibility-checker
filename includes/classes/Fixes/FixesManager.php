@@ -189,7 +189,7 @@ class FixesManager {
 		if ( self::is_theme_accessibility_ready() ) {
 			?>
 			<span class="edac-notice--accessibility-ready-conflict">
-				<?php esc_html_e( 'This setting is not recommended for themes that are already accessibility-ready.', 'accessibility-checker' ); ?>
+				<?php esc_html_e( 'Note: This setting is not recommended for themes that are already accessibility-ready.', 'accessibility-checker' ); ?>
 			</span>
 			<?php
 		}

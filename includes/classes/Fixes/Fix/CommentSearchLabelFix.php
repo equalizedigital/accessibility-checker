@@ -61,7 +61,7 @@ class CommentSearchLabelFix implements FixInterface {
 					'label'       => esc_html__( 'Comment form', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => 'add_comment_label',
-					'description' => esc_html__( 'Add missing form labels to the WordPress comment form.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Adds missing labels to the WordPress comment form.', 'accessibility-checker' ),
 					'section'     => 'comment_search_label',
 				];
 
@@ -69,7 +69,7 @@ class CommentSearchLabelFix implements FixInterface {
 					'label'       => esc_html__( 'Search form', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => 'add_search_label',
-					'description' => esc_html__( 'Add missing form label to the WordPress search form.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Adds a missing label to the WordPress search form.', 'accessibility-checker' ),
 					'section'     => 'comment_search_label',
 				];
 
@@ -163,7 +163,7 @@ class CommentSearchLabelFix implements FixInterface {
 	 */
 	public function comment_search_label_section_callback() {
 		?>
-		<p><?php esc_html_e( 'Settings related to adding missing labels to WordPress comment and search forms.', 'accessibility-checker' ); ?></p>
+		<p><?php esc_html_e( 'Settings to add missing labels to WordPress comment and search forms.', 'accessibility-checker' ); ?></p>
 		<?php
 	}
 }
