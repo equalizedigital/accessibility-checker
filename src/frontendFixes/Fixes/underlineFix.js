@@ -14,6 +14,7 @@ const ForceUnderlineFix = () => {
 	targets.forEach( function( target ) {
 		if ( ! target.closest( 'nav' ) ) {
 			target.style.textDecoration = 'underline';
+			return;
 		}
 
 		// Store the original styles in data-* attributes
