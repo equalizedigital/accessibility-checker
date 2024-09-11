@@ -154,7 +154,11 @@ class FixesPage implements PageInterface {
 		 */
 		$fields = apply_filters( 'edac_filter_fixes_settings_fields', [] );
 
+		$field_keys = [];
+
 		foreach ( $fields as $field_id => $field ) {
+
+			$field_keys[] = $field_id;
 
 			$field_type = $field['type'] ?? 'checkbox';
 			$sanitizer  = $field['sanitize_callback'] ?? [ $this, 'sanitize_checkbox' ];
@@ -176,6 +180,8 @@ class FixesPage implements PageInterface {
 
 			register_setting( self::SETTINGS_SLUG, $field_id, $sanitizer );
 		}
+
+		update_option( 'edac_fixes_fields', $field_keys );
 	}
 
 	/**
