@@ -43,9 +43,9 @@ class AddFileSizeAndTypeToLinkedFilesFix implements FixInterface {
 			function ( $fields ) {
 				$fields[ 'edac_fix_' . $this->get_slug() ] = [
 					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Add file size and type to linked files', 'accessibility-checker' ),
+					'label'       => esc_html__( 'Add File Size & Type To Links', 'accessibility-checker' ),
 					'labelledby'  => 'add_file_size_and_type_to_linked_files',
-					'description' => esc_html__( 'Adds the file size and type to linked files.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Adds the file size and type to linked files that may trigger a download.', 'accessibility-checker' ),
 				];
 
 				return $fields;
