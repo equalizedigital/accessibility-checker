@@ -94,6 +94,8 @@ class FixesManager {
 					apply_filters( 'edac_filter_frontend_fixes_data', [] )
 				);
 				do_action( 'edac_action_enqueue_frontend_fixes' );
+				wp_enqueue_style( 'edac-frontend-fixes-styles', EDAC_PLUGIN_URL . 'build/css/frontendFixes.bundle.css', [], EDAC_VERSION );
+				do_action( 'edac_action_enqueue_frontend_fixes_styles' );
 			}
 		);
 	}
