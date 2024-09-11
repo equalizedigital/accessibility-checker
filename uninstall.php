@@ -21,7 +21,7 @@ if ( true === (bool) $delete_data ) {
 	$wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', $wpdb->prefix . 'accessibility_checker' ) );
 
 	// delete options.
-	$options = [
+	$options     = [
 		'edac_db_version',
 		'edac_activation_date',
 		'edac_simplified_summary_position',
@@ -35,7 +35,9 @@ if ( true === (bool) $delete_data ) {
 		'edac_gaad_notice_dismiss',
 		'edac_black_friday_2023_notice_dismiss',
 	];
-	if ( $options ) {
+	$fix_options = get_option( 'edac_fixes_fields', [] );
+
+	if ( array_merge( $options, $fix_options ) ) {
 		foreach ( $options as $option ) {
 			delete_option( $option );
 			delete_site_option( $option );
