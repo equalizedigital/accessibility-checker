@@ -72,7 +72,7 @@ class FocusOutlineFix implements FixInterface {
 					'description'       => sprintf(
 						// translators: %1$s: a color code wrapped in a <code> tag.
 						__( 'Sets the color for the focus outline. Default is %1$s.', 'accessibility-checker' ),
-						'<code>#005FCC</code>' 
+						'<code>#005FCC</code>'
 					),
 					'sanitize_callback' => 'sanitize_hex_color',
 					'section'           => 'focus_outline',
@@ -95,7 +95,7 @@ class FocusOutlineFix implements FixInterface {
 			return;
 		}
 
-		add_action( 'wp_head', [ $this, 'css' ] );
+		add_action( 'edac_action_enqueue_frontend_fixes_styles', [ $this, 'styles' ] );
 	}
 
 	/**
@@ -128,10 +128,13 @@ class FocusOutlineFix implements FixInterface {
 		}
 		";
 
+		ob_start();
 		?>
 		<style id="edac-fix-focus-outline">
 			<?php echo esc_attr( $styles ); ?>
 		</style>
 		<?php
+		$styles = ob_get_clean();
+		wp_add_inline_style( 'edac-frontend-fixes-styles', $styles );
 	}
 }

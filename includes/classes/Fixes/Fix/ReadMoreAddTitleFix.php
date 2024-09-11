@@ -95,7 +95,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 		add_filter( 'excerpt_more', [ $this, 'add_title_to_excerpt_more' ], 100 );
 
 		if ( get_option( 'edac_fix_add_read_more_title_screen_reader_only', false ) ) {
-			add_action( 'wp_head', [ $this, 'add_screen_reader_styles' ] );
+			add_action( 'edac_action_enqueue_frontend_fixes_styles', [ $this, 'styles' ] );
 		}
 	}
 
@@ -162,9 +162,8 @@ class ReadMoreAddTitleFix implements FixInterface {
 	 *
 	 * @return void
 	 */
-	public function add_screen_reader_styles() {
-		?>
-		<style>
+	public function styles() {
+		$styles = <<<CSS
 			.edac-screen-reader-text {
 				position: absolute;
 				clip: rect(1px, 1px, 1px, 1px);
@@ -174,8 +173,8 @@ class ReadMoreAddTitleFix implements FixInterface {
 				overflow: hidden;
 				white-space: nowrap;
 			}
-		</style>
-		<?php
+		CSS;
+		wp_add_inline_style( 'edac-frontend-fixes-styles', $styles );
 	}
 
 	/**
