@@ -12,6 +12,7 @@ const ForceUnderlineFix = () => {
 	const targets = document.querySelectorAll( ForceUnderlineFixData.target );
 
 	targets.forEach( function( target ) {
+    
 		// Early return if the element is inside a `nav` element or an element with role="navigation"
 		if ( target.closest( 'nav' ) || target.closest( '[role="navigation"]' ) ) {
 			return;
