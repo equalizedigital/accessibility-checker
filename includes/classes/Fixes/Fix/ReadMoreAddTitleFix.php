@@ -60,7 +60,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 
 				$fields['edac_fix_add_read_more_title'] = [
 					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Add Post Title to "Read More"', 'accessibility-checker' ),
+					'label'       => esc_html__( 'Add Post Title To "Read More"', 'accessibility-checker' ),
 					'labelledby'  => 'add_read_more_title',
 					'description' => esc_html__( 'Adds the post title to "Read More" links in post lists when your theme outputs those links.', 'accessibility-checker' ),
 					'section'     => 'read_more_links',
@@ -68,7 +68,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 
 				$fields['edac_fix_add_read_more_title_screen_reader_only'] = [
 					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Make the title for screen readers only', 'accessibility-checker' ),
+					'label'       => esc_html__( 'For Screen Readers Only', 'accessibility-checker' ),
 					'labelledby'  => 'add_read_more_title_screen_reader_only',
 					'description' => esc_html__( 'Makes the post title added to "Read More" links visible only to screen readers.', 'accessibility-checker' ),
 					'condition'   => 'edac_fix_add_read_more_title',
