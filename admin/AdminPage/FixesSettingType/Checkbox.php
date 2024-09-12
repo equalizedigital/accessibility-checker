@@ -38,7 +38,6 @@ trait Checkbox {
 			/>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 		</label>
-		</label>
 		<?php
 	}
 
