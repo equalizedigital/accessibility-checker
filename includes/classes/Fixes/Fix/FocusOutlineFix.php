@@ -39,7 +39,7 @@ class FocusOutlineFix implements FixInterface {
 	 * @return void
 	 */
 	public function register(): void {
-		
+
 		add_filter(
 			'edac_filter_fixes_settings_sections',
 			function ( $sections ) {
@@ -80,7 +80,7 @@ class FocusOutlineFix implements FixInterface {
 			return;
 		}
 
-		$this->css();
+		add_action( 'wp_head', [ $this, 'css' ] );
 	}
 
 	/**
