@@ -44,7 +44,7 @@ class RemoveTitleIfPrefferedAccessibleNameFix implements FixInterface {
 			function ( $fields ) {
 				$fields[ 'edac_fix_' . $this->get_slug() ] = [
 					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Prefer Accessible Names', 'accessibility-checker' ),
+					'label'       => esc_html__( 'Remove Title Attributes', 'accessibility-checker' ),
 					'labelledby'  => 'accessible_name',
 					// translators: %1$s: a attribute name wrapped in a <code> tag.
 					'description' => sprintf( __( 'Removes %1$s attributes from elements that already have a preferred accessible name.', 'accessibility-checker' ), '<code>title</code>' ),
