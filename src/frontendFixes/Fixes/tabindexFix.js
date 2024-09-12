@@ -15,8 +15,8 @@ const TabindexFix = () => {
 			return;
 		}
 
-		// Remove the tabindex if present
-		if ( element.hasAttribute( 'tabindex' ) ) {
+		// Remove the tabindex if present and is not -1.
+		if ( element.hasAttribute( 'tabindex' ) && element.getAttribute( 'tabindex' ) !== '-1' ) {
 			element.removeAttribute( 'tabindex' );
 		}
 	} );
@@ -29,6 +29,10 @@ const TabindexFix = () => {
 
 	// Loop through each element and add tabindex="0" to make it focusable
 	elementsToFocus.forEach( ( element ) => {
+		// Don't add tabindex 0 to elements that alaredy have -1.
+		if ( element.hasAttribute( 'tabindex' ) && element.getAttribute( 'tabindex' ) === '-1' ) {
+			return;
+		}
 		element.setAttribute( 'tabindex', '0' );
 		element.classList.add( 'edac-focusable' );
 	} );
