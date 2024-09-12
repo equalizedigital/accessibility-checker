@@ -44,11 +44,15 @@ class PreventLinksOpeningNewWindowFix implements FixInterface {
 		add_filter(
 			'edac_filter_fixes_settings_fields',
 			function ( $fields ) {
-				$fields['edac_fix_prevent_links_opening_in_new_windows'] = [
-					'label'       => esc_html__( 'Links Opening New Windows', 'accessibility-checker' ),
+				$fields[ 'edac_fix_' . $this->get_slug() ] = [
+					'label'       => esc_html__( 'Block Links Opening New Windows', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => 'prevent_links_opening_in_new_windows',
-					'description' => esc_html__( 'Prevents links from opening in a new window without user intent.', 'accessibility-checker' ),
+					'description' => sprintf(
+						// translators: %1%s: A <code> tag containing target="_blank".
+						esc_html__( 'Prevent links from opening in a new window or tab by removing %1$s.', 'accessibility-checker' ),
+						'<code>target="_blank"</code>'
+					),
 				];
 
 				return $fields;
