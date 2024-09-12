@@ -64,14 +64,14 @@ class PreventLinksOpeningNewWindowFix implements FixInterface {
 	 * Run the fix for adding the comment and search form labels.
 	 */
 	public function run(): void {
-		if ( ! get_option( 'edac_fix_prevent_links_opening_in_new_windows', false ) ) {
+		if ( ! get_option( 'edac_fix_' . $this->get_slug(), false ) ) {
 			return;
 		}
 
 		add_filter(
 			'edac_filter_frontend_fixes_data',
 			function ( $data ) {
-				$data['prevent_links_opening_in_new_window'] = [
+				$data[ $this->get_slug() ] = [
 					'enabled' => true,
 				];
 				return $data;
