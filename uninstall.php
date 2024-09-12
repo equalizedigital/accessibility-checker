@@ -36,7 +36,27 @@ if ( true === (bool) $delete_data ) {
 		'edac_black_friday_2023_notice_dismiss',
 		'edac_fixes_fields',
 	];
-	$fix_options = get_option( 'edac_fixes_fields', [] );
+	$fix_options = [
+		'edac_fix_add_skip_link',
+		'edac_fix_add_skip_link_target_id',
+		'edac_fix_add_skip_link_nav_target_id',
+		'edac_fix_comment_label',
+		'edac_fix_search_label',
+		'edac_fix_add_lang_and_dir',
+		'edac_fix_add_read_more_title',
+		'edac_fix_add_read_more_title_screen_reader_only',
+		'edac_fix_remove_tabindex',
+		'edac_fix_remove_title_if_preferred_accessible_name',
+		'edac_fix_force_link_underline',
+		'edac_fix_meta_viewport_scalable',
+		'edac_fix_prevent_links_opening_in_new_windows',
+		'edac_fix_focus_outline',
+		'edac_fix_focus_outline_color',
+		'edac_fix_add_file_size_and_type_to_linked_files',
+		'edac_fix_block_pdf_uploads',
+		'edac_fix_add_missing_or_empty_page_title',
+		'edac_fix_add_label_to_unlabelled_form_fields',
+	];
 
 	if ( array_merge( $options, $fix_options ) ) {
 		foreach ( $options as $option ) {
