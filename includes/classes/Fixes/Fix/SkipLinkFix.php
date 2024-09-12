@@ -82,6 +82,7 @@ class SkipLinkFix implements FixInterface {
 					'sanitize_callback' => 'sanitize_text_field',
 					'section'           => 'skip_link',
 					'condition'         => 'edac_fix_add_skip_link',
+					'required_when'     => 'edac_fix_add_skip_link',
 				];
 
 				$fields['edac_fix_add_skip_link_nav_target_id'] = [
