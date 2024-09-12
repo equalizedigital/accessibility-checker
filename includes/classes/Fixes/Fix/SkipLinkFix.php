@@ -155,7 +155,7 @@ class SkipLinkFix implements FixInterface {
 	 *
 	 * @return void
 	 */
-	public function add_skip_link_styles() {
+	public function styles() {
 		$styles = <<<CSS
 			.edac-bypass-block {
 				border: 0;

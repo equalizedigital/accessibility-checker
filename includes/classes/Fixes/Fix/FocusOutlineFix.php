@@ -114,7 +114,7 @@ class FocusOutlineFix implements FixInterface {
 	 *
 	 * @return void
 	 */
-	public function css() {
+	public function styles() {
 		$styles = '';
 
 		$focus_color_option = get_option( 'edac_fix_focus_outline_color', false );
@@ -130,9 +130,7 @@ class FocusOutlineFix implements FixInterface {
 
 		ob_start();
 		?>
-		<style id="edac-fix-focus-outline">
 			<?php echo esc_attr( $styles ); ?>
-		</style>
 		<?php
 		$styles = ob_get_clean();
 		wp_add_inline_style( 'edac-frontend-fixes-styles', $styles );
