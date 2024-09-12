@@ -166,11 +166,12 @@ class FixesPage implements PageInterface {
 				self::SETTINGS_SLUG,
 				$field['section'] ?? 'edac_fixes_general',
 				[
-					'name'        => $field_id,
-					'labelledby'  => $field_id,
-					'description' => $field['description'] ?? '',
-					'condition'   => $field['condition'] ?? '',
-					'default'     => $field['default'] ?? '',
+					'name'          => $field_id,
+					'labelledby'    => $field_id,
+					'description'   => $field['description'] ?? '',
+					'condition'     => $field['condition'] ?? '',
+					'required_when' => $field['required_when'] ?? '',
+					'default'       => $field['default'] ?? '',
 				]
 			);
 

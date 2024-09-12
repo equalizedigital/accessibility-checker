@@ -37,6 +37,7 @@ trait Text {
 			name="<?php echo esc_attr( $args['name'] ); ?>"
 			value="<?php echo esc_attr( $option_value ); ?>"
 			<?php echo isset( $args['condition'] ) ? 'data-condition="' . esc_attr( $args['condition'] ) . '"' : ''; ?>
+			<?php echo isset( $args['required_when'] ) ? 'data-required_when="' . esc_attr( $args['required_when'] ) . '"' : ''; ?>
 		/>
 		<?php
 	}

@@ -45,9 +45,8 @@ class SkipLinkFix implements FixInterface {
 			'edac_filter_fixes_settings_sections',
 			function ( $sections ) {
 				$sections['skip_link'] = [
-					'title'       => esc_html__( 'Skip Link', 'accessibility-checker' ),
-					'description' => esc_html__( 'Adds a skip link to all site pages, allowing users to skip directly to the main content.', 'accessibility-checker' ),
-					'callback'    => [ $this, 'skip_link_section_callback' ],
+					'title'    => esc_html__( 'Skip Link', 'accessibility-checker' ),
+					'callback' => [ $this, 'skip_link_section_callback' ],
 				];
 
 				return $sections;
@@ -61,27 +60,19 @@ class SkipLinkFix implements FixInterface {
 					'label'       => esc_html__( 'Enable Skip Link', 'accessibility-checker' ),
 					'type'        => 'checkbox',
 					'labelledby'  => 'add_skip_link',
-					'description' => esc_html__( 'Adds a skip link to all site pages, allowing users to skip directly to the main content.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Add a skip link to all site pages, allowing users to skip directly to the main content.', 'accessibility-checker' ),
 					'section'     => 'skip_link',
-				];
-
-				$fields['edac_fix_add_skip_link_always_visible'] = [
-					'label'       => esc_html__( 'Always Visible Skip Link', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'add_skip_link_always_visible',
-					'description' => esc_html__( 'Makes the skip link always visible.', 'accessibility-checker' ),
-					'section'     => 'skip_link',
-					'condition'   => 'edac_fix_add_skip_link',
 				];
 
 				$fields['edac_fix_add_skip_link_target_id'] = [
-					'label'             => esc_html__( 'Main Content Target', 'accessibility-checker' ),
+					'label'             => esc_html__( 'Main Content Target (required)', 'accessibility-checker' ),
 					'type'              => 'text',
 					'labelledby'        => 'skip_link_target_id',
-					'description'       => esc_html__( 'Defines the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page.', 'accessibility-checker' ),
+					'description'       => esc_html__( 'Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page.', 'accessibility-checker' ),
 					'sanitize_callback' => 'sanitize_text_field',
 					'section'           => 'skip_link',
 					'condition'         => 'edac_fix_add_skip_link',
+					'required_when'     => 'edac_fix_add_skip_link',
 				];
 
 				$fields['edac_fix_add_skip_link_nav_target_id'] = [
@@ -89,19 +80,10 @@ class SkipLinkFix implements FixInterface {
 					'type'              => 'text',
 					'labelledby'        => 'skip_link_nav_target_id',
 					// translators: %1$s: ampersand character wrapped in a <code> tag.
-					'description'       => sprintf( __( 'Sets the ID attribute of the navigation element, starting with %1$s.', 'accessibility-checker' ), '<code>#</code>' ),
+					'description'       => sprintf( __( 'Set the ID attribute of the navigation element, starting with %1$s. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features.', 'accessibility-checker' ), '<code>#</code>' ),
 					'sanitize_callback' => 'sanitize_text_field',
 					'section'           => 'skip_link',
 					'condition'         => 'edac_fix_add_skip_link',
-				];
-
-				$fields['edac_fix_disable_skip_link_styles'] = [
-					'label'       => esc_html__( 'Disable Skip Link Bundled Styles', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'disable_skip_link_styles',
-					'description' => esc_html__( 'Disables the default styles for skip links. Note: This makes the "Always Visible Skip Link" setting irrelevant.', 'accessibility-checker' ),
-					'section'     => 'skip_link',
-					'condition'   => 'edac_fix_add_skip_link',
 				];
 
 				return $fields;
@@ -167,8 +149,7 @@ class SkipLinkFix implements FixInterface {
 				word-wrap: normal !important;
 			}
 
-			.edac-bypass-block:focus-within,
-			.edac-bypass-block-always-visible {
+			.edac-bypass-block:focus-within {
 				background-color: #ececec;
 				clip: auto !important;
 				-webkit-clip-path: none;
@@ -224,7 +205,18 @@ class SkipLinkFix implements FixInterface {
 	 */
 	public function skip_link_section_callback() {
 		?>
-		<p><?php esc_html_e( 'Settings related to the addition and styling of skip links.', 'accessibility-checker' ); ?></p>
+		<p>
+			<?php
+			echo wp_kses_post(
+				sprintf(
+					// translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+					'If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s</p>',
+					'<a href="' . esc_url( 'https://equalizedigital.com/how-to-make-your-wordpress-site-more-accessible-with-skip-links/' ) . '">',
+					'</a>'
+				)
+			);
+			?>
+		</p>
 		<?php
 	}
 
@@ -254,7 +246,7 @@ class SkipLinkFix implements FixInterface {
 					?>
 					<a class="edac-skip-link--navigation" href="#<?php echo esc_attr( $nav_target ); ?>"><?php esc_html_e( 'Skip to navigation', 'accessibility-checker' ); ?></a>
 				<?php endif; ?>
-				<?php get_option( 'edac_fix_disable_skip_link_styles', false ) ? '' : $this->add_skip_link_styles(); ?>
+				<?php $this->add_skip_link_styles(); ?>
 			</div>
 		</template>
 		<?php
