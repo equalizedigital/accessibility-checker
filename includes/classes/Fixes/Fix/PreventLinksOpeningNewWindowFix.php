@@ -22,7 +22,7 @@ class PreventLinksOpeningNewWindowFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_slug(): string {
-		return 'prevent-links-opening-new-windows';
+		return 'prevent_links_opening_new_windows';
 	}
 
 	/**
