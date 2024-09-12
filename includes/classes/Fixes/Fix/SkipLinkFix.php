@@ -45,9 +45,8 @@ class SkipLinkFix implements FixInterface {
 			'edac_filter_fixes_settings_sections',
 			function ( $sections ) {
 				$sections['skip_link'] = [
-					'title'       => esc_html__( 'Skip Link', 'accessibility-checker' ),
-					'description' => esc_html__( 'Adds a skip link to all site pages, allowing users to skip directly to the main content.', 'accessibility-checker' ),
-					'callback'    => [ $this, 'skip_link_section_callback' ],
+					'title'    => esc_html__( 'Skip Link', 'accessibility-checker' ),
+					'callback' => [ $this, 'skip_link_section_callback' ],
 				];
 
 				return $sections;
