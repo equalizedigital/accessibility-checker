@@ -65,15 +65,6 @@ class SkipLinkFix implements FixInterface {
 					'section'     => 'skip_link',
 				];
 
-				$fields['edac_fix_add_skip_link_always_visible'] = [
-					'label'       => esc_html__( 'Always Visible Skip Link', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'add_skip_link_always_visible',
-					'description' => esc_html__( 'Makes the skip link always visible.', 'accessibility-checker' ),
-					'section'     => 'skip_link',
-					'condition'   => 'edac_fix_add_skip_link',
-				];
-
 				$fields['edac_fix_add_skip_link_target_id'] = [
 					'label'             => esc_html__( 'Main Content Target', 'accessibility-checker' ),
 					'type'              => 'text',
@@ -168,8 +159,7 @@ class SkipLinkFix implements FixInterface {
 				word-wrap: normal !important;
 			}
 
-			.edac-bypass-block:focus-within,
-			.edac-bypass-block-always-visible {
+			.edac-bypass-block:focus-within {
 				background-color: #ececec;
 				clip: auto !important;
 				-webkit-clip-path: none;
