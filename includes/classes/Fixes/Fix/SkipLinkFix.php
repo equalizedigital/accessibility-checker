@@ -87,15 +87,6 @@ class SkipLinkFix implements FixInterface {
 					'condition'         => 'edac_fix_add_skip_link',
 				];
 
-				$fields['edac_fix_disable_skip_link_styles'] = [
-					'label'       => esc_html__( 'Disable Skip Link Bundled Styles', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'disable_skip_link_styles',
-					'description' => esc_html__( 'Disable the default styles for skip links. Note: This makes the "Always Visible Skip Link" setting irrelevant.', 'accessibility-checker' ),
-					'section'     => 'skip_link',
-					'condition'   => 'edac_fix_add_skip_link',
-				];
-
 				return $fields;
 			}
 		);
@@ -256,7 +247,7 @@ class SkipLinkFix implements FixInterface {
 					?>
 					<a class="edac-skip-link--navigation" href="#<?php echo esc_attr( $nav_target ); ?>"><?php esc_html_e( 'Skip to navigation', 'accessibility-checker' ); ?></a>
 				<?php endif; ?>
-				<?php get_option( 'edac_fix_disable_skip_link_styles', false ) ? '' : $this->add_skip_link_styles(); ?>
+				<?php $this->add_skip_link_styles(); ?>
 			</div>
 		</template>
 		<?php
