@@ -29,6 +29,7 @@ module.exports = {
 		],
 		frontendFixes: [
 			'./src/frontendFixes/index.js',
+			'/src/frontendFixes/sass/frontend-fixes.scss',
 		],
 
 	},

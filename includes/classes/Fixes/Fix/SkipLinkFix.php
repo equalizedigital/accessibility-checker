@@ -144,6 +144,10 @@ class SkipLinkFix implements FixInterface {
 				return $data;
 			}
 		);
+
+		if ( ! get_option( 'edac_fix_disable_skip_link_styles', false ) ) {
+			add_action( 'edac_action_enqueue_frontend_fixes_styles', [ $this, 'styles' ] );
+		}
 	}
 
 	/**
@@ -151,9 +155,8 @@ class SkipLinkFix implements FixInterface {
 	 *
 	 * @return void
 	 */
-	public function add_skip_link_styles() {
-		?>
-		<style id="edac-fix-skip-link-styles">
+	public function styles() {
+		$styles = <<<CSS
 			.edac-bypass-block {
 				border: 0;
 				clip: rect(1px, 1px, 1px, 1px);
@@ -213,8 +216,9 @@ class SkipLinkFix implements FixInterface {
 				outline: 2px solid #000;
 				outline-offset: 2px;
 			}
-		</style>
-		<?php
+		CSS;
+
+		wp_add_inline_style( 'edac-frontend-fixes-styles', $styles );
 	}
 
 	/**
@@ -254,7 +258,6 @@ class SkipLinkFix implements FixInterface {
 					?>
 					<a class="edac-skip-link--navigation" href="#<?php echo esc_attr( $nav_target ); ?>"><?php esc_html_e( 'Skip to navigation', 'accessibility-checker' ); ?></a>
 				<?php endif; ?>
-				<?php get_option( 'edac_fix_disable_skip_link_styles', false ) ? '' : $this->add_skip_link_styles(); ?>
 			</div>
 		</template>
 		<?php
