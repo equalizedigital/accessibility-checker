@@ -215,7 +215,18 @@ class SkipLinkFix implements FixInterface {
 	 */
 	public function skip_link_section_callback() {
 		?>
-		<p><?php esc_html_e( 'Settings related to the addition and styling of skip links.', 'accessibility-checker' ); ?></p>
+		<p>
+			<?php
+			echo wp_kses_post(
+				sprintf(
+					// translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+					'If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s</p>',
+					'<a href="' . esc_url( 'https://equalizedigital.com/how-to-make-your-wordpress-site-more-accessible-with-skip-links/' ) . '">',
+					'</a>'
+				)
+			);
+			?>
+		</p>
 		<?php
 	}
 
