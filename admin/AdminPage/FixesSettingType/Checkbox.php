@@ -23,7 +23,7 @@ trait Checkbox {
 		if ( ! isset( $args['name'], $args['description'] ) ) {
 			return;
 		}
-
+		$upsell       = isset( $args['upsell'] ) && $args['upsell'] ? true : false;
 		$option_value = get_option( $args['name'] );
 		?>
 		<label <?php echo ( $upsell ) ? 'class="edac-fix--disabled edac-fix--upsell"' : ''; ?>>
@@ -35,7 +35,7 @@ trait Checkbox {
 				<?php checked( 1, $option_value ); ?>
 				<?php echo isset( $args['condition'] ) ? 'data-condition="' . esc_attr( $args['condition'] ) . '"' : ''; ?>
 				<?php echo isset( $args['required_when'] ) ? 'data-required_when="' . esc_attr( $args['required_when'] ) . '"' : ''; ?>
-				<?php echo isset( $args['upsell'] ) && $args['upsell'] ? 'disabled' : ''; ?>
+				<?php echo $upsell ? 'disabled' : ''; ?>
 			/>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 		</label>
