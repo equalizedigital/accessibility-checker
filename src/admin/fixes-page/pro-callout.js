@@ -15,7 +15,11 @@ export const inlineFixesProUpsell = () => {
 		upsellLink.textContent = __( 'Get Pro' );
 		upsellLink.classList.add( 'edac-fix--upsell-link' );
 
-		// insert the link at the end of nearest tr elements first th
-		element.closest( 'tr' ).querySelector( 'th' ).appendChild( upsellLink );
+		const tableHead = element.closest( 'tr' )?.querySelector( 'th' );
+		if ( ! tableHead ) {
+			return;
+		}
+		tableHead.appendChild( document.createTextNode( ' ' ) );
+		tableHead.appendChild( upsellLink );
 	} );
 };
