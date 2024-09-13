@@ -999,3 +999,31 @@ function edac_is_item_using_matching_extension( string $item, array $extensions 
 	$extension = pathinfo( $item, PATHINFO_EXTENSION );
 	return in_array( '.' . $extension, $extensions, true );
 }
+
+/**
+ * Generate links to pro page with some params.
+ *
+ * @param array $query_args A list of key value pairs to add as query vars to the link.
+ * @return string
+ */
+function edac_generate_pro_link( $query_args = [] ): string {
+	if ( empty( $text ) ) {
+		$text = __( 'Get Pro', 'accessibility-checker' );
+	}
+
+	$query_defaults = [
+		'utm_source'       => 'accessibility-checker',
+		'utm_medium'       => 'software',
+		'utm_campaign'     => 'wordpress-general',
+		'php_version'      => PHP_VERSION,
+		'platform'         => 'wordpress',
+		'platform_version' => $GLOBALS['wp_version'],
+		'software'         => 'free',
+		'software_version' => EDAC_VERSION,
+	];
+
+	$query_args = array_merge( $query_defaults, $query_args );
+
+	// Build the URL.
+	return add_query_arg( $query_args, 'https://www.accessibilitychecker.com/pricing/' );
+}

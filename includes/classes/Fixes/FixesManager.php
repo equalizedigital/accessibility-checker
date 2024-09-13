@@ -7,6 +7,10 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Fixes;
 
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddFileSizeAndTypeToLinkedFilesFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddLabelToUnlabelledFormFieldsFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddMissingOrEmptyPageTitleFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\BlockPDFUploadsFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\RemoveTitleIfPrefferedAccessibleNameFix;
@@ -114,6 +118,10 @@ class FixesManager {
 				MetaViewportScalableFix::class,
 				PreventLinksOpeningNewWindowFix::class,
 				FocusOutlineFix::class,
+				BlockPDFUploadsFix::class,
+				AddFileSizeAndTypeToLinkedFilesFix::class,
+				AddMissingOrEmptyPageTitleFix::class,
+				AddLabelToUnlabelledFormFieldsFix::class,
 			]
 		);
 		foreach ( $fixes as $fix ) {

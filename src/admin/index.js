@@ -6,6 +6,7 @@ import {
 } from './summary/summary-tab-input-event-handlers';
 import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
 import { initRequiredSetup } from './fixes-page/conditional-required-settings';
+import { inlineFixesProUpsell } from './fixes-page/pro-callout';
 
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
@@ -17,6 +18,7 @@ const edacScriptVars = edac_script_vars;
 		if ( document.getElementById( 'edac-fixes-page' ) ) {
 			initFixesInputStateHandler();
 			initRequiredSetup();
+			inlineFixesProUpsell();
 		}
 
 		// Accessibility Statement disable
