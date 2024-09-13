@@ -1940,6 +1940,10 @@
 
 #edac-fixes-page {
 	.edac-fix {
+		&--hidden {
+			display: none;
+		}
+
 		&--disabled {
 			opacity: 0.75;
 		}
@@ -1952,7 +1956,6 @@
 			display: inline-block;
 			font-size: 0.75rem;
 			text-decoration: none;
-			margin-left: 0.25rem;
 			line-height: 1;
 		}
 
