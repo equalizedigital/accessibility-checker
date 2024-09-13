@@ -113,7 +113,7 @@ class FixesPage implements PageInterface {
 			'edac_filter_fixes_settings_sections',
 			[
 				'edac_fixes_general' => [
-					'title'    => __( 'General Settings', 'accessibility-checker' ),
+					'title'    => __( 'General Fixes', 'accessibility-checker' ),
 					'callback' => [ $this, 'fixes_section_general_cb' ],
 				],
 			]
@@ -158,6 +158,8 @@ class FixesPage implements PageInterface {
 			$field_type = $field['type'] ?? 'checkbox';
 			$sanitizer  = $field['sanitize_callback'] ?? [ $this, 'sanitize_checkbox' ];
 
+			$is_upsell = $field['upsell'] ?? false;
+
 			add_settings_field(
 				$field_id,
 				$field['label'],
@@ -165,10 +167,13 @@ class FixesPage implements PageInterface {
 				self::SETTINGS_SLUG,
 				$field['section'] ?? 'edac_fixes_general',
 				[
-					'name'        => $field_id,
-					'labelledby'  => $field_id,
-					'description' => $field['description'] ?? '',
-					'condition'   => $field['condition'] ?? '',
+					'name'          => $field_id,
+					'labelledby'    => $field_id,
+					'description'   => $field['description'] ?? '',
+					'condition'     => $field['condition'] ?? '',
+					'required_when' => $field['required_when'] ?? '',
+					'default'       => $field['default'] ?? '',
+					'upsell'        => $is_upsell,
 				]
 			);
 
@@ -180,6 +185,6 @@ class FixesPage implements PageInterface {
 	 * Callback for the general settings section that renders a description for it.
 	 */
 	public function fixes_section_general_cb() {
-		echo '<p>' . esc_html__( 'General settings for the fixes.', 'accessibility-checker' ) . '</p>';
+		echo '<p>' . esc_html__( 'These fixes help improve accessibility by modifying HTML elements and behaviors on your site.', 'accessibility-checker' ) . '</p>';
 	}
 }

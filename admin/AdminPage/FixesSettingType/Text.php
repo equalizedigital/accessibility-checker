@@ -1,6 +1,6 @@
 <?php
 /**
- * A class with methods to handle settings checkboxes for on the fixes page.
+ * A class with methods to handle settings text inputs for on the fixes page.
  *
  * @package accessibility-checker
  */
@@ -29,7 +29,7 @@ trait Text {
 			for="<?php echo esc_attr( $args['name'] ); ?>"
 			style="display: block; margin-bottom: 6px;"
 		>
-			<?php echo esc_html( $args['description'] ); ?>
+			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 		</label>
 		<input
 			type="text"
@@ -37,6 +37,7 @@ trait Text {
 			name="<?php echo esc_attr( $args['name'] ); ?>"
 			value="<?php echo esc_attr( $option_value ); ?>"
 			<?php echo isset( $args['condition'] ) ? 'data-condition="' . esc_attr( $args['condition'] ) . '"' : ''; ?>
+			<?php echo isset( $args['required_when'] ) ? 'data-required_when="' . esc_attr( $args['required_when'] ) . '"' : ''; ?>
 		/>
 		<?php
 	}

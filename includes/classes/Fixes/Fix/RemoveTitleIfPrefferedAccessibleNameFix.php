@@ -1,6 +1,6 @@
 <?php
 /**
- * Tabindex Fix Class
+ * Accessible Name Fix Class
  *
  * @package accessibility-checker
  */
@@ -10,18 +10,18 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
 /**
- * Handles the removal of tabindex attributes from focusable elements.
+ * Finds elements with a preferred accessible name.
  *
  * @since 1.16.0
  */
-class TabindexFix implements FixInterface {
+class RemoveTitleIfPrefferedAccessibleNameFix implements FixInterface {
 	/**
 	 * The slug of the fix.
 	 *
 	 * @return string
 	 */
 	public static function get_slug(): string {
-		return 'remove_tabindex';
+		return 'remove_title_if_preferred_accessible_name';
 	}
 
 	/**
@@ -34,7 +34,7 @@ class TabindexFix implements FixInterface {
 	}
 
 	/**
-	 * Registers the settings field for the tabindex removal fix.
+	 * Registers the settings field for the accessible name fix.
 	 *
 	 * @return void
 	 */
@@ -42,13 +42,12 @@ class TabindexFix implements FixInterface {
 		add_filter(
 			'edac_filter_fixes_settings_fields',
 			function ( $fields ) {
-
-				$fields['edac_fix_remove_tabindex'] = [
+				$fields[ 'edac_fix_' . $this->get_slug() ] = [
 					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Remove Tab Index', 'accessibility-checker' ),
-					'labelledby'  => 'remove_tabindex',
+					'label'       => esc_html__( 'Remove Title Attributes', 'accessibility-checker' ),
+					'labelledby'  => 'accessible_name',
 					// translators: %1$s: a attribute name wrapped in a <code> tag.
-					'description' => sprintf( __( 'Removes the %1$s attribute from focusable elements.', 'accessibility-checker' ), '<code>tabindex</code>' ),
+					'description' => sprintf( __( 'Removes %1$s attributes from elements that already have a preferred accessible name.', 'accessibility-checker' ), '<code>title</code>' ),
 				];
 
 				return $fields;
@@ -57,20 +56,20 @@ class TabindexFix implements FixInterface {
 	}
 
 	/**
-	 * Executes the tabindex removal fix on the frontend.
+	 * Outputs the feature flag for the fix on the frontend for JS to use.
 	 *
 	 * @return void
 	 */
 	public function run() {
-		if ( ! get_option( 'edac_fix_remove_tabindex', false ) ) {
+		if ( ! get_option( 'edac_fix_' . $this->get_slug(), false ) ) {
 			return;
 		}
 
-		// Adds the tabindex removal data to be used in JS if necessary.
+		// Adds the accessible name data to be used in JS if necessary.
 		add_filter(
 			'edac_filter_frontend_fixes_data',
 			function ( $data ) {
-				$data['tabindex'] = [
+				$data[ $this->get_slug() ] = [
 					'enabled' => true,
 				];
 				return $data;
