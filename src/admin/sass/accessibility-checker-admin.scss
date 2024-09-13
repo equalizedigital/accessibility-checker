@@ -1939,9 +1939,26 @@
 }
 
 #edac-fixes-page {
-	.edac_fix_disabled {
-		opacity: 0.5;
-		display: none !important;
+	.edac-fix {
+		&--disabled {
+			opacity: 0.75;
+		}
+
+		&--upsell-link {
+			background: #f3cd1e;
+			padding: 4px 8px;
+			border-radius: 18px;
+			color: #072446;
+			display: inline-block;
+			font-size: 0.75rem;
+			text-decoration: none;
+			margin-left: 0.25rem;
+			line-height: 1;
+		}
+
+		&--upsell-link:hover {
+			text-decoration: underline;
+		}
 	}
 
 	.edac-notice {
