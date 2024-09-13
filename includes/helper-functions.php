@@ -1025,5 +1025,5 @@ function edac_generate_pro_link( $query_args = [] ): string {
 	$query_args = array_merge( $query_defaults, $query_args );
 
 	// Build the URL.
-	return add_query_arg( $query_args, 'https://www.accessibilitychecker.com/pricing/' );
+	return add_query_arg( $query_args, 'https://equalizedigital.com/accessibility-checker/pricing/' );
 }
