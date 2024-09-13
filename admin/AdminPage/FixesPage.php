@@ -159,6 +159,8 @@ class FixesPage implements PageInterface {
 			$field_type = $field['type'] ?? 'checkbox';
 			$sanitizer  = $field['sanitize_callback'] ?? [ $this, 'sanitize_checkbox' ];
 
+			$is_upsell = $field['upsell'] ?? false;
+
 			add_settings_field(
 				$field_id,
 				$field['label'],
@@ -172,6 +174,7 @@ class FixesPage implements PageInterface {
 					'condition'     => $field['condition'] ?? '',
 					'required_when' => $field['required_when'] ?? '',
 					'default'       => $field['default'] ?? '',
+					'upsell'        => $is_upsell,
 				]
 			);
 
