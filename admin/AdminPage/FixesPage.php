@@ -18,7 +18,6 @@ class FixesPage implements PageInterface {
 
 	use FixesSettingType\Checkbox;
 	use FixesSettingType\Text;
-	use FixesSettingType\Color;
 
 	/**
 	 * The capability required to access the settings page.

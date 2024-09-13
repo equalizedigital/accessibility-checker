@@ -65,21 +65,6 @@ class FocusOutlineFix implements FixInterface {
 					'section'     => 'focus_outline',
 				];
 
-				$fields['edac_fix_focus_outline_color'] = [
-					'type'              => 'color',
-					'label'             => esc_html__( 'Focus Outline Color', 'accessibility-checker' ),
-					'labelledby'        => 'fix_focus_outline_color',
-					'description'       => sprintf(
-						// translators: %1$s: a color code wrapped in a <code> tag.
-						__( 'Sets the color for the focus outline. Default is %1$s.', 'accessibility-checker' ),
-						'<code>#005FCC</code>' 
-					),
-					'sanitize_callback' => 'sanitize_hex_color',
-					'section'           => 'focus_outline',
-					'condition'         => 'edac_fix_focus_outline',
-					'default'           => '#005FCC',
-				];
-
 				return $fields;
 			}
 		);
@@ -115,22 +100,12 @@ class FocusOutlineFix implements FixInterface {
 	 * @return void
 	 */
 	public function css() {
-		$styles = '';
-
-		$focus_color_option = get_option( 'edac_fix_focus_outline_color', false );
-		$color              = $focus_color_option ? '#' . sanitize_hex_color_no_hash( $focus_color_option ) : '#005FCC';
-
-		$styles .= "
-		:focus {
-			outline: 2px solid $color !important;
-			outline-offset: 2px !important;
-			box-shadow: 0 0 0 3px white !important; /* Adds a white outline outside the color outline */
-		}
-		";
-
 		?>
 		<style id="edac-fix-focus-outline">
-			<?php echo esc_attr( $styles ); ?>
+			:focus {
+				outline: revert !important;
+				outline-offset: revert !important;
+			}
 		</style>
 		<?php
 	}
