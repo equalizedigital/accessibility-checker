@@ -170,6 +170,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
 = 1.15.3
 * Enhancement: Detect missing labels on more elements.
 * Enhancement: Detect slick slider that gets initialized after the page loads.
