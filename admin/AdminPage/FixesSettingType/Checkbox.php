@@ -23,7 +23,7 @@ trait Checkbox {
 		if ( ! isset( $args['name'], $args['description'] ) ) {
 			return;
 		}
-		$upsell       = isset( $args['upsell'] ) && $args['upsell'] ? true : false;
+		$upsell       = isset( $args['upsell'] ) && $args['upsell'];
 		$option_value = get_option( $args['name'] );
 		?>
 		<label <?php echo ( $upsell ) ? 'class="edac-fix--disabled edac-fix--upsell"' : ''; ?>>
@@ -53,11 +53,11 @@ trait Checkbox {
 				?>
 				<a
 					href="<?php echo esc_url( $link ); ?>"
-					class="edac-details-rule-information"
+					class="edca-dashicon-muted"
 					target="_blank"
 					aria-label="Read documentation for <?php echo esc_attr( $args['label'] ); ?>"
 				>
-					<span class="dashicons dashicons-info"></span>
+					<span class="dashicons dashicons-info edac-dashicon-muted"></span>
 				</a>
 			<?php endif; ?>
 		</label>
