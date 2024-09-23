@@ -174,6 +174,8 @@ class FixesPage implements PageInterface {
 					'required_when' => $field['required_when'] ?? '',
 					'default'       => $field['default'] ?? '',
 					'upsell'        => $is_upsell,
+					'help_id'       => $field['help_id'] ?? '',
+					'label'         => $field['label'] ?? '',
 				]
 			);
 
