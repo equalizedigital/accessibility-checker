@@ -53,7 +53,7 @@ trait Checkbox {
 				?>
 				<a
 					href="<?php echo esc_url( $link ); ?>"
-					class="edca-dashicon-muted"
+					class="edac-fix-description-help-link"
 					target="_blank"
 					aria-label="Read documentation for <?php echo esc_attr( $args['label'] ); ?>"
 				>
