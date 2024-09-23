@@ -51,6 +51,7 @@ class AddMissingOrEmptyPageTitleFix implements FixInterface {
 					// translators: %1$s: a code tag with a title tag.
 					'description' => sprintf( __( 'Adds a %1$s tag to the page if it\'s missing or empty.', 'accessibility-checker' ), '<code>&lt;title&gt;</code>' ),
 					'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
+					'help_id'     => 8490,
 				];
 
 				return $fields;
