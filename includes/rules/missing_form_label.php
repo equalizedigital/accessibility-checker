@@ -15,7 +15,7 @@
 function edac_rule_missing_form_label( $content, $post ) { // phpcs:ignore -- $post is reserved for future use or for compliance with a specific interface.
 
 	$dom    = $content['html'];
-	$fields = $dom->find( 'input' );
+	$fields = $dom->find( 'input, textarea, select' );
 	$errors = [];
 
 	foreach ( $fields as $field ) {
