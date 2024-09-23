@@ -54,6 +54,15 @@ class TabindexFix implements FixInterface {
 				return $fields;
 			}
 		);
+
+		add_filter(
+			'edac_filter_fixes_rule',
+			function ( $rules ) {
+				$rules['tab_order_modified'] = 'edac_fix_' . $this->get_slug();
+
+				return $rules;
+			}
+		);
 	}
 
 	/**

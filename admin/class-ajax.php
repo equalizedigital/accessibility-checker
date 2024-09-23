@@ -9,6 +9,7 @@ namespace EDAC\Admin;
 
 use EDAC\Admin\OptIn\Email_Opt_In;
 use EDAC\Inc\Summary_Generator;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 
 /**
  * Class that handles ajax requests.
@@ -300,6 +301,10 @@ class Ajax {
 			 * @allowed bool True if allowed, false if not
 			 */
 			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
+			$fixes_for_rules   = apply_filters( 'edac_filter_fixes_rule', [] );
+
+			$all_fixes = apply_filters( 'edac_filter_fixes_settings_fields', [] );
+
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
@@ -340,6 +345,29 @@ class Ajax {
 				if ( $results ) {
 
 					$html .= '<div id="edac-details-rule-records-' . $rule['slug'] . '" class="edac-details-rule-records">';
+
+					if ( isset( $fixes_for_rules[ $rule['slug'] ] ) && $all_fixes[ $fixes_for_rules[ $rule['slug'] ] ] ) {
+						$current_setting         = $all_fixes[ $fixes_for_rules[ $rule['slug'] ] ];
+						$current_setting['name'] = $fixes_for_rules[ $rule['slug'] ];
+						ob_start();
+						// NOTE: wrap this in a modal, add an 'action' to trigger it.
+						?>
+						<div class="edac-details-fix-settings">
+							<div class="setting-row">
+								<div class="title">
+									<h4><?php echo esc_html( $current_setting['label'] ); ?></h4>
+								</div>
+								<div class="setting">
+									<?php FixesPage::{$current_setting['type']}( $current_setting ); ?>
+								</div>
+							</div>
+							<button role="button">
+								Save
+							</button>
+						</div>
+						<?php
+						$html .= ob_get_clean();
+					}
 
 					$html .=
 						'<div class="edac-details-rule-records-labels">

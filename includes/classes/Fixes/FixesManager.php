@@ -202,4 +202,56 @@ class FixesManager {
 			<?php
 		}
 	}
+
+	/**
+	 * Register the rest routes.
+	 *
+	 * @return void
+	 */
+	public function register_rest_routes() {
+		register_rest_route(
+			'edac/v1',
+			'/fixes',
+			[
+				'methods'             => 'GET',
+				'callback'            => [ $this, 'get_fixes' ],
+				'permission_callback' => '__return_true', // need real permission.
+			]
+		);
+
+		register_rest_route(
+			'edac/v1',
+			'/fixes/update/(?P<fix_slug>[a-zA-Z_-]+)',
+			[
+				'methods'             => 'POST',
+				'callback'            => [ $this, 'update_fix' ],
+				'permission_callback' => '__return_true', // need real permission.
+			]
+		);
+	}
+
+	/**
+	 * Handle the request to set a fix.
+	 *
+	 * @param \WP_REST_Request $request The request recieved through a rest call.
+	 *
+	 * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
+	 */
+	public function update_fix( $request ) {
+		$fix_slug = $request->get_param( 'fix_slug' );
+		$fix      = $this->get_fix( $fix_slug );
+		if ( ! $fix ) {
+			return new \WP_Error( 'edac_fix_not_found', 'Fix not found', [ 'status' => 404 ] );
+		}
+
+		$enabled = $request->get_json_params()[ $fix_slug ] ?? null;
+		if ( null === $enabled ) {
+			return new \WP_Error( 'edac_invalid_enabled', 'No value passed', [ 'status' => 400 ] );
+		}
+
+		// NOTE: needs to use the field sanitizer!
+		update_option( 'edac_fix_' . $fix_slug, $enabled );
+
+		return rest_ensure_response( [ 'enabled' => $enabled ] );
+	}
 }
