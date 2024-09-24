@@ -63,6 +63,7 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 					'description' => esc_html__( 'Attempts to add labels to form fields that are missing them.', 'accessibility-checker' ),
 					'section'     => $this->get_slug(),
 					'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
+					'help_id'     => 8497,
 				];
 
 				return $fields;

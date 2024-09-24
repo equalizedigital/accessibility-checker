@@ -23,7 +23,7 @@ trait Checkbox {
 		if ( ! isset( $args['name'], $args['description'] ) ) {
 			return;
 		}
-		$upsell       = isset( $args['upsell'] ) && $args['upsell'] ? true : false;
+		$upsell       = isset( $args['upsell'] ) && $args['upsell'];
 		$option_value = get_option( $args['name'] );
 		?>
 		<label <?php echo ( $upsell ) ? 'class="edac-fix--disabled edac-fix--upsell"' : ''; ?>>
@@ -38,6 +38,28 @@ trait Checkbox {
 				<?php echo $upsell ? 'disabled' : ''; ?>
 			/>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
+			<?php
+			if ( $args['help_id'] && $args['label'] ) :
+				$link = edac_generate_link_type(
+					[
+						'utm-content' => 'fix-description',
+						'utm-term'    => $args['name'],
+					],
+					'help',
+					[
+						'help_id' => $args['help_id'],
+					]
+				)
+				?>
+				<a
+					href="<?php echo esc_url( $link ); ?>"
+					class="edac-fix-description-help-link"
+					target="_blank"
+					aria-label="Read documentation for <?php echo esc_attr( $args['label'] ); ?>"
+				>
+					<span class="dashicons dashicons-info edac-dashicon-muted"></span>
+				</a>
+			<?php endif; ?>
 		</label>
 		<?php
 	}
