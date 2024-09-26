@@ -102,3 +102,23 @@ export const clearAllTabsAndPanelState = () => {
 		}
 	} );
 };
+
+/**
+ * Handle the click events for fix buttons
+ */
+export const initFixButtonEventHandlers = () => {
+	// find all edac-details-rule-records-record-actions-fix
+	const fixButtons = document.querySelectorAll( '.edac-details-rule-records-record-actions-fix' );
+	// loop through each button binding a click event
+	fixButtons.forEach( ( button ) => {
+		button.addEventListener( 'click', ( event ) => {
+			const action = event.target.getAttribute( 'data-action' );
+			const fixSettings = document.getElementById( `edac-fix-modal-${ action }` );
+			fixSettings.classList.toggle( 'active' );
+
+			// trigger a thickbox that contains the contents of the fixSettings
+			// eslint-disable-next-line no-undef
+			tb_show( 'Fix Settings', '#TB_inline?width=600&height=550&inlineId=' + fixSettings.id, '' );
+		} );
+	} );
+};
