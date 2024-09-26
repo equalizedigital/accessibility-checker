@@ -344,15 +344,17 @@ class Ajax {
 
 				if ( $results ) {
 
-					$html .= '<div id="edac-details-rule-records-' . $rule['slug'] . '" class="edac-details-rule-records">';
-
+					$html                 .= '<div id="edac-details-rule-records-' . $rule['slug'] . '" class="edac-details-rule-records">';
+					$item_needs_fix_action = '';
 					if ( isset( $fixes_for_rules[ $rule['slug'] ] ) && $all_fixes[ $fixes_for_rules[ $rule['slug'] ] ] ) {
+						$item_needs_fix_action   = $fixes_for_rules[ $rule['slug'] ];
+						$controls_id             = 'edac-fix-modal-' . $item_needs_fix_action;
 						$current_setting         = $all_fixes[ $fixes_for_rules[ $rule['slug'] ] ];
-						$current_setting['name'] = $fixes_for_rules[ $rule['slug'] ];
+						$current_setting['name'] = $item_needs_fix_action;
 						ob_start();
 						// NOTE: wrap this in a modal, add an 'action' to trigger it.
 						?>
-						<div class="edac-details-fix-settings">
+						<div id="<?php echo esc_attr( $controls_id ); ?>" class="edac-details-fix-settings" data-fix="<?php echo esc_attr( $fixes_for_rules[ $rule['slug'] ] ); ?>">
 							<div class="setting-row">
 								<div class="title">
 									<h4><?php echo esc_html( $current_setting['label'] ); ?></h4>
@@ -442,6 +444,21 @@ class Ajax {
 						$html .= '</div>';
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
+
+						if ( ! empty( $item_needs_fix_action ) ) {
+							$html .= sprintf(
+								'<button class="edac-details-rule-records-record-actions-fix"
+									data-action="%1$s"
+									aria-expanded="false"
+									aria-controls="%2$s"
+								>
+									%3$s
+								</button>',
+								$item_needs_fix_action,
+								esc_attr( $controls_id ),
+								esc_html__( 'Fix', 'accessibility-checker' )
+							);
+						}
 
 						$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
 
