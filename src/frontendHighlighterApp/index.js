@@ -27,6 +27,7 @@ class AccessibilityCheckerHighlight {
 		this.panelControls = document.querySelector( '#edac-highlight-panel-controls' );
 		this.descriptionCloseButton = document.querySelector( '.edac-highlight-panel-description-close' );
 		this.issues = null;
+		this.fixes = null;
 		this.currentButtonIndex = null;
 		this.urlParameter = this.get_url_parameter( 'edac' );
 		this.currentIssueStatus = null;
@@ -161,20 +162,25 @@ class AccessibilityCheckerHighlight {
 					const response = JSON.parse( xhr.responseText );
 					if ( true === response.success ) {
 						const responseJson = JSON.parse( response.data );
-
 						if ( self.settings.showIgnored ) {
-							resolve( responseJson );
+							resolve( {
+								issues: responseJson.issues,
+								fixes: responseJson.fixes,
+							} );
 						} else {
 							resolve(
-								responseJson.filter( ( item ) => {
-									// When rules are filtered off from php we can get null values for some properties
-									// here. This should be fixed upstream but handling it here as well for robustness.
-									if ( item.rule_type === null ) {
-										return false;
-									}
+								{
+									issues: responseJson.issues.filter( ( item ) => {
+										// When rules are filtered off from php we can get null values for some properties
+										// here. This should be fixed upstream but handling it here as well for robustness.
+										if ( item.rule_type === null ) {
+											return false;
+										}
 
-									return ( item.id === self.urlParameter || item.rule_type !== 'ignored' );
-								} )
+										return ( item.id === self.urlParameter || item.rule_type !== 'ignored' );
+									} ),
+									fixes: responseJson.fixes,
+								},
 							);
 						}
 					} else {
@@ -509,9 +515,10 @@ class AccessibilityCheckerHighlight {
 		this.highlightAjax().then(
 			( json ) => {
 
-				this.issues = json;
+				this.issues = json.issues;
+				this.fixes = json.fixes;
 
-				json.forEach( function( value, index ) {
+				json.issues.forEach( function( value, index ) {
 					const element = this.findElement( value, index );
 					if ( element !== null ) {
 						this.issues[ index ].element = element;
@@ -599,6 +606,20 @@ class AccessibilityCheckerHighlight {
 			// Get the summary of the issue
 			content += matchingObj.summary;
 
+			if ( this.fixes[ matchingObj.slug ] ) {
+				content += `
+					<div class="edac-highlight-panel-description-fix-settings">
+						${ this.fixes[ matchingObj.slug ].fields }
+						<div class="edac-highlight-panel-description-fix-settings-buttons">
+							<button role="button" class="edac-highlight-panel-descrption-fix-settings--save-button">
+								${ __( 'Save', 'accessibility-checker' ) }
+							</button>
+						</div>
+					</div>
+					<button class="edac-highlight-panel-description-fix-button edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>
+					`;
+			}
+
 			// Get the link to the documentation
 			content += ` <br /><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }">Full Documentation</a>`;
 
@@ -623,6 +644,16 @@ class AccessibilityCheckerHighlight {
 			} else {
 				const textNode = document.createTextNode( matchingObj.object );
 				descriptionCode.innerText = textNode.nodeValue;
+			}
+
+			// show fix settings button if available
+			if ( this.fixes[ matchingObj.slug ] ) {
+				this.fixSettingsButton = document.querySelector( '.edac-highlight-panel-description-fix-button' );
+				this.fixSettingsButton.addEventListener( 'click', ( event ) => this.showFixSettings( event ) );
+				this.fixSettingsButton.display = 'block';
+
+				this.fixSettingsSaveButton = document.querySelector( '.edac-highlight-panel-descrption-fix-settings--save-button' );
+				this.fixSettingsSaveButton.addEventListener( 'click', ( event ) => this.saveFixSettings( event ) );
 			}
 
 			// set code button listener
@@ -745,6 +776,39 @@ class AccessibilityCheckerHighlight {
 			this.codeContainer.style.display = 'none';
 			this.codeButton.setAttribute( 'aria-expanded', 'false' );
 		}
+	}
+
+	showFixSettings( event ) {
+		const fixSettingsContainer = event.target.parentNode.querySelector( '.edac-highlight-panel-description-fix-settings' );
+		if ( ! fixSettingsContainer ) {
+			// this is a fail, it should do something.
+			return;
+		}
+		fixSettingsContainer.classList.add( 'edac-highlight-panel-description-fix-settings--open' );
+		fixSettingsContainer.display = 'block !important';
+		event.target.setAttribute( 'aria-expanded', 'true' );
+
+	}
+
+	saveFixSettings( event ) {
+		const settingsToSave = {};
+
+		const fixSettingsContainer = event.target.closest( '.edac-highlight-panel-description-fix-settings' );
+
+		fixSettingsContainer.querySelectorAll( 'input, select, textarea' ).forEach( ( input ) => {
+			settingsToSave[ input.name ] = input.value;
+		} );
+
+		fixSettingsContainer.classList.add( 'edac-highlight-panel-description-fix-settings--saving' );
+
+		// make a rest call to save the settings
+		fetch( '/wp-json/edac/v1/fixes/update/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify( settingsToSave ),
+		} );
 	}
 
 	/**

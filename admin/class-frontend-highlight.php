@@ -7,6 +7,9 @@
 
 namespace EDAC\Admin;
 
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
+
 /**
  * Class EDAC_Frontend_Highlight
  *
@@ -92,7 +95,8 @@ class Frontend_Highlight {
 
 		$rules = edac_register_rules();
 
-		$output = [];
+		$issues = [];
+		$fixes  = [];
 		foreach ( $results as $result ) {
 			$array = [];
 			$rule  = edac_filter_by_value( $rules, 'slug', $result['rule'] );
@@ -114,16 +118,49 @@ class Frontend_Highlight {
 			$array['id']         = $result['id'];
 			$array['ignored']    = $result['ignre'];
 
-			$output[] = $array;
+			$issues[] = $array;
+
+			if ( ! isset( $fixes[ $rule[0]['slug'] ] ) ) {
+				$fix_for_rule = FixesManager::get_instance()->get_fix_associated_to_rule( $rule[0]['slug'] );
+				if ( $fix_for_rule && method_exists( $fix_for_rule, 'get_fields_array' ) ) {
+					$fixes[ $rule[0]['slug'] ] = $fix_for_rule->get_fields_array();
+				}
+			}
 		}
 
-		if ( ! $output ) {
+		if ( ! $issues ) {
 
 			$error = new \WP_Error( '-5', 'Object query returned no results' );
 			wp_send_json_error( $error );
 
 		}
 
-		wp_send_json_success( wp_json_encode( $output ) );
+		// if we have fixes then create fields for each of the groups.
+		if ( ! empty( $fixes ) ) {
+			foreach ( $fixes as $key => $fix ) {
+				$fix_fields_markup = '';
+				foreach ( $fix as $index => $field ) {
+					$field_type = $field['type'] ?? 'checkbox';
+					ob_start();
+					FixesPage::{$field_type}(
+						array_merge(
+							[ 'name' => $index ],
+							$field
+						)
+					);
+					$fix_fields_markup .= ob_get_clean();
+				}
+				$fixes[ $key ]['fields'] = $fix_fields_markup;
+			}
+		}
+
+		wp_send_json_success(
+			wp_json_encode(
+				[
+					'issues' => $issues,
+					'fixes'  => $fixes,
+				]
+			)
+		);
 	}
 }
