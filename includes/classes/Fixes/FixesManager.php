@@ -145,6 +145,25 @@ class FixesManager {
 	}
 
 	/**
+	 * Get any fix that is associated with a rule.
+	 *
+	 * @param string $rule The rule to get the fix for.
+	 *
+	 * @return array
+	 */
+	public function get_fix_associated_to_rule( string $rule = '' ) {
+		if ( ! $rule ) {
+			return null;
+		}
+
+		$fix_assosciations = apply_filters( 'edac_filter_fixes_rule', [] );
+		if ( isset( $fix_assosciations[ $rule ] ) ) {
+			return $this->get_fix( str_replace( 'edac_fix_', '', $fix_assosciations[ $rule ] ) );
+		}
+		return null;
+	}
+
+	/**
 	 * Register the fixes.
 	 */
 	public function register_fixes() {
@@ -221,10 +240,10 @@ class FixesManager {
 
 		register_rest_route(
 			'edac/v1',
-			'/fixes/update/(?P<fix_slug>[a-zA-Z_-]+)',
+			'/fixes/update/',
 			[
 				'methods'             => 'POST',
-				'callback'            => [ $this, 'update_fix' ],
+				'callback'            => [ $this, 'update_fix_settings' ],
 				'permission_callback' => '__return_true', // need real permission.
 			]
 		);
@@ -237,20 +256,20 @@ class FixesManager {
 	 *
 	 * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
 	 */
-	public function update_fix( $request ) {
-		$fix_slug = $request->get_param( 'fix_slug' );
-		$fix      = $this->get_fix( $fix_slug );
-		if ( ! $fix ) {
-			return new \WP_Error( 'edac_fix_not_found', 'Fix not found', [ 'status' => 404 ] );
-		}
+	public function update_fix_settings( $request ) {
+		// get body of the request.
+		$body = $request->get_json_params();
 
-		$enabled = $request->get_json_params()[ $fix_slug ] ?? null;
-		if ( null === $enabled ) {
-			return new \WP_Error( 'edac_invalid_enabled', 'No value passed', [ 'status' => 400 ] );
-		}
+		// loop through body and find fixes for those items.
+		foreach ( $body as $fix_slug => $enabled ) {
+			$fix = $this->get_fix( $fix_slug );
+			if ( ! $fix ) {
+				return new \WP_Error( 'edac_fix_not_found', 'Fix not found', [ 'status' => 404 ] );
+			}
 
-		// NOTE: needs to use the field sanitizer!
-		update_option( 'edac_fix_' . $fix_slug, $enabled );
+			// NOTE: needs to use the field sanitizer!
+			update_option( 'edac_fix_' . $fix_slug, $enabled );
+		}
 
 		return rest_ensure_response( [ 'enabled' => $enabled ] );
 	}
