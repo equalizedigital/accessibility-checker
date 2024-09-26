@@ -176,6 +176,21 @@ body {
 				//outline: solid 5px rgba(0,208,255,.75);
 			}
 
+			&-fix-settings {
+
+				display: none;
+				&--open {
+					display: block;
+					background: #222222;
+					padding: 10px;
+
+					* {
+						/* Styles on a parent alement set `all` to none making everything invisible, need to revert that here. */
+						all: revert;
+					}
+				}
+			}
+
 			&-title {
 				font-size: 16px !important;
 				display: block !important;
@@ -228,7 +243,8 @@ body {
 			}
 
 			&-reference,
-			&-code-button {
+			&-code-button,
+			&--button {
 				all: unset;
 				color: $color-blue-dark !important;
 				background-color: $color-yellow !important;
