@@ -68,6 +68,7 @@ class TabindexFix implements FixInterface {
 			'labelledby'  => 'remove_tabindex',
 			// translators: %1$s: a attribute name wrapped in a <code> tag.
 			'description' => sprintf( __( 'Removes the %1$s attribute from focusable elements.', 'accessibility-checker' ), '<code>tabindex</code>' ),
+			'fix_slug'    => $this->get_slug(),
 		];
 
 		return $fields;
