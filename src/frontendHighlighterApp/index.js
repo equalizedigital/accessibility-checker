@@ -5,6 +5,7 @@ import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
 import { __ } from '@wordpress/i18n';
+import { saveFixSettings } from '../common/saveFixSettingsRest';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -653,7 +654,9 @@ class AccessibilityCheckerHighlight {
 				this.fixSettingsButton.display = 'block';
 
 				this.fixSettingsSaveButton = document.querySelector( '.edac-highlight-panel-descrption-fix-settings--save-button' );
-				this.fixSettingsSaveButton.addEventListener( 'click', ( event ) => this.saveFixSettings( event ) );
+				this.fixSettingsSaveButton.addEventListener( 'click', ( event ) => {
+					saveFixSettings( event.target.closest( '.edac-highlight-panel-description-fix-settings' ) );
+				} );
 			}
 
 			// set code button listener
@@ -788,54 +791,6 @@ class AccessibilityCheckerHighlight {
 		fixSettingsContainer.display = 'block !important';
 		event.target.setAttribute( 'aria-expanded', 'true' );
 
-	}
-
-	saveFixSettings( event ) {
-		const settingsToSave = {};
-
-		const fixSettingsContainer = event.target.closest( '.edac-highlight-panel-description-fix-settings' );
-
-		fixSettingsContainer.querySelectorAll( 'input, select, textarea' ).forEach( ( field ) => {
-			const fixGroup = field.getAttribute( 'data-fix-slug' );
-			if ( ! fixGroup ) {
-				// a group is required to save.
-				return;
-			}
-			if ( settingsToSave[ fixGroup ] === undefined ) {
-				settingsToSave[ fixGroup ] = {};
-			}
-
-			// Value to save for checkboxes differs to other field types.
-			switch ( field.type ) {
-				case 'checkbox':
-					settingsToSave[ fixGroup ][ field.name ] = field.checked;
-					break;
-
-				default:
-					settingsToSave[ fixGroup ][ field.name ] = field.value;
-			}
-		} );
-
-		fixSettingsContainer.classList.add( 'edac-highlight-panel-description-fix-settings--saving' );
-
-		// make a rest call to save the settings
-		fetch( '/wp-json/edac/v1/fixes/update/', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify( settingsToSave ),
-		} ).then(
-			( response ) => {
-				fixSettingsContainer.classList.remove( 'edac-highlight-panel-description-fix-settings--saving' );
-				if ( response.ok ) {
-					fixSettingsContainer.classList.remove( 'edac-highlight-panel-description-fix-settings--error' );
-					fixSettingsContainer.classList.add( 'edac-highlight-panel-description-fix-settings--saved' );
-				} else {
-					fixSettingsContainer.classList.add( 'edac-highlight-panel-description-fix-settings--error' );
-				}
-			}
-		);
 	}
 
 	/**
