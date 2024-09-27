@@ -38,6 +38,7 @@ trait Text {
 			value="<?php echo esc_attr( $option_value ); ?>"
 			<?php echo isset( $args['condition'] ) ? 'data-condition="' . esc_attr( $args['condition'] ) . '"' : ''; ?>
 			<?php echo isset( $args['required_when'] ) ? 'data-required_when="' . esc_attr( $args['required_when'] ) . '"' : ''; ?>
+			<?php echo isset( $args['fix_slug'] ) ? 'data-fix-slug="' . esc_attr( $args['fix_slug'] ) . '"' : ''; ?>
 		/>
 		<?php
 	}
@@ -48,7 +49,7 @@ trait Text {
 	 * @param mixed $input The input to sanitize.
 	 * @return string
 	 */
-	public function sanitize_text( $input ) {
+	public static function sanitize_text( $input ) {
 		return sanitize_text_field( $input );
 	}
 }

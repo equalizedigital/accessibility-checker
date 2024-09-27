@@ -36,6 +36,7 @@ trait Checkbox {
 				<?php echo isset( $args['condition'] ) ? 'data-condition="' . esc_attr( $args['condition'] ) . '"' : ''; ?>
 				<?php echo isset( $args['required_when'] ) ? 'data-required_when="' . esc_attr( $args['required_when'] ) . '"' : ''; ?>
 				<?php echo $upsell ? 'disabled' : ''; ?>
+				<?php echo isset( $args['fix_slug'] ) ? 'data-fix-slug="' . esc_attr( $args['fix_slug'] ) . '"' : ''; ?>
 			/>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 		</label>
@@ -48,7 +49,11 @@ trait Checkbox {
 	 * @param mixed $input The input to sanitize.
 	 * @return int
 	 */
-	public function sanitize_checkbox( $input ) {
-		return isset( $input ) ? 1 : 0;
+	public static function sanitize_checkbox( $input ) {
+		// if $input is not a bool or int then check if it is a string of '1' or 'true'.
+		if ( ! is_bool( $input ) && ! is_int( $input ) ) {
+			$input = ( '1' === $input || 'true' === strtolower( $input ) ) ? 1 : 0;
+		}
+		return isset( $input ) && $input ? 1 : 0;
 	}
 }
