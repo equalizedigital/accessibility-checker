@@ -50,8 +50,12 @@ trait Checkbox {
 	 * @return int
 	 */
 	public static function sanitize_checkbox( $input ) {
+
+		if ( null === $input ) {
+			return 0;
+		}
 		// if $input is not a bool or int then check if it is a string of '1' or 'true'.
-		if ( ! is_bool( $input ) && ! is_int( $input ) ) {
+		if ( ! is_bool( $input ) || ! is_int( $input ) ) {
 			$input = ( '1' === $input || 'true' === strtolower( $input ) ) ? 1 : 0;
 		}
 		return isset( $input ) && $input ? 1 : 0;
