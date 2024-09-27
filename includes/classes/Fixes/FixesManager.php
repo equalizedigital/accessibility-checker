@@ -21,6 +21,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\LinkUnderline;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\MetaViewportScalableFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\FocusOutlineFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ReadMoreAddTitleFix;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 
 /**
  * Manager class for fixes.
@@ -240,7 +241,7 @@ class FixesManager {
 
 		register_rest_route(
 			'edac/v1',
-			'/fixes/update/',
+			'/fixes/update',
 			[
 				'methods'             => 'POST',
 				'callback'            => [ $this, 'update_fix_settings' ],
@@ -261,14 +262,21 @@ class FixesManager {
 		$body = $request->get_json_params();
 
 		// loop through body and find fixes for those items.
-		foreach ( $body as $fix_slug => $enabled ) {
-			$fix = $this->get_fix( $fix_slug );
+		foreach ( $body as $rule_slug => $settings ) {
+			$fix        = $this->get_fix( $rule_slug );
+			$fix_fields = $fix->get_fields_array();
 			if ( ! $fix ) {
-				return new \WP_Error( 'edac_fix_not_found', 'Fix not found', [ 'status' => 404 ] );
+				return new \WP_Error( 'edac_fix_not_found', esc_html__( 'Fix not found', 'accessibility-checker' ), [ 'status' => 404 ] );
 			}
 
-			// NOTE: needs to use the field sanitizer!
-			update_option( 'edac_fix_' . $fix_slug, $enabled );
+			foreach ( $settings as $setting => $value ) {
+				$sanitizer = isset( $fix_fields[ $setting ]['sanitize_callback'] ) ? $fix_fields[ $setting ]['sanitize_callback'] : [ FixesPage::class, 'sanitize_' . $fix_fields[ $setting ]['type'] ];
+				if ( ! $sanitizer || ! is_callable( $sanitizer ) ) {
+					// no sanitizer, do not save.
+					continue;
+				}
+				update_option( $setting, $sanitizer( $value ) );
+			}
 		}
 
 		return rest_ensure_response( [ 'enabled' => $enabled ] );
