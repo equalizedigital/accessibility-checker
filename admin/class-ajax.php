@@ -352,10 +352,10 @@ class Ajax {
 						$current_setting         = $all_fixes[ $fixes_for_rules[ $rule['slug'] ] ];
 						$current_setting['name'] = $item_needs_fix_action;
 						ob_start();
-						// NOTE: wrap this in a modal, add an 'action' to trigger it.
+						// NOTE: This is markup to be wrapped in a modal, with an 'action' to trigger it.
 						?>
-						<div id="<?php echo esc_attr( $controls_id ); ?>" class="edac-details-fix-settings" data-fix="<?php echo esc_attr( $fixes_for_rules[ $rule['slug'] ] ); ?>">
-							<div class="setting-row">
+						<div id="<?php echo esc_attr( $controls_id ); ?>" class="edac-details-fix-settings fix-settings--container"">
+							<div class="setting-row fix-settings--container" data-fix="<?php echo esc_attr( $fixes_for_rules[ $rule['slug'] ] ); ?>>
 								<div class="title">
 									<h4><?php echo esc_html( $current_setting['label'] ); ?></h4>
 								</div>
@@ -363,8 +363,8 @@ class Ajax {
 									<?php FixesPage::{$current_setting['type']}( $current_setting ); ?>
 								</div>
 							</div>
-							<button role="button">
-								Save
+							<button role="button" class="fix-settings--button--save">
+								<?php echo esc_attr_e( 'Save', 'accessibility-checker' ); ?>
 							</button>
 						</div>
 						<?php
