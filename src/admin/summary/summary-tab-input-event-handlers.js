@@ -4,6 +4,8 @@
  * @since 1.12.0
  */
 
+import { saveFixSettings } from '../../common/saveFixSettingsRest';
+
 /**
  * Initialize the Summary Tab keyboard and click event handlers.
  *
@@ -119,6 +121,12 @@ export const initFixButtonEventHandlers = () => {
 			// trigger a thickbox that contains the contents of the fixSettings
 			// eslint-disable-next-line no-undef
 			tb_show( 'Fix Settings', '#TB_inline?width=600&height=550&inlineId=' + fixSettings.id, '' );
+
+			const thickbox = document.getElementById( 'TB_window' );
+			thickbox.querySelector( '.fix-settings--button--save' ).addEventListener( 'click', ( clickedEvent ) => {
+				saveFixSettings( clickedEvent.target.parentElement.querySelector( '.fix-settings--container' ) );
+			} );
 		} );
 	} );
 };
+
