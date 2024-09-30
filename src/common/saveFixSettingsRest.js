@@ -25,6 +25,7 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 	} );
 
 	fixSettingsContainer.classList.add( 'edac-fix-settings--saving' );
+	fixSettingsContainer.querySelector( '[aria-live]' ).innerText = __( 'Saving...', 'accessibility-checker' );
 
 	// make a rest call to save the settings
 	fetch( '/wp-json/edac/v1/fixes/update/', {
@@ -40,9 +41,10 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 				fixSettingsContainer.classList.remove( 'edac-fix-settings--saved--error' );
 				fixSettingsContainer.classList.add( 'edac-fix-settings--saved--success' );
 				// find the aria-live region and update the text
-				fixSettingsContainer.querySelector( '[aria-live]' ).innerText = __( 'Settings saved successfully.', 'easy-digital-downloads' );
+				fixSettingsContainer.querySelector( '[aria-live]' ).innerText = __( 'Settings saved successfully.', 'accessibility-checker' );
 			} else {
 				fixSettingsContainer.classList.add( 'edac-fix-settings--saved--error' );
+				fixSettingsContainer.querySelector( '[aria-live]' ).innerText = __( 'Saving failed.', 'accessibility-checker' );
 			}
 		}
 	);

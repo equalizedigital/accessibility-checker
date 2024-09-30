@@ -616,7 +616,7 @@ class AccessibilityCheckerHighlight {
 								<button role="button" class="edac-fix-settings--button--save">
 									${ __( 'Save', 'accessibility-checker' ) }
 								</button>
-								<p class="edac-fix-settings--notice-slot" aria-live="polite" role="alert">Settings saved</p>
+								<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
 							</div>
 						</div>
 						<div class="edac-fix-settings--action-open">
