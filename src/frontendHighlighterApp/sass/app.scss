@@ -1,8 +1,6 @@
 @import "../../common/sass/variables";
 @import "../../common/sass/helpers";
 
-@import "../../common/sass/fix-settings";
-
 body {
 	&.edac-app-disable-styles {
 		//   padding: .5rem (46px + 46px ) !important; //make sure button is visible
@@ -389,3 +387,6 @@ body {
 	margin: auto;
 	padding: 15px;
 }
+
+// this is at end on purpose so it is later than items above.
+@import "../../common/sass/fix-settings";
