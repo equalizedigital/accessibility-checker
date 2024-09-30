@@ -55,40 +55,59 @@ class SkipLinkFix implements FixInterface {
 
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-				$fields['edac_fix_add_skip_link'] = [
-					'label'       => esc_html__( 'Enable Skip Link', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'add_skip_link',
-					'description' => esc_html__( 'Add a skip link to all site pages, allowing users to skip directly to the main content.', 'accessibility-checker' ),
-					'section'     => 'skip_link',
-				];
+			[ $this, 'get_fields_array' ]
+		);
 
-				$fields['edac_fix_add_skip_link_target_id'] = [
-					'label'             => esc_html__( 'Main Content Target (required)', 'accessibility-checker' ),
-					'type'              => 'text',
-					'labelledby'        => 'skip_link_target_id',
-					'description'       => esc_html__( 'Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page.', 'accessibility-checker' ),
-					'sanitize_callback' => 'sanitize_text_field',
-					'section'           => 'skip_link',
-					'condition'         => 'edac_fix_add_skip_link',
-					'required_when'     => 'edac_fix_add_skip_link',
-				];
+		add_filter(
+			'edac_filter_fixes_rule',
+			function ( $rules ) {
+				$rules['color_contrast_failure'] = 'edac_fix_' . $this->get_slug();
 
-				$fields['edac_fix_add_skip_link_nav_target_id'] = [
-					'label'             => esc_html__( 'Navigation Target', 'accessibility-checker' ),
-					'type'              => 'text',
-					'labelledby'        => 'skip_link_nav_target_id',
-					// translators: %1$s: ampersand character wrapped in a <code> tag.
-					'description'       => sprintf( __( 'Set the ID attribute of the navigation element, starting with %1$s. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features.', 'accessibility-checker' ), '<code>#</code>' ),
-					'sanitize_callback' => 'sanitize_text_field',
-					'section'           => 'skip_link',
-					'condition'         => 'edac_fix_add_skip_link',
-				];
-
-				return $fields;
+				return $rules;
 			}
 		);
+	}
+
+	/**
+	 * Returns the settings fields for the skip link fix.
+	 *
+	 * @param array $fields The fields array.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( $fields = [] ) {
+
+		$fields['edac_fix_add_skip_link'] = [
+			'label'       => esc_html__( 'Enable Skip Link', 'accessibility-checker' ),
+			'type'        => 'checkbox',
+			'labelledby'  => 'add_skip_link',
+			'description' => esc_html__( 'Add a skip link to all site pages, allowing users to skip directly to the main content.', 'accessibility-checker' ),
+			'section'     => 'skip_link',
+		];
+
+		$fields['edac_fix_add_skip_link_target_id'] = [
+			'label'             => esc_html__( 'Main Content Target (required)', 'accessibility-checker' ),
+			'type'              => 'text',
+			'labelledby'        => 'skip_link_target_id',
+			'description'       => esc_html__( 'Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page.', 'accessibility-checker' ),
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'skip_link',
+			'condition'         => 'edac_fix_add_skip_link',
+			'required_when'     => 'edac_fix_add_skip_link',
+		];
+
+		$fields['edac_fix_add_skip_link_nav_target_id'] = [
+			'label'             => esc_html__( 'Navigation Target', 'accessibility-checker' ),
+			'type'              => 'text',
+			'labelledby'        => 'skip_link_nav_target_id',
+			// translators: %1$s: ampersand character wrapped in a <code> tag.
+			'description'       => sprintf( __( 'Set the ID attribute of the navigation element, starting with %1$s. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features.', 'accessibility-checker' ), '<code>#</code>' ),
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'skip_link',
+			'condition'         => 'edac_fix_add_skip_link',
+		];
+
+		return $fields;
 	}
 
 	/**
