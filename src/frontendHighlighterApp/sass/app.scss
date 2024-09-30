@@ -1,6 +1,8 @@
 @import "../../common/sass/variables";
 @import "../../common/sass/helpers";
 
+@import "../../common/sass/fix-settings";
+
 body {
 	&.edac-app-disable-styles {
 		//   padding: .5rem (46px + 46px ) !important; //make sure button is visible
@@ -174,21 +176,6 @@ body {
 
 			&:focus {
 				//outline: solid 5px rgba(0,208,255,.75);
-			}
-
-			&-fix-settings {
-
-				display: none;
-				&--open {
-					display: block;
-					background: #222222;
-					padding: 10px;
-
-					* {
-						/* Styles on a parent alement set `all` to none making everything invisible, need to revert that here. */
-						all: revert;
-					}
-				}
 			}
 
 			&-title {

@@ -1,0 +1,40 @@
+.edac-highlight-panel .edac-fix-settings--fields {
+	input, select, textarea {
+		/* Styles on a parent alement set `all` to none making everything invisible, need to revert that here. */
+		all: revert;
+	}
+}
+
+.edac-fix-settings {
+
+	&--fields,
+	%--action-row {
+		display: none !important;
+
+		.edac-fix-settings--open & {
+			display: block !important;
+		}
+	}
+
+	&--fields {
+		.edac-highlight-panel & {
+			background: #222222;
+			padding: 10px;
+		}
+	}
+
+	&--action-row {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	&--button {
+		&--save {
+			@extend .edac-highlight-panel-description--button
+		}
+	}
+
+	&--notice-slot {
+		margin: 0.25rem;
+	}
+}
