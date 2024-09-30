@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 export const saveFixSettings = ( fixSettingsContainer ) => {
 	const settingsToSave = {};
 
@@ -22,7 +24,7 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 		}
 	} );
 
-	fixSettingsContainer.classList.add( 'edac-highlight-panel-description-fix-settings--saving' );
+	fixSettingsContainer.classList.add( 'edac-fix-settings--saving' );
 
 	// make a rest call to save the settings
 	fetch( '/wp-json/edac/v1/fixes/update/', {
@@ -33,12 +35,14 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 		body: JSON.stringify( settingsToSave ),
 	} ).then(
 		( response ) => {
-			fixSettingsContainer.classList.remove( 'edac-highlight-panel-description-fix-settings--saving' );
+			fixSettingsContainer.classList.remove( 'edac-fix-settings--saving' );
 			if ( response.ok ) {
-				fixSettingsContainer.classList.remove( 'edac-highlight-panel-description-fix-settings--error' );
-				fixSettingsContainer.classList.add( 'edac-highlight-panel-description-fix-settings--saved' );
+				fixSettingsContainer.classList.remove( 'edac-fix-settings--saved--error' );
+				fixSettingsContainer.classList.add( 'edac-fix-settings--saved--success' );
+				// find the aria-live region and update the text
+				fixSettingsContainer.querySelector( '[aria-live]' ).innerText = __( 'Settings saved successfully.', 'easy-digital-downloads' );
 			} else {
-				fixSettingsContainer.classList.add( 'edac-highlight-panel-description-fix-settings--error' );
+				fixSettingsContainer.classList.add( 'edac-fix-settings--saved--error' );
 			}
 		}
 	);

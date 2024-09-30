@@ -609,15 +609,20 @@ class AccessibilityCheckerHighlight {
 
 			if ( this.fixes[ matchingObj.slug ] ) {
 				content += `
-					<div class="edac-highlight-panel-description-fix-settings">
-						${ this.fixes[ matchingObj.slug ].fields }
-						<div class="edac-highlight-panel-description-fix-settings-buttons">
-							<button role="button" class="edac-highlight-panel-descrption-fix-settings--save-button">
-								${ __( 'Save', 'accessibility-checker' ) }
-							</button>
+					<div class="edac-fix-settings">
+						<div class="edac-fix-settings--fields">
+							${ this.fixes[ matchingObj.slug ].fields }
+							<div class="edac-fix-settings--action-row">
+								<button role="button" class="edac-fix-settings--button--save">
+									${ __( 'Save', 'accessibility-checker' ) }
+								</button>
+								<p class="edac-fix-settings--notice-slot" aria-live="polite" role="alert">Settings saved</p>
+							</div>
+						</div>
+						<div class="edac-fix-settings--action-open">
+							<button role="button" class="edac-fix-settings--button--open edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>
 						</div>
 					</div>
-					<button class="edac-highlight-panel-description-fix-button edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>
 					`;
 			}
 
@@ -649,13 +654,13 @@ class AccessibilityCheckerHighlight {
 
 			// show fix settings button if available
 			if ( this.fixes[ matchingObj.slug ] ) {
-				this.fixSettingsButton = document.querySelector( '.edac-highlight-panel-description-fix-button' );
+				this.fixSettingsButton = document.querySelector( '.edac-fix-settings--button--open' );
 				this.fixSettingsButton.addEventListener( 'click', ( event ) => this.showFixSettings( event ) );
 				this.fixSettingsButton.display = 'block';
 
-				this.fixSettingsSaveButton = document.querySelector( '.edac-highlight-panel-descrption-fix-settings--save-button' );
+				this.fixSettingsSaveButton = document.querySelector( '.edac-fix-settings--button--save' );
 				this.fixSettingsSaveButton.addEventListener( 'click', ( event ) => {
-					saveFixSettings( event.target.closest( '.edac-highlight-panel-description-fix-settings' ) );
+					saveFixSettings( event.target.closest( '.edac-fix-settings' ) );
 				} );
 			}
 
@@ -782,15 +787,18 @@ class AccessibilityCheckerHighlight {
 	}
 
 	showFixSettings( event ) {
-		const fixSettingsContainer = event.target.parentNode.querySelector( '.edac-highlight-panel-description-fix-settings' );
+		const fixSettingsContainer = event.target.closest( '.edac-fix-settings' );
 		if ( ! fixSettingsContainer ) {
 			// this is a fail, it should do something.
 			return;
 		}
-		fixSettingsContainer.classList.add( 'edac-highlight-panel-description-fix-settings--open' );
-		fixSettingsContainer.display = 'block !important';
-		event.target.setAttribute( 'aria-expanded', 'true' );
-
+		if ( fixSettingsContainer.classList.contains( 'edac-fix-settings--open' ) ) {
+			fixSettingsContainer.classList.remove( 'edac-fix-settings--open' );
+			event.target.setAttribute( 'aria-expanded', 'false' );
+		} else {
+			fixSettingsContainer.classList.add( 'edac-fix-settings--open' );
+			event.target.setAttribute( 'aria-expanded', 'true' );
+		}
 	}
 
 	/**
