@@ -359,13 +359,22 @@ class Ajax {
 								<div class="title">
 									<h4><?php echo esc_html( $current_setting['label'] ); ?></h4>
 								</div>
-								<div class="setting">
-									<?php FixesPage::{$current_setting['type']}( $current_setting ); ?>
+
+								<div class="edac-fix-settings">
+									<div class="edac-fix-settings--fields">
+										<?php FixesPage::{$current_setting['type']}( $current_setting ); ?>
+										<div class="edac-fix-settings--action-row">
+											<button role="button" class="edac-fix-settings--button--save">
+												<?php esc_html_e( 'Save', 'accessibility-checker' ); ?>
+											</button>
+											<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
+										</div>
+									</div>
+									<div class="edac-fix-settings--action-open">
+										<button role="button" class="edac-fix-settings--button--open edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>
+									</div>
 								</div>
 							</div>
-							<button role="button" class="fix-settings--button--save">
-								<?php echo esc_attr_e( 'Save', 'accessibility-checker' ); ?>
-							</button>
 						</div>
 						<?php
 						$html .= ob_get_clean();
