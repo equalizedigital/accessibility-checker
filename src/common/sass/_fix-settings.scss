@@ -26,11 +26,15 @@
 	&--action-row {
 		display: flex;
 		gap: 0.5rem;
+		align-items: center;
 	}
 
 	&--button {
 		&--save {
-			@extend .edac-highlight-panel-description--button
+			@extend .edac-highlight-panel-description--button;
+			margin-right: 0 !important;
+			margin-top: 0 !important;
+
 		}
 	}
 
