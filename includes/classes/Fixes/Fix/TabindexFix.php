@@ -61,7 +61,7 @@ class TabindexFix implements FixInterface {
 	 *
 	 * @return array
 	 */
-	public function get_fields_array( array $fields = [] ) {
+	public function get_fields_array( array $fields = [] ): array {
 		$fields['edac_fix_remove_tabindex'] = [
 			'type'        => 'checkbox',
 			'label'       => esc_html__( 'Remove Tab Index', 'accessibility-checker' ),
