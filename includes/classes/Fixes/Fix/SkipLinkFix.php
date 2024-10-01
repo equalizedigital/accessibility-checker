@@ -22,7 +22,16 @@ class SkipLinkFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_slug(): string {
-		return 'skip-link';
+		return 'skip_link';
+	}
+
+	/**
+	 * The nicename for the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_nicename(): string {
+		return __( 'Add Skip Links', 'accessibility-checker' );
 	}
 
 	/**

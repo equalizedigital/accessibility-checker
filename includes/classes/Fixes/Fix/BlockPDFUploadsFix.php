@@ -28,6 +28,15 @@ class BlockPDFUploadsFix implements FixInterface {
 	}
 
 	/**
+	 * The nicename for the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_nicename(): string {
+		return __( 'Block PDF Uploads', 'accessibility-checker' );
+	}
+
+	/**
 	 * Get the type for the fix.
 	 *
 	 * @return string

@@ -352,26 +352,25 @@ class Ajax {
 						$current_setting         = $all_fixes[ $fixes_for_rules[ $rule['slug'] ] ];
 						$current_setting['name'] = $item_needs_fix_action;
 						ob_start();
-						// NOTE: This is markup to be wrapped in a modal, with an 'action' to trigger it.
+						// NOTE: This is markup to be cloned into a thickbox modal. It gets cloned from the inner div.
 						?>
-						<div id="<?php echo esc_attr( $controls_id ); ?>" class="edac-details-fix-settings fix-settings--container"">
-							<div class="setting-row fix-settings--container" data-fix="<?php echo esc_attr( $fixes_for_rules[ $rule['slug'] ] ); ?>>
-								<div class="title">
-									<h4><?php echo esc_html( $current_setting['label'] ); ?></h4>
-								</div>
-
-								<div class="edac-fix-settings">
-									<div class="edac-fix-settings--fields">
-										<?php FixesPage::{$current_setting['type']}( $current_setting ); ?>
-										<div class="edac-fix-settings--action-row">
-											<button role="button" class="edac-fix-settings--button--save">
-												<?php esc_html_e( 'Save', 'accessibility-checker' ); ?>
-											</button>
-											<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
-										</div>
+						<div style="display:none">
+							<div id="<?php echo esc_attr( $controls_id ); ?>" class="edac-details-fix-settings fix-settings--container">
+								<div class="setting-row fix-settings--container" data-fix="<?php echo esc_attr( $fixes_for_rules[ $rule['slug'] ] ); ?>">
+									<div class="title">
+										<h4><?php echo esc_html( $current_setting['label'] ); ?></h4>
 									</div>
-									<div class="edac-fix-settings--action-open">
-										<button role="button" class="edac-fix-settings--button--open edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>
+
+									<div class="edac-fix-settings">
+										<div class="edac-fix-settings--fields">
+											<?php FixesPage::{$current_setting['type']}( $current_setting ); ?>
+											<div class="edac-fix-settings--action-row">
+												<button role="button" class="edac-fix-settings--button--save">
+													<?php esc_html_e( 'Save', 'accessibility-checker' ); ?>
+												</button>
+												<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>

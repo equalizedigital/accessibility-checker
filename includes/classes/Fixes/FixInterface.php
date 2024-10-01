@@ -22,6 +22,13 @@ interface FixInterface {
 	public static function get_slug(): string;
 
 	/**
+	 * Get the nicename for the fix.
+	 *
+	 * @return string The name of the fix.
+	 */
+	public static function get_nicename(): string;
+
+	/**
 	 * Get the type for the fix.
 	 *
 	 * @return string The type of fix. Either 'backend', 'frontend' or everywhere.

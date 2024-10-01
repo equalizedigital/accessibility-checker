@@ -26,6 +26,15 @@ class AddFileSizeAndTypeToLinkedFilesFix implements FixInterface {
 	}
 
 	/**
+	 * The nicename for the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_nicename(): string {
+		return __( 'Add Size & Type To File Links', 'accessibility-checker' );
+	}
+
+	/**
 	 * The type for the fix.
 	 *
 	 * @return string
