@@ -37,6 +37,18 @@ interface FixInterface {
 	public function register(): void;
 
 	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * This can be called directly when you need a single fix but is also run through filter
+	 * 'edac_filter_fixes_settings_fields' to get all fields for all fixes so it must accept
+	 * an array of fields and return an array of fields.
+	 *
+	 * @param array $fields The fields to add to the settings page.
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array;
+
+	/**
 	 * Run the fix.
 	 *
 	 * This will be called in admin only, frontend only or everywhere depending on the fix type.
