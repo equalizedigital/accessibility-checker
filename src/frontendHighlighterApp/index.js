@@ -655,7 +655,9 @@ class AccessibilityCheckerHighlight {
 			// show fix settings button if available
 			if ( this.fixes[ matchingObj.slug ] ) {
 				this.fixSettingsButton = document.querySelector( '.edac-fix-settings--button--open' );
-				this.fixSettingsButton.addEventListener( 'click', ( event ) => this.showFixSettings( event ) );
+				this.fixSettingsButton.addEventListener( 'click', ( event ) => {
+					this.showFixSettings( event );
+				} );
 				this.fixSettingsButton.display = 'block';
 
 				this.fixSettingsSaveButton = document.querySelector( '.edac-fix-settings--button--save' );
