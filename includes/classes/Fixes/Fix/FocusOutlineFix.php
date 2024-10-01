@@ -55,19 +55,27 @@ class FocusOutlineFix implements FixInterface {
 
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-
-				$fields['edac_fix_focus_outline'] = [
-					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Focus Outline', 'accessibility-checker' ),
-					'labelledby'  => 'fix_focus_outline',
-					'description' => esc_html__( 'Adds an outline to elements when they receive keyboard focus.', 'accessibility-checker' ),
-					'section'     => 'focus_outline',
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields['edac_fix_focus_outline'] = [
+			'type'        => 'checkbox',
+			'label'       => esc_html__( 'Focus Outline', 'accessibility-checker' ),
+			'labelledby'  => 'fix_focus_outline',
+			'description' => esc_html__( 'Adds an outline to elements when they receive keyboard focus.', 'accessibility-checker' ),
+			'section'     => 'focus_outline',
+		];
+
+		return $fields;
 	}
 
 	/**

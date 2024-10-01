@@ -41,19 +41,27 @@ class HTMLLangAndDirFix implements FixInterface {
 	public function register(): void {
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-
-				$fields['edac_fix_add_lang_and_dir'] = [
-					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Add "lang" & "dir" Attribributes', 'accessibility-checker' ),
-					'labelledby'  => 'add_read_more_title',
-					// translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
-					'description' => sprintf( __( 'Adds the site language (%1$s) and text direction (%2$s) attributes to the %3$s element.', 'accessibility-checker' ), '<code>lang</code>', '<code>dir</code>', '<code>&lt;html&gt;</code>' ),
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields['edac_fix_add_lang_and_dir'] = [
+			'type'        => 'checkbox',
+			'label'       => esc_html__( 'Add "lang" & "dir" Attribributes', 'accessibility-checker' ),
+			'labelledby'  => 'add_read_more_title',
+			// translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+			'description' => sprintf( __( 'Adds the site language (%1$s) and text direction (%2$s) attributes to the %3$s element.', 'accessibility-checker' ), '<code>lang</code>', '<code>dir</code>', '<code>&lt;html&gt;</code>' ),
+		];
+
+		return $fields;
 	}
 
 	/**

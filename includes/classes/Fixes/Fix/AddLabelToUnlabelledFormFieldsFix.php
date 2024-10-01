@@ -55,19 +55,28 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-				$fields[ 'edac_fix_' . $this->get_slug() ] = [
-					'label'       => esc_html__( 'Unlabelled Form Fields', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => $this->get_slug(),
-					'description' => esc_html__( 'Attempts to add labels to form fields that are missing them.', 'accessibility-checker' ),
-					'section'     => $this->get_slug(),
-					'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields[ 'edac_fix_' . $this->get_slug() ] = [
+			'label'       => esc_html__( 'Unlabelled Form Fields', 'accessibility-checker' ),
+			'type'        => 'checkbox',
+			'labelledby'  => $this->get_slug(),
+			'description' => esc_html__( 'Attempts to add labels to form fields that are missing them.', 'accessibility-checker' ),
+			'section'     => $this->get_slug(),
+			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
+		];
+
+		return $fields;
 	}
 
 	/**

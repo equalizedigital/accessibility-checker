@@ -42,20 +42,28 @@ class AddMissingOrEmptyPageTitleFix implements FixInterface {
 	public function register(): void {
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-
-				$fields['edac_fix_add_missing_or_empty_page_title'] = [
-					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Add Missing Page Title', 'accessibility-checker' ),
-					'labelledby'  => 'add_missing_or_empty_page_title',
-					// translators: %1$s: a code tag with a title tag.
-					'description' => sprintf( __( 'Adds a %1$s tag to the page if it\'s missing or empty.', 'accessibility-checker' ), '<code>&lt;title&gt;</code>' ),
-					'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields['edac_fix_add_missing_or_empty_page_title'] = [
+			'type'        => 'checkbox',
+			'label'       => esc_html__( 'Add Missing Page Title', 'accessibility-checker' ),
+			'labelledby'  => 'add_missing_or_empty_page_title',
+			// translators: %1$s: a code tag with a title tag.
+			'description' => sprintf( __( 'Adds a %1$s tag to the page if it\'s missing or empty.', 'accessibility-checker' ), '<code>&lt;title&gt;</code>' ),
+			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
+		];
+
+		return $fields;
 	}
 
 	/**

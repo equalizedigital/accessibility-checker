@@ -41,18 +41,26 @@ class LinkUnderline implements FixInterface {
 	public function register(): void {
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-
-				$fields['edac_fix_force_link_underline'] = [
-					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Force Link Underline', 'accessibility-checker' ),
-					'labelledby'  => 'force_link_underline',
-					'description' => esc_html__( 'Ensures that non-navigation links are underlined.', 'accessibility-checker' ),
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields['edac_fix_force_link_underline'] = [
+			'type'        => 'checkbox',
+			'label'       => esc_html__( 'Force Link Underline', 'accessibility-checker' ),
+			'labelledby'  => 'force_link_underline',
+			'description' => esc_html__( 'Ensures that non-navigation links are underlined.', 'accessibility-checker' ),
+		];
+
+		return $fields;
 	}
 
 	/**
@@ -72,7 +80,7 @@ class LinkUnderline implements FixInterface {
 				/**
 				 * Filters the target element selector for forcing underlines.
 				 *
-				 * This filter allows customization of the target elements that should have 
+				 * This filter allows customization of the target elements that should have
 				 * forced underlines applied. By default, the selector is set to 'a'.
 				 *
 				 * @since 1.16.0

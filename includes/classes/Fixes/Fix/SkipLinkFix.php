@@ -71,7 +71,7 @@ class SkipLinkFix implements FixInterface {
 	/**
 	 * Returns the settings fields for the skip link fix.
 	 *
-	 * @param array $fields The fields array.
+	 * @param array $fields The array of fields that are already registered, if any.
 	 *
 	 * @return array
 	 */

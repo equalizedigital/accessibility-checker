@@ -56,26 +56,35 @@ class CommentSearchLabelFix implements FixInterface {
 
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-				$fields['edac_fix_comment_label'] = [
-					'label'       => esc_html__( 'Comment Form', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'add_comment_label',
-					'description' => esc_html__( 'Adds missing labels to the WordPress comment form.', 'accessibility-checker' ),
-					'section'     => 'comment_search_label',
-				];
-
-				$fields['edac_fix_search_label'] = [
-					'label'       => esc_html__( 'Search Form', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'add_search_label',
-					'description' => esc_html__( 'Adds a missing label to the WordPress search form.', 'accessibility-checker' ),
-					'section'     => 'comment_search_label',
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields['edac_fix_comment_label'] = [
+			'label'       => esc_html__( 'Comment Form', 'accessibility-checker' ),
+			'type'        => 'checkbox',
+			'labelledby'  => 'add_comment_label',
+			'description' => esc_html__( 'Adds missing labels to the WordPress comment form.', 'accessibility-checker' ),
+			'section'     => 'comment_search_label',
+		];
+
+		$fields['edac_fix_search_label'] = [
+			'label'       => esc_html__( 'Search Form', 'accessibility-checker' ),
+			'type'        => 'checkbox',
+			'labelledby'  => 'add_search_label',
+			'description' => esc_html__( 'Adds a missing label to the WordPress search form.', 'accessibility-checker' ),
+			'section'     => 'comment_search_label',
+		];
+
+		return $fields;
 	}
 
 	/**

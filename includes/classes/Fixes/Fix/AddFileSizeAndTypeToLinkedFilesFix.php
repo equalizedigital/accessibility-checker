@@ -40,18 +40,28 @@ class AddFileSizeAndTypeToLinkedFilesFix implements FixInterface {
 	public function register(): void {
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-				$fields[ 'edac_fix_' . $this->get_slug() ] = [
-					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Add File Size & Type To Links', 'accessibility-checker' ),
-					'labelledby'  => 'add_file_size_and_type_to_linked_files',
-					'description' => esc_html__( 'Adds the file size and type to linked files that may trigger a download.', 'accessibility-checker' ),
-					'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+
+		$fields[ 'edac_fix_' . $this->get_slug() ] = [
+			'type'        => 'checkbox',
+			'label'       => esc_html__( 'Add File Size & Type To Links', 'accessibility-checker' ),
+			'labelledby'  => 'add_file_size_and_type_to_linked_files',
+			'description' => esc_html__( 'Adds the file size and type to linked files that may trigger a download.', 'accessibility-checker' ),
+			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
+		];
+
+		return $fields;
 	}
 
 	/**

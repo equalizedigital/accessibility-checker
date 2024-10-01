@@ -57,7 +57,7 @@ class TabindexFix implements FixInterface {
 	/**
 	 * Returns the settings fields for the tabindex removal fix.
 	 *
-	 * @param array $fields The fields array.
+	 * @param array $fields The array of fields that are already registered, if any.
 	 *
 	 * @return array
 	 */

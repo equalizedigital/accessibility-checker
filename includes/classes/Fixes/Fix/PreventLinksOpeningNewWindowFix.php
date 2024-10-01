@@ -43,21 +43,30 @@ class PreventLinksOpeningNewWindowFix implements FixInterface {
 
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-				$fields[ 'edac_fix_' . $this->get_slug() ] = [
-					'label'       => esc_html__( 'Block Links Opening New Windows', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'prevent_links_opening_in_new_windows',
-					'description' => sprintf(
-						// translators: %1%s: A <code> tag containing target="_blank".
-						esc_html__( 'Prevent links from opening in a new window or tab by removing %1$s.', 'accessibility-checker' ),
-						'<code>target="_blank"</code>'
-					),
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields[ 'edac_fix_' . $this->get_slug() ] = [
+			'label'       => esc_html__( 'Block Links Opening New Windows', 'accessibility-checker' ),
+			'type'        => 'checkbox',
+			'labelledby'  => 'prevent_links_opening_in_new_windows',
+			'description' => sprintf(
+			// translators: %1%s: A <code> tag containing target="_blank".
+				esc_html__( 'Prevent links from opening in a new window or tab by removing %1$s.', 'accessibility-checker' ),
+				'<code>target="_blank"</code>'
+			),
+		];
+
+		return $fields;
 	}
 
 	/**
