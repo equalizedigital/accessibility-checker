@@ -24,6 +24,12 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 		}
 	} );
 
+	const fixButtons = fixSettingsContainer.querySelectorAll( 'button' );
+	fixButtons.forEach( ( button ) => {
+		// make all buttons disabled while saving
+		button.disabled = true;
+	} );
+
 	fixSettingsContainer.classList.add( 'edac-fix-settings--saving' );
 	fixSettingsContainer.querySelector( '[aria-live]' ).innerText = __( 'Saving...', 'accessibility-checker' );
 
@@ -37,6 +43,9 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 	} ).then(
 		( response ) => {
 			fixSettingsContainer.classList.remove( 'edac-fix-settings--saving' );
+			fixButtons.forEach( ( button ) => {
+				button.disabled = false;
+			} );
 			if ( response.ok ) {
 				fixSettingsContainer.classList.remove( 'edac-fix-settings--saved--error' );
 				fixSettingsContainer.classList.add( 'edac-fix-settings--saved--success' );
