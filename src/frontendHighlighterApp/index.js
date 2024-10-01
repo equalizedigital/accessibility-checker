@@ -6,6 +6,7 @@ import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
 import { __ } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
+import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -800,6 +801,8 @@ class AccessibilityCheckerHighlight {
 		} else {
 			fixSettingsContainer.classList.add( 'edac-fix-settings--open' );
 			event.target.setAttribute( 'aria-expanded', 'true' );
+			fillFixesModal( 'FixThis', 'Content About Fixing This', fixSettingsContainer.innerHTML );
+			openFixesModal();
 		}
 	}
 
@@ -870,4 +873,5 @@ class AccessibilityCheckerHighlight {
 
 window.addEventListener( 'DOMContentLoaded', () => {
 	new AccessibilityCheckerHighlight();
+	fixSettingsModalInit();
 } );

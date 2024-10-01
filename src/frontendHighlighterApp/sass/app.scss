@@ -390,3 +390,11 @@ body {
 
 // this is at end on purpose so it is later than items above.
 @import "../../common/sass/fix-settings";
+
+.edac-fixes-modal {
+	display: none;
+
+	&--open {
+		display: block;
+	}
+}
