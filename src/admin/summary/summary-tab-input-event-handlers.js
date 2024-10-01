@@ -123,8 +123,8 @@ export const initFixButtonEventHandlers = () => {
 			tb_show( 'Fix Settings', '#TB_inline?width=600&height=550&inlineId=' + fixSettings.id, '' );
 
 			const thickbox = document.getElementById( 'TB_window' );
-			thickbox.querySelector( '.fix-settings--button--save' ).addEventListener( 'click', ( clickedEvent ) => {
-				saveFixSettings( clickedEvent.target.parentElement.querySelector( '.fix-settings--container' ) );
+			thickbox.querySelector( '.edac-fix-settings--button--save' ).addEventListener( 'click', ( clickedEvent ) => {
+				saveFixSettings( clickedEvent.target.closest( '.edac-fix-settings' ) );
 			} );
 		} );
 	} );
