@@ -75,7 +75,7 @@ class SkipLinkFix implements FixInterface {
 	 *
 	 * @return array
 	 */
-	public function get_fields_array( $fields = [] ) {
+	public function get_fields_array( array $fields = [] ) {
 
 		$fields['edac_fix_add_skip_link'] = [
 			'label'       => esc_html__( 'Enable Skip Link', 'accessibility-checker' ),
