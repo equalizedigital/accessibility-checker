@@ -37,6 +37,7 @@ trait Checkbox {
 				<?php echo isset( $args['required_when'] ) ? 'data-required_when="' . esc_attr( $args['required_when'] ) . '"' : ''; ?>
 				<?php echo $upsell ? 'disabled' : ''; ?>
 				<?php echo isset( $args['fix_slug'] ) ? 'data-fix-slug="' . esc_attr( $args['fix_slug'] ) . '"' : ''; ?>
+				<?php echo isset( $args['group_name'] ) ? 'data-group-name="' . esc_attr( $args['group_name'] ) . '"' : ''; ?>
 			/>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 		</label>
