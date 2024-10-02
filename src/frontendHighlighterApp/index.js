@@ -609,20 +609,26 @@ class AccessibilityCheckerHighlight {
 			content += matchingObj.summary;
 
 			if ( this.fixes[ matchingObj.slug ] ) {
+				// this is the markup to put in the modal.
 				content += `
-					<div class="edac-fix-settings">
-						<div class="edac-fix-settings--fields">
-							${ this.fixes[ matchingObj.slug ].fields }
-							<div class="edac-fix-settings--action-row">
-								<button role="button" class="edac-fix-settings--button--save">
-									${ __( 'Save', 'accessibility-checker' ) }
-								</button>
-								<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
+					<div style="display:none;">
+						<div class="edac-fix-settings">
+							<div class="edac-fix-settings--fields">
+								${ this.fixes[ matchingObj.slug ].fields }
+								<div class="edac-fix-settings--action-row">
+									<button role="button" class="edac-fix-settings--button--save">
+										${ __( 'Save', 'accessibility-checker' ) }
+									</button>
+									<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
+								</div>
 							</div>
 						</div>
-						<div class="edac-fix-settings--action-open">
-							<button role="button" class="edac-fix-settings--button--open edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>
-						</div>
+					</div>
+				`;
+				// and the button that will trigger the modal.
+				content += `
+					<div class="edac-fix-settings--action-open">
+						<button role="button" class="edac-fix-settings--button--open edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>
 					</div>
 					`;
 			}
