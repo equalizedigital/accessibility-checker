@@ -796,20 +796,23 @@ class AccessibilityCheckerHighlight {
 	}
 
 	showFixSettings( event ) {
-		const fixSettingsContainer = event.target.closest( '.edac-fix-settings' );
+		const fixSettingsContainer = event.target.closest( '.edac-highlight-panel-description-content' ).querySelector( '.edac-fix-settings' );
 		if ( ! fixSettingsContainer ) {
 			// this is a fail, it should do something.
 			return;
 		}
-		if ( fixSettingsContainer.classList.contains( 'edac-fix-settings--open' ) ) {
-			fixSettingsContainer.classList.remove( 'edac-fix-settings--open' );
-			event.target.setAttribute( 'aria-expanded', 'false' );
-		} else {
-			fixSettingsContainer.classList.add( 'edac-fix-settings--open' );
-			event.target.setAttribute( 'aria-expanded', 'true' );
-			fillFixesModal( 'FixThis', 'Content About Fixing This', fixSettingsContainer.innerHTML );
-			openFixesModal();
-		}
+
+		fixSettingsContainer.classList.add( 'edac-fix-settings--open' );
+		fillFixesModal( '', fixSettingsContainer.innerHTML );
+
+		// puse the focus trap.
+		this.panelDescriptionFocusTrap.pause();
+		openFixesModal( event.target );
+
+		// unpause the focus trap when the modal is closed.
+		document.addEventListener( 'edac-fixes-modal-closed', () => {
+			this.panelDescriptionFocusTrap.unpause();
+		} );
 	}
 
 	/**

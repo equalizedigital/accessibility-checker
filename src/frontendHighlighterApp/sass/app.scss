@@ -396,5 +396,9 @@ body {
 
 	&--open {
 		display: block;
+
+		.edac-fix-settings--fields {
+			display: block !important;
+		}
 	}
 }
