@@ -42,3 +42,71 @@
 		margin: 0.25rem;
 	}
 }
+
+
+.edac-fixes-modal {
+
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10000000001;
+	max-height: 90vh;
+	overflow: auto;
+
+	&__overlay {
+		display: none;
+		height: 100vh;
+		width: 100%;
+		background-color: #000000b0;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 10000000000;
+	}
+
+	&__content {
+		background: #fff;
+		padding: 20px;
+		border-radius: 5px;
+		box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+	}
+
+	&__header {
+		display: flex;
+		gap: 20px;
+		margin-bottom: 1rem;
+
+		h2 {
+			font-size: 1.25rem;
+			margin-bottom: 0;
+			align-self: center;
+		}
+	}
+
+	&__close {
+		height: 40px;
+		width: 40px;
+		cursor: pointer;
+		margin-left: auto;
+		border: none;
+
+		.dashicons, .dashicons::before {
+			vertical-align: center;
+		}
+	}
+}
+
+body.edac-fixes-modal--open {
+
+	overflow: hidden;
+
+	.edac-fixes-modal {
+		display: block;
+
+		&__overlay {
+			display: block;
+		}
+	}
+}
