@@ -616,7 +616,7 @@ class AccessibilityCheckerHighlight {
 							<div class="edac-fix-settings--fields">
 								${ this.fixes[ matchingObj.slug ].fields }
 								<div class="edac-fix-settings--action-row">
-									<button role="button" class="edac-fix-settings--button--save">
+									<button role="button" class="button button-primary edac-fix-settings--button--save">
 										${ __( 'Save', 'accessibility-checker' ) }
 									</button>
 									<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
