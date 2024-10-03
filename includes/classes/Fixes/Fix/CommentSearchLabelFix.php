@@ -67,6 +67,16 @@ class CommentSearchLabelFix implements FixInterface {
 			'edac_filter_fixes_settings_fields',
 			[ $this, 'get_fields_array' ],
 		);
+
+		add_filter(
+			'edac_filter_fixes_rule',
+			function ( $rules ) {
+				$rules['missing_form_label'] = 'edac_fix_' . $this->get_slug();
+				$rules['empty_form_label']   = 'edac_fix_' . $this->get_slug();
+
+				return $rules;
+			}
+		);
 	}
 
 	/**
@@ -83,6 +93,7 @@ class CommentSearchLabelFix implements FixInterface {
 			'labelledby'  => 'add_comment_label',
 			'description' => esc_html__( 'Adds missing labels to the WordPress comment form.', 'accessibility-checker' ),
 			'section'     => 'comment_search_label',
+			'group_name'  => $this->get_nicename(),
 		];
 
 		$fields['edac_fix_search_label'] = [

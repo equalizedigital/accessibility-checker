@@ -53,6 +53,15 @@ class AddMissingOrEmptyPageTitleFix implements FixInterface {
 			'edac_filter_fixes_settings_fields',
 			[ $this, 'get_fields_array' ],
 		);
+
+		add_filter(
+			'edac_filter_fixes_rule',
+			function ( $rules ) {
+				$rules['missing_title'] = 'edac_fix_' . $this->get_slug();
+
+				return $rules;
+			}
+		);
 	}
 
 	/**
@@ -70,6 +79,7 @@ class AddMissingOrEmptyPageTitleFix implements FixInterface {
 			// translators: %1$s: a code tag with a title tag.
 			'description' => sprintf( __( 'Adds a %1$s tag to the page if it\'s missing or empty.', 'accessibility-checker' ), '<code>&lt;title&gt;</code>' ),
 			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
+			'group_name'  => $this->get_nicename(),
 		];
 
 		return $fields;

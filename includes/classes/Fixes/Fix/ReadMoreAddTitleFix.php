@@ -67,6 +67,15 @@ class ReadMoreAddTitleFix implements FixInterface {
 			'edac_filter_fixes_settings_fields',
 			[ $this, 'get_fields_array' ],
 		);
+
+		add_filter(
+			'edac_filter_fixes_rule',
+			function ( $rules ) {
+				$rules['link_ambigous_text'] = 'edac_fix_' . $this->get_slug();
+
+				return $rules;
+			}
+		);
 	}
 
 	/**
@@ -83,6 +92,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 			'labelledby'  => 'add_read_more_title',
 			'description' => esc_html__( 'Adds the post title to "Read More" links in post lists when your theme outputs those links.', 'accessibility-checker' ),
 			'section'     => 'read_more_links',
+			'group_name'  => $this->get_nicename(),
 		];
 
 		$fields['edac_fix_add_read_more_title_screen_reader_only'] = [

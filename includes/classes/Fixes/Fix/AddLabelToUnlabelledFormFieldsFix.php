@@ -66,6 +66,16 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 			'edac_filter_fixes_settings_fields',
 			[ $this, 'get_fields_array' ],
 		);
+
+		add_filter(
+			'edac_filter_fixes_rule',
+			function ( $rules ) {
+				$rules['missing_form_label'] = 'edac_fix_' . $this->get_slug();
+				$rules['empty_form_label']   = 'edac_fix_' . $this->get_slug();
+
+				return $rules;
+			}
+		);
 	}
 
 	/**
@@ -83,6 +93,7 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 			'description' => esc_html__( 'Attempts to add labels to form fields that are missing them.', 'accessibility-checker' ),
 			'section'     => $this->get_slug(),
 			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
+			'group_name'  => $this->get_nicename(),
 		];
 
 		return $fields;

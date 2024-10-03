@@ -70,7 +70,7 @@ class SkipLinkFix implements FixInterface {
 		add_filter(
 			'edac_filter_fixes_rule',
 			function ( $rules ) {
-				$rules['color_contrast_failure'] = 'edac_fix_' . $this->get_slug();
+				$rules['broken_skip_anchor_link'] = 'edac_fix_' . $this->get_slug();
 
 				return $rules;
 			}
