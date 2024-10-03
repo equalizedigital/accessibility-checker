@@ -1,4 +1,4 @@
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 
 export const saveFixSettings = ( fixSettingsContainer ) => {
 	const settingsToSave = {};
@@ -31,7 +31,10 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 	} );
 
 	fixSettingsContainer.classList.add( 'edac-fix-settings--saving' );
-	fixSettingsContainer.querySelector( '[aria-live]' ).innerText = __( 'Saving...', 'accessibility-checker' );
+	const liveRegion = fixSettingsContainer.querySelector( '[aria-live]' );
+	if ( liveRegion ) {
+		liveRegion.innerText = __( 'Saving...', 'accessibility-checker' );
+	}
 
 	// make a rest call to save the settings
 	fetch( '/wp-json/edac/v1/fixes/update/', {
@@ -50,7 +53,17 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 				fixSettingsContainer.classList.remove( 'edac-fix-settings--saved--error' );
 				fixSettingsContainer.classList.add( 'edac-fix-settings--saved--success' );
 				// find the aria-live region and update the text
-				fixSettingsContainer.querySelector( '[aria-live]' ).innerText = __( 'Settings saved successfully.', 'accessibility-checker' );
+				if ( liveRegion ) {
+					if ( window?.edacFrontendHighlighterApp?.editorLink?.length ) {
+						liveRegion.innerHTML = sprintf(
+							__( 'Settings saved successfully. %sVisit the editor%s to scan the changes.', 'accessibility-checker' ),
+							`<a href="${ window.edacFrontendHighlighterApp.editorLink }">`,
+							'</a>'
+						);
+					} else {
+						liveRegion.innerText = __( 'Settings saved successfully.', 'accessibility-checker' );
+					}
+				}
 			} else {
 				fixSettingsContainer.classList.add( 'edac-fix-settings--saved--error' );
 				fixSettingsContainer.querySelector( '[aria-live]' ).innerText = __( 'Saving failed.', 'accessibility-checker' );
