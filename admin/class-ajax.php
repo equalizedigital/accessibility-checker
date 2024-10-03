@@ -365,7 +365,7 @@ class Ajax {
 										<div class="edac-fix-settings--fields">
 											<?php FixesPage::{$current_setting['type']}( $current_setting ); ?>
 											<div class="edac-fix-settings--action-row">
-												<button role="button" class="edac-fix-settings--button--save">
+												<button role="button" class="button button-primary edac-fix-settings--button--save">
 													<?php esc_html_e( 'Save', 'accessibility-checker' ); ?>
 												</button>
 												<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
