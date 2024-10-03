@@ -402,3 +402,16 @@ body {
 		}
 	}
 }
+
+// this button is styled like other buttons here.
+.edac-fix-settings {
+
+	&--button {
+		&--save {
+			@extend .edac-highlight-panel-description--button;
+			margin-right: 0 !important;
+			margin-top: 0 !important;
+
+		}
+	}
+}
