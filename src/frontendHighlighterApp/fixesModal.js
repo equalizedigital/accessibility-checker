@@ -123,7 +123,7 @@ const closeFixesModal = () => {
 export const fillFixesModal = ( content = '', fieldsMarkup = '' ) => {
 	if ( '' === fieldsMarkup ) {
 		fieldsMarkup = `
-			<p>There are no settings to display.</p>
+			<p>${ __( 'There are no settings to display.', 'accessibility-checker' ) }</p>
 		`;
 	}
 	// create an element from the fixes markup
