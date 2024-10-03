@@ -413,6 +413,9 @@ return [
 			'<code>&lt;title&gt;</code>',
 			'<code>og:title</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [ 'document-title' ],
+		'viewable'  => false,
 	],
 	[
 		'title'     => esc_html__( 'Improper Use of Link', 'accessibility-checker' ),
