@@ -56,8 +56,23 @@ class FixesManager {
 	 */
 	private function __construct() {
 		$this->maybe_enqueue_frontend_scripts();
+		$this->maybe_enqueue_thickbox();
 
 		self::$theme_is_accessibility_ready = self::is_theme_accessibility_ready();
+	}
+
+	/**
+	 * Maybe enqueue the thickbox script.
+	 *
+	 * This powers the modal that is used to display fix settings in the editor.
+	 */
+	public function maybe_enqueue_thickbox() {
+		add_action(
+			'admin_enqueue_scripts',
+			function () {
+				add_thickbox();
+			}
+		);
 	}
 
 	/**
@@ -78,7 +93,6 @@ class FixesManager {
 	private function maybe_enqueue_frontend_scripts() {
 
 		if (
-			is_admin() ||
 			( defined( 'REST_REQUEST' ) && REST_REQUEST ) ||
 			( defined( 'DOING_AJAX' ) && DOING_AJAX ) ||
 			( defined( 'DOING_CRON' ) && DOING_CRON ) ||
