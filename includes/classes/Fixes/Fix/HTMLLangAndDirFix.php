@@ -52,15 +52,6 @@ class HTMLLangAndDirFix implements FixInterface {
 			'edac_filter_fixes_settings_fields',
 			[ $this, 'get_fields_array' ],
 		);
-
-		add_filter(
-			'edac_filter_fixes_rule',
-			function ( $rules ) {
-				$rules['missing_lang_attr'] = 'edac_fix_add_lang_and_dir';
-
-				return $rules;
-			}
-		);
 	}
 
 	/**

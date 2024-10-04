@@ -54,15 +54,6 @@ class PreventLinksOpeningNewWindowFix implements FixInterface {
 			'edac_filter_fixes_settings_fields',
 			[ $this, 'get_fields_array' ],
 		);
-
-		add_filter(
-			'edac_filter_fixes_rule',
-			function ( $rules ) {
-				$rules['link_blank'] = 'edac_fix_' . $this->get_slug();
-
-				return $rules;
-			}
-		);
 	}
 
 	/**

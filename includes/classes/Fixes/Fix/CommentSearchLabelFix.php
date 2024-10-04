@@ -67,16 +67,6 @@ class CommentSearchLabelFix implements FixInterface {
 			'edac_filter_fixes_settings_fields',
 			[ $this, 'get_fields_array' ],
 		);
-
-		add_filter(
-			'edac_filter_fixes_rule',
-			function ( $rules ) {
-				$rules['missing_form_label'] = 'edac_fix_' . $this->get_slug();
-				$rules['empty_form_label']   = 'edac_fix_' . $this->get_slug();
-
-				return $rules;
-			}
-		);
 	}
 
 	/**
