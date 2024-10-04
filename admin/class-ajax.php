@@ -10,6 +10,7 @@ namespace EDAC\Admin;
 use EDAC\Admin\OptIn\Email_Opt_In;
 use EDAC\Inc\Summary_Generator;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 /**
  * Class that handles ajax requests.
@@ -301,9 +302,6 @@ class Ajax {
 			 * @allowed bool True if allowed, false if not
 			 */
 			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
-			$fixes_for_rules   = apply_filters( 'edac_filter_fixes_rule', [] );
-
-			$all_fixes = apply_filters( 'edac_filter_fixes_settings_fields', [] );
 
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
@@ -344,34 +342,44 @@ class Ajax {
 
 				if ( $results ) {
 
-					$html                 .= '<div id="edac-details-rule-records-' . $rule['slug'] . '" class="edac-details-rule-records">';
-					$item_needs_fix_action = '';
-					if ( isset( $fixes_for_rules[ $rule['slug'] ] ) && $all_fixes[ $fixes_for_rules[ $rule['slug'] ] ] ) {
-						$item_needs_fix_action   = $fixes_for_rules[ $rule['slug'] ];
-						$controls_id             = 'edac-fix-modal-' . $item_needs_fix_action;
-						$current_setting         = $all_fixes[ $fixes_for_rules[ $rule['slug'] ] ];
-						$current_setting['name'] = $item_needs_fix_action;
+					$html .= '<div id="edac-details-rule-records-' . $rule['slug'] . '" class="edac-details-rule-records">';
+
+					if ( isset( $rule['fixes'] ) ) {
+						$fixes_for_item = [];
+						foreach ( $rule['fixes'] as $fix_slug ) {
+							$fixes_for_item[] = FixesManager::get_instance()->get_fix( $fix_slug );
+						}
+
+						$controls_id = 'edac-fix-modal-' . $rule['slug'] . '__' . implode( '__', $rule['fixes'] );
 						ob_start();
 						// NOTE: This is markup to be cloned into a thickbox modal. It gets cloned from the inner div.
 						?>
 						<div style="display:none">
 							<div id="<?php echo esc_attr( $controls_id ); ?>" class="edac-details-fix-settings fix-settings--container">
-								<div class="setting-row fix-settings--container" data-fix="<?php echo esc_attr( $fixes_for_rules[ $rule['slug'] ] ); ?>">
-									<div class="title">
-										<h4><?php echo esc_html( $current_setting['label'] ); ?></h4>
-									</div>
-
-									<div class="edac-fix-settings">
-										<div class="edac-fix-settings--fields">
-											<?php FixesPage::{$current_setting['type']}( $current_setting ); ?>
-											<div class="edac-fix-settings--action-row">
-												<button role="button" class="button button-primary edac-fix-settings--button--save">
-													<?php esc_html_e( 'Save', 'accessibility-checker' ); ?>
-												</button>
-												<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
+								<div class="setting-row fix-settings--container" data-fix="<?php echo esc_attr( $controls_id ); ?>">
+									<?php
+									foreach ( $fixes_for_item as $fix ) :
+										?>
+										<div class="title">
+											<h2 class="edac-fix-settings--title"><?php echo esc_html( $fix->get_nicename() ); ?></h2>
+										</div>
+										<div class="edac-fix-settings">
+											<div class="edac-fix-settings--fields">
+												<?php
+												foreach ( $fix->get_fields_array() as $name => $field ) {
+													$field['name'] = $name;
+													FixesPage::{$field['type']}( $field );
+												}
+												?>
+												<div class="edac-fix-settings--action-row">
+													<button role="button" class="button button-primary edac-fix-settings--button--save">
+														<?php esc_html_e( 'Save', 'accessibility-checker' ); ?>
+													</button>
+													<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
+												</div>
 											</div>
 										</div>
-									</div>
+									<?php endforeach; ?>
 								</div>
 							</div>
 						</div>
@@ -453,7 +461,7 @@ class Ajax {
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
 
-						if ( ! empty( $item_needs_fix_action ) ) {
+						if ( ! empty( $fixes_for_item ) ) {
 							$html .= sprintf(
 								'<button class="edac-details-rule-records-record-actions-fix"
 									data-action="%1$s"
@@ -462,7 +470,7 @@ class Ajax {
 								>
 									%3$s
 								</button>',
-								$item_needs_fix_action,
+								esc_attr( $controls_id ),
 								esc_attr( $controls_id ),
 								esc_html__( 'Fix', 'accessibility-checker' )
 							);

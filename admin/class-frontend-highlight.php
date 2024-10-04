@@ -121,9 +121,13 @@ class Frontend_Highlight {
 			$issues[] = $array;
 
 			if ( ! isset( $fixes[ $rule[0]['slug'] ] ) ) {
-				$fix_for_rule = FixesManager::get_instance()->get_fix_associated_to_rule( $rule[0]['slug'] );
-				if ( $fix_for_rule && method_exists( $fix_for_rule, 'get_fields_array' ) ) {
-					$fixes[ $rule[0]['slug'] ] = $fix_for_rule->get_fields_array();
+				$fixes_for_rule = $rule[0]['fixes'] ?? [];
+
+				foreach ( $fixes_for_rule as $fix_for_rule ) {
+					$fix = FixesManager::get_instance()->get_fix( $fix_for_rule );
+					if ( $fix && method_exists( $fix, 'get_fields_array' ) ) {
+						$fixes[ $rule[0]['slug'] ] = isset( $fixes[ $rule[0]['slug'] ] ) ? array_merge( $fixes[ $rule[0]['slug'] ], $fix->get_fields_array() ) : $fix->get_fields_array();
+					}
 				}
 			}
 		}
