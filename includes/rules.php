@@ -5,6 +5,12 @@
  * @package Accessibility_Checker
  */
 
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\{
+	TabindexFix,
+	AddLabelToUnlabelledFormFieldsFix,
+	CommentSearchLabelFix,
+};
+
 return [
 	[
 		'title'     => esc_html__( 'Image Missing Alternative Text', 'accessibility-checker' ),
@@ -151,6 +157,9 @@ return [
 			esc_html__( 'A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can "Ignore" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element.', 'accessibility-checker' ),
 			'<code>tabindex="1"</code>'
 		),
+		'fixes'     => [
+			TabindexFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Empty Heading Tag', 'accessibility-checker' ),
@@ -269,6 +278,10 @@ return [
 			'<code>&lt;label&gt;</code>',
 			'<code>for=""</code>'
 		),
+		'fixes'     => [
+			AddLabelToUnlabelledFormFieldsFix::get_slug(),
+			CommentSearchLabelFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Ambiguous Anchor Text', 'accessibility-checker' ),
