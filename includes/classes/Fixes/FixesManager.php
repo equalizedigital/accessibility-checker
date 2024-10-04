@@ -160,25 +160,6 @@ class FixesManager {
 	}
 
 	/**
-	 * Get any fix that is associated with a rule.
-	 *
-	 * @param string $rule The rule to get the fix for.
-	 *
-	 * @return array
-	 */
-	public function get_fix_associated_to_rule( string $rule = '' ) {
-		if ( ! $rule ) {
-			return null;
-		}
-
-		$fix_assosciations = apply_filters( 'edac_filter_fixes_rule', [] );
-		if ( isset( $fix_assosciations[ $rule ] ) ) {
-			return $this->get_fix( str_replace( 'edac_fix_', '', $fix_assosciations[ $rule ] ) );
-		}
-		return null;
-	}
-
-	/**
 	 * Register the fixes.
 	 */
 	public function register_fixes() {
