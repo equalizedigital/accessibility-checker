@@ -83,6 +83,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 			'labelledby'  => 'add_read_more_title',
 			'description' => esc_html__( 'Adds the post title to "Read More" links in post lists when your theme outputs those links.', 'accessibility-checker' ),
 			'section'     => 'read_more_links',
+			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
 		];
 
@@ -93,6 +94,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 			'description' => esc_html__( 'Makes the post title added to "Read More" links visible only to screen readers.', 'accessibility-checker' ),
 			'condition'   => 'edac_fix_add_read_more_title',
 			'section'     => 'read_more_links',
+			'fix_slug'    => $this->get_slug(),
 		];
 
 		return $fields;

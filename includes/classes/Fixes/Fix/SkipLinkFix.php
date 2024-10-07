@@ -83,6 +83,7 @@ class SkipLinkFix implements FixInterface {
 			'labelledby'  => 'add_skip_link',
 			'description' => esc_html__( 'Add a skip link to all site pages, allowing users to skip directly to the main content.', 'accessibility-checker' ),
 			'section'     => 'skip_link',
+			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
 		];
 
@@ -95,6 +96,7 @@ class SkipLinkFix implements FixInterface {
 			'section'           => 'skip_link',
 			'condition'         => 'edac_fix_add_skip_link',
 			'required_when'     => 'edac_fix_add_skip_link',
+			'fix_slug'          => $this->get_slug(),
 		];
 
 		$fields['edac_fix_add_skip_link_nav_target_id'] = [
@@ -106,6 +108,7 @@ class SkipLinkFix implements FixInterface {
 			'sanitize_callback' => 'sanitize_text_field',
 			'section'           => 'skip_link',
 			'condition'         => 'edac_fix_add_skip_link',
+			'fix_slug'          => $this->get_slug(),
 		];
 
 		return $fields;

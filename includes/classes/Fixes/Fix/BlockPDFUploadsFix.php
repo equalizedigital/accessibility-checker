@@ -71,6 +71,7 @@ class BlockPDFUploadsFix implements FixInterface {
 			// translators: %1$s: a code tag with the capability name.
 			'description' => sprintf( __( 'Restricts PDF uploads for users without the %1$s capability (allowed for admins by default).', 'accessibility-checker' ), '<code>edac_upload_pdf</code>' ),
 			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
+			'fix_slug'    => $this->get_slug(),
 		];
 
 		return $fields;

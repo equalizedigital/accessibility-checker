@@ -83,6 +83,7 @@ class CommentSearchLabelFix implements FixInterface {
 			'labelledby'  => 'add_comment_label',
 			'description' => esc_html__( 'Adds missing labels to the WordPress comment form.', 'accessibility-checker' ),
 			'section'     => 'comment_search_label',
+			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
 		];
 
@@ -92,6 +93,7 @@ class CommentSearchLabelFix implements FixInterface {
 			'labelledby'  => 'add_search_label',
 			'description' => esc_html__( 'Adds a missing label to the WordPress search form.', 'accessibility-checker' ),
 			'section'     => 'comment_search_label',
+			'fix_slug'    => $this->get_slug(),
 		];
 
 		return $fields;

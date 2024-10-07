@@ -73,6 +73,7 @@ class PreventLinksOpeningNewWindowFix implements FixInterface {
 				esc_html__( 'Prevent links from opening in a new window or tab by removing %1$s.', 'accessibility-checker' ),
 				'<code>target="_blank"</code>'
 			),
+			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
 		];
 

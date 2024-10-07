@@ -68,6 +68,7 @@ class HTMLLangAndDirFix implements FixInterface {
 			'labelledby'  => 'add_read_more_title',
 			// translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
 			'description' => sprintf( __( 'Adds the site language (%1$s) and text direction (%2$s) attributes to the %3$s element.', 'accessibility-checker' ), '<code>lang</code>', '<code>dir</code>', '<code>&lt;html&gt;</code>' ),
+			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
 		];
 

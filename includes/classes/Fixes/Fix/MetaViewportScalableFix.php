@@ -82,6 +82,7 @@ class MetaViewportScalableFix implements FixInterface {
 			'type'        => 'checkbox',
 			'labelledby'  => '',
 			'description' => esc_html__( 'Ensures the viewport tag allows for scaling, enhancing accessibility on mobile devices.', 'accessibility-checker' ),
+			'fix_slug'    => $this->get_slug(),
 		];
 
 		return $fields;
