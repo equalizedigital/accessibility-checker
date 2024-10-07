@@ -164,8 +164,14 @@ body.edac-fixes-modal--open {
 	padding: 4px 8px;
 	text-decoration: none;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		color: #072446;
 		text-decoration: underline;
+	}
+
+	&:focus {
+		outline: revert !important;
+		outline-offset: revert !important;
 	}
 }
