@@ -182,6 +182,11 @@ class REST_Api {
 				? '// {{ ' . $violation['selector'][0] . ' }}'
 				: '';
 		}
+		if ( 'html-has-lang' === $rule_id ) {
+			// Use just the opening <html> and closing </html> tag for the affected code markup.
+			$html = preg_replace( '/^.*(<html.*?>).*(<\/html>).*$/s', '$1...$2', $html );
+
+		}
 		return $html;
 	}
 

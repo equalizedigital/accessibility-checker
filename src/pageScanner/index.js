@@ -73,6 +73,8 @@ const scan = async (
 					'meta-viewport',
 					'blink',
 					'marquee',
+					'html-lang-valid',
+					'html-has-lang',
 					colorContrastFailure.id,
 					underlinedText.id,
 					emptyParagraph.id,
