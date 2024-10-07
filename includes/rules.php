@@ -9,6 +9,11 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\{
 	TabindexFix,
 	AddLabelToUnlabelledFormFieldsFix,
 	CommentSearchLabelFix,
+	ReadMoreAddTitleFix,
+	PreventLinksOpeningNewWindowFix,
+	HTMLLangAndDirFix,
+	AddMissingOrEmptyPageTitleFix,
+	SkipLinkFix
 };
 
 return [
@@ -134,6 +139,9 @@ return [
 			esc_html__( 'A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure "opens new window" is included in the link text then "Ignore" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin.', 'accessibility-checker' ),
 			'<a href="https://wordpress.org/plugins/accessibility-new-window-warnings/" target="_blank">' . esc_html__( 'Accessibility New Window Warnings', 'accessibility-checker' ) . '</a>'
 		),
+		'fixes'     => [
+			PreventLinksOpeningNewWindowFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Image Map Missing Alternative Text', 'accessibility-checker' ),
@@ -265,6 +273,10 @@ return [
 			esc_html__( 'An Empty Form Label error is triggered when a %s tag is present in your form and associated with an input (form field), but does not contain any text. To fix empty form label errors, you will need to determine how the field and form were created and then add text to the label for the field that is currently blank.', 'accessibility-checker' ),
 			'<code>&lt;label&gt;</code>'
 		),
+		'fixes'     => [
+			AddLabelToUnlabelledFormFieldsFix::get_slug(),
+			CommentSearchLabelFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Form Label', 'accessibility-checker' ),
@@ -289,6 +301,9 @@ return [
 		'slug'      => 'link_ambiguous_text',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like "click here" or "learn more." To resolve this error, change the link text to be less generic so that it has meaning if heard on its own.', 'accessibility-checker' ),
+		'fixes'     => [
+			ReadMoreAddTitleFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Underlined Text', 'accessibility-checker' ),
@@ -308,6 +323,9 @@ return [
 		'slug'      => 'broken_skip_anchor_link',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or "Ignore" the error as applicable.', 'accessibility-checker' ),
+		'fixes'     => [
+			SkipLinkFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Table Header', 'accessibility-checker' ),
@@ -393,6 +411,9 @@ return [
 			'<code>lang</code>',
 			'<code>xml:lang</code>'
 		),
+		'fixes'     => [
+			HTMLLangAndDirFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Image Animated GIF', 'accessibility-checker' ),
@@ -426,6 +447,9 @@ return [
 			'<code>&lt;title&gt;</code>',
 			'<code>og:title</code>'
 		),
+		'fixes'     => [
+			ReadMoreAddTitleFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Improper Use of Link', 'accessibility-checker' ),
