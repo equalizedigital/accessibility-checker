@@ -357,29 +357,36 @@ class Ajax {
 						<div style="display:none">
 							<div id="<?php echo esc_attr( $controls_id ); ?>" class="edac-details-fix-settings fix-settings--container">
 								<div class="setting-row fix-settings--container" data-fix="<?php echo esc_attr( $controls_id ); ?>">
-									<?php
-									foreach ( $fixes_for_item as $fix ) :
-										?>
-										<div class="title">
-											<h2 class="edac-fix-settings--title"><?php echo esc_html( $fix->get_nicename() ); ?></h2>
-										</div>
-										<div class="edac-fix-settings">
-											<div class="edac-fix-settings--fields">
-												<?php
-												foreach ( $fix->get_fields_array() as $name => $field ) {
-													$field['name'] = $name;
-													FixesPage::{$field['type']}( $field );
-												}
-												?>
-												<div class="edac-fix-settings--action-row">
-													<button role="button" class="button button-primary edac-fix-settings--button--save">
-														<?php esc_html_e( 'Save', 'accessibility-checker' ); ?>
-													</button>
-													<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
-												</div>
+									<div class="edac-fix-settings">
+										<?php
+										foreach ( $fixes_for_item as $index => $fix ) :
+											?>
+											<div class="title">
+												<h2 class="edac-fix-settings--title"><?php echo esc_html( $fix->get_nicename() ); ?></h2>
 											</div>
-										</div>
-									<?php endforeach; ?>
+												<div class="edac-fix-settings--fields">
+													<?php
+													foreach ( $fix->get_fields_array() as $name => $field ) {
+														$field['name'] = $name;
+														FixesPage::{$field['type']}( $field );
+													}
+													// Output the save button only in the last group.
+													if ( count( $fixes_for_item ) === $index + 1 ) :
+														?>
+														<div class="edac-fix-settings--action-row">
+															<button role="button" class="button button-primary edac-fix-settings--button--save">
+																<?php esc_html_e( 'Save', 'accessibility-checker' ); ?>
+															</button>
+															<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
+														</div>
+														<?php
+													endif;
+													?>
+
+												</div>
+
+										<?php endforeach; ?>
+									</div>
 								</div>
 							</div>
 						</div>
