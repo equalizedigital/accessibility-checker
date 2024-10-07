@@ -70,6 +70,7 @@ class HTMLLangAndDirFix implements FixInterface {
 			'description' => sprintf( __( 'Adds the site language (%1$s) and text direction (%2$s) attributes to the %3$s element.', 'accessibility-checker' ), '<code>lang</code>', '<code>dir</code>', '<code>&lt;html&gt;</code>' ),
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
+			'help_id'     => 8487,
 		];
 
 		return $fields;

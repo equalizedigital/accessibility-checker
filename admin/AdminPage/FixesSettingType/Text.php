@@ -33,6 +33,28 @@ trait Text {
 				<a class="edac-fix--upsell-link" href="<?php echo esc_url( edac_generate_pro_link( [ 'fix' => $args['fix_slug'] ] ) ); ?>"><?php esc_html_e( 'Get Pro', 'accessibility-checker' ); ?></a>
 			<?php endif; ?>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
+			<?php
+			if ( $args['help_id'] && $args['label'] ) :
+				$link = edac_generate_link_type(
+					[
+						'utm-content' => 'fix-description',
+						'utm-term'    => $args['name'],
+					],
+					'help',
+					[
+						'help_id' => $args['help_id'],
+					]
+				)
+				?>
+				<a
+					href="<?php echo esc_url( $link ); ?>"
+					class="edac-fix-description-help-link"
+					target="_blank"
+					aria-label="Read documentation for <?php echo esc_attr( $args['label'] ); ?>"
+				>
+					<span class="dashicons dashicons-info"></span>
+				</a>
+			<?php endif; ?>
 		</label>
 		<input
 			type="text"

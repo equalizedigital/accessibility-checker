@@ -83,6 +83,7 @@ class FocusOutlineFix implements FixInterface {
 			'description' => esc_html__( 'Adds an outline to elements when they receive keyboard focus.', 'accessibility-checker' ),
 			'section'     => 'focus_outline',
 			'fix_slug'    => $this->get_slug(),
+			'help_id'     => 8495,
 		];
 
 		return $fields;

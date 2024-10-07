@@ -68,6 +68,7 @@ class LinkUnderline implements FixInterface {
 			'labelledby'  => 'force_link_underline',
 			'description' => esc_html__( 'Ensures that non-navigation links are underlined.', 'accessibility-checker' ),
 			'fix_slug'    => $this->get_slug(),
+			'help_id'     => 8489,
 		];
 
 		return $fields;

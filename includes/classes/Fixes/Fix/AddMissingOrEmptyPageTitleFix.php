@@ -72,6 +72,7 @@ class AddMissingOrEmptyPageTitleFix implements FixInterface {
 			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
+			'help_id'     => 8490,
 		];
 
 		return $fields;

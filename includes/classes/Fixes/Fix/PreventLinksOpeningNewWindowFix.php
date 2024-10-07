@@ -75,6 +75,7 @@ class PreventLinksOpeningNewWindowFix implements FixInterface {
 			),
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
+			'help_id'     => 8493,
 		];
 
 		return $fields;
