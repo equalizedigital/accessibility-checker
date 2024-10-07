@@ -74,6 +74,8 @@ const scan = async (
 					'blink',
 					'marquee',
 					'tabindex',
+					'html-lang-valid',
+					'html-has-lang',
 					colorContrastFailure.id,
 					underlinedText.id,
 					emptyParagraph.id,

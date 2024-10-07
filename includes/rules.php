@@ -382,6 +382,9 @@ return [
 			'<code>lang</code>',
 			'<code>xml:lang</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [ 'html-lang-valid', 'html-has-lang' ],
+		'viewable'  => false,
 	],
 	[
 		'title'     => esc_html__( 'Image Animated GIF', 'accessibility-checker' ),
