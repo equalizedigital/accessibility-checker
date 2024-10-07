@@ -146,6 +146,11 @@ class Frontend_Highlight {
 				foreach ( $fix as $index => $field ) {
 					$field_type = $field['type'] ?? 'checkbox';
 					ob_start();
+					if ( isset( $field['group_name'] ) ) {
+						?>
+						<h3 class="title"><?php echo esc_html( $field['group_name'] ); ?></h3>
+						<?php
+					}
 					FixesPage::{$field_type}(
 						array_merge(
 							[ 'name' => $index ],
