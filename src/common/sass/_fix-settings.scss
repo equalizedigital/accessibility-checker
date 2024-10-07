@@ -152,3 +152,20 @@ body.edac-fixes-modal--open {
 		}
 	}
 }
+
+.edac-fix--upsell-link {
+	font-weight: 600;
+	background: #f3cd1e;
+	border-radius: 18px;
+	color: #072446;
+	display: inline-block;
+	font-size: 0.75rem;
+	line-height: 1;
+	padding: 4px 8px;
+	text-decoration: none;
+
+	&:hover {
+		color: #072446;
+		text-decoration: underline;
+	}
+}

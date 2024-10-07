@@ -367,7 +367,8 @@ class Ajax {
 												</div>
 												<?php
 												foreach ( $fix->get_fields_array() as $name => $field ) {
-													$field['name'] = $name;
+													$field['name']     = $name;
+													$field['location'] = 'details-panel';
 													FixesPage::{$field['type']}( $field );
 												}
 												// Output the save button only in the last group.

@@ -153,7 +153,10 @@ class Frontend_Highlight {
 					}
 					FixesPage::{$field_type}(
 						array_merge(
-							[ 'name' => $index ],
+							[
+								'name'     => $index,
+								'location' => 'frontend-highlighter',
+							],
 							$field
 						)
 					);
