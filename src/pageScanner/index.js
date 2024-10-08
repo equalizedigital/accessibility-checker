@@ -14,8 +14,8 @@ import textSmall from './rules/text-small';
 import textSizeTooSmall from './checks/text-size-too-small';
 import textJustified from './rules/text-justified';
 import textIsJustified from './checks/text-is-justified';
-import linkBlank from './rules/link_blank';
-import linkTargetBlank from './checks/link-is-blank';
+import linkTargetBlank from './rules/link_target_blank';
+import linkTargetBlankWithoutInforming from './checks/link-target-blank-without-informing';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -54,7 +54,7 @@ const scan = async (
 				emptyParagraph,
 				textSmall,
 				textJustified,
-				linkBlank,
+				linkTargetBlank,
 			],
 			checks: [
 				//alwaysFail,
@@ -64,7 +64,7 @@ const scan = async (
 				paragraphNotEmpty,
 				textSizeTooSmall,
 				textIsJustified,
-				linkTargetBlank,
+				linkTargetBlankWithoutInforming,
 			],
 			iframes: false,
 
@@ -86,7 +86,7 @@ const scan = async (
 					possibleHeading.id,
 					textSmall.id,
 					textJustified.id,
-					linkBlank.id,
+					linkTargetBlank.id,
 				],
 			},
 

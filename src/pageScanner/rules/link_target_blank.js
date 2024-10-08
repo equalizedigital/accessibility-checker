@@ -18,5 +18,5 @@ export default {
 	},
 	all: [],
 	any: [],
-	none: [ 'link_target_blank' ],
+	none: [ 'link_target_blank_without_informing' ],
 };

@@ -1,18 +1,24 @@
 /**
  * Axe core check against nodes to determine if link opens in new tab and if so has appropriate aria-label or aria-labelledby.
- *
- * @param {Node} node The node to evaluate.
- * @return {boolean} True if the node is an a tag with valid new tab callout, false otherwise.
  */
 
 import { __ } from '@wordpress/i18n';
 
-const allowedPhrases = [ __( 'new window', 'accessibility-checker' ), __( 'new tab', 'accessibility-checker' ) ];
+const allowedPhrases = [
+	__( 'new window', 'accessibility-checker' ),
+	__( 'new tab', 'accessibility-checker' ),
+];
 
+/**
+ * Check for links that open in a new tab without informing the user.
+ *
+ * @param {HTMLElement} node The node to evaluate.
+ *                           return {boolean} False if the node is a link that opens in a new tab without informing the user, true if informed.
+ */
 export default {
-	id: 'link_target_blank',
+	id: 'link_target_blank_without_informing',
 	evaluate: ( node ) => {
-		// Make sure it's an anchor tag with target="_blank".
+		// Bail early if not a link or not target blank.
 		if ( node.tagName.toLowerCase() !== 'a' || node.getAttribute( 'target' ) !== '_blank' ) {
 			return false;
 		}
