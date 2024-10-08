@@ -19,22 +19,19 @@ export default {
 
 		// Check plain text.
 		if ( checkTextHasInfoCallout( node.textContent ) ) {
-			return true;
+			return false;
 		}
 
 		// Check aria-label.
-		if ( node.hasAttribute( 'aria-label' ) ) {
-			return checkTextHasInfoCallout( node.getAttribute( 'aria-label' ) );
+		if ( node.hasAttribute( 'aria-label' ) && checkTextHasInfoCallout( node.getAttribute( 'aria-label' ) ) ) {
+			return false;
 		}
 
 		// Check aria-labelledby.
 		if ( node.hasAttribute( 'aria-labelledby' ) ) {
-			const labels = node.getAttribute( 'aria-labelledby' ).split( ' ' );
-			for ( const label of labels ) {
-				const element = document.getElementById( label );
-				if ( element && checkTextHasInfoCallout( element.textContent ) ) {
-					return true;
-				}
+			const labelElement = document.getElementById( node.getAttribute( 'aria-labelledby' ) );
+			if ( labelElement && checkTextHasInfoCallout( labelElement.textContent ) ) {
+				return false;
 			}
 		}
 
@@ -42,12 +39,12 @@ export default {
 		const images = node.querySelectorAll( 'img' );
 		for ( const image of images ) {
 			if ( checkTextHasInfoCallout( image.getAttribute( 'alt' ) ) ) {
-				return true;
+				return false;
 			}
 		}
 
 		// Nothing so far has indicated that this is a new window/tab opener so this is a fail.
-		return false;
+		return true;
 	},
 };
 
@@ -61,6 +58,5 @@ const checkTextHasInfoCallout = ( text ) => {
 	if ( ! text ) {
 		return false;
 	}
-	text = text.toLowerCase();
-	return allowedPhrases.some( ( phrase ) => text.includes( phrase ) );
+	return allowedPhrases.some( ( phrase ) => text.toLowerCase().includes( phrase ) );
 };
