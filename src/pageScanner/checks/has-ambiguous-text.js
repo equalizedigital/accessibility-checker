@@ -26,12 +26,18 @@ const checkAmbiguousPhrase = ( text ) => {
 	if ( ! text ) {
 		return false;
 	}
-	return ambiguousPhrases.includes( text.toLowerCase().trim() );
+	text = text.toLowerCase().replace( /[^a-z]+/g, ' ' ).trim();
+	return ambiguousPhrases.includes( text );
 };
 
 export default {
 	id: 'has_ambiguous_text',
 	evaluate: ( node ) => {
+		const textContent = node.textContent;
+		if ( checkAmbiguousPhrase( textContent ) ) {
+			return true;
+		}
+
 		if ( node.hasAttribute( 'aria-label' ) ) {
 			const ariaLabel = node.getAttribute( 'aria-label' );
 			return checkAmbiguousPhrase( ariaLabel );
@@ -44,11 +50,6 @@ export default {
 				return element ? element.textContent : '';
 			} ).join( ' ' );
 			return checkAmbiguousPhrase( labelText );
-		}
-
-		const textContent = node.textContent;
-		if ( checkAmbiguousPhrase( textContent ) ) {
-			return true;
 		}
 
 		const images = node.querySelectorAll( 'img' );
