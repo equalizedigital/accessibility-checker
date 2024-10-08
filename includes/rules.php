@@ -278,6 +278,7 @@ return [
 		'slug'      => 'link_ambiguous_text',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like "click here" or "learn more." To resolve this error, change the link text to be less generic so that it has meaning if heard on its own.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Underlined Text', 'accessibility-checker' ),
