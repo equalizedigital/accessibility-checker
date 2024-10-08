@@ -73,6 +73,7 @@ const scan = async (
 					'meta-viewport',
 					'blink',
 					'marquee',
+					'document-title',
 					'tabindex',
 					'html-lang-valid',
 					'html-has-lang',
