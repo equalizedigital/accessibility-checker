@@ -14,6 +14,8 @@ import textSmall from './rules/text-small';
 import textSizeTooSmall from './checks/text-size-too-small';
 import textJustified from './rules/text-justified';
 import textIsJustified from './checks/text-is-justified';
+import linkAmbiguousText from './rules/link-ambiguous-text';
+import hasAmbiguousText from './checks/has-ambiguous-text';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -52,6 +54,7 @@ const scan = async (
 				emptyParagraph,
 				textSmall,
 				textJustified,
+				linkAmbiguousText,
 			],
 			checks: [
 				//alwaysFail,
@@ -61,6 +64,7 @@ const scan = async (
 				paragraphNotEmpty,
 				textSizeTooSmall,
 				textIsJustified,
+				hasAmbiguousText,
 			],
 			iframes: false,
 
@@ -82,6 +86,7 @@ const scan = async (
 					possibleHeading.id,
 					textSmall.id,
 					textJustified.id,
+					linkAmbiguousText.id,
 				],
 			},
 
