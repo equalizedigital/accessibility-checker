@@ -44,11 +44,8 @@ export default {
 		}
 
 		if ( node.hasAttribute( 'aria-labelledby' ) ) {
-			const labels = node.getAttribute( 'aria-labelledby' ).split( ' ' );
-			const labelText = labels.map( ( label ) => {
-				const element = document.getElementById( label );
-				return element ? element.textContent : '';
-			} ).join( ' ' );
+			const label = node.getAttribute( 'aria-labelledby' );
+			const labelText = document.getElementById( label )?.textContent;
 			return checkAmbiguousPhrase( labelText );
 		}
 
