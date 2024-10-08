@@ -34,6 +34,9 @@ unzip accessibility-checker.zip -d ./dist/accessibility-checker
 rm ./dist/accessibility-checker/package.json
 rm ./dist/accessibility-checker/README.md
 
+# remove the unneeded (almost 1MB) tests folder for textstatistics package
+rm ./dist/accessibility-checker/vendor/davechild/textstatistics/tests -r
+
 #remove the original zip
 rm accessibility-checker.zip
 

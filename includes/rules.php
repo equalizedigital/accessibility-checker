@@ -151,6 +151,8 @@ return [
 			esc_html__( 'A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can "Ignore" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element.', 'accessibility-checker' ),
 			'<code>tabindex="1"</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [ 'tabindex' ],
 	],
 	[
 		'title'     => esc_html__( 'Empty Heading Tag', 'accessibility-checker' ),
@@ -380,6 +382,9 @@ return [
 			'<code>lang</code>',
 			'<code>xml:lang</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [ 'html-lang-valid', 'html-has-lang' ],
+		'viewable'  => false,
 	],
 	[
 		'title'     => esc_html__( 'Image Animated GIF', 'accessibility-checker' ),
