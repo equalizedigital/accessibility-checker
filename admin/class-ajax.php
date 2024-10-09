@@ -344,8 +344,8 @@ class Ajax {
 
 					$html .= '<div id="edac-details-rule-records-' . $rule['slug'] . '" class="edac-details-rule-records">';
 
+					$fixes_for_item = [];
 					if ( isset( $rule['fixes'] ) ) {
-						$fixes_for_item = [];
 						foreach ( $rule['fixes'] as $fix_slug ) {
 							$fixes_for_item[] = FixesManager::get_instance()->get_fix( $fix_slug );
 						}
