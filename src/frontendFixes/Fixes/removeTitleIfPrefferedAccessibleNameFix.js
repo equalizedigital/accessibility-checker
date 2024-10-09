@@ -35,7 +35,8 @@ const RemoveTitleIfPreferredAccessibleName = () => {
  */
 const handleImageElement = ( element ) => {
 	// if the image has a non-empty alt attribute, remove the title attribute
-	if ( element.getAttribute( 'alt' )?.trim() !== '' ) {
+	const alt = element.getAttribute( 'alt' );
+	if ( alt && alt?.trim() !== '' ) {
 		removeTitle( element );
 		return;
 	}
@@ -53,7 +54,8 @@ const handleImageElement = ( element ) => {
  */
 const handleLinkOrButtonElement = ( element ) => {
 	// if the element has non-empty text content, remove the title attribute
-	if ( element.innerText.trim() !== '' ) {
+	const textContent = element.innerText;
+	if ( textContent && textContent?.trim() !== '' ) {
 		removeTitle( element );
 		return;
 	}
@@ -64,7 +66,7 @@ const handleLinkOrButtonElement = ( element ) => {
 		return;
 	}
 
-	// by this point the element has no text content, aria-label or aria-labelledby, move the title to the aria-label then remove the title
+	// By this point the element has no aria-label or aria-labelledby, move the title to the aria-label then remove the title
 	element.setAttribute( 'aria-label', element.getAttribute( 'title' ) );
 	removeTitle( element );
 };
@@ -86,14 +88,15 @@ const handleInputElements = ( element ) => {
 	// Has an associated label or is wrapped in a label.
 	const associatedLabel = element.labels?.[ 0 ]?.innerText;
 	const wrappingLabel = element.closest( 'label' )?.innerText;
-
-	if ( ariaLabel?.trim() !== '' || ariaLabelledBy?.trim() !== '' || associatedLabel?.trim() !== '' || wrappingLabel?.trim() !== '' ) {
-		// there exists a label already, remove the title attribute.
+	if (
+		( associatedLabel && associatedLabel?.trim() !== '' ) ||
+		( wrappingLabel && wrappingLabel?.trim() !== '' )
+	) {
 		removeTitle( element );
 		return;
 	}
 
-	// by this point there is no proper labeling found so move the title to the aria-label then remove the title
+	// By this point there is no proper labeling found so move the title to the aria-label then remove the title.
 	element.setAttribute( 'aria-label', element.getAttribute( 'title' ) );
 	removeTitle( element );
 };
