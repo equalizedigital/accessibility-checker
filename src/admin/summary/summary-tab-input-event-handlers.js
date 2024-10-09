@@ -121,7 +121,7 @@ export const initFixButtonEventHandlers = () => {
 
 			// trigger a thickbox that contains the contents of the fixSettings
 			// eslint-disable-next-line no-undef
-			tb_show( __( 'Fix Settings', 'accessibility-checker' ), '#TB_inline?f=1&width=600&height=300&inlineId=' + fixSettings.id );
+			tb_show( __( 'Fix Settings', 'accessibility-checker' ), '#TB_inline?inlineId=' + fixSettings.id );
 
 			const thickbox = document.getElementById( 'TB_window' );
 			thickbox.querySelector( '.edac-fix-settings--button--save' ).addEventListener( 'click', ( clickedEvent ) => {
