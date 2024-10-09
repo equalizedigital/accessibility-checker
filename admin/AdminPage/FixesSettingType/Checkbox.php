@@ -40,12 +40,12 @@ trait Checkbox {
 				<?php echo isset( $args['group_name'] ) ? 'data-group-name="' . esc_attr( $args['group_name'] ) . '"' : ''; ?>
 			/>
 			<?php if ( isset( $args['location'] ) && $upsell ) : ?>
-				<a class="edac-fix--upsell-link" href="<?php echo esc_url( edac_generate_pro_link( [ 'fix' => $args['fix_slug'] ] ) ); ?>"><?php esc_html_e( 'Get Pro', 'accessibility-checker' ); ?></a>
+				<a class="edac-fix--upsell-link" href="<?php echo esc_url( \edac_generate_link_type( [ 'fix' => $args['fix_slug'] ] ) ); ?>"><?php esc_html_e( 'Get Pro', 'accessibility-checker' ); ?></a>
 			<?php endif; ?>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 			<?php
 			if ( $args['help_id'] && $args['label'] ) :
-				$link = edac_generate_link_type(
+				$link = \edac_generate_link_type(
 					[
 						'utm-content' => 'fix-description',
 						'utm-term'    => $args['name'],
