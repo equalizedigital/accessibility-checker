@@ -58,10 +58,8 @@ const handleLinkOrButtonElement = ( element ) => {
 		return;
 	}
 
-	// element has no text content, check if it has aria-label or aria-labelledby attribute
-	const ariaLabel = element.getAttribute( 'aria-label' );
-	const ariaLabelledBy = element.getAttribute( 'aria-labelledby' );
-	if ( ariaLabel?.trim() !== '' || ariaLabelledBy?.trim() !== '' ) {
+	// check if it has aria-label or aria-labelledby attribute
+	if ( checkAriaLabel( element ) ) {
 		removeTitle( element );
 		return;
 	}
@@ -79,9 +77,13 @@ const handleLinkOrButtonElement = ( element ) => {
  * @param {HTMLElement} element
  */
 const handleInputElements = ( element ) => {
-	// check for some associated label or wrapping label.
-	const ariaLabel = element.getAttribute( 'aria-label' );
-	const ariaLabelledBy = element.getAttribute( 'aria-labelledby' );
+	// Check if it has aria-label or aria-labelledby attribute.
+	if ( checkAriaLabel( element ) ) {
+		removeTitle( element );
+		return;
+	}
+
+	// Has an associated label or is wrapped in a label.
 	const associatedLabel = element.labels?.[ 0 ]?.innerText;
 	const wrappingLabel = element.closest( 'label' )?.innerText;
 
@@ -96,9 +98,32 @@ const handleInputElements = ( element ) => {
 	removeTitle( element );
 };
 
+/**
+ * Remove the title attribute and add a class to the element.
+ *
+ * @param {HTMLElement} element
+ */
 const removeTitle = ( element ) => {
 	element.classList.add( 'edac-removed-title' );
 	element.removeAttribute( 'title' );
+};
+
+/**
+ * Check if the element has aria-label or aria-labelledby attribute.
+ *
+ * @param {HTMLElement} element
+ * @return {boolean} True if the element has aria-label or aria-labelledby attribute.
+ */
+const checkAriaLabel = ( element ) => {
+	const ariaLabel = element.getAttribute( 'aria-label' );
+	const ariaLabelledBy = element.getAttribute( 'aria-labelledby' );
+	if (
+		( ariaLabel && ariaLabel?.trim() !== '' ) ||
+		( ariaLabelledBy && ariaLabelledBy?.trim() !== '' )
+	) {
+		return true;
+	}
+	return false;
 };
 
 export default RemoveTitleIfPreferredAccessibleName;
