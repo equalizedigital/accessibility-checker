@@ -470,13 +470,10 @@ class Ajax {
 						if ( ! empty( $fixes_for_item ) ) {
 							$html .= sprintf(
 								'<button class="edac-details-rule-records-record-actions-fix"
-									data-action="%1$s"
-									aria-expanded="false"
-									aria-controls="%2$s"
+									aria-controls="%1$s"
 								>
-									%3$s
+									%2$s
 								</button>',
-								esc_attr( $controls_id ),
 								esc_attr( $controls_id ),
 								esc_html__( 'Fix', 'accessibility-checker' )
 							);
