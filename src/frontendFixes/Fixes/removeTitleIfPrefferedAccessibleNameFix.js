@@ -35,7 +35,8 @@ const RemoveTitleIfPreferredAccessibleName = () => {
  */
 const handleImageElement = ( element ) => {
 	// if the image has a non-empty alt attribute, remove the title attribute
-	if ( element.getAttribute( 'alt' )?.trim() !== '' ) {
+	const alt = element.getAttribute( 'alt' );
+	if ( alt && alt?.trim() !== '' ) {
 		removeTitle( element );
 		return;
 	}
@@ -53,20 +54,19 @@ const handleImageElement = ( element ) => {
  */
 const handleLinkOrButtonElement = ( element ) => {
 	// if the element has non-empty text content, remove the title attribute
-	if ( element.innerText.trim() !== '' ) {
+	const textContent = element.innerText;
+	if ( textContent && textContent?.trim() !== '' ) {
 		removeTitle( element );
 		return;
 	}
 
-	// element has no text content, check if it has aria-label or aria-labelledby attribute
-	const ariaLabel = element.getAttribute( 'aria-label' );
-	const ariaLabelledBy = element.getAttribute( 'aria-labelledby' );
-	if ( ariaLabel?.trim() !== '' || ariaLabelledBy?.trim() !== '' ) {
+	// check if it has aria-label or aria-labelledby attribute
+	if ( checkAriaLabel( element ) ) {
 		removeTitle( element );
 		return;
 	}
 
-	// by this point the element has no text content, aria-label or aria-labelledby, move the title to the aria-label then remove the title
+	// By this point the element has no aria-label or aria-labelledby, move the title to the aria-label then remove the title
 	element.setAttribute( 'aria-label', element.getAttribute( 'title' ) );
 	removeTitle( element );
 };
@@ -79,26 +79,54 @@ const handleLinkOrButtonElement = ( element ) => {
  * @param {HTMLElement} element
  */
 const handleInputElements = ( element ) => {
-	// check for some associated label or wrapping label.
-	const ariaLabel = element.getAttribute( 'aria-label' );
-	const ariaLabelledBy = element.getAttribute( 'aria-labelledby' );
-	const associatedLabel = element.labels?.[ 0 ]?.innerText;
-	const wrappingLabel = element.closest( 'label' )?.innerText;
-
-	if ( ariaLabel?.trim() !== '' || ariaLabelledBy?.trim() !== '' || associatedLabel?.trim() !== '' || wrappingLabel?.trim() !== '' ) {
-		// there exists a label already, remove the title attribute.
+	// Check if it has aria-label or aria-labelledby attribute.
+	if ( checkAriaLabel( element ) ) {
 		removeTitle( element );
 		return;
 	}
 
-	// by this point there is no proper labeling found so move the title to the aria-label then remove the title
+	// Has an associated label or is wrapped in a label.
+	const associatedLabel = element.labels?.[ 0 ]?.innerText;
+	const wrappingLabel = element.closest( 'label' )?.innerText;
+	if (
+		( associatedLabel && associatedLabel?.trim() !== '' ) ||
+		( wrappingLabel && wrappingLabel?.trim() !== '' )
+	) {
+		removeTitle( element );
+		return;
+	}
+
+	// By this point there is no proper labeling found so move the title to the aria-label then remove the title.
 	element.setAttribute( 'aria-label', element.getAttribute( 'title' ) );
 	removeTitle( element );
 };
 
+/**
+ * Remove the title attribute and add a class to the element.
+ *
+ * @param {HTMLElement} element
+ */
 const removeTitle = ( element ) => {
 	element.classList.add( 'edac-removed-title' );
 	element.removeAttribute( 'title' );
+};
+
+/**
+ * Check if the element has aria-label or aria-labelledby attribute.
+ *
+ * @param {HTMLElement} element
+ * @return {boolean} True if the element has aria-label or aria-labelledby attribute.
+ */
+const checkAriaLabel = ( element ) => {
+	const ariaLabel = element.getAttribute( 'aria-label' );
+	const ariaLabelledBy = element.getAttribute( 'aria-labelledby' );
+	if (
+		( ariaLabel && ariaLabel?.trim() !== '' ) ||
+		( ariaLabelledBy && ariaLabelledBy?.trim() !== '' )
+	) {
+		return true;
+	}
+	return false;
 };
 
 export default RemoveTitleIfPreferredAccessibleName;
