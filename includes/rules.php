@@ -128,6 +128,10 @@ return [
 			esc_html__( 'A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure "opens new window" is included in the link text then "Ignore" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin.', 'accessibility-checker' ),
 			'<a href="https://wordpress.org/plugins/accessibility-new-window-warnings/" target="_blank">' . esc_html__( 'Accessibility New Window Warnings', 'accessibility-checker' ) . '</a>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [
+			'link_blank',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Image Map Missing Alternative Text', 'accessibility-checker' ),

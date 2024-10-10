@@ -14,6 +14,8 @@ import textSmall from './rules/text-small';
 import textSizeTooSmall from './checks/text-size-too-small';
 import textJustified from './rules/text-justified';
 import textIsJustified from './checks/text-is-justified';
+import linkTargetBlank from './rules/link_target_blank';
+import linkTargetBlankWithoutInforming from './checks/link-target-blank-without-informing';
 import linkAmbiguousText from './rules/link-ambiguous-text';
 import hasAmbiguousText from './checks/has-ambiguous-text';
 import brokenAnchorLink from './rules/broken-anchor-link';
@@ -56,6 +58,7 @@ const scan = async (
 				emptyParagraph,
 				textSmall,
 				textJustified,
+				linkTargetBlank,
 				linkAmbiguousText,
 				brokenAnchorLink,
 			],
@@ -67,6 +70,7 @@ const scan = async (
 				paragraphNotEmpty,
 				textSizeTooSmall,
 				textIsJustified,
+				linkTargetBlankWithoutInforming,
 				hasAmbiguousText,
 				anchorExists,
 			],
@@ -91,6 +95,7 @@ const scan = async (
 					possibleHeading.id,
 					textSmall.id,
 					textJustified.id,
+					linkTargetBlank.id,
 					linkAmbiguousText.id,
 					brokenAnchorLink.id,
 				],
