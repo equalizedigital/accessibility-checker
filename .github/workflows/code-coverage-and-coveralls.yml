@@ -40,7 +40,7 @@ jobs:
       run: ./vendor/bin/phpunit --coverage-clover=./coverage/clover.xml --coverage-html=./coverage/html
 
     - name : Attach zipped coverage report as workflow artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: coverage-html
         path: ./coverage/coverage-html.zip
