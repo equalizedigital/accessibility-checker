@@ -116,7 +116,7 @@ export const initFixButtonEventHandlers = () => {
 	// loop through each button binding a click event
 	fixButtons.forEach( ( button ) => {
 		button.addEventListener( 'click', ( event ) => {
-			const fixSettings = document.getElementById( event.target.getAttribute( 'data-action' ) );
+			const fixSettings = document.getElementById( event.target.getAttribute( 'aria-controls' ) );
 			fixSettings.classList.toggle( 'active' );
 
 			// trigger a thickbox that contains the contents of the fixSettings
