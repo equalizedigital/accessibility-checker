@@ -16,6 +16,10 @@ import textJustified from './rules/text-justified';
 import textIsJustified from './checks/text-is-justified';
 import linkTargetBlank from './rules/link_target_blank';
 import linkTargetBlankWithoutInforming from './checks/link-target-blank-without-informing';
+import linkAmbiguousText from './rules/link-ambiguous-text';
+import hasAmbiguousText from './checks/has-ambiguous-text';
+import brokenAnchorLink from './rules/broken-anchor-link';
+import anchorExists from './checks/anchor-exists';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -55,6 +59,8 @@ const scan = async (
 				textSmall,
 				textJustified,
 				linkTargetBlank,
+				linkAmbiguousText,
+				brokenAnchorLink,
 			],
 			checks: [
 				//alwaysFail,
@@ -65,6 +71,8 @@ const scan = async (
 				textSizeTooSmall,
 				textIsJustified,
 				linkTargetBlankWithoutInforming,
+				hasAmbiguousText,
+				anchorExists,
 			],
 			iframes: false,
 
@@ -77,6 +85,7 @@ const scan = async (
 					'meta-viewport',
 					'blink',
 					'marquee',
+					'document-title',
 					'tabindex',
 					'html-lang-valid',
 					'html-has-lang',
@@ -87,6 +96,8 @@ const scan = async (
 					textSmall.id,
 					textJustified.id,
 					linkTargetBlank.id,
+					linkAmbiguousText.id,
+					brokenAnchorLink.id,
 				],
 			},
 
