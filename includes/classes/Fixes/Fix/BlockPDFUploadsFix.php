@@ -28,6 +28,15 @@ class BlockPDFUploadsFix implements FixInterface {
 	}
 
 	/**
+	 * The nicename for the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_nicename(): string {
+		return __( 'Block PDF Uploads', 'accessibility-checker' );
+	}
+
+	/**
 	 * Get the type for the fix.
 	 *
 	 * @return string
@@ -43,20 +52,30 @@ class BlockPDFUploadsFix implements FixInterface {
 		// Add the settings field for the fix.
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-				$fields['edac_fix_block_pdf_uploads'] = [
-					'label'       => esc_html__( 'Block PDF Uploads', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'block_pdf_uploads',
-					// translators: %1$s: a code tag with the capability name.
-					'description' => sprintf( __( 'Restricts PDF uploads for users without the %1$s capability (allowed for admins by default).', 'accessibility-checker' ), '<code>edac_upload_pdf</code>' ),
-					'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
-					'help_id'     => 8486,
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields['edac_fix_block_pdf_uploads'] = [
+			'label'       => esc_html__( 'Block PDF Uploads', 'accessibility-checker' ),
+			'type'        => 'checkbox',
+			'labelledby'  => 'block_pdf_uploads',
+			// translators: %1$s: a code tag with the capability name.
+			'description' => sprintf( __( 'Restricts PDF uploads for users without the %1$s capability (allowed for admins by default).', 'accessibility-checker' ), '<code>edac_upload_pdf</code>' ),
+			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
+			'fix_slug'    => $this->get_slug(),
+			'help_id'     => 8486,
+		];
+
+		return $fields;
 	}
 
 	/**

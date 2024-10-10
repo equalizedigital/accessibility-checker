@@ -26,6 +26,15 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 	}
 
 	/**
+	 * The nicename for the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_nicename(): string {
+		return __( 'Add Labels to Unlabelled Form Fields', 'accessibility-checker' );
+	}
+
+	/**
 	 * The type of the fix.
 	 *
 	 * @return string
@@ -55,20 +64,30 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-				$fields[ 'edac_fix_' . $this->get_slug() ] = [
-					'label'       => esc_html__( 'Unlabelled Form Fields', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => $this->get_slug(),
-					'description' => esc_html__( 'Attempts to add labels to form fields that are missing them.', 'accessibility-checker' ),
-					'section'     => $this->get_slug(),
-					'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
-					'help_id'     => 8497,
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields[ 'edac_fix_' . $this->get_slug() ] = [
+			'label'       => esc_html__( 'Unlabelled Form Fields', 'accessibility-checker' ),
+			'type'        => 'checkbox',
+			'labelledby'  => $this->get_slug(),
+			'description' => esc_html__( 'Attempts to add labels to form fields that are missing them.', 'accessibility-checker' ),
+			'section'     => $this->get_slug(),
+			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
+			'group_name'  => $this->get_nicename(),
+			'fix_slug'    => $this->get_slug(),
+		];
+
+		return $fields;
 	}
 
 	/**

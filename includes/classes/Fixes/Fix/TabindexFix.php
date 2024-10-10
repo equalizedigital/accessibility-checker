@@ -25,6 +25,15 @@ class TabindexFix implements FixInterface {
 	}
 
 	/**
+	 * The nicename for the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_nicename(): string {
+		return __( 'Remove Tabindex from Focusable Elements', 'accessibility-checker' );
+	}
+
+	/**
 	 * The type of the fix.
 	 *
 	 * @return string
@@ -41,20 +50,30 @@ class TabindexFix implements FixInterface {
 	public function register(): void {
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-
-				$fields['edac_fix_remove_tabindex'] = [
-					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Remove Tab Index', 'accessibility-checker' ),
-					'labelledby'  => 'remove_tabindex',
-					// translators: %1$s: a attribute name wrapped in a <code> tag.
-					'description' => sprintf( __( 'Removes the %1$s attribute from focusable elements.', 'accessibility-checker' ), '<code>tabindex</code>' ),
-					'help_id'     => 8496,
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ]
 		);
+	}
+
+	/**
+	 * Returns the settings fields for the tabindex removal fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields['edac_fix_remove_tabindex'] = [
+			'type'        => 'checkbox',
+			'label'       => esc_html__( 'Remove Tab Index', 'accessibility-checker' ),
+			'labelledby'  => 'remove_tabindex',
+			// translators: %1$s: a attribute name wrapped in a <code> tag.
+			'description' => sprintf( __( 'Removes the %1$s attribute from focusable elements.', 'accessibility-checker' ), '<code>tabindex</code>' ),
+			'fix_slug'    => $this->get_slug(),
+			'group_name'  => $this->get_nicename(),
+			'help_id'     => 8496,
+		];
+
+		return $fields;
 	}
 
 	/**

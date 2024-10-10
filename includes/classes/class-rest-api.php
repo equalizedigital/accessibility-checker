@@ -160,6 +160,58 @@ class REST_Api {
 				);
 			}
 		);
+
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/trigger-scan/(?P<id>\d+)',
+					[
+						'methods'             => 'POST',
+						'callback'            => [ $this, 'trigger_scan' ],
+						'args'                => [
+							'id' => [
+								'validate_callback' => function ( $param ) {
+									return is_numeric( $param );
+								},
+							],
+						],
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
+						},
+					]
+				);
+			}
+		);
+	}
+
+	/**
+	 * REST handler that triggers a scan for a post.
+	 *
+	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function trigger_scan( $request ) {
+
+		if ( ! isset( $request['id'] ) ) {
+			return new \WP_REST_Response( [ 'message' => 'A required parameter is missing.' ], 400 );
+		}
+
+		$post_id = (int) $request['id'];
+		$post    = get_post( $post_id );
+		if ( ! is_object( $post ) ) {
+			return new \WP_REST_Response( [ 'message' => 'The post is not valid.' ], 400 );
+		}
+
+		$post_type  = get_post_type( $post );
+		$post_types = Helpers::get_option_as_array( 'edac_post_types' );
+		if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
+			return new \WP_REST_Response( [ 'message' => 'The post type is not set to be scanned.' ], 400 );
+		}
+
+		edac_save_post( $post_id, $post_type, 'rescan' );
 	}
 
 	/**

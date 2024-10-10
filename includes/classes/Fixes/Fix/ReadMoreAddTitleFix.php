@@ -26,6 +26,15 @@ class ReadMoreAddTitleFix implements FixInterface {
 	}
 
 	/**
+	 * The nicename for the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_nicename(): string {
+		return __( 'Add "Read" Link with Post Title', 'accessibility-checker' );
+	}
+
+	/**
 	 * The type of the fix.
 	 *
 	 * @return string
@@ -56,28 +65,39 @@ class ReadMoreAddTitleFix implements FixInterface {
 
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-
-				$fields['edac_fix_add_read_more_title'] = [
-					'type'        => 'checkbox',
-					'label'       => esc_html__( 'Add Post Title To "Read More"', 'accessibility-checker' ),
-					'labelledby'  => 'add_read_more_title',
-					'description' => esc_html__( 'Adds the post title to "Read More" links in post lists when your theme outputs those links.', 'accessibility-checker' ),
-					'section'     => 'read_more_links',
-				];
-
-				$fields['edac_fix_add_read_more_title_screen_reader_only'] = [
-					'type'        => 'checkbox',
-					'label'       => esc_html__( 'For Screen Readers Only', 'accessibility-checker' ),
-					'labelledby'  => 'add_read_more_title_screen_reader_only',
-					'description' => esc_html__( 'Makes the post title added to "Read More" links visible only to screen readers.', 'accessibility-checker' ),
-					'condition'   => 'edac_fix_add_read_more_title',
-					'section'     => 'read_more_links',
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields['edac_fix_add_read_more_title'] = [
+			'type'        => 'checkbox',
+			'label'       => esc_html__( 'Add Post Title To "Read More"', 'accessibility-checker' ),
+			'labelledby'  => 'add_read_more_title',
+			'description' => esc_html__( 'Adds the post title to "Read More" links in post lists when your theme outputs those links.', 'accessibility-checker' ),
+			'section'     => 'read_more_links',
+			'fix_slug'    => $this->get_slug(),
+			'group_name'  => $this->get_nicename(),
+		];
+
+		$fields['edac_fix_add_read_more_title_screen_reader_only'] = [
+			'type'        => 'checkbox',
+			'label'       => esc_html__( 'For Screen Readers Only', 'accessibility-checker' ),
+			'labelledby'  => 'add_read_more_title_screen_reader_only',
+			'description' => esc_html__( 'Makes the post title added to "Read More" links visible only to screen readers.', 'accessibility-checker' ),
+			'condition'   => 'edac_fix_add_read_more_title',
+			'section'     => 'read_more_links',
+			'fix_slug'    => $this->get_slug(),
+		];
+
+		return $fields;
 	}
 
 	/**

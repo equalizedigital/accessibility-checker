@@ -4,6 +4,10 @@
  * @since 1.12.0
  */
 
+import { __ } from '@wordpress/i18n';
+
+import { saveFixSettings } from '../../common/saveFixSettingsRest';
+
 /**
  * Initialize the Summary Tab keyboard and click event handlers.
  *
@@ -102,3 +106,47 @@ export const clearAllTabsAndPanelState = () => {
 		}
 	} );
 };
+
+/**
+ * Handle the click events for fix buttons
+ */
+export const initFixButtonEventHandlers = () => {
+	// find all edac-details-rule-records-record-actions-fix
+	const fixButtons = document.querySelectorAll( '.edac-details-rule-records-record-actions-fix' );
+	// loop through each button binding a click event
+	fixButtons.forEach( ( button ) => {
+		button.addEventListener( 'click', ( event ) => {
+			const fixSettings = document.getElementById( event.target.getAttribute( 'aria-controls' ) );
+			fixSettings.classList.toggle( 'active' );
+
+			document.querySelector( 'body' ).classList.add( 'edac-fix-modal-present' );
+
+			// trigger a thickbox that contains the contents of the fixSettings
+			// eslint-disable-next-line no-undef
+			tb_show( __( 'Fix Settings', 'accessibility-checker' ), '#TB_inline?width=750&inlineId=' + fixSettings.id );
+
+			const thickbox = document.getElementById( 'TB_window' );
+			thickbox.querySelector( '.edac-fix-settings--button--save' ).addEventListener( 'click', ( clickedEvent ) => {
+				saveFixSettings( clickedEvent.target.closest( '.edac-fix-settings' ) );
+			} );
+
+			// thickbox only emits an event through jquery, so we need to use jquery to listen for it
+			jQuery( document ).one( 'tb_unload', () => {
+				setTimeout( () => {
+					// find duplicate fix settings and remove them
+					const settingsContainers = document.querySelectorAll( '.edac-details-fix-settings' );
+					settingsContainers.forEach( ( settinsContainer ) => {
+						const fieldsContainer = settinsContainer.querySelectorAll( '.setting-row' );
+						if ( fieldsContainer.length > 1 ) {
+							// delete all containers except the first one
+							for ( let i = 1; i < fieldsContainer.length; i++ ) {
+								fieldsContainer[ i ].remove();
+							}
+						}
+					} );
+				}, 100 );
+			} );
+		} );
+	} );
+};
+

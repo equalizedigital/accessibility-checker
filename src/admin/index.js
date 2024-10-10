@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import {
-	clearAllTabsAndPanelState,
+	clearAllTabsAndPanelState, initFixButtonEventHandlers,
 	initSummaryTabKeyboardAndClickHandlers,
 } from './summary/summary-tab-input-event-handlers';
 import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
@@ -198,6 +198,9 @@ const edacScriptVars = edac_script_vars;
 
 					// Ignore submit on click
 					ignoreSubmit();
+
+					// handle fix button click events.
+					initFixButtonEventHandlers();
 				} else {
 					// eslint-disable-next-line no-console
 					console.log( response );
