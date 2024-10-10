@@ -5,6 +5,13 @@
 	}
 }
 
+.edac-fix-modal-present #TB_ajaxContent {
+	width: auto !important;
+	height: auto !important;
+	max-height: 70vh !important;
+	overflow-y: auto;
+}
+
 .edac-fix-settings {
 
 	&--fields{
@@ -32,6 +39,10 @@
 		input[type="checkbox"] {
 			width: auto;
 			margin-right: 0.5rem;
+		}
+
+		input[type="text"] {
+			padding: 0.25rem 0.5rem;
 		}
 	}
 
@@ -191,16 +202,17 @@ body.edac-fixes-modal--open {
 
 .edac-fix-description-help-link {
 	.dashicons-info {
-		color: pink;
-		cursor: pointer;
+
+		color: $color-gray;
+		text-decoration: none;
 
 		&:hover {
-			color: red;
+			cursor: pointer;
 		}
 
 		:focus {
-			outline: 2px solid #000;
-			outline-offset: 2px;
+			outline: revert;
+			outline-offset: revert;
 		}
 	}
 }

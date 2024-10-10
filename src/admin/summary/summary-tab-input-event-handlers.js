@@ -119,9 +119,11 @@ export const initFixButtonEventHandlers = () => {
 			const fixSettings = document.getElementById( event.target.getAttribute( 'aria-controls' ) );
 			fixSettings.classList.toggle( 'active' );
 
+			document.querySelector( 'body' ).classList.add( 'edac-fix-modal-present' );
+
 			// trigger a thickbox that contains the contents of the fixSettings
 			// eslint-disable-next-line no-undef
-			tb_show( __( 'Fix Settings', 'accessibility-checker' ), '#TB_inline?inlineId=' + fixSettings.id );
+			tb_show( __( 'Fix Settings', 'accessibility-checker' ), '#TB_inline?width=750&inlineId=' + fixSettings.id );
 
 			const thickbox = document.getElementById( 'TB_window' );
 			thickbox.querySelector( '.edac-fix-settings--button--save' ).addEventListener( 'click', ( clickedEvent ) => {
