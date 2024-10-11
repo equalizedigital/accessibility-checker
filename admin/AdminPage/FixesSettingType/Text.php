@@ -23,11 +23,13 @@ trait Text {
 			return;
 		}
 
+		$upsell       = isset( $args['upsell'] ) && $args['upsell'];
 		$option_value = get_option( $args['name'] );
 		?>
 		<label
 			for="<?php echo esc_attr( $args['name'] ); ?>"
 			style="display: block; margin-bottom: 6px;"
+			<?php echo ( $upsell ) ? 'class="edac-fix--disabled edac-fix--upsell"' : ''; ?>
 		>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 			<?php
@@ -60,6 +62,7 @@ trait Text {
 			value="<?php echo esc_attr( $option_value ); ?>"
 			<?php echo isset( $args['condition'] ) ? 'data-condition="' . esc_attr( $args['condition'] ) . '"' : ''; ?>
 			<?php echo isset( $args['required_when'] ) ? 'data-required_when="' . esc_attr( $args['required_when'] ) . '"' : ''; ?>
+			<?php echo $upsell ? 'disabled' : ''; ?>
 		/>
 		<?php
 	}
