@@ -471,10 +471,12 @@ class Ajax {
 							$html .= sprintf(
 								'<button class="edac-details-rule-records-record-actions-fix"
 									aria-controls="%1$s"
+									aria-label="%2$s"
 								>
-									%2$s
+									%3$s
 								</button>',
 								esc_attr( $controls_id ),
+								esc_attr( __( 'Open modal of fix settings related to: ', 'accessibility-checker' ) . $rule['title'] ),
 								esc_html__( 'Fix', 'accessibility-checker' )
 							);
 						}
