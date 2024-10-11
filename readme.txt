@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.6.1
-Stable tag: 1.15.1
+Stable tag: 1.15.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -173,6 +173,13 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 = 1.16.0 =
 * New: Introduced a system to handle automated fixes for issues that the scanner would discover.
+
+= 1.15.3
+* Enhancement: Detect missing labels on more elements.
+* Enhancement: Detect slick slider that gets initialized after the page loads.
+
+= 1.15.2 =
+* Fixed: Issue where CPT results would not be reflected in dashboard widgets and reports
 
 = 1.15.1 =
 * Fixed: Issue where a modal could result in JS error preventing display

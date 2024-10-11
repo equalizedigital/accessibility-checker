@@ -104,5 +104,27 @@ function edac_rule_img_alt_redundant( $content, $post ) { // phpcs:ignore -- $po
 		}
 	}
 
+	/*
+	 * New check for redundant alt text on images inside <figure> elements with <figcaption>
+	 * <figure>
+	 *   <img src="image.jpg" alt="test">
+	 *   <figcaption>test</figcaption>
+	 * </figure>
+	 */
+	$figures = $dom->find( 'figure' );
+	foreach ( $figures as $figure ) {
+		$image      = $figure->find( 'img', 0 );
+		$figcaption = $figure->find( 'figcaption', 0 );
+
+		if ( isset( $image ) && isset( $figcaption ) ) {
+			$alt_text     = strtolower( trim( $image->getAttribute( 'alt' ) ) );
+			$caption_text = strtolower( trim( $figcaption->plaintext ) );
+
+			if ( ! empty( $alt_text ) && $alt_text === $caption_text ) {
+				$errors[] = $figure->outertext;
+			}
+		}
+	}
+
 	return $errors;
 }
