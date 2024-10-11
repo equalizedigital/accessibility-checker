@@ -430,6 +430,7 @@ body {
 	}
 
 	&--action-open {
-		display: block;
+		display: inline-block;
+		width: 100%;
 	}
 }
