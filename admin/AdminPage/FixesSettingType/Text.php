@@ -31,10 +31,13 @@ trait Text {
 			style="display: block; margin-bottom: 6px;"
 			<?php echo ( $upsell ) ? 'class="edac-fix--disabled edac-fix--upsell"' : ''; ?>
 		>
+			<?php if ( isset( $args['location'] ) && $upsell ) : ?>
+				<a class="edac-fix--upsell-link" href="<?php echo esc_url( \edac_generate_link_type( [ 'fix' => $args['fix_slug'] ] ) ); ?>"><?php esc_html_e( 'Get Pro', 'accessibility-checker' ); ?></a>
+			<?php endif; ?>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 			<?php
-			if ( $args['help_id'] && $args['label'] ) :
-				$link = edac_generate_link_type(
+			if ( isset( $args['help_id'] ) && $args['label'] ) :
+				$link = \edac_generate_link_type(
 					[
 						'utm-content' => 'fix-description',
 						'utm-term'    => $args['name'],
@@ -63,6 +66,7 @@ trait Text {
 			<?php echo isset( $args['condition'] ) ? 'data-condition="' . esc_attr( $args['condition'] ) . '"' : ''; ?>
 			<?php echo isset( $args['required_when'] ) ? 'data-required_when="' . esc_attr( $args['required_when'] ) . '"' : ''; ?>
 			<?php echo $upsell ? 'disabled' : ''; ?>
+			<?php echo isset( $args['fix_slug'] ) ? 'data-fix-slug="' . esc_attr( $args['fix_slug'] ) . '"' : ''; ?>
 		/>
 		<?php
 	}
@@ -73,7 +77,7 @@ trait Text {
 	 * @param mixed $input The input to sanitize.
 	 * @return string
 	 */
-	public function sanitize_text( $input ) {
+	public static function sanitize_text( $input ) {
 		return sanitize_text_field( $input );
 	}
 }

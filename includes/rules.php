@@ -5,6 +5,17 @@
  * @package Accessibility_Checker
  */
 
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\{
+	TabindexFix,
+	AddLabelToUnlabelledFormFieldsFix,
+	CommentSearchLabelFix,
+	ReadMoreAddTitleFix,
+	PreventLinksOpeningNewWindowFix,
+	HTMLLangAndDirFix,
+	AddMissingOrEmptyPageTitleFix,
+	SkipLinkFix
+};
+
 return [
 	[
 		'title'     => esc_html__( 'Image Missing Alternative Text', 'accessibility-checker' ),
@@ -132,6 +143,9 @@ return [
 		'combines'  => [
 			'link_blank',
 		],
+		'fixes'     => [
+			PreventLinksOpeningNewWindowFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Image Map Missing Alternative Text', 'accessibility-checker' ),
@@ -157,6 +171,9 @@ return [
 		),
 		'ruleset'   => 'js',
 		'combines'  => [ 'tabindex' ],
+		'fixes'     => [
+			TabindexFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Empty Heading Tag', 'accessibility-checker' ),
@@ -262,6 +279,10 @@ return [
 			esc_html__( 'An Empty Form Label error is triggered when a %s tag is present in your form and associated with an input (form field), but does not contain any text. To fix empty form label errors, you will need to determine how the field and form were created and then add text to the label for the field that is currently blank.', 'accessibility-checker' ),
 			'<code>&lt;label&gt;</code>'
 		),
+		'fixes'     => [
+			AddLabelToUnlabelledFormFieldsFix::get_slug(),
+			CommentSearchLabelFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Form Label', 'accessibility-checker' ),
@@ -275,6 +296,10 @@ return [
 			'<code>&lt;label&gt;</code>',
 			'<code>for=""</code>'
 		),
+		'fixes'     => [
+			AddLabelToUnlabelledFormFieldsFix::get_slug(),
+			CommentSearchLabelFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Ambiguous Anchor Text', 'accessibility-checker' ),
@@ -283,6 +308,9 @@ return [
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like "click here" or "learn more." To resolve this error, change the link text to be less generic so that it has meaning if heard on its own.', 'accessibility-checker' ),
 		'ruleset'   => 'js',
+		'fixes'     => [
+			ReadMoreAddTitleFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Underlined Text', 'accessibility-checker' ),
@@ -303,6 +331,9 @@ return [
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or "Ignore" the error as applicable.', 'accessibility-checker' ),
 		'ruleset'   => 'js',
+		'fixes'     => [
+			SkipLinkFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Table Header', 'accessibility-checker' ),
@@ -391,6 +422,9 @@ return [
 		'ruleset'   => 'js',
 		'combines'  => [ 'html-lang-valid', 'html-has-lang' ],
 		'viewable'  => false,
+		'fixes'     => [
+			HTMLLangAndDirFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Image Animated GIF', 'accessibility-checker' ),
@@ -427,6 +461,9 @@ return [
 		'ruleset'   => 'js',
 		'combines'  => [ 'document-title' ],
 		'viewable'  => false,
+		'fixes'     => [
+			ReadMoreAddTitleFix::get_slug(),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Improper Use of Link', 'accessibility-checker' ),

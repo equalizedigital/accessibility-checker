@@ -26,6 +26,15 @@ class MetaViewportScalableFix implements FixInterface {
 	}
 
 	/**
+	 * The nicename for the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_nicename(): string {
+		return __( 'Make Meta Viewport Tag Scalable', 'accessibility-checker' );
+	}
+
+	/**
 	 * The type of the fix.
 	 *
 	 * @return string
@@ -56,18 +65,28 @@ class MetaViewportScalableFix implements FixInterface {
 
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-				$fields[ 'edac_fix_' . $this->get_slug() ] = [
-					'label'       => esc_html__( 'Scalable Viewport Tag', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => '',
-					'description' => esc_html__( 'Ensures the viewport tag allows for scaling, enhancing accessibility on mobile devices.', 'accessibility-checker' ),
-					'help_id'     => 8488,
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields[ 'edac_fix_' . $this->get_slug() ] = [
+			'label'       => esc_html__( 'Scalable Viewport Tag', 'accessibility-checker' ),
+			'type'        => 'checkbox',
+			'labelledby'  => '',
+			'description' => esc_html__( 'Ensures the viewport tag allows for scaling, enhancing accessibility on mobile devices.', 'accessibility-checker' ),
+			'fix_slug'    => $this->get_slug(),
+			'help_id'     => 8488,
+		];
+
+		return $fields;
 	}
 
 	/**

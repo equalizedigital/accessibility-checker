@@ -104,6 +104,7 @@ class Enqueue_Frontend {
 					'loggedIn'       => is_user_logged_in(),
 					'appCssUrl'      => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
 					'widgetPosition' => get_option( 'edac_frontend_highlighter_position', 'right' ),
+					'editorLink'     => get_edit_post_link( $post_id ),
 				]
 			);
 
