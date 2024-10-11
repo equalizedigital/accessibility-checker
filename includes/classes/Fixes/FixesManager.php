@@ -21,6 +21,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\LinkUnderline;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\MetaViewportScalableFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\FocusOutlineFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ReadMoreAddTitleFix;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 
 /**
  * Manager class for fixes.
@@ -55,8 +56,23 @@ class FixesManager {
 	 */
 	private function __construct() {
 		$this->maybe_enqueue_frontend_scripts();
+		$this->maybe_enqueue_thickbox();
 
 		self::$theme_is_accessibility_ready = self::is_theme_accessibility_ready();
+	}
+
+	/**
+	 * Maybe enqueue the thickbox script.
+	 *
+	 * This powers the modal that is used to display fix settings in the editor.
+	 */
+	public function maybe_enqueue_thickbox() {
+		add_action(
+			'admin_enqueue_scripts',
+			function () {
+				add_thickbox();
+			}
+		);
 	}
 
 	/**
@@ -77,7 +93,6 @@ class FixesManager {
 	private function maybe_enqueue_frontend_scripts() {
 
 		if (
-			is_admin() ||
 			( defined( 'REST_REQUEST' ) && REST_REQUEST ) ||
 			( defined( 'DOING_AJAX' ) && DOING_AJAX ) ||
 			( defined( 'DOING_CRON' ) && DOING_CRON ) ||
@@ -201,5 +216,64 @@ class FixesManager {
 			</span>
 			<?php
 		}
+	}
+
+	/**
+	 * Register the rest routes.
+	 *
+	 * @return void
+	 */
+	public function register_rest_routes() {
+		register_rest_route(
+			'edac/v1',
+			'/fixes',
+			[
+				'methods'             => 'GET',
+				'callback'            => [ $this, 'get_fixes' ],
+				'permission_callback' => '__return_true', // need real permission.
+			]
+		);
+
+		register_rest_route(
+			'edac/v1',
+			'/fixes/update',
+			[
+				'methods'             => 'POST',
+				'callback'            => [ $this, 'update_fix_settings' ],
+				'permission_callback' => '__return_true', // need real permission.
+			]
+		);
+	}
+
+	/**
+	 * Handle the request to set a fix.
+	 *
+	 * @param \WP_REST_Request $request The request recieved through a rest call.
+	 *
+	 * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
+	 */
+	public function update_fix_settings( $request ) {
+		// get body of the request.
+		$body = $request->get_json_params();
+
+		// loop through body and find fixes for those items.
+		foreach ( $body as $rule_slug => $settings ) {
+			$fix        = $this->get_fix( $rule_slug );
+			$fix_fields = $fix->get_fields_array();
+			if ( ! $fix ) {
+				return new \WP_Error( 'edac_fix_not_found', esc_html__( 'Fix not found', 'accessibility-checker' ), [ 'status' => 404 ] );
+			}
+
+			foreach ( $settings as $setting => $value ) {
+				$sanitizer = isset( $fix_fields[ $setting ]['sanitize_callback'] ) ? $fix_fields[ $setting ]['sanitize_callback'] : [ FixesPage::class, 'sanitize_' . $fix_fields[ $setting ]['type'] ];
+				if ( ! $sanitizer || ! is_callable( $sanitizer ) ) {
+					// no sanitizer, do not save.
+					continue;
+				}
+				update_option( $setting, $sanitizer( $value ) );
+			}
+		}
+
+		return rest_ensure_response( [ 'enabled' => $enabled ] );
 	}
 }
