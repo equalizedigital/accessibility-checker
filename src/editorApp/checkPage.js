@@ -97,7 +97,7 @@ export const init = () => {
 
 		// remove the iframe.
 		setTimeout( function() {
-			document.getElementById( iframeId ).remove();
+			document.getElementById( iframeId )?.remove();
 		}, 1000 );
 
 		// save the scan results.
@@ -107,7 +107,6 @@ export const init = () => {
 	//Listen for dispatches from the wp data store so we can trap the update/publish event
 	let saving = false;
 	let autosaving = false;
-
 
 	if ( wp.data !== undefined && wp.data.subscribe !== undefined ) {
 		wp.data.subscribe( () => {

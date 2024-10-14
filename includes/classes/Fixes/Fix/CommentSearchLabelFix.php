@@ -26,6 +26,15 @@ class CommentSearchLabelFix implements FixInterface {
 	}
 
 	/**
+	 * The nicename for the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_nicename(): string {
+		return __( 'Add Labels to Comment and Search Forms', 'accessibility-checker' );
+	}
+
+	/**
 	 * The type of the fix.
 	 *
 	 * @return string
@@ -56,33 +65,45 @@ class CommentSearchLabelFix implements FixInterface {
 
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			function ( $fields ) {
-				$fields['edac_fix_comment_label'] = [
-					'label'       => esc_html__( 'Comment form', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'add_comment_label',
-					'description' => esc_html__( 'Add missing form labels to the WordPress comment form.', 'accessibility-checker' ),
-					'section'     => 'comment_search_label',
-				];
-
-				$fields['edac_fix_search_label'] = [
-					'label'       => esc_html__( 'Search form', 'accessibility-checker' ),
-					'type'        => 'checkbox',
-					'labelledby'  => 'add_search_label',
-					'description' => esc_html__( 'Add missing form label to the WordPress search form.', 'accessibility-checker' ),
-					'section'     => 'comment_search_label',
-				];
-
-				return $fields;
-			}
+			[ $this, 'get_fields_array' ],
 		);
+	}
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * @param array $fields The array of fields that are already registered, if any.
+	 *
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array {
+		$fields['edac_fix_comment_label'] = [
+			'label'       => esc_html__( 'Comment Form', 'accessibility-checker' ),
+			'type'        => 'checkbox',
+			'labelledby'  => 'add_comment_label',
+			'description' => esc_html__( 'Adds missing labels to the WordPress comment form.', 'accessibility-checker' ),
+			'section'     => 'comment_search_label',
+			'fix_slug'    => $this->get_slug(),
+			'group_name'  => $this->get_nicename(),
+		];
+
+		$fields['edac_fix_search_label'] = [
+			'label'       => esc_html__( 'Search Form', 'accessibility-checker' ),
+			'type'        => 'checkbox',
+			'labelledby'  => 'add_search_label',
+			'description' => esc_html__( 'Adds a missing label to the WordPress search form.', 'accessibility-checker' ),
+			'section'     => 'comment_search_label',
+			'fix_slug'    => $this->get_slug(),
+		];
+
+		return $fields;
 	}
 
 	/**
 	 * Run the fix for adding the comment and search form labels.
 	 */
 	public function run(): void {
-		
+
 		// Add the actual fixes if enabled in settings.
 		if ( get_option( 'edac_fix_comment_label', false ) ) {
 			add_filter( 'comment_form_defaults', [ $this, 'fix_comment_form_labels' ], PHP_INT_MAX );
@@ -132,10 +153,10 @@ class CommentSearchLabelFix implements FixInterface {
 	 */
 	public function fix_search_form_label( $form ): string {
 		// Check if the form already contains a visible <label> with a matching "for" attribute for the search input's id.
-		if ( ! preg_match( '/<label[^>]*for=["\']([^"\']*)["\'][^>]*>.*<\/label>/', $form, $label_matches ) || 
-			! preg_match( '/<input[^>]*id=["\']([^"\']*)["\'][^>]*name=["\']s["\'][^>]*>/', $form, $input_matches ) || 
+		if ( ! preg_match( '/<label[^>]*for=["\']([^"\']*)["\'][^>]*>.*<\/label>/', $form, $label_matches ) ||
+			! preg_match( '/<input[^>]*id=["\']([^"\']*)["\'][^>]*name=["\']s["\'][^>]*>/', $form, $input_matches ) ||
 			$label_matches[1] !== $input_matches[1] ) {
-	
+
 			// Extract the existing input field to preserve its attributes, or set a default if none found.
 			if ( isset( $input_matches[0] ) ) {
 				$input_field = $input_matches[0];
@@ -152,7 +173,7 @@ class CommentSearchLabelFix implements FixInterface {
 			<button type="submit" class="search-submit">' . esc_attr__( 'Search', 'accessibility-checker' ) . '</button>
 			</form>';
 		}
-	
+
 		return $form;
 	}
 
@@ -163,7 +184,7 @@ class CommentSearchLabelFix implements FixInterface {
 	 */
 	public function comment_search_label_section_callback() {
 		?>
-		<p><?php esc_html_e( 'Settings related to adding missing labels to WordPress comment and search forms.', 'accessibility-checker' ); ?></p>
+		<p><?php esc_html_e( 'Settings to add missing labels to WordPress comment and search forms.', 'accessibility-checker' ); ?></p>
 		<?php
 	}
 }

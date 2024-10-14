@@ -853,15 +853,22 @@
     .form-table {
       display: block;
       margin-bottom: 50px;
+
+      tbody {
+        display: block;
+      }
+
       tr {
         border: solid 1px $color-gray-light;
         margin-bottom: 10px;
         display: block;
       }
+
       th {
         padding: 10px;
         background-color: $color-gray-lightest;
       }
+
       td {
         padding: 10px;
       }
@@ -1932,8 +1939,42 @@
 }
 
 #edac-fixes-page {
-	.edac_fix_disabled {
-		opacity: 0.5;
-		display: none !important;
+	.edac-fix {
+		&--hidden {
+			display: none;
+		}
+
+		&--disabled {
+			opacity: 0.75;
+		}
+
+		&--upsell-link {
+			background: #f3cd1e;
+			padding: 4px 8px;
+			border-radius: 18px;
+			color: #072446;
+			display: inline-block;
+			font-size: 0.75rem;
+			text-decoration: none;
+			line-height: 1;
+		}
+
+		&--upsell-link:hover {
+			text-decoration: underline;
+		}
 	}
+
+	.edac-notice {
+		&--accessibility-ready-conflict {
+			font-style: italic;
+			font-weight: 600;
+		}
+	}
+}
+
+@import "../../common/sass/fix-settings";
+
+.edac-dashicon-muted {
+	color: $color-gray;
+	text-decoration: none;
 }
