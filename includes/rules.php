@@ -280,6 +280,7 @@ return [
 			'<code>&lt;label&gt;</code>'
 		),
 		'ruleset'   => 'js',
+		'combines'  => [ 'label' ],
 		'fixes'     => [
 			AddLabelToUnlabelledFormFieldsFix::get_slug(),
 			CommentSearchLabelFix::get_slug(),
