@@ -66,11 +66,13 @@ export const openFixesModal = ( openingElement ) => {
 	// get all other imediate children of the body and set their aria-hidden to true
 	const bodyChildren = Array.from( document.body.children );
 	bodyChildren.forEach( ( child ) => {
-		if ( child !== modal || ! child.classList.contains( 'edac-fixes-modal__overlay' ) ) {
-			if ( child.getAttribute( 'aria-hidden' ) !== true ) {
-				child.setAttribute( 'aria-hidden', 'true' );
-				child.setAttribute( 'data-hidden-by-modal', 'true' );
-			}
+		if ( child.id === 'edac-fixes-modal' || child.classList.contains( 'edac-fixes-modal__overlay' ) ) {
+			return;
+		}
+
+		if ( child.getAttribute( 'aria-hidden' ) !== true ) {
+			child.setAttribute( 'aria-hidden', 'true' );
+			child.setAttribute( 'data-hidden-by-modal', 'true' );
 		}
 	} );
 
