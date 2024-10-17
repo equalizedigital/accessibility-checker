@@ -395,6 +395,10 @@ body {
 	}
 }
 
+.always-hide {
+	display: none !important;
+}
+
 @import "../../common/sass/fix-settings";
 
 .edac-fixes-modal {
