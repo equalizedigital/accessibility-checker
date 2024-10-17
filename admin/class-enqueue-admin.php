@@ -123,6 +123,7 @@ class Enqueue_Admin {
 							[ 'edac_pageScanner' => 1 ]
 						),
 						'version'    => EDAC_VERSION,
+						'restNonce'  => wp_create_nonce( 'wp_rest' ),
 					]
 				);
 

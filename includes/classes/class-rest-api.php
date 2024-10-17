@@ -11,8 +11,7 @@ use EDAC\Admin\Helpers;
 use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
-
-
+use EDAC\Admin\Purge_Post_Data;
 
 /**
  * Class that initializes and handles the REST api
@@ -211,7 +210,14 @@ class REST_Api {
 			return new \WP_REST_Response( [ 'message' => 'The post type is not set to be scanned.' ], 400 );
 		}
 
-		edac_save_post( $post_id, $post_type, 'rescan' );
+		// if flush is passed in via json and is true, then flush the cache.
+		$json = $request->get_json_params();
+		if ( isset( $json['flush'] ) && true === $json['flush'] ) {
+			// purge the issues for this post.
+			Purge_Post_Data::delete_post( $post_id );
+		}
+
+		edac_save_post( $post_id, $post, 'rescan' );
 	}
 
 	/**
