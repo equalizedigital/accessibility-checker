@@ -426,6 +426,11 @@ body {
 			display: block !important;
 		}
 	}
+
+	*:focus {
+		outline: revert;
+		outline-offset: revert;
+	}
 }
 
 // this button is styled like other buttons here.
