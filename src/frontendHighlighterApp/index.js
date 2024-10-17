@@ -611,7 +611,7 @@ class AccessibilityCheckerHighlight {
 			if ( this.fixes[ matchingObj.slug ] ) {
 				// this is the markup to put in the modal.
 				content += `
-					<div style="display:none;">
+					<div style="display:none;" class="always-hide">
 						<div class="edac-fix-settings">
 							<div class="edac-fix-settings--fields">
 								${ this.fixes[ matchingObj.slug ].fields }
@@ -802,7 +802,6 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
-		fixSettingsContainer.classList.add( 'edac-fix-settings--open' );
 		fillFixesModal( '', fixSettingsContainer.innerHTML );
 
 		// puse the focus trap.
