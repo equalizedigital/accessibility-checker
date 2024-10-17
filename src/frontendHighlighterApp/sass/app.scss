@@ -399,8 +399,21 @@ body {
 
 .edac-fixes-modal {
 	display: none;
-	background-color: #fff;
-	padding: 20px;
+
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+	background-color: #fff !important;
+	border: 1px solid #e2e4e7 !important;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .25) !important;
+	color: #000 !important;
+	font-family: sans-serif !important;
+	font-size: 14px !important;
+	line-height: 22px !important;
+	margin-bottom: 15px !important;
+	max-height: calc(100vh - 230px) !important;
+	overflow-y: scroll !important;
+	padding: 20px !important;
+	text-align: left !important;
 
 	&--open {
 		display: block;
