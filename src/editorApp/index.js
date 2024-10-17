@@ -14,5 +14,12 @@ window.addEventListener( 'DOMContentLoaded', () => {
 			}, 250 ); // Allow page load to fire before init, otherwise we'll have to wait for iframe to load.
 		}
 	}
+
+	document.addEventListener( 'edac-fix-settings-saved', function( event ) {
+		if ( event.detail.success ) {
+			// refresh the summary tab after saving fixes and running the php scan.
+			initCheckPage();
+		}
+	} );
 } );
 

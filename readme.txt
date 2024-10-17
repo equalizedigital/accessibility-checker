@@ -171,6 +171,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.16.0 =
+* New: Introduced a system to handle automated fixes for issues that the scanner would discover.
+
 = 1.15.3
 * Enhancement: Detect missing labels on more elements.
 * Enhancement: Detect slick slider that gets initialized after the page loads.

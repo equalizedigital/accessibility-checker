@@ -21,8 +21,15 @@ function edac_rule_iframe_missing_title( $content, $post ) { // phpcs:ignore -- 
 	foreach ( $iframe_tags as $iframe ) {
 		if ( isset( $iframe ) && empty( $iframe->getAttribute( 'title' ) ) && empty( $iframe->getAttribute( 'aria-label' ) ) ) {
 
-			$display_none_and_visibility_hidden = preg_match( '/(?=.*display\s*:\s*none)(?=.*visibility\s*:\s*hidden)/is', $iframe->getAttribute( 'style' ) );
+			$display_none_and_visibility_hidden = preg_match( '/(?=.*display\s*:\s*none);?(?=.*visibility\s*:\s*hidden)/is', $iframe->getAttribute( 'style' ) );
 			if ( $display_none_and_visibility_hidden ) {
+				continue;
+			}
+
+			// GTM iframes should be skipped by the detection above, but just in case some plugin modifies the markup
+			// expectations let's double check the src attribute.
+			$gtm = preg_match( '/^https:\/\/www.googletagmanager.com\//', $iframe->getAttribute( 'src' ) );
+			if ( $gtm ) {
 				continue;
 			}
 
