@@ -13,7 +13,6 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\{
 	PreventLinksOpeningNewWindowFix,
 	HTMLLangAndDirFix,
 	AddMissingOrEmptyPageTitleFix,
-	SkipLinkFix
 };
 
 return [
@@ -331,9 +330,6 @@ return [
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or "Ignore" the error as applicable.', 'accessibility-checker' ),
 		'ruleset'   => 'js',
-		'fixes'     => [
-			SkipLinkFix::get_slug(),
-		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Table Header', 'accessibility-checker' ),
