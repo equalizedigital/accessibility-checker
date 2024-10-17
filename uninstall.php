@@ -58,10 +58,10 @@ if ( true === (bool) $delete_data ) {
 		'edac_fix_add_label_to_unlabelled_form_fields',
 	];
 
-	if ( array_merge( $options, $fix_options ) ) {
-		foreach ( $options as $option ) {
-			delete_option( $option );
-			delete_site_option( $option );
-		}
+	$options_to_clear = array_merge( $options, $fix_options );
+
+	foreach ( $options_to_clear as $option ) {
+		delete_option( $option );
+		delete_site_option( $option );
 	}
 }
