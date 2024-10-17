@@ -455,4 +455,15 @@ body {
 		display: inline-block;
 		width: 100%;
 	}
+
+	&--notice-slot a {
+		color: $color-blue !important;
+		text-decoration: underline !important;
+
+		&:hover,
+		&:focus {
+			text-decoration: none !important;
+			cursor: pointer !important;
+		}
+	}
 }
