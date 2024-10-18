@@ -4,6 +4,7 @@ import { saveFixSettings } from '../common/saveFixSettingsRest';
 
 let focusRestoreTarget = null;
 const CloseEvent = new Event( 'edac-fixes-modal-closed', { bubbles: true } );
+const changeEventListeners = [];
 
 const buildFixesModalBase = () => {
 	// Create the modal
@@ -119,6 +120,7 @@ const closeFixesModal = () => {
 	if ( focusRestoreTarget ) {
 		focusRestoreTarget.focus();
 	}
+	unbindChangeEvents();
 	document.dispatchEvent( CloseEvent );
 };
 
@@ -142,9 +144,32 @@ export const fillFixesModal = ( content = '', fieldsMarkup = '' ) => {
 	modalBody.innerHTML = content;
 	modalBody.appendChild( fields );
 
+	modal.querySelectorAll( 'input, select, textarea' ).forEach( ( field ) => {
+		const changeListener = () => {
+			document.dispatchEvent( new CustomEvent( 'edac-fix-settings-change' ) );
+		};
+		field.addEventListener( 'change', changeListener );
+		changeEventListeners.push( { field, changeListener } );
+	} );
+
 	// bind the save button
 	const saveButton = modal.querySelector( '.edac-fix-settings--button--save' );
 	saveButton.addEventListener( 'click', () => {
 		saveFixSettings( modalBody.querySelector( '.edac-fix-settings--fields' ) );
+	} );
+
+	// clear the --notice-slot when change event fires
+	document.addEventListener( 'edac-fix-settings-change', () => {
+		const noticeSlot = modal.querySelector( '[aria-live]' );
+		noticeSlot.innerText = '';
+	} );
+};
+
+/**
+ * Helper function to unbind all change events.
+ */
+const unbindChangeEvents = () => {
+	changeEventListeners.forEach( ( { field, changeListener } ) => {
+		field.removeEventListener( 'change', changeListener );
 	} );
 };
