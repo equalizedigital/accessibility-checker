@@ -1,6 +1,6 @@
 <?php
 /**
- * Tabindex Fix Class
+ * Prevents links from opening in new windows.
  *
  * @package accessibility-checker
  */
@@ -10,18 +10,19 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
 /**
- * Handles the removal of tabindex attributes from focusable elements.
+ * Prevents links from opening in new windows.
  *
  * @since 1.16.0
  */
-class TabindexFix implements FixInterface {
+class PreventLinksOpeningNewWindowFix implements FixInterface {
+
 	/**
 	 * The slug of the fix.
 	 *
 	 * @return string
 	 */
 	public static function get_slug(): string {
-		return 'remove_tabindex';
+		return 'prevent_links_opening_new_windows';
 	}
 
 	/**
@@ -30,7 +31,7 @@ class TabindexFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'Remove Tabindex from Focusable Elements', 'accessibility-checker' );
+		return __( 'Prevent Links Opening New Windows', 'accessibility-checker' );
 	}
 
 	/**
@@ -43,54 +44,55 @@ class TabindexFix implements FixInterface {
 	}
 
 	/**
-	 * Registers the settings field for the tabindex removal fix.
+	 * Registers everything needed for the fix.
 	 *
 	 * @return void
 	 */
 	public function register(): void {
+
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			[ $this, 'get_fields_array' ]
+			[ $this, 'get_fields_array' ],
 		);
 	}
 
 	/**
-	 * Returns the settings fields for the tabindex removal fix.
+	 * Get the settings fields for the fix.
 	 *
 	 * @param array $fields The array of fields that are already registered, if any.
 	 *
 	 * @return array
 	 */
 	public function get_fields_array( array $fields = [] ): array {
-		$fields['edac_fix_remove_tabindex'] = [
+		$fields[ 'edac_fix_' . $this->get_slug() ] = [
+			'label'       => esc_html__( 'Block Links Opening New Windows', 'accessibility-checker' ),
 			'type'        => 'checkbox',
-			'label'       => esc_html__( 'Remove Tab Index', 'accessibility-checker' ),
-			'labelledby'  => 'remove_tabindex',
-			// translators: %1$s: a attribute name wrapped in a <code> tag.
-			'description' => sprintf( __( 'Removes the %1$s attribute from focusable elements.', 'accessibility-checker' ), '<code>tabindex</code>' ),
+			'labelledby'  => 'prevent_links_opening_in_new_windows',
+			'description' => sprintf(
+			// translators: %1%s: A <code> tag containing target="_blank".
+				esc_html__( 'Prevent links from opening in a new window or tab by removing %1$s.', 'accessibility-checker' ),
+				'<code>target="_blank"</code>'
+			),
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
-			'help_id'     => 8496,
+			'help_id'     => 8493,
 		];
 
 		return $fields;
 	}
 
 	/**
-	 * Executes the tabindex removal fix on the frontend.
-	 *
-	 * @return void
+	 * Run the fix for adding the comment and search form labels.
 	 */
-	public function run() {
-		if ( ! get_option( 'edac_fix_remove_tabindex', false ) ) {
+	public function run(): void {
+		if ( ! get_option( 'edac_fix_' . $this->get_slug(), false ) ) {
 			return;
 		}
 
-		// Adds the tabindex removal data to be used in JS if necessary.
 		add_filter(
 			'edac_filter_frontend_fixes_data',
 			function ( $data ) {
-				$data['tabindex'] = [
+				$data[ $this->get_slug() ] = [
 					'enabled' => true,
 				];
 				return $data;

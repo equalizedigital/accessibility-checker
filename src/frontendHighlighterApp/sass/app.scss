@@ -228,7 +228,8 @@ body {
 			}
 
 			&-reference,
-			&-code-button {
+			&-code-button,
+			&--button {
 				all: unset;
 				color: $color-blue-dark !important;
 				background-color: $color-yellow !important;
@@ -385,4 +386,51 @@ body {
 	max-width: 800px;
 	margin: auto;
 	padding: 15px;
+}
+
+// this is intentionally before the base styles and the highlighter specific styles.
+.edac-fixes-modal {
+	* {
+		all: unset;
+	}
+}
+
+@import "../../common/sass/fix-settings";
+
+.edac-fixes-modal {
+	display: none;
+	background-color: #fff;
+	padding: 20px;
+
+	&--open {
+		display: block;
+
+		.edac-fix-settings--fields {
+			display: block !important;
+		}
+	}
+}
+
+// this button is styled like other buttons here.
+.edac-fix-settings {
+
+	&--fields {
+		input[type="checkbox"] {
+			all: revert;
+		}
+	}
+
+	&--button {
+		&--save {
+			@extend .edac-highlight-panel-description--button;
+			margin-right: 0 !important;
+			margin-top: 0 !important;
+
+		}
+	}
+
+	&--action-open {
+		display: inline-block;
+		width: 100%;
+	}
 }

@@ -86,5 +86,6 @@ class Plugin {
 	public function init_fixes_manager() {
 		$fixes_manager = FixesManager::get_instance();
 		$fixes_manager->register_fixes();
+		add_action( 'rest_api_init', [ $fixes_manager, 'register_rest_routes' ] );
 	}
 }

@@ -22,6 +22,13 @@ interface FixInterface {
 	public static function get_slug(): string;
 
 	/**
+	 * Get the nicename for the fix.
+	 *
+	 * @return string The name of the fix.
+	 */
+	public static function get_nicename(): string;
+
+	/**
 	 * Get the type for the fix.
 	 *
 	 * @return string The type of fix. Either 'backend', 'frontend' or everywhere.
@@ -35,6 +42,18 @@ interface FixInterface {
 	 * if they are not just simple hooks.
 	 */
 	public function register(): void;
+
+	/**
+	 * Get the settings fields for the fix.
+	 *
+	 * This can be called directly when you need a single fix but is also run through filter
+	 * 'edac_filter_fixes_settings_fields' to get all fields for all fixes so it must accept
+	 * an array of fields and return an array of fields.
+	 *
+	 * @param array $fields The fields to add to the settings page.
+	 * @return array
+	 */
+	public function get_fields_array( array $fields = [] ): array;
 
 	/**
 	 * Run the fix.
