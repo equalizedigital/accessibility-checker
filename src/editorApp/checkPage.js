@@ -48,8 +48,13 @@ const saveScanResults = ( postId, violations ) => {
 	} );
 };
 
+/**
+ * Inject an iframe into the page and load the previewUrl for scanning.
+ *
+ * @param {string} previewUrl The URL to load in the iframe.
+ * @param {number} postID     The post ID to pass to the iframe.
+ */
 const injectIframe = ( previewUrl, postID ) => {
-	// Create an iframe offscreen to load the preview of the page.
 
 	// Gen unique id for this iframe
 	const timestamp = new Date().getTime();
@@ -87,29 +92,34 @@ const injectIframe = ( previewUrl, postID ) => {
 		}
 	} );
 };
-
+top.edacScanCompleteListenerAdded = false;
 export const init = () => {
 	// Listen for completed scans.
-	top.addEventListener( 'edac_scan_complete', function( event ) {
-		const postId = event.detail.postId;
-		const violations = event.detail.violations;
-		const iframeId = event.detail.iframeId;
+	if ( ! top.edacScanCompleteListenerAdded ) {
+		top.edacScanCompleteListenerAdded = true;
+		top.addEventListener( 'edac_scan_complete', function( event ) {
+			const postId = event.detail.postId;
+			const violations = event.detail.violations;
+			const iframeId = event.detail.iframeId;
 
-		// remove the iframe.
-		setTimeout( function() {
-			document.getElementById( iframeId )?.remove();
-		}, 1000 );
+			// remove the iframe.
+			setTimeout( function() {
+				document.getElementById( iframeId )?.remove();
+			}, 1000 );
 
-		// save the scan results.
-		saveScanResults( postId, violations );
-	} );
+			// save the scan results.
+			saveScanResults( postId, violations );
+		} );
+	}
 
 	//Listen for dispatches from the wp data store so we can trap the update/publish event
 	let saving = false;
 	let autosaving = false;
 
-	if ( wp.data !== undefined && wp.data.subscribe !== undefined ) {
+	top.edacPostSaveStateSubscribed = top.edacPostSaveStateSubscribed || false;
+	if ( wp.data !== undefined && wp.data.subscribe !== undefined && ! top.edacPostSaveStateSubscribed ) {
 		wp.data.subscribe( () => {
+			top.edacPostSaveStateSubscribed = true;
 
 			if ( wp.data.select( 'core/editor' ) === undefined ) {
 				return;

@@ -61,6 +61,10 @@ const edacScriptVars = edac_script_vars;
 	} );
 
 	jQuery( window ).on( 'load', function() {
+		document.addEventListener( 'edac-cleared-issues', function() {
+			refreshTabDetails();
+		} );
+
 		// Allow other js to trigger a tab refresh through an event listener. Refactor.
 		const refreshTabDetails = () => {
 			// reset to first meta box tab
