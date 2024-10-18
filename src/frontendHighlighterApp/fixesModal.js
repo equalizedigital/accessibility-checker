@@ -107,6 +107,15 @@ const closeFixesModal = () => {
 	modal.classList.remove( 'edac-fixes-modal--open' );
 	modal.setAttribute( 'aria-hidden', 'true' );
 	modal.setAttribute( 'aria-modal', 'false' );
+	// get the element from INSIDE of the modal div edac-fix-settings--clone--wrapper
+	const fieldsElement = modal.querySelector( '.edac-fix-settings--clone--wrapper' );
+	// get the first direct child of the fieldsElement
+	const fields = fieldsElement.children[ 0 ];
+
+	// put the fields back over the placeholder edac-fix-settings--origin-placeholder
+	const originPlaceholder = document.querySelector( '.edac-fix-settings--origin-placeholder' );
+	originPlaceholder.replaceWith( fields );
+
 	// get all other imediate children of the body and set their aria-hidden to true
 	const bodyChildren = Array.from( document.body.children );
 	bodyChildren.forEach( ( child ) => {
@@ -122,25 +131,26 @@ const closeFixesModal = () => {
 	document.dispatchEvent( CloseEvent );
 };
 
-export const fillFixesModal = ( content = '', fieldsMarkup = '' ) => {
-	if ( '' === fieldsMarkup ) {
-		fieldsMarkup = `
-			<p>${ __( 'There are no settings to display.', 'accessibility-checker' ) }</p>
-		`;
+export const fillFixesModal = ( content = '', fieldsElement = '' ) => {
+	if ( '' === fieldsElement ) {
+		fieldsElement = document.createElement( 'p' );
+		fieldsElement.innerText = __( 'There are no settings to display.', 'accessibility-checker' );
 	}
 	// create an element from the fixes markup
-	const fields = document.createElement( 'div' );
-	fields.innerHTML = fieldsMarkup;
+	const fieldsWrapper = document.createElement( 'div' );
+	fieldsWrapper.classList.add( 'edac-fix-settings--clone--wrapper' );
+	// put the fieldsElement inside the fieldsWrapper element
+	fieldsWrapper.appendChild( fieldsElement );
 
 	// find a data-group-name in the fields
-	const groupName = fields.querySelector( '[data-group-name]' )?.getAttribute( 'data-group-name' ) || '';
+	const groupName = fieldsWrapper.querySelector( '[data-group-name]' )?.getAttribute( 'data-group-name' ) || '';
 
 	const modal = document.getElementById( 'edac-fixes-modal' );
 	const modalTitle = modal.querySelector( '#edac-fixes-modal-title' );
 	const modalBody = modal.querySelector( '.edac-fixes-modal__body' );
 	modalTitle.innerText = __( 'Fix settings: ', 'accessibility-checker' ) + groupName;
 	modalBody.innerHTML = content;
-	modalBody.appendChild( fields );
+	modalBody.appendChild( fieldsWrapper );
 
 	// bind the save button
 	const saveButton = modal.querySelector( '.edac-fix-settings--button--save' );

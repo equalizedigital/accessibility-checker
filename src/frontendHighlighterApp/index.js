@@ -801,8 +801,14 @@ class AccessibilityCheckerHighlight {
 			// this is a fail, it should do something.
 			return;
 		}
+		const placeholder = document.createElement( 'span' );
+		placeholder.classList.add( 'edac-fix-settings--origin-placeholder' );
+		// put the placeholder AFTER the fix container.
+		fixSettingsContainer.parentNode.insertBefore( placeholder, fixSettingsContainer );
+		// renive the fixSettingsContainer from the DOM.
+		fixSettingsContainer.remove();
 
-		fillFixesModal( '', fixSettingsContainer.innerHTML );
+		fillFixesModal( '', fixSettingsContainer );
 
 		// puse the focus trap.
 		this.panelDescriptionFocusTrap.pause();
