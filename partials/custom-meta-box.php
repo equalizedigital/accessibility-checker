@@ -45,11 +45,11 @@
 
 		<button
 			role="button"
-			id="edac-rescan-button"
+			id="edac-clear-issues-button"
 			class="components-button is-secondary"
-			aria-label="<?php esc_attr_e( 'Delete all currently found issues and rescan this post', 'accessibility-checker' ); ?>"
+			aria-label="<?php esc_attr_e( 'Delete all currently found issues', 'accessibility-checker' ); ?>"
 			disabled="true"
-		><?php esc_html_e( 'Rescan', 'accessibility-checker' ); ?></button>
+		><?php esc_html_e( 'Clear Issues', 'accessibility-checker' ); ?></button>
 	</div>
 	<div
 		role="tabpanel"
