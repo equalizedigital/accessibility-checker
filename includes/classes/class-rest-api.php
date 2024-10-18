@@ -165,10 +165,10 @@ class REST_Api {
 			function () use ( $ns, $version ) {
 				register_rest_route(
 					$ns . $version,
-					'/trigger-scan/(?P<id>\d+)',
+					'/clear-issues/(?P<id>\d+)',
 					[
 						'methods'             => 'POST',
-						'callback'            => [ $this, 'trigger_scan' ],
+						'callback'            => [ $this, 'clear_issues_for_post' ],
 						'args'                => [
 							'id' => [
 								'validate_callback' => function ( $param ) {
@@ -186,13 +186,13 @@ class REST_Api {
 	}
 
 	/**
-	 * REST handler that triggers a scan for a post.
+	 * REST handler to clear issues results for a given post ID.
 	 *
 	 * @param WP_REST_Request $request  The request passed from the REST call.
 	 *
 	 * @return \WP_REST_Response
 	 */
-	public function trigger_scan( $request ) {
+	public function clear_issues_for_post( $request ) {
 
 		if ( ! isset( $request['id'] ) ) {
 			return new \WP_REST_Response( [ 'message' => 'A required parameter is missing.' ], 400 );
@@ -216,9 +216,8 @@ class REST_Api {
 			// purge the issues for this post.
 			Purge_Post_Data::delete_post( $post_id );
 		}
-
-		edac_save_post( $post_id, $post, 'rescan' );
 	}
+
 
 	/**
 	 * Filter the html of the js validation violation.
