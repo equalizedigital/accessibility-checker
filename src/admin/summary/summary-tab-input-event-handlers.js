@@ -114,7 +114,10 @@ export const clearAllTabsAndPanelState = () => {
 export const initFixButtonEventHandlers = () => {
 	// Find all edac-details-rule-records-record-actions-fix.
 	const fixButtons = document.querySelectorAll( '.edac-details-rule-records-record-actions-fix' );
-	fixButtons.forEach( ( button ) => {
+	
+	const changeEventListeners = [];
+	// loop through each button binding a click event
+  fixButtons.forEach( ( button ) => {
 		button.addEventListener( 'click', ( event ) => {
 			const restoreFocusTo = event.target;
 
@@ -135,6 +138,19 @@ export const initFixButtonEventHandlers = () => {
 				saveFixSettings( clickedEvent.target.closest( '.edac-fix-settings' ) );
 			} );
 
+			thickbox.querySelectorAll( 'input, select, textarea' ).forEach( ( field ) => {
+				const changeListener = () => {
+					document.dispatchEvent( new CustomEvent( 'edac-fix-settings-change' ) );
+				};
+				field.addEventListener( 'change', changeListener );
+				changeEventListeners.push( { field, changeListener } );
+			} );
+
+			document.addEventListener( 'edac-fix-settings-change', () => {
+				const liveRegion = thickbox.querySelector( '[aria-live]' );
+				liveRegion.innerText = '';
+			} );
+
 			// thickbox only emits an event through jquery, so we need to use jquery to listen for it
 			jQuery( document ).one( 'tb_unload', () => {
 				setTimeout( () => {
@@ -148,6 +164,9 @@ export const initFixButtonEventHandlers = () => {
 								fieldsContainer[ i ].remove();
 							}
 						}
+					} );
+					changeEventListeners.forEach( ( { field, changeListener } ) => {
+						field.removeEventListener( 'change', changeListener );
 					} );
 				}, 100 );
 				thickboxFocusTrap.deactivate();
