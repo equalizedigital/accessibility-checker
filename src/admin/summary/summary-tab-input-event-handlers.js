@@ -7,6 +7,7 @@
 import { __ } from '@wordpress/i18n';
 
 import { saveFixSettings } from '../../common/saveFixSettingsRest';
+import { createFocusTrap } from 'focus-trap';
 
 /**
  * Initialize the Summary Tab keyboard and click event handlers.
@@ -111,12 +112,15 @@ export const clearAllTabsAndPanelState = () => {
  * Handle the click events for fix buttons
  */
 export const initFixButtonEventHandlers = () => {
-	// find all edac-details-rule-records-record-actions-fix
+	// Find all edac-details-rule-records-record-actions-fix.
 	const fixButtons = document.querySelectorAll( '.edac-details-rule-records-record-actions-fix' );
-	// loop through each button binding a click event
+	
 	const changeEventListeners = [];
-	fixButtons.forEach( ( button ) => {
+	// loop through each button binding a click event
+  fixButtons.forEach( ( button ) => {
 		button.addEventListener( 'click', ( event ) => {
+			const restoreFocusTo = event.target;
+
 			const fixSettings = document.getElementById( event.target.getAttribute( 'aria-controls' ) );
 			fixSettings.classList.toggle( 'active' );
 
@@ -127,6 +131,9 @@ export const initFixButtonEventHandlers = () => {
 			tb_show( __( 'Fix Settings', 'accessibility-checker' ), '#TB_inline?width=750&inlineId=' + fixSettings.id );
 
 			const thickbox = document.getElementById( 'TB_window' );
+			const thickboxFocusTrap = createFocusTrap( thickbox );
+			thickboxFocusTrap.activate();
+
 			thickbox.querySelector( '.edac-fix-settings--button--save' ).addEventListener( 'click', ( clickedEvent ) => {
 				saveFixSettings( clickedEvent.target.closest( '.edac-fix-settings' ) );
 			} );
@@ -162,6 +169,8 @@ export const initFixButtonEventHandlers = () => {
 						field.removeEventListener( 'change', changeListener );
 					} );
 				}, 100 );
+				thickboxFocusTrap.deactivate();
+				restoreFocusTo.focus();
 			} );
 		} );
 	} );
