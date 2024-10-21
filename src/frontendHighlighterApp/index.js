@@ -608,7 +608,7 @@ class AccessibilityCheckerHighlight {
 			// Get the summary of the issue
 			content += matchingObj.summary;
 
-			if ( this.fixes[ matchingObj.slug ] ) {
+			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
 				// this is the markup to put in the modal.
 				content += `
 					<div style="display:none;">
@@ -660,7 +660,7 @@ class AccessibilityCheckerHighlight {
 			}
 
 			// show fix settings button if available
-			if ( this.fixes[ matchingObj.slug ] ) {
+			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
 				this.fixSettingsButton = document.querySelector( '.edac-fix-settings--button--open' );
 				this.fixSettingsButton.addEventListener( 'click', ( event ) => {
 					this.showFixSettings( event );
@@ -882,5 +882,7 @@ class AccessibilityCheckerHighlight {
 
 window.addEventListener( 'DOMContentLoaded', () => {
 	new AccessibilityCheckerHighlight();
-	fixSettingsModalInit();
+	if ( window.edacFrontendHighlighterApp?.userCanFix ) {
+		fixSettingsModalInit();
+	}
 } );
