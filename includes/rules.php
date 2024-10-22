@@ -462,7 +462,7 @@ return [
 		'combines'  => [ 'document-title' ],
 		'viewable'  => false,
 		'fixes'     => [
-			ReadMoreAddTitleFix::get_slug(),
+			AddMissingOrEmptyPageTitleFix::get_slug(),
 		],
 	],
 	[
