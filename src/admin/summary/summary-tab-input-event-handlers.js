@@ -114,10 +114,10 @@ export const clearAllTabsAndPanelState = () => {
 export const initFixButtonEventHandlers = () => {
 	// Find all edac-details-rule-records-record-actions-fix.
 	const fixButtons = document.querySelectorAll( '.edac-details-rule-records-record-actions-fix' );
-	
+
 	const changeEventListeners = [];
 	// loop through each button binding a click event
-  fixButtons.forEach( ( button ) => {
+	fixButtons.forEach( ( button ) => {
 		button.addEventListener( 'click', ( event ) => {
 			const restoreFocusTo = event.target;
 
