@@ -263,14 +263,21 @@ class SkipLinkFix implements FixInterface {
 				<?php if ( $targets_string ) : ?>
 					<a class="edac-skip-link--content" href=""><?php esc_html_e( 'Skip to content', 'accessibility-checker' ); ?></a>
 				<?php endif; ?>
-				<?php
-				if ( $nav_targets_string ) :
-					$nav_target = ltrim( trim( $nav_targets_string ), '#' );
-					?>
-					<a class="edac-skip-link--navigation" href="#<?php echo esc_attr( $nav_target ); ?>"><?php esc_html_e( 'Skip to navigation', 'accessibility-checker' ); ?></a>
-				<?php endif; ?>
-				<?php $this->add_skip_link_styles(); ?>
 			</div>
+			<?php
+			if ( $nav_targets_string ) :
+				?>
+				<div class="edac-bypass-block <?php echo get_option( 'edac_fix_add_skip_link_always_visible', false ) ? 'edac-bypass-block-always-visible' : ''; ?>">
+					<?php
+					if ( $nav_targets_string ) :
+						$nav_target = ltrim( trim( $nav_targets_string ), '#' );
+						?>
+						<a class="edac-skip-link--navigation" href="#<?php echo esc_attr( $nav_target ); ?>"><?php esc_html_e( 'Skip to navigation', 'accessibility-checker' ); ?></a>
+					<?php endif; ?>
+					<?php $this->add_skip_link_styles(); ?>
+				</div>
+			<?php endif; ?>
+			<?php $this->add_skip_link_styles(); ?>
 		</template>
 		<?php
 	}
