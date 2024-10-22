@@ -473,6 +473,7 @@ class Ajax {
 									aria-controls="%1$s"
 									aria-label="%2$s"
 								>
+									<span class="dashicons dashicons-admin-tools"></span>
 									%3$s
 								</button>',
 								esc_attr( $controls_id ),
