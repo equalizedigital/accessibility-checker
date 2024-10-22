@@ -200,20 +200,20 @@ class SkipLinkFix implements FixInterface {
 				}
 			}
 
-			.edac-bypass-block > a {
+			a.edac-bypass-block {
 				display: block;
 				margin: 0.5rem 0;
 				color: #444;
 				text-decoration: underline;
 			}
 
-			.edac-bypass-block > a:hover,
-			.edac-bypass-block > a:focus {
+			a.edac-bypass-block:hover,
+			a.edac-bypass-block:focus {
 				text-decoration: none;
 				color: #006595;
 			}
 
-			.edac-bypass-block > a:focus {
+			a.edac-bypass-block:focus {
 				outline: 2px solid #000;
 				outline-offset: 2px;
 			}
@@ -259,23 +259,18 @@ class SkipLinkFix implements FixInterface {
 		}
 		?>
 		<template id="skip-link-template">
-			<div class="edac-bypass-block <?php echo get_option( 'edac_fix_add_skip_link_always_visible', false ) ? 'edac-bypass-block-always-visible' : ''; ?>">
 				<?php if ( $targets_string ) : ?>
-					<a class="edac-skip-link--content" href=""><?php esc_html_e( 'Skip to content', 'accessibility-checker' ); ?></a>
+					<a class="edac-skip-link--content edac-bypass-block" href=""><?php esc_html_e( 'Skip to content', 'accessibility-checker' ); ?></a>
 				<?php endif; ?>
-			</div>
 			<?php
 			if ( $nav_targets_string ) :
 				?>
-				<div class="edac-bypass-block <?php echo get_option( 'edac_fix_add_skip_link_always_visible', false ) ? 'edac-bypass-block-always-visible' : ''; ?>">
 					<?php
 					if ( $nav_targets_string ) :
 						$nav_target = ltrim( trim( $nav_targets_string ), '#' );
 						?>
-						<a class="edac-skip-link--navigation" href="#<?php echo esc_attr( $nav_target ); ?>"><?php esc_html_e( 'Skip to navigation', 'accessibility-checker' ); ?></a>
+						<a class="edac-skip-link--navigation edac-bypass-block" href="#<?php echo esc_attr( $nav_target ); ?>"><?php esc_html_e( 'Skip to navigation', 'accessibility-checker' ); ?></a>
 					<?php endif; ?>
-					<?php $this->add_skip_link_styles(); ?>
-				</div>
 			<?php endif; ?>
 			<?php $this->add_skip_link_styles(); ?>
 		</template>
