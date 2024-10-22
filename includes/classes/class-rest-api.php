@@ -234,8 +234,9 @@ class REST_Api {
 				? '// {{ ' . $violation['selector'][0] . ' }}'
 				: '';
 		}
-		if ( 'html-has-lang' === $rule_id ) {
-			// Use just the opening <html> and closing </html> tag for the affected code markup.
+
+		// Use just the opening <html> and closing </html> tag, prevents storing entire page as the affected code.
+		if ( 'html-has-lang' === $rule_id || 'missing_title' === $rule_id ) {
 			$html = preg_replace( '/^.*(<html.*?>).*(<\/html>).*$/s', '$1...$2', $html );
 
 		}
