@@ -611,7 +611,7 @@ class AccessibilityCheckerHighlight {
 			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
 				// this is the markup to put in the modal.
 				content += `
-					<div style="display:none;">
+					<div style="display:none;" class="always-hide">
 						<div class="edac-fix-settings">
 							<div class="edac-fix-settings--fields">
 								${ this.fixes[ matchingObj.slug ].fields }
@@ -799,9 +799,14 @@ class AccessibilityCheckerHighlight {
 			// this is a fail, it should do something.
 			return;
 		}
+		const placeholder = document.createElement( 'span' );
+		placeholder.classList.add( 'edac-fix-settings--origin-placeholder' );
+		// put the placeholder AFTER the fix container.
+		fixSettingsContainer.parentNode.insertBefore( placeholder, fixSettingsContainer );
+		// renive the fixSettingsContainer from the DOM.
+		fixSettingsContainer.remove();
 
-		fixSettingsContainer.classList.add( 'edac-fix-settings--open' );
-		fillFixesModal( '', fixSettingsContainer.innerHTML );
+		fillFixesModal( '', fixSettingsContainer );
 
 		// puse the focus trap.
 		this.panelDescriptionFocusTrap.pause();
