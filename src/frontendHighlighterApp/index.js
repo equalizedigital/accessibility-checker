@@ -608,7 +608,7 @@ class AccessibilityCheckerHighlight {
 			// Get the summary of the issue
 			content += matchingObj.summary;
 
-			if ( this.fixes[ matchingObj.slug ] ) {
+			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
 				// this is the markup to put in the modal.
 				content += `
 					<div style="display:none;" class="always-hide">
@@ -626,15 +626,13 @@ class AccessibilityCheckerHighlight {
 					</div>
 				`;
 				// and the button that will trigger the modal.
-				content += `
-					<div class="edac-fix-settings--action-open">
-						<button role="button" class="edac-fix-settings--button--open edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>
-					</div>
-					`;
+				content += ` <br /><button role="button" class="edac-fix-settings--button--open edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>`;
+			} else {
+				content += ` <br />`;
 			}
 
 			// Get the link to the documentation
-			content += ` <br /><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }">Full Documentation</a>`;
+			content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }">Full Documentation</a>`;
 
 			// Get the code button
 			content += `<button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">Show Code</button>`;
@@ -660,7 +658,7 @@ class AccessibilityCheckerHighlight {
 			}
 
 			// show fix settings button if available
-			if ( this.fixes[ matchingObj.slug ] ) {
+			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
 				this.fixSettingsButton = document.querySelector( '.edac-fix-settings--button--open' );
 				this.fixSettingsButton.addEventListener( 'click', ( event ) => {
 					this.showFixSettings( event );
@@ -887,5 +885,7 @@ class AccessibilityCheckerHighlight {
 
 window.addEventListener( 'DOMContentLoaded', () => {
 	new AccessibilityCheckerHighlight();
-	fixSettingsModalInit();
+	if ( window.edacFrontendHighlighterApp?.userCanFix ) {
+		fixSettingsModalInit();
+	}
 } );

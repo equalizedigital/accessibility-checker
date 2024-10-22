@@ -4,6 +4,11 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 	const settingsToSave = {};
 
 	fixSettingsContainer.querySelectorAll( 'input, select, textarea' ).forEach( ( field ) => {
+		// if the field changes then emit a custom event
+		field.addEventListener( 'change', () => {
+			document.dispatchEvent( new CustomEvent( 'edac-fix-settings-change' ) );
+		} );
+
 		const fixGroup = field.getAttribute( 'data-fix-slug' );
 		if ( ! fixGroup ) {
 			// a group is required to save. If it's not there, skip this field.

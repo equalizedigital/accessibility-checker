@@ -200,20 +200,20 @@ class SkipLinkFix implements FixInterface {
 				}
 			}
 
-			.edac-bypass-block > a {
+			a.edac-bypass-block {
 				display: block;
 				margin: 0.5rem 0;
 				color: #444;
 				text-decoration: underline;
 			}
 
-			.edac-bypass-block > a:hover,
-			.edac-bypass-block > a:focus {
+			a.edac-bypass-block:hover,
+			a.edac-bypass-block:focus {
 				text-decoration: none;
 				color: #006595;
 			}
 
-			.edac-bypass-block > a:focus {
+			a.edac-bypass-block:focus {
 				outline: 2px solid #000;
 				outline-offset: 2px;
 			}
@@ -233,7 +233,7 @@ class SkipLinkFix implements FixInterface {
 			echo wp_kses_post(
 				sprintf(
 					// translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-					'If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s</p>',
+					__( 'If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s', 'accessibility-checker' ),
 					'<a href="' . esc_url( 'https://equalizedigital.com/how-to-make-your-wordpress-site-more-accessible-with-skip-links/' ) . '">',
 					'</a>'
 				)
@@ -259,18 +259,20 @@ class SkipLinkFix implements FixInterface {
 		}
 		?>
 		<template id="skip-link-template">
-			<div class="edac-bypass-block <?php echo get_option( 'edac_fix_add_skip_link_always_visible', false ) ? 'edac-bypass-block-always-visible' : ''; ?>">
 				<?php if ( $targets_string ) : ?>
-					<a class="edac-skip-link--content" href=""><?php esc_html_e( 'Skip to content', 'accessibility-checker' ); ?></a>
+					<a class="edac-skip-link--content edac-bypass-block" href=""><?php esc_html_e( 'Skip to content', 'accessibility-checker' ); ?></a>
 				<?php endif; ?>
-				<?php
-				if ( $nav_targets_string ) :
-					$nav_target = ltrim( trim( $nav_targets_string ), '#' );
-					?>
-					<a class="edac-skip-link--navigation" href="#<?php echo esc_attr( $nav_target ); ?>"><?php esc_html_e( 'Skip to navigation', 'accessibility-checker' ); ?></a>
-				<?php endif; ?>
-				<?php $this->add_skip_link_styles(); ?>
-			</div>
+			<?php
+			if ( $nav_targets_string ) :
+				?>
+					<?php
+					if ( $nav_targets_string ) :
+						$nav_target = ltrim( trim( $nav_targets_string ), '#' );
+						?>
+						<a class="edac-skip-link--navigation edac-bypass-block" href="#<?php echo esc_attr( $nav_target ); ?>"><?php esc_html_e( 'Skip to navigation', 'accessibility-checker' ); ?></a>
+					<?php endif; ?>
+			<?php endif; ?>
+			<?php $this->add_skip_link_styles(); ?>
 		</template>
 		<?php
 	}

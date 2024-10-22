@@ -61,6 +61,16 @@
   #edac-tabs {
     margin: 15px 0;
 
+	.edac-tabs-and-rescan-container {
+		display: flex;
+
+		#edac-clear-issues-button {
+			margin-left: auto;
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
+	}
+
     .edac-tabs {
       margin-bottom: 0;
       position: relative;
@@ -643,19 +653,22 @@
             &-actions {
               border-right: none;
 
-              &-ignore {
+              &-ignore, &-fix, &-highlight-front {
                 color: $color-blue;
                 border: none;
                 background: transparent;
                 display: flex;
                 align-items: center;
                 padding-left: 0;
+                text-decoration: none;
+                padding: 4px 0;
 
                 svg {
                   width: 18px;
                   height: auto;
                   display: inline-block;
-                  margin: 0 2px 0 3px;
+                  //margin: 0 2px 0 3px;
+                  margin: 0 5px 0 0px;
 
                   path {
                     fill: $color-blue;
