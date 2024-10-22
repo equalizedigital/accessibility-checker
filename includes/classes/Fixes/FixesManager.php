@@ -230,7 +230,9 @@ class FixesManager {
 			[
 				'methods'             => 'GET',
 				'callback'            => [ $this, 'get_fixes' ],
-				'permission_callback' => '__return_true', // need real permission.
+				'permission_callback' => function () {
+					return current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) );
+				},
 			]
 		);
 
@@ -240,7 +242,9 @@ class FixesManager {
 			[
 				'methods'             => 'POST',
 				'callback'            => [ $this, 'update_fix_settings' ],
-				'permission_callback' => '__return_true', // need real permission.
+				'permission_callback' => function () {
+					return current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) );
+				},
 			]
 		);
 	}
