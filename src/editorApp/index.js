@@ -52,8 +52,10 @@ window.addEventListener( 'DOMContentLoaded', () => {
 					const clearedEvent = new Event( 'edac-cleared-issues' );
 					document.dispatchEvent( clearedEvent );
 					setClearIssuesButtonState();
+					triggerNotice( __( 'Issues cleared successfully.', 'accessibility-checker' ) );
 				} else {
-					setClearIssuesButtonState( false, __( 'Clearing failed, retry', 'accessibility-checker' ) );
+					setClearIssuesButtonState();
+					triggerNotice( __( 'Failed to clear issues.', 'accessibility-checker' ), 'error' );
 				}
 			}
 		);
@@ -75,4 +77,22 @@ const setClearIssuesButtonState = ( state, message ) => {
 	const rescanButton = document.getElementById( 'edac-clear-issues-button' );
 	rescanButton.disabled = state ?? false;
 	rescanButton.innerHTML = message ?? __( 'Clear Issues', 'accessibility-checker' );
+};
+
+/**
+ * Trigger a notice to the user.
+ *
+ * @param {string} message The message to display.
+ * @param {string} type    The type of notice to display.
+ */
+const triggerNotice = ( message, type = 'success' ) => {
+	wp.data.dispatch( 'core/notices' ).createNotice(
+		type,
+		message,
+		{
+			type: 'snackbar',
+			isDismissible: true,
+			speak: true,
+		}
+	);
 };
