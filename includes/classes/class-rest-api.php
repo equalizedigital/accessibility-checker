@@ -236,7 +236,7 @@ class REST_Api {
 		}
 
 		// Use just the opening <html> and closing </html> tag, prevents storing entire page as the affected code.
-		if ( 'html-has-lang' === $rule_id || 'missing_title' === $rule_id ) {
+		if ( 'html-has-lang' === $rule_id || 'document-title' === $rule_id ) {
 			$html = preg_replace( '/^.*(<html.*?>).*(<\/html>).*$/s', '$1...$2', $html );
 
 		}
