@@ -46,6 +46,7 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
+			'X-WP-Nonce': window.edacSettings?.nonce || window.edac_script_vars?.restNonce,
 		},
 		body: JSON.stringify( settingsToSave ),
 	} ).then(
