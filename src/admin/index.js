@@ -681,6 +681,10 @@ window.addEventListener( 'load', function() {
 			} );
 	}
 
+	if ( this.document.querySelector( 'body.accessibility-checker_page_accessibility_checker_issues' ) ) {
+		initFixButtonEventHandlers();
+	}
+
 	edacTimestampToLocal();
 } );
 
