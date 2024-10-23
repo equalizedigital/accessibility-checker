@@ -39,6 +39,9 @@
 		input[type="checkbox"] {
 			width: auto;
 			margin-right: 0.5rem;
+			&:before {
+				content: none !important;
+			}
 		}
 
 		input[type="text"] {

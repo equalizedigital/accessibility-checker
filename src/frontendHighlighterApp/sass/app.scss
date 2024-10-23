@@ -17,9 +17,11 @@ body {
 .edac-highlight {
 
 	all: unset;
+	letter-spacing: normal !important;
 
 	* {
 		all: unset;
+		letter-spacing: normal !important;
 	}
 
 	display: inline-block;
@@ -112,6 +114,7 @@ body {
 
 		* {
 			all: unset;
+			letter-spacing: normal !important;
 		}
 
 		a:not(.edac-highlight-panel-description-reference) {
@@ -242,6 +245,7 @@ body {
 					color: $color-blue-dark !important;
 					background-color: $color-white !important;
 					cursor: pointer !important;
+					text-decoration: none !important;
 				}
 			}
 
@@ -336,6 +340,7 @@ body {
 
 				button {
 					all: unset;
+					text-decoration: none !important;
 					color: $color-white !important;
 					background-color: $color-blue-dark !important;
 					padding: 4px 10px !important;
@@ -418,12 +423,50 @@ body {
 	overflow-y: auto !important;
 	padding: 20px !important;
 	text-align: left !important;
+	letter-spacing: initial !important;
+
+	h2 {
+		font-size: 1.25em;
+		margin: 0;
+	}
+
+	h3 {
+		font-size: 1.1em;
+		margin-bottom: 0.5em;
+	}
+
+	label {
+		margin-bottom: 0.75em;
+	}
+
+	&__header {
+		margin-bottom: 0.25em;
+	}
+
+	&__close,
+	&__close:focus,
+	&__close:hover {
+		text-decoration: none;
+	}
 
 	&--open {
 		display: block;
 
-		.edac-fix-settings--fields {
-			display: block !important;
+		.edac-fix-settings {
+			&--fields {
+				display: block !important;
+			}
+
+			&--action-row {
+				gap: .5em;
+				margin-top: 0.75em;
+			}
+
+			&--button--save {
+				@extend .edac-highlight-panel-description--button;
+
+
+			}
 		}
 	}
 
@@ -445,8 +488,7 @@ body {
 	&--button {
 		&--save {
 			@extend .edac-highlight-panel-description--button;
-			margin-right: 0 !important;
-			margin-top: 0 !important;
+			margin: 0;
 
 		}
 	}
