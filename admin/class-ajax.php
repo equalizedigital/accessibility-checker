@@ -472,6 +472,7 @@ class Ajax {
 								'<button class="edac-details-rule-records-record-actions-fix"
 									aria-controls="%1$s"
 									aria-label="%2$s"
+									type="button"
 								>
 									<span class="dashicons dashicons-admin-tools"></span>
 									%3$s
