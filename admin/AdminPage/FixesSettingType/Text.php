@@ -37,7 +37,7 @@ trait Text {
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 			<?php
 			if ( isset( $args['help_id'] ) && $args['label'] ) :
-				$link = \edac_generate_link_type(
+				$link  = \edac_generate_link_type(
 					[
 						'utm-content' => 'fix-description',
 						'utm-term'    => $args['name'],
@@ -46,13 +46,18 @@ trait Text {
 					[
 						'help_id' => $args['help_id'],
 					]
-				)
+				);
+				$label = sprintf(
+				/* translators: %s: the label of the fix */
+					esc_html__( 'Read documentation for %s. Opens in a new window.', 'accessibility-checker' ),
+					esc_html( $args['label'] )
+				);
 				?>
 				<a
 					href="<?php echo esc_url( $link ); ?>"
 					class="edac-fix-description-help-link"
 					target="_blank"
-					aria-label="Read documentation for <?php echo esc_attr( $args['label'] ); ?>"
+					aria-label="Read documentation for <?php echo esc_attr( $label ); ?>"
 				>
 					<span class="dashicons dashicons-info"></span>
 				</a>
