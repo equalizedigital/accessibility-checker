@@ -335,7 +335,7 @@ class Ajax {
 					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' Ignored Items</span>';
 				}
 				$html .= '</h3>';
-				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '"><span class="dashicons dashicons-info"></span></a>';
+				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '. ' . esc_attr__( 'Opens in a new window.', 'accessibility-checker' ) . '"><span class="dashicons dashicons-info"></span></a>';
 				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="Expand issues for ' . esc_html( $rule['title'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 
 				$html .= '</div>';
@@ -472,6 +472,7 @@ class Ajax {
 								'<button class="edac-details-rule-records-record-actions-fix"
 									aria-controls="%1$s"
 									aria-label="%2$s"
+									type="button"
 								>
 									<span class="dashicons dashicons-admin-tools"></span>
 									%3$s

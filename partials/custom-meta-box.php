@@ -46,7 +46,7 @@
 		<button
 			role="button"
 			id="edac-clear-issues-button"
-			class="components-button is-secondary"
+			class="components-button button is-secondary"
 			aria-label="<?php esc_attr_e( 'Delete all currently found issues', 'accessibility-checker' ); ?>"
 			disabled="true"
 		><?php esc_html_e( 'Clear Issues', 'accessibility-checker' ); ?></button>

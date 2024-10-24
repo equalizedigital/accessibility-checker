@@ -60,7 +60,7 @@ trait Checkbox {
 					href="<?php echo esc_url( $link ); ?>"
 					class="edac-fix-description-help-link"
 					target="_blank"
-					aria-label="Read documentation for <?php echo esc_attr( $args['label'] ); ?>"
+					aria-label="Read documentation for <?php echo esc_attr( $args['label'] ); ?>. <?php esc_attr_e( 'Opens in a new window.', 'accessibility-checker' ); ?>"
 				>
 					<span class="dashicons dashicons-info edac-dashicon-muted"></span>
 				</a>
