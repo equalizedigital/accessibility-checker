@@ -20,6 +20,8 @@ import linkAmbiguousText from './rules/link-ambiguous-text';
 import hasAmbiguousText from './checks/has-ambiguous-text';
 import brokenAnchorLink from './rules/broken-anchor-link';
 import anchorExists from './checks/anchor-exists';
+import labelExtended from './rules/extended/label';
+import imageInputHasAlt from './checks/image-input-has-alt';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -61,6 +63,7 @@ const scan = async (
 				linkTargetBlank,
 				linkAmbiguousText,
 				brokenAnchorLink,
+				labelExtended,
 			],
 			checks: [
 				//alwaysFail,
@@ -73,6 +76,7 @@ const scan = async (
 				linkTargetBlankWithoutInforming,
 				hasAmbiguousText,
 				anchorExists,
+				imageInputHasAlt,
 			],
 			iframes: false,
 
@@ -98,6 +102,7 @@ const scan = async (
 					linkTargetBlank.id,
 					linkAmbiguousText.id,
 					brokenAnchorLink.id,
+					labelExtended.id,
 				],
 			},
 

@@ -14,14 +14,14 @@ use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
  *
  * @since 1.16.0
  */
-class TabindexFix implements FixInterface {
+class LinkUnderline implements FixInterface {
 	/**
 	 * The slug of the fix.
 	 *
 	 * @return string
 	 */
 	public static function get_slug(): string {
-		return 'remove_tabindex';
+		return 'link_underline';
 	}
 
 	/**
@@ -30,7 +30,7 @@ class TabindexFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'Remove Tabindex from Focusable Elements', 'accessibility-checker' );
+		return __( 'Add Underlines to all non-nav Links', 'accessibility-checker' );
 	}
 
 	/**
@@ -50,27 +50,25 @@ class TabindexFix implements FixInterface {
 	public function register(): void {
 		add_filter(
 			'edac_filter_fixes_settings_fields',
-			[ $this, 'get_fields_array' ]
+			[ $this, 'get_fields_array' ],
 		);
 	}
 
 	/**
-	 * Returns the settings fields for the tabindex removal fix.
+	 * Get the settings fields for the fix.
 	 *
 	 * @param array $fields The array of fields that are already registered, if any.
 	 *
 	 * @return array
 	 */
 	public function get_fields_array( array $fields = [] ): array {
-		$fields['edac_fix_remove_tabindex'] = [
+		$fields['edac_fix_force_link_underline'] = [
 			'type'        => 'checkbox',
-			'label'       => esc_html__( 'Remove Tab Index', 'accessibility-checker' ),
-			'labelledby'  => 'remove_tabindex',
-			// translators: %1$s: a attribute name wrapped in a <code> tag.
-			'description' => sprintf( __( 'Removes the %1$s attribute from focusable elements.', 'accessibility-checker' ), '<code>tabindex</code>' ),
+			'label'       => esc_html__( 'Force Link Underline', 'accessibility-checker' ),
+			'labelledby'  => 'force_link_underline',
+			'description' => esc_html__( 'Ensures that non-navigation links are underlined.', 'accessibility-checker' ),
 			'fix_slug'    => $this->get_slug(),
-			'group_name'  => $this->get_nicename(),
-			'help_id'     => 8496,
+			'help_id'     => 8489,
 		];
 
 		return $fields;
@@ -82,7 +80,7 @@ class TabindexFix implements FixInterface {
 	 * @return void
 	 */
 	public function run() {
-		if ( ! get_option( 'edac_fix_remove_tabindex', false ) ) {
+		if ( ! get_option( 'edac_fix_force_link_underline', false ) ) {
 			return;
 		}
 
@@ -90,8 +88,25 @@ class TabindexFix implements FixInterface {
 		add_filter(
 			'edac_filter_frontend_fixes_data',
 			function ( $data ) {
-				$data['tabindex'] = [
+				/**
+				 * Filters the target element selector for forcing underlines.
+				 *
+				 * This filter allows customization of the target elements that should have
+				 * forced underlines applied. By default, the selector is set to 'a'.
+				 *
+				 * @since 1.16.0
+				 *
+				 * @hook edac_fix_underline_target
+				 *
+				 * @param string $el The target element selector. Default is 'a'.
+				 *
+				 * @return string Modified target element selector.
+				 */
+				$target = apply_filters( 'edac_fix_underline_target', 'a' );
+
+				$data['underline'] = [
 					'enabled' => true,
+					'target'  => $target,
 				];
 				return $data;
 			}

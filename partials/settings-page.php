@@ -51,7 +51,7 @@ $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items
 
 	<?php
 	if ( $settings_tab_items ) {
-		echo '<nav class="nav-tab-wrapper">';
+		echo '<nav class="nav-tab-wrapper" aria-label="Settings Tabs">';
 		foreach ( $settings_tab_items as $settings_tab_item ) {
 			$slug      = $settings_tab_item['slug'] ? $settings_tab_item['slug'] : null;
 			$query_var = $slug ? '&tab=' . $slug : '';

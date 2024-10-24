@@ -999,3 +999,43 @@ function edac_is_item_using_matching_extension( string $item, array $extensions 
 	$extension = pathinfo( $item, PATHINFO_EXTENSION );
 	return in_array( '.' . $extension, $extensions, true );
 }
+
+/**
+ * Generate links to pro page with some params.
+ *
+ * @param array  $query_args A list of key value pairs to add as query vars to the link.
+ * @param string $type The type of link to generate. Default is 'pro'.
+ * @param array  $args Additional arguments to pass on the link.
+ * @return string
+ */
+function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ): string {
+
+	$date_now        = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
+	$activation_date = new DateTime( get_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s' ) ) );
+	$interval        = $date_now->diff( $activation_date );
+	$days_active     = $interval->days;
+	$query_defaults  = [
+		'utm_source'       => 'accessibility-checker',
+		'utm_medium'       => 'software',
+		'utm_campaign'     => 'wordpress-general',
+		'php_version'      => PHP_VERSION,
+		'platform'         => 'wordpress',
+		'platform_version' => $GLOBALS['wp_version'],
+		'software'         => defined( 'EDACP_KEY_VALID' ) && EDACP_KEY_VALID ? 'pro' : 'free',
+		'software_version' => defined( 'EDACP_VERSION' ) ? EDACP_VERSION : EDAC_VERSION,
+		'days_active'      => $days_active,
+	];
+
+	$query_args = array_merge( $query_defaults, $query_args );
+
+	switch ( $type ) {
+		case 'help':
+			$base_link = trailingslashit( 'https://a11ychecker.com/help' . $args['help_id'] ?? '' );
+			break;
+		case 'pro':
+		default:
+			$base_link = 'https://equalizedigital.com/accessibility-checker/pricing/';
+			break;
+	}
+	return add_query_arg( $query_args, $base_link );
+}
