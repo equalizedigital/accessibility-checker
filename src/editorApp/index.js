@@ -86,13 +86,28 @@ const setClearIssuesButtonState = ( state, message ) => {
  * @param {string} type    The type of notice to display.
  */
 const triggerNotice = ( message, type = 'success' ) => {
-	wp.data.dispatch( 'core/notices' ).createNotice(
-		type,
-		message,
-		{
-			type: 'snackbar',
-			isDismissible: true,
-			speak: true,
-		}
-	);
+	if ( typeof wp !== 'undefined' && wp.data && wp.data.dispatch ) {
+		// In block editor we can use a snackbar to get the message to the user.
+		wp.data.dispatch( 'core/notices' ).createNotice(
+			type,
+			message,
+			{
+				type: 'snackbar',
+				isDismissible: true,
+				speak: true,
+			}
+		);
+	} else {
+		// In the classic editor we have to create our own live region.
+		const notice = document.createElement( 'div' );
+		notice.setAttribute( 'role', 'status' );
+		notice.setAttribute( 'aria-live', 'polite' );
+		notice.setAttribute( 'aria-atomic', 'true' );
+		notice.classList.add( 'screen-reader-text', 'edac-aria-live-notice' );
+		document.body.appendChild( notice );
+		notice.textContent = message;
+		setTimeout( function() {
+			notice.remove();
+		}, 10000 );
+	}
 };
