@@ -421,9 +421,15 @@ body {
 	margin-bottom: 15px !important;
 	max-height: calc(100vh - 230px) !important;
 	overflow-y: auto !important;
-	padding: 20px !important;
+	padding: 40px !important;
 	text-align: left !important;
 	letter-spacing: initial !important;
+
+	@media screen and (max-width: $small-screen-width) {
+		width: 100% !important;
+		max-width: calc(100% - 30px) !important;
+		padding: 20px !important;
+	}
 
 	h2 {
 		font-size: 1.25em;
