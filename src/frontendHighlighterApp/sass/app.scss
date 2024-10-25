@@ -421,13 +421,19 @@ body {
 	margin-bottom: 15px !important;
 	max-height: calc(100vh - 230px) !important;
 	overflow-y: auto !important;
-	padding: 20px !important;
+	padding: 40px !important;
 	text-align: left !important;
 	letter-spacing: initial !important;
 
+	@media screen and (max-width: $small-screen-width) {
+		width: 100% !important;
+		max-width: calc(100% - 30px) !important;
+		padding: 20px !important;
+	}
+
 	h2 {
 		font-size: 1.25em;
-		margin: 0;
+		margin: 0 0 0.75em 0;
 	}
 
 	h3 {
@@ -447,6 +453,11 @@ body {
 	&__close:focus,
 	&__close:hover {
 		text-decoration: none;
+	}
+
+	&__close:focus,
+	&__close:hover {
+		background: $color-yellow;
 	}
 
 	&--open {
@@ -472,7 +483,7 @@ body {
 
 	*:focus {
 		outline: revert;
-		outline-offset: revert;
+		outline-offset: 2px;
 	}
 }
 
