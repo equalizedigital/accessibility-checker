@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
-Tested up to: 6.6.1
-Stable tag: 1.15.3
+Tested up to: 6.6.7
+Stable tag: 1.16.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -173,6 +173,25 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 = 1.16.0 =
 * New: Introduced a system to handle automated fixes for issues that the scanner would discover.
+* New: Fix to remove or update bad tabindex values on elements.
+* New: Fix to remove title attributes in favor of preferred accessible names to elements.
+* New: Fix to add missing lang and dir attributes to the <html> element.
+* New: Fix to add post titles to 'read more' links to disambiguate them.
+* New: Fix to add skip links to pages where they are missing.
+* New: Fix to add labels to comment and search forms.
+* New: Fix to ensure that the meta viewport tag does not prevent user scaling or zooming.
+* New: Fix to ensure that focus outlines are present on focusable elements.
+* Enhancement: Improve the tabindex_modified check to handle every element with tabindex.
+* Enhancement: Improve the link_blank rule to check on fully rendered pages.
+* Enhancement: Improve the link_ambiguous_text rule to check on fully rendered pages.
+* Enhancement: Improve the broken_skip_anchor_link rule to check on fully rendered pages.
+* Enhancement: Improve the html lang and dir attribute check to on check fully rendered pages.
+* Enhancement: Improve the document title check to check on fully rendered pages.
+* Enhancement: Add a clear button to the editor to allow for .
+* Enhancement: Improved GTM iframe detection.
+* Fix: Avoid showing 100% passed results when scans are not complete.
+* Fix: Improve or add better aria-labels in several places.
+* Fix: Don't flag empty paragraphs if they have aria-hidden.
 
 = 1.15.3
 * Enhancement: Detect missing labels on more elements.
