@@ -115,7 +115,18 @@ export const initFixButtonEventHandlers = () => {
 	// Find all edac-details-rule-records-record-actions-fix.
 	const fixButtons = document.querySelectorAll( '.edac-details-rule-records-record-actions-fix' );
 
-	const changeEventListeners = [];
+	document.querySelectorAll( '.edac-fix-settings--button--save' ).forEach( ( saveButton ) => {
+		saveButton.addEventListener( 'click', ( clickedEvent ) => {
+			saveFixSettings( clickedEvent.target.closest( '.edac-fix-settings' ) );
+		} );
+	} );
+
+	document.querySelectorAll( '.edac-fix-settings' ).forEach( ( settingsContainer ) => {
+		settingsContainer.querySelectorAll( 'input, select, textarea' ).forEach( ( field ) => {
+			field.addEventListener( 'change', changeListener );
+		} );
+	} );
+
 	// loop through each button binding a click event
 	fixButtons.forEach( ( button ) => {
 		button.addEventListener( 'click', async ( event ) => {
@@ -133,25 +144,9 @@ export const initFixButtonEventHandlers = () => {
 			tb_show( __( 'Fix Settings', 'accessibility-checker' ), '#TB_inline?width=750&inlineId=' + fixSettings.id );
 
 			const thickbox = document.getElementById( 'TB_window' );
+			thickbox.querySelector( '[aria-live]' ).innerText = '';
 			const thickboxFocusTrap = createFocusTrap( thickbox );
 			thickboxFocusTrap.activate();
-
-			thickbox.querySelector( '.edac-fix-settings--button--save' ).addEventListener( 'click', ( clickedEvent ) => {
-				saveFixSettings( clickedEvent.target.closest( '.edac-fix-settings' ) );
-			} );
-
-			thickbox.querySelectorAll( 'input, select, textarea' ).forEach( ( field ) => {
-				const changeListener = () => {
-					document.dispatchEvent( new CustomEvent( 'edac-fix-settings-change' ) );
-				};
-				field.addEventListener( 'change', changeListener );
-				changeEventListeners.push( { field, changeListener } );
-			} );
-
-			document.addEventListener( 'edac-fix-settings-change', () => {
-				const liveRegion = thickbox.querySelector( '[aria-live]' );
-				liveRegion.innerText = '';
-			} );
 
 			// thickbox only emits an event through jquery, so we need to use jquery to listen for it
 			jQuery( document ).one( 'tb_unload', () => {
@@ -167,13 +162,22 @@ export const initFixButtonEventHandlers = () => {
 							}
 						}
 					} );
-					changeEventListeners.forEach( ( { field, changeListener } ) => {
-						field.removeEventListener( 'change', changeListener );
-					} );
 				}, 100 );
 				thickboxFocusTrap.deactivate();
 				restoreFocusToElement.focus();
 			} );
 		} );
 	} );
+
+	document.addEventListener( 'edac-fix-settings-change', () => {
+		const liveRegion = document.querySelector( '#TB_window [aria-live]' );
+		liveRegion.innerText = '';
+	} );
+};
+
+/**
+ * Handler to bubble a change event up for other elements to listen to.
+ */
+const changeListener = () => {
+	document.dispatchEvent( new CustomEvent( 'edac-fix-settings-change' ) );
 };
