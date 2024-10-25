@@ -13,6 +13,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\{
 	PreventLinksOpeningNewWindowFix,
 	HTMLLangAndDirFix,
 	AddMissingOrEmptyPageTitleFix,
+	MetaViewportScalableFix,
 };
 
 return [
@@ -490,5 +491,6 @@ return [
 		'ruleset'   => 'js',
 		'combines'  => [ 'meta-viewport' ],
 		'viewable'  => false,
+		'fixes'     => [ MetaViewportScalableFix::get_slug() ],
 	],
 ];
