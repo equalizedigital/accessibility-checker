@@ -467,6 +467,23 @@ class Ajax {
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
 
+						if ( ! isset( $rule['viewable'] ) || $rule['viewable'] ) {
+
+							$url = add_query_arg(
+								[
+									'edac'       => $id,
+									'edac_nonce' => wp_create_nonce( 'edac_highlight' ),
+								],
+								get_the_permalink( $postid )
+							);
+
+							// Translators: %d is the issue ID.
+							$aria_label = sprintf( __( 'View Issue ID %d on website, opens a new window', 'accessibility-checker' ), $id );
+							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>' . __( 'View on page', 'accessibility-checker' ) . '</a>';
+						}
+
+						$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
+
 						if ( ! empty( $fixes_for_item ) ) {
 							$html .= sprintf(
 								'<button class="edac-details-rule-records-record-actions-fix"
@@ -481,23 +498,6 @@ class Ajax {
 								esc_attr( __( 'Open modal of fix settings related to: ', 'accessibility-checker' ) . $rule['title'] ),
 								esc_html__( 'Fix', 'accessibility-checker' )
 							);
-						}
-
-						$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
-
-						if ( ! isset( $rule['viewable'] ) || $rule['viewable'] ) {
-
-							$url = add_query_arg(
-								[
-									'edac'       => $id,
-									'edac_nonce' => wp_create_nonce( 'edac_highlight' ),
-								],
-								get_the_permalink( $postid )
-							);
-
-							// Translators: %d is the issue ID.
-							$aria_label = sprintf( __( 'View Issue ID %d on website, opens a new window', 'accessibility-checker' ), $id );
-							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>' . __( 'View on page', 'accessibility-checker' ) . '</a>';
 						}
 
 						$html .= '</div>';
