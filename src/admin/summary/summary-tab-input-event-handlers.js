@@ -119,16 +119,13 @@ export const initFixButtonEventHandlers = () => {
 	// loop through each button binding a click event
 	fixButtons.forEach( ( button ) => {
 		button.addEventListener( 'click', async ( event ) => {
-			const restoreFocusTo = event.target;
-
-			const fixSettings = await getFixSettingsElement( event.target.getAttribute( 'aria-controls' ) );
-
+			const restoreFocusToElement = event.currentTarget;
+			const fixSettings = document.getElementById( restoreFocusToElement.getAttribute( 'aria-controls' ) );
 			if ( ! fixSettings ) {
 				return;
 			}
 
 			fixSettings.classList.toggle( 'active' );
-
 			document.querySelector( 'body' ).classList.add( 'edac-fix-modal-present' );
 
 			// trigger a thickbox that contains the contents of the fixSettings
@@ -175,30 +172,8 @@ export const initFixButtonEventHandlers = () => {
 					} );
 				}, 100 );
 				thickboxFocusTrap.deactivate();
-				restoreFocusTo.focus();
+				restoreFocusToElement.focus();
 			} );
 		} );
 	} );
 };
-
-/**
- * Get the fixes container to pass into thickbox.
- *
- * This has a loop and retry logic as sometimes the element may not be restored
- * in time to retrieve it.
- *
- * @param {string} targetId The element ID to retrieve.
- * @return {Promise<*>} The element when found.
- */
-const getFixSettingsElement = async ( targetId ) => {
-	let fixSettings;
-	for ( let i = 0; i < 20; i++ ) {
-		fixSettings = document.getElementById( targetId );
-		if ( fixSettings ) {
-			break;
-		}
-		await new Promise( ( resolve ) => setTimeout( resolve, 50 ) );
-	}
-	return fixSettings;
-};
-
