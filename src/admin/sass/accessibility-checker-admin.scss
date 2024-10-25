@@ -61,6 +61,16 @@
   #edac-tabs {
     margin: 15px 0;
 
+	.edac-tabs-and-rescan-container {
+		display: flex;
+
+		#edac-clear-issues-button {
+			margin-left: auto;
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
+	}
+
     .edac-tabs {
       margin-bottom: 0;
       position: relative;
@@ -643,19 +653,22 @@
             &-actions {
               border-right: none;
 
-              &-ignore {
+              &-ignore, &-fix, &-highlight-front {
                 color: $color-blue;
                 border: none;
                 background: transparent;
                 display: flex;
                 align-items: center;
                 padding-left: 0;
+                text-decoration: none;
+                padding: 4px 0;
 
                 svg {
                   width: 18px;
                   height: auto;
                   display: inline-block;
-                  margin: 0 2px 0 3px;
+                  //margin: 0 2px 0 3px;
+                  margin: 0 5px 0 0px;
 
                   path {
                     fill: $color-blue;
@@ -853,15 +866,22 @@
     .form-table {
       display: block;
       margin-bottom: 50px;
+
+      tbody {
+        display: block;
+      }
+
       tr {
         border: solid 1px $color-gray-light;
         margin-bottom: 10px;
         display: block;
       }
+
       th {
         padding: 10px;
         background-color: $color-gray-lightest;
       }
+
       td {
         padding: 10px;
       }
@@ -1932,8 +1952,42 @@
 }
 
 #edac-fixes-page {
-	.edac_fix_disabled {
-		opacity: 0.5;
-		display: none !important;
+	.edac-fix {
+		&--hidden {
+			display: none;
+		}
+
+		&--disabled {
+			opacity: 0.75;
+		}
+
+		&--upsell-link {
+			background: #f3cd1e;
+			padding: 4px 8px;
+			border-radius: 18px;
+			color: #072446;
+			display: inline-block;
+			font-size: 0.75rem;
+			text-decoration: none;
+			line-height: 1;
+		}
+
+		&--upsell-link:hover {
+			text-decoration: underline;
+		}
 	}
+
+	.edac-notice {
+		&--accessibility-ready-conflict {
+			font-style: italic;
+			font-weight: 600;
+		}
+	}
+}
+
+@import "../../common/sass/fix-settings";
+
+.edac-dashicon-muted {
+	color: $color-gray;
+	text-decoration: none;
 }

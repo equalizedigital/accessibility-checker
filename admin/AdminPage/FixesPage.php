@@ -45,25 +45,47 @@ class FixesPage implements PageInterface {
 	}
 
 	/**
-	 * Add the page to the admin menu, setup it's tabs and filter in for the content.
+	 * Add the settings sections and fields and setup it's tabs and filter in for the content.
 	 */
 	public function add_page() {
-
-		add_submenu_page(
-			'accessibility_checker',
-			__( 'Accessibility Checker Settings', 'accessibility-checker' ),
-			__( 'Accessibility Fixes', 'accessibility-checker' ),
-			$this->settings_capability,
-			'accessibility_checker_' . self::PAGE_TAB_SLUG,
-			[ $this, 'render_page' ],
-			1
-		);
 
 		$this->register_settings_sections();
 		$this->register_fields_and_settings();
 
 		add_filter( 'edac_filter_admin_scripts_slugs', [ $this, 'add_slug_to_admin_scripts' ] );
 		add_filter( 'edac_filter_remove_admin_notices_screens', [ $this, 'add_slug_to_admin_notices' ] );
+		add_filter( 'edac_filter_settings_tab_items', [ $this, 'add_fixes_tab' ] );
+		add_action( 'edac_settings_tab_content', [ $this, 'add_fixes_tab_content' ], 11, 1 );
+	}
+
+	/**
+	 * Add fixes tab to settings page.
+	 *
+	 * @param  array $settings_tab_items arrray of tab items.
+	 * @return array
+	 */
+	public function add_fixes_tab( $settings_tab_items ) {
+
+		$scan_tab = [
+			'slug'  => 'fixes',
+			'label' => 'Fixes',
+			'order' => 2,
+		];
+		array_push( $settings_tab_items, $scan_tab );
+
+		return $settings_tab_items;
+	}
+
+	/**
+	 * Licence fixes tab content to settings page.
+	 *
+	 * @param  string $tab name of tab.
+	 * @return void
+	 */
+	public function add_fixes_tab_content( $tab ) {
+		if ( 'fixes' === $tab ) {
+			include EDAC_PLUGIN_DIR . '/partials/admin-page/fixes-page.php';
+		}
 	}
 
 	/**
@@ -113,7 +135,7 @@ class FixesPage implements PageInterface {
 			'edac_filter_fixes_settings_sections',
 			[
 				'edac_fixes_general' => [
-					'title'    => __( 'General Settings', 'accessibility-checker' ),
+					'title'    => __( 'General Fixes', 'accessibility-checker' ),
 					'callback' => [ $this, 'fixes_section_general_cb' ],
 				],
 			]
@@ -158,6 +180,8 @@ class FixesPage implements PageInterface {
 			$field_type = $field['type'] ?? 'checkbox';
 			$sanitizer  = $field['sanitize_callback'] ?? [ $this, 'sanitize_checkbox' ];
 
+			$is_upsell = $field['upsell'] ?? false;
+
 			add_settings_field(
 				$field_id,
 				$field['label'],
@@ -165,10 +189,15 @@ class FixesPage implements PageInterface {
 				self::SETTINGS_SLUG,
 				$field['section'] ?? 'edac_fixes_general',
 				[
-					'name'        => $field_id,
-					'labelledby'  => $field_id,
-					'description' => $field['description'] ?? '',
-					'condition'   => $field['condition'] ?? '',
+					'name'          => $field_id,
+					'labelledby'    => $field_id,
+					'description'   => $field['description'] ?? '',
+					'condition'     => $field['condition'] ?? '',
+					'required_when' => $field['required_when'] ?? '',
+					'default'       => $field['default'] ?? '',
+					'upsell'        => $is_upsell,
+					'help_id'       => $field['help_id'] ?? '',
+					'label'         => $field['label'] ?? '',
 				]
 			);
 
@@ -180,6 +209,6 @@ class FixesPage implements PageInterface {
 	 * Callback for the general settings section that renders a description for it.
 	 */
 	public function fixes_section_general_cb() {
-		echo '<p>' . esc_html__( 'General settings for the fixes.', 'accessibility-checker' ) . '</p>';
+		echo '<p>' . esc_html__( 'These fixes help improve accessibility by modifying HTML elements and behaviors on your site.', 'accessibility-checker' ) . '</p>';
 	}
 }

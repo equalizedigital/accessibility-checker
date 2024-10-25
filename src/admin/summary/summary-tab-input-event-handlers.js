@@ -4,6 +4,11 @@
  * @since 1.12.0
  */
 
+import { __ } from '@wordpress/i18n';
+
+import { saveFixSettings } from '../../common/saveFixSettingsRest';
+import { createFocusTrap } from 'focus-trap';
+
 /**
  * Initialize the Summary Tab keyboard and click event handlers.
  *
@@ -101,4 +106,78 @@ export const clearAllTabsAndPanelState = () => {
 			panelTab.setAttribute( 'tabindex', '-1' );
 		}
 	} );
+};
+
+/**
+ * Handle the click events for fix buttons
+ */
+export const initFixButtonEventHandlers = () => {
+	// Find all edac-details-rule-records-record-actions-fix.
+	const fixButtons = document.querySelectorAll( '.edac-details-rule-records-record-actions-fix' );
+
+	document.querySelectorAll( '.edac-fix-settings--button--save' ).forEach( ( saveButton ) => {
+		saveButton.addEventListener( 'click', ( clickedEvent ) => {
+			saveFixSettings( clickedEvent.target.closest( '.edac-fix-settings' ) );
+		} );
+	} );
+
+	document.querySelectorAll( '.edac-fix-settings' ).forEach( ( settingsContainer ) => {
+		settingsContainer.querySelectorAll( 'input, select, textarea' ).forEach( ( field ) => {
+			field.addEventListener( 'change', changeListener );
+		} );
+	} );
+
+	// loop through each button binding a click event
+	fixButtons.forEach( ( button ) => {
+		button.addEventListener( 'click', async ( event ) => {
+			const restoreFocusToElement = event.currentTarget;
+			const fixSettings = document.getElementById( restoreFocusToElement.getAttribute( 'aria-controls' ) );
+			if ( ! fixSettings ) {
+				return;
+			}
+
+			fixSettings.classList.toggle( 'active' );
+			document.querySelector( 'body' ).classList.add( 'edac-fix-modal-present' );
+
+			// trigger a thickbox that contains the contents of the fixSettings
+			// eslint-disable-next-line no-undef
+			tb_show( __( 'Fix Settings', 'accessibility-checker' ), '#TB_inline?width=750&inlineId=' + fixSettings.id );
+
+			const thickbox = document.getElementById( 'TB_window' );
+			thickbox.querySelector( '[aria-live]' ).innerText = '';
+			const thickboxFocusTrap = createFocusTrap( thickbox );
+			thickboxFocusTrap.activate();
+
+			// thickbox only emits an event through jquery, so we need to use jquery to listen for it
+			jQuery( document ).one( 'tb_unload', () => {
+				setTimeout( () => {
+					// find duplicate fix settings and remove them
+					const settingsContainers = document.querySelectorAll( '.edac-details-fix-settings' );
+					settingsContainers.forEach( ( settinsContainer ) => {
+						const fieldsContainer = settinsContainer.querySelectorAll( '.setting-row' );
+						if ( fieldsContainer.length > 1 ) {
+							// delete all containers except the first one
+							for ( let i = 1; i < fieldsContainer.length; i++ ) {
+								fieldsContainer[ i ].remove();
+							}
+						}
+					} );
+				}, 100 );
+				thickboxFocusTrap.deactivate();
+				restoreFocusToElement.focus();
+			} );
+		} );
+	} );
+
+	document.addEventListener( 'edac-fix-settings-change', () => {
+		const liveRegion = document.querySelector( '#TB_window [aria-live]' );
+		liveRegion.innerText = '';
+	} );
+};
+
+/**
+ * Handler to bubble a change event up for other elements to listen to.
+ */
+const changeListener = () => {
+	document.dispatchEvent( new CustomEvent( 'edac-fix-settings-change' ) );
 };

@@ -17,9 +17,11 @@ body {
 .edac-highlight {
 
 	all: unset;
+	letter-spacing: normal !important;
 
 	* {
 		all: unset;
+		letter-spacing: normal !important;
 	}
 
 	display: inline-block;
@@ -112,6 +114,7 @@ body {
 
 		* {
 			all: unset;
+			letter-spacing: normal !important;
 		}
 
 		a:not(.edac-highlight-panel-description-reference) {
@@ -228,7 +231,8 @@ body {
 			}
 
 			&-reference,
-			&-code-button {
+			&-code-button,
+			&--button {
 				all: unset;
 				color: $color-blue-dark !important;
 				background-color: $color-yellow !important;
@@ -241,6 +245,7 @@ body {
 					color: $color-blue-dark !important;
 					background-color: $color-white !important;
 					cursor: pointer !important;
+					text-decoration: none !important;
 				}
 			}
 
@@ -335,6 +340,7 @@ body {
 
 				button {
 					all: unset;
+					text-decoration: none !important;
 					color: $color-white !important;
 					background-color: $color-blue-dark !important;
 					padding: 4px 10px !important;
@@ -385,4 +391,132 @@ body {
 	max-width: 800px;
 	margin: auto;
 	padding: 15px;
+}
+
+// this is intentionally before the base styles and the highlighter specific styles.
+.edac-fixes-modal {
+	* {
+		all: unset;
+	}
+}
+
+.always-hide {
+	display: none !important;
+}
+
+@import "../../common/sass/fix-settings";
+
+.edac-fixes-modal {
+	display: none;
+
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+	background-color: #fff !important;
+	border: 1px solid #e2e4e7 !important;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .25) !important;
+	color: #000 !important;
+	font-family: sans-serif !important;
+	font-size: 14px !important;
+	line-height: 22px !important;
+	margin-bottom: 15px !important;
+	max-height: calc(100vh - 230px) !important;
+	overflow-y: auto !important;
+	padding: 40px !important;
+	text-align: left !important;
+	letter-spacing: initial !important;
+
+	@media screen and (max-width: $small-screen-width) {
+		width: 100% !important;
+		max-width: calc(100% - 30px) !important;
+		padding: 20px !important;
+	}
+
+	h2 {
+		font-size: 1.25em;
+		margin: 0 0 0.75em 0;
+	}
+
+	h3 {
+		font-size: 1.1em;
+		margin-bottom: 0.5em;
+	}
+
+	label {
+		margin-bottom: 0.75em;
+	}
+
+	&__header {
+		margin-bottom: 0.25em;
+	}
+
+	&__close,
+	&__close:focus,
+	&__close:hover {
+		text-decoration: none;
+	}
+
+	&__close:focus,
+	&__close:hover {
+		background: $color-yellow;
+	}
+
+	&--open {
+		display: block;
+
+		.edac-fix-settings {
+			&--fields {
+				display: block !important;
+			}
+
+			&--action-row {
+				gap: .5em;
+				margin-top: 0.75em;
+			}
+
+			&--button--save {
+				@extend .edac-highlight-panel-description--button;
+
+
+			}
+		}
+	}
+
+	*:focus {
+		outline: revert;
+		outline-offset: 2px;
+	}
+}
+
+// this button is styled like other buttons here.
+.edac-fix-settings {
+
+	&--fields {
+		input[type="checkbox"] {
+			all: revert;
+		}
+	}
+
+	&--button {
+		&--save {
+			@extend .edac-highlight-panel-description--button;
+			margin: 0;
+
+		}
+	}
+
+	&--action-open {
+		display: inline-block;
+		width: 100%;
+	}
+
+	&--notice-slot a {
+		color: $color-blue !important;
+		text-decoration: underline !important;
+
+		&:hover,
+		&:focus {
+			text-decoration: none !important;
+			cursor: pointer !important;
+		}
+	}
 }

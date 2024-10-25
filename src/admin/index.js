@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 
 import {
-	clearAllTabsAndPanelState,
+	clearAllTabsAndPanelState, initFixButtonEventHandlers,
 	initSummaryTabKeyboardAndClickHandlers,
 } from './summary/summary-tab-input-event-handlers';
 import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
+import { initRequiredSetup } from './fixes-page/conditional-required-settings';
+import { inlineFixesProUpsell } from './fixes-page/pro-callout';
 
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
@@ -15,6 +17,8 @@ const edacScriptVars = edac_script_vars;
 	jQuery( function() {
 		if ( document.getElementById( 'edac-fixes-page' ) ) {
 			initFixesInputStateHandler();
+			initRequiredSetup();
+			inlineFixesProUpsell();
 		}
 
 		// Accessibility Statement disable
@@ -57,6 +61,10 @@ const edacScriptVars = edac_script_vars;
 	} );
 
 	jQuery( window ).on( 'load', function() {
+		document.addEventListener( 'edac-cleared-issues', function() {
+			refreshTabDetails();
+		} );
+
 		// Allow other js to trigger a tab refresh through an event listener. Refactor.
 		const refreshTabDetails = () => {
 			// reset to first meta box tab
@@ -194,6 +202,9 @@ const edacScriptVars = edac_script_vars;
 
 					// Ignore submit on click
 					ignoreSubmit();
+
+					// handle fix button click events.
+					initFixButtonEventHandlers();
 				} else {
 					// eslint-disable-next-line no-console
 					console.log( response );
@@ -668,6 +679,10 @@ window.addEventListener( 'load', function() {
 					}
 				} );
 			} );
+	}
+
+	if ( this.document.querySelector( 'body.accessibility-checker_page_accessibility_checker_issues' ) ) {
+		initFixButtonEventHandlers();
 	}
 
 	edacTimestampToLocal();

@@ -11,10 +11,10 @@ const setInputStates = () => {
 				if ( ( conditionElement.type === 'text' && conditionElement.value.trim() !== '' ) ||
 					( conditionElement.type === 'checkbox' && conditionElement.checked ) ) {
 					element.disabled = false;
-					element.closest( 'tr' ).classList.remove( 'edac_fix_disabled' );
+					element.closest( 'tr' ).classList.remove( 'edac-fix--hidden' );
 				} else {
 					element.disabled = true;
-					element.closest( 'tr' ).classList.add( 'edac_fix_disabled' );
+					element.closest( 'tr' ).classList.add( 'edac-fix--hidden' );
 				}
 			}
 		}
