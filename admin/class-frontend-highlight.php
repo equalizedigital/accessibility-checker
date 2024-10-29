@@ -142,13 +142,23 @@ class Frontend_Highlight {
 		// if we have fixes then create fields for each of the groups.
 		if ( ! empty( $fixes ) ) {
 			foreach ( $fixes as $key => $fix ) {
-				$fix_fields_markup = '';
+				// count the number of fields in the fix.
+				$fields_count = count( $fix );
+				$itteration   = 0;
 				foreach ( $fix as $index => $field ) {
+					++$itteration;
 					$field_type = $field['type'] ?? 'checkbox';
 					ob_start();
 					if ( isset( $field['group_name'] ) ) {
+						// if this is anything other than the first field in the group then close the fieldset.
+						if ( 1 !== $itteration ) {
+							?>
+							</fieldset>
+							<?php
+						}
 						?>
-						<h3 class="title"><?php echo esc_html( $field['group_name'] ); ?></h3>
+						<fieldset>
+						<legend><h3 class="title"><?php echo esc_html( $field['group_name'] ); ?></h3></legend>
 						<?php
 					}
 					FixesPage::{$field_type}(
@@ -160,9 +170,14 @@ class Frontend_Highlight {
 							$field
 						)
 					);
+					if ( $fields_count === $itteration ) {
+						?>
+						</fieldset>
+						<?php
+					}
 					$fix_fields_markup .= ob_get_clean();
 				}
-				$fixes[ $key ]['fields'] = $fix_fields_markup;
+				$fixes[ $key ]['fields'] = $fix_fields_markup . PHP_EOL . '</fieldset>';
 			}
 		}
 
