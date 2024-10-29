@@ -80,7 +80,7 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 			'label'       => esc_html__( 'Unlabelled Form Fields', 'accessibility-checker' ),
 			'type'        => 'checkbox',
 			'labelledby'  => $this->get_slug(),
-			'description' => esc_html__( 'Attempts to add labels to form fields that are missing them.', 'accessibility-checker' ),
+			'description' => esc_html__( 'Add labels to unlabelled form fields if field purpose can be determined.', 'accessibility-checker' ),
 			'section'     => $this->get_slug(),
 			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
 			'group_name'  => $this->get_nicename(),
