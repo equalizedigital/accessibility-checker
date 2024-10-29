@@ -187,11 +187,13 @@
 		position: absolute;
 		top: 5px;
 		right: 5px;
+		color: $color-blue-dark;
 
 		.dashicons, .dashicons::before {
 			vertical-align: middle;
 			display: block;
 			margin: auto;
+			color: $color-blue-dark !important;
 		}
 	}
 }
