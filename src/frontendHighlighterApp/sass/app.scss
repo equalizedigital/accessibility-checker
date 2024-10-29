@@ -479,6 +479,15 @@ body {
 
 			}
 		}
+
+		input[type="checkbox"] {
+			&:before {
+				content: none;
+			}
+			&:checked:before {
+				content: none;
+			}
+		}
 	}
 
 	*:focus {
