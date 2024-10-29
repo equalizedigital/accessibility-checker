@@ -488,6 +488,10 @@ body {
 		}
 	}
 
+	.modal-opening-message {
+		margin-bottom: 0.5em !important;
+	}
+
 	*:focus {
 		outline: revert;
 		outline-offset: 2px;

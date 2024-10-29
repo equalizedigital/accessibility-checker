@@ -813,9 +813,12 @@ class AccessibilityCheckerHighlight {
 		// renive the fixSettingsContainer from the DOM.
 		fixSettingsContainer.remove();
 
-		fillFixesModal( '', fixSettingsContainer );
+		fillFixesModal(
+			`<p class="modal-opening-message">${ __( 'These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports.', 'accessibility-checker' ) }</p>`,
+			fixSettingsContainer
+		);
 
-		// puse the focus trap.
+		// pause the highlighter panel focus trap.
 		this.panelDescriptionFocusTrap.pause();
 		openFixesModal( event.target );
 
