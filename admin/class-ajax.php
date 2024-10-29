@@ -357,6 +357,7 @@ class Ajax {
 						<div style="display:none">
 							<div id="<?php echo esc_attr( $controls_id ); ?>" class="edac-details-fix-settings fix-settings--container">
 								<div class="setting-row fix-settings--container" data-fix="<?php echo esc_attr( $controls_id ); ?>">
+									<p class="modal-opening-message"><?php esc_html_e( 'These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports.', 'accessibility-checker' ); ?></p>
 									<div class="edac-fix-settings">
 										<?php
 										foreach ( $fixes_for_item as $index => $fix ) :
