@@ -85,6 +85,7 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
 			'group_name'  => $this->get_nicename(),
 			'fix_slug'    => $this->get_slug(),
+			'help_id'     => 8497,
 		];
 
 		return $fields;
