@@ -362,15 +362,21 @@ class Ajax {
 										foreach ( $fixes_for_item as $index => $fix ) :
 											?>
 											<div class="edac-fix-settings--fields">
-												<div class="title">
-													<h2 class="edac-fix-settings--title"><?php echo esc_html( $fix->get_nicename() ); ?></h2>
-												</div>
+												<fieldset>
+													<div class="title">
+														<legend>
+															<h2 class="edac-fix-settings--title"><?php echo esc_html( $fix->get_nicename() ); ?></h2>
+														</legend>
+													</div>
+													<?php
+													foreach ( $fix->get_fields_array() as $name => $field ) {
+														$field['name']     = $name;
+														$field['location'] = 'details-panel';
+														FixesPage::{$field['type']}( $field );
+													}
+													?>
+												</fieldset>
 												<?php
-												foreach ( $fix->get_fields_array() as $name => $field ) {
-													$field['name']     = $name;
-													$field['location'] = 'details-panel';
-													FixesPage::{$field['type']}( $field );
-												}
 												// Output the save button only in the last group.
 												if ( count( $fixes_for_item ) === $index + 1 ) :
 													?>
