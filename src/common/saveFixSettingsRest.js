@@ -62,7 +62,7 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 				if ( liveRegion ) {
 					if ( window?.edacFrontendHighlighterApp?.editorLink?.length ) {
 						liveRegion.innerHTML = sprintf(
-							__( 'Settings saved successfully. You must %svisit the editor%s to rescan and remove fixed issues from Accessibility Checker reports.', 'accessibility-checker' ),
+							__( 'Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.', 'accessibility-checker' ),
 							`<a href="${ window.edacFrontendHighlighterApp.editorLink }">`,
 							'</a>'
 						);
