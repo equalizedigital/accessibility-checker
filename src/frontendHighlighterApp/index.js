@@ -626,7 +626,14 @@ class AccessibilityCheckerHighlight {
 					</div>
 				`;
 				// and the button that will trigger the modal.
-				content += ` <br /><button role="button" class="edac-fix-settings--button--open edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>`;
+				content += ` <br />
+ 					<button role="button"
+ 						class="edac-fix-settings--button--open edac-highlight-panel-description--button"
+ 						aria-haspopup="true"
+ 						aria-expanded="false"
+ 						aria-controls="edac-highlight-panel-description-fix"
+ 						aria-label="Open fix settings modal for ${ matchingObj.rule_title } issue with ID ${ matchingObj.id }"
+ 						>Fix Issue</button>`;
 			} else {
 				content += ` <br />`;
 			}
