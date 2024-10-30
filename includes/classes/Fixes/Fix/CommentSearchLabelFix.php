@@ -31,7 +31,7 @@ class CommentSearchLabelFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'Add Labels to Comment and Search Forms', 'accessibility-checker' );
+		return __( 'Label Comment/Search Fields', 'accessibility-checker' );
 	}
 
 	/**

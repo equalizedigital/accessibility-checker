@@ -30,7 +30,7 @@ class HTMLLangAndDirFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'Add lang & dir Attributes', 'accessibility-checker' );
+		return __( 'Set Page Language', 'accessibility-checker' );
 	}
 
 	/**
