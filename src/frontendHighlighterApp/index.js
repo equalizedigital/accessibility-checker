@@ -4,6 +4,9 @@
 import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
+import { __ } from '@wordpress/i18n';
+import { saveFixSettings } from '../common/saveFixSettingsRest';
+import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -26,6 +29,7 @@ class AccessibilityCheckerHighlight {
 		this.panelControls = document.querySelector( '#edac-highlight-panel-controls' );
 		this.descriptionCloseButton = document.querySelector( '.edac-highlight-panel-description-close' );
 		this.issues = null;
+		this.fixes = null;
 		this.currentButtonIndex = null;
 		this.urlParameter = this.get_url_parameter( 'edac' );
 		this.currentIssueStatus = null;
@@ -124,7 +128,7 @@ class AccessibilityCheckerHighlight {
 
 		for ( const element of allElements ) {
 			if ( element.outerHTML.replace( /\W/g, '' ) === htmlToFind.replace( /\W/g, '' ) ) {
-				const tooltip = this.addTooltip( element, value, index );
+				const tooltip = this.addTooltip( element, value, index, this.issues.length );
 
 				this.issues[ index ].tooltip = tooltip.tooltip;
 
@@ -160,20 +164,25 @@ class AccessibilityCheckerHighlight {
 					const response = JSON.parse( xhr.responseText );
 					if ( true === response.success ) {
 						const responseJson = JSON.parse( response.data );
-
 						if ( self.settings.showIgnored ) {
-							resolve( responseJson );
+							resolve( {
+								issues: responseJson.issues,
+								fixes: responseJson.fixes,
+							} );
 						} else {
 							resolve(
-								responseJson.filter( ( item ) => {
-									// When rules are filtered off from php we can get null values for some properties
-									// here. This should be fixed upstream but handling it here as well for robustness.
-									if ( item.rule_type === null ) {
-										return false;
-									}
+								{
+									issues: responseJson.issues.filter( ( item ) => {
+										// When rules are filtered off from php we can get null values for some properties
+										// here. This should be fixed upstream but handling it here as well for robustness.
+										if ( item.rule_type === null ) {
+											return false;
+										}
 
-									return ( item.id === self.urlParameter || item.rule_type !== 'ignored' );
-								} )
+										return ( item.id === self.urlParameter || item.rule_type !== 'ignored' );
+									} ),
+									fixes: responseJson.fixes,
+								},
 							);
 						}
 					} else {
@@ -244,13 +253,13 @@ class AccessibilityCheckerHighlight {
 	 * @return {Object} - information about the tooltip
 	 */
 	/* eslint-disable no-unused-vars */
-	addTooltip( element, value, index ) {
+	addTooltip( element, value, index, totalItems ) {
 		// Create the tooltip.
 		const tooltip = document.createElement( 'button' );
 		tooltip.classList = 'edac-highlight-btn edac-highlight-btn-' + value.rule_type;
-		tooltip.ariaLabel = value.rule_title;
-		tooltip.ariaExpanded = 'false';
-		//tooltip.ariaControls = 'edac-highlight-tooltip-' + value.id;
+		tooltip.setAttribute( 'aria-label', `Open details for ${ value.rule_title }, ${ index + 1 } of ${ totalItems }` );
+		tooltip.setAttribute( 'aria-expanded', 'false' );
+		tooltip.setAttribute( 'aria-haspopup', 'dialog' );
 
 		//add data-id to the tooltip/button so we can find it later.
 		tooltip.dataset.id = value.id;
@@ -356,7 +365,7 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
 					<div>
-						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite">Disable Styles</button>
+						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'text-domain' ) }</button>
 					</div>
 				</div>
 
@@ -508,9 +517,10 @@ class AccessibilityCheckerHighlight {
 		this.highlightAjax().then(
 			( json ) => {
 
-				this.issues = json;
+				this.issues = json.issues;
+				this.fixes = json.fixes;
 
-				json.forEach( function( value, index ) {
+				json.issues.forEach( function( value, index ) {
 					const element = this.findElement( value, index );
 					if ( element !== null ) {
 						this.issues[ index ].element = element;
@@ -598,8 +608,36 @@ class AccessibilityCheckerHighlight {
 			// Get the summary of the issue
 			content += matchingObj.summary;
 
+			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
+				// this is the markup to put in the modal.
+				content += `
+					<div style="display:none;" class="always-hide">
+						<div class="edac-fix-settings">
+							<div class="edac-fix-settings--fields">
+								${ this.fixes[ matchingObj.slug ].fields }
+								<div class="edac-fix-settings--action-row">
+									<button role="button" class="button button-primary edac-fix-settings--button--save">
+										${ __( 'Save', 'accessibility-checker' ) }
+									</button>
+									<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				`;
+				// and the button that will trigger the modal.
+				content += ` <br />
+ 					<button role="button"
+ 						class="edac-fix-settings--button--open edac-highlight-panel-description--button"
+ 						aria-haspopup="true"
+ 						aria-controls="edac-highlight-panel-description-fix"
+						aria-label="Fix issue: ${ this.fixes[ matchingObj.slug ][ Object.keys( this.fixes[ matchingObj.slug ] )[ 0 ] ].group_name }"> 						Fix Issue</button>`;
+			} else {
+				content += ` <br />`;
+			}
+
 			// Get the link to the documentation
-			content += ` <br /><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }">Full Documentation</a>`;
+			content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }">Full Documentation</a>`;
 
 			// Get the code button
 			content += `<button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">Show Code</button>`;
@@ -622,6 +660,20 @@ class AccessibilityCheckerHighlight {
 			} else {
 				const textNode = document.createTextNode( matchingObj.object );
 				descriptionCode.innerText = textNode.nodeValue;
+			}
+
+			// show fix settings button if available
+			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
+				this.fixSettingsButton = document.querySelector( '.edac-fix-settings--button--open' );
+				this.fixSettingsButton.addEventListener( 'click', ( event ) => {
+					this.showFixSettings( event );
+				} );
+				this.fixSettingsButton.display = 'block';
+
+				this.fixSettingsSaveButton = document.querySelector( '.edac-fix-settings--button--save' );
+				this.fixSettingsSaveButton.addEventListener( 'click', ( event ) => {
+					saveFixSettings( event.target.closest( '.edac-fix-settings' ) );
+				} );
 			}
 
 			// set code button listener
@@ -746,6 +798,34 @@ class AccessibilityCheckerHighlight {
 		}
 	}
 
+	showFixSettings( event ) {
+		const fixSettingsContainer = event.target.closest( '.edac-highlight-panel-description-content' ).querySelector( '.edac-fix-settings' );
+		if ( ! fixSettingsContainer ) {
+			// this is a fail, it should do something.
+			return;
+		}
+		const placeholder = document.createElement( 'span' );
+		placeholder.classList.add( 'edac-fix-settings--origin-placeholder' );
+		// put the placeholder AFTER the fix container.
+		fixSettingsContainer.parentNode.insertBefore( placeholder, fixSettingsContainer );
+		// renive the fixSettingsContainer from the DOM.
+		fixSettingsContainer.remove();
+
+		fillFixesModal(
+			`<p class="modal-opening-message">${ __( 'These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports.', 'accessibility-checker' ) }</p>`,
+			fixSettingsContainer
+		);
+
+		// pause the highlighter panel focus trap.
+		this.panelDescriptionFocusTrap.pause();
+		openFixesModal( event.target );
+
+		// unpause the focus trap when the modal is closed.
+		document.addEventListener( 'edac-fixes-modal-closed', () => {
+			this.panelDescriptionFocusTrap.unpause();
+		} );
+	}
+
 	/**
 	 * This function counts the number of issues of a given type.
 	 *
@@ -813,4 +893,7 @@ class AccessibilityCheckerHighlight {
 
 window.addEventListener( 'DOMContentLoaded', () => {
 	new AccessibilityCheckerHighlight();
+	if ( window.edacFrontendHighlighterApp?.userCanFix ) {
+		fixSettingsModalInit();
+	}
 } );

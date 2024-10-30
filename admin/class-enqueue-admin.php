@@ -51,12 +51,15 @@ class Enqueue_Admin {
 		$post_types        = get_option( 'edac_post_types' );
 		$current_post_type = get_post_type();
 		$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
-		$enabled_pages     = [
-			'accessibility_checker',
-			'accessibility_checker_settings',
-			'accessibility_checker_issues',
-			'accessibility_checker_ignored',
-		];
+		$enabled_pages     = apply_filters(
+			'edac_filter_admin_scripts_slugs',
+			[
+				'accessibility_checker',
+				'accessibility_checker_settings',
+				'accessibility_checker_issues',
+				'accessibility_checker_ignored',
+			]
+		);
 
 		if (
 			(
@@ -78,10 +81,11 @@ class Enqueue_Admin {
 				'edac',
 				'edac_script_vars',
 				[
-					'postID'     => $post_id,
-					'nonce'      => wp_create_nonce( 'ajax-nonce' ),
-					'edacApiUrl' => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-					'restNonce'  => wp_create_nonce( 'wp_rest' ),
+					'postID'      => $post_id,
+					'nonce'       => wp_create_nonce( 'ajax-nonce' ),
+					'edacApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+					'restNonce'   => wp_create_nonce( 'wp_rest' ),
+					'fixesProUrl' => esc_url_raw( edac_generate_link_type( [ 'utm-term', '__fix__' ] ) ),
 				]
 			);
 
@@ -119,6 +123,7 @@ class Enqueue_Admin {
 							[ 'edac_pageScanner' => 1 ]
 						),
 						'version'    => EDAC_VERSION,
+						'restNonce'  => wp_create_nonce( 'wp_rest' ),
 					]
 				);
 

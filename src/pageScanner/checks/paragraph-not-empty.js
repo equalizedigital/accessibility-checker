@@ -12,6 +12,11 @@ export default {
 			return true;
 		}
 
+		// If element has aria-hidden attribute with a value of true, it passes.
+		if ( node.getAttribute( 'aria-hidden' ) && node.getAttribute( 'aria-hidden' ).toLowerCase() === 'true' ) {
+			return true;
+		}
+
 		// Pass if there are child nodes and any child nodes are not text nodes (not Type of 3).
 		if ( node.childNodes.length && Array.from( node.childNodes ).some( ( child ) => child.nodeType !== 3 ) ) {
 			return true;

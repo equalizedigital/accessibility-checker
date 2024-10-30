@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
 
 module.exports = {
-	mode: 'none', //development | production
+	mode: 'production', //development | production
 	watch: false,
 	entry: {
 		admin: [
@@ -27,12 +27,26 @@ module.exports = {
 			'./src/emailOptIn/index.js',
 			'./src/emailOptIn/sass/email-opt-in.scss',
 		],
+		frontendFixes: [
+			'./src/frontendFixes/index.js',
+		],
 
 	},
-
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				specificScript: {
+					test: /[\\/]src[\\/]frontendFixes[\\/]/,
+					name: 'frontendFixes',
+					chunks: 'all',
+				},
+			},
+		},
+	},
 	output: {
 		filename: '[name].bundle.js',
 		path: path.resolve( __dirname, 'build' ),
+		chunkFilename: 'chunks/[name].[chunkhash].js', // Store split bundles in 'chunks' directory
 	},
 
 	module: {

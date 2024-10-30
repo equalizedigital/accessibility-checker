@@ -7,6 +7,9 @@
 
 namespace EDAC\Admin;
 
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
+
 /**
  * Class EDAC_Frontend_Highlight
  *
@@ -92,7 +95,8 @@ class Frontend_Highlight {
 
 		$rules = edac_register_rules();
 
-		$output = [];
+		$issues = [];
+		$fixes  = [];
 		foreach ( $results as $result ) {
 			$array = [];
 			$rule  = edac_filter_by_value( $rules, 'slug', $result['rule'] );
@@ -114,16 +118,76 @@ class Frontend_Highlight {
 			$array['id']         = $result['id'];
 			$array['ignored']    = $result['ignre'];
 
-			$output[] = $array;
+			$issues[] = $array;
+
+			if ( ! isset( $fixes[ $rule[0]['slug'] ] ) ) {
+				$fixes_for_rule = $rule[0]['fixes'] ?? [];
+
+				foreach ( $fixes_for_rule as $fix_for_rule ) {
+					$fix = FixesManager::get_instance()->get_fix( $fix_for_rule );
+					if ( $fix && method_exists( $fix, 'get_fields_array' ) ) {
+						$fixes[ $rule[0]['slug'] ] = isset( $fixes[ $rule[0]['slug'] ] ) ? array_merge( $fixes[ $rule[0]['slug'] ], $fix->get_fields_array() ) : $fix->get_fields_array();
+					}
+				}
+			}
 		}
 
-		if ( ! $output ) {
+		if ( ! $issues ) {
 
 			$error = new \WP_Error( '-5', 'Object query returned no results' );
 			wp_send_json_error( $error );
 
 		}
 
-		wp_send_json_success( wp_json_encode( $output ) );
+		// if we have fixes then create fields for each of the groups.
+		if ( ! empty( $fixes ) ) {
+			foreach ( $fixes as $key => $fix ) {
+				// count the number of fields in the fix.
+				$fields_count = count( $fix );
+				$itteration   = 0;
+				foreach ( $fix as $index => $field ) {
+					++$itteration;
+					$field_type = $field['type'] ?? 'checkbox';
+					ob_start();
+					if ( isset( $field['group_name'] ) ) {
+						// if this is anything other than the first field in the group then close the fieldset.
+						if ( 1 !== $itteration ) {
+							?>
+							</fieldset>
+							<?php
+						}
+						?>
+						<fieldset>
+						<legend><h3 class="title"><?php echo esc_html( $field['group_name'] ); ?></h3></legend>
+						<?php
+					}
+					FixesPage::{$field_type}(
+						array_merge(
+							[
+								'name'     => $index,
+								'location' => 'frontend-highlighter',
+							],
+							$field
+						)
+					);
+					if ( $fields_count === $itteration ) {
+						?>
+						</fieldset>
+						<?php
+					}
+					$fix_fields_markup .= ob_get_clean();
+				}
+				$fixes[ $key ]['fields'] = $fix_fields_markup . PHP_EOL . '</fieldset>';
+			}
+		}
+
+		wp_send_json_success(
+			wp_json_encode(
+				[
+					'issues' => $issues,
+					'fixes'  => $fixes,
+				]
+			)
+		);
 	}
 }

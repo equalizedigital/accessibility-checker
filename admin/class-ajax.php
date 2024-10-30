@@ -9,6 +9,8 @@ namespace EDAC\Admin;
 
 use EDAC\Admin\OptIn\Email_Opt_In;
 use EDAC\Inc\Summary_Generator;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 /**
  * Class that handles ajax requests.
@@ -300,6 +302,7 @@ class Ajax {
 			 * @allowed bool True if allowed, false if not
 			 */
 			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
+
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
@@ -332,7 +335,7 @@ class Ajax {
 					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' Ignored Items</span>';
 				}
 				$html .= '</h3>';
-				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '"><span class="dashicons dashicons-info"></span></a>';
+				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '. ' . esc_attr__( 'Opens in a new window.', 'accessibility-checker' ) . '"><span class="dashicons dashicons-info"></span></a>';
 				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="Expand issues for ' . esc_html( $rule['title'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 
 				$html .= '</div>';
@@ -340,6 +343,68 @@ class Ajax {
 				if ( $results ) {
 
 					$html .= '<div id="edac-details-rule-records-' . $rule['slug'] . '" class="edac-details-rule-records">';
+
+					$fixes_for_item = [];
+					if ( isset( $rule['fixes'] ) && current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ) ) {
+						foreach ( $rule['fixes'] as $fix_slug ) {
+							$fixes_for_item[] = FixesManager::get_instance()->get_fix( $fix_slug );
+						}
+
+						$controls_id = 'edac-fix-modal-' . $rule['slug'] . '__' . implode( '__', $rule['fixes'] );
+						ob_start();
+						// NOTE: This is markup to be cloned into a thickbox modal. It gets cloned from the inner div.
+						?>
+						<div style="display:none">
+							<div id="<?php echo esc_attr( $controls_id ); ?>" class="edac-details-fix-settings fix-settings--container">
+								<div class="setting-row fix-settings--container" data-fix="<?php echo esc_attr( $controls_id ); ?>">
+									<?php
+									printf(
+										'<p class="modal-opening-message">%s <span class="hide-in-editor">%s</span></p>',
+										esc_html__( 'These settings enable global fixes across your entire site.', 'accessibility-checker' ),
+										esc_html__( 'Pages may need to be resaved or a full site scan run to see fixes reflected in reports.', 'accessibility-checker' )
+									)
+									?>
+									<div class="edac-fix-settings">
+										<?php
+										foreach ( $fixes_for_item as $index => $fix ) :
+											?>
+											<div class="edac-fix-settings--fields">
+												<fieldset>
+													<div class="title">
+														<legend>
+															<h2 class="edac-fix-settings--title"><?php echo esc_html( $fix->get_nicename() ); ?></h2>
+														</legend>
+													</div>
+													<?php
+													foreach ( $fix->get_fields_array() as $name => $field ) {
+														$field['name']     = $name;
+														$field['location'] = 'details-panel';
+														FixesPage::{$field['type']}( $field );
+													}
+													?>
+												</fieldset>
+												<?php
+												// Output the save button only in the last group.
+												if ( count( $fixes_for_item ) === $index + 1 ) :
+													?>
+													<div class="edac-fix-settings--action-row">
+														<button role="button" class="button button-primary edac-fix-settings--button--save">
+															<?php esc_html_e( 'Save', 'accessibility-checker' ); ?>
+														</button>
+														<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
+													</div>
+													<?php
+												endif;
+												?>
+											</div>
+										<?php endforeach; ?>
+									</div>
+								</div>
+							</div>
+						</div>
+						<?php
+						$html .= ob_get_clean();
+					}
 
 					$html .=
 						'<div class="edac-details-rule-records-labels">
@@ -415,8 +480,6 @@ class Ajax {
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
 
-						$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
-
 						if ( ! isset( $rule['viewable'] ) || $rule['viewable'] ) {
 
 							$url = add_query_arg(
@@ -430,6 +493,25 @@ class Ajax {
 							// Translators: %d is the issue ID.
 							$aria_label = sprintf( __( 'View Issue ID %d on website, opens a new window', 'accessibility-checker' ), $id );
 							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>' . __( 'View on page', 'accessibility-checker' ) . '</a>';
+						}
+
+						$html .= '<button class="edac-details-rule-records-record-actions-ignore' . $ignore_class . '" aria-expanded="false" aria-controls="edac-details-rule-records-record-ignore-' . $row['id'] . '">' . EDAC_SVG_IGNORE_ICON . '<span class="edac-details-rule-records-record-actions-ignore-label">' . $ignore_label . '</span></button>';
+
+						if ( ! empty( $fixes_for_item ) ) {
+							$html .= sprintf(
+								'<button class="edac-details-rule-records-record-actions-fix"
+									aria-haspopup="true"
+									aria-controls="%1$s"
+									aria-label="%2$s"
+									type="button"
+								>
+									<span class="dashicons dashicons-admin-tools"></span>
+									%3$s
+								</button>',
+								esc_attr( $controls_id ),
+								esc_attr( __( 'Fix: ', 'accessibility-checker' ) . $fixes_for_item[0]->get_nicename() ),
+								esc_html__( 'Fix', 'accessibility-checker' )
+							);
 						}
 
 						$html .= '</div>';

@@ -14,6 +14,14 @@ import textSmall from './rules/text-small';
 import textSizeTooSmall from './checks/text-size-too-small';
 import textJustified from './rules/text-justified';
 import textIsJustified from './checks/text-is-justified';
+import linkTargetBlank from './rules/link_target_blank';
+import linkTargetBlankWithoutInforming from './checks/link-target-blank-without-informing';
+import linkAmbiguousText from './rules/link-ambiguous-text';
+import hasAmbiguousText from './checks/has-ambiguous-text';
+import brokenAnchorLink from './rules/broken-anchor-link';
+import anchorExists from './checks/anchor-exists';
+import labelExtended from './rules/extended/label';
+import imageInputHasAlt from './checks/image-input-has-alt';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -38,7 +46,7 @@ const postId = body.getAttribute( 'data-iframe-post-id' );
 const scan = async (
 	options = { configOptions: {}, runOptions: {} }
 ) => {
-	const context = { exclude: [ '#wpadminbar', '.edac-panel-container' ] };
+	const context = { exclude: [ '#wpadminbar', '.edac-panel-container', '#query-monitor-main' ] };
 
 	const defaults = {
 		configOptions: {
@@ -52,6 +60,10 @@ const scan = async (
 				emptyParagraph,
 				textSmall,
 				textJustified,
+				linkTargetBlank,
+				linkAmbiguousText,
+				brokenAnchorLink,
+				labelExtended,
 			],
 			checks: [
 				//alwaysFail,
@@ -61,6 +73,10 @@ const scan = async (
 				paragraphNotEmpty,
 				textSizeTooSmall,
 				textIsJustified,
+				linkTargetBlankWithoutInforming,
+				hasAmbiguousText,
+				anchorExists,
+				imageInputHasAlt,
 			],
 			iframes: false,
 
@@ -73,12 +89,20 @@ const scan = async (
 					'meta-viewport',
 					'blink',
 					'marquee',
+					'document-title',
+					'tabindex',
+					'html-lang-valid',
+					'html-has-lang',
 					colorContrastFailure.id,
 					underlinedText.id,
 					emptyParagraph.id,
 					possibleHeading.id,
 					textSmall.id,
 					textJustified.id,
+					linkTargetBlank.id,
+					linkAmbiguousText.id,
+					brokenAnchorLink.id,
+					labelExtended.id,
 				],
 			},
 
