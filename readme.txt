@@ -176,7 +176,6 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * New: Fix to remove or update bad tabindex values on elements.
 * New: Fix to remove title attributes in favor of preferred accessible names to elements.
 * New: Fix to add missing lang and dir attributes to the <html> element.
-* New: Fix to add post titles to 'read more' links to disambiguate them.
 * New: Fix to add skip links to pages where they are missing.
 * New: Fix to add labels to comment and search forms.
 * New: Fix to ensure that the meta viewport tag does not prevent user scaling or zooming.
