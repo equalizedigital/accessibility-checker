@@ -632,8 +632,7 @@ class AccessibilityCheckerHighlight {
  						aria-haspopup="true"
  						aria-expanded="false"
  						aria-controls="edac-highlight-panel-description-fix"
- 						aria-label="Fix issue: ${ matchingObj.rule_title }">
- 						>Fix Issue</button>`;
+						aria-label="Fix issue: ${ this.fixes[ matchingObj.slug ][ Object.keys( this.fixes[ matchingObj.slug ] )[ 0 ] ].group_name }"> 						Fix Issue</button>`;
 			} else {
 				content += ` <br />`;
 			}
