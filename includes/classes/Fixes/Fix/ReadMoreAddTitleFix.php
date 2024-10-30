@@ -31,7 +31,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'sAdd "Read" Link with Post Title', 'accessibility-checker' );
+		return __( 'Add "Read" Link with Post Title', 'accessibility-checker' );
 	}
 
 	/**
