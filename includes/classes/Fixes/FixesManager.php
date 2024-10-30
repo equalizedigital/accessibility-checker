@@ -126,7 +126,6 @@ class FixesManager {
 				SkipLinkFix::class,
 				CommentSearchLabelFix::class,
 				HTMLLangAndDirFix::class,
-				ReadMoreAddTitleFix::class,
 				TabindexFix::class,
 				RemoveTitleIfPrefferedAccessibleNameFix::class,
 				LinkUnderline::class,
