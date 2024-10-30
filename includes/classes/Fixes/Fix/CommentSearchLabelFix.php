@@ -87,7 +87,7 @@ class CommentSearchLabelFix implements FixInterface {
 	 */
 	public function get_fields_array( array $fields = [] ): array {
 		$fields['edac_fix_comment_label'] = [
-			'label'       => esc_html__( 'Comment Form', 'accessibility-checker' ),
+			'label'       => esc_html__( 'Label Comment Form', 'accessibility-checker' ),
 			'type'        => 'checkbox',
 			'labelledby'  => 'add_comment_label',
 			'description' => esc_html__( 'Add missing labels to the WordPress comment form.', 'accessibility-checker' ),
@@ -98,7 +98,7 @@ class CommentSearchLabelFix implements FixInterface {
 		];
 
 		$fields['edac_fix_search_label'] = [
-			'label'       => esc_html__( 'Search Form', 'accessibility-checker' ),
+			'label'       => esc_html__( 'Label Search Form', 'accessibility-checker' ),
 			'type'        => 'checkbox',
 			'labelledby'  => 'add_search_label',
 			'description' => esc_html__( 'Add a missing label to the WordPress search form.', 'accessibility-checker' ),
