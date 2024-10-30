@@ -81,7 +81,7 @@ class MetaViewportScalableFix implements FixInterface {
 			'label'       => esc_html__( 'Scalable Viewport Tag', 'accessibility-checker' ),
 			'type'        => 'checkbox',
 			'labelledby'  => '',
-			'description' => esc_html__( 'Ensures the viewport tag allows for scaling, enhancing accessibility on mobile devices.', 'accessibility-checker' ),
+			'description' => esc_html__( 'Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices.', 'accessibility-checker' ),
 			'fix_slug'    => $this->get_slug(),
 			'help_id'     => 8488,
 		];

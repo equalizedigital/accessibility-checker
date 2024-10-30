@@ -54,7 +54,7 @@ class FocusOutlineFix implements FixInterface {
 			function ( $sections ) {
 				$sections['focus_outline'] = [
 					'title'       => esc_html__( 'Focus Outline', 'accessibility-checker' ),
-					'description' => esc_html__( 'Adds an outline to elements when they receive keyboard focus.', 'accessibility-checker' ),
+					'description' => esc_html__( 'Add an outline to elements when they receive keyboard focus.', 'accessibility-checker' ),
 					'callback'    => [ $this, 'focus_outline_section_callback' ],
 				];
 
@@ -80,7 +80,7 @@ class FocusOutlineFix implements FixInterface {
 			'type'        => 'checkbox',
 			'label'       => esc_html__( 'Focus Outline', 'accessibility-checker' ),
 			'labelledby'  => 'fix_focus_outline',
-			'description' => esc_html__( 'Adds an outline to elements when they receive keyboard focus.', 'accessibility-checker' ),
+			'description' => esc_html__( 'Add an outline to elements when they receive keyboard focus.', 'accessibility-checker' ),
 			'section'     => 'focus_outline',
 			'fix_slug'    => $this->get_slug(),
 			'help_id'     => 8495,

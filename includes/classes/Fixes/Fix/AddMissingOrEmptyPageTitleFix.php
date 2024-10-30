@@ -68,7 +68,7 @@ class AddMissingOrEmptyPageTitleFix implements FixInterface {
 			'label'       => esc_html__( 'Add Missing Page Title', 'accessibility-checker' ),
 			'labelledby'  => 'add_missing_or_empty_page_title',
 			// translators: %1$s: a code tag with a title tag.
-			'description' => sprintf( __( 'Adds a %1$s tag to the page if it\'s missing or empty.', 'accessibility-checker' ), '<code>&lt;title&gt;</code>' ),
+			'description' => sprintf( __( 'Add a %1$s tag to the page if it\'s missing or empty.', 'accessibility-checker' ), '<code>&lt;title&gt;</code>' ),
 			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
