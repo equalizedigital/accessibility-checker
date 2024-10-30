@@ -67,7 +67,7 @@ class RemoveTitleIfPrefferedAccessibleNameFix implements FixInterface {
 			'label'       => esc_html__( 'Remove Title Attributes', 'accessibility-checker' ),
 			'labelledby'  => 'accessible_name',
 			// translators: %1$s: a attribute name wrapped in a <code> tag.
-			'description' => sprintf( __( 'Removes %1$s attributes from elements that already have a preferred accessible name.', 'accessibility-checker' ), '<code>title</code>' ),
+			'description' => sprintf( __( 'Remove %1$s attributes from elements that already have a preferred accessible name.', 'accessibility-checker' ), '<code>title</code>' ),
 			'fix_slug'    => $this->get_slug(),
 			'help_id'     => 8494,
 		];

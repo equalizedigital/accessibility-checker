@@ -81,7 +81,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 			'type'        => 'checkbox',
 			'label'       => esc_html__( 'Add Post Title To "Read More"', 'accessibility-checker' ),
 			'labelledby'  => 'add_read_more_title',
-			'description' => esc_html__( 'Adds the post title to "Read More" links in post lists when your theme outputs those links.', 'accessibility-checker' ),
+			'description' => esc_html__( 'Add the post title to "Read More" links in post lists when your theme outputs those links.', 'accessibility-checker' ),
 			'section'     => 'read_more_links',
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),

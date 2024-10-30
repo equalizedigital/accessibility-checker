@@ -110,7 +110,7 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 			<?php
 				printf(
 				// translators: %1$s: a CSS class name wrapped in a <code> tag.
-					esc_html__( 'Attempts to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts.', 'accessibility-checker' ),
+					esc_html__( 'Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts.', 'accessibility-checker' ),
 					'<code>.edac-generated-label</code>'
 				);
 			?>
