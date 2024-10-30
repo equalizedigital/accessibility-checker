@@ -269,3 +269,9 @@ body.edac-fixes-modal--open {
 .hide-fixes-source {
 	display: none;
 }
+
+body.block-editor-page {
+	.hide-in-editor {
+		display: none;
+	}
+}
