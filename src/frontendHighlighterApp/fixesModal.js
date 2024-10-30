@@ -144,14 +144,17 @@ export const fillFixesModal = ( content = '', fieldsElement = '' ) => {
 	// put the fieldsElement inside the fieldsWrapper element
 	fieldsWrapper.appendChild( fieldsElement );
 
-	// find a data-group-name in the fields
-	const groupName = fieldsWrapper.querySelector( '[data-group-name]' )?.getAttribute( 'data-group-name' ) || '';
+	// find a fancyName or groupName in the fields.
+	let fancyName = fieldsWrapper.querySelector( '[data-fancy-name]' )?.getAttribute( 'data-fancy-name' ) || '';
+	if ( fancyName === '' ) {
+		fancyName = fieldsWrapper.querySelector( '[data-group-name]' )?.getAttribute( 'data-group-name' ) || '';
+	}
 
 	const modal = document.getElementById( 'edac-fixes-modal' );
 	const modalTitle = modal.querySelector( '#edac-fixes-modal-title' );
 	const modalBody = modal.querySelector( '.edac-fixes-modal__body' );
 
-	modalTitle.innerText = groupName;
+	modalTitle.innerText = fancyName;
 	modalBody.innerHTML = content;
 	modalBody.appendChild( fieldsWrapper );
 

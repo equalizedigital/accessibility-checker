@@ -85,6 +85,7 @@ class SkipLinkFix implements FixInterface {
 			'section'     => 'skip_link',
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
+			'help_id'     => 8638,
 		];
 
 		$fields['edac_fix_add_skip_link_target_id'] = [
@@ -97,6 +98,7 @@ class SkipLinkFix implements FixInterface {
 			'condition'         => 'edac_fix_add_skip_link',
 			'required_when'     => 'edac_fix_add_skip_link',
 			'fix_slug'          => $this->get_slug(),
+			'help_id'           => 8638,
 		];
 
 		$fields['edac_fix_add_skip_link_nav_target_id'] = [
@@ -109,6 +111,7 @@ class SkipLinkFix implements FixInterface {
 			'section'           => 'skip_link',
 			'condition'         => 'edac_fix_add_skip_link',
 			'fix_slug'          => $this->get_slug(),
+			'help_id'           => 8638,
 		];
 
 		return $fields;

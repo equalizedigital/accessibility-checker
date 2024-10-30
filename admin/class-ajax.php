@@ -500,6 +500,7 @@ class Ajax {
 						if ( ! empty( $fixes_for_item ) ) {
 							$html .= sprintf(
 								'<button class="edac-details-rule-records-record-actions-fix"
+									aria-haspopup="true"
 									aria-controls="%1$s"
 									aria-label="%2$s"
 									type="button"
@@ -508,7 +509,7 @@ class Ajax {
 									%3$s
 								</button>',
 								esc_attr( $controls_id ),
-								esc_attr( __( 'Open modal of fix settings related to: ', 'accessibility-checker' ) . $rule['title'] ),
+								esc_attr( __( 'Fix: ', 'accessibility-checker' ) . $fixes_for_item[0]->get_nicename() ),
 								esc_html__( 'Fix', 'accessibility-checker' )
 							);
 						}
