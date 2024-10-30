@@ -38,6 +38,7 @@ trait Checkbox {
 				<?php echo $upsell ? 'disabled' : ''; ?>
 				<?php echo isset( $args['fix_slug'] ) ? 'data-fix-slug="' . esc_attr( $args['fix_slug'] ) . '"' : ''; ?>
 				<?php echo isset( $args['group_name'] ) ? 'data-group-name="' . esc_attr( $args['group_name'] ) . '"' : ''; ?>
+				<?php echo isset( $args['fancy_name'] ) ? 'data-fancy-name="' . esc_attr( $args['fancy_name'] ) . '"' : ''; ?>
 			/>
 			<?php if ( isset( $args['location'] ) && $upsell ) : ?>
 				<a class="edac-fix--upsell-link"
@@ -47,7 +48,7 @@ trait Checkbox {
 			<?php endif; ?>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 			<?php
-			if ( isset( $args['help_id'] ) && $args['label'] ) :
+			if ( isset( $args['help_id'] ) && ! empty( $args['help_id'] ) && $args['label'] ) :
 				$link = \edac_generate_link_type(
 					[
 						'utm-content' => 'fix-description',

@@ -31,7 +31,16 @@ class ReadMoreAddTitleFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'Add Title to Read More Links', 'accessibility-checker' );
+		return __( 'Add "Read" Link with Post Title', 'accessibility-checker' );
+	}
+
+	/**
+	 * The nicename for the fix.
+	 *
+	 * @return string
+	 */
+	public static function get_fancyname(): string {
+		return __( 'Add Title to Read More Link', 'accessibility-checker' );
 	}
 
 	/**
@@ -85,6 +94,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 			'section'     => 'read_more_links',
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
+			'help_id'     => 8663,
 		];
 
 		$fields['edac_fix_add_read_more_title_screen_reader_only'] = [

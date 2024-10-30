@@ -85,6 +85,7 @@ class SkipLinkFix implements FixInterface {
 			'section'     => 'skip_link',
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
+			'help_id'     => 8638,
 		];
 
 		$fields['edac_fix_add_skip_link_target_id'] = [
