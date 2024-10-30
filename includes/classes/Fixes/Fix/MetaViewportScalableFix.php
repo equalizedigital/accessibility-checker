@@ -78,7 +78,7 @@ class MetaViewportScalableFix implements FixInterface {
 	 */
 	public function get_fields_array( array $fields = [] ): array {
 		$fields[ 'edac_fix_' . $this->get_slug() ] = [
-			'label'       => esc_html__( 'Scalable Viewport Tag', 'accessibility-checker' ),
+			'label'       => esc_html__( 'Make Viewport Scalable', 'accessibility-checker' ),
 			'type'        => 'checkbox',
 			'labelledby'  => '',
 			'description' => esc_html__( 'Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices.', 'accessibility-checker' ),
