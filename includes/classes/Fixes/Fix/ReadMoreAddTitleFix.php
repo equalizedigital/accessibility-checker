@@ -94,6 +94,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 			'section'     => 'read_more_links',
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
+			'help_id'     => 8663,
 		];
 
 		$fields['edac_fix_add_read_more_title_screen_reader_only'] = [
@@ -104,6 +105,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 			'condition'   => 'edac_fix_add_read_more_title',
 			'section'     => 'read_more_links',
 			'fix_slug'    => $this->get_slug(),
+			'help_id'     => 8663,
 		];
 
 		return $fields;
