@@ -632,7 +632,7 @@ class AccessibilityCheckerHighlight {
  						aria-haspopup="true"
  						aria-expanded="false"
  						aria-controls="edac-highlight-panel-description-fix"
- 						aria-label="Open fix settings modal for ${ matchingObj.rule_title } issue with ID ${ matchingObj.id }"
+ 						aria-label="Fix issue: ${ matchingObj.rule_title }">
  						>Fix Issue</button>`;
 			} else {
 				content += ` <br />`;
