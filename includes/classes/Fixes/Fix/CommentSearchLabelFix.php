@@ -85,6 +85,7 @@ class CommentSearchLabelFix implements FixInterface {
 			'section'     => 'comment_search_label',
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
+			'help_id'     => 8497,
 		];
 
 		$fields['edac_fix_search_label'] = [
@@ -94,6 +95,7 @@ class CommentSearchLabelFix implements FixInterface {
 			'description' => esc_html__( 'Adds a missing label to the WordPress search form.', 'accessibility-checker' ),
 			'section'     => 'comment_search_label',
 			'fix_slug'    => $this->get_slug(),
+			'help_id'     => 8497,
 		];
 
 		return $fields;
