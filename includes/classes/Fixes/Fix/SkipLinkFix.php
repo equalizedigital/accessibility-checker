@@ -103,8 +103,7 @@ class SkipLinkFix implements FixInterface {
 			'label'             => esc_html__( 'Navigation Target', 'accessibility-checker' ),
 			'type'              => 'text',
 			'labelledby'        => 'skip_link_nav_target_id',
-			// translators: %1$s: ampersand character wrapped in a <code> tag.
-			'description'       => sprintf( __( 'Set the ID attribute of the navigation element, starting with %1$s. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features.', 'accessibility-checker' ), '<code>#</code>' ),
+			'description'       => __( 'Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features.', 'accessibility-checker' ),
 			'sanitize_callback' => 'sanitize_text_field',
 			'section'           => 'skip_link',
 			'condition'         => 'edac_fix_add_skip_link',
