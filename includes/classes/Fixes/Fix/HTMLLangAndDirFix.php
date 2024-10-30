@@ -30,7 +30,7 @@ class HTMLLangAndDirFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'Add lang & dir Attributes', 'accessibility-checker' );
+		return __( 'Set Page Language', 'accessibility-checker' );
 	}
 
 	/**
@@ -64,7 +64,7 @@ class HTMLLangAndDirFix implements FixInterface {
 	public function get_fields_array( array $fields = [] ): array {
 		$fields['edac_fix_add_lang_and_dir'] = [
 			'type'        => 'checkbox',
-			'label'       => esc_html__( 'Add "lang" & "dir" Attribributes', 'accessibility-checker' ),
+			'label'       => esc_html__( 'Add "lang" & "dir" Attributes', 'accessibility-checker' ),
 			'labelledby'  => 'add_read_more_title',
 			// translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
 			'description' => sprintf( __( 'Adds the site language (%1$s) and text direction (%2$s) attributes to the %3$s element.', 'accessibility-checker' ), '<code>lang</code>', '<code>dir</code>', '<code>&lt;html&gt;</code>' ),

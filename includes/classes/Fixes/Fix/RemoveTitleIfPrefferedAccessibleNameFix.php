@@ -30,7 +30,7 @@ class RemoveTitleIfPrefferedAccessibleNameFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'Prefer Accessible Label Attribute', 'accessibility-checker' );
+		return __( 'Remove Unnecessary Title Attributes', 'accessibility-checker' );
 	}
 
 	/**

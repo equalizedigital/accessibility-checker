@@ -37,8 +37,12 @@
 		}
 
 		input[type="checkbox"] {
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin: 0 .5rem 0 0;
+			padding: 0 !important;
 			width: auto;
-			margin-right: 0.5rem;
+
 			&:before {
 				content: none;
 			}
@@ -63,6 +67,11 @@
 
 		&--action-row {
 			display: flex !important;
+		}
+
+		.modal-opening-message {
+			padding: 0;
+			margin-bottom: 0;
 		}
 
 	}
@@ -187,11 +196,19 @@
 		position: absolute;
 		top: 5px;
 		right: 5px;
+		color: $color-blue-dark;
 
 		.dashicons, .dashicons::before {
 			vertical-align: middle;
 			display: block;
 			margin: auto;
+			color: $color-blue-dark !important;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: $color-yellow;
+			color: $color-blue-dark;
 		}
 	}
 }
@@ -251,4 +268,10 @@ body.edac-fixes-modal--open {
 
 .hide-fixes-source {
 	display: none;
+}
+
+body.block-editor-page {
+	.hide-in-editor {
+		display: none;
+	}
 }

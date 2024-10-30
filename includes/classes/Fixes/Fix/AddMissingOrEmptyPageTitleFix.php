@@ -31,7 +31,7 @@ class AddMissingOrEmptyPageTitleFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'Add Missing or Empty Page Titles', 'accessibility-checker' );
+		return __( 'Set Page HTML Titles', 'accessibility-checker' );
 	}
 
 	/**

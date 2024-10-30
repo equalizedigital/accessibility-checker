@@ -408,7 +408,7 @@ body {
 
 .edac-fixes-modal {
 	display: none;
-
+	width:650px;
 	-webkit-font-smoothing: antialiased !important;
 	-moz-osx-font-smoothing: grayscale !important;
 	background-color: #fff !important;
@@ -425,7 +425,7 @@ body {
 	text-align: left !important;
 	letter-spacing: initial !important;
 
-	@media screen and (max-width: $small-screen-width) {
+	@media screen and (max-width: $medium-screen-width) {
 		width: 100% !important;
 		max-width: calc(100% - 30px) !important;
 		padding: 20px !important;
@@ -475,10 +475,21 @@ body {
 
 			&--button--save {
 				@extend .edac-highlight-panel-description--button;
-
-
 			}
 		}
+
+		input[type="checkbox"] {
+			&:before {
+				content: none;
+			}
+			&:checked:before {
+				content: none;
+			}
+		}
+	}
+
+	.modal-opening-message {
+		margin-bottom: 0.5em !important;
 	}
 
 	*:focus {

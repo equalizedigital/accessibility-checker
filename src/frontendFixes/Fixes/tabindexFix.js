@@ -12,6 +12,7 @@ const TabindexFix = () => {
 	elementsWithTabIndex.forEach( ( element ) => {
 		// Skip anchor tags without an href attribute or those with role="button" as they are not natively focusable
 		if ( element.tagName === 'A' && ( ! element.hasAttribute( 'href' ) || element.getAttribute( 'role' ) === 'button' ) ) {
+			element.setAttribute( 'tabindex', '0' );
 			return;
 		}
 

@@ -626,7 +626,13 @@ class AccessibilityCheckerHighlight {
 					</div>
 				`;
 				// and the button that will trigger the modal.
-				content += ` <br /><button role="button" class="edac-fix-settings--button--open edac-highlight-panel-description--button" aria-expanded="false" aria-controls="edac-highlight-panel-description-fix">Fix Issue</button>`;
+				content += ` <br />
+ 					<button role="button"
+ 						class="edac-fix-settings--button--open edac-highlight-panel-description--button"
+ 						aria-haspopup="true"
+ 						aria-expanded="false"
+ 						aria-controls="edac-highlight-panel-description-fix"
+						aria-label="Fix issue: ${ this.fixes[ matchingObj.slug ][ Object.keys( this.fixes[ matchingObj.slug ] )[ 0 ] ].group_name }"> 						Fix Issue</button>`;
 			} else {
 				content += ` <br />`;
 			}
@@ -806,9 +812,12 @@ class AccessibilityCheckerHighlight {
 		// renive the fixSettingsContainer from the DOM.
 		fixSettingsContainer.remove();
 
-		fillFixesModal( '', fixSettingsContainer );
+		fillFixesModal(
+			`<p class="modal-opening-message">${ __( 'These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports.', 'accessibility-checker' ) }</p>`,
+			fixSettingsContainer
+		);
 
-		// puse the focus trap.
+		// pause the highlighter panel focus trap.
 		this.panelDescriptionFocusTrap.pause();
 		openFixesModal( event.target );
 

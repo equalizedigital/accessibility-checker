@@ -30,7 +30,7 @@ class LinkUnderline implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'Add Underlines to all non-nav Links', 'accessibility-checker' );
+		return __( 'Underline Links', 'accessibility-checker' );
 	}
 
 	/**

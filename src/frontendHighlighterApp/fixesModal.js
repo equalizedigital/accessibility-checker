@@ -150,7 +150,8 @@ export const fillFixesModal = ( content = '', fieldsElement = '' ) => {
 	const modal = document.getElementById( 'edac-fixes-modal' );
 	const modalTitle = modal.querySelector( '#edac-fixes-modal-title' );
 	const modalBody = modal.querySelector( '.edac-fixes-modal__body' );
-	modalTitle.innerText = __( 'Fix settings: ', 'accessibility-checker' ) + groupName;
+
+	modalTitle.innerText = groupName;
 	modalBody.innerHTML = content;
 	modalBody.appendChild( fieldsWrapper );
 
