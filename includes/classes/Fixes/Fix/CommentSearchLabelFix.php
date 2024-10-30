@@ -94,7 +94,7 @@ class CommentSearchLabelFix implements FixInterface {
 			'section'     => 'comment_search_label',
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
-			'help_id'     => 8497,
+			'help_id'     => 8658,
 		];
 
 		$fields['edac_fix_search_label'] = [
@@ -104,7 +104,7 @@ class CommentSearchLabelFix implements FixInterface {
 			'description' => esc_html__( 'Add a missing label to the WordPress search form.', 'accessibility-checker' ),
 			'section'     => 'comment_search_label',
 			'fix_slug'    => $this->get_slug(),
-			'help_id'     => 8497,
+			'help_id'     => 8659,
 		];
 
 		return $fields;
@@ -135,22 +135,22 @@ class CommentSearchLabelFix implements FixInterface {
 
 		// Check if the comment label is set correctly; if not, fix it.
 		if ( empty( $defaults['comment_field'] ) || ! strpos( $defaults['comment_field'], '<label' ) ) {
-			$defaults['comment_field'] = '<p class="comment-form-comment"><label for="comment">' . esc_html__( 'Comment', 'accessibility-checker' ) . '</label><textarea id="comment" name="comment" rows="4" required></textarea></p>';
+			$defaults['comment_field'] = '<p class="comment-form-comment"><label for="comment" class="edac-generated-label">' . esc_html__( 'Comment', 'accessibility-checker' ) . '</label><textarea id="comment" name="comment" rows="4" required></textarea></p>';
 		}
 
 		// Check the author field label.
 		if ( isset( $defaults['fields']['author'] ) && ! strpos( $defaults['fields']['author'], '<label' ) ) {
-			$defaults['fields']['author'] = '<p class="comment-form-author"><label for="author">' . esc_html__( 'Name', 'accessibility-checker' ) . '</label><input id="author" name="author" type="text" value="" size="30" required /></p>';
+			$defaults['fields']['author'] = '<p class="comment-form-author"><label for="author" class="edac-generated-label">' . esc_html__( 'Name', 'accessibility-checker' ) . '</label><input id="author" name="author" type="text" value="" size="30" required /></p>';
 		}
 
 		// Check the email field label.
 		if ( isset( $defaults['fields']['email'] ) && ! strpos( $defaults['fields']['email'], '<label' ) ) {
-			$defaults['fields']['email'] = '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'accessibility-checker' ) . '</label><input id="email" name="email" type="email" value="" size="30" required /></p>';
+			$defaults['fields']['email'] = '<p class="comment-form-email"><label for="email" class="edac-generated-label">' . esc_html__( 'Email', 'accessibility-checker' ) . '</label><input id="email" name="email" type="email" value="" size="30" required /></p>';
 		}
 
 		// Check the website field label.
 		if ( isset( $defaults['fields']['url'] ) && ! strpos( $defaults['fields']['url'], '<label' ) ) {
-			$defaults['fields']['url'] = '<p class="comment-form-url"><label for="url">' . esc_html__( 'Website', 'accessibility-checker' ) . '</label><input id="url" name="url" type="url" value="" size="30" /></p>';
+			$defaults['fields']['url'] = '<p class="comment-form-url"><label for="url" class="edac-generated-label">' . esc_html__( 'Website', 'accessibility-checker' ) . '</label><input id="url" name="url" type="url" value="" size="30" /></p>';
 		}
 
 		return $defaults;
@@ -174,12 +174,12 @@ class CommentSearchLabelFix implements FixInterface {
 				$input_id    = $input_matches[1]; // Use the existing id of the input field.
 			} else {
 				$input_id    = 'search-form-' . uniqid(); // Generate a unique ID if the input field doesn't have one.
-				$input_field = '<input type="search" id="' . esc_attr( $input_id ) . '" class="search-field" placeholder="' . esc_attr__( 'Search …', 'accessibility-checker' ) . '" value="' . get_search_query() . '" name="s" />';
+				$input_field = '<input type="search" id="' . esc_attr( $input_id ) . '" class="search-field edac-generated-label" placeholder="' . esc_attr__( 'Search …', 'accessibility-checker' ) . '" value="' . get_search_query() . '" name="s" />';
 			}
 
 			// Rebuild the form with a visible <label> and ensure the "for" attribute matches the input's id.
 			$form = '<form role="search" method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
-			<label for="' . esc_attr( $input_id ) . '">' . esc_html__( 'Search for:', 'accessibility-checker' ) . '</label>
+			<label for="' . esc_attr( $input_id ) . '" class="edac-generated-label" >' . esc_html__( 'Search for:', 'accessibility-checker' ) . '</label>
 			' . $input_field . '
 			<button type="submit" class="search-submit">' . esc_attr__( 'Search', 'accessibility-checker' ) . '</button>
 			</form>';
