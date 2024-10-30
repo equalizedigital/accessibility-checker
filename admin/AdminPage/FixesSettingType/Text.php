@@ -38,7 +38,7 @@ trait Text {
 				><?php esc_html_e( 'Get Pro', 'accessibility-checker' ); ?></a>			<?php endif; ?>
 			<?php echo wp_kses( $args['description'], [ 'code' => [] ] ); ?>
 			<?php
-			if ( isset( $args['help_id'] ) && $args['label'] ) :
+			if ( isset( $args['help_id'] ) && ! empty( $args['help_id'] ) && $args['label'] ) :
 				$link  = \edac_generate_link_type(
 					[
 						'utm-content' => 'fix-description',
