@@ -54,7 +54,7 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 			'edac_filter_fixes_settings_sections',
 			function ( $sections ) {
 				$sections[ $this->get_slug() ] = [
-					'title'    => esc_html__( 'Unlabelled Form Fields', 'accessibility-checker' ),
+					'title'    => esc_html__( 'Label Form Fields', 'accessibility-checker' ),
 					'callback' => [ $this, $this->get_slug() . '_section_callback' ],
 				];
 
@@ -77,7 +77,7 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 	 */
 	public function get_fields_array( array $fields = [] ): array {
 		$fields[ 'edac_fix_' . $this->get_slug() ] = [
-			'label'       => esc_html__( 'Unlabelled Form Fields', 'accessibility-checker' ),
+			'label'       => esc_html__( 'Label Form Fields', 'accessibility-checker' ),
 			'type'        => 'checkbox',
 			'labelledby'  => $this->get_slug(),
 			'description' => esc_html__( 'Add labels to unlabelled form fields if field purpose can be determined.', 'accessibility-checker' ),
