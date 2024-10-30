@@ -500,7 +500,6 @@ class Ajax {
 						if ( ! empty( $fixes_for_item ) ) {
 							$html .= sprintf(
 								'<button class="edac-details-rule-records-record-actions-fix"
-									aria-expanded="false"
 									aria-haspopup="true"
 									aria-controls="%1$s"
 									aria-label="%2$s"

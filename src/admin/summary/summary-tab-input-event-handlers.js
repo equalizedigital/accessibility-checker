@@ -131,8 +131,6 @@ export const initFixButtonEventHandlers = () => {
 	fixButtons.forEach( ( button ) => {
 		button.addEventListener( 'click', async ( event ) => {
 			const restoreFocusToElement = event.currentTarget;
-			// set the aria-expanded to true
-			restoreFocusToElement.setAttribute( 'aria-expanded', 'true' );
 			const fixSettings = document.getElementById( restoreFocusToElement.getAttribute( 'aria-controls' ) );
 			if ( ! fixSettings ) {
 				return;
@@ -166,7 +164,6 @@ export const initFixButtonEventHandlers = () => {
 					} );
 				}, 100 );
 				thickboxFocusTrap.deactivate();
-				restoreFocusToElement.setAttribute( 'aria-expanded', 'false' );
 				restoreFocusToElement.focus();
 			} );
 		} );
