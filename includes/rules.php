@@ -270,23 +270,6 @@ return [
 		),
 	],
 	[
-		'title'     => esc_html__( 'Empty Form Label', 'accessibility-checker' ),
-		'info_url'  => 'https://a11ychecker.com/help4109',
-		'slug'      => 'empty_form_label',
-		'rule_type' => 'error',
-		'summary'   => sprintf(
-			// translators: %s is <code>&lt;label&gt;</code>.
-			esc_html__( 'An Empty Form Label error is triggered when a %s tag is present in your form and associated with an input (form field), but does not contain any text. To fix empty form label errors, you will need to determine how the field and form were created and then add text to the label for the field that is currently blank.', 'accessibility-checker' ),
-			'<code>&lt;label&gt;</code>'
-		),
-		'ruleset'   => 'js',
-		'combines'  => [ 'label' ],
-		'fixes'     => [
-			AddLabelToUnlabelledFormFieldsFix::get_slug(),
-			CommentSearchLabelFix::get_slug(),
-		],
-	],
-	[
 		'title'     => esc_html__( 'Missing Form Label', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1949',
 		'slug'      => 'missing_form_label',
