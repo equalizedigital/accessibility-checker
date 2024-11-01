@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.6.7
-Stable tag: 1.16.0
+Stable tag: 1.16.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,6 +171,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.16.1 =
+* Fix: Remove redundant empty_form_label rule definition.
+
 = 1.16.0 =
 * New: Introduced a system to handle automated fixes for issues that the scanner would discover.
 * New: Fix to remove or update bad tabindex values on elements.
@@ -192,7 +195,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Fix: Improve or add better aria-labels in several places.
 * Fix: Don't flag empty paragraphs if they have aria-hidden.
 
-= 1.15.3
+= 1.15.3 =
 * Enhancement: Detect missing labels on more elements.
 * Enhancement: Detect slick slider that gets initialized after the page loads.
 
