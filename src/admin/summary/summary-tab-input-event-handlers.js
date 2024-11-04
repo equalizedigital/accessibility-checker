@@ -139,9 +139,16 @@ export const initFixButtonEventHandlers = () => {
 			fixSettings.classList.toggle( 'active' );
 			document.querySelector( 'body' ).classList.add( 'edac-fix-modal-present' );
 
+			// try to find a fancy name for the modal
+			const fancyNameEl = fixSettings.querySelector( '[data-fancy-name]' );
+			let modalTitle = __( 'Fix Settings', 'accessibility-checker' );
+			if ( fancyNameEl && fancyNameEl.getAttribute( 'data-fancy-name' ).length > 0 ) {
+				modalTitle = fancyNameEl.getAttribute( 'data-fancy-name' );
+			}
+
 			// trigger a thickbox that contains the contents of the fixSettings
 			// eslint-disable-next-line no-undef
-			tb_show( __( 'Fix Settings', 'accessibility-checker' ), '#TB_inline?width=750&inlineId=' + fixSettings.id );
+			tb_show( modalTitle, '#TB_inline?width=750&inlineId=' + fixSettings.id );
 
 			const thickbox = document.getElementById( 'TB_window' );
 			thickbox.querySelector( '[aria-live]' ).innerText = '';
