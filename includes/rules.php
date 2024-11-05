@@ -9,7 +9,6 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\{
 	TabindexFix,
 	AddLabelToUnlabelledFormFieldsFix,
 	CommentSearchLabelFix,
-	ReadMoreAddTitleFix,
 	PreventLinksOpeningNewWindowFix,
 	HTMLLangAndDirFix,
 	AddMissingOrEmptyPageTitleFix,
@@ -243,6 +242,7 @@ return [
 		'slug'      => 'link_ms_office_file',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you\'re using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Link to PDF', 'accessibility-checker' ),
