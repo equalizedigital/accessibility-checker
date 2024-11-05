@@ -23,6 +23,7 @@ import anchorExists from './checks/anchor-exists';
 import labelExtended from './rules/extended/label';
 import imageInputHasAlt from './checks/image-input-has-alt';
 import linkPDF from './rules/link-pdf';
+import linkMsOfficeFile from './rules/link-ms-office-file';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -64,6 +65,7 @@ const scan = async (
 				linkTargetBlank,
 				linkAmbiguousText,
 				linkPDF,
+				linkMsOfficeFile,
 				brokenAnchorLink,
 				labelExtended,
 			],
@@ -104,6 +106,7 @@ const scan = async (
 					linkTargetBlank.id,
 					linkAmbiguousText.id,
 					linkPDF.id,
+					linkMsOfficeFile.id,
 					brokenAnchorLink.id,
 					labelExtended.id,
 				],
