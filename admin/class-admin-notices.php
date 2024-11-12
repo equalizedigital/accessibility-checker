@@ -105,10 +105,10 @@ class Admin_Notices {
 			return;
 		}
 
-		// Show from November 20-30.
+		// Show from November 25 to December 03.
 		$current_date = date_i18n( 'Ymd' ); // Use date_i18n for localization.
-		$start_date   = '20231120';
-		$end_date     = '20231130';
+		$start_date   = '20241110';
+		$end_date     = '20241203';
 
 		if ( $current_date >= $start_date && $current_date <= $end_date ) {
 
@@ -157,7 +157,7 @@ class Admin_Notices {
 
 		}
 
-		$results = update_option( 'edac_black_friday_2023_notice_dismiss', true );
+		$results = update_option( 'edac_black_friday_2024_notice_dismiss', true );
 
 		if ( ! $results ) {
 
