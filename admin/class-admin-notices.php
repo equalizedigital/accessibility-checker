@@ -92,16 +92,12 @@ class Admin_Notices {
 	public function edac_black_friday_notice() {
 
 		// check if accessibility checker pro is active.
-		$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
-		if ( $pro ) {
+		if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
 			return;
 		}
 
-		// Get the value of the 'edac_gaad_notice_dismiss' option and sanitize it.
-		$dismissed = absint( get_option( 'edac_black_friday_2023_notice_dismiss', 0 ) );
-
 		// Check if the notice has been dismissed.
-		if ( $dismissed ) {
+		if ( absint( get_option( 'edac_black_friday_2024_notice_dismiss', 0 ) ) ) {
 			return;
 		}
 
