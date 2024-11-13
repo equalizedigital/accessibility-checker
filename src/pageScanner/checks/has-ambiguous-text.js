@@ -33,11 +33,6 @@ const checkAmbiguousPhrase = ( text ) => {
 export default {
 	id: 'has_ambiguous_text',
 	evaluate: ( node ) => {
-		const textContent = node.textContent;
-		if ( checkAmbiguousPhrase( textContent ) ) {
-			return true;
-		}
-
 		if ( node.hasAttribute( 'aria-label' ) ) {
 			const ariaLabel = node.getAttribute( 'aria-label' );
 			return checkAmbiguousPhrase( ariaLabel );
@@ -47,6 +42,10 @@ export default {
 			const label = node.getAttribute( 'aria-labelledby' );
 			const labelText = document.getElementById( label )?.textContent;
 			return checkAmbiguousPhrase( labelText );
+		}
+
+		if ( node.textContent && node.textContent !== '' ) {
+			return checkAmbiguousPhrase( node.textContent );
 		}
 
 		const images = node.querySelectorAll( 'img' );
