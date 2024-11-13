@@ -103,7 +103,7 @@ class Admin_Notices {
 
 		// Show from November 25 to December 03.
 		$current_date = date_i18n( 'Ymd' ); // Use date_i18n for localization.
-		$start_date   = '20241110';
+		$start_date   = '20241125';
 		$end_date     = '20241203';
 
 		if ( $current_date >= $start_date && $current_date <= $end_date ) {
