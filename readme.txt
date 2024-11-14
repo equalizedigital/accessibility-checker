@@ -222,46 +222,5 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Fixed: Handle stacking contexts for callout button in admin correctly
 * Fixed: PHP 8.4 deprecation notice fix for implicitly nullable Meta_Boxes
 
-= 1.14.3 =
-* Fixed: Allow empty_link rule to detect actually empty links
-
-= 1.14.2 =
-* Enhancement: Reduce false positives for underlined text check
-* Fixed: Frontend highlighter could not be moved to the right side of the window on mobile
-* Fixed: Issue where ignores were not being saved and failing silently
-
-= 1.14.1 =
-* Fixed: Prevent settings page layout issue
-
-= 1.14.0 =
-* Added: Option to move front-end highlighter to opposite side of the window
-* Fixed: Prevent image from overspilling container in issue view
-* Fixed: Make empty paragraph check more accurate
-* Enhancement: Improved styling for settings page
-* Enhancement: Updated summary widget with better semantics
-* Enhancement: Improved aria labeling for view on page links
-* Enhancement: Added large batch processing capabilities for issue ignoring
-
-= 1.13.1 =
-* Enhancement: Make the new window warning detection less rigid
-* Fixed: Avoid flagging possible headings when the entire text is not wrapped
-* Fixed: Allow JS checked rules to retain ignored state between scans
-
-= 1.13.0 =
-* Added: Meta Viewport zoom-able and scale-able check
-* Added: Empty Paragraph warning
-* Fixed: Properly determine possible headings with computed styles
-* Improved: Better detection of the underlined text
-* Improved: Better detection of small text
-* Improved: Better detection of justified text
-* Improved: Better detection of blink and marquee tags
-* Improved: No longer flagging GTM iframes as missing title since they are display: none and visibility: hidden
-* Enhancement: Do not show 'View on page' link to frontend when the issues cannot be viewed
-
-= 1.12.0 =
-* Fixed: Use the last generation time in summary widgets rather than last completed scan time
-* Improved: More accessible panels in the editor
-* Improved: Filter and action docs added/improved
-
 Older versions can be found in the plugins `changelog.txt`.
 
