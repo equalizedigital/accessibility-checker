@@ -180,7 +180,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Fixed: Remove a duplicatable rule empty_form_label.
 
 = 1.16.1 =
-* Fix: Remove redundant empty_form_label rule definition.
+* Fixed: Remove redundant empty_form_label rule definition.
 
 = 1.16.0 =
 * New: Introduced a system to handle automated fixes for issues that the scanner would discover.
@@ -199,9 +199,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Enhancement: Improve the document title check to check on fully rendered pages.
 * Enhancement: Add a clear button to the editor to allow for .
 * Enhancement: Improved GTM iframe detection.
-* Fix: Avoid showing 100% passed results when scans are not complete.
-* Fix: Improve or add better aria-labels in several places.
-* Fix: Don't flag empty paragraphs if they have aria-hidden.
+* Fixed: Avoid showing 100% passed results when scans are not complete.
+* Fixed: Improve or add better aria-labels in several places.
+* Fixed: Don't flag empty paragraphs if they have aria-hidden.
 
 = 1.15.3 =
 * Enhancement: Detect missing labels on more elements.
