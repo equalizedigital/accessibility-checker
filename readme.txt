@@ -171,6 +171,14 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.16.2 =
+
+* Enhancement: Use better names for fix modal titles.
+* Enhancement: Improve the link_pdf rule to detect more accurately.
+* Enhancement: Improve the link_ms_office_doc rule to detect more accurately.
+* Fixed: Rely on labels for link_ambiguous_text rule first before checking just the text content.
+* Fixed: Remove a duplicatable rule empty_form_label.
+
 = 1.16.1 =
 * Fix: Remove redundant empty_form_label rule definition.
 
