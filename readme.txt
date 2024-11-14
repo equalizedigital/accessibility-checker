@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.7.0
-Stable tag: 1.16.1
+Stable tag: 1.16.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,8 +171,16 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.16.2 =
+
+* Enhancement: Use better names for fix modal titles.
+* Enhancement: Improve the link_pdf rule to detect more accurately.
+* Enhancement: Improve the link_ms_office_doc rule to detect more accurately.
+* Fixed: Rely on labels for link_ambiguous_text rule first before checking just the text content.
+* Fixed: Remove a duplicatable rule empty_form_label.
+
 = 1.16.1 =
-* Fix: Remove redundant empty_form_label rule definition.
+* Fixed: Remove redundant empty_form_label rule definition.
 
 = 1.16.0 =
 * New: Introduced a system to handle automated fixes for issues that the scanner would discover.
@@ -191,9 +199,9 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Enhancement: Improve the document title check to check on fully rendered pages.
 * Enhancement: Add a clear button to the editor to allow for .
 * Enhancement: Improved GTM iframe detection.
-* Fix: Avoid showing 100% passed results when scans are not complete.
-* Fix: Improve or add better aria-labels in several places.
-* Fix: Don't flag empty paragraphs if they have aria-hidden.
+* Fixed: Avoid showing 100% passed results when scans are not complete.
+* Fixed: Improve or add better aria-labels in several places.
+* Fixed: Don't flag empty paragraphs if they have aria-hidden.
 
 = 1.15.3 =
 * Enhancement: Detect missing labels on more elements.
@@ -213,47 +221,6 @@ No, Accessibility Checker runs completely on your server and does not require yo
 * Fixed: Purge the post data if the saved post is in or is moving to the trash
 * Fixed: Handle stacking contexts for callout button in admin correctly
 * Fixed: PHP 8.4 deprecation notice fix for implicitly nullable Meta_Boxes
-
-= 1.14.3 =
-* Fixed: Allow empty_link rule to detect actually empty links
-
-= 1.14.2 =
-* Enhancement: Reduce false positives for underlined text check
-* Fixed: Frontend highlighter could not be moved to the right side of the window on mobile
-* Fixed: Issue where ignores were not being saved and failing silently
-
-= 1.14.1 =
-* Fixed: Prevent settings page layout issue
-
-= 1.14.0 =
-* Added: Option to move front-end highlighter to opposite side of the window
-* Fixed: Prevent image from overspilling container in issue view
-* Fixed: Make empty paragraph check more accurate
-* Enhancement: Improved styling for settings page
-* Enhancement: Updated summary widget with better semantics
-* Enhancement: Improved aria labeling for view on page links
-* Enhancement: Added large batch processing capabilities for issue ignoring
-
-= 1.13.1 =
-* Enhancement: Make the new window warning detection less rigid
-* Fixed: Avoid flagging possible headings when the entire text is not wrapped
-* Fixed: Allow JS checked rules to retain ignored state between scans
-
-= 1.13.0 =
-* Added: Meta Viewport zoom-able and scale-able check
-* Added: Empty Paragraph warning
-* Fixed: Properly determine possible headings with computed styles
-* Improved: Better detection of the underlined text
-* Improved: Better detection of small text
-* Improved: Better detection of justified text
-* Improved: Better detection of blink and marquee tags
-* Improved: No longer flagging GTM iframes as missing title since they are display: none and visibility: hidden
-* Enhancement: Do not show 'View on page' link to frontend when the issues cannot be viewed
-
-= 1.12.0 =
-* Fixed: Use the last generation time in summary widgets rather than last completed scan time
-* Improved: More accessible panels in the editor
-* Improved: Filter and action docs added/improved
 
 Older versions can be found in the plugins `changelog.txt`.
 

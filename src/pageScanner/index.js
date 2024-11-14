@@ -22,10 +22,12 @@ import brokenAnchorLink from './rules/broken-anchor-link';
 import anchorExists from './checks/anchor-exists';
 import labelExtended from './rules/extended/label';
 import imageInputHasAlt from './checks/image-input-has-alt';
+import linkPDF from './rules/link-pdf';
+import linkMsOfficeFile from './rules/link-ms-office-file';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
-//import alwaysFail from './checks/always-fail';
+import alwaysFail from './checks/always-fail';
 
 //TODO:
 //see: https://github.com/dequelabs/axe-core/blob/develop/doc/developer-guide.md#api-reference
@@ -62,11 +64,13 @@ const scan = async (
 				textJustified,
 				linkTargetBlank,
 				linkAmbiguousText,
+				linkPDF,
+				linkMsOfficeFile,
 				brokenAnchorLink,
 				labelExtended,
 			],
 			checks: [
-				//alwaysFail,
+				alwaysFail,
 				elementIsAUTag,
 				elementWithUnderline,
 				paragraphStyledAsHeader,
@@ -101,6 +105,8 @@ const scan = async (
 					textJustified.id,
 					linkTargetBlank.id,
 					linkAmbiguousText.id,
+					linkPDF.id,
+					linkMsOfficeFile.id,
 					brokenAnchorLink.id,
 					labelExtended.id,
 				],
