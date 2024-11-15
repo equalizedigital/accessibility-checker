@@ -159,6 +159,30 @@ class FixesManager {
 	}
 
 	/**
+	 * Get the fixes settings.
+	 *
+	 * Returns an array of all the fix settings and their values along with a pro or not flag.
+	 *
+	 * @return array
+	 */
+	public function get_fixes_settings() {
+		$fixes_array = [];
+		foreach ( $this->fixes as $fix ) {
+
+			$fields = [];
+			foreach ( $fix->get_fields_array() as $field_slug => $field ) {
+				$fields[ $field_slug ] = get_option( $field_slug, $field['default'] ?? 0 );
+			}
+
+			$fixes_array[ $fix->get_slug() ] = [
+				'fields' => $fields,
+				'is_pro' => isset( $fix->is_pro ) ? $fix->is_pro : false,
+			];
+		}
+		return $fixes_array;
+	}
+
+	/**
 	 * Register the fixes.
 	 */
 	public function register_fixes() {
