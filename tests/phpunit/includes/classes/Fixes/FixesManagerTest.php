@@ -88,11 +88,11 @@ class FixesManagerTest extends TestCase {
 		);
 		$fix_mock->method( 'get_slug' )->willReturn( 'mock_fix' );
 
-		$fixes_manager = FixesManager::get_instance();
-		$reflection    = new ReflectionClass( $fixes_manager );
-		$fixes_propert = $reflection->getProperty( 'fixes' );
-		$fixes_propert->setAccessible( true );
-		$fixes_propert->setValue( $fixes_manager, [ 'mock_fix' => $fix_mock ] );
+		$fixes_manager  = FixesManager::get_instance();
+		$reflection     = new ReflectionClass( $fixes_manager );
+		$fixes_property = $reflection->getProperty( 'fixes' );
+		$fixes_property->setAccessible( true );
+		$fixes_property->setValue( $fixes_manager, [ 'mock_fix' => $fix_mock ] );
 
 		$expected = [
 			'mock_fix' => [
