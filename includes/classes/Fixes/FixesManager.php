@@ -174,7 +174,7 @@ class FixesManager {
 				$fields[ $field_slug ] = get_option( $field_slug, $field['default'] ?? 0 );
 			}
 
-			$fixes_array[ $fix->get_slug() ] = [
+			$fixes_array[ $fix::get_slug() ] = [
 				'fields' => $fields,
 				'is_pro' => isset( $fix->is_pro ) ? $fix->is_pro : false,
 			];
