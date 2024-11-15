@@ -54,7 +54,7 @@ class FixesManagerTest extends TestCase {
 	 * @return void
 	 */
 	public function test_get_fixes_settings_returns_correct_structure() {
-		$fix_mock = Mockery::mock( 'alias:EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddFileSizeAndTypeToLinkedFilesFix' );
+		$fix_mock = Mockery::mock( 'EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddFileSizeAndTypeToLinkedFilesFix' );
 		$fix_mock->shouldReceive( 'get_slug' )->andReturn( 'mock_fix' );
 		$fix_mock->shouldReceive( 'get_fields_array' )->andReturn(
 			[
@@ -89,7 +89,7 @@ class FixesManagerTest extends TestCase {
 	 * @return void
 	 */
 	public function test_get_fixes_settings_uses_default_values() {
-		$fix_mock = Mockery::mock( 'alias:EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddFileSizeAndTypeToLinkedFilesFix' );
+		$fix_mock = Mockery::mock( 'EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddFileSizeAndTypeToLinkedFilesFix' );
 		$fix_mock->shouldReceive( 'get_slug' )->andReturn( 'mock_fix' );
 		$fix_mock->shouldReceive( 'get_fields_array' )->andReturn(
 			[
