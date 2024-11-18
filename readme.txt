@@ -171,8 +171,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
-= 1.16.2 =
+= 1.16.3 =
+* Enahanement: Add Fix settings to site health info panels.
+* Fixed: Corrected a string that was misplaced in a fix.
 
+= 1.16.2 =
 * Enhancement: Use better names for fix modal titles.
 * Enhancement: Improve the link_pdf rule to detect more accurately.
 * Enhancement: Improve the link_ms_office_doc rule to detect more accurately.
