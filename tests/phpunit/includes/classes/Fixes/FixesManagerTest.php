@@ -5,7 +5,6 @@
  * @package accessibility-checker
  */
 
-use Mockery;
 use PHPUnit\Framework\TestCase;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
@@ -13,7 +12,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 /**
  * Unit tests for the FixesManager class.
  */
-class FixesManagerTest extends TestCase {
+class FixesManagerTest extends WP_UnitTestCase {
 
 	/**
 	 * Setup the test environment by resetting the instance before each test.
