@@ -172,7 +172,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 == Changelog ==
 
 = 1.16.3 =
-* Enahanement: Add Fix settings to site health info panels.
+* Enhancement: Add Fix settings to site health info panels.
 * Fixed: Corrected a string that was misplaced in a fix.
 
 = 1.16.2 =
