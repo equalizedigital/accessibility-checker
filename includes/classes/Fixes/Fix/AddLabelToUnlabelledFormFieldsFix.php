@@ -31,7 +31,7 @@ class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 	 * @return string
 	 */
 	public static function get_nicename(): string {
-		return __( 'Add Size & Type To File Links', 'accessibility-checker' );
+		return __( 'Add Labels to Unlabelled Form Fields', 'accessibility-checker' );
 	}
 
 	/**
