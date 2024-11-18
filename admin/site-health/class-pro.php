@@ -8,6 +8,8 @@
 
 namespace EDAC\Admin\SiteHealth;
 
+use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
+
 /**
  * Loads pro information into Site Health
  *
@@ -28,6 +30,19 @@ class Pro {
 	 * @return array
 	 */
 	public function get() {
+
+		// Get only the pro fixes.
+		$fixes = array_filter(
+			FixesManager::get_instance()->get_fixes_settings(),
+			function ( $fix ) {
+				return $fix['is_pro'];
+			}
+		);
+		// remove the is_pro flag, this isn't needed in the output.
+		foreach ( $fixes as $key => $fix ) {
+			unset( $fixes[ $key ]['is_pro'] );
+		}
+
 		return [
 			'label'  => __( 'Accessibility Checker &mdash; Pro', 'accessibility-checker' ),
 			'fields' => [
@@ -70,6 +85,10 @@ class Pro {
 				'ignores_db_table_count' => [
 					'label' => 'Ignores DB Table Count',
 					'value' => absint( edac_database_table_count( 'accessibility_checker_global_ignores' ) ),
+				],
+				'fixes'                  => [
+					'label' => 'Fixes',
+					'value' => esc_html( wp_json_encode( $fixes ) ),
 				],
 			],
 		];
