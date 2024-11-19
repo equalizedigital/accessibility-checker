@@ -7,7 +7,14 @@
 
 ?>
 <div id="edac-fixes-page" class="wrap edac-settings <?php echo EDAC_KEY_VALID ? '' : 'pro-callout-wrapper'; ?>">
-
+	<?php if ( get_transient( 'edac_fixes_settings_saved' ) ) : ?>
+		<div class="notice notice-warning">
+			<p><?php esc_html_e( 'Settings saved. You need to rescan your site for the updates to be confirmed and reflected in site stats. If you have a caching plugin on your site make sure to flush is so that the updated fixes are reflected.', 'accessibility-checker' ); ?></p>
+		</div>
+		<?php
+		delete_transient( 'edac_fixes_settings_saved' );
+	endif;
+	?>
 	<div class="edac-settings-general <?php echo EDAC_KEY_VALID ? '' : 'edac-show-pro-callout'; ?>">
 		<form action="options.php" method="post">
 			<?php
