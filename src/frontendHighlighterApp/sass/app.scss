@@ -25,8 +25,10 @@ body {
 		letter-spacing: normal !important;
 	}
 
-	display: inline-block;
-	clear: both;
+	& {
+		display: inline-block;
+		clear: both;
+	}
 
 	&-element-selected {
 		outline: dashed 4px transparent !important;
