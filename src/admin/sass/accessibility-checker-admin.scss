@@ -280,7 +280,7 @@
           clip: rect(0,
               $progress-circle-size,
               $progress-circle-size,
-              $progress-circle-size/2);
+              calc( $progress-circle-size / 2 ) );
           /* clips the whole left half*/
         }
 
@@ -295,7 +295,7 @@
 					 to escape the outer clipping path.*/
           position: absolute;
           /*needed for clipping*/
-          clip: rect(0, $progress-circle-size/2, $progress-circle-size, 0);
+          clip: rect(0, calc( $progress-circle-size / 2 ), $progress-circle-size, 0);
           width: $progress-circle-size;
           height: $progress-circle-size;
           border-radius: 50%;
@@ -315,7 +315,7 @@
           clip: rect(0,
               $progress-circle-size,
               $progress-circle-size,
-              $progress-circle-size/2);
+			  calc( $progress-circle-size / 2 ) );
           background-color: $color-green;
           border-radius: 50%;
           width: $progress-circle-size;
