@@ -1,17 +1,18 @@
-@import "../../common/sass/variables";
-@import "../../common/sass/helpers";
+@use "sass:meta";
+@use "../../common/sass/variables";
+@use "../../common/sass/helpers";
 
 .failed-text-color {
-  color: $color-red;
+  color: variables.$color-red;
 }
 
 .passed-text-color {
-  color: $color-green;
+  color: variables.$color-green;
 }
 
 #edac-meta-box {
   font-size: 14px;
-  color: $color-gray;
+  color: variables.$color-gray;
 
   p {
     font-size: 14px;
@@ -35,8 +36,8 @@
   }
 
   input[type="submit"] {
-    color: $color-white;
-    background-color: $color-green;
+    color: variables.$color-white;
+    background-color: variables.$color-green;
     border: none;
     border-radius: 5px;
     padding: 5px 30px;
@@ -46,7 +47,7 @@
     &:hover,
     &:focus {
       cursor: pointer;
-      background-color: $color-green;
+      background-color: variables.$color-green;
     }
   }
 
@@ -55,7 +56,7 @@
   }
 
   .dashicons-info {
-    color: $color-gray;
+    color: variables.$color-gray;
   }
 
   #edac-tabs {
@@ -86,38 +87,38 @@
         width: 100%;
         padding: 12px 18px;
         display: inline-block;
-        background-color: $color-gray-lightest;
-        border: solid 1px $color-gray-light;
+        background-color: variables.$color-gray-lightest;
+        border: solid 1px variables.$color-gray-light;
         border-bottom: none;
         text-decoration: none;
         font-size: 14px;
-        color: $color-blue;
+        color: variables.$color-blue;
 
-        @include breakpoint(xs) {
+        @include helpers.breakpoint(xs) {
           width: auto;
         }
 
 		&:hover,
 		&:focus {
-      color: $color-black;
+      color: variables.$color-black;
       cursor: pointer;
 		}
 
     &:focus-visible {
-      outline: 2px solid $color-blue;
+      outline: 2px solid variables.$color-blue;
       outline-offset: 2px;
     }
 
         &.active {
           padding: 14px 18px;
-          color: $color-white;
-          background-color: $color-blue;
+          color: variables.$color-white;
+          background-color: variables.$color-blue;
         }
       }
     }
 
     .edac-panel {
-      border: solid 1px $color-gray-light;
+      border: solid 1px variables.$color-gray-light;
       background-color: #fff;
       position: relative;
       z-index: 1;
@@ -142,7 +143,7 @@
           right: 0;
           bottom: 0;
           left: 0;
-          background-color: rgba($color-white, 0.5);
+          background-color: rgba(variables.$color-white, 0.5);
         }
       }
     }
@@ -154,7 +155,7 @@
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 10px;
 
-        @include breakpoint(lg) {
+        @include helpers.breakpoint(lg) {
           grid-template-columns: 2fr 1.5fr 1.5fr;
         }
 
@@ -166,7 +167,7 @@
             grid-row: span 2;
             display: flex;
 
-            @include breakpoint(lg) {
+            @include helpers.breakpoint(lg) {
               grid-column: span 1;
             }
           }
@@ -174,38 +175,38 @@
       }
 
       &-notice {
-        background-color: $color-gray-lightest;
-        box-shadow: inset 0 0 0 1px $color-gray-light;
+        background-color: variables.$color-gray-lightest;
+        box-shadow: inset 0 0 0 1px variables.$color-gray-light;
         padding: 15px;
         text-align: left;
         margin-bottom: 20px;
-        border-left: solid 5px $color-red;
+        border-left: solid 5px variables.$color-red;
       }
 
       &-total {
-        background-color: $color-gray-lightest;
-        box-shadow: inset 0 0 0 1px $color-gray-light;
+        background-color: variables.$color-gray-lightest;
+        box-shadow: inset 0 0 0 1px variables.$color-gray-light;
         padding: 15px;
         text-align: center;
         $progress-circle-size: 250px;
         $progress-bar-width: 14px;
 
-        @include breakpoint(xs) {
+        @include helpers.breakpoint(xs) {
           padding: 25px;
         }
 
         &-mobile {
 		  width: 100%;
-          color: $color-dark-gray;
+          color: variables.$color-dark-gray;
 
-          @include breakpoint(xs) {
+          @include helpers.breakpoint(xs) {
             display: none;
           }
 
           &-bar {
             width: 100%;
             height: $progress-bar-width * 2;
-            background-color: $color-gray-light;
+            background-color: variables.$color-gray-light;
             border-radius: 5px;
             overflow: hidden;
             margin-top: 20px;
@@ -213,7 +214,7 @@
             span {
               display: block;
               height: $progress-bar-width * 2;
-              background-color: $color-green;
+              background-color: variables.$color-green;
             }
           }
         }
@@ -226,19 +227,19 @@
           padding: 0;
           width: $progress-circle-size;
           height: $progress-circle-size;
-          background-color: $color-gray-light;
+          background-color: variables.$color-gray-light;
           border-radius: 50%;
           line-height: $progress-circle-size;
           display: none;
           a {
-            color: $color-dark-gray;
+            color: variables.$color-dark-gray;
             text-decoration: none;
           }
-          @include breakpoint(xs) {
+          @include helpers.breakpoint(xs) {
             display: inline-block;
           }
 
-          @include breakpoint(xl) {
+          @include helpers.breakpoint(xl) {
           }
 
           &:after {
@@ -251,7 +252,7 @@
             border-radius: 50%;
             width: $progress-circle-size - ($progress-bar-width * 2);
             height: $progress-circle-size - ($progress-bar-width * 2);
-            background-color: $color-gray-lightest;
+            background-color: variables.$color-gray-lightest;
             content: " ";
           }
 
@@ -261,7 +262,7 @@
             width: $progress-circle-size;
             text-align: center;
             display: block;
-            color: $color-dark-gray;
+            color: variables.$color-dark-gray;
             z-index: 2;
 
             div:first-child {
@@ -299,7 +300,7 @@
           width: $progress-circle-size;
           height: $progress-circle-size;
           border-radius: 50%;
-          border: $progress-bar-width solid $color-green;
+          border: $progress-bar-width solid variables.$color-green;
           /*The border is 0.35 but making it larger removes visual artifacts */
           /*background-color: #4D642D;*/
           /* for debug */
@@ -316,7 +317,7 @@
               $progress-circle-size,
               $progress-circle-size,
 			  calc( $progress-circle-size / 2 ) );
-          background-color: $color-green;
+          background-color: variables.$color-green;
           border-radius: 50%;
           width: $progress-circle-size;
           height: $progress-circle-size;
@@ -330,12 +331,12 @@
       &-stats {
         width: 100%;
 
-        @include breakpoint(lg) {
+        @include helpers.breakpoint(lg) {
           width: calc(50% - 12px);
           float: right;
         }
 
-        @include breakpoint(xl) {
+        @include helpers.breakpoint(xl) {
           width: calc(60% - 12px);
         }
       }
@@ -347,7 +348,7 @@
         background-repeat: no-repeat;
         background-size: 30px auto;
 
-        @include breakpoint(xs) {
+        @include helpers.breakpoint(xs) {
           padding-top: 50px;
           height: 175px;
         }
@@ -359,73 +360,73 @@
       }
 
       &-errors {
-        color: $color-white;
-        background-color: $color-green;
+        color: variables.$color-white;
+        background-color: variables.$color-green;
         background-image: url("../images/error icon white.png");
 
         &.has-errors {
-          background-color: $color-red;
+          background-color: variables.$color-red;
         }
       }
 
       &-contrast {
-        color: $color-white;
-        background-color: $color-green;
+        color: variables.$color-white;
+        background-color: variables.$color-green;
         background-image: url("../images/contrast icon white.png");
 
         &.has-errors {
-          background-color: $color-red;
+          background-color: variables.$color-red;
         }
       }
 
       &-warnings {
-        color: $color-white;
-        background-color: $color-green;
+        color: variables.$color-white;
+        background-color: variables.$color-green;
         background-image: url("../images/warning icon white.png");
 
         &.has-errors {
-          color: $color-blue-dark;
-          background-color: $color-yellow;
+          color: variables.$color-blue-dark;
+          background-color: variables.$color-yellow;
           background-image: url("../images/warning icon navy.png");
         }
       }
 
       &-ignored {
-        color: $color-white;
-        background-color: $color-blue-dark;
+        color: variables.$color-white;
+        background-color: variables.$color-blue-dark;
         background-image: url("../images/ignore icon white.png");
       }
 
       &-readability {
         width: 100%;
-        background-color: $color-gray-lightest;
-        box-shadow: inset 0 0 0 1px $color-gray-light;
+        background-color: variables.$color-gray-lightest;
+        box-shadow: inset 0 0 0 1px variables.$color-gray-light;
         clear: both;
         padding: 10px;
 
-        @include breakpoint(lg) {
+        @include helpers.breakpoint(lg) {
           display: grid;
           grid-template-columns: calc(50% - 15px) auto;
         }
 
-        @include breakpoint(xl) {
+        @include helpers.breakpoint(xl) {
           grid-template-columns: calc(40% - 15px) auto;
         }
 
         &-level {
-          color: $color-red;
+          color: variables.$color-red;
           display: grid;
           grid-template-columns: auto;
           align-items: center;
           padding-top: 5px;
           margin-bottom: 15px;
 
-          @include breakpoint(xs) {
+          @include helpers.breakpoint(xs) {
             grid-template-columns: auto 100px auto;
           }
 
-          @include breakpoint(lg) {
-            border-right: solid 3px $color-gray-light;
+          @include helpers.breakpoint(lg) {
+            border-right: solid 3px variables.$color-gray-light;
             margin-bottom: 0;
           }
 
@@ -433,12 +434,12 @@
             display: block;
             margin: auto;
 
-            @include breakpoint(xs) {
+            @include helpers.breakpoint(xs) {
               margin-right: 10px;
               float: right;
             }
 
-            @include breakpoint(lg) {
+            @include helpers.breakpoint(lg) {
               margin-right: 20px;
             }
           }
@@ -448,7 +449,7 @@
             margin-bottom: 0;
             margin-right: 10px;
 
-            @include breakpoint(xs) {
+            @include helpers.breakpoint(xs) {
               text-align: right;
             }
           }
@@ -457,14 +458,14 @@
             text-align: center;
             margin-bottom: 0;
 
-            @include breakpoint(xs) {
+            @include helpers.breakpoint(xs) {
               text-align: left;
             }
 
             br {
               display: none;
 
-              @include breakpoint(xs) {
+              @include helpers.breakpoint(xs) {
                 display: block;
               }
             }
@@ -480,7 +481,7 @@
           padding-left: 0;
           text-align: left;
 
-          @include breakpoint(lg) {
+          @include helpers.breakpoint(lg) {
             padding-left: 27px;
           }
 
@@ -513,15 +514,15 @@
 
     .edac-details {
       padding: 0;
-      background-color: $color-gray-lightest;
+      background-color: variables.$color-gray-lightest;
 
       &-rule {
         &-title {
           padding: 10px;
-          background-color: $color-white;
+          background-color: variables.$color-white;
           text-align: left;
           font-size: 16px;
-          border-bottom: solid 1px $color-gray-light;
+          border-bottom: solid 1px variables.$color-gray-light;
 
           h3 {
             font-size: 16px;
@@ -541,15 +542,15 @@
 
             &:hover,
             &:focus {
-              color: $color-blue;
-              outline-color: $color-blue;
+              color: variables.$color-blue;
+              outline-color: variables.$color-blue;
             }
           }
 
           &:hover,
           &:focus {
             .edac-details-rule-title-arrow {
-              color: $color-blue;
+              color: variables.$color-blue;
             }
           }
 
@@ -566,20 +567,20 @@
           font-size: 12px;
           line-height: 20px;
           text-align: center;
-          color: $color-white;
-          background-color: $color-green;
+          color: variables.$color-white;
+          background-color: variables.$color-green;
           border-radius: 50%;
           display: inline-block;
           margin-right: 5px;
 
           &-passed {
-            background-color: $color-green;
+            background-color: variables.$color-green;
           }
         }
 
         &-count-ignore {
-          color: $color-white;
-          background-color: $color-blue-dark;
+          color: variables.$color-white;
+          background-color: variables.$color-blue-dark;
           padding: 5px 10px;
           border-radius: 4px;
           font-size: 13px;
@@ -590,25 +591,25 @@
 
         &-count-error {
           &.active {
-            background-color: $color-red;
+            background-color: variables.$color-red;
           }
         }
 
         &-count-warning {
           &.active {
-            color: $color-blue-dark;
-            background-color: $color-orange;
+            color: variables.$color-blue-dark;
+            background-color: variables.$color-orange;
           }
         }
 
         &-information {
-          color: $color-gray;
+          color: variables.$color-gray;
           text-decoration: none;
           margin-left: 10px;
 
           &:hover,
           &:focus {
-            color: $color-blue;
+            color: variables.$color-blue;
           }
         }
 
@@ -617,14 +618,14 @@
           display: none;
 
           &-labels {
-            color: $color-white;
-            background-color: $color-dark-gray;
+            color: variables.$color-white;
+            background-color: variables.$color-dark-gray;
             display: grid;
             grid-template-columns: auto 125px 125px;
 
             &-label {
               padding: 3px;
-              border-right: solid 1px $color-gray-light;
+              border-right: solid 1px variables.$color-gray-light;
             }
           }
 
@@ -634,8 +635,8 @@
 
             &-cell {
               padding: 10px;
-              border-bottom: solid 1px $color-gray-light;
-              border-right: solid 1px $color-gray-light;
+              border-bottom: solid 1px variables.$color-gray-light;
+              border-right: solid 1px variables.$color-gray-light;
             }
 
             &-object {
@@ -654,7 +655,7 @@
               border-right: none;
 
               &-ignore, &-fix, &-highlight-front {
-                color: $color-blue;
+                color: variables.$color-blue;
                 border: none;
                 background: transparent;
                 display: flex;
@@ -671,25 +672,25 @@
                   margin: 0 5px 0 0px;
 
                   path {
-                    fill: $color-blue;
+                    fill: variables.$color-blue;
                   }
                 }
 
                 &:hover,
                 &:focus {
-                  color: $color-green;
+                  color: variables.$color-green;
                   cursor: pointer;
 
                   svg path {
-                    fill: $color-green;
+                    fill: variables.$color-green;
                   }
                 }
 
                 &.active {
-                  color: $color-red;
+                  color: variables.$color-red;
 
                   svg path {
-                    fill: $color-red;
+                    fill: variables.$color-red;
                   }
                 }
 
@@ -701,7 +702,7 @@
 
             &-ignore {
               grid-column: 1 / 4;
-              border-bottom: solid 1px $color-gray-light;
+              border-bottom: solid 1px variables.$color-gray-light;
               text-align: left;
               padding: 10px;
               display: none;
@@ -717,7 +718,7 @@
               }
 
               &-submit {
-                color: $color-white;
+                color: variables.$color-white;
                 border: none;
                 border-radius: 5px;
                 padding: 5px 10px;
@@ -727,11 +728,11 @@
                 overflow: hidden;
 
                 &[data-action="enable"] {
-                  background-color: $color-red;
+                  background-color: variables.$color-red;
                 }
 
                 &[data-action="disable"] {
-                  background-color: $color-green;
+                  background-color: variables.$color-green;
                 }
 
                 &:hover {
@@ -745,14 +746,14 @@
                   margin-right: 2px;
 
                   path {
-                    fill: $color-white;
+                    fill: variables.$color-white;
                   }
                 }
               }
 
               &-global {
-                color: $color-white;
-                background-color: $color-blue-dark;
+                color: variables.$color-white;
+                background-color: variables.$color-blue-dark;
                 border: none;
                 border-radius: 5px;
                 padding: 5px 10px;
@@ -785,17 +786,17 @@
 
           &-icon {
             background-color: #fff;
-            color: $color-white;
+            color: variables.$color-white;
             position: absolute;
             left: 0;
 
             &.dashicons-saved {
-              background-color: $color-green;
+              background-color: variables.$color-green;
               border-radius: 50%;
             }
 
             &.dashicons-no-alt {
-              background-color: $color-red;
+              background-color: variables.$color-red;
             }
           }
         }
@@ -843,22 +844,22 @@
   }
 
   .tab-content:not( :has( .edacp-scan ) ) {
-    background-color: $color-white;
+    background-color: variables.$color-white;
     padding: 15px;
-    border: solid 1px $color-gray-light;
+    border: solid 1px variables.$color-gray-light;
     margin-top: 20px;
   }
 
   &-general {
 
     &.edac-show-pro-callout {
-      @include breakpoint(md) {
+      @include helpers.breakpoint(md) {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 30px;
       }
 
-      @include breakpoint(lg) {
+      @include helpers.breakpoint(lg) {
         grid-template-columns: fit-content(800px) 500px;
       }
     }
@@ -872,14 +873,14 @@
       }
 
       tr {
-        border: solid 1px $color-gray-light;
+        border: solid 1px variables.$color-gray-light;
         margin-bottom: 10px;
         display: block;
       }
 
       th {
         padding: 10px;
-        background-color: $color-gray-lightest;
+        background-color: variables.$color-gray-lightest;
       }
 
       td {
@@ -890,21 +891,21 @@
 
   .edac-pro-callout {
     background-color: #fff;
-    border: 1px solid $color-gray-light;
+    border: 1px solid variables.$color-gray-light;
     margin-top: 30px;
     max-width: 500px;
   }
 }
 
 .edac-welcome {
-  background-color: $color-white;
-  border: 1px solid $color-gray-light;
+  background-color: variables.$color-white;
+  border: 1px solid variables.$color-gray-light;
 
   &-header {
     padding: 1rem 2rem;
-    border-bottom: 1px solid $color-gray-light;
+    border-bottom: 1px solid variables.$color-gray-light;
 
-    @include breakpoint(md) {
+    @include helpers.breakpoint(md) {
       display: grid;
       grid-template-columns: auto 200px;
     }
@@ -935,9 +936,9 @@
 
   &-section {
     padding: 2rem;
-    border-bottom: 1px solid $color-gray-light;
+    border-bottom: 1px solid variables.$color-gray-light;
 
-    @include breakpoint(md) {
+    @include helpers.breakpoint(md) {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 30px;
@@ -952,7 +953,7 @@
     }
 
     &-divider {
-      border-bottom: 1px solid $color-gray-light;
+      border-bottom: 1px solid variables.$color-gray-light;
       margin-top: 30px;
     }
 
@@ -960,7 +961,7 @@
       grid-template-columns: auto;
 
       &.edac-show-pro-callout {
-        @include breakpoint(lg) {
+        @include helpers.breakpoint(lg) {
           grid-template-columns: fit-content(800px) 500px;
         }
       }
@@ -970,14 +971,14 @@
   .edac-welcome-pro-callout {
     margin-bottom: 30px;
 
-    @include breakpoint(md) {
+    @include helpers.breakpoint(md) {
       grid-column: 2 / 3;
       grid-row: 1;
     }
   }
 
   .dac-welcome-documentation-support {
-    @include breakpoint(md) {
+    @include helpers.breakpoint(md) {
       grid-column: 1 / 2;
       grid-row: 1;
     }
@@ -1042,7 +1043,7 @@
     border: 3px solid #072446;
     border-radius: 0;
     position: relative;
-    @include transition(background .3s, color .3s);
+    @include helpers.transition(background .3s, color .3s);
 
     // firefox sizing fix to prevent wrapping due to differences in
     // font sizing and paddings with different fonts
@@ -1084,7 +1085,7 @@
 .edac-review-notice {
   clear: both;
 
-  @include breakpoint(lg) {
+  @include helpers.breakpoint(lg) {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-column-gap: 20px;
@@ -1098,9 +1099,9 @@
   }
 
   &-review {
-    color: $color-white;
+    color: variables.$color-white;
     font-weight: bold;
-    background-color: $color-blue;
+    background-color: variables.$color-blue;
     border: none;
     border-radius: 5px;
     padding: 3px 6px;
@@ -1110,7 +1111,7 @@
       font-family: dashicons;
       position: relative;
       bottom: -1px;
-      color: $color-yellow;
+      color: variables.$color-yellow;
     }
 
     &:hover {
@@ -1142,21 +1143,21 @@
 
 
 .edac-xxx-large-text {
-  font-size: $font-size-xxx-large;
-  line-height: $font-size-xxx-large;
+  font-size: variables.$font-size-xxx-large;
+  line-height: variables.$font-size-xxx-large;
 }
 
 .edac-large-text {
-  font-size: $font-size-large;
-  line-height: $font-size-large;
+  font-size: variables.$font-size-large;
+  line-height: variables.$font-size-large;
 }
 
 .edac-medium-text {
-  font-size: $font-size-medium;
+  font-size: variables.$font-size-medium;
 }
 
 .edac-small-text {
-  font-size: $font-size-small;
+  font-size: variables.$font-size-small;
 }
 
 .edac-right-text {
@@ -1195,7 +1196,7 @@
       text-align: right;
     }
 
-    @media screen and (max-width: $small-screen-width ) {
+    @media screen and (max-width: variables.$small-screen-width ) {
       flex-direction: column !important;
       text-align: center;
 
@@ -1249,8 +1250,8 @@
 }
 
 .edac-background-light {
-  background-color: $color-gray-lightest;
-  box-shadow: inset 0 0 0 1px $color-gray-light;
+  background-color: variables.$color-gray-lightest;
+  box-shadow: inset 0 0 0 1px variables.$color-gray-light;
 }
 
 
@@ -1291,7 +1292,7 @@
         position: absolute;
         top: 0;
         right: .5rem;
-        font-size: $font-size-x-large;
+        font-size: variables.$font-size-x-large;
         cursor: pointer;
         padding: 0;
         background-color: transparent;
@@ -1330,7 +1331,7 @@
 
         flex: 1;
 
-        font-size: $font-size-medium;
+        font-size: variables.$font-size-medium;
       }
     }
 
@@ -1358,12 +1359,12 @@
 
         .edac-progress-percentage {
           margin: 0 .5rem;
-          font-size: $font-size-x-large;
+          font-size: variables.$font-size-x-large;
         }
 
         .edac-progress-label {
           margin: 0 1rem 0 1rem;
-          font-size: $font-size-small;
+          font-size: variables.$font-size-small;
         }
       }
 
@@ -1385,12 +1386,12 @@
         }
 
         &-label {
-          font-size: $font-size-small;
+          font-size: variables.$font-size-small;
         }
 
         &-date {
           margin: 0 .3rem 0;
-          font-size: $font-size-small;
+          font-size: variables.$font-size-small;
         }
       }
 
@@ -1398,13 +1399,13 @@
         display: flex;
 
         &-label {
-          font-size: $font-size-small;
+          font-size: variables.$font-size-small;
 
         }
 
         &-number {
           margin: 0 .3rem 0;
-          font-size: $font-size-small;
+          font-size: variables.$font-size-small;
         }
       }
 
@@ -1418,33 +1419,33 @@
           color: #ffffff;
 
           &-error {
-            background: $color-green url('.././images/error%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
+            background: variables.$color-green url('.././images/error%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
 
             &.has-errors {
-              background-color: $color-red;
+              background-color: variables.$color-red;
             }
 
           }
 
           &-contrast {
-            background: $color-green url('.././images/contrast%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
+            background: variables.$color-green url('.././images/contrast%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
 
             &.has-errors {
-              background-color: $color-red;
+              background-color: variables.$color-red;
             }
 
           }
 
           &-warning {
-            background: $color-green url('.././images/warning%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
+            background: variables.$color-green url('.././images/warning%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
 
             &.has-warning {
-                background: $color-yellow url('.././images/warning%20icon%20navy.png') no-repeat calc(0% + 5px) 50%;
+                background: variables.$color-yellow url('.././images/warning%20icon%20navy.png') no-repeat calc(0% + 5px) 50%;
                 background-size: 1rem 1rem;
-                color: $color-blue-dark;
+                color: variables.$color-blue-dark;
             }
 
           }
@@ -1452,13 +1453,13 @@
           &-label {
             line-height: 2rem;
             margin-left: calc(1rem + 10px);
-            font-size: $font-size-small;
+            font-size: variables.$font-size-small;
 
           }
 
           &-number {
             margin-left: calc(.3rem);
-            font-size: $font-size-small;
+            font-size: variables.$font-size-small;
 
           }
 
@@ -1477,7 +1478,7 @@
 
   .edac-summary-notice {
     padding: 1.5rem 0 .5rem 0;
-    font-size: $font-size-medium;
+    font-size: variables.$font-size-medium;
   }
 
   .edac-issues-summary {
@@ -1488,19 +1489,19 @@
 
     &-notice-enable-edacp {
       text-align: center;
-      border: solid 1px $color-gray;
+      border: solid 1px variables.$color-gray;
       padding: .5rem;
     }
 
     &-notice-enable-edacp {
       text-align: center;
-      border: solid 3px $color-gray;
+      border: solid 3px variables.$color-gray;
       padding: .5rem;
     }
 
     &-notice-upgrade-to-edacp {
       text-align: center;
-      border: solid 1px $color-gray;
+      border: solid 1px variables.$color-gray;
       padding: .5rem;
     }
   }
@@ -1546,7 +1547,7 @@
 
   }
 
-  @media screen and (max-width: $large-screen-width ) {
+  @media screen and (max-width: variables.$large-screen-width ) {
 
     >.edac-cols {
       //gap: 0;
@@ -1589,7 +1590,7 @@
     }
 
 
-    @media screen and (max-width: $small-screen-width ) {
+    @media screen and (max-width: variables.$small-screen-width ) {
       display: flex;
       flex-direction: column-reverse;
       text-align: center;
@@ -1614,11 +1615,11 @@
       background-size: cover;
       background-position: top left;
 
-      @media screen and (max-width: calc($medium-screen-width - 1px)) {
+      @media screen and (max-width: calc(variables.$medium-screen-width - 1px)) {
         background-image: url("../images/welcome-screenshot-medium.png");
       }
 
-      @media screen and (max-width: $small-screen-width ) {
+      @media screen and (max-width: variables.$small-screen-width ) {
         background-image: url("../images/welcome-screenshot-small.png");
       }
 
@@ -1730,7 +1731,7 @@
     }
 
 
-    @media screen and (max-width: calc($medium-screen-width - 1px)) {
+    @media screen and (max-width: calc(variables.$medium-screen-width - 1px)) {
       .edac-welcome-grid-container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -1764,7 +1765,7 @@
     }
 
 
-    @media screen and (max-width: $small-screen-width ) {
+    @media screen and (max-width: variables.$small-screen-width ) {
 
       .edac-welcome-grid-container {
         display: flex;
@@ -1775,31 +1776,31 @@
 
 
     .edac-stat-label {
-      font-size: $font-size-medium;
-      line-height: $font-size-large;
+      font-size: variables.$font-size-medium;
+      line-height: variables.$font-size-large;
     }
 
     .edac-stat-number {
-      font-size: $font-size-xx-large;
-      line-height: $font-size-xx-large;
+      font-size: variables.$font-size-xx-large;
+      line-height: variables.$font-size-xx-large;
     }
 
     .edac-background-light {
       .edac-stat-label {
-        font-size: $font-size-small;
-        line-height: $font-size-medium;
+        font-size: variables.$font-size-small;
+        line-height: variables.$font-size-medium;
       }
 
       .edac-stat-number {
-        font-size: $font-size-x-large;
-        line-height: $font-size-x-large;
+        font-size: variables.$font-size-x-large;
+        line-height: variables.$font-size-x-large;
       }
     }
 
 
     .has-errors {
-      color: $color-white;
-      background-color: $color-red;
+      color: variables.$color-white;
+      background-color: variables.$color-red;
       background-image: url("../images/error icon white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
@@ -1807,8 +1808,8 @@
     }
 
     .has-no-errors {
-      color: $color-white;
-      background-color: $color-green;
+      color: variables.$color-white;
+      background-color: variables.$color-green;
       background-image: url("../images/error icon white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
@@ -1816,8 +1817,8 @@
     }
 
     .has-contrast-errors {
-      color: $color-white;
-      background-color: $color-red;
+      color: variables.$color-white;
+      background-color: variables.$color-red;
       background-image: url("../images/contrast icon white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
@@ -1825,8 +1826,8 @@
     }
 
     .has-no-contrast-errors {
-      color: $color-white;
-      background-color: $color-green;
+      color: variables.$color-white;
+      background-color: variables.$color-green;
       background-image: url("../images/contrast icon white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
@@ -1835,8 +1836,8 @@
 
 
     .has-warning {
-      color: $color-blue-dark;
-      background-color: $color-yellow;
+      color: variables.$color-blue-dark;
+      background-color: variables.$color-yellow;
       background-image: url("../images/warning icon navy.png");
       background-size: 25px auto;
       background-position: 5px 10px;
@@ -1845,8 +1846,8 @@
 
 
     .has-no-warning {
-      color: $color-white;
-      background-color: $color-green;
+      color: variables.$color-white;
+      background-color: variables.$color-green;
       background-image: url("../images/warning icon white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
@@ -1854,8 +1855,8 @@
     }
 
     .has-ignored {
-      color: $color-white;
-      background-color: $color-blue-dark;
+      color: variables.$color-white;
+      background-color: variables.$color-blue-dark;
       background-image: url("../images/ignore icon white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
@@ -1863,8 +1864,8 @@
     }
 
     .has-no-ignored {
-      color: $color-white;
-      background-color: $color-blue-dark;
+      color: variables.$color-white;
+      background-color: variables.$color-blue-dark;
       background-image: url("../images/ignore icon white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
@@ -1883,7 +1884,7 @@
 
     .edac-modal-content {
       min-height: 200px;
-      border: solid 1px $color-gray-light;
+      border: solid 1px variables.$color-gray-light;
       padding: 0 1rem;
     }
 
@@ -1916,7 +1917,7 @@
       gap: 1rem;
 
 
-      @media screen and (max-width: $medium-screen-width ) {
+      @media screen and (max-width: variables.$medium-screen-width ) {
         flex-direction: column;
       }
 
@@ -1985,9 +1986,9 @@
 	}
 }
 
-@import "../../common/sass/fix-settings";
+@include meta.load-css("../../common/sass/fix-settings");
 
 .edac-dashicon-muted {
-	color: $color-gray;
+	color: variables.$color-gray;
 	text-decoration: none;
 }
