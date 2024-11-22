@@ -2,8 +2,6 @@ import { __ } from '@wordpress/i18n';
 
 const localizedOpenString = __( 'opens a new window', 'accessibility-checker' );
 
-let label = '';
-
 const NewWindowWarning = () => {
 	initializeTooltip();
 	processLinks();
@@ -70,6 +68,7 @@ const addExternalLinkIcon = ( link ) => {
 };
 
 const updateAriaLabel = ( link ) => {
+	let label = '';
 	// Get aria label text
 	if ( link.getAttribute( 'aria-label' ) ) {
 		label = link.getAttribute( 'aria-label' );
