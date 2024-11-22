@@ -39,7 +39,7 @@ function edac_rule_missing_table_header( $content, $post ) { // phpcs:ignore -- 
  * @return bool
  */
 function edac_has_proper_headers( $table ) {
-	$table_rows = $table->find( 'tr' );
+	$table_rows  = $table->find( 'tr' );
 	$has_headers = false;
 
 	foreach ( $table_rows as $table_row ) {
