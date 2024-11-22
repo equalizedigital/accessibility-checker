@@ -7,6 +7,8 @@
 
 namespace EDAC\Admin;
 
+use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
+
 /**
  * Class that handles admin notices
  */
@@ -27,6 +29,7 @@ class Admin_Notices {
 
 		add_action( 'in_admin_header', [ $this, 'edac_remove_admin_notices' ], 1000 );
 		add_action( 'init', [ $this, 'hook_notices' ] );
+		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
 	}
 
 	/**
@@ -421,5 +424,27 @@ class Admin_Notices {
 		}
 
 		wp_send_json_success( wp_json_encode( $results ) );
+	}
+
+	/**
+	 * Save a transient to indicate that the fixes settings have been updated.
+	 *
+	 * @param string $option    The option name that was saved.
+	 *
+	 * @return void
+	 */
+	public function set_fixes_transient_on_save( $option ) {
+		if ( ! class_exists( 'EqualizeDigital\AccessibilityChecker\Fixes\FixesManager' ) ) {
+			return;
+		}
+		$fixes_settings = FixesManager::get_instance()->get_fixes_settings();
+		$options_keys   = [];
+		foreach ( $fixes_settings as $fix ) {
+			$options_keys = array_merge( $options_keys, array_keys( $fix['fields'] ) );
+		}
+		if ( in_array( $option, $options_keys, true ) ) {
+			// Set a custom transient as a flag.
+			set_transient( 'edac_fixes_settings_saved', true, 60 );
+		}
 	}
 }
