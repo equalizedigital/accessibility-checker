@@ -1,5 +1,6 @@
-@import "../../common/sass/variables";
-@import "../../common/sass/helpers";
+@use "sass:meta";
+@use "../../common/sass/variables";
+@use "../../common/sass/helpers";
 
 body {
 	&.edac-app-disable-styles {
@@ -24,8 +25,10 @@ body {
 		letter-spacing: normal !important;
 	}
 
-	display: inline-block;
-	clear: both;
+	& {
+		display: inline-block;
+		clear: both;
+	}
 
 	&-element-selected {
 		outline: dashed 4px transparent !important;
@@ -79,12 +82,12 @@ body {
 		z-index: 2147483647 !important;
 		bottom: 15px !important;
 
-		@media screen and (max-width: $small-screen-width) {
+		@media screen and (max-width: variables.$small-screen-width) {
 			width: 100%;
 			max-width: calc(100% - 30px) !important;
 		}
 
-		@media screen and (max-width: $extra-small-screen-width) {
+		@media screen and (max-width: variables.$extra-small-screen-width) {
 
 			.edac-highlight-panel-controls-buttons {
 				//   display: flex !important;
@@ -98,7 +101,7 @@ body {
 
 		}
 
-		@media screen and (max-width: calc($extra-small-screen-width)) {
+		@media screen and (max-width: calc(variables.$extra-small-screen-width)) {
 
 			.edac-highlight-panel-controls-buttons {
 				display: flex !important;
@@ -119,7 +122,7 @@ body {
 
 		a:not(.edac-highlight-panel-description-reference) {
 			all: revert !important;
-			color: $color-white !important;
+			color: variables.$color-white !important;
 		}
 
 		&--right {
@@ -140,7 +143,7 @@ body {
 			display: block;
 			background: transparent url("../images/edac-emblem.png") center center no-repeat !important;
 			background-size: contain !important;
-			box-shadow: 0 0 5px rgba($color-black, .5) !important;
+			box-shadow: 0 0 5px rgba(variables.$color-black, .5) !important;
 			border-radius: 50% !important;
 			position: relative !important;
 
@@ -149,7 +152,7 @@ body {
 				outline: solid 5px rgba(0, 208, 255, .75) !important;
 			}
 
-			@media screen and (max-width: $small-screen-width) {
+			@media screen and (max-width: variables.$small-screen-width) {
 				.edac-highlight-panel--right & {
 					float: right !important;
 				}
@@ -159,19 +162,19 @@ body {
 		&-description {
 			max-height: calc(100vh - 230px) !important;
 			display: block;
-			border: solid 1px $color-gray-light !important;
-			background-color: $color-white !important;
+			border: solid 1px variables.$color-gray-light !important;
+			background-color: variables.$color-white !important;
 			margin-bottom: 15px !important;
 			padding: 15px !important;
-			color: $color-white !important;
-			background-color: $color-blue-dark !important;
+			color: variables.$color-white !important;
+			background-color: variables.$color-blue-dark !important;
 			font-size: 14px !important;
 			line-height: 22px !important;
 			font-family: sans-serif !important;
 			text-align: left !important;
 			display: none;
 			overflow-y: scroll !important;
-			box-shadow: 0px 0px 5px rgba($color-black, .25) !important;
+			box-shadow: 0px 0px 5px rgba(variables.$color-black, .25) !important;
 			-webkit-font-smoothing: antialiased !important;
 			-moz-osx-font-smoothing: grayscale !important;
 
@@ -199,18 +202,18 @@ body {
 				top: -2px !important;
 
 				&-error {
-					color: $color-white !important;
-					background-color: $color-red !important;
+					color: variables.$color-white !important;
+					background-color: variables.$color-red !important;
 				}
 
 				&-warning {
-					color: $color-blue-dark !important;
-					background-color: $color-yellow !important;
+					color: variables.$color-blue-dark !important;
+					background-color: variables.$color-yellow !important;
 				}
 
 				&-ignored {
-					color: $color-white !important;
-					background-color: $color-blue !important;
+					color: variables.$color-white !important;
+					background-color: variables.$color-blue !important;
 				}
 			}
 
@@ -222,9 +225,9 @@ body {
 			}
 
 			&-status {
-				color: $color-white !important;
+				color: variables.$color-white !important;
 				display: block !important;
-				background-color: $color-red !important;
+				background-color: variables.$color-red !important;
 				padding: 10px 15px !important;
 				margin-top: 10px !important;
 				margin-bottom: 10px !important;
@@ -234,16 +237,16 @@ body {
 			&-code-button,
 			&--button {
 				all: unset;
-				color: $color-blue-dark !important;
-				background-color: $color-yellow !important;
+				color: variables.$color-blue-dark !important;
+				background-color: variables.$color-yellow !important;
 				padding: 4px 10px !important;
 				display: inline-block !important;
 				margin-top: 10px !important;
 				margin-right: 10px !important;
 
 				&:hover, &:focus, &[aria-expanded="true"] {
-					color: $color-blue-dark !important;
-					background-color: $color-white !important;
+					color: variables.$color-blue-dark !important;
+					background-color: variables.$color-white !important;
 					cursor: pointer !important;
 					text-decoration: none !important;
 				}
@@ -257,9 +260,9 @@ body {
 			}
 
 			&-code {
-				color: $color-black !important;
+				color: variables.$color-black !important;
 				display: block;
-				background-color: $color-white !important;
+				background-color: variables.$color-white !important;
 				padding: 10px 15px !important;
 				display: none;
 				margin-top: 10px !important;
@@ -268,8 +271,8 @@ body {
 			&-close {
 				width: 25px !important;
 				height: 25px !important;
-				color: $color-blue-dark !important;
-				background-color: $color-yellow !important;
+				color: variables.$color-blue-dark !important;
+				background-color: variables.$color-yellow !important;
 				font-size: 18px !important;
 				line-height: 25px !important;
 				position: absolute !important;
@@ -279,19 +282,19 @@ body {
 
 				&:hover, &:focus {
 					cursor: pointer !important;
-					color: $color-blue-dark !important;
-					background-color: $color-white !important;
+					color: variables.$color-blue-dark !important;
+					background-color: variables.$color-white !important;
 				}
 			}
 		}
 
 		&-controls {
-			color: $color-white !important;
+			color: variables.$color-white !important;
 			display: block;
-			background-color: $color-blue !important;
-			border: solid 1px $color-gray-light !important;
+			background-color: variables.$color-blue !important;
+			border: solid 1px variables.$color-gray-light !important;
 			display: none;
-			box-shadow: 0px 0px 5px rgba($color-black, .15) !important;
+			box-shadow: 0px 0px 5px rgba(variables.$color-black, .15) !important;
 			position: relative !important;
 			padding: 15px !important;
 			font-size: 14px !important;
@@ -314,8 +317,8 @@ body {
 			&-close {
 				width: 25px !important;
 				height: 25px !important;
-				color: $color-blue-dark !important;
-				background-color: $color-yellow !important;
+				color: variables.$color-blue-dark !important;
+				background-color: variables.$color-yellow !important;
 				font-size: 18px !important;
 				line-height: 25px !important;
 				position: absolute !important;
@@ -325,8 +328,8 @@ body {
 
 				&:hover, &:focus {
 					cursor: pointer !important;
-					color: $color-blue-dark !important;
-					background-color: $color-white !important;
+					color: variables.$color-blue-dark !important;
+					background-color: variables.$color-white !important;
 				}
 			}
 
@@ -341,16 +344,16 @@ body {
 				button {
 					all: unset;
 					text-decoration: none !important;
-					color: $color-white !important;
-					background-color: $color-blue-dark !important;
+					color: variables.$color-white !important;
+					background-color: variables.$color-blue-dark !important;
 					padding: 4px 10px !important;
 					display: inline-block !important;
 					margin-top: 10px !important;
 					margin-right: 10px !important;
 
 					&:hover, &:focus {
-						color: $color-blue-dark !important;
-						background-color: $color-white !important;
+						color: variables.$color-blue-dark !important;
+						background-color: variables.$color-white !important;
 						cursor: pointer !important;
 					}
 
@@ -404,7 +407,7 @@ body {
 	display: none !important;
 }
 
-@import "../../common/sass/fix-settings";
+@include meta.load-css("../../common/sass/fix-settings");
 
 .edac-fixes-modal {
 	display: none;
@@ -425,7 +428,7 @@ body {
 	text-align: left !important;
 	letter-spacing: initial !important;
 
-	@media screen and (max-width: $medium-screen-width) {
+	@media screen and (max-width: variables.$medium-screen-width) {
 		width: 100% !important;
 		max-width: calc(100% - 30px) !important;
 		padding: 20px !important;
@@ -457,7 +460,7 @@ body {
 
 	&__close:focus,
 	&__close:hover {
-		background: $color-yellow;
+		background: variables.$color-yellow;
 	}
 
 	&--open {
@@ -522,7 +525,7 @@ body {
 	}
 
 	&--notice-slot a {
-		color: $color-blue !important;
+		color: variables.$color-blue !important;
 		text-decoration: underline !important;
 
 		&:hover,
