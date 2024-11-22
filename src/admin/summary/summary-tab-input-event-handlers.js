@@ -135,6 +135,10 @@ export const initFixButtonEventHandlers = () => {
 			if ( ! fixSettings ) {
 				return;
 			}
+			// if this button has a data-editor attribute, then we need to set the value of the fix setting to the value of the data-editor attribute
+			if ( button.hasAttribute( 'data-editor' ) ) {
+				window.edac_script_vars.editorLink = button.getAttribute( 'data-editor' );
+			}
 
 			fixSettings.classList.toggle( 'active' );
 			document.querySelector( 'body' ).classList.add( 'edac-fix-modal-present' );
