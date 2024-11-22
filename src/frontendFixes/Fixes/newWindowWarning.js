@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 
-const localizedOpenString = __( 'opens a new window', 'accessibility-checker' );
+const localizedNewWindowWarning = __( 'opens a new window', 'accessibility-checker' );
 
 const NewWindowWarning = () => {
 	initializeTooltip();
@@ -81,9 +81,9 @@ const updateAriaLabel = ( link ) => {
 	// Add warning label
 	if ( label ) {
 		label = label.trimEnd();
-		label += ', ' + localizedOpenString;
+		label += ', ' + localizedNewWindowWarning;
 	} else {
-		label += localizedOpenString;
+		label += localizedNewWindowWarning;
 	}
 
 	// Add aria-label to link
@@ -101,7 +101,7 @@ const addTooltipHandlers = ( link ) => {
 
 	link.addEventListener( 'mouseenter', () => {
 		tooltip.style.display = 'block';
-		tooltip.innerHTML = localizedOpenString;
+		tooltip.innerHTML = localizedNewWindowWarning;
 	} );
 
 	link.addEventListener( 'mouseleave', () => {
@@ -115,7 +115,7 @@ const addTooltipHandlers = ( link ) => {
 		tooltip.style.left = position.left + window.scrollX + 'px';
 
 		tooltip.style.display = 'block';
-		tooltip.innerHTML = localizedOpenString;
+		tooltip.innerHTML = localizedNewWindowWarning;
 	} );
 
 	link.addEventListener( 'focusout', () => {
