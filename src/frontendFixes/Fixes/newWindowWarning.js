@@ -34,7 +34,6 @@ const processLinks = () => {
 
 	const allLinks = document.querySelectorAll( 'a' );
 	allLinks.forEach( ( link ) => {
-		let hasIcon = false;
 		const onclickAttr = link.getAttribute( 'onclick' );
 
 		// Check if the link opens a new window using target="_blank"
@@ -42,7 +41,6 @@ const processLinks = () => {
 			addExternalLinkIcon( link );
 			updateAriaLabel( link );
 			addTooltipHandlers( link );
-			hasIcon = true;
 		}
 
 		// Check if the link uses window.open in the onclick attribute
@@ -56,13 +54,7 @@ const processLinks = () => {
 				addExternalLinkIcon( link );
 				updateAriaLabel( link );
 				addTooltipHandlers( link );
-				hasIcon = true;
 			}
-		}
-
-		// If no external link behavior detected, do not proceed with tooltip
-		if ( ! hasIcon ) {
-
 		}
 	} );
 };
