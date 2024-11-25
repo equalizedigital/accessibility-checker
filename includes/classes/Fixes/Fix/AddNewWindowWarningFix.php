@@ -70,8 +70,10 @@ class AddNewWindowWarning implements FixInterface {
 			'labelledby'  => 'add_new_window_warning',
 			'description' => sprintf(
 			// translators: %1%s: A <code> tag containing target="_blank".
-				esc_html__( 'Adds a label informing about new tab/window when link contains %1$s.', 'accessibility-checker' ),
-				'<code>target="_blank"</code>'
+				esc_html__( 'Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the "Block Links Opening New Windows" fix is enabled.%3$s', 'accessibility-checker' ),
+				'<code>target="_blank"</code>',
+				'<br><strong>',
+				'</strong>'
 			),
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
