@@ -14,7 +14,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
  *
  * @since 1.16.0
  */
-class AddNewWindowWarning implements FixInterface {
+class AddNewWindowWarningFix implements FixInterface {
 
 	/**
 	 * The slug of the fix.
