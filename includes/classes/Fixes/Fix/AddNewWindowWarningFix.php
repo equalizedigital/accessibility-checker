@@ -65,7 +65,7 @@ class AddNewWindowWarningFix implements FixInterface {
 	 */
 	public function get_fields_array( array $fields = [] ): array {
 		$fields[ 'edac_fix_' . $this->get_slug() ] = [
-			'label'       => esc_html__( 'Add Label About Opening New Tab/Window', 'accessibility-checker' ),
+			'label'       => esc_html__( 'Add Label To Links That Open A New Tab/Window', 'accessibility-checker' ),
 			'type'        => 'checkbox',
 			'labelledby'  => 'add_new_window_warning',
 			'description' => sprintf(
