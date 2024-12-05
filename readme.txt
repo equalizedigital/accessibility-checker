@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.7.0
-Stable tag: 1.16.3
+Stable tag: 1.16.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,13 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.16.4 =
+* Enhancement: Improve the table header detection and validation for row headers.
+* Enhancement: Show notice on fixes settings when they are saved from options page.
+* Fixed: Don't check for possible headerif there is no text content.
+* Fixed: Multisite query fix to make sure issues are assigned correct site id.
+* Fixed: Correct where a scan link points.
 
 = 1.16.3 =
 * Enhancement: Add Fix settings to site health info panels.
