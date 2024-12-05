@@ -165,7 +165,7 @@ class Summary_Generator {
 		global $wpdb;
 
 		$warnings_parameters = [ get_current_blog_id(), $this->post_id, 'warning', 0 ];
-		$warnings_where      = 'WHERE siteid = siteid = %d and postid = %d and ruletype = %s and ignre = %d';
+		$warnings_where      = 'WHERE siteid = %d and postid = %d and ruletype = %s and ignre = %d';
 		if ( EDAC_ANWW_ACTIVE ) {
 			array_push( $warnings_parameters, 'link_blank' );
 			$warnings_where .= ' and rule != %s';
