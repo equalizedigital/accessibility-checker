@@ -1,6 +1,6 @@
 {
   "name": "accessibility-checker",
-  "version": "1.16.3",
+  "version": "1.16.4",
   "description": "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.",
   "author": "Equalize Digital",
   "license": "GPL-2.0+",
@@ -62,13 +62,13 @@
     "husky": "^9.0.6",
     "lint-staged": "^15.2.2",
     "mini-css-extract-plugin": "^2.7.6",
-    "node-sass": "^7.0.3",
     "notyf": "^3.10.0",
     "patch-package": "^8.0.0",
-    "sass-loader": "^13.3.1",
+    "sass": "^1.81.0",
+    "sass-loader": "^16.0.3",
     "tabbable": "^6.1.2",
     "unique-selector": "^0.5.0",
-    "webpack": "^5.84.1",
+    "webpack": "^5.96.1",
     "webpack-cli": "^5.1.1"
   }
 }

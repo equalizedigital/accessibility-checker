@@ -60,10 +60,11 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 				fixSettingsContainer.classList.add( 'edac-fix-settings--saved--success' );
 				// find the aria-live region and update the text
 				if ( liveRegion ) {
-					if ( window?.edacFrontendHighlighterApp?.editorLink?.length ) {
+					const editLink = window?.edacFrontendHighlighterApp?.editorLink || window?.edac_script_vars?.editorLink;
+					if ( editLink ) {
 						liveRegion.innerHTML = sprintf(
 							__( 'Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.', 'accessibility-checker' ),
-							`<a href="${ window.edacFrontendHighlighterApp.editorLink }">`,
+							`<a href="${ editLink }">`,
 							'</a>'
 						);
 					} else {

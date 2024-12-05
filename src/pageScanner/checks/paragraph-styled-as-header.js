@@ -22,6 +22,11 @@ export default {
 	evaluate: ( node ) => {
 		const pixelSize = fontSizeInPx( node );
 
+		// If there's no text content, it's not a header.
+		if ( ! node.textContent.trim() ) {
+			return false;
+		}
+
 		// Long paragraphs or those with font size under 16px are unlikely to be headers.
 		if ( node.textContent.trim().length > 50 || pixelSize < 16 ) {
 			return false;
