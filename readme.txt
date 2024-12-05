@@ -171,6 +171,13 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.16.4 =
+* Enhancement: Improve the table header detection and validation for row headers.
+* Enhancement: Show notice on fixes settings when they are saved from options page.
+* Fixed: Don't check for possible headerif there is no text content.
+* Fixed: Multisite query fix to make sure issues are assigned correct site id.
+* Fixed: Correct where a scan link points.
+
 = 1.16.3 =
 * Enhancement: Add Fix settings to site health info panels.
 * Fixed: Corrected a string that was misplaced in a fix.
