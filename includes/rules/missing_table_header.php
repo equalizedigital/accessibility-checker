@@ -1,6 +1,6 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- underscore is for valid function name.
 /**
- * Accessibility Checker pluign file.
+ * Accessibility Checker plugin file.
  *
  * @package Accessibility_Checker
  */
@@ -19,32 +19,43 @@ function edac_rule_missing_table_header( $content, $post ) { // phpcs:ignore -- 
 	$tables = $dom->find( 'table' );
 
 	if ( ! $tables ) {
-		return;
+		return $errors; // Return empty errors array if no tables are found.
 	}
-	foreach ( $tables as $table ) {
 
-		if ( ! edac_th_match_td( $table ) ) {
+	foreach ( $tables as $table ) {
+		// Check if the table has proper headers.
+		if ( ! edac_has_proper_headers( $table ) ) {
 			$errors[] = $table;
 		}
 	}
+
 	return $errors;
 }
 
 /**
- * Check for TH TD matching
+ * Check if the table has proper headers
  *
- * @param obj $table Object to check.
- * @return int
+ * @param object $table Object to check.
+ * @return bool
  */
-function edac_th_match_td( $table ) {
-	$table_rows   = $table->find( 'tr' );
-	$header_count = 0;
-	$max_rows     = 0;
+function edac_has_proper_headers( $table ) {
+	$table_rows  = $table->find( 'tr' );
+	$has_headers = false;
+
 	foreach ( $table_rows as $table_row ) {
-		if ( 0 === $header_count ) {
-			$header_count = count( $table_row->find( 'th' ) );
+		// Check for row or column headers in the current row.
+		$headers = $table_row->find( 'th' );
+		foreach ( $headers as $header ) {
+			// Check if the header has a valid scope or contains text.
+			$scope = $header->getAttribute( 'scope' );
+			$text  = trim( $header->plaintext );
+
+			if ( ! empty( $text ) && ( in_array( $scope, [ 'row', 'col', 'rowgroup', 'colgroup' ], true ) || empty( $scope ) ) ) {
+				$has_headers = true;
+				break 2; // Exit both loops as headers are valid.
+			}
 		}
-		$max_rows = max( $max_rows, count( $table_row->find( 'td' ) ) );
 	}
-	return $max_rows <= $header_count;
+
+	return $has_headers;
 }
