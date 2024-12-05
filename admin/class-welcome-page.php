@@ -44,7 +44,7 @@ class Welcome_Page {
 								<?php esc_html_e( 'Update Counts', 'accessibility-checker' ); ?>
 							</button>
 
-							<a class="edac-ml-1 button" href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_settings&tab=scan' ) ); ?>">
+							<a class="edac-ml-1 button" href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_full_site_scan' ) ); ?>">
 								<?php esc_html_e( 'Start New Scan', 'accessibility-checker' ); ?>
 							</a>
 
