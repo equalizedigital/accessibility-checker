@@ -253,7 +253,7 @@ class Welcome_Page {
 						<div class="edac-welcome-grid-c11 edac-welcome-grid-item edac-background-light">
 							<div class="edac-inner-row">
 								<div class="edac-stat-number">
-									<?php echo esc_html( $summary['posts_without_issues_formatted'] ); ?>
+									<?php echo esc_html( $summary['posts_without_issues'] ?? 0 ); ?>
 								</div>
 							</div>
 							<div class="edac-inner-row">
