@@ -55,3 +55,10 @@ if ( edacFrontendFixes?.prevent_links_opening_new_windows?.enabled ) {
 		preventLinksOpeningNewWindowFix.default();
 	} );
 }
+
+if ( edacFrontendFixes?.new_window_warning?.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "new-window-warning" */ './Fixes/newWindowWarning' ).then( ( newWindowWarning ) => {
+		newWindowWarning.default();
+	} );
+}
