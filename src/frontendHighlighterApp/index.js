@@ -904,10 +904,7 @@ const initHighlighter = () => {
 		initHasRun = true;
 	}
 };
-window.addEventListener( 'DOMContentLoaded', () => {
-	initHighlighter();
-} );
-// Add a listener later than DOMCOntentLoaded to check if the init has run.
-window.addEventListener( 'load', () => {
-	initHighlighter();
+
+[ 'DOMContentLoaded', 'load' ].forEach( ( event ) => {
+	window.addEventListener( event, initHighlighter );
 } );
