@@ -894,14 +894,14 @@ class AccessibilityCheckerHighlight {
 // Some systems (Cloudflare Rocket Loader) defers scripts for performance but that can
 // cause some DOMContentLoaded events to be missed. This is flag tracks if it run so we
 // can retry at a latter event listener.
-let initHasRun = false;
+let highlighterInitialized = false;
 const initHighlighter = () => {
-	if ( ! initHasRun ) {
+	if ( ! highlighterInitialized ) {
 		new AccessibilityCheckerHighlight();
 		if ( window.edacFrontendHighlighterApp?.userCanFix ) {
 			fixSettingsModalInit();
 		}
-		initHasRun = true;
+		highlighterInitialized = true;
 	}
 };
 
