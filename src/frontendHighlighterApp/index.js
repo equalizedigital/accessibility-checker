@@ -891,9 +891,20 @@ class AccessibilityCheckerHighlight {
 	}
 }
 
-window.addEventListener( 'DOMContentLoaded', () => {
-	new AccessibilityCheckerHighlight();
-	if ( window.edacFrontendHighlighterApp?.userCanFix ) {
-		fixSettingsModalInit();
+// Some systems (Cloudflare Rocket Loader) defers scripts for performance but that can
+// cause some DOMContentLoaded events to be missed. This is flag tracks if it run so we
+// can retry at a latter event listener.
+let highlighterInitialized = false;
+const initHighlighter = () => {
+	if ( ! highlighterInitialized ) {
+		new AccessibilityCheckerHighlight();
+		if ( window.edacFrontendHighlighterApp?.userCanFix ) {
+			fixSettingsModalInit();
+		}
+		highlighterInitialized = true;
 	}
+};
+
+[ 'DOMContentLoaded', 'load' ].forEach( ( event ) => {
+	window.addEventListener( event, initHighlighter );
 } );
