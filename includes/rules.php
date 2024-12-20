@@ -10,6 +10,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\{
 	AddLabelToUnlabelledFormFieldsFix,
 	CommentSearchLabelFix,
 	PreventLinksOpeningNewWindowFix,
+	AddNewWindowWarningFix,
 	HTMLLangAndDirFix,
 	AddMissingOrEmptyPageTitleFix,
 	MetaViewportScalableFix,
@@ -144,6 +145,7 @@ return [
 		],
 		'fixes'     => [
 			PreventLinksOpeningNewWindowFix::get_slug(),
+			AddNewWindowWarningFix::get_slug(),
 		],
 	],
 	[
