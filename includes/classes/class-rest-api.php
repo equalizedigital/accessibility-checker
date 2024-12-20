@@ -183,6 +183,24 @@ class REST_Api {
 				);
 			}
 		);
+
+		// Exposes the scan summary data.
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/site-summary',
+					[
+						'methods'             => 'GET',
+						'callback'            => [ $this, 'get_site_summary' ],
+						'permission_callback' => function () {
+							return current_user_can( 'edit_posts' );
+						},
+					]
+				);
+			}
+		);
 	}
 
 	/**
@@ -582,6 +600,37 @@ class REST_Api {
 				500
 			);
 
+		}
+	}
+
+	/**
+	 * REST handler that gets stats about the scans
+	 *
+	 * @param \WP_REST_Request $request The request passed from the REST call.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function get_site_summary( \WP_REST_Request $request ) {
+
+		try {
+			$scan_stats = new Scans_Stats();
+			if ( (bool) $request->get_param( 'clearCache' ) ) {
+				$scan_stats->clear_cache();
+			}
+
+			return new \WP_REST_Response(
+				[
+					'success' => true,
+					'stats'   => $scan_stats->summary(),
+				]
+			);
+		} catch ( \Exception $ex ) {
+			return new \WP_REST_Response(
+				[
+					'message' => $ex->getMessage(),
+				],
+				500
+			);
 		}
 	}
 }
