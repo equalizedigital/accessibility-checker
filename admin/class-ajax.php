@@ -692,6 +692,7 @@ class Ajax {
 				'</form>
 			<form action="/" class="edac-readability-simplified-summary">
 				<label for="edac-readability-text">Simplified Summary</label>
+				<button type="button" id="generate-summary">Generate Summary with AI</button>
 				<textarea name="" id="edac-readability-text" cols="30" rows="10">' . $simplified_summary . '</textarea>
 				<input type="submit" value="Submit">
 			</form>';

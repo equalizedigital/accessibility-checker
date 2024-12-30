@@ -267,6 +267,37 @@ const edacScriptVars = edac_script_vars;
 							} );
 						}
 					);
+
+					// Eden AI.
+					jQuery( '#generate-summary' ).click( function() {
+						if ( ! postID ) {
+							console.error( 'Post ID is missing.' ); // eslint-disable-line no-console
+							alert( 'Unable to generate summary: Post ID is missing.' ); // eslint-disable-line no-alert
+							return;
+						}
+
+						jQuery.ajax( {
+							url: edac_script_vars.edacApiUrl + '/generate-summary', // eslint-disable-line camelcase
+							method: 'POST',
+							contentType: 'application/json',
+							beforeSend( xhr ) {
+								xhr.setRequestHeader( 'X-WP-Nonce', edac_script_vars.restNonce ); // eslint-disable-line camelcase
+							},
+							data: JSON.stringify( { post_id: postID } ),
+						} )
+							.done( function( result ) {
+								if ( result && result.success && result.summary ) {
+									jQuery( '#edac-readability-text' ).val( result.summary );
+								} else {
+									const errorMessage = result && result.data && result.data.message ? result.data.message : 'Unknown error occurred.';
+									alert( 'Error generating summary: ' + errorMessage ); // eslint-disable-line no-alert
+								}
+							} )
+							.fail( function( jqXHR, textStatus, errorThrown ) {
+								console.error( 'Fetch error:', textStatus, errorThrown ); // eslint-disable-line no-console
+								alert( 'An unexpected error occurred.' ); // eslint-disable-line no-alert
+							} );
+					} );
 				} else {
 					// eslint-disable-next-line no-console
 					console.log( response );
