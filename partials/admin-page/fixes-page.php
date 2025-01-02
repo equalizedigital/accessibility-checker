@@ -5,6 +5,8 @@
  * @package Accessibility_Checker
  */
 
+	use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddNewWindowWarningFix;
+
 ?>
 <div id="edac-fixes-page" class="wrap edac-settings <?php echo EDAC_KEY_VALID ? '' : 'pro-callout-wrapper'; ?>">
 	<?php if ( get_transient( 'edac_fixes_settings_saved' ) ) : ?>
@@ -15,7 +17,7 @@
 		delete_transient( 'edac_fixes_settings_saved' );
 	endif;
 	?>
-	<?php if ( class_exists( '\ANWW' ) && defined( 'ANWW_VERSION' ) ) : ?>
+	<?php if ( class_exists( '\ANWW' ) && defined( 'ANWW_VERSION' ) && get_option( 'edac_fix_' . AddNewWindowWarningFix::get_slug() ) ) : ?>
 		<div class="notice notice-warning">
 			<p><?php esc_html_e( 'The Accessibility New Window Warnings plugin is installed. The fixes for new tabs/windows here will override the functions of that plugin. You can safely remove it and use these fixes for the same functionality.', 'accessibility-checker' ); ?></p>
 		</div>
