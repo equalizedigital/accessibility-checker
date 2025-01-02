@@ -91,6 +91,16 @@ class AddNewWindowWarningFix implements FixInterface {
 			return;
 		}
 
+		// unregister the anww script if it's present, this fix supercedes it.
+		add_action(
+			'wp_enqueue_scripts',
+			function () {
+				wp_deregister_script( 'anww' );
+				wp_dequeue_script( 'anww' );
+			},
+			PHP_INT_MAX
+		);
+
 		add_filter(
 			'edac_filter_frontend_fixes_data',
 			function ( $data ) {
