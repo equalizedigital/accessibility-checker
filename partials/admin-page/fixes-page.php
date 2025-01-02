@@ -15,6 +15,11 @@
 		delete_transient( 'edac_fixes_settings_saved' );
 	endif;
 	?>
+	<?php if ( class_exists( '\ANWW' ) && defined( 'ANWW_VERSION' ) ) : ?>
+		<div class="notice notice-warning">
+			<p><?php esc_html_e( 'The Accessibility New Window Warnings plugin is installed. The fixes for new tabs/windows here will override the functions of that plugin. You can safely remove it and use these fixes for the same functionality.', 'accessibility-checker' ); ?></p>
+		</div>
+	<?php endif; ?>
 	<div class="edac-settings-general <?php echo EDAC_KEY_VALID ? '' : 'edac-show-pro-callout'; ?>">
 		<form action="options.php" method="post">
 			<?php
