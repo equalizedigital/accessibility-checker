@@ -97,7 +97,7 @@ class AddNewWindowWarningFix implements FixInterface {
 				'wp_enqueue_scripts',
 				function () {
 					wp_deregister_script( 'anww' );
-					wp_dequeue_script( 'anww' );
+					wp_deregister_style( 'anww' );
 				},
 				PHP_INT_MAX
 			);
