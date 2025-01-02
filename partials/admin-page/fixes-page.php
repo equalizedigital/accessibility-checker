@@ -19,7 +19,7 @@
 	?>
 	<?php if ( class_exists( '\ANWW' ) && defined( 'ANWW_VERSION' ) && get_option( 'edac_fix_' . AddNewWindowWarningFix::get_slug() ) ) : ?>
 		<div class="notice notice-warning">
-			<p><?php esc_html_e( 'The Accessibility New Window Warnings plugin is installed. The fixes for new tabs/windows here will override the functions of that plugin. You can safely remove it and use these fixes for the same functionality.', 'accessibility-checker' ); ?></p>
+			<p><?php esc_html_e( 'The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead.', 'accessibility-checker' ); ?></p>
 		</div>
 	<?php endif; ?>
 	<div class="edac-settings-general <?php echo EDAC_KEY_VALID ? '' : 'edac-show-pro-callout'; ?>">
