@@ -171,6 +171,13 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.17.0 =
+* New: Add a new fix for adding a new tab/window warning to links with target="_blank".
+* New: Add a REST endpoint to retrieve a site scan summary.
+* Enhancement: Ensure frontend highlighter can load even when Cloudflare Rocket Loader is enabled.
+* Enhancement: Only show ignore button when user can ignore issues.
+* Fix: URLs without issues would always output `0` when viewed on welcome widget.
+
 = 1.16.4 =
 * Enhancement: Improve the table header detection and validation for row headers.
 * Enhancement: Show notice on fixes settings when they are saved from options page.
