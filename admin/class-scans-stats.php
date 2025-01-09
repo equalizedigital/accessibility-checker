@@ -109,9 +109,10 @@ class Scans_Stats {
 	/**
 	 * Gets summary information about all scans
 	 *
-	 * @return array .
+	 * @param  boolean $skip_cache whether to skip the cache.
+	 * @return array
 	 */
-	public function summary() {
+	public function summary( $skip_cache = false ) {
 
 		global $wpdb;
 
@@ -119,7 +120,7 @@ class Scans_Stats {
 
 		$cache = get_transient( $transient_name );
 
-		if ( $this->cache_time && $cache ) {
+		if ( ! $skip_cache && ( $this->cache_time && $cache ) ) {
 
 			if ( $cache['expires_at'] >= time() && $cache['cached_at'] + $this->cache_time >= time()
 			) {
