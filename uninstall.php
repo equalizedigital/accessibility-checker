@@ -65,6 +65,7 @@ if ( true === (bool) $delete_data ) {
 		'edac_fix_remove_tabindex',
 		'edac_fix_remove_title_if_preferred_accessible_name',
 		'edac_fix_search_label',
+		'edac_fix_new_window_warning',
 	];
 
 	$options_to_clear = array_merge( $options, $fix_options );
