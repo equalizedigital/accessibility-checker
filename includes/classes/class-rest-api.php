@@ -213,19 +213,32 @@ class REST_Api {
 	public function clear_issues_for_post( $request ) {
 
 		if ( ! isset( $request['id'] ) ) {
-			return new \WP_REST_Response( [ 'message' => 'ID paramiter is required' ], 400 );
+			return new \WP_REST_Response( [ 'message' => 'The ID is required to be passed.' ], 400 );
+		}
+
+		$json = $request->get_json_params();
+		if ( ! isset( $json['skip_post_exists_check'] ) ) {
+			$post_id = (int) $request['id'];
+			$post    = get_post( $post_id );
+			if ( ! is_object( $post ) ) {
+				return new \WP_REST_Response( [ 'message' => 'The post is not valid.' ], 400 );
+			}
+
+			$post_type  = get_post_type( $post );
+			$post_types = Helpers::get_option_as_array( 'edac_post_types' );
+			if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
+				return new \WP_REST_Response( [ 'message' => 'The post type is not set to be scanned.' ], 400 );
+			}
 		}
 
 		// if flush is passed in via json and is true, then flush the cache.
-		$json = $request->get_json_params();
-		if ( isset( $json['flush'] ) ) {
+		if ( isset( $json['flush'] ) && true === $json['flush'] ) {
 			// purge the issues for this post.
 			Purge_Post_Data::delete_post( $post_id );
 		}
 		return new \WP_REST_Response(
 			[
 				'success' => true,
-				'flushed' => isset( $json['flush'] ) ? true : false,
 				'id'      => $post_id,
 			]
 		);
