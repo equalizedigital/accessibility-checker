@@ -171,6 +171,12 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.18.0 =
+* New: Add a new fix for adding a new tab/window warning to links with target="_blank".
+* Enahncement: Allow cache bypass from stats requests to force latest numbers.
+* Enhancement: Make a clear-issues endpoint more usable in different situations.
+* Removed: Removed some code that was trying to force no notifications on the plugin pages.
+
 = 1.17.0 =
 * New: Add a new fix for adding a new tab/window warning to links with target="_blank".
 * New: Add a REST endpoint to retrieve a site scan summary.
