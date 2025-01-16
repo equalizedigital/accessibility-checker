@@ -231,14 +231,16 @@ class REST_Api {
 			}
 		}
 
-		// if flush is passed in via json and is true, then flush the cache.
-		if ( isset( $json['flush'] ) && true === $json['flush'] ) {
+		// if flush is set then clear the issues for that ID.
+		if ( isset( $json['flush'] ) ) {
 			// purge the issues for this post.
 			Purge_Post_Data::delete_post( $post_id );
 		}
+
 		return new \WP_REST_Response(
 			[
 				'success' => true,
+				'flushed' => isset( $json['flush'] ),
 				'id'      => $post_id,
 			]
 		);
