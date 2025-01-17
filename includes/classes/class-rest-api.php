@@ -216,10 +216,10 @@ class REST_Api {
 			return new \WP_REST_Response( [ 'message' => 'The ID is required to be passed.' ], 400 );
 		}
 
-		$json = $request->get_json_params();
+		$json    = $request->get_json_params();
+		$post_id = (int) $request['id'];
 		if ( ! isset( $json['skip_post_exists_check'] ) ) {
-			$post_id = (int) $request['id'];
-			$post    = get_post( $post_id );
+			$post = get_post( $post_id );
 			if ( ! is_object( $post ) ) {
 				return new \WP_REST_Response( [ 'message' => 'The post is not valid.' ], 400 );
 			}
