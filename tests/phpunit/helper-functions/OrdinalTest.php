@@ -132,7 +132,7 @@ class OrdinalTest extends WP_UnitTestCase {
 			// Tests for the `ar` locale.
 			'integer 1, ar'         => [
 				'numeric_value'             => 1,
-				'ordinal_value'             => '١.',
+				'ordinal_value'             => '١',
 				'locale'                    => 'ar',
 				'ordinal_value_no_php-intl' => '1st',
 			],
@@ -140,7 +140,7 @@ class OrdinalTest extends WP_UnitTestCase {
 			// Tests for the `el_GR` locale.
 			'integer 1, el_GR'      => [
 				'numeric_value'             => 1,
-				'ordinal_value'             => '1.',
+				'ordinal_value'             => '1',
 				'locale'                    => 'el_GR',
 				'ordinal_value_no_php-intl' => '1st',
 			],

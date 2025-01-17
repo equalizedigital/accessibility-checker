@@ -58,13 +58,12 @@ if ( true === (bool) $delete_data ) {
 		'edac_fix_focus_outline_color',
 		'edac_fix_force_link_underline',
 		'edac_fix_meta_viewport_scalable',
-		'edac_fix_meta-viewport-scalable',
 		'edac_fix_prevent_links_opening_in_new_windows',
 		'edac_fix_prevent_links_opening_new_windows',
-		'edac_fix_prevent-links-opening-new-windows',
 		'edac_fix_remove_tabindex',
 		'edac_fix_remove_title_if_preferred_accessible_name',
 		'edac_fix_search_label',
+		'edac_fix_new_window_warning',
 	];
 
 	$options_to_clear = array_merge( $options, $fix_options );
