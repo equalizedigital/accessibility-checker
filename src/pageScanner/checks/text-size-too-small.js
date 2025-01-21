@@ -17,20 +17,14 @@ export default {
 			return false;
 		}
 
-		// If the node has no child nodes, then consider it as a text node itself and check it.
-		if ( ! node.childNodes.length ) {
+		// Check only if child nodes of the element that are text nodes. Nodes with no
+		// text children are treated as if they are a text node themselves.
+		const hasTextChild = Array.from( node.childNodes ).some( ( child ) => child.nodeType === Node.TEXT_NODE );
+		if ( ! node.childNodes.length || hasTextChild ) {
 			return fontSizeInPx( node ) <= SMALL_FONT_SIZE_THRESHOLD;
 		}
 
-		// Check onlychild nodes of the element that are text nodes.
-		let isTextTooSmall = false;
-		node.childNodes.forEach( ( child ) => {
-			if ( child.nodeType === Node.TEXT_NODE ) {
-				if ( fontSizeInPx( node ) <= SMALL_FONT_SIZE_THRESHOLD ) {
-					isTextTooSmall = true;
-				}
-			}
-		} );
-		return isTextTooSmall;
+		// Did not find any text that was too small.
+		return false;
 	},
 };
