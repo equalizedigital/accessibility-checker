@@ -17,14 +17,16 @@ export default {
 			return false;
 		}
 
-		// Check only if child nodes of the element that are text nodes. Nodes with no
-		// text children are treated as if they are a text node themselves.
+		// Check if the node has any direct text nodes as children. For a node with no
+		// children, or with TEXT_NODE children, evaluate the nodes font size. This
+		// handles both leaf nodes and container elements with mixed content.
 		const hasTextChild = Array.from( node.childNodes ).some( ( child ) => child.nodeType === Node.TEXT_NODE );
 		if ( ! node.childNodes.length || hasTextChild ) {
 			return fontSizeInPx( node ) <= SMALL_FONT_SIZE_THRESHOLD;
 		}
 
-		// Did not find any text that was too small.
+		// No text nodes were found in direct children, and this is not a leaf node,
+		// so we can safely ignore font size checks.
 		return false;
 	},
 };
