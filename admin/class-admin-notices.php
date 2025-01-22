@@ -28,7 +28,7 @@ class Admin_Notices {
 	public function init_hooks() {
 
 		add_action( 'in_admin_header', [ $this, 'edac_remove_admin_notices' ], 1000 );
-		add_action( 'init', [ $this, 'hook_notices' ] );
+		add_action( 'in_admin_header', [ $this, 'hook_notices' ], 1001 );
 		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
 	}
 
