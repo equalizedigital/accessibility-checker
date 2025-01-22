@@ -26,6 +26,8 @@ class Admin_Notices {
 	 * @return void
 	 */
 	public function init_hooks() {
+
+		add_action( 'in_admin_header', [ $this, 'edac_remove_admin_notices' ], 1000 );
 		add_action( 'init', [ $this, 'hook_notices' ] );
 		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
 	}
@@ -50,6 +52,39 @@ class Admin_Notices {
 		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
 		add_action( 'admin_notices', [ $this, 'edac_password_protected_notice' ] );
 		add_action( 'wp_ajax_edac_password_protected_notice_ajax', [ $this, 'edac_password_protected_notice_ajax' ] );
+	}
+
+	/**
+	 * Remove Admin Notices
+	 *
+	 * @return void
+	 */
+	public function edac_remove_admin_notices() {
+
+		$current_screen = get_current_screen();
+		$screens        = apply_filters(
+			'edac_filter_remove_admin_notices_screens',
+			[
+				'toplevel_page_accessibility_checker',
+				'accessibility-checker_page_accessibility_checker_issues',
+				'accessibility-checker_page_accessibility_checker_ignored',
+				'accessibility-checker_page_accessibility_checker_settings',
+			]
+		);
+
+		/**
+		 * Filter the screens where admin notices should be removed.
+		 *
+		 * @since 1.14.0
+		 *
+		 * @param array $screens The screens where admin notices should be removed.
+		 */
+		$screens = apply_filters( 'edac_filter_remove_admin_notices_screens', $screens );
+
+		if ( in_array( $current_screen->id, $screens, true ) ) {
+			remove_all_actions( 'admin_notices' );
+			remove_all_actions( 'all_admin_notices' );
+		}
 	}
 
 	/**
