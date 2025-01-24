@@ -1057,8 +1057,8 @@ function edac_is_woocommerse_enabled() {
  * @param int $post_id The post ID to check.
  * @return bool
  */
-function edac_check_if_post_id_is_woocommerse_checkout_page( $post_id ) {
-	if ( ! edacp_is_woocommerse_enabled() ) {
+function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
+	if ( ! edac_is_woocommerce_enabled() ) {
 		return false;
 	}
 
