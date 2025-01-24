@@ -1043,7 +1043,7 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 /**
  * Check if WooCommerce is enabled.
  *
- * This just checks for existance of the main WooCommerce function and class.
+ * This just checks for existence of the main WooCommerce function and class.
  *
  * @return bool
  */
