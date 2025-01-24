@@ -146,11 +146,11 @@ function edac_validate( $post_ID, $post, $action ) {
 	do_action( 'edac_after_get_content', $post_ID, $content, $action );
 
 	if ( ! $content['html'] ) {
-		// The woocommerse checkout page will always be a redirect when it has no items. The redirect
+		// The woocommerce checkout page will always be a redirect when it has no items. The redirect
 		// will cause the content to be empty.
 		// TEMPORARY FIX: Just return without setting this as a password protected page. In future we
 		// will need to fix this properly by adding a product to the cart before checking.
-		if ( edac_check_if_post_id_is_woocommerse_checkout_page( $post_ID ) ) {
+		if ( edac_check_if_post_id_is_woocommerce_checkout_page( $post_ID ) ) {
 			return;
 		}
 

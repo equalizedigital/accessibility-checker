@@ -1047,7 +1047,7 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
  *
  * @return bool
  */
-function edac_is_woocommerse_enabled() {
+function edac_is_woocommerce_enabled() {
 	return function_exists( 'WC' ) && class_exists( 'WooCommerce' );
 }
 
