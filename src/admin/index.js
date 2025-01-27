@@ -685,6 +685,21 @@ window.addEventListener( 'load', function() {
 		initFixButtonEventHandlers();
 	}
 
+	// On our welcome page the notices break layout, so we move them to a new container in
+	// the grid we have in the header.
+	const notices = document.querySelectorAll( '.edac-welcome-header-left .notice' );
+	if ( notices.length ) {
+		// Create a new div after .edac-welcome-header-right element
+		const noticesContainer = document.createElement( 'div' );
+		noticesContainer.classList.add( 'edac-welcome-header-notices' );
+		document.querySelector( '.edac-welcome-header-right' ).insertAdjacentElement( 'afterend', noticesContainer );
+		if ( document.querySelector( '.edac-welcome-header-notices' ) ) {
+			notices.forEach( function( notice ) {
+				noticesContainer.appendChild( notice );
+			} );
+		}
+	}
+
 	edacTimestampToLocal();
 } );
 

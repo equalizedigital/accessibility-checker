@@ -923,6 +923,10 @@
         display: block;
       }
     }
+
+	&-notices {
+		grid-column: 1 / -1;
+	}
   }
 
   &-title {
