@@ -905,28 +905,39 @@
     padding: 1rem 2rem;
     border-bottom: 1px solid variables.$color-gray-light;
 
-    @include helpers.breakpoint(md) {
+    @include helpers.breakpoint(sm) {
       display: grid;
-      grid-template-columns: auto 200px;
+      grid-template-columns: minmax(200px, auto) 1fr;
     }
 
+	&-version {
+		display: block;
+		font-size: 12px;
+		margin-top: 6px;
+	}
+
     &-left {
-      grid-column: 1 / 2;
       grid-row: 1;
     }
+
+	&-left,
+	&-notices {
+		grid-column: 1 / -1;
+	}
 
     &-right {
       grid-column: 2 / 3;
       grid-row: 1;
 
       a {
-        display: block;
+        display: inline-block;
       }
     }
   }
 
   &-title {
     font-size: 24px;
+    display: inline-block;
   }
 
   &-subtitle {
@@ -1595,8 +1606,17 @@
       flex-direction: column-reverse;
       text-align: center;
 
+      .edac-welcome-header-left {
+		order: 2;
+	  }
+
       .edac-welcome-header-right {
         text-align: center;
+		  order: 3;
+      }
+
+      .edac-welcome-header-notices {
+        order: 1
       }
     }
 

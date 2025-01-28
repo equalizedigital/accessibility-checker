@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.7.0
-Stable tag: 1.18.0
+Stable tag: 1.19.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.19.0 =
+* Enhancement: Improve the text_size_too_small check in scanner to avoid more false positives.
+* Fix: Ensure that our notifications can appear on our own admin pages.
+* Fix: No longer trigger password protected notice on other pages when scanning woocommerse checkout page.
 
 = 1.18.0 =
 * New: Add a new fix for adding a new tab/window warning to links with target="_blank".

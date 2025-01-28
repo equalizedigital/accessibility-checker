@@ -25,14 +25,14 @@ use EDAC\Admin\Welcome_Page;
 						$version       = EDAC_VERSION;
 					}
 
-					echo esc_html( $welcome_title );
+					printf(
+						'%1$s <span class="edac-welcome-header-version">%2$s %3$s</span>',
+						esc_html( $welcome_title ),
+						esc_html__( 'version', 'accessibility-checker' ),
+						esc_html( $version )
+					);
 					?>
 				</h1>
-				<p>
-					<?php
-					echo( esc_html__( 'version ', 'accessibility-checker' ) . esc_html( $version ) );
-					?>
-				</p>
 			</div>
 
 		<div class="edac-welcome-header-right">
