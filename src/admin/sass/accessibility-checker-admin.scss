@@ -905,13 +905,19 @@
     padding: 1rem 2rem;
     border-bottom: 1px solid variables.$color-gray-light;
 
-    @include helpers.breakpoint(md) {
+    @include helpers.breakpoint(sm) {
       display: grid;
-      grid-template-columns: auto 200px;
+      grid-template-columns: minmax(200px, auto) 1fr;
     }
 
+	&-version {
+		display: block;
+		font-size: 12px;
+		margin-top: 6px;
+	}
+
     &-left {
-      grid-column: 1 / 2;
+      grid-column: 1 / -1;
       grid-row: 1;
     }
 
@@ -920,17 +926,14 @@
       grid-row: 1;
 
       a {
-        display: block;
+        display: inline-block;
       }
     }
-
-	&-notices {
-		grid-column: 1 / -1;
-	}
   }
 
   &-title {
     font-size: 24px;
+    display: inline-block;
   }
 
   &-subtitle {
