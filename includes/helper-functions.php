@@ -1039,3 +1039,28 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 	}
 	return add_query_arg( $query_args, $base_link );
 }
+
+/**
+ * Check if WooCommerce is enabled.
+ *
+ * This just checks for existence of the main WooCommerce function and class.
+ *
+ * @return bool
+ */
+function edac_is_woocommerce_enabled() {
+	return function_exists( 'WC' ) && class_exists( 'WooCommerce' );
+}
+
+/**
+ * Check if a given post id is the WooCommerce checkout page.
+ *
+ * @param int $post_id The post ID to check.
+ * @return bool
+ */
+function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
+	if ( ! edac_is_woocommerce_enabled() ) {
+		return false;
+	}
+
+	return wc_get_page_id( 'checkout' ) === $post_id;
+}
