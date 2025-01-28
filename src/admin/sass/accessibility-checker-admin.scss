@@ -917,9 +917,13 @@
 	}
 
     &-left {
-      grid-column: 1 / -1;
       grid-row: 1;
     }
+
+	&-left,
+	&-notices {
+		grid-column: 1 / -1;
+	}
 
     &-right {
       grid-column: 2 / 3;
@@ -1602,8 +1606,17 @@
       flex-direction: column-reverse;
       text-align: center;
 
+      .edac-welcome-header-left {
+		order: 2;
+	  }
+
       .edac-welcome-header-right {
         text-align: center;
+		  order: 3;
+      }
+
+      .edac-welcome-header-notices {
+        order: 1
       }
     }
 

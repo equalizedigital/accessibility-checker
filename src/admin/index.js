@@ -693,6 +693,7 @@ window.addEventListener( 'load', function() {
 		const noticesContainer = document.createElement( 'div' );
 		noticesContainer.classList.add( 'edac-welcome-header-notices' );
 		document.querySelector( '.edac-welcome-header-right' ).insertAdjacentElement( 'afterend', noticesContainer );
+		// If the new container was created then put the notices into it.
 		if ( document.querySelector( '.edac-welcome-header-notices' ) ) {
 			notices.forEach( function( notice ) {
 				noticesContainer.appendChild( notice );
