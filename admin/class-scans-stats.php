@@ -156,9 +156,9 @@ class Scans_Stats {
 
 		$issues_query = new Issues_Query( [], $this->record_limit, Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES );
 
-		$data['is_truncated']  = $issues_query->has_truncated_results();
-		$data['posts_scanned'] = (int) $issues_query->distinct_posts_count();
-		$data['rules_failed']  = 0;
+		$data['is_truncated']               = $issues_query->has_truncated_results();
+		$data['distinct_posts_with_issues'] = (int) $issues_query->distinct_posts_count();
+		$data['rules_failed']               = 0;
 
 		// Get a count of rules that are not in the issues table.
 		$rule_slugs = array_map(
