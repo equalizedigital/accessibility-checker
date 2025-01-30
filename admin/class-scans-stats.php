@@ -156,6 +156,18 @@ class Scans_Stats {
 
 		$issues_query = new Issues_Query( [], $this->record_limit, Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES );
 
+		// Count total unique meta values from postmeta table where the meta_key is _edac_issue_density.
+		// This will give us the total number of posts that have been scanned.
+		$data['posts_scanned'] = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+			$wpdb->prepare(
+				'SELECT COUNT(DISTINCT %i) FROM %i WHERE meta_key = %s',
+				'post_id',
+				$wpdb->postmeta,
+				'_edac_issue_density'
+			)
+		);
+
+
 		$data['is_truncated']               = $issues_query->has_truncated_results();
 		$data['distinct_posts_with_issues'] = (int) $issues_query->distinct_posts_count();
 		$data['rules_failed']               = 0;
