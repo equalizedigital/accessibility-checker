@@ -271,9 +271,9 @@ class Scans_Stats {
 			$wpdb->prepare(
 				'SELECT avg(meta_value) from ' . $wpdb->postmeta . '
 				JOIN ' . $wpdb->prefix . 'accessibility_checker ON postid=post_id
-				WHERE meta_key = %s and meta_value > %d
+				WHERE meta_key = %s
 				and ' . $wpdb->prefix . 'accessibility_checker.siteid=%d and ignre=%d and ignre_global=%d LIMIT %d',
-				[ '_edac_issue_density', 0, $siteid, 0, 0, $this->record_limit ]
+				[ '_edac_issue_density', $siteid, 0, 0, $this->record_limit ]
 			)
 		);
 
