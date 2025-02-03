@@ -264,6 +264,10 @@ class Scans_Stats {
          // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$data['posts_without_issues'] = $wpdb->get_var( $sql );
 			$data['avg_issues_per_post']  = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
+
+			if ( $data['avg_issues_per_post'] < 1 ) {
+				$data['avg_issues_per_post'] = '< 1';
+			}
 		}
 
 		$data['avg_issue_density_percentage'] =
