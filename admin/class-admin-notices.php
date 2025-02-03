@@ -29,6 +29,9 @@ class Admin_Notices {
 
 		add_action( 'in_admin_header', [ $this, 'edac_remove_admin_notices' ], 1000 );
 		add_action( 'in_admin_header', [ $this, 'hook_notices' ], 1001 );
+		// register ajax actions.
+		add_action( 'wp_ajax_edac_welcome_page_post_count_change_notice_dismiss_ajax', [ $this, 'welcome_page_post_count_change_notice_ajax' ] );
+		// hook to save fixes transient.
 		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
 	}
 
@@ -51,7 +54,68 @@ class Admin_Notices {
 		add_action( 'admin_notices', [ $this, 'edac_review_notice' ] );
 		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
 		add_action( 'admin_notices', [ $this, 'edac_password_protected_notice' ] );
+		add_action( 'admin_notices', [ $this, 'welcome_page_post_count_change_notice' ] );
 		add_action( 'wp_ajax_edac_password_protected_notice_ajax', [ $this, 'edac_password_protected_notice_ajax' ] );
+	}
+
+	/**
+	 * Notify users of the improvements to stats calculations.
+	 *
+	 * In version 1.20.0 we changed how posts_scanned was counted along with how other values like averages
+	 * were calculated.
+	 *
+	 * @since 1.20.0
+	 *
+	 * @return void
+	 */
+	public function welcome_page_post_count_change_notice() {
+		// Only show this notice if the version number is below 1.21.0.
+		if ( version_compare( EDAC_VERSION, '1.21.0', '>=' ) ) {
+			return;
+		}
+
+		// Only output this message on the welcome page.
+		if ( 'toplevel_page_accessibility_checker' !== get_current_screen()->id ) {
+			return;
+		}
+
+		// Check if the notice has been dismissed.
+		if ( absint( get_option( 'edac_welcome_page_post_count_change_notice_dismiss', 0 ) ) ) {
+			return;
+		}
+
+		?>
+		<div class="notice notice-info is-dismissible edac-stats-improvement-notice">
+			<p><?php esc_html_e( 'We have improved the statistics calculations in version 1.12.0. As a result, some numbers in the data below may have changed. Read more in our release announcement post.', 'accessibility-checker' ); ?></p>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Store a option to remember when user has dismissed this notice.
+	 *
+	 * @return void
+	 */
+	public function welcome_page_post_count_change_notice_ajax() {
+
+		// nonce security.
+		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
+
+			$error = new \WP_Error( '-1', 'Permission Denied' );
+			wp_send_json_error( $error );
+
+		}
+
+		$results = update_option( 'edac_welcome_page_post_count_change_notice_dismiss', true );
+
+		if ( ! $results ) {
+
+			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			wp_send_json_error( $error );
+
+		}
+
+		wp_send_json_success( wp_json_encode( $results ) );
 	}
 
 	/**
