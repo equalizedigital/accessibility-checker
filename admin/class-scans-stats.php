@@ -280,7 +280,7 @@ class Scans_Stats {
 		if ( null === $data['avg_issue_density_percentage'] ) {
 			$data['avg_issue_density_percentage'] = 'N/A';
 		} else {
-			$data['avg_issue_density_percentage'] = $data['avg_issue_density_percentage'] < 1 ? '< 1' : round( $data['avg_issue_density_percentage'], 2 );
+			$data['avg_issue_density_percentage'] = $data['avg_issue_density_percentage'] < 1 ? '< 1%' : round( $data['avg_issue_density_percentage'], 2 );
 		}
 
 		$data['fullscan_running']      = false;
