@@ -302,9 +302,9 @@ class Admin_Notices {
 				<?php esc_html_e( "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!", 'accessibility-checker' ); ?>
 			</p>
 			<p>
-				<button class="edac-review-notice-review"><?php esc_html_e( 'Write A Review', 'accessibility-checker' ); ?></button>
-				<button class="edac-review-notice-remind"><?php esc_html_e( 'Remind Me In Two Weeks', 'accessibility-checker' ); ?></button>
-				<button class="edac-review-notice-dismiss"><?php esc_html_e( 'Never Ask Again', 'accessibility-checker' ); ?></button>
+				<button class="edac-review-notice-review button button-small button-primary"><?php esc_html_e( 'Write A Review', 'accessibility-checker' ); ?></button>
+				<button class="edac-review-notice-remind button button-small"><?php esc_html_e( 'Remind Me In Two Weeks', 'accessibility-checker' ); ?></button>
+				<button class="edac-review-notice-dismiss button button-small"><?php esc_html_e( 'Never Ask Again', 'accessibility-checker' ); ?></button>
 			</p>
 		</div>
 		<?php
