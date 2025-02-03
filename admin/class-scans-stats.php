@@ -251,18 +251,28 @@ class Scans_Stats {
 			&& ! empty( Settings::get_scannable_post_statuses() )
 		) {
 
-			$sql = "SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}
-			LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
-			$wpdb->prefix . 'accessibility_checker.postid WHERE ' .
-			$wpdb->prefix . 'accessibility_checker.postid IS NULL and post_type IN(' .
-			Helpers::array_to_sql_safe_list(
-				Settings::get_scannable_post_types()
-			) . ') and post_status IN(' . Helpers::array_to_sql_safe_list(
-				Settings::get_scannable_post_statuses()
-			) . ')';
+			$posts_without_issues = "
+				SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}
+				LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
+				$wpdb->prefix . 'accessibility_checker.postid WHERE ' .
+				$wpdb->prefix . 'accessibility_checker.postid IS NULL and post_type IN(' .
+				Helpers::array_to_sql_safe_list(
+					Settings::get_scannable_post_types()
+				) . ') and post_status IN(' . Helpers::array_to_sql_safe_list(
+					Settings::get_scannable_post_statuses()
+				) . ')';
 
-         // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
-			$data['posts_without_issues'] = $wpdb->get_var( $sql );
+			// give me sql that will find all post ids in the accessibility_checker table
+			// where ALL issues with that ID are eiter ignored or globally ignored.
+			$posts_with_just_ignored_issues = '
+				SELECT postid FROM ' . $wpdb->prefix . 'accessibility_checker
+				WHERE postid IN (SELECT postid FROM ' . $wpdb->prefix . 'accessibility_checker
+				WHERE ignre=0 OR ignre_global=0)
+				GROUP BY postid
+				HAVING COUNT(*) = SUM(ignre=0 OR ignre_global=0)';
+
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+			$data['posts_without_issues'] = $wpdb->get_var( $posts_without_issues ) + $wpdb->get_var( $posts_with_just_ignored_issues );
 			$data['avg_issues_per_post']  = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
 
 			if ( $data['avg_issues_per_post'] < 1 ) {
