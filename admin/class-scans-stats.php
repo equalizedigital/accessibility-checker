@@ -281,15 +281,15 @@ class Scans_Stats {
 		}
 
 		$data['avg_issue_density_percentage'] =
-		$wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
-			$wpdb->prepare(
-				'SELECT avg(meta_value) from ' . $wpdb->postmeta . '
-				JOIN ' . $wpdb->prefix . 'accessibility_checker ON postid=post_id
-				WHERE meta_key = %s
-				and ' . $wpdb->prefix . 'accessibility_checker.siteid=%d and ignre=%d and ignre_global=%d LIMIT %d',
-				[ '_edac_issue_density', $siteid, 0, 0, $this->record_limit ]
-			)
-		);
+			$wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+				$wpdb->prepare(
+					'SELECT avg(meta_value) from ' . $wpdb->postmeta . '
+					JOIN ' . $wpdb->prefix . 'accessibility_checker ON postid=post_id
+					WHERE meta_key = %s
+					and ' . $wpdb->prefix . 'accessibility_checker.siteid=%d and ignre=%d and ignre_global=%d LIMIT %d',
+					[ '_edac_issue_density', $siteid, 0, 0, $this->record_limit ]
+				)
+			);
 
 		if ( null === $data['avg_issue_density_percentage'] ) {
 			$data['avg_issue_density_percentage'] = 'N/A';
