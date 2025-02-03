@@ -29,6 +29,12 @@ class Admin_Notices {
 
 		add_action( 'in_admin_header', [ $this, 'edac_remove_admin_notices' ], 1000 );
 		add_action( 'in_admin_header', [ $this, 'hook_notices' ], 1001 );
+		// Ajax handlers for notices.
+		add_action( 'wp_ajax_edac_black_friday_notice_ajax', [ $this, 'edac_black_friday_notice_ajax' ] );
+		add_action( 'wp_ajax_edac_gaad_notice_ajax', [ $this, 'edac_gaad_notice_ajax' ] );
+		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
+		add_action( 'wp_ajax_edac_password_protected_notice_ajax', [ $this, 'edac_password_protected_notice_ajax' ] );
+		// Save fixes transient on save.
 		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
 	}
 
@@ -45,13 +51,9 @@ class Admin_Notices {
 		}
 
 		add_action( 'admin_notices', [ $this, 'edac_black_friday_notice' ] );
-		add_action( 'wp_ajax_edac_black_friday_notice_ajax', [ $this, 'edac_black_friday_notice_ajax' ] );
 		add_action( 'admin_notices', [ $this, 'edac_gaad_notice' ] );
-		add_action( 'wp_ajax_edac_gaad_notice_ajax', [ $this, 'edac_gaad_notice_ajax' ] );
 		add_action( 'admin_notices', [ $this, 'edac_review_notice' ] );
-		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
 		add_action( 'admin_notices', [ $this, 'edac_password_protected_notice' ] );
-		add_action( 'wp_ajax_edac_password_protected_notice_ajax', [ $this, 'edac_password_protected_notice_ajax' ] );
 	}
 
 	/**
