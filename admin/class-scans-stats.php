@@ -283,16 +283,25 @@ class Scans_Stats {
 			}
 		}
 
+		// Average issue density percentage is the sum of all post densities divided by the number of posts scanned.
 		$data['avg_issue_density_percentage'] =
 			$wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 				$wpdb->prepare(
-					'SELECT avg(meta_value) from ' . $wpdb->postmeta . '
-					JOIN ' . $wpdb->prefix . 'accessibility_checker ON postid=post_id
-					WHERE meta_key = %s
-					and ' . $wpdb->prefix . 'accessibility_checker.siteid=%d and ignre=%d and ignre_global=%d LIMIT %d',
-					[ '_edac_issue_density', $siteid, 0, 0, $this->record_limit ]
+					'SELECT AVG(meta_value)
+					FROM ' . $wpdb->postmeta . '
+					JOIN (
+						SELECT DISTINCT postid
+						FROM ' . $wpdb->prefix . 'accessibility_checker
+					) AS distinct_posts ON ' . $wpdb->postmeta . '.post_id = distinct_posts.postid
+					WHERE meta_key = %s',
+					[ '_edac_issue_density' ]
 				)
 			);
+
+		// if the number is over 1 then we need to make it a fraction below 1.
+		if ( $data['avg_issue_density_percentage'] > 1 ) {
+			$data['avg_issue_density_percentage'] = 1 - ( 1 / $data['avg_issue_density_percentage'] );
+		}
 
 		if ( null === $data['avg_issue_density_percentage'] ) {
 			$data['avg_issue_density_percentage'] = 'N/A';
