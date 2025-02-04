@@ -252,26 +252,22 @@ class Scans_Stats {
 		) {
 			$ac_table_name = $wpdb->prefix . 'accessibility_checker';
 
-			// Get all posts in scannable post types with scannable post statuses and that have no issues.
-			$posts_without_issues = $wpdb->prepare(
-				"SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}
-				LEFT JOIN %i ON {$wpdb->posts}.ID = " .
+			$posts_without_issues = "
+				SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}
+				LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
 				$wpdb->prefix . 'accessibility_checker.postid WHERE ' .
 				$wpdb->prefix . 'accessibility_checker.postid IS NULL
-				AND post_type IN(%s)
-				AND post_status IN(%s)',
-				[
-					$ac_table_name,
+				AND post_type IN(' .
 					Helpers::array_to_sql_safe_list(
 						Settings::get_scannable_post_types()
-					),
+					) . ')
+				AND post_status IN(' .
 					Helpers::array_to_sql_safe_list(
 						Settings::get_scannable_post_statuses()
-					),
-				]
-			);
+					) . ')';
 
-			// Get all posts that have ONLY ignored issues.
+			// give me sql that will find all post ids in the accessibility_checker table
+			// where ALL issues with that ID are eiter ignored or globally ignored.
 			$posts_with_just_ignored_issues = $wpdb->prepare(
 				'SELECT COUNT( DISTINCT postid )
 				FROM %i
