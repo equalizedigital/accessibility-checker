@@ -250,29 +250,39 @@ class Scans_Stats {
 			&& ! empty( Settings::get_scannable_post_types() )
 			&& ! empty( Settings::get_scannable_post_statuses() )
 		) {
+			$ac_table_name = $wpdb->prefix . 'accessibility_checker';
 
-			$posts_without_issues = "
-				SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}
-				LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
+			// Get all posts in scannable post types with scannable post statuses and that have no issues.
+			$posts_without_issues = $wpdb->prepare(
+				"SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}
+				LEFT JOIN %i ON {$wpdb->posts}.ID = " .
 				$wpdb->prefix . 'accessibility_checker.postid WHERE ' .
-				$wpdb->prefix . 'accessibility_checker.postid IS NULL and post_type IN(' .
-				Helpers::array_to_sql_safe_list(
-					Settings::get_scannable_post_types()
-				) . ') and post_status IN(' . Helpers::array_to_sql_safe_list(
-					Settings::get_scannable_post_statuses()
-				) . ')';
+				$wpdb->prefix . 'accessibility_checker.postid IS NULL
+				AND post_type IN(%s)
+				AND post_status IN(%s)',
+				[
+					$ac_table_name,
+					Helpers::array_to_sql_safe_list(
+						Settings::get_scannable_post_types()
+					),
+					Helpers::array_to_sql_safe_list(
+						Settings::get_scannable_post_statuses()
+					),
+				]
+			);
 
-			// give me sql that will find all post ids in the accessibility_checker table
-			// where ALL issues with that ID are eiter ignored or globally ignored.
-
-			$posts_with_just_ignored_issues = 'SELECT COUNT( DISTINCT postid )
-				FROM ' . $wpdb->prefix . 'accessibility_checker
-				WHERE siteid = ' . $siteid . '
+			// Get all posts that have ONLY ignored issues.
+			$posts_with_just_ignored_issues = $wpdb->prepare(
+				'SELECT COUNT( DISTINCT postid )
+				FROM %i
+				WHERE siteid = %d
 				AND postid NOT IN (
 				  	SELECT postid
-				  	FROM ' . $wpdb->prefix . 'accessibility_checker
+				  	FROM %i
 				  	WHERE ignre=0 AND ignre_global=0
-				)';
+				)',
+				[ $ac_table_name, $siteid, $ac_table_name ]
+			);
 
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$data['posts_without_issues'] = $wpdb->get_var( $posts_without_issues ) + $wpdb->get_var( $posts_with_just_ignored_issues );
