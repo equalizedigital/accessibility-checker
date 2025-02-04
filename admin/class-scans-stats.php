@@ -264,10 +264,15 @@ class Scans_Stats {
 
 			// give me sql that will find all post ids in the accessibility_checker table
 			// where ALL issues with that ID are eiter ignored or globally ignored.
-			$posts_with_just_ignored_issues = '
-				SELECT COUNT( postid ) FROM ' . $wpdb->prefix . 'accessibility_checker
-				WHERE postid IN (SELECT DISTINCT postid FROM ' . $wpdb->prefix . 'accessibility_checker
-				WHERE ignre=0 OR ignre_global=0)';
+
+			$posts_with_just_ignored_issues = 'SELECT COUNT( DISTINCT postid )
+				FROM ' . $wpdb->prefix . 'accessibility_checker
+				WHERE siteid = ' . $siteid . '
+				AND postid NOT IN (
+				  	SELECT postid
+				  	FROM ' . $wpdb->prefix . 'accessibility_checker
+				  	WHERE ignre=0 AND ignre_global=0
+				)';
 
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$data['posts_without_issues'] = $wpdb->get_var( $posts_without_issues ) + $wpdb->get_var( $posts_with_just_ignored_issues );
