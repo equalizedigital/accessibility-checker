@@ -171,6 +171,12 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.20.0 =
+* Enhancement: Process dynamic blocks and oEmbeds more reliably in scans.
+* Enhancement: Improve detection for missing_transcripts if there are several oEmbed videos from same provider on page.
+* Fix: Ensure notice dismiss function works correctly on all pages and that review notice buttons are styled.
+* Fix: Correct some cases where pluralization of phrases could be misapplied.
+
 = 1.19.0 =
 * Enhancement: Improve the text_size_too_small check in scanner to avoid more false positives.
 * Fix: Ensure that our notifications can appear on our own admin pages.
