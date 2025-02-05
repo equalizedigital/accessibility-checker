@@ -20,12 +20,15 @@ while getopts ":-:" opt; do
   esac
 done
 
-#Remove the contents of the dist folder
-rm -frd ./dist
-mkdir ./dist
+# Ensure ./dist directory exists.
+#rm -frd ./dist
+mkdir -p ./dist
 
-#Run the wp script that produces the zip
+# Run the wp script that produces the zip
 npx wp-scripts plugin-zip
+
+# Always clear the dist/accessiblity-checker folder before unzipping
+rm -rfd ./dist/accessibility-checker
 
 # unzip the zip into its own folder so we can zip that
 unzip accessibility-checker.zip -d ./dist/accessibility-checker
@@ -40,13 +43,17 @@ rm ./dist/accessibility-checker/vendor/davechild/textstatistics/tests -r
 #remove the original zip
 rm accessibility-checker.zip
 
-#move into the dist folder and zip the plugin's folder
+# get the digits at the end of the line starting with ' * Version:' from the main plugin file
+VERSION=$(grep " * Version:" ./dist/accessibility-checker/accessibility-checker.php | grep -o '[0-9.]*\(-[a-zA-Z0-9.]*\)*')
+
+# Move into the dist folder and zip the plugin's folder
 cd ./dist
-zip -r accessibility-checker.zip ./accessibility-checker
+zip -r accessibility-checker-$VERSION.zip accessibility-checker
 
 #cleanup and drop back into the original dir
+cd ..
+
 # Skip this step if the 'keep-build-folder' flag is true
 if [ "$KEEP_BUILD_FOLDER" = false ] ; then
-  rm -r ./accessibility-checker
+  rm -r ./dist/accessibility-checker
 fi
-cd ..
