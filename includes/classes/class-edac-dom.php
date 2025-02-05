@@ -91,7 +91,7 @@ class EDAC_Dom extends simple_html_dom {
 		}
 
 		foreach ( $elements as $element ) {
-			$element->innertext = '[' . $element->tag_start . '_ac_element]';
+			$element->outertext .= ' element:' . $element->tag_start;
 		}
 	}
 
