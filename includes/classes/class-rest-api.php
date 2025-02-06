@@ -202,8 +202,7 @@ class REST_Api {
 				);
 			}
 		);
-
-		add_action( 'rest_api_init',[ $this, 'register_issues_api' ] );
+		add_action( 'rest_api_init', [ $this, 'register_issues_api' ] );
 	}
 
 	public function register_issues_api() {
