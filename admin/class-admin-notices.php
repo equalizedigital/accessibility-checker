@@ -61,16 +61,16 @@ class Admin_Notices {
 	/**
 	 * Notify users of the improvements to stats calculations.
 	 *
-	 * In version 1.20.0 we changed how posts_scanned was counted along with how other values like averages
+	 * In version 1.21.0 we changed how posts_scanned was counted along with how other values like averages
 	 * were calculated.
 	 *
-	 * @since 1.20.0
+	 * @since 1.21.0
 	 *
 	 * @return void
 	 */
 	public function welcome_page_post_count_change_notice() {
-		// Only show this notice if the version number is below 1.21.0.
-		if ( version_compare( EDAC_VERSION, '1.21.0', '>=' ) ) {
+		// Only show this notice if the version number is below 1.22.0.
+		if ( version_compare( EDAC_VERSION, '1.22.0', '>=' ) ) {
 			return;
 		}
 
