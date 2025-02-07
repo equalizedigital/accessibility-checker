@@ -34,7 +34,7 @@ class Admin_Notices {
 		add_action( 'wp_ajax_edac_gaad_notice_ajax', [ $this, 'edac_gaad_notice_ajax' ] );
 		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
 		add_action( 'wp_ajax_edac_password_protected_notice_ajax', [ $this, 'edac_password_protected_notice_ajax' ] );
-    add_action( 'wp_ajax_edac_welcome_page_post_count_change_notice_dismiss_ajax', [ $this, 'welcome_page_post_count_change_notice_ajax' ] );
+		add_action( 'wp_ajax_edac_welcome_page_post_count_change_notice_dismiss_ajax', [ $this, 'welcome_page_post_count_change_notice_ajax' ] );
 		// Save fixes transient on save.
 		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
 	}
