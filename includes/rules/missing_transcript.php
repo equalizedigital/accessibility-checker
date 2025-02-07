@@ -28,8 +28,7 @@ function edac_rule_missing_transcript( $content, $post ) { // phpcs:ignore -- $c
 	$dom->convert_tag_to_marker( [ 'img', 'iframe', 'audio', 'video', '.is-type-video' ] );
 	foreach ( $elements as $element ) {
 		if ( ! $dom->text_around_element_contains( $element, __( 'transcript', 'accessibility-checker' ), 25 ) ) {
-			$element->innertext = '';
-			$errors[]           = $element;
+			$errors[] = $element;
 		}
 	}
 	$linked_media = $dom->find_linked_media( true );

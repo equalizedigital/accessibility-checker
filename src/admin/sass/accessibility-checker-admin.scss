@@ -1110,12 +1110,8 @@
   }
 
   &-review {
-    color: variables.$color-white;
-    font-weight: bold;
-    background-color: variables.$color-blue;
-    border: none;
-    border-radius: 5px;
-    padding: 3px 6px;
+
+    font-weight: 600;
 
     &:after {
       content: " \f155\f155\f155\f155\f155";
@@ -1123,15 +1119,9 @@
       position: relative;
       bottom: -1px;
       color: variables.$color-yellow;
-    }
-
-    &:hover {
-      background-color: #135e96;
+      font-size: 10px;
     }
   }
-
-  &-remind,
-  &-dismiss {}
 }
 
 .edac_gaad_notice,

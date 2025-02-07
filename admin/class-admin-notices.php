@@ -29,9 +29,13 @@ class Admin_Notices {
 
 		add_action( 'in_admin_header', [ $this, 'edac_remove_admin_notices' ], 1000 );
 		add_action( 'in_admin_header', [ $this, 'hook_notices' ], 1001 );
-		// register ajax actions.
-		add_action( 'wp_ajax_edac_welcome_page_post_count_change_notice_dismiss_ajax', [ $this, 'welcome_page_post_count_change_notice_ajax' ] );
-		// hook to save fixes transient.
+		// Ajax handlers for notices.
+		add_action( 'wp_ajax_edac_black_friday_notice_ajax', [ $this, 'edac_black_friday_notice_ajax' ] );
+		add_action( 'wp_ajax_edac_gaad_notice_ajax', [ $this, 'edac_gaad_notice_ajax' ] );
+		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
+		add_action( 'wp_ajax_edac_password_protected_notice_ajax', [ $this, 'edac_password_protected_notice_ajax' ] );
+    add_action( 'wp_ajax_edac_welcome_page_post_count_change_notice_dismiss_ajax', [ $this, 'welcome_page_post_count_change_notice_ajax' ] );
+		// Save fixes transient on save.
 		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
 	}
 
@@ -48,14 +52,10 @@ class Admin_Notices {
 		}
 
 		add_action( 'admin_notices', [ $this, 'edac_black_friday_notice' ] );
-		add_action( 'wp_ajax_edac_black_friday_notice_ajax', [ $this, 'edac_black_friday_notice_ajax' ] );
 		add_action( 'admin_notices', [ $this, 'edac_gaad_notice' ] );
-		add_action( 'wp_ajax_edac_gaad_notice_ajax', [ $this, 'edac_gaad_notice_ajax' ] );
 		add_action( 'admin_notices', [ $this, 'edac_review_notice' ] );
-		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
 		add_action( 'admin_notices', [ $this, 'edac_password_protected_notice' ] );
 		add_action( 'admin_notices', [ $this, 'welcome_page_post_count_change_notice' ] );
-		add_action( 'wp_ajax_edac_password_protected_notice_ajax', [ $this, 'edac_password_protected_notice_ajax' ] );
 	}
 
 	/**
@@ -366,9 +366,9 @@ class Admin_Notices {
 				<?php esc_html_e( "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!", 'accessibility-checker' ); ?>
 			</p>
 			<p>
-				<button class="edac-review-notice-review"><?php esc_html_e( 'Write A Review', 'accessibility-checker' ); ?></button>
-				<button class="edac-review-notice-remind"><?php esc_html_e( 'Remind Me In Two Weeks', 'accessibility-checker' ); ?></button>
-				<button class="edac-review-notice-dismiss"><?php esc_html_e( 'Never Ask Again', 'accessibility-checker' ); ?></button>
+				<button class="edac-review-notice-review button button-small button-primary"><?php esc_html_e( 'Write A Review', 'accessibility-checker' ); ?></button>
+				<button class="edac-review-notice-remind button button-small"><?php esc_html_e( 'Remind Me In Two Weeks', 'accessibility-checker' ); ?></button>
+				<button class="edac-review-notice-dismiss button button-small"><?php esc_html_e( 'Never Ask Again', 'accessibility-checker' ); ?></button>
 			</p>
 		</div>
 		<?php
