@@ -307,7 +307,7 @@ class Scans_Stats {
 		if ( null === $data['avg_issue_density_percentage'] ) {
 			$data['avg_issue_density_percentage'] = 'N/A';
 		} else {
-			$data['avg_issue_density_percentage'] = round( $data['avg_issue_density_percentage'], 4 );
+			$data['avg_issue_density_percentage'] = round( $data['avg_issue_density_percentage'], 2 );
 		}
 
 		$data['fullscan_running']      = false;
@@ -372,8 +372,10 @@ class Scans_Stats {
 		if ( $data['fullscan_completed_at'] > 0 ) {
 			$formatting['fullscan_completed_at_formatted'] = Helpers::format_date( $data['fullscan_completed_at'], true );
 		}
-		$formatting['passed_percentage_formatted']            = Helpers::format_percentage( $data['passed_percentage'] );
-		$formatting['avg_issue_density_percentage_formatted'] = Helpers::format_percentage( $data['avg_issue_density_percentage'] );
+		$formatting['passed_percentage_formatted'] = Helpers::format_percentage( $data['passed_percentage'] );
+
+		// The density should already a percentage value, just add the sign. If not an integer, just return the value which will be 'N/A'.
+		$formatting['avg_issue_density_percentage_formatted'] = is_int( $data['avg_issue_density_percentage'] ) ? $data['avg_issue_density_percentage'] . '%' : $data['avg_issue_density_percentage'];
 
 		$formatting['cached_at_formatted'] = Helpers::format_date( $data['cached_at'], true );
 
