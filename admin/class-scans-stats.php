@@ -304,11 +304,6 @@ class Scans_Stats {
 				)
 			);
 
-		// if the number is over 1 then we need to make it a fraction below 1.
-		if ( $data['avg_issue_density_percentage'] > 1 ) {
-			$data['avg_issue_density_percentage'] = 1 - ( 1 / $data['avg_issue_density_percentage'] );
-		}
-
 		if ( null === $data['avg_issue_density_percentage'] ) {
 			$data['avg_issue_density_percentage'] = 'N/A';
 		} else {
