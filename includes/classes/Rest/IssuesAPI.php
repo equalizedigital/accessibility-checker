@@ -97,6 +97,18 @@ class Issues_API extends \WP_REST_Controller {
 				],
 			]
 		);
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/access-check',
+			[
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => function () {
+					// Returns a 200 response to indicate the API can be accesed.
+					return new \WP_REST_Response( [ 'success' => true ], 200 );
+				},
+				'permission_callback' => [ $this, 'get_issues_permissions_check' ],
+			]
+		);
 	}
 
 	/**
@@ -110,6 +122,7 @@ class Issues_API extends \WP_REST_Controller {
 		$page     = (int) $request->get_param( 'page' ) ?? 1;
 
 		$this->query_options['offset']    = ( $page - 1 ) * $per_page;
+		$this->query_options['limit']     = $per_page;
 		$issues                           = $this->do_issues_query( $request->get_param( 'ids' ) ?? [] );
 		$this->query_data['issues_count'] = is_countable( $issues ) ? count( $issues ) : 0;
 

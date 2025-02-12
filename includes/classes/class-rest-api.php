@@ -205,6 +205,9 @@ class REST_Api {
 		add_action( 'rest_api_init', [ $this, 'register_issues_api' ] );
 	}
 
+	/**
+	 * Register the issues API.
+	 */
 	public function register_issues_api() {
 		$issues = new Issues_API();
 		$issues->register_routes();
@@ -651,8 +654,15 @@ class REST_Api {
 		}
 	}
 
+	/**
+	 * Verify the API token.
+	 *
+	 * @param string $token The token to verify.
+	 *
+	 * @return bool
+	 */
 	public static function api_token_verify( $token ) {
-		// TODO: replace with JWT or application password auth.
+		// Note: replace with JWT or application password auth.
 		return get_option( 'edac_api_token' ) === $token;
 	}
 }
