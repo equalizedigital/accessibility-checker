@@ -226,7 +226,7 @@ class FixesManager {
 		$theme = wp_get_theme();
 		$tags  = $theme->get( 'Tags' );
 
-		self::$theme_is_accessibility_ready = in_array( 'accessibility-ready', $tags, true );
+		self::$theme_is_accessibility_ready = is_array( $tags ) && in_array( 'accessibility-ready', $tags, true );
 		return self::$theme_is_accessibility_ready;
 	}
 
