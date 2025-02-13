@@ -582,6 +582,28 @@ const edacScriptVars = edac_script_vars;
 			} );
 		}
 
+		// Handle dismiss stats improvement notice.
+		if ( jQuery( '.edac-stats-improvement-notice' ).length ) {
+			jQuery( '.edac-stats-improvement-notice .notice-dismiss' ).on( 'click', function() {
+				edacStatsImprovementNoticeAjax();
+			} );
+		}
+
+		function edacStatsImprovementNoticeAjax() {
+			jQuery.ajax( {
+				url: ajaxurl,
+				method: 'GET',
+				data: {
+					action: 'edac_welcome_page_post_count_change_notice_dismiss_ajax',
+					nonce: edacScriptVars.nonce,
+				},
+			} ).done( function( response ) {
+				if ( true === response.success ) {
+					const responseJSON = jQuery.parseJSON( response.data );
+				}
+			} );
+		}
+
 		if ( jQuery( '#edac-summary-panel' ).length ) {
 			refreshSummaryAndReadability();
 			edacDetailsAjax();

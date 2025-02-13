@@ -156,9 +156,21 @@ class Scans_Stats {
 
 		$issues_query = new Issues_Query( [], $this->record_limit, Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES );
 
-		$data['is_truncated']  = $issues_query->has_truncated_results();
-		$data['posts_scanned'] = (int) $issues_query->distinct_posts_count();
-		$data['rules_failed']  = 0;
+		// Count total unique meta values from postmeta table where the meta_key is _edac_issue_density.
+		// This will give us the total number of posts that have been scanned.
+		$data['posts_scanned'] = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+			$wpdb->prepare(
+				'SELECT COUNT(DISTINCT %i) FROM %i WHERE meta_key = %s',
+				'post_id',
+				$wpdb->postmeta,
+				'_edac_issue_density'
+			)
+		);
+
+
+		$data['is_truncated']      = $issues_query->has_truncated_results();
+		$data['posts_with_issues'] = (int) $issues_query->distinct_posts_count();
+		$data['rules_failed']      = 0;
 
 		// Get a count of rules that are not in the issues table.
 		$rule_slugs = array_map(
@@ -238,36 +250,65 @@ class Scans_Stats {
 			&& ! empty( Settings::get_scannable_post_types() )
 			&& ! empty( Settings::get_scannable_post_statuses() )
 		) {
+			$ac_table_name = $wpdb->prefix . 'accessibility_checker';
 
-			$sql = "SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}
-			LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
-			$wpdb->prefix . 'accessibility_checker.postid WHERE ' .
-			$wpdb->prefix . 'accessibility_checker.postid IS NULL and post_type IN(' .
-			Helpers::array_to_sql_safe_list(
-				Settings::get_scannable_post_types()
-			) . ') and post_status IN(' . Helpers::array_to_sql_safe_list(
-				Settings::get_scannable_post_statuses()
-			) . ')';
+			$posts_without_issues = "
+				SELECT COUNT({$wpdb->posts}.ID) FROM {$wpdb->posts}
+				LEFT JOIN " . $wpdb->prefix . "accessibility_checker ON {$wpdb->posts}.ID = " .
+				$wpdb->prefix . 'accessibility_checker.postid WHERE ' .
+				$wpdb->prefix . 'accessibility_checker.postid IS NULL
+				AND post_type IN(' .
+					Helpers::array_to_sql_safe_list(
+						Settings::get_scannable_post_types()
+					) . ')
+				AND post_status IN(' .
+					Helpers::array_to_sql_safe_list(
+						Settings::get_scannable_post_statuses()
+					) . ')';
 
-         // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
-			$data['posts_without_issues'] = $wpdb->get_var( $sql );
+			// give me sql that will find all post ids in the accessibility_checker table
+			// where ALL issues with that ID are eiter ignored or globally ignored.
+			$posts_with_just_ignored_issues = $wpdb->prepare(
+				'SELECT COUNT( DISTINCT postid )
+				FROM %i
+				WHERE siteid = %d
+				AND postid NOT IN (
+				  	SELECT postid
+				  	FROM %i
+				  	WHERE ignre=0 AND ignre_global=0
+				)',
+				[ $ac_table_name, $siteid, $ac_table_name ]
+			);
+
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+			$data['posts_without_issues'] = $wpdb->get_var( $posts_without_issues ) + $wpdb->get_var( $posts_with_just_ignored_issues );
 			$data['avg_issues_per_post']  = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
+
+			if ( $data['avg_issues_per_post'] < 1 && 0 !== $data['avg_issues_per_post'] ) {
+				$data['avg_issues_per_post'] = '< 1';
+			}
 		}
 
+		// Average issue density percentage is the sum of all post densities divided by the number of posts scanned.
 		$data['avg_issue_density_percentage'] =
-		$wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
-			$wpdb->prepare(
-				'SELECT avg(meta_value) from ' . $wpdb->postmeta . '
-				JOIN ' . $wpdb->prefix . 'accessibility_checker ON postid=post_id
-				WHERE meta_key = %s and meta_value > %d
-				and ' . $wpdb->prefix . 'accessibility_checker.siteid=%d and ignre=%d and ignre_global=%d LIMIT %d',
-				[ '_edac_issue_density', 0, $siteid, 0, 0, $this->record_limit ]
-			)
-		);
+			$wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+				$wpdb->prepare(
+					'SELECT AVG(meta_value)
+					FROM ' . $wpdb->postmeta . '
+					JOIN (
+						SELECT DISTINCT postid
+						FROM ' . $wpdb->prefix . 'accessibility_checker
+					) AS distinct_posts ON ' . $wpdb->postmeta . '.post_id = distinct_posts.postid
+					WHERE meta_key = %s',
+					[ '_edac_issue_density' ]
+				)
+			);
 
-		$data['avg_issue_density_percentage'] = ( null === $data['avg_issue_density_percentage'] )
-		? 'N/A'
-		: round( $data['avg_issue_density_percentage'], 2 );
+		if ( null === $data['avg_issue_density_percentage'] ) {
+			$data['avg_issue_density_percentage'] = 'N/A';
+		} else {
+			$data['avg_issue_density_percentage'] = round( $data['avg_issue_density_percentage'], 2 );
+		}
 
 		$data['fullscan_running']      = false;
 		$data['fullscan_state']        = '';
@@ -331,8 +372,10 @@ class Scans_Stats {
 		if ( $data['fullscan_completed_at'] > 0 ) {
 			$formatting['fullscan_completed_at_formatted'] = Helpers::format_date( $data['fullscan_completed_at'], true );
 		}
-		$formatting['passed_percentage_formatted']            = Helpers::format_percentage( $data['passed_percentage'] );
-		$formatting['avg_issue_density_percentage_formatted'] = Helpers::format_percentage( $data['avg_issue_density_percentage'] );
+		$formatting['passed_percentage_formatted'] = Helpers::format_percentage( $data['passed_percentage'] );
+
+		// The density should already a percentage value, just add the sign. If not an integer, just return the value which will be 'N/A'.
+		$formatting['avg_issue_density_percentage_formatted'] = is_int( $data['avg_issue_density_percentage'] ) ? $data['avg_issue_density_percentage'] . '%' : $data['avg_issue_density_percentage'];
 
 		$formatting['cached_at_formatted'] = Helpers::format_date( $data['cached_at'], true );
 

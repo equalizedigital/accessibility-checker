@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.7.0
-Stable tag: 1.20.0
+Stable tag: 1.21.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.21.0 =
+* Enhancement: Improve how density statistics are counted. You will see a notice about this change on the welcome page.
+* Fix: Ensure that the scanned posts counts are accurate to all posts scanned, not just ones that have issues.
+* Fix: Properly count posts that are scanned but have no issues to remediate.
 
 = 1.20.0 =
 * Enhancement: Process dynamic blocks and oEmbeds more reliably in scans.
