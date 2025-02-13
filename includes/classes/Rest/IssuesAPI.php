@@ -109,6 +109,15 @@ class Issues_API extends \WP_REST_Controller {
 				'permission_callback' => [ $this, 'get_issues_permissions_check' ],
 			]
 		);
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/count',
+			[
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => [ $this, 'get_issues_count' ],
+				'permission_callback' => [ $this, 'get_issues_permissions_check' ],
+			]
+		);
 	}
 
 	/**
@@ -150,19 +159,11 @@ class Issues_API extends \WP_REST_Controller {
 	 * @return array Collection of issues.
 	 */
 	protected function do_issues_query( $ids = [] ) {
-		global $wpdb;
-		// Count the total number of issues first. Needed to handle some pagination params.
-		$this->query_data['total_issues'] = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Using direct query for getting data from database, caching not required for one time operation.
-			$wpdb->prepare(
-				'
-				SELECT COUNT(*) FROM %i
-				WHERE siteid = %d
-				' . ( ! empty( $ids ) ? ' AND id IN (' . implode( ',', array_map( 'absint', $ids ) ) . ')' : '' ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Revisit and write a prepair helper
-				$this->table_name,
-				$this->query_options['siteid'] ?? get_current_blog_id()
-			)
-		);
 
+		// Count the total number of issues first. Needed to handle some pagination params.
+		$this->query_data['total_issues'] = $this->count_all_issues( $ids );
+
+		global $wpdb;
 		$query = '
 			SELECT * FROM ' . $this->table_name . '
 			WHERE siteid = %d
@@ -400,5 +401,38 @@ class Issues_API extends \WP_REST_Controller {
 				'description' => __( 'Optionally a list of issue IDs to get.', 'accessibility-checker' ),
 			],
 		];
+	}
+
+	/**
+	 * Callback to get the count of issues.
+	 *
+	 * @param $request
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function get_issues_count( $request ) {
+		$ids = $request->get_param( 'ids' ) ?? [];
+		return new \WP_REST_Response( [ 'count' => $this->count_all_issues( $ids ) ], 200 );
+	}
+
+	/**
+	 * Count the total issues that we are going to get.
+	 *
+	 * @param array $ids
+	 *
+	 * @return mixed
+	 */
+	public function count_all_issues( array $ids = [] ) {
+		global $wpdb;
+		return $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Using direct query for getting data from database, caching not required for one time operation.
+			$wpdb->prepare(
+				'
+				SELECT COUNT(*) FROM %i
+				WHERE siteid = %d
+				' . ( ! empty( $ids ) ? ' AND id IN (' . implode( ',', array_map( 'absint', $ids ) ) . ')' : '' ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Revisit and write a prepair helper
+				$this->table_name,
+				$this->query_options['siteid'] ?? get_current_blog_id()
+			)
+		);
 	}
 }
