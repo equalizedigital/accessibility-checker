@@ -171,6 +171,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.21.0 =
+* Enhancement: Improve how density statistics are counted. You will see a notice about this change on the welcome page.
+* Fix: Ensure that the scanned posts counts are accurate to all posts scanned, not just ones that have issues.
+* Fix: Properly count posts that are scanned but have no issues to remediate.
+
 = 1.20.0 =
 * Enhancement: Process dynamic blocks and oEmbeds more reliably in scans.
 * Enhancement: Improve detection for missing_transcripts if there are several oEmbed videos from same provider on page.
