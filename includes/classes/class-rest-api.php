@@ -12,6 +12,7 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Admin\Purge_Post_Data;
+use EqualizeDigital\AccessibilityChecker\Rest\Issues_API;
 
 /**
  * Class that initializes and handles the REST api
@@ -201,6 +202,15 @@ class REST_Api {
 				);
 			}
 		);
+		add_action( 'rest_api_init', [ $this, 'register_issues_api' ] );
+	}
+
+	/**
+	 * Register the issues API.
+	 */
+	public function register_issues_api() {
+		$issues = new Issues_API();
+		$issues->register_routes();
 	}
 
 	/**
@@ -642,5 +652,17 @@ class REST_Api {
 				500
 			);
 		}
+	}
+
+	/**
+	 * Verify the API token.
+	 *
+	 * @param string $token The token to verify.
+	 *
+	 * @return bool
+	 */
+	public static function api_token_verify( $token ) {
+		// Note: replace with JWT or application password auth.
+		return get_option( 'edac_api_token' ) === $token;
 	}
 }
