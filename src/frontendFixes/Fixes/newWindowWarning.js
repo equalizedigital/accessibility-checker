@@ -67,7 +67,6 @@ const processLinks = () => {
 	document.querySelectorAll( '.edac-nww-external-link-icon' ).forEach( ( icon ) => icon.remove() );
 
 	document.querySelectorAll( 'a' ).forEach( ( link ) => {
-		let hasIcon = false;
 		const onclickAttr = link.getAttribute( 'onclick' );
 
 		// Check if the link opens a new window using target="_blank"
@@ -75,7 +74,6 @@ const processLinks = () => {
 			addExternalLinkIcon( link );
 			updateAriaLabel( link );
 			addTooltipHandlers( link );
-			hasIcon = true;
 		}
 
 		// Check if the link uses window.open in the onclick attribute
@@ -87,11 +85,8 @@ const processLinks = () => {
 				addExternalLinkIcon( link );
 				updateAriaLabel( link );
 				addTooltipHandlers( link );
-				hasIcon = true;
 			}
 		}
-
-		if ( ! hasIcon ) {}
 	} );
 };
 
