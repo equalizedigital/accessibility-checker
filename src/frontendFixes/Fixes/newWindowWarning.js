@@ -64,7 +64,7 @@ const initializeTooltip = () => {
  */
 const processLinks = () => {
 	// Remove previously appended icons to avoid duplication
-	document.querySelectorAll( '.anww-external-link-icon' ).forEach( ( icon ) => icon.remove() );
+	document.querySelectorAll( '.edac-nww-external-link-icon' ).forEach( ( icon ) => icon.remove() );
 
 	document.querySelectorAll( 'a' ).forEach( ( link ) => {
 		let hasIcon = false;
@@ -100,11 +100,13 @@ const processLinks = () => {
  * @param {HTMLElement} link - The link element to modify.
  */
 const addExternalLinkIcon = ( link ) => {
-	const icon = document.createElement( 'i' );
-	icon.classList.add( 'anww-external-link-icon' );
-	icon.setAttribute( 'aria-hidden', 'true' );
-
-	link.appendChild( icon );
+	// Add icon to link
+	const header = link.querySelector( 'h1, h2, h3, h4, h5, h6' );
+	if ( header ) {
+		header.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
+	} else {
+		link.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
+	}
 };
 
 /**
