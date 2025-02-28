@@ -114,7 +114,8 @@ const updateAriaLabel = ( link ) => {
 	if ( link.hasAttribute( 'aria-label' ) ) {
 		anwwLabel = link.getAttribute( 'aria-label' );
 	} else if ( link.querySelector( 'img' ) ) {
-		anwwLabel = link.querySelector( 'img' ).getAttribute( 'alt' );
+		const img = link.querySelector( 'img' );
+		anwwLabel = img.getAttribute( 'alt' ) || '';
 	} else if ( link.textContent ) {
 		anwwLabel = link.textContent.trim();
 	}
