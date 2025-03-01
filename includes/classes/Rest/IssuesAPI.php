@@ -9,6 +9,7 @@ namespace EqualizeDigital\AccessibilityChecker\Rest;
 
 use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Issues_Query;
+use EDAC\Inc\REST_Api;
 
 /**
  * Issues API class.
@@ -58,13 +59,17 @@ class Issues_API extends \WP_REST_Controller {
 				[
 					'methods'             => \WP_REST_Server::READABLE,
 					'callback'            => [ $this, 'get_issues' ],
-					'permission_callback' => [ $this, 'get_issues_permissions_check' ],
+					'permission_callback' => function ( $request ) {
+						return REST_Api::check_token_or_nonce_and_capability_permissions_check( $request, 'manage_options' );
+					},
 					'args'                => $this->get_collection_params(),
 				],
 				[
 					'methods'             => \WP_REST_Server::CREATABLE,
 					'callback'            => [ $this, 'create_issue' ],
-					'permission_callback' => [ $this, 'modify_issue_permissions_check' ],
+					'permission_callback' => function ( $request ) {
+						return REST_Api::check_token_or_nonce_and_capability_permissions_check( $request, 'manage_options' );
+					},
 					'args'                => $this->get_endpoint_args_for_item_schema( \WP_REST_Server::CREATABLE ),
 				],
 			]
@@ -76,7 +81,9 @@ class Issues_API extends \WP_REST_Controller {
 				[
 					'methods'             => \WP_REST_Server::READABLE,
 					'callback'            => [ $this, 'get_issue' ],
-					'permission_callback' => [ $this, 'get_issues_permissions_check' ],
+					'permission_callback' => function ( $request ) {
+						return REST_Api::check_token_or_nonce_and_capability_permissions_check( $request, 'manage_options' );
+					},
 					'args'                => [
 						'context' => [
 							'default' => 'view',
@@ -87,13 +94,17 @@ class Issues_API extends \WP_REST_Controller {
 				[
 					'methods'             => \WP_REST_Server::EDITABLE,
 					'callback'            => [ $this, 'create_issue' ],
-					'permission_callback' => [ $this, 'modify_issue_permissions_check' ],
+					'permission_callback' => function ( $request ) {
+						return REST_Api::check_token_or_nonce_and_capability_permissions_check( $request, 'manage_options' );
+					},
 					'args'                => $this->get_endpoint_args_for_item_schema( \WP_REST_Server::EDITABLE ),
 				],
 				[
 					'methods'             => \WP_REST_Server::DELETABLE,
 					'callback'            => [ $this, 'delete_issue' ],
-					'permission_callback' => [ $this, 'modify_issue_permissions_check' ],
+					'permission_callback' => function ( $request ) {
+						return REST_Api::check_token_or_nonce_and_capability_permissions_check( $request, 'manage_options' );
+					},
 				],
 			]
 		);
@@ -103,10 +114,16 @@ class Issues_API extends \WP_REST_Controller {
 			[
 				'methods'             => \WP_REST_Server::READABLE,
 				'callback'            => function () {
-					// Returns a 200 response to indicate the API can be accesed.
-					return new \WP_REST_Response( [ 'success' => true ], 200 );
+					return new \WP_REST_Response(
+						[
+							'success' => true,
+						],
+						200
+					);
 				},
-				'permission_callback' => [ $this, 'get_issues_permissions_check' ],
+				'permission_callback' => function ( $request ) {
+					return REST_Api::check_token_or_nonce_and_capability_permissions_check( $request, 'manage_options' );
+				},
 			]
 		);
 		register_rest_route(
@@ -115,7 +132,9 @@ class Issues_API extends \WP_REST_Controller {
 			[
 				'methods'             => \WP_REST_Server::READABLE,
 				'callback'            => [ $this, 'get_issues_count' ],
-				'permission_callback' => [ $this, 'get_issues_permissions_check' ],
+				'permission_callback' => function ( $request ) {
+					return REST_Api::check_token_or_nonce_and_capability_permissions_check( $request, 'manage_options' );
+				},
 			]
 		);
 	}
@@ -184,15 +203,16 @@ class Issues_API extends \WP_REST_Controller {
 	/**
 	 * Check if a given request has access to get items.
 	 *
+	 * This does token check if one exists and nonce check if token is not passed.
+	 *
 	 * @param \WP_REST_Request $request Full data about the request.
 	 * @return \WP_Error|boolean
 	 */
 	public function get_issues_permissions_check( $request ) {
 		$token = $request->get_header( 'Authorization' );
 		if ( method_exists( 'EDAC\Inc\REST_Api', 'api_token_verify' ) && $token ) {
-			$token       = str_replace( 'Bearer ', '', $token );
-			$valid_token = \EDAC\Inc\REST_Api::api_token_verify( $token );
-			if ( ! $valid_token ) {
+			$token = str_replace( 'Bearer ', '', $token );
+			if ( ! \EDAC\Inc\REST_Api::api_token_verify( $token ) ) {
 				return new \WP_Error( 'rest_forbidden', __( 'Invalid token.', 'accessibility-checker' ), [ 'status' => 401 ] );
 			}
 		} elseif ( ! wp_verify_nonce( $request->get_header( 'X-WP-Nonce' ) ?? $request->get_param( 'nonce' ), 'wp_rest' ) ) {
@@ -209,7 +229,7 @@ class Issues_API extends \WP_REST_Controller {
 	 * @return \WP_REST_Response
 	 */
 	public function prepare_item_for_response( $item, $request ) {
-		$data    = [
+		$data = [
 			'id'            => (int) $item->id,
 			'postid'        => (int) $item->postid,
 			'siteid'        => (int) $item->siteid,
@@ -226,6 +246,7 @@ class Issues_API extends \WP_REST_Controller {
 			'ignre_date'    => isset( $item->ignre_date ) ? (string) $item->ignre_date : null,
 			'ignre_comment' => isset( $item->ignre_comment ) ? (string) $item->ignre_comment : null,
 		];
+
 		$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
 		$data    = $this->add_additional_fields_to_object( $data, $request );
 
@@ -406,8 +427,7 @@ class Issues_API extends \WP_REST_Controller {
 	/**
 	 * Callback to get the count of issues.
 	 *
-	 * @param $request
-	 *
+	 * @param \WP_REST_Request $request The request object.
 	 * @return \WP_REST_Response
 	 */
 	public function get_issues_count( $request ) {
@@ -418,7 +438,7 @@ class Issues_API extends \WP_REST_Controller {
 	/**
 	 * Count the total issues that we are going to get.
 	 *
-	 * @param array $ids
+	 * @param array $ids The list of IDs to count.
 	 *
 	 * @return mixed
 	 */
