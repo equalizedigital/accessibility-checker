@@ -269,7 +269,10 @@ class Issues_API extends \WP_REST_Controller {
 			'pagination' => [
 				'page'        => (int) $request['page'] ?? 1,
 				'per_page'    => (int) $request['per_page'] ?? 10,
-				'total_pages' => (int) ceil( $this->query_data['total_issues'] ? $this->query_data['total_issues'] : 1 / (int) $request['per_page'] ?? 10 ),
+				'total_pages' => (int) ceil(
+					($this->query_data['total_issues'] ? $this->query_data['total_issues'] : 1)
+					/ max(1, (int) ($request['per_page'] ?? 10))
+				),
 			],
 		];
 
