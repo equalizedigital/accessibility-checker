@@ -272,6 +272,18 @@ class Issues_API extends \WP_REST_Controller {
 				'total_pages' => (int) ceil( $this->query_data['total_issues'] ? $this->query_data['total_issues'] : 1 / (int) $request['per_page'] ?? 10 ),
 			],
 		];
+
+		// Add some post data to send back in the request.
+		// NOTE: maybe in future this is stored in the issue table directly instead of grabbed at request time.
+		$data['post_title']     = get_the_title( $data['postid'] );
+		$data['post_permalink'] = get_permalink( $data['postid'] );
+		$data['post_author']    = get_the_author_meta( 'display_name', get_post_field( 'post_author', $data['postid'] ) );
+
+		// check if there was an ignre_user set and if so get the display_name of that user.
+		if ( isset( $data['ignre_user'] ) ) {
+			$data['ignre_user_name'] = get_the_author_meta( 'display_name', $data['ignre_user'] );
+		}
+
 		return $data;
 	}
 
