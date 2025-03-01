@@ -342,8 +342,9 @@ class Issues_API extends \WP_REST_Controller {
 		}
 		global $wpdb;
 		$deleted = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for deleting data from database, caching not required for one time operation.
-			$wpdb->prepare( 'DELETE FROM %i WHERE id = %d', $this->table_name, $id )
-		);
+			$table   = esc_sql( $this->table_name );
+			$query   = $wpdb->prepare( "DELETE FROM `{$table}` WHERE id = %d", $id );
+			$deleted = $wpdb->query( $query );
 
 		if ( false === $deleted ) {
 			return new \WP_Error( 'rest_issue_delete_failed', __( 'Failed to delete issue.', 'accessibility-checker' ), [ 'status' => 500 ] );
