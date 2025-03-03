@@ -270,8 +270,8 @@ class Issues_API extends \WP_REST_Controller {
 				'page'        => (int) $request['page'] ?? 1,
 				'per_page'    => (int) $request['per_page'] ?? 10,
 				'total_pages' => (int) ceil(
-					($this->query_data['total_issues'] ? $this->query_data['total_issues'] : 1)
-					/ max(1, (int) ($request['per_page'] ?? 10))
+					( $this->query_data['total_issues'] ? $this->query_data['total_issues'] : 1 )
+					/ max( 1, (int) ( $request['per_page'] ?? 10 ) )
 				),
 			],
 		];
@@ -344,10 +344,14 @@ class Issues_API extends \WP_REST_Controller {
 			return new \WP_Error( 'rest_issue_invalid_id', __( 'Invalid issue ID.', 'accessibility-checker' ), [ 'status' => 404 ] );
 		}
 		global $wpdb;
-		$deleted = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for deleting data from database, caching not required for one time operation.
-			$table   = esc_sql( $this->table_name );
-			$query   = $wpdb->prepare( "DELETE FROM `{$table}` WHERE id = %d", $id );
-			$deleted = $wpdb->query( $query );
+		$table   = esc_sql( $this->table_name );
+		$deleted = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Using direct query for getting data from database, caching not useful for a delete.
+			$wpdb->prepare(
+				'DELETE FROM `%s` WHERE id = %d',
+				$table,
+				$id
+			)
+		);
 
 		if ( false === $deleted ) {
 			return new \WP_Error( 'rest_issue_delete_failed', __( 'Failed to delete issue.', 'accessibility-checker' ), [ 'status' => 500 ] );
@@ -460,15 +464,14 @@ class Issues_API extends \WP_REST_Controller {
 	 */
 	public function count_all_issues( array $ids = [] ) {
 		global $wpdb;
+		$table = esc_sql( $this->table_name );
 		return $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Using direct query for getting data from database, caching not required for one time operation.
 			$wpdb->prepare(
 				'
-				$table = esc_sql( $this->table_name );
-				$wpdb->prepare(
-				  "
-				  SELECT COUNT(*) FROM `{$table}`
-				  WHERE siteid = %d" . ( ! empty( $ids ) ? " AND id IN (" . implode( ',', array_map( 'absint', $ids ) ) . ")" : "" ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Revisit and write a prepair helper
-				$this->table_name,
+				SELECT COUNT(*) FROM `%s`
+				WHERE siteid = %d
+				' . ( ! empty( $ids ) ? ' AND id IN (' . implode( ',', array_map( 'absint', $ids ) ) . ')' : '' ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Revisit and write a prepair helper				$this->table_name,
+				$table,
 				$this->query_options['siteid'] ?? get_current_blog_id()
 			)
 		);
