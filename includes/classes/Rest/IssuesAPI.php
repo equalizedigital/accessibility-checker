@@ -146,8 +146,8 @@ class Issues_API extends \WP_REST_Controller {
 	 * @return \WP_REST_Response
 	 */
 	public function get_issues( $request ) {
-		$per_page = (int) $request->get_param( 'per_page' ) ?? 10;
-		$page     = (int) $request->get_param( 'page' ) ?? 1;
+		$per_page = max( 1, (int) ( $request->get_param( 'per_page' ) ?? 10 ) );
+		$page     = max( 1, (int) ( $request->get_param( 'page' ) ?? 1 ) );
 
 		$this->query_options['offset']    = ( $page - 1 ) * $per_page;
 		$this->query_options['limit']     = $per_page;
