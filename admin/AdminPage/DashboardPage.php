@@ -74,7 +74,7 @@ class DashboardPage implements PageInterface {
 
 		$scan_tab = [
 			'slug'  => 'dashboard',
-			'label' => 'Dashboard Connection',
+			'label' => __( 'Dashboard Connection', 'accessibility-checker' ),
 			'order' => 5,
 		];
 		array_push( $settings_tab_items, $scan_tab );
@@ -83,7 +83,7 @@ class DashboardPage implements PageInterface {
 	}
 
 	/**
-	 * Licence fixes tab content to settings page.
+	 * Dashboard tab content to settings page.
 	 *
 	 * @param  string $tab name of tab.
 	 * @return void
