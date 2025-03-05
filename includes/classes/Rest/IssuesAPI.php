@@ -278,13 +278,13 @@ class Issues_API extends \WP_REST_Controller {
 
 		// Add some post data to send back in the request.
 		// NOTE: maybe in future this is stored in the issue table directly instead of grabbed at request time.
-		$data['post_title']     = get_the_title( $data['postid'] );
-		$data['post_permalink'] = get_permalink( $data['postid'] );
-		$data['post_author']    = get_the_author_meta( 'display_name', get_post_field( 'post_author', $data['postid'] ) );
+		$data['post_title']          = get_the_title( $data['postid'] );
+		$data['post_permalink']      = get_permalink( $data['postid'] );
+		$data['discoverer_username'] = get_user_by( 'id', $data['user'] )->display_name;
 
 		// check if there was an ignre_user set and if so get the display_name of that user.
 		if ( isset( $data['ignre_user'] ) ) {
-			$data['ignre_user_name'] = get_the_author_meta( 'display_name', $data['ignre_user'] );
+			$data['ignre_username'] = get_the_author_meta( 'display_name', $data['ignre_user'] );
 		}
 
 		return $data;
