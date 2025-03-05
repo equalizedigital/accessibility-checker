@@ -1069,3 +1069,30 @@ function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
 
 	return wc_get_page_id( 'checkout' ) === $post_id;
 }
+
+/**
+ * Checks the values from the iframe tag to see if it is hidden.
+ *
+ * @param simple_html_dom $dom_element The iframe element.
+ * @return bool - true if passing, false if failing.
+ */
+function edac_check_gtm_frame( $dom_element ) {
+	if ( ! $dom_element instanceof simple_html_dom ) {
+		// if we don't have an actual simple_html_dom element then assume pass.
+		return true;
+	}
+
+	$display_none_and_visibility_hidden = preg_match( '/(?=.*display\s*:\s*none);?(?=.*visibility\s*:\s*hidden)/is', $dom_element->getAttribute( 'style' ) );
+	if ( $display_none_and_visibility_hidden ) {
+		return true;
+	}
+
+	// GTM iframes should be skipped by the detection above, but just in case some plugin modifies the markup
+	// expectations let's double check the src attribute.
+	$gtm = preg_match( '/(^http(s)?:\/\/www.)?googletagmanager.com(\/)?/', $dom_element->getAttribute( 'src' ) );
+	if ( $gtm ) {
+		return true;
+	}
+
+	return false;
+}
