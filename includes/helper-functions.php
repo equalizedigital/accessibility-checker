@@ -1089,7 +1089,8 @@ function edac_check_gtm_frame( $dom_element ) {
 
 	// GTM iframes should be skipped by the detection above, but just in case some plugin modifies the markup
 	// expectations let's double check the src attribute.
-	$gtm = preg_match( '/(^http(s)?:\/\/www.)?googletagmanager.com(\/)?/', $dom_element->getAttribute( 'src' ) );
+	$gtm = preg_match( '/^(https?:\/\/)?(www\.)?googletagmanager\.com(\/.*)?$/', $iframe->getAttribute( 'src' ) );
+
 	if ( $gtm ) {
 		return true;
 	}
