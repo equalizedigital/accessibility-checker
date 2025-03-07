@@ -184,7 +184,7 @@ class Issues_API extends \WP_REST_Controller {
 
 		global $wpdb;
 		$query = '
-			SELECT * FROM ' . $this->table_name . '
+			SELECT * FROM `' . $this->table_name . '`
 			WHERE siteid = %d
 			' . ( ! empty( $ids ) ? ' AND id IN (' . implode( ',', array_fill( 0, count( $ids ), '%d' ) ) . ')' : '' ) . '
 			ORDER BY id DESC
@@ -347,8 +347,7 @@ class Issues_API extends \WP_REST_Controller {
 		$table   = esc_sql( $this->table_name );
 		$deleted = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Using direct query for getting data from database, caching not useful for a delete.
 			$wpdb->prepare(
-				'DELETE FROM `%s` WHERE id = %d',
-				$table,
+				'DELETE FROM `' . $table . '` WHERE id = %d', // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 				$id
 			)
 		);
@@ -468,10 +467,9 @@ class Issues_API extends \WP_REST_Controller {
 		return $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Using direct query for getting data from database, caching not required for one time operation.
 			$wpdb->prepare(
 				'
-				SELECT COUNT(*) FROM `%s`
-				WHERE siteid = %d
+				SELECT COUNT(*) FROM `' . $table . '`' // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+				. 'WHERE siteid = %d
 				' . ( ! empty( $ids ) ? ' AND id IN (' . implode( ',', array_map( 'absint', $ids ) ) . ')' : '' ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Revisit and write a prepair helper				$this->table_name,
-				$table,
 				$this->query_options['siteid'] ?? get_current_blog_id()
 			)
 		);
