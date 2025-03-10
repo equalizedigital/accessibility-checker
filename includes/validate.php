@@ -130,9 +130,9 @@ function edac_validate( $post_ID, $post, $action ) {
 	 * @param string $action  The action being performed.
 	 */
 	do_action( 'edac_before_validate', $post_ID, $action );
-	
+
 	// Ensure dynamic blocks and oEmbeds are processed before validation.
-	$post->post_content = do_blocks( $post->post_content );
+	$post->post_content = apply_filters( 'the_content', $post->post_content );
 
 	// apply filters to content.
 	$content = edac_get_content( $post );
