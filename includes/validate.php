@@ -132,6 +132,7 @@ function edac_validate( $post_ID, $post, $action ) {
 	do_action( 'edac_before_validate', $post_ID, $action );
 
 	// Ensure dynamic blocks and oEmbeds are processed before validation.
+	// Use the_content filter to ensure do_block allows wpautop to be handled correctly for custom blocks. See https://github.com/equalizedigital/accessibility-checker/pull/862.
 	$post->post_content = apply_filters( 'the_content', $post->post_content );
 
 	// apply filters to content.
