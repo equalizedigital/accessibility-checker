@@ -86,7 +86,7 @@ class Welcome_Page {
 												_n(
 													'Unique Error',
 													'Unique Errors',
-													$summary['distinct_errors_without_contrast_formatted'],
+													$summary['distinct_errors_without_contrast'],
 													'accessibility-checker'
 												),
 												$summary['distinct_errors_without_contrast_formatted']
@@ -111,7 +111,7 @@ class Welcome_Page {
 												_n(
 													'Unique Color Contrast Error',
 													'Unique Color Contrast Errors',
-													$summary['distinct_contrast_errors_formatted'],
+													$summary['distinct_contrast_errors'],
 													'accessibility-checker'
 												),
 												$summary['distinct_contrast_errors_formatted']
@@ -136,7 +136,7 @@ class Welcome_Page {
 												_n(
 													'Unique Warning',
 													'Unique Warnings',
-													$summary['distinct_warnings_formatted'],
+													$summary['distinct_warnings'],
 													'accessibility-checker'
 												),
 												$summary['distinct_warnings_formatted']
@@ -161,7 +161,7 @@ class Welcome_Page {
 												_n(
 													'Ignored Item',
 													'Ignored Items',
-													$summary['distinct_ignored_formatted'],
+													$summary['distinct_ignored'],
 													'accessibility-checker'
 												),
 												$summary['distinct_ignored_formatted']
