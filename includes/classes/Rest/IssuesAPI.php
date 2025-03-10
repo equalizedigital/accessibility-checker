@@ -466,14 +466,14 @@ class Issues_API extends \WP_REST_Controller {
 	public function count_all_issues( array $ids = [] ) {
 		global $wpdb;
 		$table = esc_sql( $this->table_name );
-		return $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Using direct query for getting data from database, caching not required for one time operation.
+		return $wpdb->get_var( // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Using direct query for getting data from database, caching not required for one time operation.
 			$wpdb->prepare(
 				'
-				SELECT COUNT(*) FROM `' . $table . '`' // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-				. 'WHERE siteid = %d
+				SELECT COUNT(*) FROM `' . $table . '`
+				WHERE siteid = %d
 				' . ( ! empty( $ids ) ? ' AND id IN (' . implode( ',', array_map( 'absint', $ids ) ) . ')' : '' ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Revisit and write a prepair helper				$this->table_name,
 				$this->query_options['siteid'] ?? get_current_blog_id()
 			)
-		);
+		); // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 	}
 }
