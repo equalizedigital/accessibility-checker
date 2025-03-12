@@ -242,7 +242,7 @@ function edac_validate( $post_ID, $post, $action ) {
 	}
 
 	// remove corrected records.
-	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 2, 'php' );
+	edac_remove_corrected_posts( $post_ID, $block_parsed_post->post_type, $pre = 2, 'php' );
 
 	// set post meta checked.
 	update_post_meta( $post_ID, '_edac_post_checked', true );
