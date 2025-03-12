@@ -131,12 +131,15 @@ function edac_validate( $post_ID, $post, $action ) {
 	 */
 	do_action( 'edac_before_validate', $post_ID, $action );
 
+	// Make a new post object to avoid changing the original (which could come from global $post).
+	$block_parsed_post = new \WP_Post( (object) $post );
+
 	// Ensure dynamic blocks and oEmbeds are processed before validation.
 	// Use the_content filter to ensure do_block allows wpautop to be handled correctly for custom blocks. See https://github.com/equalizedigital/accessibility-checker/pull/862.
-	$post->post_content = apply_filters( 'the_content', $post->post_content );
+	$block_parsed_post->post_content = apply_filters( 'the_content', $post->post_content );
 
 	// apply filters to content.
-	$content = edac_get_content( $post );
+	$content = edac_get_content( $block_parsed_post );
 
 	/**
 	 * Allows to hook in after the content has been retrieved for a post.
@@ -194,7 +197,7 @@ function edac_validate( $post_ID, $post, $action ) {
 				if ( EDAC_DEBUG === true ) {
 					$rule_process_time = microtime( true );
 				}
-				$errors = call_user_func( 'edac_rule_' . $rule['slug'], $content, $post );
+				$errors = call_user_func( 'edac_rule_' . $rule['slug'], $content, $block_parsed_post );
 
 				if ( $errors && is_array( $errors ) ) {
 					/**
