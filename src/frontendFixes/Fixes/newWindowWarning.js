@@ -10,9 +10,17 @@ const NewWindowWarning = () => {
 	document.addEventListener( 'facetwp-loaded', processLinks );
 };
 
+let anwwLinkTooltip;
+let tooltipTimeout;
+
+/**
+ * Initializes the tooltip element and event listeners.
+ */
 const initializeTooltip = () => {
-	const tooltipElement = document.createElement( 'div' );
-	Object.assign( tooltipElement.style, {
+	anwwLinkTooltip = document.createElement( 'div' );
+	anwwLinkTooltip.setAttribute( 'role', 'tooltip' );
+	anwwLinkTooltip.classList.add( 'anww-tooltip' );
+	Object.assign( anwwLinkTooltip.style, {
 		position: 'absolute',
 		background: 'white',
 		color: '#1e1e1e',
@@ -21,17 +29,44 @@ const initializeTooltip = () => {
 		padding: '5px 10px',
 		zIndex: 9999,
 		display: 'none',
+		pointerEvents: 'auto',
+		boxShadow: '0px 4px 6px rgba(0,0,0,0.1)',
+		maxWidth: '200px',
+		whiteSpace: 'nowrap',
 	} );
-	tooltipElement.classList.add( 'edac-nww-tooltip' );
-	document.body.appendChild( tooltipElement );
+	document.body.appendChild( anwwLinkTooltip );
+
+	// Hide tooltip when clicking outside or pressing Escape
+	document.addEventListener( 'click', ( event ) => {
+		if ( ! event.target.closest( ".anww-tooltip, a[target='_blank']" ) ) {
+			hideTooltip();
+		}
+	} );
+
+	document.addEventListener( 'keydown', ( event ) => {
+		if ( event.key === 'Escape' ) {
+			hideTooltip();
+		}
+	} );
+
+	// Keep tooltip visible when hovered
+	anwwLinkTooltip.addEventListener( 'mouseenter', () => {
+		clearTimeout( tooltipTimeout );
+	} );
+
+	anwwLinkTooltip.addEventListener( 'mouseleave', () => {
+		hideTooltip();
+	} );
 };
 
+/**
+ * Processes all anchor links and applies necessary accessibility enhancements.
+ */
 const processLinks = () => {
 	// Remove previously appended icons to avoid duplication
 	document.querySelectorAll( '.edac-nww-external-link-icon' ).forEach( ( icon ) => icon.remove() );
 
-	const allLinks = document.querySelectorAll( 'a' );
-	allLinks.forEach( ( link ) => {
+	document.querySelectorAll( 'a' ).forEach( ( link ) => {
 		const onclickAttr = link.getAttribute( 'onclick' );
 
 		// Check if the link opens a new window using target="_blank"
@@ -43,11 +78,9 @@ const processLinks = () => {
 
 		// Check if the link uses window.open in the onclick attribute
 		if ( onclickAttr && onclickAttr.includes( 'window.open' ) ) {
-			// Extract window.open arguments
 			const windowOpenMatch = onclickAttr.match( /window\.open\([^,]+,\s*['"]([^'"]+)['"]/ );
 			const targetWindow = windowOpenMatch ? windowOpenMatch[ 1 ] : '';
 
-			// Ensure window.open is opening a new window (i.e., '_blank')
 			if ( targetWindow === '_blank' || targetWindow === '' ) {
 				addExternalLinkIcon( link );
 				updateAriaLabel( link );
@@ -57,6 +90,10 @@ const processLinks = () => {
 	} );
 };
 
+/**
+ * Adds an external link icon to the specified link.
+ * @param {HTMLElement} link - The link element to modify.
+ */
 const addExternalLinkIcon = ( link ) => {
 	// Add icon to link
 	const header = link.querySelector( 'h1, h2, h3, h4, h5, h6' );
@@ -67,60 +104,88 @@ const addExternalLinkIcon = ( link ) => {
 	}
 };
 
+/**
+ * Updates the aria-label of the specified link.
+ * @param {HTMLElement} link - The link element to modify.
+ */
 const updateAriaLabel = ( link ) => {
-	let label = '';
-	// Get aria label text
-	if ( link.getAttribute( 'aria-label' ) ) {
-		label = link.getAttribute( 'aria-label' );
+	let anwwLabel = '';
+
+	if ( link.hasAttribute( 'aria-label' ) ) {
+		anwwLabel = link.getAttribute( 'aria-label' );
 	} else if ( link.querySelector( 'img' ) ) {
-		label = link.querySelector( 'img' ).getAttribute( 'alt' );
+		const img = link.querySelector( 'img' );
+		anwwLabel = img.getAttribute( 'alt' ) || '';
 	} else if ( link.textContent ) {
-		label = link.textContent;
+		anwwLabel = link.textContent.trim();
 	}
 
-	// Add warning label
-	if ( label ) {
-		label = label.trimEnd();
-		label += ', ' + localizedNewWindowWarning;
-	} else {
-		label += localizedNewWindowWarning;
-	}
-
-	// Add aria-label to link
-	link.setAttribute( 'aria-label', label );
+	anwwLabel = anwwLabel ? `${ anwwLabel }, ${ localizedNewWindowWarning }` : localizedNewWindowWarning;
+	link.setAttribute( 'aria-label', anwwLabel );
 };
 
+/**
+ * Adds tooltip event handlers to the specified link.
+ * @param {HTMLElement} link - The link element to modify.
+ */
 const addTooltipHandlers = ( link ) => {
-	const tooltip = document.querySelector( '.edac-nww-tooltip' );
-
-	// Position and show link_tooltip on hover
-	link.addEventListener( 'mousemove', ( e ) => {
-		tooltip.style.top = e.pageY + 10 + 'px';
-		tooltip.style.left = e.pageX + 10 + 'px';
+	link.addEventListener( 'mouseenter', ( e ) => {
+		showTooltip( link, e.pageX, e.pageY );
 	} );
 
-	link.addEventListener( 'mouseenter', () => {
-		tooltip.style.display = 'block';
-		tooltip.innerHTML = localizedNewWindowWarning;
-	} );
-
-	link.addEventListener( 'mouseleave', () => {
-		tooltip.style.display = 'none';
-	} );
-
-	// Position and show link_tooltip on focus
 	link.addEventListener( 'focusin', () => {
-		const position = link.getBoundingClientRect();
-		tooltip.style.top = position.top + window.scrollY + link.offsetHeight + 'px';
-		tooltip.style.left = position.left + window.scrollX + 'px';
-
-		tooltip.style.display = 'block';
-		tooltip.innerHTML = localizedNewWindowWarning;
+		const rect = link.getBoundingClientRect();
+		showTooltip( link, rect.left + window.scrollX, rect.top + rect.height + window.scrollY );
 	} );
 
-	link.addEventListener( 'focusout', () => {
-		tooltip.style.display = 'none';
-	} );
+	link.addEventListener( 'mouseleave', hideTooltipWithDelay );
+	link.addEventListener( 'focusout', hideTooltipWithDelay );
+};
+
+/**
+ * Displays the tooltip near the specified coordinates, adjusting if it overflows.
+ * @param {HTMLElement} link - The link triggering the tooltip.
+ * @param {number}      x    - The x-coordinate.
+ * @param {number}      y    - The y-coordinate.
+ */
+const showTooltip = ( link, x, y ) => {
+	clearTimeout( tooltipTimeout );
+
+	anwwLinkTooltip.textContent = localizedNewWindowWarning;
+	anwwLinkTooltip.style.display = 'block';
+
+	const tooltipWidth = anwwLinkTooltip.offsetWidth;
+	const tooltipHeight = anwwLinkTooltip.offsetHeight;
+	const windowWidth = window.innerWidth;
+	const windowHeight = window.innerHeight;
+	const scrollTop = window.scrollY;
+
+	// Adjust X if the tooltip overflows the right edge
+	if ( x + tooltipWidth + 10 > windowWidth ) {
+		x -= ( tooltipWidth + 20 );
+	}
+
+	// Adjust Y if the tooltip overflows the bottom edge
+	if ( y + tooltipHeight + 10 > windowHeight + scrollTop ) {
+		y -= ( tooltipHeight + 20 );
+	}
+
+	anwwLinkTooltip.style.top = `${ y + 10 }px`;
+	anwwLinkTooltip.style.left = `${ x + 10 }px`;
+};
+
+/**
+ * Delays hiding the tooltip to prevent flickering.
+ */
+const hideTooltipWithDelay = () => {
+	tooltipTimeout = setTimeout( hideTooltip, 300 );
+};
+
+/**
+ * Hides the tooltip.
+ */
+const hideTooltip = () => {
+	anwwLinkTooltip.style.display = 'none';
 };
 
 export default NewWindowWarning;
