@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test class for edac_validate function.
  */
-class EdacValidateTest extends TestCase {
+class EdacValidateTest extends WP_UnitTestCase {
 
 	/**
 	 * Test that the_content filter is properly applied during validation.
