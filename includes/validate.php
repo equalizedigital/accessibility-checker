@@ -121,6 +121,9 @@ function edac_validate( $post_ID, $post, $action ) {
 		return;
 	}
 
+	// Make a new post object to avoid changing the original (which could come from global $post).
+	$block_parsed_post = new \WP_Post( (object) $post );
+
 	/**
 	 * Allows to hook in before the validation process starts for a post.
 	 *
@@ -130,12 +133,13 @@ function edac_validate( $post_ID, $post, $action ) {
 	 * @param string $action  The action being performed.
 	 */
 	do_action( 'edac_before_validate', $post_ID, $action );
-	
+
 	// Ensure dynamic blocks and oEmbeds are processed before validation.
-	$post->post_content = do_blocks( $post->post_content );
+	// Use the_content filter to ensure do_block allows wpautop to be handled correctly for custom blocks. See https://github.com/equalizedigital/accessibility-checker/pull/862.
+	$block_parsed_post->post_content = apply_filters( 'the_content', $block_parsed_post->post_content );
 
 	// apply filters to content.
-	$content = edac_get_content( $post );
+	$content = edac_get_content( $block_parsed_post );
 
 	/**
 	 * Allows to hook in after the content has been retrieved for a post.
@@ -165,7 +169,7 @@ function edac_validate( $post_ID, $post, $action ) {
 	delete_option( 'edac_password_protected' );
 
 	// set record check flag on previous error records.
-	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 1, 'php' );
+	edac_remove_corrected_posts( $post_ID, $block_parsed_post->post_type, $pre = 1, 'php' );
 
 	// check and validate content.
 	$rules = edac_register_rules();
@@ -193,7 +197,7 @@ function edac_validate( $post_ID, $post, $action ) {
 				if ( EDAC_DEBUG === true ) {
 					$rule_process_time = microtime( true );
 				}
-				$errors = call_user_func( 'edac_rule_' . $rule['slug'], $content, $post );
+				$errors = call_user_func( 'edac_rule_' . $rule['slug'], $content, $block_parsed_post );
 
 				if ( $errors && is_array( $errors ) ) {
 					/**
@@ -208,7 +212,7 @@ function edac_validate( $post_ID, $post, $action ) {
 					 */
 					do_action( 'edac_rule_errors', $post_ID, $rule, $errors, $action );
 					foreach ( $errors as $error ) {
-						( new Insert_Rule_Data() )->insert( $post, $rule['slug'], $rule['rule_type'], $object = $error );
+						( new Insert_Rule_Data() )->insert( $block_parsed_post, $rule['slug'], $rule['rule_type'], $object = $error );
 					}
 				}
 				if ( EDAC_DEBUG === true ) {
@@ -238,7 +242,7 @@ function edac_validate( $post_ID, $post, $action ) {
 	}
 
 	// remove corrected records.
-	edac_remove_corrected_posts( $post_ID, $post->post_type, $pre = 2, 'php' );
+	edac_remove_corrected_posts( $post_ID, $block_parsed_post->post_type, $pre = 2, 'php' );
 
 	// set post meta checked.
 	update_post_meta( $post_ID, '_edac_post_checked', true );

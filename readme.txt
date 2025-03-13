@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.7.0
-Stable tag: 1.21.0
+Stable tag: 1.22.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.22.0 =
+* Enhancement: Improve the new window warning migration to handle more edge cases.
+* Fix: Avoid checking theme Tags when theme sandbox recovery is in play.
+* Fix: When parsing block content for scanning avoid stomping on post_content of a global.
 
 = 1.21.0 =
 * Enhancement: Improve how density statistics are counted. You will see a notice about this change on the welcome page.
