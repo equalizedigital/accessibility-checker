@@ -171,6 +171,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.22.0 =
+* Enhancement: Improve the new window warning migration to handle more edge cases.
+* Fix: Avoid checking theme Tags when theme sandbox recovery is in play.
+* Fix: When parsing block content for scanning avoid stomping on post_content of a global.
+
 = 1.21.0 =
 * Enhancement: Improve how density statistics are counted. You will see a notice about this change on the welcome page.
 * Fix: Ensure that the scanned posts counts are accurate to all posts scanned, not just ones that have issues.
