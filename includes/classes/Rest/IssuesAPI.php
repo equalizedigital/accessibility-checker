@@ -178,6 +178,11 @@ class Issues_API extends \WP_REST_Controller {
 	 * @return array Collection of issues.
 	 */
 	protected function do_issues_query( $ids = [] ) {
+		// Verify the ids is just an array of numbers.
+		if ( ! is_array( $ids ) ) {
+			$ids = [];
+		}
+		$ids = array_map( 'absint', $ids );
 
 		// Count the total number of issues first. Needed to handle some pagination params.
 		$this->query_data['total_issues'] = $this->count_all_issues( $ids );
