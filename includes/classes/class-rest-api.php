@@ -661,9 +661,11 @@ class REST_Api {
 	 *
 	 * @return bool
 	 */
-	public static function api_token_verify( $token ) {
+	public static function api_token_verify( $token ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- This is unused temporarily only
 		// Note: replace with JWT or application password auth.
-		return get_option( 'edac_api_token' ) === $token;
+		// return get_option( 'edac_api_token' ) === $token;
+		// For now disallow tokens and fallback to a nonce check.
+		return false;
 	}
 
 	/**
