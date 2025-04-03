@@ -189,7 +189,7 @@ class Issues_API extends \WP_REST_Controller {
 
 		global $wpdb;
 		$query = '
-			SELECT * FROM `' . $this->table_name . '`
+			SELECT * FROM `' . esc_sql( $this->table_name ) . '`
 			WHERE siteid = %d
 			' . ( ! empty( $ids ) ? ' AND id IN (' . implode( ',', array_fill( 0, count( $ids ), '%d' ) ) . ')' : '' ) . '
 			ORDER BY id DESC
@@ -330,10 +330,9 @@ class Issues_API extends \WP_REST_Controller {
 			return new \WP_Error( 'rest_issue_invalid_id', __( 'Invalid issue ID.', 'accessibility-checker' ), [ 'status' => 404 ] );
 		}
 		global $wpdb;
-		$table   = esc_sql( $this->table_name );
 		$deleted = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Using direct query for getting data from database, caching not useful for a delete.
 			$wpdb->prepare(
-				'DELETE FROM `' . $table . '` WHERE id = %d', // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+				'DELETE FROM `' . esc_sql( $this->table_name ) . '` WHERE id = %d', // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 				$id
 			)
 		);
