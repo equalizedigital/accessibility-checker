@@ -676,14 +676,14 @@ class REST_Api {
 	 * @return \WP_Error|boolean
 	 */
 	public static function check_token_or_nonce_and_capability_permissions_check( $request, $capability = 'manage_options' ) {
-		$token = $request->get_header( 'X-EDAD-Token' );
+		$token = sanitize_text_field( $request->get_header( 'X-EDAD-Token' ) );
 		// If we have a token then it takes priority, check it, otherwise fallback to nonce.
 		if ( method_exists( 'EDAC\Inc\REST_Api', 'api_token_verify' ) && $token ) {
 			if ( ! self::api_token_verify( $token ) ) {
 				return new \WP_Error( 'rest_forbidden', __( 'Invalid token.', 'accessibility-checker' ), [ 'status' => 401 ] );
 			}
 		} elseif ( $request->get_header( 'X-WP-Nonce' ) ?? $request->get_param( 'nonce' ) ) {
-			$nonce = $request->get_header( 'X-WP-Nonce' ) ?? $request->get_param( 'nonce' );
+			$nonce = sanitize_text_field( $request->get_header( 'X-WP-Nonce' ) ?? saitize_text_field( $request->get_param( 'nonce' ) ) );
 			if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
 				return new \WP_Error( 'rest_forbidden', __( 'Invalid nonce.', 'accessibility-checker' ), [ 'status' => 401 ] );
 			}
