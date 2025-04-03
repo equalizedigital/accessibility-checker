@@ -43,7 +43,7 @@ class Issues_API extends \WP_REST_Controller {
 
 		$this->query_options = [
 			'siteid' => get_current_blog_id(),
-			'limit'  => 1000,
+			'limit'  => 500,
 			'offset' => 0,
 		];
 	}
