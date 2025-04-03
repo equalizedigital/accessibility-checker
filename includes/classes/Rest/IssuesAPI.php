@@ -358,7 +358,7 @@ class Issues_API extends \WP_REST_Controller {
 
 		// Check if all required fields are present.
 		foreach ( $required_fields as $field ) {
-			if ( empty( $request[ $field ] ) ) {
+			if ( ! array_key_exists( $field, $request ) || empty( $request[ $field ] ) ) {
 				return new \WP_Error( 'rest_issue_invalid_fields', __( 'Missing required fields.', 'accessibility-checker' ), [ 'status' => 400 ] );
 			}
 		}
