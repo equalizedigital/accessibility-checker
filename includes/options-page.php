@@ -7,10 +7,7 @@
 
 use EDAC\Admin\Purge_Post_Data;
 use EDAC\Inc\Accessibility_Statement;
-use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\{
-	FixesPage,
-	DashboardPage
-};
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 
 /**
  * Check if user can ignore or can manage options
@@ -75,9 +72,6 @@ function edac_add_options_page() {
 
 	$fixes_page = new FixesPage( $settings_capability );
 	$fixes_page->add_page();
-
-	$dashboard_connect_page = new DashboardPage( $settings_capability );
-	$dashboard_connect_page->add_page();
 }
 
 /**
