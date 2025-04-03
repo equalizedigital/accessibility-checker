@@ -201,27 +201,6 @@ class Issues_API extends \WP_REST_Controller {
 	}
 
 	/**
-	 * Check if a given request has access to get items.
-	 *
-	 * This does token check if one exists and nonce check if token is not passed.
-	 *
-	 * @param \WP_REST_Request $request Full data about the request.
-	 * @return \WP_Error|boolean
-	 */
-	public function get_issues_permissions_check( $request ) {
-		$token = $request->get_header( 'Authorization' );
-		if ( method_exists( 'EDAC\Inc\REST_Api', 'api_token_verify' ) && $token ) {
-			$token = str_replace( 'Bearer ', '', $token );
-			if ( ! \EDAC\Inc\REST_Api::api_token_verify( $token ) ) {
-				return new \WP_Error( 'rest_forbidden', __( 'Invalid token.', 'accessibility-checker' ), [ 'status' => 401 ] );
-			}
-		} elseif ( ! wp_verify_nonce( $request->get_header( 'X-WP-Nonce' ) ?? $request->get_param( 'nonce' ), 'wp_rest' ) ) {
-			return new \WP_Error( 'rest_forbidden', __( 'Invalid nonce.', 'accessibility-checker' ), [ 'status' => 401 ] );
-		}
-		return true;
-	}
-
-	/**
 	 * Prepare a single issue output for response.
 	 *
 	 * @param array            $item    Issue object.
@@ -359,18 +338,6 @@ class Issues_API extends \WP_REST_Controller {
 		}
 
 		return new \WP_REST_Response( [ 'success' => true ], 204 );
-	}
-
-	/**
-	 * Check if a given request has access to create items.
-	 *
-	 * @param \WP_REST_Request $request Full data about the request.
-	 * @return \WP_Error|boolean
-	 */
-	public function modify_issue_permissions_check( $request ) {
-		// Note: Handle permissions for creating issues here.
-		// For now, just return the same permissions as viewing.
-		return $this->get_issues_permissions_check( $request );
 	}
 
 	/**
