@@ -370,7 +370,7 @@ class Issues_API extends \WP_REST_Controller {
 
 		// Create a new issue.
 		// NOTE: the return values of this is strange, need to find a better way to validate what happened.
-		$inserted = ( new Insert_Rule_Data() )->insert( $post, $request['rule'], $request['ruletype'], $request['object'], $request['user'] );
+		$inserted = ( new Insert_Rule_Data() )->insert( $post, $request['rule'], $request['ruletype'], $request['object'] );
 		return new \WP_REST_Response(
 			[
 				'id' => $inserted,
