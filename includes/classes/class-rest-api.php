@@ -683,7 +683,7 @@ class REST_Api {
 				return new \WP_Error( 'rest_forbidden', __( 'Invalid token.', 'accessibility-checker' ), [ 'status' => 401 ] );
 			}
 		} elseif ( $request->get_header( 'X-WP-Nonce' ) ?? $request->get_param( 'nonce' ) ) {
-			$nonce = sanitize_text_field( $request->get_header( 'X-WP-Nonce' ) ?? saitize_text_field( $request->get_param( 'nonce' ) ) );
+			$nonce = sanitize_text_field( $request->get_header( 'X-WP-Nonce' ) ?? sanitize_text_field( $request->get_param( 'nonce' ) ) );
 			if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
 				return new \WP_Error( 'rest_forbidden', __( 'Invalid nonce.', 'accessibility-checker' ), [ 'status' => 401 ] );
 			}
