@@ -328,7 +328,7 @@ class Issues_API extends \WP_REST_Controller {
 		if ( empty( $issue ) ) {
 			return new \WP_Error( 'rest_issue_invalid_id', __( 'Invalid issue ID.', 'accessibility-checker' ), [ 'status' => 404 ] );
 		}
-		// Prepair the first item in the object.
+		// Prepare the first item in the object.
 		$data = $this->prepare_item_for_response( $issue[0], $request );
 		return new \WP_REST_Response( $data, 200 );
 	}
