@@ -50,7 +50,7 @@ function handleSkipLinkFocusShift( foundMainTarget, skipLink ) {
 		}
 		// Focus on the target element.
 		skipLinkTargetEl.focus();
-	} );
+	}, { once: true } );
 }
 
 const SkipLinkFixInit = () => {
