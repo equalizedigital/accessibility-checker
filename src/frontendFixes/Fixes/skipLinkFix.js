@@ -40,9 +40,9 @@ function handleSkipLinkFocusShift( foundMainTarget, skipLink ) {
 	}
 
 	// Bind to the click (also cover keyboard enter) event to move focus to the target.
-	skipLink.querySelector( '.edac-skip-link--content' ).addEventListener( 'click', () => {
 		// Make the history reflect the move.
 		history.pushState( {}, '', foundMainTarget );
+	skipLink.querySelector( '.edac-skip-link--content' )?.addEventListener( 'click', () => {
 		// Focus on the target element.
 		skipLinkTargetEl.focus();
 	} );
