@@ -10,8 +10,8 @@ const MetaViewportScalableFix = () => {
 	// Get the meta viewport tag.
 	const metaViewport = document.querySelector( 'meta[name="viewport"]' );
 	if ( metaViewport ) {
-		// check if it has scalable set to no.
-		if ( ! metaViewport.content.includes( 'user-scalable=no' ) ) {
+		// check if it has scalable set to no or 0.
+		if ( ! metaViewport.content.match( /user\-scalable\s*=\s*(no|0)/ ) ) {
 			return;
 		}
 		// remove the meta viewport tag as it blocks scaling.
