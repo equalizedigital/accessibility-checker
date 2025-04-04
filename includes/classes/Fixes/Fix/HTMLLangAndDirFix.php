@@ -10,7 +10,7 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
 /**
- * Allows the user to add the post title to their read more links.
+ * Adds lang and dir attributes to the html element if they are not already set.
  *
  * @since 1.16.0
  */
