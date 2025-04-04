@@ -35,7 +35,10 @@ function handleSkipLinkFocusShift( foundMainTarget, skipLink ) {
 	}
 
 	// Make sure the target is focusable so we can move focus to it. Needed for some browsers.
-	skipLinkTargetEl.setAttribute( 'tabindex', '0' );
+	if ( skipLinkTargetEl.tabIndex === -1 ) {
+		skipLinkTargetEl.setAttribute( 'tabindex', '0' );
+	}
+
 	// Bind to the click (also cover keyboard enter) event to move focus to the target.
 	skipLink.querySelector( '.edac-skip-link--content' ).addEventListener( 'click', () => {
 		// Make the history reflect the move.
