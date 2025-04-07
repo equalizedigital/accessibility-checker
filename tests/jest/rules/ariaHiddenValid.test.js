@@ -106,12 +106,17 @@ describe( 'Aria Hidden Validation', () => {
 		{
 			name: 'should pass for button with aria-labelledby',
 			html: '<span id="label-text">Menu</span><button aria-labelledby="label-text"><svg aria-hidden="true"></svg></button>',
-			shouldPass: false, // Your current implementation only checks for aria-label
+			shouldPass: true,
 		},
 		{
 			name: 'should pass for element with very long aria-label',
 			html: '<a href="/about" aria-label="This is a very long aria label that describes the purpose of this link in great detail to ensure users understand what it does"><svg aria-hidden="true"></svg></a>',
 			shouldPass: true,
+		},
+		{
+			name: 'should fail for nested aria-hidden elements',
+			html: '<div aria-hidden="true"><button aria-hidden="true"><svg></svg></button></div>',
+			shouldPass: false,
 		},
 
 		// Screen reader text class tests
@@ -264,7 +269,6 @@ describe( 'Aria Hidden Validation', () => {
 		},
 	];
 
-	// Add these to your cssClassHidingTestCases array
 	const phpTestCasesConverted = [
 		// Test for aria-hidden="false"
 		{
