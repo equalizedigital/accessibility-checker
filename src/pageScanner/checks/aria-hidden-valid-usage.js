@@ -35,6 +35,17 @@ export default {
 				return true;
 			}
 
+			// Check if parent has visible text content (excluding the aria-hidden element)
+			let visibleText = '';
+			for ( const childNode of parentNode.childNodes ) {
+				if ( childNode !== node && childNode.nodeType === Node.TEXT_NODE ) {
+					visibleText += childNode.textContent;
+				}
+			}
+			if ( visibleText.trim() ) {
+				return true;
+			}
+
 			// Check siblings
 			const siblings = Array.from( parentNode.children );
 
@@ -60,12 +71,6 @@ export default {
 						}
 					}
 				}
-			}
-
-			// Check if parent has visible text content
-			const textContent = parentNode.textContent.trim();
-			if ( textContent ) {
-				return true;
 			}
 		}
 
