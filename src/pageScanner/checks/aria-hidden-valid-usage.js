@@ -89,6 +89,33 @@ export default {
 			}
 		}
 
+		// Check siblings for screen reader text classes regardless of parent type
+		if ( parentNode ) {
+			const siblings = Array.from( parentNode.children );
+
+			// Skip if there's only the element itself
+			if ( siblings.length > 1 ) {
+				// Common screen reader text classes
+				const srClasses = [
+					'screen-reader-text', 'sr-only', 'show-for-sr', 'visuallyhidden',
+					'visually-hidden', 'hidden-visually', 'invisible',
+					'accessibly-hidden', 'hide', 'hidden',
+				];
+
+				// Check if siblings have screen reader text classes
+				for ( const sibling of siblings ) {
+					if ( sibling !== node ) {
+						for ( const srClass of srClasses ) {
+							if ( sibling.classList.contains( srClass ) ||
+								sibling.className.toLowerCase().includes( srClass ) ) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+
 		// If none of the valid conditions are met
 		return false;
 	},
