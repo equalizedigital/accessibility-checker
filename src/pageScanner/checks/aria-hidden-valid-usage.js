@@ -37,7 +37,7 @@ export default {
 		}
 
 		const role = node.getAttribute( 'role' );
-		if ( role && role.split( /\s+/ ).includes( 'presentation' ) ) {
+		if ( role?.split( /\s+/ ).includes( 'presentation' ) ) {
 			return true;
 		}
 
