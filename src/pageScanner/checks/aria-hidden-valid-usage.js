@@ -2,6 +2,7 @@
  * Check for valid use of aria-hidden="true"
  *
  * Elements with aria-hidden="true" should only be used when:
+ * - They are hidden via CSS (display:none, visibility:hidden)
  * - They have specific classes or roles (like wp-block-spacer or presentation)
  * - They are inside a button/link with an aria-label
  * - They are inside a button/link that has screen reader text
@@ -13,6 +14,21 @@
 export default {
 	id: 'aria_hidden_valid_usage',
 	evaluate: ( node ) => {
+		// Check if element is already visually hidden with CSS
+		const computedStyle = window.getComputedStyle( node );
+		if ( computedStyle.display === 'none' || computedStyle.visibility === 'hidden' ) {
+			return true;
+		}
+
+		// Check if parent element is hidden with CSS
+		const parentNode = node.parentElement;
+		if ( parentNode ) {
+			const parentStyle = window.getComputedStyle( parentNode );
+			if ( parentStyle.display === 'none' || parentStyle.visibility === 'hidden' ) {
+				return true;
+			}
+		}
+
 		// Check for valid classes
 		if ( node.classList.contains( 'wp-block-spacer' ) ) {
 			return true;
