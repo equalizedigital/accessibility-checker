@@ -15,23 +15,13 @@ const srClasses = [
 export default {
 	id: 'aria_hidden_valid_usage',
 	evaluate: ( node ) => {
-		// Check if element or parent is hidden with CSS
+		// Check if element is hidden with CSS
 		const computedStyle = window.getComputedStyle( node );
 		if ( computedStyle.display === 'none' || computedStyle.visibility === 'hidden' ) {
 			return true;
 		}
 
-		const parentNode = node.parentElement;
-		if ( ! parentNode ) {
-			return false;
-		}
-
-		const parentStyle = window.getComputedStyle( parentNode );
-		if ( parentStyle.display === 'none' || parentStyle.visibility === 'hidden' ) {
-			return true;
-		}
-
-		// Check for valid classes or roles
+		// Check for valid element properties
 		if ( node.classList.contains( 'wp-block-spacer' ) ) {
 			return true;
 		}
@@ -41,10 +31,19 @@ export default {
 			return true;
 		}
 
-		// Check if parent is button/anchor with accessible content
-		const isButtonOrLink = [ 'button', 'a' ].includes( parentNode.tagName.toLowerCase() );
+		const parentNode = node.parentElement;
+		if ( ! parentNode ) {
+			return false;
+		}
 
-		if ( isButtonOrLink ) {
+		// Check if parent is hidden with CSS
+		const parentStyle = window.getComputedStyle( parentNode );
+		if ( parentStyle.display === 'none' || parentStyle.visibility === 'hidden' ) {
+			return true;
+		}
+
+		// Check if parent is button/anchor with accessible content
+		if ( [ 'button', 'a' ].includes( parentNode.tagName.toLowerCase() ) ) {
 			// Parent has non-empty aria-label
 			if ( parentNode.hasAttribute( 'aria-label' ) &&
 				parentNode.getAttribute( 'aria-label' ).trim() ) {
@@ -52,10 +51,10 @@ export default {
 			}
 
 			// Check for visible text (excluding the aria-hidden element)
-			for ( const childNode of parentNode.childNodes ) {
-				if ( childNode !== node &&
-					childNode.nodeType === Node.TEXT_NODE &&
-					childNode.textContent.trim() ) {
+			for ( const child of parentNode.childNodes ) {
+				if ( child !== node &&
+					child.nodeType === Node.TEXT_NODE &&
+					child.textContent.trim() ) {
 					return true;
 				}
 			}
@@ -63,14 +62,12 @@ export default {
 
 		// Check siblings for screen reader text classes
 		const siblings = Array.from( parentNode.children );
-		if ( siblings.length > 1 ) {
-			for ( const sibling of siblings ) {
-				if ( sibling !== node ) {
-					for ( const srClass of srClasses ) {
-						if ( sibling.classList.contains( srClass ) ||
-							sibling.className.toLowerCase().includes( srClass ) ) {
-							return true;
-						}
+		for ( const sibling of siblings ) {
+			if ( sibling !== node ) {
+				for ( const srClass of srClasses ) {
+					if ( sibling.classList.contains( srClass ) ||
+						sibling.className.toLowerCase().includes( srClass ) ) {
+						return true;
 					}
 				}
 			}
