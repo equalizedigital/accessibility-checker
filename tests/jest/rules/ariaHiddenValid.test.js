@@ -264,7 +264,70 @@ describe( 'Aria Hidden Validation', () => {
 		},
 	];
 
-	const allTestCases = [ ...testCases, ...additionalTestCases, ...cssVisibilityEdgeCases, ...cssClassHidingTestCases ];
+	// Add these to your cssClassHidingTestCases array
+	const phpTestCasesConverted = [
+		// Test for aria-hidden="false"
+		{
+			name: 'should pass for element with aria-hidden="false"',
+			html: '<div aria-hidden="false">Visible content</div>',
+			shouldPass: true,
+		},
+
+		// Test for wp-block-spacer
+		{
+			name: 'should pass for wp-block-spacer with aria-hidden="true"',
+			html: '<div aria-hidden="true" class="wp-block-spacer"></div>',
+			shouldPass: true,
+		},
+
+		// Test for presentational image
+		{
+			name: 'should pass for presentational image',
+			html: '<img src="image.jpg" aria-hidden="true" role="presentation" />',
+			shouldPass: true,
+		},
+
+		// Tests for different screen reader text classes
+		{
+			name: 'should pass for screen-reader-text class',
+			html: '<div class="parent"><div aria-hidden="true"></div><div class="screen-reader-text">Screen reader content</div></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for show-for-sr class',
+			html: '<div class="parent"><div aria-hidden="true"></div><div class="show-for-sr">Screen reader content</div></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for visuallyhidden class',
+			html: '<div class="parent"><div aria-hidden="true"></div><div class="visuallyhidden">Screen reader content</div></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for hidden-visually class',
+			html: '<div class="parent"><div aria-hidden="true"></div><div class="hidden-visually">Screen reader content</div></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for accessibly-hidden class',
+			html: '<div class="parent"><div aria-hidden="true"></div><div class="accessibly-hidden">Screen reader content</div></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for CSS hidden with display:none',
+			html: '<div aria-hidden="true" class="hidden-with-css">Hidden content</div>',
+			css: '.hidden-with-css { display: none; }',
+			shouldPass: true,
+		},
+	];
+
+	const allTestCases = [
+		...testCases,
+		...additionalTestCases,
+		...cssVisibilityEdgeCases,
+		...cssClassHidingTestCases,
+		...phpTestCasesConverted,
+	];
 
 	allTestCases.forEach( ( testCase ) => {
 		test( testCase.name, async () => {
