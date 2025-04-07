@@ -41,7 +41,6 @@ export default {
 		}
 
 		// Check parent node for button or anchor
-		const parentNode = node.parentElement;
 		if ( parentNode &&
 			( parentNode.tagName.toLowerCase() === 'button' ||
 				parentNode.tagName.toLowerCase() === 'a' ) ) {
