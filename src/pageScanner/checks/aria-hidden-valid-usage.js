@@ -1,82 +1,69 @@
 /**
  * Check for valid use of aria-hidden="true"
  *
- * Elements with aria-hidden="true" should only be used when:
- * - They are hidden via CSS (display:none, visibility:hidden)
- * - They have specific classes or roles (like wp-block-spacer or presentation)
- * - They are inside a button/link with an aria-label
- * - They are inside a button/link that has screen reader text
- * - They are inside a button/link with visible text
- *
  * @param {Node} node The node to evaluate.
  * @return {boolean} True if the aria-hidden usage is valid, false otherwise.
  */
+
+// Common screen reader text classes
+const srClasses = [
+	'screen-reader-text', 'sr-only', 'show-for-sr', 'visuallyhidden',
+	'visually-hidden', 'hidden-visually', 'invisible',
+	'accessibly-hidden', 'hide', 'hidden',
+];
+
 export default {
 	id: 'aria_hidden_valid_usage',
 	evaluate: ( node ) => {
-		// Check if element is already visually hidden with CSS
+		// Check if element or parent is hidden with CSS
 		const computedStyle = window.getComputedStyle( node );
 		if ( computedStyle.display === 'none' || computedStyle.visibility === 'hidden' ) {
 			return true;
 		}
 
-		// Check if parent element is hidden with CSS
 		const parentNode = node.parentElement;
-		if ( parentNode ) {
-			const parentStyle = window.getComputedStyle( parentNode );
-			if ( parentStyle.display === 'none' || parentStyle.visibility === 'hidden' ) {
-				return true;
-			}
+		if ( ! parentNode ) {
+			return false;
 		}
 
-		// Check for valid classes
+		const parentStyle = window.getComputedStyle( parentNode );
+		if ( parentStyle.display === 'none' || parentStyle.visibility === 'hidden' ) {
+			return true;
+		}
+
+		// Check for valid classes or roles
 		if ( node.classList.contains( 'wp-block-spacer' ) ) {
 			return true;
 		}
 
-		// Check for valid roles
 		const role = node.getAttribute( 'role' );
 		if ( role && role.split( /\s+/ ).includes( 'presentation' ) ) {
 			return true;
 		}
 
-		// Check parent node for button or anchor
-		if ( parentNode &&
-			( parentNode.tagName.toLowerCase() === 'button' ||
-				parentNode.tagName.toLowerCase() === 'a' ) ) {
+		// Check if parent is button/anchor with accessible content
+		const isButtonOrLink = [ 'button', 'a' ].includes( parentNode.tagName.toLowerCase() );
+
+		if ( isButtonOrLink ) {
 			// Parent has non-empty aria-label
 			if ( parentNode.hasAttribute( 'aria-label' ) &&
 				parentNode.getAttribute( 'aria-label' ).trim() ) {
 				return true;
 			}
 
-			// Check if parent has visible text content (excluding the aria-hidden element)
-			let visibleText = '';
+			// Check for visible text (excluding the aria-hidden element)
 			for ( const childNode of parentNode.childNodes ) {
-				if ( childNode !== node && childNode.nodeType === Node.TEXT_NODE ) {
-					visibleText += childNode.textContent;
+				if ( childNode !== node &&
+					childNode.nodeType === Node.TEXT_NODE &&
+					childNode.textContent.trim() ) {
+					return true;
 				}
 			}
-			if ( visibleText.trim() ) {
-				return true;
-			}
+		}
 
-			// Check siblings
-			const siblings = Array.from( parentNode.children );
-
-			// Only the element itself exists
-			if ( siblings.length <= 1 ) {
-				return false;
-			}
-
-			// Common screen reader text classes
-			const srClasses = [
-				'screen-reader-text', 'sr-only', 'show-for-sr', 'visuallyhidden',
-				'visually-hidden', 'hidden-visually', 'invisible',
-				'accessibly-hidden', 'hide', 'hidden',
-			];
-
-			// Check if siblings have screen reader text classes
+		// Check siblings for screen reader text classes
+		const siblings = Array.from( parentNode.children );
+		if ( siblings.length > 1 ) {
 			for ( const sibling of siblings ) {
 				if ( sibling !== node ) {
 					for ( const srClass of srClasses ) {
@@ -89,34 +76,6 @@ export default {
 			}
 		}
 
-		// Check siblings for screen reader text classes regardless of parent type
-		if ( parentNode ) {
-			const siblings = Array.from( parentNode.children );
-
-			// Skip if there's only the element itself
-			if ( siblings.length > 1 ) {
-				// Common screen reader text classes
-				const srClasses = [
-					'screen-reader-text', 'sr-only', 'show-for-sr', 'visuallyhidden',
-					'visually-hidden', 'hidden-visually', 'invisible',
-					'accessibly-hidden', 'hide', 'hidden',
-				];
-
-				// Check if siblings have screen reader text classes
-				for ( const sibling of siblings ) {
-					if ( sibling !== node ) {
-						for ( const srClass of srClasses ) {
-							if ( sibling.classList.contains( srClass ) ||
-								sibling.className.toLowerCase().includes( srClass ) ) {
-								return true;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		// If none of the valid conditions are met
 		return false;
 	},
 };
