@@ -19,7 +19,8 @@ export default {
 		}
 
 		// Check for valid roles
-		if ( node.getAttribute( 'role' ) === 'presentation' ) {
+		const role = node.getAttribute( 'role' );
+		if ( role && role.split( /\s+/ ).includes( 'presentation' ) ) {
 			return true;
 		}
 
