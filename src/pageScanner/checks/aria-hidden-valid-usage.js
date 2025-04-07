@@ -51,12 +51,34 @@ export default {
 			}
 
 			// Check if parent has visible text content (excluding the aria-hidden element)
+			// Check if parent has visible text content (excluding the aria-hidden element) 
+			// including text from child elements
 			let visibleText = '';
-			for ( const childNode of parentNode.childNodes ) {
-				if ( childNode !== node && childNode.nodeType === Node.TEXT_NODE ) {
-					visibleText += childNode.textContent;
+			// Helper function to collect text content from element and its children
+			function collectTextContent(element, excludeNode) {
+				let text = '';
+				
+				// Process childNodes to get text nodes and element nodes
+				for (const child of element.childNodes) {
+					// Skip the excluded node
+					if (child === excludeNode) {
+						continue;
+					}
+					
+					// For text nodes, add their content
+					if (child.nodeType === Node.TEXT_NODE) {
+						text += child.textContent;
+					}
+					// For element nodes, recursively collect their text
+					else if (child.nodeType === Node.ELEMENT_NODE) {
+						text += collectTextContent(child, excludeNode);
+					}
 				}
+				
+				return text;
 			}
+			
+			visibleText = collectTextContent(parentNode, node);
 			if ( visibleText.trim() ) {
 				return true;
 			}
