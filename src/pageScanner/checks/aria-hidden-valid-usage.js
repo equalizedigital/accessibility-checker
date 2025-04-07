@@ -45,8 +45,17 @@ export default {
 		// Check if parent is button/anchor with accessible content
 		if ( [ 'button', 'a' ].includes( parentNode.tagName.toLowerCase() ) ) {
 			// Parent has non-empty aria-label
-			if ( parentNode.hasAttribute( 'aria-label' ) &&
-				parentNode.getAttribute( 'aria-label' ).trim() ) {
+
+			if (
+				(
+					parentNode.hasAttribute( 'aria-label' ) &&
+					parentNode.getAttribute( 'aria-label' ).trim()
+				) ||
+				(
+					parentNode.hasAttribute( 'aria-labelledby' ) &&
+					document.getElementById( parentNode.getAttribute( 'aria-labelledby' ) )
+				)
+			) {
 				return true;
 			}
 
