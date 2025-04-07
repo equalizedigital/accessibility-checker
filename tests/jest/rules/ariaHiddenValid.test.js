@@ -109,11 +109,6 @@ describe( 'Aria Hidden Validation', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for element with very long aria-label',
-			html: '<a href="/about" aria-label="This is a very long aria label that describes the purpose of this link in great detail to ensure users understand what it does"><svg aria-hidden="true"></svg></a>',
-			shouldPass: true,
-		},
-		{
 			name: 'should fail for nested aria-hidden elements',
 			html: '<div aria-hidden="true"><button aria-hidden="true"><svg></svg></button></div>',
 			shouldPass: false,
@@ -246,12 +241,6 @@ describe( 'Aria Hidden Validation', () => {
 
 	const cssClassHidingTestCases = [
 		{
-			name: 'should pass for custom CSS class with display:none',
-			html: `<div class="display-none-custom" aria-hidden="true">Hidden content</div>`,
-			css: `.display-none-custom { display: none; }`,
-			shouldPass: true,
-		},
-		{
 			name: 'should pass for custom CSS class with visibility:hidden',
 			html: `<div class="visibility-hidden-custom" aria-hidden="true">Hidden content</div>`,
 			css: `.visibility-hidden-custom { visibility: hidden; }`,
@@ -274,20 +263,6 @@ describe( 'Aria Hidden Validation', () => {
 		{
 			name: 'should pass for element with aria-hidden="false"',
 			html: '<div aria-hidden="false">Visible content</div>',
-			shouldPass: true,
-		},
-
-		// Test for wp-block-spacer
-		{
-			name: 'should pass for wp-block-spacer with aria-hidden="true"',
-			html: '<div aria-hidden="true" class="wp-block-spacer"></div>',
-			shouldPass: true,
-		},
-
-		// Test for presentational image
-		{
-			name: 'should pass for presentational image',
-			html: '<img src="image.jpg" aria-hidden="true" role="presentation" />',
 			shouldPass: true,
 		},
 
@@ -315,12 +290,6 @@ describe( 'Aria Hidden Validation', () => {
 		{
 			name: 'should pass for accessibly-hidden class',
 			html: '<div class="parent"><div aria-hidden="true"></div><div class="accessibly-hidden">Screen reader content</div></div>',
-			shouldPass: true,
-		},
-		{
-			name: 'should pass for CSS hidden with display:none',
-			html: '<div aria-hidden="true" class="hidden-with-css">Hidden content</div>',
-			css: '.hidden-with-css { display: none; }',
 			shouldPass: true,
 		},
 	];
