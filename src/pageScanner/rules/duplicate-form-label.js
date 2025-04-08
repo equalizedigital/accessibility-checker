@@ -5,7 +5,7 @@ export default {
 	metadata: {
 		description: 'Ensures that form fields do not have duplicate labels.',
 		help: 'Form fields should have only one associated label.',
-		helpUrl: 'https://example.com/accessibility-guidelines#duplicate-form-label',
+		helpUrl: 'https://a11ychecker.com/help1954',
 	},
 	any: [ 'duplicate_form_label_check' ],
 	all: [],
