@@ -24,6 +24,8 @@ import labelExtended from './rules/extended/label';
 import imageInputHasAlt from './checks/image-input-has-alt';
 import linkPDF from './rules/link-pdf';
 import linkMsOfficeFile from './rules/link-ms-office-file';
+import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
+import ariaHiddenValidation from './rules/aria-hidden-validation';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -68,6 +70,7 @@ const scan = async (
 				linkMsOfficeFile,
 				brokenAnchorLink,
 				labelExtended,
+				ariaHiddenValidation,
 			],
 			checks: [
 				alwaysFail,
@@ -81,6 +84,7 @@ const scan = async (
 				hasAmbiguousText,
 				anchorExists,
 				imageInputHasAlt,
+				ariaHiddenValidUsage,
 			],
 			iframes: false,
 
@@ -109,6 +113,7 @@ const scan = async (
 					linkMsOfficeFile.id,
 					brokenAnchorLink.id,
 					labelExtended.id,
+					ariaHiddenValidation.id,
 				],
 			},
 
