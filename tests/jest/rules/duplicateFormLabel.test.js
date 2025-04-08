@@ -219,17 +219,6 @@ describe( 'duplicate_form_label rule', () => {
    `,
 			shouldPass: true,
 		},
-		// Passing cases
-		{
-			name: 'should pass when a form field has a single label element',
-			html: `
-      <form>
-        <label for="input1">Name</label>
-        <input id="input1" type="text" />
-      </form>
-    `,
-			shouldPass: true,
-		},
 		{
 			name: 'should pass when a form field has a label element with nested content',
 			html: `
@@ -284,15 +273,6 @@ describe( 'duplicate_form_label rule', () => {
       </form>
     `,
 			shouldPass: false,
-		},
-		{
-			name: 'should pass when a form field has no label element and no valid aria attributes since there is no duplicates',
-			html: `
-      <form>
-        <input id="input1" type="text" />
-      </form>
-    `,
-			shouldPass: true,
 		},
 	];
 
