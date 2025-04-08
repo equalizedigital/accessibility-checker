@@ -4,11 +4,11 @@
  * @param {Node} node The node to evaluate.
  * @return {boolean} True if all references exist, false otherwise.
  */
+import { checkAriaReferences } from '../utils/aria-utils';
 
 export default {
 	id: 'aria_label_not_found',
 	evaluate: ( node ) => {
-		const ids = ( node.getAttribute( 'aria-labelledby' ) || '' ).split( /\s+/ );
-		return ids.every( ( id ) => document.getElementById( id ) !== null );
+		return checkAriaReferences( node, 'aria-labelledby' );
 	},
 };
