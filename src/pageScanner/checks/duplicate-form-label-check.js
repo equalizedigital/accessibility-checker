@@ -91,18 +91,6 @@ export default {
 			}
 		}
 
-		// Check if element has at least one accessible name when needed
-		// (Only fail if we need a label and have 0 labels, not for duplicate labels)
-		if ( labelCount === 0 ) {
-			// Skip elements that don't necessarily need labels
-			if ( node.tagName === 'INPUT' && [ 'color', 'date', 'datetime-local', 'file', 'month', 'time', 'week' ].includes( node.type ) ) {
-				return true;
-			}
-
-			// No label found, but this is not a duplicate label issue
-			return true;
-		}
-
 		return true;
 	},
 };
