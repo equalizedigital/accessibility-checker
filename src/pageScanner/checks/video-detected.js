@@ -14,16 +14,6 @@ const videoExtensions = [
 ];
 
 const videoKeywords = [ 'youtube', 'youtu.be', 'vimeo' ];
-const videoClassKeywords = [
-	'video', // good general case
-	'video-player',
-	'wp-block-video',
-	'embed-video',
-	'responsive-video',
-	'html5-video',
-	'media-video',
-	'vjs-tech', // used by Video.js
-];
 const videoRoles = [ 'video' ];
 
 export default {
@@ -34,7 +24,6 @@ export default {
 		const data = node.getAttribute( 'data' ) || '';
 		const type = node.getAttribute( 'type' ) || '';
 		const role = node.getAttribute( 'role' ) || '';
-		const className = node.getAttribute( 'class' ) || '';
 
 		const matchesExtension = videoExtensions.some( ( ext ) => {
 			const srcLower = src.toLowerCase();
@@ -50,10 +39,6 @@ export default {
 
 		const matchesType = type.toLowerCase().startsWith( 'video/' );
 
-		const matchesClass = videoClassKeywords.some( ( keyword ) =>
-			className.toLowerCase().includes( keyword )
-		);
-
 		const matchesRole = videoRoles.includes( role.toLowerCase() );
 
 		if (
@@ -61,7 +46,6 @@ export default {
 			matchesExtension ||
 			matchesKeyword ||
 			matchesType ||
-			matchesClass ||
 			matchesRole
 		) {
 			return false; // Fail check → trigger violation

@@ -53,11 +53,6 @@ describe( 'video_present rule', () => {
 			shouldPass: false,
 		},
 		{
-			name: 'detects element with video-related class',
-			html: '<div class="video-player"></div>',
-			shouldPass: false,
-		},
-		{
 			name: 'detects element with role="video"',
 			html: '<div role="video"></div>',
 			shouldPass: false,
