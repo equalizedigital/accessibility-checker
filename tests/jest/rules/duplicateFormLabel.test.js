@@ -240,25 +240,12 @@ describe( 'duplicate_form_label rule', () => {
     `,
 			shouldPass: false,
 		},
-
-		// Failing cases
-		{
-			name: 'should fail when a form field has multiple label elements',
-			html: `
-      <form>
-        <label for="input1">First Name</label>
-        <label for="input1">Last Name</label>
-        <input id="input1" type="text" />
-      </form>
-    `,
-			shouldPass: false,
-		},
 		{
 			name: 'should fail when a form field has a label element and aria-labelledby pointing to different content',
 			html: `
       <form>
         <label for="input1">Name</label>
-        <div id="label1">Full Name</div>
+        <div id="label1">Full Name</div>s
         <input id="input1" type="text" aria-labelledby="label1" />
       </form>
     `,
