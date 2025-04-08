@@ -76,6 +76,8 @@ describe( 'Broken ARIA Reference Validation', () => {
 		},
 	];
 
+	// These checks come from the rulecheck site and are a loose verification that the
+	// rule expected results did not change in the swap from a PHP rule to a JS rule.
 	const additionalTestCases = [
 		// Passing cases
 		{
