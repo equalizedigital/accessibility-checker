@@ -58,7 +58,7 @@ describe( 'duplicate_form_label rule', () => {
 			shouldPass: false,
 		},
 		{
-			name: 'should fail when a form field has multiple IDs in aria-labelledby (this is valid)',
+			name: 'should fail when a form field has multiple IDs in aria-labelledby (multiple references are valid for aria-labelledby but considered duplicate labels)',
 			html: `
     <form>
       <div id="label1">First Name</div>
@@ -80,7 +80,7 @@ describe( 'duplicate_form_label rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should fail when a form field has no label since it is not a duplicate',
+			name: 'should pass when a form field has no label since it is not a duplicate',
 			html: `
     <form>
       <input id="input1" type="text" />
