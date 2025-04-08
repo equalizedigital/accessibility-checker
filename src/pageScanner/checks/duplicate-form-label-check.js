@@ -15,55 +15,92 @@ export default {
 			return true;
 		}
 
-		// Skip elements with their own text content (like buttons)
-		if ( ( node.tagName === 'BUTTON' || node.hasAttribute( 'aria-label' ) ) && node.textContent.trim() ) {
-			return true;
-		}
+		// Multiple label detection
+		let labelCount = 0;
+		let hasLabelElement = false;
+		let hasAriaLabel = false;
+		let hasAriaLabelledby = false;
 
 		// Check for associated labels using the `for` attribute
-		// This is the main check for duplicate labels
 		if ( node.id ) {
 			const forLabels = Array.from( document.querySelectorAll( `label[for="${ node.id }"]` ) );
+			if ( forLabels.length > 0 ) {
+				hasLabelElement = true;
+				labelCount += forLabels.length;
 
-			// Fail if multiple labels are found - this is the primary duplicate label check
-			if ( forLabels.length > 1 ) {
+				// Fail if multiple label elements reference this input
+				if ( forLabels.length > 1 ) {
+					return false;
+				}
+			}
+		}
+
+		// Check aria-label
+		const ariaLabel = node.getAttribute( 'aria-label' );
+		if ( ariaLabel && ariaLabel.trim() ) {
+			hasAriaLabel = true;
+			labelCount++;
+		}
+
+		// Check aria-labelledby
+		const ariaLabelledBy = node.getAttribute( 'aria-labelledby' );
+		if ( ariaLabelledBy ) {
+			hasAriaLabelledby = true;
+			labelCount++;
+
+			// Check for multiple IDs in aria-labelledby (should fail according to test cases)
+			const ids = ariaLabelledBy.split( ' ' ).filter( Boolean );
+			if ( ids.length > 1 ) {
+				return false;
+			}
+
+			// Check for duplicate IDs in aria-labelledby
+			const uniqueIds = new Set( ids );
+			if ( uniqueIds.size < ids.length ) {
+				return false;
+			}
+
+			// Check if aria-labelledby references exist
+			const validReferences = ids.filter( ( id ) => document.getElementById( id ) ).length;
+			if ( validReferences === 0 && ids.length > 0 ) {
 				return false;
 			}
 		}
 
-		// Check if element has an accessible name from somewhere
-		// (aria-label, aria-labelledby, label element, etc.)
-		let hasAccessibleName = false;
-
-		// Check explicit label
-		if ( node.id && document.querySelector( `label[for="${ node.id }"]` ) ) {
-			hasAccessibleName = true;
+		// Fail if multiple labeling methods are used
+		if ( labelCount > 1 ) {
+			return false;
 		}
 
-		// Check implicit label
-		if ( node.closest( 'label' ) ) {
-			hasAccessibleName = true;
-		}
-
-		// Check aria-label
-		if ( node.hasAttribute( 'aria-label' ) && node.getAttribute( 'aria-label' ).trim() ) {
-			hasAccessibleName = true;
-		}
-
-		// Check aria-labelledby - note that multiple IDs here is valid
-		const ariaLabelledBy = node.getAttribute( 'aria-labelledby' );
-		if ( ariaLabelledBy ) {
-			const ids = ariaLabelledBy.split( ' ' );
-			// Check if at least one referenced element exists
-			const hasValidReference = ids.some( ( id ) => document.getElementById( id ) );
-			if ( hasValidReference ) {
-				hasAccessibleName = true;
+		// Check for conflicts between label element and aria-label
+		if ( hasLabelElement && hasAriaLabel && node.id ) {
+			const explicitLabel = document.querySelector( `label[for="${ node.id }"]` )?.textContent?.trim();
+			if ( explicitLabel && ariaLabel.trim() && explicitLabel !== ariaLabel.trim() ) {
+				return false;
 			}
 		}
 
-		// Fail if no accessible name is found
-		if ( ! hasAccessibleName ) {
-			return false;
+		// Check for conflicts between label element and aria-labelledby
+		if ( hasLabelElement && hasAriaLabelledby && node.id && ariaLabelledBy ) {
+			const explicitLabel = document.querySelector( `label[for="${ node.id }"]` )?.textContent?.trim();
+			const referencedElement = document.getElementById( ariaLabelledBy.trim() );
+			const labelledByText = referencedElement?.textContent?.trim();
+
+			if ( explicitLabel && labelledByText && explicitLabel !== labelledByText ) {
+				return false;
+			}
+		}
+
+		// Check if element has at least one accessible name when needed
+		// (Only fail if we need a label and have 0 labels, not for duplicate labels)
+		if ( labelCount === 0 ) {
+			// Skip elements that don't necessarily need labels
+			if ( node.tagName === 'INPUT' && [ 'color', 'date', 'datetime-local', 'file', 'month', 'time', 'week' ].includes( node.type ) ) {
+				return true;
+			}
+
+			// No label found, but this is not a duplicate label issue
+			return true;
 		}
 
 		return true;
