@@ -1,6 +1,6 @@
 export default {
 	id: 'video_present',
-	selector: 'video, iframe, object, source, [src], [class], [role]',
+	selector: 'video, iframe, object, source, [src], [role]',
 	excludeHidden: false,
 	tags: [
 		'wcag2a',
