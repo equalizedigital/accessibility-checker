@@ -1,3 +1,9 @@
+/**
+ * Rule to detect the presence of video content that may require accessibility features.
+ * This rule works with the video_detected check to identify various video elements
+ * that might need captions, audio descriptions, or other accessibility enhancements.
+ */
+
 export default {
 	id: 'video_present',
 	selector: 'video, iframe, object, source, [src], [role]',
