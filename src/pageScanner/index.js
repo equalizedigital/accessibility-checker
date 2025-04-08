@@ -26,6 +26,10 @@ import linkPDF from './rules/link-pdf';
 import linkMsOfficeFile from './rules/link-ms-office-file';
 import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
+import ariaBrokenReference from './rules/aria-broken-reference';
+import ariaLabelNotFoundCheck from './checks/aria-label-not-found';
+import ariaDescribedByNotFoundCheck from './checks/aria-describedby-not-found';
+import ariaOwnsNotFoundCheck from './checks/aria-owns-not-found';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -71,6 +75,7 @@ const scan = async (
 				brokenAnchorLink,
 				labelExtended,
 				ariaHiddenValidation,
+				ariaBrokenReference,
 			],
 			checks: [
 				alwaysFail,
@@ -85,6 +90,9 @@ const scan = async (
 				anchorExists,
 				imageInputHasAlt,
 				ariaHiddenValidUsage,
+				ariaLabelNotFoundCheck,
+				ariaDescribedByNotFoundCheck,
+				ariaOwnsNotFoundCheck,
 			],
 			iframes: false,
 
@@ -114,6 +122,7 @@ const scan = async (
 					brokenAnchorLink.id,
 					labelExtended.id,
 					ariaHiddenValidation.id,
+					ariaBrokenReference.id,
 				],
 			},
 
