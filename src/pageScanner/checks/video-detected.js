@@ -4,7 +4,7 @@
  * and elements with video roles.
  *
  * @param {Node} node The node to evaluate.
- * @return {boolean} True if the node is a video element, false otherwise.
+ * @return {boolean} False if the node is a video element (triggering violation), true otherwise (no violation).
  */
 
 const videoExtensions = [
