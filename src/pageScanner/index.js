@@ -2,46 +2,7 @@
 /* global axe */
 
 import 'axe-core';
-import colorContrastFailure from './rules/color-contrast-failure';
-import underlinedText from './rules/underlined-text';
-import elementWithUnderline from './checks/element-with-underline';
-import elementIsAUTag from './checks/element-is-u-tag';
-import emptyParagraph from './rules/empty-paragraph';
-import paragraphNotEmpty from './checks/paragraph-not-empty';
-import possibleHeading from './rules/possible-heading';
-import paragraphStyledAsHeader from './checks/paragraph-styled-as-header';
-import textSmall from './rules/text-small';
-import textSizeTooSmall from './checks/text-size-too-small';
-import textJustified from './rules/text-justified';
-import textIsJustified from './checks/text-is-justified';
-import linkTargetBlank from './rules/link_target_blank';
-import linkTargetBlankWithoutInforming from './checks/link-target-blank-without-informing';
-import linkAmbiguousText from './rules/link-ambiguous-text';
-import hasAmbiguousText from './checks/has-ambiguous-text';
-import brokenAnchorLink from './rules/broken-anchor-link';
-import anchorExists from './checks/anchor-exists';
-import labelExtended from './rules/extended/label';
-import imageInputHasAlt from './checks/image-input-has-alt';
-import linkPDF from './rules/link-pdf';
-import linkMsOfficeFile from './rules/link-ms-office-file';
-import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
-import ariaHiddenValidation from './rules/aria-hidden-validation';
-import ariaBrokenReference from './rules/aria-broken-reference';
-import ariaLabelNotFoundCheck from './checks/aria-label-not-found';
-import ariaDescribedByNotFoundCheck from './checks/aria-describedby-not-found';
-import ariaOwnsNotFoundCheck from './checks/aria-owns-not-found';
-
-//TODO: examples:
-//import customRule1 from './rules/custom-rule-1';
-import alwaysFail from './checks/always-fail';
-
-//TODO:
-//see: https://github.com/dequelabs/axe-core/blob/develop/doc/developer-guide.md#api-reference
-//see: https://www.deque.com/axe/core-documentation/api-documentation/
-
-//NOTE: to get no-axe baseline for memory testing:
-// set SCAN_TIMEOUT_IN_SECONDS = .01
-// comment out scan().then((results) => {
+import { rulesArray, checksArray, standardRuleIdsArray, customRuleIdsArray } from './config/rules';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
@@ -59,90 +20,16 @@ const scan = async (
 	const defaults = {
 		configOptions: {
 			reporter: 'raw',
-
-			rules: [
-				//customRule1,
-				colorContrastFailure,
-				underlinedText,
-				possibleHeading,
-				emptyParagraph,
-				textSmall,
-				textJustified,
-				linkTargetBlank,
-				linkAmbiguousText,
-				linkPDF,
-				linkMsOfficeFile,
-				brokenAnchorLink,
-				labelExtended,
-				ariaHiddenValidation,
-				ariaBrokenReference,
-			],
-			checks: [
-				alwaysFail,
-				elementIsAUTag,
-				elementWithUnderline,
-				paragraphStyledAsHeader,
-				paragraphNotEmpty,
-				textSizeTooSmall,
-				textIsJustified,
-				linkTargetBlankWithoutInforming,
-				hasAmbiguousText,
-				anchorExists,
-				imageInputHasAlt,
-				ariaHiddenValidUsage,
-				ariaLabelNotFoundCheck,
-				ariaDescribedByNotFoundCheck,
-				ariaOwnsNotFoundCheck,
-			],
+			rulesArray,
+			checksArray,
 			iframes: false,
-
 		},
 		resultTypes: [ 'violations' ],
 		runOptions: {
 			runOnly: {
 				type: 'rule',
-				values: [
-					'meta-viewport',
-					'blink',
-					'marquee',
-					'document-title',
-					'tabindex',
-					'html-lang-valid',
-					'html-has-lang',
-					colorContrastFailure.id,
-					underlinedText.id,
-					emptyParagraph.id,
-					possibleHeading.id,
-					textSmall.id,
-					textJustified.id,
-					linkTargetBlank.id,
-					linkAmbiguousText.id,
-					linkPDF.id,
-					linkMsOfficeFile.id,
-					brokenAnchorLink.id,
-					labelExtended.id,
-					ariaHiddenValidation.id,
-					ariaBrokenReference.id,
-				],
+				values: [ ...standardRuleIdsArray, ...customRuleIdsArray ],
 			},
-
-			/*
-			//TODO:
-			runOnly: {
-				type: 'tag',
-				values: [
-					'wcag2a', 'wcag2aa', 'wcag2aaa',
-					'wcag21a', 'wcag21aa',
-					'wcag22aa',
-					'best-practice',
-					'ACT',
-					'section508',
-					'TTv5',
-					'experimental'
-				]
-			}
-			*/
-
 		},
 	};
 
