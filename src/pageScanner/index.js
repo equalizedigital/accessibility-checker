@@ -20,8 +20,8 @@ const scan = async (
 	const defaults = {
 		configOptions: {
 			reporter: 'raw',
-			rulesArray,
-			checksArray,
+			rules: rulesArray,
+			checks: checksArray,
 			iframes: false,
 		},
 		resultTypes: [ 'violations' ],
