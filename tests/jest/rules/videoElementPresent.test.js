@@ -3,12 +3,12 @@ import axe from 'axe-core';
 beforeAll( async () => {
 	// Dynamically import the modules
 	const videoPresentRuleModule = await import( '../../../src/pageScanner/rules/video-present.js' );
-	const videoPresentCheckModule = await import( '../../../src/pageScanner/checks/video-element-present.js' );
+	const videoPresentCheckModule = await import( '../../../src/pageScanner/checks/video-detected.js' );
 
 	const videoPresentRule = videoPresentRuleModule.default;
 	const videoPresentCheck = videoPresentCheckModule.default;
 
-	// Configure axe with the imported rules
+	// Configure axe with the imported rule and check
 	axe.configure( {
 		rules: [ videoPresentRule ],
 		checks: [ videoPresentCheck ],
@@ -19,64 +19,69 @@ beforeEach( () => {
 	document.body.innerHTML = '';
 } );
 
-describe( 'Video Element Detection', () => {
+describe( 'video_present rule', () => {
 	const testCases = [
-		// Passing (should trigger detection)
+		// Should trigger violations
 		{
-			name: 'should detect <video> element',
+			name: 'detects native <video> element',
 			html: '<video src="movie.mp4" controls></video>',
 			shouldPass: false,
 		},
 		{
-			name: 'should detect element with role="video"',
-			html: '<div role="video"></div>',
+			name: 'detects YouTube iframe embed',
+			html: '<iframe src="https://www.youtube.com/embed/example"></iframe>',
 			shouldPass: false,
 		},
 		{
-			name: 'should detect WordPress video block',
-			html: '<div class="is-type-video"><div>Video here</div></div>',
-			shouldPass: false,
-		},
-		{
-			name: 'should detect YouTube iframe',
-			html: '<iframe src="https://www.youtube.com/embed/videoId"></iframe>',
-			shouldPass: false,
-		},
-		{
-			name: 'should detect Vimeo iframe',
+			name: 'detects Vimeo iframe embed',
 			html: '<iframe src="https://player.vimeo.com/video/123456"></iframe>',
 			shouldPass: false,
 		},
 		{
-			name: 'should detect <object> with video type',
+			name: 'detects element with .mp4 in src',
+			html: '<img src="example.mp4" />',
+			shouldPass: false,
+		},
+		{
+			name: 'detects object element with video type',
 			html: '<object data="movie.mp4" type="video/mp4"></object>',
 			shouldPass: false,
 		},
 		{
-			name: 'should detect element with .mp4 in src',
-			html: '<source src="movie.mp4" type="video/mp4">',
+			name: 'detects source element with video type',
+			html: '<source src="trailer.mov" type="video/quicktime">',
 			shouldPass: false,
 		},
 		{
-			name: 'should detect known video player classes',
+			name: 'detects element with video-related class',
 			html: '<div class="video-player"></div>',
 			shouldPass: false,
 		},
-
-		// Negative cases (should NOT trigger detection)
 		{
-			name: 'should not detect unrelated div',
-			html: '<div class="text-content">Just text</div>',
+			name: 'detects element with role="video"',
+			html: '<div role="video"></div>',
+			shouldPass: false,
+		},
+
+		// Should not trigger violations
+		{
+			name: 'does not detect unrelated <div>',
+			html: '<div class="text-content">No video here</div>',
 			shouldPass: true,
 		},
 		{
-			name: 'should not detect iframe with non-video src',
+			name: 'does not detect iframe with non-video source',
 			html: '<iframe src="https://example.com"></iframe>',
 			shouldPass: true,
 		},
 		{
-			name: 'should not detect object without video type',
+			name: 'does not detect object with non-video type',
 			html: '<object data="something.swf" type="application/x-shockwave-flash"></object>',
+			shouldPass: true,
+		},
+		{
+			name: 'does not detect source with non-video extension',
+			html: '<source src="audio.mp3" type="audio/mpeg">',
 			shouldPass: true,
 		},
 	];

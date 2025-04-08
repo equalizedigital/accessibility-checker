@@ -1,6 +1,6 @@
 export default {
 	id: 'video_present',
-	selector: 'video, [role="video"], iframe[src*="youtube"], iframe[src*="vimeo"], iframe[src*="dailymotion"], object[type*="video"]',
+	selector: 'video, iframe, object, source, [src], [class], [role]',
 	excludeHidden: false,
 	tags: [
 		'wcag2a',
@@ -16,6 +16,6 @@ export default {
 		impact: 'serious',
 	},
 	all: [],
-	any: [],
-	none: [ 'video_element_present' ],
+	any: [ 'video_detected' ],
+	none: [],
 };
