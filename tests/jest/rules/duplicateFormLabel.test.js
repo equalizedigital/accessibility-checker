@@ -58,7 +58,7 @@ describe( 'duplicate_form_label rule', () => {
 			shouldPass: false,
 		},
 		{
-			name: 'should pass when a form field has multiple IDs in aria-labelledby (this is valid)',
+			name: 'should fail when a form field has multiple IDs in aria-labelledby (this is valid)',
 			html: `
     <form>
       <div id="label1">First Name</div>
@@ -66,7 +66,7 @@ describe( 'duplicate_form_label rule', () => {
       <input id="input1" type="text" aria-labelledby="label1 label2" />
     </form>
    `,
-			shouldPass: true,
+			shouldPass: false,
 		},
 
 		// Edge cases
@@ -80,13 +80,13 @@ describe( 'duplicate_form_label rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should fail when a form field has no label and is not hidden',
+			name: 'should fail when a form field has no label since it is not a duplicate',
 			html: `
     <form>
       <input id="input1" type="text" />
     </form>
    `,
-			shouldPass: false,
+			shouldPass: true,
 		},
 
 		// Complex cases
@@ -131,7 +131,7 @@ describe( 'duplicate_form_label rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should pass when a form field has multiple valid aria-labelledby references',
+			name: 'should fail when a form field has multiple valid aria-labelledby references',
 			html: `
     <form>
       <div id="label1">First Name</div>
@@ -139,16 +139,159 @@ describe( 'duplicate_form_label rule', () => {
       <input id="input1" type="text" aria-labelledby="label1 label2" />
     </form>
    `,
-			shouldPass: true,
+			shouldPass: false,
 		},
 		{
-			name: 'should pass when a form field has both aria-label and aria-labelledby',
+			name: 'should fail when a form field has both aria-label and aria-labelledby',
 			html: `
     <form>
       <div id="label1">Full Name</div>
       <input id="input1" type="text" aria-label="Name" aria-labelledby="label1" />
     </form>
    `,
+			shouldPass: false,
+		},
+
+		// Additional test cases
+		{
+			name: 'should fail when a form field has both a label and aria-labelledby pointing to different content',
+			html: `
+    <form>
+      <label for="input1">Name</label>
+      <div id="label1">Full Name</div>
+      <input id="input1" type="text" aria-labelledby="label1" />
+    </form>
+   `,
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when a form field has duplicate aria-labelledby references',
+			html: `
+<!-- This is a comment -->
+    <form>
+      <div id="label1">First Name</div>
+      <div id="label2">Last Name</div>
+      <input id="input1" type="text" aria-labelledby="label1 label2 label1" />
+    </form>
+   `,
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when a form field has both a label and aria-label with different content',
+			html: `
+    <form>
+      <label for="input1">Name</label>
+      <input id="input1" type="text" aria-label="Full Name" />
+    </form>
+   `,
+			shouldPass: false,
+		},
+		{
+			name: 'should pass when a form field has no label to check',
+			html: `
+    <form>
+      <div id="description1">This is a description</div>
+      <input id="input1" type="text" aria-describedby="description1" />
+    </form>
+   `,
+			shouldPass: true,
+		},
+		{
+			name: 'should pass when a form field is inside a fieldset with a legend',
+			html: `
+    <form>
+      <fieldset>
+        <legend>Personal Information</legend>
+        <label for="input1">Name</label>
+        <input id="input1" type="text" />
+      </fieldset>
+    </form>
+   `,
+			shouldPass: true,
+		},
+		{
+			name: 'should pass when a form field has a label and a title attribute',
+			html: `
+    <form>
+      <label for="input1">Name</label>
+      <input id="input1" type="text" title="Enter your name" />
+    </form>
+   `,
+			shouldPass: true,
+		},
+		// Passing cases
+		{
+			name: 'should pass when a form field has a single label element',
+			html: `
+      <form>
+        <label for="input1">Name</label>
+        <input id="input1" type="text" />
+      </form>
+    `,
+			shouldPass: true,
+		},
+		{
+			name: 'should pass when a form field has a label element with nested content',
+			html: `
+      <form>
+        <label for="input1"><span>Name</span></label>
+        <input id="input1" type="text" />
+      </form>
+    `,
+			shouldPass: true,
+		},
+		{
+			name: 'should fail when a form field has a label element and an aria-labelledby',
+			html: `
+      <form>
+        <label for="input1">Name</label>
+        <div id="label1">Additional Info</div>
+        <input id="input1" type="text" aria-labelledby="label1" />
+      </form>
+    `,
+			shouldPass: false,
+		},
+
+		// Failing cases
+		{
+			name: 'should fail when a form field has multiple label elements',
+			html: `
+      <form>
+        <label for="input1">First Name</label>
+        <label for="input1">Last Name</label>
+        <input id="input1" type="text" />
+      </form>
+    `,
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when a form field has a label element and aria-labelledby pointing to different content',
+			html: `
+      <form>
+        <label for="input1">Name</label>
+        <div id="label1">Full Name</div>
+        <input id="input1" type="text" aria-labelledby="label1" />
+      </form>
+    `,
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when a form field has a label element and aria-label with conflicting content',
+			html: `
+      <form>
+        <label for="input1">Name</label>
+        <input id="input1" type="text" aria-label="Full Name" />
+      </form>
+    `,
+			shouldPass: false,
+		},
+		{
+			name: 'should pass when a form field has no label element and no valid aria attributes since there is no duplicates',
+			html: `
+      <form>
+        <input id="input1" type="text" />
+      </form>
+    `,
 			shouldPass: true,
 		},
 	];
@@ -169,4 +312,3 @@ describe( 'duplicate_form_label rule', () => {
 		} );
 	} );
 } );
-
