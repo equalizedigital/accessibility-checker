@@ -22,17 +22,17 @@ export default {
 
 		// Check for SVG with title or aria-label
 		const svgs = node.querySelectorAll( 'svg' );
-		let hasSvgWithTitle = false;
+		let hasSvgWithAccessibleText = false;
 		for ( let i = 0; i < svgs.length; i++ ) {
 			const title = svgs[ i ].querySelector( 'title' );
 			if ( title && title.textContent.trim() !== '' ) {
-				hasSvgWithTitle = true;
+				hasSvgWithAccessibleText = true;
 				break;
 			}
 			// Also check for aria-label on SVG
 			const svgAriaLabel = svgs[ i ].getAttribute( 'aria-label' );
 			if ( svgAriaLabel && svgAriaLabel.trim() !== '' ) {
-				hasSvgWithTitle = true;
+				hasSvgWithAccessibleText = true;
 				break;
 			}
 		}
@@ -51,6 +51,6 @@ export default {
 			}
 		}
 
-		return hasValidText || hasAriaLabel || hasImageWithAlt || hasSvgWithTitle || hasAriaLabelledby;
+		return hasValidText || hasAriaLabel || hasImageWithAlt || hasSvgWithAccessibleText || hasAriaLabelledby;
 	},
 };
