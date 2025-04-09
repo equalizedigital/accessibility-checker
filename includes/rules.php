@@ -211,6 +211,7 @@ return [
 			'<code>&lt;button&gt;</code>',
 			'<code>&lt;input&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Image Long Alternative Text', 'accessibility-checker' ),
