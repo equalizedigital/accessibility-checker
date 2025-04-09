@@ -29,6 +29,21 @@ describe( 'Slider Detection Rule', () => {
 			shouldPass: false,
 		} ) ),
 		{
+			name: 'detects slider with multiple classes including a slider class',
+			html: '<div class="container slider widget"></div>',
+			shouldPass: false,
+		},
+		{
+			name: 'handles nested slider elements correctly',
+			html: '<div class="wrapper"><div class="carousel">Nested slider</div></div>',
+			shouldPass: false,
+		},
+		{
+			name: 'ignores case variations in class names',
+			html: '<div class="SLIDER"></div>',
+			shouldPass: false,
+		},
+		{
 			name: 'detects data-jssor-slider',
 			html: '<div data-jssor-slider="true"></div>',
 			shouldPass: false,
