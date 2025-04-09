@@ -10,8 +10,9 @@ export default {
 
 		// Check for aria-label or title attributes
 		const ariaLabel = node.getAttribute( 'aria-label' );
+		const ariaDescription = node.getAttribute( 'aria-description' );
 		const title = node.getAttribute( 'title' );
-		if ( ariaLabel || title ) {
+		if ( ariaLabel || ariaDescription || title ) {
 			return false;
 		}
 
