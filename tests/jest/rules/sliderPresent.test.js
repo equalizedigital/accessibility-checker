@@ -9,19 +9,7 @@ beforeAll( async () => {
 	const sliderRule = sliderRuleModule.default;
 	const sliderCheck = sliderCheckModule.default;
 
-	try {
-		// Try to get the exported array
-		sliderClassKeywords = sliderCheckModule.sliderClassKeywords || [];
-		
-		// Fallback to a subset if not available
-		if (sliderClassKeywords.length === 0) {
-			console.warn('Could not access sliderClassKeywords, using fallback keywords');
-			sliderClassKeywords = ['slider', 'carousel', 'swiper-container'];
-		}
-	} catch (error) {
-		console.error('Error accessing sliderClassKeywords:', error);
-		sliderClassKeywords = ['slider', 'carousel', 'swiper-container'];
-	}
+	sliderClassKeywords = sliderCheckModule.sliderClassKeywords;
 
 	axe.configure( {
 		rules: [ sliderRule ],
