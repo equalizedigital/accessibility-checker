@@ -3,8 +3,8 @@ export default {
 	evaluate( node ) {
 		// Check for visible text content
 		const textContent = node.textContent.trim();
-		// if we have text content and that text content is not just an emoji.
-		if ( textContent && textContent.length > 0 && ! /^[\p{Emoji}\s]+$/u.test( textContent ) ) {
+		// if we have text content
+		if ( textContent && textContent.length > 0 ) {
 			return false;
 		}
 

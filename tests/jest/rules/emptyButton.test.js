@@ -102,6 +102,11 @@ describe( 'Empty Button Validation', () => {
 			html: '<span id="desc-text">This button submits the form</span><button aria-describedby="desc-text"></button>',
 			shouldPass: true,
 		},
+		{
+			name: 'should pass for button with emoji only',
+			html: '<button>👍</button>',
+			shouldPass: true,
+		},
 
 		// Failing cases
 		{
@@ -138,11 +143,6 @@ describe( 'Empty Button Validation', () => {
 		{
 			name: 'should fail for div with role="button" but no accessible name',
 			html: '<div role="button"></div>',
-			shouldPass: false,
-		},
-		{
-			name: 'should fail for button with emoji only',
-			html: '<button>👍</button>',
 			shouldPass: false,
 		},
 		{
