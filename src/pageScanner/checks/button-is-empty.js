@@ -22,7 +22,7 @@ export default {
 			const ids = ariaLabelledby.split( /\s+/ );
 			for ( const id of ids ) {
 				const labelElement = document.getElementById( id );
-				if ( labelElement && labelElement.textContent.trim() ) {
+				if ( labelElement?.textContent?.trim() ) {
 					return false;
 				}
 			}
