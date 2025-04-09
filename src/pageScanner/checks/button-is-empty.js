@@ -61,6 +61,18 @@ export default {
 			}
 		}
 
+		// Check for SVG elements with title
+		const svgs = node.querySelectorAll( 'svg' );
+		for ( const svg of svgs ) {
+			if (
+				svg.querySelector( 'title' )?.textContent?.trim() ||
+				svg.getAttribute( 'aria-label' )?.trim() ||
+				svg.getAttribute( 'aria-description' )?.trim()
+			) {
+				return false;
+			}
+		}
+
 		// If none of the above checks pass, the button is empty
 		return true;
 	},

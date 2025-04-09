@@ -78,6 +78,11 @@ describe( 'Empty Button Validation', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'should pass for button with SVG that has aria-label',
+			html: '<button><svg aria-label="Submit form"></svg></button>',
+			shouldPass: true,
+		},
+		{
 			name: 'should pass for button with font icon that has aria-label',
 			html: '<button><i class="fa fa-search" aria-label="Search"></i></button>',
 			shouldPass: true,
@@ -146,6 +151,16 @@ describe( 'Empty Button Validation', () => {
 			shouldPass: false,
 		},
 		{
+			name: 'should fail for button with SVG that has empty title',
+			html: '<button><svg><title></title></svg></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with SVG that has whitespace-only title',
+			html: '<button><svg><title>   </title></svg></button>',
+			shouldPass: false,
+		},
+		{
 			name: 'should fail for button with font icon without accessibility attributes',
 			html: '<button><i class="fa fa-search"></i></button>',
 			shouldPass: false,
@@ -208,3 +223,4 @@ describe( 'Empty Button Validation', () => {
 		} );
 	} );
 } );
+
