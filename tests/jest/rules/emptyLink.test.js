@@ -87,12 +87,52 @@ describe( 'Empty Link Validation', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for empty link with id attribute',
-			html: '<a href="https://example.com" id="anchor"></a>',
+			name: 'should pass for link with multiple nested elements, some with text',
+			html: '<a href="https://example.com"><span>Hello</span> <div>World</div></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for link with aria-label and nested text (aria-label should take precedence)',
+			html: '<a href="https://example.com" aria-label="Custom label">Nested Text</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for link with role="img" and aria-label',
+			html: '<a href="https://example.com" role="img" aria-label="Descriptive text"></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'should fail for link with empty title attribute',
+			html: '<a href="https://example.com" title=""></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should pass for link with decorative image',
+			html: '<a href="https://example.com"><img src="icon.png" alt=""></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should pass for link with screen reader-only content',
+			html: '<a href="https://example.com"><span class="screen-reader-text">Skip to content</span></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for link with aria-hidden="true"',
+			html: '<a href="https://example.com" aria-hidden="true"></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for link with valid accessible name but also includes elements that would otherwise cause a failure',
+			html: '<a href="https://example.com" aria-label="Valid"><i class="fa fa-star"></i></a>',
 			shouldPass: true,
 		},
 
 		// Failing cases
+		{
+			name: 'should fail for empty link with id attribute',
+			html: '<a href="https://example.com" id="anchor"></a>',
+			shouldPass: false,
+		},
 		{
 			name: 'should fail for empty link with href but no text or attributes',
 			html: '<a href="https://example.com"></a>',
@@ -161,6 +201,16 @@ describe( 'Empty Link Validation', () => {
 		{
 			name: 'should fail for link with SVG without title or accessible name',
 			html: '<a href="https://example.com"><svg viewBox="0 0 100 100"></svg></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for link with aria-describedby referencing non-existent element',
+			html: '<a href="https://example.com" aria-describedby="non-existent"></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for link with aria-describedby referencing empty element',
+			html: '<span id="empty-desc"></span><a href="https://example.com" aria-describedby="empty-desc"></a>',
 			shouldPass: false,
 		},
 	];
