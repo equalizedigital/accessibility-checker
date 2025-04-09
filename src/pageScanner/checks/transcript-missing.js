@@ -75,8 +75,8 @@ function getSurroundingText( node, radius = 250 ) {
 	const parent = node.closest( 'figure, .media-wrapper, section, article, div, body' );
 	if ( parent ) {
 		// Skip hidden nodes
-		const nodeFilter = function(node) {
-			const style = window.getComputedStyle(node);
+		const nodeFilter = function(textNode) {
+			const style = window.getComputedStyle(textNode);
 			if ( style.display === 'none' || style.visibility === 'hidden' ) {
 				return NodeFilter.FILTER_REJECT;
 			}
