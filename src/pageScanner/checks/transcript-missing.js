@@ -52,17 +52,15 @@ export default {
 function getSurroundingText( node, radius = 250 ) {
 	let text = '';
 
-	// Include immediate next sibling
+	// Include immediate next and previous siblings
+	if ( node.previousElementSibling ) {
+		text += node.previousElementSibling.textContent.trim() + ' ';
+	}
 	if ( node.nextElementSibling ) {
 		text += node.nextElementSibling.textContent.trim() + ' ';
 	}
 
-	// Include previous sibling which may contain transcript info
-	if ( node.previousElementSibling ) {
-		text += node.previousElementSibling.textContent.trim() + ' ';
-	}
-
-	// Check for figcaption if node is within a figure
+	// Include figcaption if inside figure
 	const figure = node.closest( 'figure' );
 	if ( figure ) {
 		const figcaption = figure.querySelector( 'figcaption' );
@@ -71,28 +69,24 @@ function getSurroundingText( node, radius = 250 ) {
 		}
 	}
 
-	// Try to find more specific containing element first
-	const parent = node.closest( 'figure, .media-wrapper, section, article, div, body' );
+	// Walk limited DOM subtree (media-wrapper, section, article, etc.)
+	const parent = node.closest( '.media-wrapper, figure, section, article' );
 	if ( parent ) {
-		// Skip hidden nodes
-		const nodeFilter = function( textNode ) {
-			const style = window.getComputedStyle( textNode );
-			if ( style.display === 'none' || style.visibility === 'hidden' ) {
-				return NodeFilter.FILTER_REJECT;
-			}
-			return NodeFilter.FILTER_ACCEPT;
-		};
-		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, { acceptNode: nodeFilter }, false );
+		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, null, false );
 		while ( walker.nextNode() ) {
+			const current = walker.currentNode;
+			const content = current.textContent.trim();
+
+			// Skip if it's the media link itself
+			if ( ! node.contains( current ) && content.length ) {
+				text += content + ' ';
+			}
+
 			if ( text.length >= radius ) {
 				break;
-			}
-			const current = walker.currentNode;
-			if ( ! node.contains( current ) ) {
-				text += current.textContent.trim() + ' ';
 			}
 		}
 	}
 
-	return text;
+	return text.toLowerCase().trim();
 }

@@ -22,61 +22,74 @@ describe( 'Missing Transcript Rule', () => {
 		// ❌ Failing cases — should trigger violations
 		{
 			name: 'flags <audio> without transcript nearby',
-			html: '<audio src="podcast.mp3" controls></audio>',
+			html: '<audio src="audio.mp3" controls></audio>',
 			shouldPass: false,
 		},
 		{
 			name: 'flags <video> without transcript nearby',
-			html: '<video src="movie.mp4" controls></video>',
+			html: '<video src="video.mp4" controls></video>',
 			shouldPass: false,
 		},
 		{
-			name: 'flags YouTube iframe without transcript',
-			html: '<iframe src="https://www.youtube.com/embed/videoid"></iframe>',
+			name: 'flags iframe (YouTube) without transcript',
+			html: '<iframe src="https://www.youtube.com/embed/xyz"></iframe>',
 			shouldPass: false,
 		},
 		{
-			name: 'flags Vimeo iframe without transcript',
-			html: '<iframe src="https://player.vimeo.com/video/123456"></iframe>',
+			name: 'flags iframe (Vimeo) without transcript',
+			html: '<iframe src="https://player.vimeo.com/video/123"></iframe>',
 			shouldPass: false,
 		},
 		{
-			name: 'flags <a> linking to .mp3 file without transcript',
-			html: '<a href="episode.mp3">Listen now</a>',
+			name: 'flags <a> linking to mp3 without transcript',
+			html: '<a href="episode.mp3">Listen here</a>',
 			shouldPass: false,
 		},
 		{
-			name: 'flags <a> linking to .mp4 file without transcript',
-			html: '<a href="video.mp4">Watch here</a>',
+			name: 'flags <a> linking to mp4 without transcript',
+			html: '<a href="clip.mp4">Watch now</a>',
 			shouldPass: false,
 		},
 
-		// ✅ Passing cases — should not trigger violations
+		// ✅ Passing cases — transcript nearby or semantically present
 		{
-			name: 'passes <audio> with transcript in sibling',
-			html: '<audio src="podcast.mp3"></audio><p>Transcript available below.</p>',
+			name: 'passes <audio> with "transcript" in sibling',
+			html: '<audio src="audio.mp3"></audio><p>Transcript available below.</p>',
 			shouldPass: true,
 		},
 		{
-			name: 'passes <video> with nearby transcript text',
-			html: '<div><video src="movie.mp4"></video><p>This video has a transcript.</p></div>',
+			name: 'passes <video> with nearby "transcription"',
+			html: '<video src="video.mp4"></video><p>Full transcription is available.</p>',
 			shouldPass: true,
 		},
 		{
-			name: 'passes iframe with transcript mention in wrapper',
-			html: '<div><iframe src="https://www.youtube.com/embed/xyz"></iframe><p>Transcript available.</p></div>',
+			name: 'passes iframe with "text version" nearby',
+			html: '<iframe src="https://www.youtube.com/embed/abc"></iframe><p>Text version of this video available.</p>',
 			shouldPass: true,
 		},
 		{
-			name: 'passes <a> to media file with transcript in surrounding text',
-			html: '<div><a href="file.wav">Download audio</a><p>Transcript below the player.</p></div>',
+			name: 'passes iframe with "written version" nearby',
+			html: '<iframe src="https://player.vimeo.com/video/789"></iframe><p>Written version is below the video.</p>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes link to audio file with transcript in wrapper',
+			html: '<div><a href="song.ogg">Listen</a><p>The transcript can be found below.</p></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes with aria-describedby pointing to transcript',
+			html: `
+				<p id="transcript-id">This is the transcript of the media content.</p>
+				<video src="movie.mp4" aria-describedby="transcript-id"></video>
+			`,
 			shouldPass: true,
 		},
 
-		// ✅ Negative (non-relevant) elements — should not trigger violations
+		// ✅ Negative (non-relevant) elements — no violation
 		{
 			name: 'ignores mailto link',
-			html: '<a href="mailto:hello@example.com">Email us</a>',
+			html: '<a href="mailto:info@example.com">Email us</a>',
 			shouldPass: true,
 		},
 		{
@@ -85,8 +98,8 @@ describe( 'Missing Transcript Rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'ignores regular div',
-			html: '<div class="content">Just text here</div>',
+			name: 'ignores plain content block',
+			html: '<div class="text">Just some info</div>',
 			shouldPass: true,
 		},
 	] )( '$name', async ( { html, shouldPass } ) => {

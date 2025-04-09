@@ -8,7 +8,7 @@
 
 export default {
 	id: 'missing_transcript',
-	selector: 'audio, video, iframe, a',
+	selector: 'audio, video, iframe, a[href]',
 	excludeHidden: false,
 	tags: [
 		'wcag2a',
