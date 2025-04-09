@@ -26,6 +26,8 @@ import linkPDF from './rules/link-pdf';
 import linkMsOfficeFile from './rules/link-ms-office-file';
 import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
+import headingTagEmpty from './rules/empty-heading-tag';
+import headingIsEmpty from './checks/heading-is-empty';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -71,6 +73,7 @@ const scan = async (
 				brokenAnchorLink,
 				labelExtended,
 				ariaHiddenValidation,
+				headingTagEmpty,
 			],
 			checks: [
 				alwaysFail,
@@ -85,6 +88,7 @@ const scan = async (
 				anchorExists,
 				imageInputHasAlt,
 				ariaHiddenValidUsage,
+				headingIsEmpty,
 			],
 			iframes: false,
 
@@ -114,6 +118,7 @@ const scan = async (
 					brokenAnchorLink.id,
 					labelExtended.id,
 					ariaHiddenValidation.id,
+					headingTagEmpty.id,
 				],
 			},
 
