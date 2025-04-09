@@ -2,7 +2,7 @@ import axe from 'axe-core';
 
 beforeAll( async () => {
 	// Dynamically import the custom rule
-	const emptyHeadingRuleModule = await import( '../../../src/pageScanner/rules/empty-heading.js' );
+	const emptyHeadingRuleModule = await import( '../../../src/pageScanner/rules/empty-heading-tag.js' );
 	const emptyHeadingCheckModule = await import( '../../../src/pageScanner/checks/heading-is-empty.js' );
 	const emptyHeadingRule = emptyHeadingRuleModule.default;
 	const emptyHeadingCheck = emptyHeadingCheckModule.default;
