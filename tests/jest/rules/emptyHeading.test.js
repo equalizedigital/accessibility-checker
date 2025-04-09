@@ -76,6 +76,22 @@ describe( 'Empty Heading Validation', () => {
 			html: '<span id="label-text">Hidden Title</span><h1 aria-labelledby="label-text"></h1>',
 			shouldPass: true,
 		},
+		// Edge cases
+		{
+			name: 'should pass when heading contains only punctuation',
+			html: '<h1>...</h1>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass when heading has content but role is changed',
+			html: '<h1 role="presentation">No Longer a Heading</h1>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass when heading has content but is aria-hidden',
+			html: '<h1 aria-hidden="true">Hidden Heading</h1>',
+			shouldPass: true,
+		},
 
 		// Failing cases
 		{
@@ -143,11 +159,33 @@ describe( 'Empty Heading Validation', () => {
 			html: '<span id="empty-label"></span><h1 aria-labelledby="empty-label"></h1>',
 			shouldPass: false,
 		},
+		// Edge cases
+		{
+			name: 'should fail when heading contains only different whitespace characters',
+			html: '<h1>\n\t</h1>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when heading content is only in template element',
+			html: '<h1><template>Hidden Content</template></h1>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when heading has only CSS-generated content',
+			html: '<h1 class="css-generated"></h1>',
+			css: '.css-generated::before { content: "Generated"; }',
+			shouldPass: false,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {
 		test( testCase.name, async () => {
 			document.body.innerHTML = testCase.html;
+			if ( testCase.css ) {
+				const style = document.createElement( 'style' );
+				style.textContent = testCase.css;
+				document.head.appendChild( style );
+			}
 
 			const results = await axe.run( document.body, {
 				runOnly: [ 'empty_heading_tag' ],
