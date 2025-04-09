@@ -72,7 +72,17 @@ function getSurroundingText( node, radius = 250 ) {
 	// Walk limited DOM subtree (media-wrapper, section, article, etc.)
 	const parent = node.closest( '.media-wrapper, figure, section, article' );
 	if ( parent ) {
-		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, null, false );
+		const nodeFilter = {
+			acceptNode( textNode ) {
+				const style = window.getComputedStyle( textNode.parentElement );
+				if ( ! style || style.display === 'none' || style.visibility === 'hidden' ) {
+					return NodeFilter.FILTER_REJECT;
+				}
+				return NodeFilter.FILTER_ACCEPT;
+			},
+		};
+		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, nodeFilter, false );
+
 		while ( walker.nextNode() ) {
 			const current = walker.currentNode;
 			const content = current.textContent.trim();
