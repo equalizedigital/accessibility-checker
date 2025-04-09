@@ -9,7 +9,7 @@ const videoEmbedKeywords = [ 'youtube.com', 'youtu.be', 'vimeo.com' ];
 const mediaExtensions = /\.(3gp|asf|asx|avi|flv|m4a|m4p|mov|mp3|mp4|mpeg|mpeg2|mpg|mpv|ogg|oga|ogv|qtl|smi|smil|wav|wax|webm|wmv|wmp|wmx)(\?.*)?$/i;
 
 export default {
-	id: 'transcript_missing',
+	id: 'has_transcript',
 	evaluate: ( node ) => {
 		const tag = node.nodeName.toLowerCase();
 		const href = node.getAttribute( 'href' ) || '';

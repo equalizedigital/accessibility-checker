@@ -21,6 +21,6 @@ export default {
 		impact: 'serious',
 	},
 	all: [],
-	any: [ 'transcript_missing' ],
+	any: [ 'has_transcript' ],
 	none: [],
 };

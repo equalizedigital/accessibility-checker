@@ -2,7 +2,7 @@ import axe from 'axe-core';
 
 beforeAll( async () => {
 	const ruleModule = await import( '../../../src/pageScanner/rules/missing-transcript.js' );
-	const checkModule = await import( '../../../src/pageScanner/checks/transcript-missing.js' );
+	const checkModule = await import( '../../../src/pageScanner/checks/has-transcript.js' );
 
 	const missingTranscriptRule = ruleModule.default;
 	const transcriptMissingCheck = checkModule.default;

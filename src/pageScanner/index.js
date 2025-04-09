@@ -26,7 +26,7 @@ import linkPDF from './rules/link-pdf';
 import linkMsOfficeFile from './rules/link-ms-office-file';
 import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
-import transcriptMissing from './checks/transcript-missing';
+import transcriptMissing from './checks/has-transcript';
 import missingTranscript from './rules/missing-transcript';
 
 //TODO: examples:
