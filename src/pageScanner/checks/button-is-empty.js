@@ -15,6 +15,18 @@ export default {
 			return false;
 		}
 
+		// Check for aria-labelledby attribute
+		const ariaLabelledby = node.getAttribute( 'aria-labelledby' );
+		if ( ariaLabelledby ) {
+			const ids = ariaLabelledby.split( /\s+/ );
+			for ( const id of ids ) {
+				const labelElement = document.getElementById( id );
+				if ( labelElement && labelElement.textContent.trim() ) {
+					return false;
+				}
+			}
+		}
+
 		// Check for an image with alt text
 		const images = node.querySelectorAll( 'img' );
 		for ( const img of images ) {
