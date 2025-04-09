@@ -34,7 +34,7 @@ export default {
 			const ids = ariaDescribedby.split( /\s+/ );
 			for ( const id of ids ) {
 				const descElement = document.getElementById( id );
-				if ( descElement && descElement.textContent.trim() ) {
+				if ( descElement?.textContent?.trim() ) {
 					return false;
 				}
 			}
