@@ -24,13 +24,24 @@ export default {
 			isVideoEmbed ||
 			isMediaLink;
 
-		if ( ! isRelevant ) {
+		if ( !isRelevant ) {
 			return true;
 		}
 
-		const nearbyText = getSurroundingText( node, 250 ); // ~25 words
-
-		if ( ! nearbyText.toLowerCase().includes( 'transcript' ) ) {
+		const nearbyText = getSurroundingText( node, 350 ); // Increased radius
+  
+		// Check for common transcript-related terms and patterns
+		const transcriptTerms = ['transcript', 'transcription', 'text version', 'written version'];
+		const hasTranscriptMention = transcriptTerms.some(term =>
+			nearbyText.toLowerCase().includes(term)
+		);
+		
+		// Also check if there's an ARIA reference to a transcript
+		const ariaDescribedBy = node.getAttribute('aria-describedby');
+		const hasAriaReference = ariaDescribedBy &&
+			document.getElementById(ariaDescribedBy)?.textContent.toLowerCase().includes('transcript');
+			
+		if ( !hasTranscriptMention && !hasAriaReference ) {
 			return false; // Fail check → missing transcript
 		}
 
