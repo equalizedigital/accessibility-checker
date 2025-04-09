@@ -31,7 +31,7 @@ const sliderClassKeywords = [
 	'glide--slider',
 ];
 
-export default {
+const sliderDetected = {
 	id: 'slider_detected',
 	evaluate: ( node ) => {
 		const className = node.getAttribute( 'class' ) || '';
@@ -47,3 +47,5 @@ export default {
 		return true;
 	},
 };
+export { sliderClassKeywords };
+export default sliderDetected;
