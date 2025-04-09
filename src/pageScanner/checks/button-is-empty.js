@@ -56,7 +56,11 @@ export default {
 		// Check for <i> elements with aria-label or title
 		const icons = node.querySelectorAll( 'i' );
 		for ( const icon of icons ) {
-			if ( icon.getAttribute( 'aria-label' )?.trim() || icon.getAttribute( 'title' )?.trim() ) {
+			if (
+				icon.getAttribute( 'title' )?.textContent?.trim() ||
+				icon.getAttribute( 'aria-label' )?.trim() ||
+				icon.getAttribute( 'aria-description' )?.trim()
+			) {
 				return false;
 			}
 		}
