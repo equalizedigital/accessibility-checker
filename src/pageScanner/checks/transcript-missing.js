@@ -24,24 +24,24 @@ export default {
 			isVideoEmbed ||
 			isMediaLink;
 
-		if ( !isRelevant ) {
+		if ( ! isRelevant ) {
 			return true;
 		}
 
 		const nearbyText = getSurroundingText( node, 350 ); // Increased radius
-  
+
 		// Check for common transcript-related terms and patterns
-		const transcriptTerms = ['transcript', 'transcription', 'text version', 'written version'];
-		const hasTranscriptMention = transcriptTerms.some(term =>
-			nearbyText.toLowerCase().includes(term)
+		const transcriptTerms = [ 'transcript', 'transcription', 'text version', 'written version' ];
+		const hasTranscriptMention = transcriptTerms.some( ( term ) =>
+			nearbyText.toLowerCase().includes( term )
 		);
-		
+
 		// Also check if there's an ARIA reference to a transcript
-		const ariaDescribedBy = node.getAttribute('aria-describedby');
+		const ariaDescribedBy = node.getAttribute( 'aria-describedby' );
 		const hasAriaReference = ariaDescribedBy &&
-			document.getElementById(ariaDescribedBy)?.textContent.toLowerCase().includes('transcript');
-			
-		if ( !hasTranscriptMention && !hasAriaReference ) {
+			document.getElementById( ariaDescribedBy )?.textContent.toLowerCase().includes( 'transcript' );
+
+		if ( ! hasTranscriptMention && ! hasAriaReference ) {
 			return false; // Fail check → missing transcript
 		}
 
@@ -56,16 +56,16 @@ function getSurroundingText( node, radius = 250 ) {
 	if ( node.nextElementSibling ) {
 		text += node.nextElementSibling.textContent.trim() + ' ';
 	}
-	
+
 	// Include previous sibling which may contain transcript info
 	if ( node.previousElementSibling ) {
 		text += node.previousElementSibling.textContent.trim() + ' ';
 	}
-	
+
 	// Check for figcaption if node is within a figure
-	const figure = node.closest('figure');
+	const figure = node.closest( 'figure' );
 	if ( figure ) {
-		const figcaption = figure.querySelector('figcaption');
+		const figcaption = figure.querySelector( 'figcaption' );
 		if ( figcaption ) {
 			text += figcaption.textContent.trim() + ' ';
 		}
@@ -75,8 +75,8 @@ function getSurroundingText( node, radius = 250 ) {
 	const parent = node.closest( 'figure, .media-wrapper, section, article, div, body' );
 	if ( parent ) {
 		// Skip hidden nodes
-		const nodeFilter = function(textNode) {
-			const style = window.getComputedStyle(textNode);
+		const nodeFilter = function( textNode ) {
+			const style = window.getComputedStyle( textNode );
 			if ( style.display === 'none' || style.visibility === 'hidden' ) {
 				return NodeFilter.FILTER_REJECT;
 			}
