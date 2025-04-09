@@ -57,7 +57,7 @@ export default {
 		const icons = node.querySelectorAll( 'i' );
 		for ( const icon of icons ) {
 			if (
-				icon.getAttribute( 'title' )?.textContent?.trim() ||
+				icon.getAttribute( 'title' )?.trim() ||
 				icon.getAttribute( 'aria-label' )?.trim() ||
 				icon.getAttribute( 'aria-description' )?.trim()
 			) {
