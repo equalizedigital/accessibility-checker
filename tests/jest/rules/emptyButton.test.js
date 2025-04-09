@@ -92,6 +92,16 @@ describe( 'Empty Button Validation', () => {
 			html: '<button aria-hidden="true"></button>',
 			shouldPass: true,
 		},
+		{
+			name: 'should pass for button with aria-description',
+			html: '<button aria-description="This button submits the form"></button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for button with aria-describedby',
+			html: '<span id="desc-text">This button submits the form</span><button aria-describedby="desc-text"></button>',
+			shouldPass: true,
+		},
 
 		// Failing cases
 		{
@@ -165,6 +175,22 @@ describe( 'Empty Button Validation', () => {
 			html: '<button><span></span><div><i class="icon"></i><img src="img.jpg" alt=""></div></button>',
 			shouldPass: false,
 		},
+		// New failing test cases
+		{
+			name: 'should fail for button with empty aria-description',
+			html: '<button aria-description=""></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with aria-describedby referencing non-existent element',
+			html: '<button aria-describedby="non-existent-id"></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with aria-describedby referencing empty elements',
+			html: '<span id="empty-desc1"></span><span id="empty-desc2">   </span><button aria-describedby="empty-desc1 empty-desc2"></button>',
+			shouldPass: false,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {
@@ -183,4 +209,3 @@ describe( 'Empty Button Validation', () => {
 		} );
 	} );
 } );
-
