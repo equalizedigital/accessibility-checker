@@ -45,11 +45,33 @@ function getSurroundingText( node, radius = 250 ) {
 	if ( node.nextElementSibling ) {
 		text += node.nextElementSibling.textContent.trim() + ' ';
 	}
+	
+	// Include previous sibling which may contain transcript info
+	if ( node.previousElementSibling ) {
+		text += node.previousElementSibling.textContent.trim() + ' ';
+	}
+	
+	// Check for figcaption if node is within a figure
+	const figure = node.closest('figure');
+	if ( figure ) {
+		const figcaption = figure.querySelector('figcaption');
+		if ( figcaption ) {
+			text += figcaption.textContent.trim() + ' ';
+		}
+	}
 
-	// Walk surrounding parent structure
-	const parent = node.closest( 'section, article, div, body' );
+	// Try to find more specific containing element first
+	const parent = node.closest( 'figure, .media-wrapper, section, article, div, body' );
 	if ( parent ) {
-		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, null, false );
+		// Skip hidden nodes
+		const nodeFilter = function(node) {
+			const style = window.getComputedStyle(node);
+			if ( style.display === 'none' || style.visibility === 'hidden' ) {
+				return NodeFilter.FILTER_REJECT;
+			}
+			return NodeFilter.FILTER_ACCEPT;
+		};
+		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, { acceptNode: nodeFilter }, false );
 		while ( walker.nextNode() ) {
 			if ( text.length >= radius ) {
 				break;
