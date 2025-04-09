@@ -28,6 +28,18 @@ export default {
 			}
 		}
 
+		// Check for aria-describedby attribute
+		const ariaDescribedby = node.getAttribute( 'aria-describedby' );
+		if ( ariaDescribedby ) {
+			const ids = ariaDescribedby.split( /\s+/ );
+			for ( const id of ids ) {
+				const descElement = document.getElementById( id );
+				if ( descElement && descElement.textContent.trim() ) {
+					return false;
+				}
+			}
+		}
+
 		// Check for an image with alt text
 		const images = node.querySelectorAll( 'img' );
 		for ( const img of images ) {
