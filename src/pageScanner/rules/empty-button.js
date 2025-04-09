@@ -1,5 +1,6 @@
 export default {
 	id: 'empty_button',
+	excludeHidden: false,
 	selector: 'button, [role="button"], input[type="button"], input[type="submit"], input[type="reset"]',
 	tags: [ 'accessibility', 'wcag2a', 'wcag2aa' ],
 	metadata: {

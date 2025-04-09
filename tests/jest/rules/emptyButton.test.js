@@ -88,11 +88,6 @@ describe( 'Empty Button Validation', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for button with aria-hidden="true" as hidden items are not checked',
-			html: '<button aria-hidden="true"></button>',
-			shouldPass: true,
-		},
-		{
 			name: 'should pass for button with aria-description',
 			html: '<button aria-description="This button submits the form"></button>',
 			shouldPass: true,
@@ -175,7 +170,11 @@ describe( 'Empty Button Validation', () => {
 			html: '<button><span></span><div><i class="icon"></i><img src="img.jpg" alt=""></div></button>',
 			shouldPass: false,
 		},
-		// New failing test cases
+		{
+			name: 'should fail for button with aria-hidden="true" as interactive elements with aria hidden should still be checked',
+			html: '<button aria-hidden="true"></button>',
+			shouldPass: false,
+		},
 		{
 			name: 'should fail for button with empty aria-description',
 			html: '<button aria-description=""></button>',
