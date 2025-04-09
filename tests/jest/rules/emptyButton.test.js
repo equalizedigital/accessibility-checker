@@ -87,6 +87,11 @@ describe( 'Empty Button Validation', () => {
 			html: '<button><img src="icon.png" alt=""> Submit</button>',
 			shouldPass: true,
 		},
+		{
+			name: 'should pass for button with aria-hidden="true" as hidden items are not checked',
+			html: '<button aria-hidden="true"></button>',
+			shouldPass: true,
+		},
 
 		// Failing cases
 		{
@@ -128,11 +133,6 @@ describe( 'Empty Button Validation', () => {
 		{
 			name: 'should fail for button with emoji only',
 			html: '<button>👍</button>',
-			shouldPass: false,
-		},
-		{
-			name: 'should fail for button with aria-hidden="true" and no accessible name',
-			html: '<button aria-hidden="true"></button>',
 			shouldPass: false,
 		},
 		{
