@@ -5,6 +5,8 @@ export default {
 			return true;
 		}
 
+		// TODO: Improve logic to account for colspan, rowspan, and complex ARIA header relationships
+
 		const rows = Array.from( node.querySelectorAll( 'tr' ) );
 
 		if ( rows.length === 0 ) {
