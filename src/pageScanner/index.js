@@ -26,7 +26,7 @@ import linkPDF from './rules/link-pdf';
 import linkMsOfficeFile from './rules/link-ms-office-file';
 import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
-import videoDetected from './checks/video-detected';
+import isvideoDetected from './checks/is-video-detected';
 import videoPresent from './rules/video-present';
 
 //TODO: examples:
@@ -88,7 +88,7 @@ const scan = async (
 				anchorExists,
 				imageInputHasAlt,
 				ariaHiddenValidUsage,
-				videoDetected,
+				isvideoDetected,
 			],
 			iframes: false,
 
