@@ -22,6 +22,6 @@ export default {
 		impact: 'serious',
 	},
 	all: [],
-	any: [ 'video_detected' ],
-	none: [],
+	any: [],
+	none: [ 'is_video_detected' ],
 };

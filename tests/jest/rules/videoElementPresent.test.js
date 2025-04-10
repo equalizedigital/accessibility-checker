@@ -3,7 +3,7 @@ import axe from 'axe-core';
 beforeAll( async () => {
 	// Dynamically import the modules
 	const videoPresentRuleModule = await import( '../../../src/pageScanner/rules/video-present.js' );
-	const videoPresentCheckModule = await import( '../../../src/pageScanner/checks/video-detected.js' );
+	const videoPresentCheckModule = await import( '../../../src/pageScanner/checks/is-video-detected.js' );
 
 	const videoPresentRule = videoPresentRuleModule.default;
 	const videoPresentCheck = videoPresentCheckModule.default;

@@ -17,7 +17,7 @@ const videoKeywords = [ 'youtube', 'youtu.be', 'vimeo' ];
 const videoRoles = [ 'video' ];
 
 export default {
-	id: 'video_detected',
+	id: 'is_video_detected',
 	evaluate: ( node ) => {
 		const tag = node.nodeName.toLowerCase();
 		const src = node.getAttribute( 'src' ) || '';
@@ -29,8 +29,10 @@ export default {
 			const srcLower = src.toLowerCase();
 			const dataLower = data.toLowerCase();
 			// Check if the extension is at the end of the string or followed by a query parameter
-			return ( srcLower.endsWith( ext ) || srcLower.includes( ext + '?' ) ) ||
-					( dataLower.endsWith( ext ) || dataLower.includes( ext + '?' ) );
+			return (
+				( srcLower.endsWith( ext ) || srcLower.includes( ext + '?' ) ) ||
+				( dataLower.endsWith( ext ) || dataLower.includes( ext + '?' ) )
+			);
 		} );
 
 		const matchesKeyword = videoKeywords.some( ( keyword ) =>
@@ -48,9 +50,10 @@ export default {
 			matchesType ||
 			matchesRole
 		) {
-			return false; // Fail check → trigger violation
+			return true; // Fail check → trigger violation
 		}
 
-		return true; // Pass check → no violation
+		// No video found by this point.
+		return false; // Pass check → no violation
 	},
 };
