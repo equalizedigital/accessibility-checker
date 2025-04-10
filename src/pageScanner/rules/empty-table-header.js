@@ -1,6 +1,6 @@
 export default {
 	id: 'empty_table_header',
-	selector: 'th',
+	selector: 'th, [role="columnheader"], [role="rowheader"]',
 	tags: [ 'wcag2a', 'wcag1.3.1', 'wcag4.1.2' ],
 	metadata: {
 		description: 'Ensures table headers have discernible text',
