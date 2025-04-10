@@ -8,19 +8,19 @@ export default {
 		}
 
 		// Check for aria-label or title on the table header itself
-		if ( node.hasAttribute( 'aria-label' ) && node.getAttribute( 'aria-label' ).trim() !== '' ) {
+		if ( node.hasAttribute( 'aria-label' ) && node.getAttribute( 'aria-label' )?.trim() !== '' ) {
 			return false;
 		}
 
-		if ( node.hasAttribute( 'title' ) && node.getAttribute( 'title' ).trim() !== '' ) {
+		if ( node.hasAttribute( 'title' ) && node.getAttribute( 'title' )?.trim() !== '' ) {
 			return false;
 		}
 
 		// Check aria-labelledby
 		if ( node.hasAttribute( 'aria-labelledby' ) ) {
-			const labelledbyIds = node.getAttribute( 'aria-labelledby' ).split( ' ' );
-			const labelledbyElements = labelledbyIds.map( ( id ) => document.getElementById( id ) ).filter( Boolean );
-			if ( labelledbyElements.some( ( el ) => el.textContent.trim() !== '' ) ) {
+			const labelledbyIds = node.getAttribute( 'aria-labelledby' )?.split( ' ' );
+			const labelledbyElements = labelledbyIds?.map( ( id ) => document.getElementById( id ) ).filter( Boolean );
+			if ( labelledbyElements.some( ( el ) => el.textContent?.trim() !== '' ) ) {
 				return false;
 			}
 		}
@@ -28,7 +28,7 @@ export default {
 		// Check for images with alt text
 		const images = node.querySelectorAll( 'img' );
 		for ( const img of images ) {
-			if ( img.hasAttribute( 'alt' ) && img.getAttribute( 'alt' ).trim() !== '' ) {
+			if ( img.hasAttribute( 'alt' ) && img.getAttribute( 'alt' )?.trim() !== '' ) {
 				return false;
 			}
 		}
@@ -36,8 +36,10 @@ export default {
 		// Check for icons with title or aria-label
 		const icons = node.querySelectorAll( 'i' );
 		for ( const icon of icons ) {
-			if ( ( icon.hasAttribute( 'title' ) && icon.getAttribute( 'title' ).trim() !== '' ) ||
-          ( icon.hasAttribute( 'aria-label' ) && icon.getAttribute( 'aria-label' ).trim() !== '' ) ) {
+			if (
+				( icon.hasAttribute( 'title' ) && icon.getAttribute( 'title' )?.trim() !== '' ) ||
+				( icon.hasAttribute( 'aria-label' ) && icon.getAttribute( 'aria-label' )?.trim() !== '' )
+			) {
 				return false;
 			}
 		}
