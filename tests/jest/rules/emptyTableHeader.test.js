@@ -133,6 +133,21 @@ describe( 'Empty Table Header Validation', () => {
 			html: '<table><tr><th><svg viewBox="0 0 100 100"></svg></th><td>Data</td></tr></table>',
 			shouldPass: false,
 		},
+		{
+			name: 'should fail for table header with aria-hidden="true"',
+			html: '<table><tr><th aria-hidden="true">Hidden Header</th><td>Data</td></tr></table>',
+			shouldPass: false,
+		},
+		{
+			name: 'should correctly evaluate headers in nested tables',
+			html: '<table><tr><th>Outer Header</th><td><table><tr><th></th><td>Inner Data</td></tr></table></td></tr></table>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for table header with empty title attribute',
+			html: '<table><tr><th title=""></th><td>Data</td></tr></table>',
+			shouldPass: false,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {
