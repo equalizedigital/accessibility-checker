@@ -241,6 +241,7 @@ return [
 			'<code>&lt;th&gt;</code>',
 			'<code>&lt;th&gt;&lt;/th&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Link to MS Office File', 'accessibility-checker' ),

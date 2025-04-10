@@ -30,6 +30,8 @@ import sliderDetected from './checks/slider-detected';
 import sliderPresent from './rules/slider-present';
 import isvideoDetected from './checks/is-video-detected';
 import videoPresent from './rules/video-present';
+import emptyTableHeader from './rules/empty-table-header';
+import tableHeaderIsEmpty from './checks/table-header-is-empty';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -77,6 +79,7 @@ const scan = async (
 				ariaHiddenValidation,
 				sliderPresent,
 				videoPresent,
+				emptyTableHeader,
 			],
 			checks: [
 				alwaysFail,
@@ -93,6 +96,7 @@ const scan = async (
 				ariaHiddenValidUsage,
 				sliderDetected,
 				isvideoDetected,
+				tableHeaderIsEmpty,
 			],
 			iframes: false,
 
@@ -124,6 +128,7 @@ const scan = async (
 					ariaHiddenValidation.id,
 					sliderPresent.id,
 					videoPresent.id,
+					emptyTableHeader.id,
 				],
 			},
 
