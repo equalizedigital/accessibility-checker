@@ -58,6 +58,50 @@ describe( 'video_present rule', () => {
 			shouldPass: false,
 		},
 
+		// Additional iframe tests
+		{
+			name: 'detects YouTube iframe embed with youtu.be shortlink',
+			html: '<iframe src="https://youtu.be/abc123"></iframe>',
+			shouldPass: false,
+		},
+		{
+			name: 'detects YouTube iframe embed with query parameters',
+			html: '<iframe src="https://www.youtube.com/embed/example?autoplay=1&controls=0"></iframe>',
+			shouldPass: false,
+		},
+		{
+			name: 'detects iframe with video extension in src',
+			html: '<iframe src="https://example.com/presentation.mp4"></iframe>',
+			shouldPass: false,
+		},
+
+		// HTML5 video source element tests
+		{
+			name: 'detects video element with source child',
+			html: '<video controls><source src="movie.mp4" type="video/mp4"></video>',
+			shouldPass: false,
+		},
+		{
+			name: 'detects source element as direct child of video',
+			html: '<video><source src="movie.webm" type="video/webm"></video>',
+			shouldPass: false,
+		},
+		{
+			name: 'detects source element with video extension but no type',
+			html: '<video><source src="movie.mp4"></video>',
+			shouldPass: false,
+		},
+		{
+			name: 'detects source element with query parameters',
+			html: '<video><source src="movie.mp4?version=2&token=abc"></video>',
+			shouldPass: false,
+		},
+		{
+			name: 'detects source element with mixed case extension',
+			html: '<video><source src="movie.MP4"></video>',
+			shouldPass: false,
+		},
+
 		// Should not trigger violations
 		{
 			name: 'does not detect unrelated <div>',
@@ -77,6 +121,18 @@ describe( 'video_present rule', () => {
 		{
 			name: 'does not detect source with non-video extension',
 			html: '<source src="audio.mp3" type="audio/mpeg">',
+			shouldPass: true,
+		},
+
+		// Additional non-violation cases for better coverage
+		{
+			name: 'does not detect iframe with youtube in text but not src',
+			html: '<iframe src="https://example.com"></iframe><p>YouTube videos are great</p>',
+			shouldPass: true,
+		},
+		{
+			name: 'does not detect source element with audio inside audio tag',
+			html: '<audio controls><source src="sound.mp3" type="audio/mpeg"></audio>',
 			shouldPass: true,
 		},
 	];
