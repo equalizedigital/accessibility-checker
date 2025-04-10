@@ -11,8 +11,8 @@ export default {
 			return false;
 		}
 
-		// Check if the link has text content after stripping spaces, &nbsp;, hyphens, underscores
-		const textContent = node.textContent.replace( /[\s\u00A0\-_]/g, '' );
+		// Check if the link has text content after stripping spaces, &nbsp;, hyphens, emdashes, underscores
+		const textContent = node.textContent.replace( /[\s\u00A0\-—_]/g, '' );
 		if ( textContent !== '' ) {
 			return false;
 		}
