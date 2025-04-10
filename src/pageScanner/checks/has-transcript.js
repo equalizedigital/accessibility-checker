@@ -39,7 +39,7 @@ export default {
 		// Also check if there's an ARIA reference to a transcript
 		const ariaDescribedBy = node.getAttribute( 'aria-describedby' );
 		const hasAriaReference = ariaDescribedBy &&
-			document.getElementById( ariaDescribedBy )?.textContent.toLowerCase().includes( 'transcript' );
+			document.getElementById( ariaDescribedBy )?.textContent?.toLowerCase().includes( 'transcript' );
 
 		if ( ! hasTranscriptMention && ! hasAriaReference ) {
 			return false; // Fail check → missing transcript
@@ -93,6 +93,11 @@ function getSurroundingText( node, radius = 250 ) {
 			}
 
 			if ( text.length >= radius ) {
+				// Ensure we don't cut off in the middle of a word
+				const lastSpaceIndex = text.lastIndexOf( ' ', radius );
+				if ( lastSpaceIndex !== -1 ) {
+					text = text.substring( 0, lastSpaceIndex );
+				}
 				break;
 			}
 		}
