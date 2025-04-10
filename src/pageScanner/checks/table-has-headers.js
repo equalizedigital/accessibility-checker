@@ -18,7 +18,8 @@ export default {
 				return false;
 			}
 
-			return scope === 'row' || !scope;
+			const scope = firstCell.getAttribute( 'scope' );
+			return scope === 'row' || ! scope;
 		} );
 
 		if ( isRowHeaderTable ) {
