@@ -26,6 +26,10 @@ import linkPDF from './rules/link-pdf';
 import linkMsOfficeFile from './rules/link-ms-office-file';
 import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
+import sliderDetected from './checks/slider-detected';
+import sliderPresent from './rules/slider-present';
+import isvideoDetected from './checks/is-video-detected';
+import videoPresent from './rules/video-present';
 import linkEmpty from './rules/empty-link';
 import linkIsEmpty from './checks/link-is-empty';
 
@@ -73,6 +77,8 @@ const scan = async (
 				brokenAnchorLink,
 				labelExtended,
 				ariaHiddenValidation,
+				sliderPresent,
+				videoPresent,
 				linkEmpty,
 			],
 			checks: [
@@ -88,6 +94,8 @@ const scan = async (
 				anchorExists,
 				imageInputHasAlt,
 				ariaHiddenValidUsage,
+				sliderDetected,
+				isvideoDetected,
 				linkIsEmpty,
 			],
 			iframes: false,
@@ -118,6 +126,8 @@ const scan = async (
 					brokenAnchorLink.id,
 					labelExtended.id,
 					ariaHiddenValidation.id,
+					sliderPresent.id,
+					videoPresent.id,
 					linkEmpty.id,
 				],
 			},
