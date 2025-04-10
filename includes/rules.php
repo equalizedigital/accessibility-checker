@@ -334,6 +334,7 @@ return [
 			'<code>&lt;td&gt;</code>',
 			'<code>&lt;th&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Duplicate Form Label', 'accessibility-checker' ),
