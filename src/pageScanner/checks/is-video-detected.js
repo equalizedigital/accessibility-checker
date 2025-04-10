@@ -51,6 +51,17 @@ export default {
 
 		const matchesRole = videoRoles.includes( role.toLowerCase() );
 
+		// Check for source elements with video type
+		if ( tag === 'source' ) {
+			const parentNode = node.parentNode;
+			if ( parentNode && parentNode.nodeName.toLowerCase() === 'video' ) {
+				return true; // Fail check → trigger violation
+			}
+			if ( matchesType || matchesExtension ) {
+				return true; // Fail check → trigger violation
+			}
+		}
+
 		if (
 			tag === 'video' ||
 			matchesExtension ||
