@@ -28,6 +28,10 @@ import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
 import buttonEmpty from './rules/empty-button';
 import buttonIsEmpty from './checks/button-is-empty';
+import sliderDetected from './checks/slider-detected';
+import sliderPresent from './rules/slider-present';
+import isvideoDetected from './checks/is-video-detected';
+import videoPresent from './rules/video-present';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -74,6 +78,8 @@ const scan = async (
 				labelExtended,
 				ariaHiddenValidation,
 				buttonEmpty,
+				sliderPresent,
+				videoPresent,
 			],
 			checks: [
 				alwaysFail,
@@ -89,6 +95,8 @@ const scan = async (
 				imageInputHasAlt,
 				ariaHiddenValidUsage,
 				buttonIsEmpty,
+				sliderDetected,
+				isvideoDetected,
 			],
 			iframes: false,
 
@@ -119,7 +127,9 @@ const scan = async (
 					labelExtended.id,
 					ariaHiddenValidation.id,
 					buttonEmpty.id,
-				],
+					sliderPresent.id,
+					videoPresent.id,
+				]
 			},
 
 			/*
