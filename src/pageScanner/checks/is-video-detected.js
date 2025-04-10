@@ -54,8 +54,10 @@ export default {
 		// Check for source elements with video type
 		if ( tag === 'source' ) {
 			const parentNode = node.parentNode;
+			// Skip detection if this source is already inside a video element
+			// to avoid double counting the same video content
 			if ( parentNode && parentNode.nodeName.toLowerCase() === 'video' ) {
-				return true; // Fail check → trigger violation
+				return false; // Don't count as a separate violation
 			}
 			if ( matchesType || matchesExtension ) {
 				return true; // Fail check → trigger violation
