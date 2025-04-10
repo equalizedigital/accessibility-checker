@@ -62,7 +62,7 @@
         ],
         "psr-4": {
             "EqualizeDigital\\AccessibilityChecker\\": "includes/classes/",
-			"EqualizeDigital\\AccessibilityChecker\\Admin\\": "admin/"
+            "EqualizeDigital\\AccessibilityChecker\\Admin\\": "admin/"
         }
     },
     "autoload-dev": {
