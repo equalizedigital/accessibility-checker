@@ -25,6 +25,14 @@ export default {
 		const type = node.getAttribute( 'type' ) || '';
 		const role = node.getAttribute( 'role' ) || '';
 
+		// Check for iframe with video source
+		if ( tag === 'iframe' && src ) {
+			const iframeSrcLower = src.toLowerCase();
+			if ( videoKeywords.some( ( keyword ) => iframeSrcLower.includes( keyword ) ) ) {
+				return true; // Fail check → trigger violation
+			}
+		}
+
 		const matchesExtension = videoExtensions.some( ( ext ) => {
 			const srcLower = src.toLowerCase();
 			const dataLower = data.toLowerCase();
