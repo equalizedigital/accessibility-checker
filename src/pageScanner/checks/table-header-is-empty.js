@@ -1,6 +1,11 @@
 export default {
 	id: 'table_header_is_empty',
 	evaluate( node ) {
+		// Check if the header has aria-hidden="true"
+		if ( node.hasAttribute( 'aria-hidden' ) && node.getAttribute( 'aria-hidden' ) === 'true' ) {
+			return true;
+		}
+
 		// Check if the table header has text content after stripping spaces, &nbsp;, hyphens, emdashes, underscores
 		const textContent = node.textContent.replace( /[\s\u00A0\-—_]/g, '' );
 		if ( textContent !== '' ) {
