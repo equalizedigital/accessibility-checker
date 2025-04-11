@@ -211,6 +211,7 @@ return [
 			'<code>&lt;button&gt;</code>',
 			'<code>&lt;input&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Image Long Alternative Text', 'accessibility-checker' ),
@@ -388,6 +389,7 @@ return [
 		'slug'      => 'missing_transcript',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Broken ARIA Reference', 'accessibility-checker' ),
@@ -428,6 +430,7 @@ return [
 		'slug'      => 'video_present',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'A Slider is Present', 'accessibility-checker' ),
@@ -435,6 +438,7 @@ return [
 		'slug'      => 'slider_present',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Missing Title', 'accessibility-checker' ),

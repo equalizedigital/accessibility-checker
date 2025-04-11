@@ -22,3 +22,6 @@ dist
 
 
 .phpunit.result.cache
+
+# Exclude coverage reports
+coverage/
