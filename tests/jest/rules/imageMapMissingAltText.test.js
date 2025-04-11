@@ -1,7 +1,7 @@
 import axe from 'axe-core';
 
 beforeAll( async () => {
-	const hasAltCheck = await import( '../../../src/pageScanner/checks/hasAlt.js' );
+	const hasAltCheck = await import( '../../../src/pageScanner/checks/has-non-empty-alt.js' );
 	const imageMapAltText = await import( '../../../src/pageScanner/rules/imageMapMissingAltText.js' );
 
 	const imageMapAltTextCheck = hasAltCheck.default;
