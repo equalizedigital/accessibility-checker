@@ -70,6 +70,21 @@ describe( 'Longdesc Invalid Rule', () => {
 			html: '<img src="photo.jpg" longdesc="https://example.com/details.html">',
 			shouldPass: true,
 		},
+		{
+			name: 'Passes with URL containing query parameters',
+			html: '<img src="photo.jpg" longdesc="details.html?id=123">',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes with relative URL',
+			html: '<img src="photo.jpg" longdesc="../details/page.html">',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes with URL containing hash fragment',
+			html: '<img src="photo.jpg" longdesc="details.html#section2">',
+			shouldPass: true,
+		},
 
 		// ✅ Hidden elements should be skipped
 		{
