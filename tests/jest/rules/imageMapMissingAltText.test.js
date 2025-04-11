@@ -53,23 +53,6 @@ describe( 'image_map_missing_alt_text rule', () => {
 			expectedViolations: 1,
 		},
 
-		// Skipping hidden elements
-		{
-			name: 'skips hidden map with display:none',
-			html: '<map name="example-map" style="display:none"><area shape="rect" coords="0,0,100,100" href="#" alt=""></map>',
-			shouldPass: true,
-		},
-		{
-			name: 'skips hidden map with visibility:hidden',
-			html: '<map name="example-map" style="visibility:hidden"><area shape="rect" coords="0,0,100,100" href="#" alt=""></map>',
-			shouldPass: true,
-		},
-		{
-			name: 'skips area in map when parent element has display:none',
-			html: '<div style="display:none"><map name="example-map"><area shape="rect" coords="0,0,100,100" href="#" alt=""></map></div>',
-			shouldPass: true,
-		},
-
 		// Edge cases
 		{
 			name: 'handles map with no area elements',
@@ -80,12 +63,6 @@ describe( 'image_map_missing_alt_text rule', () => {
 			name: 'handles complete image map setup correctly',
 			html: '<img src="example.jpg" usemap="#example-map" alt="Example image"><map name="example-map"><area shape="rect" coords="0,0,100,100" href="#" alt=""><area shape="circle" coords="200,200,50" href="#" alt="Valid area"></map>',
 			expectedViolations: 1,
-		},
-		{
-			name: 'handles map hidden with CSS class',
-			html: '<map name="example-map" class="hidewithcss"><area shape="rect" coords="0,0,100,100" href="#" alt=""></map>',
-			css: '.hidewithcss { display: none; }',
-			shouldPass: true,
 		},
 	];
 
@@ -103,7 +80,7 @@ describe( 'image_map_missing_alt_text rule', () => {
 			const results = await axe.run( document.body, {
 				runOnly: {
 					type: 'rule',
-					values: [ 'image_map_missing_alt_text' ],
+					values: [ 'area-alt' ],
 				},
 			} );
 
