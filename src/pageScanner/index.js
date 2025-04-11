@@ -28,6 +28,10 @@ import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
 import headingTagEmpty from './rules/empty-heading-tag';
 import headingIsEmpty from './checks/heading-is-empty';
+import duplicateFormLabel from './rules/duplicate-form-label';
+import duplicateFormLabelCheck from './checks/duplicate-form-label-check';
+import transcriptMissing from './checks/has-transcript';
+import missingTranscript from './rules/missing-transcript';
 import buttonEmpty from './rules/empty-button';
 import buttonIsEmpty from './checks/button-is-empty';
 import sliderDetected from './checks/slider-detected';
@@ -80,6 +84,8 @@ const scan = async (
 				labelExtended,
 				ariaHiddenValidation,
 				headingTagEmpty,
+				duplicateFormLabel,
+				missingTranscript,
 				buttonEmpty,
 				sliderPresent,
 				videoPresent,
@@ -98,6 +104,8 @@ const scan = async (
 				imageInputHasAlt,
 				ariaHiddenValidUsage,
 				headingIsEmpty,
+				duplicateFormLabelCheck,
+				transcriptMissing,
 				buttonIsEmpty,
 				sliderDetected,
 				isvideoDetected,
@@ -131,10 +139,12 @@ const scan = async (
 					labelExtended.id,
 					ariaHiddenValidation.id,
 					headingTagEmpty.id,
+					duplicateFormLabel.id,
+					missingTranscript.id,
 					buttonEmpty.id,
 					sliderPresent.id,
 					videoPresent.id,
-				]
+				],
 			},
 
 			/*
