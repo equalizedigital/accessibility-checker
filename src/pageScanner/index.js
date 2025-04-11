@@ -30,6 +30,8 @@ import sliderDetected from './checks/slider-detected';
 import sliderPresent from './rules/slider-present';
 import isvideoDetected from './checks/is-video-detected';
 import videoPresent from './rules/video-present';
+import iframeMissingTitle from './rules/iframe-missing-title';
+import isIframeMissingTitle from './checks/is-iframe-missing-title';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -77,6 +79,7 @@ const scan = async (
 				ariaHiddenValidation,
 				sliderPresent,
 				videoPresent,
+				iframeMissingTitle,
 			],
 			checks: [
 				alwaysFail,
@@ -93,6 +96,7 @@ const scan = async (
 				ariaHiddenValidUsage,
 				sliderDetected,
 				isvideoDetected,
+				isIframeMissingTitle,
 			],
 			iframes: false,
 
@@ -124,6 +128,7 @@ const scan = async (
 					ariaHiddenValidation.id,
 					sliderPresent.id,
 					videoPresent.id,
+					iframeMissingTitle.id,
 				],
 			},
 
