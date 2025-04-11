@@ -34,6 +34,8 @@ import sliderDetected from './checks/slider-detected';
 import sliderPresent from './rules/slider-present';
 import isvideoDetected from './checks/is-video-detected';
 import videoPresent from './rules/video-present';
+import longdescValid from './checks/longdesc-valid';
+import longDescriptionInvalid from './rules/long-description-invalid';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -83,6 +85,7 @@ const scan = async (
 				buttonEmpty,
 				sliderPresent,
 				videoPresent,
+				longDescriptionInvalid,
 			],
 			checks: [
 				alwaysFail,
@@ -101,6 +104,7 @@ const scan = async (
 				buttonIsEmpty,
 				sliderDetected,
 				isvideoDetected,
+				longdescValid,
 			],
 			iframes: false,
 
@@ -134,6 +138,7 @@ const scan = async (
 					buttonEmpty.id,
 					sliderPresent.id,
 					videoPresent.id,
+					longDescriptionInvalid.id,
 				],
 			},
 
