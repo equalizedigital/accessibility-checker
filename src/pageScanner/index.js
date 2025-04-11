@@ -154,6 +154,7 @@ const scan = async (
 					sliderPresent.id,
 					videoPresent.id,
 					emptyTableHeader.id,
+					imageAltLong.id,
 				],
 			},
 
