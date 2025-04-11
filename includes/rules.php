@@ -105,6 +105,7 @@ return [
 		'summary'   => sprintf(
 			// translators: %1$s is <code>&lt;frame&gt;</code>.
 			esc_html__( 'An iFrame Missing title error means that one or more of the iFrames on your post or page does not have an accessible title describing the contents of the iFrame. An iFrame title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iFrame title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iFrame.', 'accessibility-checker' ),
+			'<code>&lt;frame&gt;</code>'
 		),
 		'ruleset'   => 'js',
 		'combines'  => [
