@@ -109,6 +109,7 @@ const scan = async (
 					'tabindex',
 					'html-lang-valid',
 					'html-has-lang',
+					'area-alt',
 					colorContrastFailure.id,
 					underlinedText.id,
 					emptyParagraph.id,
