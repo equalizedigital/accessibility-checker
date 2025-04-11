@@ -1,20 +1,5 @@
 import axe from 'axe-core';
 
-beforeAll( async () => {
-	// Dynamically import the modules
-	const iframeMissingTitleRuleModule = await import( '../../../src/pageScanner/rules/iframe-missing-title.js' );
-	const iframeMissingTitleCheckModule = await import( '../../../src/pageScanner/checks/is-iframe-missing-title.js' );
-
-	const iframeMissingTitleRule = iframeMissingTitleRuleModule.default;
-	const iframeMissingTitleCheck = iframeMissingTitleCheckModule.default;
-
-	// Configure axe with the imported rule and check
-	axe.configure( {
-		rules: [ iframeMissingTitleRule ],
-		checks: [ iframeMissingTitleCheck ],
-	} );
-} );
-
 beforeEach( () => {
 	document.body.innerHTML = '';
 } );
@@ -118,7 +103,7 @@ describe( 'iframe_missing_title rule', () => {
 			}
 
 			const results = await axe.run( document.body, {
-				runOnly: [ 'iframe_missing_title' ],
+				runOnly: [ 'frame-title' ],
 			} );
 
 			if ( testCase.expectedViolations !== undefined ) {
