@@ -43,10 +43,20 @@ export default {
 		}
 
 		const pathname = url.pathname;
-		const filename = pathname.split( '/' ).pop();
-		const ext = pathname.split( '.' ).pop().toLowerCase();
+		// Handle path ending with slash
+		const filename = pathname.endsWith( '/' ) ? '' : pathname.split( '/' ).pop();
 
-		if ( ! filename || imageExtensions.includes( ext ) ) {
+		// Only check extension if there's a filename
+		if ( ! filename ) {
+			return false;
+		}
+
+		// Extract extension, accounting for filenames with multiple dots
+		// and query parameters or fragments
+		const extMatch = filename.match( /\.([^.?#]+)(?:\?.*)?(?:#.*)?$/ );
+		const ext = extMatch ? extMatch[ 1 ].toLowerCase() : '';
+
+		if ( imageExtensions.includes( ext ) ) {
 			return false;
 		}
 
