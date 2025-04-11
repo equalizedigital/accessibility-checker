@@ -88,7 +88,7 @@ describe( 'iframe_missing_title rule', () => {
 		{
 			name: 'handles css priority correctly not triggering violation',
 			html: '<iframe src="https://example.com" class="hidewithcss"></iframe>',
-			css: '.hidewithcss { visibility: hidden; } iframe.hidewithcss { visibility: visbile; }',
+			css: '.hidewithcss { visibility: hidden; } iframe.hidewithcss { visibility: visible; }',
 			shouldPass: true,
 		},
 	];
