@@ -26,6 +26,8 @@ import linkPDF from './rules/link-pdf';
 import linkMsOfficeFile from './rules/link-ms-office-file';
 import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
+import headingTagEmpty from './rules/empty-heading-tag';
+import headingIsEmpty from './checks/heading-is-empty';
 import duplicateFormLabel from './rules/duplicate-form-label';
 import duplicateFormLabelCheck from './checks/duplicate-form-label-check';
 import transcriptMissing from './checks/has-transcript';
@@ -81,6 +83,7 @@ const scan = async (
 				brokenAnchorLink,
 				labelExtended,
 				ariaHiddenValidation,
+				headingTagEmpty,
 				duplicateFormLabel,
 				missingTranscript,
 				buttonEmpty,
@@ -100,6 +103,7 @@ const scan = async (
 				anchorExists,
 				imageInputHasAlt,
 				ariaHiddenValidUsage,
+				headingIsEmpty,
 				duplicateFormLabelCheck,
 				transcriptMissing,
 				buttonIsEmpty,
@@ -134,6 +138,7 @@ const scan = async (
 					brokenAnchorLink.id,
 					labelExtended.id,
 					ariaHiddenValidation.id,
+					headingTagEmpty.id,
 					duplicateFormLabel.id,
 					missingTranscript.id,
 					buttonEmpty.id,
