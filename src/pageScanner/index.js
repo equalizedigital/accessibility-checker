@@ -26,6 +26,10 @@ import linkPDF from './rules/link-pdf';
 import linkMsOfficeFile from './rules/link-ms-office-file';
 import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
+import headingTagEmpty from './rules/empty-heading-tag';
+import headingIsEmpty from './checks/heading-is-empty';
+import duplicateFormLabel from './rules/duplicate-form-label';
+import duplicateFormLabelCheck from './checks/duplicate-form-label-check';
 import transcriptMissing from './checks/has-transcript';
 import missingTranscript from './rules/missing-transcript';
 import buttonEmpty from './rules/empty-button';
@@ -36,6 +40,8 @@ import isvideoDetected from './checks/is-video-detected';
 import videoPresent from './rules/video-present';
 import longdescValid from './checks/longdesc-valid';
 import longDescriptionInvalid from './rules/long-description-invalid';
+import emptyTableHeader from './rules/empty-table-header';
+import tableHeaderIsEmpty from './checks/table-header-is-empty';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -81,11 +87,14 @@ const scan = async (
 				brokenAnchorLink,
 				labelExtended,
 				ariaHiddenValidation,
+				headingTagEmpty,
+				duplicateFormLabel,
 				missingTranscript,
 				buttonEmpty,
 				sliderPresent,
 				videoPresent,
 				longDescriptionInvalid,
+				emptyTableHeader,
 			],
 			checks: [
 				alwaysFail,
@@ -100,11 +109,14 @@ const scan = async (
 				anchorExists,
 				imageInputHasAlt,
 				ariaHiddenValidUsage,
+				headingIsEmpty,
+				duplicateFormLabelCheck,
 				transcriptMissing,
 				buttonIsEmpty,
 				sliderDetected,
 				isvideoDetected,
 				longdescValid,
+				tableHeaderIsEmpty,
 			],
 			iframes: false,
 
@@ -121,6 +133,7 @@ const scan = async (
 					'tabindex',
 					'html-lang-valid',
 					'html-has-lang',
+					'frame-title',
 					colorContrastFailure.id,
 					underlinedText.id,
 					emptyParagraph.id,
@@ -134,11 +147,14 @@ const scan = async (
 					brokenAnchorLink.id,
 					labelExtended.id,
 					ariaHiddenValidation.id,
+					headingTagEmpty.id,
+					duplicateFormLabel.id,
 					missingTranscript.id,
 					buttonEmpty.id,
 					sliderPresent.id,
 					videoPresent.id,
 					longDescriptionInvalid.id,
+					emptyTableHeader.id,
 				],
 			},
 
