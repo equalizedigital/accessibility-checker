@@ -116,7 +116,12 @@ const scan = async (
 				sliderDetected,
 				isvideoDetected,
 				tableHeaderIsEmpty,
-				imgAltLongCheck,
+				{
+					...imgAltLongCheck,
+					options: {
+						maxAltLength: window?.scanOptions?.maxAltLength || imgAltLongCheck.options.maxAltLength,
+					},
+				}, // This check supports an override of it's maxAltLength option when one is set in scanOptions.
 			],
 			iframes: false,
 
