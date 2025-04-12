@@ -96,6 +96,31 @@ describe( 'Image Alt Long Validation', () => {
 
 	testCases.forEach( ( testCase ) => {
 		test( testCase.name, async () => {
+			document.body.innerHTML = '';
+			// Reset window properties before each test
+			window.scanOptions = undefined;
+
+			// Set the window properties for the test case BEFORE configuring axe
+			if ( testCase.window ) {
+				Object.keys( testCase.window ).forEach( ( key ) => {
+					window[ key ] = testCase.window[ key ];
+				} );
+			}
+
+			// This check uses window object properties to determine the max alt length so needs to have axe reconfigured each run
+			// Dynamically import the modules
+			const imgAltLongRuleModule = await import( '../../../src/pageScanner/rules/img-alt-long.js' );
+			const imgAltLongCheckModule = await import( '../../../src/pageScanner/checks/img-alt-long-check.js' );
+
+			const imgAltLongRule = imgAltLongRuleModule.default;
+			const imgAltLongCheck = imgAltLongCheckModule.default;
+
+			// Configure axe with the imported rules
+			axe.configure( {
+				rules: [ imgAltLongRule ],
+				checks: [ { ...imgAltLongCheck, options: { maxAltLength: window?.scanOptions?.maxAltLength || imgAltLongCheck.options.maxAltLength } } ],
+			} );
+
 			document.body.innerHTML = testCase.html;
 
 			const results = await axe.run( document.body, {
