@@ -1,26 +1,5 @@
 import axe from 'axe-core';
 
-// Use async/await for the test setup
-beforeAll( async () => {
-	// Dynamically import the modules
-	const imgAltLongRuleModule = await import( '../../../src/pageScanner/rules/img-alt-long.js' );
-	const imgAltLongCheckModule = await import( '../../../src/pageScanner/checks/img-alt-long-check.js' );
-
-	const imgAltLongRule = imgAltLongRuleModule.default;
-	const imgAltLongCheck = imgAltLongCheckModule.default;
-
-	// Configure axe with the imported rules
-	axe.configure( {
-		rules: [ imgAltLongRule ],
-		checks: [ imgAltLongCheck ],
-	} );
-} );
-
-// Reset the document between tests
-beforeEach( () => {
-	document.body.innerHTML = '';
-} );
-
 describe( 'Image Alt Long Validation', () => {
 	const testCases = [
 		// Failing cases - alt text too long (over 300 characters)
@@ -91,6 +70,26 @@ describe( 'Image Alt Long Validation', () => {
 		{
 			name: 'should handle Unicode characters in alt text correctly',
 			html: '<img src="test.jpg" alt="Unicode: 你好世界 • ñ ç é ü">',
+			shouldPass: true,
+		},
+		{
+			name: `should fail when alt is 100 characters and scanOptions.maxAltLength is set to 50`,
+			html: `<img src="test.jpg" alt="${ 'b'.repeat( 100 ) }">`,
+			window: {
+				scanOptions: {
+					maxAltLength: 50,
+				},
+			},
+			shouldPass: false,
+		},
+		{
+			name: `should pass when alt is 400 characters and scanOptions.maxAltLength is set to 50`,
+			html: `<img src="test.jpg" alt="${ 'b'.repeat( 400 ) }">`,
+			window: {
+				scanOptions: {
+					maxAltLength: 500,
+				},
+			},
 			shouldPass: true,
 		},
 	];
