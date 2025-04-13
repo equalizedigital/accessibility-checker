@@ -25,7 +25,7 @@ export default {
 		// Fail if href is missing, empty, whitespace-only, just '#', or contains javascript:
 		if ( ! href ||
 			trimmedHref === '' ||
-            trimmedHref === '#' ||
+			trimmedHref === '#' ||
 			href.toLowerCase().startsWith( 'javascript:' ) ||
 			href.toLowerCase().startsWith( 'data:' ) ||
 			href.toLowerCase().startsWith( 'file:' )
