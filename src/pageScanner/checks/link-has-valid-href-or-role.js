@@ -20,8 +20,12 @@ export default {
 			return true;
 		}
 
-		// Fail if href is missing or just '#'
-		if ( ! href || href.trim() === '#' ) {
+		// Fail if href is missing, empty, whitespace-only, just '#', or contains javascript:
+		if ( ! href ||
+			href.trim() === '' ||
+			href.trim() === '#' ||
+			href.toLowerCase().startsWith( 'javascript:' )
+		) {
 			return false;
 		}
 

@@ -34,6 +34,16 @@ describe( 'Link Improper Rule', () => {
 			html: '<a href="#">Link</a>',
 			shouldPass: false,
 		},
+		{
+			name: 'Fails when anchor has javascript:void(0) href',
+			html: '<a href="javascript:void(0)">Bad practice</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails when anchor has empty href and no role',
+			html: '<a href="">Empty href</a>',
+			shouldPass: false,
+		},
 
 		// ✅ Passing cases
 		{
@@ -71,8 +81,21 @@ describe( 'Link Improper Rule', () => {
 			html: '<a aria-hidden="true">Aria hidden</a>',
 			shouldPass: true,
 		},
-	] )( '$name', async ( { html, shouldPass } ) => {
+		{
+			name: 'Passes when aria-hidden is dynamically added',
+			html: '<a id="dynamic-aria">Dynamic aria</a>',
+			shouldPass: true,
+			setup: () => {
+				const element = document.getElementById( 'dynamic-aria' );
+				element.setAttribute( 'aria-hidden', 'true' );
+			},
+		},
+	] )( '$name', async ( { html, shouldPass, setup } ) => {
 		document.body.innerHTML = html;
+
+		if ( setup ) {
+			setup();
+		}
 
 		const results = await axe.run( document.body, {
 			runOnly: [ 'link_improper' ],
