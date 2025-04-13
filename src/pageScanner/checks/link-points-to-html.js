@@ -24,13 +24,12 @@ export default {
 			const extension = pathParts.length > 1 ? pathParts.pop().toLowerCase() : '';
 
 			if ( nonHtmlExtensions.includes( extension ) ) {
-				return false; // Fail check
+				return false; // Fail: link points to a non-HTML document type
 			}
 		} catch {
-			// Invalid URL — ignore this link
-			return true;
+			return true; // Pass: link does not have a valid URL
 		}
 
-		return true; // Pass
+		return true; // Pass: link points to an HTML document type
 	},
 };
