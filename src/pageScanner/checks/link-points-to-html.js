@@ -22,12 +22,7 @@ export default {
 			const url = new URL( href, document.baseURI );
 			const pathParts = url.pathname.split( '.' );
 			const extension = pathParts.length > 1 ? pathParts.pop().toLowerCase() : '';
-			if ( nonHtmlExtensions.includes( extension ) ) {
-				// ... rest of the code
-			}
-		} catch ( error ) {
-			// ... error handling
-		}
+
 			if ( nonHtmlExtensions.includes( extension ) ) {
 				return false; // Fail check
 			}
