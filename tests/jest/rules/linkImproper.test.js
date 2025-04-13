@@ -44,8 +44,23 @@ describe( 'Link Improper Rule', () => {
 			html: '<a href="">Empty href</a>',
 			shouldPass: false,
 		},
+		{
+			name: 'Fails when anchor has malformed URL',
+			html: '<a href="http://example.com:invalid-port">Invalid URL</a>',
+			shouldPass: false,
+		},
 
 		// ✅ Passing cases
+		{
+			name: 'Passes with valid absolute URL',
+			html: '<a href="https://example.com/page?param=value">Valid URL</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes with valid relative URL',
+			html: '<a href="/path/to/page?query=string">Valid relative URL</a>',
+			shouldPass: true,
+		},
 		{
 			name: 'Passes with valid href',
 			html: '<a href="/about">About</a>',

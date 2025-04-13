@@ -29,6 +29,15 @@ export default {
 			return false;
 		}
 
+		// Optionally validate URL format if it's an absolute URL
+		if ( href.includes( '://' ) ) {
+			try {
+				new URL( href );
+			} catch ( e ) {
+				return false; // Invalid URL formats
+			}
+		}
+
 		return true;
 	},
 };
