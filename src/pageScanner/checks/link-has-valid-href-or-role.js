@@ -16,15 +16,19 @@ export default {
 		const role = node.getAttribute( 'role' ) || '';
 
 		// Allow if it's a button role
-		if ( role.toLowerCase() === 'button' ) {
+		if ( role.toLowerCase().split( /\s+/ ).includes( 'button' ) ) {
 			return true;
 		}
 
+		const trimmedHref = href ? href.trim() : '';
+
 		// Fail if href is missing, empty, whitespace-only, just '#', or contains javascript:
 		if ( ! href ||
-			href.trim() === '' ||
-			href.trim() === '#' ||
-			href.toLowerCase().startsWith( 'javascript:' )
+			trimmedHref === '' ||
+            trimmedHref === '#' ||
+			href.toLowerCase().startsWith( 'javascript:' ) ||
+			href.toLowerCase().startsWith( 'data:' ) ||
+			href.toLowerCase().startsWith( 'file:' )
 		) {
 			return false;
 		}

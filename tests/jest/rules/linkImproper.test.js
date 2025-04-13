@@ -49,6 +49,16 @@ describe( 'Link Improper Rule', () => {
 			html: '<a href="http://example.com:invalid-port">Invalid URL</a>',
 			shouldPass: false,
 		},
+		{
+			name: 'Fails when anchor has data: protocol',
+			html: '<a href="data:text/plain;base64,SGVsbG8sIFdvcmxkIQ==">Data URL</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails when anchor has file: protocol',
+			html: '<a href="file:///C:/example.txt">Local file</a>',
+			shouldPass: false,
+		},
 
 		// ✅ Passing cases
 		{
@@ -69,6 +79,11 @@ describe( 'Link Improper Rule', () => {
 		{
 			name: 'Passes with href="#" and role="button"',
 			html: '<a href="#" role="button">Click</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes with multiple roles including button',
+			html: '<a href="#" role="link button primary">Multiple roles</a>',
 			shouldPass: true,
 		},
 		{
