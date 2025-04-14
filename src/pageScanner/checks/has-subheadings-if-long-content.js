@@ -1,3 +1,5 @@
+const LONG_CONTENT_THRESHOLD = 400;
+
 export default {
 	id: 'has_subheadings_if_long_content',
 	evaluate: ( node ) => {
@@ -9,7 +11,7 @@ export default {
 		const text = node.textContent.replace( /\s+/g, ' ' ).trim();
 		const wordCount = text.split( /\s+/ ).length;
 
-		if ( wordCount < 400 ) {
+		if ( wordCount < LONG_CONTENT_THRESHOLD ) {
 			return true;
 		}
 
