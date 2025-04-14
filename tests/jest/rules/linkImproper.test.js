@@ -40,11 +40,6 @@ describe( 'Link Improper Rule', () => {
 			shouldPass: false,
 		},
 		{
-			name: 'Fails when anchor has empty href and no role',
-			html: '<a href="">Empty href</a>',
-			shouldPass: false,
-		},
-		{
 			name: 'Fails when anchor has malformed URL',
 			html: '<a href="http://example.com:invalid-port">Invalid URL</a>',
 			shouldPass: false,

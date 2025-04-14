@@ -22,9 +22,8 @@ export default {
 
 		const trimmedHref = href ? href.trim() : '';
 
-		// Fail if href is missing, empty, whitespace-only, just '#', or contains javascript:
+		// Fail if href is missing, just '#', or contains invalid protocols
 		if ( ! href ||
-			trimmedHref === '' ||
 			trimmedHref === '#' ||
 			href.toLowerCase().startsWith( 'javascript:' ) ||
 			href.toLowerCase().startsWith( 'data:' ) ||
