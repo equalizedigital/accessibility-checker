@@ -8,6 +8,8 @@
  * @return {boolean} True if the anchor tag has valid descriptive content, false otherwise.
  */
 
+import { isVisiblyHidden } from '../helpers/helpers.js';
+
 export default {
 	id: 'linked_image_alt_present',
 	evaluate: ( node ) => {
@@ -27,13 +29,7 @@ export default {
 
 		// Then check images
 		const images = Array.from( node.querySelectorAll( 'img' ) ).filter( ( img ) => {
-			const style = window.getComputedStyle( img );
-			const isVisiblyHidden =
-				style.display === 'none' ||
-				style.visibility === 'hidden' ||
-				img.closest( '[aria-hidden="true"]' );
-
-			return ! isVisiblyHidden;
+			return ! isVisiblyHidden( img );
 		} );
 
 		if ( images.length === 0 ) {
