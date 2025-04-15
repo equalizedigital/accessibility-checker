@@ -105,8 +105,12 @@ return [
 		'summary'   => sprintf(
 			// translators: %1$s is <code>&lt;frame&gt;</code>.
 			esc_html__( 'An iFrame Missing title error means that one or more of the iFrames on your post or page does not have an accessible title describing the contents of the iFrame. An iFrame title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iFrame title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iFrame.', 'accessibility-checker' ),
-			'<code>&lt;iframe&gt;</code>',
+			'<code>&lt;frame&gt;</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [
+			'frame-title',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Subheadings', 'accessibility-checker' ),
@@ -186,6 +190,7 @@ return [
 			esc_html__( 'An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page.', 'accessibility-checker' ),
 			'<code>&lt;h1&gt;&lt;/h1&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Empty Link', 'accessibility-checker' ),
@@ -212,6 +217,7 @@ return [
 			'<code>&lt;button&gt;</code>',
 			'<code>&lt;input&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Image Long Alternative Text', 'accessibility-checker' ),
@@ -242,6 +248,7 @@ return [
 			'<code>&lt;th&gt;</code>',
 			'<code>&lt;th&gt;&lt;/th&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Link to MS Office File', 'accessibility-checker' ),
@@ -342,6 +349,7 @@ return [
 		'slug'      => 'duplicate_form_label',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Text Too Small', 'accessibility-checker' ),
@@ -388,6 +396,7 @@ return [
 		'slug'      => 'missing_transcript',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Broken ARIA Reference', 'accessibility-checker' ),
