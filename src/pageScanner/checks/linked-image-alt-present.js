@@ -20,15 +20,20 @@ export default {
 		// Check for descriptive link content first
 		const textContent = ( node.textContent || '' ).trim();
 		const hasText = textContent.length >= 5;
-		const hasAriaLabel = !! node.getAttribute( 'aria-label' );
-		const hasTitle = !! node.getAttribute( 'title' );
+		const hasAriaLabel = node.getAttribute( 'aria-label' ) !== null && node.getAttribute( 'aria-label' ) !== '';
+		const hasTitle = node.getAttribute( 'title' ) !== null && node.getAttribute( 'title' ) !== '';
 
 		if ( hasText || hasAriaLabel || hasTitle ) {
 			return true;
 		}
 
 		// Then check images
-		const images = Array.from( node.querySelectorAll( 'img' ) ).filter( ( img ) => {
+		const allImages = node.querySelectorAll( 'img' );
+		if ( allImages.length === 0 ) {
+			return true;
+		}
+
+		const images = Array.from( allImages ).filter( ( img ) => {
 			return ! isVisiblyHidden( img );
 		} );
 
