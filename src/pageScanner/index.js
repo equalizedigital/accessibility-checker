@@ -40,6 +40,8 @@ import isvideoDetected from './checks/is-video-detected';
 import videoPresent from './rules/video-present';
 import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
+import imgAltRedundant from './rules/img-alt-redundant';
+import imgAltRedundantCheck from './checks/img-alt-redundant-check';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -92,6 +94,7 @@ const scan = async (
 				sliderPresent,
 				videoPresent,
 				emptyTableHeader,
+				imgAltRedundant,
 			],
 			checks: [
 				alwaysFail,
@@ -113,6 +116,7 @@ const scan = async (
 				sliderDetected,
 				isvideoDetected,
 				tableHeaderIsEmpty,
+				imgAltRedundantCheck,
 			],
 			iframes: false,
 
