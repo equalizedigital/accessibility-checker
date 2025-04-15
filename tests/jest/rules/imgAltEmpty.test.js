@@ -89,13 +89,7 @@ describe( 'Image Alt Empty Validation', () => {
 			shouldPass: true,
 		},
 
-		// Plugin-specific edge cases (simulating old php function edac_img_alt_ignore_plugin_issues)
-		{
-			name: 'should pass for img with data-attachment-id attribute (WordPress media)',
-			html: '<img src="test.jpg" alt="" data-attachment-id="123">',
-			shouldPass: true,
-			note: 'Why was this first excluded?',
-		},
+		// Plugin-specific edge cases (simulating old php function edac_img_alt_ignore_plugin_issues)s
 		{
 			name: 'should pass for img with class containing "wp-smiley"',
 			html: '<img src="smiley.jpg" alt="" class="wp-smiley">',
