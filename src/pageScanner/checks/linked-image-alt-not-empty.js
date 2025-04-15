@@ -1,3 +1,13 @@
+/**
+ * Check that linked images have non-empty alt text.
+ *
+ * This check evaluates whether images inside anchor tags have meaningful alternative text.
+ * It fails if an image has an empty or whitespace-only alt attribute, unless:
+ * - The link itself has sufficient descriptive text
+ * - The image is hidden or decorative (role="presentation" or aria-hidden="true")
+ * - The anchor has aria-label or title attributes
+ */
+
 import { getVisibleImages, hasAccessibleText } from '../helpers/linkedImageUtils.js';
 
 export default {
