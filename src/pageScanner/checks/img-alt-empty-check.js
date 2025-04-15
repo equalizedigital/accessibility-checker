@@ -100,10 +100,5 @@ function shouldIgnorePluginImage( node ) {
 		return true;
 	}
 
-	// WordPress media attachment with data-attachment-id
-	if ( node.hasAttribute( 'data-attachment-id' ) ) {
-		return true;
-	}
-
 	return false;
 }
