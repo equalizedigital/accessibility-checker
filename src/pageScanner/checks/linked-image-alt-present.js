@@ -8,7 +8,7 @@
  * @return {boolean} True if the anchor tag has valid descriptive content, false otherwise.
  */
 
-import { isVisiblyHidden } from '../helpers/helpers.js';
+import { getVisibleImages, hasAccessibleText } from '../helpers/linkedImageUtils.js';
 
 export default {
 	id: 'linked_image_alt_present',
@@ -17,31 +17,16 @@ export default {
 			return true;
 		}
 
-		// Check for descriptive link content first
-		const textContent = ( node.textContent || '' ).trim();
-		const hasText = textContent.length >= 5;
-		const hasAriaLabel = node.getAttribute( 'aria-label' ) !== null && node.getAttribute( 'aria-label' ) !== '';
-		const hasTitle = node.getAttribute( 'title' ) !== null && node.getAttribute( 'title' ) !== '';
-
-		if ( hasText || hasAriaLabel || hasTitle ) {
+		if ( hasAccessibleText( node ) ) {
 			return true;
 		}
 
-		// Then check images
-		const allImages = node.querySelectorAll( 'img' );
-		if ( allImages.length === 0 ) {
-			return true;
-		}
-
-		const images = Array.from( allImages ).filter( ( img ) => {
-			return ! isVisiblyHidden( img );
-		} );
-
+		const images = getVisibleImages( node );
 		if ( images.length === 0 ) {
 			return true;
 		}
 
-		// Check each visible image for alt text
+		// Check each visible image for alt attribute
 		return images.every( ( img ) => {
 			const hasAlt = img.hasAttribute( 'alt' );
 			const role = img.getAttribute( 'role' );

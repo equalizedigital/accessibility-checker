@@ -42,6 +42,9 @@ import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
 import imgLinkedAltMissing from './rules/img-linked-alt-missing';
 import linkedImageAltPresent from './checks/linked-image-alt-present';
+import imgLinkedAltEmpty from './rules/img-linked-alt-empty';
+import linkedImageAltNotEmpty from './checks/linked-image-alt-not-empty';
+
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -95,6 +98,7 @@ const scan = async (
 				videoPresent,
 				emptyTableHeader,
 				imgLinkedAltMissing,
+				imgLinkedAltEmpty,
 			],
 			checks: [
 				alwaysFail,
@@ -117,6 +121,7 @@ const scan = async (
 				isvideoDetected,
 				tableHeaderIsEmpty,
 				linkedImageAltPresent,
+				linkedImageAltNotEmpty,
 			],
 			iframes: false,
 
@@ -155,6 +160,7 @@ const scan = async (
 					videoPresent.id,
 					emptyTableHeader.id,
 					imgLinkedAltMissing.id,
+					imgLinkedAltEmpty.id,
 				],
 			},
 
