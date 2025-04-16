@@ -437,9 +437,32 @@ class Ajax {
 						$ignore_global           = (int) $row['ignre_global'];
 
 						// check for images and svgs in object code.
-						$object_img      = null;
-						$object_svg      = null;
-						$object_img_html = str_get_html( htmlspecialchars_decode( $row['object'], ENT_QUOTES ) );
+						$object_img = null;
+						$object_svg = null;
+						
+						libxml_use_internal_errors( true );
+						$dom = new \DOMDocument();
+						$dom->loadHTML( htmlspecialchars_decode( $row['object'], ENT_QUOTES ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+						$xpath      = new \DOMXPath( $dom );
+						$object_img = null;
+						$object_svg = null;
+
+						$img_elements = $xpath->query( '//img' );
+						if ( $img_elements->length > 0 ) {
+							foreach ( $img_elements as $element ) {
+								$object_img = $element->getAttribute( 'src' );
+								if ( $object_img ) {
+									break;
+								}
+							}
+						} else {
+							$svg_elements = $xpath->query( '//svg' );
+							if ( $svg_elements->length > 0 ) {
+								$object_svg = $dom->saveHTML( $svg_elements->item( 0 ) );
+							}
+						}
+						libxml_clear_errors();
+
 						if ( $object_img_html ) {
 							$object_img_elements = $object_img_html->find( 'img' );
 							$object_svg_elements = $object_img_html->find( 'svg' );

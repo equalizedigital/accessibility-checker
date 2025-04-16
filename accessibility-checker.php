@@ -98,18 +98,6 @@ if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
 	new Plugin();
 }
 
-
-/**
- * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
- */
-if ( ! defined( 'MAX_FILE_SIZE' ) ) {
-	define( 'MAX_FILE_SIZE', 6000000 );
-}
-if ( ! class_exists( 'simple_html_dom' ) ) {
-	include_once plugin_dir_path( __FILE__ ) . 'includes/simplehtmldom/simple_html_dom.php';
-	include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-dom.php';
-}
-
 /**
  * Import Resources
  */
@@ -119,18 +107,13 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
+
 /**
  * Filters and Actions
  */
 add_action( 'admin_menu', 'edac_add_options_page' );
 add_action( 'admin_init', 'edac_register_setting' );
-add_action( 'admin_head', 'edac_post_on_load' );
 add_filter( 'save_post', 'edac_save_post', 10, 3 );
-add_action( 'pre_get_posts', 'edac_show_draft_posts' );
-if ( is_plugin_active( 'oxygen/functions.php' ) ) {
-	add_action( 'added_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
-	add_action( 'updated_post_meta', 'edac_oxygen_builder_save_post', 10, 4 );
-}
 
 /**
  * Gets an array of default filters,

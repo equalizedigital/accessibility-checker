@@ -275,27 +275,6 @@ const edacScriptVars = edac_script_vars;
 		}
 
 		/**
-		 * On Post Save Gutenberg
-		 */
-		if ( edacGutenbergActive() ) {
-			const editPost = wp.data.select( 'core/edit-post' );
-			let lastIsSaving = false;
-
-			wp.data.subscribe( function() {
-				const isSaving = editPost.isSavingMetaBoxes();
-				if ( isSaving ) {
-					jQuery( '.edac-panel' ).addClass( 'edac-panel-loading' );
-				}
-				if ( isSaving !== lastIsSaving && ! isSaving ) {
-					lastIsSaving = isSaving;
-
-					refreshTabDetails();
-				}
-				lastIsSaving = isSaving;
-			} );
-		}
-
-		/**
 		 * Ignore Submit on click
 		 */
 		function ignoreSubmit() {
