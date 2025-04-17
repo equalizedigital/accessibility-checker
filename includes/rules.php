@@ -88,6 +88,10 @@ return [
 			'<code>&lt;h1&gt;</code>',
 			'<code>&lt;h2&gt;</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [
+			'heading-order',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Empty Paragraph Tag', 'accessibility-checker' ),

@@ -150,6 +150,7 @@ const scan = async (
 					'html-lang-valid',
 					'html-has-lang',
 					'frame-title',
+					'heading-order',
 					colorContrastFailure.id,
 					underlinedText.id,
 					emptyParagraph.id,
