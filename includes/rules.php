@@ -423,12 +423,15 @@ return [
 			HTMLLangAndDirFix::get_slug(),
 		],
 	],
+	// The name and slug of this rule references GIFs but the rule also checks webp.
 	[
 		'title'     => esc_html__( 'Image Animated GIF', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4428',
 		'slug'      => 'img_animated_gif',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+		'combines'  => [ 'img_animated' ],
 	],
 	[
 		'title'     => esc_html__( 'A Video is Present', 'accessibility-checker' ),
