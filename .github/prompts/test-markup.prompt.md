@@ -13,7 +13,7 @@ Please follow these guidelines:
 
 3. **Wrap the test markup inside a Gutenberg HTML block**:
    - Enclose each example in `<!-- wp:html -->` and `<!-- /wp:html -->` so it’s valid in Code Editor mode.
-   - Do **not** modify the test markup—output it exactly as provided.
+   - Do **not** modify the test markup—output it exactly as provided, except add the required `data-test-name` attribute for failing cases as specified in step 4.
 
 4. **Add a unique `data-test-name` attribute**:
    - For any element in the failing test case that will be flagged in a scan, add a `data-test-name="..."` attribute, using the test name or a simplified identifier.
