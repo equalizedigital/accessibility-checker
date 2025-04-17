@@ -106,7 +106,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/activation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
+
 /**
  * Filters and Actions
  */
