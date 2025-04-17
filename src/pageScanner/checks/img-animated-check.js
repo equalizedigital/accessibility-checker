@@ -168,8 +168,18 @@ function isWebPFormat( bytes ) {
  * @return {boolean} - Whether the WebP is animated
  */
 function hasWebPAnimation( bytes ) {
-	const text = String.fromCharCode( ...bytes );
-	return text.includes( 'ANIM' );
+	// Search for 'ANIM' chunk in WebP bytes
+	for ( let i = 12; i < bytes.length - 4; i++ ) {
+		if (
+			bytes[ i ] === 0x41 && // 'A'
+			bytes[ i + 1 ] === 0x4E && // 'N'
+			bytes[ i + 2 ] === 0x49 && // 'I'
+			bytes[ i + 3 ] === 0x4D // 'M'
+		) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
