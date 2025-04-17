@@ -169,6 +169,10 @@ return [
 			'<code>&lt;area&gt;</code>',
 			'<code>alt=""</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [
+			'area-alt',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Tab Order Modified', 'accessibility-checker' ),

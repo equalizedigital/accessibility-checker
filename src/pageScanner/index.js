@@ -162,6 +162,7 @@ const scan = async (
 					'tabindex',
 					'html-lang-valid',
 					'html-has-lang',
+					'area-alt',
 					'frame-title',
 					'heading-order',
 					colorContrastFailure.id,
