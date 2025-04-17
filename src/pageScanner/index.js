@@ -38,6 +38,8 @@ import sliderDetected from './checks/slider-detected';
 import sliderPresent from './rules/slider-present';
 import isvideoDetected from './checks/is-video-detected';
 import videoPresent from './rules/video-present';
+import longdescValid from './checks/longdesc-valid';
+import longDescriptionInvalid from './rules/long-description-invalid';
 import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
 import linkNonHtmlFile from './rules/link-non-html-file';
@@ -97,6 +99,7 @@ const scan = async (
 				buttonEmpty,
 				sliderPresent,
 				videoPresent,
+				longDescriptionInvalid,
 				emptyTableHeader,
 				linkNonHtmlFile,
 				linkImproper,
@@ -121,6 +124,7 @@ const scan = async (
 				buttonIsEmpty,
 				sliderDetected,
 				isvideoDetected,
+				longdescValid,
 				tableHeaderIsEmpty,
 				linkPointsToHtml,
 				linkHasValidHrefOrRole,
@@ -161,6 +165,7 @@ const scan = async (
 					buttonEmpty.id,
 					sliderPresent.id,
 					videoPresent.id,
+					longDescriptionInvalid.id,
 					emptyTableHeader.id,
 					linkNonHtmlFile.id,
 					linkImproper.id,
