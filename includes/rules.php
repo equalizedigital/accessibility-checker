@@ -214,6 +214,7 @@ return [
 			'code>aria-hidden="true"</code>',
 			'<code>aria-label</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Empty Button', 'accessibility-checker' ),

@@ -40,6 +40,8 @@ import sliderDetected from './checks/slider-detected';
 import sliderPresent from './rules/slider-present';
 import isvideoDetected from './checks/is-video-detected';
 import videoPresent from './rules/video-present';
+import linkEmpty from './rules/empty-link';
+import linkIsEmpty from './checks/link-is-empty';
 import longdescValid from './checks/longdesc-valid';
 import longDescriptionInvalid from './rules/long-description-invalid';
 import emptyTableHeader from './rules/empty-table-header';
@@ -106,6 +108,7 @@ const scan = async (
 				buttonEmpty,
 				sliderPresent,
 				videoPresent,
+				linkEmpty,
 				longDescriptionInvalid,
 				emptyTableHeader,
 				imageAltLong,
@@ -134,6 +137,7 @@ const scan = async (
 				buttonIsEmpty,
 				sliderDetected,
 				isvideoDetected,
+				linkIsEmpty,
 				longdescValid,
 				tableHeaderIsEmpty,
 				{
@@ -185,6 +189,7 @@ const scan = async (
 					buttonEmpty.id,
 					sliderPresent.id,
 					videoPresent.id,
+					linkEmpty.id,
 					longDescriptionInvalid.id,
 					emptyTableHeader.id,
 					imageAltLong.id,
