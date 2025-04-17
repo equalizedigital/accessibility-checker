@@ -124,6 +124,7 @@ return [
 			'<code>&lt;h6&gt;</code>'
 		),
 		'viewable'  => false,
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Text Justified', 'accessibility-checker' ),
@@ -480,6 +481,7 @@ return [
 			'<code>role="button"</code>',
 			'<code>&lt;a&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Zooming and Scaling Disabled', 'accessibility-checker' ),
