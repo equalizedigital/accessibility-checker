@@ -124,6 +124,7 @@ return [
 			'<code>&lt;h6&gt;</code>'
 		),
 		'viewable'  => false,
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Text Justified', 'accessibility-checker' ),

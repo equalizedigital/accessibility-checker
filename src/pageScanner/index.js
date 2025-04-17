@@ -42,6 +42,8 @@ import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
 import linkImproper from './rules/link-improper';
 import linkHasValidHrefOrRole from './checks/link-has-valid-href-or-role';
+import missingHeadings from './rules/missing-headings';
+import hasSubheadingsIfLongContent from './checks/has-subheadings-if-long-content';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -95,6 +97,7 @@ const scan = async (
 				videoPresent,
 				emptyTableHeader,
 				linkImproper,
+				missingHeadings,
 			],
 			checks: [
 				alwaysFail,
@@ -117,6 +120,7 @@ const scan = async (
 				isvideoDetected,
 				tableHeaderIsEmpty,
 				linkHasValidHrefOrRole,
+				hasSubheadingsIfLongContent,
 			],
 			iframes: false,
 
@@ -155,6 +159,7 @@ const scan = async (
 					videoPresent.id,
 					emptyTableHeader.id,
 					linkImproper.id,
+					missingHeadings.id,
 				],
 			},
 
