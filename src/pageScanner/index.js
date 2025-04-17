@@ -41,7 +41,7 @@ import videoPresent from './rules/video-present';
 import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
 import imageAnimated from './rules/img-animated';
-import imageAnimatedCheck from './checks/img-animated-check';
+import imageAnimatedCheck, { preScanAnimatedImages } from './checks/img-animated-check';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -182,6 +182,12 @@ const scan = async (
 	axe.configure( configOptions );
 
 	const runOptions = Object.assign( defaults.runOptions, options.runOptions );
+
+	// Axe core checks can't run async and to find animated gifs we need to use fetch. So this
+	// function will do that fetching and cache the results so they are available when the
+	// img_animated rule runs.
+	// NOTE: in future we should flag this and run it only if the img_animated rule is enabled.
+	await preScanAnimatedImages();
 
 	return await axe.run( context, runOptions )
 		.then( ( rules ) => {
