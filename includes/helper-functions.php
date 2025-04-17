@@ -303,45 +303,6 @@ function edac_post_types() {
 }
 
 /**
- * String Get HTML
- *
- * @param string  $str string to parse.
- * @param boolean $lowercase lowercase.
- * @param boolean $force_tags_closed force tags closed.
- * @param string  $target_charset target charset.
- * @param boolean $strip_rn strip rn.
- * @param string  $default_br_text default br text.
- * @param string  $default_span_text default span text.
- * @return object|false
- */
-function edac_str_get_html(
-	$str,
-	$lowercase = true,
-	$force_tags_closed = true,
-	$target_charset = DEFAULT_TARGET_CHARSET,
-	$strip_rn = true,
-	$default_br_text = DEFAULT_BR_TEXT,
-	$default_span_text = DEFAULT_SPAN_TEXT
-) {
-	$dom = new EDAC_Dom(
-		null,
-		$lowercase,
-		$force_tags_closed,
-		$target_charset,
-		$strip_rn,
-		$default_br_text,
-		$default_span_text
-	);
-
-	if ( empty( $str ) || strlen( $str ) > MAX_FILE_SIZE ) {
-		$dom->clear();
-		return false;
-	}
-
-	return $dom->load( $str, $lowercase, $strip_rn );
-}
-
-/**
  * Remove elements from the dom by css_selector
  *
  * @param simple_html_dom $dom .

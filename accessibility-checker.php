@@ -107,7 +107,6 @@ if ( ! defined( 'MAX_FILE_SIZE' ) ) {
 }
 if ( ! class_exists( 'simple_html_dom' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'includes/simplehtmldom/simple_html_dom.php';
-	include_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-edac-dom.php';
 }
 
 /**
