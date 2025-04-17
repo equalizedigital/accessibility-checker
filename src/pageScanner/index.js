@@ -44,6 +44,8 @@ import longdescValid from './checks/longdesc-valid';
 import longDescriptionInvalid from './rules/long-description-invalid';
 import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
+import imageAltLong from './rules/img-alt-long';
+import imgAltLongCheck from './checks/img-alt-long-check';
 import imgAltEmpty from './rules/img-alt-empty';
 import imgAltEmptyCheck from './checks/img-alt-empty-check';
 import linkNonHtmlFile from './rules/link-non-html-file';
@@ -106,6 +108,7 @@ const scan = async (
 				videoPresent,
 				longDescriptionInvalid,
 				emptyTableHeader,
+				imageAltLong,
 				imgAltEmpty,
 				linkNonHtmlFile,
 				linkImproper,
@@ -133,6 +136,12 @@ const scan = async (
 				isvideoDetected,
 				longdescValid,
 				tableHeaderIsEmpty,
+				{
+					...imgAltLongCheck,
+					options: {
+						maxAltLength: window?.scanOptions?.maxAltLength || imgAltLongCheck.options.maxAltLength,
+					},
+				}, // This check supports an override of it's maxAltLength option when one is set in scanOptions.
 				imgAltEmptyCheck,
 				linkPointsToHtml,
 				linkHasValidHrefOrRole,
@@ -177,6 +186,7 @@ const scan = async (
 					videoPresent.id,
 					longDescriptionInvalid.id,
 					emptyTableHeader.id,
+					imageAltLong.id,
 					imgAltEmpty.id,
 					linkNonHtmlFile.id,
 					linkImproper.id,
