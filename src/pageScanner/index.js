@@ -40,6 +40,8 @@ import isvideoDetected from './checks/is-video-detected';
 import videoPresent from './rules/video-present';
 import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
+import linkNonHtmlFile from './rules/link-non-html-file';
+import linkPointsToHtml from './checks/link-points-to-html';
 import linkImproper from './rules/link-improper';
 import linkHasValidHrefOrRole from './checks/link-has-valid-href-or-role';
 import missingHeadings from './rules/missing-headings';
@@ -96,6 +98,7 @@ const scan = async (
 				sliderPresent,
 				videoPresent,
 				emptyTableHeader,
+				linkNonHtmlFile,
 				linkImproper,
 				missingHeadings,
 			],
@@ -119,6 +122,7 @@ const scan = async (
 				sliderDetected,
 				isvideoDetected,
 				tableHeaderIsEmpty,
+				linkPointsToHtml,
 				linkHasValidHrefOrRole,
 				hasSubheadingsIfLongContent,
 			],
@@ -158,6 +162,7 @@ const scan = async (
 					sliderPresent.id,
 					videoPresent.id,
 					emptyTableHeader.id,
+					linkNonHtmlFile.id,
 					linkImproper.id,
 					missingHeadings.id,
 				],
