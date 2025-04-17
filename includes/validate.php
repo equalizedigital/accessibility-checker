@@ -5,8 +5,6 @@
  * @package Accessibility_Checker
  */
 
-use EDAC\Admin\Helpers;
-use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Purge_Post_Data;
 
 /**
