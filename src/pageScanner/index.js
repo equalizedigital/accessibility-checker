@@ -26,6 +26,8 @@ import linkPDF from './rules/link-pdf';
 import linkMsOfficeFile from './rules/link-ms-office-file';
 import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
+import tableHasHeaders from './checks/table-has-headers';
+import missingTableHeader from './rules/table-header-missing';
 import headingTagEmpty from './rules/empty-heading-tag';
 import headingIsEmpty from './checks/heading-is-empty';
 import duplicateFormLabel from './rules/duplicate-form-label';
@@ -40,8 +42,20 @@ import isvideoDetected from './checks/is-video-detected';
 import videoPresent from './rules/video-present';
 import linkEmpty from './rules/empty-link';
 import linkIsEmpty from './checks/link-is-empty';
+import longdescValid from './checks/longdesc-valid';
+import longDescriptionInvalid from './rules/long-description-invalid';
 import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
+import imageAltLong from './rules/img-alt-long';
+import imgAltLongCheck from './checks/img-alt-long-check';
+import imgAltEmpty from './rules/img-alt-empty';
+import imgAltEmptyCheck from './checks/img-alt-empty-check';
+import linkNonHtmlFile from './rules/link-non-html-file';
+import linkPointsToHtml from './checks/link-points-to-html';
+import linkImproper from './rules/link-improper';
+import linkHasValidHrefOrRole from './checks/link-has-valid-href-or-role';
+import missingHeadings from './rules/missing-headings';
+import hasSubheadingsIfLongContent from './checks/has-subheadings-if-long-content';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -87,6 +101,7 @@ const scan = async (
 				brokenAnchorLink,
 				labelExtended,
 				ariaHiddenValidation,
+				missingTableHeader,
 				headingTagEmpty,
 				duplicateFormLabel,
 				missingTranscript,
@@ -94,7 +109,13 @@ const scan = async (
 				sliderPresent,
 				videoPresent,
 				linkEmpty,
+				longDescriptionInvalid,
 				emptyTableHeader,
+				imageAltLong,
+				imgAltEmpty,
+				linkNonHtmlFile,
+				linkImproper,
+				missingHeadings,
 			],
 			checks: [
 				alwaysFail,
@@ -109,6 +130,7 @@ const scan = async (
 				anchorExists,
 				imageInputHasAlt,
 				ariaHiddenValidUsage,
+				tableHasHeaders,
 				headingIsEmpty,
 				duplicateFormLabelCheck,
 				transcriptMissing,
@@ -116,7 +138,18 @@ const scan = async (
 				sliderDetected,
 				isvideoDetected,
 				linkIsEmpty,
+				longdescValid,
 				tableHeaderIsEmpty,
+				{
+					...imgAltLongCheck,
+					options: {
+						maxAltLength: window?.scanOptions?.maxAltLength || imgAltLongCheck.options.maxAltLength,
+					},
+				}, // This check supports an override of it's maxAltLength option when one is set in scanOptions.
+				imgAltEmptyCheck,
+				linkPointsToHtml,
+				linkHasValidHrefOrRole,
+				hasSubheadingsIfLongContent,
 			],
 			iframes: false,
 
@@ -133,7 +166,9 @@ const scan = async (
 					'tabindex',
 					'html-lang-valid',
 					'html-has-lang',
+					'area-alt',
 					'frame-title',
+					'heading-order',
 					colorContrastFailure.id,
 					underlinedText.id,
 					emptyParagraph.id,
@@ -147,6 +182,7 @@ const scan = async (
 					brokenAnchorLink.id,
 					labelExtended.id,
 					ariaHiddenValidation.id,
+					missingTableHeader.id,
 					headingTagEmpty.id,
 					duplicateFormLabel.id,
 					missingTranscript.id,
@@ -154,7 +190,13 @@ const scan = async (
 					sliderPresent.id,
 					videoPresent.id,
 					linkEmpty.id,
+					longDescriptionInvalid.id,
 					emptyTableHeader.id,
+					imageAltLong.id,
+					imgAltEmpty.id,
+					linkNonHtmlFile.id,
+					linkImproper.id,
+					missingHeadings.id,
 				],
 			},
 
