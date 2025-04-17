@@ -83,7 +83,7 @@ describe( 'Image Alt Long Validation', () => {
 			shouldPass: false,
 		},
 		{
-			name: `should pass when alt is 400 characters and scanOptions.maxAltLength is set to 50`,
+			name: `should pass when alt is 400 characters and scanOptions.maxAltLength is set to 500`,
 			html: `<img src="test.jpg" alt="${ 'b'.repeat( 400 ) }">`,
 			window: {
 				scanOptions: {
