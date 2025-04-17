@@ -11,8 +11,8 @@ Please follow these guidelines:
    - Add an `<h2>` heading titled "Failing Tests" above the failing block markup.
    - Each test case should have its name included as an `<h3>` heading above it.
 
-3. **Wrap the test markup inside an `HTML` block**:
-   - Each test’s example markup should be wrapped using the Gutenberg HTML block format.
+3. **Wrap the test markup inside a Gutenberg HTML block**:
+   - Enclose each example in `<!-- wp:html -->` and `<!-- /wp:html -->` so it’s valid in Code Editor mode.
    - Do **not** modify the test markup—output it exactly as provided.
 
 4. **Add a unique `data-test-name` attribute**:
