@@ -10,22 +10,6 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Purge_Post_Data;
 
 /**
- * Check if current post has been checked, if not check on page load
- *
- * @return void
- */
-function edac_post_on_load() {
-	global $pagenow;
-	if ( 'post.php' === $pagenow ) {
-		global $post;
-		$checked = get_post_meta( $post->ID, '_edac_post_checked', true );
-		if ( false === (bool) $checked ) {
-			edac_validate( $post->ID, $post, $action = 'load' );
-		}
-	}
-}
-
-/**
  * Post on save
  *
  * @param int    $post_ID The ID of the post being saved.

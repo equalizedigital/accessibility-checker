@@ -112,7 +112,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/validate.php';
  */
 add_action( 'admin_menu', 'edac_add_options_page' );
 add_action( 'admin_init', 'edac_register_setting' );
-add_action( 'admin_head', 'edac_post_on_load' );
 add_filter( 'save_post', 'edac_save_post', 10, 3 );
 add_action( 'pre_get_posts', 'edac_show_draft_posts' );
 
