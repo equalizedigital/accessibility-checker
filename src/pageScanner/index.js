@@ -28,6 +28,28 @@ import ariaHiddenValidUsage from './checks/aria-hidden-valid-usage';
 import ariaHiddenValidation from './rules/aria-hidden-validation';
 import tableHasHeaders from './checks/table-has-headers';
 import missingTableHeader from './rules/table-header-missing';
+import headingTagEmpty from './rules/empty-heading-tag';
+import headingIsEmpty from './checks/heading-is-empty';
+import duplicateFormLabel from './rules/duplicate-form-label';
+import duplicateFormLabelCheck from './checks/duplicate-form-label-check';
+import transcriptMissing from './checks/has-transcript';
+import missingTranscript from './rules/missing-transcript';
+import buttonEmpty from './rules/empty-button';
+import buttonIsEmpty from './checks/button-is-empty';
+import sliderDetected from './checks/slider-detected';
+import sliderPresent from './rules/slider-present';
+import isvideoDetected from './checks/is-video-detected';
+import videoPresent from './rules/video-present';
+import longdescValid from './checks/longdesc-valid';
+import longDescriptionInvalid from './rules/long-description-invalid';
+import emptyTableHeader from './rules/empty-table-header';
+import tableHeaderIsEmpty from './checks/table-header-is-empty';
+import linkNonHtmlFile from './rules/link-non-html-file';
+import linkPointsToHtml from './checks/link-points-to-html';
+import linkImproper from './rules/link-improper';
+import linkHasValidHrefOrRole from './checks/link-has-valid-href-or-role';
+import missingHeadings from './rules/missing-headings';
+import hasSubheadingsIfLongContent from './checks/has-subheadings-if-long-content';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -74,6 +96,17 @@ const scan = async (
 				labelExtended,
 				ariaHiddenValidation,
 				missingTableHeader,
+				headingTagEmpty,
+				duplicateFormLabel,
+				missingTranscript,
+				buttonEmpty,
+				sliderPresent,
+				videoPresent,
+				longDescriptionInvalid,
+				emptyTableHeader,
+				linkNonHtmlFile,
+				linkImproper,
+				missingHeadings,
 			],
 			checks: [
 				alwaysFail,
@@ -89,6 +122,17 @@ const scan = async (
 				imageInputHasAlt,
 				ariaHiddenValidUsage,
 				tableHasHeaders,
+				headingIsEmpty,
+				duplicateFormLabelCheck,
+				transcriptMissing,
+				buttonIsEmpty,
+				sliderDetected,
+				isvideoDetected,
+				longdescValid,
+				tableHeaderIsEmpty,
+				linkPointsToHtml,
+				linkHasValidHrefOrRole,
+				hasSubheadingsIfLongContent,
 			],
 			iframes: false,
 
@@ -105,6 +149,7 @@ const scan = async (
 					'tabindex',
 					'html-lang-valid',
 					'html-has-lang',
+					'frame-title',
 					colorContrastFailure.id,
 					underlinedText.id,
 					emptyParagraph.id,
@@ -119,6 +164,17 @@ const scan = async (
 					labelExtended.id,
 					ariaHiddenValidation.id,
 					missingTableHeader.id,
+					headingTagEmpty.id,
+					duplicateFormLabel.id,
+					missingTranscript.id,
+					buttonEmpty.id,
+					sliderPresent.id,
+					videoPresent.id,
+					longDescriptionInvalid.id,
+					emptyTableHeader.id,
+					linkNonHtmlFile.id,
+					linkImproper.id,
+					missingHeadings.id,
 				],
 			},
 

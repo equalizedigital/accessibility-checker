@@ -105,8 +105,12 @@ return [
 		'summary'   => sprintf(
 			// translators: %1$s is <code>&lt;frame&gt;</code>.
 			esc_html__( 'An iFrame Missing title error means that one or more of the iFrames on your post or page does not have an accessible title describing the contents of the iFrame. An iFrame title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iFrame title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iFrame.', 'accessibility-checker' ),
-			'<code>&lt;iframe&gt;</code>',
+			'<code>&lt;frame&gt;</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [
+			'frame-title',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Subheadings', 'accessibility-checker' ),
@@ -120,6 +124,7 @@ return [
 			'<code>&lt;h6&gt;</code>'
 		),
 		'viewable'  => false,
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Text Justified', 'accessibility-checker' ),
@@ -186,6 +191,7 @@ return [
 			esc_html__( 'An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page.', 'accessibility-checker' ),
 			'<code>&lt;h1&gt;&lt;/h1&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Empty Link', 'accessibility-checker' ),
@@ -211,6 +217,7 @@ return [
 			'<code>&lt;button&gt;</code>',
 			'<code>&lt;input&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Image Long Alternative Text', 'accessibility-checker' ),
@@ -241,6 +248,7 @@ return [
 			'<code>&lt;th&gt;</code>',
 			'<code>&lt;th&gt;&lt;/th&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Link to MS Office File', 'accessibility-checker' ),
@@ -264,6 +272,7 @@ return [
 		'slug'      => 'link_non_html_file',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you\'re using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Long Description Invalid', 'accessibility-checker' ),
@@ -275,6 +284,7 @@ return [
 			esc_html__( 'The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely.', 'accessibility-checker' ),
 			'<code>longdesc=""</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Missing Form Label', 'accessibility-checker' ),
@@ -342,6 +352,7 @@ return [
 		'slug'      => 'duplicate_form_label',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Text Too Small', 'accessibility-checker' ),
@@ -388,6 +399,7 @@ return [
 		'slug'      => 'missing_transcript',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Broken ARIA Reference', 'accessibility-checker' ),
@@ -428,6 +440,7 @@ return [
 		'slug'      => 'video_present',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'A Slider is Present', 'accessibility-checker' ),
@@ -435,6 +448,7 @@ return [
 		'slug'      => 'slider_present',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Missing Title', 'accessibility-checker' ),
@@ -469,6 +483,7 @@ return [
 			'<code>role="button"</code>',
 			'<code>&lt;a&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Zooming and Scaling Disabled', 'accessibility-checker' ),
