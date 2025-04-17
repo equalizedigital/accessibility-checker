@@ -10,27 +10,6 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Purge_Post_Data;
 
 /**
- * Oxygen Builder on save
- *
- * @since 1.2.0
- *
- * @param int    $meta_id    The ID of the metadata entry in the database.
- * @param int    $post_id    The ID of the post being saved.
- * @param string $meta_key   The key of the metadata being saved.
- * @param mixed  $meta_value The value of the metadata being saved.
- *
- * @return void
- */
-function edac_oxygen_builder_save_post( $meta_id, $post_id, $meta_key, $meta_value ) { // phpcs:ignore -- This function is a hook and the parameters are required.
-	if ( 'ct_builder_shortcodes' === $meta_key ) {
-
-		$post = get_post( $post_id, OBJECT );
-		edac_validate( $post_id, $post, $action = 'save' );
-
-	}
-}
-
-/**
  * Check if current post has been checked, if not check on page load
  *
  * @return void

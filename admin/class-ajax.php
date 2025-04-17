@@ -587,22 +587,13 @@ class Ajax {
 
 		}
 
-		$post_id                        = (int) $_REQUEST['post_id'];
-		$html                           = '';
-		$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
-		$simplified_summary_position    = get_option( 'edac_simplified_summary_position', $default = false );
-		$content_post                   = get_post( $post_id );
-		$content                        = $content_post->post_content;
-		$content                        = apply_filters( 'the_content', $content );
-		$oxygen_builder_shortcodes_meta = get_post_meta( $post_id, 'ct_builder_shortcodes', true );
-
-		// add oxygen builder shortcode content to readability scan.
-		if ( $oxygen_builder_shortcodes_meta ) {
-			$oxygen_builder_shortcodes = do_shortcode( $oxygen_builder_shortcodes_meta );
-			if ( $oxygen_builder_shortcodes ) {
-				$content .= $oxygen_builder_shortcodes;
-			}
-		}
+		$post_id                     = (int) $_REQUEST['post_id'];
+		$html                        = '';
+		$simplified_summary          = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
+		$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
+		$content_post                = get_post( $post_id );
+		$content                     = $content_post->post_content;
+		$content                     = apply_filters( 'the_content', $content );
 
 		/**
 		 * Filter the content used for reading grade readability analysis.
