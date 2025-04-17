@@ -9,6 +9,7 @@ namespace EDAC\Admin;
 
 use EDAC\Admin\SiteHealth\Information;
 use EDAC\Admin\Purge_Post_Data;
+use EDAC\Admin\Post_Save;
 
 /**
  * Admin handling class.
@@ -54,6 +55,9 @@ class Admin {
 
 		$site_health_info = new Information();
 		$site_health_info->init_hooks();
+
+		$post_save = new Post_Save();
+		$post_save->init_hooks();
 
 		$this->init_ajax();
 

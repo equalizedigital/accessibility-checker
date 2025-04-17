@@ -5,65 +5,6 @@
  * @package Accessibility_Checker
  */
 
-use EDAC\Admin\Purge_Post_Data;
-
-/**
- * Post on save
- *
- * @param int    $post_ID The ID of the post being saved.
- * @param object $post    The post object being saved.
- * @param bool   $update  Whether this is an existing post being updated.
- *
- * @modified 1.10.0 to add a return when post_status is trash.
- *
- * @return void
- */
-function edac_save_post( $post_ID, $post, $update ) {
-	// check post type.
-	$post_types = get_option( 'edac_post_types' );
-	if ( is_array( $post_types ) && ! in_array( $post->post_type, $post_types, true ) ) {
-		return;
-	}
-
-	// prevents first past of save_post due to meta boxes on post editor in gutenberg.
-	if ( empty( $_POST ) ) {
-		return;
-	}
-
-	// ignore revisions.
-	if ( wp_is_post_revision( $post_ID ) ) {
-		return;
-	}
-
-	// ignore autosaves.
-	if ( wp_is_post_autosave( $post_ID ) ) {
-		return;
-	}
-
-	// check if update.
-	if ( ! $update ) {
-		return;
-	}
-
-	// handle the case when the custom post is quick edited.
-	if ( isset( $_POST['_inline_edit'] ) ) {
-		$inline_edit = sanitize_text_field( $_POST['_inline_edit'] );
-		if ( wp_verify_nonce( $inline_edit, 'inlineeditnonce' ) ) {
-			return;
-		}
-	}
-
-	// Post in, or going to, trash.
-	if ( 'trash' === $post->post_status ) {
-		// Gutenberg does not fire the `wp_trash_post` action when moving posts to the
-		// trash. Instead it uses `rest_delete_{$post_type}` which passes a different shape
-		// so instead of hooking in there for every post type supported the data gets
-		// purged here instead which produces the same result.
-		Purge_Post_Data::delete_post( $post_ID );
-		return;
-	}
-}
-
 /**
  * Remove corrected posts
  *
