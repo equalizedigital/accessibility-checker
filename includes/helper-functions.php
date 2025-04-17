@@ -129,18 +129,6 @@ function edac_ordinal( $number ) {
 }
 
 /**
- * Remove child nodes with simple dom
- *
- * @param simple_html_dom_node $parent_node The parent node.
- * @return string
- */
-function edac_simple_dom_remove_child( simple_html_dom_node $parent_node ) {
-	$parent_node->innertext = '';
-
-	return $parent_node->save();
-}
-
-/**
  * Remove element from multidimensional array
  *
  * @param array  $items The multidimensional array.
@@ -301,31 +289,6 @@ function edac_post_types() {
 
 	return $post_types;
 }
-
-/**
- * Remove elements from the dom by css_selector
- *
- * @param simple_html_dom $dom .
- * @param array           $css_selectors array .
- * @return simple_html_dom
- */
-function edac_remove_elements( $dom, $css_selectors = [] ) {
-
-	if ( $dom ) {
-
-		foreach ( $css_selectors as $css_selector ) {
-			$elements = $dom->find( $css_selector );
-			foreach ( $elements as $element ) {
-				if ( null !== $element ) {
-					$element->remove();
-				}
-			}
-		}
-	}
-
-	return $dom;
-}
-
 
 /**
  * This function validates a table name against WordPress naming conventions and checks its existence in the database.

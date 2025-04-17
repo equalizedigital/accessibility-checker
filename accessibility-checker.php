@@ -98,17 +98,6 @@ if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
 	new Plugin();
 }
 
-
-/**
- * Add simple dom support (need to over ride max file size, if clashes with another install of simple dom there the max file size will be dependednt upon that installation)
- */
-if ( ! defined( 'MAX_FILE_SIZE' ) ) {
-	define( 'MAX_FILE_SIZE', 6000000 );
-}
-if ( ! class_exists( 'simple_html_dom' ) ) {
-	include_once plugin_dir_path( __FILE__ ) . 'includes/simplehtmldom/simple_html_dom.php';
-}
-
 /**
  * Import Resources
  */
