@@ -437,26 +437,9 @@ class Ajax {
 						$ignore_global           = (int) $row['ignre_global'];
 
 						// check for images and svgs in object code.
-						$object_img      = null;
-						$object_svg      = null;
-						$object_img_html = str_get_html( htmlspecialchars_decode( $row['object'], ENT_QUOTES ) );
-						if ( $object_img_html ) {
-							$object_img_elements = $object_img_html->find( 'img' );
-							$object_svg_elements = $object_img_html->find( 'svg' );
-							if ( $object_img_elements ) {
-								foreach ( $object_img_elements as $element ) {
-									$object_img = $element->getAttribute( 'src' );
-									if ( $object_img ) {
-										break;
-									}
-								}
-							} elseif ( $object_svg_elements ) {
-								foreach ( $object_svg_elements as $element ) {
-									$object_svg = $element;
-									break;
-								}
-							}
-						}
+						$media      = edac_parse_html_for_media( $row['object'] );
+						$object_img = $media['img'];
+						$object_svg = $media['svg'];
 
 						$html .= '<h4 class="screen-reader-text">Issue ID ' . $id . '</h4>';
 

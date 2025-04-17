@@ -993,3 +993,46 @@ function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
 
 	return wc_get_page_id( 'checkout' ) === $post_id;
 }
+
+/**
+ * Parse HTML content to extract image or SVG elements
+ * 
+ * @param string $html The HTML content to parse.
+ * @return array Array containing 'img' (string) and 'svg' (string) keys
+ */
+function edac_parse_html_for_media( $html ) {
+	$result = [
+		'img' => null,
+		'svg' => null,
+	];
+
+	libxml_use_internal_errors( true );
+	$dom = new \DOMDocument();
+	$dom->loadHTML(
+		htmlspecialchars_decode( $html, ENT_QUOTES ),
+		LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+	);
+	
+	$xpath = new \DOMXPath( $dom );
+	
+	// Check for img elements first.
+	$img_elements = $xpath->query( '//img' );
+	if ( $img_elements->length > 0 ) {
+		foreach ( $img_elements as $element ) {
+			$src = $element->getAttribute( 'src' );
+			if ( $src ) {
+				$result['img'] = $src;
+				break;
+			}
+		}
+	} else {
+		// If no images found, check for SVG.
+		$svg_elements = $xpath->query( '//svg' );
+		if ( $svg_elements->length > 0 ) {
+			$result['svg'] = $dom->saveHTML( $svg_elements->item( 0 ) );
+		}
+	}
+	
+	libxml_clear_errors();
+	return $result;
+}
