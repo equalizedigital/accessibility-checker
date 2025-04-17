@@ -102,16 +102,6 @@ describe( 'Empty Link Validation', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should fail for link with empty title attribute',
-			html: '<a href="https://example.com" title=""></a>',
-			shouldPass: false,
-		},
-		{
-			name: 'should pass for link with decorative image',
-			html: '<a href="https://example.com"><img src="icon.png" alt=""></a>',
-			shouldPass: false,
-		},
-		{
 			name: 'should pass for link with screen reader-only content',
 			html: '<a href="https://example.com"><span class="screen-reader-text">Skip to content</span></a>',
 			shouldPass: true,
@@ -211,6 +201,16 @@ describe( 'Empty Link Validation', () => {
 		{
 			name: 'should fail for link with aria-describedby referencing empty element',
 			html: '<span id="empty-desc"></span><a href="https://example.com" aria-describedby="empty-desc"></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for link with empty title attribute',
+			html: '<a href="https://example.com" title=""></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for link with decorative image',
+			html: '<a href="https://example.com"><img src="icon.png" alt=""></a>',
 			shouldPass: false,
 		},
 	];
