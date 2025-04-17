@@ -39,6 +39,7 @@ return [
 			esc_html__( 'An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image\'s purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning.', 'accessibility-checker' ),
 			'<code>alt=""</code>',
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Low-quality Alternative Text', 'accessibility-checker' ),

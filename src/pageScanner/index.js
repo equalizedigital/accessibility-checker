@@ -44,6 +44,8 @@ import longdescValid from './checks/longdesc-valid';
 import longDescriptionInvalid from './rules/long-description-invalid';
 import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
+import imgAltEmpty from './rules/img-alt-empty';
+import imgAltEmptyCheck from './checks/img-alt-empty-check';
 import linkNonHtmlFile from './rules/link-non-html-file';
 import linkPointsToHtml from './checks/link-points-to-html';
 import linkImproper from './rules/link-improper';
@@ -104,6 +106,7 @@ const scan = async (
 				videoPresent,
 				longDescriptionInvalid,
 				emptyTableHeader,
+				imgAltEmpty,
 				linkNonHtmlFile,
 				linkImproper,
 				missingHeadings,
@@ -130,6 +133,7 @@ const scan = async (
 				isvideoDetected,
 				longdescValid,
 				tableHeaderIsEmpty,
+				imgAltEmptyCheck,
 				linkPointsToHtml,
 				linkHasValidHrefOrRole,
 				hasSubheadingsIfLongContent,
@@ -173,6 +177,7 @@ const scan = async (
 					videoPresent.id,
 					longDescriptionInvalid.id,
 					emptyTableHeader.id,
+					imgAltEmpty.id,
 					linkNonHtmlFile.id,
 					linkImproper.id,
 					missingHeadings.id,
