@@ -56,6 +56,7 @@ import linkImproper from './rules/link-improper';
 import linkHasValidHrefOrRole from './checks/link-has-valid-href-or-role';
 import missingHeadings from './rules/missing-headings';
 import hasSubheadingsIfLongContent from './checks/has-subheadings-if-long-content';
+import { getPageDensity } from './helpers/density';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -358,9 +359,14 @@ const tooLongTimeout = setTimeout( function() {
 // Start the scan.
 scan().then( ( results ) => {
 	const violations = JSON.parse( JSON.stringify( results.violations ) );
+	const [ elementCount, contentLength ] = getPageDensity( body );
+
+	console.log( 'Density Metrics:', { // eslint-disable-line no-console
+		elementCount,
+		contentLength,
+	} );
 
 	onDone( violations );
 } ).catch( ( err ) => {
 	onDone( [], [ err.message ], true );
 } );
-
