@@ -117,6 +117,7 @@ const scan = async (
 				linkImproper,
 				missingHeadings,
 			],
+
 			checks: [
 				alwaysFail,
 				elementIsAUTag,
@@ -154,6 +155,7 @@ const scan = async (
 			iframes: false,
 
 		},
+
 		resultTypes: [ 'violations' ],
 		runOptions: {
 			runOnly: {
