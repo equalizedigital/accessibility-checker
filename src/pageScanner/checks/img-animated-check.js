@@ -146,7 +146,9 @@ function isGifFormat( bytes ) {
  */
 function hasMultipleGifFrames( bytes ) {
 	let controlCount = 0;
-	for ( let i = 0; i < bytes.length - 1; i++ ) {
+	// Most GIF data is within the first few KB
+	const scanLength = Math.min( bytes.length - 1, 50000 ); // Scan at most 50KB
+	for ( let i = 0; i < scanLength; i++ ) {
 		if ( bytes[ i ] === 0x21 && bytes[ i + 1 ] === 0xF9 ) {
 			controlCount++;
 			if ( controlCount > 1 ) {
