@@ -90,32 +90,27 @@ export default {
  * @return {boolean} A boolean indicating if the image is inside a caption container.
  */
 const hasValidCaption = ( node ) => {
-	// Check for HTML5 figure with figcaption
-	let parent = node.parentNode;
-	while ( parent ) {
-		if ( parent.tagName && parent.tagName.toLowerCase() === 'figure' ) {
-			const figcaptions = parent.querySelectorAll( 'figcaption' );
-			if ( figcaptions.length > 0 && figcaptions[ 0 ].textContent.trim() !== '' ) {
-				return true;
-			}
-			break;
+	// Check for figure element with figcaption
+	const figureParent = findAncestor( node, ( el ) =>
+		el.tagName && el.tagName.toLowerCase() === 'figure'
+	);
+
+	if ( figureParent ) {
+		const figcaptions = figureParent.querySelectorAll( 'figcaption' );
+		if ( figcaptions.length > 0 && figcaptions[ 0 ].textContent.trim() !== '' ) {
+			return true;
 		}
-		parent = parent.parentNode;
 	}
 
 	// Check for div with wp-caption class
-	parent = node.parentNode;
-	while ( parent ) {
-		if ( parent.tagName &&
-			parent.tagName.toLowerCase() === 'div' &&
-			parent.classList.contains( 'wp-caption' ) ) {
-			// Check if the div has meaningful text content
-			if ( parent.textContent && parent.textContent.trim().length > 5 ) {
-				return true;
-			}
-			break;
-		}
-		parent = parent.parentNode;
+	const captionDiv = findAncestor( node, ( el ) =>
+		el.tagName &&
+		el.tagName.toLowerCase() === 'div' &&
+		el.classList.contains( 'wp-caption' )
+	);
+
+	if ( captionDiv && captionDiv.textContent && captionDiv.textContent.trim().length > 5 ) {
+		return true;
 	}
 
 	return false;
@@ -147,27 +142,25 @@ const hasTextContent = ( parent, excludeNode ) => {
  */
 const hasLinkContext = ( node ) => {
 	// Check if inside an anchor tag with accessible text
-	let parent = node.parentNode;
-	while ( parent ) {
-		if ( parent.tagName && parent.tagName.toLowerCase() === 'a' ) {
-			// Check if the anchor has non-empty aria-label
-			if ( parent.hasAttribute( 'aria-label' ) && parent.getAttribute( 'aria-label' ).trim() !== '' ) {
-				return true;
-			}
+	const linkParent = findAncestor( node, ( el ) =>
+		el.tagName && el.tagName.toLowerCase() === 'a'
+	);
 
-			// Check if the anchor has non-empty title
-			if ( parent.hasAttribute( 'title' ) && parent.getAttribute( 'title' ).trim() !== '' ) {
-				return true;
-			}
-
-			// Check if the anchor has meaningful text content
-			if ( hasTextContent( parent, node ) ) {
-				return true;
-			}
-
-			break;
+	if ( linkParent ) {
+		// Check if the anchor has non-empty aria-label
+		if ( linkParent.hasAttribute( 'aria-label' ) && linkParent.getAttribute( 'aria-label' ).trim() !== '' ) {
+			return true;
 		}
-		parent = parent.parentNode;
+
+		// Check if the anchor has non-empty title
+		if ( linkParent.hasAttribute( 'title' ) && linkParent.getAttribute( 'title' ).trim() !== '' ) {
+			return true;
+		}
+
+		// Check if the anchor has meaningful text content
+		if ( hasTextContent( linkParent, node ) ) {
+			return true;
+		}
 	}
 
 	return false;
@@ -179,17 +172,30 @@ const hasLinkContext = ( node ) => {
  * @return {boolean} A boolean indicating if the image is inside a button with text content.
  */
 const hasButtonContext = ( node ) => {
-	let parent = node.parentNode;
-	while ( parent ) {
-		if ( parent.tagName && parent.tagName.toLowerCase() === 'button' ) {
-			if ( hasTextContent( parent, node ) ) {
-				return true;
-			}
-			break;
-		}
-		parent = parent.parentNode;
+	const buttonParent = findAncestor( node, ( el ) =>
+		el.tagName && el.tagName.toLowerCase() === 'button'
+	);
+
+	if ( buttonParent && hasTextContent( buttonParent, node ) ) {
+		return true;
 	}
 
 	return false;
 };
 
+/**
+ * Helper function to find an ancestor element matching a condition
+ * @param {Element}  node      - The starting DOM element
+ * @param {Function} predicate - Function that tests if an element matches
+ * @return {Element|null} The matching ancestor or null
+ */
+const findAncestor = ( node, predicate ) => {
+	let current = node.parentNode;
+	while ( current ) {
+		if ( predicate( current ) ) {
+			return current;
+		}
+		current = current.parentNode;
+	}
+	return null;
+};
