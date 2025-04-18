@@ -290,3 +290,47 @@ describe( 'Fetch mock functioning', () => {
 		expect( response.ok ).toBeDefined();
 	} );
 } );
+
+describe( 'Timeout behavior in preScanAnimatedImages', () => {
+	test( 'times out after wait time in fetch', async () => {
+		document.body.innerHTML = '<img src="A-image.gif" alt="slow image">';
+
+		// Override fetch to simulate a connection slower than the precache wait time.
+		global.fetch = jest.fn( ( url, options ) => {
+			return new Promise( ( resolve, reject ) => {
+				const timer = setTimeout( () => {
+					try {
+						const filePath = path.resolve( __dirname, '..', 'mock-assets', path.basename( url ) );
+						if ( fs.existsSync( filePath ) ) {
+							const buffer = fs.readFileSync( filePath );
+							resolve( {
+								ok: true,
+								arrayBuffer: async () => buffer,
+							} );
+						} else {
+							resolve( {
+								ok: false,
+								status: 404,
+								statusText: 'Not Found',
+							} );
+						}
+					} catch ( error ) {
+						reject( error );
+					}
+				}, 100 ); // simulated slow response.
+				if ( options && options.signal ) {
+					options.signal.addEventListener( 'abort', () => {
+						clearTimeout( timer );
+						reject( new DOMException( 'Aborted', 'AbortError' ) );
+					} );
+				}
+			} );
+		} );
+
+		// Call the preScan function (which should trigger a 0.05 second timeout)
+		await preScanAnimatedImages( 50 );
+
+		// The url is animated, but should be marked as false due to timeout.
+		expect( animationCache.get( 'A-image.gif' ) ).toBe( false );
+	} );
+} );
