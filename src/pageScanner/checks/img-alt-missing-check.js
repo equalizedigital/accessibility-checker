@@ -115,23 +115,26 @@ const hasLinkContext = ( node ) => {
 	let parent = node.parentNode;
 	while ( parent ) {
 		if ( parent.tagName && parent.tagName.toLowerCase() === 'a' ) {
-			// Check if the anchor has aria-label
-			if ( parent.hasAttribute( 'aria-label' ) && parent.getAttribute( 'aria-label' ) !== '' ) {
+			// Check if the anchor has non-empty aria-label
+			if ( parent.hasAttribute( 'aria-label' ) && parent.getAttribute( 'aria-label' ).trim() !== '' ) {
 				return true;
 			}
 
-			// Check if the anchor has title
-			if ( parent.hasAttribute( 'title' ) && parent.getAttribute( 'title' ) !== '' ) {
+			// Check if the anchor has non-empty title
+			if ( parent.hasAttribute( 'title' ) && parent.getAttribute( 'title' ).trim() !== '' ) {
 				return true;
 			}
 
 			// Check if the anchor has meaningful text content
-			const nodeContent = Array.from( parent.childNodes )
-				.filter( ( child ) => child !== node && child.nodeType === 3 ) // Text nodes only
-				.map( ( child ) => child.textContent ) // Don't trim here
+			const textNodes = Array.from( parent.childNodes )
+				.filter( ( child ) => child !== node && child.nodeType === 3 ); // Text nodes only
+
+			// Get text content and check if it's not just whitespace
+			const nodeContent = textNodes
+				.map( ( child ) => child.textContent )
 				.join( '' );
 
-			if ( nodeContent.length > 0 ) { // Check for any text content
+			if ( nodeContent.trim() !== '' ) {
 				return true;
 			}
 
