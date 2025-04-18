@@ -119,7 +119,7 @@ describe( 'Image Alt Missing Validation', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should fail for div with wp-caption and content more than the minimum',
+			name: 'should pass for div with wp-caption and content more than the minimum',
 			html: '<div class="wp-caption"><img src="test.jpg"><p>ABCDEF</p></div>',
 			shouldPass: true,
 		},
