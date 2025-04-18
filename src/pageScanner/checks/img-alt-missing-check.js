@@ -11,12 +11,12 @@ export default {
 
 		// Handle role="presentation"
 		if ( node.hasAttribute( 'role' ) && node.getAttribute( 'role' ) === 'presentation' ) {
-			return true;
+			return false;
 		}
 
 		// Handle aria-hidden="true"
 		if ( node.hasAttribute( 'aria-hidden' ) && node.getAttribute( 'aria-hidden' ) === 'true' ) {
-			return true;
+			return false;
 		}
 
 		// Handle aria-labelledby
@@ -24,7 +24,7 @@ export default {
 			const labelId = node.getAttribute( 'aria-labelledby' );
 			const labelElement = document.getElementById( labelId );
 			if ( labelElement && labelElement.textContent.trim() !== '' ) {
-				return true;
+				return false;
 			}
 		}
 
@@ -33,37 +33,37 @@ export default {
 
 		// For input[type="image"], we need alt text
 		if ( tagName === 'input' && node.getAttribute( 'type' ) === 'image' ) {
-			return hasAlt;
+			return ! hasAlt;
 		}
 
 		// For images, we need the alt attribute to be defined
 		if ( tagName === 'img' ) {
 			// Check if image is inside a caption container
 			if ( hasValidCaption( node ) ) {
-				return true;
+				return false;
 			}
 
 			// Check if image is inside a link with context
 			if ( hasLinkContext( node ) ) {
-				return true;
+				return false;
 			}
 
 			// Check if image is inside a button with text content
 			if ( hasButtonContext( node ) ) {
-				return true;
+				return false;
 			}
 
-			return hasAlt;
+			return ! hasAlt;
 		}
 
-		return true;
+		return false;
 	},
 	options: {},
 	metadata: {
 		impact: 'critical',
 		messages: {
-			pass: 'Image has alt attribute',
-			fail: 'Image does not have an alt attribute',
+			pass: 'Image has an alt attribute',
+			fail: 'Image is missing an alt attribute',
 		},
 	},
 };

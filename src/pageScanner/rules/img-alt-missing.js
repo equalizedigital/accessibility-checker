@@ -8,8 +8,8 @@ export default {
 	selector: 'img, input[type="image"]',
 	excludeHidden: true,
 	any: [],
-	all: [ 'img_alt_missing_check' ],
-	none: [],
+	all: [],
+	none: [ 'img_alt_missing_check' ],
 	tags: [ 'wcag1a', 'wcag111', 'cat.text-alternatives' ],
 	metadata: {
 		description: 'Ensures images have alt text',
