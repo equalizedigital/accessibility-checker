@@ -51,13 +51,17 @@ jobs:
               {
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                pull_number: context.payload.pull_request.number,
+                pull_number: context.payload.pull_request?.number,
               }
             );
-            return changedFiles
+            const jsFiles = changedFiles
               .map(file => file.filename)
               .filter(filename => filename.endsWith('.js'))
               .join(' ');
+
+            core.setOutput('files', jsFiles);
+            return jsFiles;
+
       - name: Run eslint on changed files
-        if: steps.changed-files.outputs.result != ''
-        run: npx wp-scripts lint-js ${{ fromJSON(steps.changed-files.outputs.result) }}
+        if: ${{ steps.changed-files.outputs.files != '' }}
+        run: npx wp-scripts lint-js ${{ steps.changed-files.outputs.files }}
