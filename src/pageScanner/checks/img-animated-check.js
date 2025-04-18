@@ -1,3 +1,5 @@
+import { NormalizedMap } from '../helpers/helpers.js';
+
 /**
  * Animation detection for accessibility compliance (WCAG 2.2.2)
  *
@@ -7,7 +9,7 @@
  */
 
 // Animation cache to store pre-scan results
-export const animationCache = new Map();
+export const animationCache = new NormalizedMap();
 
 /**
  * Main accessibility check for animated images
