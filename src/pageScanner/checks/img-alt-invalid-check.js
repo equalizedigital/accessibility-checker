@@ -13,18 +13,13 @@ export default {
 
 		const altRaw = node.getAttribute( 'alt' );
 
-		// Skip empty alt text (decorative images)
-		if ( altRaw === '' ) {
+		// Skip empty alt text (decorative images) or alt with just whitespace.
+		if ( altRaw === '' || altRaw.trim() === '' ) {
 			return true;
 		}
 
-		// Check if alt contains only whitespace
-		if ( altRaw.length > 0 && altRaw.trim() === '' ) {
-			return false;
-		}
-
-		const alt = altRaw.toLowerCase().trim();
-		const altTrimmed = alt.replace( /\s+/g, ' ' ).trim();
+		// Trim the alt, normalize to lower case and replace multiple consecutive spaces with a single space.
+		const altTrimmed = altRaw.toLowerCase().trim().replace( /\s+/g, ' ' ).trim();
 
 		// Check if string begins with problematic phrases
 		const startsWithKeywords = [
@@ -32,9 +27,8 @@ export default {
 			'bullet',
 			'image of',
 		];
-
 		for ( const keyword of startsWithKeywords ) {
-			if ( alt.startsWith( keyword ) ) {
+			if ( altTrimmed.startsWith( keyword ) ) {
 				return false;
 			}
 		}
@@ -44,9 +38,8 @@ export default {
 			'image',
 			'graphic',
 		];
-
 		for ( const keyword of endsWithKeywords ) {
-			if ( alt.endsWith( keyword ) ) {
+			if ( altTrimmed.endsWith( keyword ) ) {
 				return false;
 			}
 		}
@@ -56,9 +49,8 @@ export default {
 			'.apng', '.bmp', '.gif', '.ico', '.cur', '.jpg', '.jpeg',
 			'.jfif', '.pjpeg', '.pjp', '.png', '.svg', '.tif', '.tiff', '.webp',
 		];
-
 		for ( const extension of imageExtensions ) {
-			if ( alt.includes( extension ) ) {
+			if ( altTrimmed.includes( extension ) ) {
 				return false;
 			}
 		}
@@ -70,7 +62,6 @@ export default {
 			'button', 'arrow', 'more', 'spacer', 'blank', 'chart', 'table',
 			'diagram', 'graph', '*',
 		];
-
 		if ( keywords.includes( altTrimmed ) ) {
 			return false;
 		}
@@ -79,9 +70,8 @@ export default {
 		const contains = [
 			'_', 'img', 'jpg', 'jpeg', 'apng', 'png', 'svg', 'webp',
 		];
-
 		for ( const substring of contains ) {
-			if ( alt.includes( substring ) ) {
+			if ( altTrimmed.includes( substring ) ) {
 				return false;
 			}
 		}
