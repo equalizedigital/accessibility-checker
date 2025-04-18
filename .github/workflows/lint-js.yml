@@ -47,9 +47,8 @@ jobs:
       - name: 'Get changed JavaScript files'
         id: jsfiles
         run: |
-          echo "JS_FILES<<EOF" >> $GITHUB_ENV
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.js$' || echo ""
-          echo "EOF" >> $GITHUB_ENV
+          BEFORE_SHA=${{ github.event.before || 'HEAD^' }}
+          echo "JS_FILES=$(git diff --name-only $BEFORE_SHA ${{ github.sha }} | grep '\.js$' || echo '')" >> $GITHUB_ENV
 
       - name: 'Run ESLint'
         if: env.JS_FILES != ''
