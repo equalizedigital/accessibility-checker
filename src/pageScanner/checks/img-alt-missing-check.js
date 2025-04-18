@@ -46,6 +46,7 @@ export default {
 
 		// For input[type="image"], we need alt text
 		if ( tagName === 'input' && node.getAttribute( 'type' ) === 'image' ) {
+			// Return true (flag issue) if alt attribute is missing
 			return ! hasAlt;
 		}
 
@@ -66,9 +67,11 @@ export default {
 				return false;
 			}
 
+			// Return true (flag issue) if alt attribute is missing
 			return ! hasAlt;
 		}
 
+		// If we reach here we haven't found anything that says the alt is missing.
 		return false;
 	},
 	options: {},
