@@ -20,8 +20,8 @@ export default {
 		const srcLower = src.toLowerCase();
 
 		// Return cached result if available
-		if ( animationCache.has( src ) ) {
-			return animationCache.get( src );
+		if ( animationCache.has( srcLower ) ) {
+			return animationCache.get( srcLower );
 		}
 
 		// Check for different node types
@@ -31,14 +31,15 @@ export default {
                 isGifService( srcLower ) ||
                 isGifUrl( srcLower ) ||
                 isWebPUrl( srcLower ) ) {
-				animationCache.set( src, true );
+				animationCache.set( srcLower, true );
 				return true;
 			}
+			animationCache.set( srcLower, false );
 			return false;
 		} else if ( nodeName === 'iframe' ) {
 			// For iframes, check if the src belongs to a known GIF service
 			const isAnimated = isGifService( srcLower );
-			animationCache.set( src, isAnimated );
+			animationCache.set( srcLower, isAnimated );
 			return isAnimated;
 		}
 
@@ -61,13 +62,13 @@ export async function preScanAnimatedImages( timeoutMs = 5000 ) { // Changed to 
 		const srcLower = src.toLowerCase();
 
 		// Skip if already in cache
-		if ( animationCache.has( src ) ) {
+		if ( animationCache.has( srcLower ) ) {
 			continue;
 		}
 
 		// Quick checks first (name patterns and known services)
 		if ( hasAnimationIndicatorsInName( srcLower ) || isGifService( srcLower ) ) {
-			animationCache.set( src, true );
+			animationCache.set( srcLower, true );
 			continue;
 		}
 
@@ -84,20 +85,20 @@ export async function preScanAnimatedImages( timeoutMs = 5000 ) { // Changed to 
 				clearTimeout( timeoutId );
 				if ( ! response.ok ) {
 					// If fetch fails, assume animated only if it has animation indicators
-					animationCache.set( src, hasAnimationIndicatorsInName( srcLower ) );
+					animationCache.set( srcLower, hasAnimationIndicatorsInName( srcLower ) );
 					continue;
 				}
 
 				const buffer = await response.arrayBuffer();
 				const isAnimated = detectAnimationFromBytes( buffer );
-				animationCache.set( src, isAnimated );
+				animationCache.set( srcLower, isAnimated );
 			} catch ( error ) {
 				// Only mark as animated if the filename explicitly indicates animation
-				animationCache.set( src, hasAnimationIndicatorsInName( srcLower ) );
+				animationCache.set( srcLower, hasAnimationIndicatorsInName( srcLower ) );
 			}
 		} else {
 			// Not a GIF or WebP - mark as not animated
-			animationCache.set( src, false );
+			animationCache.set( srcLower, false );
 		}
 	}
 

@@ -334,3 +334,27 @@ describe( 'Timeout behavior in preScanAnimatedImages', () => {
 		expect( animationCache.get( 'A-image.gif' ) ).toBe( false );
 	} );
 } );
+
+describe( 'Cache URL normalization', () => {
+	test( 'normalizes URLs in the cache', async () => {
+		document.body.innerHTML = `
+            <img src="TEST-IMAGE.GIF" alt="Uppercase test">
+            <img src="test-image.gif" alt="Lowercase test">
+            <img src="TEST-image.gif" alt="Mixedcase test">
+            <img src="another-image.gif" alt="Extra uppercase to check">
+            <img src="another-image.gif" alt="Extra lowercase to check">
+            <img src="ANOTHER-image.gif" alt="Extra mixedcase to check">
+        `;
+		// Run the pre-scan to populate the cache
+		await preScanAnimatedImages();
+
+		// Verify that all cache keys are lowercase
+		const keys = Array.from( animationCache.keys() );
+		keys.forEach( ( key ) => {
+			expect( key ).toBe( key.toLowerCase() );
+		} );
+
+		// Verify that only normalized keys exists for similar URLs
+		expect( keys.length ).toBe( 2 );
+	} );
+} );
