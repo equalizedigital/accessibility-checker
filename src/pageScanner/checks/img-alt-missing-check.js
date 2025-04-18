@@ -19,6 +19,15 @@ export default {
 			return true;
 		}
 
+		// Handle aria-labelledby
+		if ( node.hasAttribute( 'aria-labelledby' ) ) {
+			const labelId = node.getAttribute( 'aria-labelledby' );
+			const labelElement = document.getElementById( labelId );
+			if ( labelElement && labelElement.textContent.trim() !== '' ) {
+				return true;
+			}
+		}
+
 		// Check if alt attribute exists AND has a value
 		const hasAlt = node.hasAttribute( 'alt' ) && node.getAttribute( 'alt' ) !== null;
 
@@ -36,6 +45,11 @@ export default {
 
 			// Check if image is inside a link with context
 			if ( hasLinkContext( node ) ) {
+				return true;
+			}
+
+			// Check if image is inside a button with text content
+			if ( hasButtonContext( node ) ) {
 				return true;
 			}
 
@@ -121,6 +135,35 @@ const hasLinkContext = ( node ) => {
 				return true;
 			}
 
+			break;
+		}
+		parent = parent.parentNode;
+	}
+
+	return false;
+};
+
+/**
+ * Check if the image is inside a button with text content
+ * @param {Element} node - The DOM element to check.
+ * @return {boolean} A boolean indicating if the image is inside a button with text content.
+ */
+const hasButtonContext = ( node ) => {
+	let parent = node.parentNode;
+	while ( parent ) {
+		if ( parent.tagName && parent.tagName.toLowerCase() === 'button' ) {
+			// Get all text nodes in the button
+			const textNodes = Array.from( parent.childNodes )
+				.filter( ( child ) => child !== node && child.nodeType === 3 );
+
+			// Check if there's any non-whitespace text content
+			const textContent = textNodes
+				.map( ( child ) => child.textContent )
+				.join( '' );
+
+			if ( textContent.trim() !== '' ) {
+				return true;
+			}
 			break;
 		}
 		parent = parent.parentNode;
