@@ -28,9 +28,9 @@ export default {
 		if ( nodeName === 'img' ) {
 			// Check all potential animated image patterns
 			if ( hasAnimationIndicatorsInName( srcLower ) ||
-                isGifService( srcLower ) ||
-                isGifUrl( srcLower ) ||
-                isWebPUrl( srcLower ) ) {
+				isGifService( srcLower ) ||
+				isGifUrl( srcLower ) ||
+				isWebPUrl( srcLower ) ) {
 				animationCache.set( srcLower, true );
 				return true;
 			}
@@ -78,11 +78,18 @@ export async function preScanAnimatedImages( timeoutMs = 5000 ) { // Changed to 
 				// Add timeout to prevent hanging on slow connections
 				const controller = new AbortController();
 				const timeoutId = setTimeout( () => controller.abort(), timeoutMs ); // Use timeoutMs parameter
-				const response = await fetch( src, {
-					mode: 'cors',
-					signal: controller.signal,
-				} );
-				clearTimeout( timeoutId );
+				let response;
+				try {
+					response = await fetch(
+						src,
+						{
+							mode: 'cors',
+							signal: controller.signal,
+						}
+					);
+				} finally {
+					clearTimeout( timeoutId ); // always executed
+				}
 				if ( ! response.ok ) {
 					// If fetch fails, assume animated only if it has animation indicators
 					animationCache.set( srcLower, hasAnimationIndicatorsInName( srcLower ) );
@@ -201,15 +208,15 @@ function hasWebPAnimation( bytes ) {
  */
 const isGifUrl = ( srcLower ) => {
 	return srcLower.endsWith( '.gif' ) ||
-           srcLower.includes( '.gif?' ) ||
-           srcLower.includes( '.gif#' ) ||
-           srcLower.endsWith( '%2egif' ) ||
-           srcLower.includes( '%2egif?' ) ||
-           srcLower.includes( '%2egif#' ) ||
-           srcLower.includes( 'format=gif' ) ||
-           srcLower.includes( 'type=gif' ) ||
-           srcLower.includes( 'filetype=gif' ) ||
-           srcLower.startsWith( 'data:image/gif' );
+		srcLower.includes( '.gif?' ) ||
+		srcLower.includes( '.gif#' ) ||
+		srcLower.endsWith( '%2egif' ) ||
+		srcLower.includes( '%2egif?' ) ||
+		srcLower.includes( '%2egif#' ) ||
+		srcLower.includes( 'format=gif' ) ||
+		srcLower.includes( 'type=gif' ) ||
+		srcLower.includes( 'filetype=gif' ) ||
+		srcLower.startsWith( 'data:image/gif' );
 };
 
 /**
@@ -220,15 +227,15 @@ const isGifUrl = ( srcLower ) => {
  */
 const isWebPUrl = ( srcLower ) => {
 	return srcLower.endsWith( '.webp' ) ||
-           srcLower.includes( '.webp?' ) ||
-           srcLower.includes( '.webp#' ) ||
-           srcLower.endsWith( '%2ewebp' ) ||
-           srcLower.includes( '%2ewebp?' ) ||
-           srcLower.includes( '%2ewebp#' ) ||
-           srcLower.includes( 'format=webp' ) ||
-           srcLower.includes( 'type=webp' ) ||
-           srcLower.includes( 'filetype=webp' ) ||
-           srcLower.startsWith( 'data:image/webp' );
+		srcLower.includes( '.webp?' ) ||
+		srcLower.includes( '.webp#' ) ||
+		srcLower.endsWith( '%2ewebp' ) ||
+		srcLower.includes( '%2ewebp?' ) ||
+		srcLower.includes( '%2ewebp#' ) ||
+		srcLower.includes( 'format=webp' ) ||
+		srcLower.includes( 'type=webp' ) ||
+		srcLower.includes( 'filetype=webp' ) ||
+		srcLower.startsWith( 'data:image/webp' );
 };
 
 /**
@@ -263,4 +270,3 @@ const hasAnimationIndicatorsInName = ( srcLower ) => {
 
 	return animationKeywords.some( ( keyword ) => srcLower.includes( keyword ) );
 };
-
