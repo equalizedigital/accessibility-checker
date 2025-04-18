@@ -1,5 +1,27 @@
 import { normalizeText } from '../helpers/helpers';
 
+// Global cache for alt text mapping
+export const altTextMap = new Map();
+
+/**
+ * Initialize the alt text map if it's empty.
+ * Maps normalized alt text to arrays of images with that text.
+ */
+export function initializeAltTextMap() {
+	if ( altTextMap.size === 0 ) {
+		const allImages = document.querySelectorAll( 'img' );
+		allImages.forEach( ( img ) => {
+			const imgAlt = normalizeText( img.getAttribute( 'alt' ) );
+			if ( imgAlt ) {
+				if ( ! altTextMap.has( imgAlt ) ) {
+					altTextMap.set( imgAlt, [] );
+				}
+				altTextMap.get( imgAlt ).push( img );
+			}
+		} );
+	}
+}
+
 /**
  * Check if an image's alternative text is redundant.
  * Returns false if redundancy is detected.
@@ -42,16 +64,11 @@ export default {
 			}
 		}
 
-		// Global check: if multiple images share the same alt text, fail.
-		const allImages = document.querySelectorAll( 'img' );
-		let duplicateCount = 0;
-		allImages.forEach( ( img ) => {
-			const imgAlt = normalizeText( img.getAttribute( 'alt' ) );
-			if ( imgAlt && imgAlt === alt ) {
-				duplicateCount++;
-			}
-		} );
-		if ( duplicateCount > 1 ) {
+		// Make sure the alt text map is available and filled.
+		initializeAltTextMap();
+
+		// Check if current alt text appears in multiple images
+		if ( altTextMap.has( alt ) && altTextMap.get( alt ).length > 1 ) {
 			return false;
 		}
 
