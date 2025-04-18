@@ -19,7 +19,7 @@ export default {
 		}
 
 		// Trim the alt, normalize to lower case and replace multiple consecutive spaces with a single space.
-		const altTrimmed = altRaw.toLowerCase().trim().replace( /\s+/g, ' ' ).trim();
+		const altTrimmed = altRaw.toLowerCase().trim().replace( /\s+/g, ' ' );
 
 		// Check if string begins with problematic phrases
 		const startsWithKeywords = [
