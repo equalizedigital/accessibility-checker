@@ -93,18 +93,49 @@ describe( 'Image Alt Missing Validation', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for img inside a link with only whitespace as text',
+			name: 'should fail for img inside a link with only whitespace as text',
 			html: '<a href="#">  <img src="test.jpg"></a>',
-			shouldPass: true,
+			shouldPass: false,
 		},
 		{
-			name: 'should pass for img inside a link with only whitespace as aria-label',
+			name: 'should fail for img inside a link with only whitespace as aria-label',
 			html: '<a href="#" aria-label="  ">  <img src="test.jpg"></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for img inside a link with only whitespace as title',
+			html: '<a href="#" title="  ">  <img src="test.jpg"></a>',
+			shouldPass: false,
+		},
+		// Additional test cases
+		{
+			name: 'should pass for img with aria-labelledby pointing to valid ID',
+			html: '<div id="img-desc">Dog playing frisbee</div><img src="test.jpg" aria-labelledby="img-desc">',
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for img inside a link with only whitespace as title',
-			html: '<a href="#" title="  ">  <img src="test.jpg"></a>',
+			name: 'should pass for img inside button with text content',
+			html: '<button>Submit <img src="test.jpg"></button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should fail for div with wp-caption and content more than the minimum',
+			html: '<div class="wp-caption"><img src="test.jpg"><p>ABCDEF</p></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should fail for div with wp-caption and minimal content',
+			html: '<div class="wp-caption"><img src="test.jpg"><p>A</p></div>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for img inside a link with mixed whitespace characters',
+			html: '<a href="#">&nbsp; \n\t<img src="test.jpg">\r\n</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should pass for img inside a link with non-breaking space and text',
+			html: '<a href="#">&nbsp;Text<img src="test.jpg"></a>',
 			shouldPass: true,
 		},
 	];
