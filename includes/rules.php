@@ -39,6 +39,7 @@ return [
 			esc_html__( 'An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image\'s purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning.', 'accessibility-checker' ),
 			'<code>alt=""</code>',
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Low-quality Alternative Text', 'accessibility-checker' ),
@@ -88,6 +89,10 @@ return [
 			'<code>&lt;h1&gt;</code>',
 			'<code>&lt;h2&gt;</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [
+			'heading-order',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Empty Paragraph Tag', 'accessibility-checker' ),
@@ -124,6 +129,7 @@ return [
 			'<code>&lt;h6&gt;</code>'
 		),
 		'viewable'  => false,
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Text Justified', 'accessibility-checker' ),
@@ -163,6 +169,10 @@ return [
 			'<code>&lt;area&gt;</code>',
 			'<code>alt=""</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [
+			'area-alt',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Tab Order Modified', 'accessibility-checker' ),
@@ -204,6 +214,7 @@ return [
 			'code>aria-hidden="true"</code>',
 			'<code>aria-label</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Empty Button', 'accessibility-checker' ),
@@ -224,6 +235,7 @@ return [
 		'slug'      => 'img_alt_long',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then "Ignore" the warning.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'ARIA Hidden', 'accessibility-checker' ),
@@ -271,6 +283,7 @@ return [
 		'slug'      => 'link_non_html_file',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you\'re using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Long Description Invalid', 'accessibility-checker' ),
@@ -282,6 +295,7 @@ return [
 			esc_html__( 'The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely.', 'accessibility-checker' ),
 			'<code>longdesc=""</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Missing Form Label', 'accessibility-checker' ),
@@ -341,6 +355,7 @@ return [
 			'<code>&lt;td&gt;</code>',
 			'<code>&lt;th&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Duplicate Form Label', 'accessibility-checker' ),
@@ -482,6 +497,7 @@ return [
 			'<code>role="button"</code>',
 			'<code>&lt;a&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Zooming and Scaling Disabled', 'accessibility-checker' ),
