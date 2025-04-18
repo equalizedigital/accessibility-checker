@@ -234,7 +234,7 @@ const scan = async (
 	// function will do that fetching and cache the results so they are available when the
 	// img_animated rule runs.
 	// NOTE: in future we should flag this and run it only if the img_animated rule is enabled.
-	if ( options.runOptions?.runOnly?.values?.includes( imageAnimated.id ) ) {
+	if ( runOptions?.runOnly?.values?.includes( imageAnimated.id ) ) {
 		await preScanAnimatedImages();
 	}
 
