@@ -1,4 +1,5 @@
 import axe from 'axe-core';
+import { altTextMap } from '../../../src/pageScanner/checks/img-alt-redundant-check';
 
 beforeAll( async () => {
 	// Dynamically import the modules for the new rule.
@@ -17,6 +18,7 @@ beforeAll( async () => {
 // Reset the document between tests.
 beforeEach( () => {
 	document.body.innerHTML = '';
+	altTextMap.clear();
 } );
 
 describe( 'Image Alt Redundant Validation', () => {
