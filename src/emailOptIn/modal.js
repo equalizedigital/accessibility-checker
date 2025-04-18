@@ -17,7 +17,6 @@ export const initOptInModal = () => {
 
 		// create a loop that will wait to find the close button before trying to bind the focus trap
 		let attempts = 0;
-
 		const intervalId = setInterval( () => {
 			if ( bindFocusTrap() || attempts >= 10 ) {
 				clearInterval( intervalId );
