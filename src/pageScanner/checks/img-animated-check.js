@@ -26,16 +26,17 @@ export default {
 			return animationCache.get( srcLower );
 		}
 
-		// Check for different node types
+		// There was no result in the cache, it may mean that the fetch
+		// fetch in precache failed.
 		if ( nodeName === 'img' ) {
-			// Check all potential animated image patterns
-			if ( hasAnimationIndicatorsInName( srcLower ) ||
-				isGifService( srcLower ) ||
-				isGifUrl( srcLower ) ||
-				isWebPUrl( srcLower ) ) {
+			// Check animated image name patterns.
+			if ( hasAnimationIndicatorsInName( srcLower ) || isGifService( srcLower ) ) {
 				animationCache.set( srcLower, true );
 				return true;
 			}
+			// Didn't match any animation indicators, assume no animation.
+			// NOTE: we may want to assume animated for GIFs, but we don't,
+			// apparently 80% of them are animated.
 			animationCache.set( srcLower, false );
 			return false;
 		} else if ( nodeName === 'iframe' ) {
@@ -45,6 +46,7 @@ export default {
 			return isAnimated;
 		}
 
+		// Found nothing implying animation, assume no animation.
 		return false;
 	},
 };
@@ -152,7 +154,7 @@ function isGifFormat( bytes ) {
  * Counts GIF animation frames to determine if it's animated
  *
  * @param {Uint8Array} bytes - GIF bytestream
- * @return {boolean} - True if more than one frame
+ * @return {boolean} - True if more than one animation frame
  */
 function hasMultipleGifFrames( bytes ) {
 	let controlCount = 0;
