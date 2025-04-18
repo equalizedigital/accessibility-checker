@@ -66,7 +66,7 @@ export default {
 		// Check for exact matches with problematic keywords
 		const keywords = [
 			'graphic of', 'bullet', 'image of', 'image', 'graphic', 'photo',
-			'photograph', 'drawing', 'painting', 'artwork', 'logo', 'bullet',
+			'photograph', 'drawing', 'painting', 'artwork', 'logo',
 			'button', 'arrow', 'more', 'spacer', 'blank', 'chart', 'table',
 			'diagram', 'graph', '*',
 		];
