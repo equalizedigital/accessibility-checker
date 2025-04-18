@@ -140,3 +140,39 @@ describe( 'Image Alt Redundant Validation', () => {
 		} );
 	} );
 } );
+describe( 'altTextMap functionality', () => {
+	test( 'should initialize as empty', () => {
+		// Check that altTextMap starts empty
+		expect( altTextMap.size ).toBe( 0 );
+	} );
+
+	test( 'should store values when added', () => {
+		// Add values to the map
+		altTextMap.set( 'test-alt-text', [ { id: 'test-id-1' } ] );
+		altTextMap.set( 'another-alt-text', [ { id: 'test-id-2' } ] );
+
+		// Verify values are stored
+		expect( altTextMap.size ).toBe( 2 );
+		expect( altTextMap.has( 'test-alt-text' ) ).toBe( true );
+		expect( altTextMap.get( 'test-alt-text' ) ).toEqual( [ { id: 'test-id-1' } ] );
+	} );
+
+	test( 'should clear all values when clear() is called', () => {
+		// Add values to the map
+		altTextMap.set( 'test-alt', [ { id: 'id-1' } ] );
+		expect( altTextMap.size ).toBe( 1 );
+
+		// Clear the map
+		altTextMap.clear();
+
+		// Verify it's empty
+		expect( altTextMap.size ).toBe( 0 );
+		expect( altTextMap.has( 'test-alt' ) ).toBe( false );
+	} );
+
+	test( 'should clear between tests due to beforeEach hook', () => {
+		// This test relies on the beforeEach hook clearing the map
+		// Even though previous tests added items, this should be empty
+		expect( altTextMap.size ).toBe( 0 );
+	} );
+} );
