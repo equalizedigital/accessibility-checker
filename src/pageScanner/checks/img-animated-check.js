@@ -50,9 +50,10 @@ export default {
  * Pre-scans all images on the page to detect animations
  * This helps improve performance by caching results
  *
+ * @param {number} timeoutMs - The timeout in milliseconds for fetch requests
  * @return {Map} The animation cache with results
  */
-export async function preScanAnimatedImages() {
+export async function preScanAnimatedImages( timeoutMs = 5000 ) { // Changed to accept timeoutMs
 	const imgElements = document.querySelectorAll( 'img[src]' );
 
 	for ( const img of imgElements ) {
@@ -73,7 +74,14 @@ export async function preScanAnimatedImages() {
 		// More expensive checks for file extensions
 		if ( isGifUrl( srcLower ) || isWebPUrl( srcLower ) ) {
 			try {
-				const response = await fetch( src, { mode: 'cors' } );
+				// Add timeout to prevent hanging on slow connections
+				const controller = new AbortController();
+				const timeoutId = setTimeout( () => controller.abort(), timeoutMs ); // Use timeoutMs parameter
+				const response = await fetch( src, {
+					mode: 'cors',
+					signal: controller.signal,
+				} );
+				clearTimeout( timeoutId );
 				if ( ! response.ok ) {
 					// If fetch fails, assume animated only if it has animation indicators
 					animationCache.set( src, hasAnimationIndicatorsInName( srcLower ) );
