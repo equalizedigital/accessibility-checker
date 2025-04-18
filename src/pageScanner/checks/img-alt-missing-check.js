@@ -119,6 +119,25 @@ const hasValidCaption = ( node ) => {
 };
 
 /**
+ * Helper to check if a node contains meaningful text content (excluding a specific child node)
+ * @param {Element} parent      - The parent element to check
+ * @param {Element} excludeNode - The node to exclude from text content check
+ * @return {boolean} Whether the parent contains meaningful text content
+ */
+const hasTextContent = ( parent, excludeNode ) => {
+	// Get all text nodes in the parent excluding the specified node
+	const textNodes = Array.from( parent.childNodes )
+		.filter( ( child ) => child !== excludeNode && child.nodeType === 3 );
+
+	// Check if there's any non-whitespace text content
+	const nodeContent = textNodes
+		.map( ( child ) => child.textContent )
+		.join( '' );
+
+	return nodeContent.trim() !== '';
+};
+
+/**
  * Check if the image is inside a link with context
  * @param {Element} node - The DOM element to check.
  * @return {boolean} A boolean indicating if the image is inside a link with context.
@@ -139,15 +158,7 @@ const hasLinkContext = ( node ) => {
 			}
 
 			// Check if the anchor has meaningful text content
-			const textNodes = Array.from( parent.childNodes )
-				.filter( ( child ) => child !== node && child.nodeType === 3 ); // Text nodes only
-
-			// Get text content and check if it's not just whitespace
-			const nodeContent = textNodes
-				.map( ( child ) => child.textContent )
-				.join( '' );
-
-			if ( nodeContent.trim() !== '' ) {
+			if ( hasTextContent( parent, node ) ) {
 				return true;
 			}
 
@@ -168,16 +179,7 @@ const hasButtonContext = ( node ) => {
 	let parent = node.parentNode;
 	while ( parent ) {
 		if ( parent.tagName && parent.tagName.toLowerCase() === 'button' ) {
-			// Get all text nodes in the button
-			const textNodes = Array.from( parent.childNodes )
-				.filter( ( child ) => child !== node && child.nodeType === 3 );
-
-			// Check if there's any non-whitespace text content
-			const textContent = textNodes
-				.map( ( child ) => child.textContent )
-				.join( '' );
-
-			if ( textContent.trim() !== '' ) {
+			if ( hasTextContent( parent, node ) ) {
 				return true;
 			}
 			break;
@@ -187,3 +189,4 @@ const hasButtonContext = ( node ) => {
 
 	return false;
 };
+
