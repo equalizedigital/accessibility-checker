@@ -1,6 +1,15 @@
 /**
  * Check if image is missing alt text.
  * Ported from PHP function edac_rule_img_alt_missing
+ *
+ * This check evaluates whether an image element has appropriate alternative text.
+ * It considers various scenarios:
+ * - Images with role="presentation" or aria-hidden="true" (decorative)
+ * - Images with aria-labelledby references
+ * - Images in figure/figcaption contexts
+ * - Images in links or buttons with text
+ *
+ * @see https://www.w3.org/WAI/tutorials/images/ for best practices on image alternatives
  */
 
 export default {
@@ -11,11 +20,15 @@ export default {
 
 		// Handle role="presentation"
 		if ( node.hasAttribute( 'role' ) && node.getAttribute( 'role' ) === 'presentation' ) {
+			// Images with role="presentation" are intentionally hidden from screen readers,
+			// so missing alt text is acceptable in this case
 			return false;
 		}
 
 		// Handle aria-hidden="true"
 		if ( node.hasAttribute( 'aria-hidden' ) && node.getAttribute( 'aria-hidden' ) === 'true' ) {
+			// Images with aria-hidden="true" are not exposed to assistive technologies,
+			// so missing alt text is acceptable in this case
 			return false;
 		}
 
