@@ -14,7 +14,31 @@ export const fontSizeInPx = ( node ) => {
  */
 export const isVisiblyHidden = ( element ) => {
 	const style = window.getComputedStyle( element );
-	return style.display === 'none' ||
-           style.visibility === 'hidden' ||
-           element.closest( '[aria-hidden="true"]' ) !== null;
+	return style.display === 'none'
+    || style.visibility === 'hidden'
+    || element.closest( '[aria-hidden="true"]' ) !== null;
+};
+
+/**
+ * Check if an element is visible in the DOM
+ *
+ * This is a recursive function so could be inefficient for deeply nested elements.
+ *
+ * @param {element} element an element to check for visibility.
+ * @return {boolean|boolean|*} A boolean indicating if the element is visible or not.
+ */
+export const isElementVisible = ( element ) => {
+	// A non-existent element can never be visible.
+	if ( ! element ) {
+		return false;
+	}
+
+	// Check if the element itself is hidden.
+	const style = window.getComputedStyle( element );
+	if ( style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0' ) {
+		return false;
+	}
+
+	// If there is a parent then check it recursively till there is no more parents.
+	return element.parentElement ? isElementVisible( element.parentElement ) : true;
 };
