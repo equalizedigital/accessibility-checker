@@ -14,9 +14,9 @@ export const fontSizeInPx = ( node ) => {
  */
 export const isVisiblyHidden = ( element ) => {
 	const style = window.getComputedStyle( element );
-	return style.display === 'none'
-    || style.visibility === 'hidden'
-    || element.closest( '[aria-hidden="true"]' ) !== null;
+	return style.display === 'none' ||
+		style.visibility === 'hidden' ||
+		element.closest( '[aria-hidden="true"]' ) !== null;
 };
 
 /**
