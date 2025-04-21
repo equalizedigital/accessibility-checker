@@ -517,7 +517,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 	}
 
 	// Min of 1 and max of 25.
-	$count = absint( min( 1, max( 25, $count ) ) );
+	$count = absint( max( 1, min( 25, $count ) ) );
 
 	$key    = '_upcoming_meetups__' . sanitize_title( $meetup ) . '__' . (int) $count;
 	$output = get_transient( $key );
