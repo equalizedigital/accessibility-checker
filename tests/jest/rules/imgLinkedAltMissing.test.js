@@ -39,6 +39,11 @@ describe( 'Linked Image Missing Alternative Text Rule', () => {
 			html: '<a href="#"> <img src="icon.png"> </a>',
 			shouldPass: false,
 		},
+		{
+			name: 'fails when anchor content is only whitespace',
+			html: '<a href="#">   \n\t   <img src="icon.png">    \n\t   </a>',
+			shouldPass: false,
+		},
 
 		// ✅ Passing cases
 		{
