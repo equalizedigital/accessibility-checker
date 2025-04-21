@@ -171,6 +171,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 == Changelog ==
 
+= 1.22.1 =
+* Enhancement: Make the skip-link fix handle sites with forced smooth scroll.
+* Enhancement: Make the zooming and scaling handle additional ways the tag can block scaling.
+* Fix: Swap to graphql for getting meetup data for display in the admin.
+
 = 1.22.0 =
 * Enhancement: Improve the new window warning migration to handle more edge cases.
 * Fix: Avoid checking theme Tags when theme sandbox recovery is in play.
