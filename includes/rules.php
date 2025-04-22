@@ -47,6 +47,7 @@ return [
 		'slug'      => 'img_alt_invalid',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as "image" or "graphic"), a file extension (such as .JPG), that may be describing a decorative image (such as "spacer" or "arrow"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Linked Image Missing Alternative Text', 'accessibility-checker' ),
