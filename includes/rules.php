@@ -58,6 +58,7 @@ return [
 			esc_html__( 'A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
 			'<code>alt=""</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Linked Image Empty Alternative Text', 'accessibility-checker' ),
@@ -69,6 +70,7 @@ return [
 			esc_html__( 'A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
 			'<code>alt=""</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Duplicate Alternative Text', 'accessibility-checker' ),

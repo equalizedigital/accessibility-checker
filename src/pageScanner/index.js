@@ -46,6 +46,10 @@ import longdescValid from './checks/longdesc-valid';
 import longDescriptionInvalid from './rules/long-description-invalid';
 import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
+import imgLinkedAltMissing from './rules/img-linked-alt-missing';
+import linkedImageAltPresent from './checks/linked-image-alt-present';
+import imgLinkedAltEmpty from './rules/img-linked-alt-empty';
+import linkedImageAltNotEmpty from './checks/linked-image-alt-not-empty';
 import imageAltLong from './rules/img-alt-long';
 import imgAltLongCheck from './checks/img-alt-long-check';
 import imgAltEmpty from './rules/img-alt-empty';
@@ -111,6 +115,8 @@ const scan = async (
 				linkEmpty,
 				longDescriptionInvalid,
 				emptyTableHeader,
+				imgLinkedAltMissing,
+				imgLinkedAltEmpty,
 				imageAltLong,
 				imgAltEmpty,
 				linkNonHtmlFile,
@@ -140,6 +146,8 @@ const scan = async (
 				linkIsEmpty,
 				longdescValid,
 				tableHeaderIsEmpty,
+				linkedImageAltPresent,
+				linkedImageAltNotEmpty,
 				{
 					...imgAltLongCheck,
 					options: {
@@ -192,6 +200,8 @@ const scan = async (
 					linkEmpty.id,
 					longDescriptionInvalid.id,
 					emptyTableHeader.id,
+					imgLinkedAltMissing.id,
+					imgLinkedAltEmpty.id,
 					imageAltLong.id,
 					imgAltEmpty.id,
 					linkNonHtmlFile.id,
