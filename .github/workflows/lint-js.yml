@@ -41,17 +41,23 @@ jobs:
       - name: 'Install NPM packages'
         run: npm install --ignore-scripts
 
-      - name: Get changed files
+      - name: Get only files changed in this PR
         id: changed-files
         uses: actions/github-script@v6
         with:
           script: |
+            if (!context.payload.pull_request) {
+              core.warning("No pull request context available. Skipping changed files retrieval.");
+              core.setOutput('files', '');
+              return '';
+            }
+
             const changedFiles = await github.paginate(
               github.rest.pulls.listFiles,
               {
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                pull_number: context.payload.pull_request?.number,
+                pull_number: context.payload.pull_request.number,
               }
             );
             const jsFiles = changedFiles
@@ -62,6 +68,8 @@ jobs:
             core.setOutput('files', jsFiles);
             return jsFiles;
 
-      - name: Run eslint on changed files
-        if: ${{ steps.changed-files.outputs.files != '' }}
-        run: npx wp-scripts lint-js ${{ steps.changed-files.outputs.files }}
+      # If this is a PR then lint only js changed in the PR, if not a PR then lint them all.
+      - name: Run eslint
+        run: npx wp-scripts lint-js ${{ steps.changed-files.outputs.files || '' }}
+
+
