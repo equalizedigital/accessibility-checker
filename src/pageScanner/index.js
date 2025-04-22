@@ -60,6 +60,8 @@ import linkImproper from './rules/link-improper';
 import linkHasValidHrefOrRole from './checks/link-has-valid-href-or-role';
 import missingHeadings from './rules/missing-headings';
 import hasSubheadingsIfLongContent from './checks/has-subheadings-if-long-content';
+import imgAltRedundant from './rules/img-alt-redundant';
+import imgAltRedundantCheck from './checks/img-alt-redundant-check';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -115,6 +117,7 @@ const scan = async (
 				linkEmpty,
 				longDescriptionInvalid,
 				emptyTableHeader,
+				imgAltRedundant,
 				imgAltInvalid,
 				imgAltMissing,
 				imageAltLong,
@@ -146,6 +149,7 @@ const scan = async (
 				linkIsEmpty,
 				longdescValid,
 				tableHeaderIsEmpty,
+				imgAltRedundantCheck,
 				imgAltInvalidCheck,
 				imgAltMissingCheck,
 				{
@@ -207,6 +211,7 @@ const scan = async (
 					linkImproper.id,
 					missingHeadings.id,
 					imgAltInvalid.id,
+					imgAltRedundant.id,
 				],
 			},
 

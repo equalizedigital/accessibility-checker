@@ -30,3 +30,12 @@ export const isElementVisible = ( element ) => {
 	// If there is a parent then check it recursively till there is no more parents.
 	return element.parentElement ? isElementVisible( element.parentElement ) : true;
 };
+
+/**
+ * Helper function to normalize text by trimming and replacing consecutive whitespace
+ * @param {string} text - Text to normalize
+ * @return {string} Normalized text
+ */
+export const normalizeText = ( text ) => {
+	return ( text || '' ).trim().toLowerCase().replace( /\s+/g, ' ' );
+};
