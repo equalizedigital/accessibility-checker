@@ -13,9 +13,14 @@ export default {
 
 		const altRaw = node.getAttribute( 'alt' );
 
-		// Skip empty alt text (decorative images) or alt with just whitespace.
-		if ( altRaw === '' || altRaw.trim() === '' ) {
+		// Skip empty alt text (decorative images).
+		if ( altRaw === '' ) {
 			return true;
+		}
+
+		// Fail if alt contains just strippable whitespace.
+		if ( altRaw.trim() === '' ) {
+			return false;
 		}
 
 		// Trim the alt, normalize to lower case and replace multiple consecutive spaces with a single space.
