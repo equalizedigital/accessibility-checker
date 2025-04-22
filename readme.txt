@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
-Tested up to: 6.7.0
-Stable tag: 1.22.0
+Tested up to: 6.8.0
+Stable tag: 1.22.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 8. Accessibility Checker Summary tab on a page with no accessibility error or warnings and an included simplified summary.
 
 == Changelog ==
+
+= 1.22.1 =
+* Enhancement: Make the skip-link fix handle sites with forced smooth scroll.
+* Enhancement: Make the zooming and scaling handle additional ways the tag can block scaling.
+* Fix: Swap to graphql for getting meetup data for display in the admin.
 
 = 1.22.0 =
 * Enhancement: Improve the new window warning migration to handle more edge cases.
