@@ -46,6 +46,8 @@ import longdescValid from './checks/longdesc-valid';
 import longDescriptionInvalid from './rules/long-description-invalid';
 import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
+import imgAltInvalid from './rules/img-alt-invalid';
+import imgAltInvalidCheck from './checks/img-alt-invalid-check';
 import imgAltRedundant from './rules/img-alt-redundant';
 import imgAltRedundantCheck from './checks/img-alt-redundant-check';
 import imgLinkedAltMissing from './rules/img-linked-alt-missing';
@@ -117,6 +119,7 @@ const scan = async (
 				linkEmpty,
 				longDescriptionInvalid,
 				emptyTableHeader,
+				imgAltInvalid,
 				imgAltRedundant,
 				imgLinkedAltMissing,
 				imgLinkedAltEmpty,
@@ -149,6 +152,7 @@ const scan = async (
 				linkIsEmpty,
 				longdescValid,
 				tableHeaderIsEmpty,
+				imgAltInvalidCheck,
 				imgAltRedundantCheck,
 				linkedImageAltPresent,
 				linkedImageAltNotEmpty,
@@ -204,6 +208,7 @@ const scan = async (
 					linkEmpty.id,
 					longDescriptionInvalid.id,
 					emptyTableHeader.id,
+					imgAltInvalid.id,
 					imgAltRedundant.id,
 					imgLinkedAltMissing.id,
 					imgLinkedAltEmpty.id,
