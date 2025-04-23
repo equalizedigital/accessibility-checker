@@ -41,14 +41,13 @@ export default {
 				return false;
 			}
 
-			// Strong indicators of animation
-			if ( hasAnimationIndicatorsInName( srcLower ) || isGifService( srcLower ) ) {
+			// Do a final gif service check.
+			if ( isGifService( srcLower ) ) {
 				animationCache.set( srcLower, true );
 				return true;
 			}
 
 			// If we haven't confirmed animation, default to false
-			// This changes the previous behavior which assumed animation
 			animationCache.set( srcLower, false );
 			return false;
 		}
@@ -102,13 +101,13 @@ export async function preScanAnimatedImages( timeoutMs = 5000 ) {
 				}
 			} catch ( error ) {
 				// On error, only flag as animated if from known service or has animation indicators
-				animationCache.set( srcLower, isGifService( srcLower ) || hasAnimationIndicatorsInName( srcLower ) );
+				animationCache.set( srcLower, isGifService( srcLower ) );
 				continue;
 			}
 		}
 
 		// For non-GIF/WebP or failed fetches, use heuristics
-		animationCache.set( srcLower, isGifService( srcLower ) || hasAnimationIndicatorsInName( srcLower ) );
+		animationCache.set( srcLower, isGifService( srcLower ) );
 	}
 
 	return animationCache;
@@ -317,19 +316,4 @@ const isGifService = ( srcLower ) => {
 	];
 
 	return knownServices.some( ( service ) => srcLower.includes( service ) );
-};
-
-/**
- * Checks if filename contains keywords suggesting animation
- *
- * @param {string} srcLower - Lowercase source URL
- * @return {boolean} - Whether the name suggests animation
- */
-const hasAnimationIndicatorsInName = ( srcLower ) => {
-	const animationKeywords = [
-		'animate', 'animation', 'spinner', 'loading',
-		'rotating', 'rotation', 'moving', 'blink', 'flashing',
-	];
-
-	return animationKeywords.some( ( keyword ) => srcLower.includes( keyword ) );
 };
