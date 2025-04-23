@@ -7,7 +7,7 @@
  * #qm-icon-container selector.
  */
 import axe from 'axe-core';
-import { exclusionsArray } from '../../../../src/pageScanner/config/exclusions';
+import { exclusionsArray } from '../../../src/pageScanner/config/exclusions';
 
 describe( 'Scanner Context Exclusions', ( ) => {
 	beforeEach( ( ) => {
