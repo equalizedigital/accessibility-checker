@@ -4,7 +4,8 @@
 import 'axe-core';
 import { rulesArray, checksArray, standardRuleIdsArray, customRuleIdsArray } from './config/rules';
 import { exclusionsArray } from './config/exclusions';
-import imgAnimated, { preScanAnimatedImages } from './config/animatedImages';
+import imgAnimated from './rules/img-animated';
+import { preScanAnimatedImages } from './checks/img-animated-check';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
