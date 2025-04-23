@@ -14,7 +14,7 @@ export const fontSizeInPx = ( node ) => {
  */
 export const normalizeText = ( text ) => {
 	return ( text || '' ).trim().toLowerCase().replace( /\s+/g, ' ' );
-}
+};
 
 /**
  * Check if an element is visibly hidden via CSS or aria attributes
