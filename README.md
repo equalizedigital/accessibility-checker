@@ -1,5 +1,6 @@
 [![CS](https://github.com/equalizedigital/accessibility-checker/actions/workflows/cs.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/cs.yml)
-[![Lint](https://github.com/equalizedigital/accessibility-checker/actions/workflows/lint.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/lint.yml)
+[![Lint](https://github.com/equalizedigital/accessibility-checker/actions/workflows/lint-php.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/lint-php.yml)
+[![Lint](https://github.com/equalizedigital/accessibility-checker/actions/workflows/lint-js.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/lint-js.yml)
 [![Security](https://github.com/equalizedigital/accessibility-checker/actions/workflows/security.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/security.yml)
 [![Test](https://github.com/equalizedigital/accessibility-checker/actions/workflows/phpunit.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/phpunit.yml)
 [![Coverage Status](https://coveralls.io/repos/github/equalizedigital/accessibility-checker/badge.svg?branch=develop)](https://coveralls.io/github/equalizedigital/accessibility-checker?branch=develop)
