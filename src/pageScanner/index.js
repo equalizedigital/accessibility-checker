@@ -16,7 +16,7 @@ const postId = body.getAttribute( 'data-iframe-post-id' );
 const scan = async (
 	options = { configOptions: {}, runOptions: {} }
 ) => {
-	const context = { exclude: [ '#wpadminbar', '.edac-panel-container', '#query-monitor-main' ] };
+	const context = { exclude: [ '#wpadminbar', '.edac-panel-container', '#query-monitor-main', '#qm-icon-container' ] };
 
 	const defaults = {
 		configOptions: {
