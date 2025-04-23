@@ -71,5 +71,3 @@ jobs:
       # If this is a PR then lint only js changed in the PR, if not a PR then lint them all.
       - name: Run eslint
         run: npx wp-scripts lint-js ${{ steps.changed-files.outputs.files || '' }}
-
-

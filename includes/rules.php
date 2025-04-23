@@ -28,6 +28,7 @@ return [
 			'<code>alt=""</code>',
 			'<code>&lt;a&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Image Empty Alternative Text', 'accessibility-checker' ),
