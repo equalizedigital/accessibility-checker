@@ -38,12 +38,12 @@ describe( 'Scanner Context Exclusions', ( ) => {
 
 		// Define context with exclude list matching src/pageScanner/index.js
 		const context = {
-			exclude: [ '#wpadminbar', '.edac-panel-container', '#query-monitor-main', '#qm-icon-container' ]
+			exclude: [ '#wpadminbar', '.edac-panel-container', '#query-monitor-main', '#qm-icon-container' ],
 		};
 
 		// Run axe with button-name rule to detect empty buttons
 		const results = await axe.run( context, {
-			runOnly: [ 'button-name' ]
+			runOnly: [ 'button-name' ],
 		} );
 
 		// Get all HTML from the violation nodes
