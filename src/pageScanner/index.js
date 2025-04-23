@@ -48,6 +48,14 @@ import emptyTableHeader from './rules/empty-table-header';
 import tableHeaderIsEmpty from './checks/table-header-is-empty';
 import imgAltMissing from './rules/img-alt-missing';
 import imgAltMissingCheck from './checks/img-alt-missing-check';
+import imgAltInvalid from './rules/img-alt-invalid';
+import imgAltInvalidCheck from './checks/img-alt-invalid-check';
+import imgAltRedundant from './rules/img-alt-redundant';
+import imgAltRedundantCheck from './checks/img-alt-redundant-check';
+import imgLinkedAltMissing from './rules/img-linked-alt-missing';
+import linkedImageAltPresent from './checks/linked-image-alt-present';
+import imgLinkedAltEmpty from './rules/img-linked-alt-empty';
+import linkedImageAltNotEmpty from './checks/linked-image-alt-not-empty';
 import imageAltLong from './rules/img-alt-long';
 import imgAltLongCheck from './checks/img-alt-long-check';
 import imgAltEmpty from './rules/img-alt-empty';
@@ -114,6 +122,10 @@ const scan = async (
 				longDescriptionInvalid,
 				emptyTableHeader,
 				imgAltMissing,
+				imgAltInvalid,
+				imgAltRedundant,
+				imgLinkedAltMissing,
+				imgLinkedAltEmpty,
 				imageAltLong,
 				imgAltEmpty,
 				linkNonHtmlFile,
@@ -144,6 +156,10 @@ const scan = async (
 				longdescValid,
 				tableHeaderIsEmpty,
 				imgAltMissingCheck,
+				imgAltInvalidCheck,
+				imgAltRedundantCheck,
+				linkedImageAltPresent,
+				linkedImageAltNotEmpty,
 				{
 					...imgAltLongCheck,
 					options: {
@@ -197,6 +213,10 @@ const scan = async (
 					longDescriptionInvalid.id,
 					emptyTableHeader.id,
 					imgAltMissing.id,
+					imgAltInvalid.id,
+					imgAltRedundant.id,
+					imgLinkedAltMissing.id,
+					imgLinkedAltEmpty.id,
 					imageAltLong.id,
 					imgAltEmpty.id,
 					linkNonHtmlFile.id,

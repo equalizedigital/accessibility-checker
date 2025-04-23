@@ -512,25 +512,77 @@ function edac_is_valid_nonce( $secret, $nonce ) {
  */
 function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
-	$key    = 'upcoming_meetups__' . sanitize_title( $meetup ) . '__' . (int) $count;
+	if ( empty( $meetup ) || ! is_string( $meetup ) ) {
+		return;
+	}
+
+	// Min of 1 and max of 25.
+	$count = absint( max( 1, min( 25, $count ) ) );
+
+	$key    = '_upcoming_meetups__' . sanitize_title( $meetup ) . '__' . (int) $count;
 	$output = get_transient( $key );
 
 	if ( false === $output ) {
+		$request_uri = 'https://api.meetup.com/gql-ext';
+		$query       = '
+		query Group {
+			groupByUrlname(urlname: "' . (string) $meetup . '") {
+				events(first: ' . (int) $count . ') {
+					totalCount
+					edges {
+						node {
+							dateTime
+							eventUrl
+							id
+							title
+						}
+					}
+				}
+			}
+		}';
 
-		$query_args = [
-			'sign'       => 'true',
-			'photo-host' => 'public',
-			'page'       => (int) $count,
-		];
-
-		$request_uri = 'https://api.meetup.com/' . sanitize_title( $meetup ) . '/events';
-		$request     = wp_remote_get( add_query_arg( $query_args, $request_uri ) ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- wp_remote_get needed to be compatible with all environments.
+		// Make POST request with the GraphQL query.
+		$request = wp_remote_post(
+			$request_uri,
+			[
+				'headers' => [
+					'Content-Type' => 'application/json',
+				],
+				'body'    => wp_json_encode(
+					[
+						'query' => $query,
+					]
+				),
+			]
+		);
 
 		if ( is_wp_error( $request ) || 200 !== (int) wp_remote_retrieve_response_code( $request ) ) {
 			return;
 		}
 
-		$output = json_decode( wp_remote_retrieve_body( $request ) );
+		$response_body = json_decode( wp_remote_retrieve_body( $request ) );
+
+		// Return early if we don't have the expected data.
+		if ( empty( $response_body ) || ! isset( $response_body->data->groupByUrlname->events->edges ) ) {
+			return;
+		}
+
+		// Transform the GraphQL response to match the format expected from old rest response.
+		$output = [];
+		foreach ( $response_body->data->groupByUrlname->events->edges as $edge ) {
+			$event = $edge->node;
+
+			// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- GraphQL response uses camelCase.
+			$event_data       = new stdClass();
+			$event_data->name = $event->title;
+			$event_data->time = strtotime( $event->dateTime ) * 1000; // Convert to milliseconds to match old format.
+			$event_data->link = $event->eventUrl;
+			$event_data->id   = $event->id;
+			// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase.
+
+			$output[] = $event_data;
+		}
+
 		if ( empty( $output ) ) {
 			return;
 		}
@@ -540,7 +592,6 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
 	return $output;
 }
-
 
 /**
  * Upcoming meetups in html

@@ -8,6 +8,27 @@ export const fontSizeInPx = ( node ) => {
 };
 
 /**
+ * Helper function to normalize text by trimming and replacing consecutive whitespace
+ * @param {string} text - Text to normalize
+ * @return {string} Normalized text
+ */
+export const normalizeText = ( text ) => {
+	return ( text || '' ).trim().toLowerCase().replace( /\s+/g, ' ' );
+};
+
+/**
+ * Check if an element is visibly hidden via CSS or aria attributes
+ * @param {HTMLElement} element The element to check
+ * @return {boolean} True if element is hidden
+ */
+export const isVisiblyHidden = ( element ) => {
+	const style = window.getComputedStyle( element );
+	return style.display === 'none' ||
+		style.visibility === 'hidden' ||
+		element.closest( '[aria-hidden="true"]' ) !== null;
+};
+
+/**
  * Check if an element is visible in the DOM
  *
  * This is a recursive function so could be inefficient for deeply nested elements.
