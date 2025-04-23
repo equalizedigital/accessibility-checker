@@ -66,6 +66,8 @@ import linkImproper from './rules/link-improper';
 import linkHasValidHrefOrRole from './checks/link-has-valid-href-or-role';
 import missingHeadings from './rules/missing-headings';
 import hasSubheadingsIfLongContent from './checks/has-subheadings-if-long-content';
+import imageAnimated from './rules/img-animated';
+import imageAnimatedCheck, { preScanAnimatedImages } from './checks/img-animated-check';
 
 //TODO: examples:
 //import customRule1 from './rules/custom-rule-1';
@@ -131,6 +133,7 @@ const scan = async (
 				linkNonHtmlFile,
 				linkImproper,
 				missingHeadings,
+				imageAnimated,
 			],
 			checks: [
 				alwaysFail,
@@ -170,6 +173,7 @@ const scan = async (
 				linkPointsToHtml,
 				linkHasValidHrefOrRole,
 				hasSubheadingsIfLongContent,
+				imageAnimatedCheck,
 			],
 			iframes: false,
 
@@ -222,6 +226,7 @@ const scan = async (
 					linkNonHtmlFile.id,
 					linkImproper.id,
 					missingHeadings.id,
+					imageAnimated.id,
 				],
 			},
 
@@ -249,6 +254,14 @@ const scan = async (
 	axe.configure( configOptions );
 
 	const runOptions = Object.assign( defaults.runOptions, options.runOptions );
+
+	// Axe core checks can't run async and to find animated gifs we need to use fetch. So this
+	// function will do that fetching and cache the results so they are available when the
+	// img_animated rule runs.
+	// NOTE: in future we should flag this and run it only if the img_animated rule is enabled.
+	if ( runOptions?.runOnly?.values?.includes( imageAnimated.id ) ) {
+		await preScanAnimatedImages();
+	}
 
 	return await axe.run( context, runOptions )
 		.then( ( rules ) => {

@@ -51,3 +51,24 @@ export const isElementVisible = ( element ) => {
 	// If there is a parent then check it recursively till there is no more parents.
 	return element.parentElement ? isElementVisible( element.parentElement ) : true;
 };
+
+/**
+ * A Map that normalizes all keys to lowercase
+ */
+export class NormalizedMap extends Map {
+	set( key, value ) {
+		return super.set( typeof key === 'string' ? key.toLowerCase() : key, value );
+	}
+
+	get( key ) {
+		return super.get( typeof key === 'string' ? key.toLowerCase() : key );
+	}
+
+	has( key ) {
+		return super.has( typeof key === 'string' ? key.toLowerCase() : key );
+	}
+
+	delete( key ) {
+		return super.delete( typeof key === 'string' ? key.toLowerCase() : key );
+	}
+}
