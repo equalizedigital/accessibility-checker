@@ -3,6 +3,7 @@
 
 import 'axe-core';
 import { rulesArray, checksArray, standardRuleIdsArray, customRuleIdsArray } from './config/rules';
+import { exclusionsArray } from './config/exclusions';
 import imgAnimated, { preScanAnimatedImages } from './config/animatedImages';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
@@ -16,7 +17,7 @@ const postId = body.getAttribute( 'data-iframe-post-id' );
 const scan = async (
 	options = { configOptions: {}, runOptions: {} }
 ) => {
-	const context = { exclude: [ '#wpadminbar', '.edac-panel-container', '#query-monitor-main', '#qm-icon-container' ] };
+	const context = { exclude: exclusionsArray };
 
 	const defaults = {
 		configOptions: {

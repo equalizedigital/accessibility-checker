@@ -7,6 +7,7 @@
  * #qm-icon-container selector.
  */
 import axe from 'axe-core';
+import { exclusionsArray } from '../../../../src/pageScanner/config/exclusions';
 
 describe( 'Scanner Context Exclusions', ( ) => {
 	beforeEach( ( ) => {
@@ -38,7 +39,7 @@ describe( 'Scanner Context Exclusions', ( ) => {
 
 		// Define context with exclude list matching src/pageScanner/index.js
 		const context = {
-			exclude: [ '#wpadminbar', '.edac-panel-container', '#query-monitor-main', '#qm-icon-container' ],
+			exclude: exclusionsArray,
 		};
 
 		// Run axe with button-name rule to detect empty buttons
