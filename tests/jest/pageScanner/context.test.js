@@ -15,7 +15,7 @@ describe( 'Scanner Context Exclusions', ( ) => {
 		document.body.innerHTML = '';
 	} );
 
-	test( 'should exclude #qm-icon-container from scan', async ( ) => {
+	test( 'should exclude configured containers from scan', async ( ) => {
 		// Create test HTML with empty buttons (accessibility violation)
 		// Some in regular content, others in containers that should be excluded
 		document.body.innerHTML = `
