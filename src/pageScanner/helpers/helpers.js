@@ -8,6 +8,15 @@ export const fontSizeInPx = ( node ) => {
 };
 
 /**
+ * Helper function to normalize text by trimming and replacing consecutive whitespace
+ * @param {string} text - Text to normalize
+ * @return {string} Normalized text
+ */
+export const normalizeText = ( text ) => {
+	return ( text || '' ).trim().toLowerCase().replace( /\s+/g, ' ' );
+};
+
+/**
  * Check if an element is visibly hidden via CSS or aria attributes
  * @param {HTMLElement} element The element to check
  * @return {boolean} True if element is hidden
