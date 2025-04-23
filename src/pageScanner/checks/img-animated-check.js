@@ -26,27 +26,33 @@ export default {
 			return animationCache.get( srcLower );
 		}
 
-		// There was no result in the cache, it may mean that the fetch
-		// fetch in precache failed.
-		if ( nodeName === 'img' ) {
-			// Check animated image name patterns.
-			if ( hasAnimationIndicatorsInName( srcLower ) || isGifService( srcLower ) ) {
-				animationCache.set( srcLower, true );
-				return true;
-			}
-			// Didn't match any animation indicators, assume no animation.
-			// NOTE: we may want to assume animated for GIFs, but we don't,
-			// apparently 80% of them are animated.
-			animationCache.set( srcLower, false );
-			return false;
-		} else if ( nodeName === 'iframe' ) {
-			// For iframes, check if the src belongs to a known GIF service
+		// For iframes, only check if it's from a known GIF service
+		if ( nodeName === 'iframe' ) {
 			const isAnimated = isGifService( srcLower );
 			animationCache.set( srcLower, isAnimated );
 			return isAnimated;
 		}
 
-		// Found nothing implying animation, assume no animation.
+		// For images, we need more careful checking
+		if ( nodeName === 'img' ) {
+			// Only consider it potentially animated if it's a GIF/WebP
+			if ( ! isGifUrl( srcLower ) && ! isWebPUrl( srcLower ) ) {
+				animationCache.set( srcLower, false );
+				return false;
+			}
+
+			// Strong indicators of animation
+			if ( hasAnimationIndicatorsInName( srcLower ) || isGifService( srcLower ) ) {
+				animationCache.set( srcLower, true );
+				return true;
+			}
+
+			// If we haven't confirmed animation, default to false
+			// This changes the previous behavior which assumed animation
+			animationCache.set( srcLower, false );
+			return false;
+		}
+
 		return false;
 	},
 };
@@ -58,7 +64,7 @@ export default {
  * @param {number} timeoutMs - The timeout in milliseconds for fetch requests
  * @return {Map} The animation cache with results
  */
-export async function preScanAnimatedImages( timeoutMs = 5000 ) { // Changed to accept timeoutMs
+export async function preScanAnimatedImages( timeoutMs = 5000 ) {
 	const imgElements = document.querySelectorAll( 'img[src]' );
 
 	for ( const img of imgElements ) {
@@ -70,18 +76,11 @@ export async function preScanAnimatedImages( timeoutMs = 5000 ) { // Changed to 
 			continue;
 		}
 
-		// Quick checks first (name patterns and known services)
-		if ( hasAnimationIndicatorsInName( srcLower ) || isGifService( srcLower ) ) {
-			animationCache.set( srcLower, true );
-			continue;
-		}
-
-		// More expensive checks for file extensions
+		// For GIFs and WebPs, we need to check the actual bytes
 		if ( isGifUrl( srcLower ) || isWebPUrl( srcLower ) ) {
 			try {
-				// Add timeout to prevent hanging on slow connections
 				const controller = new AbortController();
-				const timeoutId = setTimeout( () => controller.abort(), timeoutMs ); // Use timeoutMs parameter
+				const timeoutId = setTimeout( () => controller.abort(), timeoutMs );
 				let response;
 				try {
 					response = await fetch(
@@ -92,25 +91,24 @@ export async function preScanAnimatedImages( timeoutMs = 5000 ) { // Changed to 
 						}
 					);
 				} finally {
-					clearTimeout( timeoutId ); // always executed
-				}
-				if ( ! response.ok ) {
-					// If fetch fails, assume animated only if it has animation indicators
-					animationCache.set( srcLower, hasAnimationIndicatorsInName( srcLower ) );
-					continue;
+					clearTimeout( timeoutId );
 				}
 
-				const buffer = await response.arrayBuffer();
-				const isAnimated = detectAnimationFromBytes( buffer );
-				animationCache.set( srcLower, isAnimated );
+				if ( response.ok ) {
+					const buffer = await response.arrayBuffer();
+					const isAnimated = detectAnimationFromBytes( buffer );
+					animationCache.set( srcLower, isAnimated );
+					continue;
+				}
 			} catch ( error ) {
-				// Only mark as animated if the filename explicitly indicates animation
-				animationCache.set( srcLower, hasAnimationIndicatorsInName( srcLower ) );
+				// On error, only flag as animated if from known service or has animation indicators
+				animationCache.set( srcLower, isGifService( srcLower ) || hasAnimationIndicatorsInName( srcLower ) );
+				continue;
 			}
-		} else {
-			// Not a GIF or WebP - mark as not animated
-			animationCache.set( srcLower, false );
 		}
+
+		// For non-GIF/WebP or failed fetches, use heuristics
+		animationCache.set( srcLower, isGifService( srcLower ) || hasAnimationIndicatorsInName( srcLower ) );
 	}
 
 	return animationCache;
@@ -151,24 +149,85 @@ function isGifFormat( bytes ) {
 }
 
 /**
+ * Gets color table flag from packed byte
+ * @param {number} byte - The packed byte
+ * @return {boolean} - Whether color table is present
+ */
+function hasColorTable( byte ) {
+	return Math.floor( byte / 128 ) === 1; // Replace (byte & 0x80) !== 0
+}
+
+/**
+ * Gets color table size from packed byte
+ * @param {number} byte - The packed byte
+ * @return {number} - Size bits
+ */
+function getColorBits( byte ) {
+	return byte % 8; // Replace (byte & 0x07)
+}
+
+/**
  * Counts GIF animation frames to determine if it's animated
  *
  * @param {Uint8Array} bytes - GIF bytestream
  * @return {boolean} - True if more than one animation frame
  */
 function hasMultipleGifFrames( bytes ) {
-	let controlCount = 0;
-	// Most GIF data is within the first few KB
-	const scanLength = Math.min( bytes.length - 1, 50000 ); // Scan at most 50KB
-	for ( let i = 0; i < scanLength; i++ ) {
-		if ( bytes[ i ] === 0x21 && bytes[ i + 1 ] === 0xF9 ) {
-			controlCount++;
-			if ( controlCount > 1 ) {
-				return true; // Animated if more than one frame
+	let pos = 13; // Skip header and logical screen descriptor
+	let graphicExtensions = 0;
+
+	// Skip global color table if present
+	if ( hasColorTable( bytes[ 10 ] ) ) {
+		const colorBits = getColorBits( bytes[ 10 ] );
+		const colorTableSize = 3 * Math.pow( 2, colorBits + 1 );
+		pos += colorTableSize;
+	}
+
+	while ( pos < bytes.length ) {
+		const block = bytes[ pos ];
+
+		if ( block === 0x21 ) { // Extension Block
+			const extType = bytes[ pos + 1 ];
+			if ( extType === 0xF9 ) { // Graphics Control Extension
+				graphicExtensions++;
+				if ( graphicExtensions > 1 ) {
+					return true; // Multiple graphics controls = animated
+				}
 			}
+			pos += 2;
+			// Skip sub-blocks
+			let subBlockSize = bytes[ pos ];
+			while ( subBlockSize !== 0 ) {
+				pos += subBlockSize + 1;
+				subBlockSize = bytes[ pos ];
+			}
+			pos++;
+		} else if ( block === 0x2C ) { // Image Descriptor
+			// Skip image descriptor
+			pos += 10;
+			// Skip local color table if present
+			if ( hasColorTable( bytes[ pos - 1 ] ) ) {
+				const colorBits = getColorBits( bytes[ pos - 1 ] );
+				const colorTableSize = 3 * Math.pow( 2, colorBits + 1 );
+				pos += colorTableSize;
+			}
+			// Skip image data
+			pos++; // LZW minimum code size
+			// Skip sub-blocks
+			let subBlockSize = bytes[ pos ];
+			while ( subBlockSize !== 0 ) {
+				pos += subBlockSize + 1;
+				subBlockSize = bytes[ pos ];
+			}
+			pos++;
+		} else if ( block === 0x3B ) { // Trailer
+			break;
+		} else {
+			pos++;
 		}
 	}
-	return false; // Static GIF if only one frame
+
+	return false; // No animation blocks found
 }
 
 /**
