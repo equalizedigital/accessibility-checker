@@ -423,6 +423,8 @@ return [
 		'slug'      => 'broken_aria_reference',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+		'combines'  => [ 'aria_broken_reference' ],
 	],
 	[
 		'title'     => esc_html__( 'Missing Language Declaration', 'accessibility-checker' ),
