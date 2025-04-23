@@ -26,6 +26,48 @@ import ariaBrokenReference from '../rules/aria-broken-reference';
 import ariaLabelNotFoundCheck from '../checks/aria-label-not-found';
 import ariaDescribedByNotFoundCheck from '../checks/aria-describedby-not-found';
 import ariaOwnsNotFoundCheck from '../checks/aria-owns-not-found';
+import tableHasHeaders from '../checks/table-has-headers';
+import missingTableHeader from '../rules/table-header-missing';
+import headingTagEmpty from '../rules/empty-heading-tag';
+import headingIsEmpty from '../checks/heading-is-empty';
+import duplicateFormLabel from '../rules/duplicate-form-label';
+import duplicateFormLabelCheck from '../checks/duplicate-form-label-check';
+import transcriptMissing from '../checks/has-transcript';
+import missingTranscript from '../rules/missing-transcript';
+import buttonEmpty from '../rules/empty-button';
+import buttonIsEmpty from '../checks/button-is-empty';
+import sliderDetected from '../checks/slider-detected';
+import sliderPresent from '../rules/slider-present';
+import isvideoDetected from '../checks/is-video-detected';
+import videoPresent from '../rules/video-present';
+import linkEmpty from '../rules/empty-link';
+import linkIsEmpty from '../checks/link-is-empty';
+import longdescValid from '../checks/longdesc-valid';
+import longDescriptionInvalid from '../rules/long-description-invalid';
+import emptyTableHeader from '../rules/empty-table-header';
+import tableHeaderIsEmpty from '../checks/table-header-is-empty';
+import imgAltMissing from '../rules/img-alt-missing';
+import imgAltMissingCheck from '../checks/img-alt-missing-check';
+import imgAltInvalid from '../rules/img-alt-invalid';
+import imgAltInvalidCheck from '../checks/img-alt-invalid-check';
+import imgAltRedundant from '../rules/img-alt-redundant';
+import imgAltRedundantCheck from '../checks/img-alt-redundant-check';
+import imgLinkedAltMissing from '../rules/img-linked-alt-missing';
+import linkedImageAltPresent from '../checks/linked-image-alt-present';
+import imgLinkedAltEmpty from '../rules/img-linked-alt-empty';
+import linkedImageAltNotEmpty from '../checks/linked-image-alt-not-empty';
+import imageAltLong from '../rules/img-alt-long';
+import imgAltLongCheck from '../checks/img-alt-long-check';
+import imgAltEmpty from '../rules/img-alt-empty';
+import imgAltEmptyCheck from '../checks/img-alt-empty-check';
+import linkNonHtmlFile from '../rules/link-non-html-file';
+import linkPointsToHtml from '../checks/link-points-to-html';
+import linkImproper from '../rules/link-improper';
+import linkHasValidHrefOrRole from '../checks/link-has-valid-href-or-role';
+import missingHeadings from '../rules/missing-headings';
+import hasSubheadingsIfLongContent from '../checks/has-subheadings-if-long-content';
+import imageAnimated from '../rules/img-animated';
+import imageAnimatedCheck from '../checks/img-animated-check';
 import alwaysFail from '../checks/always-fail';
 
 // Define all the custom rules to be used.
@@ -42,6 +84,27 @@ export const rulesArray = [
 	linkMsOfficeFile,
 	brokenAnchorLink,
 	labelExtended,
+	missingTableHeader,
+	headingTagEmpty,
+	duplicateFormLabel,
+	missingTranscript,
+	buttonEmpty,
+	sliderPresent,
+	videoPresent,
+	linkEmpty,
+	longDescriptionInvalid,
+	emptyTableHeader,
+	imgAltMissing,
+	imgAltInvalid,
+	imgAltRedundant,
+	imgLinkedAltMissing,
+	imgLinkedAltEmpty,
+	imageAltLong,
+	imgAltEmpty,
+	linkNonHtmlFile,
+	linkImproper,
+	missingHeadings,
+	imageAnimated,
 	ariaHiddenValidation,
 	ariaBrokenReference,
 ];
@@ -60,6 +123,32 @@ export const checksArray = [
 	anchorExists,
 	imageInputHasAlt,
 	ariaHiddenValidUsage,
+	tableHasHeaders,
+	headingIsEmpty,
+	duplicateFormLabelCheck,
+	transcriptMissing,
+	buttonIsEmpty,
+	sliderDetected,
+	isvideoDetected,
+	linkIsEmpty,
+	longdescValid,
+	tableHeaderIsEmpty,
+	imgAltMissingCheck,
+	imgAltInvalidCheck,
+	imgAltRedundantCheck,
+	linkedImageAltPresent,
+	linkedImageAltNotEmpty,
+	{
+		...imgAltLongCheck,
+		options: {
+			maxAltLength: window?.scanOptions?.maxAltLength || imgAltLongCheck.options.maxAltLength,
+		},
+	}, // This check supports an override of it's maxAltLength option when one is set in scanOptions.
+	imgAltEmptyCheck,
+	linkPointsToHtml,
+	linkHasValidHrefOrRole,
+	hasSubheadingsIfLongContent,
+	imageAnimatedCheck,
 	ariaLabelNotFoundCheck,
 	ariaDescribedByNotFoundCheck,
 	ariaOwnsNotFoundCheck,

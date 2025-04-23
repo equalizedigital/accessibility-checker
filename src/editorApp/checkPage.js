@@ -84,6 +84,18 @@ const injectIframe = ( previewUrl, postID ) => {
 		body.setAttribute( 'data-iframe-post-id', postID );
 
 		if ( iframeDocument ) {
+			if ( window?.edac_editor_app?.maxAltLength ) {
+				// if the frame doesn't have window.scanOptions then create is as an object.
+				if ( ! iframeDocument.defaultView.scanOptions ) {
+					iframeDocument.defaultView.scanOptions = {};
+				}
+
+				// set the maxAlthLength for the scanOptions.
+				iframeDocument.defaultView.scanOptions = {
+					maxAltLength: window.edac_editor_app.maxAltLength,
+				};
+			}
+
 			// inject the scanner app.
 			const scannerScriptElement = iframeDocument.createElement( 'script' );
 			// eslint-disable-next-line camelcase

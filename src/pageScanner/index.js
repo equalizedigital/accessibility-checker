@@ -3,6 +3,7 @@
 
 import 'axe-core';
 import { rulesArray, checksArray, standardRuleIdsArray, customRuleIdsArray } from './config/rules';
+import imgAnimated, { preScanAnimatedImages } from './config/animatedImages';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
@@ -37,6 +38,14 @@ const scan = async (
 	axe.configure( configOptions );
 
 	const runOptions = Object.assign( defaults.runOptions, options.runOptions );
+
+	// Axe core checks can't run async and to find animated gifs we need to use fetch. So this
+	// function will do that fetching and cache the results so they are available when the
+	// img_animated rule runs.
+	// NOTE: in future we should flag this and run it only if the img_animated rule is enabled.
+	if ( runOptions?.runOnly?.values?.includes( imgAnimated.id ) ) {
+		await preScanAnimatedImages();
+	}
 
 	return await axe.run( context, runOptions )
 		.then( ( rules ) => {

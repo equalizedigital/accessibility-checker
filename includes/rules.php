@@ -28,6 +28,7 @@ return [
 			'<code>alt=""</code>',
 			'<code>&lt;a&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Image Empty Alternative Text', 'accessibility-checker' ),
@@ -39,6 +40,7 @@ return [
 			esc_html__( 'An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image\'s purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning.', 'accessibility-checker' ),
 			'<code>alt=""</code>',
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Low-quality Alternative Text', 'accessibility-checker' ),
@@ -46,6 +48,7 @@ return [
 		'slug'      => 'img_alt_invalid',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as "image" or "graphic"), a file extension (such as .JPG), that may be describing a decorative image (such as "spacer" or "arrow"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Linked Image Missing Alternative Text', 'accessibility-checker' ),
@@ -57,6 +60,7 @@ return [
 			esc_html__( 'A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
 			'<code>alt=""</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Linked Image Empty Alternative Text', 'accessibility-checker' ),
@@ -68,6 +72,7 @@ return [
 			esc_html__( 'A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
 			'<code>alt=""</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Duplicate Alternative Text', 'accessibility-checker' ),
@@ -75,6 +80,7 @@ return [
 		'slug'      => 'img_alt_redundant',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Incorrect Heading Order', 'accessibility-checker' ),
@@ -88,6 +94,10 @@ return [
 			'<code>&lt;h1&gt;</code>',
 			'<code>&lt;h2&gt;</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [
+			'heading-order',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Empty Paragraph Tag', 'accessibility-checker' ),
@@ -105,8 +115,12 @@ return [
 		'summary'   => sprintf(
 			// translators: %1$s is <code>&lt;frame&gt;</code>.
 			esc_html__( 'An iFrame Missing title error means that one or more of the iFrames on your post or page does not have an accessible title describing the contents of the iFrame. An iFrame title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iFrame title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iFrame.', 'accessibility-checker' ),
-			'<code>&lt;iframe&gt;</code>',
+			'<code>&lt;frame&gt;</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [
+			'frame-title',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Subheadings', 'accessibility-checker' ),
@@ -120,6 +134,7 @@ return [
 			'<code>&lt;h6&gt;</code>'
 		),
 		'viewable'  => false,
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Text Justified', 'accessibility-checker' ),
@@ -159,6 +174,10 @@ return [
 			'<code>&lt;area&gt;</code>',
 			'<code>alt=""</code>'
 		),
+		'ruleset'   => 'js',
+		'combines'  => [
+			'area-alt',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Tab Order Modified', 'accessibility-checker' ),
@@ -186,6 +205,7 @@ return [
 			esc_html__( 'An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page.', 'accessibility-checker' ),
 			'<code>&lt;h1&gt;&lt;/h1&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Empty Link', 'accessibility-checker' ),
@@ -199,6 +219,7 @@ return [
 			'code>aria-hidden="true"</code>',
 			'<code>aria-label</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Empty Button', 'accessibility-checker' ),
@@ -211,6 +232,7 @@ return [
 			'<code>&lt;button&gt;</code>',
 			'<code>&lt;input&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Image Long Alternative Text', 'accessibility-checker' ),
@@ -218,6 +240,7 @@ return [
 		'slug'      => 'img_alt_long',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then "Ignore" the warning.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'ARIA Hidden', 'accessibility-checker' ),
@@ -241,6 +264,7 @@ return [
 			'<code>&lt;th&gt;</code>',
 			'<code>&lt;th&gt;&lt;/th&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Link to MS Office File', 'accessibility-checker' ),
@@ -264,6 +288,7 @@ return [
 		'slug'      => 'link_non_html_file',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you\'re using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Long Description Invalid', 'accessibility-checker' ),
@@ -275,6 +300,7 @@ return [
 			esc_html__( 'The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely.', 'accessibility-checker' ),
 			'<code>longdesc=""</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Missing Form Label', 'accessibility-checker' ),
@@ -334,6 +360,7 @@ return [
 			'<code>&lt;td&gt;</code>',
 			'<code>&lt;th&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Duplicate Form Label', 'accessibility-checker' ),
@@ -341,6 +368,7 @@ return [
 		'slug'      => 'duplicate_form_label',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Text Too Small', 'accessibility-checker' ),
@@ -387,6 +415,7 @@ return [
 		'slug'      => 'missing_transcript',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Broken ARIA Reference', 'accessibility-checker' ),
@@ -416,12 +445,15 @@ return [
 			HTMLLangAndDirFix::get_slug(),
 		],
 	],
+	// The name and slug of this rule references GIFs but the rule also checks webp.
 	[
 		'title'     => esc_html__( 'Image Animated GIF', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4428',
 		'slug'      => 'img_animated_gif',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+		'combines'  => [ 'img_animated' ],
 	],
 	[
 		'title'     => esc_html__( 'A Video is Present', 'accessibility-checker' ),
@@ -429,6 +461,7 @@ return [
 		'slug'      => 'video_present',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'A Slider is Present', 'accessibility-checker' ),
@@ -436,6 +469,7 @@ return [
 		'slug'      => 'slider_present',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Missing Title', 'accessibility-checker' ),
@@ -470,6 +504,7 @@ return [
 			'<code>role="button"</code>',
 			'<code>&lt;a&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Zooming and Scaling Disabled', 'accessibility-checker' ),
