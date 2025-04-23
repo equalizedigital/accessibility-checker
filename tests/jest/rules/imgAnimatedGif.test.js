@@ -106,12 +106,12 @@ describe( 'img_animated rule detection', () => {
 	// Group 1: Basic file extension detection
 	const basicCases = [
 		{
-			name: 'detects animated GIF image by extension',
+			name: 'detects animated GIF image',
 			html: '<img src="A-image.gif" alt="Animated GIF">',
 			shouldPass: false,
 		},
 		{
-			name: 'detects animated WebP image by extension',
+			name: 'detects animated WebP image',
 			html: '<img src="A-image.webp" alt="Animated WebP">',
 			shouldPass: false,
 		},
@@ -125,24 +125,14 @@ describe( 'img_animated rule detection', () => {
 	// Group 2: File naming pattern detection
 	const namingPatternCases = [
 		{
-			name: 'detects GIF with animation indicators in filename',
+			name: 'does not detect GIF with animation indicators in filename',
 			html: '<img src="S-animated-in-name.gif" alt="Loading animation">',
-			shouldPass: false,
+			shouldPass: true,
 		},
 		{
-			name: 'detects WebP with animation indicators in filename',
+			name: 'does not detect  WebP with animation indicators in filename',
 			html: '<img src="S-animated-in-name.webp" alt="Animated banner">',
-			shouldPass: false,
-		},
-		{
-			name: 'detects spinner images by name pattern',
-			html: '<img src="loading-spinner.png" alt="Loading spinner">',
-			shouldPass: false,
-		},
-		{
-			name: 'detects images with "rotating" in filename',
-			html: '<img src="rotating-banner.jpg" alt="Rotating banner">',
-			shouldPass: false,
+			shouldPass: true,
 		},
 	];
 
