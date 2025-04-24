@@ -3,6 +3,7 @@
 
 import 'axe-core';
 import { rulesArray, checksArray, standardRuleIdsArray, customRuleIdsArray } from './config/rules';
+import { exclusionsArray } from './config/exclusions';
 import imgAnimated from './rules/img-animated';
 import { preScanAnimatedImages } from './checks/img-animated-check';
 
@@ -17,7 +18,7 @@ const postId = body.getAttribute( 'data-iframe-post-id' );
 const scan = async (
 	options = { configOptions: {}, runOptions: {} }
 ) => {
-	const context = { exclude: [ '#wpadminbar', '.edac-panel-container', '#query-monitor-main' ] };
+	const context = { exclude: exclusionsArray };
 
 	const defaults = {
 		configOptions: {
