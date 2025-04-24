@@ -28,6 +28,7 @@ return [
 			'<code>alt=""</code>',
 			'<code>&lt;a&gt;</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Image Empty Alternative Text', 'accessibility-checker' ),
@@ -47,6 +48,7 @@ return [
 		'slug'      => 'img_alt_invalid',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as "image" or "graphic"), a file extension (such as .JPG), that may be describing a decorative image (such as "spacer" or "arrow"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Linked Image Missing Alternative Text', 'accessibility-checker' ),
@@ -58,6 +60,7 @@ return [
 			esc_html__( 'A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
 			'<code>alt=""</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Linked Image Empty Alternative Text', 'accessibility-checker' ),
@@ -69,6 +72,7 @@ return [
 			esc_html__( 'A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
 			'<code>alt=""</code>'
 		),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Duplicate Alternative Text', 'accessibility-checker' ),
@@ -76,6 +80,7 @@ return [
 		'slug'      => 'img_alt_redundant',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Incorrect Heading Order', 'accessibility-checker' ),
@@ -418,6 +423,8 @@ return [
 		'slug'      => 'broken_aria_reference',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+		'combines'  => [ 'aria_broken_reference' ],
 	],
 	[
 		'title'     => esc_html__( 'Missing Language Declaration', 'accessibility-checker' ),
@@ -438,12 +445,15 @@ return [
 			HTMLLangAndDirFix::get_slug(),
 		],
 	],
+	// The name and slug of this rule references GIFs but the rule also checks webp.
 	[
 		'title'     => esc_html__( 'Image Animated GIF', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4428',
 		'slug'      => 'img_animated_gif',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible.', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+		'combines'  => [ 'img_animated' ],
 	],
 	[
 		'title'     => esc_html__( 'A Video is Present', 'accessibility-checker' ),
