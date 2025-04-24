@@ -141,21 +141,7 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 				axe.teardown();
 				axe = null;
 
-				// Create a custom event
-				let customEvent = new CustomEvent( eventName, {
-					detail: {
-						iframeId,
-						postId,
-						violations,
-						errorMsgs,
-						error,
-					},
-					bubbles: false,
-				} );
-
-				top.dispatchEvent( customEvent );
-
-				customEvent = null;
+				dispatchDoneEvent( violations, errorMsgs, error );
 			},
 			function() {
 				axe.teardown();
@@ -164,20 +150,7 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 				// Create a custom event
 				errorMsgs.push( '***** axe.cleanup() failed.' );
 
-				let customEvent = new CustomEvent( eventName, {
-					detail: {
-						iframeId,
-						postId,
-						violations,
-						errorMsgs,
-						error,
-					},
-					bubbles: false,
-				} );
-
-				top.dispatchEvent( customEvent );
-
-				customEvent = null;
+				dispatchDoneEvent( violations, errorMsgs, error );
 			}
 		);
 	} else {
@@ -186,20 +159,7 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 		errorMsgs.push( '***** axe.cleanup() does not exist.' );
 		axe = null;
 
-		let customEvent = new CustomEvent( eventName, {
-			detail: {
-				iframeId,
-				postId,
-				violations,
-				errorMsgs,
-				error,
-			},
-			bubbles: false,
-		} );
-
-		top.dispatchEvent( customEvent );
-
-		customEvent = null;
+		dispatchDoneEvent( violations, errorMsgs, error );
 	}
 };
 
