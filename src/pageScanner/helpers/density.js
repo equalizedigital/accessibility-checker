@@ -6,6 +6,11 @@ import { exclusionsArray } from '../config/exclusions';
  * @return {[number, number]} Array containing [elementCount, contentLength]
  */
 export function getPageDensity( body = document.body ) {
+	// If we can't get a body then return as if there was nothing.
+	if ( ! body ) {
+		return [ 0, 0 ];
+	}
+
 	// Remove elements we don't want to count from a clone to avoid modifying original
 	const bodyClone = body.cloneNode( true );
 
