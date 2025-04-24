@@ -5,6 +5,7 @@ import 'axe-core';
 import { rulesArray, checksArray, standardRuleIdsArray, customRuleIdsArray } from './config/rules';
 import imgAnimated from './rules/img-animated';
 import { preScanAnimatedImages } from './checks/img-animated-check';
+import { getPageDensity } from './helpers/density';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
