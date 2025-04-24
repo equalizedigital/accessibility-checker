@@ -1,3 +1,5 @@
+import { exclusionsArray } from '../config/exclusions';
+
 /**
  * Calculate page density metrics
  * @param {HTMLElement} body - The body element to analyze
@@ -8,7 +10,7 @@ export function getPageDensity( body = document.body ) {
 	const bodyClone = body.cloneNode( true );
 
 	// Remove elements we don't want to count
-	const selectorsToRemove = [ '#wpadminbar', '.edac-panel-container', '#query-monitor-main', 'style', 'script' ];
+	const selectorsToRemove = [ ...exclusionsArray, 'style', 'script' ];
 	selectorsToRemove.forEach( ( selector ) => {
 		bodyClone.querySelectorAll( selector ).forEach( ( el ) => el.remove() );
 	} );
