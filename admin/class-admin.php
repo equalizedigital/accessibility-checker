@@ -46,6 +46,7 @@ class Admin {
 
 		add_action( 'admin_enqueue_scripts', [ 'EDAC\Admin\Enqueue_Admin', 'enqueue' ] );
 		add_action( 'wp_trash_post', [ Purge_Post_Data::class, 'delete_post' ] );
+		add_action( 'save_post', [ Post_Save::class, 'delete_issue_data_on_post_trashing' ], 10, 3 );
 
 		$admin_notices = new Admin_Notices();
 		$admin_notices->init_hooks();
@@ -55,9 +56,6 @@ class Admin {
 
 		$site_health_info = new Information();
 		$site_health_info->init_hooks();
-
-		$post_save = new Post_Save();
-		$post_save->init_hooks();
 
 		$this->init_ajax();
 
