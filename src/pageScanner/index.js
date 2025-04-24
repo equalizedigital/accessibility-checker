@@ -102,6 +102,34 @@ const scan = async (
 		} );
 };
 
+/**
+ * Dispatch the done event to the parent window.
+ *
+ * @param {Array}  violations The violations found during the scan.
+ * @param {Array}  errorMsgs  Any error messages that occurred during the scan.
+ * @param {string} error      The error message if an error occurred during scan cleanup.
+ */
+function dispatchDoneEvent( violations, errorMsgs, error ) {
+	const [ elementCount, contentLength ] = getPageDensity( body );
+
+	const customEvent = new CustomEvent( eventName, {
+		detail: {
+			iframeId,
+			postId,
+			violations,
+			errorMsgs,
+			error,
+			densityMetrics: {
+				elementCount,
+				contentLength,
+			},
+		},
+		bubbles: false,
+	} );
+
+	top.dispatchEvent( customEvent );
+}
+
 const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 	// cleanup the timeout.
 	clearTimeout( tooLongTimeout );
