@@ -1,0 +1,16 @@
+
+S	Web:S6825q"9aria-hidden="true" must not be set on focusable elements.(™İÖıÿÿÿÿ
+N	Web:S6825r"9aria-hidden="true" must not be set on focusable elements.(ÕûãĞ
+S	Web:S6825s"9aria-hidden="true" must not be set on focusable elements.(¾¶£«ùÿÿÿÿ
+S	Web:S6825t"9aria-hidden="true" must not be set on focusable elements.(¦Êå€úÿÿÿÿ
+N	Web:S6825u"9aria-hidden="true" must not be set on focusable elements.(êÌº©
+N	Web:S6825v"9aria-hidden="true" must not be set on focusable elements.(»üò¡
+S	Web:S6825w"9aria-hidden="true" must not be set on focusable elements.(¯°„ıÿÿÿÿÿ
+S	Web:S6825x"9aria-hidden="true" must not be set on focusable elements.(«øÌúÿÿÿÿ
+Qphp:S105"EReplace all tab characters in this file by sequences of white-spaces.
+uphp:S100,"\Rename function "user_already_opted_in" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¤³ˆ²üÿÿÿÿ
+qphp:S1007"XRename function "should_show_modal" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¡Ğ†«ıÿÿÿÿ
+ophp:S100C"VRename function "enqueue_scripts" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ìù‰üÿÿÿÿ
+lphp:S100S"SRename function "render_modal" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Äµ§ôıÿÿÿÿ
+kphp:S100b"RRename function "render_form" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ã©ß‡ùÿÿÿÿ
+dphp:S101"PRename class "Email_Opt_In" to match the regular expression ^[A-Z][a-zA-Z0-9]*$.(ÜöÃâ

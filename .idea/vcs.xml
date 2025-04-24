@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CommitMessageInspectionProfile">
+    <profile version="1.0">
+      <inspection_tool class="BodyLimit" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="SubjectBodySeparation" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="SubjectLimit" enabled="true" level="WARNING" enabled_by_default="true" />
+    </profile>
+  </component>
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/../../diffs" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../accessibility-checker-audit-history" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../accessibility-checker-export" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../accessibility-checker-multisite" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../accessibility-checker-pro" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../accessibility-dashboard" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../accessibility-dashboard/App" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../accessible-web-pros" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../cta-bar-block" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../enable-contributor-uploads" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../oxford-comma-go-away" vcs="Git" />
+  </component>
+</project>

@@ -1,0 +1,112 @@
+
+<!-- wp:heading -->
+<h2>Failing Cases - Links to Non-HTML Files</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Flags .rtf link</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="file.rtf" data-test-name="rtf-link">Download</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Flags .wpd link</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="file.wpd" data-test-name="wpd-link">Download</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Flags .odt link</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="file.odt" data-test-name="odt-link">Download</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Flags .odp link</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="file.odp" data-test-name="odp-link">Download</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Flags .pages link</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="file.pages" data-test-name="pages-link">Download</a>
+<!-- /wp:html -->
+
+<!-- wp:heading -->
+<h2>Passing Cases</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Passes standard HTML link</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="/about">About Us</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Passes link with fragment</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="#section">Jump to section</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Passes link with no href</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a>Click me</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Display:none (inline) should be skipped</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="file.rtf" style="display:none;">Hidden</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Visibility:hidden (inline) should be skipped</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="file.wpd" style="visibility:hidden;">Invisible</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Display:none via class should be skipped</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="file.odt" class="hidden">Hidden by class</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Visibility:hidden via class should be skipped</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="file.odp" class="invisible">Invisible by class</a>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Aria-hidden="true" should be skipped</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<a href="file.pages" aria-hidden="true">Hidden Aria</a>
+<!-- /wp:html -->

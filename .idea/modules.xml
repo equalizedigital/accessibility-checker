@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/accessibility-checker.iml" filepath="$PROJECT_DIR$/.idea/accessibility-checker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../accessibility-checker-pro/.idea/accessibility-checker-pro.iml" filepath="$PROJECT_DIR$/../accessibility-checker-pro/.idea/accessibility-checker-pro.iml" />
+    </modules>
+  </component>
+</project>

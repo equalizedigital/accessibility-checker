@@ -1,0 +1,143 @@
+<!-- wp:heading -->
+<h2>❌ Failing Cases</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Fails when longdesc is empty</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="image.jpg" longdesc="" data-test-name="empty-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Fails when longdesc points to image</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="image.jpg" longdesc="image-desc.png" data-test-name="image-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Fails when longdesc is malformed URL</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="image.jpg" longdesc="ht!tp://bad-url" data-test-name="malformed-url-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Fails when longdesc is URL but missing filename</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="image.jpg" longdesc="https://example.com/" data-test-name="missing-filename-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Fails with valid-looking but image file extension</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" longdesc="graphic.gif" data-test-name="image-extension-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading -->
+<h2>✅ Passing Cases</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Passes with valid longdesc URL to HTML</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" longdesc="details.html" data-test-name="valid-html-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Passes when longdesc is not present</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" data-test-name="no-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Passes with valid external longdesc URL</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" longdesc="https://example.com/details.html" data-test-name="external-url-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Passes with URL containing query parameters</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" longdesc="details.html?id=123" data-test-name="query-params-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Passes with relative URL</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" longdesc="../details/page.html" data-test-name="relative-url-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Passes with URL containing hash fragment</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" longdesc="details.html#section2" data-test-name="hash-fragment-longdesc">
+<!-- /wp:html -->
+
+<!-- wp:heading -->
+<h2>✅ Hidden Elements (Should Be Skipped)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3>display:none (inline) should be skipped</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" longdesc="bad.png" style="display:none;" data-test-name="display-none-inline">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>visibility:hidden (inline) should be skipped</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" longdesc="bad.png" style="visibility:hidden;" data-test-name="visibility-hidden-inline">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>display:none via class should be skipped</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<style>
+.hidden { display: none; }
+.invisible { visibility: hidden; }
+</style>
+<img src="photo.jpg" class="hidden" longdesc="bad.png" data-test-name="display-none-class">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>visibility:hidden via class should be skipped</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" class="invisible" longdesc="bad.png" data-test-name="visibility-hidden-class">
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>aria-hidden="true" should be skipped</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<img src="photo.jpg" longdesc="bad.png" aria-hidden="true" data-test-name="aria-hidden">
+<!-- /wp:html -->

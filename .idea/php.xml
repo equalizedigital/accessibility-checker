@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="codingStandard" value="Custom" />
+    <option name="customRuleset" value="$PROJECT_DIR$/phpcs.xml" />
+    <option name="extensions" value="php,css,inc" />
+    <option name="highlightLevel" value="WARNING" />
+    <option name="showSniffs" value="true" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpCodeSniffer">
+    <phpcs_settings>
+      <PhpCSConfiguration beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" standards="Modernize;MySource;NormalizedArrays;PEAR;PHPCSUtils;PHPCompatibility;PHPCompatibilityParagonieRandomCompat;PHPCompatibilityParagonieSodiumCompat;PHPCompatibilityWP;PSR1;PSR12;PSR2;Squiz;Universal;VariableAnalysis;WordPress;WordPress-Core;WordPress-Docs;WordPress-Extra;WordPress-VIP-Go;WordPressVIPMinimum;Zend" tool_path="$PROJECT_DIR$/vendor/bin/phpcs" />
+      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="fbf85abe-7491-4bec-8d3d-7bb352da3a4e" beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" standards="Modernize;MySource;NormalizedArrays;PEAR;PHPCSUtils;PHPCompatibility;PHPCompatibilityParagonieRandomCompat;PHPCompatibilityParagonieSodiumCompat;PHPCompatibilityWP;PSR1;PSR12;PSR2;Squiz;Universal;VariableAnalysis;WordPress;WordPress-Core;WordPress-Docs;WordPress-Extra;WordPress-VIP-Go;WordPressVIPMinimum;Zend" tool_path="/home/williampatton/wd/wd/embarkvet/wordpress/www/html/embarkvet-wp/wp-content/plugins/accessibility-checker/vendor/bin/phpcs" timeout="30000" />
+    </phpcs_settings>
+  </component>
+  <component name="PhpExternalFormatter">
+    <option name="externalFormatter" value="PHP_CBF" />
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/../wp-crontrol/vendor/composer" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/shopify/shopify-api" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/composer" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/../embark-shopify-integration/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/composer" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/jean85/pretty-package-versions" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/sentry/sentry" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/automattic/phpcs-neutron-standard" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/dealerdirect/phpcodesniffer-composer-installer" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/automattic/vipwpcs" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/brain/monkey" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/wp-coding-standards/wpcs" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sirbrillig/phpcs-variable-analysis" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/squizlabs/php_codesniffer" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/inpsyde/php-coding-standards" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/composer" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/antecedent/patchwork" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/../frontend-users-table2/vendor/phpcompatibility/php-compatibility" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/antecedent/patchwork" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/automattic/vipwpcs" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/automattic/phpcs-neutron-standard" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/phpcompatibility/php-compatibility" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/squizlabs/php_codesniffer" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/brain/monkey" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sirbrillig/phpcs-variable-analysis" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/composer" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/inpsyde/php-coding-standards" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/wp-coding-standards/wpcs" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/../frontend-users-table/vendor/dealerdirect/phpcodesniffer-composer-installer" />
+      <path value="$PROJECT_DIR$/../social-notes/vendor/composer" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop-mix-manifest" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop-template-helpers" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop-template-hierarchy" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop-template-manager" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop-template-view" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop-theme" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop-tools" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/composer" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop-contracts" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop-fontawesome" />
+      <path value="$PROJECT_DIR$/../../themes/luthemes.com-develop/vendor/benlumia007/backdrop-fonts" />
+      <path value="$PROJECT_DIR$/../query-monitor/vendor/composer" />
+      <path value="$PROJECT_DIR$/../wp-admin-options/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/../wp-admin-options/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/../wp-admin-options/vendor/composer" />
+      <path value="$PROJECT_DIR$/../wp-admin-options/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/http-client" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/php-http/message" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/php-http/client-common" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/php-http/promise" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/mustache/mustache" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/php-http/httplug" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/php-http/message-factory" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/php-http/discovery" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/http-interop/http-factory-guzzle" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/nb/oxymel" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/seld/phar-utils" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/eftec/bladeone" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/mck89/peast" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/clue/stream-filter" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/mustangostang-spyc" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/i18n-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/embed-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/super-admin-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/jean85/pretty-package-versions" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/rmccue/requests" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/sentry/sentry" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/shell-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/extension-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/wp-cli-bundle" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/export-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/entity-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/composer" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/core-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/scaffold-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/cron-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/language-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/search-replace-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/server-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/maintenance-mode-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/config-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/role-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/media-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/package-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/checksum-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/db-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/cache-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/eval-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/php-cli-tools" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/import-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/widget-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/wp-config-transformer" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/gettext/languages" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/rewrite-command" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/wp-cli/wp-cli" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/algolia/algoliasearch-client-php" />
+      <path value="$PROJECT_DIR$/../embark-algolia-integration/vendor/gettext/gettext" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/indigophp/hash-compat" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/lockr/lockr" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/composer" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/defuse/php-encryption" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/../lockr/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/../../themes/embarkvet-theme/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/davechild/textstatistics" />
+      <path value="$PROJECT_DIR$/../../../vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/../../../vendor/dealerdirect/phpcodesniffer-composer-installer" />
+      <path value="$PROJECT_DIR$/../../../vendor/brain/monkey" />
+      <path value="$PROJECT_DIR$/../../../vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/../../../vendor/composer" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/../../../vendor/behat/gherkin" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/../../../vendor/wp-coding-standards/wpcs" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/../../../vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/../../../vendor/antecedent/patchwork" />
+      <path value="$PROJECT_DIR$/../../../vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/../../../vendor/psr/container" />
+      <path value="$PROJECT_DIR$/../../../vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/../../../vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/../../../vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/../../../vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/../../../vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/../../../vendor/codeception/stub" />
+      <path value="$PROJECT_DIR$/../../../vendor/codeception/lib-asserts" />
+      <path value="$PROJECT_DIR$/../../../vendor/codeception/phpunit-wrapper" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpcompatibility/php-compatibility" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/../../../vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/../../../vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/../../../vendor/codeception/module-asserts" />
+      <path value="$PROJECT_DIR$/../../../vendor/codeception/specify" />
+      <path value="$PROJECT_DIR$/../../../vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/../../../vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/../../../vendor/squizlabs/php_codesniffer" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/../../../vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/../../../vendor/codeception/codeception" />
+      <path value="$PROJECT_DIR$/../../../vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/../../../vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/../wp-sentry-integration/build/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/vendor/dealerdirect/phpcodesniffer-composer-installer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/extension-installer" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/wp-phpunit/wp-phpunit" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/szepeviktor/phpstan-wordpress" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/phpcompatibility/phpcompatibility-wp" />
+      <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/vendor/brain/monkey" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/phpcompatibility/phpcompatibility-paragonie" />
+      <path value="$PROJECT_DIR$/vendor/phpcompatibility/php-compatibility" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/equalizedigital/accessibility-checker-wp-env" />
+      <path value="$PROJECT_DIR$/vendor/antecedent/patchwork" />
+      <path value="$PROJECT_DIR$/vendor/sirbrillig/phpcs-variable-analysis" />
+      <path value="$PROJECT_DIR$/vendor/automattic/vipwpcs" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/php-parallel-lint/php-parallel-lint" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/phpcsstandards/phpcsutils" />
+      <path value="$PROJECT_DIR$/vendor/php-stubs/wordpress-stubs" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/vendor/phpcsstandards/phpcsextra" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/yoast/phpunit-polyfills" />
+      <path value="$PROJECT_DIR$/vendor/wp-coding-standards/wpcs" />
+      <path value="$PROJECT_DIR$/vendor/yoast/wp-test-utils" />
+    </include_path>
+  </component>
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="accessibility-checker.local" id="174095aa-91c8-4e45-863f-b9b65983b2b7" name="accessibility-checker.local" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$/../../.." remote-root="/var/www/html" />
+        </path_mappings>
+      </server>
+    </servers>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.4">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
+  <component name="PhpStan">
+    <PhpStan_settings>
+      <PhpStanConfiguration tool_path="$PROJECT_DIR$/vendor/bin/phpstan" />
+      <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="fbf85abe-7491-4bec-8d3d-7bb352da3a4e" tool_path="$PROJECT_DIR$/vendor/bin/phpstan" timeout="60000" />
+    </PhpStan_settings>
+  </component>
+  <component name="PhpStanOptionsConfiguration">
+    <option name="autoload" value="$PROJECT_DIR$/vendor/autoload.php" />
+    <option name="config" value="$PROJECT_DIR$/phpstan.neon" />
+    <option name="fullProject" value="true" />
+    <option name="level" value="2" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/../wp-crontrol/vendor/autoload.php" />
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/../frontend-users-table2/phpunit.xml" custom_loader_path="$PROJECT_DIR$/../frontend-users-table2/vendor/autoload.php" use_configuration_file="true" />
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/../../../vendor/autoload.php" phpunit_phar_path="" />
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/../frontend-users-table/phpunit.xml" custom_loader_path="$PROJECT_DIR$/../frontend-users-table/vendor/autoload.php" use_configuration_file="true" />
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
+    </phpunit_settings>
+  </component>
+  <component name="Psalm">
+    <Psalm_settings>
+      <psalm_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="fbf85abe-7491-4bec-8d3d-7bb352da3a4e" timeout="60000" />
+    </Psalm_settings>
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+</project>

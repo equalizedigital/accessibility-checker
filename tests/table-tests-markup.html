@@ -1,0 +1,142 @@
+<!-- wp:heading -->
+<h2>Passing Table Header Tests</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Core table block with thead</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<figure class="wp-block-table">
+  <table>
+    <thead><tr><th>First Name</th><th>Last Name</th></tr></thead>
+    <tbody>
+      <tr><td>Amber</td><td>Hinds</td></tr>
+      <tr><td>Chris</td><td>Hinds</td></tr>
+      <tr><td>Steve</td><td>Jones</td></tr>
+    </tbody>
+  </table>
+</figure>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Table with column and row headers</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<table>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Title</th>
+    <th scope="col">Twitter Handle</th>
+  </tr>
+  <tr>
+    <th scope="row">Amber Hinds</th>
+    <td>CEO</td>
+    <td>@HeyAmberHinds</td>
+  </tr>
+  <tr>
+    <th scope="row">Chris Hinds</th>
+    <td>COO</td>
+    <td>@mr_chrishinds</td>
+  </tr>
+  <tr>
+    <th scope="row">Steve Jones</th>
+    <td>CTO</td>
+    <td>@stevejonesdev</td>
+  </tr>
+</table>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Row headers only (no scope)</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<table>
+  <tr><th>Monday</th><td>8:00 AM – 5:00 PM</td></tr>
+  <tr><th>Tuesday</th><td>8:00 AM – 5:00 PM</td></tr>
+  <tr><th>Wednesday</th><td>8:00 AM – 5:00 PM</td></tr>
+  <tr><th>Thursday</th><td>8:00 AM – 5:00 PM</td></tr>
+  <tr><th>Friday</th><td>8:00 AM – 5:00 PM</td></tr>
+  <tr><th>Saturday</th><td>10:00 AM – 2:00 PM</td></tr>
+  <tr><th>Sunday</th><td>Closed</td></tr>
+</table>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Row headers with scope="row"</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<table>
+  <tr><th scope="row">Monday</th><td>8 a.m.</td><td>5 p.m.</td></tr>
+  <tr><th scope="row">Tuesday</th><td>8 a.m.</td><td>5 p.m.</td></tr>
+  <tr><th scope="row">Wednesday</th><td>8 a.m.</td><td>1 p.m.</td></tr>
+  <tr><th scope="row">Thursday</th><td>8 a.m.</td><td>5 p.m.</td></tr>
+  <tr><th scope="row">Friday</th><td>8 a.m.</td><td>5 p.m.</td></tr>
+</table>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Passes with empty headers (valid structure)</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<table>
+  <thead><tr><th></th><th></th></tr></thead>
+  <tbody>
+    <tr><td>Data 1</td><td>Data 2</td></tr>
+    <tr><td>Data 3</td><td>Data 4</td></tr>
+  </tbody>
+</table>
+<!-- /wp:html -->
+
+<!-- wp:heading -->
+<h2>Failing Table Header Tests</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Core table block with no &lt;th&gt;</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<figure class="wp-block-table">
+  <table data-test-name="missing-headers-core-table">
+    <tbody>
+      <tr><td><strong>Food</strong></td><td><strong>Type</strong></td></tr>
+      <tr><td>Bananas</td><td>Fruit</td></tr>
+      <tr><td>Apples</td><td>Fruit</td></tr>
+      <tr><td>Broccoli</td><td>Vegetable</td></tr>
+    </tbody>
+  </table>
+</figure>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Table with fewer &lt;th&gt; than data columns</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<table data-test-name="missing-headers-column-mismatch">
+  <tr><th>Student</th><th>Age</th></tr>
+  <tr><td>Eleanor</td><td>11</td><td>Female</td></tr>
+  <tr><td>Zara</td><td>7</td><td>Female</td></tr>
+</table>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":3} -->
+<h3>Table with missing row header in last row</h3>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<table data-test-name="missing-row-header-last-row">
+  <tr><th>Monday</th><td>8:00 AM – 5:00 PM</td></tr>
+  <tr><th>Tuesday</th><td>8:00 AM – 5:00 PM</td></tr>
+  <tr><th>Wednesday</th><td>8:00 AM – 5:00 PM</td></tr>
+  <tr><th>Thursday</th><td>8:00 AM – 5:00 PM</td></tr>
+  <tr><th>Friday</th><td>8:00 AM – 5:00 PM</td></tr>
+  <tr><th>Saturday</th><td>10:00 AM – 2:00 PM</td></tr>
+  <tr><td>Sunday</td><td>Closed</td></tr>
+</table>
+<!-- /wp:html -->
