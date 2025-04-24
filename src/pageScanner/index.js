@@ -183,13 +183,6 @@ const tooLongTimeout = setTimeout( function() {
 // Start the scan.
 scan().then( ( results ) => {
 	const violations = JSON.parse( JSON.stringify( results.violations ) );
-	const [ elementCount, contentLength ] = getPageDensity( body );
-
-	console.log( 'Density Metrics:', { // eslint-disable-line no-console
-		elementCount,
-		contentLength,
-	} );
-
 	onDone( violations );
 } ).catch( ( err ) => {
 	onDone( [], [ err.message ], true );
