@@ -145,23 +145,3 @@ function edac_register_rules() {
 
 	return $default_rules;
 }
-
-/**
- * Include Rules
- *
- * @return void
- */
-function edac_include_rules_files() {
-	$rules = edac_register_rules();
-	if ( ! $rules ) {
-		return;
-	}
-	foreach ( $rules as $rule ) {
-		if ( ( array_key_exists( 'ruleset', $rule ) && 'php' === $rule['ruleset'] )
-			|| ( ! array_key_exists( 'ruleset', $rule ) && $rule['slug'] )
-		) {
-			require_once plugin_dir_path( __FILE__ ) . 'includes/rules/' . $rule['slug'] . '.php';
-		}
-	}
-}
-add_action( 'init', 'edac_include_rules_files' );
