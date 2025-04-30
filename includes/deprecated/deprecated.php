@@ -129,5 +129,5 @@ function edac_insert_rule_data( $post, $rule, $ruletype, $rule_obj ) {
 function edac_save_post( $post_ID, $post, $update ) {
 	_deprecated_function( __FUNCTION__, '1.23.0', 'EDAC\Admin\Post_Save::save_post' );
 	$post_save = new Post_Save();
-	return $post_save->save_post( $post_ID, $post, $update );
+	return $post_save->delete_issue_data_on_post_trashing( $post_ID, $post, $update );  
 }
