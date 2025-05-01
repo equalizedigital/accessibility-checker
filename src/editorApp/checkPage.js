@@ -23,11 +23,12 @@ const postData = async ( url = '', data = {} ) => {
 
 };
 
-const saveScanResults = ( postId, violations ) => {
+const saveScanResults = ( postId, violations, densityMetrics ) => {
 	document.querySelector( '.edac-panel' ).classList.add( 'edac-panel-loading' );
 	// eslint-disable-next-line camelcase
 	postData( edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
 		violations,
+		densityMetrics,
 	} ).then( ( data ) => {
 		info( 'Saving ' + postId + ': done' );
 
@@ -120,7 +121,7 @@ export const init = () => {
 			}, 1000 );
 
 			// save the scan results.
-			saveScanResults( postId, violations );
+			saveScanResults( postId, violations, event?.detail?.densityMetrics );
 		} );
 	}
 

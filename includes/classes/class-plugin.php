@@ -59,9 +59,6 @@ class Plugin {
 
 		$lazyload_filter = new Lazyload_Filter();
 		$lazyload_filter->init_hooks();
-
-		$frontend_validate = new Frontend_Validate();
-		$frontend_validate->init_hooks();
 	}
 
 	/**

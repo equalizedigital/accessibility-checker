@@ -9,6 +9,7 @@ namespace EDAC\Admin;
 
 use EDAC\Admin\SiteHealth\Information;
 use EDAC\Admin\Purge_Post_Data;
+use EDAC\Admin\Post_Save;
 
 /**
  * Admin handling class.
@@ -45,6 +46,7 @@ class Admin {
 
 		add_action( 'admin_enqueue_scripts', [ 'EDAC\Admin\Enqueue_Admin', 'enqueue' ] );
 		add_action( 'wp_trash_post', [ Purge_Post_Data::class, 'delete_post' ] );
+		add_action( 'save_post', [ Post_Save::class, 'delete_issue_data_on_post_trashing' ], 10, 3 );
 
 		$admin_notices = new Admin_Notices();
 		$admin_notices->init_hooks();

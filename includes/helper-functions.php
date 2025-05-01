@@ -129,18 +129,6 @@ function edac_ordinal( $number ) {
 }
 
 /**
- * Remove child nodes with simple dom
- *
- * @param simple_html_dom_node $parent_node The parent node.
- * @return string
- */
-function edac_simple_dom_remove_child( simple_html_dom_node $parent_node ) {
-	$parent_node->innertext = '';
-
-	return $parent_node->save();
-}
-
-/**
  * Remove element from multidimensional array
  *
  * @param array  $items The multidimensional array.
@@ -301,70 +289,6 @@ function edac_post_types() {
 
 	return $post_types;
 }
-
-/**
- * String Get HTML
- *
- * @param string  $str string to parse.
- * @param boolean $lowercase lowercase.
- * @param boolean $force_tags_closed force tags closed.
- * @param string  $target_charset target charset.
- * @param boolean $strip_rn strip rn.
- * @param string  $default_br_text default br text.
- * @param string  $default_span_text default span text.
- * @return object|false
- */
-function edac_str_get_html(
-	$str,
-	$lowercase = true,
-	$force_tags_closed = true,
-	$target_charset = DEFAULT_TARGET_CHARSET,
-	$strip_rn = true,
-	$default_br_text = DEFAULT_BR_TEXT,
-	$default_span_text = DEFAULT_SPAN_TEXT
-) {
-	$dom = new EDAC_Dom(
-		null,
-		$lowercase,
-		$force_tags_closed,
-		$target_charset,
-		$strip_rn,
-		$default_br_text,
-		$default_span_text
-	);
-
-	if ( empty( $str ) || strlen( $str ) > MAX_FILE_SIZE ) {
-		$dom->clear();
-		return false;
-	}
-
-	return $dom->load( $str, $lowercase, $strip_rn );
-}
-
-/**
- * Remove elements from the dom by css_selector
- *
- * @param simple_html_dom $dom .
- * @param array           $css_selectors array .
- * @return simple_html_dom
- */
-function edac_remove_elements( $dom, $css_selectors = [] ) {
-
-	if ( $dom ) {
-
-		foreach ( $css_selectors as $css_selector ) {
-			$elements = $dom->find( $css_selector );
-			foreach ( $elements as $element ) {
-				if ( null !== $element ) {
-					$element->remove();
-				}
-			}
-		}
-	}
-
-	return $dom;
-}
-
 
 /**
  * This function validates a table name against WordPress naming conventions and checks its existence in the database.
@@ -1119,4 +1043,82 @@ function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
 	}
 
 	return wc_get_page_id( 'checkout' ) === $post_id;
+}
+
+/**
+ * Parse HTML content to extract image or SVG elements
+ * 
+ * @param string $html The HTML content to parse.
+ * @return array Array containing 'img' (string) and 'svg' (string) keys
+ */
+function edac_parse_html_for_media( $html ) {
+	$result = [
+		'img' => null,
+		'svg' => null,
+	];
+
+	libxml_use_internal_errors( true );
+	$dom = new \DOMDocument();
+	$dom->loadHTML(
+		htmlspecialchars_decode( $html, ENT_QUOTES ),
+		LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+	);
+	
+	$xpath = new \DOMXPath( $dom );
+	
+	// Check for img elements first.
+	$img_elements = $xpath->query( '//img' );
+	if ( $img_elements->length > 0 ) {
+		foreach ( $img_elements as $element ) {
+			$src = $element->getAttribute( 'src' );
+			if ( $src ) {
+				$result['img'] = $src;
+				break;
+			}
+		}
+	} else {
+		// If no images found, check for SVG.
+		$svg_elements = $xpath->query( '//svg' );
+		if ( $svg_elements->length > 0 ) {
+			$result['svg'] = $dom->saveHTML( $svg_elements->item( 0 ) );
+		}
+	}
+	
+	libxml_clear_errors();
+	return $result;
+}
+
+/**
+ * Remove corrected posts
+ *
+ * @param int    $post_ID The ID of the post.
+ * @param string $type    The type of the post.
+ * @param int    $pre     The flag indicating the removal stage (1 for before validation php based rules, 2 for after validation).
+ * @param string $ruleset    The type of the ruleset to correct (php or js). For backwards compatibility, defaults to 'php'.
+ *
+ * @return void
+ */
+function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php' ) {  // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- $ruleset is for backwards compatibility.
+	global $wpdb;
+
+	$rules = edac_register_rules();
+
+	if ( 0 === count( $rules ) ) {
+		return;
+	}
+
+	$sql = 1 === $pre
+		? "UPDATE {$wpdb->prefix}accessibility_checker SET recordcheck = %d WHERE siteid = %d AND postid = %d AND type = %s"
+		: "DELETE FROM {$wpdb->prefix}accessibility_checker WHERE recordcheck = %d AND siteid = %d AND postid = %d AND type = %s";
+
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+	$wpdb->query(
+		$wpdb->prepare(
+			$sql, // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared
+			0,
+			get_current_blog_id(),
+			$post_ID,
+			$type
+		)
+	);
 }
