@@ -81,6 +81,11 @@ describe( 'Empty Heading Validation', () => {
 			html: '<h4>Visible Content<span aria-hidden="true">Hidden Part</span></h4>',
 			shouldPass: true,
 		},
+		{
+			name: 'should pass with interleaved visible and aria-hidden content',
+			html: '<h1>Start <span aria-hidden="true">Hidden</span> Middle <span aria-hidden="true">Hidden Again</span> End</h1>',
+			shouldPass: true,
+		},
 		// Edge cases
 		{
 			name: 'should pass when heading contains only punctuation',
