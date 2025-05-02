@@ -6,9 +6,9 @@ export default {
 			const hiddenTexts = [];
 
 			// Get aria-hidden content
-			element.querySelectorAll( '[aria-hidden="true"]' ).forEach( ( el ) =>
-				hiddenTexts.push( el.textContent )
-			);
+			element.querySelectorAll( '[aria-hidden="true"]' ).forEach( ( el ) => {
+				hiddenTexts.push( el.cloneNode( true ).textContent );
+			} );
 
 			// Get visually hidden content
 			Array.from( element.getElementsByTagName( '*' ) ).forEach( ( el ) => {
