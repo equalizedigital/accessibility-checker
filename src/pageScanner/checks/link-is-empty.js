@@ -12,18 +12,18 @@ export default {
 		}
 
 		// Check if the link has visible text content
-		const hasVisibleText = Array.from( node.childNodes ).some( child => {
+		const hasVisibleText = Array.from( node.childNodes ).some( ( child ) => {
 			// For text nodes, check if they have non-space content
 			if ( child.nodeType === Node.TEXT_NODE ) {
 				return child.textContent.replace( /[\s\u00A0\-—_]/g, '' ) !== '';
 			}
 			// For element nodes, check if they're not aria-hidden and have content
 			if ( child.nodeType === Node.ELEMENT_NODE ) {
-				return !child.hasAttribute( 'aria-hidden' ) && 
+				return ! child.hasAttribute( 'aria-hidden' ) &&
 					child.textContent.replace( /[\s\u00A0\-—_]/g, '' ) !== '';
 			}
 			return false;
-		});
+		} );
 
 		if ( hasVisibleText ) {
 			return false;
