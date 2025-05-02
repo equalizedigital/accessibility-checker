@@ -205,6 +205,21 @@ describe( 'Empty Button Validation', () => {
 			html: '<span id="empty-desc1"></span><span id="empty-desc2">   </span><button aria-describedby="empty-desc1 empty-desc2"></button>',
 			shouldPass: false,
 		},
+		{
+			name: 'should fail for button with only aria-hidden content',
+			html: '<button><span aria-hidden="true">X</span></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with only visually hidden content and unlabeled icon',
+			html: '<button><span style="display: none;">Menu</span><i class="fas fa-bars"></i></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with only visibility:hidden content and unlabeled icon',
+			html: '<button><span style="visibility: hidden;">Close</span><i class="fas fa-times"></i></button>',
+			shouldPass: false,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {
