@@ -369,6 +369,7 @@ return [
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it.', 'accessibility-checker' ),
 		'ruleset'   => 'js',
+		'combines'  => [ 'form-field-multiple-labels' ],
 	],
 	[
 		'title'     => esc_html__( 'Text Too Small', 'accessibility-checker' ),
