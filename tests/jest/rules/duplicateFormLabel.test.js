@@ -1,27 +1,11 @@
 import axe from 'axe-core';
 
-// Use async/await for the test setup
-beforeAll( async () => {
-	// Dynamically import the modules
-	const duplicateFormLabelRuleModule = await import( '../../../src/pageScanner/rules/duplicate-form-label.js' );
-	const duplicateFormLabelCheckModule = await import( '../../../src/pageScanner/checks/duplicate-form-label-check.js' );
-
-	const duplicateFormLabelRule = duplicateFormLabelRuleModule.default;
-	const duplicateFormLabelCheck = duplicateFormLabelCheckModule.default;
-
-	// Configure axe with the imported rules
-	axe.configure( {
-		rules: [ duplicateFormLabelRule ],
-		checks: [ duplicateFormLabelCheck ],
-	} );
-} );
-
 // Reset the document between tests
 beforeEach( () => {
 	document.body.innerHTML = '';
 } );
 
-describe( 'duplicate_form_label rule', () => {
+describe( 'form-field-multiple-labels rule', () => {
 	const testCases = [
 		// Passing cases
 		{
@@ -71,6 +55,17 @@ describe( 'duplicate_form_label rule', () => {
 			`,
 			shouldPass: true,
 		},
+		{
+			name: 'should pass when multiple aria-labelledby references exist',
+			html: `
+			<form>
+				<div id="label1">First</div>
+				<div id="label2">Last</div>
+				<input id="input1" type="text" aria-labelledby="label1 label2" />
+			</form>
+			`,
+			shouldPass: true,
+		},
 
 		// Failing cases
 		{
@@ -85,32 +80,23 @@ describe( 'duplicate_form_label rule', () => {
 			shouldPass: false,
 		},
 		{
-			name: 'should fail when using both label and aria-label',
+			name: 'should fail when a select has multiple labels',
 			html: `
 			<form>
-				<label for="input1">Name</label>
-				<input id="input1" type="text" aria-label="Full Name" />
+				<label for="select1">Category</label>
+				<label for="select1">Type</label>
+				<select id="select1"><option>Choose...</option></select>
 			</form>
 			`,
 			shouldPass: false,
 		},
 		{
-			name: 'should fail when using both label and aria-labelledby',
+			name: 'should fail when a textarea has multiple labels',
 			html: `
 			<form>
-				<label for="input1">Name</label>
-				<div id="label1">Full Name</div>
-				<input id="input1" type="text" aria-labelledby="label1" />
-			</form>
-			`,
-			shouldPass: false,
-		},
-		{
-			name: 'should fail when using both aria-label and aria-labelledby',
-			html: `
-			<form>
-				<div id="label1">Full Name</div>
-				<input id="input1" type="text" aria-label="Name" aria-labelledby="label1" />
+				<label for="text1">Comment</label>
+				<label for="text1">Message</label>
+				<textarea id="text1"></textarea>
 			</form>
 			`,
 			shouldPass: false,
@@ -122,13 +108,15 @@ describe( 'duplicate_form_label rule', () => {
 			document.body.innerHTML = html;
 
 			const results = await axe.run( document.body, {
-				runOnly: [ 'duplicate_form_label' ],
+				runOnly: [ 'form-field-multiple-labels' ],
 			} );
 
+			const violations = [ ...results.violations, ...results.incomplete ];
+
 			if ( shouldPass ) {
-				expect( results.violations.length ).toBe( 0 );
+				expect( violations.length ).toBe( 0 );
 			} else {
-				expect( results.violations.length ).toBeGreaterThan( 0 );
+				expect( violations.length ).toBeGreaterThan( 0 );
 			}
 		} );
 	} );

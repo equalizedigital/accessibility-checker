@@ -30,8 +30,6 @@ import tableHasHeaders from '../checks/table-has-headers';
 import missingTableHeader from '../rules/table-header-missing';
 import headingTagEmpty from '../rules/empty-heading-tag';
 import headingIsEmpty from '../checks/heading-is-empty';
-//import duplicateFormLabel from '../rules/duplicate-form-label';
-//import duplicateFormLabelCheck from '../checks/duplicate-form-label-check';
 import transcriptMissing from '../checks/has-transcript';
 import missingTranscript from '../rules/missing-transcript';
 import buttonEmpty from '../rules/empty-button';
@@ -86,7 +84,6 @@ export const rulesArray = [
 	labelExtended,
 	missingTableHeader,
 	headingTagEmpty,
-	//duplicateFormLabel,
 	missingTranscript,
 	buttonEmpty,
 	sliderPresent,
@@ -125,7 +122,6 @@ export const checksArray = [
 	ariaHiddenValidUsage,
 	tableHasHeaders,
 	headingIsEmpty,
-	//duplicateFormLabelCheck,
 	transcriptMissing,
 	buttonIsEmpty,
 	sliderDetected,
