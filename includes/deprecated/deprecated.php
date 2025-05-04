@@ -131,3 +131,17 @@ function edac_save_post( $post_ID, $post, $update ) {
 	Post_Save::delete_issue_data_on_post_trashing( $post_ID, $post, $update );
 	return $post_ID;
 }
+
+if ( ! function_exists( 'str_get_html' ) ) {
+	/**
+	 * Fallback function for Simple HTML DOM's str_get_html
+	 * Returns false to gracefully handle the missing library
+	 * 
+	 * @deprecated 1.23.0
+	 * @return false
+	 */
+	function str_get_html() {
+		_deprecated_function( __FUNCTION__, '1.23.0', 'DOMDocument' );
+		return false;
+	}
+}
