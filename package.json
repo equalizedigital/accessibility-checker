@@ -1,6 +1,6 @@
 {
   "name": "accessibility-checker",
-  "version": "1.22.1",
+  "version": "1.22.2",
   "description": "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.",
   "author": "Equalize Digital",
   "license": "GPL-2.0+",
