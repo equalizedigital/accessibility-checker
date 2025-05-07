@@ -374,34 +374,6 @@ function edac_replace_css_variables( $value, $css_array ) {
 }
 
 /**
- * Verifies if the nonce is valid and not expired.
- *
- * @param string $secret secret.
- * @param string $nonce nonce.
- * @return boolean
- */
-function edac_is_valid_nonce( $secret, $nonce ) {
-	if ( ! is_string( $nonce ) ) {
-		return false;
-	}
-	$a = explode( ',', $nonce );
-	if ( count( $a ) !== 3 ) {
-		return false;
-	}
-	$salt     = $a[0];
-	$max_time = (int) $a[1];
-	$hash     = $a[2];
-	$back     = sha1( $salt . $secret . $max_time );
-	if ( $back !== $hash ) {
-		return false;
-	}
-	if ( time() > $max_time ) {
-		return false;
-	}
-	return true;
-}
-
-/**
  * Upcoming meetups in json format
  *
  * @param string  $meetup meetup name.
