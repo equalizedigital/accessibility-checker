@@ -116,6 +116,16 @@ describe( 'Empty Link Validation', () => {
 			html: '<a href="https://example.com" aria-label="Valid"><i class="fa fa-star"></i></a>',
 			shouldPass: true,
 		},
+		{
+			name: 'should pass for link with both aria-hidden and visible content',
+			html: '<a href="https://example.com"><span aria-hidden="true">→</span>Next page</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for link with aria-hidden icon and aria-label',
+			html: '<a href="https://example.com" aria-label="Next page"><span aria-hidden="true">→</span></a>',
+			shouldPass: true,
+		},
 
 		// Failing cases
 		{
@@ -211,6 +221,16 @@ describe( 'Empty Link Validation', () => {
 		{
 			name: 'should fail for link with decorative image',
 			html: '<a href="https://example.com"><img src="icon.png" alt=""></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for link with only aria-hidden content',
+			html: '<a href="https://example.com"><span aria-hidden="true">→</span></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for link with multiple aria-hidden elements',
+			html: '<a href="https://example.com"><span aria-hidden="true">→</span><i aria-hidden="true">*</i></a>',
 			shouldPass: false,
 		},
 	];
