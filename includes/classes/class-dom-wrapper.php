@@ -1,8 +1,11 @@
 <?php
 /**
- * DOM Wrapper class to provide Simple HTML DOM compatibility
+ * DOM Wrapper class to provide Simple HTML DOM compatibility.
+ *
+ * This class serves as a wrapper to enhance compatibility with Simple HTML DOM.
  *
  * @package Accessibility_Checker
+ * @since 1.23.0
  */
 
 namespace EDAC\Inc;
@@ -40,13 +43,17 @@ class DOM_Wrapper {
 		// Convert simple selectors to XPath.
 		if ( strpos( $selector, '.' ) === 0 ) {
 			// Class selector.
-			$query = "//*[contains(@class, '" . substr( $selector, 1 ) . "')]";
+			$query = "//*[contains(@class, '" . htmlspecialchars( substr( $selector, 1 ), ENT_QUOTES, 'UTF-8' ) . "')]";
 		} else {
 			// Tag selector.
 			$query = "//{$selector}";
 		}
 		
 		$elements = $xpath->query( $query );
+
+		if ( false === $elements ) {
+			return null;
+		}
 		
 		if ( null !== $idx ) {
 			return $elements->item( $idx );

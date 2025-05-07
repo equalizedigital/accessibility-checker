@@ -1048,18 +1048,23 @@ function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
 /**
  * Create a DOMDocument from HTML string
  * 
+ * @since 1.23.0
  * @param string  $html The HTML content to parse.
  * @param boolean $wrap Whether to wrap the result in a compatibility wrapper.
  * @return \DOMDocument|\EDAC\Inc\DOM_Wrapper|false Returns DOMDocument or wrapper on success, false on failure
  */
 function edac_get_dom_from_html( $html, $wrap = false ) {
 	libxml_use_internal_errors( true );
-	$dom = new \DOMDocument();
-	$dom->loadHTML(
+	$dom     = new \DOMDocument();
+	$success = $dom->loadHTML(
 		htmlspecialchars_decode( $html, ENT_QUOTES ),
 		LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
 	);
 	libxml_clear_errors();
+
+	if ( ! $success ) {
+		return false;
+	}
 	
 	if ( $wrap ) {
 		return new \EDAC\Inc\DOM_Wrapper( $dom );
@@ -1070,6 +1075,7 @@ function edac_get_dom_from_html( $html, $wrap = false ) {
 /**
  * Parse HTML content to extract image or SVG elements
  * 
+ * @since 1.23.0
  * @param string $html The HTML content to parse.
  * @return array Array containing 'img' (string) and 'svg' (string) keys
  */
