@@ -465,66 +465,6 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
 	return round( $score * 100, 2 );
 }
 
-
-/**
- * Get info from html that we need for calculating density
- *
- * @param string $html html to parse.
- * @return boolean|array
- */
-function edac_get_body_density_data( $html ) {
-
-	if ( $html && trim( $html ) !== '' ) {
-
-		$density_dom = new simple_html_dom();
-		$density_dom->load( $html );
-
-		$body_element = $density_dom->find( 'body', 0 );
-
-		if ( ! $body_element ) {
-			return false;
-		}
-
-		// Remove the elements we shouldn't count.
-		foreach ( $body_element->find( '.edac-highlight-panel,#wpadminbar,style,script' ) as $element ) {
-			$element->remove();
-		}
-
-		if ( $body_element ) {
-
-			$body_elements_count = edac_count_dom_descendants( $body_element );
-
-			$body_content = preg_replace( '/[^A-Za-z0-9]/', '', $body_element->plaintext );
-
-			return [
-				$body_elements_count,
-				strlen( $body_content ),
-			];
-
-		}
-	}
-
-	return false;
-}
-
-
-/**
- * Recursively count elements in a dom
- *
- * @param object $dom_elements dom elements.
- * @return int
- */
-function edac_count_dom_descendants( $dom_elements ) {
-	$count = 0;
-
-	foreach ( $dom_elements->children() as $child ) {
-		++$count;
-		$count += edac_count_dom_descendants( $child ); // Recursively count descendants.
-	}
-
-	return $count;
-}
-
 /**
  * Get simplified summary
  *
@@ -640,7 +580,6 @@ function edac_get_warning_count() {
 
 	return $stored_warnings;
 }
-
 
 /**
  * Get Database Table Count
