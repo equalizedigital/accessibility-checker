@@ -135,15 +135,14 @@ function edac_save_post( $post_ID, $post, $update ) {
 if ( ! function_exists( 'str_get_html' ) ) {
 	/**
 	 * Fallback function for Simple HTML DOM's str_get_html
-	 * Accepts any arguments to match the original signature,
-	 * triggers a deprecation notice, and returns false.
+	 * Returns a wrapped DOMDocument instance for backwards compatibility
 	 *
 	 * @deprecated 1.23.0
 	 * @param mixed ...$args Original parameters passed to str_get_html().
-	 * @return false
+	 * @return \EDAC\Inc\DOM_Wrapper|false
 	 */
 	function str_get_html( ...$args ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Required for signature compatibility
 		_deprecated_function( __FUNCTION__, '1.23.0', 'DOMDocument' );
-		return false;
+		return isset( $args[0] ) ? edac_get_dom_from_html( $args[0], true ) : false;
 	}
 }
