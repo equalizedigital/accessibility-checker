@@ -384,60 +384,6 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
 }
 
 /**
- * Return the first X number of root p or div tags from html
- *
- * @param  object  $html object to parse.
- * @param  integer $paragraph_count number of paragraphs to return.
- * @return string|boolean
- */
-function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
-
-	$allowed_tags = [
-		'div'    => [],
-		'p'      => [],
-		'span'   => [],
-		'br'     => [],
-		'hr'     => [],
-		'strong' => [],
-		'b'      => [],
-		'em'     => [],
-		'i'      => [],
-	];
-
-	$html = wp_kses( $html, $allowed_tags );
-
-	// Create a new DOMDocument instance.
-	$dom = new DOMDocument();
-	$dom->loadHTML( $html );
-
-	// Find the <body> element.
-	$body_element = $dom->getElementsByTagName( 'body' )->item( 0 );
-
-	if ( $body_element ) {
-
-		$content = [];
-
-		// Loop through the child nodes of the <body> element.
-		// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- DOMDocument uses camelCase.
-		foreach ( $body_element->childNodes as $child_node ) {
-			if ( 'p' === $child_node->nodeName || 'div' === $child_node->nodeName ) {
-				$content[] = '<p>' . $child_node->textContent . '</p>';
-			}
-		}
-		// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-
-		if ( count( $content ) > 0 ) {
-			return implode(
-				PHP_EOL,
-				array_slice( $content, 0, $paragraph_count )
-			);
-		}
-	}
-
-	return false;
-}
-
-/**
  * Calculate the issue density
  *
  * @param  int $issue_count number of issues.
