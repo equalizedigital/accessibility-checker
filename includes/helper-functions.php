@@ -39,42 +39,6 @@ function edac_compare_strings( $string1, $string2 ) {
 }
 
 /**
- * Parse CSS
- *
- * @param string $css String to parse.
- * @return array
- */
-function edac_parse_css( $css ) {
-	$css       = str_replace( '@charset "UTF-8";', '', $css );
-	$css       = preg_replace( '%/\*(?:(?!\*/).)*\*/%s', ' ', $css );
-	$css_array = []; // master array to hold all values.
-	$element   = explode( '}', $css );
-	foreach ( $element as $element ) {
-		// get the name of the CSS element.
-		$a_name = explode( '{', $element );
-		$name   = $a_name[0];
-		// get all the key:value pair styles.
-		$a_styles = explode( ';', $element );
-		// remove element name from first property element.
-		$a_styles[0] = str_replace( $name . '{', '', $a_styles[0] );
-		// loop through each style and split apart the key from the value.
-		$count = count( $a_styles );
-		for ( $a = 0; $a < $count; $a++ ) {
-			if ( '' !== $a_styles[ $a ] ) {
-				$a_styles[ $a ] = str_ireplace( 'https://', '//', $a_styles[ $a ] );
-				$a_styles[ $a ] = str_ireplace( 'http://', '//', $a_styles[ $a ] );
-				$a_key_value    = explode( ':', $a_styles[ $a ] );
-				// build the master css array.
-				if ( array_key_exists( 1, $a_key_value ) ) {
-					$css_array[ trim( $name ) ][ trim( strtolower( $a_key_value[0] ) ) ] = trim( $a_key_value[1] );
-				}
-			}
-		}
-	}
-	return $css_array;
-}
-
-/**
  * Check if plugin is installed by getting all plugins from the plugins dir
  *
  * @param string $plugin_slug Slug of the plugin.
