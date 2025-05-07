@@ -171,35 +171,6 @@ function edac_filter_by_value( $items, $index, $value ) {
 }
 
 /**
- * Check if Gutenberg is Active
- *
- * @return boolean
- */
-function edac_is_gutenberg_active() {
-	$gutenberg    = false;
-	$block_editor = false;
-
-	$gutenberg = has_filter( 'replace_editor', 'gutenberg_init' );
-
-	if ( version_compare( $GLOBALS['wp_version'], '5.0-beta', '>' ) ) {
-		// Block editor.
-		$block_editor = true;
-	}
-
-	if ( ! $gutenberg && ! $block_editor ) {
-		return false;
-	}
-
-	include_once ABSPATH . 'wp-admin/includes/plugin.php';
-
-	if ( ! is_plugin_active( 'classic-editor/classic-editor.php' ) ) {
-		return true;
-	}
-
-	return ( get_option( 'classic-editor-replace' ) === 'no-replace' );
-}
-
-/**
  * Get days plugin has been active
  *
  * @return int
