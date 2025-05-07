@@ -28,7 +28,7 @@ const scan = async (
 			checks: checksArray,
 			iframes: false,
 		},
-		resultTypes: [ 'violations' ],
+		resultTypes: [ 'violations', 'incomplete' ],
 		runOptions: {
 			runOnly: {
 				type: 'rule',
@@ -67,6 +67,19 @@ const scan = async (
 						} );
 					}
 				} );
+
+				// Handle incomplete results for form-field-multiple-labels only.
+				if ( item.id === 'form-field-multiple-labels' ) { // Allow incomplete results for this rule.
+					item.incomplete.forEach( ( incompleteItem ) => {
+						violations.push( {
+							selector: incompleteItem.node.selector,
+							html: document.querySelector( incompleteItem.node.selector ).outerHTML,
+							ruleId: item.id,
+							impact: item.impact,
+							tags: item.tags,
+						} );
+					} );
+				}
 			} );
 
 			const rulesMin = rules.map( ( r ) => {
