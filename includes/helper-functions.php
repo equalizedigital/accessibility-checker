@@ -374,32 +374,6 @@ function edac_replace_css_variables( $value, $css_array ) {
 }
 
 /**
- * Generates a nonce that expires after a specified number of seconds.
- *
- * @param string $secret secret.
- * @param int    $timeout_seconds The number of seconds after which the nonce expires.
- * @return string
- */
-function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
-
-	$length      = 10;
-	$chars       = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
-	$ll          = strlen( $chars ) - 1;
-	$salt        = '';
-	$salt_length = 0;
-
-	while ( $salt_length < $length ) {
-		$salt       .= $chars[ wp_rand( 0, $ll ) ];
-		$salt_length = strlen( $salt );
-	}
-
-	$time     = time();
-	$max_time = $time + $timeout_seconds;
-
-	return $salt . ',' . $max_time . ',' . sha1( $salt . $secret . $max_time );
-}
-
-/**
  * Verifies if the nonce is valid and not expired.
  *
  * @param string $secret secret.
