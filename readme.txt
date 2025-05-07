@@ -75,9 +75,9 @@ Accessibility Checker is the best automated tool to run along with your manual a
 
 Additional paid add-ons include;
 
-* ** Audit History add-on:** track and report on changes over time.
-* ** CSV Export add-on:** export issues to CSV for management in a spreadsheet or project management tool.
-* ** Multisite add-on:** see accessibility status and manage settings for all sites in your network.
+* **Audit History add-on:** track and report on changes over time.
+* **CSV Export add-on:** export issues to CSV for management in a spreadsheet or project management tool.
+* **Multisite add-on:** see accessibility status and manage settings for all sites in your network.
 
 ### How It Works
 
@@ -93,8 +93,7 @@ If you need one-on-one email support, please consider purchasing [Accessibility 
 
 Join our [WordPress Accessibility Facebook group](https://www.facebook.com/groups/wordpress.accessibility) for community support and to connect with other developers, designers, and content creators who are working to make their websites more accessible. This is a great place to get free WP accessibility remediation assistance from others in the community.
 
-For paid Accessibility Checker customers on a small business plan or above, we provide two accessibility [office hours
-](https://equalizedigital.com/accessibility-checker/pricing/#common-pre-sale-questions) calls each month to address your remediation queries. This is an invaluable resource for those who need direct assistance and expert insights when making their sites more accessible.
+For paid Accessibility Checker customers on a small business plan or above, we provide two accessibility [office hours](https://equalizedigital.com/accessibility-checker/pricing/#common-pre-sale-questions) calls each month to address your remediation queries. This is an invaluable resource for those who need direct assistance and expert insights when making their sites more accessible.
 
 ### Multi-platform Accessibility
 
