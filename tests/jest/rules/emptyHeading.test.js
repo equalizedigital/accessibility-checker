@@ -76,6 +76,16 @@ describe( 'Empty Heading Validation', () => {
 			html: '<span id="label-text">Hidden Title</span><h1 aria-labelledby="label-text"></h1>',
 			shouldPass: true,
 		},
+		{
+			name: 'should pass when heading has both visible and aria-hidden content',
+			html: '<h4>Visible Content<span aria-hidden="true">Hidden Part</span></h4>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass with interleaved visible and aria-hidden content',
+			html: '<h1>Start <span aria-hidden="true">Hidden</span> Middle <span aria-hidden="true">Hidden Again</span> End</h1>',
+			shouldPass: true,
+		},
 		// Edge cases
 		{
 			name: 'should pass when heading contains only punctuation',
@@ -157,6 +167,21 @@ describe( 'Empty Heading Validation', () => {
 		{
 			name: 'should fail for heading with aria-labelledby referencing empty element',
 			html: '<span id="empty-label"></span><h1 aria-labelledby="empty-label"></h1>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when heading content is all aria-hidden',
+			html: '<h1><span aria-hidden="true">Hidden Content</span></h1>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when heading has multiple aria-hidden elements',
+			html: '<h2><span aria-hidden="true">First</span><div aria-hidden="true">Second</div></h2>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when heading has nested aria-hidden content',
+			html: '<h3><div aria-hidden="true"><span>Nested Hidden Content</span></div></h3>',
 			shouldPass: false,
 		},
 		// Edge cases

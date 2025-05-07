@@ -1,8 +1,25 @@
 export default {
 	id: 'heading_is_empty',
 	evaluate( node ) {
+		// Get all aria-hidden elements
+		const hiddenElements = node.querySelectorAll( '[aria-hidden="true"]' );
+
+		// Clone node to work with
+		const clone = node.cloneNode( true );
+
+		// Remove aria-hidden elements from clone
+		hiddenElements.forEach( ( el ) => {
+			const elementToRemove = Array.from( clone.querySelectorAll( '*' ) ).find( ( cloneEl ) =>
+				// Find the corresponding element in the clone by comparing content and structure
+				cloneEl.isEqualNode( el )
+			);
+			if ( elementToRemove ) {
+				elementToRemove.remove();
+			}
+		} );
+
 		// Check for visible text content (excluding just whitespace, hyphens, underscores)
-		const headingText = node.textContent.trim();
+		const headingText = clone.textContent.trim();
 		const hasValidText = headingText && ! /^[-_\s]*$/.test( headingText );
 
 		// Check for aria-label
