@@ -793,21 +793,6 @@ function edac_generate_summary_stat( string $item_class, int $count, string $lab
 }
 
 /**
- * Check if an element has an extension that matches the provided list.
- *
- * @since 1.15.0
- *
- * @param string $item A file path or URL to check.
- * @param array  $extensions An array of extensions to check for.
- *
- * @return bool True if the item has an extension that matches the list, false otherwise.
- */
-function edac_is_item_using_matching_extension( string $item, array $extensions ): bool {
-	$extension = pathinfo( $item, PATHINFO_EXTENSION );
-	return in_array( '.' . $extension, $extensions, true );
-}
-
-/**
  * Generate links to pro page with some params.
  *
  * @param array  $query_args A list of key value pairs to add as query vars to the link.
