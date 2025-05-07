@@ -1,9 +1,34 @@
 export default {
 	id: 'button_is_empty',
 	evaluate( node ) {
-		// Check for visible text content
-		const textContent = node.textContent.trim();
-		// if we have text content
+		// Get all aria-hidden and visually hidden elements
+		const getVisibleTextContent = ( element ) => {
+			const hiddenTexts = [];
+
+			// Get aria-hidden content
+			element.querySelectorAll( '[aria-hidden="true"]' ).forEach( ( el ) => {
+				hiddenTexts.push( el.cloneNode( true ).textContent );
+			} );
+
+			// Get visually hidden content
+			Array.from( element.getElementsByTagName( '*' ) ).forEach( ( el ) => {
+				const style = window.getComputedStyle( el );
+				if ( style.display === 'none' || style.visibility === 'hidden' ) {
+					hiddenTexts.push( el.textContent );
+				}
+			} );
+
+			// Remove all hidden content from text
+			let text = element.textContent;
+			hiddenTexts.forEach( ( hiddenText ) => {
+				text = text.replace( hiddenText, '' );
+			} );
+
+			return text.trim();
+		};
+
+		// Check for visible text content (excluding hidden content)
+		const textContent = getVisibleTextContent( node );
 		if ( textContent && textContent.length > 0 ) {
 			return false;
 		}
