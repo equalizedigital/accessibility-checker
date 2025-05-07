@@ -247,7 +247,7 @@ class Admin_Notices {
 	public function edac_gaad_notice() {
 
 		// Define constants for start and end dates.
-		define( 'EDAC_GAAD_NOTICE_START_DATE', '2025-04-13' );
+		define( 'EDAC_GAAD_NOTICE_START_DATE', '2025-05-13' );
 		define( 'EDAC_GAAD_NOTICE_END_DATE', '2025-05-21' );
 
 		// Check if Accessibility Checker Pro is active.
@@ -290,7 +290,7 @@ class Admin_Notices {
 		$message  = '<div class="edac_gaad_notice notice notice-info is-dismissible">';
 		$message .= '<p><strong>' . esc_html__( '🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', 'accessibility-checker' ) . '</strong><br />';
 		$message .= esc_html__( 'Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?', 'accessibility-checker' ) . '<br />';
-		$message .= '<a class="button button-primary" href="' . esc_url( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD25' ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
+		$message .= '<a class="button button-primary" href="' . esc_url( 'https://equalizedigital.com/contact/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD25' ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
 		$message .= '<a class="button button-primary" href="' . esc_url( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD25' ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		$message .= '</div>';
 

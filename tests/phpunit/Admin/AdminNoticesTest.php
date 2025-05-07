@@ -76,7 +76,7 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$message = $this->admin_notices->edac_get_gaad_promo_message();
 		$this->assertStringContainsString( 'Accessibility Checker Pro in honor of Global Accessibility Awareness Day', $message );
 		$this->assertStringContainsString( 'get access to full-site scanning', $message );
-		$this->assertStringContainsString( 'https://my.equalizedigital.com/support/pre-sale-questions/', $message );
+		$this->assertStringContainsString( 'https://equalizedigital.com/contact/', $message );
 		$this->assertStringContainsString( 'https://equalizedigital.com/accessibility-checker/pricing/', $message );
 	}
 
