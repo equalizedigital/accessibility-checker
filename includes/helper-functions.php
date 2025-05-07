@@ -325,55 +325,6 @@ function edac_get_valid_table_name( $table_name ) {
 }
 
 /**
- * Replace CSS Variables with Value
- *
- * @param string $value string to replace.
- * @param array  $css_array css array.
- * @return string
- */
-function edac_replace_css_variables( $value, $css_array ) {
-
-	if ( stripos( $value, 'var(--' ) !== false ) {
-
-		// replace strings.
-		$value = str_replace( 'var(', '', $value );
-		$value = str_replace( ')', '', $value );
-		$value = str_replace( 'calc(', '', $value );
-
-		// explode and loop through css vars.
-		$values = explode( ',', $value );
-		if ( is_array( $css_array ) ) {
-			foreach ( $values as $value ) {
-
-				// check for index in array.
-				if ( ! isset( $css_array[':root'] ) ) {
-					continue;
-				}
-
-				// check if is a css variable.
-				if ( substr( $value, 0, 2 ) === '--' && array_key_exists( $value, $css_array[':root'] ) ) {
-					$found_value = $css_array[':root'][ $value ];
-
-					// if value found break loop.
-					if ( $found_value ) {
-						break;
-					}
-				} else {
-
-					// if not a variable return value.
-					$found_value = $value;
-				}
-			}
-		}
-
-		if ( ! empty( $found_value ) ) {
-			return $found_value;
-		}
-	}
-	return $value;
-}
-
-/**
  * Upcoming meetups in json format
  *
  * @param string  $meetup meetup name.
