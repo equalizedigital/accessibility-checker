@@ -139,10 +139,10 @@ if ( ! function_exists( 'str_get_html' ) ) {
 	 *
 	 * @deprecated 1.23.0
 	 * @param mixed ...$args Original parameters passed to str_get_html().
-	 * @return \EDAC\Inc\DOM_Wrapper|false
+	 * @return false
 	 */
 	function str_get_html( ...$args ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Required for signature compatibility
 		_deprecated_function( __FUNCTION__, '1.23.0', 'DOMDocument' );
-		return isset( $args[0] ) ? edac_get_dom_from_html( $args[0], true ) : false;
+		return false;
 	}
 }
