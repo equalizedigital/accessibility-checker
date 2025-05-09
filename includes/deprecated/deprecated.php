@@ -146,3 +146,17 @@ if ( ! function_exists( 'str_get_html' ) ) {
 		return false;
 	}
 }
+
+/**
+ * Validate post content
+ *
+ * @deprecated 1.23.0 This functionality has been removed without replacement
+ *
+ * @param int    $post_ID The ID of the post.
+ * @param object $post    The post object.
+ * @param string $action  The action being performed.
+ * @return void
+ */
+function edac_validate( $post_ID, $post, $action ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Parameters kept for backwards compatibility
+	_deprecated_function( __FUNCTION__, '1.23.0', 'This functionality has been removed' );
+}
