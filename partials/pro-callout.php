@@ -37,7 +37,7 @@
 		</a>
 	</div>
 
-	<?php if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) : ?>
+	<?php if ( defined( 'EDACP_VERSION' ) ) : ?>
 		<br />
 		<a
 			class="edac-pro-callout-activate"

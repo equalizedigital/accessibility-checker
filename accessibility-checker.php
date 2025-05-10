@@ -58,14 +58,6 @@ if ( ! defined( 'EDAC_PLUGIN_FILE' ) ) {
 	define( 'EDAC_PLUGIN_FILE', __FILE__ );
 }
 
-// Accessibility New Window Warning Plugin Active.
-if ( ! defined( 'EDAC_ANWW_ACTIVE' ) ) {
-	define(
-		'EDAC_ANWW_ACTIVE',
-		is_plugin_active( 'accessibility-new-window-warnings/accessibility-new-window-warnings.php' )
-	);
-}
-
 /**
  * Key Valid.
  */
