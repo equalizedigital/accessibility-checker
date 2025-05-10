@@ -223,7 +223,7 @@ class Ajax {
 		if ( $rules ) {
 
 			// if ANWW is active remove link_blank for details meta box.
-			if ( EDAC_ANWW_ACTIVE ) {
+			if ( ANWW_VERSION ) {
 				$rules = edac_remove_element_with_value( $rules, 'slug', 'link_blank' );
 			}
 

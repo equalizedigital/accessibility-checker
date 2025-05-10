@@ -165,8 +165,8 @@ class Admin_Notices {
 	 */
 	public function edac_black_friday_notice() {
 
-		// check if accessibility checker pro is active.
-		if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
+		// Check if Accessibility Checker Pro is active.
+		if ( defined( 'EDACP_VERSION' ) ) {
 			return;
 		}
 
@@ -251,16 +251,12 @@ class Admin_Notices {
 		define( 'EDAC_GAAD_NOTICE_END_DATE', '2025-05-21' );
 
 		// Check if Accessibility Checker Pro is active.
-		$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
-		if ( $pro ) {
+		if ( defined( 'EDACP_VERSION' ) ) {
 			return;
 		}
 
-		// Get the value of the 'edac_gaad_notice_dismiss' option and sanitize it.
-		$dismissed = absint( get_option( 'edac_gaad_notice_dismiss_2025', 0 ) );
-
 		// Check if the notice has been dismissed.
-		if ( $dismissed ) {
+		if ( absint( get_option( 'edac_gaad_notice_dismiss_2025', 0 ) ) ) {
 			return;
 		}
 
@@ -270,11 +266,8 @@ class Admin_Notices {
 		// Check if the current date is within the specified range.
 		if ( $current_date >= EDAC_GAAD_NOTICE_START_DATE && $current_date <= EDAC_GAAD_NOTICE_END_DATE ) {
 
-			// Get the promotional message from a separate function/file.
-			$message = $this->edac_get_gaad_promo_message();
-
-			// Output the message with appropriate sanitization.
-			echo wp_kses_post( $message );
+			// Get and output the promotional message with appropriate sanitization.
+			echo wp_kses_post( $this->edac_get_gaad_promo_message() );
 
 		}
 	}
