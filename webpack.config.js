@@ -1,4 +1,4 @@
-/* global require, __dirname, module */
+/* global __dirname, module */
 const webpack = require( 'webpack' ); // to access built-in plugins
 const path = require( 'path' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );

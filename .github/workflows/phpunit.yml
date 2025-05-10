@@ -81,7 +81,7 @@ jobs:
         run: |
           if ! command -v svn &> /dev/null; then
             echo "Installing SVN..."
-            sudo apt-get update || { echo "Failed to update package lists"; exit 1; }
+            sudo apt-get update --allow-releaseinfo-change || { echo "Failed to update package lists"; exit 1; }
             sudo apt-get install -y subversion || { echo "Failed to install SVN"; exit 1; }
           else
             echo "SVN is already installed"

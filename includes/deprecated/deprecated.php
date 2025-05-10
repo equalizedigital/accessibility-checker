@@ -8,6 +8,7 @@
 
 use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Purge_Post_Data;
+use EDAC\Admin\Post_Save;
 
 /**
  * Alias of the is_plugin_active() function.
@@ -113,4 +114,49 @@ function edac_custom_meta_box_cb() {
 function edac_insert_rule_data( $post, $rule, $ruletype, $rule_obj ) {
 	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Insert_Rule_Data' );
 	return ( new Insert_Rule_Data() )->insert( $post, $rule, $ruletype, $rule_obj );
+}
+
+/**
+ * Post save handler
+ *
+ * @deprecated 1.23.0
+ *
+ * @param int    $post_ID The ID of the post being saved.
+ * @param object $post    The post object being saved.
+ * @param bool   $update  Whether this is an existing post being updated.
+ * @return int   The post ID.
+ */
+function edac_save_post( $post_ID, $post, $update ) {
+	_deprecated_function( __FUNCTION__, '1.23.0', 'EDAC\Admin\Post_Save::save_post' );
+	Post_Save::delete_issue_data_on_post_trashing( $post_ID, $post, $update );
+	return $post_ID;
+}
+
+if ( ! function_exists( 'str_get_html' ) ) {
+	/**
+	 * Fallback function for Simple HTML DOM's str_get_html
+	 * Returns a wrapped DOMDocument instance for backwards compatibility
+	 *
+	 * @deprecated 1.23.0
+	 * @param mixed ...$args Original parameters passed to str_get_html().
+	 * @return false
+	 */
+	function str_get_html( ...$args ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Required for signature compatibility
+		_deprecated_function( __FUNCTION__, '1.23.0', 'DOMDocument' );
+		return false;
+	}
+}
+
+/**
+ * Validate post content
+ *
+ * @deprecated 1.23.0 This functionality has been removed without replacement
+ *
+ * @param int    $post_ID The ID of the post.
+ * @param object $post    The post object.
+ * @param string $action  The action being performed.
+ * @return void
+ */
+function edac_validate( $post_ID, $post, $action ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Parameters kept for backwards compatibility
+	_deprecated_function( __FUNCTION__, '1.23.0', 'This functionality has been removed' );
 }

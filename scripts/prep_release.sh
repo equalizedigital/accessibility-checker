@@ -18,7 +18,8 @@ PACKAGE_JSON_PATH='package.json'
 README_PATH='readme.txt'
 
 echo "Getting plugin version from ${MAIN_FILE_PATH}"
-VERSION=$(cat ${MAIN_FILE_PATH} | sed -En "s/ \* Version: .*? ([0-9]+(\.[0-9]+)*)/\1/p")
+VERSION=$(grep "Version:" ${MAIN_FILE_PATH} | sed -E 's/ \* Version: ([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+
 echo "Current version: ${VERSION}"
 BUMPED_VERSION=$(npx semver ${VERSION} -i ${1})
 echo "Bumping to version: ${BUMPED_VERSION}"
@@ -43,10 +44,10 @@ git checkout -b ${RELEASE_BRANCH_NAME}
 echo
 echo "Updating version in files"
 echo
-sed -i.bak -E "s/( \* Version:[[:space:]]*).*?${VERSION}/\1${BUMPED_VERSION}/g" "${MAIN_FILE_PATH}"
-sed -i.bak -E "s/(define\( 'EDAC_VERSION', ')[^']*/\1${BUMPED_VERSION}/" "${MAIN_FILE_PATH}"
-sed -i.bak -E "s/(\"version\": \")[^\"]*/\1${BUMPED_VERSION}/" package.json
-sed -i.bak -E "s/(Stable tag: )${VERSION}/\1${BUMPED_VERSION}/" readme.txt
+sed -i.bak -E "s/( \* Version:[[:space:]]*)[0-9]+\.[0-9]+\.[0-9]+/\1${BUMPED_VERSION}/g" "${MAIN_FILE_PATH}"
+sed -i.bak -E "s/(define\( 'EDAC_VERSION', ')[0-9]+\.[0-9]+\.[0-9]+/\1${BUMPED_VERSION}/" "${MAIN_FILE_PATH}"
+sed -i.bak -E "s/(\"version\": \")[0-9]+\.[0-9]+\.[0-9]+/\1${BUMPED_VERSION}/" package.json
+sed -i.bak -E "s/(Stable tag: )[0-9]+\.[0-9]+\.[0-9]+/\1${BUMPED_VERSION}/" readme.txt
 rm  "${MAIN_FILE_PATH}.bak" "${PACKAGE_JSON_PATH}.bak" "${README_PATH}.bak"
 
 echo

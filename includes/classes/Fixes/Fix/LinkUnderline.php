@@ -10,7 +10,7 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
 /**
- * Handles the removal of tabindex attributes from focusable elements.
+ * Adds underlines to all non-navigation links.
  *
  * @since 1.16.0
  */

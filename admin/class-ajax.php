@@ -437,26 +437,9 @@ class Ajax {
 						$ignore_global           = (int) $row['ignre_global'];
 
 						// check for images and svgs in object code.
-						$object_img      = null;
-						$object_svg      = null;
-						$object_img_html = str_get_html( htmlspecialchars_decode( $row['object'], ENT_QUOTES ) );
-						if ( $object_img_html ) {
-							$object_img_elements = $object_img_html->find( 'img' );
-							$object_svg_elements = $object_img_html->find( 'svg' );
-							if ( $object_img_elements ) {
-								foreach ( $object_img_elements as $element ) {
-									$object_img = $element->getAttribute( 'src' );
-									if ( $object_img ) {
-										break;
-									}
-								}
-							} elseif ( $object_svg_elements ) {
-								foreach ( $object_svg_elements as $element ) {
-									$object_svg = $element;
-									break;
-								}
-							}
-						}
+						$media      = edac_parse_html_for_media( $row['object'] );
+						$object_img = $media['img'];
+						$object_svg = $media['svg'];
 
 						$html .= '<h4 class="screen-reader-text">Issue ID ' . $id . '</h4>';
 
@@ -587,22 +570,13 @@ class Ajax {
 
 		}
 
-		$post_id                        = (int) $_REQUEST['post_id'];
-		$html                           = '';
-		$simplified_summary             = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
-		$simplified_summary_position    = get_option( 'edac_simplified_summary_position', $default = false );
-		$content_post                   = get_post( $post_id );
-		$content                        = $content_post->post_content;
-		$content                        = apply_filters( 'the_content', $content );
-		$oxygen_builder_shortcodes_meta = get_post_meta( $post_id, 'ct_builder_shortcodes', true );
-
-		// add oxygen builder shortcode content to readability scan.
-		if ( $oxygen_builder_shortcodes_meta ) {
-			$oxygen_builder_shortcodes = do_shortcode( $oxygen_builder_shortcodes_meta );
-			if ( $oxygen_builder_shortcodes ) {
-				$content .= $oxygen_builder_shortcodes;
-			}
-		}
+		$post_id                     = (int) $_REQUEST['post_id'];
+		$html                        = '';
+		$simplified_summary          = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
+		$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
+		$content_post                = get_post( $post_id );
+		$content                     = $content_post->post_content;
+		$content                     = apply_filters( 'the_content', $content );
 
 		/**
 		 * Filter the content used for reading grade readability analysis.

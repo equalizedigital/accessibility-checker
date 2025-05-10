@@ -20,6 +20,7 @@ const ambiguousPhrases = [
 	__( 'button', 'accessibility-checker' ),
 	__( 'keep reading', 'accessibility-checker' ),
 	__( 'learn more', 'accessibility-checker' ),
+	__( 'opens a new window', 'accessibility-checker' ),
 ];
 
 const checkAmbiguousPhrase = ( text ) => {

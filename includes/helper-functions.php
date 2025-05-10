@@ -39,42 +39,6 @@ function edac_compare_strings( $string1, $string2 ) {
 }
 
 /**
- * Parse CSS
- *
- * @param string $css String to parse.
- * @return array
- */
-function edac_parse_css( $css ) {
-	$css       = str_replace( '@charset "UTF-8";', '', $css );
-	$css       = preg_replace( '%/\*(?:(?!\*/).)*\*/%s', ' ', $css );
-	$css_array = []; // master array to hold all values.
-	$element   = explode( '}', $css );
-	foreach ( $element as $element ) {
-		// get the name of the CSS element.
-		$a_name = explode( '{', $element );
-		$name   = $a_name[0];
-		// get all the key:value pair styles.
-		$a_styles = explode( ';', $element );
-		// remove element name from first property element.
-		$a_styles[0] = str_replace( $name . '{', '', $a_styles[0] );
-		// loop through each style and split apart the key from the value.
-		$count = count( $a_styles );
-		for ( $a = 0; $a < $count; $a++ ) {
-			if ( '' !== $a_styles[ $a ] ) {
-				$a_styles[ $a ] = str_ireplace( 'https://', '//', $a_styles[ $a ] );
-				$a_styles[ $a ] = str_ireplace( 'http://', '//', $a_styles[ $a ] );
-				$a_key_value    = explode( ':', $a_styles[ $a ] );
-				// build the master css array.
-				if ( array_key_exists( 1, $a_key_value ) ) {
-					$css_array[ trim( $name ) ][ trim( strtolower( $a_key_value[0] ) ) ] = trim( $a_key_value[1] );
-				}
-			}
-		}
-	}
-	return $css_array;
-}
-
-/**
  * Check if plugin is installed by getting all plugins from the plugins dir
  *
  * @param string $plugin_slug Slug of the plugin.
@@ -129,18 +93,6 @@ function edac_ordinal( $number ) {
 }
 
 /**
- * Remove child nodes with simple dom
- *
- * @param simple_html_dom_node $parent_node The parent node.
- * @return string
- */
-function edac_simple_dom_remove_child( simple_html_dom_node $parent_node ) {
-	$parent_node->innertext = '';
-
-	return $parent_node->save();
-}
-
-/**
  * Remove element from multidimensional array
  *
  * @param array  $items The multidimensional array.
@@ -180,35 +132,6 @@ function edac_filter_by_value( $items, $index, $value ) {
 		return array_values( $newarray );
 	}
 	return [];
-}
-
-/**
- * Check if Gutenberg is Active
- *
- * @return boolean
- */
-function edac_is_gutenberg_active() {
-	$gutenberg    = false;
-	$block_editor = false;
-
-	$gutenberg = has_filter( 'replace_editor', 'gutenberg_init' );
-
-	if ( version_compare( $GLOBALS['wp_version'], '5.0-beta', '>' ) ) {
-		// Block editor.
-		$block_editor = true;
-	}
-
-	if ( ! $gutenberg && ! $block_editor ) {
-		return false;
-	}
-
-	include_once ABSPATH . 'wp-admin/includes/plugin.php';
-
-	if ( ! is_plugin_active( 'classic-editor/classic-editor.php' ) ) {
-		return true;
-	}
-
-	return ( get_option( 'classic-editor-replace' ) === 'no-replace' );
 }
 
 /**
@@ -303,70 +226,6 @@ function edac_post_types() {
 }
 
 /**
- * String Get HTML
- *
- * @param string  $str string to parse.
- * @param boolean $lowercase lowercase.
- * @param boolean $force_tags_closed force tags closed.
- * @param string  $target_charset target charset.
- * @param boolean $strip_rn strip rn.
- * @param string  $default_br_text default br text.
- * @param string  $default_span_text default span text.
- * @return object|false
- */
-function edac_str_get_html(
-	$str,
-	$lowercase = true,
-	$force_tags_closed = true,
-	$target_charset = DEFAULT_TARGET_CHARSET,
-	$strip_rn = true,
-	$default_br_text = DEFAULT_BR_TEXT,
-	$default_span_text = DEFAULT_SPAN_TEXT
-) {
-	$dom = new EDAC_Dom(
-		null,
-		$lowercase,
-		$force_tags_closed,
-		$target_charset,
-		$strip_rn,
-		$default_br_text,
-		$default_span_text
-	);
-
-	if ( empty( $str ) || strlen( $str ) > MAX_FILE_SIZE ) {
-		$dom->clear();
-		return false;
-	}
-
-	return $dom->load( $str, $lowercase, $strip_rn );
-}
-
-/**
- * Remove elements from the dom by css_selector
- *
- * @param simple_html_dom $dom .
- * @param array           $css_selectors array .
- * @return simple_html_dom
- */
-function edac_remove_elements( $dom, $css_selectors = [] ) {
-
-	if ( $dom ) {
-
-		foreach ( $css_selectors as $css_selector ) {
-			$elements = $dom->find( $css_selector );
-			foreach ( $elements as $element ) {
-				if ( null !== $element ) {
-					$element->remove();
-				}
-			}
-		}
-	}
-
-	return $dom;
-}
-
-
-/**
  * This function validates a table name against WordPress naming conventions and checks its existence in the database.
  *
  * The function first checks if the provided table name only contains alphanumeric characters, underscores, or hyphens.
@@ -398,109 +257,6 @@ function edac_get_valid_table_name( $table_name ) {
 	}
 
 	return $table_name;
-}
-
-/**
- * Replace CSS Variables with Value
- *
- * @param string $value string to replace.
- * @param array  $css_array css array.
- * @return string
- */
-function edac_replace_css_variables( $value, $css_array ) {
-
-	if ( stripos( $value, 'var(--' ) !== false ) {
-
-		// replace strings.
-		$value = str_replace( 'var(', '', $value );
-		$value = str_replace( ')', '', $value );
-		$value = str_replace( 'calc(', '', $value );
-
-		// explode and loop through css vars.
-		$values = explode( ',', $value );
-		if ( is_array( $css_array ) ) {
-			foreach ( $values as $value ) {
-
-				// check for index in array.
-				if ( ! isset( $css_array[':root'] ) ) {
-					continue;
-				}
-
-				// check if is a css variable.
-				if ( substr( $value, 0, 2 ) === '--' && array_key_exists( $value, $css_array[':root'] ) ) {
-					$found_value = $css_array[':root'][ $value ];
-
-					// if value found break loop.
-					if ( $found_value ) {
-						break;
-					}
-				} else {
-
-					// if not a variable return value.
-					$found_value = $value;
-				}
-			}
-		}
-
-		if ( ! empty( $found_value ) ) {
-			return $found_value;
-		}
-	}
-	return $value;
-}
-
-/**
- * Generates a nonce that expires after a specified number of seconds.
- *
- * @param string $secret secret.
- * @param int    $timeout_seconds The number of seconds after which the nonce expires.
- * @return string
- */
-function edac_generate_nonce( $secret, $timeout_seconds = 120 ) {
-
-	$length      = 10;
-	$chars       = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
-	$ll          = strlen( $chars ) - 1;
-	$salt        = '';
-	$salt_length = 0;
-
-	while ( $salt_length < $length ) {
-		$salt       .= $chars[ wp_rand( 0, $ll ) ];
-		$salt_length = strlen( $salt );
-	}
-
-	$time     = time();
-	$max_time = $time + $timeout_seconds;
-
-	return $salt . ',' . $max_time . ',' . sha1( $salt . $secret . $max_time );
-}
-
-/**
- * Verifies if the nonce is valid and not expired.
- *
- * @param string $secret secret.
- * @param string $nonce nonce.
- * @return boolean
- */
-function edac_is_valid_nonce( $secret, $nonce ) {
-	if ( ! is_string( $nonce ) ) {
-		return false;
-	}
-	$a = explode( ',', $nonce );
-	if ( count( $a ) !== 3 ) {
-		return false;
-	}
-	$salt     = $a[0];
-	$max_time = (int) $a[1];
-	$hash     = $a[2];
-	$back     = sha1( $salt . $secret . $max_time );
-	if ( $back !== $hash ) {
-		return false;
-	}
-	if ( time() > $max_time ) {
-		return false;
-	}
-	return true;
 }
 
 /**
@@ -628,60 +384,6 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
 }
 
 /**
- * Return the first X number of root p or div tags from html
- *
- * @param  object  $html object to parse.
- * @param  integer $paragraph_count number of paragraphs to return.
- * @return string|boolean
- */
-function edac_truncate_html_content( $html, $paragraph_count = 1 ) {
-
-	$allowed_tags = [
-		'div'    => [],
-		'p'      => [],
-		'span'   => [],
-		'br'     => [],
-		'hr'     => [],
-		'strong' => [],
-		'b'      => [],
-		'em'     => [],
-		'i'      => [],
-	];
-
-	$html = wp_kses( $html, $allowed_tags );
-
-	// Create a new DOMDocument instance.
-	$dom = new DOMDocument();
-	$dom->loadHTML( $html );
-
-	// Find the <body> element.
-	$body_element = $dom->getElementsByTagName( 'body' )->item( 0 );
-
-	if ( $body_element ) {
-
-		$content = [];
-
-		// Loop through the child nodes of the <body> element.
-		// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- DOMDocument uses camelCase.
-		foreach ( $body_element->childNodes as $child_node ) {
-			if ( 'p' === $child_node->nodeName || 'div' === $child_node->nodeName ) {
-				$content[] = '<p>' . $child_node->textContent . '</p>';
-			}
-		}
-		// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-
-		if ( count( $content ) > 0 ) {
-			return implode(
-				PHP_EOL,
-				array_slice( $content, 0, $paragraph_count )
-			);
-		}
-	}
-
-	return false;
-}
-
-/**
  * Calculate the issue density
  *
  * @param  int $issue_count number of issues.
@@ -707,66 +409,6 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
 	);
 
 	return round( $score * 100, 2 );
-}
-
-
-/**
- * Get info from html that we need for calculating density
- *
- * @param string $html html to parse.
- * @return boolean|array
- */
-function edac_get_body_density_data( $html ) {
-
-	if ( $html && trim( $html ) !== '' ) {
-
-		$density_dom = new simple_html_dom();
-		$density_dom->load( $html );
-
-		$body_element = $density_dom->find( 'body', 0 );
-
-		if ( ! $body_element ) {
-			return false;
-		}
-
-		// Remove the elements we shouldn't count.
-		foreach ( $body_element->find( '.edac-highlight-panel,#wpadminbar,style,script' ) as $element ) {
-			$element->remove();
-		}
-
-		if ( $body_element ) {
-
-			$body_elements_count = edac_count_dom_descendants( $body_element );
-
-			$body_content = preg_replace( '/[^A-Za-z0-9]/', '', $body_element->plaintext );
-
-			return [
-				$body_elements_count,
-				strlen( $body_content ),
-			];
-
-		}
-	}
-
-	return false;
-}
-
-
-/**
- * Recursively count elements in a dom
- *
- * @param object $dom_elements dom elements.
- * @return int
- */
-function edac_count_dom_descendants( $dom_elements ) {
-	$count = 0;
-
-	foreach ( $dom_elements->children() as $child ) {
-		++$count;
-		$count += edac_count_dom_descendants( $child ); // Recursively count descendants.
-	}
-
-	return $count;
 }
 
 /**
@@ -885,7 +527,6 @@ function edac_get_warning_count() {
 	return $stored_warnings;
 }
 
-
 /**
  * Get Database Table Count
  *
@@ -914,106 +555,6 @@ function edac_database_table_count( $table ) {
 }
 
 /**
- * Add a scheme to file it looks like a url but doesn't have one.
- *
- * @since 1.10.1
- *
- * @param  string $file The filename.
- * @param  string $site_protocol The site protocol. Default is 'https'.
- *
- * @return string The filename unchanged if it doesn't look like a URL, or with a scheme added if it does.
- */
-function edac_url_add_scheme_if_not_existing( string $file, string $site_protocol = '' ): string {
-
-	// if it starts with some valid scheme return unchanged.
-	$valid_schemes = [ 'http', 'https', 'ftp', 'ftps', 'mailto', 'tel', 'file', 'data', 'irc', 'ssh', 'sftp' ];
-	$start_of_file = substr( $file, 0, 6 );
-	foreach ( $valid_schemes as $scheme ) {
-		if ( str_starts_with( $start_of_file, $scheme ) ) {
-			return $file;
-		}
-	}
-
-	// if it starts with / followed by any alphanumeric assume it's a relative url.
-	if ( preg_match( '/^\/[a-zA-Z0-9]/', $file ) ) {
-		return $file;
-	}
-
-	// by this point it doesn't seem like a url or a relative path so make it into one.
-	$file_location = ltrim( $file, '/' );
-	$site_scheme   = ( ! empty( $site_protocol ) )
-		? $site_protocol
-		: ( is_ssl() ? 'https' : 'http' );
-
-	return "{$site_scheme}://{$file_location}";
-}
-
-/**
- * Requests the headers of a URL to check if it exists.
- *
- * @since 1.10.1
- *
- * @param string $url the url to check.
- * @param int    $timeout the timeout in seconds. Default is 5.
- * @return bool
- */
-function edac_url_exists( string $url, int $timeout = 5 ): bool {
-
-	$response = wp_remote_head(
-		$url,
-		[
-			'timeout' => $timeout,
-		]
-	);
-
-	if (
-		is_wp_error( $response ) ||
-		( // Check if the response code is not in the 2xx range.
-			wp_remote_retrieve_response_code( $response ) < 200 ||
-			wp_remote_retrieve_response_code( $response ) > 299
-		)
-	) {
-		return false;
-	}
-
-	return true;
-}
-
-/**
- * Get a file from local or remote source as a binary file handle.
- *
- * @since 1.10.1
- *
- * @param string $filename The file location, either local or a remote URL.
- * @return resource|bool The file binary string or false if the file could not be opened.
- */
-function edac_get_file_opened_as_binary( string $filename ) {
-	if (
-		str_starts_with( $filename, 'http' ) ||
-		preg_match( '/^\/[a-zA-Z0-9]/', $filename )
-	) {
-		$file = $filename;
-	} else {
-		$file       = edac_url_add_scheme_if_not_existing( $filename );
-		$url_exists = edac_url_exists( $file );
-	}
-
-	// if this url doesn't exist, return false.
-	if ( isset( $url_exists ) && false === $url_exists ) {
-		return false;
-	}
-
-	try {
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen, WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- path validated above.
-		$fh = fopen( $file, 'rb' );
-	} catch ( Exception $e ) {
-		return false;
-	}
-
-	return $fh;
-}
-
-/**
  * Generate a summary statistic list item.
  *
  * @since 1.14.0
@@ -1028,27 +569,12 @@ function edac_generate_summary_stat( string $item_class, int $count, string $lab
 	$has_error_class = ( $count > 0 ) ? ' has-errors' : '';
 
 	return '
-        <li class="edac-summary-stat ' . $item_class . $has_error_class . '" aria-label="' . $label . '">
-            <div class="edac-panel-number">
-                ' . $count . '
-            </div>
-            <div class="edac-panel-number-label">' . $label . '</div>
-        </li>';
-}
-
-/**
- * Check if an element has an extension that matches the provided list.
- *
- * @since 1.15.0
- *
- * @param string $item A file path or URL to check.
- * @param array  $extensions An array of extensions to check for.
- *
- * @return bool True if the item has an extension that matches the list, false otherwise.
- */
-function edac_is_item_using_matching_extension( string $item, array $extensions ): bool {
-	$extension = pathinfo( $item, PATHINFO_EXTENSION );
-	return in_array( '.' . $extension, $extensions, true );
+		<li class="edac-summary-stat ' . $item_class . $has_error_class . '" aria-label="' . $label . '">
+			<div class="edac-panel-number">
+				' . $count . '
+			</div>
+			<div class="edac-panel-number-label">' . $label . '</div>
+		</li>';
 }
 
 /**
@@ -1119,4 +645,86 @@ function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
 	}
 
 	return wc_get_page_id( 'checkout' ) === $post_id;
+}
+
+/**
+ * Parse HTML content to extract image or SVG elements
+ * 
+ * @param string $html The HTML content to parse.
+ * @return array Array containing 'img' (string) and 'svg' (string) keys.
+ */
+function edac_parse_html_for_media( $html ) {
+	if ( empty( $html ) ) {
+		return [
+			'img' => null,
+			'svg' => null,
+		];
+	}
+
+	// Decode HTML entities before processing.
+	$decoded_html = html_entity_decode( $html, ENT_QUOTES | ENT_HTML5 );
+
+	// Early return if no media tags found.
+	if ( stripos( $decoded_html, '<img' ) === false && stripos( $decoded_html, '<svg' ) === false ) {
+		return [
+			'img' => null,
+			'svg' => null,
+		];
+	}
+
+	// More specific img tag regex pattern.
+	if ( preg_match( '/<img[^>]+src=([\'"])(.*?)\1[^>]*>/i', $decoded_html, $matches ) ) {
+		return [
+			'img' => $matches[2] ?? null,
+			'svg' => null,
+		];
+	}
+
+	// SVG pattern remains the same.
+	if ( preg_match( '/<svg[^>]*>.*?<\/svg>/is', $decoded_html, $matches ) ) {
+		return [
+			'img' => null,
+			'svg' => $matches[0],
+		];
+	}
+
+	return [
+		'img' => null,
+		'svg' => null,
+	];
+}
+
+/**
+ * Remove corrected posts
+ *
+ * @param int    $post_ID The ID of the post.
+ * @param string $type    The type of the post.
+ * @param int    $pre     The flag indicating the removal stage (1 for before validation php based rules, 2 for after validation).
+ * @param string $ruleset    The type of the ruleset to correct (php or js). For backwards compatibility, defaults to 'php'.
+ *
+ * @return void
+ */
+function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php' ) {  // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- $ruleset is for backwards compatibility.
+	global $wpdb;
+
+	$rules = edac_register_rules();
+
+	if ( 0 === count( $rules ) ) {
+		return;
+	}
+
+	$sql = 1 === $pre
+		? "UPDATE {$wpdb->prefix}accessibility_checker SET recordcheck = %d WHERE siteid = %d AND postid = %d AND type = %s"
+		: "DELETE FROM {$wpdb->prefix}accessibility_checker WHERE recordcheck = %d AND siteid = %d AND postid = %d AND type = %s";
+
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+	$wpdb->query(
+		$wpdb->prepare(
+			$sql, // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared
+			0,
+			get_current_blog_id(),
+			$post_ID,
+			$type
+		)
+	);
 }
