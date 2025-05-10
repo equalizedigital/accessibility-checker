@@ -242,7 +242,7 @@ class Admin_Notices {
 	/**
 	 * GAAD Notice
 	 *
-	 * @return string
+	 * @return void
 	 */
 	public function edac_gaad_notice() {
 
@@ -255,8 +255,11 @@ class Admin_Notices {
 			return;
 		}
 
+		// Get the value of the 'edac_gaad_notice_dismiss' option and sanitize it.
+		$dismissed = absint( get_option( 'edac_gaad_notice_dismiss_2025', 0 ) );
+
 		// Check if the notice has been dismissed.
-		if ( absint( get_option( 'edac_gaad_notice_dismiss_2025', 0 ) ) ) {
+		if ( $dismissed ) {
 			return;
 		}
 
@@ -266,8 +269,11 @@ class Admin_Notices {
 		// Check if the current date is within the specified range.
 		if ( $current_date >= EDAC_GAAD_NOTICE_START_DATE && $current_date <= EDAC_GAAD_NOTICE_END_DATE ) {
 
-			// Get and output the promotional message with appropriate sanitization.
-			echo wp_kses_post( $this->edac_get_gaad_promo_message() );
+			// Get the promotional message from a separate function/file.
+			$message = $this->edac_get_gaad_promo_message();
+
+			// Output the message with appropriate sanitization.
+			echo wp_kses_post( $message );
 
 		}
 	}
