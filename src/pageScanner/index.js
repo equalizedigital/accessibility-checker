@@ -2,40 +2,11 @@
 /* global axe */
 
 import 'axe-core';
-import colorContrastFailure from './rules/color-contrast-failure';
-import underlinedText from './rules/underlined-text';
-import elementWithUnderline from './checks/element-with-underline';
-import elementIsAUTag from './checks/element-is-u-tag';
-import emptyParagraph from './rules/empty-paragraph';
-import paragraphNotEmpty from './checks/paragraph-not-empty';
-import possibleHeading from './rules/possible-heading';
-import paragraphStyledAsHeader from './checks/paragraph-styled-as-header';
-import textSmall from './rules/text-small';
-import textSizeTooSmall from './checks/text-size-too-small';
-import textJustified from './rules/text-justified';
-import textIsJustified from './checks/text-is-justified';
-import linkTargetBlank from './rules/link_target_blank';
-import linkTargetBlankWithoutInforming from './checks/link-target-blank-without-informing';
-import linkAmbiguousText from './rules/link-ambiguous-text';
-import hasAmbiguousText from './checks/has-ambiguous-text';
-import brokenAnchorLink from './rules/broken-anchor-link';
-import anchorExists from './checks/anchor-exists';
-import labelExtended from './rules/extended/label';
-import imageInputHasAlt from './checks/image-input-has-alt';
-import linkPDF from './rules/link-pdf';
-import linkMsOfficeFile from './rules/link-ms-office-file';
-
-//TODO: examples:
-//import customRule1 from './rules/custom-rule-1';
-import alwaysFail from './checks/always-fail';
-
-//TODO:
-//see: https://github.com/dequelabs/axe-core/blob/develop/doc/developer-guide.md#api-reference
-//see: https://www.deque.com/axe/core-documentation/api-documentation/
-
-//NOTE: to get no-axe baseline for memory testing:
-// set SCAN_TIMEOUT_IN_SECONDS = .01
-// comment out scan().then((results) => {
+import { rulesArray, checksArray, standardRuleIdsArray, customRuleIdsArray } from './config/rules';
+import { exclusionsArray } from './config/exclusions';
+import imgAnimated from './rules/img-animated';
+import { preScanAnimatedImages } from './checks/img-animated-check';
+import { getPageDensity } from './helpers/density';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
@@ -48,87 +19,21 @@ const postId = body.getAttribute( 'data-iframe-post-id' );
 const scan = async (
 	options = { configOptions: {}, runOptions: {} }
 ) => {
-	const context = { exclude: [ '#wpadminbar', '.edac-panel-container', '#query-monitor-main' ] };
+	const context = { exclude: exclusionsArray };
 
 	const defaults = {
 		configOptions: {
 			reporter: 'raw',
-
-			rules: [
-				//customRule1,
-				colorContrastFailure,
-				underlinedText,
-				possibleHeading,
-				emptyParagraph,
-				textSmall,
-				textJustified,
-				linkTargetBlank,
-				linkAmbiguousText,
-				linkPDF,
-				linkMsOfficeFile,
-				brokenAnchorLink,
-				labelExtended,
-			],
-			checks: [
-				alwaysFail,
-				elementIsAUTag,
-				elementWithUnderline,
-				paragraphStyledAsHeader,
-				paragraphNotEmpty,
-				textSizeTooSmall,
-				textIsJustified,
-				linkTargetBlankWithoutInforming,
-				hasAmbiguousText,
-				anchorExists,
-				imageInputHasAlt,
-			],
+			rules: rulesArray,
+			checks: checksArray,
 			iframes: false,
-
 		},
-		resultTypes: [ 'violations' ],
+		resultTypes: [ 'violations', 'incomplete' ],
 		runOptions: {
 			runOnly: {
 				type: 'rule',
-				values: [
-					'meta-viewport',
-					'blink',
-					'marquee',
-					'document-title',
-					'tabindex',
-					'html-lang-valid',
-					'html-has-lang',
-					colorContrastFailure.id,
-					underlinedText.id,
-					emptyParagraph.id,
-					possibleHeading.id,
-					textSmall.id,
-					textJustified.id,
-					linkTargetBlank.id,
-					linkAmbiguousText.id,
-					linkPDF.id,
-					linkMsOfficeFile.id,
-					brokenAnchorLink.id,
-					labelExtended.id,
-				],
+				values: [ ...standardRuleIdsArray, ...customRuleIdsArray ],
 			},
-
-			/*
-			//TODO:
-			runOnly: {
-				type: 'tag',
-				values: [
-					'wcag2a', 'wcag2aa', 'wcag2aaa',
-					'wcag21a', 'wcag21aa',
-					'wcag22aa',
-					'best-practice',
-					'ACT',
-					'section508',
-					'TTv5',
-					'experimental'
-				]
-			}
-			*/
-
 		},
 	};
 
@@ -136,6 +41,14 @@ const scan = async (
 	axe.configure( configOptions );
 
 	const runOptions = Object.assign( defaults.runOptions, options.runOptions );
+
+	// Axe core checks can't run async and to find animated gifs we need to use fetch. So this
+	// function will do that fetching and cache the results so they are available when the
+	// img_animated rule runs.
+	// NOTE: in future we should flag this and run it only if the img_animated rule is enabled.
+	if ( runOptions?.runOnly?.values?.includes( imgAnimated.id ) ) {
+		await preScanAnimatedImages();
+	}
 
 	return await axe.run( context, runOptions )
 		.then( ( rules ) => {
@@ -154,6 +67,19 @@ const scan = async (
 						} );
 					}
 				} );
+
+				// Handle incomplete results for form-field-multiple-labels only.
+				if ( item.id === 'form-field-multiple-labels' ) { // Allow incomplete results for this rule.
+					item.incomplete.forEach( ( incompleteItem ) => {
+						violations.push( {
+							selector: incompleteItem.node.selector,
+							html: document.querySelector( incompleteItem.node.selector ).outerHTML,
+							ruleId: item.id,
+							impact: item.impact,
+							tags: item.tags,
+						} );
+					} );
+				}
 			} );
 
 			const rulesMin = rules.map( ( r ) => {
@@ -189,6 +115,34 @@ const scan = async (
 		} );
 };
 
+/**
+ * Dispatch the done event to the parent window.
+ *
+ * @param {Array}  violations The violations found during the scan.
+ * @param {Array}  errorMsgs  Any error messages that occurred during the scan.
+ * @param {string} error      The error message if an error occurred during scan cleanup.
+ */
+function dispatchDoneEvent( violations, errorMsgs, error ) {
+	const [ elementCount, contentLength ] = getPageDensity( body );
+
+	const customEvent = new CustomEvent( eventName, {
+		detail: {
+			iframeId,
+			postId,
+			violations,
+			errorMsgs,
+			error,
+			densityMetrics: {
+				elementCount,
+				contentLength,
+			},
+		},
+		bubbles: false,
+	} );
+
+	top.dispatchEvent( customEvent );
+}
+
 const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 	// cleanup the timeout.
 	clearTimeout( tooLongTimeout );
@@ -200,21 +154,7 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 				axe.teardown();
 				axe = null;
 
-				// Create a custom event
-				let customEvent = new CustomEvent( eventName, {
-					detail: {
-						iframeId,
-						postId,
-						violations,
-						errorMsgs,
-						error,
-					},
-					bubbles: false,
-				} );
-
-				top.dispatchEvent( customEvent );
-
-				customEvent = null;
+				dispatchDoneEvent( violations, errorMsgs, error );
 			},
 			function() {
 				axe.teardown();
@@ -223,20 +163,7 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 				// Create a custom event
 				errorMsgs.push( '***** axe.cleanup() failed.' );
 
-				let customEvent = new CustomEvent( eventName, {
-					detail: {
-						iframeId,
-						postId,
-						violations,
-						errorMsgs,
-						error,
-					},
-					bubbles: false,
-				} );
-
-				top.dispatchEvent( customEvent );
-
-				customEvent = null;
+				dispatchDoneEvent( violations, errorMsgs, error );
 			}
 		);
 	} else {
@@ -245,20 +172,7 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 		errorMsgs.push( '***** axe.cleanup() does not exist.' );
 		axe = null;
 
-		let customEvent = new CustomEvent( eventName, {
-			detail: {
-				iframeId,
-				postId,
-				violations,
-				errorMsgs,
-				error,
-			},
-			bubbles: false,
-		} );
-
-		top.dispatchEvent( customEvent );
-
-		customEvent = null;
+		dispatchDoneEvent( violations, errorMsgs, error );
 	}
 };
 
@@ -270,9 +184,7 @@ const tooLongTimeout = setTimeout( function() {
 // Start the scan.
 scan().then( ( results ) => {
 	const violations = JSON.parse( JSON.stringify( results.violations ) );
-
 	onDone( violations );
 } ).catch( ( err ) => {
 	onDone( [], [ err.message ], true );
 } );
-

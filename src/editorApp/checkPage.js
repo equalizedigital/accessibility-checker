@@ -23,11 +23,12 @@ const postData = async ( url = '', data = {} ) => {
 
 };
 
-const saveScanResults = ( postId, violations ) => {
+const saveScanResults = ( postId, violations, densityMetrics ) => {
 	document.querySelector( '.edac-panel' ).classList.add( 'edac-panel-loading' );
 	// eslint-disable-next-line camelcase
 	postData( edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
 		violations,
+		densityMetrics,
 	} ).then( ( data ) => {
 		info( 'Saving ' + postId + ': done' );
 
@@ -84,6 +85,18 @@ const injectIframe = ( previewUrl, postID ) => {
 		body.setAttribute( 'data-iframe-post-id', postID );
 
 		if ( iframeDocument ) {
+			if ( window?.edac_editor_app?.maxAltLength ) {
+				// if the frame doesn't have window.scanOptions then create is as an object.
+				if ( ! iframeDocument.defaultView.scanOptions ) {
+					iframeDocument.defaultView.scanOptions = {};
+				}
+
+				// set the maxAlthLength for the scanOptions.
+				iframeDocument.defaultView.scanOptions = {
+					maxAltLength: window.edac_editor_app.maxAltLength,
+				};
+			}
+
 			// inject the scanner app.
 			const scannerScriptElement = iframeDocument.createElement( 'script' );
 			// eslint-disable-next-line camelcase
@@ -108,7 +121,7 @@ export const init = () => {
 			}, 1000 );
 
 			// save the scan results.
-			saveScanResults( postId, violations );
+			saveScanResults( postId, violations, event?.detail?.densityMetrics );
 		} );
 	}
 
