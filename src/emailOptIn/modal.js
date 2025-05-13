@@ -29,10 +29,10 @@ const triggerModal = ( () => {
 
 		tb_show( 'Accessibility Checker', '#TB_inline?width=600&inlineId=edac-opt-in-modal', null );
 
-		// create a loop that will wait to find the close button before trying to bind the focus trap
+		// Loop and check for the close button before trying to bind the focus trap.
 		let attempts = 0;
 		const intervalId = setInterval( () => {
-			if ( bindFocusTrap() || attempts >= 10 ) {
+			if ( bindFocusTrap() ) {
 				clearInterval( intervalId );
 			}
 			attempts++;
