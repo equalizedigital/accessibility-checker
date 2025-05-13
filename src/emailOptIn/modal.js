@@ -4,7 +4,7 @@
  * This relies on the Thickbox library that is included in WordPress core which relies on jQuery.
  */
 
-/* global tb_show */
+/* global tb_show, tb_remove */
 
 import { createFocusTrap } from 'focus-trap';
 
@@ -13,6 +13,20 @@ window.edac_email_opt_in_form = window.edac_email_opt_in_form || {};
 
 export const initOptInModal = () => {
 	window.onload = function() {
+		window.addEventListener( 'mousemove', triggerModal, { once: true } );
+		window.addEventListener( 'scroll', triggerModal, { once: true } );
+	};
+};
+
+const triggerModal = ( () => {
+	let hasRun = false;
+
+	return () => {
+		if ( hasRun ) {
+			return;
+		}
+		hasRun = true;
+
 		tb_show( 'Accessibility Checker', '#TB_inline?width=600&inlineId=edac-opt-in-modal', null );
 
 		// create a loop that will wait to find the close button before trying to bind the focus trap
@@ -24,7 +38,7 @@ export const initOptInModal = () => {
 			attempts++;
 		}, 250 );
 	};
-};
+} )();
 
 const bindFocusTrap = () => {
 	const modal = document.getElementById( 'TB_window' );
