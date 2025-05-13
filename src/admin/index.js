@@ -434,6 +434,8 @@ const edacScriptVars = edac_script_vars;
 							) {
 								// eslint-disable-next-line no-undef
 								location.reload( true );
+							} else {
+								refreshSummaryAndReadability();
 							}
 						} else {
 							// eslint-disable-next-line no-console

@@ -569,12 +569,12 @@ function edac_generate_summary_stat( string $item_class, int $count, string $lab
 	$has_error_class = ( $count > 0 ) ? ' has-errors' : '';
 
 	return '
-        <li class="edac-summary-stat ' . $item_class . $has_error_class . '" aria-label="' . $label . '">
-            <div class="edac-panel-number">
-                ' . $count . '
-            </div>
-            <div class="edac-panel-number-label">' . $label . '</div>
-        </li>';
+		<li class="edac-summary-stat ' . $item_class . $has_error_class . '" aria-label="' . $label . '">
+			<div class="edac-panel-number">
+				' . $count . '
+			</div>
+			<div class="edac-panel-number-label">' . $label . '</div>
+		</li>';
 }
 
 /**
@@ -648,71 +648,50 @@ function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
 }
 
 /**
- * Create a DOMDocument from HTML string
- * 
- * @since 1.23.0
- * @param string  $html The HTML content to parse.
- * @param boolean $wrap Whether to wrap the result in a compatibility wrapper.
- * @return \DOMDocument|\EDAC\Inc\DOM_Wrapper|false Returns DOMDocument or wrapper on success, false on failure
- */
-function edac_get_dom_from_html( $html, $wrap = false ) {
-	libxml_use_internal_errors( true );
-	$dom     = new \DOMDocument();
-	$success = $dom->loadHTML(
-		htmlspecialchars_decode( $html, ENT_QUOTES ),
-		LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
-	);
-	libxml_clear_errors();
-
-	if ( ! $success ) {
-		return false;
-	}
-	
-	if ( $wrap ) {
-		return new \EDAC\Inc\DOM_Wrapper( $dom );
-	}
-	return $dom;
-}
-
-/**
  * Parse HTML content to extract image or SVG elements
  * 
- * @since 1.23.0
  * @param string $html The HTML content to parse.
- * @return array Array containing 'img' (string) and 'svg' (string) keys
+ * @return array Array containing 'img' (string) and 'svg' (string) keys.
  */
 function edac_parse_html_for_media( $html ) {
-	$result = [
+	if ( empty( $html ) ) {
+		return [
+			'img' => null,
+			'svg' => null,
+		];
+	}
+
+	// Decode HTML entities before processing.
+	$decoded_html = html_entity_decode( $html, ENT_QUOTES | ENT_HTML5 );
+
+	// Early return if no media tags found.
+	if ( stripos( $decoded_html, '<img' ) === false && stripos( $decoded_html, '<svg' ) === false ) {
+		return [
+			'img' => null,
+			'svg' => null,
+		];
+	}
+
+	// More specific img tag regex pattern.
+	if ( preg_match( '/<img[^>]+src=([\'"])(.*?)\1[^>]*>/i', $decoded_html, $matches ) ) {
+		return [
+			'img' => $matches[2] ?? null,
+			'svg' => null,
+		];
+	}
+
+	// SVG pattern remains the same.
+	if ( preg_match( '/<svg[^>]*>.*?<\/svg>/is', $decoded_html, $matches ) ) {
+		return [
+			'img' => null,
+			'svg' => $matches[0],
+		];
+	}
+
+	return [
 		'img' => null,
 		'svg' => null,
 	];
-
-	$dom = edac_get_dom_from_html( $html );
-	if ( ! $dom ) {
-		return $result;
-	}
-	
-	$xpath = new \DOMXPath( $dom );
-	
-	// Check for img elements first.
-	$img_elements = $xpath->query( '//img' );
-	if ( $img_elements->length > 0 ) {
-		foreach ( $img_elements as $element ) {
-			$src = $element->getAttribute( 'src' );
-			if ( $src ) {
-				$result['img'] = $src;
-				break;
-			}
-		}
-	} else {
-		// If no images found, check for SVG.
-		$svg_elements = $xpath->query( '//svg' );
-		if ( $svg_elements->length > 0 ) {
-			$result['svg'] = $dom->saveHTML( $svg_elements->item( 0 ) );
-		}
-	}
-	
-	return $result;
 }
 
 /**

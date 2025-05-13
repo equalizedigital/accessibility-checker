@@ -1,5 +1,90 @@
 Newer versions can be found in readme.txt.
 
+= 1.20.0 =
+* Enhancement: Process dynamic blocks and oEmbeds more reliably in scans.
+* Enhancement: Improve detection for missing_transcripts if there are several oEmbed videos from same provider on page.
+* Fix: Ensure notice dismiss function works correctly on all pages and that review notice buttons are styled.
+* Fix: Correct some cases where pluralization of phrases could be misapplied.
+
+= 1.19.0 =
+* Enhancement: Improve the text_size_too_small check in scanner to avoid more false positives.
+* Fix: Ensure that our notifications can appear on our own admin pages.
+* Fix: No longer trigger password protected notice on other pages when scanning woocommerse checkout page.
+
+= 1.18.0 =
+* New: Add a new fix for adding a new tab/window warning to links with target="_blank".
+* Enahncement: Allow cache bypass from stats requests to force latest numbers.
+* Enhancement: Make a clear-issues endpoint more usable in different situations.
+* Removed: Removed some code that was trying to force no notifications on the plugin pages.
+
+= 1.17.0 =
+* New: Add a new fix for adding a new tab/window warning to links with target="_blank".
+* New: Add a REST endpoint to retrieve a site scan summary.
+* Enhancement: Ensure frontend highlighter can load even when Cloudflare Rocket Loader is enabled.
+* Enhancement: Only show ignore button when user can ignore issues.
+* Fix: URLs without issues would always output `0` when viewed on welcome widget.
+
+= 1.16.4 =
+* Enhancement: Improve the table header detection and validation for row headers.
+* Enhancement: Show notice on fixes settings when they are saved from options page.
+* Fixed: Don't check for possible headerif there is no text content.
+* Fixed: Multisite query fix to make sure issues are assigned correct site id.
+* Fixed: Correct where a scan link points.
+
+= 1.16.3 =
+* Enhancement: Add Fix settings to site health info panels.
+* Fixed: Corrected a string that was misplaced in a fix.
+
+= 1.16.2 =
+* Enhancement: Use better names for fix modal titles.
+* Enhancement: Improve the link_pdf rule to detect more accurately.
+* Enhancement: Improve the link_ms_office_doc rule to detect more accurately.
+* Fixed: Rely on labels for link_ambiguous_text rule first before checking just the text content.
+* Fixed: Remove a duplicatable rule empty_form_label.
+
+= 1.16.1 =
+* Fixed: Remove redundant empty_form_label rule definition.
+
+= 1.16.0 =
+* New: Introduced a system to handle automated fixes for issues that the scanner would discover.
+* New: Fix to remove or update bad tabindex values on elements.
+* New: Fix to remove title attributes in favor of preferred accessible names to elements.
+* New: Fix to add missing lang and dir attributes to the <html> element.
+* New: Fix to add skip links to pages where they are missing.
+* New: Fix to add labels to comment and search forms.
+* New: Fix to ensure that the meta viewport tag does not prevent user scaling or zooming.
+* New: Fix to ensure that focus outlines are present on focusable elements.
+* Enhancement: Improve the tabindex_modified check to handle every element with tabindex.
+* Enhancement: Improve the link_blank rule to check on fully rendered pages.
+* Enhancement: Improve the link_ambiguous_text rule to check on fully rendered pages.
+* Enhancement: Improve the broken_skip_anchor_link rule to check on fully rendered pages.
+* Enhancement: Improve the html lang and dir attribute check to on check fully rendered pages.
+* Enhancement: Improve the document title check to check on fully rendered pages.
+* Enhancement: Add a clear button to the editor to allow for .
+* Enhancement: Improved GTM iframe detection.
+* Fixed: Avoid showing 100% passed results when scans are not complete.
+* Fixed: Improve or add better aria-labels in several places.
+* Fixed: Don't flag empty paragraphs if they have aria-hidden.
+
+= 1.15.3 =
+* Enhancement: Detect missing labels on more elements.
+* Enhancement: Detect slick slider that gets initialized after the page loads.
+
+= 1.15.2 =
+* Fixed: Issue where CPT results would not be reflected in dashboard widgets and reports
+
+= 1.15.1 =
+* Fixed: Issue where a modal could result in JS error preventing display
+* Fixed: Situations where Gutenberg created new posts may not trigger the JS scan when publishing
+
+= 1.15.0 =
+* Added: WP-CLI commands to get stats and delete stats
+* Enhancement: Image inputs with alt text shouldn't flag for missing_form_label
+* Fixed: Don't flag .avif as missing transcript or video present
+* Fixed: Purge the post data if the saved post is in or is moving to the trash
+* Fixed: Handle stacking contexts for callout button in admin correctly
+* Fixed: PHP 8.4 deprecation notice fix for implicitly nullable Meta_Boxes
+
 = 1.14.3 =
 * Fixed: Allow empty_link rule to detect actually empty links
 

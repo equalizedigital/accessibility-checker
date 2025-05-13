@@ -421,7 +421,7 @@ class REST_Api {
 					$post_id,
 					'_edac_density_data',
 					[
-						$metrics['elementsCount'] ?? 0,
+						$metrics['elementCount'] ?? 0,
 						$metrics['contentLength'] ?? 0,
 					]
 				);
