@@ -132,20 +132,27 @@ function edac_save_post( $post_ID, $post, $update ) {
 	return $post_ID;
 }
 
-if ( ! function_exists( 'str_get_html' ) ) {
-	/**
-	 * Fallback function for Simple HTML DOM's str_get_html
-	 * Returns a wrapped DOMDocument instance for backwards compatibility
-	 *
-	 * @deprecated 1.23.0
-	 * @param mixed ...$args Original parameters passed to str_get_html().
-	 * @return false
-	 */
-	function str_get_html( ...$args ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Required for signature compatibility
-		_deprecated_function( __FUNCTION__, '1.23.0', 'DOMDocument' );
-		return false;
-	}
-}
+add_action(
+	'plugins_loaded',
+	function () {
+
+		if ( ! function_exists( 'str_get_html' ) ) {
+			/**
+			 * Fallback function for Simple HTML DOM's str_get_html
+			 * Returns a wrapped DOMDocument instance for backwards compatibility
+			 *
+			 * @deprecated 1.23.0
+			 * @param mixed ...$args Original parameters passed to str_get_html().
+			 * @return false
+			 */
+			function str_get_html( ...$args ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Required for signature compatibility
+				_deprecated_function( __FUNCTION__, '1.23.0', 'DOMDocument' );
+				return false;
+			}
+		}
+	},
+	100
+);
 
 /**
  * Validate post content
