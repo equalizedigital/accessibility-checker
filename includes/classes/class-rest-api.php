@@ -362,7 +362,7 @@ class REST_Api {
 						$insert_rule->insert(
 							(object) [
 								'ID'        => $post_id,
-								'post_type' => 'js',
+								'post_type' => $post_type,
 							],
 							$actual_rule_id,
 							$impact,
