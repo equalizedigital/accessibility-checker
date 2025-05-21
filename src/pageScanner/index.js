@@ -85,9 +85,10 @@ const scan = async (
 				//Build an array of the dom selectors and ruleIDs for violations/failed tests
 				item.violations.forEach( ( violation ) => {
 					if ( violation.result === 'failed' ) {
+						const el = document.querySelector( violation.node.selector );
 						violations.push( {
 							selector: violation.node.selector,
-							html: document.querySelector( violation.node.selector ).outerHTML,
+							html: el ? el.outerHTML : null,
 							ruleId: item.id,
 							impact: item.impact,
 							tags: item.tags,
@@ -98,9 +99,10 @@ const scan = async (
 				// Handle incomplete results for form-field-multiple-labels only.
 				if ( item.id === 'form-field-multiple-labels' ) { // Allow incomplete results for this rule.
 					item.incomplete.forEach( ( incompleteItem ) => {
+						const el = document.querySelector( incompleteItem.node.selector );
 						violations.push( {
 							selector: incompleteItem.node.selector,
-							html: document.querySelector( incompleteItem.node.selector ).outerHTML,
+							html: el ? el.outerHTML : null,
 							ruleId: item.id,
 							impact: item.impact,
 							tags: item.tags,
@@ -231,4 +233,3 @@ if ( isIframeContext() ) {
 		.then( ( result ) => onDone( result.violations, [], null ) )
 		.catch( ( err ) => onDone( [], [ err.message || 'Unknown error' ], err.message ) );
 }
-
