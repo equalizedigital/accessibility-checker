@@ -81,6 +81,12 @@ body {
 		position: fixed !important;
 		z-index: 2147483647 !important;
 		bottom: 15px !important;
+		touch-action: none !important; /* Required for mobile drag support */
+		-webkit-user-select: none !important; /* Safari */
+		-moz-user-select: none !important; /* Firefox */
+		-ms-user-select: none !important; /* IE10+/Edge */
+		user-select: none !important; /* Standard */
+		user-select: none; /* Prevent text selection while dragging */
 
 		@media screen and (max-width: variables.$small-screen-width) {
 			width: 100%;
@@ -312,6 +318,7 @@ body {
 				display: block !important;
 				font-weight: bold !important;
 				margin-bottom: 5px !important;
+				cursor: move !important; /* Show move cursor on the title bar */
 			}
 
 			&-close {

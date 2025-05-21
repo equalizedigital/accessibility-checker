@@ -5,6 +5,7 @@ import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
 import { __ } from '@wordpress/i18n';
+import interact from 'interactjs';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 
@@ -53,6 +54,7 @@ class AccessibilityCheckerHighlight {
 		this.originalCss = [];
 
 		this.init();
+		this.initDraggable();
 	}
 
 	/**
@@ -98,6 +100,49 @@ class AccessibilityCheckerHighlight {
 		if ( this.urlParameter ) {
 			this.panelOpen( this.urlParameter );
 		}
+	}
+
+	/**
+	 * Initialize draggable functionality for the highlight panel
+	 */
+	initDraggable() {
+		const panel = document.getElementById( 'edac-highlight-panel' );
+		if ( ! panel ) {
+			return;
+		}
+
+		let currentX = 0;
+		let currentY = 0;
+
+		interact( '#edac-highlight-panel' )
+			.draggable( {
+				allowFrom: '.edac-highlight-panel-controls-title', // Only allow dragging from the title
+				listeners: {
+					start( event ) {
+						const target = event.target;
+						const style = window.getComputedStyle( target );
+						const transform = style.transform;
+						if ( transform !== 'none' ) {
+							const matrix = new DOMMatrix( transform );
+							currentX = matrix.m41;
+							currentY = matrix.m42;
+						}
+					},
+					move( event ) {
+						currentX += event.dx;
+						currentY += event.dy;
+
+						event.target.style.transform = `translate(${ currentX }px, ${ currentY }px)`;
+					},
+				},
+				modifiers: [
+					interact.modifiers.restrictRect( {
+						restriction: 'parent',
+						endOnly: true,
+					} ),
+				],
+				inertia: true,
+			} );
 	}
 
 	/**
