@@ -19,6 +19,30 @@ const iframeId = body.getAttribute( 'data-iframe-id' );
 const eventName = body.getAttribute( 'data-iframe-event-name' );
 const postId = body.getAttribute( 'data-iframe-post-id' );
 
+/**
+ * Check if the current context the script is loaded in is a scanner iframe.
+ *
+ * @return {boolean} True if in iframe context, false otherwise.
+ */
+function isIframeContext() {
+	return !! ( body && body.hasAttribute( 'data-iframe-id' ) && body.hasAttribute( 'data-iframe-event-name' ) );
+}
+
+/**
+ * Get the iframe options from the body attributes/
+ *
+ * @return {Object} {{configOptions: {}, runOptions: {}, iframeId: string | Attribute, eventName: string | Attribute, postId: string | Attribute}}
+ */
+function getIframeOptions() {
+	return {
+		configOptions: {},
+		runOptions: {},
+		iframeId: body.getAttribute( 'data-iframe-id' ),
+		eventName: body.getAttribute( 'data-iframe-event-name' ),
+		postId: body.getAttribute( 'data-iframe-post-id' ),
+	};
+}
+
 const scan = async (
 	options = { configOptions: {}, runOptions: {} }
 ) => {
