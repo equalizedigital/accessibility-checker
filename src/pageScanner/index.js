@@ -10,6 +10,9 @@ import { getPageDensity } from './helpers/density';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
+// Hold the timeout for the scan so it can bail on long-running scans.
+let tooLongTimeout;
+
 // Read the data passed from the parent document.
 const body = document.querySelector( 'body' );
 const iframeId = body.getAttribute( 'data-iframe-id' );
@@ -175,11 +178,6 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 		dispatchDoneEvent( violations, errorMsgs, error );
 	}
 };
-
-// Fire a failed event if the scan doesn't complete on time.
-const tooLongTimeout = setTimeout( function() {
-	onDone( [], [ '***** axe scan took too long.' ], true );
-}, SCAN_TIMEOUT_IN_SECONDS * 1000 );
 
 // Start the scan.
 scan().then( ( results ) => {
