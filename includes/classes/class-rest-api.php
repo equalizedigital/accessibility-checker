@@ -12,19 +12,26 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Admin\Purge_Post_Data;
+use EDAC\Inc\Screenshot\Screenshot_Manager;
 
 /**
  * Class that initializes and handles the REST api
  */
 class REST_Api {
 
+	/**
+	 * Screenshot manager instance.
+	 *
+	 * @var Screenshot_Manager
+	 */
+	private $screenshot_manager;
 
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
+		$this->screenshot_manager = new Screenshot_Manager();
 	}
-
 
 	/**
 	 * Add the class the hooks.
@@ -33,7 +40,6 @@ class REST_Api {
 		add_action( 'init', [ $this, 'init_rest_routes' ] );
 		add_filter( 'edac_filter_js_violation_html', [ $this, 'filter_js_validation_html' ], 10, 3 );
 	}
-
 
 	/**
 	 * Add the rest routes.
@@ -246,7 +252,6 @@ class REST_Api {
 		);
 	}
 
-
 	/**
 	 * Filter the html of the js validation violation.
 	 *
@@ -292,20 +297,15 @@ class REST_Api {
 		$post_id = (int) $request['id'];
 		$post    = get_post( $post_id );
 		if ( ! is_object( $post ) ) {
-
 			return new \WP_REST_Response( [ 'message' => 'The post is not valid.' ], 400 );
 		}
 
 		$post_type  = get_post_type( $post );
 		$post_types = Helpers::get_option_as_array( 'edac_post_types' );
 		if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
-
 			return new \WP_REST_Response( [ 'message' => 'The post type is not set to be scanned.' ], 400 );
-
 		}
 
-		//phpcs:ignore Generic.Commenting.Todo.TaskFound
-		// TODO: setup a rules class for loading/filtering rules.
 		$rules             = edac_register_rules();
 		$js_rule_ids       = [];
 		$combined_rule_ids = [];
@@ -313,7 +313,6 @@ class REST_Api {
 			if ( array_key_exists( 'ruleset', $rule ) && 'js' === $rule['ruleset'] ) {
 				$js_rule_ids[] = $rule['slug'];
 
-				// Some rules can be a grouping of other checks with different ids. This tracks those combined check IDs for later mapping.
 				if ( array_key_exists( 'combines', $rule ) && ! empty( $rule['combines'] ) ) {
 					foreach ( $rule['combines'] as $combine_rule_id ) {
 						$combined_rule_ids[ $combine_rule_id ] = $rule['slug'];
@@ -323,98 +322,62 @@ class REST_Api {
 		}
 
 		try {
-
-			/**
-			 * Fires before the validation process starts.
-			 *
-			 * This is only running in the JS check context.
-			 *
-			 * @since 1.5.0
-			 *
-			 * @param int    $post_id The post ID.
-			 * @param string $type    The type of validation which is always 'js' in this path.
-			 */
 			do_action( 'edac_before_validate', $post_id, 'js' );
 
 			$violations = $request['violations'];
 
-			// set record check flag on previous error records.
 			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 1, 'js' );
 
 			if ( is_array( $violations ) && count( $violations ) > 0 ) {
-
 				foreach ( $violations as $violation ) {
-					$rule_id = $violation['ruleId'];
-
-					// If this rule is a combined rule then map it to the actual reporting rule ID.
+					$rule_id        = $violation['ruleId'];
 					$actual_rule_id = array_key_exists( $rule_id, $combined_rule_ids ) ? $combined_rule_ids[ $rule_id ] : $rule_id;
 
 					if ( in_array( $actual_rule_id, $js_rule_ids, true ) ) {
-
-						// This rule is one that we've included in our js ruleset.
-
 						$html   = apply_filters( 'edac_filter_js_violation_html', $violation['html'], $rule_id, $violation );
-						$impact = $violation['impact']; // by default, use the impact setting from the js rule.
+						$impact = $violation['impact'];
 
-						//phpcs:ignore Generic.Commenting.Todo.TaskFound
-						// TODO: setup a rules class for loading/filtering rules.
 						foreach ( $rules as $rule ) {
 							if ( $rule['slug'] === $actual_rule_id ) {
-								$impact = $rule['rule_type']; // if we are defining the rule_type in php rules config, use that instead of the js rule's impact setting.
+								$impact = $rule['rule_type'];
 							}
 						}
 
-						//phpcs:ignore Generic.Commenting.Todo.TaskFound, Squiz.PHP.CommentedOutCode.Found
-						// TODO: add support storing $violation['selector'], $violation['tags'].
-
-						/**
-						 * Fires before a rule is run against the content.
-						 *
-						 * This is only running in the JS check context.
-						 *
-						 * @since 1.5.0
-						 *
-						 * @param int    $post_id The post ID.
-						 * @param string $rule_id The rule ID.
-						 * @param string $type    The type of validation which is always 'js' in this path.
-						 */
 						do_action( 'edac_before_rule', $post_id, $actual_rule_id, 'js' );
 
-						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html );
+						// Save screenshot if one was provided.
+						$screenshot_url = null; // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+						if ( isset( $violation['screenshot'] ) && ! empty( $violation['screenshot'] ) ) {
+							$screenshot = $this->screenshot_manager->save_screenshot(
+								$post_id,
+								$actual_rule_id,
+								$violation['screenshot']
+							);
+							if ( ! is_wp_error( $screenshot ) ) {
+								$screenshot_url = $screenshot; // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+							}
+						}
 
-						/**
-						 * Fires after a rule is run against the content.
-						 *
-						 * This is only running in the JS check context.
-						 *
-						 * @since 1.5.0
-						 *
-						 * @param int    $post_id The post ID.
-						 * @param string $rule_id The rule ID.
-						 * @param string $type    The type of validation which is always 'js' in this path.
-						 */
+						$insert_rule = new Insert_Rule_Data();
+						$insert_rule->insert(
+							(object) [
+								'ID'        => $post_id,
+								'post_type' => 'js',
+							],
+							$actual_rule_id,
+							$impact,
+							$html
+						);
+
 						do_action( 'edac_after_rule', $post_id, $actual_rule_id, 'js' );
-
 					}
 				}
 			}
 
-			/**
-			 * Fires after the validation process is complete.
-			 *
-			 * This is only running in the JS check context.
-			 *
-			 * @since 1.5.0
-			 *
-			 * @param int    $post_id The post ID.
-			 * @param string $type    The type of validation which is always 'js' in this path.
-			 */
 			do_action( 'edac_after_validate', $post_id, 'js' );
 
-			// remove corrected records.
 			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 2, 'js' );
 
-			// Save the density metrics before the summary is generated.
 			$metrics = $request['densityMetrics'] ?? [ 0, 0 ];
 			if ( is_array( $metrics ) && count( $metrics ) > 0 ) {
 				update_post_meta(
@@ -427,21 +390,10 @@ class REST_Api {
 				);
 			}
 
-			// Update the summary info that is stored in meta this post.
 			( new Summary_Generator( $post_id ) )->generate_summary();
 
-			// store a record of this scan in the post's meta.
 			update_post_meta( $post_id, '_edac_post_checked_js', time() );
 
-			/**
-			 * Fires before sending the REST response ending the validation process.
-			 *
-			 * @since 1.14.0
-			 *
-			 * @param int             $post_id The post ID.
-			 * @param string          $type    The type of validation which is always 'js' in this path.
-			 * @param WP_REST_Request $request The request passed from the REST call.
-			 */
 			do_action( 'edac_validate_before_sending_rest_response', $post_id, 'js', $request );
 
 			return new \WP_REST_Response(
@@ -453,17 +405,14 @@ class REST_Api {
 			);
 
 		} catch ( \Exception $ex ) {
-
 			return new \WP_REST_Response(
 				[
 					'message' => $ex->getMessage(),
 				],
 				500
 			);
-
 		}
 	}
-
 
 	/**
 	 * REST handler that clears the cached stats about the scans
@@ -529,7 +478,6 @@ class REST_Api {
 
 		}
 	}
-
 
 	/**
 	 * REST handler that gets stats about the scans by post type
