@@ -180,26 +180,19 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 			function() {
 				axe.teardown();
 				axe = null;
-
-				dispatchDoneEvent( violations, errorMsgs, error );
+				dispatchDoneEvent( violations, errorMsgs, '' );
 			},
 			function() {
 				axe.teardown();
 				axe = null;
-
-				// Create a custom event
 				errorMsgs.push( '***** axe.cleanup() failed.' );
-
-				dispatchDoneEvent( violations, errorMsgs, error );
+				dispatchDoneEvent( violations, errorMsgs, error ? 'cleanup-failed' : '' );
 			}
 		);
 	} else {
-		error = true;
-
 		errorMsgs.push( '***** axe.cleanup() does not exist.' );
 		axe = null;
-
-		dispatchDoneEvent( violations, errorMsgs, error );
+		dispatchDoneEvent( violations, errorMsgs, 'cleanup-not-exists' );
 	}
 };
 
