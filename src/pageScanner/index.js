@@ -203,10 +203,39 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 	}
 };
 
-// Start the scan.
-scan().then( ( results ) => {
-	const violations = JSON.parse( JSON.stringify( results.violations ) );
-	onDone( violations );
-} ).catch( ( err ) => {
-	onDone( [], [ err.message ], true );
-} );
+/**
+ * Attach an axe runner to the window object to allow for running the scan from
+ * the active document.
+ *
+ * @param {Object} options Options for the accessibility scan.
+ * @return {Promise<Object>} Promise resolving to the scan result.
+ */
+window.runAccessibilityScan = async function( options = {} ) {
+	return scan( options )
+		.then( ( result ) => {
+			if ( typeof options.onComplete === 'function' ) {
+				options.onComplete( result );
+			}
+			return result;
+		} )
+		.catch( ( err ) => {
+			if ( typeof options.onComplete === 'function' ) {
+				options.onComplete( null, err );
+			}
+			throw err;
+		} );
+};
+
+// Auto-run scan and dispatch event to parent frame if in iframe context
+if ( isIframeContext() ) {
+	const iframeOptions = getIframeOptions();
+
+	tooLongTimeout = setTimeout( () => {
+		dispatchDoneEvent( [], [ 'Scan timed out' ], 'timeout' );
+	}, SCAN_TIMEOUT_IN_SECONDS * 1000 );
+
+	scan( iframeOptions )
+		.then( ( result ) => onDone( result.violations, [], null ) )
+		.catch( ( err ) => onDone( [], [ err.message || 'Unknown error' ], err.message ) );
+}
+
