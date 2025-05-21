@@ -82,6 +82,7 @@ class AccessibilityCheckerHighlight {
 			this.panelControlsFocusTrap.deactivate();
 			this.panelDescriptionFocusTrap.deactivate();
 			this.enableStyles();
+			this.resetDragPosition(); // Reset drag position variables when panel is closed
 		} );
 
 		// Close description when close button is clicked
@@ -113,6 +114,12 @@ class AccessibilityCheckerHighlight {
 
 		let currentX = 0;
 		let currentY = 0;
+
+		// Add method to reset position variables
+		this.resetDragPosition = () => {
+			currentX = 0;
+			currentY = 0;
+		};
 
 		interact( '#edac-highlight-panel' )
 			.draggable( {
@@ -594,6 +601,10 @@ class AccessibilityCheckerHighlight {
 		this.panelToggle.style.display = 'block';
 		this.removeSelectedClasses();
 		this.removeHighlightButtons();
+
+		// Reset the panel position and drag state
+		this.highlightPanel.style.transform = '';
+		this.resetDragPosition();
 
 		this.closePanel.removeEventListener( 'click', this.panelControlsFocusTrap.deactivate );
 
