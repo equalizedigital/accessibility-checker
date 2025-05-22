@@ -93,9 +93,12 @@ const edacScriptVars = edac_script_vars;
 
 		// Refresh data on summary and readability tabs
 		const refreshSummaryAndReadability = () => {
-			edacSummaryAjax( () => {
-				edacReadabilityAjax();
-				jQuery( '.edac-panel' ).removeClass( 'edac-panel-loading' );
+			return new Promise( ( resolve, reject ) => {
+				edacSummaryAjax( async () => {
+					await edacReadabilityAjax();
+					jQuery( '.edac-panel' ).removeClass( 'edac-panel-loading' );
+					resolve();
+				} );
 			} );
 		};
 
