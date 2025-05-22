@@ -9,8 +9,7 @@ namespace EDAC\Tests\Admin;
 
 use EDAC\Admin\Accessibility_Statement;
 use Yoast\WPTestUtils\BrainMonkey\TestCase;
-use BrainMonkey\Functions;
-use BrainMonkey\Actions;
+use Brain\Monkey;
 use WP_User;
 use WP_Post;
 
@@ -32,9 +31,19 @@ class AccessibilityStatementTest extends TestCase {
 	 */
 	protected function setUp(): void {
 		parent::setUp();
-		
+		Monkey\setUp();
 		$this->mock_user     = \Mockery::mock( WP_User::class );
 		$this->mock_user->ID = 1;
+	}
+
+	/**
+	 * Tear down test environment.
+	 *
+	 * @return void
+	 */
+	protected function tearDown(): void {
+		Monkey\tearDown();
+		parent::tearDown();
 	}
 
 	/**
@@ -43,22 +52,29 @@ class AccessibilityStatementTest extends TestCase {
 	 * @return void
 	 */
 	public function testAddPageCreatesPageWhenItDoesNotExist() {
-		Functions\when( 'current_user_can' )->justReturn( true );
-		Functions\when( 'wp_get_current_user' )->justReturn( $this->mock_user );
-		
-		Functions\when( 'get_page_by_path' )->justReturn( null );
-		Functions\expect( 'wp_insert_post' )->once()->with(
-			\Mockery::on(
-				function ( $arg ) {
-					return is_array( $arg ) &&
-						'Our Commitment to Web Accessibility' === $arg['post_title'] &&
-						'draft' === $arg['post_status'] &&
-						1 === $arg['post_author'] &&
-						'accessibility-statement' === $arg['post_name'] &&
-						'page' === $arg['post_type'];
-				}
-			)
-		);
+		Monkey\Functions\expect( 'current_user_can' )
+			->once()
+			->andReturn( true );
+		Monkey\Functions\expect( 'wp_get_current_user' )
+			->once()
+			->andReturn( $this->mock_user );
+		Monkey\Functions\expect( 'get_page_by_path' )
+			->once()
+			->andReturn( null );
+		Monkey\Functions\expect( 'wp_insert_post' )
+			->once()
+			->with(
+				\Mockery::on(
+					function ( $arg ) {
+						return is_array( $arg ) &&
+							'Our Commitment to Web Accessibility' === $arg['post_title'] &&
+							'draft' === $arg['post_status'] &&
+							1 === $arg['post_author'] &&
+							'accessibility-statement' === $arg['post_name'] &&
+							'page' === $arg['post_type'];
+					}
+				)
+			);
 
 		Accessibility_Statement::add_page();
 	}
@@ -69,10 +85,14 @@ class AccessibilityStatementTest extends TestCase {
 	 * @return void
 	 */
 	public function testAddPageDoesNotCreatePageWhenItAlreadyExists() {
-		Functions\when( 'current_user_can' )->justReturn( true );
-		Functions\when( 'get_page_by_path' )->justReturn( \Mockery::mock( WP_Post::class ) );
-		Functions\expect( 'wp_insert_post' )->never();
-		Functions\expect( 'wp_get_current_user' )->never(); // Should not be called if page exists.
+		Monkey\Functions\expect( 'current_user_can' )
+			->once()
+			->andReturn( true );
+		Monkey\Functions\expect( 'get_page_by_path' )
+			->once()
+			->andReturn( \Mockery::mock( WP_Post::class ) );
+		Monkey\Functions\expect( 'wp_insert_post' )->never();
+		Monkey\Functions\expect( 'wp_get_current_user' )->never();
 
 		Accessibility_Statement::add_page();
 	}
@@ -83,10 +103,12 @@ class AccessibilityStatementTest extends TestCase {
 	 * @return void
 	 */
 	public function testAddPageDoesNothingIfUserCannotActivatePlugins() {
-		Functions\when( 'current_user_can' )->justReturn( false );
-		Functions\expect( 'get_page_by_path' )->never();
-		Functions\expect( 'wp_insert_post' )->never();
-		Functions\expect( 'wp_get_current_user' )->never();
+		Monkey\Functions\expect( 'current_user_can' )
+			->once()
+			->andReturn( false );
+		Monkey\Functions\expect( 'get_page_by_path' )->never();
+		Monkey\Functions\expect( 'wp_insert_post' )->never();
+		Monkey\Functions\expect( 'wp_get_current_user' )->never();
 
 		Accessibility_Statement::add_page();
 	}
