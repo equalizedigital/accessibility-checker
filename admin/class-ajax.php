@@ -53,15 +53,13 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-1', 'Permission Denied' ) );
 
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The post ID was not set' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-2', 'The post ID was not set' ) );
 
 		}
 
@@ -70,30 +68,29 @@ class Ajax {
 
 		// password check.
 		if ( (bool) get_option( 'edac_password_protected' ) === true ) {
-			$admin_notices              = new \EDAC\Admin\Admin_Notices();
-			$notice_text                = $admin_notices->edac_password_protected_notice_text();
+			$notice_text                = ( new \EDAC\Admin\Admin_Notices() )->edac_password_protected_notice_text();
 			$html['password_protected'] = $notice_text;
 			$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
 		}
 
 		$post_id                   = (int) $_REQUEST['post_id'];
-		$summary                   = ( new Summary_Generator( $post_id ) )->generate_summary();
 		$simplified_summary_text   = '';
 		$simplified_summary_prompt = get_option( 'edac_simplified_summary_prompt' );
 		$simplified_summary        = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
-			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
+			$simplified_summary_grade = (int) floor( ( new \DaveChild\TextStatistics\TextStatistics() )->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
 
+		$generated_summary = ( new Summary_Generator( $post_id ) )->generate_summary();
+
 		$simplified_summary_text = esc_html__( 'A Simplified summary has not been included for this content.', 'accessibility-checker' );
 		if ( 'none' !== $simplified_summary_prompt ) {
-			if ( $summary['content_grade'] <= 9 ) {
+			if ( $generated_summary['content_grade'] <= 9 ) {
 				$simplified_summary_text = esc_html__( 'Your content has a reading level at or below 9th grade and does not require a simplified summary.', 'accessibility-checker' );
-			} elseif ( $summary['simplified_summary'] ) {
+			} elseif ( $generated_summary['simplified_summary'] ) {
 				if ( $simplified_summary_grade_failed ) {
 					$simplified_summary_text = esc_html__( 'The reading level of the simplified summary is too high.', 'accessibility-checker' );
 				} else {
@@ -103,24 +100,23 @@ class Ajax {
 		}
 
 		$html['content'] .= '<ul class="edac-summary-grid">';
+			$html['content'] .= '<li class="edac-summary-total" aria-label="' . $generated_summary['passed_tests'] . '% Passed Tests">';
 
-			$html['content'] .= '<li class="edac-summary-total" aria-label="' . $summary['passed_tests'] . '% Passed Tests">';
-
-				$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
+				$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $generated_summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
 					<div class="edac-summary-total-progress-circle-label">
-						<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
+						<div class="edac-panel-number">' . $generated_summary['passed_tests'] . '%</div>
 						<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
 					</div>
 					<div class="left-half-clipper">
 						<div class="first50-bar"></div>
-						<div class="value-bar" style="transform: rotate(' . $summary['passed_tests'] * 3.6 . 'deg);"></div>
+						<div class="value-bar" style="transform: rotate(' . $generated_summary['passed_tests'] * 3.6 . 'deg);"></div>
 					</div>
 				</div>';
 
 				$html['content'] .= '<div class="edac-summary-total-mobile">
-					<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
+					<div class="edac-panel-number">' . $generated_summary['passed_tests'] . '%</div>
 					<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
-					<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
+					<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $generated_summary['passed_tests'] ) . '%;"></span></div>
 				</div>';
 
 			$html['content'] .= '</li>';
@@ -128,41 +124,41 @@ class Ajax {
 			$html['content'] .= '
 				' . edac_generate_summary_stat(
 				'edac-summary-errors',
-				$summary['errors'],
+				$generated_summary['errors'],
 				/* translators: %s: Number of errors */
-					sprintf( _n( '%s Error', '%s Errors', $summary['errors'], 'accessibility-checker' ), $summary['errors'] )
+					sprintf( _n( '%s Error', '%s Errors', $generated_summary['errors'], 'accessibility-checker' ), $generated_summary['errors'] )
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-contrast',
-				$summary['contrast_errors'],
+				$generated_summary['contrast_errors'],
 				/* translators: %s: Number of contrast errors */
-					sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $summary['contrast_errors'], 'accessibility-checker' ), $summary['contrast_errors'] )
+					sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $generated_summary['contrast_errors'], 'accessibility-checker' ), $generated_summary['contrast_errors'] )
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-warnings',
-				$summary['warnings'],
+				$generated_summary['warnings'],
 				/* translators: %s: Number of warnings */
-					sprintf( _n( '%s Warning', '%s Warnings', $summary['warnings'], 'accessibility-checker' ), $summary['warnings'] )
+					sprintf( _n( '%s Warning', '%s Warnings', $generated_summary['warnings'], 'accessibility-checker' ), $generated_summary['warnings'] )
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-ignored',
-				$summary['ignored'],
+				$generated_summary['ignored'],
 				/* translators: %s: Number of ignored items */
-					sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
+					sprintf( _n( '%s Ignored Item', '%s Ignored Items', $generated_summary['ignored'], 'accessibility-checker' ), $generated_summary['ignored'] )
 			) . '
 
 		</ul>
 		<div class="edac-summary-readability">
 			<div class="edac-summary-readability-level">
 				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability icon navy.png" alt="" width="54"></div>
-				<div class="edac-panel-number' . ( ( (int) $summary['content_grade'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
-					' . $summary['readability'] . '
+				<div class="edac-panel-number' . ( ( (int) $generated_summary['content_grade'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
+					' . $generated_summary['readability'] . '
 				</div>
-				<div class="edac-panel-number-label' . ( ( (int) $summary['readability'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
+				<div class="edac-panel-number-label' . ( ( (int) $generated_summary['readability'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
 			</div>
 			<div class="edac-summary-readability-summary">
-				<div class="edac-summary-readability-summary-icon' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '"></div>
-				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
+				<div class="edac-summary-readability-summary-icon' . ( ( ( 'none' === $simplified_summary_prompt || $generated_summary['simplified_summary'] || (int) $generated_summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '"></div>
+				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $generated_summary['simplified_summary'] || (int) $generated_summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>
 		<div id="edac-summary-disclaimer" class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
@@ -170,8 +166,7 @@ class Ajax {
 
 		if ( ! $html ) {
 
-			$error = new \WP_Error( '-3', 'No summary to return' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-3', 'No summary to return' ) );
 
 		}
 
@@ -193,15 +188,13 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-1', 'Permission Denied' ) );
 
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The post ID was not set' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-2', 'The post ID was not set' ) );
 
 		}
 
@@ -214,8 +207,7 @@ class Ajax {
 		// Send error if table name is not valid.
 		if ( ! $table_name ) {
 
-			$error = new \WP_Error( '-3', 'Invalid table name' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-3', 'Invalid table name' ) );
 
 		}
 
@@ -322,8 +314,6 @@ class Ajax {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 				$expand_rule = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A ) );
 
-				$tool_tip_link = edac_documentation_link( $rule );
-
 				$html .= '<div class="edac-details-rule">';
 
 				$html .= '<div class="edac-details-rule-title">';
@@ -335,7 +325,7 @@ class Ajax {
 					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' Ignored Items</span>';
 				}
 				$html .= '</h3>';
-				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '. ' . esc_attr__( 'Opens in a new window.', 'accessibility-checker' ) . '"><span class="dashicons dashicons-info"></span></a>';
+				$html .= '<a href="' . edac_documentation_link( $rule ) . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '. ' . esc_attr__( 'Opens in a new window.', 'accessibility-checker' ) . '"><span class="dashicons dashicons-info"></span></a>';
 				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="Expand issues for ' . esc_html( $rule['title'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 
 				$html .= '</div>';
@@ -536,8 +526,7 @@ class Ajax {
 
 		if ( ! $html ) {
 
-			$error = new \WP_Error( '-4', 'No details to return' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-4', 'No details to return' ) );
 
 		}
 
@@ -558,24 +547,21 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-1', 'Permission Denied' ) );
 
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The post ID was not set' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-2', 'The post ID was not set' ) );
 
 		}
 
 		$post_id                     = (int) $_REQUEST['post_id'];
 		$html                        = '';
 		$simplified_summary          = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
-		$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
-		$content_post                = get_post( $post_id );
-		$content                     = $content_post->post_content;
+		$simplified_summary_position = get_option( 'edac_simplified_summary_position', false );
+		$content                     = get_post( $post_id )->post_content;
 		$content                     = apply_filters( 'the_content', $content );
 
 		/**
@@ -676,8 +662,7 @@ class Ajax {
 
 		if ( ! $html ) {
 
-			$error = new \WP_Error( '-3', 'No readability data to return' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-3', 'No readability data to return' ) );
 
 		}
 
@@ -697,8 +682,7 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-1', 'Permission Denied' ) );
 
 		}
 
@@ -730,14 +714,11 @@ class Ajax {
 			// Get the 'object' from the first id.
 			$first_id = $ids[0];
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- We need to get the latest value, not a cached value.
-			$object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $first_id ) );
-
-			if ( ! $object ) {
-				$error = new \WP_Error( '-2', 'No ignore data to return' );
-				wp_send_json_error( $error );
+			if ( ! ( $object_value = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $first_id ) ) ) ) {
+				wp_send_json_error( new \WP_Error( '-2', 'No ignore data to return' ) );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object ) );
+			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object_value ) );
 		} else {
 			// For small batches of IDs, we can just loop through.
 			foreach ( $ids as $id ) {
@@ -746,21 +727,17 @@ class Ajax {
 			}
 		}
 
-		$data = [
-			'ids'    => $ids,
-			'action' => $action,
-			'type'   => $type,
-			'user'   => $ignre_username,
-			'date'   => $ignre_date_formatted,
-		];
-
-		if ( ! $data ) {
-
-			$error = new \WP_Error( '-2', 'No ignore data to return' );
-			wp_send_json_error( $error );
-
-		}
-		wp_send_json_success( wp_json_encode( $data ) );
+		wp_send_json_success(
+			wp_json_encode(
+				[
+					'ids'    => $ids,
+					'action' => $action,
+					'type'   => $type,
+					'user'   => $ignre_username,
+					'date'   => $ignre_date_formatted,
+				]
+			)
+		);
 	}
 
 	/**
@@ -777,22 +754,19 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-1', 'Permission Denied' ) );
 
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The post ID was not set' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-2', 'The post ID was not set' ) );
 
 		}
 
 		if ( ! isset( $_REQUEST['summary'] ) ) {
 
-			$error = new \WP_Error( '-3', 'The summary was not set' );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-3', 'The summary was not set' ) );
 
 		}
 
@@ -803,8 +777,8 @@ class Ajax {
 			sanitize_text_field( $_REQUEST['summary'] )
 		);
 
-		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
-		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
+		$simplified_summary_value = get_post_meta( $post_id, '_edac_simplified_summary', true );
+		$simplified_summary       = $simplified_summary_value ? $simplified_summary_value : '';
 
 		wp_send_json_success( wp_json_encode( $simplified_summary ) );
 	}
