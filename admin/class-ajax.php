@@ -806,7 +806,12 @@ class Ajax {
 		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
 		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
 
-		wp_send_json_success( wp_json_encode( $simplified_summary ) );
+		$response_data = [
+			'summary' => $simplified_summary,
+			'message' => esc_html__( 'Simplified summary updated successfully.', 'accessibility-checker' ),
+		];
+
+		wp_send_json_success( wp_json_encode( $response_data ) );
 	}
 
 	/**

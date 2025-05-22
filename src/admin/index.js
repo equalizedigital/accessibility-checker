@@ -255,9 +255,19 @@ const edacScriptVars = edac_script_vars;
 								},
 							} ).done( function( doneResponse ) {
 								if ( true === doneResponse.success ) {
-									const doneResponseJSON = jQuery.parseJSON(
+									const doneResponseData = jQuery.parseJSON(
 										doneResponse.data
 									);
+
+									const form = jQuery(event.target);
+									form.find('.edac-success-message').remove();
+									const successMessageElement = jQuery('<div>')
+										.addClass('edac-success-message notice notice-success is-dismissible inline')
+										.attr('role', 'status')
+										.attr('aria-live', 'polite')
+										.css({ margin: '10px 0', padding: '10px', display: 'block' })
+										.html('<p>' + doneResponseData.message + '</p>');
+									form.find('input[type="submit"]').after(successMessageElement);
 
 									refreshSummaryAndReadability();
 								} else {
