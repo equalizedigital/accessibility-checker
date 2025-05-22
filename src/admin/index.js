@@ -215,14 +215,14 @@ const edacScriptVars = edac_script_vars;
 		/**
 		 * Ajax Readability
 		 */
-		function edacReadabilityAjax() {
+		async function edacReadabilityAjax() {
 			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {
 				return;
 			}
 
-			jQuery.ajax( {
+			await jQuery.ajax( {
 				url: ajaxurl,
 				method: 'GET',
 				data: {
