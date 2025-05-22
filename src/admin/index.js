@@ -262,7 +262,18 @@ const edacScriptVars = edac_script_vars;
 										doneResponse.data
 									);
 
-									refreshSummaryAndReadability();
+									refreshSummaryAndReadability().then( () => {
+										wp.data.dispatch( 'core/notices' ).createNotice(
+											'success',
+											'Summary saved.',
+											{
+												isDismissible: true,
+												type: 'snackbar',
+												speak: true,
+												speakType: 'assertive',
+											}
+										);
+									} );
 								} else {
 									// eslint-disable-next-line no-console
 									console.log( doneResponse );
