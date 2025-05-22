@@ -51,6 +51,13 @@ class Enqueue_Admin {
 		$post_types        = get_option( 'edac_post_types' );
 		$current_post_type = get_post_type();
 		$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+		/**
+		 * Filters the array of admin page slugs where EDAC scripts should be enqueued.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $enabled_pages Array of page slugs.
+		 */
 		$enabled_pages     = apply_filters(
 			'edac_filter_admin_scripts_slugs',
 			[
@@ -122,6 +129,13 @@ class Enqueue_Admin {
 							$post_id,
 							[ 'edac_pageScanner' => 1 ]
 						),
+						/**
+						 * Filters the maximum allowed length for image alternative text.
+						 *
+						 * @since 1.0.0
+						 *
+						 * @param int $max_alt_length The maximum alt text length.
+						 */
 						'maxAltLength' => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),
 						'version'      => EDAC_VERSION,
 						'restNonce'    => wp_create_nonce( 'wp_rest' ),
