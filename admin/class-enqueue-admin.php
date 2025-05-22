@@ -58,7 +58,7 @@ class Enqueue_Admin {
 		 *
 		 * @param array $enabled_pages Array of page slugs.
 		 */
-		$enabled_pages     = apply_filters(
+        $enabled_pages = apply_filters(
 			'edac_filter_admin_scripts_slugs',
 			[
 				'accessibility_checker',
