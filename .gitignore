@@ -25,3 +25,4 @@ dist
 
 # Exclude coverage reports
 coverage/
+coverage_report/
