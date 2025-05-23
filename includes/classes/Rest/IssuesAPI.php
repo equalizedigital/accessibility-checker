@@ -442,7 +442,7 @@ class Issues_API extends \WP_REST_Controller {
 				'
 				SELECT COUNT(*) FROM `' . $table . '`
 				WHERE siteid = %d
-				' . ( ! empty( $ids ) ? ' AND id IN (' . implode( ',', array_map( 'absint', $ids ) ) . ')' : '' ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Revisit and write a prepair helper				$this->table_name,
+				' . ( ! empty( $ids ) ? ' AND id IN (' . implode( ',', array_map( 'absint', $ids ) ) . ')' : '' ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Revisit and write a prepair helper
 				$this->query_options['siteid'] ?? get_current_blog_id()
 			)
 		); // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared

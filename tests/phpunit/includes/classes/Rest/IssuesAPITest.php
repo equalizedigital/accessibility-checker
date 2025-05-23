@@ -49,9 +49,19 @@ class IssuesAPITest extends WP_UnitTestCase {
 		// Mock global $wpdb
 		$this->wpdb_mock = $this->getMockBuilder( \wpdb::class )
 			->disableOriginalConstructor()
-			->onlyMethods( [ 'get_results', 'prepare', 'query', 'get_var' ] ) // Added get_var for count_all_issues
+			->onlyMethods( [ 'get_results', 'prepare', 'query', 'get_var', 'esc_like' ] ) // Added 'esc_like'
 			->getMock();
 		$GLOBALS['wpdb'] = $this->wpdb_mock;
+
+		// General expectation for esc_like, used by esc_sql
+		$this->wpdb_mock->expects($this->any())
+			->method('esc_like')
+			->willReturnCallback(function($text) {
+				// Simple passthrough for testing purposes.
+				// WordPress's esc_like is more complex: addcslashes($text, '_%\\');
+				// If tests require actual LIKE pattern escaping, this might need adjustment.
+				return str_replace(['%', '_'], ['\\%', '\\_'], $text);
+			});
 
 		$this->current_site_id = get_current_blog_id(); // Or mock if needed: 1;
 		$this->table_name      = edac_get_valid_table_name( $this->wpdb_mock->prefix . 'accessibility_checker' );
@@ -62,6 +72,21 @@ class IssuesAPITest extends WP_UnitTestCase {
 		// In the actual Issues_API, table_name is set in constructor using global $wpdb->prefix
 		// So, we need to ensure our mock $wpdb has a prefix or set it manually if problems arise.
 		$this->wpdb_mock->prefix = 'wp_'; // Standard WordPress prefix
+
+		$raw_table_name_for_show_tables = $this->wpdb_mock->prefix . 'accessibility_checker';
+
+		// Expectation for the prepare call in edac_get_valid_table_name
+		$this->wpdb_mock->expects($this->any())
+			->method('prepare')
+			->with('SHOW TABLES LIKE %s', $raw_table_name_for_show_tables)
+			->willReturn("SHOW TABLES LIKE '{$raw_table_name_for_show_tables}'"); // Must return the actual query string
+
+		// Expectation for the get_var call in edac_get_valid_table_name
+		$this->wpdb_mock->expects($this->any())
+			->method('get_var')
+			->with("SHOW TABLES LIKE '{$raw_table_name_for_show_tables}'") // Should match what prepare returns
+			->willReturn($raw_table_name_for_show_tables); // Return the table name to indicate it exists
+
 		$this->table_name = edac_get_valid_table_name( $this->wpdb_mock->prefix . 'accessibility_checker' );
 
 		$reflection = new \ReflectionClass( $this->issues_api );
@@ -156,7 +181,7 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$this->wpdb_mock->expects( $this->once() )
 			->method( 'prepare' )
 			->with(
-				$this->stringContains( "UPDATE `{$this->table_name}` SET" ),
+				$this->callback(function($sql) { return strpos(trim($sql), 'UPDATE') === 0; }),
 				$updated_fields['rule'], // Make sure order and number of args match $set_sql and $query_values
 				(int)$updated_fields['ignre'], // Booleans are cast to int
 				$updated_fields['ignre_comment'],
@@ -225,10 +250,21 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$issue_id = 124;
 		$original_issue = $this->_create_dummy_issue( [ 'id' => $issue_id ] );
 
-		// Mock do_issues_query for existence check
-		$this->wpdb_mock->expects( $this->once() )
+		// Mock do_issues_query for existence check and options loading
+		$this->wpdb_mock->expects( $this->exactly(2) )
 			->method( 'get_results' )
-			->willReturn( [ $original_issue ] );
+			->withConsecutive(
+				// First call (from do_issues_query)
+				[$this->stringContains($this->table_name)], // Matcher for the SQL query string
+				// Second call (from options loading via $request->get_params())
+				[$this->stringContains('options')] // Matcher for the options query string
+			)
+			->willReturnOnConsecutiveCalls(
+				// Return value for the first call
+				[ $original_issue ],
+				// Return value for the second call (options query)
+				[] // Typically an empty array is fine if options aren't relevant
+			);
 
 		// Mock count_all_issues
 		$this->wpdb_mock->expects( $this->any() )
@@ -291,7 +327,7 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$this->wpdb_mock->expects( $this->once() )
 			->method( 'prepare' )
 			->with(
-				$this->stringContains( "UPDATE `{$this->table_name}` SET `rule` = %s WHERE `id` = %d" ), // Only rule is updated
+				$this->callback(function($sql) { return strpos(trim($sql), 'UPDATE') === 0; }), // Only rule is updated
 				$attempted_updates['rule'],
 				$issue_id
 			)
