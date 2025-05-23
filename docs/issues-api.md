@@ -132,34 +132,76 @@ GET /wp-json/accessibility-checker/v1/issues/123
 
 ### PUT /issues/{id}
 
-Updates an existing issue.
-**Note:** The current implementation of this endpoint maps to the `create_issue` method. This means it expects the same parameters as `POST /issues` and will attempt to create a new issue. The behavior for "updating" an existing issue with this endpoint is therefore not a standard PUT operation and its direct utility for updates is unclear. It effectively acts like `POST /issues` but with an ID in the URL (which is not typically used by the creation logic).
+Updates an existing issue identified by its ID. This endpoint allows for modifying one or more properties of an issue.
+
+**Request URL:** `PUT /wp-json/accessibility-checker/v1/issues/{id}`
+
+**Authentication:** Requires the `manage_options` capability.
 
 **Path Parameters:**
 
-| Parameter | Type    | Description          |
-|-----------|---------|----------------------|
-| `id`      | integer | The ID of the issue. |
+| Parameter | Type    | Required | Description               |
+|-----------|---------|----------|---------------------------|
+| `id`      | integer | Yes      | The ID of the issue to update. |
 
-**Request Body Parameters:** (Same as `POST /issues`)
+**Request Body Parameters:**
 
-| Parameter  | Type    | Required | Description                                      |
-|------------|---------|----------|--------------------------------------------------|
-| `postid`   | integer | Yes      | The ID of the post to associate the issue with.  |
-| `rule`     | string  | Yes      | The specific accessibility rule violated.        |
-| `ruletype` | string  | Yes      | The type of rule (e.g., 'EDAC', 'WCAG2AA').      |
-| `object`   | string  | Yes      | The HTML snippet or identifier of the element.   |
-| `user`     | integer | Yes      | The user ID to associate with creating the issue. |
+Any of the following fields can be included in the request body to update the corresponding issue property. All fields are optional.
 
-**Response:** (Same as `POST /issues`)
-*   Status: `201 Created` if a new record is technically created by the underlying `create_issue` call.
-*   Body:
+| Parameter       | Type    | Description                                                                 |
+|-----------------|---------|-----------------------------------------------------------------------------|
+| `postid`        | integer | The ID of the post associated with the issue.                               |
+| `type`          | string  | The type of issue (e.g., "error", "warning").                               |
+| `rule`          | string  | The specific accessibility rule that was violated.                          |
+| `ruletype`      | string  | The type of rule (e.g., "EDAC", "WCAG2AA").                                 |
+| `object`        | string  | The HTML object or element that caused the issue.                           |
+| `recordcheck`   | boolean | Indicates if the record was checked (true/false).                           |
+| `user`          | integer | The user ID of the person who discovered or created the issue.              |
+| `ignre`         | boolean | Whether the issue is ignored (true/false).                                  |
+| `ignre_global`  | boolean | Whether the issue is ignored globally (true/false).                         |
+| `ignre_user`    | integer | User ID of the user who ignored the issue.                                  |
+| `ignre_date`    | string  | Timestamp (YYYY-MM-DD HH:MM:SS) of when the issue was ignored. Format: date-time. |
+| `ignre_comment` | string  | Comment provided when ignoring the issue.                                   |
+
+**Example Request:**
+```json
+PUT /wp-json/accessibility-checker/v1/issues/123
+{
+  "ignre": true,
+  "ignre_comment": "Marked as ignored due to pending content update."
+}
+```
+
+**Success Response (200 OK):**
+
+*   Content: The full updated issue object, consistent with the "Common Response Object Structure".
+
+**Error Responses:**
+
+*   **400 Bad Request:** If no valid fields are provided for update.
     ```json
     {
-      "id": <inserted_issue_id>
+      "code": "rest_nothing_to_update",
+      "message": "No fields provided to update.",
+      "data": { "status": 400 }
     }
     ```
-*   Status: `400 Bad Request` if required fields are missing or invalid.
+*   **404 Not Found:** If the issue with the specified ID does not exist.
+    ```json
+    {
+      "code": "rest_issue_invalid_id",
+      "message": "Invalid issue ID.",
+      "data": { "status": 404 }
+    }
+    ```
+*   **500 Internal Server Error:** If the update fails for other reasons (e.g., database error).
+    ```json
+    {
+      "code": "rest_issue_update_failed",
+      "message": "Failed to update issue.",
+      "data": { "status": 500 }
+    }
+    ```
 
 ### DELETE /issues/{id}
 
