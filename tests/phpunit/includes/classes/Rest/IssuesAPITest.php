@@ -79,7 +79,7 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$this->wpdb_mock->expects($this->exactly(2))
 			->method('prepare')
 			->with(
-				$this->callback(function($sql) { return strpos(trim($sql), 'SHOW TABLES LIKE') === 0; }), // Use callback
+				$this->equalTo('SHOW TABLES LIKE %s'), // Changed to equalTo for direct match
 				$raw_table_name_for_show_tables
 			)
 			->willReturn("SHOW TABLES LIKE '{$raw_table_name_for_show_tables}'");
