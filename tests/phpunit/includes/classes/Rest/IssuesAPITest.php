@@ -10,7 +10,7 @@ use EqualizeDigital\AccessibilityChecker\Tests\TestHelpers\DatabaseHelpers;
 
 // Ensure the class we are testing is loaded
 require_once dirname( __FILE__, 6 ) . '/includes/classes/Rest/IssuesAPI.php';
-require_once dirname( __FILE__, 3 ) . '/TestHelpers/DatabaseHelpers.php';
+require_once __DIR__ . '/../../../../TestHelpers/DatabaseHelpers.php';
 
 
 class IssuesAPITest extends WP_UnitTestCase {
