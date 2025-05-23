@@ -34,8 +34,16 @@ class IssuesAPITest extends WP_UnitTestCase {
 	 */
 	protected $current_site_id;
 
+	/**
+	 * @var \wpdb|null
+	 */
+	protected $backup_wpdb;
+
 	public function setUp(): void {
 		parent::setUp();
+
+		global $wpdb;
+		$this->backup_wpdb = $wpdb; // Backup the original (potentially test-framework-provided) $wpdb
 
 		// Mock global $wpdb
 		$this->wpdb_mock = $this->getMockBuilder( \wpdb::class )
@@ -75,7 +83,8 @@ class IssuesAPITest extends WP_UnitTestCase {
 
 	public function tearDown(): void {
 		// DatabaseHelpers::remove_database_schema(); // If we used real DB
-		unset( $GLOBALS['wpdb'] ); // Clean up the global
+		$GLOBALS['wpdb'] = $this->backup_wpdb;
+		$this->backup_wpdb = null; // Optional: clear the backup property
 		parent::tearDown();
 	}
 
