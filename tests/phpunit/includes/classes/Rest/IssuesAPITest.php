@@ -44,56 +44,45 @@ class IssuesAPITest extends WP_UnitTestCase {
 		parent::setUp();
 
 		global $wpdb;
-		$this->backup_wpdb = $wpdb; // Backup the original (potentially test-framework-provided) $wpdb
+		$this->backup_wpdb = $wpdb;
 
-		// Mock global $wpdb
 		$this->wpdb_mock = $this->getMockBuilder( \wpdb::class )
 			->disableOriginalConstructor()
-			->onlyMethods( [ 'get_results', 'prepare', 'query', 'get_var', 'esc_like' ] ) // Added 'esc_like'
+			->onlyMethods( [ 'get_results', 'prepare', 'query', 'get_var', 'esc_like' ] )
 			->getMock();
 		$GLOBALS['wpdb'] = $this->wpdb_mock;
 
-		// General expectation for esc_like, used by esc_sql
+		// Set prefix for the mock BEFORE it's used by any function that relies on it.
+		$this->wpdb_mock->prefix = 'wp_';
+
+		// General expectation for esc_like
 		$this->wpdb_mock->expects($this->any())
 			->method('esc_like')
 			->willReturnCallback(function($text) {
-				// Simple passthrough for testing purposes.
-				// WordPress's esc_like is more complex: addcslashes($text, '_%\\');
-				// If tests require actual LIKE pattern escaping, this might need adjustment.
-				return str_replace(['%', '_'], ['\\%', '\\_'], $text);
+				return str_replace(['%', '_'], ['\%', '\_'], $text);
 			});
 
-		$this->current_site_id = get_current_blog_id(); // Or mock if needed: 1;
-		$this->table_name      = edac_get_valid_table_name( $this->wpdb_mock->prefix . 'accessibility_checker' );
-
-		$this->issues_api = new Issues_API();
-
-		// Reflection to set the table name in Issues_API if it's not set via constructor or other means
-		// In the actual Issues_API, table_name is set in constructor using global $wpdb->prefix
-		// So, we need to ensure our mock $wpdb has a prefix or set it manually if problems arise.
-		$this->wpdb_mock->prefix = 'wp_'; // Standard WordPress prefix
-
+		// Define $raw_table_name_for_show_tables based on the mock's prefix
 		$raw_table_name_for_show_tables = $this->wpdb_mock->prefix . 'accessibility_checker';
 
-		// Expectation for the prepare call in edac_get_valid_table_name
+		// ---- Expectations for edac_get_valid_table_name() calls ----
+		// These are called twice within this setUp method.
 		$this->wpdb_mock->expects($this->exactly(2))
 			->method('prepare')
 			->with(
-				$this->equalTo('SHOW TABLES LIKE %s'), // Changed to equalTo for direct match
+				$this->callback(function($sql) { return trim($sql) === 'SHOW TABLES LIKE %s'; }), // Changed to trim $sql
 				$raw_table_name_for_show_tables
 			)
 			->willReturn("SHOW TABLES LIKE '{$raw_table_name_for_show_tables}'");
 
-		// Expectation for the get_var call in edac_get_valid_table_name
-		$this->wpdb_mock->expects($this->exactly(2)) // Changed from any()
+		$this->wpdb_mock->expects($this->exactly(2))
 			->method('get_var')
-			->with("SHOW TABLES LIKE '{$raw_table_name_for_show_tables}'") // Should match what prepare returns
-			->willReturn($raw_table_name_for_show_tables); // Return the table name to indicate it exists
+			->with("SHOW TABLES LIKE '{$raw_table_name_for_show_tables}'")
+			->willReturn($raw_table_name_for_show_tables);
 
-
-		// For 'timezone_string' option query often called by WordPress date functions
-		$timezone_sql_identifier = 'SELECT option_value FROM'; // Used to identify this specific prepare call
-		$prepared_timezone_query_string = "PREPARED_SQL_FOR_TIMEZONE"; // Placeholder
+		// ---- Expectations for 'timezone_string' option query (common WP side-effect) ----
+		$timezone_sql_identifier = 'SELECT option_value FROM';
+		$prepared_timezone_query_string = "PREPARED_SQL_FOR_TIMEZONE";
 
 		$this->wpdb_mock->expects($this->any())
 			->method('prepare')
@@ -108,26 +97,22 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$this->wpdb_mock->expects($this->any())
 			->method('get_var')
 			->with($prepared_timezone_query_string)
-			->willReturn('UTC'); // Provide a default timezone value
+			->willReturn('UTC');
 
+		// ---- Actual operations that will use the above mocks ----
+		$this->current_site_id = get_current_blog_id();
+
+		// First call to edac_get_valid_table_name()
 		$this->table_name = edac_get_valid_table_name( $this->wpdb_mock->prefix . 'accessibility_checker' );
 
-		$reflection = new \ReflectionClass( $this->issues_api );
-		// $table_name_prop = $reflection->getProperty( 'table_name' );
-		// $table_name_prop->setAccessible( true );
-		// $table_name_prop->setValue( $this->issues_api, $this->table_name );
+		// Instantiate Issues_API, which also calls edac_get_valid_table_name()
+		$this->issues_api = new Issues_API();
 
+		// Reflection for query_options (table_name reflection is already commented out)
+		$reflection = new \ReflectionClass( $this->issues_api );
 		$query_options_prop = $reflection->getProperty( 'query_options' );
 		$query_options_prop->setAccessible(true);
 		$query_options_prop->setValue($this->issues_api, ['siteid' => $this->current_site_id, 'limit' => 500, 'offset' => 0]);
-
-
-		// Mock get_current_blog_id() if it's directly used by the class and not passed.
-		// For now, assuming query_options['siteid'] is correctly set via constructor or test setup.
-
-		// It's good practice to install the schema if your tests interact with the actual DB
-		// For this specific case, we are mocking $wpdb, but if we were to do real DB interaction:
-		// DatabaseHelpers::install_database_schema();
 	}
 
 	public function tearDown(): void {
