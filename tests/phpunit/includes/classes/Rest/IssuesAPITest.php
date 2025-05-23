@@ -48,7 +48,7 @@ class IssuesAPITest extends WP_UnitTestCase {
 		// Mock global $wpdb
 		$this->wpdb_mock = $this->getMockBuilder( \wpdb::class )
 			->disableOriginalConstructor()
-			->addMethods( [ 'get_results', 'prepare', 'query', 'get_var' ] ) // Added get_var for count_all_issues
+			->onlyMethods( [ 'get_results', 'prepare', 'query', 'get_var' ] ) // Added get_var for count_all_issues
 			->getMock();
 		$GLOBALS['wpdb'] = $this->wpdb_mock;
 
