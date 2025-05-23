@@ -10,6 +10,7 @@ use EqualizeDigital\AccessibilityChecker\Tests\TestHelpers\DatabaseHelpers;
 
 // Ensure the class we are testing is loaded
 require_once dirname( __FILE__, 6 ) . '/includes/classes/Rest/IssuesAPI.php';
+require_once dirname(__FILE__, 6) . '/includes/helper-functions.php';
 
 
 class IssuesAPITest extends WP_UnitTestCase {
@@ -64,9 +65,9 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$this->table_name = edac_get_valid_table_name( $this->wpdb_mock->prefix . 'accessibility_checker' );
 
 		$reflection = new \ReflectionClass( $this->issues_api );
-		$table_name_prop = $reflection->getProperty( 'table_name' );
-		$table_name_prop->setAccessible( true );
-		$table_name_prop->setValue( $this->issues_api, $this->table_name );
+		// $table_name_prop = $reflection->getProperty( 'table_name' );
+		// $table_name_prop->setAccessible( true );
+		// $table_name_prop->setValue( $this->issues_api, $this->table_name );
 
 		$query_options_prop = $reflection->getProperty( 'query_options' );
 		$query_options_prop->setAccessible(true);
