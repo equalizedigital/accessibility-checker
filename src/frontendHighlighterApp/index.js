@@ -6,7 +6,9 @@ import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
 import { __ } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
-import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
+import { fixSettingsModalInit } from './fixesModal';
+import { RecordingManager } from './recording';
+import './recording.css';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -51,6 +53,10 @@ class AccessibilityCheckerHighlight {
 		this.disableStylesButton = document.querySelector( '#edac-highlight-disable-styles' );
 		this.stylesDisabled = false;
 		this.originalCss = [];
+
+		this.isRecording = false;
+		this.selectedElement = null;
+		this.recordingManager = null;
 
 		this.init();
 	}
@@ -365,10 +371,44 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
 					<div>
+						<button id="edac-highlight-record" class="edac-highlight-record" aria-live="polite" aria-label="Record Custom Issue">Record</button>
 						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'text-domain' ) }</button>
 					</div>
 				</div>
-
+			</div>
+			<div id="edac-highlight-custom-issue-form" class="edac-highlight-custom-issue-form" role="dialog" aria-labelledby="edac-highlight-custom-issue-title" style="display: none;">
+				<button class="edac-highlight-panel-description-close" aria-label="Close">×</button>
+				<div id="edac-highlight-custom-issue-title" class="edac-highlight-panel-description-title">Add Custom Issue</div>
+				<form>
+					<div class="edac-highlight-form-field">
+						<label for="issue-title">Issue Title</label>
+						<input type="text" id="issue-title" required>
+					</div>
+					<div class="edac-highlight-form-field">
+						<label for="issue-severity">Severity</label>
+						<select id="issue-severity" required>
+							<option value="error">Error</option>
+							<option value="warning">Warning</option>
+							<option value="notice">Notice</option>
+						</select>
+					</div>
+					<div class="edac-highlight-form-field">
+						<label for="issue-description">Description</label>
+						<textarea id="issue-description" required></textarea>
+					</div>
+					<div class="edac-highlight-form-field">
+						<label for="issue-success-criterion">Success Criterion</label>
+						<input type="text" id="issue-success-criterion">
+					</div>
+					<div class="edac-highlight-form-field">
+						<label for="issue-recommended-fix">Recommended Fix</label>
+						<textarea id="issue-recommended-fix"></textarea>
+					</div>
+					<div class="edac-highlight-form-buttons">
+						<button type="submit">Submit</button>
+						<button type="button" class="cancel">Cancel</button>
+					</div>
+				</form>
 			</div>
 			</div>
 		`;
@@ -505,9 +545,14 @@ class AccessibilityCheckerHighlight {
 	 * @param {number} id of the issue
 	 */
 	panelOpen( id ) {
-		this.highlightPanel.classList.add( 'edac-highlight-panel-visible' );
-		this.panelControls.style.display = 'block';
-		this.panelToggle.style.display = 'none';
+		// this.highlightPanel.classList.add( 'edac-highlight-panel-visible' );
+		// this.panelControls.style.display = 'block';
+		// this.panelToggle.style.display = 'none';
+
+		// Initialize recording manager
+		if ( ! this.recordingManager ) {
+			this.recordingManager = new RecordingManager( this );
+		}
 
 		// previous and next buttons are disabled until we have issues to show.
 		this.nextButton.disabled = true;
@@ -536,6 +581,12 @@ class AccessibilityCheckerHighlight {
 			}
 		).catch( ( err ) => {
 			//TODO:
+		} );
+
+		// Add record button click handler
+		const recordButton = document.getElementById( 'edac-highlight-record' );
+		recordButton.addEventListener( 'click', () => {
+			this.toggleRecording( ! this.isRecording );
 		} );
 	}
 
@@ -798,33 +849,153 @@ class AccessibilityCheckerHighlight {
 		}
 	}
 
-	showFixSettings( event ) {
-		const fixSettingsContainer = event.target.closest( '.edac-highlight-panel-description-content' ).querySelector( '.edac-fix-settings' );
-		if ( ! fixSettingsContainer ) {
-			// this is a fail, it should do something.
+	toggleRecording = ( start ) => {
+		this.isRecording = start;
+		const recordButton = document.getElementById( 'edac-highlight-record' );
+
+		if ( start ) {
+			recordButton.classList.add( 'recording' );
+			recordButton.textContent = 'Stop Recording';
+			recordButton.setAttribute( 'aria-label', 'Stop Recording Custom Issue' );
+			this.startElementHighlighting();
+		} else {
+			recordButton.classList.remove( 'recording' );
+			recordButton.textContent = 'Record';
+			recordButton.setAttribute( 'aria-label', 'Record Custom Issue' );
+			this.stopElementHighlighting();
+		}
+	};
+
+	/**
+	 * Sets up event listeners for element highlighting during recording
+	 */
+	startElementHighlighting = () => {
+		document.body.addEventListener( 'mouseover', this.handleElementHover );
+		document.body.addEventListener( 'mouseout', this.handleElementUnhover );
+		document.body.addEventListener( 'click', this.handleElementClick );
+	};
+
+	/**
+	 * Removes event listeners for element highlighting
+	 */
+	stopElementHighlighting = () => {
+		document.body.removeEventListener( 'mouseover', this.handleElementHover );
+		document.body.removeEventListener( 'mouseout', this.handleElementUnhover );
+		document.body.removeEventListener( 'click', this.handleElementClick );
+	};
+
+	/**
+	 * Handles hovering over elements during recording
+	 * @param {Event} event - The mouseover event
+	 */
+	handleElementHover = ( event ) => {
+		if ( ! this.isRecording ) {
 			return;
 		}
-		const placeholder = document.createElement( 'span' );
-		placeholder.classList.add( 'edac-fix-settings--origin-placeholder' );
-		// put the placeholder AFTER the fix container.
-		fixSettingsContainer.parentNode.insertBefore( placeholder, fixSettingsContainer );
-		// renive the fixSettingsContainer from the DOM.
-		fixSettingsContainer.remove();
 
-		fillFixesModal(
-			`<p class="modal-opening-message">${ __( 'These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports.', 'accessibility-checker' ) }</p>`,
-			fixSettingsContainer
+		const element = event.target;
+		if ( element === document.body ) {
+			return;
+		}
+
+		element.classList.add( 'edac-highlight-element-recording' );
+		event.stopPropagation();
+	};
+
+	/**
+	 * Handles mouse leaving elements during recording
+	 * @param {Event} event - The mouseout event
+	 */
+	handleElementUnhover = ( event ) => {
+		if ( ! this.isRecording ) {
+			return;
+		}
+
+		const element = event.target;
+		element.classList.remove( 'edac-highlight-element-recording' );
+		event.stopPropagation();
+	};
+
+	/**
+	 * Handles clicking on elements during recording
+	 * @param {Event} event - The click event
+	 */
+	handleElementClick = ( event ) => {
+		if ( ! this.isRecording ) {
+			return;
+		}
+
+		event.preventDefault();
+		event.stopPropagation();
+
+		const element = event.target;
+		this.selectedElement = element;
+		this.openCustomIssueForm();
+	};
+
+	/**
+	 * Opens the custom issue form
+	 */
+	openCustomIssueForm = () => {
+		const form = document.getElementById( 'edac-highlight-custom-issue-form' );
+		form.style.display = 'block';
+		this.toggleRecording( false );
+
+		// Set up form event listeners
+		const submitHandler = ( e ) => {
+			e.preventDefault();
+			this.handleCustomIssueSubmit( e );
+		};
+
+		const closeHandler = () => {
+			form.style.display = 'none';
+			this.selectedElement = null;
+			form.removeEventListener( 'submit', submitHandler );
+		};
+
+		form.querySelector( 'form' ).addEventListener( 'submit', submitHandler );
+		form.querySelector( '.cancel' ).addEventListener( 'click', closeHandler );
+		form.querySelector( '.edac-highlight-panel-description-close' ).addEventListener( 'click', closeHandler );
+	};
+
+	/**
+	 * Handles the submission of a custom issue
+	 * @param {Event} event - The form submit event
+	 */ handleCustomIssueSubmit = ( event ) => {
+		event.preventDefault();
+
+		const formElement = event.target;
+		const customIssue = {
+			id: 'custom-' + Date.now(),
+			rule_title: formElement.querySelector( '#issue-title' ).value,
+			rule_type: formElement.querySelector( '#issue-severity' ).value,
+			description: formElement.querySelector( '#issue-description' ).value,
+			success_criterion: formElement.querySelector( '#issue-success-criterion' ).value,
+			recommended_fix: formElement.querySelector( '#issue-recommended-fix' ).value,
+			html: this.selectedElement.outerHTML,
+			element: this.selectedElement,
+		};
+
+		// Add the custom issue to the issues array
+		this.issues.push( customIssue );
+
+		// Add tooltip for the custom issue
+		const tooltip = this.addTooltip(
+			this.selectedElement,
+			customIssue,
+			this.issues.length - 1,
+			this.issues.length
 		);
+		customIssue.tooltip = tooltip.tooltip;
 
-		// pause the highlighter panel focus trap.
-		this.panelDescriptionFocusTrap.pause();
-		openFixesModal( event.target );
+		// Close the form
+		const customIssueForm = document.getElementById( 'edac-highlight-custom-issue-form' );
+		customIssueForm.style.display = 'none';
+		this.selectedElement = null;
 
-		// unpause the focus trap when the modal is closed.
-		document.addEventListener( 'edac-fixes-modal-closed', () => {
-			this.panelDescriptionFocusTrap.unpause();
-		} );
-	}
+		// Show the new issue
+		this.showIssue( customIssue.id );
+	};
 
 	/**
 	 * This function counts the number of issues of a given type.
