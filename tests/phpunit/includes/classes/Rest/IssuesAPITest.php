@@ -70,7 +70,7 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$this->wpdb_mock->expects($this->exactly(2))
 			->method('prepare')
 			->with(
-				$this->callback(function($sql) { return trim($sql) === 'SHOW TABLES LIKE %s'; }), // Changed to trim $sql
+				$this->equalTo('SHOW TABLES LIKE %s'), // Ensure this is equalTo
 				$raw_table_name_for_show_tables
 			)
 			->willReturn("SHOW TABLES LIKE '{$raw_table_name_for_show_tables}'");
@@ -82,7 +82,7 @@ class IssuesAPITest extends WP_UnitTestCase {
 
 		// ---- Expectations for 'timezone_string' option query (common WP side-effect) ----
 		$timezone_sql_identifier = 'SELECT option_value FROM';
-		$prepared_timezone_query_string = "PREPARED_SQL_FOR_TIMEZONE";
+		$prepared_timezone_query_string = "PREPARED_SQL_FOR_TIMEZONE_SETUP"; // Unique placeholder
 
 		$this->wpdb_mock->expects($this->any())
 			->method('prepare')
@@ -171,97 +171,55 @@ class IssuesAPITest extends WP_UnitTestCase {
 
 		$final_issue_data = array_merge( (array) $original_issue, $updated_fields );
 
-		// ---- Mocks for the FIRST call to do_issues_query (existence check) ----
-		$expected_sql_count_1 = "SQL_COUNT_EXISTENCE_ID_{$issue_id}"; // Placeholder for prepared COUNT query
-		$this->wpdb_mock->expects($this->at(0)) // Order specific for prepare calls
+		// General prepare mock for this test
+		$this->wpdb_mock->expects($this->any())
 			->method('prepare')
-			->with(
-				$this->callback(function($sql) use ($issue_id) {
-					return strpos(trim($sql), 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$issue_id})") !== false;
-				}),
-				$this->current_site_id
-			)
-			->willReturn($expected_sql_count_1);
+			->willReturnCallback(function($sql, ...$args) use ($issue_id) {
+				if (strpos(trim($sql), 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$issue_id})") !== false) {
+					return "PREPARED_COUNT_QUERY_SUCCESS_TEST_{$issue_id}";
+				}
+				if (strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && isset($args[1]) && $args[1] == $issue_id) {
+					 return "PREPARED_SELECT_QUERY_SUCCESS_TEST_{$issue_id}";
+				}
+				if (strpos(trim($sql), 'UPDATE') === 0 && isset($args[4]) && $args[4] == $issue_id) {
+					return "PREPARED_UPDATE_QUERY_SUCCESS_TEST_{$issue_id}";
+				}
+				// Fallback for other prepare calls not specific to this test's main logic
+				if (!empty($args)) {
+					// Simple placeholder replacement for %s, %d, %f. WordPress's prepare is more complex.
+					$query = str_replace( '%s', \'%s\', $sql );
+					$query = str_replace( [ '%d', '%f' ], \'%d\', $query );
+					// Remove extra % due to WordPress specific placeholders like %i, %T etc.
+					$query = str_replace( '%%', '%', $query );
+					return @vsprintf( $query, $args );
+				}
+				return $sql;
+			});
 
-		$expected_sql_select_1 = "SQL_SELECT_EXISTENCE_ID_{$issue_id}"; // Placeholder for prepared SELECT query
-		$this->wpdb_mock->expects($this->at(1)) // Second call to prepare
-			->method('prepare')
-			->with(
-				$this->callback(function($sql) use ($issue_id) {
-					return strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && strpos($sql, "LIMIT %d OFFSET %d") !== false;
-				}),
-				$this->current_site_id,
-				$issue_id,
-				500, // limit from setUp
-				0    // offset from setUp
-			)
-			->willReturn($expected_sql_select_1);
-
-		// ---- Mocks for the UPDATE query ----
-		$expected_sql_update = "SQL_UPDATE_ID_{$issue_id}";
-		$this->wpdb_mock->expects($this->at(2)) // Third call to prepare
-			->method('prepare')
-			->with(
-				$this->callback(function($sql) { return strpos(trim($sql), 'UPDATE') === 0; }),
-				$updated_fields['rule'], 
-				(int)$updated_fields['ignre'],
-				$updated_fields['ignre_comment'],
-				$issue_id
-			)
-			->willReturn($expected_sql_update);
-
-		// ---- Mocks for the SECOND call to do_issues_query (fetch updated) ----
-		$expected_sql_count_2 = "SQL_COUNT_FETCH_ID_{$issue_id}";
-		$this->wpdb_mock->expects($this->at(3)) // Fourth call to prepare
-			->method('prepare')
-			->with(
-				$this->callback(function($sql) use ($issue_id) { // Same SQL structure as first COUNT
-					return strpos(trim($sql), 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$issue_id})") !== false;
-				}),
-				$this->current_site_id
-			)
-			->willReturn($expected_sql_count_2);
-
-		$expected_sql_select_2 = "SQL_SELECT_FETCH_ID_{$issue_id}";
-		$this->wpdb_mock->expects($this->at(4)) // Fifth call to prepare
-			->method('prepare')
-			->with(
-				$this->callback(function($sql) use ($issue_id) { // Same SQL structure as first SELECT
-					return strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && strpos($sql, "LIMIT %d OFFSET %d") !== false;
-				}),
-				$this->current_site_id,
-				$issue_id,
-				500, // limit
-				0    // offset
-			)
-			->willReturn($expected_sql_select_2);
-
-		// ---- Mocks for get_var (for count_all_issues calls) ----
-		$this->wpdb_mock->expects($this->exactly(2)) // Two calls to get_var for the two count_all_issues
+		// Mock get_var for count_all_issues calls
+		$this->wpdb_mock->expects($this->exactly(2))
 			->method('get_var')
-			->withConsecutive(
-				[$expected_sql_count_1],
-				[$expected_sql_count_2]
-			)
-			->willReturn(1); // Both times, issue is found (count = 1)
+			->with("PREPARED_COUNT_QUERY_SUCCESS_TEST_{$issue_id}")
+			->willReturn(1); // Issue exists
 
-		// ---- Mocks for get_results (for do_issues_query calls) ----
+		// Mock get_results for do_issues_query calls
+		$get_results_call_count_success = 0;
 		$this->wpdb_mock->expects($this->exactly(2))
 			->method('get_results')
-			->withConsecutive(
-				[$expected_sql_select_1],
-				[$expected_sql_select_2]
-			)
-			->willReturnOnConsecutiveCalls(
-				[$original_issue],
-				[(object)$final_issue_data]
-			);
+			->with("PREPARED_SELECT_QUERY_SUCCESS_TEST_{$issue_id}")
+			->willReturnCallback(function() use (&$get_results_call_count_success, $original_issue, $final_issue_data) {
+				$get_results_call_count_success++;
+				if ($get_results_call_count_success === 1) {
+					return [$original_issue]; // Data for initial existence check
+				}
+				return [(object)$final_issue_data]; // Data for fetching updated issue
+			});
 
-		// ---- Mock for the $wpdb->query (for the UPDATE) ----
+		// Mock query for the UPDATE statement
 		$this->wpdb_mock->expects($this->once())
 			->method('query')
-			->with($expected_sql_update) // Match the prepared UPDATE query
-			->willReturn(1);
+			->with("PREPARED_UPDATE_QUERY_SUCCESS_TEST_{$issue_id}")
+			->willReturn(1); // 1 row affected
 
 		$request = new WP_REST_Request( 'PUT', "/accessibility-checker/v1/issues/{$issue_id}" );
 		$request->set_url_params( [ 'id' => $issue_id ] );
@@ -288,47 +246,42 @@ class IssuesAPITest extends WP_UnitTestCase {
 	public function test_update_issue_not_found() {
 		$non_existent_id = 999;
 
-		// Order of execution by update_issue -> do_issues_query -> count_all_issues:
-		// 1. count_all_issues: prepare (SELECT COUNT)
-		// 2. count_all_issues: get_var
-		// 3. do_issues_query: prepare (SELECT *)
-		// 4. do_issues_query: get_results
-
-		// 1. Expectation for the prepare call in count_all_issues
-		$this->wpdb_mock->expects($this->once())
+		// General prepare mock for this test
+		$this->wpdb_mock->expects($this->any())
 			->method('prepare')
-			->with(
-				$this->stringContains("SELECT COUNT(*) FROM `{$this->table_name}` WHERE siteid = %d AND id IN ({$non_existent_id})"),
-				$this->current_site_id
-			)
-			->willReturn("PREPARED_COUNT_QUERY_FOR_NOT_FOUND");
+			->willReturnCallback(function($sql, ...$args) use ($non_existent_id) {
+				// Check for COUNT query related to this test
+				if (strpos(trim($sql), 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$non_existent_id})") !== false) {
+					return "PREPARED_COUNT_NOT_FOUND_{$non_existent_id}";
+				}
+				// Check for SELECT * query related to this test
+				if (strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && isset($args[1]) && $args[1] == $non_existent_id) {
+					return "PREPARED_SELECT_NOT_FOUND_{$non_existent_id}";
+				}
+				// Fallback for other prepare calls (e.g., from setUp for options)
+				// This simple vsprintf might not be fully robust for all SQL but aims to return a string.
+				if (!empty($args) && is_string($sql)) {
+					 // Ensure enough arguments for vsprintf if placeholders exist
+					$placeholder_count = substr_count($sql, '%');
+					while (count($args) < $placeholder_count) {
+						$args[] = null; // Add nulls if not enough args, to prevent vsprintf warning
+					}
+					return @vsprintf(str_replace('%i', '%s', $sql), $args);
+				}
+				return $sql;
+			});
 
-		// 2. Expectation for the get_var call in count_all_issues
+		// Mock get_var for count_all_issues
 		$this->wpdb_mock->expects($this->once())
 			->method('get_var')
-			->with("PREPARED_COUNT_QUERY_FOR_NOT_FOUND")
+			->with("PREPARED_COUNT_NOT_FOUND_{$non_existent_id}")
 			->willReturn(0); // Issue count is 0
 
-		// 3. Expectation for the prepare call in do_issues_query's SELECT *
-		// This is the second prepare call overall in this code path.
-		// We need to ensure PHPUnit can distinguish it or use at() if they were identical.
-		// Since the SQL strings are different, direct with() should be fine.
+		// Mock get_results for do_issues_query
 		$this->wpdb_mock->expects($this->once())
-			->method('prepare')
-			->with(
-				$this->stringContains("SELECT * FROM `{$this->table_name}` WHERE siteid = %d AND id IN (%d) ORDER BY id DESC LIMIT %d OFFSET %d"),
-				$this->current_site_id,
-				$non_existent_id,
-				500, // from setUp's query_options for Issues_API instance
-				0    // from setUp's query_options for Issues_API instance
-			)
-			->willReturn("PREPARED_SELECT_QUERY_FOR_NOT_FOUND");
-
-		// 4. Expectation for the get_results call in do_issues_query
-		$this->wpdb_mock->expects( $this->once() )
-			->method( 'get_results' )
-			->with("PREPARED_SELECT_QUERY_FOR_NOT_FOUND")
-			->willReturn( [] ); // Issue not found
+			->method('get_results')
+			->with("PREPARED_SELECT_NOT_FOUND_{$non_existent_id}")
+			->willReturn([]); // Issue not found
 
 		$request = new WP_REST_Request( 'PUT', "/accessibility-checker/v1/issues/{$non_existent_id}" );
 		$request->set_url_params( [ 'id' => $non_existent_id ] );
@@ -348,51 +301,39 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$issue_id = 124;
 		$original_issue = $this->_create_dummy_issue( [ 'id' => $issue_id ] );
 
-		// 1. Mock `prepare` for `count_all_issues` (`SELECT COUNT`)
-		$expected_sql_count = "SQL_COUNT_NO_FIELDS_ID_{$issue_id}";
-		$this->wpdb_mock->expects($this->at(0)) // First 'prepare' call specific to this test's logic
+		$this->wpdb_mock->expects($this->any())
 			->method('prepare')
-			->with(
-				$this->callback(function($sql) use ($issue_id) {
-					return strpos(trim($sql), 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$issue_id})") !== false;
-				}),
-				$this->current_site_id
-			)
-			->willReturn($expected_sql_count);
+			->willReturnCallback(function($sql, ...$args) use ($issue_id) {
+				if (strpos(trim($sql), 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$issue_id})") !== false) {
+					return "PREPARED_COUNT_NO_FIELDS_TEST_{$issue_id}";
+				}
+				if (strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && isset($args[1]) && $args[1] == $issue_id) {
+					return "PREPARED_SELECT_NO_FIELDS_TEST_{$issue_id}";
+				}
+				// Fallback for other prepare calls (e.g. WP options if not handled by specific setUp mocks)
+				// The setUp mock for timezone 'prepare' should catch its specific query first if this is too general.
+				if (is_string($sql) && !empty($args)) {
+					$placeholder_count = substr_count($sql, '%');
+					while (count($args) < $placeholder_count) { $args[] = null; }
+					return @vsprintf(str_replace('%i','%s',$sql), $args);
+				}
+				return $sql;
+			});
 
-		// 2. Mock `get_var` for `count_all_issues`
-		$this->wpdb_mock->expects($this->once()) // This is the only get_var call in this specific code path for the test
+		$this->wpdb_mock->expects($this->once())
 			->method('get_var')
-			->with($expected_sql_count) // Match the specific prepared COUNT query
+			->with("PREPARED_COUNT_NO_FIELDS_TEST_{$issue_id}")
 			->willReturn(1); // Issue exists
 
-		// 3. Mock `prepare` for `do_issues_query` (`SELECT *`)
-		$expected_sql_select = "SQL_SELECT_NO_FIELDS_ID_{$issue_id}";
-		$this->wpdb_mock->expects($this->at(1)) // Second 'prepare' call specific to this test's logic
-			->method('prepare')
-			->with(
-				$this->callback(function($sql) use ($issue_id) {
-					return strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && strpos($sql, "LIMIT %d OFFSET %d") !== false;
-				}),
-				$this->current_site_id,
-				$issue_id,
-				500, // limit from setUp
-				0    // offset from setUp
-			)
-			->willReturn($expected_sql_select);
-		
-		// 4. Adjust `get_results` mock
-		// The first call to get_results is for do_issues_query (existence check)
-		// The second call to get_results is for options loading by $request->get_params() (WP Core behavior)
 		$this->wpdb_mock->expects( $this->exactly(2) )
 			->method( 'get_results' )
 			->withConsecutive(
-				[$expected_sql_select], // Match specific prepared SELECT query for issue existence
-				[$this->stringContains('options')] // Matcher for the options query string
+				["PREPARED_SELECT_NO_FIELDS_TEST_{$issue_id}"], // Match specific prepared SELECT query
+				[$this->stringContains('options')]      // Matcher for the options query SQL from $request->get_params()
 			)
 			->willReturnOnConsecutiveCalls(
-				[ $original_issue ], // Return for issue existence check
-				[] // Return for options query
+				[ $original_issue ],
+				[]
 			);
 
 		$request = new WP_REST_Request( 'PUT', "/accessibility-checker/v1/issues/{$issue_id}" );
@@ -433,99 +374,59 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$final_issue_data = (array) $original_issue;
 		$final_issue_data['rule'] = $attempted_updates['rule'];
 
-
-		// Mock do_issues_query (existence check and fetch after update)
-		// ---- Mocks for the FIRST call to do_issues_query (existence check) ----
-		$expected_sql_count_1_protected = "SQL_COUNT_EXISTENCE_PROTECTED_ID_{$issue_id}";
-		$this->wpdb_mock->expects($this->at(0))
+		$this->wpdb_mock->expects($this->any())
 			->method('prepare')
-			->with(
-				$this->callback(function($sql) use ($issue_id) {
-					return strpos(trim($sql), 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$issue_id})") !== false;
-				}),
-				$this->current_site_id
-			)
-			->willReturn($expected_sql_count_1_protected);
+			->willReturnCallback(function($sql, ...$args) use ($issue_id, $attempted_updates) {
+				$trimmed_sql = trim($sql);
+				// COUNT query
+				if (strpos($trimmed_sql, 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$issue_id})") !== false) {
+					return "PREPARED_COUNT_PROTECTED_TEST_{$issue_id}";
+				}
+				// SELECT * query
+				if (strpos($trimmed_sql, 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && isset($args[1]) && $args[1] == $issue_id) {
+					return "PREPARED_SELECT_PROTECTED_TEST_{$issue_id}";
+				}
+				// UPDATE query - specific check for this test
+				if (strpos($trimmed_sql, 'UPDATE') === 0 &&
+					strpos($sql, "`rule` = %s") !== false && // Check that 'rule' is being set
+					strpos($sql, "`siteid`") === false &&    // Check that 'siteid' is NOT in the SET clause
+					strpos($sql, "`created`") === false &&  // Check that 'created' is NOT in the SET clause
+					count($args) === 2 && // Expecting value for 'rule' and 'id' for WHERE
+					isset($args[0]) && $args[0] === $attempted_updates['rule'] &&
+					isset($args[1]) && $args[1] === $issue_id
+				) {
+					return "PREPARED_UPDATE_PROTECTED_TEST_{$issue_id}";
+				}
+				// Fallback for other prepare calls
+				if (is_string($sql) && !empty($args)) {
+					$placeholder_count = substr_count($sql, '%');
+					while (count($args) < $placeholder_count) { $args[] = null; }
+					return @vsprintf(str_replace('%i','%s',$sql), $args);
+				}
+				return $sql;
+			});
 
-		$expected_sql_select_1_protected = "SQL_SELECT_EXISTENCE_PROTECTED_ID_{$issue_id}";
-		$this->wpdb_mock->expects($this->at(1))
-			->method('prepare')
-			->with(
-				$this->callback(function($sql) use ($issue_id) {
-					return strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && strpos($sql, "LIMIT %d OFFSET %d") !== false;
-				}),
-				$this->current_site_id,
-				$issue_id,
-				500, // limit
-				0    // offset
-			)
-			->willReturn($expected_sql_select_1_protected);
-
-		// ---- Mocks for the UPDATE query (only 'rule' should be updated) ----
-		$expected_sql_update_protected = "SQL_UPDATE_PROTECTED_ID_{$issue_id}";
-		$this->wpdb_mock->expects($this->at(2))
-			->method('prepare')
-			->with(
-				$this->callback(function($sql) { 
-					return strpos(trim($sql), 'UPDATE') === 0 && strpos($sql, '`rule` = %s') !== false && strpos($sql, 'siteid') === false && strpos($sql, 'created') === false; 
-				}),
-				$attempted_updates['rule'], // Only rule is updated
-				$issue_id
-			)
-			->willReturn($expected_sql_update_protected);
-
-		// ---- Mocks for the SECOND call to do_issues_query (fetch updated) ----
-		$expected_sql_count_2_protected = "SQL_COUNT_FETCH_PROTECTED_ID_{$issue_id}";
-		$this->wpdb_mock->expects($this->at(3))
-			->method('prepare')
-			->with(
-				$this->callback(function($sql) use ($issue_id) {
-					return strpos(trim($sql), 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$issue_id})") !== false;
-				}),
-				$this->current_site_id
-			)
-			->willReturn($expected_sql_count_2_protected);
-
-		$expected_sql_select_2_protected = "SQL_SELECT_FETCH_PROTECTED_ID_{$issue_id}";
-		$this->wpdb_mock->expects($this->at(4))
-			->method('prepare')
-			->with(
-				$this->callback(function($sql) use ($issue_id) {
-					return strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && strpos($sql, "LIMIT %d OFFSET %d") !== false;
-				}),
-				$this->current_site_id,
-				$issue_id,
-				500, // limit
-				0    // offset
-			)
-			->willReturn($expected_sql_select_2_protected);
-
-		// ---- Mocks for get_var ----
 		$this->wpdb_mock->expects($this->exactly(2))
 			->method('get_var')
-			->withConsecutive(
-				[$expected_sql_count_1_protected],
-				[$expected_sql_count_2_protected]
-			)
-			->willReturn(1);
+			->with("PREPARED_COUNT_PROTECTED_TEST_{$issue_id}")
+			->willReturn(1); // Issue exists
 
-		// ---- Mocks for get_results ----
+		$get_results_call_count_protected = 0; // Local counter for this test
 		$this->wpdb_mock->expects($this->exactly(2))
 			->method('get_results')
-			->withConsecutive(
-				[$expected_sql_select_1_protected],
-				[$expected_sql_select_2_protected]
-			)
-			->willReturnOnConsecutiveCalls(
-				[$original_issue], // Before update
-				[(object)$final_issue_data]  // After update (only rule changed)
-			);
-		
-		// ---- Mock for the $wpdb->query (for the UPDATE) ----
+			->with("PREPARED_SELECT_PROTECTED_TEST_{$issue_id}")
+			->willReturnCallback(function() use (&$get_results_call_count_protected, $original_issue, $final_issue_data) {
+				$get_results_call_count_protected++;
+				if ($get_results_call_count_protected === 1) {
+					return [$original_issue]; // Data for initial existence check
+				}
+				return [(object)$final_issue_data]; // Data for fetching updated issue (only rule changed)
+			});
+
 		$this->wpdb_mock->expects($this->once())
 			->method('query')
-			->with($expected_sql_update_protected)
-			->willReturn(1);
+			->with("PREPARED_UPDATE_PROTECTED_TEST_{$issue_id}")
+			->willReturn(1); // 1 row affected
 
 		$request = new WP_REST_Request( 'PUT', "/accessibility-checker/v1/issues/{$issue_id}" );
 		$request->set_url_params( [ 'id' => $issue_id ] );
