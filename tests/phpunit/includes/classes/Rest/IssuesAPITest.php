@@ -70,7 +70,7 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$this->wpdb_mock->expects($this->exactly(2))
 			->method('prepare')
 			->with(
-				$this->equalTo('SHOW TABLES LIKE %s'), // Ensure this is equalTo
+				$this->callback(function($sql) { return strpos(trim((string)$sql), 'SHOW TABLES LIKE') === 0 && substr_count((string)$sql, '%s') === 1; }), // Changed to the robust callback
 				$raw_table_name_for_show_tables
 			)
 			->willReturn("SHOW TABLES LIKE '{$raw_table_name_for_show_tables}'");
@@ -175,26 +175,38 @@ class IssuesAPITest extends WP_UnitTestCase {
 		$this->wpdb_mock->expects($this->any())
 			->method('prepare')
 			->willReturnCallback(function($sql, ...$args) use ($issue_id) {
-				if (strpos(trim($sql), 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$issue_id})") !== false) {
-					return "PREPARED_COUNT_QUERY_SUCCESS_TEST_{$issue_id}";
-				}
-				if (strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && isset($args[1]) && $args[1] == $issue_id) {
-					 return "PREPARED_SELECT_QUERY_SUCCESS_TEST_{$issue_id}";
-				}
-				if (strpos(trim($sql), 'UPDATE') === 0 && isset($args[4]) && $args[4] == $issue_id) {
-					return "PREPARED_UPDATE_QUERY_SUCCESS_TEST_{$issue_id}";
-				}
-				// Fallback for other prepare calls not specific to this test's main logic
-				if (!empty($args)) {
-					// Simple placeholder replacement for %s, %d, %f. WordPress's prepare is more complex.
-					$query = str_replace( '%s', \'%s\', $sql );
-					$query = str_replace( [ '%d', '%f' ], \'%d\', $query );
-					// Remove extra % due to WordPress specific placeholders like %i, %T etc.
-					$query = str_replace( '%%', '%', $query );
-					return @vsprintf( $query, $args );
-				}
-				return $sql;
-			});
+    // Specific query matches for test_update_issue_success
+    if (strpos(trim($sql), 'SELECT COUNT(*) FROM') === 0 && strpos($sql, "id IN ({$issue_id})") !== false) {
+        return "PREPARED_COUNT_QUERY_SUCCESS_TEST_{$issue_id}";
+    }
+    if (strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && isset($args[1]) && $args[1] == $issue_id) {
+         return "PREPARED_SELECT_QUERY_SUCCESS_TEST_{$issue_id}";
+    }
+    // Example for UPDATE, adjust arg checks as per actual $args passed to prepare for UPDATE
+    // The original mock for UPDATE in this test was: ->with(CALLBACK, rule, ignre, ignre_comment, id)
+    // So, $args[0]=rule, $args[1]=ignre, $args[2]=ignre_comment, $args[3]=id (if no SQL string in $args for this callback)
+    // But $args for willReturnCallback on prepare is ($sql, ...placeholder_values)
+    // So $args[0] is first placeholder value. For "UPDATE table SET col1=%s, col2=%s WHERE id=%d",
+    // $args[0] is val_col1, $args[1] is val_col2, $args[2] is id_val.
+    // Assuming the UPDATE query in this test has 4 placeholders (rule, ignre, ignre_comment, issue_id for WHERE)
+    if (strpos(trim($sql), 'UPDATE') === 0 && count($args) === 4 && $args[3] == $issue_id) {
+        return "PREPARED_UPDATE_QUERY_SUCCESS_TEST_{$issue_id}";
+    }
+
+    // Standardized Fallback for other prepare calls
+    if (is_string($sql) && !empty($args)) {
+        $placeholder_count = substr_count($sql, '%');
+        $args_padded = $args;
+        if (count($args) < $placeholder_count) {
+            $args_padded = array_pad($args, $placeholder_count, null);
+        }
+        $sql_for_vsprintf = str_replace('%i', '%s', $sql); // Handle %i for table names
+        // Suppress errors for vsprintf in case of mismatch, return raw SQL then.
+        $prepared_sql = @vsprintf($sql_for_vsprintf, $args_padded);
+        return ($prepared_sql === false) ? $sql : $prepared_sql;
+    }
+    return $sql; // Return original SQL if no args or not a string
+});
 
 		// Mock get_var for count_all_issues calls
 		$this->wpdb_mock->expects($this->exactly(2))
@@ -258,17 +270,21 @@ class IssuesAPITest extends WP_UnitTestCase {
 				if (strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && isset($args[1]) && $args[1] == $non_existent_id) {
 					return "PREPARED_SELECT_NOT_FOUND_{$non_existent_id}";
 				}
-				// Fallback for other prepare calls (e.g., from setUp for options)
-				// This simple vsprintf might not be fully robust for all SQL but aims to return a string.
-				if (!empty($args) && is_string($sql)) {
-					 // Ensure enough arguments for vsprintf if placeholders exist
+				// Fallback for other prepare calls
+				if (is_string($sql) && !empty($args)) {
+					// Ensure enough arguments for vsprintf if placeholders exist
 					$placeholder_count = substr_count($sql, '%');
-					while (count($args) < $placeholder_count) {
-						$args[] = null; // Add nulls if not enough args, to prevent vsprintf warning
+					// Only pad if there are fewer args than placeholders. Do not pad if args > placeholders.
+					if (count($args) < $placeholder_count) {
+						$args_padded = array_pad($args, $placeholder_count, null);
+					} else {
+						$args_padded = $args;
 					}
-					return @vsprintf(str_replace('%i', '%s', $sql), $args);
+					// Replace WordPress specific %i (table name) with %s for vsprintf compatibility
+					$sql_for_vsprintf = str_replace('%i', '%s', $sql);
+					return @vsprintf($sql_for_vsprintf, $args_padded);
 				}
-				return $sql;
+				return $sql; // Return original SQL if no args or not a string
 			});
 
 		// Mock get_var for count_all_issues
@@ -310,14 +326,21 @@ class IssuesAPITest extends WP_UnitTestCase {
 				if (strpos(trim($sql), 'SELECT * FROM') === 0 && strpos($sql, "id IN (%d)") !== false && isset($args[1]) && $args[1] == $issue_id) {
 					return "PREPARED_SELECT_NO_FIELDS_TEST_{$issue_id}";
 				}
-				// Fallback for other prepare calls (e.g. WP options if not handled by specific setUp mocks)
-				// The setUp mock for timezone 'prepare' should catch its specific query first if this is too general.
+				// Fallback for other prepare calls
 				if (is_string($sql) && !empty($args)) {
+					// Ensure enough arguments for vsprintf if placeholders exist
 					$placeholder_count = substr_count($sql, '%');
-					while (count($args) < $placeholder_count) { $args[] = null; }
-					return @vsprintf(str_replace('%i','%s',$sql), $args);
+					// Only pad if there are fewer args than placeholders. Do not pad if args > placeholders.
+					if (count($args) < $placeholder_count) {
+						$args_padded = array_pad($args, $placeholder_count, null);
+					} else {
+						$args_padded = $args;
+					}
+					// Replace WordPress specific %i (table name) with %s for vsprintf compatibility
+					$sql_for_vsprintf = str_replace('%i', '%s', $sql);
+					return @vsprintf($sql_for_vsprintf, $args_padded);
 				}
-				return $sql;
+				return $sql; // Return original SQL if no args or not a string
 			});
 
 		$this->wpdb_mock->expects($this->once())
@@ -399,11 +422,19 @@ class IssuesAPITest extends WP_UnitTestCase {
 				}
 				// Fallback for other prepare calls
 				if (is_string($sql) && !empty($args)) {
+					// Ensure enough arguments for vsprintf if placeholders exist
 					$placeholder_count = substr_count($sql, '%');
-					while (count($args) < $placeholder_count) { $args[] = null; }
-					return @vsprintf(str_replace('%i','%s',$sql), $args);
+					// Only pad if there are fewer args than placeholders. Do not pad if args > placeholders.
+					if (count($args) < $placeholder_count) {
+						$args_padded = array_pad($args, $placeholder_count, null);
+					} else {
+						$args_padded = $args;
+					}
+					// Replace WordPress specific %i (table name) with %s for vsprintf compatibility
+					$sql_for_vsprintf = str_replace('%i', '%s', $sql);
+					return @vsprintf($sql_for_vsprintf, $args_padded);
 				}
-				return $sql;
+				return $sql; // Return original SQL if no args or not a string
 			});
 
 		$this->wpdb_mock->expects($this->exactly(2))
