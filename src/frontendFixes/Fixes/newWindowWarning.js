@@ -99,9 +99,10 @@ const addExternalLinkIcon = ( link ) => {
 	const header = link.querySelector( 'h1, h2, h3, h4, h5, h6' );
 	if ( header ) {
 		header.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
-	} else {
-		link.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
+		return;
 	}
+
+	link.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
 };
 
 /**
