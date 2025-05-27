@@ -95,10 +95,17 @@ const processLinks = () => {
  * @param {HTMLElement} link - The link element to modify.
  */
 const addExternalLinkIcon = ( link ) => {
-	// Add icon to link
+	// Add icon to link.
 	const header = link.querySelector( 'h1, h2, h3, h4, h5, h6' );
 	if ( header ) {
 		header.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
+		return;
+	}
+
+	// If this the link is an elementor button place it alongside the content.
+	const elementorButtonContent = link.querySelector( '.elementor-button-content-wrapper' );
+	if ( elementorButtonContent ) {
+		elementorButtonContent.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon elementor-button-link-content" aria-hidden="true"></i>' );
 		return;
 	}
 
