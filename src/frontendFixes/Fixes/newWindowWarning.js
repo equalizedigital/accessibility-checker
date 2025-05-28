@@ -104,7 +104,8 @@ const addExternalLinkIcon = ( link ) => {
 		return;
 	}
 
-	// If this the link is an elementor button place it alongside the content.
+	// If this link is an Elementor button, place the icon inside its content wrapper.
+	// Note: This relies on Elementor's specific '.elementor-button-content-wrapper' class, which might change in future Elementor updates.
 	const elementorButtonContent = link.querySelector( '.elementor-button-content-wrapper' );
 	if ( elementorButtonContent ) {
 		elementorButtonContent.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon elementor-button-link-content" aria-hidden="true"></i>' );
