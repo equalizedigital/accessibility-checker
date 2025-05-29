@@ -53,14 +53,14 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The post ID was not set' );
+			$error = new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -170,7 +170,7 @@ class Ajax {
 
 		if ( ! $html ) {
 
-			$error = new \WP_Error( '-3', 'No summary to return' );
+			$error = new \WP_Error( '-3', __( 'No summary to return', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -193,14 +193,14 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The post ID was not set' );
+			$error = new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -214,7 +214,7 @@ class Ajax {
 		// Send error if table name is not valid.
 		if ( ! $table_name ) {
 
-			$error = new \WP_Error( '-3', 'Invalid table name' );
+			$error = new \WP_Error( '-3', __( 'Invalid table name', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -536,7 +536,7 @@ class Ajax {
 
 		if ( ! $html ) {
 
-			$error = new \WP_Error( '-4', 'No details to return' );
+			$error = new \WP_Error( '-4', __( 'No details to return', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -558,14 +558,14 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The post ID was not set' );
+			$error = new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -676,7 +676,7 @@ class Ajax {
 
 		if ( ! $html ) {
 
-			$error = new \WP_Error( '-3', 'No readability data to return' );
+			$error = new \WP_Error( '-3', __( 'No readability data to return', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -697,7 +697,7 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -733,7 +733,7 @@ class Ajax {
 			$object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $first_id ) );
 
 			if ( ! $object ) {
-				$error = new \WP_Error( '-2', 'No ignore data to return' );
+				$error = new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) );
 				wp_send_json_error( $error );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
@@ -756,7 +756,7 @@ class Ajax {
 
 		if ( ! $data ) {
 
-			$error = new \WP_Error( '-2', 'No ignore data to return' );
+			$error = new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -777,21 +777,21 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The post ID was not set' );
+			$error = new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
 
 		if ( ! isset( $_REQUEST['summary'] ) ) {
 
-			$error = new \WP_Error( '-3', 'The summary was not set' );
+			$error = new \WP_Error( '-3', __( 'The summary was not set', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}

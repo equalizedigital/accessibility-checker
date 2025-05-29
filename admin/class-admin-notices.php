@@ -111,7 +111,7 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -120,7 +120,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -222,7 +222,7 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -231,7 +231,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -310,7 +310,7 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -322,7 +322,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -399,14 +399,14 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
 
 		if ( ! isset( $_REQUEST['review_action'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The review action value was not set' );
+			$error = new \WP_Error( '-2', __( 'The review action value was not set', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -419,7 +419,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-3', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-3', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -481,7 +481,7 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -490,7 +490,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
