@@ -41,21 +41,17 @@ class Admin {
 	 */
 	public function init(): void {
 
-		$update_database = new Update_Database();
-		$update_database->init_hooks();
+		( new Update_Database() )->init_hooks();
 
 		add_action( 'admin_enqueue_scripts', [ 'EDAC\Admin\Enqueue_Admin', 'enqueue' ] );
 		add_action( 'wp_trash_post', [ Purge_Post_Data::class, 'delete_post' ] );
 		add_action( 'save_post', [ Post_Save::class, 'delete_issue_data_on_post_trashing' ], 10, 3 );
 
-		$admin_notices = new Admin_Notices();
-		$admin_notices->init_hooks();
+		( new Admin_Notices() )->init_hooks();
 
-		$widgets = new Widgets();
-		$widgets->init_hooks();
+		( new Widgets() )->init_hooks();
 
-		$site_health_info = new Information();
-		$site_health_info->init_hooks();
+		( new Information() )->init_hooks();
 
 		$this->init_ajax();
 
@@ -72,10 +68,8 @@ class Admin {
 			return;
 		}
 
-		$ajax = new Ajax();
-		$ajax->init_hooks();
+		( new Ajax() )->init_hooks();
 
-		$frontend_highlight = new Frontend_Highlight();
-		$frontend_highlight->init_hooks();
+		( new Frontend_Highlight() )->init_hooks();
 	}
 }

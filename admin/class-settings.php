@@ -40,11 +40,7 @@ class Settings {
 			$post_types = array_unique( $post_types );
 
 			// validate post types.
-			$args             = [
-				'public'   => true,
-				'_builtin' => true,
-			];
-			$valid_post_types = get_post_types( $args, 'names', 'and' );
+			$valid_post_types = get_post_types( [ 'public' => true, '_builtin' => true ], 'names', 'and' );
 			unset( $valid_post_types['attachment'] );
 
 			foreach ( $post_types as $key => $post_type ) {
@@ -71,8 +67,7 @@ class Settings {
 
 		global $wpdb;
 
-		$post_types = self::get_scannable_post_types();
-
+		$post_types    = self::get_scannable_post_types();
 		$post_statuses = self::get_scannable_post_statuses();
 
 		if ( ! empty( $post_types ) && ! empty( $post_statuses ) ) {
@@ -80,7 +75,6 @@ class Settings {
 				Helpers::array_to_sql_safe_list( $post_types ) . ') and post_status IN(' .
 				Helpers::array_to_sql_safe_list( $post_statuses ) .
 			')';
-
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			return $wpdb->get_var( $sql );
 		}
