@@ -24,7 +24,6 @@
     "lint:php:fix": "./vendor/bin/phpcbf",
     "lint:js": "wp-scripts lint-js",
     "lint:js:fix": "wp-scripts lint-js --fix",
-
     "test:php": "npx wp-env run tests-cli ./source/vendor/phpunit/phpunit/phpunit -c ./source/phpunit.dev.xml ./source/tests/phpunit",
     "test:e2e": "npx wp-env clean tests && npx playwright test ./e2e/specs",
     "test:jest": "jest --config=./tests/jest/jest.config.js --passWithNoTests",
@@ -74,5 +73,8 @@
     "unique-selector": "^0.5.0",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "interactjs": "^1.10.27"
   }
 }
