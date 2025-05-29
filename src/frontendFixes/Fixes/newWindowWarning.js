@@ -66,7 +66,7 @@ const processLinks = () => {
 	// Remove previously appended icons to avoid duplication
 	document.querySelectorAll( '.edac-nww-external-link-icon' ).forEach( ( icon ) => icon.remove() );
 
-	document.querySelectorAll( 'a:not([data-anww-processed])' ).forEach( ( link ) => {
+	document.querySelectorAll( 'a:not([data-nww-processed])' ).forEach( ( link ) => {
 		const onclickAttr = link.getAttribute( 'onclick' );
 
 		// Check if the link opens a new window using target="_blank"
