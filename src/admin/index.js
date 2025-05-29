@@ -93,9 +93,12 @@ const edacScriptVars = edac_script_vars;
 
 		// Refresh data on summary and readability tabs
 		const refreshSummaryAndReadability = () => {
-			edacSummaryAjax( () => {
-				edacReadabilityAjax();
-				jQuery( '.edac-panel' ).removeClass( 'edac-panel-loading' );
+			return new Promise( ( resolve, reject ) => {
+				edacSummaryAjax( async () => {
+					await edacReadabilityAjax();
+					jQuery( '.edac-panel' ).removeClass( 'edac-panel-loading' );
+					resolve();
+				} );
 			} );
 		};
 
@@ -215,14 +218,14 @@ const edacScriptVars = edac_script_vars;
 		/**
 		 * Ajax Readability
 		 */
-		function edacReadabilityAjax() {
+		async function edacReadabilityAjax() {
 			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {
 				return;
 			}
 
-			jQuery.ajax( {
+			await jQuery.ajax( {
 				url: ajaxurl,
 				method: 'GET',
 				data: {
@@ -259,7 +262,18 @@ const edacScriptVars = edac_script_vars;
 										doneResponse.data
 									);
 
-									refreshSummaryAndReadability();
+									refreshSummaryAndReadability().then( () => {
+										wp.data.dispatch( 'core/notices' ).createNotice(
+											'success',
+											'Summary saved.',
+											{
+												isDismissible: true,
+												type: 'snackbar',
+												speak: true,
+												speakType: 'assertive',
+											}
+										);
+									} );
 								} else {
 									// eslint-disable-next-line no-console
 									console.log( doneResponse );
