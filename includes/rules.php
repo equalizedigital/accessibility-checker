@@ -113,9 +113,9 @@ return [
 		'slug'      => 'iframe_missing_title',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;frame&gt;</code>.
+			// translators: %1$s is <code>&lt;iframe&gt;</code>.
 			esc_html__( 'An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe.', 'accessibility-checker' ),
-			'<code>&lt;frame&gt;</code>'
+			'<code>&lt;iframe&gt;</code>'
 		),
 		'ruleset'   => 'js',
 		'combines'  => [
