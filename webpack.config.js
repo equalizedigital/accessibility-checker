@@ -44,7 +44,11 @@ module.exports = {
 			},
 		},
 		minimizer: [
-			new TerserPlugin(),
+			new TerserPlugin( {
+				terserOptions: {
+					keep_fnames: /(__|_n|_x|_nx)$/,
+				},
+			} ),
 			new CssMinimizerPlugin(),
 		],
 	},
