@@ -74,7 +74,8 @@ const processLinks = () => {
 			addExternalLinkIcon( link );
 			updateAriaLabel( link );
 			addTooltipHandlers( link );
-			link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed
+			link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed.
+			return;
 		}
 
 		// Check if the link uses window.open in the onclick attribute
@@ -86,7 +87,7 @@ const processLinks = () => {
 				addExternalLinkIcon( link );
 				updateAriaLabel( link );
 				addTooltipHandlers( link );
-				link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed
+				link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed.
 			}
 		}
 	} );
