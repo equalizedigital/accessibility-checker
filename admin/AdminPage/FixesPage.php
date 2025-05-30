@@ -68,7 +68,7 @@ class FixesPage implements PageInterface {
 
 		$scan_tab = [
 			'slug'  => 'fixes',
-			'label' => 'Fixes',
+			'label' => __( 'Fixes', 'accessibility-checker' ),
 			'order' => 2,
 		];
 		array_push( $settings_tab_items, $scan_tab );

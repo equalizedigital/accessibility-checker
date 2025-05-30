@@ -409,7 +409,7 @@ class Ajax {
 					$html .=
 						'<div class="edac-details-rule-records-labels">
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								Affected Code
+								' . esc_html__( 'Affected Code', 'accessibility-checker' ) . '
 							</div>
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
 								Image
