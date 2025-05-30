@@ -76,12 +76,12 @@ class Frontend_Highlight {
 
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
-			$error = new \WP_Error( '-2', 'The id value was not set' );
+			$error = new \WP_Error( '-2', __( 'The id value was not set', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 		}
 
@@ -89,7 +89,7 @@ class Frontend_Highlight {
 		$results = $this->get_issues( $post_id );
 
 		if ( ! $results ) {
-			$error = new \WP_Error( '-3', 'Issue query returned no results' );
+			$error = new \WP_Error( '-3', __( 'Issue query returned no results', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 		}
 
@@ -134,7 +134,7 @@ class Frontend_Highlight {
 
 		if ( ! $issues ) {
 
-			$error = new \WP_Error( '-5', 'Object query returned no results' );
+			$error = new \WP_Error( '-5', __( 'Object query returned no results', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -143,8 +143,9 @@ class Frontend_Highlight {
 		if ( ! empty( $fixes ) ) {
 			foreach ( $fixes as $key => $fix ) {
 				// count the number of fields in the fix.
-				$fields_count = count( $fix );
-				$itteration   = 0;
+				$fields_count      = count( $fix );
+				$itteration        = 0;
+				$fix_fields_markup = '';
 				foreach ( $fix as $index => $field ) {
 					++$itteration;
 					$field_type = $field['type'] ?? 'checkbox';

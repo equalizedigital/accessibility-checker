@@ -4,7 +4,7 @@
 import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
-import { __ } from '@wordpress/i18n';
+import { __, _n } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 
@@ -640,10 +640,10 @@ class AccessibilityCheckerHighlight {
 			content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }">Full Documentation</a>`;
 
 			// Get the code button
-			content += `<button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">Show Code</button>`;
+			content += `<button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Code', 'accessibility-checker' ) }</button>`;
 
 			// title and content
-			descriptionTitle.innerHTML = matchingObj.rule_title + ' <span class="edac-highlight-panel-description-type edac-highlight-panel-description-type-' + matchingObj.rule_type + '" aria-label=" Issue type: ' + matchingObj.rule_type + '"> ' + matchingObj.rule_type + '</span>';
+			descriptionTitle.innerHTML = matchingObj.rule_title + ' <span class="edac-highlight-panel-description-type edac-highlight-panel-description-type-' + matchingObj.rule_type + '" aria-label="' + __( 'Issue type:', 'accessibility-checker' ) + ' ' + matchingObj.rule_type + '"> ' + matchingObj.rule_type + '</span>';
 
 			// content
 			descriptionContent.innerHTML = content;
@@ -740,7 +740,7 @@ class AccessibilityCheckerHighlight {
 		document.querySelector( 'body' ).classList.add( 'edac-app-disable-styles' );
 
 		this.stylesDisabled = true;
-		this.disableStylesButton.textContent = 'Enable Styles';
+		this.disableStylesButton.textContent = __( 'Enable Styles', 'accessibility-checker' );
 	}
 
 	/**
@@ -761,7 +761,7 @@ class AccessibilityCheckerHighlight {
 		document.querySelector( 'body' ).classList.remove( 'edac-app-disable-styles' );
 
 		this.stylesDisabled = false;
-		this.disableStylesButton.textContent = 'Disable Styles';
+		this.disableStylesButton.textContent = __( 'Disable Styles', 'accessibility-checker' );
 	}
 
 	/**
@@ -866,7 +866,7 @@ class AccessibilityCheckerHighlight {
 		const ignoredCount = this.countIgnored();
 		const div = document.querySelector( '.edac-highlight-panel-controls-summary' );
 
-		let textContent = 'No issues detected.';
+		let textContent = __( 'No issues detected.', 'accessibility-checker' );
 		if ( errorCount > 0 || warningCount > 0 || ignoredCount > 0 ) {
 			textContent = '';
 			// show buttons since we have issues.
@@ -874,16 +874,16 @@ class AccessibilityCheckerHighlight {
 			this.previousButton.disabled = false;
 
 			if ( errorCount >= 0 ) {
-				textContent += errorCount + ' error' + ( errorCount === 1 ? '' : 's' ) + ', ';
+				textContent += errorCount + ' ' + _n( 'error', 'errors', errorCount, 'accessibility-checker' ) + ', ';
 			}
 			if ( warningCount >= 0 ) {
-				textContent += warningCount + ' warning' + ( warningCount === 1 ? '' : 's' ) + ', ';
+				textContent += warningCount + ' ' + _n( 'warning', 'warnings', warningCount, 'accessibility-checker' ) + ', ';
 			}
 			if ( ignoredCount >= 0 ) {
-				textContent += 'and ' + ignoredCount + ' ignored issue' + ( ignoredCount === 1 ? '' : 's' ) + ' detected.';
+				textContent += __( 'and', 'accessibility-checker' ) + ' ' + ignoredCount + ' ' + _n( 'ignored issue', 'ignored issues', ignoredCount, 'accessibility-checker' ) + ' ' + __( 'detected.', 'accessibility-checker' );
 			} else {
 				// Remove the trailing comma and add "detected."
-				textContent = textContent.slice( 0, -2 ) + ' detected.';
+				textContent = textContent.slice( 0, -2 ) + ' ' + __( 'detected.', 'accessibility-checker' );
 			}
 		}
 
