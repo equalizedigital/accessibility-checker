@@ -47,7 +47,7 @@ module.exports = {
 			new TerserPlugin( {
 				terserOptions: {
 					mangle: {
-						reserved: [ '__' ], // Prevent webpack from using this translation function name and mangling it in the source.
+						reserved: [ '__', '_n', '_x', '_nx' ], // Prevent webpack from using these translation function names and mangling them in the source.
 					},
 					keep_fnames: /(__|_n|_x|_nx)$/,
 				},
