@@ -66,7 +66,7 @@ const processLinks = () => {
 	// Remove previously appended icons to avoid duplication
 	document.querySelectorAll( '.edac-nww-external-link-icon' ).forEach( ( icon ) => icon.remove() );
 
-	document.querySelectorAll( 'a' ).forEach( ( link ) => {
+	document.querySelectorAll( 'a:not([data-nww-processed])' ).forEach( ( link ) => {
 		const onclickAttr = link.getAttribute( 'onclick' );
 
 		// Check if the link opens a new window using target="_blank"
@@ -74,6 +74,8 @@ const processLinks = () => {
 			addExternalLinkIcon( link );
 			updateAriaLabel( link );
 			addTooltipHandlers( link );
+			link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed.
+			return;
 		}
 
 		// Check if the link uses window.open in the onclick attribute
@@ -85,6 +87,7 @@ const processLinks = () => {
 				addExternalLinkIcon( link );
 				updateAriaLabel( link );
 				addTooltipHandlers( link );
+				link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed.
 			}
 		}
 	} );
@@ -95,13 +98,22 @@ const processLinks = () => {
  * @param {HTMLElement} link - The link element to modify.
  */
 const addExternalLinkIcon = ( link ) => {
-	// Add icon to link
+	// Add icon to link.
 	const header = link.querySelector( 'h1, h2, h3, h4, h5, h6' );
 	if ( header ) {
 		header.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
-	} else {
-		link.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
+		return;
 	}
+
+	// If this link is an Elementor button, place the icon inside its content wrapper.
+	// Note: This relies on Elementor's specific '.elementor-button-content-wrapper' class, which might change in future Elementor updates.
+	const elementorButtonContent = link.querySelector( '.elementor-button-content-wrapper' );
+	if ( elementorButtonContent ) {
+		elementorButtonContent.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon elementor-button-link-content" aria-hidden="true"></i>' );
+		return;
+	}
+
+	link.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
 };
 
 /**
