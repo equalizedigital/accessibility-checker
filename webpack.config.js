@@ -45,6 +45,7 @@ module.exports = {
 		},
 		minimizer: [
 			new TerserPlugin( {
+				parallel: true,
 				terserOptions: {
 					mangle: {
 						reserved: [ '__', '_n', '_x', '_nx' ], // Prevent webpack from using these translation function names and mangling them in the source.
