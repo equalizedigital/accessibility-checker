@@ -5,6 +5,7 @@ import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
 import { __ } from '@wordpress/i18n';
+import interact from 'interactjs';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 
@@ -53,6 +54,7 @@ class AccessibilityCheckerHighlight {
 		this.originalCss = [];
 
 		this.init();
+		this.initDraggable();
 	}
 
 	/**
@@ -80,6 +82,7 @@ class AccessibilityCheckerHighlight {
 			this.panelControlsFocusTrap.deactivate();
 			this.panelDescriptionFocusTrap.deactivate();
 			this.enableStyles();
+			this.resetDragPosition(); // Reset drag position variables when panel is closed
 		} );
 
 		// Close description when close button is clicked
@@ -98,6 +101,166 @@ class AccessibilityCheckerHighlight {
 		if ( this.urlParameter ) {
 			this.panelOpen( this.urlParameter );
 		}
+	}
+
+	/**
+	 * Initialize draggable functionality with keyboard and screen reader support
+	 */
+	initDraggable() {
+		const panel = document.getElementById( 'edac-highlight-panel' );
+		const title = panel.querySelector( '.edac-highlight-panel-controls-title' );
+		if ( ! panel || ! title ) {
+			return;
+		}
+
+		let currentX = 0;
+		let currentY = 0;
+		let isDragging = false;
+		const MOVE_STEP = 10; // pixels to move with each arrow key
+
+		// Add method to reset position variables
+		this.resetDragPosition = () => {
+			currentX = 0;
+			currentY = 0;
+			isDragging = false;
+			title.setAttribute( 'aria-grabbed', 'false' );
+		};
+
+		// Keyboard control
+		title.setAttribute( 'role', 'button' );
+		title.setAttribute( 'tabindex', '0' );
+		title.setAttribute( 'aria-grabbed', 'false' );
+
+		title.addEventListener( 'keydown', ( event ) => {
+			if ( event.key === 'Enter' || event.key === ' ' ) {
+				event.preventDefault();
+				if ( ! isDragging ) {
+					// Start dragging
+					isDragging = true;
+					title.setAttribute( 'aria-grabbed', 'true' );
+					this.announceToScreenReader( 'Panel movement started. Use arrow keys to move, Escape to cancel, Enter to confirm.' );
+				} else {
+					// Confirm position
+					isDragging = false;
+					title.setAttribute( 'aria-grabbed', 'false' );
+					this.announceToScreenReader( 'Panel position confirmed.' );
+				}
+			} else if ( isDragging ) {
+				switch ( event.key ) {
+					case 'Escape': {
+						event.preventDefault();
+						// Reset position
+						panel.style.transform = '';
+						currentX = 0;
+						currentY = 0;
+						isDragging = false;
+						title.setAttribute( 'aria-grabbed', 'false' );
+						this.announceToScreenReader( 'Movement cancelled, panel returned to original position.' );
+						break;
+					}
+					case 'ArrowLeft': {
+						event.preventDefault();
+						currentX -= MOVE_STEP;
+						this.updatePosition( panel, currentX, currentY );
+						break;
+					}
+					case 'ArrowRight': {
+						event.preventDefault();
+						currentX += MOVE_STEP;
+						this.updatePosition( panel, currentX, currentY );
+						break;
+					}
+					case 'ArrowUp': {
+						event.preventDefault();
+						currentY -= MOVE_STEP;
+						this.updatePosition( panel, currentX, currentY );
+						break;
+					}
+					case 'ArrowDown': {
+						event.preventDefault();
+						currentY += MOVE_STEP;
+						this.updatePosition( panel, currentX, currentY );
+						break;
+					}
+				}
+			}
+		} );
+
+		const self = this;
+		// Mouse/Touch dragging with InteractJS
+		interact( '#edac-highlight-panel' )
+			.draggable( {
+				allowFrom: '.edac-highlight-panel-controls-title',
+				listeners: {
+					start( event ) {
+						isDragging = true;
+						title.setAttribute( 'aria-grabbed', 'true' );
+						const target = event.target;
+						const style = window.getComputedStyle( target );
+						const transform = style.transform;
+						if ( transform !== 'none' ) {
+							const matrix = new DOMMatrix( transform );
+							currentX = matrix.m41;
+							currentY = matrix.m42;
+						}
+					},
+					move( event ) {
+						currentX += event.dx;
+						currentY += event.dy;
+						self.updatePosition( event.target, currentX, currentY );
+					},
+					end() {
+						isDragging = false;
+						title.setAttribute( 'aria-grabbed', 'false' );
+						self.announceToScreenReader( 'Panel movement ended.' );
+					},
+				},
+				modifiers: [
+					interact.modifiers.restrictRect( {
+						restriction: 'parent',
+						endOnly: true,
+					} ),
+				],
+				inertia: true,
+			} );
+	}
+
+	/**
+	 * Helper method for updating position with announcements
+	 * @param {HTMLElement} element
+	 * @param {number}      x
+	 * @param {number}      y
+	 */
+	updatePosition( element, x, y ) {
+		element.style.transform = `translate(${ x }px, ${ y }px)`;
+
+		// Only announce significant movements (every 100px) to avoid too frequent announcements
+		if ( x % 100 === 0 || y % 100 === 0 ) {
+			const xDir = x > 0 ? 'right' : 'left';
+			const yDir = y > 0 ? 'down' : 'up';
+			this.announceToScreenReader(
+				`Panel moved ${ xDir } ${ Math.abs( x ) }px, ${ yDir } ${ Math.abs( y ) }px`
+			);
+		}
+	}
+
+	/**
+	 * Announce a message to screen readers using an ARIA live region
+	 * @param {string} message - The message to announce
+	 */
+	announceToScreenReader( message ) {
+		const liveRegionId = 'edac-live-region';
+		let liveRegion = document.getElementById( liveRegionId );
+
+		if ( ! liveRegion ) {
+			liveRegion = document.createElement( 'div' );
+			liveRegion.id = liveRegionId;
+			liveRegion.setAttribute( 'aria-live', 'polite' );
+			liveRegion.classList.add( 'sr-only' );
+			document.body.appendChild( liveRegion );
+		}
+
+		liveRegion.textContent = message;
 	}
 
 	/**
@@ -347,7 +510,12 @@ class AccessibilityCheckerHighlight {
 		const widgetPosition = edacFrontendHighlighterApp.widgetPosition || 'right';
 
 		const newElement = `
-			<div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
+			<div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }" 
+				role="application"
+				aria-describedby="edac-drag-instructions">
+			<div id="edac-drag-instructions" class="sr-only">
+				Press Enter or Space to start moving the panel. Use arrow keys to move, Escape to cancel, or Enter to confirm position.
+			</div>
 			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
 			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
 			<button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
@@ -549,6 +717,10 @@ class AccessibilityCheckerHighlight {
 		this.panelToggle.style.display = 'block';
 		this.removeSelectedClasses();
 		this.removeHighlightButtons();
+
+		// Reset the panel position and drag state
+		this.highlightPanel.style.transform = '';
+		this.resetDragPosition();
 
 		this.closePanel.removeEventListener( 'click', this.panelControlsFocusTrap.deactivate );
 
