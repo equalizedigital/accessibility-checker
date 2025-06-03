@@ -1420,7 +1420,7 @@
           color: #ffffff;
 
           &-error {
-            background: variables.$color-green url('.././images/error-icon-white.png') no-repeat calc(0% + 5px) 50%;
+            background: variables.$color-green url('../images/error-icon-white.png') no-repeat calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
 
             &.has-errors {
