@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "アクセシビリティチェッカー"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "公開する前にウェブサイトのアクセシビリティを監査してチェックします。投稿内アクセシビリティスキャナーとガイダンス付き。"
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize Digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "修正"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "一般的な修正"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "これらの修正は、サイト上のHTML要素と動作を変更することでアクセシビリティを向上させます。"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "この機能のロックを解除するにはProにアップグレードしてください。新しいウィンドウで開きます。"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "Proを入手"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "新しいウィンドウで開きます。"
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "%sのドキュメントを読む。新しいウィンドウで開きます。"
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "ウェブアクセシビリティへの取り組み"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[YOUR COMPANY NAME]は、スクリーンリーダー、画面拡大ソフトウェア、代替キーボード入力デバイスなどの支援技術に頼ってウェブを閲覧するユーザーを含む、あらゆる能力のすべてのユーザーに完全にアクセシブルなウェブサイト体験を提供することに努めています。"
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "アクセシビリティを確保するための継続的な取り組み"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "アクセシビリティを判断する指針として、<a href=\"https://www.w3.org/TR/WCAG21/\">Webコンテンツアクセシビリティガイドライン（WCAG）バージョン2.1</a>に従っています。これらは、コンテンツを使用可能にするための幅広い推奨事項とベストプラクティスをカバーする、国際的に合意された基準です。新しいページや機能をウェブサイトに追加する際には、すべてのデザイン、コード、コンテンツ入力の実践がこれらの基準に照らしてチェックされます。"
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "ウェブサイトのアクセシビリティは継続的なプロセスです。私たちは、WCAG 2.1レベルAAに準拠しているかどうかコンテンツと機能を継続的にテストし、基準を満たすまたは超えるために問題を修正しています。ウェブサイトのテストは、<a href=\"https://a11ychecker.com/\">Accessibility Checker WordPressプラグイン</a>、色のコントラスト分析ツール、キーボードのみのナビゲーション技術、Flesch-Kincaid読みやすさテストなどの業界標準ツールを使用して、チームメンバーによって実施されています。"
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "ウェブサイトのアクセシビリティ機能"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "以下は、ウェブサイトのアクセシビリティを向上させるために含めた項目のリストです："
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[ここにアクセシビリティ機能をリストアップ]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "改善中の項目"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "ウェブサイトを基準に引き上げる取り組みの中で、以下の分野をターゲットにしています："
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[ここに修正中の項目をリストアップ]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[最も一般的な問題を確認するために、オープン課題タブをレビューすると役立つかもしれません]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "これは、[COMPANY NAME]での皆様の体験を歓迎し、楽しいものにするための幅広い取り組みの一部です。すべてのユーザーにアクセス可能な情報を提供するよう努めていますが、リンク先の第三者のウェブサイトのアクセシビリティは保証できないことにご注意ください。"
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "アクセシビリティサポートの連絡先"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "ウェブサイトに関するコメント、質問、フィードバックを歓迎します。支援技術を使用していて、ウェブサイトの利用に困難を感じている場合は、[YOUR ACCESSIBILITY EMAIL ADDRESS]にメールを送るか、[YOUR PHONE NUMBER]にお電話ください。できる限りサポートし、問題を解決いたします。"
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "バージョン1.21.0で統計計算を改善しました。その結果、以下のデータの一部の数値が変更されている可能性があります。詳細は%1$sリリースアナウンス記事%2$sをお読みください。"
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "権限がありません"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "オプションの更新が成功しませんでした"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 ブラックフライデー特別オファー！ 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "11月25日から12月3日までの期間中、Accessibility Checkerの有料バージョンにアップグレードすると30%オフ！サイト全体のスキャン、サイト全体のオープン課題レポート、無視ログなどが利用可能になります。"
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "事前販売の質問をする"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "今すぐアップグレード"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 世界アクセシビリティ啓発デーを記念して、Accessibility Checker Proが25%オフ！ 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "5月13日から5月21日まで、クーポンコードGAAD25を使用して、サイト全体のスキャンやその他のプロ機能に特別割引でアクセスできます。アップグレードが適切かどうか迷っていますか？"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "こんにちは！Accessibility Checkerをアクセシビリティツールキットの一部としてご利用いただきありがとうございます。しばらくご利用いただいていますが、WordPressプラグインディレクトリでAccessibility Checkerの5つ星レビューを書いていただけませんか？これにより、より多くの人々がウェブアクセシビリティの重要性を知ることができるよう、私たちの可視性を高めるのに役立ちます。どうぞよろしくお願いいたします！"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "レビューを書く"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "2週間後に再通知する"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "二度と尋ねない"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "レビューアクションの値が設定されていませんでした"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "おっと！現在、あなたのウェブサイトはパスワードで保護されているようです。Accessibility Checkerの無料版は、一般公開されているウェブサイトのみスキャンできます。このウェブサイトのアクセシビリティの問題をスキャンするには、パスワード保護を解除するか、%sしてください。以前のスキャン結果が保存されている場合があります。"
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "Accessibility Checker Proにアップグレードする。新しいウィンドウで開きます。"
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "Proにアップグレード"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "投稿IDが設定されていません"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "このコンテンツには簡略化された要約が含まれていません。"
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "あなたのコンテンツの読解レベルは中学3年生以下であり、簡略化された要約は必要ありません。"
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "簡略化された要約の読解レベルが高すぎます。"
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "このコンテンツには簡略化された要約が含まれています。"
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s個のエラー"
+msgstr[1] "%s個のエラー"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s個のコントラストエラー"
+msgstr[1] "%s個のコントラストエラー"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s個の警告"
+msgstr[1] "%s個の警告"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s個の無視された項目"
+msgstr[1] "%s個の無視された項目"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "返す要約がありません"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "無効なテーブル名"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "これらの設定は、サイト全体にわたるグローバルな修正を有効にします。"
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "レポートに修正が反映されるには、ページの再保存またはサイト全体のスキャンの実行が必要な場合があります。"
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "保存"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "影響を受けるコード"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "ウェブサイトで問題ID %dを表示する（新しいウィンドウで開きます）"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "ページで表示"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "修正: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "修正"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "あなたのユーザーアカウントには、この問題を無視する権限がありません。"
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "返す詳細がありません"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "返す読みやすさデータがありません"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "返す無視データがありません"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "要約が設定されていません"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "ID値が設定されていません"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "問題のクエリで結果が返されませんでした"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "オブジェクトのクエリで結果が返されませんでした"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "最新のテスト概要"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "カウントを更新"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "新しいスキャンを開始"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "すべての未解決の問題を表示"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "履歴を見る"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "合格したテスト"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "ユニークなエラー"
+msgstr[1] "ユニークなエラー"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "ユニークな色のコントラストエラー"
+msgstr[1] "ユニークな色のコントラストエラー"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "ユニークな警告"
+msgstr[1] "ユニークな警告"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "無視された項目"
+msgstr[1] "無視された項目"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "ページあたりの平均問題数"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "平均問題密度"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "レポート最終更新日:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "なし"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "スキャンされたURL"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s / %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "チェックされた投稿タイプ"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "100%スコアのURL"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "この概要は24時間ごと、またはサイト全体のスキャンが完了するたびに自動的に更新されます。「カウントを更新」ボタンをクリックして、これらの結果を手動で更新することもできます。"
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "あなたのサイトには多数の問題があります。パフォーマンス上の理由から、この概要にはすべての問題が含まれているわけではありません。"
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "サイト全体のアクセシビリティレポート"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "バナーを非表示"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "詳細なアクセシビリティレポートをアンロック"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "ウェブサイト全体のアクセシビリティ問題のスキャンを開始し、サイト全体のレポートを取得して、アクセシビリティガイドラインへの準拠をより迅速に達成します。"
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "Accessibility Checkerをアップグレード"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "広告を閉じる"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "詳細なアクセシビリティレポートを取得"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "サイト全体のアクセシビリティ状況"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "スキャンされたURL:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "エラー:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "色のコントラストエラー:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "警告:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "あなたのサイトにはアクセシビリティの問題があり、アクセシビリティガイドラインに準拠するためにできるだけ早く対処する必要があります。"
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "素晴らしい！Accessibility Checkerはテストしたコンテンツにアクセシビリティの問題を見つけられませんでした。自動化ツールでは見つけられない問題もあるので、忘れずに"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "サイトを手動でテスト"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "投稿タイプ別の問題"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "投稿タイプ"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "エラー"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "コントラスト"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "警告"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "アップグレードしてスキャン"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "さらにレポートを見る"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "アクセシビリティを学ぶ"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "追加リソース"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "ブログ（新しいウィンドウで開きます）"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "ブログ"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "ドキュメント（新しいウィンドウで開きます）"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "ドキュメント"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "アクセシビリティのイベントとニュースをインボックスに"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "Equalize Digitalのメーリングリストに登録して、無料のアクセシビリティウェビナーとトレーニングリソースにアクセスしましょう。"
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "メールアドレス*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "メールアドレスを入力"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "名"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "名を入力"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Accessibility Checker &mdash; 監査履歴"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Accessibility Checker &mdash; 無料版"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "バージョン"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "データベースバージョン"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "ポリシーページ"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "未設定"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "有効化日"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "フッター文"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "有効"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "無効"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "データを削除"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "ステートメントリンクを含める"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "投稿タイプ"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "簡略化された要約の位置"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "簡略化された要約のプロンプト"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "投稿数"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "エラー数"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "警告数"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "DBテーブル数"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Accessibility Checker &mdash; Pro版"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "ライセンス状態"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "認証ユーザー名"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "認証パスワード"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "スキャンID"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "スキャン合計"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "簡略化された要約の見出し"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "無視の権限"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "なし"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "無視されたDBテーブル数"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "%1$sは%2$sを使用して、私たちのウェブサイトのアクセシビリティを監視しています。"
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "アクセシビリティチェッカー（新しいウィンドウで開きます）"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "%sをお読みください"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "アクセシビリティポリシー"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "簡略版概要"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "ファイルリンクにサイズと種類を追加"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "リンクされたファイルにコンテキストを追加"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "リンクにファイルサイズと種類を追加"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "ダウンロードを引き起こす可能性のあるリンクされたファイルにファイルサイズと種類を追加します。"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "ラベルのないフォームフィールドにラベルを追加"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "フォームフィールドにラベルを付ける"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "フィールドの目的が判断できる場合、ラベルのないフォームフィールドにラベルを追加します。"
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "ラベルが欠けているフォームフィールドにラベルを追加しようとします。注意：ラベルの追加がフォームのレイアウトに影響を与える場合、%1$sクラスをターゲットにしたカスタムスタイルを追加する必要があるかもしれません。"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "欠落または空のページタイトルを追加"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "ページHTMLタイトルを設定"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "欠落しているページタイトルを追加"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "ページに%1$sタグが欠落しているか空の場合、それを追加します。"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "新しいタブ/ウィンドウを開くリンクに警告を追加"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "新しいタブ/ウィンドウを開くリンクにラベルを追加"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "%1$sを持つリンクに、新しいタブ/ウィンドウを開くことをユーザーに知らせるラベルとアイコンを追加します。%2$s注意：「新しいウィンドウを開くリンクをブロック」修正が有効になっている場合、この設定は効果がありません。%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "PDFアップロードをブロック"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "%1$s機能を持たないユーザーのPDFアップロードを制限します（デフォルトでは管理者に許可されています）。"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "コメントと検索フォームにラベルを追加"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "コメント/検索フィールドにラベルを付ける"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "コメントと検索フォームのラベル"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "WordPressのコメントと検索フォームに欠落しているラベルを追加します。"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "コメントフォームにラベルを付ける"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "WordPressのコメントフォームに欠落しているラベルを追加します。"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "検索フォームにラベルを付ける"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "WordPressの検索フォームに欠落しているラベルを追加します。"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "コメント"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "名前"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "メールアドレス"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "ウェブサイト"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "検索 …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "検索対象："
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "検索"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "WordPressのコメントフォームと検索フォームに不足しているラベルを追加するための設定。"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "フォーカスのアウトラインを追加"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "フォーカスのアウトライン"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "要素がキーボードフォーカスを受け取ったときにアウトラインを追加します。"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "フォーカスのアウトラインを追加"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "キーボードアクセシビリティを向上させるためのフォーカスアウトライン強化に関する設定。"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "Lang属性とdir属性を追加"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "ページの言語を設定"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "「lang」属性と「dir」属性を追加"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "%3$s要素にサイトの言語（%1$s）とテキストの方向（%2$s）の属性を追加します。"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "ナビゲーション以外のすべてのリンクに下線を追加"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "リンクに下線を引く"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "リンクの下線を強制"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "ナビゲーション以外のリンクに下線が引かれていることを確認します。"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "Metaビューポートタグをスケーラブルにする"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "スケーラブルなビューポートを確保"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "ページのビューポートタグが拡大縮小を許可していることを確認します。"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "ビューポートをスケーラブルにする"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "ビューポートタグが拡大縮小を許可するようにし、モバイルデバイスでのアクセシビリティを向上させます。"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "リンクが新しいウィンドウを開くのを防ぐ"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "リンクが新しいウィンドウを開くのをブロック"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "%1$sを削除して、リンクが新しいウィンドウやタブで開くのを防ぎます。"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "投稿タイトルを含む「続きを読む」リンクを追加"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "続きを読むリンクにタイトルを追加"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "続きを読むリンク"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "投稿タイトルとリンクを追加 "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "「続きを読む」に投稿タイトルを追加"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "テーマがそれらのリンクを出力する場合、投稿リストの「続きを読む」リンクに投稿タイトルを追加します。"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "スクリーンリーダーのみ"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "「続きを読む」リンクに追加された投稿タイトルをスクリーンリーダーのみに表示します。"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "この修正は、「続きを読む」ブロックと抜粋の投稿リストにある「続きを読む」リンクに投稿タイトルを追加します。"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "アクセシブルなlabel属性を優先"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "不要なtitle属性を削除"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "Title属性を削除"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "既に優先的なアクセシブルな名前を持つ要素から%1$s属性を削除します。"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "スキップリンクを追加"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "スキップリンク"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "スキップリンクを有効にする"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "すべてのサイトページにスキップリンクを追加し、ユーザーがメインコンテンツに直接スキップできるようにします。"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "メインコンテンツのターゲット（必須）"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "スキップリンクによってターゲットにされるメインコンテンツ領域のIDを定義します。複数のIDをカンマで区切って入力してください。システムは各ページに適切なものを見つけるためにリストをカスケード処理します。"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "ナビゲーションのターゲット"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "ナビゲーション要素のID属性を設定します。これは、メインナビゲーションにログインや検索機能など、ほとんどのサイト訪問者が実行したいアクションが含まれている場合に役立ちます。"
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "あなたのテーマがまだキーボードユーザーがナビゲーションをバイパスしてメインコンテンツにすぐにジャンプできるスキップリンクを追加していない場合、ここでスキップリンクを有効にしてください。%1$sスキップリンクについてもっと学ぶ。%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "コンテンツへスキップ"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "ナビゲーションへスキップ"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "フォーカス可能な要素からtabindexを削除"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "タブインデックスを削除"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "フォーカス可能な要素から%1$s属性を削除します。"
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "注意：この設定は、既にアクセシビリティ対応のテーマには推奨されません。"
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "修正が見つかりません"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "%2$sのため、コマンド%1$sの登録に失敗しました"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "統計を削除する投稿のID。"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "投稿IDが提供されていません。"
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "投稿ID %1$s は存在しません。"
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "%1$s の統計が削除されました。"
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "結果に表示するキー。デフォルトはすべてのキーです。"
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "統計を取得する前にキャッシュをクリアします（処理が集中的になる可能性があります）。"
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "統計キー：%1$s が統計に見つかりません。"
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "統計を取得する投稿のID。"
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "投稿ID %1$d は存在しません。"
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "投稿ID %1$d はまだスキャンされていないか、すべてのテストに合格しています。"
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "のパーマリンク "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "へのパーマリンク "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "無料で参加"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "アクセシビリティチェッカーへようこそ"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "アクセシビリティチェッカーの設定"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "設定"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "一般設定"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "簡易要約の設定"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "フッターのアクセシビリティ声明"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "フロントエンドのアクセシビリティチェッカー"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "チェック対象の投稿タイプ"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "簡易要約の入力を促す"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "簡易要約の位置"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "フッターにアクセシビリティ声明を追加"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "アクセシビリティポリシーへのリンクを含める"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "アクセシビリティポリシーページ"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "アクセシビリティ声明のプレビュー"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "フロントエンドのアクセシビリティチェッカーの位置"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "以下の設定を使用してアクセシビリティチェッカーを設定します。各設定に関する追加情報は%1$sで見つけることができます。"
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "プラグインのドキュメント（新しいウィンドウで開きます）"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "プラグインのドキュメント"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "より多くの機能とemailサポートは%1$sで利用可能です。"
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Accessibility Checker Pro（新しいウィンドウで開きます）"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Accessibility checker pro"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "以下の設定を使用してフロントエンドのアクセシビリティチェッカーを構成してください。"
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "Web Content Accessibility Guidelines（WCAG）のAAAレベルでは、9年生以上の読解レベルのコンテンツには、より読みやすい代替版が必要です。簡略化された要約文は、各投稿やページの編集画面のAccessibility Checkerメタボックスの読みやすさタブに追加されます。"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "簡略化された要約と読みやすさの要件について詳しく学ぶ（新しいウィンドウで開きます）"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "簡略化された要約と読みやすさの要件について詳しく学ぶ。"
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "「すごい、このプラグインは素晴らしい」と思い、ウェブサイトのアクセシビリティ向上に役立っていますか？ウェブサイトをよりアクセシブルにする取り組みをお客様と共有し、すべての人がウェブサイトを利用できるようにAccessibility Checkerを使用していることをお知らせください。ウェブサイトのフッターに小さなテキストのみのリンクと声明を追加してください。"
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "コンテンツの前"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "コンテンツの後"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "手動で挿入"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "この機能を使用して、ループ内のテーマに簡略化された要約を手動で追加します。"
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "この関数はオプションとして投稿IDをパラメータとして受け入れます。"
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "簡略化された要約を、入力された場合にコンテンツとの関係でどこに表示させたいか設定します。"
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "右下隅（デフォルト）"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "左下隅"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "フロントエンドのアクセシビリティチェッカーをページのどこに表示させたいか設定します。"
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "必要な時"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "常に"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Accessibility Checkerは、投稿やページの読解レベルが9年生以上の場合にのみ簡略化された要約を求めるべきか、読解レベルに関係なく常に求めるべきか、または読解レベルに関係なく決して求めないべきかを設定します。"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "投稿とページ以外のコンテンツをチェックするには、 "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " （新しいウィンドウで開きます）"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "スキャン中にチェックする投稿タイプを選択してください。以前に選択した投稿タイプを削除すると、そのスキャン情報と設定されたカスタム無視警告も削除されることにご注意ください。"
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "プラグインをアンインストールする際に、すべてのAccessibility Checkerデータを削除します。"
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "画像に代替テキストがありません"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "画像に代替テキストがないエラーは、画像タグ（%1$s）内にalt属性（%2$s）が全くないことを意味します。画像に代替テキストがないエラーを修正するには、画像に適切なテキストでalt属性を追加し、ページ内での画像の目的を説明する必要があります。装飾的な画像の場合、alt属性は空でも構いませんが、HTML %1$sタグは依然として存在する必要があります。"
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "画像の代替テキストが空です"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "画像の代替テキストが空の警告は、alt属性 (%s) が空の画像がある場合に表示されます。代替テキストは、画像を見ることができない人々に何が描かれているかを伝え、投稿やページに追加の文脈を提供します。代替テキストが空であるのは、画像が純粋に装飾的な場合（枠線や装飾的なアイコンなど）のみ正しいです。画像の代替テキストが空の警告を修正するには、画像が装飾的かページに意味のあるものを追加しているかを判断する必要があります。装飾的でない場合は、画像の目的を説明する適切な代替テキストを追加する必要があります。画像が装飾的な場合は、代替テキストを空のままにし、警告を「無視」します。"
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "低品質の代替テキスト"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "代替テキストの品質が低いという警告は、画像の代替テキストに不必要なキーワード（「image」や「graphic」など）、ファイル拡張子（.JPGなど）、または装飾的な画像を示す可能性のある言葉（「spacer」や「arrow」など）が含まれている場合に表示されます。この警告を修正するには、低品質の代替テキスト警告が表示された画像の代替テキストを書き直す必要があります。代替テキストが正確で、独自で、文脈に適しており、冗長または不必要な説明を含まないようにしてください。画像が純粋に装飾的な場合は、代替テキストを空白のままにするのが正しいです。"
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "リンクされた画像に代替テキストがありません"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "リンクされた画像に代替テキストがないエラーは、URLにリンクされている画像のimgタグに alt 属性 (%s) がまったくない場合に表示されます。リンクされた画像には、スクリーンリーダーユーザーがリンク先を知ることができるように、リンク先を説明する正確な代替テキストが必要です。このエラーを解決するには、画像に意味のある代替テキストを追加する必要があります。代替テキストは画像の見た目ではなく、リンクの目的を説明するべきです。"
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "リンクされた画像の代替テキストが空です"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "リンクされた画像の代替テキストが空というエラーは、URLにリンクされている画像に alt 属性 (%s) はあるものの、中身が空の場合に表示されます。リンクされた画像には、スクリーンリーダーユーザーがリンク先を知ることができるように、リンク先を説明する正確な代替テキストが必要です。このエラーを解決するには、画像に意味のある代替テキストを追加する必要があります。代替テキストは画像の見た目ではなく、リンクの目的を説明するべきです。"
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "代替テキストが重複しています"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "代替テキストの重複警告は、投稿やページ上の画像の代替テキストが、近くや隣接するテキスト（画像のタイトルやキャプションを含む）と同一の場合に表示されます。また、ページ上の2つの画像が同じ代替テキストを持つ場合にもこの警告が発生します。この警告を解決するには、代替テキストの重複警告が表示された要素の一方または両方のテキストを変更し、すべての画像が固有の代替テキストを持ち、画像のタイトルやキャプションで代替テキストを繰り返していないことを確認する必要があります。"
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "見出しの順序が正しくありません"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "見出しの順序が正しくないエラーは、見出し構造がレベルをスキップしている場合に発生します。例えば、ページ構造で見出しレベル1（%1$s）の下に見出しレベル3（%2$s）がある場合、H1とH3の間に%3$sタグがないため、「見出しの順序が正しくない」エラーが表示されます。見出しの順序が正しくないエラーを修正するには、不適切な見出しレベルを正しいレベルに変更するか、既存の2つのレベルの間に正しい見出しレベルのコンテンツを追加する必要があります。"
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "空の段落タグ"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "空の段落タグ警告は、コンテンツを含まない段落タグが存在することを意味します。これらはスクリーンリーダーによって読み上げられたり、ユーザーに混乱を与えたりする可能性があります。この警告を修正するには、ページから空の段落を削除してください。セクション間にスペースを追加する必要がある場合は、パディング、マージン、またはスペーサーブロックを使用して行うべきです。"
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "iframeにタイトルがありません"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "Iframeにタイトルがないエラーは、投稿やページ上の1つ以上のiframeにiframeの内容を説明するアクセシブルなタイトルがないことを意味します。iframeタイトルは、支援技術を使用する人々にフレームの内容を説明するために%1$sタグに追加できる属性です。iframeタイトルの欠落を修正するには、%1$sタグにtitle属性またはaria-label属性を追加する必要があります。この属性はiframeの内容を正確に説明するべきです。"
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "小見出しがありません"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "見出しがないという警告は、投稿やページの本文セクションのコンテンツ内に見出し要素（%1$s〜%2$s）が含まれていないことを意味し、スクリーンリーダーユーザーがページ上のコンテンツをナビゲートすることが特に困難になる可能性があります。見出しのないページを修正するには、見出し要素を追加する必要があります。最低でも、すべてのページには1つの%1$sタグが必要で、通常はページタイトルです。コンテンツに応じて適切な小見出しを追加してください。ページに見出しが必要ないと判断した場合は、警告を「無視」することができます。"
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "テキスト両端揃え"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "テキスト両端揃えの警告は、投稿やページ上で200文字以上のテキストが両端揃え（text-align:justify）でスタイリングされている場合にアクセシビリティチェッカーに表示されます。この警告を修正するには、指定されたテキスト要素から両端揃えのスタイリングを削除してください。"
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "リンクが新しいウィンドウまたはタブで開く"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "「リンクが新しいウィンドウまたはタブで開く」警告は、ウェブサイト上のリンクがクリック時に新しいタブまたはウィンドウで開くように設定されている場合に表示されます。リンクで新しいタブやウィンドウを開かないことがベストプラクティスとされています。リンクが新しいタブやウィンドウを開く場合、ユーザーがその動作を予期し、リンクをクリックした後に戻る方法を知ることができるよう、視覚的および聴覚的な警告を提供する必要があります。この警告を修正するには、リンクを新しいタブで開かないように変更するか、リンクテキストに「新しいウィンドウで開きます」を含めて警告を「無視」してください。サイト上のすべてのリンクに自動的に通知を追加し、これらの警告をすべて消去するには、無料の%sプラグインをインストールしてください。"
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "アクセシビリティの新しいウィンドウ警告"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "イメージマップに代替テキストがない"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "イメージマップに代替テキストがないというエラーは、イメージマップ内の%1$s要素の1つに%2$s属性で代替テキストが追加されていないことを意味します。このエラーを修正するには、代替テキストのない area タグに不足している代替テキストを追加する必要があります。代替テキストは、エリアの見た目ではなく、エリアに含まれるリンクの機能を説明する必要があります。"
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "タブ順序の変更"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "タブ順序変更の警告は、ページ上の論理的なタブ順序が、HTML要素（例：%s）に0より大きい値のtabindex属性を追加することで変更された場合に表示されます。これはキーボードのみのユーザーにナビゲーションの問題を引き起こす可能性があります。タブ順序変更の警告を解決するには、タブ順序が変更されたページまたは投稿のウェブサイトのフロントエンドを表示し、その変更が正しいかどうかをテストする必要があります。タブ順序の変更が問題を引き起こさない場合は、警告を「無視」できます。変更されたタブ順序が情報を順不同に表示する場合は、フラグの付いた要素からtabindex属性を削除する必要があります。"
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "空の見出しタグ"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "空の見出しタグエラーは、投稿やページにコンテンツを含まない見出しタグが存在することを意味します。コードでは、このエラーは次のように表示されます：%s。空の見出しを修正するには、空の見出しタグエラーをフラグ付けした見出しタグにコンテンツを追加するか、ページに不要な場合は空のタグを削除する必要があります。"
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "空のリンク"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "空のリンクエラーは、Webページ上のリンクの1つが空であるか、クリックした場合にリンク先を説明するテキストが含まれていないことを意味します。これは一般的に、Webフォント、アイコンフォント、SVGを含むリンクや、コンテンツエディタでリンクが誤って作成された場合に発生します。空のリンクエラーを修正するには、フラグが立てられているリンクを見つけ、説明的なテキストを追加する必要があります。以下のいずれかを行う必要があります：空の%1$s要素内にテキストコンテンツを追加するか、リンクにSVGやWebフォントアイコンが含まれている場合は、その要素を%2$sで非表示にし、%1$sタグに%3$s属性を追加するか、スクリーンリーダーテキストを追加します。追加するテキストやラベルは、リンク先を説明的に表し、曖昧でないものにする必要があります。"
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "空のボタン"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "空のボタンエラーは、Webページ上のボタンの1つが空であるか、ボタンの機能を説明するテキストが含まれていないことを意味します。または、画像ボタンの場合、ボタンに含まれる画像に代替テキストがない場合です。空のボタンエラーを修正するには、フラグが立てられているボタンを見つけ、説明的なテキストを追加する必要があります。以下のいずれかを行う必要があります：空の%1$s要素内にテキストコンテンツを追加する、欠けている%2$sに値属性を追加する、またはボタン画像に代替テキストを追加します。テキストは、ボタンの用途や、ボタンがトリガーするアクションを説明的に表現するべきです。"
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "画像の長い代替テキスト"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "画像の長い代替テキスト警告は、代替テキストに100文字以上ある場合に表示されます。代替テキストは画像を説明的に表現することを目的としていますが、簡潔で冗長にならないようにする必要があります。この警告を修正するには、フラグが立てられた画像の代替テキストを100文字以下に短縮する必要があります。代替テキストが現状のままで適切だと判断した場合は、警告を「無視」してください。"
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Hidden"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "ARIA Hidden警告は、投稿やページのコンテンツがaria-hidden=「true」属性を使用して非表示にされている場合に表示されます。この属性がHTML要素に追加されると、スクリーンリーダーはそれを読み上げません。時には要素をスクリーンリーダーから隠すことが正しい場合もありますが（装飾的なアイコンなど）、そうでない場合もあります。この警告が表示された場合、その要素が視覚障害のある人から隠されるべきかどうかを判断する必要があります。正しく隠されている場合は、警告を「無視」してください。不適切に隠されており、表示されるべき場合は、aria-hidden=「true」属性を削除して警告を解決してください。"
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "空のテーブルヘッダー"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "空のテーブルヘッダーエラーは、投稿やページのテーブルヘッダーの1つにテキストが含まれていないことを意味します。これは、%1$s要素は存在しているが、開始タグと終了タグの間に何もない状態（%2$sのような）であることを示しています。空のテーブルヘッダーを修正するには、正しいHTML要素(%1$s)を見つけ、適用される行または列を説明するテキストを追加する必要があります。"
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "MS Officeファイルへのリンク"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "MS Officeファイルへのリンク警告は、ページや投稿上のリンクの1つ以上が、次のいずれかのファイル拡張子を持つファイルに誘導していることを意味します：.doc、.docx、.xls、.xlsx、.ppt、.pptx、.pps、または.ppsx。この警告は、MS Officeファイルが存在する場合に、Wordドキュメント、PowerPointプレゼンテーション、Excelスプレッドシートのアクセシビリティを手動でテストし、関連するすべてのWCAGガイドラインに準拠していることを確認するための注意喚起として表示されます。MS Officeファイルへのリンク警告を解決するには、以下の手順が必要です：(1) ページにドキュメントを埋め込むプラグインを使用している場合、ドキュメントを表示またはダウンロードするための直接リンクが存在することを確認する；(2) ドキュメントへのリンクが、リンクアンカーに特定のファイル拡張子を表示することでドキュメントへのリンクであることをユーザーに警告していることを確認する；(3) MS Officeファイルのアクセシビリティエラーをテストし修正する。ファイルが完全にアクセシブルであると判断した後、警告を安全に「無視」できます。"
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "PDFへのリンク"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "PDFへのリンクの警告は、ページまたは投稿上の1つ以上のリンクがPDFファイルに向かっていることを意味します。この警告は、リンクされたPDFのアクセシビリティを手動でテストし、関連するすべてのWCAGガイドラインに準拠していることを確認するための注意喚起です。PDFへのリンクの警告を解決するには、以下の手順が必要です：(1) プラグインを使用してページに埋め込んでいる場合、ドキュメントを表示またはダウンロードするための直接リンクが存在することを確認する；(2) ドキュメントへのリンクが、リンクアンカーに特定のファイル拡張子を表示することで、ドキュメントへのリンクであることをユーザーに警告していることを確認する；(3) ドキュメントのアクセシビリティエラーをテストし修正する。ファイルが完全にアクセシブルであると判断した後、安全に警告を「無視」できます。"
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "非HTMLファイルへのリンク"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "非HTMLドキュメントへのリンクの警告は、ページまたは投稿上の1つ以上のリンクが、次のいずれかのファイル拡張子を持つファイルに向かっていることを意味します：.rtf、.wpd、.ods、.odt、.odp、.sxw、.sxc、.sxd、.sxi、.pages、または.key。この警告は、リンクされたドキュメントのアクセシビリティを手動でテストし、関連するすべてのWCAGガイドラインに準拠していることを確認するための注意喚起です。非HTMLドキュメントへのリンクの警告を解決するには、以下の手順が必要です：(1) プラグインを使用してページに埋め込んでいる場合、ドキュメントを表示またはダウンロードするための直接リンクが存在することを確認する；(2) ドキュメントへのリンクが、リンクアンカーに特定のファイル拡張子を表示することで、ドキュメントへのリンクであることをユーザーに警告していることを確認する；(3) ドキュメントのアクセシビリティエラーをテストし修正する。ファイルが完全にアクセシブルであると判断した後、安全に警告を「無視」できます。"
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "長い説明が無効"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "長い説明が無効というエラーは、画像の長い説明属性(%s)が適切なURL、ファイル名、またはファイル拡張子を持っていないことを意味します。また、長い説明がURLでない、または空白のままになっている可能性もあります。longdesc属性は、HTML5、ブラウザ、およびすべてのスクリーンリーダーで完全にはサポートされていません。このサポート不足のため、このエラーを修正する最良の方法は、画像タグからlongdescを完全に削除することです。"
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "フォームラベルの欠落"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "フォームラベルの欠落エラーは、フォームに%1$s（フォームフィールド）が存在するが、%2$s要素と関連付けられていない場合に発生します。これは、ラベルは存在するが、適用可能なフィールドに接続する%3$s属性が欠落している場合や、ラベルが全く存在せず、%1$sタグのみがある場合があります。フォームラベルの欠落エラーを修正するには、フィールドとフォームがどのように作成されたかを確認し、フィールドラベルを追加するか、フィールドに接続されていない既存のラベルに正しい%3$s属性を追加する必要があります。"
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "曖昧なアンカーテキスト"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "曖昧なアンカーテキストエラーは、周囲のコンテンツから切り離すと意味を持たないテキストがリンクされている場合に表示されます。一般的な例としては、「ここをクリック」や「詳細を見る」などのフレーズをリンクすることが挙げられます。このエラーを解決するには、リンクテキストをより具体的なものに変更し、単独で聞いても意味が通じるようにします。"
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "下線付きテキスト"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "下線付きテキストの警告は、ページ上のテキストがHTML下線タグ(%1$s)で囲まれている場合に表示されます。オンライン環境では、下線付きテキストは一般的にリンクテキストを示すために使用され、強調のみを目的とした下線付きテキストの使用はベストプラクティスとは考えられていません。下線付きテキストを修正するには、テキストから%1$s要素を削除するか、下線を付けているCSSスタイルを削除する必要があります。単語やフレーズを強調したり区別したりするには、イタリック体、色付きテキスト、または太字など、他のスタイリングを試してください。"
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "破損したスキップリンクまたはアンカーリンク"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "アンカーリンク（ジャンプリンクとも呼ばれる）は、クリックされたときに新しいページやURLを開くのではなく、同じページの別のセクションにジャンプまたはスクロールするリンクです。これらのリンクは、完全なURLではなく、ハッシュタグで始まる要素に移動します。例えば、ホームページの「about」セクションに誰かをスクロールさせるために、#about にリンクすることができます。破損したスキップリンクまたはアンカーリンクのエラーは、同じページの別のセクションをターゲットとするリンクがあるにもかかわらず、参照されているIDを持つ要素がページに存在しない場合に表示されます。このエラーは、単に # にリンクしている場合にも表示されます。このエラーを解決するには、リンクを手動でテストして機能することを確認し、必要に応じて修正するか、「無視」してください。"
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "テーブルヘッダーの欠落"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "テーブルヘッダー欠落エラーは、テーブルの一つに対応するヘッダー（(%2$s)タグ）のないデータ（%1$sタグに含まれる情報）が含まれていることを意味します。フォームのHTMLを見ると、行内の%1$s要素の数が、テーブルの%2$s要素の数より多くなっています。テーブルヘッダーの欠落を修正するには、データの行または列の数に対して%2$s要素が少ない部分のコードを見つけ、その行または列のデータを説明するテキストを含む追加の%2$s要素を1つ以上追加する必要があります。"
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "重複したフォームラベル"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "重複したフォームラベルエラーは、フォーム上の1つのフィールドに複数のラベルが関連付けられている場合に表示されます。フォームラベルが多すぎると、スクリーンリーダーが視覚障害のあるユーザーがフォームをナビゲートして完了するのを助けるためにフォームフィールドを正常に読み取れない可能性があります。重複したフォームラベルエラーを修正するには、フィールドとフォームがどのように作成されたかを判断し、各フィールドに関連付けられているラベルが1つだけであることを確認する必要があります。"
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "テキストが小さすぎる"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "テキストが小さすぎる警告は、ウェブサイト上に10px未満のサイズのテキストがある場合に発生します。この警告は、フォントサイズを再考して、ユーザーがブラウザでズームインする必要なく、より簡単に読めるように大きくすることをお勧めするものです。小さすぎるテキストを修正するには、ウェブサイト上のすべてのテキスト要素が少なくとも10ポイント以上であることを確認する必要があります。"
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "可能性のある見出し"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "可能性のある見出しの警告は、ページ上に見出しのように見えるテキストがあるにもかかわらず、適切な見出しタグでコーディングされていない場合に発生します。この警告は、50文字未満の短い語句やテキストの文字列が見出しとして使用されているように見える形式（20ピクセル以上、または16ピクセル以上で太字やイタリック体）でフォーマットされている場合に表示されます。可能性のある見出しの警告を修正するには、フラグが付けられたテキストが実際に見出しとして意図されているかどうかを判断する必要があります。もしそうであれば、それを段落から適切なレベルの見出しに変更する必要があります。見出しでない場合は、警告を安全に「無視」することができます。"
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "点滅またはスクロールするコンテンツ"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "点滅またはスクロールするコンテンツのエラーは、ウェブサイト上の要素にCSSまたはHTMLで点滅またはスクロール機能が適用されている場合に表示されます。具体的には、次の要素がこのエラーを引き起こします：%1$sまたは%2$s HTMLタグ、またはCSS %3$s。このエラーを解決するには、コンテンツを点滅させているHTMLタグまたはCSSを削除してください。"
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "不十分な色のコントラスト"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "色のコントラスト不足エラーとは、投稿やページ上の1つ以上の色の組み合わせが最小コントラスト比4.5:1を満たしていないことを示します。サイトの構築方法によっては、ページ上の異なるHTMLレイヤーに色が含まれているため、この「誤検出」が発生する可能性があります。色のコントラスト不足エラーを修正するには、指摘された要素が最小必要比率4.5:1を満たしていることを確認する必要があります。そのためには、前景色と背景色の16進コードを見つけ、色のコントラストチェッカーでテストします。これらの色コードの比率が4.5:1以上であれば、このエラーを「無視」できます。色コードの比率が4.5:1未満の場合は、色を調整する必要があります。"
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "トランスクリプトの欠落"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "トランスクリプト欠落エラーとは、ウェブサイト上の音声またはビデオクリップにトランスクリプトがない、またはトランスクリプトはあるが「トランスクリプト」としてラベル付けされていない、あるいは埋め込みまたはリンクされたメディアから25文字以上離れた位置にあることを意味します。トランスクリプト欠落エラーを修正するには、トランスクリプトがないとフラグが立てられたビデオまたは音声クリップのトランスクリプトを作成する必要があります。トランスクリプトを作成したら、投稿やページに直接トランスクリプトの内容を追加するか、ダウンロード可能なドキュメントやPDFファイルとして含める場合はトランスクリプトへのリンクを追加できます。ページ上のトランスクリプトの前の見出し、またはファイルへのリンク内に、明示的に「トランスクリプト」という単語を含める必要があり、それは音声またはビデオの埋め込みまたはリンクから25文字以内に配置する必要があります。"
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "ARIA参照の破損"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "ARIA参照の破損エラーは、aria-labeledbyまたはaria-describedby要素がページまたは投稿に存在するが、その参照先が存在しない場合に表示されます。これは、使用している特定のARIA属性が参照している要素が適切なラベルまたは説明を持っていないか、ページ上に存在しないことを意味します。ARIA参照の破損を修正するには、フラグが立てられているARIA要素を見つけ、その参照先が存在し、適切にラベル付けされていることを確認する必要があります。"
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "言語宣言の欠落"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "言語宣言は、ページまたは投稿のコンテンツのデフォルト言語を示すHTML属性です。言語宣言はウェブサイトのテーマにコーディングされ、ウェブサイトのheadに自動的に表示されるはずです。言語宣言の欠落エラーは、ページの%1$sタグに%2$s属性または%3$s属性が含まれていない場合、またはこれらの属性のいずれかが存在するが空である場合に表示されます。言語宣言の欠落エラーを修正するには、テーマファイルを編集して、ウェブサイトヘッダーの最上部にあるHTMLタグに欠落している言語属性を追加する必要があります。更新を受け取るテーマを使用している場合は、次回テーマを更新したときに修正が上書きされないように、子テーマで変更を行う必要があります。"
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "アニメーションGIF画像"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "アニメーションGIF画像の警告は、投稿やページにアニメーションGIFがある場合に表示されます。この警告は、ウェブサイト上のアニメーションGIFのアクセシビリティを手動で確認するか、アニメーションGIFの使用を再考し、代わりに静止画像やビデオに置き換えることを促すリマインダーです。この警告を解決するには、存在するGIFを確認してアクセシビリティに関する適用可能なすべてのガイドラインを満たしていることを確認し、その後警告を「無視」するか、アクセシブルでない場合はGIFをページまたは投稿から削除する必要があります。"
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "ビデオが存在します"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "動画には多くのアクセシビリティの問題が含まれていることが多く、そのほとんどは人間によってのみ識別できるため、動画が投稿やページで検出されるたびに「動画が存在します」という警告が表示されます。これは、動画のアクセシビリティを手動でテストする必要があることを思い出させるためです。この警告を解決するには、ウェブサイトのフロントエンドにアクセスし、警告にある動画がアクセシブルであることを確認する必要があります。動画のアクセシビリティを完全にテストし、存在する可能性のあるエラーを修正した後、警告を「無視」して完了としてマークすることができます。"
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "スライダーが存在します"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "スライダーには多くのアクセシビリティの問題が含まれていることが多く、そのほとんどは人間によってのみ識別できるため、スライダーが投稿やページで検出されるたびに「スライダーが存在します」という警告が表示されます。これは、スライダーのアクセシビリティを手動でテストする必要があることを思い出させるためです。この警告を解決するには、ウェブサイトのフロントエンドにアクセスし、ページ上のすべてのスライダーがアクセシブルであることを確認する必要があります。スライダーのアクセシビリティを完全にテストし、存在する可能性のあるエラーを修正した後、警告を「無視」して完了としてマークすることができます。"
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "タイトルがありません"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "「タイトルがありません」エラーは、投稿やページにタイトル要素（%1$sまたは%2$s）が含まれていないことを意味します。これは、テーマがタイトルタグを追加しなかった場合や、WordPressの編集画面で投稿やページのタイトルフィールドが空白のままになっている場合に発生する可能性があります。タイトルのないページを修正するには、タイトル要素を追加する必要があります。まず、エディターでページや投稿のタイトルフィールドを空白のままにしたためにタイトルが欠落しているかどうかを確認してください。その場合は、それを入力してください。バックエンドでタイトルが入力され表示されている場合は、ウェブページの%1$sタグまたは%2$sメタタグを含むようにコードを編集する必要があります。"
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "リンクの不適切な使用"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "「リンクの不適切な使用」エラーは、%1$s属性がないリンクや、単に%2$sにリンクされているだけで%3$sがないリンクがある場合に表示されます。リンクは、サイトの他の部分に人々を誘導するために使用されるべきです。アクションをトリガーする他の機能はボタンであるべきです。このエラーを解決するには、リンクを%4$sタグを使用するようにリコード（推奨）するか、既存の%6$sタグに%5$sを追加する必要があります。要素がトグルボタン（アコーディオンなど）である場合、追加のARIA属性が必要です。"
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "ズームとスケーリングが無効"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "ビューポートメタタグに `user-scalable=no` が含まれているか、`maximum-scale` の値が2未満に設定されているため、ズームが無効になっています。これにより、テキストサイズを大きくしたり、ページをズームインしたり、拡大鏡を使用したりしたい弱視ユーザーが制限されます。"
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "設定が保存されました。これらの更新を確認し、サイトの統計に反映させるには、サイトを再スキャンしてください。キャッシュプラグインを使用している場合は、更新された修正が正しく適用されるようにキャッシュをクリアしてください。"
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "Accessibility New Window Warningsプラグインがインストールされています。ここに含まれる新しいウィンドウで開くリンクの修正は、その機能を上書きします。プラグインを安全に削除し、代わりにこれらの修正を使用できます。"
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "Accessibility Checker 課題パネル"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "概要"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "詳細"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "読みやすさ"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "現在見つかっているすべての課題を削除"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "課題をクリア"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Equalize Digitalロゴ"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "Accessibility Checker Proにアップグレード"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "すべての投稿タイプをスキャン"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "アクセシビリティステータスを一目で確認できる管理カラム"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "すべてのオープンな課題の一元化されたリスト"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "無視ログ"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "簡略化された概要の名前変更"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "課題の無視に関するユーザー制限"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "Emailサポート"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...その他"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "Accessibility Checker Proを入手"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "またはここでライセンスキーを有効化してください。"
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "一般"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "バージョン"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Equalize Digitalウェブサイトへのリンク"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "クイックスタートガイド"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "コンテンツのチェックを開始するには、次の手順に従ってください："
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "<a href=\"%s\">設定ページ</a>で、スキャンしたい投稿タイプを選択します。"
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "チェックしたい投稿の編集画面に移動します。"
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "コンテンツの下にあるAccessibility Checkerメタボックスを見つけます。フロントエンドのページビルダーを使用している場合は、Accessibility Checkerの結果を表示するためにバックエンドの編集画面にアクセスする必要があります。"
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "投稿にエラーや警告がある場合は、Accessibility Checkerの詳細タブを開いて詳細情報を確認してください。"
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "各課題を展開してコードを確認するか、修正が必要な要素を見つけるのに助けが必要な場合は「ページで表示」をクリックしてください。"
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "エラーや警告の意味がわからない場合は、「i」アイコンをクリックして、ドキュメントと修正方法を読んでください。"
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "問題が誤検出で、要素がアクセシブルである場合は、「無視」機能を使用してレポートから課題を削除できます。"
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "各課題を修正した後、投稿を更新してアクセシビリティレポートの変更を確認してください。目標は、すべてのページで「100%テスト合格」と表示されることです。"
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "Accessibility Checkerの使用中の動画を見る。"
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "ドキュメントとFAQ"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "なぜ「100%アクセシブル」ではなく「100%テスト合格」と言うのですか？"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "（新しいウィンドウで開きます）"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "ウェブサイトのアクセシビリティを手動でチェックする方法"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "アクセシビリティエラーを無視すべき場合"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "使用しているプラグインにアクセシビリティエラーがある場合の対処方法"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "テーマにアクセシビリティエラーがある場合の対処方法"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "Equalize Digitalにウェブサイトのアクセシビリティ問題の修正を依頼できますか？"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "アクセシビリティについて学ぶための追加リソース"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "完全なドキュメントを読む"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "サポート情報"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "プラグインサポート"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "有料Accessibility Checkerプランのアクティブなライセンス所有者は、プラグインの使用方法とトラブルシューティングに関する無制限のEmailサポートを受けられます。"
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "サポートチケットを開く"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "無料プラグインサポート"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "無料プラグインサポートはWordPress.orgフォーラムで利用できます。アカウントを作成する必要があり、その後新しいサポートスレッドを開くことができます。"
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "サポートフォーラムに移動"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "オフィスアワー"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "ウェブサイトの修復を支援するため、2週間ごとにZoomでオープンQ&Aを実施しています。"
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "Small BusinessプランとAgencyプランに含まれています"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "オフィスアワーに登録"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "監査と修復"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "ウェブサイトをアクセシブルにするためのサポートを受けられます。専門家による監査、ユーザーテスト、開発サポート。適合証明書も利用可能。"
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "修復サポートを受ける"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "保存中..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "設定が正常に保存されました。Accessibility Checkerレポートから修正された課題を削除するには、%sエディターにアクセス%sして投稿を保存する必要があります。"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "設定が正常に保存されました。"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "保存に失敗しました。"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "修正設定"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "これにより、この投稿のすべての課題がクリアされます。投稿コンテンツの新しいスキャンをトリガーするには保存が必要です。続行しますか？"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "クリア中..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "課題が正常にクリアされました。"
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "課題のクリアに失敗しました。"
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "問題が発生しました。もう一度お試しください。"
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "申し訳ありませんが、送信に失敗しました。回答を短くしてもう一度お試しください。"
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "申し訳ありませんが、送信に失敗しました。もう一度お試しください。"
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "新しいウィンドウを開きます"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: ページ上でスキップリンクに一致するターゲットIDが見つかりませんでした。"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: スキップリンクの履歴更新中にエラーが発生しました。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "修正モーダルを閉じる"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "ページスタイルを無効にする"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "コードを表示"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "問題の種類:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "スタイルを有効にする"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "スタイルを無効にする"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "表示する設定がありません。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "これらの設定は、サイト全体でグローバルな修正を有効にします。修正をレポートに反映させるには、ページの再保存や全サイトスキャンの実行が必要な場合があります。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "問題は検出されませんでした。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "エラー"
+msgstr[1] "エラー"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "警告"
+msgstr[1] "警告"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "および"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "無視された問題"
+msgstr[1] "無視された問題"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "が検出されました。"
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "新しいウィンドウ"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "新しいタブ"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "クリック"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "ここをクリック"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "こちら"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "ここへ移動"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "詳細"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "詳細..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "詳細…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "詳細"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "詳細情報"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "リンク"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "このページ"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "続行"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "続きを読む"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "続きを読む"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "開く"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "ダウンロード"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "ボタン"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "読み続ける"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "詳細を見る"
