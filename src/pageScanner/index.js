@@ -188,7 +188,7 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 				axe.teardown();
 				axe = null;
 				errorMsgs.push( '***** axe.cleanup() failed.' );
-				dispatchDoneEvent( violations, errorMsgs, error ? 'cleanup-failed' : '' );
+dispatchDoneEvent( violations, errorMsgs, 'cleanup-failed' );
 			}
 		);
 	} else {
