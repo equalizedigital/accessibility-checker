@@ -172,6 +172,7 @@ function dispatchDoneEvent( violations, errorMsgs, error ) {
 	top.dispatchEvent( customEvent );
 }
 
+// eslint-disable-next-line no-unused-vars
 const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 	// cleanup the timeout.
 	clearTimeout( tooLongTimeout );
@@ -188,7 +189,7 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 				axe.teardown();
 				axe = null;
 				errorMsgs.push( '***** axe.cleanup() failed.' );
-dispatchDoneEvent( violations, errorMsgs, 'cleanup-failed' );
+				dispatchDoneEvent( violations, errorMsgs, 'cleanup-failed' );
 			}
 		);
 	} else {
