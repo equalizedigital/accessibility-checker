@@ -53,7 +53,7 @@ class Widgets {
 		if ( Settings::get_scannable_post_types() && Settings::get_scannable_post_statuses() ) {
 
 			$pro_modal_html = '';
-			if ( ( ! is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ||
+			if ( ( ! defined( 'EDACP_VERSION' ) ||
 			false === EDAC_KEY_VALID ) &&
 			true !== (bool) get_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true )
 			) {
@@ -70,7 +70,7 @@ class Widgets {
 			</div>';
 			}
 
-			if ( ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) || '' !== $pro_modal_html ) {
+			if ( ( defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID ) || '' !== $pro_modal_html ) {
 
 				$html .= '
 			<div class="edac-summary edac-modal-container edac-hidden">';
@@ -204,7 +204,7 @@ class Widgets {
 							</tr>';
 
 				}
-			} elseif ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+			} elseif ( defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID ) {
 
 				$html .= '
 						<tr >
@@ -249,7 +249,7 @@ class Widgets {
 		<div class="edac-buttons-container edac-mt-3 edac-mb-3">
 		';
 
-		if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) {
+		if ( defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID ) {
 			$html .= '
 			<a class="button edac-mr-1" href="/wp-admin/admin.php?page=accessibility_checker">' . __( 'See More Reports', 'accessibility-checker' ) . '</a>';
 		}

@@ -165,8 +165,8 @@ class Admin_Notices {
 	 */
 	public function edac_black_friday_notice() {
 
-		// check if accessibility checker pro is active.
-		if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
+		// Check if Accessibility Checker Pro is active.
+		if ( defined( 'EDACP_VERSION' ) ) {
 			return;
 		}
 
@@ -242,7 +242,7 @@ class Admin_Notices {
 	/**
 	 * GAAD Notice
 	 *
-	 * @return string
+	 * @return void
 	 */
 	public function edac_gaad_notice() {
 
@@ -251,8 +251,7 @@ class Admin_Notices {
 		define( 'EDAC_GAAD_NOTICE_END_DATE', '2025-05-21' );
 
 		// Check if Accessibility Checker Pro is active.
-		$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
-		if ( $pro ) {
+		if ( defined( 'EDACP_VERSION' ) ) {
 			return;
 		}
 

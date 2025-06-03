@@ -67,7 +67,7 @@ class Summary_Generator {
 
 		$rules = edac_register_rules();
 
-		if ( defined( 'EDAC_ANWW_ACTIVE' ) && EDAC_ANWW_ACTIVE ) {
+		if ( defined( 'ANWW_VERSION' ) ) {
 			$rules = edac_remove_element_with_value( $rules, 'slug', 'link_blank' );
 		}
 
@@ -166,7 +166,7 @@ class Summary_Generator {
 
 		$warnings_parameters = [ get_current_blog_id(), $this->post_id, 'warning', 0 ];
 		$warnings_where      = 'WHERE siteid = %d and postid = %d and ruletype = %s and ignre = %d';
-		if ( EDAC_ANWW_ACTIVE ) {
+		if ( defined( 'ANWW_VERSION' ) ) {
 			array_push( $warnings_parameters, 'link_blank' );
 			$warnings_where .= ' and rule != %s';
 		}
@@ -195,7 +195,7 @@ class Summary_Generator {
 
 		$ignored_parameters = [ get_current_blog_id(), $this->post_id, 1 ];
 		$ignored_where      = 'WHERE siteid = %d and postid = %d and ignre = %d';
-		if ( EDAC_ANWW_ACTIVE ) {
+		if ( defined( 'ANWW_VERSION' ) ) {
 			array_push( $ignored_parameters, 'link_blank' );
 			$ignored_where .= ' and rule != %s';
 		}
