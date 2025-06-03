@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+import { __ } from '@wordpress/i18n';
 import {initOptInModal} from "./modal";
 
 const edac_on_submit_ok = function () {
@@ -11,7 +12,7 @@ const edac_on_submit_ok = function () {
 	fetch(edac_email_opt_in_form.ajaxurl + "?" + queryString)
 		.then(response => {
 			if (!response.ok) {
-				document.querySelector('._form-thank-you').textContent = "There was a problem. Please try again.";
+				document.querySelector('._form-thank-you').textContent = __( "There was a problem. Please try again.", 'accessibility-checker' );
 			}
 		});
 };
@@ -72,9 +73,9 @@ window._load_script = function (url, callback, isSubmit) {
 	script.onerror = function () {
 		if (isSubmit) {
 			if (script.src.length > 10000) {
-				_show_error("1", "Sorry, your submission failed. Please shorten your responses and try again.");
+				_show_error("1", __( "Sorry, your submission failed. Please shorten your responses and try again.", 'accessibility-checker' ));
 			} else {
-				_show_error("1", "Sorry, your submission failed. Please try again.");
+				_show_error("1", __( "Sorry, your submission failed. Please try again.", 'accessibility-checker' ));
 			}
 			submitButton.disabled = false;
 			submitButton.classList.remove('processing');
