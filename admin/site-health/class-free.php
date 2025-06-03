@@ -46,63 +46,63 @@ class Free {
 			'label'  => __( 'Accessibility Checker &mdash; Free', 'accessibility-checker' ),
 			'fields' => [
 				'version'                 => [
-					'label' => 'Version',
+					'label' => __( 'Version', 'accessibility-checker' ),
 					'value' => esc_html( EDAC_VERSION ),
 				],
 				'database_version'        => [
-					'label' => 'Database Version',
+					'label' => __( 'Database Version', 'accessibility-checker' ),
 					'value' => esc_html( EDAC_DB_VERSION ),
 				],
 				'policy_page'             => [
-					'label' => 'Policy Page',
-					'value' => esc_html( get_option( 'edac_accessibility_policy_page' ) ? get_option( 'edac_accessibility_policy_page' ) : "Unset\n" ),
+					'label' => __( 'Policy Page', 'accessibility-checker' ),
+					'value' => esc_html( get_option( 'edac_accessibility_policy_page' ) ? get_option( 'edac_accessibility_policy_page' ) : __( 'Unset', 'accessibility-checker' ) ),
 				],
 				'activation_date'         => [
-					'label' => 'Activation Date',
+					'label' => __( 'Activation Date', 'accessibility-checker' ),
 					'value' => esc_html( get_option( 'edac_activation_date' ) ),
 				],
 				'footer_statement'        => [
-					'label' => 'Footer Statement',
-					'value' => esc_html( get_option( 'edac_add_footer_accessibility_statement' ) ? 'Enabled' : 'Disabled' ),
+					'label' => __( 'Footer Statement', 'accessibility-checker' ),
+					'value' => esc_html( get_option( 'edac_add_footer_accessibility_statement' ) ? __( 'Enabled', 'accessibility-checker' ) : __( 'Disabled', 'accessibility-checker' ) ),
 				],
 				'delete_data'             => [
-					'label' => 'Delete Data',
-					'value' => esc_html( get_option( 'edac_delete_data' ) ? 'Enabled' : 'Disabled' ),
+					'label' => __( 'Delete Data', 'accessibility-checker' ),
+					'value' => esc_html( get_option( 'edac_delete_data' ) ? __( 'Enabled', 'accessibility-checker' ) : __( 'Disabled', 'accessibility-checker' ) ),
 				],
 				'include_statement_link'  => [
-					'label' => 'Include Statement Link',
-					'value' => esc_url( get_option( 'edac_include_accessibility_statement_link' ) ? 'Enabled' : 'Disabled' ),
+					'label' => __( 'Include Statement Link', 'accessibility-checker' ),
+					'value' => esc_url( get_option( 'edac_include_accessibility_statement_link' ) ? __( 'Enabled', 'accessibility-checker' ) : __( 'Disabled', 'accessibility-checker' ) ),
 				],
 				'post_types'              => [
-					'label' => 'Post Types',
-					'value' => esc_html( get_option( 'edac_post_types' ) ? implode( ', ', get_option( 'edac_post_types' ) ) : 'Unset' ),
+					'label' => __( 'Post Types', 'accessibility-checker' ),
+					'value' => esc_html( get_option( 'edac_post_types' ) ? implode( ', ', get_option( 'edac_post_types' ) ) : __( 'Unset', 'accessibility-checker' ) ),
 				],
 				'simplified_sum_position' => [
-					'label' => 'Simplified Sum Position',
+					'label' => __( 'Simplified Sum Position', 'accessibility-checker' ),
 					'value' => esc_html( get_option( 'edac_simplified_summary_position' ) ),
 				],
 				'simplified_sum_prompt'   => [
-					'label' => 'Simplified Sum Prompt',
+					'label' => __( 'Simplified Sum Prompt', 'accessibility-checker' ),
 					'value' => esc_html( get_option( 'edac_simplified_summary_prompt' ) ),
 				],
 				'post_count'              => [
-					'label' => 'Post Count',
+					'label' => __( 'Post Count', 'accessibility-checker' ),
 					'value' => esc_html( edac_get_posts_count() ),
 				],
 				'error_count'             => [
-					'label' => 'Error Count',
+					'label' => __( 'Error Count', 'accessibility-checker' ),
 					'value' => absint( edac_get_error_count() ),
 				],
 				'warning_count'           => [
-					'label' => 'Warning Count',
+					'label' => __( 'Warning Count', 'accessibility-checker' ),
 					'value' => absint( edac_get_warning_count() ),
 				],
 				'db_table_count'          => [
-					'label' => 'DB Table Count',
+					'label' => __( 'DB Table Count', 'accessibility-checker' ),
 					'value' => absint( edac_database_table_count( 'accessibility_checker' ) ),
 				],
 				'fixes'                   => [
-					'label' => 'Fixes',
+					'label' => __( 'Fixes', 'accessibility-checker' ),
 					'value' => esc_html( wp_json_encode( $fixes ) ),
 				],
 			],
