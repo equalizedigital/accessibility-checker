@@ -153,6 +153,10 @@ class AddNewWindowWarningFix implements FixInterface {
 				content: " \e900";
 				font-size: var(--icon-size);
 			}
+
+			.edac-nww-external-link-icon.elementor-button-link-content:before {
+				vertical-align: middle;
+			}
 		</style>
 		<?php
 	}
