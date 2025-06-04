@@ -114,7 +114,7 @@ function edac_remove_element_with_value( $items, $key, $value ) {
  *
  * @param array  $items The multi-dimensional array.
  * @param string $index The index of the element.
- * @param string $value The value of the array.
+ * @param string $value The element value to match.
  * @return array
  */
 function edac_filter_by_value( $items, $index, $value ) {
