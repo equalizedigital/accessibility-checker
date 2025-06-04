@@ -10,6 +10,21 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Purge_Post_Data;
 use EDAC\Admin\Post_Save;
 
+// Deprecated constants.
+if ( ! defined( 'EDAC_ANWW_ACTIVE' ) ) {
+	/**
+	 * Indicates whether the Accessibility New Window Warnings (ANWW) plugin is active.
+	 *
+	 * This constant is provided for backward compatibility, as it might have been
+	 * expected by other plugins or older versions for checking ANWW plugin activity.
+	 * It evaluates to `true` if `ANWW_VERSION` is defined, and `false` otherwise.
+	 *
+	 * @since 1.24.0 Introduced for backward compatibility and immediately deprecated.
+	 * @deprecated 1.24.0 Please use `defined( 'ANWW_VERSION' )` directly to check ANWW plugin status.
+	 */
+	define( 'EDAC_ANWW_ACTIVE', defined( 'ANWW_VERSION' ) );
+}
+
 /**
  * Alias of the is_plugin_active() function.
  *

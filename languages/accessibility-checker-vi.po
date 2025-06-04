@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "Công cụ kiểm tra khả năng tiếp cận"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "Kiểm tra và đánh giá khả năng tiếp cận của trang web của bạn trước khi xuất bản. Công cụ quét và hướng dẫn khả năng tiếp cận trong bài viết."
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize Digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "Sửa lỗi"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "Sửa lỗi chung"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "Những sửa đổi này giúp cải thiện khả năng tiếp cận bằng cách điều chỉnh các phần tử HTML và hành vi trên trang web của bạn."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "Nâng cấp lên bản Pro để mở khóa tính năng này, mở trong cửa sổ mới."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "Nâng cấp lên bản Pro"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "Mở trong cửa sổ mới."
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "Đọc tài liệu cho %s. Mở trong cửa sổ mới."
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "Cam kết của chúng tôi về khả năng tiếp cận web"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[TÊN CÔNG TY CỦA BẠN] cam kết cung cấp trải nghiệm trang web hoàn toàn có thể tiếp cận cho tất cả người dùng thuộc mọi khả năng, bao gồm cả những người phụ thuộc vào các công nghệ hỗ trợ như trình đọc màn hình, phần mềm phóng to màn hình và các thiết bị nhập liệu bàn phím thay thế để điều hướng web."
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "Nỗ lực liên tục để đảm bảo khả năng tiếp cận"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "Chúng tôi tuân theo <a href=\"https://www.w3.org/TR/WCAG21/\">Hướng dẫn về Khả năng Tiếp cận Nội dung Web (WCAG) phiên bản 2.1</a> làm nguyên tắc chỉ đạo để xác định khả năng tiếp cận. Đây là các tiêu chuẩn được thống nhất quốc tế bao gồm nhiều khuyến nghị và thực tiễn tốt nhất để làm cho nội dung có thể sử dụng được. Khi chúng tôi thêm các trang mới và chức năng mới vào trang web của mình, tất cả các thiết kế, mã và thực hành nhập nội dung đều được kiểm tra dựa trên các tiêu chuẩn này."
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Khả năng tiếp cận trang web là một quá trình liên tục. Chúng tôi thường xuyên kiểm tra nội dung và tính năng để tuân thủ WCAG 2.1 Mức AA và khắc phục mọi vấn đề để đảm bảo chúng tôi đáp ứng hoặc vượt qua các tiêu chuẩn. Việc kiểm tra trang web của chúng tôi được thực hiện bởi các thành viên trong nhóm sử dụng các công cụ tiêu chuẩn của ngành như <a href=\"https://a11ychecker.com/\">Plugin WordPress Accessibility Checker</a>, công cụ phân tích độ tương phản màu sắc, kỹ thuật điều hướng chỉ bằng bàn phím và kiểm tra khả năng đọc Flesch-Kincaid."
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "Các tính năng tiếp cận trên trang web của chúng tôi"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "Sau đây là danh sách các mục chúng tôi đã bao gồm trong trang web của mình để cải thiện khả năng tiếp cận:"
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[LIỆT KÊ CÁC TÍNH NĂNG TIẾP CẬN Ở ĐÂY]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "Những điểm chúng tôi đang cải thiện"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "Trong nỗ lực nâng cấp trang web của chúng tôi lên tiêu chuẩn, chúng tôi đang nhắm vào các lĩnh vực sau:"
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[LIỆT KÊ CÁC MỤC BẠN ĐANG LÀM VIỆC ĐỂ SỬA CHỮA Ở ĐÂY]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[CÓ THỂ HỮU ÍCH KHI XEM LẠI TAB CÁC VẤN ĐỀ MỞ ĐỂ XEM CÁC VẤN ĐỀ PHỔ BIẾN NHẤT]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "Đây là một phần trong nỗ lực rộng lớn hơn của chúng tôi nhằm tạo ra trải nghiệm chào đón và thú vị cho mọi người tại [TÊN CÔNG TY]. Xin lưu ý rằng mặc dù chúng tôi cố gắng hết sức để cung cấp thông tin có thể tiếp cận cho tất cả người dùng, chúng tôi không thể đảm bảo khả năng tiếp cận của các trang web bên thứ ba mà chúng tôi có thể liên kết đến."
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "Liên hệ hỗ trợ về khả năng tiếp cận"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "Chúng tôi hoan nghênh các nhận xét, câu hỏi và phản hồi về trang web của chúng tôi. Nếu bạn đang sử dụng các công nghệ hỗ trợ và gặp khó khăn khi sử dụng trang web của chúng tôi, vui lòng gửi email đến [ĐỊA CHỈ EMAIL TIẾP CẬN CỦA BẠN] hoặc gọi cho chúng tôi theo số [SỐ ĐIỆN THOẠI CỦA BẠN]. Chúng tôi sẽ cố gắng hết sức để hỗ trợ bạn và giải quyết các vấn đề."
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "Chúng tôi đã cải thiện các tính toán thống kê trong phiên bản 1.21.0. Do đó, một số con số trong dữ liệu dưới đây có thể đã thay đổi. Đọc thêm trong %1$sbài đăng thông báo phát hành%2$s của chúng tôi."
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "Quyền truy cập bị từ chối"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "Cập nhật tùy chọn không thành công"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Ưu đãi đặc biệt Black Friday! 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Nâng cấp lên phiên bản trả phí của Accessibility Checker từ ngày 25 tháng 11 đến ngày 3 tháng 12 và được giảm giá 30%! Quét toàn bộ trang web, báo cáo các vấn đề mở trên toàn trang, nhật ký bỏ qua và nhiều hơn nữa."
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "Đặt câu hỏi trước khi mua"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "Nâng cấp ngay"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 Giảm giá 25% cho Accessibility Checker Pro nhân dịp Ngày Nhận thức Tiếp cận Toàn cầu! 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "Sử dụng mã giảm giá GAAD25 từ ngày 13 tháng 5 đến ngày 21 tháng 5 để được truy cập vào tính năng quét toàn bộ trang web và các tính năng Pro khác với mức giảm giá đặc biệt. Không chắc liệu nâng cấp có phù hợp với bạn không?"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "Xin chào! Cảm ơn bạn đã sử dụng Accessibility Checker như một phần trong bộ công cụ tiếp cận của bạn. Vì bạn đã sử dụng nó một thời gian, bạn có thể viết một đánh giá 5 sao cho Accessibility Checker trong thư mục plugin WordPress không? Điều này sẽ giúp tăng khả năng hiển thị của chúng tôi để nhiều người hơn có thể tìm hiểu về tầm quan trọng của khả năng tiếp cận web. Cảm ơn bạn rất nhiều!"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "Viết đánh giá"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "Nhắc tôi sau hai tuần"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "Không bao giờ hỏi lại"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "Giá trị hành động đánh giá không được thiết lập"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "Rất tiếc! Có vẻ như trang web của bạn hiện đang được bảo vệ bằng mật khẩu. Phiên bản miễn phí của Accessibility Checker chỉ có thể quét các trang web trực tuyến. Để quét trang web này về các vấn đề về khả năng tiếp cận, hãy gỡ bỏ bảo vệ bằng mật khẩu hoặc %s. Kết quả quét có thể được lưu trữ từ lần quét trước đó."
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "Nâng cấp lên Accessibility Checker Pro. Mở trong cửa sổ mới."
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "nâng cấp lên pro"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "ID bài viết chưa được thiết lập"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "Bản tóm tắt đơn giản hóa chưa được bao gồm cho nội dung này."
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "Nội dung của bạn có trình độ đọc ở mức lớp 9 hoặc thấp hơn và không cần bản tóm tắt đơn giản hóa."
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "Trình độ đọc của bản tóm tắt đơn giản hóa quá cao."
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "Bản tóm tắt đơn giản hóa đã được bao gồm cho nội dung này."
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s Lỗi"
+msgstr[1] "%s Lỗi"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s Lỗi tương phản"
+msgstr[1] "%s Lỗi tương phản"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s Cảnh báo"
+msgstr[1] "%s Cảnh báo"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s Mục bị bỏ qua"
+msgstr[1] "%s Mục bị bỏ qua"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "Không có bản tóm tắt để trả về"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "Tên bảng không hợp lệ"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "Những cài đặt này cho phép sửa lỗi toàn cục trên toàn bộ trang web của bạn."
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Các trang có thể cần được lưu lại hoặc quét toàn bộ trang web cần được thực hiện để thấy các sửa đổi được phản ánh trong báo cáo."
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "Lưu"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "Mã bị ảnh hưởng"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "Xem Vấn đề ID %d trên trang web, mở cửa sổ mới"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "Xem trên trang"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "Sửa: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "Sửa"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "Tài khoản người dùng của bạn không có quyền bỏ qua vấn đề này."
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "Không có chi tiết để trả về"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "Không có dữ liệu khả năng đọc để trả về"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "Không có dữ liệu bỏ qua để trả về"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "Bản tóm tắt chưa được thiết lập"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "Giá trị id chưa được thiết lập"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "Truy vấn vấn đề không trả về kết quả nào"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "Truy vấn đối tượng không trả về kết quả nào"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "Tóm tắt kiểm tra gần đây nhất"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "Cập nhật số lượng"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "Bắt đầu quét mới"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "Xem tất cả vấn đề đang mở"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "Xem lịch sử"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "Các bài kiểm tra đã vượt qua"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "Lỗi độc nhất"
+msgstr[1] "Lỗi độc nhất"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "Lỗi tương phản màu sắc độc nhất"
+msgstr[1] "Lỗi tương phản màu sắc độc nhất"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "Cảnh báo độc nhất"
+msgstr[1] "Cảnh báo độc nhất"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "Mục bị bỏ qua"
+msgstr[1] "Các mục bị bỏ qua"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "Số vấn đề trung bình mỗi trang"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "Mật độ vấn đề trung bình"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "Báo cáo cập nhật lần cuối:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "Chưa bao giờ"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "URL đã quét"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s trong số %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "Loại bài viết đã kiểm tra"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "URL có điểm số 100%"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "Bản tóm tắt này được tự động cập nhật mỗi 24 giờ, hoặc bất cứ khi nào một lần quét toàn bộ trang web hoàn tất. Bạn cũng có thể cập nhật thủ công các kết quả này bằng cách nhấp vào nút Cập nhật Số lượng."
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "Trang web của bạn có số lượng lớn vấn đề. Vì lý do hiệu suất, không phải tất cả các vấn đề đều được bao gồm trong bản tóm tắt này."
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "Báo cáo Khả năng Tiếp cận Toàn trang web"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "Ẩn banner"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "Mở khóa báo cáo khả năng tiếp cận chi tiết"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "Bắt đầu quét toàn bộ trang web của bạn để tìm các vấn đề về khả năng tiếp cận, nhận báo cáo toàn trang web, và tuân thủ nhanh hơn các hướng dẫn về khả năng tiếp cận."
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "Nâng cấp Accessibility Checker"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "đóng quảng cáo"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "Nhận báo cáo khả năng tiếp cận chi tiết"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "Trạng thái khả năng tiếp cận toàn trang web"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "URL đã quét:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "Lỗi:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "Lỗi tương phản màu sắc:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "Cảnh báo:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "Trang web của bạn có các vấn đề về khả năng tiếp cận cần được giải quyết càng sớm càng tốt để đảm bảo tuân thủ các hướng dẫn về khả năng tiếp cận."
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "Tuyệt vời! Accessibility Checker không tìm thấy bất kỳ vấn đề nào về khả năng tiếp cận trong nội dung đã kiểm tra. Một số vấn đề không thể được tìm thấy bởi các công cụ tự động, vì vậy đừng quên"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "kiểm tra trang web của bạn thủ công"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "Vấn đề theo loại bài viết"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "Loại bài viết"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "Lỗi"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "Tương phản"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "Cảnh báo"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "Nâng cấp để quét"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "Xem thêm báo cáo"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "Học về khả năng tiếp cận"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "Tài nguyên bổ sung"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "Blog (mở trong cửa sổ mới)"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "Blog"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "Tài liệu (mở trong cửa sổ mới)"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "Tài liệu"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "Sự kiện & tin tức về khả năng tiếp cận trong hộp thư của bạn"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "Đăng ký vào danh sách email của Equalize Digital để có quyền truy cập vào các hội thảo trực tuyến và tài nguyên đào tạo miễn phí về khả năng tiếp cận."
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "Email*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "Nhập email của bạn"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "Tên"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "Nhập tên của bạn"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Công cụ kiểm tra khả năng tiếp cận &mdash; lịch sử kiểm tra"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Công cụ kiểm tra khả năng tiếp cận &mdash; miễn phí"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "Phiên bản"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "Phiên bản cơ sở dữ liệu"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "Trang chính sách"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "Chưa thiết lập"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "Ngày kích hoạt"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "Tuyên bố chân trang"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "Đã bật"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "Đã tắt"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "Xóa dữ liệu"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "Bao gồm liên kết tuyên bố"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "Loại bài viết"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "Vị trí tóm tắt đơn giản hóa"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "Lời nhắc tóm tắt đơn giản hóa"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "Số lượng bài viết"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "Số lượng lỗi"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "Số lượng cảnh báo"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "Số lượng Bảng DB"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Công cụ kiểm tra khả năng tiếp cận &mdash; chuyên nghiệp"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "Trạng thái giấy phép"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "Tên người dùng ủy quyền"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "Mật khẩu ủy quyền"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "ID quét"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "Tổng số lần quét"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "Tiêu đề tóm tắt đơn giản hóa"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "Quyền bỏ qua"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "Không có"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "Số lượng Bảng DB bỏ qua"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "Trình %1$s sử dụng %2$s để theo dõi khả năng truy cập của trang web của chúng tôi."
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "Trình Kiểm tra Khả năng Truy cập (mở trong cửa sổ mới)"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "Đọc %s của chúng tôi"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "Chính sách về khả năng truy cập"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "Tóm tắt đơn giản"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "Thêm kích thước & loại vào liên kết tệp"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "Thêm ngữ cảnh cho các tệp được liên kết"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "Thêm kích thước & loại tệp vào liên kết"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "Thêm kích thước và loại tệp vào các liên kết tệp có thể kích hoạt tải xuống."
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "Thêm nhãn cho các trường biểu mẫu chưa có nhãn"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "Gắn nhãn cho các trường biểu mẫu"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "Thêm nhãn cho các trường biểu mẫu chưa có nhãn nếu có thể xác định mục đích của trường."
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "Cố gắng thêm nhãn cho các trường biểu mẫu còn thiếu. Lưu ý: Bạn có thể cần thêm kiểu tùy chỉnh nhắm vào lớp %1$s nếu việc thêm nhãn ảnh hưởng đến bố cục biểu mẫu của bạn."
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "Thêm tiêu đề trang bị thiếu hoặc trống"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "Đặt tiêu đề HTML cho trang"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "Thêm tiêu đề trang bị thiếu"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "Thêm thẻ %1$s vào trang nếu nó bị thiếu hoặc trống."
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "Thêm cảnh báo khi liên kết mở tab/cửa sổ mới"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "Thêm nhãn cho các liên kết mở tab/cửa sổ mới"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "Thêm nhãn và biểu tượng cho các liên kết có %1$s thông báo cho người dùng rằng chúng sẽ mở một tab/cửa sổ mới. %2$sLưu ý: Cài đặt này sẽ không có tác dụng nếu tính năng \"Chặn Liên kết Mở Cửa sổ Mới\" được bật.%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "Chặn Tải lên PDF"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "Hạn chế tải lên PDF đối với người dùng không có khả năng %1$s (mặc định cho phép đối với quản trị viên)."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "Thêm nhãn cho biểu mẫu bình luận và tìm kiếm"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "Gắn nhãn cho trường bình luận/tìm kiếm"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "Nhãn biểu mẫu bình luận và tìm kiếm"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "Thêm nhãn còn thiếu cho biểu mẫu bình luận và tìm kiếm WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "Gắn nhãn biểu mẫu bình luận"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "Thêm nhãn còn thiếu cho biểu mẫu bình luận WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "Gắn nhãn biểu mẫu tìm kiếm"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "Thêm nhãn còn thiếu cho biểu mẫu tìm kiếm WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "Bình luận"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "Tên"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "Email"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "Trang web"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "Tìm kiếm …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "Tìm kiếm:"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "Cài đặt để thêm nhãn còn thiếu vào biểu mẫu bình luận và tìm kiếm của WordPress."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "Thêm đường viền khi được focus"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "Đường viền khi focus"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "Thêm đường viền cho các phần tử khi chúng được focus bằng bàn phím."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "Thêm đường viền khi focus"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "Các cài đặt liên quan đến việc nâng cao đường viền khi focus để cải thiện khả năng truy cập bằng bàn phím."
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "Thêm thuộc tính lang & dir"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "Đặt ngôn ngữ trang"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "Thêm thuộc tính \"lang\" & \"dir\""
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "Thêm thuộc tính ngôn ngữ trang web (%1$s) và hướng văn bản (%2$s) vào phần tử %3$s."
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "Thêm gạch chân cho tất cả liên kết không phải điều hướng"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "Gạch chân liên kết"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "Bắt buộc gạch chân liên kết"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "Đảm bảo rằng các liên kết không phải điều hướng được gạch chân."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "Làm cho thẻ meta viewport có thể điều chỉnh tỷ lệ"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "Đảm bảo viewport có thể điều chỉnh tỷ lệ"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "Đảm bảo rằng thẻ viewport trên trang cho phép điều chỉnh tỷ lệ."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "Làm cho viewport có thể điều chỉnh tỷ lệ"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "Đảm bảo thẻ viewport cho phép điều chỉnh tỷ lệ, nâng cao khả năng truy cập trên thiết bị di động."
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "Ngăn liên kết mở cửa sổ mới"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "Chặn liên kết mở cửa sổ mới"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "Ngăn liên kết mở trong cửa sổ hoặc tab mới bằng cách xóa %1$s."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "Thêm liên kết \"Đọc\" với tiêu đề bài viết"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "Thêm tiêu đề vào liên kết đọc thêm"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "Liên kết Đọc thêm"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "Thêm tiêu đề bài viết và liên kết "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "Thêm tiêu đề bài viết vào \"Đọc thêm\""
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "Thêm tiêu đề bài viết vào liên kết \"Đọc thêm\" trong danh sách bài viết khi giao diện của bạn hiển thị những liên kết đó."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "Chỉ dành cho trình đọc màn hình"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "Làm cho tiêu đề bài viết được thêm vào liên kết \"Đọc thêm\" chỉ hiển thị với trình đọc màn hình."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "Sửa đổi này thêm tiêu đề bài viết vào liên kết \"Đọc thêm\" trong danh sách bài viết tại khối \"Thêm\" và trong các đoạn trích."
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "Ưu tiên thuộc tính nhãn có thể truy cập"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "Loại bỏ thuộc tính tiêu đề không cần thiết"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "Loại bỏ thuộc tính tiêu đề"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "Loại bỏ thuộc tính %1$s khỏi các phần tử đã có tên có thể truy cập ưu tiên."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "Thêm liên kết bỏ qua"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "Liên kết bỏ qua"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "Bật liên kết bỏ qua"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "Thêm liên kết bỏ qua vào tất cả các trang của trang web, cho phép người dùng bỏ qua trực tiếp đến nội dung chính."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "Mục tiêu nội dung chính (bắt buộc)"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "Xác định ID của (các) khu vực nội dung chính được nhắm mục tiêu bởi liên kết bỏ qua. Nhập nhiều ID cách nhau bằng dấu phẩy; hệ thống sẽ duyệt qua danh sách để tìm ID phù hợp cho mỗi trang."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "Mục tiêu điều hướng"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "Đặt thuộc tính ID của phần tử điều hướng. Điều này hữu ích nếu điều hướng chính của bạn chứa các hành động mà hầu hết khách truy cập trang web muốn thực hiện như tính năng đăng nhập hoặc tìm kiếm."
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "Nếu giao diện của bạn chưa thêm liên kết bỏ qua cho phép người dùng bàn phím bỏ qua phần điều hướng và nhanh chóng chuyển đến nội dung chính, hãy bật liên kết bỏ qua tại đây. %1$sTìm hiểu thêm về liên kết bỏ qua.%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "Bỏ qua đến nội dung"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "Bỏ qua đến điều hướng"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "Loại bỏ tabindex khỏi các phần tử có thể focus"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "Loại bỏ chỉ mục tab"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "Loại bỏ thuộc tính %1$s khỏi các phần tử có thể focus."
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "Lưu ý: Cài đặt này không được khuyến nghị cho các giao diện đã sẵn sàng cho khả năng truy cập."
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "Không tìm thấy sửa đổi"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "Không thể đăng ký lệnh %1$s vì %2$s"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "ID của bài viết cần xóa thống kê."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "Không có ID bài viết được cung cấp."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "ID bài viết %1$s không tồn tại."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "Thống kê của %1$s đã được xóa."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "Các khóa cần hiển thị trong kết quả. Mặc định là tất cả các khóa."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "Xóa bộ nhớ cache trước khi lấy thống kê (có thể tốn nhiều tài nguyên)."
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "Khóa thống kê: %1$s không tìm thấy trong thống kê."
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "ID của bài viết cần lấy thống kê."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "ID bài viết %1$d không tồn tại."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "Hoặc bài viết chưa được quét hoặc tất cả kiểm tra đã đạt với ID bài viết %1$d."
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "đường dẫn tĩnh của "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "đường dẫn tĩnh đến "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "Tham gia miễn phí"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "Chào mừng đến với trình kiểm tra khả năng truy cập"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "Cài đặt trình kiểm tra khả năng truy cập"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "Cài đặt chung"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "Cài đặt tóm tắt đơn giản hóa"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "Tuyên bố khả năng truy cập ở chân trang"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "Trình kiểm tra khả năng truy cập giao diện người dùng"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "Các loại bài viết cần kiểm tra"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "Nhắc nhở tóm tắt đơn giản hóa"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "Vị trí tóm tắt đơn giản hóa"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "Thêm tuyên bố khả năng truy cập ở chân trang"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "Bao gồm liên kết đến chính sách khả năng truy cập"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "Trang chính sách khả năng truy cập"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "Xem trước tuyên bố khả năng truy cập"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "Vị trí trình kiểm tra khả năng truy cập giao diện người dùng"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "Sử dụng các cài đặt dưới đây để cấu hình Trình kiểm tra khả năng truy cập. Thông tin bổ sung về từng cài đặt có thể được tìm thấy trong %1$s."
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "tài liệu hướng dẫn plugin (mở trong cửa sổ mới)"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "tài liệu hướng dẫn plugin"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "Nhiều tính năng hơn và hỗ trợ qua email có sẵn với %1$s."
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Accessibility Checker Pro (mở trong cửa sổ mới)"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Accessibility Checker Pro"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "Sử dụng các cài đặt dưới đây để cấu hình trình kiểm tra khả năng tiếp cận phía giao diện người dùng."
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "Hướng dẫn Khả năng Tiếp cận Nội dung Web (WCAG) ở mức AAA yêu cầu bất kỳ nội dung nào có cấp độ đọc trên lớp 9 phải có một phiên bản thay thế dễ đọc hơn. Văn bản tóm tắt đơn giản hóa được thêm vào trong tab khả năng đọc hiểu trong hộp meta Trình kiểm tra Khả năng Tiếp cận trên màn hình chỉnh sửa của mỗi bài viết hoặc trang."
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "Tìm hiểu thêm về các bản tóm tắt đơn giản hóa và yêu cầu về khả năng đọc hiểu (mở trong cửa sổ mới)"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "Tìm hiểu thêm về các bản tóm tắt đơn giản hóa và yêu cầu về khả năng đọc hiểu."
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "Bạn có đang nghĩ \"Ồ, plugin này tuyệt quá\" và nó có giúp bạn làm cho trang web của mình dễ truy cập hơn không? Hãy chia sẻ những nỗ lực của bạn để làm cho trang web của bạn dễ truy cập hơn với khách hàng và cho họ biết bạn đang sử dụng Accessibility Checker để đảm bảo tất cả mọi người có thể sử dụng trang web của bạn. Thêm một liên kết chỉ có văn bản nhỏ và tuyên bố ở chân trang web của bạn."
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "Trước nội dung"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "Sau nội dung"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "Chèn thủ công"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "Sử dụng chức năng này để thêm thủ công bản tóm tắt đơn giản hóa vào giao diện của bạn trong vòng lặp."
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "Hàm này có thể nhận ID bài viết làm tham số tùy chọn."
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "Đặt vị trí bạn muốn các bản tóm tắt đơn giản hóa xuất hiện liên quan đến nội dung của bạn nếu được điền."
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "Góc dưới bên phải (mặc định)"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "Góc dưới bên trái"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "Đặt vị trí bạn muốn trình kiểm tra khả năng tiếp cận phía giao diện người dùng xuất hiện trên trang."
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "Khi cần thiết"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "Luôn luôn"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Accessibility Checker chỉ nên yêu cầu bản tóm tắt đơn giản hóa khi cấp độ đọc của bài viết hoặc trang của bạn trên lớp 9, luôn yêu cầu bất kể cấp độ đọc, hay không bao giờ yêu cầu bất kể cấp độ đọc?"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "Để kiểm tra nội dung khác ngoài bài viết và trang, vui lòng "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " (mở trong cửa sổ mới)"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "Chọn loại bài viết nào cần được kiểm tra trong quá trình quét. Lưu ý, việc xóa một loại bài viết đã chọn trước đó sẽ xóa thông tin đã quét và mọi cảnh báo bị bỏ qua tùy chỉnh đã được thiết lập."
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "Xóa tất cả dữ liệu của Accessibility Checker khi gỡ cài đặt plugin."
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "Hình ảnh thiếu văn bản thay thế"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "Lỗi Hình ảnh Thiếu Văn bản Thay thế nghĩa là hình ảnh của bạn không có thuộc tính alt (%1$s) chứa trong thẻ hình ảnh (%2$s). Để sửa lỗi Hình ảnh Thiếu Văn bản Thay thế, bạn cần thêm một thẻ alt vào hình ảnh với văn bản thích hợp mô tả mục đích của hình ảnh trong trang. Nếu hình ảnh chỉ mang tính trang trí, thuộc tính alt có thể để trống, nhưng thẻ HTML %1$s vẫn cần phải có mặt."
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "Hình ảnh có văn bản thay thế trống"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "Cảnh báo Image Empty Alternative Text sẽ xuất hiện nếu bạn có hình ảnh có thuộc tính alt (%s) trống. Alternative text sẽ cho những người không thể xem hình ảnh biết đó là gì và thêm ngữ cảnh bổ sung vào bài đăng hoặc trang. Alternative text chỉ được để trống nếu hình ảnh chỉ mang tính trang trí, như đường viền hoặc biểu tượng trang trí. Để khắc phục cảnh báo Image Empty Alternative Text, bạn cần xác định xem hình ảnh có mang tính trang trí hay chỉ thêm nội dung có ý nghĩa vào trang. Nếu hình ảnh không mang tính trang trí, bạn cần thêm alternative text phù hợp để mô tả mục đích của hình ảnh. Nếu hình ảnh mang tính trang trí, bạn sẽ để alternative text trống và “Bỏ qua” cảnh báo."
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "Văn bản thay thế chất lượng thấp"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "Cảnh báo Văn bản thay thế chất lượng thấp xuất hiện khi văn bản thay thế trên hình ảnh chứa các từ khóa không cần thiết trong văn bản thay thế (chẳng hạn như \"hình ảnh\" hoặc \"đồ họa\"), phần mở rộng tệp (chẳng hạn như.JPG), có thể mô tả hình ảnh trang trí (chẳng hạn như \"khoảng cách\" hoặc \"mũi tên\"). Để khắc phục cảnh báo này, bạn sẽ cần viết lại văn bản thay thế cho bất kỳ hình ảnh nào được gắn cờ cảnh báo Văn bản thay thế chất lượng thấp, đảm bảo văn bản thay thế chính xác, duy nhất, phù hợp với ngữ cảnh và không chứa các mô tả thừa hoặc không cần thiết. Nếu hình ảnh chỉ mang tính trang trí, thì việc để trống văn bản thay thế là đúng."
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "Hình ảnh có liên kết thiếu văn bản thay thế"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Lỗi Hình ảnh Liên kết Thiếu Văn bản Thay thế xuất hiện khi một hình ảnh được liên kết đến một URL không có thuộc tính alt (%s) trong thẻ hình ảnh. Hình ảnh liên kết phải có văn bản thay thế chính xác mô tả đích đến của liên kết để người dùng trình đọc màn hình biết liên kết đang trỏ đến đâu. Để khắc phục lỗi này, bạn cần thêm văn bản alt có ý nghĩa cho hình ảnh. Văn bản alt của bạn nên mô tả mục đích của liên kết chứ không phải hình ảnh trông như thế nào."
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "Hình ảnh liên kết có văn bản thay thế trống"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Lỗi Hình ảnh Liên kết Có Văn bản Thay thế Trống xuất hiện khi một hình ảnh được liên kết đến một URL có thuộc tính alt (%s) nhưng không có nội dung bên trong. Hình ảnh liên kết phải có văn bản thay thế chính xác mô tả đích đến của liên kết để người dùng trình đọc màn hình biết liên kết đang trỏ đến đâu. Để khắc phục lỗi này, bạn cần thêm văn bản alt có ý nghĩa cho hình ảnh. Văn bản alt của bạn nên mô tả mục đích của liên kết chứ không phải hình ảnh trông như thế nào."
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "Văn bản thay thế trùng lặp"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "Cảnh báo Văn bản Thay thế Trùng lặp xuất hiện khi văn bản thay thế cho một hình ảnh trên bài viết hoặc trang của bạn giống hệt với văn bản gần đó hoặc liền kề, bao gồm cả tiêu đề hoặc chú thích của hình ảnh. Cảnh báo này cũng xảy ra nếu hai hình ảnh trên trang có cùng văn bản thay thế. Để giải quyết cảnh báo này, bạn sẽ cần thay đổi văn bản của một hoặc cả hai phần tử đã gây ra cảnh báo Văn bản Thay thế Trùng lặp, đảm bảo rằng tất cả các hình ảnh đều có văn bản alt riêng biệt và bạn không lặp lại văn bản alt trong tiêu đề và chú thích hình ảnh của mình."
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "Thứ tự tiêu đề không chính xác"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "Lỗi Thứ tự Tiêu đề Không chính xác nghĩa là cấu trúc tiêu đề của bạn đã bỏ qua một cấp. Ví dụ, nếu cấu trúc trang của bạn có tiêu đề cấp 3 (%1$s) ngay dưới tiêu đề cấp 1 (%2$s), một lỗi \"Thứ tự Tiêu đề Không chính xác\" sẽ được đánh dấu vì không có thẻ %3$s giữa H1 và H3. Để sửa lỗi thứ tự tiêu đề không chính xác, bạn sẽ cần thay đổi cấp tiêu đề không chính xác thành cấp tiêu đề đúng, hoặc thêm nội dung với cấp tiêu đề chính xác giữa hai cấp đã tồn tại."
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "Thẻ đoạn văn trống"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "Cảnh báo Thẻ Đoạn văn Trống nghĩa là có một thẻ đoạn văn hiện diện nhưng không chứa nội dung. Những thẻ này có thể được thông báo bởi trình đọc màn hình hoặc tạo ra sự nhầm lẫn cho người dùng. Để khắc phục cảnh báo này, hãy xóa các đoạn văn trống khỏi trang. Nếu bạn cần thêm khoảng cách giữa các phần, điều này nên được thực hiện bằng padding, margins, hoặc một khối spacer."
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "iframe Thiếu Tiêu đề"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "Lỗi iframe Thiếu tiêu đề có nghĩa là một hoặc nhiều iframe trên bài viết hoặc trang của bạn không có tiêu đề truy cập được mô tả nội dung của iframe. Tiêu đề iframe là một thuộc tính có thể được thêm vào thẻ %1$s để mô tả nội dung của khung cho người dùng công nghệ hỗ trợ. Để sửa lỗi thiếu tiêu đề iframe, bạn sẽ cần thêm một thuộc tính title hoặc aria-label vào thẻ %1$s. Thuộc tính này nên mô tả chính xác nội dung của iframe."
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "Thiếu tiêu đề phụ"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "Cảnh báo về việc thiếu tiêu đề có nghĩa là bài viết hoặc trang của bạn không chứa bất kỳ phần tử tiêu đề nào (%1$s–%2$s) trong nội dung của phần thân bài viết hoặc trang, điều này có thể gây khó khăn đặc biệt cho người dùng trình đọc màn hình khi điều hướng qua nội dung trên trang. Để sửa một trang không có tiêu đề, bạn sẽ cần thêm các phần tử tiêu đề. Tối thiểu, mỗi trang nên có một thẻ %1$s, thường là tiêu đề trang. Thêm các tiêu đề phụ bổ sung khi thích hợp cho nội dung của bạn. Nếu bạn đã xác định rằng chắc chắn không cần tiêu đề trên trang, thì bạn có thể \"Bỏ qua\" cảnh báo."
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "Văn bản căn đều"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "Cảnh báo Văn bản Căn đều xuất hiện trong Trình kiểm tra Khả năng Truy cập khi văn bản có hơn 200 ký tự trên bài viết hoặc trang của bạn được định dạng với căn chỉnh đều (text-align:justify). Để khắc phục cảnh báo này, hãy loại bỏ kiểu căn đều khỏi các phần tử văn bản được chỉ định."
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "Liên kết mở cửa sổ hoặc tab mới"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "Một cảnh báo \"Liên kết mở cửa sổ mới hoặc tab mới\" xuất hiện khi có một liên kết trên trang web của bạn đã được thiết lập để mở trong một tab hoặc cửa sổ mới khi được nhấp vào. Thông lệ tốt nhất là không mở tab hoặc cửa sổ mới bằng liên kết. Nếu liên kết mở tab hoặc cửa sổ mới, phải có cảnh báo trực quan và âm thanh thông báo rằng liên kết sẽ mở cửa sổ hoặc tab mới để người dùng có thể dự đoán hành vi đó và biết cách quay lại sau khi nhấp vào liên kết. Để sửa cảnh báo này, hãy thay đổi liên kết để không mở trong tab mới hoặc đảm bảo \"mở cửa sổ mới\" được bao gồm trong văn bản liên kết rồi \"Bỏ qua\" cảnh báo. Để tự động thêm thông báo vào tất cả các liên kết trên trang web của bạn và bỏ qua tất cả các cảnh báo này, hãy cài đặt plugin %s miễn phí của chúng tôi."
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "Cảnh báo cửa sổ mới về khả năng tiếp cận"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "Sơ đồ ảnh thiếu văn bản thay thế"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "Lỗi \"Sơ đồ ảnh thiếu văn bản thay thế\" có nghĩa là một trong các phần tử %1$s trong sơ đồ ảnh của bạn không có văn bản thay thế được thêm vào thuộc tính %2$s. Để sửa lỗi này, bạn cần thêm văn bản thay thế còn thiếu vào bất kỳ thẻ area nào không có văn bản thay thế. Văn bản thay thế cần mô tả chức năng của liên kết chứa trong area, không nhất thiết phải mô tả diện mạo của area đó."
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "Thứ tự tab đã được sửa đổi"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "Một Cảnh báo Thứ tự Tab đã được sửa đổi xuất hiện khi thứ tự tab logic trên trang đã bị thay đổi bằng cách thêm một thuộc tính tabindex lớn hơn 0 vào một phần tử HTML (ví dụ: %s). Điều này có thể gây ra vấn đề về điều hướng cho người dùng chỉ sử dụng bàn phím. Để giải quyết cảnh báo Thứ tự Tab đã được sửa đổi, bạn cần xem giao diện người dùng của trang web trên trang hoặc bài viết nơi thứ tự tab đã bị sửa đổi và kiểm tra xem sự thay đổi có chính xác hay không. Nếu việc sửa đổi thứ tự tab không gây ra vấn đề, bạn có thể \"Bỏ qua\" cảnh báo. Nếu thứ tự tab đã sửa đổi khiến thông tin được trình bày không đúng thứ tự, bạn cần xóa thuộc tính tabindex khỏi phần tử bị đánh dấu."
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "Thẻ tiêu đề trống"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "Lỗi Thẻ tiêu đề trống có nghĩa là có một thẻ tiêu đề hiện diện trên bài viết hoặc trang của bạn mà không chứa nội dung. Trong mã, lỗi này sẽ trông như thế này: %s. Để sửa một tiêu đề trống, bạn sẽ cần thêm nội dung vào thẻ tiêu đề đã gây ra lỗi Thẻ tiêu đề trống hoặc xóa thẻ trống nếu không cần thiết trên trang của bạn."
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "Liên kết trống"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "Lỗi Liên kết trống có nghĩa là một trong các liên kết hiện diện trên trang web bị trống hoặc không chứa văn bản mô tả nơi liên kết sẽ dẫn đến khi được nhấp vào. Điều này thường xảy ra với các liên kết chứa webfonts, icon fonts và SVG, hoặc khi một liên kết vô tình được tạo ra trong trình soạn thảo nội dung. Để sửa lỗi liên kết trống, bạn sẽ cần tìm liên kết bị đánh dấu và thêm văn bản mô tả vào đó. Bạn sẽ cần: thêm nội dung văn bản vào một phần tử %1$s trống hoặc, nếu liên kết của bạn chứa một biểu tượng SVG hoặc Webfont, ẩn phần tử đó bằng %2$s và thêm thuộc tính %3$s vào thẻ %1$s hoặc văn bản cho trình đọc màn hình. Văn bản hoặc nhãn bạn thêm vào nên mô tả nơi liên kết trỏ đến và không nên mơ hồ."
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "Nút trống"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "Lỗi Nút trống có nghĩa là một trong các nút hiện diện trên trang web bị trống hoặc không chứa văn bản mô tả chức năng của nút. Hoặc, nếu đó là một nút hình ảnh, hình ảnh chứa trong nút bị thiếu văn bản thay thế. Để sửa lỗi nút trống, bạn sẽ cần tìm nút bị đánh dấu và thêm văn bản mô tả vào đó. Bạn sẽ cần: thêm nội dung văn bản vào một phần tử %1$s trống, thêm thuộc tính value vào một %2$s bị thiếu, hoặc thêm văn bản thay thế cho hình ảnh nút. Văn bản nên mô tả mục đích sử dụng của nút hoặc hành động mà nút kích hoạt."
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "Văn bản thay thế dài cho hình ảnh"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "Cảnh báo Văn bản thay thế dài hình ảnh sẽ xuất hiện nếu văn bản thay thế của bạn có hơn 100 ký tự. Văn bản thay thế có nghĩa là mô tả hình ảnh nhưng theo cách ngắn gọn, không quá dài dòng. Để khắc phục cảnh báo này, bạn cần rút ngắn văn bản thay thế của mình cho bất kỳ hình ảnh nào đã được gắn cờ xuống còn 100 ký tự hoặc ít hơn. Nếu bạn đã xác định rằng văn bản thay thế của mình là tốt như hiện tại, thì hãy \"Bỏ qua\" cảnh báo."
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Ẩn"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "Cảnh báo ARIA Hidden xuất hiện khi nội dung trên bài đăng hoặc trang của bạn đã bị ẩn bằng thuộc tính aria-hidden=\"true\". Khi thuộc tính này được thêm vào một phần tử HTML, trình đọc màn hình sẽ không đọc nó cho người dùng. Đôi khi, việc ẩn phần tử khỏi trình đọc màn hình là đúng (chẳng hạn như bằng biểu tượng trang trí) nhưng đôi khi lại không đúng. Khi bạn thấy cảnh báo này, bạn cần xác định xem phần tử có được cho là ẩn khỏi những người mù hoặc khiếm thị hay không. Nếu phần tử được ẩn đúng cách, hãy \"Bỏ qua\" cảnh báo. Nếu phần tử được ẩn không đúng cách và cần phải hiển thị, hãy xóa thuộc tính aria-hidden=\"true\" để giải quyết cảnh báo."
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "Tiêu đề bảng trống"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "Lỗi Tiêu đề Bảng Trống nghĩa là một trong các tiêu đề bảng trên bài đăng hoặc trang của bạn không chứa bất kỳ văn bản nào. Điều này có nghĩa là phần tử %1$s có mặt nhưng trông như thế này %2$s mà không có gì giữa thẻ mở và đóng. Để sửa tiêu đề bảng trống, bạn cần tìm phần tử HTML chính xác (%1$s) và thêm văn bản mô tả hàng hoặc cột mà nó áp dụng."
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "Liên kết đến Tệp MS Office"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Cảnh báo Liên kết đến Tệp MS Office có nghĩa là một hoặc nhiều liên kết trên trang hoặc bài đăng của bạn chuyển hướng đến một tệp có một trong các phần mở rộng tệp sau: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps hoặc .ppsx. Cảnh báo này xuất hiện khi có tệp MS Office để nhắc nhở bạn kiểm tra thủ công tài liệu Word, bản trình bày PowerPoint và bảng tính Excel về khả năng truy cập và xác nhận rằng chúng tuân thủ tất cả các hướng dẫn WCAG có liên quan. Để giải quyết cảnh báo Liên kết đến Tệp MS Office, bạn cần: (1) đảm bảo có liên kết trực tiếp để xem hoặc tải xuống tài liệu nếu bạn đang sử dụng plugin để nhúng tài liệu vào trang; (2) đảm bảo liên kết đến tài liệu cảnh báo người dùng rằng đó là liên kết đến một tài liệu bằng cách hiển thị phần mở rộng tệp cụ thể trong liên kết neo; và (3) kiểm tra và khắc phục lỗi khả năng truy cập của tệp MS Office. Sau khi xác định tệp của bạn có thể truy cập đầy đủ, bạn có thể yên tâm “Bỏ qua” cảnh báo."
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "Liên kết đến PDF"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Cảnh báo Liên kết đến PDF có nghĩa là một hoặc nhiều liên kết trên trang hoặc bài đăng của bạn chuyển hướng đến tệp PDF. Cảnh báo này là lời nhắc nhở để kiểm tra thủ công PDF được liên kết về khả năng truy cập và xác nhận rằng tệp tuân thủ tất cả các hướng dẫn WCAG có liên quan. Để giải quyết cảnh báo Liên kết đến PDF, bạn cần: (1) đảm bảo có liên kết trực tiếp để xem hoặc tải xuống tài liệu nếu bạn đang sử dụng plugin để nhúng tài liệu vào trang; (2) đảm bảo liên kết đến tài liệu cảnh báo người dùng rằng đó là liên kết đến tài liệu bằng cách hiển thị phần mở rộng tệp cụ thể trong neo liên kết; và (3) kiểm tra và khắc phục lỗi khả năng truy cập trong tài liệu của bạn. Sau khi xác định tệp của bạn có thể truy cập hoàn toàn, bạn có thể an toàn “Bỏ qua” cảnh báo."
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "Liên kết đến Tệp Không phải HTML"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Cảnh báo Liên kết đến Tài liệu Không phải HTML có nghĩa là một hoặc nhiều liên kết trên trang hoặc bài đăng của bạn chuyển hướng đến một tệp có một trong các phần mở rộng tệp sau: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages hoặc .key. Cảnh báo này là lời nhắc nhở để kiểm tra thủ công tài liệu được liên kết về khả năng truy cập và xác nhận rằng tài liệu đó tuân thủ tất cả các hướng dẫn WCAG có liên quan. Để giải quyết cảnh báo Liên kết đến Tài liệu Không phải HTML, bạn cần: (1) đảm bảo có liên kết trực tiếp để xem hoặc tải xuống tài liệu nếu bạn đang sử dụng plugin để nhúng tài liệu đó vào trang; (2) đảm bảo liên kết đến tài liệu cảnh báo người dùng rằng đó là liên kết đến một tài liệu bằng cách hiển thị phần mở rộng tệp cụ thể trong neo liên kết; và (3) kiểm tra và khắc phục lỗi khả năng truy cập trong tài liệu của bạn. Sau khi xác định tệp của bạn có thể truy cập đầy đủ, bạn có thể yên tâm “Bỏ qua” cảnh báo."
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "Mô tả dài không hợp lệ"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "Lỗi Mô tả Dài Không Hợp lệ nghĩa là thuộc tính mô tả dài (%s) trên một hình ảnh không có URL, tên tập tin, hoặc phần mở rộng tập tin phù hợp. Nó cũng có thể có nghĩa là mô tả dài không phải là một URL, hoặc nó đã bị để trống. Thuộc tính longdesc không được hỗ trợ đầy đủ mở cửa sổ mới bởi HTML5, các trình duyệt, và tất cả các trình đọc màn hình. Do thiếu sự hỗ trợ này, cách sửa tốt nhất cho lỗi này là xóa hoàn toàn longdesc khỏi thẻ hình ảnh của bạn."
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "Thiếu nhãn biểu mẫu"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "Lỗi Thiếu Nhãn Biểu mẫu được kích hoạt khi một %1$s (trường biểu mẫu) có mặt trong biểu mẫu của bạn nhưng không được liên kết với một phần tử %2$s. Điều này có thể có nghĩa là nhãn đã có nhưng thiếu thuộc tính %3$s để kết nối nó với trường tương ứng hoặc có thể không có nhãn nào hiện diện và chỉ có thẻ %1$s. Để sửa lỗi thiếu nhãn biểu mẫu, bạn sẽ cần xác định cách trường và biểu mẫu được tạo ra và sau đó thêm nhãn trường hoặc thuộc tính %3$s chính xác vào các nhãn hiện có mà không được kết nối với một trường."
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "Văn bản neo không rõ ràng"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "Lỗi Văn bản neo mơ hồ xuất hiện khi có văn bản được liên kết không có ý nghĩa bên ngoài nội dung xung quanh. Ví dụ phổ biến về điều này bao gồm các cụm từ liên kết như \"nhấp vào đây\" hoặc \"tìm hiểu thêm\". Để giải quyết lỗi này, hãy thay đổi văn bản liên kết thành ít chung chung hơn để có ý nghĩa khi nghe riêng."
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "Văn bản gạch chân"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "Cảnh báo Văn bản Gạch chân xuất hiện nếu bất kỳ văn bản nào trên trang của bạn được bọc trong thẻ HTML gạch chân (%1$s). Trong môi trường trực tuyến, văn bản gạch chân thường được sử dụng để chỉ ra văn bản được liên kết và không được coi là một phương pháp tốt nhất để chỉ gạch chân văn bản để nhấn mạnh. Để sửa văn bản gạch chân, bạn sẽ cần phải xóa phần tử %1$s khỏi văn bản hoặc các kiểu CSS đang làm cho nó bị gạch chân. Hãy thử sử dụng các kiểu dáng khác, như in nghiêng, văn bản có màu, hoặc in đậm để nhấn mạnh hoặc phân biệt giữa các từ hoặc cụm từ."
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "Liên kết bỏ qua hoặc liên kết neo bị hỏng"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "Liên kết neo, đôi khi được gọi là liên kết nhảy, là liên kết thay vì mở một trang hoặc URL mới khi nhấp vào, sẽ nhảy hoặc cuộn bạn đến một phần khác trên cùng một trang. Các liên kết này sẽ chuyển đến một phần tử bắt đầu bằng hashtag thay vì URL đầy đủ. Ví dụ: bạn có thể cuộn ai đó đến phần giới thiệu về trang chủ của mình bằng cách liên kết đến #about. Lỗi Liên kết bỏ qua hoặc liên kết neo bị hỏng xuất hiện khi có một liên kết nhắm mục tiêu đến một phần khác trên cùng một trang nhưng không có phần tử nào có trong trang có id được tham chiếu. Lỗi này cũng sẽ xuất hiện nếu bạn chỉ liên kết đến #. Để giải quyết lỗi này, hãy kiểm tra thủ công liên kết để xác nhận rằng liên kết hoạt động và sau đó sửa lỗi hoặc \"Bỏ qua\" lỗi nếu có."
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "Thiếu tiêu đề bảng"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "Lỗi Thiếu Tiêu đề Bảng nghĩa là một trong các bảng của bạn chứa dữ liệu (thông tin trong thẻ %1$s) mà không có thẻ tiêu đề (%2$s) tương ứng. Khi xem mã HTML của biểu mẫu, sẽ có nhiều phần tử %1$s trong một hàng hơn số phần tử %2$s trong bảng. Để sửa lỗi thiếu tiêu đề bảng, bạn cần tìm phần mã có ít phần tử %2$s hơn so với số lượng cần có cho số hàng hoặc cột dữ liệu, và thêm một hoặc nhiều phần tử %2$s chứa văn bản mô tả dữ liệu trong hàng hoặc cột đó."
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "Nhãn biểu mẫu trùng lặp"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "Lỗi Nhãn Biểu mẫu Trùng lặp xuất hiện khi có nhiều hơn một nhãn được liên kết với một trường đơn trong biểu mẫu. Nếu có quá nhiều nhãn biểu mẫu, trình đọc màn hình có thể không đọc được các trường biểu mẫu để giúp người dùng khiếm thị điều hướng và hoàn thành biểu mẫu. Để sửa lỗi nhãn biểu mẫu trùng lặp, bạn cần xác định cách tạo trường và biểu mẫu, sau đó đảm bảo mỗi trường chỉ có một nhãn liên kết với nó."
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "Văn bản quá nhỏ"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "Cảnh báo Văn bản Quá nhỏ xuất hiện khi có văn bản trên trang web của bạn có kích thước nhỏ hơn 10px. Cảnh báo này cho thấy bạn có thể cần xem xét lại kích thước phông chữ và làm cho nó lớn hơn để dễ đọc hơn mà không cần người dùng phải phóng to trên trình duyệt. Để sửa văn bản quá nhỏ, bạn cần đảm bảo tất cả các phần tử văn bản trên trang web của bạn có ít nhất 10 điểm."
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "Tiêu đề có thể"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "Cảnh báo Tiêu đề Có thể xuất hiện khi có văn bản trên trang có vẻ là tiêu đề, nhưng không được mã hóa với các thẻ tiêu đề thích hợp. Cảnh báo này xuất hiện nếu có các cụm từ ngắn hoặc chuỗi văn bản dài dưới 50 ký tự được định dạng theo cách gợi ý chúng có thể đang được sử dụng như tiêu đề (chúng có kích thước 20 pixel trở lên, hoặc 16 pixel trở lên và in đậm và/hoặc in nghiêng). Để sửa cảnh báo Tiêu đề Có thể, bạn cần xác định xem văn bản được đánh dấu có thực sự là tiêu đề hay không. Nếu đúng, bạn cần thay đổi nó từ đoạn văn thành tiêu đề ở cấp độ thích hợp. Nếu nó không phải là tiêu đề, bạn có thể an toàn \"Bỏ qua\" cảnh báo."
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "Nội dung nhấp nháy hoặc cuộn"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "Lỗi Nội dung Nhấp nháy hoặc Cuộn xuất hiện khi các phần tử trên trang web của bạn có chức năng nhấp nháy hoặc cuộn được áp dụng thông qua CSS hoặc trong HTML. Cụ thể, những điều sau sẽ tạo ra lỗi này: các thẻ HTML %1$s hoặc %2$s hoặc CSS %3$s. Để giải quyết lỗi này, hãy xóa các thẻ HTML hoặc CSS đang gây ra việc nội dung nhấp nháy."
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "Độ tương phản màu sắc không đủ"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "Lỗi Độ tương phản Màu sắc Không đủ nghĩa là chúng tôi đã xác định rằng một hoặc nhiều kết hợp màu sắc trên bài đăng hoặc trang của bạn không đáp ứng tỷ lệ tương phản màu tối thiểu là 4.5:1. Tùy thuộc vào cách xây dựng trang web của bạn, có thể có \"kết quả dương tính giả\" cho lỗi này vì một số màu sắc nằm trong các lớp HTML khác nhau trên trang. Để sửa lỗi Độ tương phản Màu sắc Không đủ, bạn cần đảm bảo rằng các phần tử được đánh dấu đáp ứng tỷ lệ tối thiểu yêu cầu là 4.5:1. Để làm điều này, bạn cần tìm mã hex của màu chữ và màu nền, và kiểm tra chúng trong công cụ kiểm tra độ tương phản màu sắc. Nếu các mã màu này có tỷ lệ 4.5:1 trở lên, bạn có thể \"Bỏ qua\" lỗi này. Nếu các mã màu không có tỷ lệ ít nhất là 4.5:1, bạn sẽ cần điều chỉnh màu sắc của mình."
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "Thiếu bản ghi"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "Lỗi thiếu bản ghi âm có nghĩa là có một đoạn âm thanh hoặc video trên trang web của bạn mà không có bản ghi âm, hoặc có bản ghi âm nhưng không được gắn nhãn là bản ghi âm hoặc được đặt cách xa hơn 25 ký tự so với phương tiện được nhúng hoặc liên kết. Để sửa lỗi thiếu bản ghi âm, bạn cần tạo bản ghi âm cho bất kỳ đoạn video hoặc âm thanh nào bị đánh dấu là thiếu bản ghi âm. Sau khi bạn đã tạo bản ghi âm, bạn có thể thêm nội dung bản ghi âm trực tiếp vào bài viết hoặc trang của mình hoặc liên kết đến bản ghi âm nếu bạn đang đưa nó vào dưới dạng tài liệu hoặc tệp PDF có thể tải xuống. Bạn cần đưa rõ ràng từ \"bản ghi âm\" vào một tiêu đề trước bản ghi âm trên trang hoặc trong liên kết đến tệp của bạn, và nó cần phải nằm trong phạm vi 25 ký tự so với phần nhúng hoặc liên kết âm thanh hoặc video."
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "Tham chiếu ARIA bị hỏng"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "Lỗi Tham chiếu ARIA bị hỏng xuất hiện nếu một phần tử aria-labeledby hoặc aria-describedby có mặt trên trang hoặc bài viết nhưng mục tiêu tham chiếu của nó không tồn tại. Điều này có nghĩa là phần tử được đề cập bởi thuộc tính ARIA cụ thể mà bạn đang sử dụng không có nhãn hoặc mô tả phù hợp, hoặc nó không có mặt trên trang. Để sửa tham chiếu ARIA bị hỏng, bạn sẽ cần tìm các phần tử ARIA đang bị đánh dấu và đảm bảo rằng các mục tiêu tham chiếu của chúng hiện diện và được gắn nhãn đúng cách."
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "Thiếu khai báo ngôn ngữ"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "Khai báo ngôn ngữ là một thuộc tính HTML chỉ định ngôn ngữ mặc định của nội dung trên một trang hoặc bài viết. Khai báo ngôn ngữ nên được mã hóa vào chủ đề trang web của bạn và xuất hiện tự động trong phần đầu của trang web. Lỗi Thiếu Khai báo Ngôn ngữ xuất hiện nếu thẻ %1$s trên trang không chứa thuộc tính %2$s hoặc %3$s, hoặc một trong những thuộc tính này hiện diện nhưng trống. Để sửa lỗi Thiếu Khai báo Ngôn ngữ, bạn sẽ cần chỉnh sửa các tệp chủ đề của mình để thêm thuộc tính ngôn ngữ còn thiếu vào thẻ HTML ở đầu tiêu đề trang web của bạn. Nếu bạn đang sử dụng một chủ đề nhận các bản cập nhật, thì bạn sẽ cần thực hiện thay đổi trong một chủ đề con để đảm bảo việc sửa chữa không bị ghi đè khi bạn cập nhật chủ đề lần tới."
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "Hình ảnh GIF động"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "Cảnh báo Hình ảnh GIF động xuất hiện khi có một GIF động trên bài viết hoặc trang của bạn. Cảnh báo này là một lời nhắc để xem xét thủ công bất kỳ GIF động nào trên trang web của bạn về khả năng truy cập của chúng và/hoặc để xem xét lại việc sử dụng GIF động, thay thế chúng bằng hình ảnh tĩnh hoặc video. Để giải quyết cảnh báo này, bạn cần xem xét bất kỳ GIF nào hiện có để đảm bảo rằng chúng đáp ứng tất cả các hướng dẫn áp dụng cho khả năng truy cập và sau đó hoặc \"Bỏ qua\" cảnh báo hoặc xóa GIF khỏi trang hoặc bài viết của bạn nếu nó không thể truy cập được."
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "Có video hiện diện"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Bởi vì video thường chứa các vấn đề về khả năng truy cập, nhiều vấn đề chỉ có thể được xác định bởi con người, cảnh báo Có Video Hiện Diện xuất hiện bất cứ khi nào phát hiện một video trên một bài viết hoặc trang như một lời nhắc rằng bạn cần kiểm tra thủ công video của mình về khả năng truy cập. Để giải quyết cảnh báo này, bạn cần truy cập giao diện người dùng của trang web và xác nhận rằng video trong cảnh báo có thể truy cập được. Sau khi bạn đã kiểm tra đầy đủ video về khả năng truy cập, bạn cần sửa bất kỳ lỗi nào có thể xuất hiện và sau đó có thể \"Bỏ qua\" cảnh báo để đánh dấu nó là hoàn thành."
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "Có trình chiếu hiện diện"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Bởi vì trình chiếu thường chứa các vấn đề về khả năng truy cập, nhiều vấn đề chỉ có thể được xác định bởi con người, cảnh báo Có Trình Chiếu Hiện Diện xuất hiện bất cứ khi nào phát hiện một trình chiếu trên một bài viết hoặc trang như một lời nhắc rằng bạn cần kiểm tra thủ công trình chiếu của mình về khả năng truy cập. Để giải quyết cảnh báo này, bạn cần truy cập giao diện người dùng của trang web và xác nhận rằng tất cả các trình chiếu trên trang đều có thể truy cập được. Sau khi bạn đã kiểm tra đầy đủ các trình chiếu về khả năng truy cập, bạn cần sửa bất kỳ lỗi nào có thể xuất hiện và sau đó có thể \"Bỏ qua\" cảnh báo để đánh dấu nó là hoàn thành."
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "Thiếu tiêu đề"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "Lỗi Thiếu Tiêu đề có nghĩa là bài đăng hoặc trang của bạn không chứa phần tử tiêu đề (%1$s hoặc %2$s). Điều này có thể xảy ra nếu giao diện không thêm thẻ tiêu đề, hoặc nếu trường tiêu đề của bài đăng hoặc trang bị để trống trong màn hình chỉnh sửa WordPress. Để sửa một trang không có tiêu đề, bạn sẽ cần thêm các phần tử tiêu đề. Đầu tiên, hãy xác định xem tiêu đề có bị thiếu vì bạn để trống trường tiêu đề trang hoặc bài đăng trong trình chỉnh sửa hay không. Nếu vậy, hãy điền vào. Nếu tiêu đề đã được điền và hiển thị ở phía sau, thì mã trong phần của trang web của bạn cần được chỉnh sửa để bao gồm thẻ %1$s hoặc thẻ meta %2$s."
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "Sử dụng liên kết không đúng cách"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "Lỗi Sử dụng Liên kết Không đúng cách xuất hiện nếu bạn có các liên kết thiếu thuộc tính %1$s hoặc chỉ liên kết đến %2$s, và không có %3$s trên chúng. Liên kết nên được sử dụng để chỉ dẫn người dùng đến các phần khác của trang web của bạn. Bất kỳ chức năng nào khác kích hoạt một hành động nên là một nút. Để giải quyết lỗi này, bạn cần mã hóa lại liên kết để sử dụng thẻ %4$s (ưu tiên) hoặc thêm %5$s vào thẻ %6$s hiện có. Nếu phần tử là nút chuyển đổi (như một accordion), cần bổ sung thêm các thuộc tính ARIA."
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "Đã tắt chức năng thu phóng và chia tỷ lệ"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "Chức năng thu phóng đã bị vô hiệu hóa thông qua thẻ meta viewport bao gồm `user-scalable=no` hoặc giá trị `maximum-scale` nhỏ hơn 2. Điều này hạn chế người dùng thị lực kém muốn tăng kích thước chữ, phóng to trang hoặc sử dụng công cụ phóng đại."
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "Đã lưu cài đặt. Để xác nhận và phản ánh những cập nhật này trong thống kê trang web của bạn, vui lòng quét lại trang web. Nếu bạn đang sử dụng plugin bộ nhớ đệm, hãy đảm bảo xóa bộ nhớ đệm để áp dụng chính xác các sửa đổi đã cập nhật."
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "Plugin Cảnh báo Cửa sổ Mới về Khả năng Tiếp cận đã được cài đặt. Phần sửa lỗi cho các liên kết mở trong cửa sổ mới được bao gồm ở đây sẽ ghi đè chức năng của nó. Bạn có thể an toàn gỡ bỏ plugin và sử dụng các sửa đổi này thay thế."
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "Bảng điều khiển vấn đề Trình kiểm tra Khả năng Tiếp cận"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "Tóm tắt"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "Chi tiết"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "Khả năng đọc"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "Xóa tất cả các vấn đề hiện đang được tìm thấy"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "Xóa vấn đề"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Cân bằng logo kỹ thuật số"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "Nâng cấp lên Trình kiểm tra Khả năng Tiếp cận Pro"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "Quét tất cả các loại bài viết"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "Cột quản trị để xem nhanh trạng thái khả năng tiếp cận"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "Danh sách tập trung tất cả các vấn đề đang mở"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "Nhật ký bỏ qua"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "Đổi tên tóm tắt đơn giản hóa"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "Hạn chế người dùng khi bỏ qua vấn đề"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "Hỗ trợ qua email"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...và nhiều hơn nữa"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "Nhận Trình kiểm tra Khả năng Tiếp cận Pro"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "Hoặc kích hoạt mã giấy phép của bạn tại đây."
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "Chung"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "phiên bản"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Liên kết đến trang web Equalize Digital"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "Hướng dẫn nhanh"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "Làm theo các bước sau để bắt đầu kiểm tra nội dung của bạn:"
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "Trên <a href=\"%s\">Trang Cài đặt</a>, chọn loại bài viết bạn muốn quét."
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "Đi đến màn hình chỉnh sửa cho bài viết bạn muốn kiểm tra."
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "Tìm hộp meta Trình kiểm tra Khả năng Tiếp cận bên dưới nội dung của bạn. Nếu sử dụng trình tạo trang ở giao diện người dùng, bạn phải truy cập màn hình chỉnh sửa phía sau để xem kết quả Trình kiểm tra Khả năng Tiếp cận."
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "Nếu có lỗi hoặc cảnh báo trên bài viết của bạn, mở tab chi tiết trong Trình kiểm tra Khả năng Tiếp cận để biết thêm thông tin."
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "Mở rộng từng vấn đề để xem mã, hoặc nhấp vào \"xem trên trang\" nếu bạn cần trợ giúp tìm phần tử cần sửa."
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "Nếu bạn không biết một lỗi hoặc cảnh báo nghĩa là gì, nhấp vào biểu tượng \"i\" để đọc tài liệu và cách khắc phục."
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "Nếu một vấn đề là dương tính giả và phần tử đó có thể truy cập được, bạn có thể loại bỏ vấn đề khỏi báo cáo bằng tính năng \"Bỏ qua\"."
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "Sau khi sửa từng vấn đề, cập nhật bài viết để xem báo cáo khả năng tiếp cận thay đổi. Mục tiêu của bạn là đưa mỗi trang đến trạng thái 100% Đã Vượt qua Kiểm tra."
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "Xem video về cách sử dụng Trình kiểm tra Khả năng Tiếp cận."
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "Tài liệu và Câu hỏi thường gặp"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "Tại sao chúng tôi nói 100% Đã Vượt qua Kiểm tra, Không phải 100% Có thể Tiếp cận?"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "(mở trong cửa sổ mới)"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "Cách kiểm tra thủ công trang web của bạn về khả năng tiếp cận"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "Khi nào nên bỏ qua lỗi khả năng tiếp cận"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "Phải làm gì nếu Plugin bạn đang sử dụng có Lỗi Khả năng Tiếp cận"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "Phải làm gì nếu có Lỗi Khả năng Tiếp cận trong Chủ đề của bạn"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "Tôi có thể thuê Equalize Digital để sửa các vấn đề khả năng tiếp cận trên trang web của mình không?"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "Tài nguyên bổ sung để học về khả năng tiếp cận"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "Đọc tài liệu đầy đủ"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "Thông tin hỗ trợ"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "Hỗ trợ plugin"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "Người dùng có giấy phép hoạt động của các gói Trình kiểm tra Khả năng Tiếp cận trả phí được hỗ trợ email không giới hạn về cách sử dụng và xử lý sự cố plugin."
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "Mở ticket hỗ trợ"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "Hỗ trợ plugin miễn phí"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "Hỗ trợ plugin miễn phí có sẵn thông qua diễn đàn WordPress.org. Bạn sẽ cần tạo một tài khoản sau đó có thể mở một chủ đề hỗ trợ mới."
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "Đi đến diễn đàn hỗ trợ"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "Giờ làm việc"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "Hỏi đáp mở trên Zoom hai tuần một lần để giúp bạn khắc phục trang web của mình."
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "Được bao gồm trong các gói Doanh nghiệp Nhỏ và Đại lý"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "Đăng ký giờ làm việc"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "Kiểm toán và khắc phục"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "Nhận trợ giúp để làm cho trang web của bạn có thể truy cập được. Kiểm toán chuyên gia, kiểm tra người dùng và hỗ trợ phát triển. Có sẵn thư xác nhận tuân thủ."
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "Nhận trợ giúp khắc phục"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "Đang lưu..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "Đã lưu cài đặt thành công. Bạn phải %struy cập trình soạn thảo%s và lưu bài viết để quét lại và xóa các vấn đề đã sửa khỏi báo cáo Trình kiểm tra Khả năng Tiếp cận."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "Đã lưu cài đặt thành công."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "Lưu không thành công."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "Cài đặt sửa lỗi"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "Điều này sẽ xóa tất cả các vấn đề cho bài viết này. Cần phải lưu để kích hoạt quét mới nội dung bài viết. Bạn có muốn tiếp tục không?"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "Đang xóa..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "Đã xóa vấn đề thành công."
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "Không thể xóa vấn đề."
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "Đã xảy ra sự cố. Vui lòng thử lại."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "Rất tiếc, gửi không thành công. Vui lòng rút ngắn câu trả lời và thử lại."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "Rất tiếc, gửi không thành công. Vui lòng thử lại."
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "mở cửa sổ mới"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: Không tìm thấy ID mục tiêu phù hợp trên trang cho liên kết bỏ qua."
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: Lỗi khi cập nhật lịch sử cho liên kết bỏ qua."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "Đóng cửa sổ sửa lỗi"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Tắt kiểu trang"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "Hiển thị mã"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Loại vấn đề:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "Bật kiểu"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Tắt kiểu"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "Không có cài đặt nào để hiển thị."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Những cài đặt này cho phép sửa lỗi toàn cục trên toàn bộ trang web của bạn. Có thể cần phải lưu lại các trang hoặc chạy quét toàn bộ trang web để thấy các sửa đổi được phản ánh trong báo cáo."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "Không phát hiện vấn đề nào."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "lỗi"
+msgstr[1] "lỗi"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "cảnh báo"
+msgstr[1] "cảnh báo"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "và"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "vấn đề bị bỏ qua"
+msgstr[1] "vấn đề bị bỏ qua"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "đã phát hiện."
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "cửa sổ mới"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "tab mới"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "nhấp"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "nhấp vào đây"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "tại đây"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "đi đến đây"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "thêm"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "thêm..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "thêm…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "chi tiết"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "thêm chi tiết"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "liên kết"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "trang này"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "tiếp tục"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "đọc tiếp"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "đọc thêm"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "mở"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "tải xuống"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "nút"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "tiếp tục đọc"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "tìm hiểu thêm"

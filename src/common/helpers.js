@@ -49,7 +49,10 @@ export const showNotice = ( options ) => {
 		let msg = settings.msg;
 
 		if ( settings.url ) {
-			msg = msg.replace( '{link}', '<a href="' + settings.url + '" target="_blank" arial-label="' + settings.label + '">' + settings.label + '</a>' );
+			msg = msg.replace(
+				'{link}',
+				`<a href="${ encodeURI( settings.url ) }" target="_blank" aria-label="${ settings.label }">${ settings.label }</a>`
+			);
 		} else {
 			msg = msg.replace( '{link}', '' );
 		}

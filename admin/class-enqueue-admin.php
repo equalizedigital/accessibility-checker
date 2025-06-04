@@ -96,7 +96,7 @@ class Enqueue_Admin {
 				$current_post_type = get_post_type();
 				$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 
-				$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID;
+				$pro = defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID;
 
 				if ( EDAC_DEBUG || strpos( EDAC_VERSION, '-beta' ) !== false ) {
 					$debug = true; // @codeCoverageIgnore

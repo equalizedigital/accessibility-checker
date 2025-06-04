@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "Controllo di accessibilità"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "Controlla e verifica l'accessibilità del tuo sito web prima di pubblicarlo. Scanner di accessibilità integrato nei post e guida."
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "Correzioni"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "Correzioni generali"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "Queste correzioni aiutano a migliorare l'accessibilità modificando gli elementi HTML e i comportamenti del tuo sito."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "Passa a Pro per sbloccare questa funzionalità, si apre in una nuova finestra."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "Passa a Pro"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "Si apre in una nuova finestra."
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "Leggi la documentazione per %s. Si apre in una nuova finestra."
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "Il nostro impegno per l'accessibilità web"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[YOUR COMPANY NAME] si impegna a fornire un'esperienza web completamente accessibile per tutti gli utenti di tutte le abilità, inclusi coloro che si affidano a tecnologie assistive come screen reader, software di ingrandimento dello schermo e dispositivi di input alternativi per navigare sul web."
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "Sforzi continui per garantire l'accessibilità"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "Seguiamo le <a href=\"https://www.w3.org/TR/WCAG21/\">Linee guida per l'accessibilità dei contenuti web (WCAG) versione 2.1</a> come nostro principio guida per determinare l'accessibilità. Questi sono standard concordati a livello internazionale che coprono un'ampia gamma di raccomandazioni e migliori pratiche per rendere i contenuti utilizzabili. Mentre aggiungiamo nuove pagine e funzionalità al nostro sito web, tutti i design, il codice e le pratiche di inserimento dei contenuti vengono controllati in base a questi standard."
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "L'accessibilità del sito web è un processo continuo. Testiamo costantemente contenuti e funzionalità per la conformità al livello AA WCAG 2.1 e rimediamo a eventuali problemi per garantire che soddisfiamo o superiamo gli standard. I test del nostro sito web vengono eseguiti dai nostri membri del team utilizzando strumenti standard del settore come il <a href=\"https://a11ychecker.com/\">Plugin WordPress Accessibility Checker</a>, analizzatori del contrasto di colore, tecniche di navigazione solo tramite tastiera e test di leggibilità Flesch-Kincaid."
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "Funzionalità di accessibilità sul nostro sito web"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "Di seguito è riportato un elenco di elementi che abbiamo incluso nel nostro sito web per migliorarne l'accessibilità:"
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[ELENCA QUI LE FUNZIONALITÀ DI ACCESSIBILITÀ]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "Dove stiamo migliorando"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "Nei nostri sforzi per portare il nostro sito web allo standard, ci stiamo concentrando sulle seguenti aree:"
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[ELENCA QUI GLI ELEMENTI SU CUI STATE LAVORANDO PER CORREGGERE]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[POTREBBE ESSERE UTILE CONTROLLARE LA SCHEDA PROBLEMI APERTI PER VEDERE I PROBLEMI PIÙ COMUNI]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "Questo fa parte del nostro più ampio sforzo per rendere l'esperienza di tutti in [NOME AZIENDA] accogliente e piacevole. Si prega di notare che, pur facendo ogni sforzo per fornire informazioni accessibili a tutti gli utenti, non possiamo garantire l'accessibilità dei siti web di terze parti a cui potremmo collegarci."
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "Contatto di supporto per l'accessibilità"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "Accogliamo con favore commenti, domande e feedback sul nostro sito web. Se stai utilizzando tecnologie assistive e hai difficoltà a utilizzare il nostro sito web, invia un'email a [IL TUO INDIRIZZO EMAIL PER L'ACCESSIBILITÀ] o chiamaci al [IL TUO NUMERO DI TELEFONO]. Faremo del nostro meglio per assisterti e risolvere i problemi."
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "Abbiamo migliorato i calcoli statistici nella versione 1.21.0. Di conseguenza, alcuni numeri nei dati seguenti potrebbero essere cambiati. Leggi di più nel nostro %1$spost di annuncio del rilascio%2$s."
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "Permesso negato"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "L'aggiornamento dell'opzione non è riuscito"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Offerta speciale del Black Friday! 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Passa a una versione a pagamento di Accessibility Checker dal 25 novembre al 3 dicembre e ottieni il 30% di sconto! Scansione completa del sito, report dei problemi aperti su tutto il sito, registri di ignora e altro ancora."
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "Fai una domanda pre-vendita"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "Aggiorna ora"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 Ottieni il 25% di sconto su Accessibility Checker Pro in onore della Giornata Globale di Sensibilizzazione sull'Accessibilità! 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "Usa il codice coupon GAAD25 dal 13 al 21 maggio per accedere alla scansione completa del sito e ad altre funzionalità pro a un prezzo speciale. Non sei sicuro se l'aggiornamento fa per te?"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "Ciao! Grazie per utilizzare Accessibility Checker come parte del tuo toolkit per l'accessibilità. Dato che lo stai usando da un po', potresti scrivere una recensione a 5 stelle di Accessibility Checker nella directory dei plugin di WordPress? Questo ci aiuterà ad aumentare la nostra visibilità in modo che più persone possano conoscere l'importanza dell'accessibilità web. Grazie mille!"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "Scrivi una recensione"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "Ricordamelo tra due settimane"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "Non chiedere mai più"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "Il valore dell'azione di recensione non è stato impostato"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "Ops! Sembra che il tuo sito web sia attualmente protetto da password. La versione gratuita di Accessibility Checker può scansionare solo siti web pubblici. Per scansionare questo sito web alla ricerca di problemi di accessibilità, rimuovi la protezione tramite password o %s. I risultati della scansione potrebbero essere stati memorizzati da una scansione precedente."
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "Passa ad Accessibility Checker Pro. Si apre in una nuova finestra."
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "passa a pro"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "L'ID del post non è stato impostato"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "Non è stato incluso un riassunto semplificato per questo contenuto."
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "Il tuo contenuto ha un livello di lettura pari o inferiore al 9° grado e non richiede un riassunto semplificato."
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "Il livello di lettura del riassunto semplificato è troppo elevato."
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "È stato incluso un riassunto semplificato per questo contenuto."
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s Errore"
+msgstr[1] "%s Errori"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s Errore di contrasto"
+msgstr[1] "%s Errori di contrasto"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s Avviso"
+msgstr[1] "%s Avvisi"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s Elemento ignorato"
+msgstr[1] "%s Elementi ignorati"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "Nessun riassunto da restituire"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "Nome della tabella non valido"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "Queste impostazioni abilitano correzioni globali su tutto il sito."
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Potrebbe essere necessario salvare nuovamente le pagine o eseguire una scansione completa del sito per vedere le correzioni riflesse nei rapporti."
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "Salva"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "Codice interessato"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "Visualizza il problema ID %d sul sito web, si apre in una nuova finestra"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "Visualizza sulla pagina"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "Correzione: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "Correggi"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "Il tuo account utente non ha i permessi per ignorare questo problema."
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "Nessun dettaglio da restituire"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "Nessun dato di leggibilità da restituire"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "Nessun dato di ignorazione da restituire"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "Il riassunto non è stato impostato"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "Il valore ID non è stato impostato"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "La query del problema non ha restituito risultati"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "La query dell'oggetto non ha restituito risultati"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "Riepilogo del test più recente"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "Aggiorna conteggi"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "Avvia nuova scansione"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "Visualizza tutti i problemi aperti"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "Vedi cronologia"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "Test superati"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "Errore unico"
+msgstr[1] "Errori unici"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "Errore unico di contrasto del colore"
+msgstr[1] "Errori unici di contrasto del colore"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "Avviso unico"
+msgstr[1] "Avvisi unici"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "Elemento ignorato"
+msgstr[1] "Elementi ignorati"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "Media dei problemi per pagina"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "Densità media dei problemi"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "Ultimo aggiornamento del rapporto:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "Mai"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "URL scansionati"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s di %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "Tipi di post controllati"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "URL con punteggio 100%"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "Questo riepilogo viene aggiornato automaticamente ogni 24 ore o ogni volta che viene completata una scansione completa del sito. Puoi anche aggiornare manualmente questi risultati cliccando sul pulsante Aggiorna conteggi."
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "Il tuo sito ha un gran numero di problemi. Per motivi di prestazioni, non tutti i problemi sono stati inclusi in questo riepilogo."
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "Rapporti di accessibilità a livello di sito"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "Nascondi banner"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "Sblocca rapporti dettagliati sull'accessibilità"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "Inizia a scansionare l'intero sito web per problemi di accessibilità, ottieni rapporti completi del sito e diventa conforme alle linee guida sull'accessibilità più rapidamente."
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "Aggiorna Accessibility Checker"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "chiudi annuncio"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "Ottieni rapporti dettagliati sull'accessibilità"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "Stato di accessibilità dell'intero sito"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "URL scansionati:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "Errori:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "Errori di contrasto del colore:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "Avvisi:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "Il tuo sito presenta problemi di accessibilità che dovrebbero essere affrontati il prima possibile per garantire la conformità alle linee guida sull'accessibilità."
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "Ottimo lavoro! Accessibility Checker non trova problemi di accessibilità nel contenuto testato. Alcuni problemi non possono essere rilevati da strumenti automatizzati, quindi non dimenticare di"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "testare manualmente il tuo sito"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "Problemi per tipo di post"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "Tipo di post"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "Errori"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "Contrasto"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "Avvisi"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "Passa all'upgrade per scansionare"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "Vedi altri rapporti"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "Impara l'accessibilità"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "Risorse aggiuntive"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "Blog (si apre in una nuova finestra)"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "Blog"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "Documentazione (si apre in una nuova finestra)"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "Documentazione"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "Eventi di accessibilità e novità nella tua casella di posta"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "Iscriviti alla mailing list di Equalize Digital per accedere a webinar gratuiti sull'accessibilità e risorse di formazione."
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "Email*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "Inserisci la tua email"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "Nome"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "Inserisci il tuo nome"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Accessibility Checker &mdash; cronologia audit"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Accessibility Checker &mdash; gratuito"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "Versione"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "Versione del database"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "Pagina della policy"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "Non impostato"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "Data di attivazione"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "Dichiarazione nel footer"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "Abilitato"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "Disabilitato"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "Elimina dati"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "Includi link alla dichiarazione"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "Tipi di post"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "Posizione riassunto semplificato"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "Richiesta riassunto semplificato"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "Conteggio post"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "Conteggio errori"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "Conteggio avvisi"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "Conteggio tabelle DB"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Accessibility Checker &mdash; pro"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "Stato della licenza"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "Nome utente di autorizzazione"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "Password di autorizzazione"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "ID scansione"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "Totale scansione"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "Intestazione riassunto semplificato"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "Permessi di ignorazione"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "Nessuno"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "Conteggio tabelle DB ignorate"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "%1$s usa %2$s per monitorare l'accessibilità del nostro sito web."
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "Controllo di accessibilità (si apre in una nuova finestra)"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "Leggi la nostra %s"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "Politica di accessibilità"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "Riepilogo semplificato"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "Aggiungi dimensione e tipo ai link dei file"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "Aggiungi contesto ai file collegati"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "Aggiungi dimensione e tipo del file ai link"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "Aggiungi la dimensione e il tipo del file ai link che potrebbero avviare un download."
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "Aggiungi etichette ai campi del modulo senza etichetta"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "Etichetta i campi del modulo"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "Aggiungi etichette ai campi del modulo senza etichetta se è possibile determinare lo scopo del campo."
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "Tenta di aggiungere etichette ai campi del modulo che ne sono privi. Nota: Potrebbe essere necessario aggiungere stili personalizzati mirati alla classe %1$s se l'aggiunta di etichette influisce sul layout del modulo."
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "Aggiungi titoli di pagina mancanti o vuoti"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "Imposta i titoli HTML delle pagine"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "Aggiungi il titolo della pagina mancante"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "Aggiungi un tag %1$s alla pagina se manca o è vuoto."
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "Aggiungi un avviso quando un link apre una nuova scheda/finestra"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "Aggiungi un'etichetta ai link che aprono una nuova scheda/finestra"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "Aggiungi un'etichetta e un'icona ai link con %1$s per informare gli utenti che si aprirà una nuova scheda/finestra. %2$sNota: Questa impostazione non avrà effetto se la correzione “Blocca i link che aprono nuove finestre” è abilitata.%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "Blocca i caricamenti di PDF"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "Limita i caricamenti di PDF per gli utenti senza la capacità %1$s (consentiti agli amministratori per impostazione predefinita)."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "Aggiungi etichette ai moduli di commento e ricerca"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "Etichetta i campi di commento/ricerca"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "Etichette dei moduli di commento e ricerca"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "Aggiungi le etichette mancanti ai moduli di commento e ricerca di WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "Etichetta il modulo dei commenti"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "Aggiungi le etichette mancanti al modulo dei commenti di WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "Etichetta il modulo di ricerca"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "Aggiungi un'etichetta mancante al modulo di ricerca di WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "Commento"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "Nome"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "Email"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "Sito web"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "Cerca …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "Cerca:"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "Cerca"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "Impostazioni per aggiungere etichette mancanti ai moduli di commento e ricerca di WordPress."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "Aggiungi contorni di messa a fuoco"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "Contorno di messa a fuoco"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "Aggiungi un contorno agli elementi quando ricevono il focus da tastiera."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "Aggiungi contorno di messa a fuoco"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "Impostazioni relative al miglioramento dei contorni di messa a fuoco per una migliore accessibilità da tastiera."
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "Aggiungi attributi lang e dir"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "Imposta la lingua della pagina"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "Aggiungi attributi “lang” e “dir”"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "Aggiungi gli attributi della lingua del sito (%1$s) e della direzione del testo (%2$s) all'elemento %3$s."
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "Aggiungi sottolineature a tutti i link non di navigazione"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "Sottolinea i link"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "Forza la sottolineatura dei link"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "Assicurati che i link non di navigazione siano sottolineati."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "Rendi il tag meta viewport scalabile"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "Assicura viewport scalabile"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "Assicurati che il tag viewport sulla pagina permetta lo zoom."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "Rendi il viewport scalabile"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "Assicura che il tag viewport permetta lo zoom, migliorando l'accessibilità sui dispositivi mobili."
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "Impedisci ai link di aprire nuove finestre"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "Blocca i link che aprono nuove finestre"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "Impedisci ai link di aprirsi in una nuova finestra o scheda rimuovendo %1$s."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "Aggiungi link “Leggi” con il titolo del post"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "Aggiungi il titolo al link Leggi di più"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "Link Leggi di più"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "Aggiungi il titolo del post e i link "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "Aggiungi il titolo del post a “Leggi di più”"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "Aggiungi il titolo del post ai link “Leggi di più” nelle liste dei post quando il tuo tema mostra questi link."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "Solo per screen reader"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "Rende il titolo del post aggiunto ai link “Leggi di più” visibile solo agli screen reader."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "Questa correzione aggiunge il titolo del post ai link “Leggi di più” nelle liste dei post al blocco “Altro” e negli estratti."
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "Preferisci l'attributo etichetta accessibile"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "Rimuovi attributi title non necessari"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "Rimuovi attributi title"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "Rimuovi gli attributi %1$s dagli elementi che hanno già un nome accessibile preferito."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "Aggiungi link di salto"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "Link di salto"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "Abilita link di salto"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "Aggiungi un link di salto a tutte le pagine del sito, permettendo agli utenti di saltare direttamente al contenuto principale."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "Target del contenuto principale (richiesto)"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "Definisci l'ID o gli ID delle aree di contenuto principale da targettizzare con i link di salto. Inserisci più ID separati da virgole; il sistema scorrerà la lista per trovare quello appropriato per ogni pagina."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "Target della navigazione"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "Imposta l'attributo ID dell'elemento di navigazione. Questo è utile se la tua navigazione principale contiene azioni che la maggior parte dei visitatori del sito vorrebbe compiere, come funzioni di accesso o ricerca."
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "Se il tuo tema non sta già aggiungendo un link di salto che permette agli utenti da tastiera di bypassare la navigazione e saltare rapidamente al contenuto principale, abilita qui i link di salto. %1$sScopri di più sui link di salto.%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "Salta al contenuto"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "Salta alla navigazione"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "Rimuovi tabindex dagli elementi focalizzabili"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "Rimuovi indice di tabulazione"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "Rimuovi l'attributo %1$s dagli elementi focalizzabili."
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "Nota: Questa impostazione non è raccomandata per i temi che sono già pronti per l'accessibilità."
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "Correzione non trovata"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "Impossibile registrare il comando %1$s perché %2$s"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "L'ID del post di cui eliminare le statistiche."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "Nessun ID del post fornito."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "L'ID del post %1$s non esiste."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "Statistiche di %1$s eliminate."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "Chiavi da mostrare nei risultati. Predefinito a tutte le chiavi."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "Pulisci la cache prima di recuperare le statistiche (può essere intensivo)."
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "Chiave statistica: %1$s non trovata nelle statistiche."
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "L'ID del post di cui ottenere le statistiche."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "L'ID del post %1$d non esiste."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "O il post non è ancora stato scansionato o tutti i test sono stati superati per l'ID del post %1$d."
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "permalink di "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "permalink per "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "Partecipa gratuitamente"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "Benvenuto nel controllo di accessibilità"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "Impostazioni del controllo di accessibilità"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "Impostazioni generali"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "Impostazioni del riassunto semplificato"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "Dichiarazione di accessibilità nel piè di pagina"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "Controllo di accessibilità frontend"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "Tipi di post da controllare"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "Richiedi riassunto semplificato"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "Posizione del riassunto semplificato"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "Aggiungi dichiarazione di accessibilità nel piè di pagina"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "Includi link alla politica di accessibilità"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "Pagina della politica di accessibilità"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "Anteprima della dichiarazione di accessibilità"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "Posizione del controllo di accessibilità frontend"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "Usa le impostazioni sottostanti per configurare il Controllo di Accessibilità. Ulteriori informazioni su ogni impostazione possono essere trovate nella %1$s."
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "documentazione del plugin (si apre in una nuova finestra)"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "documentazione del plugin"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "Altre funzionalità e supporto via email sono disponibili con %1$s."
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Accessibility Checker Pro (si apre in una nuova finestra)"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Accessibility checker pro"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "Usa le impostazioni qui sotto per configurare il controllo di accessibilità frontend."
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "Le Linee guida per l'accessibilità dei contenuti web (WCAG) a livello AAA richiedono che qualsiasi contenuto con un livello di lettura superiore alla nona classe abbia un'alternativa più facile da leggere. Il testo di riepilogo semplificato viene aggiunto nella scheda di leggibilità nel riquadro meta Accessibility Checker nella schermata di modifica di ogni post o pagina."
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "Scopri di più sui riepiloghi semplificati e sui requisiti di leggibilità (si apre in una nuova finestra)"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "Scopri di più sui riepiloghi semplificati e sui requisiti di leggibilità."
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "Stai pensando “Wow, questo plugin è fantastico” e ti sta aiutando a rendere il tuo sito web più accessibile? Condividi i tuoi sforzi per rendere il tuo sito web più accessibile con i tuoi clienti e fai sapere loro che stai utilizzando Accessibility Checker per assicurarti che tutte le persone possano utilizzare il tuo sito web. Aggiungi un piccolo link di solo testo e una dichiarazione nel piè di pagina del tuo sito web."
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "Prima del contenuto"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "Dopo il contenuto"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "Inserisci manualmente"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "Usa questa funzione per aggiungere manualmente il riepilogo semplificato al tuo tema all'interno del loop."
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "La funzione accetta facoltativamente l'ID del post come parametro."
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "Imposta dove vorresti che appaiano i riepiloghi semplificati in relazione al tuo contenuto, se compilati."
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "Angolo in basso a destra (predefinito)"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "Angolo in basso a sinistra"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "Imposta dove vorresti che appaia il controllo di accessibilità frontend sulla pagina."
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "Quando richiesto"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "Sempre"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Accessibility Checker dovrebbe chiedere un riepilogo semplificato solo quando il livello di lettura del tuo post o pagina è superiore alla nona classe, chiederlo sempre indipendentemente dal livello di lettura, o non chiederlo mai indipendentemente dal livello di lettura?"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "Per controllare contenuti diversi da post e pagine, per favore "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " (si apre in una nuova finestra)"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "Scegli quali tipi di post devono essere controllati durante una scansione. Nota che rimuovere un tipo di post precedentemente selezionato rimuoverà le sue informazioni scansionate e qualsiasi avviso personalizzato ignorato che è stato configurato."
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "Elimina tutti i dati di Accessibility Checker quando il plugin viene disinstallato."
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "Immagine priva di testo alternativo"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "Un errore di Immagine priva di testo alternativo significa che la tua immagine non ha un attributo alt (%1$s) contenuto nel tag dell'immagine (%2$s). Per correggere un errore di Immagine priva di testo alternativo, dovrai aggiungere un tag alt all'immagine con un testo appropriato che descriva lo scopo dell'immagine nella pagina. Se l'immagine è decorativa, l'attributo alt può essere vuoto, ma il tag HTML %1$s deve essere comunque presente."
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "Immagine con testo alternativo vuoto"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "Un avviso di Immagine con testo alternativo vuoto appare se hai un'immagine con un attributo alt (%s) vuoto. Il testo alternativo dice alle persone che non possono vedere cosa rappresenta l'immagine e aggiunge un contesto aggiuntivo al post o alla pagina. È corretto che il testo alternativo sia vuoto solo se l'immagine è puramente decorativa, come un bordo o un'icona decorativa. Per correggere un avviso di Immagine con testo alternativo vuoto, devi determinare se l'immagine è decorativa o se aggiunge qualcosa di significativo alla pagina. Se non è decorativa, devi aggiungere un testo alternativo appropriato per descrivere lo scopo dell'immagine. Se l'immagine è decorativa, allora lasceresti il testo alternativo vuoto e “Ignora” l'avviso."
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "Testo alternativo di bassa qualità"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "Un avviso di Testo alternativo di bassa qualità appare quando il testo alternativo di un'immagine contiene parole chiave non necessarie (come “immagine” o “grafica”), un'estensione del file (come .JPG), o che potrebbero descrivere un'immagine decorativa (come “spaziatore” o “freccia”). Per risolvere questo avviso, è necessario riscrivere il testo alternativo per le immagini che hanno generato l'avviso di Testo alternativo di bassa qualità, assicurandosi che sia accurato, unico, appropriato al contesto e non contenga descrittori ridondanti o non necessari. Se l'immagine è puramente decorativa, è corretto lasciare il testo alternativo vuoto."
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "Immagine collegata senza testo alternativo"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Un errore di Immagine collegata senza testo alternativo appare quando un'immagine collegata a un URL non ha un attributo alt (%s) nel tag dell'immagine. Le immagini collegate devono avere un testo alternativo accurato che descriva dove porta il collegamento, in modo che gli utenti di screen reader sappiano dove punta il link. Per risolvere questo errore, è necessario aggiungere un testo alt significativo all'immagine. Il testo alt dovrebbe descrivere lo scopo del link, non l'aspetto dell'immagine."
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "Immagine collegata con testo alternativo vuoto"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Un errore di Immagine collegata con testo alternativo vuoto appare quando un'immagine collegata a un URL ha un attributo alt (%s) vuoto. Le immagini collegate devono avere un testo alternativo accurato che descriva dove porta il collegamento, in modo che gli utenti di screen reader sappiano dove punta il link. Per risolvere questo errore, è necessario aggiungere un testo alt significativo all'immagine. Il testo alt dovrebbe descrivere lo scopo del link, non l'aspetto dell'immagine."
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "Testo alternativo duplicato"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "Gli avvisi di Testo alternativo duplicato appaiono quando il testo alternativo di un'immagine nel tuo post o pagina è identico a un testo vicino o adiacente, inclusi il titolo o la didascalia dell'immagine. Questo avviso si verifica anche se due immagini sulla pagina hanno lo stesso testo alternativo. Per risolvere questo avviso, dovrai modificare il testo di uno o entrambi gli elementi che hanno generato l'avviso di Testo alternativo duplicato, assicurandoti che tutte le immagini abbiano un testo alt unico e che non si stia ripetendo il testo alt nei titoli e nelle didascalie delle immagini."
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "Ordine di intestazione errato"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "Un errore di Ordine di intestazione errato significa che la struttura delle intestazioni ha saltato un livello. Per esempio, se la struttura della tua pagina ha un'intestazione di livello 3 (%1$s) sotto un'intestazione di livello 1 (%2$s), verrà segnalato un errore di “Ordine di intestazione errato” perché non c'è un tag %3$s tra l'H1 e l'H3. Per correggere gli errori di ordine di intestazione errato, dovrai o cambiare il livello di intestazione errato al livello corretto, o aggiungere contenuto con il livello di intestazione corretto tra i due livelli già esistenti."
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "Tag paragrafo vuoto"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "Un avviso di Tag paragrafo vuoto significa che è presente un tag paragrafo che non contiene contenuto. Questi possono essere annunciati dagli screen reader o creare confusione per gli utenti. Per risolvere questo avviso, rimuovi i paragrafi vuoti dalla pagina. Se hai bisogno di aggiungere spazio tra le sezioni, questo dovrebbe essere fatto con padding, margini o un blocco spaziatore."
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "iframe senza titolo"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "Un errore di iframe senza titolo significa che uno o più iframe nel tuo post o pagina non hanno un titolo accessibile che descriva il contenuto dell'iframe. Un titolo iframe è un attributo che può essere aggiunto al tag %1$s per descrivere il contenuto del frame alle persone che utilizzano tecnologie assistive. Per correggere un titolo iframe mancante, dovrai aggiungere un attributo title o aria-label al tag %1$s. L'attributo dovrebbe descrivere accuratamente il contenuto dell'iframe."
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "Sottotitoli mancanti"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "Un avviso riguardante intestazioni mancanti significa che il tuo articolo o pagina non contiene elementi di intestazione (%1$s-%2$s) all'interno del contenuto del corpo dell'articolo o della pagina, il che può rendere particolarmente difficile per gli utenti di screen reader navigare attraverso il contenuto della pagina. Per correggere una pagina senza intestazioni, dovrai aggiungere elementi di intestazione. Come minimo, ogni pagina dovrebbe avere un tag %1$s, che è tipicamente il titolo della pagina. Aggiungi ulteriori sottotitoli come appropriato per il tuo contenuto. Se hai determinato che le intestazioni non sono assolutamente necessarie sulla pagina, puoi “Ignorare” l'avviso."
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "Testo giustificato"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "Un avviso di Testo Giustificato appare in Accessibility Checker quando il testo con più di 200 caratteri nel tuo articolo o pagina è formattato con allineamento giustificato (text-align:justify). Per correggere questo avviso, rimuovi la formattazione giustificata dagli elementi di testo specificati."
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "Il link apre una nuova finestra o scheda"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "Un avviso di Link Apre Nuova Finestra o Scheda appare quando c'è un link sul tuo sito web che è stato impostato per aprirsi in una nuova scheda o finestra quando cliccato. È considerata una buona pratica non aprire nuove schede o finestre con i link. Se i link aprono nuove schede o finestre, deve esserci un avviso visivo e uditivo che annunci che il link aprirà una nuova finestra o scheda in modo che gli utenti si aspettino quel comportamento e sappiano come tornare indietro dopo aver cliccato sul link. Per correggere questo avviso, modifica il link in modo che non si apra in una nuova scheda oppure assicurati che “apre una nuova finestra” sia incluso nel testo del link e poi “Ignora” l'avviso. Per aggiungere automaticamente avvisi a tutti i link sul tuo sito e ignorare tutti questi avvisi, installa il nostro plugin gratuito %s."
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "Avvisi di accessibilità per nuove finestre"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "Mappa immagine senza testo alternativo"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "L'errore di Mappa Immagine Senza Testo Alternativo significa che uno degli elementi %1$s all'interno della tua mappa immagine non ha un testo alternativo aggiunto in un attributo %2$s. Per correggere questo errore, dovrai aggiungere il testo alt mancante a qualsiasi tag area che non abbia il testo alt. Il testo alt deve descrivere la funzione del link contenuto nell'area, non necessariamente descrivere l'aspetto dell'area."
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "Ordine di tabulazione modificato"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "Un Avviso di Ordine di Tabulazione Modificato appare quando l'ordine logico di tabulazione sulla pagina è stato modificato aggiungendo un attributo per tabindex maggiore di 0 a un elemento HTML (per esempio, %s). Questo può causare problemi di navigazione per gli utenti che utilizzano solo la tastiera. Per risolvere un avviso di Ordine di Tabulazione Modificato, devi visualizzare il frontend del tuo sito web sulla pagina o articolo dove l'ordine di tabulazione è stato modificato e verificare se la modifica è corretta o meno. Se la modifica dell'ordine di tabulazione non causa problemi, puoi “Ignorare” l'avviso. Se l'ordine di tabulazione modificato causa la presentazione delle informazioni in modo disordinato, devi rimuovere l'attributo tabindex dall'elemento segnalato."
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "Tag di intestazione vuoto"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "Un errore di Tag di Intestazione Vuoto significa che c'è un tag di intestazione presente nel tuo articolo o pagina che non contiene contenuto. Nel codice, questo errore apparirebbe così: %s. Per correggere un'intestazione vuota, dovrai aggiungere contenuto al tag di intestazione che ha segnalato l'errore di Tag di Intestazione Vuoto o rimuovere il tag vuoto se non è necessario nella tua pagina."
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "Link vuoto"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "L'errore Link vuoto significa che uno dei link presenti nella pagina web è vuoto o non contiene alcun testo che descriva la destinazione del link se cliccato. Questo si verifica comunemente con i link che contengono webfont, font di icone e SVG o quando un link è stato creato per sbaglio nell'editor dei contenuti. Per risolvere l'errore di un link vuoto, dovrai trovare il link che viene segnalato e aggiungervi del testo descrittivo. Dovrai: aggiungere del contenuto testuale all'interno di un elemento %1$s vuoto oppure, se il link contiene un'icona SVG o Webfont, nascondere l'elemento con %2$s e aggiungere un attributo %3$s al tag %1$s o al testo dello screen reader. Il testo o l'etichetta che aggiungi deve essere descrittivo del punto in cui punta il link e non ambiguo."
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "Pulsante vuoto"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "Un errore di Pulsante Vuoto significa che uno dei pulsanti presenti sulla pagina web è vuoto o non contiene testo che descriva la funzione del pulsante. Oppure, se si tratta di un pulsante immagine, l'immagine contenuta nel pulsante non ha un testo alternativo. Per correggere un errore di pulsante vuoto, dovrai trovare il pulsante segnalato e aggiungervi del testo descrittivo. Dovrai: aggiungere contenuto testuale all'interno di un elemento %1$s vuoto, aggiungere un attributo value a un %2$s che ne è privo, o aggiungere un testo alternativo all'immagine del pulsante. Il testo dovrebbe descrivere lo scopo del pulsante o l'azione che il pulsante attiva."
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "Testo alternativo lungo dell'immagine"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "Un avviso di Testo Alternativo Lungo dell'Immagine appare se ci sono più di 100 caratteri nel tuo testo alternativo. Il testo alternativo dovrebbe descrivere l'immagine in modo conciso, senza essere troppo prolisso. Per correggere questo avviso, devi accorciare il testo alt per tutte le immagini segnalate a 100 caratteri o meno. Se hai stabilito che il tuo testo alternativo va bene così com'è, allora “Ignora” l'avviso."
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Hidden"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "L'avviso ARIA Hidden appare quando il contenuto del tuo post o pagina è stato nascosto utilizzando l'attributo aria-hidden=“true”. Quando questo attributo viene aggiunto a un elemento HTML, gli screen reader non lo leggeranno agli utenti. A volte è corretto che l'elemento sia nascosto agli screen reader (come nel caso di un'icona decorativa), ma altre volte non lo è. Quando vedi questo avviso, devi determinare se l'elemento deve essere nascosto alle persone cieche o ipovedenti. Se è correttamente nascosto, “Ignora” l'avviso. Se è incorrettamente nascosto e dovrebbe essere visibile, rimuovi l'attributo aria-hidden=“true” per risolvere l'avviso."
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "Intestazione di tabella vuota"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "Un errore di Intestazione di Tabella Vuota significa che una delle intestazioni della tabella nel tuo post o pagina non contiene alcun testo. Ciò significa che l'elemento %1$s è presente ma appare così %2$s senza nulla tra i tag di apertura e chiusura. Per correggere un'intestazione di tabella vuota, devi trovare il corretto elemento HTML (%1$s) e aggiungervi del testo che descriva la riga o la colonna a cui si applica."
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "Link a file MS Office"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Un avviso di Link a file MS Office significa che uno o più link nella tua pagina o post indirizzano a un file con una delle seguenti estensioni: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps o .ppsx. Questo avviso appare quando è presente un file MS Office come promemoria per testare manualmente l'accessibilità dei tuoi documenti Word, presentazioni PowerPoint e fogli di calcolo Excel e per confermare che siano conformi a tutte le linee guida WCAG pertinenti. Per risolvere un avviso di Link a file MS Office, devi: (1) assicurarti che sia presente un link diretto per visualizzare o scaricare il documento se stai usando un plugin per incorporarlo nella pagina; (2) assicurarti che il link al documento avvisi gli utenti che si tratta di un link a un documento mostrando l'estensione specifica del file nell'ancora del link; e (3) testare e correggere il tuo file MS Office per errori di accessibilità. Dopo aver determinato che il tuo file è completamente accessibile, puoi tranquillamente “Ignorare” l'avviso."
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "Link al PDF"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Un avviso di Link al PDF significa che uno o più link nella tua pagina o post indirizzano a un file PDF. Questo avviso è un promemoria per testare manualmente l'accessibilità del PDF collegato e confermare che sia conforme a tutte le linee guida WCAG pertinenti. Per risolvere un avviso di Link al PDF, devi: (1) assicurarti che sia presente un link diretto per visualizzare o scaricare il documento se stai utilizzando un plugin per incorporarlo nella pagina; (2) assicurarti che il link al documento avvisi gli utenti che si tratta di un link a un documento mostrando l'estensione specifica del file nell'ancora del link; e (3) testare e correggere il tuo documento per errori di accessibilità. Dopo aver determinato che il tuo file è completamente accessibile, puoi tranquillamente “Ignorare” l'avviso."
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "Link a file non HTML"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Un avviso di Link a Documento non HTML significa che uno o più link nella tua pagina o post indirizzano a un file con una delle seguenti estensioni: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages o .key. Questo avviso è un promemoria per testare manualmente l'accessibilità del documento collegato e confermare che sia conforme a tutte le linee guida WCAG pertinenti. Per risolvere un avviso di Link a Documento non HTML, devi: (1) assicurarti che sia presente un link diretto per visualizzare o scaricare il documento se stai utilizzando un plugin per incorporarlo nella pagina; (2) assicurarti che il link al documento avvisi gli utenti che si tratta di un link a un documento mostrando l'estensione specifica del file nell'ancora del link; e (3) testare e correggere il tuo documento per errori di accessibilità. Dopo aver determinato che il tuo file è completamente accessibile, puoi tranquillamente “Ignorare” l'avviso."
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "Descrizione lunga non valida"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "L'errore Descrizione Lunga Non Valida significa che un attributo di descrizione lunga (%s) su un'immagine non ha un URL, un nome file o un'estensione file appropriati. Può anche significare che la descrizione lunga non è un URL o è stata lasciata vuota. L'attributo longdesc non è completamente supportato apre una nuova finestra da HTML5, browser e tutti i lettori di schermo. A causa di questa mancanza di supporto, la migliore soluzione per questo errore è rimuovere completamente longdesc dal tag dell'immagine."
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "Etichetta del modulo mancante"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "Un errore di Etichetta del Modulo Mancante viene attivato quando un %1$s (campo del modulo) è presente nel tuo modulo ma non è associato a un elemento %2$s. Ciò potrebbe significare che l'etichetta è presente ma manca un attributo %3$s per collegarla al campo applicabile o potrebbe non esserci affatto un'etichetta presente e solo un tag %1$s. Per correggere gli errori di etichetta del modulo mancante, dovrai determinare come sono stati creati il campo e il modulo e quindi aggiungere etichette dei campi o un attributo %3$s corretto alle etichette esistenti che non sono collegate a un campo."
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "Testo dell'ancora ambiguo"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "Gli errori di Testo dell'Ancora Ambiguo appaiono quando c'è un testo collegato che non ha significato al di fuori del suo contenuto circostante. Esempi comuni di questo includono il collegamento di frasi come “clicca qui” o “scopri di più.” Per risolvere questo errore, cambia il testo del link in modo che sia meno generico e abbia significato se ascoltato da solo."
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "Testo sottolineato"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "Un avviso di Testo Sottolineato appare se qualsiasi testo nella tua pagina è avvolto in un tag HTML di sottolineatura (%1$s). In un ambiente online, il testo sottolineato è generalmente usato per indicare testo collegato e non è considerata una buona pratica sottolineare il testo solo per enfasi. Per correggere il testo sottolineato, dovrai rimuovere l'elemento %1$s dal testo o gli stili CSS che lo rendono sottolineato. Prova a utilizzare altre stilizzazioni, come il corsivo, il testo colorato o il grassetto per enfatizzare o differenziare tra parole o frasi."
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "Link di salto o ancora rotto"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "Un link di ancoraggio, a volte chiamato link di salto, è un link che, invece di aprire una nuova pagina o URL quando viene cliccato, salta o scorre verso una sezione diversa della stessa pagina. Questi link vanno a un elemento che inizia con un hashtag piuttosto che con un URL completo. Ad esempio, potresti far scorrere l'utente verso la sezione about della tua home page con un link a #about. Gli errori Broken Skip o Anchor Link appaiono quando c'è un link che punta a un'altra sezione della stessa pagina ma non c'è un elemento presente nella pagina con l'id di riferimento. Questo errore compare anche se il link è solo un #. Per risolvere questo errore, prova manualmente il link per verificare che funzioni e poi correggilo o \"Ignora\" l'errore a seconda dei casi."
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "Intestazione della tabella mancante"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "Un errore di intestazione della tabella mancante significa che una delle tue tabelle contiene dati (informazioni contenute in un tag %1$s) che non hanno una corrispondente intestazione tag (%2$s). Quando si guarda l'HTML del tuo modulo, ci saranno più elementi %1$s in una riga rispetto agli elementi %2$s nella tabella. Per correggere un'intestazione della tabella mancante, devi trovare la sezione di codice che ha meno elementi %2$s di quanti dovrebbero essere presenti per il numero di righe o colonne di dati, e aggiungere uno o più elementi %2$s aggiuntivi contenenti il testo che descrive i dati in quella riga o colonna."
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "Etichetta del modulo duplicata"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "Gli errori di etichetta del modulo duplicata appaiono quando c'è più di un'etichetta associata a un singolo campo su un modulo. Se ci sono troppe etichette di modulo presenti, uno screen reader potrebbe non essere in grado di leggere correttamente i campi del modulo per aiutare un utente ipovedente a navigare e completare il modulo. Per correggere gli errori di etichetta del modulo duplicata, dovrai determinare come sono stati creati il campo e il modulo e poi assicurarti che ogni campo abbia una sola etichetta associata."
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "Testo troppo piccolo"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "Un avviso di testo troppo piccolo si verifica quando c'è del testo sul tuo sito web che è inferiore a 10px di dimensione. L'avviso è un'indicazione che potresti voler ripensare la dimensione del carattere e renderlo più grande in modo che possa essere letto più facilmente senza che un utente debba ingrandire il browser. Per correggere il testo che è troppo piccolo, dovrai assicurarti che tutti gli elementi di testo sul tuo sito web siano di almeno 10 punti."
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "Possibile intestazione"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "Un avviso di Possibile Intestazione si verifica quando c'è del testo su una pagina che sembra essere un'intestazione, ma non è stato codificato con i tag di intestazione appropriati. Questo avviso appare se ci sono frasi brevi o stringhe di testo di lunghezza inferiore a 50 caratteri che sono formattate in un modo che suggerisce che potrebbero essere utilizzate come intestazioni (sono di 20 pixel o più grandi, o sono di 16 pixel o più grandi e in grassetto e/o in corsivo). Per correggere un avviso di Possibile Intestazione, dovrai determinare se il testo segnalato è effettivamente destinato a essere un'intestazione. In tal caso, devi cambiarlo da paragrafo a intestazione al livello appropriato. Se non deve essere un'intestazione, puoi tranquillamente “Ignorare” l'avviso."
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "Contenuto lampeggiante o scorrevole"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "Gli errori di Contenuto Lampeggiante o Scorrevole appaiono quando gli elementi del tuo sito web hanno una funzione di lampeggiamento o scorrimento applicata ad essi tramite CSS o nell'HTML. Specificamente, i seguenti elementi creeranno questo errore: i tag HTML %1$s o %2$s o CSS %3$s. Per risolvere questo errore, rimuovi i tag HTML o CSS che stanno causando il lampeggiamento del contenuto."
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "Contrasto di colore insufficiente"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "Gli errori di Contrasto di Colore Insufficiente indicano che abbiamo identificato una o più combinazioni di colori nel tuo post o pagina che non soddisfano il rapporto minimo di contrasto di colore di 4,5:1. A seconda di come è costruito il tuo sito, potrebbero esserci “falsi positivi” per questo errore, poiché alcuni colori sono contenuti in diversi livelli HTML sulla pagina. Per correggere un errore di Contrasto di Colore Insufficiente, dovrai assicurarti che gli elementi segnalati soddisfino il rapporto minimo richiesto di 4,5:1. Per farlo, dovrai trovare i codici esadecimali del tuo colore di primo piano e di sfondo, e testarli in un verificatore di contrasto di colore. Se questi codici colore hanno un rapporto di 4,5:1 o superiore, puoi “Ignorare” questo errore. Se i codici colore non hanno un rapporto di almeno 4,5:1, dovrai apportare modifiche ai tuoi colori."
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "Trascrizione mancante"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "Un errore di trascrizione mancante significa che c'è un clip audio o video sul tuo sito web che non ha una trascrizione, o c'è una trascrizione ma non è etichettata come tale o è posizionata a più di 25 caratteri di distanza dal media incorporato o collegato. Per correggere un errore di trascrizione mancante, dovrai creare una trascrizione per tutti i clip video o audio che sono stati segnalati come mancanti di una trascrizione. Una volta creata la trascrizione, puoi aggiungere il contenuto della trascrizione direttamente all'interno del tuo post o pagina oppure inserire un link alla trascrizione se la stai includendo come documento scaricabile o file PDF. Devi includere esplicitamente la parola “trascrizione” all'interno di un'intestazione prima della trascrizione sulla pagina o nel link al tuo file, e deve essere entro 25 caratteri dall'incorporamento o dal link dell'audio o del video."
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "Riferimento ARIA non valido"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "Gli errori di Riferimento ARIA non valido appaiono se un elemento aria-labeledby o aria-describedby è presente nella pagina o nel post ma il suo target di riferimento non esiste. Ciò significa che l'elemento a cui si riferisce l'attributo ARIA specifico che stai utilizzando non ha un'etichetta o un descrittore appropriato, o non è presente sulla pagina. Per correggere un riferimento ARIA non valido, dovrai trovare gli elementi ARIA che vengono segnalati e assicurarti che i loro target di riferimento siano presenti e correttamente etichettati."
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "Dichiarazione della lingua mancante"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "Una dichiarazione della lingua è un attributo HTML che denota la lingua predefinita del contenuto di una pagina o di un post. Le dichiarazioni di lingua dovrebbero essere codificate nel tema del tuo sito web e apparire automaticamente nell'intestazione del sito. Un errore di Dichiarazione della Lingua Mancante appare se il tag %1$s nella pagina non contiene un attributo %2$s o %3$s, o se uno di questi attributi è presente ma è vuoto. Per correggere un errore di Dichiarazione della Lingua Mancante, dovrai modificare i file del tuo tema per aggiungere l'attributo della lingua mancante al tag HTML all'inizio dell'intestazione del tuo sito web. Se stai utilizzando un tema che riceve aggiornamenti, dovrai apportare la modifica in un tema figlio per assicurarti che la correzione non venga sovrascritta quando aggiornerai successivamente il tuo tema."
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "Immagine GIF animata"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "Gli avvisi di Immagine GIF animata appaiono quando c'è una GIF animata nel tuo post o pagina. Questo avviso è un promemoria per rivedere manualmente eventuali GIF animate sul tuo sito web per la loro accessibilità e/o per riconsiderare l'uso di GIF animate, sostituendole invece con immagini statiche o video. Per risolvere questo avviso, devi esaminare tutte le GIF presenti per assicurarti che soddisfino tutte le linee guida applicabili per l'accessibilità e poi “Ignorare” l'avviso o rimuovere la GIF dalla tua pagina o post se non è accessibile."
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "È presente un video"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Poiché i video spesso contengono problemi di accessibilità, molti dei quali possono essere identificati solo da una persona, l'avviso Video Presente appare ogni volta che viene rilevato un video in un post o in una pagina come promemoria che è necessario testare manualmente il video per l'accessibilità. Per risolvere questo avviso, devi visitare il front-end del tuo sito web e confermare che il video nell'avviso sia accessibile. Una volta testato completamente il video per l'accessibilità, devi correggere eventuali errori presenti e poi puoi “Ignorare” l'avviso per segnarlo come completato."
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "È presente uno slider"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Poiché gli slider spesso contengono problemi di accessibilità, molti dei quali possono essere identificati solo da una persona, l'avviso Slider Presente appare ogni volta che viene rilevato uno slider in un post o in una pagina come promemoria che è necessario testare manualmente lo slider per l'accessibilità. Per risolvere questo avviso, devi visitare il front-end del tuo sito web e confermare che tutti gli slider nella pagina siano accessibili. Una volta testati completamente gli slider per l'accessibilità, devi correggere eventuali errori presenti e poi puoi “Ignorare” l'avviso per segnarlo come completato."
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "Titolo mancante"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "Un errore di Titolo Mancante significa che il tuo post o pagina non contiene un elemento titolo (%1$s o %2$s). Questo potrebbe accadere se il tema non riesce ad aggiungere un tag del titolo, o se il campo del titolo di un post o di una pagina è stato lasciato vuoto nella schermata di modifica di WordPress. Per correggere una pagina senza titoli, dovrai aggiungere elementi titolo. Prima, determina se il titolo manca perché hai lasciato vuoto il campo del titolo della pagina o del post nell'editor. In tal caso, compilalo. Se un titolo è compilato e visibile nel backend, allora il codice nell'intestazione della tua pagina web deve essere modificato per includere un tag %1$s o un meta tag %2$s."
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "Uso improprio del link"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "Un errore di Uso Improprio del Link appare se hai link che mancano di un attributo %1$s o sono collegati solo a un %2$s, e non hanno %3$s su di essi. I link dovrebbero essere usati per dirigere le persone verso altre parti del tuo sito. Qualsiasi altra funzionalità che attiva un'azione dovrebbe essere un pulsante. Per risolvere questo errore devi ricodificare il link per usare un tag %4$s (preferibile) o aggiungere %5$s al tag %6$s esistente. Se l'elemento è un pulsante a levetta (come un accordion), sono richiesti attributi ARIA aggiuntivi."
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "Zoom e ridimensionamento disabilitati"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "Lo zoom è disabilitato tramite il meta tag del viewport che include `user-scalable=no` o un valore `maximum-scale` inferiore a 2. Questo limita gli utenti ipovedenti che vogliono aumentare le dimensioni del testo, ingrandire la pagina o che usano un ingranditore."
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "Impostazioni salvate. Per confermare e riflettere questi aggiornamenti nelle statistiche del tuo sito, si prega di eseguire nuovamente la scansione del sito. Se stai utilizzando un plugin di caching, assicurati di svuotare la cache per garantire che le correzioni aggiornate siano applicate correttamente."
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "Il plugin Accessibility New Window Warnings è installato. La correzione per i link che si aprono in una nuova finestra inclusa qui sostituirà la sua funzionalità. Puoi rimuovere tranquillamente il plugin e utilizzare invece queste correzioni."
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "Pannelli dei problemi di Accessibility Checker"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "Riepilogo"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "Dettagli"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "Leggibilità"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "Elimina tutti i problemi attualmente trovati"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "Cancella problemi"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Equalize Digital logo"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "Passa ad Accessibility Checker Pro"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "Scansiona tutti i tipi di post"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "Colonne di amministrazione per vedere lo stato di accessibilità a colpo d'occhio"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "Lista centralizzata di tutti i problemi aperti"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "Registro delle ignorazioni"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "Rinomina riepilogo semplificato"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "Restrizioni utente sull'ignorare i problemi"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "Supporto via email"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...e altro ancora"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "Ottieni Accessibility Checker Pro"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "O attiva qui la tua chiave di licenza."
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "Generale"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "versione"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Link al sito web di Equalize Digital"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "Guida rapida"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "Segui questi passaggi per iniziare a controllare i tuoi contenuti:"
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "Nella <a href=\"%s\">Pagina delle Impostazioni</a>, scegli quali tipi di post vuoi scansionare."
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "Vai alla schermata di modifica del post che vuoi controllare."
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "Trova il meta box di Accessibility Checker sotto il tuo contenuto. Se usi un page builder front-end, devi visitare la schermata di modifica backend per visualizzare i risultati di Accessibility Checker."
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "Se sono presenti errori o avvisi nel tuo post, apri la scheda dei dettagli in Accessibility Checker per maggiori informazioni."
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "Espandi ogni problema per vedere il codice, o clicca su “visualizza sulla pagina” se hai bisogno di aiuto per trovare l'elemento che necessita di correzione."
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "Se non sai cosa significa un errore o un avviso, clicca sull'icona “i” per leggere la documentazione e come correggerlo."
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "Se un problema è un falso positivo e l'elemento è accessibile, puoi rimuovere i problemi dai report con la funzione “Ignora”."
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "Dopo aver corretto ogni problema, aggiorna il post per vedere il cambiamento nel report di accessibilità. Il tuo obiettivo è ottenere che ogni pagina dica 100% Test Superati."
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "Guarda un video di Accessibility Checker in uso."
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "Documentazione e FAQ"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "Perché diciamo 100% Test Superati, Non 100% Accessibile?"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "(si apre in una nuova finestra)"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "Come controllare manualmente il tuo sito web per l'accessibilità"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "Quando ignorare gli errori di accessibilità"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "Cosa fare se un Plugin che stai usando ha errori di accessibilità"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "Cosa fare se ci sono errori di accessibilità nel tuo tema"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "Posso assumere Equalize Digital per correggere i problemi di accessibilità sul mio sito web?"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "Risorse aggiuntive per imparare sull'accessibilità"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "Leggi la documentazione completa"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "Informazioni di supporto"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "Supporto del plugin"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "I titolari di licenza attiva dei piani a pagamento di Accessibility Checker ricevono supporto email illimitato sull'uso del plugin e sulla risoluzione dei problemi."
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "Apri ticket di supporto"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "Supporto gratuito del plugin"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "Il supporto gratuito del plugin è disponibile tramite i forum di WordPress.org. Dovrai creare un account, poi potrai aprire un nuovo thread di supporto."
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "Vai al forum di supporto"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "Orari d'ufficio"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "Q&A aperte su Zoom ogni due settimane per aiutarti a correggere il tuo sito web."
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "Incluso nei piani Small Business e Agency"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "Registrati per gli orari d'ufficio"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "Audit e correzione"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "Ottieni aiuto per rendere il tuo sito web accessibile. Audit esperto, test utente e supporto per sviluppatori. Lettere di conformità disponibili."
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "Ottieni aiuto per la correzione"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "Salvataggio in corso..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "Impostazioni salvate con successo. Devi %svisitare l'editor%s e salvare il post per eseguire una nuova scansione e rimuovere i problemi risolti dai report di Accessibility Checker."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "Impostazioni salvate con successo."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "Salvataggio fallito."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "Correggi impostazioni"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "Questo cancellerà tutti i problemi per questo post. Sarà necessario un salvataggio per attivare una nuova scansione del contenuto del post. Vuoi continuare?"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "Cancellazione in corso..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "Problemi cancellati con successo."
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "Impossibile cancellare i problemi."
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "Si è verificato un problema. Si prega di riprovare."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "Ci dispiace, l'invio non è riuscito. Si prega di abbreviare le risposte e riprovare."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "Spiacenti, l'invio non è riuscito. Per favore, riprova."
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "apre una nuova finestra"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: Non è stato trovato un ID di destinazione corrispondente nella pagina per il link di salto."
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: Errore nell'aggiornamento della cronologia per il link di salto."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "Chiudi la finestra modale delle correzioni"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Disattiva gli stili della pagina"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "Mostra codice"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Tipo di problema:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "Attiva stili"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Disattiva stili"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "Non ci sono impostazioni da visualizzare."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Queste impostazioni abilitano correzioni globali su tutto il tuo sito. Potrebbe essere necessario salvare nuovamente le pagine o eseguire una scansione completa del sito per vedere le correzioni riflesse nei report."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "Nessun problema rilevato."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "errore"
+msgstr[1] "errori"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "avviso"
+msgstr[1] "avvisi"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "e"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "problema ignorato"
+msgstr[1] "problemi ignorati"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "rilevati."
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "nuova finestra"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "nuova scheda"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "clicca"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "clicca qui"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "qui"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "vai qui"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "altro"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "altro..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "altro…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "dettagli"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "maggiori dettagli"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "link"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "questa pagina"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "continua"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "continua a leggere"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "leggi di più"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "apri"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "scarica"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "pulsante"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "continua a leggere"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "scopri di più"

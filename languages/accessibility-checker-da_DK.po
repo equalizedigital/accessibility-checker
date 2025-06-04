@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "Tilgængelighedskontrol"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "Gennemgå og kontrollér dit websteds tilgængelighed, før du publicerer. Tilgængelighedsscanner og vejledning i indlæg."
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize Digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "Rettelser"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "Generelle rettelser"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "Disse rettelser hjælper med at forbedre tilgængeligheden ved at ændre HTML-elementer og adfærd på dit websted."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "Få Pro for at låse op for denne funktion, åbnes i et nyt vindue."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "Få Pro"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "Åbnes i et nyt vindue."
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "Læs dokumentation for %s. Åbnes i et nyt vindue."
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "Vores forpligtelse til webtilgængelighed"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[YOUR COMPANY NAME] er forpligtet til at levere en fuldt tilgængelig webstedsoplevelse for alle brugere uanset evner, herunder dem, der er afhængige af hjælpeteknologier som skærmlæsere, skærmforstørrelsessoftware og alternative tastaturinputenheder til at navigere på nettet."
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "Løbende indsats for at sikre tilgængelighed"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "Vi følger <a href=\"https://www.w3.org/TR/WCAG21/\">Retningslinjer for Tilgængeligt Webindhold (WCAG) version 2.1</a> som vores vejledende princip for at bestemme tilgængelighed. Dette er internationalt anerkendte standarder, der dækker en bred vifte af anbefalinger og bedste praksis for at gøre indhold brugbart. Når vi tilføjer nye sider og funktionalitet til vores websted, kontrolleres alt design, kode og indholdsindtastning i forhold til disse standarder."
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Webtilgængelighed er en løbende proces. Vi tester løbende indhold og funktioner for WCAG 2.1 niveau AA-overholdelse og afhjælper eventuelle problemer for at sikre, at vi opfylder eller overgår standarderne. Test af vores websted udføres af vores teammedlemmer ved hjælp af branchestandardværktøjer såsom <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, farvekontrastanalyseværktøjer, tastatur-kun navigationsteknikker og Flesch-Kincaid læsbarhedstest."
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "Tilgængelighedsfunktioner på vores websted"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "Følgende er en liste over elementer, vi har inkluderet på vores websted for at forbedre dets tilgængelighed:"
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[INDSÆT LISTE OVER TILGÆNGELIGHEDSFUNKTIONER HER]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "Hvor vi forbedrer os"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "I vores bestræbelser på at bringe vores websted op til standarden fokuserer vi på følgende områder:"
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[INDSÆT LISTE OVER ELEMENTER, DU ARBEJDER PÅ AT RETTE HER]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[DET KAN VÆRE NYTTIGT AT GENNEMGÅ FANEN MED ÅBNE PROBLEMER FOR AT SE DE MEST ALMINDELIGE PROBLEMER]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "Dette er en del af vores bredere indsats for at gøre alles oplevelse hos [VIRKSOMHEDENS NAVN] til en indbydende og fornøjelig oplevelse. Bemærk, at selvom vi gør alt for at levere oplysninger, der er tilgængelige for alle brugere, kan vi ikke garantere tilgængeligheden af tredjepartswebsteder, som vi måtte linke til."
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "Kontakt for tilgængelighedssupport"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "Vi modtager gerne kommentarer, spørgsmål og feedback om vores websted. Hvis du bruger hjælpeteknologier og har problemer med at bruge vores websted, bedes du sende en e-mail til [DIN E-MAILADRESSE FOR TILGÆNGELIGHED] eller ringe til os på [DIT TELEFONNUMMER]. Vi vil gøre vores bedste for at hjælpe dig og løse problemerne."
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "Vi har forbedret statistikberegningerne i version 1.21.0. Som følge heraf kan nogle tal i dataene nedenfor have ændret sig. Læs mere i vores %1$sindlæg om udgivelsesmeddelelsen%2$s."
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "Adgang nægtet"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "Opdatering af indstilling lykkedes ikke"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Black Friday-tilbud! 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Opgrader til en betalt version af Accessibility Checker fra 25. November til 3. december og få 30% rabat! Fuld webstedsskanning, rapport over åbne problemer på hele webstedet, ignoreringslogger og mere."
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "Stil et spørgsmål før køb"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "Opgrader nu"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 Få 25% rabat på Accessibility Checker Pro i anledning af Global Accessibility Awareness Day! 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "Brug rabatkoden GAAD25 fra 13. Maj til 21. maj for at få adgang til fuldstændig webstedsskanning og andre professionelle funktioner til en særlig rabat. Er du ikke sikker på, om opgradering er det rigtige for dig?"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "Hej! Tak fordi du bruger Accessibility Checker som en del af dit tilgængelighedsværktøjssæt. Da du har brugt det et stykke tid, vil du venligst skrive en 5-stjernet anmeldelse af Accessibility Checker i WordPress-plugin-biblioteket? Dette vil hjælpe med at øge vores synlighed, så flere mennesker kan lære om vigtigheden af webtilgængelighed. Mange tak!"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "Skriv en anmeldelse"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "Påmind mig om to uger"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "Spørg aldrig igen"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "Anmeldelseshandlingsværdien blev ikke indstillet"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "Ups! Det ser ud til, at din hjemmeside i øjeblikket er beskyttet med adgangskode. Gratisversionen af Accessibility Checker kan kun scanne live hjemmesider. For at scanne denne hjemmeside for tilgængelighedsproblemer skal du enten fjerne adgangskodebeskyttelsen eller %s. Scanningsresultater kan være gemt fra en tidligere scanning."
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "Opgrader til Accessibility Checker Pro. Åbner i et nyt vindue."
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "opgrader til pro"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "Post-ID'et blev ikke indstillet"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "Der er ikke inkluderet et forenklet resumé for dette indhold."
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "Dit indhold har et læseniveau på eller under 9. klasse og kræver ikke et forenklet resumé."
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "Læseniveauet for det forenklede resumé er for højt."
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "Der er inkluderet et forenklet resumé for dette indhold."
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s Fejl"
+msgstr[1] "%s Fejl"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s Kontrastfejl"
+msgstr[1] "%s Kontrastfejl"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s Advarsel"
+msgstr[1] "%s Advarsler"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s Ignoreret element"
+msgstr[1] "%s Ignorerede elementer"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "Intet resumé at returnere"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "Ugyldigt tabelnavn"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "Disse indstillinger aktiverer globale rettelser på tværs af hele din hjemmeside."
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Sider skal muligvis gemmes igen, eller en fuld hjemmesidescanning skal køres for at se rettelser afspejlet i rapporter."
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "Gem"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "Berørt kode"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "Se Problem-ID %d på hjemmesiden, åbner et nyt vindue"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "Se på siden"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "Ret: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "Ret"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "Din brugerkonto har ikke tilladelse til at ignorere dette problem."
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "Ingen detaljer at returnere"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "Ingen læsbarhedsdata at returnere"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "Ingen ignorer-data at returnere"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "Resuméet blev ikke indstillet"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "ID-værdien blev ikke indstillet"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "Problemforespørgsel returnerede ingen resultater"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "Objektforespørgsel returnerede ingen resultater"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "Seneste testresumé"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "Opdater antal"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "Start ny scanning"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "Se alle åbne problemer"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "Se historik"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "Beståede tests"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "Unik fejl"
+msgstr[1] "Unikke fejl"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "Unik farvekontrastfejl"
+msgstr[1] "Unikke farvekontrastfejl"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "Unik advarsel"
+msgstr[1] "Unikke advarsler"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "Ignoreret element"
+msgstr[1] "Ignorerede elementer"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "Gennemsnitligt antal problemer pr. side"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "Gennemsnitlig problemtæthed"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "Rapport sidst opdateret:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "Aldrig"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "Scannede URL'er"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s af %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "Kontrollerede indlægstyper"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "URL'er med 100% score"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "Dette resumé opdateres automatisk hver 24. Time eller når som helst en fuld hjemmesidescanning er fuldført. Du kan også manuelt opdatere disse resultater ved at klikke på knappen Opdater antal."
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "Din hjemmeside har et stort antal problemer. Af hensyn til ydeevnen er ikke alle problemer medtaget i dette resumé."
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "Hjemmeside-omspændende tilgængelighedsrapporter"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "Skjul banner"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "Lås op for detaljerede tilgængelighedsrapporter"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "Start scanning af hele din hjemmeside for tilgængelighedsproblemer, få rapporter for hele hjemmesiden, og bliv hurtigere kompatibel med tilgængelighedsretningslinjer."
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "Opgrader Accessibility Checker"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "luk annonce"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "Få detaljerede tilgængelighedsrapporter"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "Fuld hjemmesidetilgængelighedsstatus"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "Scannede URL'er:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "Fejl:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "Farvekontrastfejl:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "Advarsler:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "Din hjemmeside har tilgængelighedsproblemer, der bør håndteres så hurtigt som muligt for at sikre overholdelse af tilgængelighedsretningslinjer."
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "Godt gået! Accessibility Checker kan ikke finde nogen tilgængelighedsproblemer i det testede indhold. Nogle problemer kan ikke findes af automatiserede værktøjer, så glem ikke at"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "teste din hjemmeside manuelt"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "Problemer efter indlægstype"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "Indlægstype"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "Fejl"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "Kontrast"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "Advarsler"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "Opgrader for at scanne"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "Se flere rapporter"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "Lær om tilgængelighed"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "Yderligere ressourcer"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "Blog (åbner i et nyt vindue)"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "Blog"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "Dokumentation (åbner i et nyt vindue)"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "Tilgængelighedsbegivenheder og nyheder i din indbakke"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "Abonnér på Equalize Digitals e-mail-liste for at få adgang til gratis tilgængelighedswebinarer og træningsressourcer."
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "E-mail*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "Skriv din e-mail"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "Fornavn"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "Skriv dit fornavn"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Accessibility Checker &mdash; revisionshistorik"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Accessibility Checker &mdash; gratis"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "Version"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "Databaseversion"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "Politikside"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "Ikke indstillet"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "Aktiveringsdato"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "Fodererklæring"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "Aktiveret"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "Deaktiveret"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "Slet data"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "Inkluder erklæringslink"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "Indlægstyper"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "Forenklet resumé-position"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "Forenklet resumé-prompt"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "Antal indlæg"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "Antal fejl"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "Antal advarsler"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "DB-tabelantal"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Accessibility Checker &mdash; pro"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "Licensstatus"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "Autorisationsbrugernavn"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "Autorisationsadgangskode"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "Scannings-ID"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "Scanningstotal"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "Forenklet resumé-overskrift"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "Ignorér-tilladelser"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "Ingen"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "Ignorér DB-tabelantal"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "%1$s bruger %2$s til at overvåge vores websides tilgængelighed."
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "Tilgængelighedskontrol (åbner i et nyt vindue)"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "Læs vores %s"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "Tilgængelighedspolitik"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "Forenklet resumé"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "Tilføj størrelse og type til fillinks"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "Tilføj kontekst til linkede filer"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "Tilføj filstørrelse og -type til links"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "Tilføj filstørrelse og -type til linkede filer, der kan udløse en download."
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "Tilføj etiketter til formularfelter uden etiketter"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "Etiket formularfelter"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "Tilføj etiketter til formularfelter uden etiketter, hvis feltets formål kan bestemmes."
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "Forsøg at tilføje etiketter til formularfelter, der mangler dem. Bemærk: Du skal muligvis tilføje brugerdefinerede stilarter, der målretter %1$s-klassen, hvis tilføjelse af etiketter påvirker dit formularlayout."
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "Tilføj manglende eller tomme sidetitler"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "Indstil HTML-sidetitler"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "Tilføj manglende sidetitel"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "Tilføj en %1$s-tag til siden, hvis den mangler eller er tom."
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "Tilføj advarsel, når link åbner ny fane/vindue"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "Tilføj etiket til links, der åbner en ny fane/vindue"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "Tilføj en etiket og et ikon til links med %1$s, der informerer brugerne om, at de vil åbne en ny fane/vindue. %2$sBemærk: Denne indstilling vil ikke have nogen effekt, hvis rettelsen »Bloker links, der åbner nye vinduer« er aktiveret.%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "Bloker PDF-uploads"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "Begræns PDF-uploads for brugere uden %1$s-rettigheden (tilladt for administratorer som standard)."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "Tilføj etiketter til kommentar- og søgeformularer"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "Etiket kommentar-/søgefelter"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "Kommentar- og søgeformularetiketter"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "Tilføj manglende etiketter til WordPress-kommentar- og søgeformularer."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "Etiket kommentarformular"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "Tilføj manglende etiketter til WordPress-kommentarformularen."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "Etiket søgeformular"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "Tilføj en manglende etiket til WordPress-søgeformularen."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "Kommentar"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "Navn"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "E-mail"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "Hjemmeside"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "Søg …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "Søg efter:"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "Søg"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "Indstillinger for at tilføje manglende etiketter til WordPress-kommentar- og søgeformularer."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "Tilføj fokusoversigter"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "Fokusoversigt"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "Tilføj en oversigt til elementer, når de modtager tastaturfokus."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "Tilføj fokusoversigt"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "Indstillinger relateret til forbedring af fokusoversigter for bedre tastaturtilgængelighed."
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "Tilføj lang- og dir-attributter"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "Indstil sidesprog"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "Tilføj »lang«- og »dir«-attributter"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "Tilføj webstedets sprog (%1$s) og tekstretning (%2$s) attributter til %3$s-elementet."
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "Tilføj understregninger til alle ikke-navigations-links"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "Understreg links"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "Tving linkunderstregning"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "Sørg for, at ikke-navigations-links er understreget."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "Gør meta viewport-tag skalerbart"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "Sikr skalerbar viewport"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "Sørg for, at viewport-tagget på siden tillader skalering."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "Gør viewport skalerbar"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "Sørg for, at viewport-tagget tillader skalering, hvilket forbedrer tilgængeligheden på mobile enheder."
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "Forhindre links i at åbne nye vinduer"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "Bloker links, der åbner nye vinduer"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "Forhindre links i at åbne i et nyt vindue eller fane ved at fjerne %1$s."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "Tilføj »Læs«-link med indlægstitel"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "Tilføj titel til læs mere-link"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "Læs mere-links"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "Tilføj indlægstitlen og links "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "Tilføj indlægstitel til »Læs mere«"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "Tilføj indlægstitlen til »Læs mere«-links i indlægslister, når dit tema viser disse links."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "Kun for skærmlæsere"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "Gør indlægstitlen tilføjet til »Læs mere«-links kun synlig for skærmlæsere."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "Denne rettelse tilføjer indlægstitlen til »Læs mere«-links i indlægslister ved »Mere«-blokken og i uddrag."
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "Foretræk tilgængelig etiket-attribut"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "Fjern unødvendige title-attributter"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "Fjern title-attributter"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "Fjern %1$s-attributter fra elementer, der allerede har et foretrukket tilgængeligt navn."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "Tilføj springover-links"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "Springover-link"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "Aktivér springover-link"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "Tilføj et springover-link til alle webstedets sider, så brugere kan springe direkte til hovedindholdet."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "Mål for hovedindhold (påkrævet)"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "Definer ID'et/ID'erne for hovedindholdområdet/områderne, der skal målrettes af springover-links. Indtast flere ID'er adskilt af kommaer; systemet vil gennemgå listen for at finde det passende for hver side."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "Navigationsmål"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "Indstil ID-attributten for navigationselementet. Dette er nyttigt, hvis din hovednavigation indeholder handlinger, som de fleste besøgende på webstedet ønsker at foretage, såsom login eller søgefunktioner."
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "Hvis dit tema ikke allerede tilføjer et springover-link, der giver tastaturbrugere mulighed for at springe over navigationen og hurtigt hoppe til hovedindholdet, skal du aktivere springover-links her. %1$sLær mere om springover-links.%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "Spring til indhold"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "Spring til navigation"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "Fjern tabindex fra fokuserbare elementer"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "Fjern tabuleringsindeks"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "Fjern %1$s-attributten fra fokuserbare elementer."
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "Bemærk: Denne indstilling anbefales ikke for temaer, der allerede er tilgængelighedsparate."
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "Rettelse ikke fundet"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "Kunne ikke registrere kommandoen %1$s fordi %2$s"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "ID'et for indlægget, som statistikken skal slettes for."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "Intet indlægs-ID angivet."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "Indlægs-ID %1$s eksisterer ikke."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "Statistik for %1$s slettet."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "Nøgler, der skal vises i resultaterne. Standard er alle nøgler."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "Ryd cachen før hentning af statistikken (kan være intensivt)."
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "Statistiknøgle: %1$s ikke fundet i statistikken."
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "ID'et for indlægget, som statistikken skal hentes for."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "Indlægs-ID %1$d eksisterer ikke."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "Enten er indlægget endnu ikke scannet, eller alle tests er bestået for indlægs-ID %1$d."
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "permalink til "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "permalink til "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "Deltag gratis"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "Velkommen til tilgængelighedstjekker"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "Indstillinger for tilgængelighedstjekker"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "Generelle indstillinger"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "Indstillinger for forenklet resumé"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "Tilgængelighedserklæring i sidefod"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "Frontend tilgængelighedstjekker"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "Indlægstyper, der skal kontrolleres"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "Prompt for forenklet resumé"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "Placering af forenklet resumé"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "Tilføj tilgængelighedserklæring i sidefod"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "Inkluder link til tilgængelighedspolitik"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "Side for tilgængelighedspolitik"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "Forhåndsvisning af tilgængelighedserklæring"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "Placering af frontend tilgængelighedstjekker"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "Brug indstillingerne nedenfor til at konfigurere Accessibility Checker. Yderligere information om hver indstilling kan findes i %1$s."
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "plugin-dokumentationen (åbner i et nyt vindue)"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "plugin-dokumentationen"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "Flere funktioner og e-mail-support er tilgængelige med %1$s."
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Accessibility Checker Pro (åbner i et nyt vindue)"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Accessibility Checker Pro"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "Brug indstillingerne nedenfor til at konfigurere tilgængelighedstjekkeren på frontend."
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "Web Content Accessibility Guidelines (WCAG) på AAA-niveau kræver, at alt indhold med et læseniveau over 9. Klasse har et alternativ, der er lettere at læse. Forenklet resumétekst tilføjes på fanen 'Læsbarhed' i metaboksen Tilgængelighedstjekker på hver posts eller sides redigeringsskærm."
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "Lær mere om forenklede resuméer og læsbarhedskrav (åbner i et nyt vindue)"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "Lær mere om forenklede resuméer og læsbarhedskrav."
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "Tænker du »Wow, dette plugin er fantastisk«, og hjælper det dig med at gøre din hjemmeside mere tilgængelig? Del dine bestræbelser på at gøre din hjemmeside mere tilgængelig med dine kunder, og lad dem vide, at du bruger Accessibility Checker til at sikre, at alle kan bruge din hjemmeside. Tilføj et lille rent tekstlink og en erklæring i sidefoden på din hjemmeside."
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "Før indholdet"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "Efter indholdet"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "Indsæt manuelt"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "Brug denne funktion til manuelt at tilføje det forenklede resumé til dit tema inden for loopet."
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "Funktionen accepterer valgfrit post-ID'et som en parameter."
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "Indstil, hvor du ønsker, at forenklede resuméer skal vises i forhold til dit indhold, hvis de er udfyldt."
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "Nederste højre hjørne (standard)"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "Nederste venstre hjørne"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "Indstil, hvor du ønsker, at frontend-tilgængelighedstjekkeren skal vises på siden."
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "Når det kræves"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "Altid"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Skal Accessibility Checker kun bede om et forenklet resumé, når læseniveauet for dit indlæg eller din side er over 9. klasse, altid bede om det uanset læseniveau, eller aldrig bede om det uanset læseniveau?"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "For at tjekke andet indhold end indlæg og sider, venligst "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " (åbner i et nyt vindue)"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "Vælg hvilke indholdstyper, der skal kontrolleres under en scanning. Bemærk venligst, at fjernelse af en tidligere valgt indholdstype vil fjerne dens scannede information og eventuelle brugerdefinerede ignorerede advarsler, der er blevet oprettet."
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "Slet alle Accessibility Checker-data, når pluginnet afinstalleres."
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "Billede mangler alternativ tekst"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "En fejl om manglende alternativ tekst til billede betyder, at dit billede slet ikke har en alt-attribut (%1$s) i billedtaget (%2$s). For at rette en fejl om manglende alternativ tekst til billede skal du tilføje en alt-tag til billedet med passende tekst, der beskriver billedets formål på siden. Hvis billedet er dekorativt, kan alt-attributten være tom, men HTML %1$s-tagget skal stadig være til stede."
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "Billede med tom alternativ tekst"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "En advarsel om tom alternativ tekst til billede vises, hvis du har et billede med en alt-attribut (%s), der er tom. Alternativ tekst fortæller personer, der ikke kan se, hvad billedet er, og tilføjer yderligere kontekst til indlægget eller siden. Det er kun korrekt at have tom alternativ tekst, hvis billedet er rent dekorativt, som en kant eller et dekorativt ikon. For at rette en advarsel om tom alternativ tekst til billede skal du afgøre, om billedet er dekorativt, eller om det tilføjer noget meningsfuldt til siden. Hvis det ikke er dekorativt, skal du tilføje passende alternativ tekst for at beskrive billedets formål. Hvis billedet er dekorativt, skal du lade den alternative tekst være tom og »Ignorer« advarslen."
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "Alternativ tekst af lav kvalitet"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "En advarsel om alternativ tekst af lav kvalitet vises, når den alternative tekst på et billede indeholder nøgleord, der er unødvendige i alternativ tekst (såsom »billede« eller »grafik«), en filendelse (såsom .JPG), eller som muligvis beskriver et dekorativt billede (såsom »mellemrum« eller »pil«). For at løse denne advarsel skal du omskrive den alternative tekst for alle billeder, der udløste advarslen om alternativ tekst af lav kvalitet, og sikre, at den alternative tekst er præcis, unik, kontekstuelt passende og ikke indeholder overflødige eller unødvendige beskrivelser. Hvis billedet er rent dekorativt, er det korrekt at lade den alternative tekst være tom."
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "Linket billede mangler alternativ tekst"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "En fejl om manglende alternativ tekst for linket billede opstår, når et billede, der er linket til en URL, slet ikke har en alt-attribut (%s) i billedtagget. Linkede billeder skal have præcis alternativ tekst, der beskriver, hvor linket fører hen, så skærmlæserbrugere ved, hvor linket peger hen. For at løse denne fejl skal du tilføje meningsfuld alternativ tekst til billedet. Din alternative tekst bør beskrive linkformålet, ikke hvordan billedet ser ud."
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "Linket billede har tom alternativ tekst"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "En fejl om tom alternativ tekst for linket billede opstår, når et billede, der er linket til en URL, har en alt-attribut (%s) uden indhold. Linkede billeder skal have præcis alternativ tekst, der beskriver, hvor linket fører hen, så skærmlæserbrugere ved, hvor linket peger hen. For at løse denne fejl skal du tilføje meningsfuld alternativ tekst til billedet. Din alternative tekst bør beskrive linkformålet, ikke hvordan billedet ser ud."
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "Duplikeret alternativ tekst"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "Advarsler om duplikeret alternativ tekst vises, når den alternative tekst for et billede på dit indlæg eller din side er identisk med nærliggende eller tilstødende tekst, herunder billedets titel eller billedtekst. Denne advarsel opstår også, hvis to billeder på siden har den samme alternative tekst. For at løse denne advarsel skal du ændre teksten for et eller begge elementer, der udløste advarslen om duplikeret alternativ tekst, og sikre, at alle billeder har unik alternativ tekst, og at du ikke gentager din alternative tekst i dine billedtitler og billedtekster."
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "Forkert overskriftsrækkefølge"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "En fejl om forkert overskriftsrækkefølge betyder, at din overskriftsstruktur har sprunget et niveau over. For eksempel, hvis din sidestruktur har en niveau 3-overskrift (%1$s) under en niveau 1-overskrift (%2$s), vil en »Forkert overskriftsrækkefølge«-fejl blive markeret, fordi der ikke er noget %3$s-tag mellem H1 og H3. For at rette fejl i overskriftsrækkefølgen skal du enten ændre det forkerte overskriftsniveau til det korrekte niveau eller tilføje indhold med det korrekte overskriftsniveau mellem de to eksisterende niveauer."
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "Tom afsnitsmarkør"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "En advarsel om tom afsnitsmarkør betyder, at der er en afsnitsmarkør til stede, som ikke indeholder indhold. Disse kan blive oplæst af skærmlæsere eller skabe forvirring for brugere. For at løse denne advarsel skal du fjerne de tomme afsnit fra siden. Hvis du har brug for at tilføje mellemrum mellem sektioner, bør dette gøres med padding, margener eller en mellemrumsblok."
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "iframe mangler titel"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "En fejl om manglende iframe-titel betyder, at en eller flere af iframes på dit indlæg eller din side ikke har en tilgængelig titel, der beskriver indholdet af iframen. En iframe-titel er en attribut, der kan tilføjes til %1$s-tagget for at beskrive indholdet af rammen for personer, der bruger hjælpeteknologi. For at rette en manglende iframe-titel skal du tilføje en title- eller aria-label-attribut til %1$s-tagget. Attributten bør præcist beskrive indholdet af iframen."
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "Manglende underoverskrifter"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "En advarsel om manglende overskrifter betyder, at dit indlæg eller din side ikke indeholder nogen overskriftselementer (%1$s–%2$s) i indholdet af indlæggets eller sidens brødtekstafsnit, hvilket kan gøre det særligt vanskeligt for skærmlæserbrugere at navigere gennem indholdet på siden. For at rette en side uden overskrifter skal du tilføje overskriftselementer. Som minimum bør hver side have en %1$s-tag, hvilket typisk er sidetitlen. Tilføj yderligere underoverskrifter efter behov for dit indhold. Hvis du har besluttet, at overskrifter bestemt ikke er nødvendige på siden, kan du »Ignorere« advarslen."
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "Justeret tekst"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "En advarsel om Justeret tekst vises i Tilgængelighedstjekker, når tekst med mere end 200 tegn på dit indlæg eller din side er formateret med justeret justering (text-align:justify). For at rette denne advarsel skal du fjerne den justerede formatering fra de angivne tekstelementer."
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "Link åbner nyt vindue eller fane"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "En advarsel om Link åbner nyt vindue eller fane vises, når der er et link på din hjemmeside, der er indstillet til at åbne i en ny fane eller et nyt vindue, når der klikkes på det. Det anses for bedste praksis ikke at åbne nye faner eller vinduer med links. Hvis links åbner nye faner eller vinduer, skal der være en visuel og auditiv advarsel, der annoncerer, at linket vil åbne et nyt vindue eller en ny fane, så brugerne forventer denne adfærd og ved, hvordan de kommer tilbage efter at have klikket på linket. For at rette denne advarsel skal du enten ændre linket til ikke at åbne i en ny fane eller sikre, at »åbner nyt vindue« er inkluderet i linkteksten og derefter »Ignorere« advarslen. For automatisk at tilføje meddelelser til alle links på din side og afvise alle disse advarsler, skal du installere vores gratis %s-plugin."
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "Tilgængelighedsadvarsler om nyt vindue"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "Billedkort mangler alternativ tekst"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "Fejlen Billedkort mangler alternativ tekst betyder, at et af %1$s-elementerne i dit billedkort ikke har alternativ tekst tilføjet i et %2$s-attribut. For at rette denne fejl skal du tilføje manglende alt-tekst til eventuelle område-tags, der ikke har alt-tekst. Alt-teksten skal beskrive funktionen af linket indeholdt i området, ikke nødvendigvis beskrive, hvordan området ser ud."
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "Fanenes rækkefølge ændret"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "En advarsel om Ændret fanerækkefølge vises, når den logiske fanerækkefølge på siden er blevet ændret ved at tilføje et attribut for tabindex, der er større end 0 til et HTML-element (for eksempel, %s). Dette kan forårsage navigationsproblemer for brugere, der kun bruger tastatur. For at løse en advarsel om Ændret fanerækkefølge skal du se forsiden af din hjemmeside på den side eller det indlæg, hvor fanerækkefølgen er blevet ændret, og teste for at se, om ændringen er korrekt eller ej. Hvis ændringen af fanerækkefølgen ikke forårsager problemer, kan du »Ignorere« advarslen. Hvis den ændrede fanerækkefølge får information til at blive præsenteret i forkert rækkefølge, skal du fjerne tabindex-attributten fra det markerede element."
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "Tom overskriftstag"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "En fejl med Tom overskriftstag betyder, at der er en overskriftstag på dit indlæg eller din side, som ikke indeholder noget indhold. I kode ville denne fejl se sådan ud: %s. For at rette en tom overskrift skal du tilføje indhold til den overskriftstag, der har udløst fejlen Tom overskriftstag, eller fjerne den tomme tag, hvis den ikke er nødvendig på din side."
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "Tomt link"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "En fejl med Tomt Link betyder, at et af linkene på websiden er tomt eller ikke indeholder tekst, der beskriver, hvor linket fører hen, hvis man klikker på det. Dette sker ofte med links, der indeholder webskrifttyper, ikonfonte og SVG'er, eller når et link ved et uheld er blevet oprettet i indholdseditoren. For at rette en fejl med tomt link skal du finde det link, der er markeret, og tilføje beskrivende tekst til det. Du skal enten: tilføje tekstindhold i et tomt %1$s-element eller, hvis dit link indeholder et SVG- eller webfont-ikon, skjule det element med %2$s og tilføje en %3$s-attribut til %1$s-tagget eller skærmlæsertekst. Den tekst eller etiket, du tilføjer, bør være beskrivende for, hvor linket peger hen, og ikke være tvetydig."
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "Tom knap"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "En fejl med Tom Knap betyder, at en af knapperne på websiden er tom eller ikke indeholder tekst, der beskriver knappens funktion. Eller hvis det er en billedknap, mangler billedet i knappen alternativ tekst. For at rette en fejl med tom knap skal du finde den knap, der er markeret, og tilføje beskrivende tekst til den. Du skal enten: tilføje tekstindhold i et tomt %1$s-element, tilføje en værdi-attribut til et %2$s, der mangler en, eller tilføje alternativ tekst til et knapbillede. Teksten bør være beskrivende for, hvad din knap bruges til, eller den handling, som knappen udløser."
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "Lang alternativ tekst til billede"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "En advarsel om Lang Alternativ Tekst til Billede vises, hvis der er mere end 100 tegn i din alternative tekst. Alternativ tekst skal være beskrivende for billedet, men på en kortfattet måde, uden at være for ordrig. For at løse denne advarsel skal du forkorte din alt-tekst for alle billeder, der er blevet markeret, til 100 tegn eller mindre. Hvis du har bestemt, at din alternative tekst er god, som den er, kan du »Ignorere« advarslen."
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Skjult"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "Advarslen ARIA Skjult vises, når indhold på dit indlæg eller din side er blevet skjult ved hjælp af attributten aria-hidden=»true«. Når denne attribut tilføjes til et HTML-element, vil skærmlæsere ikke læse det op for brugerne. Nogle gange er det korrekt, at elementet er skjult for skærmlæsere (såsom med et dekorativt ikon), men andre gange er det ikke korrekt. Når du ser denne advarsel, skal du afgøre, om elementet skal være skjult for personer, der er blinde eller synshæmmede. Hvis det er korrekt skjult, kan du »Ignorere« advarslen. Hvis det er forkert skjult og bør være synligt, skal du fjerne attributten aria-hidden=»true« for at løse advarslen."
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "Tom tabeloverskrift"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "En fejl med Tom Tabeloverskrift betyder, at en af tabeloverskrifterne i dit indlæg eller på din side ikke indeholder nogen tekst. Det betyder, at %1$s-elementet er til stede, men ser sådan ud %2$s uden noget mellem åbnings- og lukketagsene. For at rette en tom tabeloverskrift skal du finde det korrekte HTML-element (%1$s) og tilføje tekst til det, der beskriver den række eller kolonne, det gælder for."
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "Link til MS Office-fil"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "En advarsel om Link til MS Office-fil betyder, at et eller flere af linkene på din side eller i dit indlæg fører til en fil med en af følgende filtyper: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps eller .ppsx. Denne advarsel vises, når en MS Office-fil er til stede, som en påmindelse om manuelt at teste dine Word-dokumenter, PowerPoint-præsentationer og Excel-regneark for tilgængelighed og bekræfte, at de overholder alle relevante WCAG-retningslinjer. For at løse en advarsel om Link til MS Office-fil skal du: (1) sikre, at der er et direkte link til at se eller downloade dokumentet, hvis du bruger et plugin til at indlejre det på siden; (2) sikre, at linket til dokumentet advarer brugerne om, at det er et link til et dokument ved at vise den specifikke filtype i linkankeret; og (3) teste og udbedre din MS Office-fil for tilgængelighedsfejl. Efter at have fastslået, at din fil er fuldt tilgængelig, kan du trygt »Ignorere« advarslen."
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "Link til PDF"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "En advarsel om Link til PDF betyder, at et eller flere af linkene på din side eller i dit opslag fører til en PDF-fil. Denne advarsel er en påmindelse om manuelt at teste den linkede PDF for tilgængelighed og bekræfte, at den overholder alle relevante WCAG-retningslinjer. For at løse en advarsel om Link til PDF skal du: (1) sikre, at der er et direkte link til at se eller downloade dokumentet, hvis du bruger et plugin til at indlejre det på siden; (2) sikre, at linket til dokumentet advarer brugerne om, at det er et link til et dokument ved at vise den specifikke filtype i link-teksten; og (3) teste og udbedre dit dokument for tilgængelighedsfejl. Efter at have fastslået, at din fil er fuldt tilgængelig, kan du trygt »Ignorere« advarslen."
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "Link til ikke-HTML-fil"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "En advarsel om Link til ikke-HTML-dokument betyder, at et eller flere af linkene på din side eller i dit opslag fører til en fil med en af følgende filtyper: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages eller .key. Denne advarsel er en påmindelse om manuelt at teste det linkede dokument for tilgængelighed og bekræfte, at det overholder alle relevante WCAG-retningslinjer. For at løse en advarsel om Link til ikke-HTML-dokument skal du: (1) sikre, at der er et direkte link til at se eller downloade dokumentet, hvis du bruger et plugin til at indlejre det på siden; (2) sikre, at linket til dokumentet advarer brugerne om, at det er et link til et dokument ved at vise den specifikke filtype i link-teksten; og (3) teste og udbedre dit dokument for tilgængelighedsfejl. Efter at have fastslået, at din fil er fuldt tilgængelig, kan du trygt »Ignorere« advarslen."
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "Ugyldig lang beskrivelse"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "Fejlen Ugyldig lang beskrivelse betyder, at et attribut for lang beskrivelse (%s) på et billede ikke har en passende URL, filnavn eller filtype. Det kan også betyde, at den lange beskrivelse ikke er en URL, eller at den er blevet efterladt tom. Attributten longdesc understøttes ikke fuldt ud af HTML5, browsere og alle skærmlæsere. På grund af denne manglende understøttelse er den bedste løsning på denne fejl at fjerne longdesc helt fra dit billedtag."
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "Manglende formular-etiket"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "En fejl om Manglende formular-etiket udløses, når et %1$s (formularfelt) er til stede i din formular, men ikke er tilknyttet et %2$s-element. Dette kan betyde, at etiketten er til stede, men mangler et %3$s-attribut for at forbinde det til det relevante felt, eller der kan slet ikke være nogen etiket til stede, kun et %1$s-tag. For at rette fejl med manglende formular-etiketter skal du fastslå, hvordan feltet og formularen blev oprettet, og derefter tilføje feltetiketter eller et korrekt %3$s-attribut til eksisterende etiketter, der ikke er forbundet til et felt."
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "Tvetydig ankertekst"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "Fejl med Tvetydig ankertekst opstår, når der er linket tekst, som ikke giver mening uden for dens omgivende indhold. Almindelige eksempler på dette omfatter at linke fraser som »klik her« eller »lær mere.« For at løse denne fejl skal du ændre linkteksten til at være mindre generisk, så den giver mening, hvis den høres alene."
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "Understreget tekst"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "En advarsel om Understreget tekst vises, hvis tekst på din side er omsluttet af et HTML-understregnings-tag (%1$s). I et online miljø bruges understreget tekst generelt til at indikere linket tekst, og det anses ikke for god praksis kun at understrege tekst for at fremhæve den. For at rette understreget tekst skal du fjerne %1$s-elementet fra teksten eller CSS-stilarter, der gør den understreget. Prøv at bruge andre stilarter, såsom kursiv, farvet tekst eller fed skrift for at fremhæve eller skelne mellem ord eller sætninger."
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "Brudt spring- eller ankerlink"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "Et ankerlink, også kaldet et springlink, er et link, der i stedet for at åbne en ny side eller URL, når det klikkes, springer eller ruller dig til et andet afsnit på samme side. Disse links går til et element, der starter med en hashtag i stedet for en fuld URL. For eksempel kan du rulle nogen til om-afsnittet på din hjemmeside ved at linke til #about. Fejl med brudte spring- eller ankerlinks opstår, når der er et link, der peger på et andet afsnit på samme side, men der ikke er et element til stede på siden, der har det refererede id. Denne fejl vil også forekomme, hvis du linker til bare et #. For at løse denne fejl skal du manuelt teste linket for at bekræfte, at det virker, og derefter enten rette det eller »Ignorere« fejlen efter behov."
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "Manglende tabeloverskrift"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "En fejl med manglende tabeloverskrift betyder, at en af dine tabeller indeholder data (information indeholdt i et %1$s-tag), som ikke har en tilsvarende overskrift (%2$s)-tag. Når du ser på HTML'en for din formular, vil der være flere %1$s-elementer i en række end %2$s-elementer i tabellen. For at rette en manglende tabeloverskrift skal du finde det kodestykke, der har færre %2$s-elementer, end der burde være til stede for antallet af rækker eller kolonner med data, og tilføje et eller flere ekstra %2$s-elementer, der indeholder tekst, som beskriver dataene i den pågældende række eller kolonne."
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "Duplikeret formularetiket"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "Fejl med duplikerede formularmærkater opstår, når der er mere end én etiket knyttet til et enkelt felt i en formular. Hvis der er for mange formularmærkater til stede, kan en skærmlæser muligvis ikke læse formularfelterne korrekt for at hjælpe en synshandicappet bruger med at navigere gennem og udfylde formularen. For at rette fejl med duplikerede formularmærkater skal du bestemme, hvordan feltet og formularen blev oprettet, og derefter sikre, at hvert felt kun har én tilknyttet etiket."
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "Tekst for lille"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "En advarsel om for lille tekst opstår, når der er tekst på dit websted, som er mindre end 10px i størrelse. Advarslen er en indikation af, at du måske bør genoverveje skriftstørrelsen og gøre den større, så den nemmere kan læses uden at en bruger behøver at zoome ind i deres browser. For at rette tekst, der er for lille, skal du sikre, at alle tekstelementer på dit websted er mindst 10 point."
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "Mulig overskrift"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "En advarsel om mulig overskrift opstår, når der er tekst på en side, som ser ud til at være en overskrift, men ikke er kodet med korrekte overskriftstags. Denne advarsel vises, hvis der er korte sætninger eller tekststrenge på mindre end 50 tegn, som er formateret på en måde, der antyder, at de måske bruges som overskrifter (de er 20 pixels eller større, eller er 16 pixels eller større og fede og/eller kursiverede). For at rette en advarsel om mulig overskrift skal du afgøre, om den markerede tekst rent faktisk er tiltænkt som overskrift. Hvis ja, skal du ændre den fra et afsnit til en overskrift på det rette niveau. Hvis den ikke skal være en overskrift, kan du trygt »Ignorere« advarslen."
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "Blinkende eller rullende indhold"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "Fejl med blinkende eller rullende indhold opstår, når elementer på dit websted har en blinkende eller rullende funktion anvendt på dem enten via CSS eller i HTML'en. Specifikt vil følgende skabe denne fejl: %1$s- eller %2$s-HTML-tags eller CSS %3$s. For at løse denne fejl skal du fjerne de HTML-tags eller CSS, der får indholdet til at blinke."
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "Utilstrækkelig farvekontrast"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "Fejl med utilstrækkelig farvekontrast betyder, at vi har identificeret, at en eller flere af farvekombinationerne på dit opslag eller din side ikke opfylder det minimale farvekontrastforhold på 4,5:1. Afhængigt af hvordan dit websted er opbygget, kan der være »falske positiver« for denne fejl, da nogle farver er indeholdt i forskellige HTML-lag på siden. For at rette en fejl med utilstrækkelig farvekontrast skal du sikre, at de markerede elementer opfylder det krævede minimumsforhold på 4,5:1. For at gøre dette skal du finde de hexadecimale koder for din forgrundsfarve og baggrundsfarve og teste dem i en farvekontrastkontrol. Hvis disse farvekoder har et forhold på 4,5:1 eller højere, kan du »Ignorere« denne fejl. Hvis farvekoderne ikke har et forhold på mindst 4,5:1, skal du justere dine farver."
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "Manglende udskrift"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "En fejl med manglende udskrift betyder, at der er et lyd- eller videoklip på dit websted, som ikke har en udskrift, eller der er en udskrift, men den ikke er mærket som en udskrift eller er placeret mere end 25 tegn væk fra det indlejrede eller linkede medie. For at rette en fejl med manglende udskrift skal du oprette en udskrift for alle de video- eller lydklip, der er markeret som manglende en udskrift. Når du har oprettet udskriften, kan du enten tilføje udskriftens indhold direkte i dit opslag eller på din side eller linke til udskriften, hvis du inkluderer den som et dokument eller en PDF-fil, der kan downloades. Du skal eksplicit inkludere ordet »udskrift« i en overskrift før udskriften på siden eller i linket til din fil, og det skal være inden for 25 tegn fra lyd- eller videoindlejringen eller linket."
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "Brudt ARIA-reference"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "Fejl med brudt ARIA-reference opstår, hvis et aria-labeledby- eller aria-describedby-element er til stede på siden eller opslaget, men dets referencemål ikke eksisterer. Dette betyder, at det element, der henvises til af den specifikke ARIA-attribut, du bruger, enten ikke har en korrekt etiket eller beskrivelse, eller det er ikke til stede på siden. For at rette en brudt ARIA-reference skal du finde de ARIA-elementer, der er markeret, og sikre, at deres referencemål er til stede og korrekt mærket."
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "Manglende sprogdeklaration"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "En sprogdeklaration er en HTML-attribut, der angiver standardsproget for indholdet på en side eller et opslag. Sprogdeklarationer bør være kodet ind i dit webstedstema og vises automatisk i webstedets hoved. En fejl med manglende sprogdeklaration opstår, hvis %1$s-tagget på siden ikke indeholder en %2$s- eller %3$s-attribut, eller hvis en af disse attributter er til stede, men er tom. For at rette en fejl med manglende sprogdeklaration skal du redigere dine temafiler for at tilføje den manglende sprogattribut til HTML-tagget øverst i din webstedsheader. Hvis du bruger et tema, der modtager opdateringer, skal du foretage ændringen i et underordnet tema for at sikre, at rettelsen ikke bliver overskrevet, når du næste gang opdaterer dit tema."
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "Billede animeret GIF"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "Advarsler om billede animeret GIF vises, når der er en animeret GIF på dit opslag eller din side. Denne advarsel er en påmindelse om manuelt at gennemgå alle animerede GIF'er på dit websted for deres tilgængelighed og/eller at genoverveje brugen af animerede GIF'er og i stedet erstatte dem med statiske billeder eller videoer. For at løse denne advarsel skal du gennemgå alle tilstedeværende GIF'er for at sikre, at de opfylder alle gældende retningslinjer for tilgængelighed, og derefter enten »Ignorere« advarslen eller fjerne GIF'en fra din side eller opslag, hvis den ikke er tilgængelig."
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "En video er til stede"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Fordi videoer ofte indeholder tilgængelighedsproblemer, hvoraf mange kun kan identificeres af en person, vises advarslen 'En video er til stede', når der opdages en video på et indlæg eller en side som en påmindelse om, at du manuelt skal teste din video for tilgængelighed. For at løse denne advarsel skal du besøge forsiden af din hjemmeside og bekræfte, at videoen i advarslen er tilgængelig. Når du har testet videoen grundigt for tilgængelighed, skal du rette eventuelle fejl og derefter kan du »Ignorere« advarslen for at markere den som fuldført."
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "En slider er til stede"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Fordi sliders ofte indeholder tilgængelighedsproblemer, hvoraf mange kun kan identificeres af en person, vises advarslen 'En slider er til stede', når der opdages en slider på et indlæg eller en side som en påmindelse om, at du manuelt skal teste din slider for tilgængelighed. For at løse denne advarsel skal du besøge forsiden af din hjemmeside og bekræfte, at alle sliders på siden er tilgængelige. Når du har testet dine sliders grundigt for tilgængelighed, skal du rette eventuelle fejl og derefter kan du »Ignorere« advarslen for at markere den som fuldført."
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "Manglende titel"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "En 'Manglende titel'-fejl betyder, at dit indlæg eller din side ikke indeholder et titel-element (%1$s eller %2$s). Dette kan ske, hvis temaet ikke tilføjer et titel-tag, eller hvis titelfeltet i et indlæg eller en side er blevet efterladt tomt i WordPress-redigeringsskærmen. For at rette en side uden titel skal du tilføje titel-elementer. Først skal du afgøre, om titlen mangler, fordi du har efterladt side- eller indlægstitlen tom i editoren. Hvis det er tilfældet, så udfyld den. Hvis en titel er udfyldt og synlig på backend, skal koden i din webside redigeres til at inkludere et %1$s-tag eller %2$s meta-tag."
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "Forkert brug af link"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "En 'Forkert brug af link'-fejl vises, hvis du har links, der mangler en %1$s-attribut eller kun er linket til et %2$s, og ikke har %3$s på dem. Links bør bruges til at dirigere folk til andre dele af dit websted. Enhver anden funktionalitet, der udløser en handling, bør være en knap. For at løse denne fejl skal du omkode linket til at bruge et %4$s-tag (foretrukket) eller tilføje %5$s til det eksisterende %6$s-tag. Hvis elementet er en toggle-knap (såsom en accordion), kræves yderligere ARIA-attributter."
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "Zoom og skalering deaktiveret"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "Zoom er deaktiveret via viewport meta-tag, der indeholder `user-scalable=no` eller en `maximum-scale`-værdi på mindre end 2. Dette begrænser brugere med nedsat syn, der ønsker at forstørre tekststørrelser, zoome ind på siden eller bruge forstørrelsesglas."
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "Indstillinger gemt. For at bekræfte og afspejle disse opdateringer i dit websites statistikker, bedes du genskanne dit site. Hvis du bruger et caching-plugin, skal du sørge for at rydde cachen for at sikre, at de opdaterede rettelser anvendes korrekt."
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "Accessibility New Window Warnings-pluginet er installeret. Rettelsen for links, der åbnes i et nyt vindue, som er inkluderet her, vil tilsidesætte dets funktionalitet. Du kan trygt fjerne pluginet og bruge disse rettelser i stedet."
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "Accessibility Checker-problempaneler"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "Oversigt"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "Detaljer"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "Læsbarhed"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "Slet alle aktuelt fundne problemer"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "Ryd problemer"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Equalize Digital-logo"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "Opgrader til Accessibility Checker Pro"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "Scan alle indlægstyper"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "Administratorkolonner til at se tilgængelighedsstatus på et øjeblik"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "Centraliseret liste over alle åbne problemer"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "Ignorer-log"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "Omdøb forenklet oversigt"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "Brugerbegrænsninger for ignorering af problemer"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "E-mailsupport"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...og mere"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "Få Accessibility Checker Pro"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "Eller aktiver din licensnøgle her."
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "Generelt"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "version"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Link til Equalize Digital-website"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "Hurtig opstartsvejledning"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "Følg disse trin for at komme i gang med at tjekke dit indhold:"
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "På <a href=\"%s\">Indstillingssiden</a> skal du vælge, hvilke indlægstyper du vil scanne."
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "Gå til redigeringsskærmen for det indlæg, du vil tjekke."
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "Find Accessibility Checker-metaboksen under dit indhold. Hvis du bruger en frontend-sidebygger, skal du besøge backend-redigeringsskærmen for at se Accessibility Checker-resultater."
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "Hvis der er fejl eller advarsler i dit indlæg, skal du åbne fanen Detaljer i Accessibility Checker for at få mere information."
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "Udvid hvert problem for at se koden, eller klik på »vis på siden«, hvis du har brug for hjælp til at finde det element, der skal rettes."
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "Hvis du ikke ved, hvad en fejl eller advarsel betyder, skal du klikke på »i«-ikonet for at læse dokumentationen og hvordan du retter det."
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "Hvis et problem er falsk positivt, og elementet er tilgængeligt, kan du fjerne problemer fra rapporter med funktionen »Ignorer«."
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "Efter at have rettet hvert problem skal du opdatere indlægget for at se tilgængelighedsrapporten ændre sig. Dit mål er at få hver side til at vise 100% Beståede Tests."
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "Se en video af Accessibility Checker i brug."
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "Dokumentation og ofte stillede spørgsmål"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "Hvorfor siger vi 100% Beståede Tests, ikke 100% Tilgængelig?"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "(åbnes i et nyt vindue)"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "Hvordan man manuelt tjekker dit website for tilgængelighed"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "Hvornår man skal ignorere tilgængelighedsfejl"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "Hvad man skal gøre, hvis et plugin, du bruger, har tilgængelighedsfejl"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "Hvad man skal gøre, hvis der er tilgængelighedsfejl i dit tema"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "Kan jeg hyre Equalize Digital til at rette tilgængelighedsproblemer på mit website?"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "Yderligere ressourcer til at lære om tilgængelighed"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "Læs fuld dokumentation"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "Supportinformation"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "Plugin-support"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "Aktive licensindehavere af betalte Accessibility Checker-planer får ubegrænset e-mailsupport til plugin-brug og fejlfinding."
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "Åbn supportbillet"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "Gratis plugin-support"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "Gratis plugin-support er tilgængelig via WordPress.org-forummerne. Du skal oprette en konto, og derefter kan du åbne en ny supporttråd."
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "Gå til supportforum"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "Kontortid"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "Åben spørgetid på Zoom hver anden uge for at hjælpe dig med at udbedre dit website."
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "Inkluderet i Small Business- og Agency-planer"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "Tilmeld dig kontortid"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "Revision og udbedring"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "Få hjælp til at gøre dit website tilgængeligt. Ekspertrevision, brugertest og udviklingssupport. Overensstemmelseserklæringer tilgængelige."
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "Få hjælp til udbedring"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "Gemmer..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "Indstillinger gemt med succes. Du skal %sbesøge redigeringsprogrammet%s og gemme indlægget for at genskanne og fjerne rettede problemer fra Accessibility Checker-rapporter."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "Indstillinger gemt med succes."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "Gemning mislykkedes."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "Ret indstillinger"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "Dette vil rydde alle problemer for dette indlæg. En gemning vil være nødvendig for at udløse en ny scanning af indlæggets indhold. Vil du fortsætte?"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "Rydder..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "Problemer ryddet med succes."
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "Kunne ikke rydde problemer."
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "Der opstod et problem. Prøv venligst igen."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "Beklager, din indsendelse mislykkedes. Forkort venligst dine svar og prøv igen."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "Beklager, din indsendelse mislykkedes. Prøv venligst igen."
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "åbner et nyt vindue"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: Fandt ikke et matchende mål-ID på siden for spring over-linket."
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: Fejl ved opdatering af historik for spring over-link."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "Luk rettelsesvindue"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Deaktiver sidestilarter"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "Vis kode"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Problemtype:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "Aktivér stilarter"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Deaktivér stilarter"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "Der er ingen indstillinger at vise."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Disse indstillinger aktiverer globale rettelser på hele dit websted. Sider skal muligvis gemmes igen, eller der skal køres en fuld webstedsskanning for at se rettelser afspejlet i rapporterne."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "Ingen problemer registreret."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "fejl"
+msgstr[1] "fejl"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "advarsel"
+msgstr[1] "advarsler"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "og"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "ignoreret problem"
+msgstr[1] "ignorerede problemer"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "registreret."
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "nyt vindue"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "ny fane"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "klik"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "klik her"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "her"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "gå hertil"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "mere"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "mere..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "mere…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "detaljer"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "flere detaljer"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "link"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "denne side"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "fortsæt"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "fortsæt læsningen"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "læs mere"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "åbn"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "download"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "knap"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "fortsæt læsningen"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "lær mere"

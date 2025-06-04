@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "Έλεγχος προσβασιμότητας"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "Ελέγξτε και επιθεωρήστε τον ιστότοπό σας για προσβασιμότητα πριν τον δημοσιεύσετε. Σαρωτής προσβασιμότητας εντός άρθρου και καθοδήγηση."
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "Διορθώσεις"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "Γενικές διορθώσεις"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "Αυτές οι διορθώσεις βοηθούν στη βελτίωση της προσβασιμότητας τροποποιώντας στοιχεία HTML και συμπεριφορές στον ιστότοπό σας."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "Αποκτήστε την έκδοση Pro για να ξεκλειδώσετε αυτή τη λειτουργία, ανοίγει σε νέο παράθυρο."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "Αποκτήστε pro"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "Ανοίγει σε νέο παράθυρο."
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "Διαβάστε την τεκμηρίωση για %s. Ανοίγει σε νέο παράθυρο."
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "Η δέσμευσή μας για την προσβασιμότητα στο διαδίκτυο"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "Η [ΟΝΟΜΑ ΤΗΣ ΕΤΑΙΡΕΙΑΣ ΣΑΣ] δεσμεύεται να παρέχει μια πλήρως προσβάσιμη εμπειρία ιστοσελίδας για όλους τους χρήστες όλων των ικανοτήτων, συμπεριλαμβανομένων εκείνων που βασίζονται σε υποστηρικτικές τεχνολογίες όπως αναγνώστες οθόνης, λογισμικό μεγέθυνσης οθόνης και εναλλακτικές συσκευές εισόδου πληκτρολογίου για την πλοήγηση στο διαδίκτυο."
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "Συνεχείς προσπάθειες για τη διασφάλιση της προσβασιμότητας"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "Ακολουθούμε τις <a href=\"https://www.w3.org/TR/WCAG21/\">Οδηγίες Προσβασιμότητας Περιεχομένου Ιστού (WCAG) έκδοση 2.1</a> ως κατευθυντήρια αρχή μας για τον καθορισμό της προσβασιμότητας. Αυτά είναι διεθνώς συμφωνημένα πρότυπα που καλύπτουν ένα ευρύ φάσμα συστάσεων και βέλτιστων πρακτικών για να καταστεί το περιεχόμενο χρησιμοποιήσιμο. Καθώς προσθέτουμε νέες σελίδες και λειτουργικότητα στον ιστότοπό μας, όλα τα σχέδια, ο κώδικας και οι πρακτικές εισαγωγής περιεχομένου ελέγχονται με βάση αυτά τα πρότυπα."
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Η προσβασιμότητα ιστοσελίδων είναι μια συνεχής διαδικασία. Ελέγχουμε συνεχώς το περιεχόμενο και τις λειτουργίες για συμμόρφωση με το WCAG 2.1 Επίπεδο AA και διορθώνουμε τυχόν προβλήματα για να διασφαλίσουμε ότι πληρούμε ή υπερβαίνουμε τα πρότυπα. Ο έλεγχος του ιστοτόπου μας πραγματοποιείται από τα μέλη της ομάδας μας χρησιμοποιώντας εργαλεία βιομηχανικού προτύπου όπως το <a href=\"https://a11ychecker.com/\">Πρόσθετο WordPress Accessibility Checker</a>, αναλυτές αντίθεσης χρωμάτων, τεχνικές πλοήγησης μόνο με πληκτρολόγιο και δοκιμές αναγνωσιμότητας Flesch-Kincaid."
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "Χαρακτηριστικά προσβασιμότητας στον ιστότοπό μας"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "Ακολουθεί μια λίστα με στοιχεία που έχουμε συμπεριλάβει στον ιστότοπό μας για τη βελτίωση της προσβασιμότητάς του:"
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[ΛΙΣΤΑ ΧΑΡΑΚΤΗΡΙΣΤΙΚΩΝ ΠΡΟΣΒΑΣΙΜΟΤΗΤΑΣ ΕΔΩ]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "Πού βελτιωνόμαστε"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "Στις προσπάθειές μας να φέρουμε τον ιστότοπό μας στο πρότυπο, στοχεύουμε στους ακόλουθους τομείς:"
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[ΚΑΤΑΛΟΓΟΣ ΣΤΟΙΧΕΙΩΝ ΠΟΥ ΕΡΓΑΖΕΣΤΕ ΓΙΑ ΝΑ ΔΙΟΡΘΩΣΕΤΕ ΕΔΩ]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[ΜΠΟΡΕΙ ΝΑ ΒΟΗΘΗΣΕΙ ΝΑ ΕΠΑΝΕΞΕΤΑΣΕΤΕ ΤΗΝ ΚΑΡΤΕΛΑ ΑΝΟΙΧΤΩΝ ΖΗΤΗΜΑΤΩΝ ΓΙΑ ΝΑ ΔΕΙΤΕ ΤΑ ΠΙΟ ΣΥΝΗΘΙΣΜΕΝΑ ΠΡΟΒΛΗΜΑΤΑ]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "Αυτό είναι μέρος της ευρύτερης προσπάθειάς μας να κάνουμε την εμπειρία όλων στην [ΟΝΟΜΑ ΕΤΑΙΡΕΙΑΣ] φιλόξενη και ευχάριστη. Παρακαλούμε σημειώστε ότι ενώ καταβάλλουμε κάθε προσπάθεια να παρέχουμε πληροφορίες προσβάσιμες σε όλους τους χρήστες, δεν μπορούμε να εγγυηθούμε την προσβασιμότητα ιστοτόπων τρίτων στους οποίους ενδέχεται να συνδέουμε."
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "Επικοινωνία υποστήριξης προσβασιμότητας"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "Καλωσορίζουμε σχόλια, ερωτήσεις και ανατροφοδότηση για τον ιστότοπό μας. Εάν χρησιμοποιείτε υποστηρικτικές τεχνολογίες και αντιμετωπίζετε δυσκολίες στη χρήση του ιστοτόπου μας, παρακαλούμε στείλτε email στο [Η ΔΙΕΥΘΥΝΣΗ EMAIL ΠΡΟΣΒΑΣΙΜΟΤΗΤΑΣ ΣΑΣ] ή καλέστε μας στο [Ο ΑΡΙΘΜΟΣ ΤΗΛΕΦΩΝΟΥ ΣΑΣ]. Θα κάνουμε ό,τι καλύτερο μπορούμε για να σας βοηθήσουμε και να επιλύσουμε τυχόν προβλήματα."
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "Έχουμε βελτιώσει τους υπολογισμούς στατιστικών στην έκδοση 1.21.0. Ως αποτέλεσμα, ορισμένοι αριθμοί στα παρακάτω δεδομένα ενδέχεται να έχουν αλλάξει. Διαβάστε περισσότερα στην %1$sανακοίνωση της νέας έκδοσης%2$s."
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "Άρνηση πρόσβασης"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "Η ενημέρωση της επιλογής δεν ήταν επιτυχής"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Ειδική προσφορά Black Friday! 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Αναβαθμίστε σε μια επί πληρωμή έκδοση του Accessibility Checker από τις 25 Νοεμβρίου έως τις 3 Δεκεμβρίου και λάβετε έκπτωση 30%! Πλήρης σάρωση ιστοτόπου, αναφορά ανοιχτών ζητημάτων σε όλο τον ιστότοπο, αρχεία καταγραφής αγνόησης και πολλά άλλα."
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "Κάντε μια ερώτηση πριν την αγορά"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "Αναβαθμίστε τώρα"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 Λάβετε 25% έκπτωση στο Accessibility Checker Pro προς τιμήν της Παγκόσμιας Ημέρας Ευαισθητοποίησης για την Προσβασιμότητα! 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "Χρησιμοποιήστε τον κωδικό κουπονιού GAAD25 από τις 13 έως τις 21 Μαΐου για να αποκτήσετε πρόσβαση σε πλήρη σάρωση ιστοτόπου και άλλες λειτουργίες pro με ειδική έκπτωση. Δεν είστε σίγουροι αν η αναβάθμιση είναι κατάλληλη για εσάς;?"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "Γεια σας! Σας ευχαριστούμε που χρησιμοποιείτε το Accessibility Checker ως μέρος των εργαλείων προσβασιμότητάς σας. Εφόσον το χρησιμοποιείτε για λίγο καιρό, θα μπορούσατε να γράψετε μια κριτική 5 αστέρων για το Accessibility Checker στον κατάλογο πρόσθετων του WordPress; Αυτό θα βοηθήσει στην αύξηση της ορατότητάς μας ώστε περισσότεροι άνθρωποι να μάθουν για τη σημασία της προσβασιμότητας στο διαδίκτυο. Σας ευχαριστούμε πολύ!"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "Γράψτε μια κριτική"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "Υπενθύμιση σε δύο εβδομάδες"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "Μην ξαναρωτήσετε"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "Η τιμή της ενέργειας κριτικής δεν ορίστηκε"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "Ωχ! Φαίνεται ότι ο ιστότοπός σας προστατεύεται αυτή τη στιγμή με κωδικό πρόσβασης. Η δωρεάν έκδοση του Accessibility Checker μπορεί να ελέγξει μόνο ζωντανούς ιστότοπους. Για να ελέγξετε αυτόν τον ιστότοπο για προβλήματα προσβασιμότητας, είτε αφαιρέστε την προστασία με κωδικό πρόσβασης είτε %s. Τα αποτελέσματα του ελέγχου μπορεί να έχουν αποθηκευτεί από προηγούμενο έλεγχο."
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "Αναβάθμιση στο Accessibility Checker Pro. Ανοίγει σε νέο παράθυρο."
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "αναβάθμιση σε pro"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "Το αναγνωριστικό της δημοσίευσης δεν ορίστηκε"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "Δεν έχει συμπεριληφθεί απλοποιημένη περίληψη για αυτό το περιεχόμενο."
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "Το περιεχόμενό σας έχει επίπεδο ανάγνωσης στο ή κάτω από το επίπεδο της 9ης τάξης και δεν απαιτεί απλοποιημένη περίληψη."
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "Το επίπεδο ανάγνωσης της απλοποιημένης περίληψης είναι πολύ υψηλό."
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "Έχει συμπεριληφθεί μια απλοποιημένη περίληψη για αυτό το περιεχόμενο."
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s Σφάλμα"
+msgstr[1] "%s Σφάλματα"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s Σφάλμα αντίθεσης"
+msgstr[1] "%s Σφάλματα αντίθεσης"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s Προειδοποίηση"
+msgstr[1] "%s Προειδοποιήσεις"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s Αγνοημένο στοιχείο"
+msgstr[1] "%s Αγνοημένα στοιχεία"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "Δεν υπάρχει περίληψη για επιστροφή"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "Μη έγκυρο όνομα πίνακα"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "Αυτές οι ρυθμίσεις ενεργοποιούν καθολικές διορθώσεις σε ολόκληρο τον ιστότοπό σας."
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Ενδέχεται να χρειαστεί να αποθηκευτούν ξανά οι σελίδες ή να εκτελεστεί πλήρης σάρωση του ιστότοπου για να εμφανιστούν οι διορθώσεις στις αναφορές."
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "Επηρεαζόμενος κώδικας"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "Προβολή ζητήματος με ID %d στον ιστότοπο, ανοίγει νέο παράθυρο"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "Προβολή στη σελίδα"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "Διόρθωση: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "Διόρθωση"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "Ο λογαριασμός χρήστη σας δεν έχει δικαίωμα να αγνοήσει αυτό το ζήτημα."
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "Δεν υπάρχουν λεπτομέρειες για επιστροφή"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "Δεν υπάρχουν δεδομένα αναγνωσιμότητας για επιστροφή"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "Δεν υπάρχουν δεδομένα αγνόησης για επιστροφή"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "Η περίληψη δεν ορίστηκε"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "Η τιμή του αναγνωριστικού δεν ορίστηκε"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "Το ερώτημα για το ζήτημα δεν επέστρεψε αποτελέσματα"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "Το ερώτημα για το αντικείμενο δεν επέστρεψε αποτελέσματα"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "Περίληψη πιο πρόσφατου ελέγχου"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "Ενημέρωση μετρήσεων"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "Έναρξη νέας σάρωσης"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "Προβολή όλων των ανοιχτών ζητημάτων"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "Προβολή ιστορικού"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "Επιτυχημένοι έλεγχοι"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "Μοναδικό σφάλμα"
+msgstr[1] "Μοναδικά σφάλματα"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "Μοναδικό σφάλμα χρωματικής αντίθεσης"
+msgstr[1] "Μοναδικά σφάλματα χρωματικής αντίθεσης"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "Μοναδική προειδοποίηση"
+msgstr[1] "Μοναδικές προειδοποιήσεις"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "Αγνοημένο στοιχείο"
+msgstr[1] "Αγνοημένα στοιχεία"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "Μέσος όρος ζητημάτων ανά σελίδα"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "Μέση πυκνότητα ζητημάτων"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "Τελευταία ενημέρωση αναφοράς:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "Ποτέ"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "URLs που σαρώθηκαν"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s από %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "Τύποι δημοσιεύσεων που ελέγχθηκαν"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "URLs με βαθμολογία 100%"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "Αυτή η περίληψη ενημερώνεται αυτόματα κάθε 24 ώρες ή κάθε φορά που ολοκληρώνεται μια πλήρης σάρωση του ιστότοπου. Μπορείτε επίσης να ενημερώσετε χειροκίνητα αυτά τα αποτελέσματα κάνοντας κλικ στο κουμπί Ενημέρωση Μετρήσεων."
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "Ο ιστότοπός σας έχει μεγάλο αριθμό ζητημάτων. Για λόγους απόδοσης, δεν έχουν συμπεριληφθεί όλα τα ζητήματα σε αυτή την περίληψη."
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "Αναφορές Προσβασιμότητας για Όλο τον Ιστότοπο"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "Απόκρυψη banner"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "Ξεκλειδώστε λεπτομερείς αναφορές προσβασιμότητας"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "Ξεκινήστε τη σάρωση ολόκληρου του ιστότοπού σας για ζητήματα προσβασιμότητας, λάβετε αναφορές για όλο τον ιστότοπο και γίνετε συμβατοί με τις οδηγίες προσβασιμότητας πιο γρήγορα."
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "Αναβάθμιση Accessibility Checker"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "κλείσιμο διαφήμισης"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "Λάβετε λεπτομερείς αναφορές προσβασιμότητας"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "Κατάσταση προσβασιμότητας ολόκληρου του ιστότοπου"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "URLs που σαρώθηκαν:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "Σφάλματα:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "Σφάλματα χρωματικής αντίθεσης:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "Προειδοποιήσεις:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "Ο ιστότοπός σας έχει ζητήματα προσβασιμότητας που πρέπει να αντιμετωπιστούν το συντομότερο δυνατό για να εξασφαλιστεί η συμμόρφωση με τις οδηγίες προσβασιμότητας."
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "Μπράβο! Το Accessibility Checker δεν μπορεί να βρει κανένα πρόβλημα προσβασιμότητας στο περιεχόμενο που έλεγξε. Ορισμένα προβλήματα δεν μπορούν να εντοπιστούν από αυτοματοποιημένα εργαλεία, οπότε μην ξεχάσετε να"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "ελέγξετε χειροκίνητα τον ιστότοπό σας"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "Ζητήματα ανά τύπο δημοσίευσης"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "Τύπος δημοσίευσης"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "Σφάλματα"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "Αντίθεση"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "Προειδοποιήσεις"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "Αναβάθμιση για σάρωση"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "Δείτε περισσότερες αναφορές"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "Μάθετε για την προσβασιμότητα"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "Πρόσθετοι πόροι"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "Ιστολόγιο (ανοίγει σε νέο παράθυρο)"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "Ιστολόγιο"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "Τεκμηρίωση (ανοίγει σε νέο παράθυρο)"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "Τεκμηρίωση"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "Εκδηλώσεις και νέα προσβασιμότητας στα εισερχόμενά σας"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "Εγγραφείτε στη λίστα email της Equalize Digital για να αποκτήσετε πρόσβαση σε δωρεάν διαδικτυακά σεμινάρια προσβασιμότητας και εκπαιδευτικούς πόρους."
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "Email*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "Πληκτρολογήστε το email σας"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "Όνομα"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "Πληκτρολογήστε το όνομά σας"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Έλεγχος προσβασιμότητας &mdash; ιστορικό ελέγχου"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Ελεγκτής προσβασιμότητας &mdash; δωρεάν"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "Έκδοση"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "Έκδοση βάσης δεδομένων"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "Σελίδα πολιτικής"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "Μη ορισμένο"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "Ημερομηνία ενεργοποίησης"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "Δήλωση υποσέλιδου"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "Ενεργοποιημένο"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "Απενεργοποιημένο"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "Διαγραφή δεδομένων"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "Συμπερίληψη συνδέσμου δήλωσης"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "Τύποι δημοσιεύσεων"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "Θέση απλοποιημένης περίληψης"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "Προτροπή απλοποιημένης περίληψης"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "Αριθμός δημοσιεύσεων"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "Αριθμός σφαλμάτων"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "Αριθμός προειδοποιήσεων"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "Αριθμός πινάκων DB"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Ελεγκτής προσβασιμότητας &mdash; pro"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "Κατάσταση άδειας χρήσης"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "Όνομα χρήστη εξουσιοδότησης"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "Κωδικός πρόσβασης εξουσιοδότησης"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "Αναγνωριστικό σάρωσης"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "Σύνολο σάρωσης"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "Επικεφαλίδα απλοποιημένης περίληψης"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "Δικαιώματα αγνόησης"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "Κανένα"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "Αριθμός πινάκων DB αγνοημένων"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "%1$s χρησιμοποιεί το %2$s για την παρακολούθηση της προσβασιμότητας της ιστοσελίδας μας."
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "Έλεγχος Προσβασιμότητας (ανοίγει σε νέο παράθυρο)"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "Διαβάστε την %s"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "Πολιτική προσβασιμότητας"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "Απλοποιημένη περίληψη"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "Προσθήκη μεγέθους & τύπου στους συνδέσμους αρχείων"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "Προσθήκη πλαισίου στα συνδεδεμένα αρχεία"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "Προσθήκη μεγέθους & τύπου αρχείου στους συνδέσμους"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "Προσθέστε το μέγεθος και τον τύπο του αρχείου σε συνδεδεμένα αρχεία που ενδέχεται να ενεργοποιήσουν λήψη."
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "Προσθήκη ετικετών σε πεδία φόρμας χωρίς ετικέτα"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "Ετικέτες πεδίων φόρμας"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "Προσθέστε ετικέτες σε πεδία φόρμας χωρίς ετικέτα εάν μπορεί να προσδιοριστεί ο σκοπός του πεδίου."
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "Προσπάθεια προσθήκης ετικετών σε πεδία φόρμας που τους λείπουν. Σημείωση: Ίσως χρειαστεί να προσθέσετε προσαρμοσμένα στυλ που στοχεύουν την κλάση %1$s εάν η προσθήκη ετικετών επηρεάζει τη διάταξη των φορμών σας."
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "Προσθήκη ελλιπών ή κενών τίτλων σελίδας"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "Ορισμός Τίτλων HTML Σελίδας"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "Προσθήκη ελλιπούς τίτλου σελίδας"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "Προσθέστε μια ετικέτα %1$s στη σελίδα εάν λείπει ή είναι κενή."
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "Προσθήκη προειδοποίησης όταν ο σύνδεσμος ανοίγει νέα καρτέλα/παράθυρο"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "Προσθήκη ετικέτας σε συνδέσμους που ανοίγουν νέα καρτέλα/παράθυρο"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "Προσθέστε μια ετικέτα και ένα εικονίδιο σε συνδέσμους με %1$s που ενημερώνουν τους χρήστες ότι θα ανοίξει νέα καρτέλα/παράθυρο. %2$sΣημείωση: Αυτή η ρύθμιση δεν θα έχει αποτέλεσμα εάν είναι ενεργοποιημένη η διόρθωση “Αποκλεισμός Συνδέσμων που Ανοίγουν Νέα Παράθυρα”.%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "Αποκλεισμός Μεταφορτώσεων PDF"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "Περιορισμός μεταφορτώσεων PDF για χρήστες χωρίς τη δυνατότητα %1$s (επιτρέπεται για διαχειριστές από προεπιλογή)."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "Προσθήκη ετικετών σε φόρμες σχολίων και αναζήτησης"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "Ετικέτες πεδίων σχολίων/αναζήτησης"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "Ετικέτες φόρμας σχολίων και αναζήτησης"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "Προσθέστε ετικέτες που λείπουν στις φόρμες σχολίων και αναζήτησης του WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "Ετικέτα φόρμας σχολίων"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "Προσθέστε ετικέτες που λείπουν στη φόρμα σχολίων του WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "Ετικέτα φόρμας αναζήτησης"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "Προσθέστε μια ετικέτα που λείπει στη φόρμα αναζήτησης του WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "Σχόλιο"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "Όνομα"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "Email"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "Ιστότοπος"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "Αναζήτηση …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "Αναζήτηση για:"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "Αναζήτηση"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "Ρυθμίσεις για την προσθήκη ετικετών που λείπουν στις φόρμες σχολίων και αναζήτησης του WordPress."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "Προσθήκη περιγράμματος εστίασης"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "Περίγραμμα εστίασης"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "Προσθέστε ένα περίγραμμα στα στοιχεία όταν λαμβάνουν εστίαση από το πληκτρολόγιο."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "Προσθήκη περιγράμματος εστίασης"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "Ρυθμίσεις σχετικά με τη βελτίωση των περιγραμμάτων εστίασης για καλύτερη προσβασιμότητα μέσω πληκτρολογίου."
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "Προσθήκη χαρακτηριστικών lang & dir"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "Ορισμός γλώσσας σελίδας"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "Προσθήκη χαρακτηριστικών “lang” & “dir”"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "Προσθέστε τα χαρακτηριστικά γλώσσας του ιστότοπου (%1$s) και κατεύθυνσης κειμένου (%2$s) στο στοιχείο %3$s."
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "Προσθήκη υπογράμμισης σε όλους τους συνδέσμους εκτός πλοήγησης"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "Υπογράμμιση συνδέσμων"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "Επιβολή υπογράμμισης συνδέσμων"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "Βεβαιωθείτε ότι οι σύνδεσμοι εκτός πλοήγησης είναι υπογραμμισμένοι."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "Κάντε την ετικέτα meta viewport κλιμακούμενη"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "Εξασφαλίστε κλιμακούμενο viewport"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "Βεβαιωθείτε ότι η ετικέτα viewport στη σελίδα επιτρέπει την κλιμάκωση."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "Κάντε το viewport κλιμακούμενο"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "Βεβαιωθείτε ότι η ετικέτα viewport επιτρέπει την κλιμάκωση, βελτιώνοντας την προσβασιμότητα σε κινητές συσκευές."
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "Αποτροπή ανοίγματος συνδέσμων σε νέα παράθυρα"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "Αποκλεισμός συνδέσμων που ανοίγουν νέα παράθυρα"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "Αποτρέψτε τους συνδέσμους από το να ανοίγουν σε νέο παράθυρο ή καρτέλα αφαιρώντας το %1$s."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "Προσθήκη συνδέσμου “Διαβάστε” με τον τίτλο του άρθρου"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "Προσθήκη τίτλου στο σύνδεσμο διαβάστε περισσότερα"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "Σύνδεσμοι Διαβάστε Περισσότερα"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "Προσθήκη του τίτλου του άρθρου και συνδέσμων "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "Προσθήκη τίτλου άρθρου στο “Διαβάστε Περισσότερα”"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "Προσθέστε τον τίτλο του άρθρου στους συνδέσμους “Διαβάστε Περισσότερα” στις λίστες άρθρων όταν το θέμα σας εμφανίζει αυτούς τους συνδέσμους."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "Μόνο για αναγνώστες οθόνης"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "Κάνει τον τίτλο του άρθρου που προστίθεται στους συνδέσμους “Διαβάστε Περισσότερα” ορατό μόνο στους αναγνώστες οθόνης."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "Αυτή η διόρθωση προσθέτει τον τίτλο του άρθρου στους συνδέσμους “Διαβάστε Περισσότερα” στις λίστες άρθρων στο μπλοκ “Περισσότερα” και στις περιλήψεις."
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "Προτίμηση προσβάσιμου χαρακτηριστικού ετικέτας"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "Αφαίρεση περιττών χαρακτηριστικών τίτλου"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "Αφαίρεση χαρακτηριστικών τίτλου"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "Αφαιρέστε τα χαρακτηριστικά %1$s από στοιχεία που έχουν ήδη ένα προτιμώμενο προσβάσιμο όνομα."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "Προσθήκη συνδέσμων παράλειψης"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "Σύνδεσμος παράλειψης"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "Ενεργοποίηση συνδέσμου παράλειψης"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "Προσθέστε ένα σύνδεσμο παράλειψης σε όλες τις σελίδες του ιστότοπου, επιτρέποντας στους χρήστες να μεταβούν απευθείας στο κύριο περιεχόμενο."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "Στόχος κύριου περιεχομένου (απαιτείται)"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "Ορίστε το(α) ID της(των) κύριας(ων) περιοχής(ών) περιεχομένου που θα στοχεύονται από τους συνδέσμους παράλειψης. Εισαγάγετε πολλαπλά ID διαχωρισμένα με κόμματα· το σύστημα θα περάσει διαδοχικά από τη λίστα για να βρει το κατάλληλο για κάθε σελίδα."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "Στόχος πλοήγησης"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "Ορίστε το χαρακτηριστικό ID του στοιχείου πλοήγησης. Αυτό είναι χρήσιμο αν η κύρια πλοήγησή σας περιέχει ενέργειες που οι περισσότεροι επισκέπτες του ιστότοπου θα ήθελαν να κάνουν, όπως σύνδεση ή χαρακτηριστικά αναζήτησης."
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "Εάν το θέμα σας δεν προσθέτει ήδη ένα σύνδεσμο παράλειψης που επιτρέπει στους χρήστες πληκτρολογίου να παρακάμψουν την πλοήγηση και να μεταβούν γρήγορα στο κύριο περιεχόμενο, ενεργοποιήστε τους συνδέσμους παράλειψης εδώ. %1$sΜάθετε περισσότερα για τους συνδέσμους παράλειψης.%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "Μετάβαση στο περιεχόμενο"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "Μετάβαση στην πλοήγηση"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "Αφαίρεση tabindex από εστιάσιμα στοιχεία"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "Αφαίρεση δείκτη καρτέλας"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "Αφαιρέστε το χαρακτηριστικό %1$s από εστιάσιμα στοιχεία."
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "Σημείωση: Αυτή η ρύθμιση δεν συνιστάται για θέματα που είναι ήδη έτοιμα για προσβασιμότητα."
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "Η διόρθωση δεν βρέθηκε"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "Αποτυχία εγγραφής της εντολής %1$s επειδή %2$s"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "Το ID του άρθρου για το οποίο θα διαγραφούν τα στατιστικά."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "Δεν δόθηκε ID άρθρου."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "Το ID άρθρου %1$s δεν υπάρχει."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "Τα στατιστικά του %1$s διαγράφηκαν."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "Κλειδιά που θα εμφανιστούν στα αποτελέσματα. Προεπιλογή σε όλα τα κλειδιά."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "Εκκαθάριση της προσωρινής μνήμης πριν την ανάκτηση των στατιστικών (μπορεί να είναι εντατική)."
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "Το κλειδί στατιστικών: %1$s δεν βρέθηκε στα στατιστικά."
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "Το ID του άρθρου για το οποίο θα ληφθούν τα στατιστικά."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "Το ID άρθρου %1$d δεν υπάρχει."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "Είτε το άρθρο δεν έχει σαρωθεί ακόμα είτε όλοι οι έλεγχοι πέρασαν για το ID άρθρου %1$d."
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "μόνιμος σύνδεσμος του "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "μόνιμος σύνδεσμος προς "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "Παρακολουθήστε δωρεάν"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "Καλώς ήρθατε στον έλεγχο προσβασιμότητας"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "Ρυθμίσεις ελέγχου προσβασιμότητας"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "Γενικές ρυθμίσεις"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "Ρυθμίσεις απλοποιημένης περίληψης"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "Δήλωση προσβασιμότητας υποσέλιδου"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "Έλεγχος προσβασιμότητας εμπρόσθιου μέρους"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "Τύποι άρθρων προς έλεγχο"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "Προτροπή για απλοποιημένη περίληψη"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "Θέση απλοποιημένης περίληψης"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "Προσθήκη δήλωσης προσβασιμότητας στο υποσέλιδο"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "Συμπερίληψη συνδέσμου προς την πολιτική προσβασιμότητας"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "Σελίδα πολιτικής προσβασιμότητας"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "Προεπισκόπηση δήλωσης προσβασιμότητας"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "Θέση ελέγχου προσβασιμότητας εμπρόσθιου μέρους"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "Χρησιμοποιήστε τις παρακάτω ρυθμίσεις για να διαμορφώσετε τον Έλεγχο Προσβασιμότητας. Πρόσθετες πληροφορίες για κάθε ρύθμιση μπορούν να βρεθούν στο %1$s."
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "τεκμηρίωση του πρόσθετου (ανοίγει σε νέο παράθυρο)"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "τεκμηρίωση του πρόσθετου"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "Περισσότερες λειτουργίες και υποστήριξη μέσω email είναι διαθέσιμα με %1$s."
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Accessibility Checker Pro (ανοίγει σε νέο παράθυρο)"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Accessibility checker pro"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "Χρησιμοποιήστε τις παρακάτω ρυθμίσεις για να διαμορφώσετε τον έλεγχο προσβασιμότητας στο frontend."
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "Οι Οδηγίες για την Προσβασιμότητα του Περιεχομένου Ιστού (WCAG) σε επίπεδο AAA απαιτούν οποιοδήποτε περιεχόμενο με επίπεδο ανάγνωσης πάνω από την 9η τάξη να έχει μια εναλλακτική που είναι πιο εύκολη στην ανάγνωση. Το απλοποιημένο κείμενο περίληψης προστίθεται στην καρτέλα αναγνωσιμότητας στο πλαίσιο μετα-πληροφοριών του Accessibility Checker στην οθόνη επεξεργασίας κάθε άρθρου ή σελίδας."
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "Μάθετε περισσότερα για τις απλοποιημένες περιλήψεις και τις απαιτήσεις αναγνωσιμότητας (ανοίγει σε νέο παράθυρο)"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "Μάθετε περισσότερα για τις απλοποιημένες περιλήψεις και τις απαιτήσεις αναγνωσιμότητας."
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "Σκέφτεστε “Ουάου, αυτό το πρόσθετο είναι καταπληκτικό” και σας βοηθάει να κάνετε τον ιστότοπό σας πιο προσβάσιμο; Μοιραστείτε τις προσπάθειές σας να κάνετε τον ιστότοπό σας πιο προσβάσιμο με τους πελάτες σας και ενημερώστε τους ότι χρησιμοποιείτε το Accessibility Checker για να διασφαλίσετε ότι όλοι οι άνθρωποι μπορούν να χρησιμοποιήσουν τον ιστότοπό σας. Προσθέστε έναν μικρό σύνδεσμο μόνο κειμένου και μια δήλωση στο υποσέλιδο του ιστοτόπου σας."
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "Πριν το περιεχόμενο"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "Μετά το περιεχόμενο"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "Χειροκίνητη εισαγωγή"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "Χρησιμοποιήστε αυτή τη λειτουργία για να προσθέσετε χειροκίνητα την απλοποιημένη περίληψη στο θέμα σας εντός του βρόχου."
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "Η συνάρτηση προαιρετικά δέχεται το ID του άρθρου ως παράμετρο."
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "Ορίστε πού θέλετε να εμφανίζονται οι απλοποιημένες περιλήψεις σε σχέση με το περιεχόμενό σας, εάν έχουν συμπληρωθεί."
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "Κάτω δεξιά γωνία (προεπιλογή)"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "Κάτω αριστερή γωνία"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "Ορίστε πού θέλετε να εμφανίζεται ο έλεγχος προσβασιμότητας frontend στη σελίδα."
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "Όταν απαιτείται"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "Πάντα"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Πρέπει το Accessibility Checker να ζητά απλοποιημένη περίληψη μόνο όταν το επίπεδο ανάγνωσης του άρθρου ή της σελίδας σας είναι πάνω από την 9η τάξη, να τη ζητά πάντα ανεξάρτητα από το επίπεδο ανάγνωσης, ή να μην τη ζητά ποτέ ανεξάρτητα από το επίπεδο ανάγνωσης;?"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "Για να ελέγξετε περιεχόμενο εκτός από άρθρα και σελίδες, παρακαλούμε "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " (ανοίγει σε νέο παράθυρο)"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "Επιλέξτε ποιοι τύποι άρθρων πρέπει να ελέγχονται κατά τη διάρκεια μιας σάρωσης. Παρακαλούμε σημειώστε ότι η αφαίρεση ενός προηγουμένως επιλεγμένου τύπου άρθρου θα αφαιρέσει τις σαρωμένες πληροφορίες του και τυχόν προσαρμοσμένες αγνοημένες προειδοποιήσεις που έχουν ρυθμιστεί."
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "Διαγραφή όλων των δεδομένων του Accessibility Checker κατά την απεγκατάσταση του πρόσθετου."
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "Εικόνα χωρίς εναλλακτικό κείμενο"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "Ένα σφάλμα Εικόνας Χωρίς Εναλλακτικό Κείμενο σημαίνει ότι η εικόνα σας δεν έχει καθόλου χαρακτηριστικό alt (%1$s) στην ετικέτα της εικόνας (%2$s). Για να διορθώσετε ένα σφάλμα Εικόνας Χωρίς Εναλλακτικό Κείμενο, θα πρέπει να προσθέσετε μια ετικέτα alt στην εικόνα με κατάλληλο κείμενο που περιγράφει το σκοπό της εικόνας στη σελίδα. Εάν η εικόνα είναι διακοσμητική, το χαρακτηριστικό alt μπορεί να είναι κενό, αλλά η ετικέτα HTML %1$s πρέπει να υπάρχει."
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "Εικόνα με κενό εναλλακτικό κείμενο"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "Μια προειδοποίηση Εικόνας με Κενό Εναλλακτικό Κείμενο εμφανίζεται αν έχετε μια εικόνα με ένα χαρακτηριστικό alt (%s) που είναι κενό. Το εναλλακτικό κείμενο ενημερώνει τα άτομα που δεν μπορούν να δουν τι είναι η εικόνα και προσθέτει επιπλέον πλαίσιο στο άρθρο ή τη σελίδα. Είναι σωστό το εναλλακτικό κείμενο να είναι κενό μόνο αν η εικόνα είναι καθαρά διακοσμητική, όπως ένα περίγραμμα ή ένα διακοσμητικό εικονίδιο. Για να διορθώσετε μια προειδοποίηση Εικόνας με Κενό Εναλλακτικό Κείμενο, πρέπει να προσδιορίσετε αν η εικόνα είναι διακοσμητική ή αν προσθέτει κάτι ουσιαστικό στη σελίδα. Αν δεν είναι διακοσμητική, πρέπει να προσθέσετε κατάλληλο εναλλακτικό κείμενο για να περιγράψετε το σκοπό της εικόνας. Αν η εικόνα είναι διακοσμητική, τότε θα αφήνατε το εναλλακτικό κείμενο κενό και θα “Αγνοούσατε” την προειδοποίηση."
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "Χαμηλής ποιότητας εναλλακτικό κείμενο"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "Μια προειδοποίηση εναλλακτικού κειμένου χαμηλής ποιότητας εμφανίζεται όταν το εναλλακτικό κείμενο σε μια εικόνα περιέχει λέξεις-κλειδιά που είναι περιττές σε εναλλακτικό κείμενο (όπως “εικόνα” ή “γραφικό”), μια επέκταση αρχείου (όπως.JPG), που μπορεί να περιγράφει μια διακοσμητική εικόνα (όπως “διαχωριστικό” ή “βέλος”). Για να διορθώσετε αυτή την προειδοποίηση, θα χρειαστεί να ξαναγράψετε το εναλλακτικό κείμενο για όλες τις εικόνες που εμφάνισαν την προειδοποίηση εναλλακτικού κειμένου χαμηλής ποιότητας, διασφαλίζοντας ότι το εναλλακτικό κείμενο είναι ακριβές, μοναδικό, κατάλληλο για το πλαίσιο και δεν περιέχει περιττούς ή άσκοπους περιγραφείς. Εάν η εικόνα είναι καθαρά διακοσμητική, είναι σωστό να αφήσετε το εναλλακτικό κείμενο κενό."
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "Συνδεδεμένη εικόνα που λείπει το εναλλακτικό κείμενο"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Ένα σφάλμα Συνδεδεμένης Εικόνας που Λείπει το Εναλλακτικό Κείμενο εμφανίζεται όταν μια εικόνα που είναι συνδεδεμένη με ένα URL δεν έχει καθόλου χαρακτηριστικό alt (%s) στην ετικέτα της εικόνας. Οι συνδεδεμένες εικόνες πρέπει να έχουν ακριβές εναλλακτικό κείμενο που περιγράφει πού οδηγεί ο σύνδεσμος, ώστε οι χρήστες αναγνωστών οθόνης να γνωρίζουν πού δείχνει ο σύνδεσμος. Για να επιλύσετε αυτό το σφάλμα, πρέπει να προσθέσετε ουσιαστικό εναλλακτικό κείμενο στην εικόνα. Το εναλλακτικό κείμενό σας θα πρέπει να περιγράφει τον σκοπό του συνδέσμου και όχι το πώς φαίνεται η εικόνα."
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "Συνδεδεμένη εικόνα με κενό εναλλακτικό κείμενο"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Ένα σφάλμα Συνδεδεμένης Εικόνας με Κενό Εναλλακτικό Κείμενο εμφανίζεται όταν μια εικόνα που είναι συνδεδεμένη με ένα URL έχει ένα χαρακτηριστικό alt (%s) χωρίς περιεχόμενο. Οι συνδεδεμένες εικόνες πρέπει να έχουν ακριβές εναλλακτικό κείμενο που περιγράφει πού οδηγεί ο σύνδεσμος, ώστε οι χρήστες αναγνωστών οθόνης να γνωρίζουν πού δείχνει ο σύνδεσμος. Για να επιλύσετε αυτό το σφάλμα, πρέπει να προσθέσετε ουσιαστικό εναλλακτικό κείμενο στην εικόνα. Το εναλλακτικό κείμενό σας θα πρέπει να περιγράφει τον σκοπό του συνδέσμου και όχι το πώς φαίνεται η εικόνα."
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "Διπλότυπο εναλλακτικό κείμενο"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "Οι προειδοποιήσεις Διπλότυπου Εναλλακτικού Κειμένου εμφανίζονται όταν το εναλλακτικό κείμενο για μια εικόνα στην ανάρτηση ή τη σελίδα σας είναι πανομοιότυπο με κοντινό ή παρακείμενο κείμενο, συμπεριλαμβανομένου του τίτλου ή της λεζάντας της εικόνας. Αυτή η προειδοποίηση εμφανίζεται επίσης αν δύο εικόνες στη σελίδα έχουν το ίδιο εναλλακτικό κείμενο. Για να επιλύσετε αυτή την προειδοποίηση, θα χρειαστεί να αλλάξετε το κείμενο είτε του ενός είτε και των δύο στοιχείων που εμφάνισαν την προειδοποίηση Διπλότυπου Εναλλακτικού Κειμένου, διασφαλίζοντας ότι όλες οι εικόνες έχουν μοναδικό εναλλακτικό κείμενο και ότι δεν επαναλαμβάνετε το εναλλακτικό κείμενο στους τίτλους και τις λεζάντες των εικόνων σας."
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "Λανθασμένη σειρά επικεφαλίδων"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "Ένα σφάλμα Λανθασμένης Σειράς Επικεφαλίδων σημαίνει ότι η δομή των επικεφαλίδων σας έχει παραλείψει ένα επίπεδο. Για παράδειγμα, εάν η δομή της σελίδας σας έχει μια επικεφαλίδα επιπέδου 3 (%1$s) κάτω από μια επικεφαλίδα επιπέδου 1 (%2$s), θα επισημανθεί ένα σφάλμα “Λανθασμένης Σειράς Επικεφαλίδων” επειδή δεν υπάρχει ετικέτα %3$s μεταξύ του H1 και του H3. Για να διορθώσετε τα σφάλματα λανθασμένης σειράς επικεφαλίδων, θα πρέπει είτε να αλλάξετε το λανθασμένο επίπεδο επικεφαλίδας στο σωστό επίπεδο επικεφαλίδας, είτε να προσθέσετε περιεχόμενο με το σωστό επίπεδο επικεφαλίδας μεταξύ των δύο ήδη υπαρχόντων επιπέδων."
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "Κενή ετικέτα παραγράφου"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "Μια προειδοποίηση Κενής Ετικέτας Παραγράφου σημαίνει ότι υπάρχει μια ετικέτα παραγράφου που δεν περιέχει περιεχόμενο. Αυτές μπορεί να ανακοινωθούν από αναγνώστες οθόνης ή να δημιουργήσουν σύγχυση στους χρήστες. Για να διορθώσετε αυτή την προειδοποίηση, αφαιρέστε τις κενές παραγράφους από τη σελίδα. Εάν χρειάζεστε να προσθέσετε κενό μεταξύ των ενοτήτων, αυτό θα πρέπει να γίνει με padding, margins ή ένα μπλοκ διαχωρισμού."
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "iframe χωρίς τίτλο"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "Ένα σφάλμα iframe χωρίς τίτλο σημαίνει ότι ένα ή περισσότερα από τα iframes στην ανάρτηση ή τη σελίδα σας δεν έχουν προσβάσιμο τίτλο που να περιγράφει το περιεχόμενο του iframe. Ο τίτλος ενός iframe είναι ένα χαρακτηριστικό που μπορεί να προστεθεί στην ετικέτα %1$s για να περιγράψει το περιεχόμενο του πλαισίου σε άτομα που χρησιμοποιούν υποστηρικτική τεχνολογία. Για να διορθώσετε ένα iframe χωρίς τίτλο, θα πρέπει να προσθέσετε ένα χαρακτηριστικό τίτλου ή aria-label στην ετικέτα %1$s. Το χαρακτηριστικό θα πρέπει να περιγράφει με ακρίβεια το περιεχόμενο του iframe."
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "Λείπουν υποεπικεφαλίδες"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "Μια προειδοποίηση για απουσία επικεφαλίδων σημαίνει ότι η ανάρτηση ή η σελίδα σας δεν περιέχει στοιχεία επικεφαλίδων (%1$s–%2$s) μέσα στο περιεχόμενο του σώματος της ανάρτησης ή της σελίδας, γεγονός που μπορεί να καταστήσει ιδιαίτερα δύσκολη την πλοήγηση μέσα στο περιεχόμενο της σελίδας για τους χρήστες προγραμμάτων ανάγνωσης οθόνης. Για να διορθώσετε μια σελίδα χωρίς επικεφαλίδες, θα πρέπει να προσθέσετε στοιχεία επικεφαλίδων. Κατ' ελάχιστο, κάθε σελίδα θα πρέπει να έχει μία ετικέτα %1$s, η οποία είναι συνήθως ο τίτλος της σελίδας. Προσθέστε επιπλέον υποεπικεφαλίδες όπως αρμόζει στο περιεχόμενό σας. Αν έχετε αποφασίσει ότι σίγουρα δεν χρειάζονται επικεφαλίδες στη σελίδα, τότε μπορείτε να “Αγνοήσετε” την προειδοποίηση."
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "Πλήρης στοίχιση κειμένου"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "Μια προειδοποίηση Πλήρους Στοίχισης Κειμένου εμφανίζεται στον Έλεγχο Προσβασιμότητας όταν το κείμενο με περισσότερους από 200 χαρακτήρες στην ανάρτηση ή τη σελίδα σας έχει μορφοποιηθεί με πλήρη στοίχιση (text-align:justify). Για να διορθώσετε αυτήν την προειδοποίηση, αφαιρέστε τη μορφοποίηση πλήρους στοίχισης από τα συγκεκριμένα στοιχεία κειμένου."
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "Ο σύνδεσμος ανοίγει νέο παράθυρο ή καρτέλα"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "Μια προειδοποίηση Ο Σύνδεσμος Ανοίγει Νέο Παράθυρο ή Καρτέλα εμφανίζεται όταν υπάρχει ένας σύνδεσμος στον ιστότοπό σας που έχει ρυθμιστεί να ανοίγει σε νέα καρτέλα ή παράθυρο όταν γίνεται κλικ. Θεωρείται βέλτιστη πρακτική να μην ανοίγουν νέες καρτέλες ή παράθυρα με συνδέσμους. Εάν οι σύνδεσμοι ανοίγουν νέες καρτέλες ή παράθυρα, πρέπει να υπάρχει οπτική και ακουστική προειδοποίηση που να ανακοινώνει ότι ο σύνδεσμος θα ανοίξει ένα νέο παράθυρο ή καρτέλα, ώστε οι χρήστες να αναμένουν αυτήν τη συμπεριφορά και να ξέρουν πώς να επιστρέψουν μετά το κλικ στον σύνδεσμο. Για να διορθώσετε αυτήν την προειδοποίηση, είτε αλλάξτε τον σύνδεσμο ώστε να μην ανοίγει σε νέα καρτέλα είτε βεβαιωθείτε ότι η φράση “ανοίγει νέο παράθυρο” περιλαμβάνεται στο κείμενο του συνδέσμου και στη συνέχεια “Αγνοήστε” την προειδοποίηση. Για να προσθέσετε αυτόματα ειδοποιήσεις σε όλους τους συνδέσμους στον ιστότοπό σας και να απορρίψετε όλες αυτές τις προειδοποιήσεις, εγκαταστήστε το δωρεάν πρόσθετο %s."
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "Προειδοποιήσεις προσβασιμότητας για νέο παράθυρο"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "Ο χάρτης εικόνας δεν έχει εναλλακτικό κείμενο"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "Το σφάλμα Ο Χάρτης Εικόνας Δεν Έχει Εναλλακτικό Κείμενο σημαίνει ότι ένα από τα στοιχεία %1$s μέσα στον χάρτη εικόνας σας δεν έχει εναλλακτικό κείμενο προστεθειμένο σε ένα χαρακτηριστικό %2$s. Για να διορθώσετε αυτό το σφάλμα, θα πρέπει να προσθέσετε το εναλλακτικό κείμενο που λείπει σε οποιεσδήποτε ετικέτες περιοχής που δεν έχουν εναλλακτικό κείμενο. Το εναλλακτικό κείμενο πρέπει να περιγράφει τη λειτουργία του συνδέσμου που περιέχεται στην περιοχή, όχι απαραίτητα να περιγράφει πώς φαίνεται η περιοχή."
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "Τροποποιημένη σειρά καρτελών"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "Μια Προειδοποίηση Τροποποιημένης Σειράς Καρτελών εμφανίζεται όταν η λογική σειρά καρτελών στη σελίδα έχει αλλάξει με την προσθήκη ενός χαρακτηριστικού για tabindex που είναι μεγαλύτερο από 0 σε ένα στοιχείο HTML (για παράδειγμα, %s). Αυτό μπορεί να προκαλέσει προβλήματα πλοήγησης για χρήστες που χρησιμοποιούν μόνο πληκτρολόγιο. Για να επιλύσετε μια προειδοποίηση Τροποποιημένης Σειράς Καρτελών, πρέπει να δείτε το front end του ιστότοπού σας στη σελίδα ή την ανάρτηση όπου έχει τροποποιηθεί η σειρά των καρτελών και να ελέγξετε αν η τροποποίηση είναι σωστή ή όχι. Εάν η τροποποίηση της σειράς των καρτελών δεν προκαλεί προβλήματα, τότε μπορείτε να “Αγνοήσετε” την προειδοποίηση. Εάν η τροποποιημένη σειρά καρτελών προκαλεί παρουσίαση πληροφοριών εκτός σειράς, τότε πρέπει να αφαιρέσετε το χαρακτηριστικό tabindex από το επισημασμένο στοιχείο."
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "Κενή ετικέτα επικεφαλίδας"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "Ένα σφάλμα Κενής Ετικέτας Επικεφαλίδας σημαίνει ότι υπάρχει μια ετικέτα επικεφαλίδας στην ανάρτηση ή τη σελίδα σας που δεν περιέχει περιεχόμενο. Στον κώδικα, αυτό το σφάλμα θα έμοιαζε έτσι: %s. Για να διορθώσετε μια κενή επικεφαλίδα, θα πρέπει είτε να προσθέσετε περιεχόμενο στην ετικέτα επικεφαλίδας που έχει επισημανθεί με το σφάλμα Κενής Ετικέτας Επικεφαλίδας είτε να αφαιρέσετε την κενή ετικέτα αν δεν χρειάζεται στη σελίδα σας."
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "Κενός σύνδεσμος"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "Το σφάλμα Κενός Σύνδεσμος σημαίνει ότι ένας από τους συνδέσμους που υπάρχουν στην ιστοσελίδα είναι κενός ή δεν περιέχει κείμενο που περιγράφει πού θα οδηγήσει ο σύνδεσμος αν κάνετε κλικ. Αυτό συμβαίνει συνήθως με συνδέσμους που περιέχουν webfonts, icon fonts και SVGs, ή όταν έχει δημιουργηθεί κατά λάθος ένας σύνδεσμος στον επεξεργαστή περιεχομένου. Για να διορθώσετε ένα σφάλμα κενού συνδέσμου, θα πρέπει να βρείτε τον σύνδεσμο που επισημαίνεται και να προσθέσετε περιγραφικό κείμενο σε αυτόν. Θα πρέπει είτε: να προσθέσετε περιεχόμενο κειμένου μέσα σε ένα κενό στοιχείο %1$s ή, αν ο σύνδεσμός σας περιέχει ένα εικονίδιο SVG ή Webfont, να αποκρύψετε αυτό το στοιχείο με %2$s και να προσθέσετε ένα χαρακτηριστικό %3$s στην ετικέτα %1$s ή κείμενο για αναγνώστη οθόνης. Το κείμενο ή η ετικέτα που προσθέτετε θα πρέπει να είναι περιγραφικό για το πού οδηγεί ο σύνδεσμος και όχι ασαφές."
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "Κενό κουμπί"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "Ένα σφάλμα Κενό Κουμπί σημαίνει ότι ένα από τα κουμπιά που υπάρχουν στην ιστοσελίδα είναι κενό ή δεν περιέχει κείμενο που περιγράφει τη λειτουργία του κουμπιού. Ή, αν πρόκειται για κουμπί εικόνας, η εικόνα που περιέχεται στο κουμπί δεν έχει εναλλακτικό κείμενο. Για να διορθώσετε ένα σφάλμα κενού κουμπιού, θα πρέπει να βρείτε το κουμπί που επισημαίνεται και να προσθέσετε περιγραφικό κείμενο σε αυτό. Θα πρέπει είτε: να προσθέσετε περιεχόμενο κειμένου μέσα σε ένα κενό στοιχείο %1$s, να προσθέσετε ένα χαρακτηριστικό value σε ένα %2$s που λείπει, ή να προσθέσετε εναλλακτικό κείμενο σε μια εικόνα κουμπιού. Το κείμενο θα πρέπει να είναι περιγραφικό για οτιδήποτε χρησιμοποιείται το κουμπί σας ή για την ενέργεια που ενεργοποιεί το κουμπί."
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "Εκτενές εναλλακτικό κείμενο εικόνας"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "Μια προειδοποίηση Εκτενούς Εναλλακτικού Κειμένου Εικόνας εμφανίζεται αν υπάρχουν περισσότεροι από 100 χαρακτήρες στο εναλλακτικό σας κείμενο. Το εναλλακτικό κείμενο προορίζεται να είναι περιγραφικό της εικόνας αλλά με συνοπτικό τρόπο, χωρίς να είναι πολύ φλύαρο. Για να διορθώσετε αυτήν την προειδοποίηση, πρέπει να συντομεύσετε το εναλλακτικό κείμενο για όλες τις εικόνες που έχουν επισημανθεί σε 100 χαρακτήρες ή λιγότερο. Αν έχετε καθορίσει ότι το εναλλακτικό σας κείμενο είναι καλό ως έχει, τότε “Αγνοήστε” την προειδοποίηση."
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Hidden"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "Η προειδοποίηση ARIA Hidden εμφανίζεται όταν το περιεχόμενο στην ανάρτηση ή τη σελίδα σας έχει αποκρυφτεί χρησιμοποιώντας το χαρακτηριστικό aria-hidden=“true”. Όταν αυτό το χαρακτηριστικό προστίθεται σε ένα στοιχείο HTML, οι αναγνώστες οθόνης δεν θα το διαβάσουν στους χρήστες. Μερικές φορές είναι σωστό το στοιχείο να είναι κρυμμένο από τους αναγνώστες οθόνης (όπως με ένα διακοσμητικό εικονίδιο) αλλά άλλες φορές αυτό δεν είναι σωστό. Όταν βλέπετε αυτή την προειδοποίηση, πρέπει να καθορίσετε αν το στοιχείο υποτίθεται ότι πρέπει να είναι κρυμμένο από άτομα που είναι τυφλά ή έχουν προβλήματα όρασης. Αν είναι σωστά κρυμμένο, “Αγνοήστε” την προειδοποίηση. Αν είναι λανθασμένα κρυμμένο και θα έπρεπε να είναι ορατό, αφαιρέστε το χαρακτηριστικό aria-hidden=“true” για να επιλύσετε την προειδοποίηση."
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "Κενή επικεφαλίδα πίνακα"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "Ένα σφάλμα Κενή Επικεφαλίδα Πίνακα σημαίνει ότι μία από τις επικεφαλίδες πίνακα στην ανάρτηση ή τη σελίδα σας δεν περιέχει κανένα κείμενο. Αυτό σημαίνει ότι το στοιχείο %1$s υπάρχει αλλά μοιάζει με αυτό %2$s χωρίς τίποτα μεταξύ των ετικετών ανοίγματος και κλεισίματος. Για να διορθώσετε μια κενή επικεφαλίδα πίνακα, πρέπει να βρείτε το σωστό στοιχείο HTML (%1$s) και να προσθέσετε κείμενο σε αυτό που περιγράφει τη γραμμή ή τη στήλη στην οποία αναφέρεται."
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "Σύνδεσμος σε αρχείο MS Office"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Μια προειδοποίηση Σύνδεσμος σε αρχείο MS Office σημαίνει ότι ένας ή περισσότεροι από τους συνδέσμους στη σελίδα ή την ανάρτησή σας κατευθύνουν σε ένα αρχείο με μία από τις ακόλουθες επεκτάσεις αρχείων: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps ή.ppsx. Αυτή η προειδοποίηση εμφανίζεται όταν υπάρχει ένα αρχείο MS Office ως υπενθύμιση για να ελέγξετε χειροκίνητα τα έγγραφα Word, τις παρουσιάσεις PowerPoint και τα υπολογιστικά φύλλα Excel για προσβασιμότητα και να επιβεβαιώσετε ότι συμμορφώνονται με όλες τις σχετικές οδηγίες WCAG. Για να επιλύσετε μια προειδοποίηση Σύνδεσμος σε αρχείο MS Office, πρέπει να: (1) βεβαιωθείτε ότι υπάρχει ένας άμεσος σύνδεσμος για προβολή ή λήψη του εγγράφου αν χρησιμοποιείτε ένα πρόσθετο για ενσωμάτωσή του στη σελίδα· (2) βεβαιωθείτε ότι ο σύνδεσμος προς το έγγραφο προειδοποιεί τους χρήστες ότι είναι σύνδεσμος προς ένα έγγραφο εμφανίζοντας τη συγκεκριμένη επέκταση αρχείου στην άγκυρα του συνδέσμου· και (3) ελέγξτε και διορθώστε το αρχείο MS Office σας για σφάλματα προσβασιμότητας. Αφού καθορίσετε ότι το αρχείο σας είναι πλήρως προσβάσιμο, μπορείτε με ασφάλεια να “Αγνοήσετε” την προειδοποίηση."
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "Σύνδεσμος προς PDF"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Μια προειδοποίηση Σύνδεσμος προς PDF σημαίνει ότι ένας ή περισσότεροι σύνδεσμοι στη σελίδα ή την ανάρτησή σας οδηγούν σε ένα αρχείο PDF. Αυτή η προειδοποίηση είναι μια υπενθύμιση για να ελέγξετε χειροκίνητα την προσβασιμότητα του συνδεδεμένου PDF και να επιβεβαιώσετε ότι συμμορφώνεται με όλες τις σχετικές οδηγίες WCAG. Για να επιλύσετε μια προειδοποίηση Σύνδεσμος προς PDF, πρέπει να: (1) βεβαιωθείτε ότι υπάρχει ένας άμεσος σύνδεσμος για προβολή ή λήψη του εγγράφου, εάν χρησιμοποιείτε ένα πρόσθετο για να το ενσωματώσετε στη σελίδα, (2) βεβαιωθείτε ότι ο σύνδεσμος προς το έγγραφο προειδοποιεί τους χρήστες ότι πρόκειται για σύνδεσμο προς ένα έγγραφο εμφανίζοντας την συγκεκριμένη επέκταση αρχείου στο κείμενο του συνδέσμου, και (3) ελέγξετε και διορθώσετε το έγγραφό σας για σφάλματα προσβασιμότητας. Αφού διαπιστώσετε ότι το αρχείο σας είναι πλήρως προσβάσιμο, μπορείτε με ασφάλεια να “Αγνοήσετε” την προειδοποίηση."
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "Σύνδεσμος προς μη HTML αρχείο"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Μια προειδοποίηση Σύνδεσμος προς μη HTML έγγραφο σημαίνει ότι ένας ή περισσότεροι σύνδεσμοι στη σελίδα ή την ανάρτησή σας οδηγούν σε ένα αρχείο με μία από τις ακόλουθες επεκτάσεις: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, ή.key. Αυτή η προειδοποίηση είναι μια υπενθύμιση για να ελέγξετε χειροκίνητα την προσβασιμότητα του συνδεδεμένου εγγράφου και να επιβεβαιώσετε ότι συμμορφώνεται με όλες τις σχετικές οδηγίες WCAG. Για να επιλύσετε μια προειδοποίηση Σύνδεσμος προς μη HTML έγγραφο, πρέπει να: (1) βεβαιωθείτε ότι υπάρχει ένας άμεσος σύνδεσμος για προβολή ή λήψη του εγγράφου, εάν χρησιμοποιείτε ένα πρόσθετο για να το ενσωματώσετε στη σελίδα, (2) βεβαιωθείτε ότι ο σύνδεσμος προς το έγγραφο προειδοποιεί τους χρήστες ότι πρόκειται για σύνδεσμο προς ένα έγγραφο εμφανίζοντας την συγκεκριμένη επέκταση αρχείου στο κείμενο του συνδέσμου, και (3) ελέγξετε και διορθώσετε το έγγραφό σας για σφάλματα προσβασιμότητας. Αφού διαπιστώσετε ότι το αρχείο σας είναι πλήρως προσβάσιμο, μπορείτε με ασφάλεια να “Αγνοήσετε” την προειδοποίηση."
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "Μη έγκυρη εκτεταμένη περιγραφή"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "Το σφάλμα Μη έγκυρη εκτεταμένη περιγραφή σημαίνει ότι ένα χαρακτηριστικό εκτεταμένης περιγραφής (%s) σε μια εικόνα δεν έχει κατάλληλο URL, όνομα αρχείου ή επέκταση αρχείου. Μπορεί επίσης να σημαίνει ότι η εκτεταμένη περιγραφή δεν είναι URL, ή έχει μείνει κενή. Το χαρακτηριστικό longdesc δεν υποστηρίζεται πλήρως από το HTML5, τους περιηγητές και όλους τους αναγνώστες οθόνης. Λόγω αυτής της έλλειψης υποστήριξης, η καλύτερη διόρθωση για αυτό το σφάλμα είναι να αφαιρέσετε εντελώς το longdesc από την ετικέτα της εικόνας σας."
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "Λείπει ετικέτα φόρμας"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "Ένα σφάλμα Λείπει ετικέτα φόρμας ενεργοποιείται όταν υπάρχει ένα %1$s (πεδίο φόρμας) στη φόρμα σας αλλά δεν συσχετίζεται με ένα στοιχείο %2$s. Αυτό θα μπορούσε να σημαίνει ότι η ετικέτα υπάρχει αλλά λείπει ένα χαρακτηριστικό %3$s για να τη συνδέσει με το αντίστοιχο πεδίο ή θα μπορούσε να μην υπάρχει καθόλου ετικέτα και να υπάρχει μόνο μια ετικέτα %1$s. Για να διορθώσετε τα σφάλματα που λείπουν ετικέτες φόρμας, θα πρέπει να προσδιορίσετε πώς δημιουργήθηκαν το πεδίο και η φόρμα και στη συνέχεια να προσθέσετε ετικέτες πεδίων ή ένα σωστό χαρακτηριστικό %3$s σε υπάρχουσες ετικέτες που δεν συνδέονται με ένα πεδίο."
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "Ασαφές κείμενο σύνδεσης"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "Τα σφάλματα Ασαφές κείμενο σύνδεσης εμφανίζονται όταν υπάρχει συνδεδεμένο κείμενο που δεν έχει νόημα εκτός του περιβάλλοντος περιεχομένου του. Συνηθισμένα παραδείγματα αυτού περιλαμβάνουν τη σύνδεση φράσεων όπως “κάντε κλικ εδώ” ή “μάθετε περισσότερα.” Για να επιλύσετε αυτό το σφάλμα, αλλάξτε το κείμενο του συνδέσμου ώστε να είναι λιγότερο γενικό, έτσι ώστε να έχει νόημα αν ακουστεί μόνο του."
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "Υπογραμμισμένο κείμενο"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "Μια προειδοποίηση Υπογραμμισμένο κείμενο εμφανίζεται εάν οποιοδήποτε κείμενο στη σελίδα σας είναι τυλιγμένο σε μια ετικέτα HTML υπογράμμισης (%1$s). Σε ένα διαδικτυακό περιβάλλον, το υπογραμμισμένο κείμενο χρησιμοποιείται γενικά για να υποδείξει συνδεδεμένο κείμενο και δεν θεωρείται καλή πρακτική να υπογραμμίζετε κείμενο μόνο για έμφαση. Για να διορθώσετε το υπογραμμισμένο κείμενο, θα πρέπει να αφαιρέσετε το στοιχείο %1$s από το κείμενο ή τα στυλ CSS που το κάνουν υπογραμμισμένο. Προσπαθήστε να χρησιμοποιήσετε άλλους τρόπους μορφοποίησης, όπως πλάγια γραφή, έγχρωμο κείμενο ή έντονη γραφή για να δώσετε έμφαση ή να διαφοροποιήσετε λέξεις ή φράσεις."
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "Σπασμένος σύνδεσμος παράκαμψης ή άγκυρας"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "Ένας σύνδεσμος αγκύρωσης, που μερικές φορές ονομάζεται σύνδεσμος μετάβασης, είναι ένας σύνδεσμος που, αντί να ανοίγει μια νέα σελίδα ή URL όταν κάνετε κλικ, σας μεταφέρει ή σας μετακινεί σε διαφορετική ενότητα στην ίδια σελίδα. Αυτοί οι σύνδεσμοι οδηγούν σε ένα στοιχείο που ξεκινά με μια δίεση αντί για ένα πλήρες URL. Για παράδειγμα, μπορείτε να μετακινήσετε κάποιον στην ενότητα 'Σχετικά' της αρχικής σας σελίδας συνδέοντας στο #about. Τα σφάλματα Σπασμένου Συνδέσμου Παράλειψης ή Αγκύρωσης εμφανίζονται όταν υπάρχει ένας σύνδεσμος που στοχεύει σε άλλη ενότητα στην ίδια σελίδα, αλλά δεν υπάρχει στοιχείο στη σελίδα με το αναφερόμενο id. Αυτό το σφάλμα θα εμφανιστεί επίσης αν συνδέεστε μόνο σε ένα #. Για να επιλύσετε αυτό το σφάλμα, ελέγξτε χειροκίνητα τον σύνδεσμο για να επιβεβαιώσετε ότι λειτουργεί και στη συνέχεια είτε διορθώστε τον είτε “Αγνοήστε” το σφάλμα ανάλογα με την περίπτωση."
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "Λείπει η κεφαλίδα πίνακα"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "Ένα σφάλμα Λείπει η Κεφαλίδα Πίνακα σημαίνει ότι ένας από τους πίνακές σας περιέχει δεδομένα (πληροφορίες που περιέχονται σε μια ετικέτα %1$s) που δεν έχουν αντίστοιχη ετικέτα κεφαλίδας (%2$s). Όταν εξετάζετε τον HTML κώδικα της φόρμας σας, θα υπάρχουν περισσότερα στοιχεία %1$s σε μια σειρά από στοιχεία %2$s στον πίνακα. Για να διορθώσετε μια ελλείπουσα κεφαλίδα πίνακα, πρέπει να βρείτε το τμήμα του κώδικα που έχει λιγότερα στοιχεία %2$s από όσα θα έπρεπε να υπάρχουν για τον αριθμό των γραμμών ή στηλών δεδομένων, και να προσθέσετε ένα ή περισσότερα πρόσθετα στοιχεία %2$s που περιέχουν κείμενο που περιγράφει τα δεδομένα σε αυτή τη γραμμή ή στήλη."
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "Διπλή ετικέτα φόρμας"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "Τα σφάλματα Διπλής Ετικέτας Φόρμας εμφανίζονται όταν υπάρχουν περισσότερες από μία ετικέτες συσχετισμένες με ένα μόνο πεδίο σε μια φόρμα. Αν υπάρχουν πάρα πολλές ετικέτες φόρμας, ένας αναγνώστης οθόνης μπορεί να μην είναι σε θέση να διαβάσει επιτυχώς τα πεδία της φόρμας για να βοηθήσει έναν χρήστη με προβλήματα όρασης να περιηγηθεί και να συμπληρώσει τη φόρμα. Για να διορθώσετε τα σφάλματα διπλής ετικέτας φόρμας, θα πρέπει να προσδιορίσετε πώς δημιουργήθηκε το πεδίο και η φόρμα και στη συνέχεια να διασφαλίσετε ότι κάθε πεδίο έχει μόνο μία ετικέτα συσχετισμένη με αυτό."
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "Πολύ μικρό κείμενο"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "Μια προειδοποίηση Πολύ Μικρού Κειμένου εμφανίζεται όταν υπάρχει κείμενο στον ιστότοπό σας που είναι μικρότερο από 10px σε μέγεθος. Η προειδοποίηση είναι μια ένδειξη ότι ίσως θα πρέπει να ξανασκεφτείτε το μέγεθος της γραμματοσειράς και να το κάνετε μεγαλύτερο ώστε να μπορεί να διαβαστεί πιο εύκολα χωρίς ο χρήστης να χρειάζεται να κάνει μεγέθυνση στον περιηγητή του. Για να διορθώσετε το κείμενο που είναι πολύ μικρό, θα πρέπει να διασφαλίσετε ότι όλα τα στοιχεία κειμένου στον ιστότοπό σας είναι τουλάχιστον 10 στιγμές."
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "Πιθανή επικεφαλίδα"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "Μια προειδοποίηση Πιθανής Επικεφαλίδας εμφανίζεται όταν υπάρχει κείμενο σε μια σελίδα που φαίνεται να είναι επικεφαλίδα, αλλά δεν έχει κωδικοποιηθεί με τις κατάλληλες ετικέτες επικεφαλίδας. Αυτή η προειδοποίηση εμφανίζεται αν υπάρχουν σύντομες φράσεις ή συμβολοσειρές κειμένου μήκους μικρότερου από 50 χαρακτήρες που έχουν μορφοποιηθεί με τρόπο που υποδηλώνει ότι μπορεί να χρησιμοποιούνται ως επικεφαλίδες (είναι 20 pixel ή μεγαλύτερες, ή είναι 16 pixel ή μεγαλύτερες και έντονες ή/και πλάγιες). Για να διορθώσετε μια προειδοποίηση Πιθανής Επικεφαλίδας, θα πρέπει να προσδιορίσετε αν το επισημασμένο κείμενο προορίζεται πράγματι να είναι επικεφαλίδα. Αν ναι, πρέπει να το αλλάξετε από παράγραφο σε επικεφαλίδα στο κατάλληλο επίπεδο. Αν δεν προορίζεται να είναι επικεφαλίδα, τότε μπορείτε με ασφάλεια να “Αγνοήσετε” την προειδοποίηση."
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "Περιεχόμενο που αναβοσβήνει ή κυλίεται"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "Τα σφάλματα Περιεχομένου που Αναβοσβήνει ή Κυλίεται εμφανίζονται όταν στοιχεία στον ιστότοπό σας έχουν εφαρμοσμένη μια λειτουργία αναβοσβήματος ή κύλισης είτε μέσω CSS είτε στην HTML. Συγκεκριμένα, τα ακόλουθα θα δημιουργήσουν αυτό το σφάλμα: οι ετικέτες HTML %1$s ή %2$s ή το CSS %3$s. Για να επιλύσετε αυτό το σφάλμα, αφαιρέστε τις ετικέτες HTML ή το CSS που προκαλεί το αναβόσβημα του περιεχομένου."
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "Ανεπαρκής αντίθεση χρωμάτων"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "Τα σφάλματα Ανεπαρκούς Αντίθεσης Χρωμάτων σημαίνουν ότι έχουμε εντοπίσει ότι ένας ή περισσότεροι συνδυασμοί χρωμάτων στην ανάρτηση ή τη σελίδα σας δεν πληρούν την ελάχιστη αναλογία αντίθεσης χρωμάτων 4,5:1. Ανάλογα με τον τρόπο κατασκευής του ιστοτόπου σας, μπορεί να υπάρχουν “ψευδώς θετικά” αποτελέσματα για αυτό το σφάλμα, καθώς ορισμένα χρώματα περιέχονται σε διαφορετικά επίπεδα HTML στη σελίδα. Για να διορθώσετε ένα σφάλμα Ανεπαρκούς Αντίθεσης Χρωμάτων, θα πρέπει να διασφαλίσετε ότι τα επισημασμένα στοιχεία πληρούν την ελάχιστη απαιτούμενη αναλογία 4,5:1. Για να το κάνετε αυτό, θα πρέπει να βρείτε τους δεκαεξαδικούς κωδικούς του χρώματος του προσκηνίου και του φόντου σας, και να τους ελέγξετε σε έναν ελεγκτή αντίθεσης χρωμάτων. Αν αυτοί οι κωδικοί χρωμάτων έχουν αναλογία 4,5:1 ή μεγαλύτερη, μπορείτε να “Αγνοήσετε” αυτό το σφάλμα. Αν οι κωδικοί χρωμάτων δεν έχουν αναλογία τουλάχιστον 4,5:1, θα πρέπει να κάνετε προσαρμογές στα χρώματά σας."
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "Απουσία μεταγραφής"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "Ένα σφάλμα απουσίας μεταγραφής σημαίνει ότι υπάρχει ένα ηχητικό ή βίντεο κλιπ στον ιστότοπό σας που δεν έχει μεταγραφή ή υπάρχει μια μεταγραφή αλλά δεν επισημαίνεται ως μεταγραφή ή βρίσκεται σε απόσταση μεγαλύτερη από 25 χαρακτήρες από το ενσωματωμένο ή συνδεδεμένο μέσο. Για να διορθώσετε ένα σφάλμα απουσίας μεταγραφής, θα πρέπει να δημιουργήσετε μια μεταγραφή για οποιοδήποτε από τα βίντεο ή ηχητικά κλιπ που έχουν επισημανθεί ως ελλιπή μεταγραφή. Αφού δημιουργήσετε τη μεταγραφή, μπορείτε είτε να προσθέσετε το περιεχόμενο της μεταγραφής απευθείας μέσα στην ανάρτηση ή τη σελίδα σας είτε να συνδέσετε τη μεταγραφή αν τη συμπεριλαμβάνετε ως λήψιμο έγγραφο ή αρχείο PDF. Πρέπει να συμπεριλάβετε ρητά τη λέξη “μεταγραφή” σε μια επικεφαλίδα πριν από τη μεταγραφή στη σελίδα ή στον σύνδεσμο προς το αρχείο σας, και πρέπει να βρίσκεται εντός 25 χαρακτήρων από την ενσωμάτωση ή τον σύνδεσμο του ήχου ή του βίντεο."
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "Σπασμένη Αναφορά ARIA"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "Τα σφάλματα Σπασμένης Αναφοράς ARIA εμφανίζονται εάν ένα στοιχείο aria-labeledby ή aria-describedby υπάρχει στη σελίδα ή την ανάρτηση, αλλά ο στόχος αναφοράς του δεν υπάρχει. Αυτό σημαίνει ότι το στοιχείο στο οποίο αναφέρεται το συγκεκριμένο χαρακτηριστικό ARIA που χρησιμοποιείτε είτε δεν έχει κατάλληλη ετικέτα ή περιγραφή, είτε δεν υπάρχει στη σελίδα. Για να διορθώσετε μια σπασμένη αναφορά ARIA, θα πρέπει να βρείτε τα στοιχεία ARIA που επισημαίνονται και να βεβαιωθείτε ότι οι στόχοι αναφοράς τους υπάρχουν και είναι σωστά επισημασμένοι."
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "Απουσία δήλωσης γλώσσας"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "Η δήλωση γλώσσας είναι ένα χαρακτηριστικό HTML που υποδηλώνει την προεπιλεγμένη γλώσσα του περιεχομένου σε μια σελίδα ή ανάρτηση. Οι δηλώσεις γλώσσας θα πρέπει να είναι κωδικοποιημένες στο θέμα του ιστοτόπου σας και να εμφανίζονται αυτόματα στην κεφαλίδα του ιστοτόπου. Ένα σφάλμα Απουσίας Δήλωσης Γλώσσας εμφανίζεται εάν η ετικέτα %1$s στη σελίδα δεν περιέχει ένα χαρακτηριστικό %2$s ή %3$s, ή αν ένα από αυτά τα χαρακτηριστικά υπάρχει αλλά είναι κενό. Για να διορθώσετε ένα σφάλμα Απουσίας Δήλωσης Γλώσσας, θα πρέπει να επεξεργαστείτε τα αρχεία του θέματός σας για να προσθέσετε το χαρακτηριστικό γλώσσας που λείπει στην ετικέτα HTML στην κορυφή της κεφαλίδας του ιστοτόπου σας. Εάν χρησιμοποιείτε ένα θέμα που λαμβάνει ενημερώσεις, τότε θα πρέπει να κάνετε την αλλαγή σε ένα θέμα-παιδί για να διασφαλίσετε ότι η διόρθωση δεν θα αντικατασταθεί όταν ενημερώσετε το θέμα σας την επόμενη φορά."
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "Εικόνα Animated GIF"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "Οι προειδοποιήσεις Εικόνας Animated GIF εμφανίζονται όταν υπάρχει ένα κινούμενο GIF στην ανάρτηση ή τη σελίδα σας. Αυτή η προειδοποίηση είναι μια υπενθύμιση για να ελέγξετε χειροκίνητα τυχόν κινούμενα GIF στον ιστότοπό σας για την προσβασιμότητά τους ή/και να επανεξετάσετε τη χρήση κινούμενων GIF, αντικαθιστώντας τα με στατικές εικόνες ή βίντεο. Για να επιλύσετε αυτήν την προειδοποίηση, πρέπει να ελέγξετε τυχόν GIF που υπάρχουν για να διασφαλίσετε ότι πληρούν όλες τις ισχύουσες οδηγίες για την προσβασιμότητα και στη συνέχεια είτε να “Αγνοήσετε” την προειδοποίηση είτε να αφαιρέσετε το GIF από τη σελίδα ή την ανάρτησή σας εάν δεν είναι προσβάσιμο."
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "Υπάρχει ένα βίντεο"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Επειδή τα βίντεο συχνά περιέχουν προβλήματα προσβασιμότητας, πολλά από τα οποία μπορούν να εντοπιστούν μόνο από ένα άτομο, η προειδοποίηση Υπάρχει Βίντεο εμφανίζεται κάθε φορά που εντοπίζεται ένα βίντεο σε μια ανάρτηση ή σελίδα ως υπενθύμιση ότι πρέπει να ελέγξετε χειροκίνητα το βίντεό σας για προσβασιμότητα. Για να επιλύσετε αυτή την προειδοποίηση, πρέπει να επισκεφθείτε το front-end του ιστοτόπου σας και να επιβεβαιώσετε ότι το βίντεο στην προειδοποίηση είναι προσβάσιμο. Αφού ελέγξετε πλήρως το βίντεο για προσβασιμότητα, πρέπει να διορθώσετε τυχόν σφάλματα που μπορεί να υπάρχουν και στη συνέχεια μπορείτε να “Αγνοήσετε” την προειδοποίηση για να τη σημειώσετε ως ολοκληρωμένη."
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "Υπάρχει ένα slider"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Επειδή τα sliders συχνά περιέχουν προβλήματα προσβασιμότητας, πολλά από τα οποία μπορούν να εντοπιστούν μόνο από ένα άτομο, η προειδοποίηση Υπάρχει Slider εμφανίζεται κάθε φορά που εντοπίζεται ένα slider σε μια ανάρτηση ή σελίδα ως υπενθύμιση ότι πρέπει να ελέγξετε χειροκίνητα το slider σας για προσβασιμότητα. Για να επιλύσετε αυτή την προειδοποίηση, πρέπει να επισκεφθείτε το front-end του ιστοτόπου σας και να επιβεβαιώσετε ότι όλα τα sliders στη σελίδα είναι προσβάσιμα. Αφού ελέγξετε πλήρως τα sliders σας για προσβασιμότητα, πρέπει να διορθώσετε τυχόν σφάλματα που μπορεί να υπάρχουν και στη συνέχεια μπορείτε να “Αγνοήσετε” την προειδοποίηση για να τη σημειώσετε ως ολοκληρωμένη."
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "Λείπει ο τίτλος"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "Ένα σφάλμα Λείπει ο Τίτλος σημαίνει ότι η ανάρτηση ή η σελίδα σας δεν περιέχει στοιχείο τίτλου (%1$s ή %2$s). Αυτό θα μπορούσε να συμβεί εάν το θέμα αποτύχει να προσθέσει μια ετικέτα τίτλου, ή εάν το πεδίο τίτλου μιας ανάρτησης ή σελίδας έχει μείνει κενό στην οθόνη επεξεργασίας του WordPress. Για να διορθώσετε μια σελίδα χωρίς τίτλους, θα πρέπει να προσθέσετε στοιχεία τίτλου. Πρώτα, προσδιορίστε εάν ο τίτλος λείπει επειδή αφήσατε κενό το πεδίο τίτλου της σελίδας ή της ανάρτησης στον επεξεργαστή. Εάν ναι, συμπληρώστε το. Εάν ένας τίτλος είναι συμπληρωμένος και ορατός στο backend, τότε ο κώδικας στο της ιστοσελίδας σας πρέπει να τροποποιηθεί ώστε να συμπεριλάβει μια ετικέτα %1$s ή μια ετικέτα meta %2$s."
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "Ακατάλληλη χρήση συνδέσμου"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "Ένα σφάλμα Ακατάλληλη Χρήση Συνδέσμου εμφανίζεται εάν έχετε συνδέσμους που τους λείπει ένα χαρακτηριστικό %1$s ή είναι συνδεδεμένοι μόνο με ένα %2$s, και δεν έχουν %3$s σε αυτούς. Οι σύνδεσμοι πρέπει να χρησιμοποιούνται για να κατευθύνουν τους ανθρώπους σε άλλα μέρη του ιστοτόπου σας. Οποιαδήποτε άλλη λειτουργικότητα που ενεργοποιεί μια ενέργεια θα πρέπει να είναι ένα κουμπί. Για να επιλύσετε αυτό το σφάλμα, πρέπει να επανακωδικοποιήσετε τον σύνδεσμο ώστε να χρησιμοποιεί μια ετικέτα %4$s (προτιμότερο) ή να προσθέσετε %5$s στην υπάρχουσα ετικέτα %6$s. Εάν το στοιχείο είναι ένα κουμπί εναλλαγής (όπως ένα ακορντεόν), απαιτούνται πρόσθετα χαρακτηριστικά ARIA."
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "Απενεργοποιημένη μεγέθυνση και κλιμάκωση"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "Η μεγέθυνση είναι απενεργοποιημένη μέσω της ετικέτας meta του viewport που περιλαμβάνει `user-scalable=no` ή τιμή `maximum-scale` μικρότερη από 2. Αυτό περιορίζει τους χρήστες με προβλήματα όρασης που θέλουν να αυξήσουν το μέγεθος του κειμένου, να μεγεθύνουν τη σελίδα ή που χρησιμοποιούν μεγεθυντικό φακό."
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "Οι ρυθμίσεις αποθηκεύτηκαν. Για να επιβεβαιώσετε και να αποτυπώσετε αυτές τις ενημερώσεις στα στατιστικά του ιστότοπού σας, παρακαλούμε σαρώστε ξανά τον ιστότοπό σας. Αν χρησιμοποιείτε ένα πρόσθετο προσωρινής μνήμης, βεβαιωθείτε ότι έχετε εκκαθαρίσει την προσωρινή μνήμη για να διασφαλίσετε ότι οι ενημερωμένες διορθώσεις εφαρμόζονται σωστά."
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "Το πρόσθετο Accessibility New Window Warnings είναι εγκατεστημένο. Η διόρθωση για συνδέσμους που ανοίγουν σε νέο παράθυρο που περιλαμβάνεται εδώ θα παρακάμψει τη λειτουργικότητά του. Μπορείτε με ασφάλεια να αφαιρέσετε το πρόσθετο και να χρησιμοποιήσετε αυτές τις διορθώσεις αντ' αυτού."
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "Πίνακες ζητημάτων Accessibility Checker"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "Σύνοψη"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "Λεπτομέρειες"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "Αναγνωσιμότητα"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "Διαγραφή όλων των τρεχόντων ζητημάτων που βρέθηκαν"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "Εκκαθάριση ζητημάτων"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Equalize Digital λογότυπο"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "Αναβάθμιση στο Accessibility Checker Pro"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "Σάρωση όλων των τύπων δημοσιεύσεων"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "Στήλες διαχείρισης για να βλέπετε την κατάσταση προσβασιμότητας με μια ματιά"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "Κεντρική λίστα όλων των ανοιχτών ζητημάτων"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "Αρχείο καταγραφής αγνοημένων"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "Μετονομασία απλοποιημένης σύνοψης"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "Περιορισμοί χρήστη στην αγνόηση ζητημάτων"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "Υποστήριξη μέσω email"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...και πολλά άλλα"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "Αποκτήστε το Accessibility Checker Pro"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "Ή ενεργοποιήστε το κλειδί άδειας χρήσης σας εδώ."
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "Γενικά"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "έκδοση"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Σύνδεσμος προς την ιστοσελίδα του Equalize Digital"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "Οδηγός γρήγορης εκκίνησης"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "Ακολουθήστε αυτά τα βήματα για να ξεκινήσετε τον έλεγχο του περιεχομένου σας:"
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "Στη <a href=\"%s\">Σελίδα Ρυθμίσεων</a>, επιλέξτε ποιους τύπους δημοσιεύσεων θέλετε να σαρώσετε."
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "Πηγαίνετε στην οθόνη επεξεργασίας για τη δημοσίευση που θέλετε να ελέγξετε."
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "Βρείτε το πλαίσιο μετα-δεδομένων του Accessibility Checker κάτω από το περιεχόμενό σας. Αν χρησιμοποιείτε ένα εργαλείο δημιουργίας σελίδων στο frontend, πρέπει να επισκεφθείτε την οθόνη επεξεργασίας του backend για να δείτε τα αποτελέσματα του Accessibility Checker."
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "Αν υπάρχουν σφάλματα ή προειδοποιήσεις στη δημοσίευσή σας, ανοίξτε την καρτέλα λεπτομερειών στο Accessibility Checker για περισσότερες πληροφορίες."
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "Επεκτείνετε κάθε ζήτημα για να δείτε τον κώδικα, ή κάντε κλικ στο “προβολή στη σελίδα” αν χρειάζεστε βοήθεια για να βρείτε το στοιχείο που χρειάζεται διόρθωση."
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "Αν δεν γνωρίζετε τι σημαίνει ένα σφάλμα ή μια προειδοποίηση, κάντε κλικ στο εικονίδιο “i” για να διαβάσετε την τεκμηρίωση και πώς να το διορθώσετε."
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "Αν ένα ζήτημα είναι ψευδώς θετικό και το στοιχείο είναι προσβάσιμο, μπορείτε να αφαιρέσετε ζητήματα από τις αναφορές με τη λειτουργία “Αγνόηση”."
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "Αφού διορθώσετε κάθε ζήτημα, ενημερώστε τη δημοσίευση για να δείτε την αλλαγή στην αναφορά προσβασιμότητας. Ο στόχος σας είναι να φτάσετε κάθε σελίδα να λέει 100% Επιτυχημένες Δοκιμές."
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "Παρακολουθήστε ένα βίντεο του Accessibility Checker σε χρήση."
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "Τεκμηρίωση και Συχνές Ερωτήσεις"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "Γιατί λέμε 100% Επιτυχημένες Δοκιμές, Όχι 100% Προσβάσιμο;?"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "(ανοίγει σε νέο παράθυρο)"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "Πώς να ελέγξετε χειροκίνητα τον ιστότοπό σας για προσβασιμότητα"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "Πότε να αγνοείτε σφάλματα προσβασιμότητας"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "Τι να κάνετε αν ένα Πρόσθετο που χρησιμοποιείτε έχει Σφάλματα Προσβασιμότητας"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "Τι να κάνετε αν υπάρχουν Σφάλματα Προσβασιμότητας στο Θέμα σας"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "Μπορώ να προσλάβω την Equalize Digital για να διορθώσει ζητήματα προσβασιμότητας στον ιστότοπό μου;?"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "Επιπρόσθετοι πόροι για την εκμάθηση σχετικά με την προσβασιμότητα"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "Διαβάστε την πλήρη τεκμηρίωση"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "Πληροφορίες υποστήριξης"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "Υποστήριξη πρόσθετου"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "Οι ενεργοί κάτοχοι άδειας χρήσης των επί πληρωμή πλάνων του Accessibility Checker λαμβάνουν απεριόριστη υποστήριξη μέσω email για τη χρήση του πρόσθετου και την αντιμετώπιση προβλημάτων."
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "Άνοιγμα αιτήματος υποστήριξης"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "Δωρεάν υποστήριξη πρόσθετου"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "Η δωρεάν υποστήριξη του πρόσθετου είναι διαθέσιμη μέσω των φόρουμ του WordPress.org. Θα χρειαστεί να δημιουργήσετε έναν λογαριασμό και στη συνέχεια μπορείτε να ανοίξετε ένα νέο θέμα υποστήριξης."
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "Μετάβαση στο φόρουμ υποστήριξης"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "Ώρες γραφείου"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "Ανοιχτές ερωτήσεις και απαντήσεις στο Zoom κάθε δύο εβδομάδες για να σας βοηθήσουν να διορθώσετε τον ιστότοπό σας."
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "Περιλαμβάνεται στα πλάνα Small Business και Agency"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "Εγγραφείτε για τις ώρες γραφείου"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "Έλεγχος και διόρθωση"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "Λάβετε βοήθεια για να κάνετε τον ιστότοπό σας προσβάσιμο. Εξειδικευμένος έλεγχος, δοκιμές χρηστών και υποστήριξη ανάπτυξης. Διαθέσιμες επιστολές συμμόρφωσης."
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "Λάβετε βοήθεια διόρθωσης"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "Αποθήκευση..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "Οι ρυθμίσεις αποθηκεύτηκαν με επιτυχία. Πρέπει να %sεπισκεφθείτε τον επεξεργαστή%s και να αποθηκεύσετε τη δημοσίευση για να γίνει επανασάρωση και να αφαιρεθούν τα διορθωμένα ζητήματα από τις αναφορές του Accessibility Checker."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "Οι ρυθμίσεις αποθηκεύτηκαν με επιτυχία."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "Η αποθήκευση απέτυχε."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "Ρυθμίσεις διόρθωσης"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "Αυτό θα διαγράψει όλα τα ζητήματα για αυτή τη δημοσίευση. Θα απαιτηθεί μια αποθήκευση για να ενεργοποιηθεί μια νέα σάρωση του περιεχομένου της δημοσίευσης. Θέλετε να συνεχίσετε;?"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "Εκκαθάριση..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "Τα ζητήματα εκκαθαρίστηκαν με επιτυχία."
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "Αποτυχία εκκαθάρισης ζητημάτων."
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "Υπήρξε ένα πρόβλημα. Παρακαλώ δοκιμάστε ξανά."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "Συγγνώμη, η υποβολή σας απέτυχε. Παρακαλώ συντομεύστε τις απαντήσεις σας και δοκιμάστε ξανά."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "Συγγνώμη, η υποβολή σας απέτυχε. Παρακαλώ δοκιμάστε ξανά."
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "ανοίγει σε νέο παράθυρο"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: Δεν βρέθηκε αντίστοιχο ID στόχου στη σελίδα για τον σύνδεσμο παράκαμψης."
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: Σφάλμα κατά την ενημέρωση του ιστορικού για τον σύνδεσμο παράκαμψης."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "Κλείσιμο του παραθύρου διορθώσεων"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Απενεργοποίηση στυλ σελίδας"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "Εμφάνιση κώδικα"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Τύπος ζητήματος:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "Ενεργοποίηση στυλ"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Απενεργοποίηση στυλ"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "Δεν υπάρχουν ρυθμίσεις για προβολή."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Αυτές οι ρυθμίσεις ενεργοποιούν καθολικές διορθώσεις σε ολόκληρο τον ιστότοπό σας. Ενδέχεται να χρειαστεί να αποθηκευτούν ξανά οι σελίδες ή να εκτελεστεί πλήρης σάρωση του ιστότοπου για να εμφανιστούν οι διορθώσεις στις αναφορές."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "Δεν εντοπίστηκαν ζητήματα."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "σφάλμα"
+msgstr[1] "σφάλματα"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "προειδοποίηση"
+msgstr[1] "προειδοποιήσεις"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "και"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "αγνοημένο ζήτημα"
+msgstr[1] "αγνοημένα ζητήματα"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "εντοπίστηκαν."
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "νέο παράθυρο"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "νέα καρτέλα"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "κλικ"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "κάντε κλικ εδώ"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "εδώ"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "μεταβείτε εδώ"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "περισσότερα"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "περισσότερα..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "περισσότερα…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "λεπτομέρειες"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "περισσότερες λεπτομέρειες"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "σύνδεσμος"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "αυτή η σελίδα"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "συνέχεια"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "συνεχίστε την ανάγνωση"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "διαβάστε περισσότερα"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "άνοιγμα"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "λήψη"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "κουμπί"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "συνεχίστε να διαβάζετε"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "μάθετε περισσότερα"

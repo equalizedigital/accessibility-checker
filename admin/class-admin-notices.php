@@ -111,7 +111,7 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -120,7 +120,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -165,8 +165,8 @@ class Admin_Notices {
 	 */
 	public function edac_black_friday_notice() {
 
-		// check if accessibility checker pro is active.
-		if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
+		// Check if Accessibility Checker Pro is active.
+		if ( defined( 'EDACP_VERSION' ) ) {
 			return;
 		}
 
@@ -222,7 +222,7 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -231,7 +231,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -242,7 +242,7 @@ class Admin_Notices {
 	/**
 	 * GAAD Notice
 	 *
-	 * @return string
+	 * @return void
 	 */
 	public function edac_gaad_notice() {
 
@@ -251,8 +251,7 @@ class Admin_Notices {
 		define( 'EDAC_GAAD_NOTICE_END_DATE', '2025-05-21' );
 
 		// Check if Accessibility Checker Pro is active.
-		$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
-		if ( $pro ) {
+		if ( defined( 'EDACP_VERSION' ) ) {
 			return;
 		}
 
@@ -310,7 +309,7 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -322,7 +321,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -399,14 +398,14 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
 
 		if ( ! isset( $_REQUEST['review_action'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The review action value was not set' );
+			$error = new \WP_Error( '-2', __( 'The review action value was not set', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -419,7 +418,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-3', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-3', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -481,7 +480,7 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -490,7 +489,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
