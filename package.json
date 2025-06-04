@@ -45,7 +45,8 @@
     "build",
     "includes",
     "partials",
-    "vendor"
+    "vendor",
+    "languages"
   ],
   "devDependencies": {
     "@babel/core": "^7.22.1",
