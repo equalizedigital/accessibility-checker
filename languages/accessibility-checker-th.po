@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "เครื่องมือตรวจสอบการเข้าถึง"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "ตรวจสอบและตรวจเช็คเว็บไซต์ของคุณเพื่อการเข้าถึงก่อนที่คุณจะกดเผยแพร่ เครื่องมือสแกนและแนะนำการเข้าถึงภายในโพสต์."
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize Digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "การแก้ไข"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "การแก้ไขทั่วไป"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "การแก้ไขเหล่านี้ช่วยปรับปรุงการเข้าถึงโดยการแก้ไของค์ประกอบ HTML และพฤติกรรมบนเว็บไซต์ของคุณ."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "อัปเกรดเป็นเวอร์ชัน Pro เพื่อปลดล็อกฟีเจอร์นี้ เปิดในหน้าต่างใหม่."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "อัปเกรดเป็น Pro"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "เปิดในหน้าต่างใหม่."
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "อ่านเอกสารสำหรับ %s เปิดในหน้าต่างใหม่."
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "ความมุ่งมั่นของเราต่อการเข้าถึงเว็บ"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[YOUR COMPANY NAME] มุ่งมั่นที่จะให้ประสบการณ์การใช้งานเว็บไซต์ที่เข้าถึงได้อย่างเต็มที่สำหรับผู้ใช้ทุกความสามารถ รวมถึงผู้ที่ต้องพึ่งพาเทคโนโลยีช่วยเหลือ เช่น โปรแกรมอ่านหน้าจอ ซอฟต์แวร์ขยายหน้าจอ และอุปกรณ์ป้อนข้อมูลทางเลือกเพื่อใช้งานเว็บ."
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "ความพยายามอย่างต่อเนื่องเพื่อรับรองการเข้าถึง"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "เราปฏิบัติตาม <a href=\"https://www.w3.org/TR/WCAG21/\">แนวทางการเข้าถึงเนื้อหาเว็บ (WCAG) เวอร์ชัน 2.1</a> เป็นหลักการชี้นำของเราในการกำหนดการเข้าถึง นี่เป็นมาตรฐานที่เป็นที่ยอมรับในระดับสากลซึ่งครอบคลุมคำแนะนำและแนวปฏิบัติที่ดีที่สุดมากมายเพื่อให้เนื้อหาสามารถใช้งานได้ เมื่อเราเพิ่มหน้าใหม่และฟังก์ชันการทำงานใหม่ๆ ให้กับเว็บไซต์ของเรา การออกแบบ โค้ด และการปฏิบัติในการใส่เนื้อหาทั้งหมดจะถูกตรวจสอบกับมาตรฐานเหล่านี้."
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "การเข้าถึงเว็บไซต์เป็นกระบวนการต่อเนื่อง เราทดสอบเนื้อหาและฟีเจอร์ต่างๆ อย่างสม่ำเสมอเพื่อให้เป็นไปตามมาตรฐาน WCAG 2.1 ระดับ AA และแก้ไขปัญหาใดๆ เพื่อให้แน่ใจว่าเราบรรลุหรือเกินมาตรฐาน การทดสอบเว็บไซต์ของเราดำเนินการโดยสมาชิกในทีมของเราโดยใช้เครื่องมือมาตรฐานอุตสาหกรรม เช่น <a href=\"https://a11ychecker.com/\">ปลั๊กอิน Accessibility Checker สำหรับ WordPress</a> เครื่องมือวิเคราะห์ความแตกต่างของสี เทคนิคการนำทางด้วยแป้นพิมพ์เท่านั้น และการทดสอบความสามารถในการอ่าน Flesch-Kincaid."
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "คุณสมบัติการเข้าถึงบนเว็บไซต์ของเรา"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "ต่อไปนี้คือรายการสิ่งที่เราได้รวมไว้ในเว็บไซต์ของเราเพื่อปรับปรุงการเข้าถึง:"
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[รายการคุณสมบัติการเข้าถึงที่นี่]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "สิ่งที่เรากำลังปรับปรุง"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "ในความพยายามที่จะยกระดับเว็บไซต์ของเราให้ได้มาตรฐาน เรากำลังมุ่งเป้าไปที่ด้านต่อไปนี้:"
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[รายการสิ่งที่คุณกำลังทำงานเพื่อแก้ไขที่นี่]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[อาจเป็นประโยชน์ที่จะตรวจสอบแท็บปัญหาที่ยังเปิดอยู่เพื่อดูปัญหาที่พบบ่อยที่สุด]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "นี่เป็นส่วนหนึ่งของความพยายามในวงกว้างของเราที่จะทำให้ประสบการณ์ของทุกคนที่ [COMPANY NAME] เป็นที่น่ายินดีและสนุกสนาน โปรดทราบว่าแม้เราจะพยายามอย่างเต็มที่ในการให้ข้อมูลที่เข้าถึงได้สำหรับผู้ใช้ทุกคน เราไม่สามารถรับประกันการเข้าถึงของเว็บไซต์บุคคลที่สามที่เราอาจลิงก์ไปได้."
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "ติดต่อสนับสนุนด้านการเข้าถึง"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "เรายินดีรับความคิดเห็น คำถาม และข้อเสนอแนะเกี่ยวกับเว็บไซต์ของเรา หากคุณกำลังใช้เทคโนโลยีช่วยเหลือและประสบปัญหาในการใช้งานเว็บไซต์ของเรา กรุณาส่งอีเมลมาที่ [YOUR ACCESSIBILITY EMAIL ADDRESS] หรือโทรหาเราที่ [YOUR PHONE NUMBER] เราจะพยายามอย่างดีที่สุดเพื่อช่วยเหลือคุณและแก้ไขปัญหา."
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "เราได้ปรับปรุงการคำนวณสถิติในเวอร์ชัน 1.21.0 ทำให้ตัวเลขบางส่วนในข้อมูลด้านล่างอาจเปลี่ยนแปลงไป อ่านเพิ่มเติมได้ใน%1$sโพสต์ประกาศการเปิดตัว%2$sของเรา."
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "การอนุญาตถูกปฏิเสธ"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "การอัปเดตตัวเลือกไม่สำเร็จ"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 โปรโมชั่นพิเศษ Black Friday! 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "อัปเกรดเป็นเวอร์ชันแบบชำระเงินของ Accessibility Checker ตั้งแต่วันที่ 25 พฤศจิกายนถึง 3 ธันวาคม และรับส่วนลด 30%! การสแกนเว็บไซต์เต็มรูปแบบ รายงานปัญหาที่ยังเปิดอยู่ทั่วทั้งไซต์ บันทึกการละเว้น และอื่นๆ อีกมากมาย."
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "ถามคำถามก่อนการขาย"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "อัปเกรดทันที"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 รับส่วนลด 25% สำหรับ Accessibility Checker Pro เนื่องในโอกาสวันสร้างความตระหนักด้านการเข้าถึงทั่วโลก! 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "ใช้รหัสคูปอน GAAD25 ตั้งแต่วันที่ 13 พฤษภาคมถึง 21 พฤษภาคม เพื่อรับสิทธิ์เข้าถึงการสแกนเว็บไซต์เต็มรูปแบบและฟีเจอร์ระดับ Pro อื่นๆ ในราคาพิเศษ ไม่แน่ใจว่าการอัปเกรดเหมาะกับคุณหรือไม่?"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "สวัสดีครับ! ขอบคุณที่ใช้ Accessibility Checker เป็นส่วนหนึ่งของชุดเครื่องมือการเข้าถึงของคุณ เนื่องจากคุณใช้งานมาสักระยะแล้ว คุณช่วยเขียนรีวิว 5 ดาวให้กับ Accessibility Checker ใน WordPress Plugin Directory ได้ไหมครับ? นี่จะช่วยเพิ่มการมองเห็นของเราเพื่อให้คนมากขึ้นได้เรียนรู้เกี่ยวกับความสำคัญของการเข้าถึงเว็บ ขอบคุณมากครับ!"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "เขียนรีวิว"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "เตือนฉันในอีกสองสัปดาห์"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "ไม่ต้องถามอีก"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "ค่าการดำเนินการรีวิวไม่ได้ถูกตั้งค่า"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "อุ๊ปส์! ดูเหมือนว่าเว็บไซต์ของคุณกำลังถูกป้องกันด้วยรหัสผ่าน เวอร์ชันฟรีของ Accessibility Checker สามารถสแกนได้เฉพาะเว็บไซต์สาธารณะเท่านั้น เพื่อสแกนเว็บไซต์นี้หาปัญหาด้านการเข้าถึง คุณต้องลบการป้องกันด้วยรหัสผ่านออกหรือ%s ผลการสแกนอาจถูกเก็บไว้จากการสแกนครั้งก่อน."
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "อัปเกรดเป็น Accessibility Checker Pro (เปิดในหน้าต่างใหม่)."
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "อัปเกรดเป็นเวอร์ชัน Pro"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "ไม่ได้กำหนดรหัสโพสต์"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "ไม่ได้รวมบทสรุปแบบย่อสำหรับเนื้อหานี้."
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "เนื้อหาของคุณมีระดับการอ่านที่ระดับชั้นมัธยมศึกษาปีที่ 3 หรือต่ำกว่า จึงไม่จำเป็นต้องมีบทสรุปแบบย่อ."
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "ระดับการอ่านของบทสรุปแบบย่อสูงเกินไป."
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "มีการรวมบทสรุปแบบย่อสำหรับเนื้อหานี้แล้ว."
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s ข้อผิดพลาด"
+msgstr[1] "%s ข้อผิดพลาด"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s ข้อผิดพลาดด้านความคมชัด"
+msgstr[1] "%s ข้อผิดพลาดด้านความคมชัด"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s คำเตือน"
+msgstr[1] "%s คำเตือน"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s รายการที่ถูกละเว้น"
+msgstr[1] "%s รายการที่ถูกละเว้น"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "ไม่มีบทสรุปที่จะส่งคืน"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "ชื่อตารางไม่ถูกต้อง"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "การตั้งค่าเหล่านี้เปิดใช้งานการแก้ไขทั่วทั้งเว็บไซต์ของคุณ."
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "อาจจำเป็นต้องบันทึกหน้าใหม่หรือทำการสแกนเว็บไซต์ทั้งหมดเพื่อดูการแก้ไขที่แสดงในรายงาน."
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "บันทึก"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "โค้ดที่ได้รับผลกระทบ"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "ดูปัญหา ID %d บนเว็บไซต์ (เปิดในหน้าต่างใหม่)"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "ดูบนหน้าเว็บ"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "แก้ไข: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "แก้ไข"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "บัญชีผู้ใช้ของคุณไม่มีสิทธิ์ในการละเว้นปัญหานี้."
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "ไม่มีรายละเอียดที่จะส่งคืน"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "ไม่มีข้อมูลความสามารถในการอ่านที่จะส่งคืน"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "ไม่มีข้อมูลการละเว้นที่จะส่งคืน"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "ไม่ได้กำหนดบทสรุป"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "ไม่ได้กำหนดค่า ID"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "การค้นหาปัญหาไม่พบผลลัพธ์"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "การค้นหาวัตถุไม่พบผลลัพธ์"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "สรุปการทดสอบล่าสุด"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "อัปเดตจำนวน"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "เริ่มการสแกนใหม่"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "ดูปัญหาที่ยังเปิดอยู่ทั้งหมด"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "ดูประวัติ"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "การทดสอบที่ผ่าน"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "ข้อผิดพลาดที่ไม่ซ้ำกัน"
+msgstr[1] "ข้อผิดพลาดที่ไม่ซ้ำกัน"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "ข้อผิดพลาดด้านความคมชัดของสีที่ไม่ซ้ำกัน"
+msgstr[1] "ข้อผิดพลาดด้านความคมชัดของสีที่ไม่ซ้ำกัน"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "คำเตือนที่ไม่ซ้ำกัน"
+msgstr[1] "คำเตือนที่ไม่ซ้ำกัน"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "รายการที่ถูกละเว้น"
+msgstr[1] "รายการที่ถูกละเว้น"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "ปัญหาเฉลี่ยต่อหน้า"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "ความหนาแน่นของปัญหาเฉลี่ย"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "อัปเดตรายงานล่าสุด:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "ไม่เคย"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "URL ที่สแกนแล้ว"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s จาก %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "ประเภทโพสต์ที่ตรวจสอบแล้ว"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "URL ที่มีคะแนน 100%"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "บทสรุปนี้จะอัปเดตโดยอัตโนมัติทุก 24 ชั่วโมง หรือทุกครั้งที่มีการสแกนเว็บไซต์ทั้งหมดเสร็จสิ้น คุณยังสามารถอัปเดตผลลัพธ์เหล่านี้ด้วยตนเองได้โดยคลิกที่ปุ่มอัปเดตจำนวน."
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "เว็บไซต์ของคุณมีปัญหาจำนวนมาก เพื่อเหตุผลด้านประสิทธิภาพ จึงไม่ได้รวมปัญหาทั้งหมดไว้ในบทสรุปนี้."
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "รายงานการเข้าถึงทั้งเว็บไซต์"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "ซ่อนแบนเนอร์"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "ปลดล็อกรายงานการเข้าถึงโดยละเอียด"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "เริ่มสแกนทั้งเว็บไซต์ของคุณเพื่อหาปัญหาด้านการเข้าถึง รับรายงานทั้งเว็บไซต์ และปฏิบัติตามแนวทางการเข้าถึงได้เร็วขึ้น."
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "อัปเกรด Accessibility Checker"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "ปิดโฆษณา"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "รับรายงานการเข้าถึงโดยละเอียด"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "สถานะการเข้าถึงทั้งเว็บไซต์"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "URL ที่สแกนแล้ว:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "ข้อผิดพลาด:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "ข้อผิดพลาดด้านความคมชัดของสี:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "คำเตือน:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "เว็บไซต์ของคุณมีปัญหาด้านการเข้าถึงที่ควรแก้ไขโดยเร็วที่สุดเพื่อให้แน่ใจว่าสอดคล้องกับแนวทางการเข้าถึง."
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "ยอดเยี่ยม! Accessibility Checker ไม่พบปัญหาด้านการเข้าถึงในเนื้อหาที่ทดสอบ อย่างไรก็ตาม เครื่องมืออัตโนมัติไม่สามารถตรวจพบปัญหาบางอย่างได้ ดังนั้นอย่าลืม"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "ทดสอบเว็บไซต์ของคุณด้วยตนเอง"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "ปัญหาตามประเภทโพสต์"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "ประเภทโพสต์"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "ข้อผิดพลาด"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "ความคมชัด"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "คำเตือน"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "อัปเกรดเพื่อสแกน"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "ดูรายงานเพิ่มเติม"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "เรียนรู้เกี่ยวกับการเข้าถึง"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "ทรัพยากรเพิ่มเติม"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "บล็อก (เปิดในหน้าต่างใหม่)"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "บล็อก"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "เอกสาร (เปิดในหน้าต่างใหม่)"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "เอกสาร"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "รับข่าวสารและกิจกรรมด้านการเข้าถึงทางอีเมล"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "สมัครรับจดหมายข่าวของ Equalize Digital เพื่อเข้าถึงเว็บไนาร์และทรัพยากรการฝึกอบรมด้านการเข้าถึงฟรี."
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "อีเมล*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "พิมพ์อีเมลของคุณ"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "ชื่อ"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "พิมพ์ชื่อของคุณ"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Accessibility Checker &mdash; ประวัติการตรวจสอบ"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Accessibility Checker &mdash; ฟรี"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "เวอร์ชัน"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "เวอร์ชันฐานข้อมูล"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "หน้านโยบาย"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "ไม่ได้กำหนด"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "วันที่เปิดใช้งาน"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "ข้อความส่วนท้าย"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "เปิดใช้งาน"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "ปิดใช้งาน"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "ลบข้อมูล"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "รวมลิงก์ข้อความ"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "ประเภทโพสต์"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "ตำแหน่งบทสรุปแบบย่อ"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "ข้อความแจ้งบทสรุปแบบย่อ"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "จำนวนโพสต์"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "จำนวนข้อผิดพลาด"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "จำนวนคำเตือน"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "จำนวนตารางในฐานข้อมูล"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Accessibility Checker &mdash; Pro"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "สถานะใบอนุญาต"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "ชื่อผู้ใช้สำหรับการอนุญาต"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "รหัสผ่านสำหรับการอนุญาต"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "รหัสการสแกน"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "จำนวนการสแกนทั้งหมด"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "หัวข้อบทสรุปแบบย่อ"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "สิทธิ์การละเว้น"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "ไม่มี"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "จำนวนตารางการละเว้นในฐานข้อมูล"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "%1$s ใช้ %2$s เพื่อตรวจสอบการเข้าถึงเว็บไซต์ของเรา."
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "เครื่องมือตรวจสอบการเข้าถึง (เปิดในหน้าต่างใหม่)"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "อ่าน %s ของเรา"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "นโยบายการเข้าถึง"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "สรุปแบบย่อ"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "เพิ่มขนาดและประเภทให้กับลิงก์ไฟล์"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "เพิ่มบริบทให้กับไฟล์ที่ลิงก์"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "เพิ่มขนาดและประเภทไฟล์ให้กับลิงก์"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "เพิ่มขนาดและประเภทไฟล์ให้กับลิงก์ไฟล์ที่อาจทำให้เกิดการดาวน์โหลด."
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "เพิ่มป้ายกำกับให้กับฟิลด์แบบฟอร์มที่ไม่มีป้ายกำกับ"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "ติดป้ายกำกับฟิลด์แบบฟอร์ม"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "เพิ่มป้ายกำกับให้กับฟิลด์แบบฟอร์มที่ไม่มีป้ายกำกับ หากสามารถระบุวัตถุประสงค์ของฟิลด์ได้."
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "พยายามเพิ่มป้ายกำกับให้กับฟิลด์แบบฟอร์มที่ไม่มีป้ายกำกับ หมายเหตุ: คุณอาจต้องเพิ่มสไตล์ที่กำหนดเองโดยกำหนดเป้าหมายที่คลาส %1$s หากการเพิ่มป้ายกำกับส่งผลกระทบต่อเค้าโครงแบบฟอร์มของคุณ."
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "เพิ่มชื่อหน้าที่หายไปหรือว่างเปล่า"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "ตั้งค่าชื่อ HTML ของหน้า"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "เพิ่มชื่อหน้าที่หายไป"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "เพิ่มแท็ก %1$s ให้กับหน้าถ้าหากมันหายไปหรือว่างเปล่า."
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "เพิ่มคำเตือนเมื่อลิงก์เปิดแท็บ/หน้าต่างใหม่"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "เพิ่มป้ายกำกับให้กับลิงก์ที่เปิดแท็บ/หน้าต่างใหม่"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "เพิ่มป้ายกำกับและไอคอนให้กับลิงก์ที่มี %1$s เพื่อแจ้งให้ผู้ใช้ทราบว่าจะเปิดแท็บ/หน้าต่างใหม่ %2$sหมายเหตุ: การตั้งค่านี้จะไม่มีผลหากการแก้ไข “บล็อกลิงก์ที่เปิดหน้าต่างใหม่” ถูกเปิดใช้งาน%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "บล็อกการอัปโหลด PDF"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "จำกัดการอัปโหลด PDF สำหรับผู้ใช้ที่ไม่มีความสามารถ %1$s (อนุญาตสำหรับผู้ดูแลระบบโดยค่าเริ่มต้น)."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "เพิ่มป้ายกำกับให้กับแบบฟอร์มความคิดเห็นและการค้นหา"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "ติดป้ายกำกับฟิลด์ความคิดเห็น/การค้นหา"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "ป้ายกำกับแบบฟอร์มความคิดเห็นและการค้นหา"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "เพิ่มป้ายกำกับที่หายไปให้กับแบบฟอร์มความคิดเห็นและการค้นหาของ WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "ติดป้ายกำกับแบบฟอร์มความคิดเห็น"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "เพิ่มป้ายกำกับที่หายไปให้กับแบบฟอร์มความคิดเห็นของ WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "ติดป้ายกำกับแบบฟอร์มการค้นหา"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "เพิ่มป้ายกำกับที่หายไปให้กับแบบฟอร์มการค้นหาของ WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "ความคิดเห็น"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "ชื่อ"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "อีเมล"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "เว็บไซต์"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "ค้นหา …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "ค้นหา:"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "ค้นหา"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "การตั้งค่าเพื่อเพิ่มป้ายกำกับที่หายไปในแบบฟอร์มความคิดเห็นและการค้นหาของ WordPress."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "เพิ่มเส้นขอบโฟกัส"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "เส้นขอบโฟกัส"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "เพิ่มเส้นขอบให้กับองค์ประกอบเมื่อได้รับโฟกัสจากแป้นพิมพ์."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "เพิ่มเส้นขอบโฟกัส"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "การตั้งค่าที่เกี่ยวข้องกับการเพิ่มประสิทธิภาพเส้นขอบโฟกัสเพื่อการเข้าถึงด้วยแป้นพิมพ์ที่ดีขึ้น."
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "เพิ่มแอตทริบิวต์ lang และ dir"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "ตั้งค่าภาษาของหน้า"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "เพิ่มแอตทริบิวต์ “lang” และ “dir”"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "เพิ่มแอตทริบิวต์ภาษาของเว็บไซต์ (%1$s) และทิศทางของข้อความ (%2$s) ให้กับอิลิเมนต์ %3$s."
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "เพิ่มขีดเส้นใต้ให้กับลิงก์ทั้งหมดที่ไม่ใช่การนำทาง"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "ขีดเส้นใต้ลิงก์"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "บังคับขีดเส้นใต้ลิงก์"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "ตรวจสอบให้แน่ใจว่าลิงก์ที่ไม่ใช่การนำทางมีขีดเส้นใต้."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "ทำให้แท็ก meta viewport ปรับขนาดได้"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "ตรวจสอบให้แน่ใจว่า viewport ปรับขนาดได้"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "ตรวจสอบให้แน่ใจว่าแท็ก viewport บนหน้าเว็บอนุญาตให้ปรับขนาดได้."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "ทำให้ viewport ปรับขนาดได้"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "ตรวจสอบให้แน่ใจว่าแท็ก viewport อนุญาตให้ปรับขนาดได้ เพื่อเพิ่มการเข้าถึงบนอุปกรณ์มือถือ."
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "ป้องกันลิงก์เปิดหน้าต่างใหม่"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "บล็อกลิงก์ที่เปิดหน้าต่างใหม่"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "ป้องกันลิงก์จากการเปิดในหน้าต่างหรือแท็บใหม่โดยลบ %1$s."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "เพิ่มลิงก์ “อ่าน” พร้อมชื่อบทความ"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "เพิ่มชื่อเรื่องให้กับลิงก์อ่านเพิ่มเติม"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "ลิงก์อ่านเพิ่มเติม"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "เพิ่มชื่อบทความและลิงก์ "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "เพิ่มชื่อบทความใน “อ่านเพิ่มเติม”"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "เพิ่มชื่อบทความลงในลิงก์ “อ่านเพิ่มเติม” ในรายการบทความเมื่อธีมของคุณแสดงลิงก์เหล่านั้น."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "สำหรับโปรแกรมอ่านหน้าจอเท่านั้น"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "ทำให้ชื่อบทความที่เพิ่มในลิงก์ “อ่านเพิ่มเติม” มองเห็นได้เฉพาะโปรแกรมอ่านหน้าจอ."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "การแก้ไขนี้จะเพิ่มชื่อบทความลงในลิงก์ “อ่านเพิ่มเติม” ในรายการบทความที่บล็อก “เพิ่มเติม” และในส่วนสรุป."
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "เลือกใช้แอตทริบิวต์ป้ายกำกับที่เข้าถึงได้"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "ลบแอตทริบิวต์ title ที่ไม่จำเป็น"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "ลบแอตทริบิวต์ title"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "ลบแอตทริบิวต์ %1$s จากอิลิเมนต์ที่มีชื่อที่เข้าถึงได้อยู่แล้ว."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "เพิ่มลิงก์ข้าม"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "ลิงก์ข้าม"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "เปิดใช้งานลิงก์ข้าม"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "เพิ่มลิงก์ข้ามไปยังทุกหน้าของเว็บไซต์ เพื่อให้ผู้ใช้สามารถข้ามไปยังเนื้อหาหลักได้โดยตรง."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "เป้าหมายเนื้อหาหลัก (จำเป็น)"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "กำหนด ID ของพื้นที่เนื้อหาหลักที่จะเป็นเป้าหมายของลิงก์ข้าม ใส่หลาย ID โดยคั่นด้วยเครื่องหมายจุลภาค ระบบจะค้นหาผ่านรายการเพื่อหา ID ที่เหมาะสมสำหรับแต่ละหน้า."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "เป้าหมายการนำทาง"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "ตั้งค่าแอตทริบิวต์ ID ของอิลิเมนต์การนำทาง สิ่งนี้มีประโยชน์หากการนำทางหลักของคุณมีการดำเนินการที่ผู้เข้าชมเว็บไซต์ส่วนใหญ่ต้องการทำ เช่น ฟีเจอร์การเข้าสู่ระบบหรือการค้นหา."
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "หากธีมของคุณยังไม่ได้เพิ่มลิงก์ข้ามที่อนุญาตให้ผู้ใช้แป้นพิมพ์ข้ามการนำทางและข้ามไปยังเนื้อหาหลักได้อย่างรวดเร็ว ให้เปิดใช้งานลิงก์ข้ามที่นี่ %1$sเรียนรู้เพิ่มเติมเกี่ยวกับลิงก์ข้าม%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "ข้ามไปยังเนื้อหา"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "ข้ามไปยังการนำทาง"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "ลบ tabindex จากอิลิเมนต์ที่สามารถโฟกัสได้"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "ลบดัชนีแท็บ"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "ลบแอตทริบิวต์ %1$s ออกจากอิลิเมนต์ที่สามารถโฟกัสได้."
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "หมายเหตุ: ไม่แนะนำให้ใช้การตั้งค่านี้สำหรับธีมที่พร้อมสำหรับการเข้าถึงอยู่แล้ว."
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "ไม่พบการแก้ไข"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "ไม่สามารถลงทะเบียนคำสั่ง %1$s เนื่องจาก %2$s"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "ID ของบทความที่ต้องการลบสถิติ."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "ไม่ได้ระบุ ID บทความ."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "ID บทความ %1$s ไม่มีอยู่."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "ลบสถิติของ %1$s แล้ว."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "คีย์ที่จะแสดงในผลลัพธ์ ค่าเริ่มต้นคือทุกคีย์."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "ล้างแคชก่อนดึงข้อมูลสถิติ (อาจใช้ทรัพยากรมาก)."
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "ไม่พบคีย์สถิติ: %1$s ในสถิติ."
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "ID ของบทความที่ต้องการดูสถิติ."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "ID บทความ %1$d ไม่มีอยู่."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "บทความยังไม่ได้รับการตรวจสอบหรือผ่านการทดสอบทั้งหมดสำหรับ ID บทความ %1$d."
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "ลิงก์ถาวรของ "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "ลิงก์ถาวรไปยัง "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "เข้าร่วมฟรี"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "ยินดีต้อนรับสู่ตัวตรวจสอบการเข้าถึง"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "การตั้งค่าตัวตรวจสอบการเข้าถึง"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "การตั้งค่าทั่วไป"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "การตั้งค่าสรุปแบบย่อ"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "ข้อความการเข้าถึงในส่วนท้าย"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "ตัวตรวจสอบการเข้าถึงส่วนหน้า"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "ประเภทบทความที่จะตรวจสอบ"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "แจ้งเตือนสำหรับสรุปแบบย่อ"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "ตำแหน่งสรุปแบบย่อ"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "เพิ่มข้อความการเข้าถึงในส่วนท้าย"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "รวมลิงก์ไปยังนโยบายการเข้าถึง"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "หน้านโยบายการเข้าถึง"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "ตัวอย่างข้อความการเข้าถึง"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "ตำแหน่งตัวตรวจสอบการเข้าถึงส่วนหน้า"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "ใช้การตั้งค่าด้านล่างเพื่อกำหนดค่าตัวตรวจสอบการเข้าถึง ข้อมูลเพิ่มเติมเกี่ยวกับการตั้งค่าแต่ละรายการสามารถพบได้ใน %1$s."
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "เอกสารประกอบปลั๊กอิน (เปิดในหน้าต่างใหม่)"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "เอกสารประกอบปลั๊กอิน"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "คุณสมบัติเพิ่มเติมและการสนับสนุนทางอีเมลมีให้บริการใน %1$s."
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Accessibility Checker Pro (เปิดในหน้าต่างใหม่)"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Accessibility Checker Pro"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "ใช้การตั้งค่าด้านล่างเพื่อกำหนดค่าตัวตรวจสอบการเข้าถึงที่ส่วนหน้าของเว็บไซต์."
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "แนวทางการเข้าถึงเนื้อหาเว็บ (WCAG) ในระดับ AAA กำหนดให้เนื้อหาใดๆ ที่มีระดับการอ่านสูงกว่าเกรด 9 ต้องมีทางเลือกที่อ่านง่ายกว่า ข้อความสรุปแบบง่ายจะถูกเพิ่มในแท็บความสามารถในการอ่านในกล่องเมตา Accessibility Checker บนหน้าแก้ไขของแต่ละโพสต์หรือหน้า."
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับบทสรุปแบบง่ายและข้อกำหนดด้านความสามารถในการอ่าน (เปิดในหน้าต่างใหม่)"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับบทสรุปแบบง่ายและข้อกำหนดด้านความสามารถในการอ่าน."
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "คุณกำลังคิดว่า “ว้าว ปลั๊กอินนี้ยอดเยี่ยมมาก” และมันกำลังช่วยคุณทำให้เว็บไซต์ของคุณเข้าถึงได้มากขึ้นใช่ไหม? แบ่งปันความพยายามของคุณในการทำให้เว็บไซต์ของคุณเข้าถึงได้มากขึ้นกับลูกค้าของคุณ และแจ้งให้พวกเขาทราบว่าคุณกำลังใช้ Accessibility Checker เพื่อให้แน่ใจว่าทุกคนสามารถใช้เว็บไซต์ของคุณได้ เพิ่มลิงก์ข้อความขนาดเล็กและข้อความในส่วนท้ายของเว็บไซต์ของคุณ."
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "ก่อนเนื้อหา"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "หลังเนื้อหา"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "แทรกด้วยตนเอง"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "ใช้ฟังก์ชันนี้เพื่อเพิ่มบทสรุปแบบง่ายลงในธีมของคุณภายในลูปด้วยตนเอง."
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "ฟังก์ชันนี้สามารถรับ ID ของโพสต์เป็นพารามิเตอร์ได้."
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "กำหนดว่าคุณต้องการให้บทสรุปแบบง่ายปรากฏในตำแหน่งใดเมื่อเทียบกับเนื้อหาของคุณหากมีการกรอก."
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "มุมขวาล่าง (ค่าเริ่มต้น)"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "มุมซ้ายล่าง"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "กำหนดว่าคุณต้องการให้ตัวตรวจสอบการเข้าถึงที่ส่วนหน้าปรากฏที่ตำแหน่งใดบนหน้า."
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "เมื่อจำเป็น"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "เสมอ"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Accessibility Checker ควรขอบทสรุปแบบง่ายเฉพาะเมื่อระดับการอ่านของโพสต์หรือหน้าของคุณสูงกว่าเกรด 9 หรือขอเสมอโดยไม่คำนึงถึงระดับการอ่าน หรือไม่ขอเลยโดยไม่คำนึงถึงระดับการอ่าน?"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "หากต้องการตรวจสอบเนื้อหาอื่นนอกเหนือจากโพสต์และหน้า โปรด "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " (เปิดในหน้าต่างใหม่)"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "เลือกประเภทโพสต์ที่ควรตรวจสอบระหว่างการสแกน โปรดทราบว่า การลบประเภทโพสต์ที่เคยเลือกไว้ก่อนหน้านี้จะลบข้อมูลที่สแกนและคำเตือนที่ถูกละเว้นแบบกำหนดเองที่ได้ตั้งค่าไว้."
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "ลบข้อมูลทั้งหมดของ Accessibility Checker เมื่อถอนการติดตั้งปลั๊กอิน."
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "รูปภาพไม่มีข้อความทางเลือก"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "ข้อผิดพลาด 'รูปภาพไม่มีข้อความทางเลือก' หมายความว่ารูปภาพของคุณไม่มีแอตทริบิวต์ alt (%1$s) อยู่ในแท็กรูปภาพ (%2$s) เลย เพื่อแก้ไขข้อผิดพลาดนี้ คุณจะต้องเพิ่มแท็ก alt ให้กับรูปภาพพร้อมข้อความที่เหมาะสมอธิบายวัตถุประสงค์ของรูปภาพในหน้านั้น หากรูปภาพเป็นเพียงการตกแต่ง แอตทริบิวต์ alt สามารถเว้นว่างได้ แต่แท็ก HTML %1$s ยังคงต้องมีอยู่."
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "รูปภาพมีข้อความทางเลือกว่างเปล่า"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "คำเตือน 'รูปภาพมีข้อความทางเลือกว่างเปล่า' จะปรากฏขึ้นหากคุณมีรูปภาพที่มีแอตทริบิวต์ alt (%s) ที่ว่างเปล่า ข้อความทางเลือกบอกผู้ที่ไม่สามารถมองเห็นว่ารูปภาพคืออะไรและเพิ่มบริบทเพิ่มเติมให้กับโพสต์หรือหน้า การที่ข้อความทางเลือกว่างเปล่าจะถูกต้องก็ต่อเมื่อรูปภาพนั้นเป็นเพียงการตกแต่ง เช่น ขอบหรือไอคอนตกแต่ง ในการแก้ไขคำเตือนนี้ คุณต้องพิจารณาว่ารูปภาพนั้นเป็นการตกแต่งหรือเพิ่มความหมายให้กับหน้าหรือไม่ หากไม่ใช่การตกแต่ง คุณต้องเพิ่มข้อความทางเลือกที่เหมาะสมเพื่ออธิบายวัตถุประสงค์ของรูปภาพ หากรูปภาพเป็นการตกแต่ง คุณควรปล่อยให้ข้อความทางเลือกว่างเปล่าและ “ละเว้น” คำเตือน."
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "ข้อความทางเลือกคุณภาพต่ำ"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "คำเตือนข้อความทางเลือกคุณภาพต่ำจะปรากฏขึ้นเมื่อข้อความทางเลือกของรูปภาพมีคำสำคัญที่ไม่จำเป็นในข้อความทางเลือก (เช่น “รูปภาพ” หรือ “กราฟิก”) นามสกุลไฟล์ (เช่น.JPG) หรืออาจอธิบายรูปภาพตกแต่ง (เช่น “ตัวเว้นระยะ” หรือ “ลูกศร”) เพื่อแก้ไขคำเตือนนี้ คุณจะต้องเขียนข้อความทางเลือกใหม่สำหรับรูปภาพใดๆ ที่มีการแจ้งเตือนข้อความทางเลือกคุณภาพต่ำ โดยต้องแน่ใจว่าข้อความทางเลือกนั้นถูกต้อง เป็นเอกลักษณ์ เหมาะสมกับบริบท และไม่มีคำอธิบายที่ซ้ำซ้อนหรือไม่จำเป็น หากรูปภาพนั้นเป็นเพียงการตกแต่ง การปล่อยให้ข้อความทางเลือกว่างเปล่าเป็นสิ่งที่ถูกต้อง."
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "รูปภาพที่มีลิงก์ขาดข้อความทางเลือก"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "ข้อผิดพลาด รูปภาพที่มีลิงก์ขาดข้อความทางเลือก จะปรากฏขึ้นเมื่อรูปภาพที่เชื่อมโยงกับ URL ไม่มีแอตทริบิวต์ alt (%s) ในแท็กรูปภาพเลย รูปภาพที่มีลิงก์ต้องมีข้อความทางเลือกที่ถูกต้องซึ่งอธิบายว่าลิงก์นั้นนำไปที่ใด เพื่อให้ผู้ใช้โปรแกรมอ่านหน้าจอทราบว่าลิงก์นั้นชี้ไปที่ใด เพื่อแก้ไขข้อผิดพลาดนี้ คุณต้องเพิ่มข้อความ alt ที่มีความหมายให้กับรูปภาพ ข้อความ alt ของคุณควรอธิบายจุดประสงค์ของลิงก์ ไม่ใช่ลักษณะของรูปภาพ."
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "รูปภาพที่มีลิงก์มีข้อความทางเลือกว่างเปล่า"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "ข้อผิดพลาด รูปภาพที่มีลิงก์มีข้อความทางเลือกว่างเปล่า จะปรากฏขึ้นเมื่อรูปภาพที่เชื่อมโยงกับ URL มีแอตทริบิวต์ alt (%s) แต่ไม่มีข้อความใดๆ อยู่ในนั้น รูปภาพที่มีลิงก์ต้องมีข้อความทางเลือกที่ถูกต้องซึ่งอธิบายว่าลิงก์นั้นนำไปที่ใด เพื่อให้ผู้ใช้โปรแกรมอ่านหน้าจอทราบว่าลิงก์นั้นชี้ไปที่ใด เพื่อแก้ไขข้อผิดพลาดนี้ คุณต้องเพิ่มข้อความ alt ที่มีความหมายให้กับรูปภาพ ข้อความ alt ของคุณควรอธิบายจุดประสงค์ของลิงก์ ไม่ใช่ลักษณะของรูปภาพ."
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "ข้อความทางเลือกซ้ำกัน"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "คำเตือนข้อความทางเลือกซ้ำกันจะปรากฏขึ้นเมื่อข้อความทางเลือกสำหรับรูปภาพในโพสต์หรือหน้าของคุณเหมือนกันกับข้อความที่อยู่ใกล้เคียงหรือติดกัน รวมถึงชื่อหรือคำบรรยายของรูปภาพ คำเตือนนี้ยังเกิดขึ้นหากรูปภาพสองรูปในหน้าเดียวกันมีข้อความทางเลือกเหมือนกัน เพื่อแก้ไขคำเตือนนี้ คุณจะต้องเปลี่ยนข้อความของอย่างน้อยหนึ่งในสององค์ประกอบที่แจ้งเตือนข้อความทางเลือกซ้ำกัน โดยต้องแน่ใจว่ารูปภาพทั้งหมดมีข้อความ alt ที่ไม่ซ้ำกัน และคุณไม่ได้ทำซ้ำข้อความ alt ในชื่อและคำบรรยายรูปภาพของคุณ."
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "ลำดับหัวข้อไม่ถูกต้อง"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "ข้อผิดพลาดลำดับหัวข้อไม่ถูกต้องหมายความว่าโครงสร้างหัวข้อของคุณข้ามระดับไป ตัวอย่างเช่น หากโครงสร้างหน้าของคุณมีหัวข้อระดับ 3 (%1$s) อยู่ใต้หัวข้อระดับ 1 (%2$s) จะมีการแจ้งข้อผิดพลาด “ลำดับหัวข้อไม่ถูกต้อง” เพราะไม่มีแท็ก %3$s ระหว่าง H1 และ H3 เพื่อแก้ไขข้อผิดพลาดลำดับหัวข้อไม่ถูกต้อง คุณจะต้องเปลี่ยนระดับหัวข้อที่ไม่ถูกต้องให้เป็นระดับหัวข้อที่ถูกต้อง หรือเพิ่มเนื้อหาที่มีระดับหัวข้อถูกต้องระหว่างสองระดับที่มีอยู่แล้ว."
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "แท็กย่อหน้าว่างเปล่า"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "คำเตือนแท็กย่อหน้าว่างเปล่าหมายความว่ามีแท็กย่อหน้าที่ไม่มีเนื้อหาอยู่ สิ่งนี้อาจถูกประกาศโดยโปรแกรมอ่านหน้าจอหรือสร้างความสับสนให้กับผู้ใช้ เพื่อแก้ไขคำเตือนนี้ ให้ลบย่อหน้าว่างเปล่าออกจากหน้า หากคุณต้องการเพิ่มระยะห่างระหว่างส่วนต่างๆ ควรทำด้วยการใช้ padding, margins หรือบล็อกตัวเว้นระยะ."
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "iframe ขาดชื่อเรื่อง"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "ข้อผิดพลาด iframe ขาดชื่อเรื่อง หมายความว่า iframe หนึ่งหรือหลาย iframe ในโพสต์หรือหน้าของคุณไม่มีชื่อเรื่องที่เข้าถึงได้ซึ่งอธิบายเนื้อหาของ iframe ชื่อเรื่อง iframe เป็นแอตทริบิวต์ที่สามารถเพิ่มลงในแท็ก %1$s เพื่ออธิบายเนื้อหาของเฟรมให้กับผู้ใช้เทคโนโลยีช่วยเหลือ เพื่อแก้ไขข้อผิดพลาดชื่อเรื่อง iframe ที่หายไป คุณจะต้องเพิ่มแอตทริบิวต์ title หรือ aria-label ลงในแท็ก %1$s แอตทริบิวต์นี้ควรอธิบายเนื้อหาของ iframe อย่างถูกต้อง."
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "ขาดหัวข้อย่อย"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "คำเตือนเกี่ยวกับหัวข้อที่หายไปหมายความว่าโพสต์หรือหน้าเว็บของคุณไม่มีองค์ประกอบหัวข้อ (%1$s–%2$s) ภายในเนื้อหาส่วนเนื้อความของโพสต์หรือหน้า ซึ่งอาจทำให้ผู้ใช้โปรแกรมอ่านหน้าจอมีความยากลำบากในการนำทางผ่านเนื้อหาบนหน้านั้น เพื่อแก้ไขหน้าที่ไม่มีหัวข้อ คุณจะต้องเพิ่มองค์ประกอบหัวข้อ อย่างน้อยทุกหน้าควรมีแท็ก %1$s หนึ่งแท็ก ซึ่งโดยทั่วไปคือชื่อหน้า เพิ่มหัวข้อย่อยเพิ่มเติมตามความเหมาะสมสำหรับเนื้อหาของคุณ หากคุณได้พิจารณาแล้วว่าไม่จำเป็นต้องมีหัวข้อบนหน้านั้น คุณสามารถ “ละเว้น” คำเตือนได้."
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "ข้อความชิดขอบ"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "คำเตือนเกี่ยวกับข้อความชิดขอบจะปรากฏใน Accessibility Checker เมื่อข้อความที่มีตัวอักษรมากกว่า 200 ตัวในโพสต์หรือหน้าเว็บของคุณถูกจัดรูปแบบด้วยการจัดให้ชิดขอบ (text-align:justify) เพื่อแก้ไขคำเตือนนี้ ให้ลบการจัดรูปแบบชิดขอบออกจากองค์ประกอบข้อความที่ระบุ."
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "ลิงก์เปิดหน้าต่างหรือแท็บใหม่"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "คำเตือน \"ลิงก์เปิดหน้าต่างหรือแท็บใหม่\" จะปรากฏเมื่อมีลิงก์บนเว็บไซต์ของคุณที่ถูกตั้งค่าให้เปิดในแท็บหรือหน้าต่างใหม่เมื่อคลิก ถือเป็นแนวปฏิบัติที่ดีที่ไม่ควรเปิดแท็บหรือหน้าต่างใหม่ด้วยลิงก์ หากลิงก์เปิดแท็บหรือหน้าต่างใหม่ จะต้องมีคำเตือนทั้งแบบภาพและเสียงที่ประกาศว่าลิงก์จะเปิดหน้าต่างหรือแท็บใหม่ เพื่อให้ผู้ใช้คาดหวังพฤติกรรมนั้นและรู้วิธีกลับหลังจากคลิกลิงก์ เพื่อแก้ไขคำเตือนนี้ ให้เปลี่ยนลิงก์ไม่ให้เปิดในแท็บใหม่ หรือตรวจสอบให้แน่ใจว่ามีข้อความ “เปิดหน้าต่างใหม่” รวมอยู่ในข้อความลิงก์ จากนั้น “ละเว้น” คำเตือน เพื่อเพิ่มประกาศโดยอัตโนมัติให้กับลิงก์ทั้งหมดบนไซต์ของคุณและปิดคำเตือนทั้งหมดเหล่านี้ ให้ติดตั้งปลั๊กอิน %s ฟรีของเรา."
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "คำเตือนการเข้าถึงหน้าต่างใหม่"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "แผนที่รูปภาพขาดข้อความทางเลือก"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "ข้อผิดพลาด \"แผนที่รูปภาพขาดข้อความทางเลือก\" หมายความว่าหนึ่งในองค์ประกอบ %1$s ภายในแผนที่รูปภาพของคุณไม่มีข้อความทางเลือกที่เพิ่มในคุณลักษณะ %2$s เพื่อแก้ไขข้อผิดพลาดนี้ คุณจะต้องเพิ่มข้อความทางเลือกที่ขาดหายไปให้กับแท็กพื้นที่ที่ไม่มีข้อความทางเลือก ข้อความทางเลือกจำเป็นต้องอธิบายฟังก์ชันของลิงก์ที่อยู่ในพื้นที่นั้น ไม่จำเป็นต้องอธิบายว่าพื้นที่นั้นมีลักษณะอย่างไร."
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "ลำดับแท็บถูกแก้ไข"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "คำเตือน \"ลำดับแท็บถูกแก้ไข\" จะปรากฏเมื่อลำดับแท็บตามตรรกะบนหน้าถูกเปลี่ยนแปลงโดยการเพิ่มคุณลักษณะ tabindex ที่มีค่ามากกว่า 0 ให้กับองค์ประกอบ HTML (เช่น %s) สิ่งนี้อาจก่อให้เกิดปัญหาในการนำทางสำหรับผู้ใช้ที่ใช้แป้นพิมพ์เท่านั้น เพื่อแก้ไขคำเตือน \"ลำดับแท็บถูกแก้ไข\" คุณต้องดูส่วนหน้าบ้านของเว็บไซต์ของคุณบนหน้าหรือโพสต์ที่ลำดับแท็บถูกแก้ไขและทดสอบว่าการแก้ไขนั้นถูกต้องหรือไม่ หากการแก้ไขลำดับแท็บไม่ก่อให้เกิดปัญหา คุณสามารถ “ละเว้น” คำเตือนได้ หากลำดับแท็บที่แก้ไขทำให้ข้อมูลถูกนำเสนอผิดลำดับ คุณจำเป็นต้องลบคุณลักษณะ tabindex ออกจากองค์ประกอบที่ถูกระบุ."
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "แท็กหัวข้อว่างเปล่า"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "ข้อผิดพลาด \"แท็กหัวข้อว่างเปล่า\" หมายความว่ามีแท็กหัวข้อปรากฏอยู่ในโพสต์หรือหน้าของคุณที่ไม่มีเนื้อหา ในโค้ด ข้อผิดพลาดนี้จะมีลักษณะดังนี้: %s เพื่อแก้ไขหัวข้อที่ว่างเปล่า คุณจะต้องเพิ่มเนื้อหาลงในแท็กหัวข้อที่ทำให้เกิดข้อผิดพลาด \"แท็กหัวข้อว่างเปล่า\" หรือลบแท็กที่ว่างเปล่าออกหากไม่จำเป็นต้องมีบนหน้าของคุณ."
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "ลิงก์ว่างเปล่า"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "ข้อผิดพลาด 'ลิงก์ว่างเปล่า' หมายถึงลิงก์หนึ่งบนหน้าเว็บไซต์ว่างเปล่าหรือไม่มีข้อความอธิบายว่าลิงก์นั้นจะนำไปที่ใดเมื่อคลิก ปัญหานี้มักเกิดขึ้นกับลิงก์ที่มีเว็บฟอนต์ ไอคอนฟอนต์ และ SVG หรือเมื่อมีการสร้างลิงก์โดยไม่ตั้งใจในตัวแก้ไขเนื้อหา เพื่อแก้ไขข้อผิดพลาดลิงก์ว่างเปล่า คุณจำเป็นต้องหาลิงก์ที่ถูกแจ้งเตือนและเพิ่มข้อความคำอธิบายให้กับมัน คุณจะต้องทำอย่างใดอย่างหนึ่งต่อไปนี้: เพิ่มเนื้อหาข้อความภายในองค์ประกอบ %1$s ที่ว่างเปล่า หรือถ้าลิงก์ของคุณมีไอคอน SVG หรือ Webfont ให้ซ่อนองค์ประกอบนั้นด้วย %2$s และเพิ่มแอตทริบิวต์ %3$s ให้กับแท็ก %1$s หรือข้อความสำหรับโปรแกรมอ่านหน้าจอ ข้อความหรือป้ายกำกับที่คุณเพิ่มควรอธิบายถึงจุดหมายปลายทางของลิงก์และไม่คลุมเครือ."
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "ปุ่มว่างเปล่า"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "ข้อผิดพลาด 'ปุ่มว่างเปล่า' หมายถึงปุ่มหนึ่งบนหน้าเว็บไซต์ว่างเปล่าหรือไม่มีข้อความอธิบายฟังก์ชันของปุ่ม หรือถ้าเป็นปุ่มรูปภาพ รูปภาพในปุ่มนั้นไม่มีข้อความทางเลือก เพื่อแก้ไขข้อผิดพลาดปุ่มว่างเปล่า คุณจำเป็นต้องหาปุ่มที่ถูกแจ้งเตือนและเพิ่มข้อความคำอธิบายให้กับมัน คุณจะต้องทำอย่างใดอย่างหนึ่งต่อไปนี้: เพิ่มเนื้อหาข้อความภายในองค์ประกอบ %1$s ที่ว่างเปล่า เพิ่มแอตทริบิวต์ value ให้กับ %2$s ที่ขาดหายไป หรือเพิ่มข้อความทางเลือกให้กับรูปภาพปุ่ม ข้อความควรอธิบายถึงวัตถุประสงค์ของปุ่มหรือการกระทำที่ปุ่มนั้นทำงาน."
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "ข้อความทางเลือกยาวสำหรับรูปภาพ"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "คำเตือน 'ข้อความทางเลือกยาวสำหรับรูปภาพ' จะปรากฏขึ้นหากมีตัวอักษรมากกว่า 100 ตัวในข้อความทางเลือกของคุณ ข้อความทางเลือกมีไว้เพื่ออธิบายรูปภาพแต่ควรทำอย่างกระชับ ไม่ยืดเยื้อจนเกินไป เพื่อแก้ไขคำเตือนนี้ คุณต้องย่อข้อความทางเลือกสำหรับรูปภาพที่ถูกแจ้งเตือนให้เหลือ 100 ตัวอักษรหรือน้อยกว่า หากคุณพิจารณาแล้วว่าข้อความทางเลือกของคุณดีอยู่แล้ว ให้ “ละเว้น” คำเตือนนี้."
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Hidden"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "คำเตือน ARIA Hidden ปรากฏขึ้นเมื่อเนื้อหาในโพสต์หรือหน้าของคุณถูกซ่อนโดยใช้แอตทริบิวต์ aria-hidden=“true” เมื่อเพิ่มแอตทริบิวต์นี้ให้กับองค์ประกอบ HTML โปรแกรมอ่านหน้าจอจะไม่อ่านออกเสียงให้ผู้ใช้ฟัง บางครั้งก็ถูกต้องที่องค์ประกอบจะถูกซ่อนจากโปรแกรมอ่านหน้าจอ (เช่น ในกรณีของไอคอนตกแต่ง) แต่บางครั้งก็ไม่ถูกต้อง เมื่อคุณเห็นคำเตือนนี้ คุณต้องพิจารณาว่าองค์ประกอบนั้นควรถูกซ่อนจากผู้ที่ตาบอดหรือมีปัญหาทางสายตาหรือไม่ หากซ่อนอย่างถูกต้อง ให้ “ละเว้น” คำเตือน หากซ่อนไม่ถูกต้องและควรมองเห็นได้ ให้ลบแอตทริบิวต์ aria-hidden=“true” ออกเพื่อแก้ไขคำเตือน."
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "ส่วนหัวตารางว่างเปล่า"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "ข้อผิดพลาด 'ส่วนหัวตารางว่างเปล่า' หมายความว่าส่วนหัวตารางหนึ่งในโพสต์หรือหน้าของคุณไม่มีข้อความใดๆ นั่นหมายความว่าองค์ประกอบ %1$s มีอยู่แต่มีลักษณะเช่นนี้ %2$s โดยไม่มีอะไรระหว่างแท็กเปิดและปิด เพื่อแก้ไขส่วนหัวตารางที่ว่างเปล่า คุณต้องหาองค์ประกอบ HTML ที่ถูกต้อง (%1$s) และเพิ่มข้อความที่อธิบายแถวหรือคอลัมน์ที่เกี่ยวข้อง."
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "ลิงก์ไปยังไฟล์ MS Office"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "คำเตือน 'ลิงก์ไปยังไฟล์ MS Office' หมายความว่าลิงก์หนึ่งหรือมากกว่าในหน้าหรือโพสต์ของคุณนำไปสู่ไฟล์ที่มีนามสกุลไฟล์ดังต่อไปนี้: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps หรือ.ppsx คำเตือนนี้ปรากฏขึ้นเมื่อมีไฟล์ MS Office อยู่เพื่อเตือนให้ทดสอบเอกสาร Word การนำเสนอ PowerPoint และสเปรดชีต Excel ด้วยตนเองเพื่อความสามารถในการเข้าถึงและเพื่อยืนยันว่าสอดคล้องกับแนวทาง WCAG ที่เกี่ยวข้องทั้งหมด เพื่อแก้ไขคำเตือนลิงก์ไปยังไฟล์ MS Office คุณต้อง: (1) ตรวจสอบให้แน่ใจว่ามีลิงก์โดยตรงสำหรับดูหรือดาวน์โหลดเอกสารหากคุณใช้ปลั๊กอินฝังเอกสารในหน้า (2) ตรวจสอบให้แน่ใจว่าลิงก์ไปยังเอกสารเตือนผู้ใช้ว่าเป็นลิงก์ไปยังเอกสารโดยแสดงนามสกุลไฟล์เฉพาะในข้อความลิงก์ และ (3) ทดสอบและแก้ไขไฟล์ MS Office ของคุณเพื่อแก้ไขข้อผิดพลาดในการเข้าถึง หลังจากตรวจสอบแล้วว่าไฟล์ของคุณสามารถเข้าถึงได้อย่างสมบูรณ์ คุณสามารถ “ละเว้น” คำเตือนได้อย่างปลอดภัย."
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "ลิงก์ไปยังไฟล์ PDF"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "คำเตือนเกี่ยวกับลิงก์ไปยัง PDF หมายความว่ามีลิงก์อย่างน้อยหนึ่งลิงก์ในหน้าหรือโพสต์ของคุณที่นำไปสู่ไฟล์ PDF คำเตือนนี้เป็นการเตือนให้ทดสอบความสามารถในการเข้าถึงของ PDF ที่เชื่อมโยงด้วยตนเองและยืนยันว่าเป็นไปตามแนวทาง WCAG ที่เกี่ยวข้องทั้งหมด เพื่อแก้ไขคำเตือนลิงก์ไปยัง PDF คุณจำเป็นต้อง: (1) ตรวจสอบให้แน่ใจว่ามีลิงก์โดยตรงสำหรับดูหรือดาวน์โหลดเอกสารหากคุณใช้ปลั๊กอินเพื่อฝังไว้ในหน้า (2) ตรวจสอบให้แน่ใจว่าลิงก์ไปยังเอกสารเตือนผู้ใช้ว่าเป็นลิงก์ไปยังเอกสารโดยแสดงนามสกุลไฟล์เฉพาะในข้อความลิงก์ และ (3) ทดสอบและแก้ไขเอกสารของคุณเพื่อแก้ไขข้อผิดพลาดด้านการเข้าถึง หลังจากที่ตรวจสอบแล้วว่าไฟล์ของคุณสามารถเข้าถึงได้อย่างสมบูรณ์ คุณสามารถ “ละเว้น” คำเตือนได้อย่างปลอดภัย."
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "ลิงก์ไปยังไฟล์ที่ไม่ใช่ HTML"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "คำเตือนเกี่ยวกับลิงก์ไปยังเอกสารที่ไม่ใช่ HTML หมายความว่ามีลิงก์อย่างน้อยหนึ่งลิงก์ในหน้าหรือโพสต์ของคุณที่นำไปสู่ไฟล์ที่มีนามสกุลไฟล์ดังต่อไปนี้: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages หรือ.key คำเตือนนี้เป็นการเตือนให้ทดสอบความสามารถในการเข้าถึงของเอกสารที่เชื่อมโยงด้วยตนเองและยืนยันว่าเป็นไปตามแนวทาง WCAG ที่เกี่ยวข้องทั้งหมด เพื่อแก้ไขคำเตือนลิงก์ไปยังเอกสารที่ไม่ใช่ HTML คุณจำเป็นต้อง: (1) ตรวจสอบให้แน่ใจว่ามีลิงก์โดยตรงสำหรับดูหรือดาวน์โหลดเอกสารหากคุณใช้ปลั๊กอินเพื่อฝังไว้ในหน้า (2) ตรวจสอบให้แน่ใจว่าลิงก์ไปยังเอกสารเตือนผู้ใช้ว่าเป็นลิงก์ไปยังเอกสารโดยแสดงนามสกุลไฟล์เฉพาะในข้อความลิงก์ และ (3) ทดสอบและแก้ไขเอกสารของคุณเพื่อแก้ไขข้อผิดพลาดด้านการเข้าถึง หลังจากที่ตรวจสอบแล้วว่าไฟล์ของคุณสามารถเข้าถึงได้อย่างสมบูรณ์ คุณสามารถ “ละเว้น” คำเตือนได้อย่างปลอดภัย."
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "คำอธิบายยาวไม่ถูกต้อง"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "ข้อผิดพลาด 'คำอธิบายยาวไม่ถูกต้อง' หมายความว่าแอตทริบิวต์คำอธิบายยาว (%s) ของรูปภาพไม่มี URL ชื่อไฟล์ หรือนามสกุลไฟล์ที่เหมาะสม อาจหมายถึงคำอธิบายยาวไม่ใช่ URL หรือถูกเว้นว่างไว้ แอตทริบิวต์ longdesc ไม่ได้รับการสนับสนุนอย่างเต็มที่โดย HTML5 เบราว์เซอร์ และโปรแกรมอ่านหน้าจอทั้งหมด เนื่องจากการขาดการสนับสนุนนี้ วิธีแก้ไขที่ดีที่สุดสำหรับข้อผิดพลาดนี้คือการลบ longdesc ออกจากแท็กรูปภาพของคุณทั้งหมด."
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "ป้ายกำกับแบบฟอร์มหายไป"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "ข้อผิดพลาด 'ป้ายกำกับแบบฟอร์มหายไป' เกิดขึ้นเมื่อมี %1$s (ฟิลด์แบบฟอร์ม) อยู่ในแบบฟอร์มของคุณแต่ไม่ได้เชื่อมโยงกับองค์ประกอบ %2$s นี่อาจหมายความว่ามีป้ายกำกับอยู่แต่ขาดแอตทริบิวต์ %3$s ที่จะเชื่อมต่อกับฟิลด์ที่เกี่ยวข้อง หรืออาจไม่มีป้ายกำกับอยู่เลยและมีเพียงแท็ก %1$s เท่านั้น เพื่อแก้ไขข้อผิดพลาดป้ายกำกับแบบฟอร์มที่หายไป คุณจะต้องระบุวิธีการสร้างฟิลด์และแบบฟอร์ม จากนั้นเพิ่มป้ายกำกับฟิลด์หรือแอตทริบิวต์ %3$s ที่ถูกต้องให้กับป้ายกำกับที่มีอยู่ซึ่งไม่ได้เชื่อมต่อกับฟิลด์."
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "ข้อความลิงก์กำกวม"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "ข้อผิดพลาด 'ข้อความลิงก์กำกวม' ปรากฏขึ้นเมื่อมีข้อความที่เชื่อมโยงแต่ไม่มีความหมายนอกเหนือจากเนื้อหาโดยรอบ ตัวอย่างทั่วไปของสิ่งนี้รวมถึงการเชื่อมโยงวลีเช่น “คลิกที่นี่” หรือ “เรียนรู้เพิ่มเติม” เพื่อแก้ไขข้อผิดพลาดนี้ ให้เปลี่ยนข้อความลิงก์ให้มีความเฉพาะเจาะจงมากขึ้นเพื่อให้มีความหมายหากได้ยินโดยลำพัง."
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "ข้อความขีดเส้นใต้"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "คำเตือน 'ข้อความขีดเส้นใต้' ปรากฏขึ้นหากมีข้อความใดๆ ในหน้าของคุณที่ถูกห่อหุ้มด้วยแท็ก HTML ขีดเส้นใต้ (%1$s) ในสภาพแวดล้อมออนไลน์ ข้อความที่ขีดเส้นใต้โดยทั่วไปใช้เพื่อระบุข้อความที่เชื่อมโยง และไม่ถือเป็นแนวปฏิบัติที่ดีในการขีดเส้นใต้ข้อความเพื่อเน้นย้ำเท่านั้น ในการแก้ไขข้อความที่ขีดเส้นใต้ คุณจะต้องลบองค์ประกอบ %1$s ออกจากข้อความหรือสไตล์ CSS ที่ทำให้มีการขีดเส้นใต้ ลองใช้การจัดรูปแบบอื่น ๆ เช่น ตัวเอียง สีข้อความ หรือตัวหนาเพื่อเน้นหรือแยกความแตกต่างระหว่างคำหรือวลี."
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "ลิงก์ข้ามหรือลิงก์ยึดเสียหาย"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "ลิงก์ยึด บางครั้งเรียกว่าลิงก์กระโดด คือลิงก์ที่เมื่อคลิกแล้วไม่ได้เปิดหน้าใหม่หรือ URL ใหม่ แต่จะกระโดดหรือเลื่อนไปยังส่วนอื่นบนหน้าเดียวกัน ลิงก์เหล่านี้จะไปยังอิลิเมนต์ที่ขึ้นต้นด้วยเครื่องหมายแฮชแท็กแทนที่จะเป็น URL เต็ม ตัวอย่างเช่น คุณอาจเลื่อนให้ใครสักคนไปยังส่วน 'เกี่ยวกับเรา' ของหน้าหลักโดยการลิงก์ไปที่ #about ข้อผิดพลาดลิงก์ข้ามหรือลิงก์ยึดที่ไม่ทำงานจะปรากฏเมื่อมีลิงก์ที่ชี้ไปยังส่วนอื่นบนหน้าเดียวกัน แต่ไม่มีอิลิเมนต์ที่มี ID ที่อ้างถึงอยู่บนหน้านั้น ข้อผิดพลาดนี้จะปรากฏด้วยหากคุณกำลังลิงก์ไปยังเพียงแค่ # เพื่อแก้ไขข้อผิดพลาดนี้ ให้ทดสอบลิงก์ด้วยตนเองเพื่อยืนยันว่าทำงานได้ จากนั้นแก้ไขหรือ “ละเว้น” ข้อผิดพลาดตามความเหมาะสม."
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "ขาดส่วนหัวตาราง"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "ข้อผิดพลาด 'ขาดส่วนหัวตาราง' หมายความว่าตารางของคุณมีข้อมูล (ข้อมูลที่อยู่ในแท็ก %1$s) ที่ไม่มีส่วนหัวที่สอดคล้องกัน (แท็ก (%2$s)) เมื่อดูที่ HTML ของแบบฟอร์มของคุณ จะมีอิลิเมนต์ %1$s ในแถวมากกว่าอิลิเมนต์ %2$s ในตาราง เพื่อแก้ไขส่วนหัวตารางที่หายไป คุณต้องหาส่วนของโค้ดที่มีอิลิเมนต์ %2$s น้อยกว่าที่ควรมีสำหรับจำนวนแถวหรือคอลัมน์ของข้อมูล และเพิ่มอิลิเมนต์ %2$s เพิ่มเติมหนึ่งหรือหลายอันที่มีข้อความอธิบายข้อมูลในแถวหรือคอลัมน์นั้น."
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "ป้ายกำกับแบบฟอร์มซ้ำ"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "ข้อผิดพลาดป้ายกำกับแบบฟอร์มซ้ำจะปรากฏเมื่อมีป้ายกำกับมากกว่าหนึ่งที่เชื่อมโยงกับฟิลด์เดียวในแบบฟอร์ม หากมีป้ายกำกับแบบฟอร์มมากเกินไป โปรแกรมอ่านหน้าจออาจไม่สามารถอ่านฟิลด์แบบฟอร์มได้สำเร็จเพื่อช่วยให้ผู้ใช้ที่มีความบกพร่องทางสายตาสามารถนำทางและกรอกแบบฟอร์มได้ เพื่อแก้ไขข้อผิดพลาดป้ายกำกับแบบฟอร์มซ้ำ คุณจะต้องกำหนดว่าฟิลด์และแบบฟอร์มถูกสร้างขึ้นอย่างไร แล้วตรวจสอบให้แน่ใจว่าแต่ละฟิลด์มีป้ายกำกับเพียงอันเดียวที่เชื่อมโยงกับมัน."
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "ข้อความเล็กเกินไป"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "คำเตือน 'ข้อความเล็กเกินไป' เกิดขึ้นเมื่อมีข้อความบนเว็บไซต์ของคุณที่มีขนาดน้อยกว่า 10 พิกเซล คำเตือนนี้เป็นการบ่งชี้ว่าคุณอาจต้องการพิจารณาขนาดตัวอักษรใหม่และทำให้มันใหญ่ขึ้นเพื่อให้สามารถอ่านได้ง่ายขึ้นโดยไม่จำเป็นต้องให้ผู้ใช้ขยายในเบราว์เซอร์ของพวกเขา เพื่อแก้ไขข้อความที่เล็กเกินไป คุณจะต้องตรวจสอบให้แน่ใจว่าอิลิเมนต์ข้อความทั้งหมดบนเว็บไซต์ของคุณมีขนาดอย่างน้อย 10 พอยต์."
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "หัวข้อที่เป็นไปได้"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "คำเตือน 'หัวข้อที่เป็นไปได้' เกิดขึ้นเมื่อมีข้อความบนหน้าที่ดูเหมือนจะเป็นหัวข้อ แต่ไม่ได้ถูกเขียนโค้ดด้วยแท็กหัวข้อที่เหมาะสม คำเตือนนี้จะปรากฏหากมีวลีสั้นๆ หรือสตริงข้อความที่มีความยาวน้อยกว่า 50 ตัวอักษรซึ่งถูกจัดรูปแบบในลักษณะที่บ่งชี้ว่าอาจถูกใช้เป็นหัวข้อ (มีขนาด 20 พิกเซลหรือใหญ่กว่า หรือมีขนาด 16 พิกเซลหรือใหญ่กว่าและเป็นตัวหนาและ/หรือตัวเอียง) เพื่อแก้ไขคำเตือนหัวข้อที่เป็นไปได้ คุณจะต้องกำหนดว่าข้อความที่ถูกทำเครื่องหมายนั้นตั้งใจให้เป็นหัวข้อจริงหรือไม่ หากเป็นเช่นนั้น คุณต้องเปลี่ยนจากย่อหน้าเป็นหัวข้อในระดับที่เหมาะสม หากไม่ได้ตั้งใจให้เป็นหัวข้อ คุณสามารถ “ละเว้น” คำเตือนได้อย่างปลอดภัย."
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "เนื้อหาที่กะพริบหรือเลื่อน"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "ข้อผิดพลาดเนื้อหาที่กะพริบหรือเลื่อนจะปรากฏเมื่อมีอิลิเมนต์บนเว็บไซต์ของคุณที่มีฟังก์ชันการกะพริบหรือเลื่อนที่ใช้ผ่าน CSS หรือใน HTML โดยเฉพาะ สิ่งต่อไปนี้จะสร้างข้อผิดพลาดนี้: แท็ก HTML %1$s หรือ %2$s หรือ CSS %3$s เพื่อแก้ไขข้อผิดพลาดนี้ ให้ลบแท็ก HTML หรือ CSS ที่ทำให้เนื้อหากะพริบ."
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "ความแตกต่างของสีไม่เพียงพอ"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "ข้อผิดพลาด 'ความเปรียบต่างของสีไม่เพียงพอ' หมายความว่าเราได้ระบุว่าการผสมผสานของสีหนึ่งหรือมากกว่าในโพสต์หรือหน้าของคุณไม่ตรงตามอัตราส่วนความเปรียบต่างของสีขั้นต่ำที่ 4.5:1 ขึ้นอยู่กับวิธีการสร้างเว็บไซต์ของคุณ อาจมี“ผลบวกลวง” สำหรับข้อผิดพลาดนี้ เนื่องจากบางสีอาจอยู่ในชั้น HTML ที่แตกต่างกันบนหน้า เพื่อแก้ไขข้อผิดพลาด 'ความเปรียบต่างของสีไม่เพียงพอ' คุณจะต้องตรวจสอบให้แน่ใจว่าองค์ประกอบที่ถูกทำเครื่องหมายนั้นตรงตามอัตราส่วนขั้นต่ำที่กำหนดคือ 4.5:1 ในการทำเช่นนี้ คุณจะต้องหารหัสเลขฐานสิบหกของสีพื้นหน้าและพื้นหลังของคุณ และทดสอบในเครื่องมือตรวจสอบความเปรียบต่างของสี หากรหัสสีเหล่านี้มีอัตราส่วน 4.5:1 หรือมากกว่า คุณสามารถ “ละเว้น” ข้อผิดพลาดนี้ได้ หากรหัสสีไม่มีอัตราส่วนอย่างน้อย 4.5:1 คุณจะต้องปรับสีของคุณ."
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "ไม่มีบทถอดความ"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "ข้อผิดพลาด 'ไม่มีบทถอดความ' หมายความว่ามีคลิปเสียงหรือวิดีโอบนเว็บไซต์ของคุณที่ไม่มีบทถอดความ หรือมีบทถอดความแต่ไม่ได้ถูกระบุว่าเป็นบทถอดความ หรือถูกวางไว้ห่างจากสื่อที่ฝังหรือลิงก์มากกว่า 25 ตัวอักษร เพื่อแก้ไขข้อผิดพลาด 'ไม่มีบทถอดความ' คุณจะต้องสร้างบทถอดความสำหรับคลิปวิดีโอหรือเสียงใดๆ ที่ถูกทำเครื่องหมายว่าไม่มีบทถอดความ เมื่อคุณสร้างบทถอดความแล้ว คุณสามารถเพิ่มเนื้อหาบทถอดความโดยตรงในโพสต์หรือหน้าของคุณ หรือลิงก์ไปยังบทถอดความหากคุณรวมมันเป็นเอกสารหรือไฟล์ PDF ที่สามารถดาวน์โหลดได้ คุณต้องรวมคำว่า “บทถอดความ” อย่างชัดเจนภายในหัวข้อก่อนบทถอดความบนหน้า หรือในลิงก์ไปยังไฟล์ของคุณ และมันต้องอยู่ภายใน 25 ตัวอักษรของการฝังหรือลิงก์เสียงหรือวิดีโอ."
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "การอ้างอิง ARIA ที่ไม่ถูกต้อง"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "ข้อผิดพลาด 'การอ้างอิง ARIA ที่ไม่ถูกต้อง' ปรากฏขึ้นเมื่อมีองค์ประกอบ aria-labeledby หรือ aria-describedby อยู่ในหน้าหรือโพสต์ แต่เป้าหมายการอ้างอิงของมันไม่มีอยู่ นี่หมายความว่าองค์ประกอบที่ถูกอ้างถึงโดยคุณลักษณะ ARIA เฉพาะที่คุณกำลังใช้อยู่นั้นไม่มีป้ายกำกับหรือคำอธิบายที่เหมาะสม หรือไม่ปรากฏอยู่บนหน้า เพื่อแก้ไขการอ้างอิง ARIA ที่ไม่ถูกต้อง คุณจะต้องหาองค์ประกอบ ARIA ที่ถูกทำเครื่องหมาย และตรวจสอบให้แน่ใจว่าเป้าหมายการอ้างอิงของพวกมันมีอยู่และถูกติดป้ายกำกับอย่างถูกต้อง."
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "ไม่มีการประกาศภาษา"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "การประกาศภาษาคือคุณลักษณะ HTML ที่ระบุภาษาเริ่มต้นของเนื้อหาบนหน้าหรือโพสต์ การประกาศภาษาควรถูกเขียนโค้ดไว้ในธีมเว็บไซต์ของคุณและปรากฏโดยอัตโนมัติในส่วนหัวของเว็บไซต์ ข้อผิดพลาด 'ไม่มีการประกาศภาษา' จะปรากฏขึ้นหากแท็ก %1$s บนหน้าไม่มีคุณลักษณะ %2$s หรือ %3$s หรือมีคุณลักษณะหนึ่งในสองนี้แต่ว่างเปล่า เพื่อแก้ไขข้อผิดพลาด 'ไม่มีการประกาศภาษา' คุณจะต้องแก้ไขไฟล์ธีมของคุณเพื่อเพิ่มคุณลักษณะภาษาที่หายไปให้กับแท็ก HTML ที่อยู่ด้านบนสุดของส่วนหัวเว็บไซต์ของคุณ หากคุณกำลังใช้ธีมที่ได้รับการอัปเดต คุณจะต้องทำการเปลี่ยนแปลงในธีมลูกเพื่อให้แน่ใจว่าการแก้ไขจะไม่ถูกเขียนทับเมื่อคุณอัปเดตธีมของคุณครั้งต่อไป."
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "รูปภาพ GIF เคลื่อนไหว"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "คำเตือน 'รูปภาพ GIF เคลื่อนไหว' ปรากฏขึ้นเมื่อมี GIF เคลื่อนไหวในโพสต์หรือหน้าของคุณ คำเตือนนี้เป็นการเตือนให้ตรวจสอบ GIF เคลื่อนไหวใดๆ บนเว็บไซต์ของคุณด้วยตนเองเพื่อความสามารถในการเข้าถึง และ/หรือเพื่อพิจารณาการใช้ GIF เคลื่อนไหวใหม่ โดยแทนที่ด้วยภาพนิ่งหรือวิดีโอ เพื่อแก้ไขคำเตือนนี้ คุณต้องตรวจสอบ GIF ที่มีอยู่เพื่อให้แน่ใจว่าตรงตามแนวทางที่เกี่ยวข้องทั้งหมดสำหรับความสามารถในการเข้าถึง จากนั้นคุณสามารถ “ละเว้น” คำเตือนหรือลบ GIF ออกจากหน้าหรือโพสต์ของคุณหากมันไม่สามารถเข้าถึงได้."
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "มีวิดีโออยู่"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "เนื่องจากวิดีโอมักมีปัญหาด้านการเข้าถึงหลายอย่าง ซึ่งหลายอย่างสามารถระบุได้โดยบุคคลเท่านั้น คำเตือน 'มีวิดีโออยู่' จะปรากฏขึ้นทุกครั้งที่ตรวจพบวิดีโอในโพสต์หรือหน้าเว็บ เพื่อเตือนให้คุณทดสอบการเข้าถึงวิดีโอด้วยตนเอง เพื่อแก้ไขคำเตือนนี้ คุณต้องเข้าชมหน้าเว็บไซต์ของคุณและยืนยันว่าวิดีโอในคำเตือนสามารถเข้าถึงได้ เมื่อคุณทดสอบการเข้าถึงวิดีโออย่างครบถ้วนแล้ว คุณต้องแก้ไขข้อผิดพลาดที่อาจมีอยู่ จากนั้นคุณสามารถ “ละเว้น” คำเตือนเพื่อทำเครื่องหมายว่าเสร็จสมบูรณ์."
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "มีสไลเดอร์อยู่"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "เนื่องจากสไลเดอร์มักมีปัญหาด้านการเข้าถึงหลายอย่าง ซึ่งหลายอย่างสามารถระบุได้โดยบุคคลเท่านั้น คำเตือน 'มีสไลเดอร์อยู่' จะปรากฏขึ้นทุกครั้งที่ตรวจพบสไลเดอร์ในโพสต์หรือหน้าเว็บ เพื่อเตือนให้คุณทดสอบการเข้าถึงสไลเดอร์ด้วยตนเอง เพื่อแก้ไขคำเตือนนี้ คุณต้องเข้าชมหน้าเว็บไซต์ของคุณและยืนยันว่าสไลเดอร์ทั้งหมดในหน้าสามารถเข้าถึงได้ เมื่อคุณทดสอบการเข้าถึงสไลเดอร์อย่างครบถ้วนแล้ว คุณต้องแก้ไขข้อผิดพลาดที่อาจมีอยู่ จากนั้นคุณสามารถ “ละเว้น” คำเตือนเพื่อทำเครื่องหมายว่าเสร็จสมบูรณ์."
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "ไม่มีชื่อเรื่อง"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "ข้อผิดพลาด 'ไม่มีชื่อเรื่อง' หมายความว่าโพสต์หรือหน้าเว็บของคุณไม่มีองค์ประกอบชื่อเรื่อง (%1$s หรือ %2$s) สิ่งนี้อาจเกิดขึ้นได้หากธีมไม่ได้เพิ่มแท็กชื่อเรื่อง หรือหากช่องชื่อเรื่องของโพสต์หรือหน้าเว็บถูกปล่อยว่างไว้ในหน้าจอแก้ไข WordPress เพื่อแก้ไขหน้าที่ไม่มีชื่อเรื่อง คุณจะต้องเพิ่มองค์ประกอบชื่อเรื่อง ก่อนอื่นให้ตรวจสอบว่าชื่อเรื่องหายไปเพราะคุณปล่อยช่องชื่อเรื่องของหน้าหรือโพสต์ว่างไว้ในตัวแก้ไขหรือไม่ หากเป็นเช่นนั้น ให้กรอกข้อมูล หากมีการกรอกชื่อเรื่องและมองเห็นได้ในส่วนหลังบ้าน แสดงว่าต้องแก้ไขโค้ดในส่วนหัวของหน้าเว็บของคุณเพื่อรวมแท็ก %1$s หรือแท็กเมตา %2$s."
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "การใช้ลิงก์ไม่ถูกต้อง"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "ข้อผิดพลาด 'การใช้ลิงก์ไม่ถูกต้อง' จะปรากฏขึ้นหากคุณมีลิงก์ที่ไม่มีแอตทริบิวต์ %1$s หรือเชื่อมโยงเฉพาะกับ %2$s และไม่มี %3$s ลิงก์ควรใช้เพื่อนำผู้คนไปยังส่วนอื่น ๆ ของเว็บไซต์ของคุณ ฟังก์ชันอื่น ๆ ที่ทริกเกอร์การดำเนินการควรเป็นปุ่ม เพื่อแก้ไขข้อผิดพลาดนี้ คุณต้องเขียนโค้ดลิงก์ใหม่โดยใช้แท็ก %4$s (แนะนำ) หรือเพิ่ม %5$s ลงในแท็ก %6$s ที่มีอยู่ หากองค์ประกอบเป็นปุ่มสลับ (เช่น แอคคอร์เดียน) จำเป็นต้องมีแอตทริบิวต์ ARIA เพิ่มเติม."
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "การซูมและการปรับขนาดถูกปิดใช้งาน"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "การซูมถูกปิดใช้งานผ่านแท็ก meta viewport ที่มี `user-scalable=no` หรือค่า `maximum-scale` น้อยกว่า 2 สิ่งนี้จำกัดผู้ใช้ที่มีปัญหาด้านการมองเห็นซึ่งต้องการเพิ่มขนาดตัวอักษร ซูมเข้าหน้าเว็บ หรือใช้แว่นขยาย."
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "บันทึกการตั้งค่าแล้ว เพื่อยืนยันและแสดงผลการอัปเดตเหล่านี้ในสถิติของเว็บไซต์ของคุณ โปรดสแกนเว็บไซต์ของคุณอีกครั้ง หากคุณใช้ปลั๊กอินแคช โปรดล้างแคชเพื่อให้แน่ใจว่าการแก้ไขที่อัปเดตถูกนำไปใช้อย่างถูกต้อง."
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "ปลั๊กอิน Accessibility New Window Warnings ถูกติดตั้งแล้ว การแก้ไขสำหรับลิงก์ที่เปิดในหน้าต่างใหม่ที่รวมอยู่ที่นี่จะแทนที่ฟังก์ชันการทำงานของปลั๊กอินดังกล่าว คุณสามารถลบปลั๊กอินออกได้อย่างปลอดภัยและใช้การแก้ไขเหล่านี้แทน."
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "แผงปัญหาของ Accessibility Checker"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "สรุป"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "รายละเอียด"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "ความสามารถในการอ่าน"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "ลบปัญหาทั้งหมดที่พบในปัจจุบัน"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "ล้างปัญหา"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Equalize Digital โลโก้"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "อัปเกรดเป็น Accessibility Checker Pro"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "สแกนประเภทเนื้อหาทั้งหมด"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "คอลัมน์ผู้ดูแลระบบเพื่อดูสถานะการเข้าถึงได้อย่างรวดเร็ว"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "รายการรวมของปัญหาที่ยังเปิดอยู่ทั้งหมด"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "บันทึกการละเว้น"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "เปลี่ยนชื่อสรุปแบบย่อ"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "ข้อจำกัดของผู้ใช้ในการละเว้นปัญหา"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "การสนับสนุนทางอีเมล"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...และอื่น ๆ อีกมากมาย"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "รับ Accessibility Checker Pro"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "หรือเปิดใช้งานรหัสใบอนุญาตของคุณที่นี่."
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "ทั่วไป"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "เวอร์ชัน"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "ลิงก์ไปยังเว็บไซต์ Equalize Digital"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "คู่มือเริ่มต้นอย่างรวดเร็ว"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "ทำตามขั้นตอนเหล่านี้เพื่อเริ่มต้นตรวจสอบเนื้อหาของคุณ:"
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "ที่<a href=\"%s\">หน้าการตั้งค่า</a> เลือกประเภทเนื้อหาที่คุณต้องการสแกน."
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "ไปที่หน้าจอแก้ไขสำหรับเนื้อหาที่คุณต้องการตรวจสอบ."
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "ค้นหากล่อง meta ของ Accessibility Checker ด้านล่างเนื้อหาของคุณ หากใช้ตัวสร้างหน้าแบบ front-end คุณต้องเข้าไปที่หน้าจอแก้ไขแบบ backend เพื่อดูผลลัพธ์ของ Accessibility Checker."
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "หากมีข้อผิดพลาดหรือคำเตือนในเนื้อหาของคุณ ให้เปิดแท็บรายละเอียดใน Accessibility Checker เพื่อดูข้อมูลเพิ่มเติม."
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "ขยายแต่ละปัญหาเพื่อดูโค้ด หรือคลิก “ดูบนหน้า” หากคุณต้องการความช่วยเหลือในการค้นหาองค์ประกอบที่ต้องแก้ไข."
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "หากคุณไม่ทราบความหมายของข้อผิดพลาดหรือคำเตือน ให้คลิกไอคอน “i” เพื่ออ่านเอกสารและวิธีการแก้ไข."
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "หากปัญหาเป็นผลบวกลวงและองค์ประกอบสามารถเข้าถึงได้ คุณสามารถลบปัญหาออกจากรายงานด้วยคุณสมบัติ “ละเว้น”."
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "หลังจากแก้ไขแต่ละปัญหาแล้ว ให้อัปเดตเนื้อหาเพื่อดูการเปลี่ยนแปลงรายงานการเข้าถึง เป้าหมายของคุณคือให้ทุกหน้าแสดงผลเป็น 100% ผ่านการทดสอบ."
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "ดูวิดีโอการใช้งาน Accessibility Checker."
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "เอกสารและคำถามที่พบบ่อย"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "ทำไมเราจึงพูดว่า 100% ผ่านการทดสอบ ไม่ใช่ 100% เข้าถึงได้?"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "(เปิดในหน้าต่างใหม่)"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "วิธีการตรวจสอบเว็บไซต์ของคุณด้วยตนเองเพื่อการเข้าถึง"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "เมื่อใดควรละเว้นข้อผิดพลาดการเข้าถึง"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "ควรทำอย่างไรหากปลั๊กอินที่คุณใช้มีข้อผิดพลาดการเข้าถึง"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "ควรทำอย่างไรหากมีข้อผิดพลาดการเข้าถึงในธีมของคุณ"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "ฉันสามารถจ้าง Equalize Digital เพื่อแก้ไขปัญหาการเข้าถึงบนเว็บไซต์ของฉันได้หรือไม่?"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "แหล่งข้อมูลเพิ่มเติมสำหรับการเรียนรู้เกี่ยวกับการเข้าถึง"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "อ่านเอกสารฉบับเต็ม"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "ข้อมูลการสนับสนุน"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "การสนับสนุนปลั๊กอิน"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "ผู้ถือใบอนุญาตที่ใช้งานอยู่ของแผน Accessibility Checker แบบชำระเงินจะได้รับการสนับสนุนทางอีเมลไม่จำกัดเกี่ยวกับการใช้งานปลั๊กอินและการแก้ไขปัญหา."
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "เปิดตั๋วสนับสนุน"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "การสนับสนุนปลั๊กอินฟรี"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "การสนับสนุนปลั๊กอินฟรีมีให้บริการผ่านฟอรัม WordPress.org คุณจะต้องสร้างบัญชีก่อนจึงจะสามารถเปิดกระทู้สนับสนุนใหม่ได้."
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "ไปที่ฟอรัมสนับสนุน"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "ชั่วโมงทำการ"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "เปิด Q&A บน Zoom ทุกสองสัปดาห์เพื่อช่วยคุณแก้ไขเว็บไซต์ของคุณ."
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "รวมอยู่ในแผนธุรกิจขนาดเล็กและแผนตัวแทน"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "ลงทะเบียนสำหรับชั่วโมงทำการ"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "การตรวจสอบและการแก้ไข"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "รับความช่วยเหลือในการทำให้เว็บไซต์ของคุณเข้าถึงได้ การตรวจสอบโดยผู้เชี่ยวชาญ การทดสอบโดยผู้ใช้ และการสนับสนุนด้านการพัฒนา มีจดหมายรับรองให้บริการ."
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "รับความช่วยเหลือในการแก้ไข"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "กำลังบันทึก..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "บันทึกการตั้งค่าเรียบร้อยแล้ว คุณต้อง%sเข้าสู่หน้าแก้ไข%sและบันทึกเนื้อหาเพื่อสแกนใหม่และลบปัญหาที่แก้ไขแล้วออกจากรายงานของ Accessibility Checker."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "บันทึกการตั้งค่าเรียบร้อยแล้ว."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "การบันทึกล้มเหลว."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "ตั้งค่าการแก้ไข"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "การดำเนินการนี้จะล้างปัญหาทั้งหมดสำหรับเนื้อหานี้ จำเป็นต้องบันทึกเพื่อเริ่มการสแกนเนื้อหาใหม่ คุณต้องการดำเนินการต่อหรือไม่?"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "กำลังล้าง..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "ล้างปัญหาเรียบร้อยแล้ว."
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "ไม่สามารถล้างปัญหาได้."
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "เกิดปัญหา โปรดลองอีกครั้ง."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "ขออภัย การส่งข้อมูลของคุณล้มเหลว โปรดย่อคำตอบของคุณและลองอีกครั้ง."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "ขออภัย การส่งข้อมูลของคุณล้มเหลว โปรดลองอีกครั้ง."
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "เปิดหน้าต่างใหม่"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: ไม่พบรหัสเป้าหมายที่ตรงกันบนหน้าสำหรับลิงก์ข้าม."
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: เกิดข้อผิดพลาดในการอัปเดตประวัติสำหรับลิงก์ข้าม."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "ปิดหน้าต่างการแก้ไข"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "ปิดการใช้งานสไตล์หน้า"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "แสดงโค้ด"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "ประเภทของปัญหา:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "เปิดใช้งานสไตล์"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "ปิดใช้งานสไตล์"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "ไม่มีการตั้งค่าที่จะแสดง."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "การตั้งค่าเหล่านี้จะเปิดใช้งานการแก้ไขทั่วทั้งเว็บไซต์ของคุณ อาจจำเป็นต้องบันทึกหน้าใหม่หรือทำการสแกนเว็บไซต์ทั้งหมดเพื่อให้เห็นการแก้ไขในรายงาน."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "ไม่พบปัญหา."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "ข้อผิดพลาด"
+msgstr[1] "ข้อผิดพลาด"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "คำเตือน"
+msgstr[1] "คำเตือน"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "และ"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "ปัญหาที่ถูกละเว้น"
+msgstr[1] "ปัญหาที่ถูกละเว้น"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "ที่ตรวจพบ."
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "หน้าต่างใหม่"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "แท็บใหม่"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "คลิก"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "คลิกที่นี่"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "ที่นี่"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "ไปที่นี่"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "เพิ่มเติม"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "เพิ่มเติม..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "เพิ่มเติม…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "รายละเอียด"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "รายละเอียดเพิ่มเติม"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "ลิงก์"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "หน้านี้"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "ดำเนินการต่อ"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "อ่านต่อ"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "อ่านเพิ่มเติม"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "เปิด"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "ดาวน์โหลด"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "ปุ่ม"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "อ่านต่อ"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "เรียนรู้เพิ่มเติม"

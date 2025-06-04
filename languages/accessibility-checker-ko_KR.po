@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "접근성 검사기"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "게시하기 전에 웹사이트의 접근성을 감사하고 확인하세요. 글 내 접근성 스캐너와 가이드를 제공합니다."
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "수정"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "일반 수정"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "이러한 수정은 사이트의 HTML 요소와 동작을 변경하여 접근성을 개선하는 데 도움이 됩니다."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "이 기능을 사용하려면 Pro 버전으로 업그레이드하세요. 새 창에서 열립니다."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "Pro 버전 구매하기"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "새 창에서 열립니다."
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "%s에 대한 문서를 읽어보세요. 새 창에서 열립니다."
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "웹 접근성에 대한 우리의 약속"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[YOUR COMPANY NAME]은(는) 스크린 리더, 화면 확대 소프트웨어, 대체 키보드 입력 장치 등의 보조 기술을 사용하여 웹을 탐색하는 사용자를 포함한 모든 능력의 사용자에게 완전히 접근 가능한 웹사이트 경험을 제공하기 위해 노력하고 있습니다."
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "접근성 보장을 위한 지속적인 노력"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "우리는 접근성 결정의 지침 원칙으로 <a href=\"https://www.w3.org/TR/WCAG21/\">웹 콘텐츠 접근성 지침(WCAG) 버전 2.1</a>을 따르고 있습니다. 이는 콘텐츠를 사용 가능하게 만들기 위한 광범위한 권장 사항과 모범 사례를 다루는 국제적으로 합의된 표준입니다. 웹사이트에 새로운 페이지와 기능을 추가할 때, 모든 디자인, 코드, 콘텐츠 입력 방식이 이 표준에 맞는지 확인합니다."
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "웹사이트 접근성은 지속적인 과정입니다. 우리는 WCAG 2.1 레벨 AA 준수를 위해 콘텐츠와 기능을 계속 테스트하고, 표준을 충족하거나 초과하기 위해 모든 문제를 해결합니다. 우리 웹사이트의 테스트는 <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress 플러그인</a>, 색상 대비 분석기, 키보드 전용 탐색 기술, Flesch-Kincaid 가독성 테스트와 같은 업계 표준 도구를 사용하여 팀원들이 수행합니다."
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "우리 웹사이트의 접근성 기능"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "다음은 접근성 향상을 위해 웹사이트에 포함한 항목 목록입니다:"
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[여기에 접근성 기능 목록 삽입]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "개선 중인 영역"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "웹사이트를 표준에 맞추기 위한 노력의 일환으로, 다음 영역을 개선하고 있습니다:"
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[여기에 수정 중인 항목 목록 삽입]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[가장 일반적인 문제를 보려면 OPEN ISSUES 탭을 검토하는 것이 도움이 될 수 있습니다]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "이는 [COMPANY NAME]에서 모든 사람의 경험을 환영하고 즐겁게 만들기 위한 우리의 더 광범위한 노력의 일부입니다. 모든 사용자가 정보에 접근할 수 있도록 최선을 다하고 있지만, 우리가 연결할 수 있는 제3자 웹사이트의 접근성은 보장할 수 없음을 주의해 주시기 바랍니다."
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "접근성 지원 연락처"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "우리 웹사이트에 대한 의견, 질문, 피드백을 환영합니다. 보조 기술을 사용하고 있는데 웹사이트 사용에 어려움이 있다면 [YOUR ACCESSIBILITY EMAIL ADDRESS]로 이메일을 보내거나 [YOUR PHONE NUMBER]로 전화해 주세요. 최선을 다해 도와드리고 문제를 해결하겠습니다."
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "버전 1.21.0에서 통계 계산을 개선했습니다. 그 결과 아래 데이터의 일부 숫자가 변경되었을 수 있습니다. 자세한 내용은 %1$s릴리스 공지 게시물%2$s을 참조하세요."
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "권한이 거부되었습니다"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "옵션 업데이트가 실패했습니다"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 블랙 프라이데이 특별 혜택! 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "11월 25일부터 12월 3일까지 Accessibility Checker의 유료 버전으로 업그레이드하면 30% 할인을 받으실 수 있습니다! 전체 사이트 스캔, 사이트 전체 오픈 이슈 보고서, 무시 로그 등을 이용하실 수 있습니다."
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "사전 판매 질문하기"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "지금 업그레이드하기"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 세계 접근성 인식의 날을 기념하여 Accessibility Checker Pro 25% 할인! 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "5월 13일부터 5월 21일까지 쿠폰 코드 GAAD25를 사용하여 전체 사이트 스캔 및 기타 프로 기능을 특별 할인된 가격으로 이용하세요. 업그레이드가 적합한지 확실하지 않으신가요?"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "안녕하세요! 접근성 툴킷의 일부로 Accessibility Checker를 사용해 주셔서 감사합니다. 사용한 지 얼마 되셨으니, WordPress 플러그인 디렉토리에 Accessibility Checker에 대한 5점 리뷰를 작성해 주시겠습니까? 이를 통해 더 많은 사람들이 웹 접근성의 중요성에 대해 알 수 있도록 우리의 가시성을 높이는 데 도움이 될 것입니다. 정말 감사합니다!"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "리뷰 작성하기"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "2주 후에 다시 알림"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "다시 묻지 않기"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "리뷰 작업 값이 설정되지 않았습니다"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "이런! 현재 웹사이트가 비밀번호로 보호되어 있는 것 같습니다. Accessibility Checker의 무료 버전은 라이브 웹사이트만 스캔할 수 있습니다. 이 웹사이트의 접근성 문제를 스캔하려면 비밀번호 보호를 해제하거나 %s하세요. 이전 스캔에서 저장된 스캔 결과가 있을 수 있습니다."
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "Accessibility Checker Pro로 업그레이드하세요. 새 창에서 열립니다."
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "pro로 업그레이드"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "게시물 ID가 설정되지 않았습니다"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "이 콘텐츠에 대한 간단한 요약이 포함되지 않았습니다."
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "귀하의 콘텐츠는 9학년 이하의 읽기 수준이므로 간단한 요약이 필요하지 않습니다."
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "간단한 요약의 읽기 수준이 너무 높습니다."
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "이 콘텐츠에 대한 간단한 요약이 포함되어 있습니다."
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s개의 오류"
+msgstr[1] "%s개의 오류"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s개의 대비 오류"
+msgstr[1] "%s개의 대비 오류"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s개의 경고"
+msgstr[1] "%s개의 경고"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s개의 무시된 항목"
+msgstr[1] "%s개의 무시된 항목"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "반환할 요약 없음"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "잘못된 테이블 이름"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "이 설정은 전체 사이트에 걸쳐 전역 수정을 활성화합니다."
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "수정 사항이 보고서에 반영되려면 페이지를 다시 저장하거나 전체 사이트 스캔을 실행해야 할 수 있습니다."
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "저장"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "영향을 받는 코드"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "웹사이트에서 문제 ID %d 보기, 새 창에서 열림"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "페이지에서 보기"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "수정: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "수정"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "사용자 계정에 이 문제를 무시할 수 있는 권한이 없습니다."
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "반환할 세부 정보 없음"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "반환할 가독성 데이터 없음"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "반환할 무시 데이터 없음"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "요약이 설정되지 않았습니다"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "ID 값이 설정되지 않았습니다"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "문제 쿼리 결과 없음"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "객체 쿼리 결과 없음"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "가장 최근 테스트 요약"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "업데이트 횟수"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "새 스캔 시작"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "모든 열린 문제 보기"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "기록 보기"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "통과한 테스트"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "고유한 오류"
+msgstr[1] "고유한 오류"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "고유한 색상 대비 오류"
+msgstr[1] "고유한 색상 대비 오류"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "고유한 경고"
+msgstr[1] "고유한 경고"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "무시된 항목"
+msgstr[1] "무시된 항목"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "페이지당 평균 문제"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "평균 문제 밀도"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "보고서 마지막 업데이트:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "없음"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "스캔된 URL"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s / %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "확인된 게시물 유형"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "100% 점수의 URL"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "이 요약은 24시간마다 자동으로 업데이트되며, 전체 사이트 스캔이 완료될 때마다 업데이트됩니다. '업데이트 횟수' 버튼을 클릭하여 수동으로 이 결과를 업데이트할 수도 있습니다."
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "사이트에 많은 수의 문제가 있습니다. 성능상의 이유로 모든 문제가 이 요약에 포함되지 않았습니다."
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "사이트 전체 접근성 보고서"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "배너 숨기기"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "상세 접근성 보고서 잠금 해제"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "전체 웹사이트의 접근성 문제 스캔을 시작하고, 전체 사이트 보고서를 받으며, 접근성 지침을 더 빠르게 준수할 수 있습니다."
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "Accessibility Checker 업그레이드"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "광고 닫기"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "상세 접근성 보고서 받기"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "전체 사이트 접근성 상태"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "스캔된 URL:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "오류:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "색상 대비 오류:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "경고:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "사이트에 접근성 지침을 준수하기 위해 가능한 한 빨리 해결해야 할 접근성 문제가 있습니다."
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "잘 하셨습니다! Accessibility Checker는 테스트한 콘텐츠에서 접근성 문제를 찾을 수 없습니다. 자동화 도구로 찾을 수 없는 문제도 있으므로 잊지 말고"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "사이트를 수동으로 테스트하세요"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "게시물 유형별 문제"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "게시물 유형"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "오류"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "대비"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "경고"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "스캔을 위해 업그레이드"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "더 많은 보고서 보기"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "접근성 학습"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "추가 리소스"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "블로그 (새 창에서 열림)"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "블로그"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "문서 (새 창에서 열림)"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "문서"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "받은 편지함으로 접근성 이벤트 및 뉴스 받기"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "무료 접근성 웨비나 및 교육 리소스에 접근하려면 Equalize Digital의 이메일 목록을 구독하세요."
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "이메일*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "이메일을 입력하세요"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "이름"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "이름을 입력하세요"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Accessibility Checker &mdash; 감사 기록"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Accessibility Checker &mdash; 무료"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "버전"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "데이터베이스 버전"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "정책 페이지"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "설정 안 됨"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "활성화 날짜"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "푸터 문구"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "활성화됨"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "비활성화됨"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "데이터 삭제"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "문구 링크 포함"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "게시물 유형"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "간단한 요약 위치"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "간단한 요약 프롬프트"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "게시물 수"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "오류 수"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "경고 수"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "DB 테이블 수"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Accessibility Checker &mdash; pro"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "라이선스 상태"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "인증 사용자 이름"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "인증 비밀번호"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "스캔 ID"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "스캔 총계"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "간단한 요약 제목"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "무시 권한"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "없음"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "무시된 DB 테이블 수"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "%1$s이(가) 우리 웹사이트의 접근성을 모니터링하기 위해 %2$s을(를) 사용합니다."
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "접근성 검사기 (새 창에서 열림)"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "%s 읽기"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "접근성 정책"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "간단한 요약"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "파일 링크에 크기 및 유형 추가"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "연결된 파일에 컨텍스트 추가"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "링크에 파일 크기 및 유형 추가"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "다운로드를 유발할 수 있는 연결된 파일에 파일 크기와 유형을 추가합니다."
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "레이블이 없는 양식 필드에 레이블 추가"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "양식 필드 레이블 지정"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "필드 목적을 확인할 수 있는 경우 레이블이 없는 양식 필드에 레이블을 추가합니다."
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "레이블이 누락된 양식 필드에 레이블을 추가하려고 시도합니다. 참고: 레이블 추가가 양식 레이아웃에 영향을 미치는 경우 %1$s 클래스를 대상으로 하는 사용자 정의 스타일을 추가해야 할 수 있습니다."
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "누락되거나 비어 있는 페이지 제목 추가"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "페이지 HTML 제목 설정"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "누락된 페이지 제목 추가"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "페이지에 %1$s 태그가 누락되었거나 비어 있는 경우 추가합니다."
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "새 탭/창에서 열리는 링크에 대한 경고 추가"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "새 탭/창에서 열리는 링크에 레이블 추가"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "%1$s이(가) 있는 링크에 새 탭/창을 열 것임을 사용자에게 알리는 레이블과 아이콘을 추가합니다. %2$s참고: “새 창에서 열리는 링크 차단” 수정이 활성화된 경우 이 설정은 효과가 없습니다.%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "PDF 업로드 차단"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "%1$s 권한이 없는 사용자의 PDF 업로드를 제한합니다(기본적으로 관리자에게는 허용됨)."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "댓글 및 검색 양식에 레이블 추가"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "댓글/검색 필드 레이블 지정"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "댓글 및 검색 양식 레이블"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "WordPress 댓글 및 검색 양식에 누락된 레이블을 추가합니다."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "댓글 양식 레이블 지정"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "WordPress 댓글 양식에 누락된 레이블을 추가합니다."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "검색 양식 레이블 지정"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "WordPress 검색 양식에 누락된 레이블을 추가합니다."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "댓글"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "이름"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "Email"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "웹사이트"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "검색 …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "검색:"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "검색"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "WordPress 댓글 및 검색 양식에 누락된 레이블을 추가하는 설정입니다."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "포커스 윤곽선 추가"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "포커스 윤곽선"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "키보드 포커스를 받을 때 요소에 윤곽선을 추가합니다."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "포커스 윤곽선 추가"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "키보드 접근성 향상을 위한 포커스 윤곽선 개선과 관련된 설정입니다."
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "Lang 및 dir 속성 추가"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "페이지 언어 설정"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "“lang” 및 “dir” 속성 추가"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "%3$s 요소에 사이트 언어(%1$s) 및 텍스트 방향(%2$s) 속성을 추가합니다."
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "내비게이션이 아닌 모든 링크에 밑줄 추가"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "링크에 밑줄 추가"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "링크 밑줄 강제 적용"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "내비게이션이 아닌 링크에 밑줄이 있는지 확인합니다."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "메타 viewport 태그를 확대/축소 가능하게 만들기"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "확대/축소 가능한 viewport 보장"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "페이지의 viewport 태그가 확대/축소를 허용하는지 확인합니다."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "Viewport를 확대/축소 가능하게 만들기"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "모바일 기기에서 접근성을 향상시키기 위해 viewport 태그가 확대/축소를 허용하도록 합니다."
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "새 창에서 링크 열기 방지"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "새 창에서 링크 열기 차단"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "%1$s을(를) 제거하여 링크가 새 창이나 탭에서 열리는 것을 방지합니다."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "게시물 제목과 함께 “읽기” 링크 추가"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "더 읽기 링크에 제목 추가"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "더 읽기 링크"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "게시물 제목 및 링크 추가 "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "“더 읽기” 에 게시물 제목 추가"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "테마가 해당 링크를 출력할 때 게시물 목록의 “더 읽기” 링크에 게시물 제목을 추가합니다."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "스크린 리더 전용"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "“더 읽기” 링크에 추가된 게시물 제목을 스크린 리더에만 보이게 합니다."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "이 수정은 “더 보기” 블록과 요약에서 게시물 목록의 “더 읽기” 링크에 게시물 제목을 추가합니다."
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "접근 가능한 label 속성 선호"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "불필요한 title 속성 제거"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "Title 속성 제거"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "이미 선호되는 접근 가능한 이름이 있는 요소에서 %1$s 속성을 제거합니다."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "건너뛰기 링크 추가"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "건너뛰기 링크"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "건너뛰기 링크 활성화"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "사용자가 주 콘텐츠로 직접 건너뛸 수 있도록 모든 사이트 페이지에 건너뛰기 링크를 추가합니다."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "주 콘텐츠 대상 (필수)"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "건너뛰기 링크가 대상으로 할 주 콘텐츠 영역의 ID를 정의하세요. 여러 ID는 쉼표로 구분하여 입력하세요. 시스템은 각 페이지에 적합한 ID를 찾기 위해 목록을 순차적으로 확인합니다."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "내비게이션 대상"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "내비게이션 요소의 ID 속성을 설정하세요. 이는 주 내비게이션에 로그인이나 검색 기능과 같이 대부분의 사이트 방문자가 원하는 작업이 포함된 경우에 유용합니다."
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "테마가 이미 키보드 사용자가 내비게이션을 건너뛰고 주 콘텐츠로 빠르게 이동할 수 있는 건너뛰기 링크를 추가하지 않은 경우 여기에서 건너뛰기 링크를 활성화하세요. %1$s건너뛰기 링크에 대해 자세히 알아보기.%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "콘텐츠로 건너뛰기"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "내비게이션으로 건너뛰기"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "포커스 가능한 요소에서 tabindex 제거"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "탭 인덱스 제거"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "포커스 가능한 요소에서 %1$s 속성을 제거합니다."
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "참고: 이 설정은 이미 접근성이 준비된 테마에는 권장되지 않습니다."
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "수정 사항을 찾을 수 없음"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "%2$s 때문에 명령 %1$s을(를) 등록하지 못했습니다"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "통계를 삭제할 게시물의 ID입니다."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "게시물 ID가 제공되지 않았습니다."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "게시물 ID %1$s이(가) 존재하지 않습니다."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "%1$s의 통계가 삭제되었습니다."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "결과에 표시할 키입니다. 기본값은 모든 키입니다."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "통계를 가져오기 전에 캐시를 지웁니다(처리 부하가 클 수 있음)."
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "통계 키: %1$s이(가) 통계에서 발견되지 않았습니다."
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "통계를 가져올 게시물의 ID입니다."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "게시물 ID %1$d이(가) 존재하지 않습니다."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "게시물 ID %1$d에 대해 아직 검사가 이루어지지 않았거나 모든 테스트를 통과했습니다."
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "의 고유 주소 "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "에 대한 고유 주소 "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "무료 참석"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "접근성 검사기에 오신 것을 환영합니다"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "접근성 검사기 설정"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "설정"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "일반 설정"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "간소화된 요약 설정"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "푸터 접근성 선언문"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "프론트엔드 접근성 검사기"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "검사할 게시물 유형"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "간소화된 요약 프롬프트"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "간소화된 요약 위치"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "푸터 접근성 선언문 추가"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "접근성 정책 링크 포함"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "접근성 정책 페이지"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "접근성 선언문 미리보기"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "프론트엔드 접근성 검사기 위치"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "아래 설정을 사용하여 접근성 검사기를 구성하세요. 각 설정에 대한 추가 정보는 %1$s에서 확인할 수 있습니다."
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "플러그인 문서 (새 창에서 열림)"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "플러그인 문서"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "더 많은 기능과 email 지원은 %1$s에서 이용 가능합니다."
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "접근성 검사기 프로(새 창에서 열림)"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "접근성 검사기 프로"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "아래 설정을 사용하여 프론트엔드 접근성 검사기를 구성하세요."
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "웹 콘텐츠 접근성 지침(WCAG)의 AAA 수준에서는 9학년 이상의 읽기 수준을 가진 콘텐츠에 대해 더 쉽게 읽을 수 있는 대안을 제공해야 합니다. 간소화된 요약 텍스트는 각 게시물 또는 페이지의 편집 화면에 있는 접근성 검사기 메타 박스의 가독성 탭에 추가됩니다."
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "간소화된 요약과 가독성 요구사항에 대해 자세히 알아보기(새 창에서 열림)"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "간소화된 요약과 가독성 요구사항에 대해 자세히 알아보기."
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "“와, 이 플러그인 정말 대단해요” 라고 생각하시나요? 웹사이트를 더 접근성 있게 만드는 데 도움이 되고 있나요? 웹사이트를 더 접근성 있게 만들기 위한 노력을 고객과 공유하고 모든 사람이 웹사이트를 사용할 수 있도록 접근성 검사기를 사용하고 있다는 것을 알려주세요. 웹사이트 푸터에 작은 텍스트 전용 링크와 설명을 추가하세요."
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "콘텐츠 앞"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "콘텐츠 뒤"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "수동으로 삽입"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "이 기능을 사용하여 루프 내에서 테마에 간소화된 요약을 수동으로 추가하세요."
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "이 함수는 선택적으로 게시물 ID를 매개변수로 받습니다."
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "간소화된 요약을 콘텐츠와 관련하여 어디에 표시할지 설정하세요(작성된 경우)."
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "오른쪽 하단 모서리(기본값)"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "왼쪽 하단 모서리"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "프론트엔드 접근성 검사기를 페이지의 어디에 표시할지 설정하세요."
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "필요한 경우"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "항상"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "접근성 검사기가 게시물이나 페이지의 읽기 수준이 9학년 이상일 때만 간소화된 요약을 요청할지, 읽기 수준에 관계없이 항상 요청할지, 아니면 읽기 수준에 관계없이 절대 요청하지 않을지 선택하세요?"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "게시물과 페이지 이외의 콘텐츠를 확인하려면 "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " (새 창에서 열림)"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "스캔 중에 확인할 게시물 유형을 선택하세요. 이전에 선택한 게시물 유형을 제거하면 스캔된 정보와 설정된 사용자 정의 무시 경고가 모두 제거됩니다."
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "플러그인을 제거할 때 모든 접근성 검사기 데이터를 삭제합니다."
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "대체 텍스트가 없는 이미지"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "대체 텍스트가 없는 이미지 오류는 이미지 태그(%2$s) 내에 alt 속성(%1$s)이 전혀 없다는 것을 의미합니다. 대체 텍스트가 없는 이미지 오류를 수정하려면 이미지에 페이지 내 이미지의 목적을 설명하는 적절한 텍스트와 함께 alt 태그를 추가해야 합니다. 이미지가 장식용이라면 alt 속성은 비어 있을 수 있지만, HTML %1$s 태그는 여전히 존재해야 합니다."
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "빈 대체 텍스트가 있는 이미지"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "빈 대체 텍스트가 있는 이미지 경고는 비어 있는 alt 속성 (%s)을 가진 이미지가 있을 때 나타납니다. 대체 텍스트는 이미지를 볼 수 없는 사람들에게 이미지의 내용을 알려주고 게시물이나 페이지에 추가적인 맥락을 제공합니다. 대체 텍스트가 비어 있는 것이 올바른 경우는 이미지가 순전히 장식용일 때뿐입니다(예: 테두리나 장식용 아이콘). 빈 대체 텍스트가 있는 이미지 경고를 수정하려면 이미지가 장식용인지 아니면 페이지에 의미 있는 내용을 추가하는지 결정해야 합니다. 장식용이 아니라면 이미지의 목적을 설명하는 적절한 대체 텍스트를 추가해야 합니다. 이미지가 장식용이라면 대체 텍스트를 비워두고 경고를 “무시” 하면 됩니다."
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "낮은 품질의 대체 텍스트"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "이미지의 대체 텍스트에 대체 텍스트에 불필요한 키워드(예: “image” 또는 “graphic”), 파일 확장자(예:.JPG), 또는 장식용 이미지를 설명하는 것으로 보이는 단어(예: “spacer” 또는 “arrow”)가 포함되어 있을 때 저품질 대체 텍스트 경고가 나타납니다. 이 경고를 해결하려면 저품질 대체 텍스트 경고를 받은 모든 이미지의 대체 텍스트를 다시 작성해야 합니다. 대체 텍스트가 정확하고, 고유하며, 상황에 맞고, 불필요하거나 중복된 설명이 없도록 해야 합니다. 만약 이미지가 순수하게 장식용이라면 대체 텍스트를 비워두는 것이 맞습니다."
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "링크된 이미지에 대체 텍스트 누락"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "링크된 이미지 대체 텍스트 누락 오류는 URL에 링크된 이미지의 이미지 태그에 alt 속성 (%s) 이 전혀 없을 때 나타납니다. 링크된 이미지에는 스크린 리더 사용자가 링크의 목적지를 알 수 있도록 링크가 어디로 연결되는지 설명하는 정확한 대체 텍스트가 있어야 합니다. 이 오류를 해결하려면 이미지에 의미 있는 alt 텍스트를 추가해야 합니다. Alt 텍스트는 이미지의 모습이 아니라 링크의 목적을 설명해야 합니다."
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "링크된 이미지 대체 텍스트 비어 있음"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "링크된 이미지 대체 텍스트 비어 있음 오류는 URL에 링크된 이미지에 alt 속성 (%s) 이 있지만 내용이 비어 있을 때 나타납니다. 링크된 이미지에는 스크린 리더 사용자가 링크의 목적지를 알 수 있도록 링크가 어디로 연결되는지 설명하는 정확한 대체 텍스트가 있어야 합니다. 이 오류를 해결하려면 이미지에 의미 있는 alt 텍스트를 추가해야 합니다. Alt 텍스트는 이미지의 모습이 아니라 링크의 목적을 설명해야 합니다."
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "중복 대체 텍스트"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "중복 대체 텍스트 경고는 게시물이나 페이지의 이미지에 대한 대체 텍스트가 근처 또는 인접한 텍스트(이미지의 제목이나 캡션 포함)와 동일할 때 나타납니다. 이 경고는 페이지의 두 이미지가 동일한 대체 텍스트를 가질 때도 발생합니다. 이 경고를 해결하려면 중복 대체 텍스트 경고를 받은 요소 중 하나 또는 둘 모두의 텍스트를 변경해야 합니다. 모든 이미지가 고유한 alt 텍스트를 가지며 이미지 제목과 캡션에서 alt 텍스트를 반복하지 않도록 해야 합니다."
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "잘못된 제목 순서"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "잘못된 제목 순서 오류는 제목 구조가 한 단계를 건너뛴 경우를 의미합니다. 예를 들어, 페이지 구조에서 레벨 1 제목(%1$s) 아래에 레벨 3 제목(%2$s)이 있다면, H1과 H3 사이에 %3$s 태그가 없기 때문에 “잘못된 제목 순서” 오류가 발생합니다. 잘못된 제목 순서 오류를 해결하려면 잘못된 제목 레벨을 올바른 제목 레벨로 변경하거나 이미 존재하는 두 레벨 사이에 올바른 제목 레벨의 내용을 추가해야 합니다."
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "빈 문단 태그"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "빈 문단 태그 경고는 내용이 없는 문단 태그가 있음을 의미합니다. 이는 스크린 리더에 의해 안내되거나 사용자에게 혼란을 줄 수 있습니다. 이 경고를 해결하려면 페이지에서 빈 문단을 제거해야 합니다. 섹션 간 간격이 필요한 경우 패딩, 마진 또는 간격 블록을 사용해야 합니다."
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "iframe 제목 누락"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "Iframe 제목 누락 오류는 게시물이나 페이지의 하나 이상의 iframe에 iframe 내용을 설명하는 접근 가능한 제목이 없음을 의미합니다. Iframe 제목은 보조 기술을 사용하는 사람들에게 프레임의 내용을 설명하기 위해 %1$s 태그에 추가할 수 있는 속성입니다. Iframe 제목 누락을 해결하려면 %1$s 태그에 title 또는 aria-label 속성을 추가해야 합니다. 이 속성은 iframe의 내용을 정확하게 설명해야 합니다."
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "소제목 누락"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "제목 요소가 없다는 경고는 게시물이나 페이지의 본문 내용에 제목 요소(%1$s–%2$s)가 포함되어 있지 않음을 의미합니다. 이는 스크린 리더 사용자가 페이지 내용을 탐색하는 데 특히 어려움을 줄 수 있습니다. 제목이 없는 페이지를 수정하려면 제목 요소를 추가해야 합니다. 최소한 모든 페이지에는 일반적으로 페이지 제목인 %1$s 태그가 하나 있어야 합니다. 콘텐츠에 맞게 추가 하위 제목을 넣으세요. 페이지에 제목이 확실히 필요하지 않다고 판단했다면 “무시” 할 수 있습니다."
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "텍스트 양쪽 정렬"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "텍스트 양쪽 정렬 경고는 게시물이나 페이지에 200자 이상의 텍스트가 양쪽 정렬 스타일(text-align:justify)로 되어 있을 때 접근성 검사기에 나타납니다. 이 경고를 해결하려면 지정된 텍스트 요소에서 양쪽 정렬 스타일을 제거하세요."
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "링크가 새 창이나 탭에서 열림"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "링크가 새 창이나 탭에서 열림 경고는 웹사이트의 링크가 클릭 시 새 탭이나 창에서 열리도록 설정되었을 때 나타납니다. 링크로 새 탭이나 창을 열지 않는 것이 모범 사례로 간주됩니다. 만약 링크가 새 탭이나 창을 연다면, 사용자가 그 동작을 예상하고 링크를 클릭한 후 돌아가는 방법을 알 수 있도록 시각적, 청각적 경고가 있어야 합니다. 이 경고를 해결하려면 링크가 새 탭에서 열리지 않도록 변경하거나 링크 텍스트에 “새 창에서 열림” 을 포함시킨 후 경고를 “무시” 하세요. 사이트의 모든 링크에 자동으로 알림을 추가하고 이러한 경고를 모두 해제하려면 무료 %s 플러그인을 설치하세요."
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "접근성 새 창 경고"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "이미지 맵 대체 텍스트 누락"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "이미지 맵 대체 텍스트 누락 오류는 이미지 맵 내의 %1$s 요소 중 하나에 %2$s 속성의 대체 텍스트가 추가되지 않았음을 의미합니다. 이 오류를 수정하려면 대체 텍스트가 없는 area 태그에 누락된 alt 텍스트를 추가해야 합니다. Alt 텍스트는 해당 영역의 모양을 설명하는 것이 아니라 area에 포함된 링크의 기능을 설명해야 합니다."
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "탭 순서 수정됨"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "탭 순서 수정 경고는 페이지의 논리적 탭 순서가 HTML 요소에 0보다 큰 tabindex 속성을 추가하여 변경되었을 때 나타납니다(예: %s). 이는 키보드 전용 사용자에게 탐색 문제를 일으킬 수 있습니다. 탭 순서 수정 경고를 해결하려면 탭 순서가 수정된 페이지나 게시물의 프론트엔드를 확인하고 수정이 올바른지 테스트해야 합니다. 탭 순서 수정이 문제를 일으키지 않는다면 경고를 “무시” 할 수 있습니다. 수정된 탭 순서로 인해 정보가 순서에 맞지 않게 제시된다면 표시된 요소에서 tabindex 속성을 제거해야 합니다."
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "빈 제목 태그"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "빈 제목 태그 오류는 게시물이나 페이지에 내용이 없는 제목 태그가 있음을 의미합니다. 코드에서 이 오류는 다음과 같이 보일 수 있습니다: %s. 빈 제목을 수정하려면 빈 제목 태그 오류를 표시한 제목 태그에 내용을 추가하거나, 페이지에 필요하지 않은 경우 빈 태그를 제거해야 합니다."
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "빈 링크"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "빈 링크 오류는 웹 페이지에 있는 링크 중 하나가 비어 있거나 클릭했을 때 이동할 위치를 설명하는 텍스트가 없다는 것을 의미합니다. 이는 일반적으로 웹폰트, 아이콘 폰트, SVG가 포함된 링크에서 발생하거나 콘텐츠 에디터에서 실수로 링크가 생성되었을 때 발생합니다. 빈 링크 오류를 수정하려면 플래그가 지정된 링크를 찾아 설명 텍스트를 추가해야 합니다. 다음 중 하나를 수행해야 합니다: 빈 %1$s 요소 내에 텍스트 콘텐츠를 추가하거나, 링크에 SVG 또는 웹폰트 아이콘이 포함된 경우 해당 요소를 %2$s로 숨기고 %1$s 태그에 %3$s 속성을 추가하거나 스크린 리더 텍스트를 추가합니다. 추가하는 텍스트나 레이블은 링크가 가리키는 곳을 설명해야 하며 모호하지 않아야 합니다."
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "빈 버튼"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "빈 버튼 오류는 웹 페이지에 있는 버튼 중 하나가 비어 있거나 버튼의 기능을 설명하는 텍스트가 없다는 것을 의미합니다. 또는 이미지 버튼인 경우, 버튼에 포함된 이미지에 대체 텍스트가 누락되었음을 의미합니다. 빈 버튼 오류를 수정하려면 플래그가 지정된 버튼을 찾아 설명 텍스트를 추가해야 합니다. 다음 중 하나를 수행해야 합니다: 빈 %1$s 요소 내에 텍스트 콘텐츠를 추가하거나, 누락된 %2$s에 value 속성을 추가하거나, 버튼 이미지에 대체 텍스트를 추가합니다. 텍스트는 버튼의 용도나 버튼이 트리거하는 동작을 설명해야 합니다."
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "이미지 긴 대체 텍스트"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "이미지 긴 대체 텍스트 경고는 대체 텍스트에 100자 이상이 있을 때 나타납니다. 대체 텍스트는 이미지를 설명하되 간결해야 하며 너무 장황해서는 안 됩니다. 이 경고를 수정하려면 플래그가 지정된 이미지의 대체 텍스트를 100자 이하로 줄여야 합니다. 대체 텍스트가 현재 상태로 적절하다고 판단되면 경고를 “무시” 하세요."
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Hidden"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "ARIA Hidden 경고는 게시물이나 페이지의 콘텐츠가 aria-hidden=“true” 속성을 사용하여 숨겨졌을 때 나타납니다. 이 속성이 HTML 요소에 추가되면 스크린 리더가 사용자에게 해당 요소를 읽어주지 않습니다. 때로는 요소가 스크린 리더에서 숨겨지는 것이 올바를 수 있지만(예: 장식용 아이콘), 그렇지 않은 경우도 있습니다. 이 경고가 나타나면 해당 요소가 시각 장애인에게 숨겨져야 하는지 여부를 확인해야 합니다. 올바르게 숨겨진 경우 경고를 “무시” 하세요. 잘못 숨겨져 있고 표시되어야 하는 경우 aria-hidden=“true” 속성을 제거하여 경고를 해결하세요."
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "빈 테이블 헤더"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "빈 테이블 헤더 오류는 게시물이나 페이지의 테이블 헤더 중 하나에 텍스트가 포함되어 있지 않음을 의미합니다. 이는 %1$s 요소는 존재하지만 %2$s처럼 여는 태그와 닫는 태그 사이에 아무것도 없다는 뜻입니다. 빈 테이블 헤더를 수정하려면 올바른 HTML 요소 (%1$s)를 찾아 해당되는 행이나 열을 설명하는 텍스트를 추가해야 합니다."
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "MS Office 파일 링크"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "MS Office 파일 링크 경고는 페이지나 게시물의 링크 중 하나 이상이 다음 파일 확장자 중 하나를 가진 파일로 연결된다는 것을 의미합니다: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps 또는.ppsx. 이 경고는 MS Office 파일이 존재할 때 나타나며, Word 문서, PowerPoint 프레젠테이션, Excel 스프레드시트의 접근성을 수동으로 테스트하고 모든 관련 WCAG 지침을 준수하는지 확인하라는 알림 역할을 합니다. MS Office 파일 링크 경고를 해결하려면 다음을 수행해야 합니다: (1) 플러그인을 사용하여 페이지에 문서를 포함시키는 경우 문서를 보거나 다운로드할 수 있는 직접 링크가 있는지 확인합니다; (2) 문서 링크에 특정 파일 확장자를 표시하여 사용자에게 문서로 연결되는 링크임을 경고하는지 확인합니다; (3) MS Office 파일의 접근성 오류를 테스트하고 수정합니다. 파일이 완전히 접근 가능하다고 판단되면 경고를 안전하게 “무시” 할 수 있습니다."
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "PDF 링크"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "PDF 링크 경고는 페이지나 게시물의 하나 이상의 링크가 PDF 파일로 연결된다는 의미입니다. 이 경고는 연결된 PDF의 접근성을 수동으로 테스트하고 모든 관련 WCAG 지침을 준수하는지 확인하라는 알림입니다. PDF 링크 경고를 해결하려면 다음을 수행해야 합니다: (1) 플러그인을 사용하여 페이지에 문서를 포함하는 경우 문서를 보거나 다운로드할 수 있는 직접 링크가 있는지 확인합니다; (2) 링크 앵커에 특정 파일 확장자를 표시하여 문서로 연결되는 링크임을 사용자에게 경고합니다; (3) 문서의 접근성 오류를 테스트하고 수정합니다. 파일이 완전히 접근 가능하다고 판단되면 안전하게 경고를 “무시” 할 수 있습니다."
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "비 HTML 파일 링크"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "비 HTML 문서 링크 경고는 페이지나 게시물의 하나 이상의 링크가 다음 파일 확장자 중 하나를 가진 파일로 연결된다는 의미입니다: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, 또는.key. 이 경고는 연결된 문서의 접근성을 수동으로 테스트하고 모든 관련 WCAG 지침을 준수하는지 확인하라는 알림입니다. 비 HTML 문서 링크 경고를 해결하려면 다음을 수행해야 합니다: (1) 플러그인을 사용하여 페이지에 문서를 포함하는 경우 문서를 보거나 다운로드할 수 있는 직접 링크가 있는지 확인합니다; (2) 링크 앵커에 특정 파일 확장자를 표시하여 문서로 연결되는 링크임을 사용자에게 경고합니다; (3) 문서의 접근성 오류를 테스트하고 수정합니다. 파일이 완전히 접근 가능하다고 판단되면 안전하게 경고를 “무시” 할 수 있습니다."
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "긴 설명 유효하지 않음"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "긴 설명 유효하지 않음 오류는 이미지의 긴 설명 속성 (%s)이 적절한 URL, 파일 이름 또는 파일 확장자를 갖고 있지 않다는 것을 의미합니다. 또한 긴 설명이 URL이 아니거나 비어 있을 수 있습니다. Longdesc 속성은 HTML5, 브라우저 및 모든 스크린 리더에서 완전히 지원되지 않습니다. 이러한 지원 부족으로 인해 이 오류를 수정하는 가장 좋은 방법은 이미지 태그에서 longdesc를 완전히 제거하는 것입니다."
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "양식 레이블 누락"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "양식 레이블 누락 오류는 양식에 %1$s(양식 필드)가 있지만 %2$s 요소와 연결되지 않았을 때 발생합니다. 이는 레이블이 존재하지만 해당 필드와 연결하는 %3$s 속성이 누락되었거나 레이블이 전혀 없고 %1$s 태그만 있을 수 있습니다. 양식 레이블 누락 오류를 수정하려면 필드와 양식이 어떻게 생성되었는지 확인한 다음 필드 레이블을 추가하거나 필드와 연결되지 않은 기존 레이블에 올바른 %3$s 속성을 추가해야 합니다."
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "모호한 앵커 텍스트"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "모호한 앵커 텍스트 오류는 주변 내용 없이는 의미가 없는 링크 텍스트가 있을 때 나타납니다. 이의 일반적인 예로는 “여기를 클릭” 또는 “더 알아보기” 와 같은 문구를 링크로 사용하는 경우가 있습니다. 이 오류를 해결하려면 링크 텍스트를 덜 일반적인 것으로 변경하여 독립적으로 들었을 때도 의미가 있도록 해야 합니다."
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "밑줄 친 텍스트"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "밑줄 친 텍스트 경고는 페이지의 텍스트가 HTML 밑줄 태그 (%1$s)로 감싸져 있을 때 나타납니다. 온라인 환경에서 밑줄 친 텍스트는 일반적으로 링크된 텍스트를 나타내는 데 사용되며, 강조만을 위해 텍스트에 밑줄을 긋는 것은 좋은 관행으로 간주되지 않습니다. 밑줄 친 텍스트를 수정하려면 텍스트에서 %1$s 요소나 밑줄을 만드는 CSS 스타일을 제거해야 합니다. 단어나 구문을 강조하거나 구분하기 위해 이탤릭체, 색상 텍스트 또는 굵은 글씨와 같은 다른 스타일을 사용해 보세요."
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "깨진 건너뛰기 또는 앵커 링크"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "앵커 링크(때로는 점프 링크라고도 함)는 클릭 시 새 페이지나 URL을 열지 않고 같은 페이지의 다른 섹션으로 이동하거나 스크롤하는 링크입니다. 이러한 링크는 전체 URL이 아닌 해시태그로 시작하는 요소로 연결됩니다. 예를 들어, #about로 링크하여 홈페이지의 소개 섹션으로 스크롤할 수 있습니다. 깨진 건너뛰기 또는 앵커 링크 오류는 같은 페이지의 다른 섹션을 대상으로 하는 링크가 있지만 참조된 ID를 가진 요소가 페이지에 없을 때 나타납니다. 이 오류는 단순히 #으로 링크할 때도 발생합니다. 이 오류를 해결하려면 수동으로 링크를 테스트하여 작동하는지 확인한 다음 해당 사항에 따라 수정하거나 오류를 “무시” 하세요."
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "누락된 테이블 헤더"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "누락된 테이블 헤더 오류는 테이블에 데이터(%1$s 태그에 포함된 정보)가 있지만 해당하는 헤더 (%2$s) 태그가 없다는 것을 의미합니다. 폼의 HTML을 볼 때, 한 행에 있는 %1$s 요소의 수가 테이블의 %2$s 요소보다 더 많을 것입니다. 누락된 테이블 헤더를 수정하려면 데이터의 행이나 열 수에 비해 %2$s 요소가 더 적은 코드 섹션을 찾아 해당 행이나 열의 데이터를 설명하는 텍스트가 포함된 하나 이상의 추가 %2$s 요소를 추가해야 합니다."
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "중복된 폼 레이블"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "중복된 폼 레이블 오류는 폼의 단일 필드와 연결된 레이블이 두 개 이상 있을 때 나타납니다. 폼 레이블이 너무 많으면 화면 읽기 프로그램이 시각 장애가 있는 사용자가 폼을 탐색하고 작성하는 데 도움이 되도록 폼 필드를 성공적으로 읽지 못할 수 있습니다. 중복된 폼 레이블 오류를 수정하려면 필드와 폼이 어떻게 생성되었는지 확인한 다음 각 필드에 하나의 레이블만 연결되어 있는지 확인해야 합니다."
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "너무 작은 텍스트"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "텍스트가 너무 작음 경고는 웹사이트에 10px 미만 크기의 텍스트가 있을 때 발생합니다. 이 경고는 글꼴 크기를 재고하여 사용자가 브라우저에서 확대할 필요 없이 더 쉽게 읽을 수 있도록 더 크게 만들어야 할 수 있다는 표시입니다. 너무 작은 텍스트를 수정하려면 웹사이트의 모든 텍스트 요소가 최소 10포인트 이상이 되도록 해야 합니다."
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "제목일 가능성 있음"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "제목일 가능성 있음 경고는 페이지에 제목으로 보이는 텍스트가 있지만 적절한 제목 태그로 코딩되지 않았을 때 발생합니다. 이 경고는 50자 미만의 짧은 구문이나 문자열이 제목으로 사용되고 있음을 시사하는 방식으로 서식이 지정된 경우(20픽셀 이상이거나 16픽셀 이상이면서 굵게 및/또는 기울임꼴로 표시된 경우) 나타납니다. 제목일 가능성 있음 경고를 수정하려면 표시된 텍스트가 실제로 제목으로 의도된 것인지 확인해야 합니다. 만약 그렇다면 단락에서 적절한 수준의 제목으로 변경해야 합니다. 제목이 아니라면 안전하게 경고를 “무시” 할 수 있습니다."
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "깜박이거나 스크롤되는 콘텐츠"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "깜박이거나 스크롤되는 콘텐츠 오류는 웹사이트의 요소에 CSS나 HTML을 통해 깜박이거나 스크롤되는 기능이 적용되었을 때 나타납니다. 구체적으로 다음과 같은 경우 이 오류가 발생합니다: %1$s 또는 %2$s HTML 태그나 CSS %3$s. 이 오류를 해결하려면 콘텐츠가 깜박이게 만드는 HTML 태그나 CSS를 제거하세요."
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "불충분한 색상 대비"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "불충분한 색상 대비 오류는 게시물이나 페이지의 색상 조합 중 하나 이상이 최소 색상 대비 비율 4.5:1을 충족하지 않는다는 것을 의미합니다. 사이트 구축 방식에 따라 일부 색상이 페이지의 다른 HTML 레이어에 포함되어 있어 이 오류에 대해 “오탐” 이 있을 수 있습니다. 불충분한 색상 대비 오류를 수정하려면 플래그가 지정된 요소가 최소 필요 비율인 4.5:1을 충족하도록 해야 합니다. 이를 위해 전경색과 배경색의 16진수 코드를 찾아 색상 대비 검사기에서 테스트해야 합니다. 이러한 색상 코드의 비율이 4.5:1 이상이면 이 오류를 “무시” 할 수 있습니다. 색상 코드의 비율이 4.5:1 미만인 경우 색상을 조정해야 합니다."
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "누락된 자막"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "누락된 자막 오류는 웹사이트에 자막이 없는 오디오 또는 비디오 클립이 있거나, 자막이 있지만 자막으로 표시되지 않았거나 임베디드 또는 링크된 미디어로부터 25자 이상 떨어져 있음을 의미합니다. 누락된 자막 오류를 수정하려면 자막이 누락된 것으로 표시된 모든 비디오 또는 오디오 클립에 대한 자막을 만들어야 합니다. 자막을 만든 후에는 게시물이나 페이지에 자막 내용을 직접 추가하거나, 다운로드 가능한 문서나 PDF 파일로 포함하는 경우 자막에 대한 링크를 추가할 수 있습니다. 페이지의 자막 앞에 있는 제목이나 파일 링크에 “transcript” 라는 단어를 명시적으로 포함해야 하며, 오디오 또는 비디오 임베드나 링크로부터 25자 이내에 있어야 합니다."
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "손상된 ARIA 참조"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "손상된 ARIA 참조 오류는 페이지나 게시물에 aria-labeledby 또는 aria-describedby 요소가 있지만 해당 참조 대상이 존재하지 않을 때 나타납니다. 이는 사용 중인 특정 ARIA 속성이 참조하는 요소에 적절한 레이블이나 설명자가 없거나 페이지에 존재하지 않음을 의미합니다. 손상된 ARIA 참조를 수정하려면 플래그가 지정된 ARIA 요소를 찾아 해당 참조 대상이 존재하고 적절히 레이블이 지정되어 있는지 확인해야 합니다."
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "누락된 언어 선언"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "언어 선언은 페이지나 게시물의 내용에 대한 기본 언어를 나타내는 HTML 속성입니다. 언어 선언은 웹사이트 테마에 코딩되어 웹사이트 헤드에 자동으로 나타나야 합니다. 누락된 언어 선언 오류는 페이지의 %1$s 태그에 %2$s 또는 %3$s 속성이 포함되어 있지 않거나, 이러한 속성 중 하나가 존재하지만 비어 있을 때 나타납니다. 누락된 언어 선언 오류를 수정하려면 테마 파일을 편집하여 웹사이트 헤더 맨 위의 HTML 태그에 누락된 언어 속성을 추가해야 합니다. 업데이트를 받는 테마를 사용하는 경우, 테마를 다음에 업데이트할 때 수정 사항이 덮어쓰이지 않도록 하위 테마에서 변경해야 합니다."
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "이미지 애니메이션 GIF"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "이미지 애니메이션 GIF 경고는 게시물이나 페이지에 애니메이션 GIF가 있을 때 나타납니다. 이 경고는 웹사이트의 모든 애니메이션 GIF의 접근성을 수동으로 검토하거나 애니메이션 GIF 사용을 재고하여 정적 이미지나 비디오로 대체하도록 상기시키는 것입니다. 이 경고를 해결하려면 존재하는 모든 GIF를 검토하여 적용 가능한 모든 접근성 지침을 충족하는지 확인한 다음, 경고를 “무시” 하거나 접근성이 없는 경우 페이지나 게시물에서 GIF를 제거해야 합니다."
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "비디오가 존재합니다"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "동영상에는 자주 접근성 문제가 포함되어 있으며, 이 중 많은 부분은 사람만이 식별할 수 있기 때문에, 게시물이나 페이지에서 동영상이 감지될 때마다 '동영상이 있습니다' 경고가 나타나 접근성을 수동으로 테스트해야 함을 상기시킵니다. 이 경고를 해결하려면 웹사이트의 프론트엔드를 방문하여 경고에 언급된 동영상이 접근 가능한지 확인해야 합니다. 동영상의 접근성을 완전히 테스트한 후에는 발견된 오류를 수정하고 나서 경고를 “무시” 하여 완료된 것으로 표시할 수 있습니다."
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "슬라이더가 존재합니다"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "슬라이더에는 자주 접근성 문제가 포함되어 있으며, 이 중 많은 부분은 사람만이 식별할 수 있기 때문에, 게시물이나 페이지에서 슬라이더가 감지될 때마다 '슬라이더가 있습니다' 경고가 나타나 접근성을 수동으로 테스트해야 함을 상기시킵니다. 이 경고를 해결하려면 웹사이트의 프론트엔드를 방문하여 페이지의 모든 슬라이더가 접근 가능한지 확인해야 합니다. 슬라이더의 접근성을 완전히 테스트한 후에는 발견된 오류를 수정하고 나서 경고를 “무시” 하여 완료된 것으로 표시할 수 있습니다."
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "제목 누락"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "'제목 누락' 오류는 게시물이나 페이지에 제목 요소(%1$s 또는 %2$s)가 포함되어 있지 않음을 의미합니다. 이는 테마가 제목 태그를 추가하지 못했거나 WordPress 편집 화면에서 게시물이나 페이지의 제목 필드가 비어 있는 경우 발생할 수 있습니다. 제목이 없는 페이지를 수정하려면 제목 요소를 추가해야 합니다. 먼저 편집기에서 페이지나 게시물 제목 필드를 비워두었기 때문에 제목이 누락되었는지 확인하세요. 그렇다면 채워 넣으세요. 백엔드에서 제목이 채워져 있고 보이는 경우, 웹 페이지의 코드를 편집하여 %1$s 태그나 %2$s 메타 태그를 포함해야 합니다."
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "링크의 부적절한 사용"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "'링크의 부적절한 사용' 오류는 %1$s 속성이 없거나 %2$s에만 연결되어 있고 %3$s가 없는 링크가 있을 때 나타납니다. 링크는 사용자를 사이트의 다른 부분으로 안내하는 데 사용되어야 합니다. 동작을 트리거하는 다른 기능은 버튼이어야 합니다. 이 오류를 해결하려면 링크를 %4$s 태그를 사용하도록 재코딩하거나(권장) 기존 %6$s 태그에 %5$s을 추가해야 합니다. 요소가 토글 버튼(아코디언 등)인 경우 추가적인 ARIA 속성이 필요합니다."
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "확대/축소 및 크기 조절 비활성화됨"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "뷰포트 메타 태그에 'user-scalable=no'가 포함되어 있거나 'maximum-scale' 값이 2 미만으로 설정되어 확대/축소가 비활성화되었습니다. 이는 텍스트 크기를 늘리거나, 페이지를 확대하거나, 돋보기를 사용하려는 시력이 낮은 사용자들을 제한합니다."
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "설정이 저장되었습니다. 이러한 업데이트를 확인하고 사이트 통계에 반영하려면 사이트를 다시 스캔해 주세요. 캐싱 플러그인을 사용 중이라면, 업데이트된 수정 사항이 올바르게 적용되도록 캐시를 지워주세요."
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "Accessibility New Window Warnings 플러그인이 설치되어 있습니다. 여기에 포함된 새 창에서 열리는 링크에 대한 수정 사항이 해당 플러그인의 기능을 덮어쓰게 됩니다. 플러그인을 안전하게 제거하고 대신 이 수정 사항을 사용할 수 있습니다."
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "Accessibility Checker 이슈 패널"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "요약"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "상세 정보"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "가독성"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "현재 발견된 모든 이슈 삭제"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "이슈 지우기"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Equalize Digital 로고"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "Accessibility Checker Pro로 업그레이드"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "모든 게시물 유형 스캔"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "한눈에 접근성 상태를 확인할 수 있는 관리자 열"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "모든 열린 이슈의 중앙 집중식 목록"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "무시 로그"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "간소화된 요약 이름 변경"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "이슈 무시에 대한 사용자 제한"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "이메일 지원"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...그 외 더 많은 기능"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "Accessibility Checker Pro 받기"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "또는 여기에서 라이선스 키를 활성화하세요."
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "일반"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "버전"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Equalize Digital 웹사이트 링크"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "빠른 시작 가이드"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "콘텐츠 확인을 시작하려면 다음 단계를 따르세요:"
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "<a href=\"%s\">설정 페이지</a>에서 스캔하려는 게시물 유형을 선택하세요."
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "확인하려는 게시물의 편집 화면으로 이동하세요."
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "콘텐츠 아래에 있는 Accessibility Checker 메타 박스를 찾으세요. 프론트엔드 페이지 빌더를 사용 중이라면 Accessibility Checker 결과를 보기 위해 백엔드 편집 화면을 방문해야 합니다."
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "게시물에 오류나 경고가 있다면, Accessibility Checker의 상세 정보 탭을 열어 자세한 정보를 확인하세요."
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "각 이슈를 확장하여 코드를 보거나, 수정이 필요한 요소를 찾는 데 도움이 필요하면 “페이지에서 보기” 를 클릭하세요."
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "오류나 경고의 의미를 모르겠다면, “i” 아이콘을 클릭하여 문서와 해결 방법을 읽어보세요."
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "만약 이슈가 거짓 양성이고 해당 요소가 접근 가능하다면, “무시” 기능을 사용하여 보고서에서 이슈를 제거할 수 있습니다."
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "각 이슈를 수정한 후, 게시물을 업데이트하여 접근성 보고서의 변화를 확인하세요. 모든 페이지가 100% 테스트 통과를 표시하는 것이 목표입니다."
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "Accessibility Checker 사용 영상 보기."
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "문서 및 FAQ"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "왜 우리는 100% 접근 가능이 아닌 100% 테스트 통과라고 말하나요?"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "(새 창에서 열림)"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "웹사이트의 접근성을 수동으로 확인하는 방법"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "접근성 오류를 무시해야 하는 경우"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "사용 중인 플러그인에 접근성 오류가 있을 때 해야 할 일"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "테마에 접근성 오류가 있을 때 해야 할 일"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "Equalize Digital에 웹사이트의 접근성 문제 해결을 의뢰할 수 있나요?"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "접근성에 대해 배울 수 있는 추가 자료"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "전체 문서 읽기"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "지원 정보"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "플러그인 지원"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "유료 Accessibility Checker 플랜의 활성 라이선스 보유자는 플러그인 사용 및 문제 해결에 대한 무제한 이메일 지원을 받을 수 있습니다."
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "지원 티켓 열기"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "무료 플러그인 지원"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "무료 플러그인 지원은 WordPress.org 포럼을 통해 이용할 수 있습니다. 계정을 만든 후 새로운 지원 스레드를 열 수 있습니다."
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "지원 포럼으로 이동"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "오피스 아워"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "격주로 Zoom에서 열리는 공개 Q&A 세션으로 웹사이트 개선을 돕습니다."
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "소기업 및 에이전시 플랜에 포함"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "오피스 아워 등록"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "감사 및 개선"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "웹사이트를 접근 가능하게 만드는 데 도움을 받으세요. 전문가의 감사, 사용자 테스트, 개발 지원. 적합성 인증서 제공 가능."
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "개선 도움 받기"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "저장 중..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "설정이 성공적으로 저장되었습니다. Accessibility Checker 보고서에서 수정된 이슈를 제거하려면 %s편집기를 방문%s하여 게시물을 저장해야 합니다."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "설정이 성공적으로 저장되었습니다."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "저장에 실패했습니다."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "설정 수정"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "이 작업은 이 게시물의 모든 이슈를 지웁니다. 게시물 내용의 새로운 스캔을 트리거하려면 저장이 필요합니다. 계속하시겠습니까?"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "지우는 중..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "이슈가 성공적으로 지워졌습니다."
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "이슈 지우기에 실패했습니다."
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "문제가 발생했습니다. 다시 시도해 주세요."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "죄송합니다. 제출에 실패했습니다. 응답을 줄이고 다시 시도해 주세요."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "죄송합니다. 제출에 실패했습니다. 다시 시도해 주세요."
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "새 창에서 열기"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: 페이지에서 건너뛰기 링크에 대한 일치하는 대상 ID를 찾지 못했습니다."
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: 건너뛰기 링크에 대한 기록 업데이트 오류."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "수정 모달 닫기"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "페이지 스타일 비활성화"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "코드 표시"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "문제 유형:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "스타일 활성화"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "스타일 비활성화"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "표시할 설정이 없습니다."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "이 설정은 전체 사이트에 걸쳐 전역 수정을 활성화합니다. 수정 사항이 보고서에 반영되려면 페이지를 다시 저장하거나 전체 사이트 스캔을 실행해야 할 수 있습니다."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "감지된 문제가 없습니다."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "오류"
+msgstr[1] "오류"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "경고"
+msgstr[1] "경고"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "및"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "무시된 문제"
+msgstr[1] "무시된 문제"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "감지됨."
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "새 창"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "새 탭"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "클릭"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "여기를 클릭하세요"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "여기"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "여기로 이동"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "더 보기"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "더 보기..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "더 보기…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "상세 정보"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "자세한 정보"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "링크"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "이 페이지"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "계속하기"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "계속 읽기"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "더 읽기"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "열기"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "다운로드"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "버튼"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "계속 읽기"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "자세히 알아보기"

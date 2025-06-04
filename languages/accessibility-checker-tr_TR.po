@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "Erişilebilirlik denetleyicisi"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "Yayınlamadan önce web sitenizi erişilebilirlik açısından denetleyin ve kontrol edin. Yazı içi erişilebilirlik tarayıcısı ve rehberlik."
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "Düzeltmeler"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "Genel düzeltmeler"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "Bu düzeltmeler, sitenizde HTML öğelerini ve davranışlarını değiştirerek erişilebilirliği iyileştirmeye yardımcı olur."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "Bu özelliğin kilidini açmak için Pro'ya geçin, yeni bir pencerede açılır."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "Pro'ya geçin"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "Yeni bir pencerede açılır."
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "%s Için belgeleri okuyun. Yeni bir pencerede açılır."
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "Web erişilebilirliğine olan bağlılığımız"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[ŞİRKETİNİZİN ADI], web'de gezinmek için ekran okuyucular, ekran büyütme yazılımı ve alternatif klavye giriş cihazları gibi yardımcı teknolojilere güvenenler de dahil olmak üzere tüm yeteneklerdeki tüm kullanıcılar için tam erişilebilir bir web sitesi deneyimi sunmayı taahhüt eder."
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "Erişilebilirliği sağlamaya yönelik sürekli çabalar"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "Erişilebilirliği belirlemek için rehber ilkemiz olarak <a href=\"https://www.w3.org/TR/WCAG21/\">Web İçeriği Erişilebilirlik Yönergeleri (WCAG) sürüm 2.1</a>'i takip ediyoruz. Bunlar, içeriği kullanılabilir hale getirmek için geniş bir öneri ve en iyi uygulama yelpazesini kapsayan, uluslararası düzeyde kabul edilmiş standartlardır. Web sitemize yeni sayfalar ve işlevsellik ekledikçe, tüm tasarımlar, kodlar ve içerik giriş uygulamaları bu standartlara göre kontrol edilmektedir."
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Web sitesi erişilebilirliği sürekli devam eden bir süreçtir. WCAG 2.1 Düzey AA uyumluluğu için içerik ve özellikleri sürekli olarak test ediyoruz ve standartları karşılamak veya aşmak için herhangi bir sorunu gideriyoruz. Web sitemizin testi, ekip üyelerimiz tarafından <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Eklentisi</a>, renk kontrast analizörleri, sadece klavye ile gezinme teknikleri ve Flesch-Kincaid okunabilirlik testleri gibi endüstri standardı araçlar kullanılarak gerçekleştirilmektedir."
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "Web sitemizdeki erişilebilirlik özellikleri"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "Aşağıda, web sitemizin erişilebilirliğini iyileştirmek için dahil ettiğimiz öğelerin bir listesi bulunmaktadır:"
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[ERİŞİLEBİLİRLİK ÖZELLİKLERİNİ BURAYA LİSTELEYİN]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "İyileştirme yaptığımız alanlar"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "Web sitemizi standartlara uygun hale getirme çabalarımızda aşağıdaki alanları hedefliyoruz:"
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[DÜZELTMEK İÇİN ÇALIŞTIĞINIZ ÖĞELERİ BURAYA LİSTELEYİN]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[EN YAYGIN SORUNLARI GÖRMEK İÇİN AÇIK SORUNLAR SEKMESİNİ İNCELEMEK YARDIMCI OLABİLİR]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "Bu, [ŞİRKET ADI]'da herkesin deneyimini hoş karşılayan ve keyifli bir hale getirme yönündeki daha geniş çabamızın bir parçasıdır. Lütfen tüm kullanıcılar için erişilebilir bilgi sağlama konusunda her türlü çabayı gösterdiğimizi, ancak bağlantı verebileceğimiz üçüncü taraf web sitelerinin erişilebilirliğini garanti edemeyeceğimizi unutmayın."
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "Erişilebilirlik destek iletişimi"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "Web sitemiz hakkındaki yorumları, soruları ve geri bildirimleri memnuniyetle karşılıyoruz. Yardımcı teknolojiler kullanıyorsanız ve web sitemizi kullanmakta zorluk çekiyorsanız, lütfen [ERİŞİLEBİLİRLİK E-POSTA ADRESİNİZ] adresine e-posta gönderin veya bizi [TELEFON NUMARANIZ] numaralı telefondan arayın. Size yardımcı olmak ve sorunları çözmek için elimizden gelenin en iyisini yapacağız."
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "1.21.0 sürümünde istatistik hesaplamalarını iyileştirdik. Sonuç olarak, aşağıdaki verilerdeki bazı sayılar değişmiş olabilir. %1$sSürüm duyurusu yazımızda%2$s daha fazlasını okuyun."
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "İzin reddedildi"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "Güncelleme seçeneği başarılı olmadı"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Muhteşem Cuma özel indirimi! 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "Satış Öncesi Soru Sorun"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "Şimdi yükseltin"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "13 Mayıs - 21 Mayıs tarihleri arasında GAAD25 kupon kodunu kullanarak tam site taraması ve diğer pro özelliklere özel bir indirimle erişin. Yükseltmenin sizin için doğru olup olmadığından emin değil misiniz?"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "Merhaba! Erişilebilirlik araç kitinizin bir parçası olarak Accessibility Checker'ı kullandığınız için teşekkür ederiz. Bir süredir kullanıyorsunuz, lütfen WordPress eklenti dizininde Accessibility Checker için 5 yıldızlı bir inceleme yazar mısınız? Bu, görünürlüğümüzü artırmamıza yardımcı olacak ve daha fazla insanın web erişilebilirliğinin önemi hakkında bilgi edinmesini sağlayacaktır. Çok teşekkür ederiz!"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "İnceleme yazın"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "İki hafta sonra hatırlat"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "Bir daha sorma"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "İnceleme eylem değeri ayarlanmadı"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "Eyvah! Görünüşe göre web siteniz şu anda parola korumalı. Accessibility Checker'ın ücretsiz sürümü yalnızca canlı web sitelerini tarayabilir. Bu web sitesini erişilebilirlik sorunları için taramak için ya parola korumasını kaldırın ya da %s. Tarama sonuçları önceki bir taramadan saklanmış olabilir."
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "Accessibility Checker Pro'ya yükseltin. Yeni bir pencerede açılır."
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "pro sürüme yükseltin"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "Gönderi kimliği ayarlanmadı"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "Bu içerik için basitleştirilmiş bir özet eklenmemiştir."
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "İçeriğinizin okuma düzeyi 9. sınıf veya altındadır ve basitleştirilmiş bir özet gerektirmez."
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "Basitleştirilmiş özetin okuma düzeyi çok yüksek."
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "Bu içerik için basitleştirilmiş bir özet eklenmiştir."
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s Hata"
+msgstr[1] "%s Hata"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s Kontrast hatası"
+msgstr[1] "%s Kontrast hatası"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s Uyarı"
+msgstr[1] "%s Uyarı"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s Göz ardı edilen öğe"
+msgstr[1] "%s Göz ardı edilen öğe"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "Döndürülecek özet yok"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "Geçersiz tablo adı"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "Bu ayarlar, tüm siteniz genelinde küresel düzeltmeleri etkinleştirir."
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Düzeltmelerin raporlarda görüntülenmesi için sayfaların yeniden kaydedilmesi veya tam site taraması yapılması gerekebilir."
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "Kaydet"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "Etkilenen kod"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "Web sitesinde %d sorun kimliğini görüntüleyin, yeni bir pencere açar"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "Sayfada görüntüle"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "Düzeltme: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "Düzelt"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "Kullanıcı hesabınızın bu sorunu göz ardı etme izni yok."
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "Döndürülecek ayrıntı yok"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "Döndürülecek okunabilirlik verisi yok"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "Döndürülecek göz ardı etme verisi yok"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "Özet ayarlanmadı"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "Kimlik değeri ayarlanmadı"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "Sorun sorgusu sonuç döndürmedi"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "Nesne sorgusu sonuç döndürmedi"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "En son test özeti"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "Sayıları güncelle"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "Yeni tarama başlat"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "Tüm açık sorunları görüntüle"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "Geçmişi gör"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "Geçen testler"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "Benzersiz hata"
+msgstr[1] "Benzersiz hatalar"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "Benzersiz renk kontrast hatası"
+msgstr[1] "Benzersiz renk kontrast hataları"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "Benzersiz uyarı"
+msgstr[1] "Benzersiz uyarılar"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "Göz ardı edilen öğe"
+msgstr[1] "Göz ardı edilen öğeler"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "Sayfa başına ortalama sorun"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "Ortalama sorun yoğunluğu"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "Rapor son güncelleme:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "Hiçbir zaman"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "Taranan URL'ler"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s / %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "Kontrol edilen gönderi türleri"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "100 puan alan URL'ler"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "Bu özet her 24 saatte bir veya tam site taraması tamamlandığında otomatik olarak güncellenir. Ayrıca Sayıları Güncelle düğmesine tıklayarak bu sonuçları manuel olarak güncelleyebilirsiniz."
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "Sitenizde çok sayıda sorun var. Performans nedeniyle, bu özete tüm sorunlar dahil edilmemiştir."
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "Site Genelinde Erişilebilirlik Raporları"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "Afişi gizle"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "Detaylı erişilebilirlik raporlarının kilidini aç"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "Tüm web sitenizi erişilebilirlik sorunları için taramaya başlayın, tam site raporları alın ve erişilebilirlik yönergelerine daha hızlı uyum sağlayın."
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "Accessibility Checker'ı yükseltin"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "reklamı kapat"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "Detaylı erişilebilirlik raporları al"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "Tam site erişilebilirlik durumu"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "Taranan URL'ler:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "Hatalar:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "Renk kontrast hataları:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "Uyarılar:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "Sitenizde, erişilebilirlik yönergelerine uyumu sağlamak için mümkün olan en kısa sürede ele alınması gereken erişilebilirlik sorunları var."
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "Harika iş! Accessibility Checker, test ettiği içerikte herhangi bir erişilebilirlik sorunu bulamıyor. Bazı sorunlar otomatik araçlarla bulunamayacağından"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "sitenizi manuel olarak test etmeyi"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "Gönderi türüne göre sorunlar"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "Gönderi türü"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "Hatalar"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "Kontrast"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "Uyarılar"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "Taramak için yükseltin"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "Daha fazla rapor gör"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "Erişilebilirliği öğren"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "Ek kaynaklar"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "Blog (yeni pencerede açılır)"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "Blog"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "Dokümantasyon (yeni pencerede açılır)"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "Dokümantasyon"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "Gelen kutunuzda erişilebilirlik etkinlikleri ve haberleri"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "Ücretsiz erişilebilirlik web seminerleri ve eğitim kaynaklarına erişim için Equalize Digital'ın e-posta listesine abone olun."
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "E-posta*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "E-postanızı yazın"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "Ad"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "Adınızı yazın"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Accessibility Checker &mdash; denetim geçmişi"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Accessibility Checker &mdash; ücretsiz"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "Sürüm"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "Veritabanı sürümü"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "Politika sayfası"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "Ayarlanmamış"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "Etkinleştirme tarihi"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "Alt bilgi ifadesi"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "Etkin"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "Devre dışı"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "Verileri sil"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "İfade bağlantısını ekle"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "Gönderi türleri"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "Basitleştirilmiş özet konumu"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "Basitleştirilmiş özet istemi"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "Gönderi sayısı"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "Hata sayısı"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "Uyarı sayısı"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "Veritabanı Tablo Sayısı"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Accessibility Checker &mdash; pro"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "Lisans durumu"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "Yetkilendirme kullanıcı adı"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "Yetkilendirme şifresi"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "Tarama kimliği"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "Tarama toplamı"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "Basitleştirilmiş özet başlığı"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "Göz ardı etme izinleri"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "Yok"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "Göz Ardı Edilen Veritabanı Tablo Sayısı"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "%1$s web sitemizin erişilebilirliğini izlemek için %2$s kullanır."
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "Erişilebilirlik Denetleyicisi (yeni pencerede açılır)"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "%s'mızı okuyun"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "Erişilebilirlik politikası"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "Basitleştirilmiş özet"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "Dosya bağlantılarına boyut ve tür ekle"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "Bağlantılı dosyalara bağlam ekle"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "Bağlantılara dosya boyutu ve türü ekle"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "İndirmeyi tetikleyebilecek bağlantılı dosyalara dosya boyutu ve türünü ekleyin."
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "Etiketsiz form alanlarına etiket ekle"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "Form alanlarını etiketle"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "Alan amacı belirlenebiliyorsa, etiketsiz form alanlarına etiket ekleyin."
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "Eksik olan form alanlarına etiket eklemeye çalışın. Not: Etiket ekleme form düzeninizi etkiliyorsa, %1$s sınıfını hedefleyen özel stiller eklemeniz gerekebilir."
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "Eksik veya boş sayfa başlıkları ekle"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "Sayfa HTML Başlıklarını Ayarla"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "Eksik sayfa başlığı ekle"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "Sayfada eksikse veya boşsa bir %1$s etiketi ekleyin."
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "Bağlantı yeni sekme/pencere açtığında uyarı ekle"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "Yeni sekme/pencere açan bağlantılara etiket ekle"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "Yeni bir sekme/pencere açacak %1$s içeren bağlantılara, kullanıcıları bilgilendiren bir etiket ve simge ekleyin. %2$sNot: “Yeni Pencere Açan Bağlantıları Engelle” düzeltmesi etkinleştirilmişse bu ayarın hiçbir etkisi olmayacaktır.%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "PDF Yüklemelerini Engelle"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "%1$s Yeteneği olmayan kullanıcılar için PDF yüklemelerini kısıtlayın (varsayılan olarak yöneticiler için izin verilir)."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "Yorum ve arama formlarına etiket ekle"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "Yorum/arama alanlarını etiketle"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "Yorum ve arama formu etiketleri"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "WordPress yorum ve arama formlarına eksik etiketleri ekleyin."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "Yorum formunu etiketle"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "WordPress yorum formuna eksik etiketleri ekleyin."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "Arama formunu etiketle"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "WordPress arama formuna eksik etiketi ekleyin."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "Yorum"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "Ad"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "E-posta"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "Web sitesi"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "Ara …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "Arama:"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "Ara"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "WordPress yorum ve arama formlarına eksik etiketler eklemek için ayarlar."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "Odak çerçeveleri ekle"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "Odak çerçevesi"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "Öğeler klavye odağı aldığında etraflarına bir çerçeve ekle."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "Odak çerçevesi ekle"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "Daha iyi klavye erişilebilirliği için odak çerçevelerini geliştirmeye yönelik ayarlar."
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "Lang ve dir Özniteliklerini Ekle"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "Sayfa dilini ayarla"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "“lang” ve “dir” özniteliklerini ekle"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "%3$s Öğesine site dilini (%1$s) ve metin yönünü (%2$s) ekle."
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "Gezinme Dışındaki Tüm Bağlantılara Alt Çizgi Ekle"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "Bağlantıların altını çiz"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "Bağlantı alt çizgisini zorla"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "Gezinme dışındaki bağlantıların altının çizili olduğundan emin ol."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "Meta viewport etiketini ölçeklenebilir yap"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "Ölçeklenebilir görünüm alanını sağla"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "Sayfadaki viewport etiketinin ölçeklendirmeye izin verdiğinden emin ol."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "Görünüm alanını ölçeklenebilir yap"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "Mobil cihazlarda erişilebilirliği artırmak için viewport etiketinin ölçeklendirmeye izin verdiğinden emin ol."
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "Bağlantıların yeni pencereler açmasını engelle"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "Bağlantıların yeni pencereler açmasını engelle"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "%1$s Özniteliğini kaldırarak bağlantıların yeni bir pencerede veya sekmede açılmasını engelle."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "Yazı Başlığı ile “Oku” Bağlantısı Ekle"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "Devamını oku bağlantısına başlık ekle"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "Devamını oku bağlantıları"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "Yazı başlığını ve bağlantıları ekle "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "“Devamını Oku” Bağlantısına Yazı Başlığını Ekle"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "Temanız bu bağlantıları çıktı olarak verdiğinde, yazı listelerindeki “Devamını Oku” bağlantılarına yazı başlığını ekle."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "Yalnızca ekran okuyucular için"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "“Devamını Oku” bağlantılarına eklenen yazı başlığını yalnızca ekran okuyuculara görünür hale getirir."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "Bu düzeltme, yazı listelerindeki “Devamını Oku” bağlantılarına, “Devamı” bloğunda ve özetlerde yazı başlığını ekler."
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "Erişilebilir etiket özniteliğini tercih et"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "Gereksiz başlık özniteliklerini kaldır"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "Başlık özniteliklerini kaldır"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "Zaten tercih edilen erişilebilir bir ada sahip öğelerden %1$s özniteliklerini kaldır."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "Atlama bağlantıları ekle"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "Atlama bağlantısı"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "Atlama bağlantısını etkinleştir"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "Kullanıcıların doğrudan ana içeriğe atlayabilmesini sağlayan bir atlama bağlantısını tüm site sayfalarına ekle."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "Ana İçerik Hedefi (gerekli)"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "Atlama bağlantıları tarafından hedeflenecek ana içerik alanının (alanlarının) kimliğini (kimliklerini) tanımla. Birden fazla kimliği virgülle ayırarak gir; sistem her sayfa için uygun olanı bulmak için liste boyunca ilerleyecektir."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "Gezinme hedefi"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "Gezinme öğesinin kimlik özniteliğini ayarla. Bu, ana gezinmeniz giriş veya arama özellikleri gibi çoğu site ziyaretçisinin yapmak isteyeceği eylemleri içeriyorsa faydalıdır."
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "Temanız zaten klavye kullanıcılarının gezinmeyi atlayıp hızlıca ana içeriğe geçmesine olanak tanıyan bir atlama bağlantısı eklemediyse, atlama bağlantılarını buradan etkinleştirin. %1$sAtlama bağlantıları hakkında daha fazla bilgi edinin.%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "İçeriğe atla"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "Gezinmeye atla"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "Odaklanabilir öğelerden tabindex'i kaldır"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "Sekme dizinini kaldır"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "Odaklanabilir öğelerden %1$s özniteliğini kaldır."
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "Not: Bu ayar, hâlihazırda erişilebilirliğe hazır temalar için önerilmez."
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "Bulunamadı"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "%1$s Komutu kaydedilemedi çünkü %2$s"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "İstatistiklerin silineceği yazının kimliği."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "Yazı Kimliği sağlanmadı."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "%1$s Kimlikli yazı mevcut değil."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "%1$s Istatistikleri silindi."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "Sonuçlarda gösterilecek anahtarlar. Varsayılan olarak tüm anahtarları gösterir."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "İstatistikleri almadan önce önbelleği temizle (yoğun işlem gerektirebilir)."
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "İstatistik anahtarı: %1$s istatistiklerde bulunamadı."
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "İstatistikleri alınacak yazının kimliği."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "%1$d Kimlikli yazı mevcut değil."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "%1$d Kimlikli yazı henüz taranmamış veya tüm testler başarılı olmuş."
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "kalıcı bağlantısı "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "kalıcı bağlantı: "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "Ücretsiz katıl"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "Erişilebilirlik denetleyicisine hoş geldiniz"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "Erişilebilirlik denetleyicisi ayarları"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "Genel ayarlar"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "Basitleştirilmiş özet ayarları"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "Alt bilgi erişilebilirlik beyanı"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "Ön yüz erişilebilirlik denetleyicisi"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "Kontrol edilecek içerik türleri"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "Basitleştirilmiş özet için uyarı"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "Basitleştirilmiş özet konumu"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "Alt bilgiye erişilebilirlik beyanı ekle"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "Erişilebilirlik politikası bağlantısını dahil et"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "Erişilebilirlik Politikası sayfası"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "Erişilebilirlik beyanı önizlemesi"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "Ön yüz erişilebilirlik denetleyicisi konumu"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "Erişilebilirlik Denetleyicisi'ni yapılandırmak için aşağıdaki ayarları kullanın. Her ayar hakkında ek bilgiler %1$s bulunabilir."
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "eklenti belgelerinde (yeni pencerede açılır)"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "eklenti belgeleri"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "Daha fazla özellik ve e-posta desteği %1$s ile mevcuttur."
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Erişilebilirlik Kontrolcüsü Pro (yeni pencerede açılır)"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Erişilebilirlik kontrolcüsü pro"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "Ön yüz erişilebilirlik kontrolcüsünü yapılandırmak için aşağıdaki ayarları kullanın."
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "Web İçeriği Erişilebilirlik Kılavuzları'nın (WCAG) AAA seviyesi, 9. Sınıf düzeyinin üzerinde okuma seviyesine sahip herhangi bir içeriğin daha kolay okunabilir bir alternatifinin olmasını gerektirir. Basitleştirilmiş özet metni, her gönderinin veya sayfanın düzenleme ekranındaki Erişilebilirlik Kontrolcüsü meta kutusunun okunabilirlik sekmesinde eklenir."
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "Basitleştirilmiş özetler ve okunabilirlik gereksinimleri hakkında daha fazla bilgi edinin (yeni pencerede açılır)"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "Basitleştirilmiş özetler ve okunabilirlik gereksinimleri hakkında daha fazla bilgi edinin."
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "“Vay canına, bu eklenti harika” diye düşünüyor ve web sitenizi daha erişilebilir hale getirmenize yardımcı oluyor mu? Web sitenizi daha erişilebilir hale getirme çabalarınızı müşterilerinizle paylaşın ve web sitenizi tüm insanların kullanabilmesini sağlamak için Erişilebilirlik Kontrolcüsü'nü kullandığınızı onlara bildirin. Web sitenizin alt bilgisine küçük bir metin bağlantısı ve açıklama ekleyin."
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "İçerikten önce"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "İçerikten sonra"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "Manuel olarak ekle"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "Basitleştirilmiş özeti döngü içinde temanıza manuel olarak eklemek için bu fonksiyonu kullanın."
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "Fonksiyon isteğe bağlı olarak parametre olarak gönderi kimliğini kabul eder."
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "Basitleştirilmiş özetlerin doldurulduğunda içeriğinizle ilişkili olarak nerede görünmesini istediğinizi ayarlayın."
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "Sağ Alt Köşe (varsayılan)"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "Sol alt köşe"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "Ön yüz erişilebilirlik kontrolcüsünün sayfada nerede görünmesini istediğinizi ayarlayın."
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "Gerektiğinde"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "Her zaman"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Erişilebilirlik Kontrolcüsü, gönderinizin veya sayfanızın okuma seviyesi 9. sınıfın üzerinde olduğunda mı basitleştirilmiş özet istemeli, okuma seviyesine bakılmaksızın her zaman mı istemeli, yoksa okuma seviyesine bakılmaksızın hiçbir zaman istememeli mi?"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "Gönderiler ve sayfalar dışındaki içeriği kontrol etmek için lütfen "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " (yeni pencerede açılır)"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "Bir tarama sırasında hangi gönderi türlerinin kontrol edileceğini seçin. Lütfen dikkat edin, daha önce seçilmiş bir gönderi türünü kaldırmak, taranan bilgilerini ve kurulmuş olan özel göz ardı edilen uyarıları kaldıracaktır."
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "Eklenti kaldırıldığında tüm Erişilebilirlik Kontrolcüsü verilerini sil."
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "Alternatif metin eksik görsel"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "Alternatif Metin Eksik Görsel hatası, görselinizin görsel etiketinde (%1$s) hiç alt özniteliği (%2$s) bulunmadığı anlamına gelir. Alternatif Metin Eksik Görsel hatasını düzeltmek için, görsele sayfadaki amacını açıklayan uygun bir metinle birlikte bir alt etiketi eklemeniz gerekecektir. Eğer görsel süs amaçlıysa, alt özniteliği boş olabilir, ancak HTML %1$s etiketi yine de mevcut olmalıdır."
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "Boş alternatif metinli görsel"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "Boş Alternatif Metinli Görsel uyarısı, (%s) boş bir alt özniteliğine sahip bir görseliniz olduğunda ortaya çıkar. Alternatif metin, görseli göremeyen kişilere görselin ne olduğunu anlatır ve gönderiye veya sayfaya ek bağlam ekler. Alternatif metnin boş olması, yalnızca görsel tamamen süs amaçlıysa doğrudur, örneğin bir kenarlık veya süs ikonu gibi. Boş Alternatif Metinli Görsel uyarısını düzeltmek için, görselin süs amaçlı mı yoksa sayfaya anlamlı bir şey mi kattığını belirlemeniz gerekir. Eğer süs amaçlı değilse, görselin amacını açıklamak için uygun bir alternatif metin eklemeniz gerekir. Eğer görsel süs amaçlıysa, o zaman alternatif metni boş bırakır ve uyarıyı “Yoksay” arsınız."
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "Düşük kaliteli alternatif metin"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "Bir görüntüde alternatif metinde gereksiz olan anahtar kelimeler (örneğin “resim” veya “grafik”), bir dosya uzantısı (.JPG gibi) veya dekoratif bir görüntüyü tanımlayabilecek (“ayırıcı” veya “ok” gibi) ifadeler bulunduğunda Düşük Kaliteli Alternatif Metin uyarısı görünür. Bu uyarıyı düzeltmek için, Düşük Kaliteli Alternatif Metin uyarısı veren tüm görsellerin alternatif metnini yeniden yazmanız gerekecektir. Alternatif metnin doğru, benzersiz, bağlama uygun olduğundan ve gereksiz veya fazlalık tanımlayıcılar içermediğinden emin olun. Eğer görsel tamamen dekoratif ise, alternatif metni boş bırakmak doğru olacaktır."
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "Bağlantılı görselde alternatif metin eksik"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Bir URL'ye bağlantılı bir görselin görsel etiketinde hiç alt özniteliği (%s) bulunmadığında Bağlantılı Görselde Alternatif Metin Eksik hatası ortaya çıkar. Bağlantılı görsellerin, ekran okuyucu kullanıcılarının bağlantının nereye gittiğini bilmeleri için bağlantının nereye gittiğini açıklayan doğru alternatif metne sahip olması gerekir. Bu hatayı çözmek için görsele anlamlı bir alt metni eklemeniz gerekir. Alt metniniz görselin nasıl göründüğünü değil, bağlantının amacını açıklamalıdır."
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "Bağlantılı görselde boş alternatif metin"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Bir URL'ye bağlantılı bir görselin içi boş bir alt özniteliği (%s) olduğunda Bağlantılı Görselde Boş Alternatif Metin hatası ortaya çıkar. Bağlantılı görsellerin, ekran okuyucu kullanıcılarının bağlantının nereye gittiğini bilmeleri için bağlantının nereye gittiğini açıklayan doğru alternatif metne sahip olması gerekir. Bu hatayı çözmek için görsele anlamlı bir alt metni eklemeniz gerekir. Alt metniniz görselin nasıl göründüğünü değil, bağlantının amacını açıklamalıdır."
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "Yinelenen alternatif metin"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "Yinelenen Alternatif Metin uyarıları, gönderinizde veya sayfanızdaki bir görselin alternatif metninin yakındaki veya bitişik metinle, görselin başlığı veya altyazısı da dahil olmak üzere aynı olduğunda ortaya çıkar. Bu uyarı aynı zamanda sayfadaki iki görselin aynı alternatif metne sahip olması durumunda da oluşur. Bu uyarıyı çözmek için, Yinelenen Alternatif Metin uyarısı veren öğelerden birinin veya her ikisinin metnini değiştirmeniz gerekecektir. Tüm görsellerin benzersiz alt metne sahip olduğundan ve alt metninizi görsel başlıklarınızda ve altyazılarınızda tekrarlamadığınızdan emin olun."
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "Yanlış başlık sıralaması"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "Yanlış Başlık Sıralaması hatası, başlık yapınızın bir seviyeyi atladığı anlamına gelir. Örneğin, sayfa yapınızda bir seviye 1 başlığın (%2$s) altında bir seviye 3 başlık (%1$s) varsa, H1 ile H3 arasında %3$s etiketi olmadığı için bir “Yanlış Başlık Sıralaması” hatası işaretlenecektir. Yanlış başlık sıralaması hatalarını düzeltmek için, ya yanlış başlık seviyesini doğru başlık seviyesine değiştirmeniz ya da mevcut iki seviye arasına doğru başlık seviyesine sahip içerik eklemeniz gerekecektir."
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "Boş paragraf etiketi"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "Boş Paragraf Etiketi uyarısı, içerik içermeyen bir paragraf etiketinin mevcut olduğu anlamına gelir. Bunlar ekran okuyucular tarafından duyurulabilir veya kullanıcılar için kafa karışıklığı yaratabilir. Bu uyarıyı düzeltmek için, sayfadan boş paragrafları kaldırın. Bölümler arasında boşluk eklemeniz gerekiyorsa, bu padding, margin veya bir ayırıcı blok ile yapılmalıdır."
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "iframe Başlığı Eksik"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "Bir iframe Başlığı Eksik hatası, gönderinizde veya sayfanızdaki bir veya daha fazla iframe'in içeriğini açıklayan erişilebilir bir başlığa sahip olmadığı anlamına gelir. Bir iframe başlığı, yardımcı teknoloji kullanan kişilere çerçevenin içeriğini tanımlamak için %1$s etiketine eklenebilen bir özelliktir. Eksik bir iframe başlığını düzeltmek için, %1$s etiketine bir başlık veya aria-label özelliği eklemeniz gerekecektir. Özellik, iframe'in içeriğini doğru bir şekilde tanımlamalıdır."
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "Alt başlıklar eksik"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "Başlıkların eksik olduğuna dair bir uyarı, gönderinizin veya sayfanızın gövde bölümünün içeriğinde herhangi bir başlık öğesi (%1$s–%2$s) bulunmadığı anlamına gelir. Bu durum, ekran okuyucu kullanıcılarının sayfadaki içerikte gezinmesini özellikle zorlaştırabilir. Başlığı olmayan bir sayfayı düzeltmek için başlık öğeleri eklemeniz gerekecektir. En azından, her sayfada bir adet %1$s etiketi bulunmalıdır; bu genellikle sayfa başlığıdır. İçeriğinize uygun olarak ek alt başlıklar ekleyin. Sayfada kesinlikle başlıklara ihtiyaç olmadığına karar verdiyseniz, uyarıyı “Yok say” abilirsiniz."
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "Metin iki yana yaslı"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "Metin İki Yana Yaslı uyarısı, Erişilebilirlik Denetleyicisi'nde gönderinizde veya sayfanızda 200 karakterden fazla metnin iki yana yaslı hizalama (text-align:justify) ile biçimlendirildiğinde görünür. Bu uyarıyı düzeltmek için, belirtilen metin öğelerinden iki yana yaslı biçimlendirmeyi kaldırın."
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "Bağlantı yeni pencere veya sekme açıyor"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "Bağlantı Yeni Pencere veya Sekme Açıyor uyarısı, web sitenizde tıklandığında yeni bir sekmede veya pencerede açılmak üzere ayarlanmış bir bağlantı olduğunda görünür. Bağlantıların yeni sekmeler veya pencereler açmaması en iyi uygulama olarak kabul edilir. Eğer bağlantılar yeni sekmeler veya pencereler açıyorsa, bağlantının yeni bir pencere veya sekme açacağını bildiren görsel ve işitsel bir uyarı olmalıdır; böylece kullanıcılar bu davranışı bekleyecek ve bağlantıya tıkladıktan sonra nasıl geri döneceklerini bileceklerdir. Bu uyarıyı düzeltmek için ya bağlantıyı yeni bir sekmede açılmayacak şekilde değiştirin ya da bağlantı metnine “yeni pencere açar” ifadesini ekleyip ardından uyarıyı “Yok say” ın. Sitenizdeki tüm bağlantılara otomatik olarak bildirimler eklemek ve tüm bu uyarıları kapatmak için ücretsiz %s eklentimizi yükleyin."
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "Erişilebilirlik yeni pencere uyarıları"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "Görüntü haritası alternatif metin eksik"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "Görüntü Haritası Alternatif Metin Eksik hatası, görüntü haritanız içindeki %1$s öğelerinden birinin %2$s özniteliğinde alternatif metin eklenmediği anlamına gelir. Bu hatayı düzeltmek için, alternatif metni olmayan tüm alan etiketlerine eksik alt metni eklemeniz gerekecektir. Alt metin, alanın nasıl göründüğünü değil, alandaki bağlantının işlevini açıklamalıdır."
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "Sekme sırası değiştirildi"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "Sekme Sırası Değiştirildi Uyarısı, sayfadaki mantıksal sekme sırasının bir HTML öğesine 0'dan büyük bir tabindex özniteliği eklenerek değiştirildiğinde görünür (örneğin, %s). Bu, yalnızca klavye kullanan kullanıcılar için gezinme sorunlarına neden olabilir. Sekme Sırası Değiştirildi uyarısını çözmek için, sekme sırasının değiştirildiği sayfa veya gönderinin ön yüzünü görüntülemeniz ve değişikliğin doğru olup olmadığını test etmeniz gerekir. Eğer sekme sırası değişikliği sorunlara neden olmuyorsa, uyarıyı “Yok say” abilirsiniz. Değiştirilen sekme sırası bilgilerin sıra dışı sunulmasına neden oluyorsa, işaretlenen öğeden tabindex özniteliğini kaldırmanız gerekir."
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "Boş başlık etiketi"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "Boş Başlık Etiketi hatası, gönderinizde veya sayfanızda içerik içermeyen bir başlık etiketi bulunduğu anlamına gelir. Kodda bu hata şöyle görünür: %s. Boş bir başlığı düzeltmek için, Boş Başlık Etiketi hatasını işaretleyen başlık etiketine içerik eklemeniz veya eğer sayfanızda gerekli değilse boş etiketi kaldırmanız gerekecektir."
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "Boş bağlantı"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "Boş Bağlantı hatası, web sayfasındaki bağlantılardan birinin boş olduğu veya bağlantının tıklandığında nereye gideceğini açıklayan bir metin içermediği anlamına gelir. Bu genellikle web fontları, simge fontları ve SVG'ler içeren bağlantılarda veya içerik düzenleyicide yanlışlıkla bir bağlantı oluşturulduğunda meydana gelir. Boş bağlantı hatasını düzeltmek için, işaretlenen bağlantıyı bulmanız ve ona açıklayıcı bir metin eklemeniz gerekecektir. Şunlardan birini yapmanız gerekecek: boş bir %1$s öğesinin içine metin içeriği ekleyin veya bağlantınız bir SVG veya Web fontu simgesi içeriyorsa, bu öğeyi %2$s ile gizleyin ve %1$s etiketine bir %3$s özelliği ekleyin veya ekran okuyucu metni ekleyin. Eklediğiniz metin veya etiket, bağlantının işaret ettiği yeri açıklayıcı olmalı ve belirsiz olmamalıdır."
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "Boş düğme"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "Boş Düğme hatası, web sayfasındaki düğmelerden birinin boş olduğu veya düğmenin işlevini açıklayan bir metin içermediği anlamına gelir. Veya bir görsel düğmeyse, düğmenin içindeki görselin alternatif metni eksiktir. Boş düğme hatasını düzeltmek için, işaretlenen düğmeyi bulmanız ve ona açıklayıcı bir metin eklemeniz gerekecektir. Şunlardan birini yapmanız gerekecek: boş bir %1$s öğesinin içine metin içeriği ekleyin, eksik olan bir %2$s öğesine bir değer özelliği ekleyin veya bir düğme görseline alternatif metin ekleyin. Metin, düğmenizin ne için kullanıldığını veya düğmenin tetiklediği eylemi açıklayıcı olmalıdır."
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "Görsel uzun alternatif metin"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "Alternatif metninizde 100'den fazla karakter varsa Görsel Uzun Alternatif Metin uyarısı görünür. Alternatif metin, görseli açıklayıcı olmalı ancak çok uzun olmadan özlü bir şekilde yapılmalıdır. Bu uyarıyı düzeltmek için, işaretlenen görsellerin alternatif metnini 100 karakter veya daha azına kısaltmanız gerekir. Alternatif metninizin olduğu gibi iyi olduğuna karar verdiyseniz, uyarıyı “Yok say” abilirsiniz."
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Gizli"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "ARIA Gizli uyarısı, gönderinizde veya sayfanızdaki içeriğin aria-hidden=“true” özelliği kullanılarak gizlendiğinde görünür. Bu özellik bir HTML öğesine eklendiğinde, ekran okuyucular onu kullanıcılara okumaz. Bazen öğenin ekran okuyuculardan gizlenmesi doğrudur (dekoratif bir simge gibi) ancak bazen bu doğru değildir. Bu uyarıyı gördüğünüzde, öğenin görme engelli veya az gören kişilerden gizlenmesinin gerekip gerekmediğine karar vermeniz gerekir. Doğru şekilde gizlenmişse, uyarıyı “Yok say” ın. Yanlışlıkla gizlenmişse ve görünür olmalıysa, uyarıyı çözmek için aria-hidden=“true” özelliğini kaldırın."
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "Boş tablo başlığı"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "Boş Tablo Başlığı hatası, gönderiniz veya sayfanızdaki tablo başlıklarından birinin herhangi bir metin içermediği anlamına gelir. Bu, %1$s öğesinin mevcut olduğu ancak açılış ve kapanış etiketleri arasında hiçbir şey olmadan %2$s gibi göründüğü anlamına gelir. Boş bir tablo başlığını düzeltmek için, doğru HTML öğesini (%1$s) bulmanız ve uygulandığı satırı veya sütunu açıklayan bir metin eklemeniz gerekir."
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "MS Office Dosyasına Bağlantı"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "MS Office Dosyasına Bağlantı uyarısı, sayfanızdaki veya gönderinizdeki bağlantılardan bir veya daha fazlasının şu dosya uzantılarından birine yönlendirildiği anlamına gelir: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps veya .ppsx. Bu uyarı, bir MS Office dosyasının varlığını hatırlatmak, Word belgelerinizi, PowerPoint sunumlarınızı ve Excel tablolarınızı erişilebilirlik açısından manuel olarak test etmenizi ve ilgili tüm WCAG yönergelerine uyduğunu doğrulamanızı sağlamak için görünür. MS Office Dosyasına Bağlantı uyarısını çözmek için şunları yapmanız gerekir: (1) belgeyi sayfaya yerleştirmek için bir eklenti kullanıyorsanız, belgeyi görüntülemek veya indirmek için doğrudan bir bağlantının mevcut olduğundan emin olun; (2) belgeye giden bağlantının, bağlantı metninde belirli dosya uzantısını göstererek kullanıcıları bir belgeye bağlantı olduğu konusunda uyardığından emin olun; ve (3) MS Office dosyanızı erişilebilirlik hataları için test edin ve düzeltin. Dosyanızın tamamen erişilebilir olduğunu belirledikten sonra, uyarıyı güvenle “Yok say” abilirsiniz."
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "PDF Bağlantısı"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "PDF Bağlantısı uyarısı, sayfanızdaki veya gönderinizdeki bir veya daha fazla bağlantının bir PDF dosyasına yönlendirdiği anlamına gelir. Bu uyarı, bağlantılı PDF'in erişilebilirlik açısından manuel olarak test edilmesi ve tüm ilgili WCAG yönergelerine uygun olduğunun doğrulanması gerektiğini hatırlatır. Bir PDF Bağlantısı uyarısını çözmek için şunları yapmanız gerekir: (1) Belgeyi sayfaya yerleştirmek için bir eklenti kullanıyorsanız, belgeyi görüntülemek veya indirmek için doğrudan bir bağlantının mevcut olduğundan emin olun; (2) Belgeye olan bağlantının, bağlantı metninde belirli dosya uzantısını göstererek kullanıcıları bir belgeye bağlantı olduğu konusunda uyardığından emin olun; ve (3) Belgenizi erişilebilirlik hataları açısından test edin ve düzeltin. Dosyanızın tamamen erişilebilir olduğunu belirledikten sonra, uyarıyı güvenle “Yok Say” abilirsiniz."
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "HTML Olmayan Dosyaya Bağlantı"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "HTML Olmayan Belgeye Bağlantı uyarısı, sayfanızdaki veya gönderinizdeki bir veya daha fazla bağlantının şu dosya uzantılarından birine sahip bir dosyaya yönlendirdiği anlamına gelir: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages veya .key. Bu uyarı, bağlantılı belgenin erişilebilirlik açısından manuel olarak test edilmesi ve tüm ilgili WCAG yönergelerine uygun olduğunun doğrulanması gerektiğini hatırlatır. HTML Olmayan Belgeye Bağlantı uyarısını çözmek için şunları yapmanız gerekir: (1) Belgeyi sayfaya yerleştirmek için bir eklenti kullanıyorsanız, belgeyi görüntülemek veya indirmek için doğrudan bir bağlantının mevcut olduğundan emin olun; (2) Belgeye olan bağlantının, bağlantı metninde belirli dosya uzantısını göstererek kullanıcıları bir belgeye bağlantı olduğu konusunda uyardığından emin olun; ve (3) Belgenizi erişilebilirlik hataları açısından test edin ve düzeltin. Dosyanızın tamamen erişilebilir olduğunu belirledikten sonra, uyarıyı güvenle “Yok Say” abilirsiniz."
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "Uzun açıklama geçersiz"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "Uzun Açıklama Geçersiz hatası, bir görüntüdeki (%s) uzun açıklama özniteliğinin uygun bir URL, dosya adı veya dosya uzantısına sahip olmadığı anlamına gelir. Ayrıca uzun açıklamanın bir URL olmadığı veya boş bırakıldığı anlamına da gelebilir. Longdesc özniteliği HTML5, tarayıcılar ve tüm ekran okuyucular tarafından tam olarak desteklenmemektedir. Bu destek eksikliği nedeniyle, bu hatayı düzeltmenin en iyi yolu longdesc'i görüntü etiketinizden tamamen kaldırmaktır."
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "Eksik form etiketi"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "Bir Eksik Form Etiketi hatası, formunuzda bir %1$s (form alanı) bulunduğunda ancak bir %2$s öğesiyle ilişkilendirilmediğinde tetiklenir. Bu, etiketin mevcut olduğu ancak ilgili alana bağlamak için bir %3$s özniteliğinin eksik olduğu veya hiç etiketin olmadığı ve yalnızca bir %1$s etiketinin bulunduğu anlamına gelebilir. Eksik form etiketi hatalarını düzeltmek için, alanın ve formun nasıl oluşturulduğunu belirlemeniz ve ardından alan etiketleri eklemeniz veya bir alana bağlı olmayan mevcut etiketlere doğru bir %3$s özniteliği eklemeniz gerekecektir."
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "Belirsiz bağlantı metni"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "Belirsiz Bağlantı Metni hataları, çevresindeki içerikten bağımsız olarak anlamı olmayan bağlantılı metin olduğunda ortaya çıkar. Bunun yaygın örnekleri arasında “buraya tıklayın” veya “daha fazla öğrenin” gibi ifadelerin bağlantı olarak kullanılması yer alır. Bu hatayı çözmek için, bağlantı metnini daha az genel olacak şekilde değiştirin, böylece tek başına duyulduğunda anlamlı olsun."
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "Altı çizili metin"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "Bir Altı Çizili Metin uyarısı, sayfanızdaki herhangi bir metin HTML altı çizgi etiketiyle (%1$s) sarıldığında görünür. Çevrimiçi bir ortamda, altı çizili metin genellikle bağlantılı metni göstermek için kullanılır ve yalnızca vurgu için metin altını çizmek iyi bir uygulama olarak kabul edilmez. Altı çizili metni düzeltmek için, metinden veya onu altı çizili yapan CSS stillerinden %1$s öğesini kaldırmanız gerekecektir. Kelimeleri veya ifadeleri vurgulamak veya ayırt etmek için italik, renkli metin veya kalın yazı gibi diğer stillendirme yöntemlerini kullanmayı deneyin."
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "Bozuk atlama veya çapa bağlantısı"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "Bağlantı noktası bağlantısı, bazen atlama bağlantısı olarak da adlandırılan, tıklandığında yeni bir sayfa veya URL açmak yerine, sizi aynı sayfadaki farklı bir bölüme atlatan veya kaydıran bir bağlantıdır. Bu bağlantılar, tam bir URL yerine diyez işareti ile başlayan bir öğeye gider. Örneğin, birini ana sayfanızın hakkında bölümüne #about bağlantısıyla kaydırabilirsiniz. Bozuk Atlama veya Bağlantı Noktası Bağlantısı hataları, aynı sayfadaki başka bir bölümü hedefleyen bir bağlantı olduğunda ancak sayfada referans verilen kimliğe sahip bir öğe bulunmadığında ortaya çıkar. Bu hata, sadece # işaretine bağlantı verdiğinizde de görünecektir. Bu hatayı çözmek için, bağlantıyı manuel olarak test edip çalıştığını doğrulayın ve ardından ya düzeltin ya da duruma göre hatayı “Yok Say” ın."
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "Eksik tablo başlığı"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "Eksik Tablo Başlığı hatası, tablolarınızdan birinin veri içerdiğini (%1$s etiketinde bulunan bilgi) ancak buna karşılık gelen bir başlık (%2$s) etiketi olmadığını gösterir. Formunuzun HTML'sine bakıldığında, bir satırda %2$s öğelerinden daha fazla %1$s öğesi olacaktır. Eksik bir tablo başlığını düzeltmek için, veri satırları veya sütunlarının sayısına göre olması gerekenden daha az %2$s öğesi içeren kod bölümünü bulmanız ve o satır veya sütundaki verileri açıklayan bir veya daha fazla ek %2$s öğesi eklemeniz gerekir."
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "Yinelenen form etiketi"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "Yinelenen Form Etiketi hataları, bir formda tek bir alan ile ilişkilendirilmiş birden fazla etiket olduğunda ortaya çıkar. Çok fazla form etiketi varsa, bir ekran okuyucu görme engelli bir kullanıcının formu başarıyla okumasına ve doldurmasına yardımcı olamayabilir. Yinelenen form etiketi hatalarını düzeltmek için, alanın ve formun nasıl oluşturulduğunu belirlemeniz ve ardından her alanın yalnızca bir etiketle ilişkilendirildiğinden emin olmanız gerekecektir."
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "Metin çok küçük"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "Metin Çok Küçük uyarısı, web sitenizde 10 piksel'den küçük metin olduğunda ortaya çıkar. Bu uyarı, yazı tipi boyutunu yeniden düşünmeniz ve kullanıcının tarayıcılarında yakınlaştırma yapmasına gerek kalmadan daha kolay okunabilmesi için daha büyük hale getirmeniz gerektiğinin bir göstergesidir. Çok küçük metni düzeltmek için, web sitenizdeki tüm metin öğelerinin en az 10 punto olduğundan emin olmanız gerekecektir."
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "Olası başlık"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "Olası Başlık uyarısı, bir sayfada başlık gibi görünen ancak uygun başlık etiketleriyle kodlanmamış metin olduğunda ortaya çıkar. Bu uyarı, başlık olarak kullanıldığı düşünülen biçimde (20 piksel veya daha büyük, ya da 16 piksel veya daha büyük ve kalın ve/veya italik) formatlanmış 50 karakterden kısa ifadeler veya metin dizileri varsa görünür. Olası Başlık uyarısını düzeltmek için, işaretlenen metnin gerçekten başlık olarak amaçlanıp amaçlanmadığını belirlemeniz gerekir. Eğer öyleyse, onu bir paragraftan uygun seviyede bir başlığa değiştirmeniz gerekir. Başlık olması amaçlanmamışsa, uyarıyı güvenle “Yok Say” abilirsiniz."
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "Yanıp sönen veya kayan içerik"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "Yanıp Sönen veya Kayan İçerik hataları, web sitenizdeki öğelere CSS veya HTML aracılığıyla yanıp sönme veya kayma işlevi uygulandığında ortaya çıkar. Özellikle, aşağıdakiler bu hatayı oluşturacaktır: %1$s veya %2$s HTML etiketleri veya CSS %3$s. Bu hatayı çözmek için içeriğin yanıp sönmesine neden olan HTML etiketlerini veya CSS'i kaldırın."
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "Yetersiz renk kontrastı"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "Yetersiz Renk Kontrastı hataları, gönderinizde veya sayfanızda bulunan bir veya daha fazla renk kombinasyonunun minimum 4.5:1 renk kontrast oranını karşılamadığını tespit ettiğimiz anlamına gelir. Sitenizin nasıl oluşturulduğuna bağlı olarak, bazı renkler sayfadaki farklı HTML katmanlarında bulunduğundan bu hata için “yanlış pozitifler” olabilir. Yetersiz Renk Kontrastı hatasını düzeltmek için, işaretlenen öğelerin minimum gerekli 4.5:1 oranını karşılamasını sağlamanız gerekecektir. Bunu yapmak için, ön plan ve arka plan renginizin onaltılık kodlarını bulmanız ve bunları bir renk kontrast denetleyicide test etmeniz gerekir. Bu renk kodları 4.5:1 veya daha yüksek bir orana sahipse bu hatayı “Yok Say” abilirsiniz. Renk kodları en az 4.5:1 oranına sahip değilse, renklerinizde ayarlamalar yapmanız gerekecektir."
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "Eksik transkript"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "Eksik transkript hatası, web sitenizde transkripti olmayan bir ses veya video klibi olduğu veya bir transkript var ancak transkript olarak etiketlenmemiş veya gömülü veya bağlantılı medyadan 25 karakterden daha uzak konumlandırılmış olduğu anlamına gelir. Eksik transkript hatasını düzeltmek için, transkripti eksik olarak işaretlenen herhangi bir video veya ses klibi için bir transkript oluşturmanız gerekecektir. Transkripti oluşturduktan sonra, transkript içeriğini doğrudan gönderinize veya sayfanıza ekleyebilir veya indirilebilir bir belge veya PDF dosyası olarak dahil ediyorsanız transkripta bağlantı verebilirsiniz. Sayfadaki transkriptten önce bir başlık içinde veya dosyanıza olan bağlantıda açıkça “transkript” kelimesini kullanmanız ve bunun ses veya video gömme veya bağlantısından 25 karakter içinde olması gerekir."
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "Bozuk ARIA Referansı"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "Bozuk ARIA Referansı hataları, sayfada veya gönderide bir aria-labeledby veya aria-describedby öğesi mevcut olduğunda ancak referans hedefi mevcut olmadığında ortaya çıkar. Bu, kullandığınız belirli ARIA özniteliği tarafından referans verilen öğenin ya uygun bir etikete veya tanımlayıcıya sahip olmadığı ya da sayfada bulunmadığı anlamına gelir. Bozuk bir ARIA referansını düzeltmek için, işaretlenen ARIA öğelerini bulmanız ve referans hedeflerinin mevcut ve düzgün şekilde etiketlenmiş olduğundan emin olmanız gerekecektir."
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "Eksik dil bildirimi"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "Dil bildirimi, bir sayfa veya gönderideki içeriğin varsayılan dilini belirten bir HTML özniteliğidir. Dil bildirimleri web sitenizin temasına kodlanmalı ve otomatik olarak web sitesinin başında görünmelidir. Eksik Dil Bildirimi hatası, sayfadaki %1$s etiketinin %2$s veya %3$s özniteliği içermemesi veya bu özniteliklerden biri mevcut ancak boş olması durumunda ortaya çıkar. Eksik Dil Bildirimi hatasını düzeltmek için, tema dosyalarınızı düzenleyerek web sitenizin başlığının en üstündeki HTML etiketine eksik dil özniteliğini eklemeniz gerekecektir. Güncelleme alan bir tema kullanıyorsanız, değişikliği bir alt temada yapmanız gerekecektir, böylece temanızı bir sonraki güncellediğinizde düzeltme üzerine yazılmaz."
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "Hareketli GIF Görüntüsü"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "Hareketli GIF Görüntüsü uyarıları, gönderinizde veya sayfanızda hareketli bir GIF olduğunda ortaya çıkar. Bu uyarı, web siteninizdeki hareketli GIF'leri erişilebilirlik açısından manuel olarak gözden geçirmeniz ve/veya hareketli GIF'leri kullanmayı yeniden düşünmeniz, bunların yerine statik görüntüler veya videolar kullanmanız için bir hatırlatmadır. Bu uyarıyı çözmek için, mevcut olan GIF'leri erişilebilirlik için geçerli tüm yönergeleri karşıladığından emin olmak üzere gözden geçirmeniz ve ardından ya uyarıyı “Yok Say” manız ya da erişilebilir değilse GIF'i sayfanızdan veya gönderinizden kaldırmanız gerekir."
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "Bir video mevcut"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Videolar sıklıkla erişilebilirlik sorunları içerdiğinden ve bunların çoğu yalnızca bir kişi tarafından tespit edilebildiğinden, bir gönderide veya sayfada video tespit edildiğinde, videonuzu erişilebilirlik açısından manuel olarak test etmeniz gerektiğini hatırlatmak için 'Bir Video Mevcut' uyarısı görünür. Bu uyarıyı çözmek için, web sitenizin ön yüzünü ziyaret etmeniz ve uyarıdaki videonun erişilebilir olduğunu doğrulamanız gerekir. Videoyu erişilebilirlik açısından tam olarak test ettikten sonra, mevcut olabilecek hataları düzeltmeniz ve ardından uyarıyı tamamlandı olarak işaretlemek için “Yoksay” seçeneğini kullanabilirsiniz."
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "Bir kaydırıcı mevcut"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Kaydırıcılar sıklıkla erişilebilirlik sorunları içerdiğinden ve bunların çoğu yalnızca bir kişi tarafından tespit edilebildiğinden, bir gönderide veya sayfada kaydırıcı tespit edildiğinde, kaydırıcınızı erişilebilirlik açısından manuel olarak test etmeniz gerektiğini hatırlatmak için 'Bir Kaydırıcı Mevcut' uyarısı görünür. Bu uyarıyı çözmek için, web sitenizin ön yüzünü ziyaret etmeniz ve sayfadaki tüm kaydırıcıların erişilebilir olduğunu doğrulamanız gerekir. Kaydırıcılarınızı erişilebilirlik açısından tam olarak test ettikten sonra, mevcut olabilecek hataları düzeltmeniz ve ardından uyarıyı tamamlandı olarak işaretlemek için “Yoksay” seçeneğini kullanabilirsiniz."
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "Eksik başlık"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "Eksik Başlık hatası, gönderinizin veya sayfanızın bir başlık öğesi içermediği anlamına gelir (%1$s veya %2$s). Bu, tema başlık etiketi eklemeyi başaramazsa veya WordPress düzenleme ekranında bir gönderinin veya sayfanın başlık alanı boş bırakılmışsa olabilir. Başlıksız bir sayfayı düzeltmek için başlık öğeleri eklemeniz gerekecektir. Öncelikle, başlığın düzenleyicide sayfa veya gönderi başlık alanını boş bıraktığınız için mi eksik olduğunu belirleyin. Öyleyse, doldurun. Arka planda bir başlık doldurulmuş ve görünür durumdaysa, web sayfanızın kodunda %1$s etiketi veya %2$s meta etiketi eklemek için düzenleme yapılması gerekir."
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "Bağlantının uygunsuz kullanımı"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "Bağlantının Uygunsuz Kullanımı hatası, %1$s özniteliği eksik olan veya sadece bir %2$s'ye bağlı olan ve üzerlerinde %3$s bulunmayan bağlantılarınız varsa görünür. Bağlantılar, insanları sitenizin diğer bölümlerine yönlendirmek için kullanılmalıdır. Bir eylemi tetikleyen diğer her türlü işlevsellik bir düğme olmalıdır. Bu hatayı çözmek için bağlantıyı %4$s etiketi kullanacak şekilde (tercih edilen) yeniden kodlamanız veya mevcut %6$s etiketine %5$s eklemeniz gerekir. Eğer öğe bir geçiş düğmesiyse (örneğin bir akordiyon), ek ARIA öznitelikleri gereklidir."
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "Yakınlaştırma ve ölçeklendirme devre dışı"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "Yakınlaştırma, `user-scalable=no` veya 2'den küçük bir `maximum-scale` değeri içeren viewport meta etiketi aracılığıyla devre dışı bırakılmıştır. Bu, metin boyutlarını artırmak, sayfayı yakınlaştırmak veya büyüteç kullanmak isteyen az görenleri kısıtlar."
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "Ayarlar Kaydedildi. Bu güncellemeleri onaylamak ve sitenizin istatistiklerine yansıtmak için lütfen sitenizi yeniden tarayın. Bir önbellek eklentisi kullanıyorsanız, güncellenmiş düzeltmelerin doğru şekilde uygulandığından emin olmak için önbelleği temizlediğinizden emin olun."
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "Accessibility New Window Warnings eklentisi yüklü. Burada yer alan yeni pencerede açılan bağlantılar için düzeltme, onun işlevselliğini geçersiz kılacaktır. Eklentiyi güvenle kaldırabilir ve bunun yerine bu düzeltmeleri kullanabilirsiniz."
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "Erişilebilirlik Denetleyicisi sorun panelleri"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "Özet"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "Ayrıntılar"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "Okunabilirlik"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "Şu anda bulunan tüm sorunları sil"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "Sorunları temizle"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Equalize Digital logosu"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "Erişilebilirlik denetleyicisi pro'ya yükselt"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "Tüm içerik türlerini tara"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "Erişilebilirlik durumunu bir bakışta görmek için yönetici sütunları"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "Tüm açık sorunların merkezi listesi"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "Yoksayma günlüğü"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "Basitleştirilmiş özeti yeniden adlandır"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "Sorunları yoksaymada kullanıcı kısıtlamaları"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "E-posta desteği"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...ve daha fazlası"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "Erişilebilirlik denetleyicisi pro'yu edin"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "Veya lisans anahtarınızı buradan etkinleştirin."
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "Genel"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "sürüm"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Equalize Digital web sitesine bağlantı"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "Hızlı başlangıç kılavuzu"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "İçeriğinizi kontrol etmeye başlamak için şu adımları izleyin:"
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "<a href=\"%s\">Ayarlar Sayfasından</a> taramak istediğiniz içerik türlerini seçin."
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "Kontrol etmek istediğiniz gönderinin düzenleme ekranına gidin."
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "İçeriğinizin altında Erişilebilirlik Denetleyicisi meta kutusunu bulun. Ön uç sayfa oluşturucusu kullanıyorsanız, Erişilebilirlik Denetleyicisi sonuçlarını görüntülemek için arka uç düzenleme ekranını ziyaret etmelisiniz."
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "Gönderinizde hatalar veya uyarılar varsa, daha fazla bilgi için Erişilebilirlik Denetleyicisi'ndeki ayrıntılar sekmesini açın."
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "Kodu görmek için her sorunu genişletin veya düzeltilmesi gereken öğeyi bulmakta yardıma ihtiyacınız varsa “sayfada görüntüle” seçeneğine tıklayın."
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "Bir hata veya uyarının ne anlama geldiğini bilmiyorsanız, belgeleri okumak ve nasıl düzeltileceğini öğrenmek için “i” simgesine tıklayın."
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "Bir sorun yanlış pozitifse ve öğe erişilebilir durumdaysa, “Yoksay” özelliğini kullanarak sorunları raporlardan kaldırabilirsiniz."
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "Erişilebilirlik Denetleyicisi'nin kullanımını gösteren bir video izleyin."
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "Belgeler ve SSS"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "Why do we say 100% Passed Tests, Not 100% Accessible?"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "(yeni pencerede açılır)"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "Web sitenizi erişilebilirlik açısından manuel olarak nasıl kontrol edersiniz"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "Erişilebilirlik hatalarını ne zaman yoksaymalısınız"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "Kullandığınız Bir Eklentide Erişilebilirlik Hataları Varsa Ne Yapmalısınız"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "Temanızda Erişilebilirlik Hataları Varsa Ne Yapmalısınız"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "Web sitemdeki erişilebilirlik sorunlarını düzeltmesi için Equalize Digital'ı tutabilir miyim?"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "Erişilebilirlik hakkında öğrenmek için ek kaynaklar"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "Tüm belgeleri oku"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "Destek bilgileri"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "Eklenti desteği"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "Ücretli Erişilebilirlik Denetleyicisi planlarının aktif lisans sahipleri, eklenti kullanımı ve sorun giderme konusunda sınırsız e-posta desteği alır."
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "Destek bileti aç"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "Ücretsiz eklenti desteği"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "Ücretsiz eklenti desteği WordPress.org forumları üzerinden mevcuttur. Bir hesap oluşturmanız gerekecek, ardından yeni bir destek konusu açabilirsiniz."
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "Destek forumuna git"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "Ofis saatleri"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "Web sitenizi düzeltmenize yardımcı olmak için iki haftada bir Zoom'da açık Soru-Cevap oturumu."
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "Küçük İşletme ve Ajans planlarına dahildir"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "Ofis saatlerine kayıt ol"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "Denetim ve düzeltme"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "Web sitenizi erişilebilir hale getirmek için yardım alın. Uzman denetimi, kullanıcı testi ve geliştirici desteği. Uygunluk mektupları mevcuttur."
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "Düzeltme yardımı al"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "Kaydediliyor..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "Ayarlar başarıyla kaydedildi. Düzeltilen sorunları Erişilebilirlik Denetleyicisi raporlarından kaldırmak için %sdüzenleyiciyi ziyaret etmeli%s ve gönderiyi kaydetmelisiniz."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "Ayarlar başarıyla kaydedildi."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "Kaydetme başarısız oldu."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "Ayarları düzelt"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "Bu, bu gönderi için tüm sorunları temizleyecektir. Gönderi içeriğinin yeniden taranmasını tetiklemek için bir kaydetme işlemi gerekecektir. Devam etmek istiyor musunuz?"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "Temizleniyor..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "Sorunlar başarıyla temizlendi."
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "Sorunlar temizlenemedi."
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "Bir sorun oluştu. Lütfen tekrar deneyin."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "Üzgünüz, gönderiminiz başarısız oldu. Lütfen yanıtlarınızı kısaltın ve tekrar deneyin."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "Üzgünüz, gönderiminiz başarısız oldu. Lütfen tekrar deneyin."
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "yeni bir pencere açar"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: Sayfada atlama bağlantısı için eşleşen bir hedef kimliği bulunamadı."
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: Atlama bağlantısı için geçmiş güncellenirken hata oluştu."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "Düzeltmeler modalını kapat"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Sayfa stillerini devre dışı bırak"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "Kodu göster"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Sorun türü:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "Stilleri etkinleştir"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Stilleri devre dışı bırak"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "Görüntülenecek ayar yok."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Bu ayarlar, tüm siteniz genelinde global düzeltmeleri etkinleştirir. Düzeltmelerin raporlarda görünmesi için sayfaların yeniden kaydedilmesi veya tam site taraması yapılması gerekebilir."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "Hiçbir sorun tespit edilmedi."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "hata"
+msgstr[1] "hata"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "uyarı"
+msgstr[1] "uyarı"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "ve"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "göz ardı edilen sorun"
+msgstr[1] "göz ardı edilen sorun"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "tespit edildi."
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "yeni pencere"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "yeni sekme"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "tıkla"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "buraya tıkla"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "burası"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "buraya git"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "daha fazla"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "daha fazla..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "daha fazla…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "ayrıntılar"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "daha fazla ayrıntı"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "bağlantı"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "bu sayfa"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "devam et"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "okumaya devam et"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "devamını oku"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "aç"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "indir"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "düğme"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "okumaya devam et"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "daha fazla bilgi edin"
