@@ -60,7 +60,7 @@ class Plugin {
 		$lazyload_filter = new Lazyload_Filter();
 		$lazyload_filter->init_hooks();
 
-		// Some WP installs can't determine load the text domain with the JIT loader so this manually loads it.
+		// Some WP installs can't load the text domain with the JIT loader, so we manually load it.
 		add_action( 'plugins_loaded', [ $this, 'init_textdomain' ] );
 	}
 
