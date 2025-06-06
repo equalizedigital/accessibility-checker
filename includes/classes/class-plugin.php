@@ -59,6 +59,9 @@ class Plugin {
 
 		$lazyload_filter = new Lazyload_Filter();
 		$lazyload_filter->init_hooks();
+
+		// Some WP installs can't determine load the text domain with the JIT loader so this manually loads it.
+		add_action( 'plugins_loaded', [ $this, 'init_textdomain' ] );
 	}
 
 	/**
@@ -84,5 +87,17 @@ class Plugin {
 		$fixes_manager = FixesManager::get_instance();
 		$fixes_manager->register_fixes();
 		add_action( 'rest_api_init', [ $fixes_manager, 'register_rest_routes' ] );
+	}
+
+	/**
+	 * Initialize the plugin text domain for translations.
+	 *
+	 * This method loads the plugin's text domain for translations.
+	 * It is called during the plugins_loaded action hook.
+	 *
+	 * @return void
+	 */
+	public function init_textdomain() {
+		load_plugin_textdomain( 'accessibility-checker', false, basename( dirname( EDAC_PLUGIN_FILE ) ) . '/languages' );
 	}
 }
