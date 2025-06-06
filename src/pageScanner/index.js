@@ -2,6 +2,7 @@
 /* global axe */
 
 import 'axe-core';
+import html2canvas from 'html2canvas';
 import { rulesArray, checksArray, standardRuleIdsArray, customRuleIdsArray } from './config/rules';
 import { exclusionsArray } from './config/exclusions';
 import imgAnimated from './rules/img-animated';
@@ -15,6 +16,26 @@ const body = document.querySelector( 'body' );
 const iframeId = body.getAttribute( 'data-iframe-id' );
 const eventName = body.getAttribute( 'data-iframe-event-name' );
 const postId = body.getAttribute( 'data-iframe-post-id' );
+
+/**
+ * Takes a screenshot of an element that violates accessibility rules
+ * @param {HTMLElement} element The DOM element to screenshot
+ * @return {Promise<string>} Base64 encoded screenshot
+ */
+const captureViolationScreenshot = async ( element ) => {
+	try {
+		const canvas = await html2canvas( element, {
+			backgroundColor: null,
+			logging: false,
+			scale: 1,
+		} );
+		return canvas.toDataURL( 'image/png' );
+	} catch ( err ) {
+		// eslint-disable-next-line no-console
+		console.error( 'Failed to capture screenshot:', err );
+		return null;
+	}
+};
 
 const scan = async (
 	options = { configOptions: {}, runOptions: {} }
@@ -51,36 +72,51 @@ const scan = async (
 	}
 
 	return await axe.run( context, runOptions )
-		.then( ( rules ) => {
+		.then( async ( rules ) => {
 			const violations = [];
 
-			rules.forEach( ( item ) => {
-				//Build an array of the dom selectors and ruleIDs for violations/failed tests
-				item.violations.forEach( ( violation ) => {
+			for ( const item of rules ) {
+				for ( const violation of item.violations ) {
 					if ( violation.result === 'failed' ) {
+						const element = document.querySelector( violation.node.selector );
+						let screenshot = null;
+
+						if ( element ) {
+							screenshot = await captureViolationScreenshot( element );
+						}
+
 						violations.push( {
 							selector: violation.node.selector,
-							html: document.querySelector( violation.node.selector ).outerHTML,
+							html: element ? element.outerHTML : '',
 							ruleId: item.id,
 							impact: item.impact,
 							tags: item.tags,
+							screenshot,
 						} );
 					}
-				} );
+				}
 
 				// Handle incomplete results for form-field-multiple-labels only.
 				if ( item.id === 'form-field-multiple-labels' ) { // Allow incomplete results for this rule.
-					item.incomplete.forEach( ( incompleteItem ) => {
+					for ( const incompleteItem of item.incomplete ) {
+						const element = document.querySelector( incompleteItem.node.selector );
+						let screenshot = null;
+
+						if ( element ) {
+							screenshot = await captureViolationScreenshot( element );
+						}
+
 						violations.push( {
 							selector: incompleteItem.node.selector,
-							html: document.querySelector( incompleteItem.node.selector ).outerHTML,
+							html: element ? element.outerHTML : '',
 							ruleId: item.id,
 							impact: item.impact,
 							tags: item.tags,
+							screenshot,
 						} );
-					} );
+					}
 				}
-			} );
+			}
 
 			const rulesMin = rules.map( ( r ) => {
 				return {
@@ -94,15 +130,15 @@ const scan = async (
 
 			//Sort the violations by order they appear in the document
 			violations.sort( function( a, b ) {
-				a = document.querySelector( a.selector );
-				b = document.querySelector( b.selector );
+				const elemA = document.querySelector( a.selector );
+				const elemB = document.querySelector( b.selector );
 
-				if ( a === b ) {
+				if ( elemA === elemB ) {
 					return 0;
 				}
 
 				/* eslint-disable no-bitwise */
-				if ( a.compareDocumentPosition( b ) & 2 ) {
+				if ( elemA.compareDocumentPosition( elemB ) & 2 ) {
 					// b comes before a
 					return 1;
 				}
@@ -110,7 +146,8 @@ const scan = async (
 			} );
 
 			return { rules, rulesMin, violations };
-		} ).catch( ( err ) => {
+		} )
+		.catch( ( err ) => {
 			throw err;
 		} );
 };
