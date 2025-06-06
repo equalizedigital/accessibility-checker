@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.8.0
-Stable tag: 1.23.1
+Stable tag: 1.24.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -206,6 +206,13 @@ No, Accessibility Checker runs completely on your server and does not require yo
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
+
+= 1.24.0 =
+* Added: Translations for 33 languages.
+* Enhanced: Handle Elementor buttons better in the new warnings fix.
+* Fixed: Several typo and grammar issues corrected in the plugin.
+* Fixed: Signup modal now works in Firefox under more conditions.
+* Fixed: Make sure that translations in JS files can be detected.
 
 = 1.23.1 =
 * Changed: Remove the str_get_html fallback shim.
