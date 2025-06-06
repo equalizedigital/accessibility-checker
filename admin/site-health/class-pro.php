@@ -44,7 +44,7 @@ class Pro {
 		}
 
 		return [
-			'label'  => 'Accessibility Checker ' . __( '&mdash; Pro', 'accessibility-checker' ),
+			'label'  => 'Accessibility Checker &mdash; Pro',
 			'fields' => [
 				'version'                => [
 					'label' => __( 'Version', 'accessibility-checker' ),

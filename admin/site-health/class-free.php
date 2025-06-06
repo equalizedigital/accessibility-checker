@@ -43,7 +43,7 @@ class Free {
 		}
 
 		return [
-			'label'  => 'Accessibility Checker ' . __( '&mdash; Free', 'accessibility-checker' ),
+			'label'  => 'Accessibility Checker &mdash; Free',
 			'fields' => [
 				'version'                 => [
 					'label' => __( 'Version', 'accessibility-checker' ),

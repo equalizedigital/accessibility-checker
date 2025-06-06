@@ -248,8 +248,8 @@ function edac_general_cb() {
 	if ( EDAC_KEY_VALID === false ) {
 		printf(
 			/* translators: %1$s: link to the "Accessibility Checker Pro" website. */
-			' ' . esc_html__( 'More features and email support is available with %1$s.', 'accessibility-checker' ),
-			'<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="Accessibility Checker Pro ' . esc_attr__( '(opens in a new window)', 'accessibility-checker' ) . '">Accessibility Checker Pro</a>'
+			esc_html__( ' More features and email support is available with %1$s.', 'accessibility-checker' ),
+			'<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="Accessibility Checker Pro (opens in a new window)">Accessibility Checker Pro</a>'
 		);
 	}
 
