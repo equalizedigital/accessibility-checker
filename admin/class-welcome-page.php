@@ -303,7 +303,7 @@ class Welcome_Page {
 								</p>
 								<p class="edac-align-center">
 									<a class="button button-primary" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page">
-										<?php esc_html_e( 'Upgrade Accessibility Checker', 'accessibility-checker' ); ?>
+										<?php esc_html_e( 'Upgrade ', 'accessibility-checker' ); ?>Accessibility Checker
 									</a>
 								</p>
 							</div>

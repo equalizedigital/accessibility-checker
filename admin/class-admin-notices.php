@@ -201,7 +201,7 @@ class Admin_Notices {
 		// Construct the promotional message.
 		$message  = '<div class="edac_black_friday_notice notice notice-info is-dismissible">';
 		$message .= '<p><strong>' . esc_html__( '🎉 Black Friday special! 🎉', 'accessibility-checker' ) . '</strong><br />';
-		$message .= esc_html__( 'Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more.', 'accessibility-checker' ) . '<br />';
+		$message .= esc_html__( 'Upgrade to a paid version of ', 'accessibility-checker' ) . 'Accessibility Checker' . esc_html__( ' from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more.', 'accessibility-checker' ) . '<br />';
 		$message .= '<a class="button button-primary" href="' . esc_url( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=BlackFriday' ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
 		$message .= '<a class="button button-primary" href="' . esc_url( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=WPadmin&utm_medium=banner&utm_campaign=BlackFriday' ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		$message .= '</div>';
@@ -287,7 +287,7 @@ class Admin_Notices {
 
 		// Construct the promotional message.
 		$message  = '<div class="edac_gaad_notice notice notice-info is-dismissible">';
-		$message .= '<p><strong>' . esc_html__( '🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', 'accessibility-checker' ) . '</strong><br />';
+		$message .= '<p><strong>' . esc_html__( '🎉 Get 25% off ', 'accessibility-checker' ) . 'Accessibility Checker Pro' . esc_html__( ' in honor of Global Accessibility Awareness Day! 🎉', 'accessibility-checker' ) . '</strong><br />';
 		$message .= esc_html__( 'Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?', 'accessibility-checker' ) . '<br />';
 		$message .= '<a class="button button-primary" href="' . esc_url( 'https://equalizedigital.com/contact/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD25' ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
 		$message .= '<a class="button button-primary" href="' . esc_url( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD25' ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
@@ -373,7 +373,7 @@ class Admin_Notices {
 		?>
 		<div class="notice notice-info edac-review-notice">
 			<p>
-				<?php esc_html_e( "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!", 'accessibility-checker' ); ?>
+				<?php esc_html_e( 'Hello! Thank you for using ', 'accessibility-checker' ); ?>Accessibility Checker<?php esc_html_e( " as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of ", 'accessibility-checker' ); ?>Accessibility Checker<?php esc_html_e( ' in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!', 'accessibility-checker' ); ?>
 			</p>
 			<p>
 				<button class="edac-review-notice-review button button-small button-primary"><?php esc_html_e( 'Write A Review', 'accessibility-checker' ); ?></button>
@@ -443,10 +443,10 @@ class Admin_Notices {
 			'edac_filter_password_protected_notice_text',
 			sprintf(
 				// translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-				esc_html__( 'Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan.', 'accessibility-checker' ),
+				esc_html__( 'Whoops! It looks like your website is currently password protected. The free version of ', 'accessibility-checker' ) . 'Accessibility Checker' . esc_html__( ' can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan.', 'accessibility-checker' ),
 				sprintf(
 					'<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="%1$s">%2$s</a>',
-					esc_attr__( 'Upgrade to accessibility checker pro. Opens in a new window.', 'accessibility-checker' ),
+					esc_attr__( 'Upgrade to ', 'accessibility-checker' ) . 'Accessibility Checker Pro' . esc_attr__( '. Opens in a new window.', 'accessibility-checker' ),
 					esc_html__( 'upgrade to pro', 'accessibility-checker' )
 				)
 			)

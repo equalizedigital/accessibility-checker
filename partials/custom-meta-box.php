@@ -7,7 +7,7 @@
 
 ?>
 <div id="edac-tabs">
-	<p id="edac-tabs-label" class="screen-reader-text"><?php esc_html_e( 'Accessibility Checker issues panels', 'accessibility-checker' ); ?></p>
+	<p id="edac-tabs-label" class="screen-reader-text">Accessibility Checker <?php esc_html_e( 'issues panels', 'accessibility-checker' ); ?></p>
 	<div class="edac-tabs-and-rescan-container">
 		<ul class="edac-tabs" role="tablist" aria-labelledby="edac-tabs-label">
 			<li class="edac-tab">

@@ -13,7 +13,7 @@
 		alt="<?php esc_attr_e( 'Equalize Digital Logo', 'accessibility-checker' ); ?>"
 	>
 	<h4 class="edac-pro-callout-title">
-		<?php esc_html_e( 'Upgrade to Accessibility Checker Pro', 'accessibility-checker' ); ?>
+		<?php esc_html_e( 'Upgrade to ', 'accessibility-checker' ); ?>Accessibility Checker Pro
 	</h4>
 	<div>
 		<ul class="edac-pro-callout-list">
@@ -33,7 +33,7 @@
 			href="https://equalizedigital.com/accessibility-checker/pricing/"
 			target="_blank"
 		>
-			<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?>
+			<?php esc_html_e( 'Get ', 'accessibility-checker' ); ?>Accessibility Checker Pro
 		</a>
 	</div>
 

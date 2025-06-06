@@ -132,7 +132,7 @@ class Widgets {
 				' . __( 'Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines.', 'accessibility-checker' ) . '
 			</div>
 			 <div class="edac-summary-notice edac-summary-notice-no-issues edac-hidden">
-				' . __( 'Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don\'t forget to', 'accessibility-checker' ) . ' <a href="https://equalizedigital.com/accessibility-checker/how-to-manually-check-your-website-for-accessibility/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'manually test your site', 'accessibility-checker' ) . '</a>.
+				' . __( 'Way to go! ', 'accessibility-checker' ) . 'Accessibility Checker' . __( ' cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don\'t forget to', 'accessibility-checker' ) . ' <a href="https://equalizedigital.com/accessibility-checker/how-to-manually-check-your-website-for-accessibility/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'manually test your site', 'accessibility-checker' ) . '</a>.
 			</div>';
 
 				$html .= '

@@ -141,7 +141,7 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1980',
 		'slug'      => 'text_justified',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'A Text Justified warning appears in ', 'accessibility-checker' ) . 'Accessibility Checker' . esc_html__( ' when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements.', 'accessibility-checker' ),
 		'ruleset'   => 'js',
 	],
 	[

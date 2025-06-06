@@ -29,7 +29,7 @@ class Audit_History {
 	 */
 	public function get() {
 		return [
-			'label'  => __( 'Accessibility Checker &mdash; Audit History', 'accessibility-checker' ),
+			'label'  => 'Accessibility Checker ' . __( '&mdash; Audit History', 'accessibility-checker' ),
 			'fields' => [
 				'version'                => [
 					'label' => 'Version',

@@ -46,8 +46,8 @@ class Accessibility_Statement {
 				get_bloginfo( 'name' ),
 				sprintf(
 					'<a href="https://equalizedigital.com/accessibility-checker" target="_blank" aria-label="%1$s">%2$s</a>',
-					esc_attr__( 'Accessibility Checker (opens in a new window)', 'accessibility-checker' ),
-					esc_html__( 'Accessibility Checker', 'accessibility-checker' )
+					esc_attr__( 'Accessibility Checker', 'accessibility-checker' ) . ' ' . esc_attr__( '(opens in a new window)', 'accessibility-checker' ),
+					'Accessibility Checker'
 				)
 			);
 		}

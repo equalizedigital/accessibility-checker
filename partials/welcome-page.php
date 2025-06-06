@@ -18,10 +18,10 @@ use EDAC\Admin\Welcome_Page;
 				<h1 class="edac-welcome-title">
 					<?php
 					if ( defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID === true ) {
-						$welcome_title = __( 'Accessibility Checker Pro', 'accessibility-checker' );
+						$welcome_title = 'Accessibility Checker Pro';
 						$version       = EDACP_VERSION;
 					} else {
-						$welcome_title = __( 'Accessibility Checker', 'accessibility-checker' );
+						$welcome_title = 'Accessibility Checker';
 						$version       = EDAC_VERSION;
 					}
 
@@ -62,8 +62,8 @@ use EDAC\Admin\Welcome_Page;
 						?>
 					</li>
 					<li><?php esc_html_e( 'Go to the edit screen for the post you want to check.', 'accessibility-checker' ); ?></li>
-					<li><?php esc_html_e( 'Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results.', 'accessibility-checker' ); ?></li>
-					<li><?php esc_html_e( 'If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information.', 'accessibility-checker' ); ?></li>
+					<li><?php esc_html_e( 'Find the ', 'accessibility-checker' ); ?>Accessibility Checker<?php esc_html_e( ' meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view ', 'accessibility-checker' ); ?>Accessibility Checker<?php esc_html_e( ' results.', 'accessibility-checker' ); ?></li>
+					<li><?php esc_html_e( 'If errors or warnings are present on your post, open the details tab in ', 'accessibility-checker' ); ?>Accessibility Checker<?php esc_html_e( ' for more information.', 'accessibility-checker' ); ?></li>
 					<li><?php esc_html_e( 'Expand each issue to see the code, or click "view on page" if you need help finding the element that needs fixing.', 'accessibility-checker' ); ?></li>
 					<li><?php esc_html_e( 'If you don\'t know what an error or warning means, click the "i" icon to read the documentation and how to fix it.', 'accessibility-checker' ); ?></li>
 					<li><?php esc_html_e( 'If an issue is a false positive and the element is accessible, you can remove issues from reports with the "Ignore" feature.', 'accessibility-checker' ); ?></li>
@@ -71,7 +71,7 @@ use EDAC\Admin\Welcome_Page;
 				</ol>
 				<p>
 					<a href="https://equalizedigital.com/accessibility-checker/getting-started-quick-guide/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page#demo">
-						<?php esc_html_e( 'Watch a video of Accessibility Checker in use.', 'accessibility-checker' ); ?>
+						<?php esc_html_e( 'Watch a video of ', 'accessibility-checker' ); ?>Accessibility Checker<?php esc_html_e( ' in use.', 'accessibility-checker' ); ?>
 					</a>
 				</p>
 			</div>
@@ -132,7 +132,7 @@ use EDAC\Admin\Welcome_Page;
 				<div class="edac-flex-item edac-flex-item-33 edac-background-light">
 					<h3><?php esc_html_e( 'Plugin Support', 'accessibility-checker' ); ?></h3>
 					<p>
-						<?php esc_html_e( 'Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting.', 'accessibility-checker' ); ?>
+						<?php esc_html_e( 'Active license holders of paid ', 'accessibility-checker' ); ?>Accessibility Checker<?php esc_html_e( ' plans get unlimited email support on plugin usage and troubleshooting.', 'accessibility-checker' ); ?>
 					</p>
 					<p>
 						<a href="https://my.equalizedigital.com/support/pro-support/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" class="button"><?php esc_html_e( 'Open Support Ticket', 'accessibility-checker' ); ?></a>
@@ -194,7 +194,7 @@ use EDAC\Admin\Welcome_Page;
 		?>
 		<div class="edac-pro-callout edac-mt-3 edac-mb-3">
 			<img class="edac-pro-callout-icon" src="<?php echo esc_url( EDAC_PLUGIN_URL ); ?>assets/images/edac-emblem.png" alt="<?php esc_attr_e( 'Equalize Digital Logo', 'accessibility-checker' ); ?>">
-			<h2 class="edac-pro-callout-title"><?php esc_html_e( 'Upgrade to Accessibility Checker Pro', 'accessibility-checker' ); ?></h2>
+			<h2 class="edac-pro-callout-title"><?php esc_html_e( 'Upgrade to ', 'accessibility-checker' ); ?>Accessibility Checker Pro</h2>
 			<div>
 				<ul class="edac-pro-callout-list">
 					<li><?php esc_html_e( 'Scan all post types', 'accessibility-checker' ); ?></li>
@@ -209,7 +209,7 @@ use EDAC\Admin\Welcome_Page;
 			</div>
 			<div class="edac-pro-callout-button--wrapper">
 				<a class="edac-pro-callout-button" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page" target="_blank">
-					<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?>
+					<?php esc_html_e( 'Get ', 'accessibility-checker' ); ?>Accessibility Checker Pro
 					<span class="screen-reader-text"><?php esc_html_e( '(opens in a new window)', 'accessibility-checker' ); ?></span>
 				</a>
 			</div>

@@ -39,8 +39,8 @@ function edac_add_options_page() {
 	}
 
 	add_menu_page(
-		__( 'Welcome to Accessibility Checker', 'accessibility-checker' ),
-		__( 'Accessibility Checker', 'accessibility-checker' ),
+		__( 'Welcome to ', 'accessibility-checker' ) . 'Accessibility Checker',
+		'Accessibility Checker',
 		'read',
 		'accessibility_checker',
 		'edac_display_welcome_page',
@@ -62,7 +62,7 @@ function edac_add_options_page() {
 
 	add_submenu_page(
 		'accessibility_checker',
-		__( 'Accessibility Checker Settings', 'accessibility-checker' ),
+		'Accessibility Checker ' . __( 'Settings', 'accessibility-checker' ),
 		__( 'Settings', 'accessibility-checker' ),
 		$settings_capability,
 		'accessibility_checker_settings',
@@ -117,7 +117,7 @@ function edac_register_setting() {
 
 	add_settings_section(
 		'edac_frontend_highlighter',
-		__( 'Frontend Accessibility Checker', 'accessibility-checker' ),
+		__( 'Frontend ', 'accessibility-checker' ) . 'Accessibility Checker',
 		'edac_frontend_highlighter_section_cb',
 		'edac_settings'
 	);
@@ -197,7 +197,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edac_frontend_highlighter_position',
-		__( 'Frontend Accessibility Checker Position', 'accessibility-checker' ),
+		__( 'Frontend ', 'accessibility-checker' ) . 'Accessibility Checker ' . __( 'Position', 'accessibility-checker' ),
 		'edac_frontend_highlighter_position_cb',
 		'edac_settings',
 		'edac_frontend_highlighter',
@@ -241,7 +241,7 @@ function edac_general_cb() {
 
 	printf(
 		/* translators: %1$s: link to the plugin documentation website. */
-		esc_html__( 'Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s.', 'accessibility-checker' ),
+		esc_html__( 'Use the settings below to configure ', 'accessibility-checker' ) . 'Accessibility Checker. ' . esc_html__( 'Additional information about each setting can be found in the %1$s.', 'accessibility-checker' ),
 		'<a href="https://a11ychecker.com/" target="_blank" aria-label="' . esc_attr__( 'plugin documentation (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'plugin documentation', 'accessibility-checker' ) . '</a>'
 	);
 
@@ -249,7 +249,7 @@ function edac_general_cb() {
 		printf(
 			/* translators: %1$s: link to the "Accessibility Checker Pro" website. */
 			' ' . esc_html__( 'More features and email support is available with %1$s.', 'accessibility-checker' ),
-			'<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="' . esc_attr__( 'Accessibility Checker Pro (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'Accessibility Checker Pro', 'accessibility-checker' ) . '</a>'
+			'<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="Accessibility Checker Pro ' . esc_attr__( '(opens in a new window)', 'accessibility-checker' ) . '">Accessibility Checker Pro</a>'
 		);
 	}
 
@@ -263,7 +263,8 @@ function edac_general_cb() {
  */
 function edac_frontend_highlighter_section_cb() {
 	echo '<p>';
-	esc_html_e( 'Use the settings below to configure the frontend accessibility checker.', 'accessibility-checker' );
+	esc_html_e( 'Use the settings below to configure the frontend ', 'accessibility-checker' ); ?>accessibility checker.
+	<?php
 	echo '</p>';
 }
 
@@ -273,7 +274,7 @@ function edac_frontend_highlighter_section_cb() {
 function edac_simplified_summary_cb() {
 	printf(
 		'<p>%1$s %2$s</p>',
-		esc_html__( 'Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post\'s or page\'s edit screen.', 'accessibility-checker' ),
+		esc_html__( 'Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the ', 'accessibility-checker' ) . 'Accessibility Checker' . esc_html__( ' meta box on each post\'s or page\'s edit screen.', 'accessibility-checker' ),
 		'<a href="https://a11ychecker.com/help3265" target="_blank" aria-label="' . esc_attr__( 'Learn more about simplified summaries and readability requirements (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'Learn more about simplified summaries and readability requirements.', 'accessibility-checker' ) . '</a>'
 	);
 }
@@ -339,7 +340,7 @@ function edac_frontend_highlighter_position_cb() {
 			</label>
 			<br>
 		</fieldset>
-		<p class="edac-description"><?php echo esc_html__( 'Set where you would like the frontend accessibility checker to appear on the page.', 'accessibility-checker' ); ?></p>
+		<p class="edac-description"><?php echo esc_html__( 'Set where you would like the frontend ', 'accessibility-checker' ); ?>accessibility checker<?php echo esc_html__( ' to appear on the page.', 'accessibility-checker' ); ?></p>
 	<?php
 }
 
@@ -392,7 +393,7 @@ function edac_simplified_summary_prompt_cb() {
 				<?php esc_html_e( 'Never', 'accessibility-checker' ); ?>
 			</label>
 		</fieldset>
-		<p class="edac-description"><?php echo esc_html__( 'Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?', 'accessibility-checker' ); ?></p>
+		<p class="edac-description"><?php echo esc_html__( 'Should ', 'accessibility-checker' ); ?>Accessibility Checker<?php echo esc_html__( ' only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?', 'accessibility-checker' ); ?></p>
 	<?php
 }
 
@@ -589,7 +590,7 @@ function edac_delete_data_cb() {
 	<fieldset>
 		<label>
 			<input type="checkbox" name="edac_delete_data" value="1" <?php checked( $option, 1 ); ?>>
-			<?php esc_html_e( 'Delete all Accessibility Checker data when the plugin is uninstalled.', 'accessibility-checker' ); ?>
+			<?php esc_html_e( 'Delete all ', 'accessibility-checker' ); ?>Accessibility Checker<?php esc_html_e( ' data when the plugin is uninstalled.', 'accessibility-checker' ); ?>
 		</label>
 	</fieldset>
 	<?php
