@@ -99,30 +99,30 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
 		$this->assertTrue( wp_script_is( 'edac-editor-app', 'enqueued' ) );
 	}
-/**
+	/**
 	 * Test that scanUrl uses permalink for frontpage.
 	 *
 	 * @return void
 	 */
 	public function testScanUrlUsesPermalinkForFrontpage() {
 		global $post, $pagenow, $wp_scripts;
-		
-		// Create a post and set it as the frontpage
+
+		// Create a post and set it as the frontpage.
 		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
 		update_option( 'page_on_front', $post->ID );
 		$pagenow = 'post.php';
-		
+
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
-		
+
 		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
-		$this->assertStringContainsString( get_permalink( $post->ID ), $localized_data );
+		$this->assertStringContainsString( str_replace( '/', '\\/', esc_url_raw( get_permalink( $post->ID ) ) ), $localized_data );
 		$this->assertStringNotContainsString( 'preview=true', $localized_data );
-		
-		// Cleanup
+
+		// Cleanup.
 		delete_option( 'page_on_front' );
 	}
-	
+
 	/**
 	 * Test that scanUrl uses permalink for posts page.
 	 *
@@ -130,23 +130,23 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 */
 	public function testScanUrlUsesPermalinkForPostsPage() {
 		global $post, $pagenow, $wp_scripts;
-		
-		// Create a post and set it as the posts page
+
+		// Create a post and set it as the posts page.
 		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
 		update_option( 'page_for_posts', $post->ID );
 		$pagenow = 'post.php';
-		
+
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
-		
+
 		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
-		$this->assertStringContainsString( get_permalink( $post->ID ), $localized_data );
+		$this->assertStringContainsString( str_replace( '/', '\\/', esc_url_raw( get_permalink( $post->ID ) ) ), $localized_data );
 		$this->assertStringNotContainsString( 'preview=true', $localized_data );
-		
-		// Cleanup
+
+		// Cleanup.
 		delete_option( 'page_for_posts' );
 	}
-	
+
 	/**
 	 * Test that scanUrl uses preview link for regular posts.
 	 *
@@ -154,13 +154,13 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 */
 	public function testScanUrlUsesPreviewLinkForRegularPost() {
 		global $post, $pagenow, $wp_scripts;
-		
-		// Create a regular post (not frontpage or posts page)
-		$post = $this->factory()->post->create_and_get();
+
+		// Create a regular post (not frontpage or posts page).
+		$post    = $this->factory()->post->create_and_get();
 		$pagenow = 'post.php';
-		
+
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
-		
+
 		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
 		$this->assertStringContainsString( 'preview=true', $localized_data );
