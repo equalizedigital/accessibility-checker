@@ -106,6 +106,16 @@ class Enqueue_Admin {
 
 				wp_enqueue_script( 'edac-editor-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 
+				// If this is the frontpage or homepage preview urls won't work, use the live url.
+				if ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
+					$scan_url = add_query_arg( 'edac_pageScanner', 1, get_permalink( $post_id ) );
+				} else {
+					$scan_url = get_preview_post_link(
+						$post_id,
+						[ 'edac_pageScanner' => 1 ]
+					);
+				}
+
 				wp_localize_script(
 					'edac-editor-app',
 					'edac_editor_app',
@@ -118,10 +128,7 @@ class Enqueue_Admin {
 						'pro'          => $pro,
 						'authOk'       => false === (bool) get_option( 'edac_password_protected', false ),
 						'debug'        => $debug,
-						'scanUrl'      => get_preview_post_link(
-							$post_id,
-							[ 'edac_pageScanner' => 1 ]
-						),
+						'scanUrl'      => $scan_url,
 						'maxAltLength' => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),
 						'version'      => EDAC_VERSION,
 						'restNonce'    => wp_create_nonce( 'wp_rest' ),
