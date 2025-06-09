@@ -106,7 +106,7 @@ class Enqueue_Admin {
 
 				wp_enqueue_script( 'edac-editor-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 
-				// If this is the frontpage or homepage preview urls won't work, use the live url.
+				// If this is the frontpage or homepage, preview URLs won't work. Use the live URL.
 				if ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
 					$scan_url = add_query_arg( 'edac_pageScanner', 1, get_permalink( $post_id ) );
 				} else {
