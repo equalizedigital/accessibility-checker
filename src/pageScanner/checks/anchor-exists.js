@@ -10,17 +10,20 @@ export default {
 	evaluate: ( node ) => {
 		const href = node.getAttribute( 'href' );
 
+		// Extract the fragment identifier (remove the # prefix)
+		const fragment = href.slice( 1 );
+
+		// Use CSS.escape() to safely handle special characters in selectors
+		const idSelector = `#${ CSS.escape( fragment ) }`;
+
 		// First try the standard CSS selector approach (finds elements with matching IDs)
-		if ( document.querySelector( href ) !== null ) {
+		if ( document.querySelector( idSelector ) !== null ) {
 			return true;
 		}
 
 		// If no ID match found, check for anchor elements with matching name attribute
-		// Extract the fragment identifier (remove the # prefix)
-		const fragment = href.substring( 1 );
-
-		// Look for anchor elements with matching name attribute
-		const namedAnchor = document.querySelector( `a[name="${ fragment }"]` );
+		// Also escape the fragment for the name attribute selector
+		const namedAnchor = document.querySelector( `a[name="${ CSS.escape( fragment ) }"]` );
 
 		return namedAnchor !== null;
 	},

@@ -1,5 +1,13 @@
 import axe from 'axe-core';
 
+// Add CSS.escape polyfill for Jest environment
+if ( typeof CSS === 'undefined' || typeof CSS.escape !== 'function' ) {
+	window.CSS = window.CSS || {};
+	window.CSS.escape = function( value ) {
+		return String( value ).replace( /[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~\s]/g, '\\$&' );
+	};
+}
+
 beforeAll( async () => {
 	const ruleModule = await import( '../../../src/pageScanner/rules/broken-anchor-link.js' );
 	const checkModule = await import( '../../../src/pageScanner/checks/anchor-exists.js' );
