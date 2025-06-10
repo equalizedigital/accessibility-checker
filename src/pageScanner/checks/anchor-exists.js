@@ -8,6 +8,20 @@
 export default {
 	id: 'anchor_exists',
 	evaluate: ( node ) => {
-		return document.querySelector( node.getAttribute( 'href' ) ) !== null;
+		const href = node.getAttribute( 'href' );
+
+		// First try the standard CSS selector approach (finds elements with matching IDs)
+		if ( document.querySelector( href ) !== null ) {
+			return true;
+		}
+
+		// If no ID match found, check for anchor elements with matching name attribute
+		// Extract the fragment identifier (remove the # prefix)
+		const fragment = href.substring( 1 );
+
+		// Look for anchor elements with matching name attribute
+		const namedAnchor = document.querySelector( `a[name="${ fragment }"]` );
+
+		return namedAnchor !== null;
 	},
 };
