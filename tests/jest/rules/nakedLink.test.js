@@ -7,7 +7,7 @@ let linkIsNakedCheck;
 beforeAll( async () => {
 	// Dynamically import the custom rule and check
 	const nakedLinkRuleModule = await import( '../../../src/pageScanner/rules/nakedLink.js' );
-	const linkIsNakedCheckModule = await import( '../../../src/pageScanner/checks/linkIsMaked.js' );
+	const linkIsNakedCheckModule = await import( '../../../src/pageScanner/checks/linkIsNaked.js' );
 
 	nakedLinkRule = nakedLinkRuleModule.default;
 	linkIsNakedCheck = linkIsNakedCheckModule.default;
