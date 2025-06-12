@@ -31,6 +31,10 @@ module.exports = {
 		frontendFixes: [
 			'./src/frontendFixes/index.js',
 		],
+		'simplified-summary-block': [
+			'./src/blocks/simplified-summary-block.js',
+			'./src/blocks/simplified-summary.scss',
+		],
 
 	},
 	optimization: {

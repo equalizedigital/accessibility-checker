@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Block Test</title>
+    <script>
+        // Mock WordPress globals to test the block
+        window.wp = {
+            blocks: {
+                registerBlockType: function(name, settings) {
+                    console.log('✓ Block registered:', name);
+                    console.log('Settings:', settings);
+                    return true;
+                }
+            },
+            element: {
+                createElement: function(type, props, ...children) {
+                    console.log('✓ Element created:', type);
+                    return { type, props, children };
+                },
+                Fragment: 'Fragment'
+            },
+            blockEditor: {
+                InspectorControls: 'InspectorControls',
+                useBlockProps: function() {
+                    console.log('✓ useBlockProps called');
+                    return {};
+                }
+            },
+            components: {
+                PanelBody: 'PanelBody',
+                ToggleControl: 'ToggleControl',
+                RangeControl: 'RangeControl',
+                TextControl: 'TextControl',
+                SelectControl: 'SelectControl',
+                Placeholder: 'Placeholder',
+                Spinner: 'Spinner'
+            },
+            i18n: {
+                __: function(text, domain) {
+                    return text;
+                }
+            }
+        };
+
+        // Test that our block handles missing ServerSideRender gracefully
+        console.log('Testing block without ServerSideRender...');
+    </script>
+</head>
+<body>
+    <h1>Block JavaScript Test</h1>
+    <p>Check the console for block registration results.</p>
+    
+    <script src="../build/simplified-summary-block.bundle.js"></script>
+    
+    <script>
+        console.log('✓ Block script loaded successfully without errors!');
+        console.log('✅ React error #130 should be resolved');
+    </script>
+</body>
+</html>

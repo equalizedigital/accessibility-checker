@@ -1,0 +1,74 @@
+/**
+ * Simplified Summary Component Styles
+ */
+
+.edac-simplified-summary {
+	margin: 1.5em 0;
+	padding: 1em;
+	background-color: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 0.375rem;
+	clear: both;
+}
+
+.edac-simplified-summary h1,
+.edac-simplified-summary h2,
+.edac-simplified-summary h3,
+.edac-simplified-summary h4,
+.edac-simplified-summary h5,
+.edac-simplified-summary h6 {
+	margin-top: 0;
+	margin-bottom: 0.75rem;
+	color: #212529;
+	font-weight: 600;
+}
+
+.edac-simplified-summary p {
+	margin-bottom: 0;
+	line-height: 1.6;
+	color: #495057;
+}
+
+/* Block editor specific styles */
+.wp-block-accessibility-checker-simplified-summary {
+	margin: 1.5em 0;
+}
+
+/* Elementor specific styles */
+.elementor-widget-edac_simplified_summary .edac-simplified-summary {
+	margin: 0; /* Let Elementor handle margins */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.edac-simplified-summary {
+		padding: 0.75em;
+		margin: 1em 0;
+	}
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+	.edac-simplified-summary {
+		background-color: transparent;
+		border: 2px solid;
+	}
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+	.edac-simplified-summary * {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* Print styles */
+@media print {
+	.edac-simplified-summary {
+		background-color: transparent !important;
+		border: 1px solid #000;
+		page-break-inside: avoid;
+	}
+}

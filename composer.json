@@ -60,6 +60,9 @@
             "includes/classes/",
             "includes/deprecated/"
         ],
+        "exclude-from-classmap": [
+            "includes/classes/class-simplified-summary-elementor-widget.php"
+        ],
         "psr-4": {
             "EqualizeDigital\\AccessibilityChecker\\": "includes/classes/",
             "EqualizeDigital\\AccessibilityChecker\\Admin\\": "admin/"

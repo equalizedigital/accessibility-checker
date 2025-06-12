@@ -33,6 +33,10 @@ class Plugin {
 		$rest_api = new REST_Api();
 		$rest_api->init_hooks();
 
+		// Initialize simplified summary integrations for both admin and frontend
+		$simplified_summary_integrations = new Simplified_Summary_Integrations();
+		$simplified_summary_integrations->init_hooks();
+
 		$this->register_fixes_manager();
 
 		// When WP CLI is enabled, load the CLI commands.
