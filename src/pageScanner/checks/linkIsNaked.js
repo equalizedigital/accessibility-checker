@@ -1,13 +1,13 @@
 export default {
 	id: 'link-is-naked',
-	evaluate: function(node) {
-		if (!node || typeof node.getAttribute !== 'function') {
+	evaluate( node ) {
+		if ( ! node || typeof node.getAttribute !== 'function' ) {
 			return undefined; // Not a valid element
 		}
-		const href = node.getAttribute('href');
-		const textContent = (node.textContent || '').trim();
+		const href = node.getAttribute( 'href' );
+		const textContent = ( node.textContent || '' ).trim();
 
-		if (!href) {
+		if ( ! href ) {
 			return undefined; // No href attribute, so not applicable
 		}
 

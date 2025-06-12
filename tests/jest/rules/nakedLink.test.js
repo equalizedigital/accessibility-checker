@@ -4,27 +4,27 @@ import axe from 'axe-core';
 let nakedLinkRule;
 let linkIsNakedCheck;
 
-beforeAll(async () => {
+beforeAll( async () => {
 	// Dynamically import the custom rule and check
-	const nakedLinkRuleModule = await import('../../../src/pageScanner/rules/nakedLink.js');
-	const linkIsNakedCheckModule = await import('../../../src/pageScanner/checks/linkIsMaked.js');
+	const nakedLinkRuleModule = await import( '../../../src/pageScanner/rules/nakedLink.js' );
+	const linkIsNakedCheckModule = await import( '../../../src/pageScanner/checks/linkIsMaked.js' );
 
 	nakedLinkRule = nakedLinkRuleModule.default;
 	linkIsNakedCheck = linkIsNakedCheckModule.default;
 
 	// Configure axe with the custom rule and check
-	axe.configure({
-		rules: [nakedLinkRule],
-		checks: [linkIsNakedCheck],
-	});
-});
+	axe.configure( {
+		rules: [ nakedLinkRule ],
+		checks: [ linkIsNakedCheck ],
+	} );
+} );
 
-beforeEach(() => {
+beforeEach( () => {
 	// Reset the document body before each test
 	document.body.innerHTML = '';
-});
+} );
 
-describe('Naked Link Validation', () => {
+describe( 'Naked Link Validation', () => {
 	const testCases = [
 		// Failing cases
 		{
@@ -87,23 +87,23 @@ describe('Naked Link Validation', () => {
 			name: 'should pass for link with tel: and phone number as text',
 			html: '<a href="tel:+1234567890">+1234567890</a>',
 			shouldPass: true, // Similar to mailto, tel links are often exceptions
-		}
+		},
 	];
 
-	testCases.forEach((testCase) => {
-		test(testCase.name, async () => {
+	testCases.forEach( ( testCase ) => {
+		test( testCase.name, async () => {
 			document.body.innerHTML = testCase.html;
 
-			const results = await axe.run(document.body, {
-				runOnly: ['naked_link'], // Run only our new rule
-			});
+			const results = await axe.run( document.body, {
+				runOnly: [ 'naked_link' ], // Run only our new rule
+			} );
 
-			if (testCase.shouldPass) {
+			if ( testCase.shouldPass ) {
 				expect( results.violations.length ).toBe( 0 );
 			} else {
 				expect( results.violations.length ).toBeGreaterThan( 0 );
 			}
-		});
-	});
-});
+		} );
+	} );
+} );
 
