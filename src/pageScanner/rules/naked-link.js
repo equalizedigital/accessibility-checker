@@ -7,7 +7,7 @@ export default {
 		help: 'Link text should be descriptive and not be the same as the URL.',
 		helpUrl: 'https://dequeuniversity.com/rules/axe/4.7/link-name', // Updated helpUrl
 	},
-	any: [ 'link-is-naked' ], // Changed from none: ['link-is-naked']
+	any: [],
 	all: [],
-	none: [],
+	none: [ 'link-is-naked' ],
 };
