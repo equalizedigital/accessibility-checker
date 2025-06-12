@@ -6,8 +6,8 @@ let linkIsNakedCheck;
 
 beforeAll(async () => {
 	// Dynamically import the custom rule and check
-	const nakedLinkRuleModule = await import('../../../src/pageScanner/rules/naked-link.js');
-	const linkIsNakedCheckModule = await import('../../../src/pageScanner/checks/link-is-naked.js');
+	const nakedLinkRuleModule = await import('../../../src/pageScanner/rules/nakedLink.js');
+	const linkIsNakedCheckModule = await import('../../../src/pageScanner/checks/linkIsMaked.js');
 
 	nakedLinkRule = nakedLinkRuleModule.default;
 	linkIsNakedCheck = linkIsNakedCheckModule.default;
@@ -42,7 +42,6 @@ describe('Naked Link Validation', () => {
 			html: '<a href="/path/to/page">/path/to/page</a>',
 			shouldPass: false,
 		},
-
 		// Passing cases
 		{
 			name: 'should pass for link with descriptive text',
@@ -107,3 +106,4 @@ describe('Naked Link Validation', () => {
 		});
 	});
 });
+

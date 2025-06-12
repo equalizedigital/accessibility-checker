@@ -5,7 +5,6 @@ export default {
 	metadata: {
 		description: 'Ensures links do not use the URL as link text.',
 		help: 'Link text should be descriptive and not be the same as the URL.',
-		helpUrl: 'https://dequeuniversity.com/rules/axe/4.7/link-name', // Updated helpUrl
 	},
 	any: [],
 	all: [],
