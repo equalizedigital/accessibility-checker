@@ -1,5 +1,5 @@
 export default {
-	id: 'naked-link', // Changed from 'link-is-naked-text'
+	id: 'naked_link',
 	selector: 'a[href]',
 	tags: [ 'wcag2a', 'wcag2.4.4', 'usability' ], // Changed tags
 	metadata: {

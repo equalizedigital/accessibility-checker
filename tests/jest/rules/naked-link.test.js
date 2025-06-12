@@ -96,7 +96,7 @@ describe('Naked Link Validation', () => {
 			document.body.innerHTML = testCase.html;
 
 			const results = await axe.run(document.body, {
-				runOnly: ['naked-link'], // Run only our new rule
+				runOnly: ['naked_link'], // Run only our new rule
 			});
 
 			if (testCase.shouldPass) {
