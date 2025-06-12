@@ -100,13 +100,9 @@ describe('Naked Link Validation', () => {
 			});
 
 			if (testCase.shouldPass) {
-				// Expect no violations for this rule
-				const violations = results.violations.filter(v => v.id === 'naked-link');
-				expect(violations.length).toBe(0);
+				expect( results.violations.length ).toBe( 0 );
 			} else {
-				// Expect at least one violation for this rule
-				const violations = results.violations.filter(v => v.id === 'naked-link');
-				expect(violations.length).toBeGreaterThan(0);
+				expect( results.violations.length ).toBeGreaterThan( 0 );
 			}
 		});
 	});
