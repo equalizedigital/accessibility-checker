@@ -192,6 +192,10 @@ Accessibility Checker was built with performance in mind and should not slow dow
 
 No, Accessibility Checker runs completely on your server and does not require you to connect to any external APIs or services for scans. This can save you thousands of dollars per year in accessibility scanning fees and is privacy-focused, ensuring that your website data stays completely under your control.
 
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.]( https://patchstack.com/database/vdp/9e5fb76c-bea8-430c-8bec-89d6f38ad57a )
+
 == Screenshots ==
 
 1. Accessibility Checker Summary tab on a page with numerous errors and warnings.
