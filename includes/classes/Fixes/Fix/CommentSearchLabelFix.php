@@ -174,7 +174,7 @@ class CommentSearchLabelFix implements FixInterface {
 				$input_id    = $input_matches[1]; // Use the existing id of the input field.
 			} else {
 				$input_id    = 'search-form-' . uniqid(); // Generate a unique ID if the input field doesn't have one.
-				$input_field = '<input type="search" id="' . esc_attr( $input_id ) . '" class="search-field edac-generated-label" placeholder="' . esc_attr__( 'Search …', 'accessibility-checker' ) . '" value="' . get_search_query() . '" name="s" />';
+				$input_field = '<input type="search" id="' . esc_attr( $input_id ) . '" class="search-field edac-generated-label" placeholder="' . esc_attr__( 'Search …', 'accessibility-checker' ) . '" value="' . esc_attr( get_search_query() ) . '" name="s" />';
 			}
 
 			// Rebuild the form with a visible <label> and ensure the "for" attribute matches the input's id.
