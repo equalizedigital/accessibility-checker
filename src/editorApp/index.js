@@ -32,7 +32,10 @@ window.addEventListener( 'DOMContentLoaded', () => {
 				return;
 			}
 
-			setClearIssuesButtonState( true, __( 'Clearing...', 'accessibility-checker' ) + ' <span class="spinner is-active"></span>' );
+			// Create spinner element safely
+			const spinnerSpan = document.createElement( 'span' );
+			spinnerSpan.className = 'spinner is-active';
+			setClearIssuesButtonState( true, __( 'Clearing...', 'accessibility-checker' ), spinnerSpan );
 
 			fetch( window.edac_editor_app.edacApiUrl + '/clear-issues/' + window.edac_editor_app.postID, {
 				method: 'POST',
@@ -74,11 +77,15 @@ window.addEventListener( 'DOMContentLoaded', () => {
  * Set the disabled state of the rescan button and it's contents.
  * @param {boolean} state   The state to set the buttons disabled value to.
  * @param {string}  message The message that the button should contain.
+ * @param {Element} spinner Optional spinner element to append.
  */
-const setClearIssuesButtonState = ( state, message ) => {
+const setClearIssuesButtonState = ( state, message, spinner = null ) => {
 	const rescanButton = document.getElementById( 'edac-clear-issues-button' );
 	rescanButton.disabled = state ?? false;
-	rescanButton.innerHTML = message ?? __( 'Clear Issues', 'accessibility-checker' );
+	rescanButton.textContent = message ?? __( 'Clear Issues', 'accessibility-checker' );
+	if ( spinner ) {
+		rescanButton.appendChild( spinner );
+	}
 };
 
 /**
