@@ -59,7 +59,10 @@ window.addEventListener( 'DOMContentLoaded', () => {
 						triggerNotice( __( 'Failed to clear issues.', 'accessibility-checker' ), 'error' );
 					}
 				}
-			);
+			).catch( ( error ) => {
+				setClearIssuesButtonState();
+				triggerNotice( __( 'An error occurred while clearing issues.', 'accessibility-checker' ) + ' ' + error.message, 'error' );
+			} );
 		} );
 	}
 	if ( ! top.JSSCanScavedRescanEventAdded ) {
