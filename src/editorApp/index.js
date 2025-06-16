@@ -77,6 +77,9 @@ window.addEventListener( 'DOMContentLoaded', () => {
  */
 const setClearIssuesButtonState = ( state, message ) => {
 	const rescanButton = document.getElementById( 'edac-clear-issues-button' );
+	if ( ! rescanButton ) {
+		return;
+	}
 	rescanButton.disabled = state ?? false;
 	rescanButton.innerHTML = message ?? __( 'Clear Issues', 'accessibility-checker' );
 };
