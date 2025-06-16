@@ -81,6 +81,9 @@ window.addEventListener( 'DOMContentLoaded', () => {
  */
 const setClearIssuesButtonState = ( state, message, spinner = null ) => {
 	const rescanButton = document.getElementById( 'edac-clear-issues-button' );
+	if ( ! rescanButton ) {
+		return;
+	}
 	rescanButton.disabled = state ?? false;
 	rescanButton.textContent = message ?? __( 'Clear Issues', 'accessibility-checker' );
 	if ( spinner ) {
