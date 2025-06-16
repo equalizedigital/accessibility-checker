@@ -24,42 +24,44 @@ window.addEventListener( 'DOMContentLoaded', () => {
 	} );
 
 	const clearIssuesButton = document.getElementById( 'edac-clear-issues-button' );
-	clearIssuesButton.addEventListener( 'click', function() {
-		// Show an alert informing user that the issues will be cleared and that to rescan a save will be needed
-		// eslint-disable-next-line no-alert -- Using an alert here is the best way to inform the user of the action.
-		if ( ! confirm( __( 'This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?', 'accessibility-checker' ) ) ) {
-			return;
-		}
-
-		setClearIssuesButtonState( true, __( 'Clearing...', 'accessibility-checker' ) + ' <span class="spinner is-active"></span>' );
-
-		fetch( window.edac_editor_app.edacApiUrl + '/clear-issues/' + window.edac_editor_app.postID, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-WP-Nonce': window.edac_editor_app.restNonce,
-			},
-			body: JSON.stringify(
-				{
-					id: window.edac_editor_app.postID,
-					flush: true,
-				}
-			),
-		} ).then(
-			( response ) => {
-				if ( response.ok ) {
-					// emit new event to clear all tabs and panels after flushing.
-					const clearedEvent = new Event( 'edac-cleared-issues' );
-					document.dispatchEvent( clearedEvent );
-					setClearIssuesButtonState();
-					triggerNotice( __( 'Issues cleared successfully.', 'accessibility-checker' ) );
-				} else {
-					setClearIssuesButtonState();
-					triggerNotice( __( 'Failed to clear issues.', 'accessibility-checker' ), 'error' );
-				}
+	if ( clearIssuesButton ) {
+		clearIssuesButton.addEventListener( 'click', function() {
+			// Show an alert informing user that the issues will be cleared and that to rescan a save will be needed
+			// eslint-disable-next-line no-alert -- Using an alert here is the best way to inform the user of the action.
+			if ( ! confirm( __( 'This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?', 'accessibility-checker' ) ) ) {
+				return;
 			}
-		);
-	} );
+
+			setClearIssuesButtonState( true, __( 'Clearing...', 'accessibility-checker' ) + ' <span class="spinner is-active"></span>' );
+
+			fetch( window.edac_editor_app.edacApiUrl + '/clear-issues/' + window.edac_editor_app.postID, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-WP-Nonce': window.edac_editor_app.restNonce,
+				},
+				body: JSON.stringify(
+					{
+						id: window.edac_editor_app.postID,
+						flush: true,
+					}
+				),
+			} ).then(
+				( response ) => {
+					if ( response.ok ) {
+						// emit new event to clear all tabs and panels after flushing.
+						const clearedEvent = new Event( 'edac-cleared-issues' );
+						document.dispatchEvent( clearedEvent );
+						setClearIssuesButtonState();
+						triggerNotice( __( 'Issues cleared successfully.', 'accessibility-checker' ) );
+					} else {
+						setClearIssuesButtonState();
+						triggerNotice( __( 'Failed to clear issues.', 'accessibility-checker' ), 'error' );
+					}
+				}
+			);
+		} );
+	}
 	if ( ! top.JSSCanScavedRescanEventAdded ) {
 		top.JSSCanScavedRescanEventAdded = true;
 		top.addEventListener( 'edac_js_scan_save_complete', function() {
