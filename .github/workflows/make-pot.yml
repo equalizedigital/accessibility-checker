@@ -52,9 +52,12 @@ jobs:
             -e "s/database_name_here/wordpress/" \
             -e "s/username_here/root/" \
             -e "s/password_here/root/" \
-            -e "s/'DB_HOST', 'localhost'/'DB_HOST', 'mysql:3306'/" \
+            -e "s/'DB_HOST', 'localhost'/'DB_HOST', '127.0.0.1:3306'/" \
             wordpress/wp-config.php
           echo "define('FS_METHOD', 'direct');" >> wordpress/wp-config.php
+
+      - name: echo out the wp-config.php
+        run: cat wordpress/wp-config.php
 
       - name: Wait for MySQL to be ready
         run: |
