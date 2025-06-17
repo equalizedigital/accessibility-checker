@@ -78,11 +78,13 @@ jobs:
       - name: Generate JSON files
         run: wp i18n make-json wordpress/wp-content/plugins/accessibility-checker/languages/ --no-purge --pretty-print --allow-root
 
-      - name: Check if POT file changed
+      - name: Check if POT file changed (ignoring some headers)
         id: pot_diff
         run: |
           if [ -f wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot ] && [ -f dist/accessibility-checker/languages/accessibility-checker.pot ]; then
-            diff_output=$(diff -q wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot dist/accessibility-checker/languages/accessibility-checker.pot || true)
+            diff_output=$(diff \
+              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#|$)' wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot) \
+              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#|$)' dist/accessibility-checker/languages/accessibility-checker.pot) || true)
             if [ -n "$diff_output" ]; then
               echo "pot_changed=true" >> $GITHUB_OUTPUT
             else
