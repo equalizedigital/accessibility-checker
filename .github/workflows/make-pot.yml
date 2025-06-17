@@ -80,10 +80,10 @@ jobs:
         run: ls
 
       - name: Generate POT file
-        run: wp i18n make-pot wp-content/plugins/accessibility-checker wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot --allow-root
+        run: wp i18n make-pot wordpress/wp-content/plugins/accessibility-checker wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot --allow-root
 
       - name: Generate JSON files
-        run: wp i18n make-json wp-content/plugins/accessibility-checker/languages/ --no-purge --pretty-print --no-purge-empty --allow-root
+        run: wp i18n make-json wordpress/wp-content/plugins/accessibility-checker/languages/ --no-purge --pretty-print --no-purge-empty --allow-root
 
       - name: Check if POT file changed
         id: pot_diff
