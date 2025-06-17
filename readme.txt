@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.8.0
-Stable tag: 1.24.0
+Stable tag: 1.25.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,10 @@ Accessibility Checker was built with performance in mind and should not slow dow
 
 No, Accessibility Checker runs completely on your server and does not require you to connect to any external APIs or services for scans. This can save you thousands of dollars per year in accessibility scanning fees and is privacy-focused, ensuring that your website data stays completely under your control.
 
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team helps validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/9e5fb76c-bea8-430c-8bec-89d6f38ad57a)
+
 == Screenshots ==
 
 1. Accessibility Checker Summary tab on a page with numerous errors and warnings.
@@ -206,6 +210,11 @@ No, Accessibility Checker runs completely on your server and does not require yo
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
+
+= 1.25.0 =
+* Added: Ability to scan the main posts archive (blog page).
+* Enhanced: Improved the Anchor Exists rule to handle more situations.
+* Fixed: Avoid console error for clear button on CPTs that are not scannable.
 
 = 1.24.0 =
 * Added: Translations for 33 languages.
