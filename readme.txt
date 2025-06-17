@@ -194,7 +194,7 @@ No, Accessibility Checker runs completely on your server and does not require yo
 
 = How can I report security bugs? =
 
-You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.]( https://patchstack.com/database/vdp/9e5fb76c-bea8-430c-8bec-89d6f38ad57a )
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team helps validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/9e5fb76c-bea8-430c-8bec-89d6f38ad57a)
 
 == Screenshots ==
 
