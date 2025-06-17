@@ -15,7 +15,7 @@ export default {
 
 		// If the fragment is empty, we can't check for existence, this shouldn't be possible
 		// due to the selectors passed here - but adding for type safety
-		if ( ! fragment ) {
+		if ( fragment !== '' ) {
 			return true; // Other rules handle this as an issue
 		}
 
