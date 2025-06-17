@@ -70,19 +70,16 @@ jobs:
           cd wordpress
           wp core install --url=localhost --title=Test --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email --allow-root
 
-      - name: Install wp-cli i18n command
-        run: wp package install wp-cli/i18n-command --allow-root --path=wordpress
-
       - name: Generate POT file
-        run: wp i18n make-pot wordpress/wp-content/plugins/accessibility-checker wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot --allow-root
+        run: wp i18n make-pot wordpress/wp-content/plugins/accessibility-checker/dist/accessibility-checker wordpress/wp-content/plugins/accessibility-checker/dist/accessibility-checker/languages/accessibility-checker.pot --allow-root
 
       - name: Generate JSON files
-        run: wp i18n make-json wordpress/wp-content/plugins/accessibility-checker/languages/ --no-purge --pretty-print --no-purge-empty --allow-root
+        run: wp i18n make-json wordpress/wp-content/plugins/accessibility-checker/dist/accessibility-checker/languages/ --no-purge --pretty-print --no-purge-empty --allow-root
 
       - name: Check if POT file changed
         id: pot_diff
         run: |
-          if [ -f wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot ] && [ -f dist/accessibility-checker/languages/accessibility-checker.pot ]; then
+          if [ -f wordpress/wp-content/plugins/accessibility-checker/dist/accessibility-checker/languages/accessibility-checker.pot ] && [ -f dist/accessibility-checker/languages/accessibility-checker.pot ]; then
             diff_output=$(diff -q wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot dist/accessibility-checker/languages/accessibility-checker.pot || true)
             if [ -n "$diff_output" ]; then
               echo "pot_changed=true" >> $GITHUB_OUTPUT
