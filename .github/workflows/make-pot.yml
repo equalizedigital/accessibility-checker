@@ -56,9 +56,6 @@ jobs:
             wordpress/wp-config.php
           echo "define('FS_METHOD', 'direct');" >> wordpress/wp-config.php
 
-      - name: echo out the wp-config.php
-        run: cat wordpress/wp-config.php
-
       - name: Wait for MySQL to be ready
         run: |
           for i in {1..30}; do
@@ -75,9 +72,6 @@ jobs:
 
       - name: Install wp-cli i18n command
         run: wp package install wp-cli/i18n-command --allow-root --path=wordpress
-
-      - name: List directory contents
-        run: ls
 
       - name: Generate POT file
         run: wp i18n make-pot wordpress/wp-content/plugins/accessibility-checker wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot --allow-root
