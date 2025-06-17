@@ -34,7 +34,9 @@ jobs:
         run: npm run dist:dotorg
 
       - name: Install PHP and required extensions
-        run: sudo apt-get update && sudo apt-get install -y php php-mysql php-xml php-curl
+        run: |
+          sudo apt-get update && sudo apt-get install -y php php-mysql php-xml php-curl
+          echo "xdebug.max_nesting_level=1024" | sudo tee -a /etc/php/$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')/cli/conf.d/20-xdebug.ini
 
       - name: Download wp-cli
         run: |
