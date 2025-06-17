@@ -8,6 +8,16 @@ on:
 jobs:
   make-pot:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,31 +33,56 @@ jobs:
       - name: Build plugin (dotorg dist)
         run: npm run dist:dotorg
 
-      - name: Install docker-compose
-        run: sudo apt-get update && sudo apt-get install -y docker-compose
+      - name: Install PHP and required extensions
+        run: sudo apt-get update && sudo apt-get install -y php php-mysql php-xml php-curl
 
-      - name: Set up WordPress with wp-env
-        run: npx wp-env start
-
-      - name: Copy built plugin to WordPress plugins dir
+      - name: Download wp-cli
         run: |
-          rm -rf .wp-env/wordpress/wp-content/plugins/accessibility-checker
-          cp -r dist/accessibility-checker .wp-env/wordpress/wp-content/plugins/accessibility-checker
+          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod +x wp-cli.phar
+          sudo mv wp-cli.phar /usr/local/bin/wp
+
+      - name: Download and configure WordPress
+        run: |
+          curl -O https://wordpress.org/latest.tar.gz
+          tar -xzf latest.tar.gz
+          cp -r dist/accessibility-checker wordpress/wp-content/plugins/accessibility-checker
+          cp wordpress/wp-config-sample.php wordpress/wp-config.php
+          sed -i \
+            -e "s/database_name_here/wordpress/" \
+            -e "s/username_here/root/" \
+            -e "s/password_here/root/" \
+            wordpress/wp-config.php
+          echo "define('FS_METHOD', 'direct');" >> wordpress/wp-config.php
+
+      - name: Wait for MySQL to be ready
+        run: |
+          for i in {1..30}; do
+            if mysqladmin ping -h127.0.0.1 -uroot -proot --silent; then
+              break
+            fi
+            sleep 2
+          done
+
+      - name: Install WordPress
+        run: |
+          cd wordpress
+          wp core install --url=localhost --title=Test --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email --allow-root
 
       - name: Install wp-cli i18n command
-        run: npx wp-env run cli wp package install wp-cli/i18n-command
+        run: wp package install wp-cli/i18n-command --allow-root --path=wordpress
 
       - name: Generate POT file
-        run: npx wp-env run cli wp i18n make-pot wp-content/plugins/accessibility-checker wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot
+        run: wp i18n make-pot wp-content/plugins/accessibility-checker wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot --allow-root --path=wordpress
 
       - name: Generate JSON files
-        run: npx wp-env run cli wp i18n make-json wp-content/plugins/accessibility-checker/languages/ --no-purge --pretty-print --no-purge-empty
+        run: wp i18n make-json wp-content/plugins/accessibility-checker/languages/ --no-purge --pretty-print --no-purge-empty --allow-root --path=wordpress
 
       - name: Check if POT file changed
         id: pot_diff
         run: |
-          if [ -f .wp-env/wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot ] && [ -f dist/accessibility-checker/languages/accessibility-checker.pot ]; then
-            diff_output=$(diff -q .wp-env/wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot dist/accessibility-checker/languages/accessibility-checker.pot || true)
+          if [ -f wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot ] && [ -f dist/accessibility-checker/languages/accessibility-checker.pot ]; then
+            diff_output=$(diff -q wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot dist/accessibility-checker/languages/accessibility-checker.pot || true)
             if [ -n "$diff_output" ]; then
               echo "pot_changed=true" >> $GITHUB_OUTPUT
             else
@@ -74,6 +109,5 @@ jobs:
         with:
           name: accessibility-checker-i18n
           path: |
-            .wp-env/wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot
-            .wp-env/wordpress/wp-content/plugins/accessibility-checker/languages/*.json
-
+            wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot
+            wordpress/wp-content/plugins/accessibility-checker/languages/*.json
