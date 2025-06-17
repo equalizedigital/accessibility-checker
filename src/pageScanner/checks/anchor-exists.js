@@ -15,8 +15,8 @@ export default {
 
 		// If the fragment is empty, we can't check for existence, this shouldn't be possible
 		// due to the selectors passed here - but adding for type safety
-		if ( fragment !== '' ) {
-			return true; // Other rules handle this as an issue
+		if ( fragment === '' ) {
+			return true;
 		}
 
 		// Use CSS.escape() to safely handle special characters in selectors
@@ -34,3 +34,4 @@ export default {
 		return namedAnchor !== null;
 	},
 };
+
