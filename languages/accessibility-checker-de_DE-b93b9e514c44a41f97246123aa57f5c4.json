@@ -1,0 +1,78 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/frontendHighlighterApp.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "en",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Save": [
+                "Speichern"
+            ],
+            "Saving...": [
+                "Wird gespeichert..."
+            ],
+            "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
+                "Einstellungen erfolgreich gespeichert. Sie m\u00fcssen %sden Editor besuchen%s und den Beitrag speichern, um einen erneuten Scan durchzuf\u00fchren und behobene Probleme aus den Accessibility Checker-Berichten zu entfernen."
+            ],
+            "Settings saved successfully.": [
+                "Einstellungen erfolgreich gespeichert."
+            ],
+            "Saving failed.": [
+                "Speichern fehlgeschlagen."
+            ],
+            "Fix Settings": [
+                "Einstellungen beheben"
+            ],
+            "Close fixes modal": [
+                "Schlie\u00dft das Fehlerbehebungs-Modal"
+            ],
+            "Disable Page Styles": [
+                "Seitenstile deaktivieren"
+            ],
+            "Show Code": [
+                "Code anzeigen"
+            ],
+            "Issue type:": [
+                "Problemtyp:"
+            ],
+            "Enable Styles": [
+                "Stile aktivieren"
+            ],
+            "Disable Styles": [
+                "Stile deaktivieren"
+            ],
+            "There are no settings to display.": [
+                "Es gibt keine Einstellungen zum Anzeigen."
+            ],
+            "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports.": [
+                "Diese Einstellungen aktivieren globale Korrekturen f\u00fcr Ihre gesamte Website. Seiten m\u00fcssen m\u00f6glicherweise neu gespeichert oder ein vollst\u00e4ndiger Website-Scan durchgef\u00fchrt werden, um die Korrekturen in Berichten zu sehen."
+            ],
+            "No issues detected.": [
+                "Keine Probleme erkannt."
+            ],
+            "error": [
+                "Fehler",
+                "Fehler"
+            ],
+            "warning": [
+                "Warnung",
+                "Warnungen"
+            ],
+            "and": [
+                "und"
+            ],
+            "ignored issue": [
+                "ignoriertes Problem",
+                "ignorierte Probleme"
+            ],
+            "detected.": [
+                "erkannt."
+            ]
+        }
+    }
+}
