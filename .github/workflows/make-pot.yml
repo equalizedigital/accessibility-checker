@@ -1,0 +1,75 @@
+name: Generate POT file
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  make-pot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build plugin (dotorg dist)
+        run: npm run dist:dotorg
+
+      - name: Set up WordPress with wp-env
+        run: npx wp-env start
+
+      - name: Copy built plugin to WordPress plugins dir
+        run: |
+          rm -rf .wp-env/wordpress/wp-content/plugins/accessibility-checker
+          cp -r dist/accessibility-checker .wp-env/wordpress/wp-content/plugins/accessibility-checker
+
+      - name: Install wp-cli i18n command
+        run: npx wp-env run cli wp package install wp-cli/i18n-command
+
+      - name: Generate POT file
+        run: npx wp-env run cli wp i18n make-pot wp-content/plugins/accessibility-checker wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot
+
+      - name: Generate JSON files
+        run: npx wp-env run cli wp i18n make-json wp-content/plugins/accessibility-checker/languages/ --no-purge --pretty-print --no-purge-empty
+
+      - name: Check if POT file changed
+        id: pot_diff
+        run: |
+          if [ -f .wp-env/wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot ] && [ -f dist/accessibility-checker/languages/accessibility-checker.pot ]; then
+            diff_output=$(diff -q .wp-env/wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot dist/accessibility-checker/languages/accessibility-checker.pot || true)
+            if [ -n "$diff_output" ]; then
+              echo "pot_changed=true" >> $GITHUB_OUTPUT
+            else
+              echo "pot_changed=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "pot_changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment on PR if POT file changed
+        if: steps.pot_diff.outputs.pot_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'The POT file has changed. Please update the POT file in your PR to keep translations up to date.'
+            })
+
+      - name: Upload POT and JSON files as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-checker-i18n
+          path: |
+            .wp-env/wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot
+            .wp-env/wordpress/wp-content/plugins/accessibility-checker/languages/*.json
