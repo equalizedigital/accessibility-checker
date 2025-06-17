@@ -211,6 +211,11 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+= 1.25.0 =
+* Added: Ability to scan the main posts archive (blog page).
+* Enhanced: Improved the Anchor Exists rule to handle more situations.
+* Fixed: Avoid console error for clear button on CPTs that are not scannable.
+
 = 1.24.0 =
 * Added: Translations for 33 languages.
 * Enhanced: Handle Elementor buttons better in the new warnings fix.
