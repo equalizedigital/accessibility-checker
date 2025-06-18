@@ -83,8 +83,14 @@ jobs:
       - name: Generate POT file
         run: wp i18n make-pot wordpress/wp-content/plugins/accessibility-checker wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot --allow-root
 
+      - name: List files after POT generation
+        run: ls -luh wordpress/wp-content/plugins/accessibility-checker/languages
+
       - name: Generate JSON files
         run: wp i18n make-json wordpress/wp-content/plugins/accessibility-checker wordpress/wp-content/plugins/accessibility-checker/languages/ --no-purge --pretty-print --allow-root
+
+      - name: List files after JSON generation
+        run: ls -luh wordpress/wp-content/plugins/accessibility-checker/languages
 
       - name: Check if POT file changed (ignoring some headers)
         id: pot_diff
