@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-18T17:40:04+00:00\n"
+"POT-Creation-Date: 2025-06-18T23:07:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -59,7 +59,6 @@ msgstr ""
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:46
 #: admin/AdminPage/FixesSettingType/Text.php:37
-#: build/admin.bundle.js:2
 msgid "Get Pro to unlock this feature, opens in a new window."
 msgstr ""
 
@@ -300,7 +299,6 @@ msgid "Pages may need to be resaved or a full site scan run to see fixes reflect
 msgstr ""
 
 #: admin/class-ajax.php:392
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr ""
 
@@ -567,27 +565,27 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: admin/opt-in/class-email-opt-in.php:114
+#: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
 msgstr ""
 
-#: admin/opt-in/class-email-opt-in.php:120
+#: admin/opt-in/class-email-opt-in.php:121
 msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
 msgstr ""
 
-#: admin/opt-in/class-email-opt-in.php:126
+#: admin/opt-in/class-email-opt-in.php:127
 msgid "Email*"
 msgstr ""
 
-#: admin/opt-in/class-email-opt-in.php:130
+#: admin/opt-in/class-email-opt-in.php:131
 msgid "Type your email"
 msgstr ""
 
-#: admin/opt-in/class-email-opt-in.php:138
+#: admin/opt-in/class-email-opt-in.php:139
 msgid "First Name"
 msgstr ""
 
-#: admin/opt-in/class-email-opt-in.php:142
+#: admin/opt-in/class-email-opt-in.php:143
 msgid "Type your first name"
 msgstr ""
 
@@ -1089,11 +1087,11 @@ msgstr ""
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr ""
 
-#: includes/classes/Fixes/FixesManager.php:240
+#: includes/classes/Fixes/FixesManager.php:241
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr ""
 
-#: includes/classes/Fixes/FixesManager.php:293
+#: includes/classes/Fixes/FixesManager.php:294
 msgid "Fix not found"
 msgstr ""
 
@@ -2012,11 +2010,6 @@ msgstr ""
 msgid "Saving failed."
 msgstr ""
 
-#: build/admin.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Fix Settings"
-msgstr ""
-
 #: build/editorApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr ""
@@ -2063,42 +2056,6 @@ msgid "EDAC: Error updating history for skip link."
 msgstr ""
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Close fixes modal"
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Page Styles"
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Show Code"
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Issue type:"
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Enable Styles"
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Styles"
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "There are no settings to display."
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "No issues detected."
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
 msgstr[0] ""
@@ -2111,18 +2068,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "and"
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
 msgstr[0] ""
 msgstr[1] ""
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "detected."
-msgstr ""
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
