@@ -1,0 +1,622 @@
+Newer versions can be found in readme.txt.
+
+= 1.20.0 =
+* Enhancement: Process dynamic blocks and oEmbeds more reliably in scans.
+* Enhancement: Improve detection for missing_transcripts if there are several oEmbed videos from same provider on page.
+* Fix: Ensure notice dismiss function works correctly on all pages and that review notice buttons are styled.
+* Fix: Correct some cases where pluralization of phrases could be misapplied.
+
+= 1.19.0 =
+* Enhancement: Improve the text_size_too_small check in scanner to avoid more false positives.
+* Fix: Ensure that our notifications can appear on our own admin pages.
+* Fix: No longer trigger password protected notice on other pages when scanning woocommerse checkout page.
+
+= 1.18.0 =
+* New: Add a new fix for adding a new tab/window warning to links with target="_blank".
+* Enahncement: Allow cache bypass from stats requests to force latest numbers.
+* Enhancement: Make a clear-issues endpoint more usable in different situations.
+* Removed: Removed some code that was trying to force no notifications on the plugin pages.
+
+= 1.17.0 =
+* New: Add a new fix for adding a new tab/window warning to links with target="_blank".
+* New: Add a REST endpoint to retrieve a site scan summary.
+* Enhancement: Ensure frontend highlighter can load even when Cloudflare Rocket Loader is enabled.
+* Enhancement: Only show ignore button when user can ignore issues.
+* Fix: URLs without issues would always output `0` when viewed on welcome widget.
+
+= 1.16.4 =
+* Enhancement: Improve the table header detection and validation for row headers.
+* Enhancement: Show notice on fixes settings when they are saved from options page.
+* Fixed: Don't check for possible headerif there is no text content.
+* Fixed: Multisite query fix to make sure issues are assigned correct site id.
+* Fixed: Correct where a scan link points.
+
+= 1.16.3 =
+* Enhancement: Add Fix settings to site health info panels.
+* Fixed: Corrected a string that was misplaced in a fix.
+
+= 1.16.2 =
+* Enhancement: Use better names for fix modal titles.
+* Enhancement: Improve the link_pdf rule to detect more accurately.
+* Enhancement: Improve the link_ms_office_doc rule to detect more accurately.
+* Fixed: Rely on labels for link_ambiguous_text rule first before checking just the text content.
+* Fixed: Remove a duplicatable rule empty_form_label.
+
+= 1.16.1 =
+* Fixed: Remove redundant empty_form_label rule definition.
+
+= 1.16.0 =
+* New: Introduced a system to handle automated fixes for issues that the scanner would discover.
+* New: Fix to remove or update bad tabindex values on elements.
+* New: Fix to remove title attributes in favor of preferred accessible names to elements.
+* New: Fix to add missing lang and dir attributes to the <html> element.
+* New: Fix to add skip links to pages where they are missing.
+* New: Fix to add labels to comment and search forms.
+* New: Fix to ensure that the meta viewport tag does not prevent user scaling or zooming.
+* New: Fix to ensure that focus outlines are present on focusable elements.
+* Enhancement: Improve the tabindex_modified check to handle every element with tabindex.
+* Enhancement: Improve the link_blank rule to check on fully rendered pages.
+* Enhancement: Improve the link_ambiguous_text rule to check on fully rendered pages.
+* Enhancement: Improve the broken_skip_anchor_link rule to check on fully rendered pages.
+* Enhancement: Improve the html lang and dir attribute check to on check fully rendered pages.
+* Enhancement: Improve the document title check to check on fully rendered pages.
+* Enhancement: Add a clear button to the editor to allow for .
+* Enhancement: Improved GTM iframe detection.
+* Fixed: Avoid showing 100% passed results when scans are not complete.
+* Fixed: Improve or add better aria-labels in several places.
+* Fixed: Don't flag empty paragraphs if they have aria-hidden.
+
+= 1.15.3 =
+* Enhancement: Detect missing labels on more elements.
+* Enhancement: Detect slick slider that gets initialized after the page loads.
+
+= 1.15.2 =
+* Fixed: Issue where CPT results would not be reflected in dashboard widgets and reports
+
+= 1.15.1 =
+* Fixed: Issue where a modal could result in JS error preventing display
+* Fixed: Situations where Gutenberg created new posts may not trigger the JS scan when publishing
+
+= 1.15.0 =
+* Added: WP-CLI commands to get stats and delete stats
+* Enhancement: Image inputs with alt text shouldn't flag for missing_form_label
+* Fixed: Don't flag .avif as missing transcript or video present
+* Fixed: Purge the post data if the saved post is in or is moving to the trash
+* Fixed: Handle stacking contexts for callout button in admin correctly
+* Fixed: PHP 8.4 deprecation notice fix for implicitly nullable Meta_Boxes
+
+= 1.14.3 =
+* Fixed: Allow empty_link rule to detect actually empty links
+
+= 1.14.2 =
+* Enhancement: Reduce false positives for underlined text check
+* Fixed: Frontend highlighter could not be moved to the right side of the window on mobile
+* Fixed: Issue where ignores were not being saved and failing silently
+
+= 1.14.1 =
+* Fixed: Prevent settings page layout issue
+
+= 1.14.0 =
+* Added: Option to move front-end highlighter to opposite side of the window
+* Fixed: Prevent image from overspilling container in issue view
+* Fixed: Make empty paragraph check more accurate
+* Enhancement: Improved styling for settings page
+* Enhancement: Updated summary widget with better semantics
+* Enhancement: Improved aria labeling for view on page links
+* Enhancement: Added large batch processing capabilities for issue ignoring
+
+= 1.13.1 =
+* Enhancement: Make the new window warning detection less rigid
+* Fixed: Avoid flagging possible headings when the entire text is not wrapped
+* Fixed: Allow JS checked rules to retain ignored state between scans
+
+= 1.13.0 =
+* Added: Meta Viewport zoom-able and scale-able check
+* Added: Empty Paragraph warning
+* Fixed: Properly determine possible headings with computed styles
+* Improved: Better detection of the underlined text
+* Improved: Better detection of small text
+* Improved: Better detection of justified text
+* Improved: Better detection of blink and marquee tags
+* Improved: No longer flagging GTM iframes as missing title since they are display: none and visibility: hidden
+* Enhancement: Do not show 'View on page' link to frontend when the issues cannot be viewed
+
+= 1.12.0 =
+* Fixed: Use the last generation time in summary widgets rather than last completed scan time
+* Improved: More accessible panels in the editor
+* Improved: Filter and action docs added/improved
+
+= 1.11.2
+* Fixed: Avoid displaying `0th` for readability score
+* Removed: Some custom WP Playground detection code
+
+= 1.11.1 =
+* Fixed: type Casting on several rules
+* Fixed: strict data comparison on several rules
+* Updated: empty heading tag rule to consider aria-label
+
+= 1.11.0 =
+* Updated: Tested up to WP 6.5.2
+* Improved: Better detection of the underlined text rule for more accurate results
+* Improved: PHP 8.2 compatibility with the TextStatistics library
+* Added: Opt-in modal for users to subscribe to the Equalize Digital newsletter with less steps
+
+= 1.10.2 =
+* Updated: Tested up to WP 6.5.0
+
+= 1.10.1 =
+* Fixed: Prevent scheme-relative URLs from causing an error when scanning for animated gif of webp files
+* Fixed: Potential edge case where an issue density calculation could cause a PHP warning and cause a failed scan
+* Fixed: Ensure that missing form labels are reported in the scan results appropriately
+* Fixed: Avoid error log when trashing posts in the block editor
+* Created: Class to handle the editor meta box for scan results
+* Deprecated: `edac_register_meta_boxes`, `edac_custom_meta_box_cb` functions
+
+= 1.10.0 =
+* Updated: Improved aria-hidden scanning rule
+* Fixed: Prevent missing_transcript rule from flagging on certain links
+* Fixed: Prevent duplicate scan and ensure cleanup runs when post is trashed from the block editor
+* Fixed: Fix case where error may be thrown resulting in password protection message and logged error when creating new posts
+* Updated: Use local styles for notyf in frontend highlighter
+* Created: Class to insert scan result rules to the database
+* Deprecated: `edac_insert_rule_data` function
+* Created: Class to handle data purging and cleanup
+* Deprecated: `edac_delete_post`, `edac_delete_post_meta`, `edac_delete_cpt_posts` functions
+
+= 1.9.3 =
+* Updated: capability checks for the welcome page, dashboard widget, and admin notices
+
+= 1.9.2 =
+* Fixed: filtered rules are not passed to the frontend highlighter, avoiding 'null' state issues
+* Updated: frontend highlighter buttons to be disabled until issues are confirmed
+* Updated: frontend highlighter buttons to show only after we know there are issues to display
+* Updated: frontend highlighter to not show buttons if none are returned
+
+= 1.9.1 =
+* Updated: `edac_include_rules_files to fire on init action to fix the `edac_filter_register_rules` filter timing
+
+= 1.9.0 =
+* Created: class that creates the accessibility statement on activation
+* Removed: custom database query that checked for existing accessibility statement in exchange for the `get_page_by_path()` function
+* Fixed: bug with trying to compare the simplified summary ordinal value and added fallback
+* Removed: `wp_send_json_error()` from `simplified_summary` Ajax function when the simplified summary is empty
+* Added: simplified summary grade*level, message, and icon logic to the `summary()` Ajax
+* Fixed: issue with the submit button text showing as `Submit Query` in Firefox.
+* Updated: missing transcript rule to skip certain types of links
+* Added: missing UTM parameters to the welcome page URLs.
+* Removed: legacy system information code
+* Removed: cbschuld/browser.php composer package
+* Added: class structure for site health
+* Added: site health health information for free, pro, and audit history plugins
+* Added: update database class
+* Removed: `edac_before_page_render` functions from the main file
+* Added: frontend validate class
+* Added: frontend validate unit tests
+* Removed: unused new window warning meta update functions
+* Fixed: front end highlight focus issue
+* Added: summary generator class to replace the `edac_summary()` function
+* Deprecated: `edac_summary()` function
+
+= 1.8.1 =
+* Fixed: false positives on the incorrect heading order rule
+* Added: fallback to determine ordinal when php intl extension is not installed
+
+= 1.8.0 =
+* Updated: heading order on welcome screen
+* Updated: missing_title summary
+* Updated: SQL prepare queries to use %i placeholder
+* Updated: incorrect textdomains and made strings translatible
+* Removed: single-use variables where possible
+* Added: PHPUnit framework and workflow
+* Added: unit test for the `edac_compare_strings` function
+* Added: unit test for the `edac_parse_css` function
+* Updated: the `edac_compare_strings` function to be more efficient, return the correct type, and fix the failing tests
+* Updated: `readme.txt` to only have the latest major and minor changelog
+* Added: `changelog.txt` file.
+* Added: `includes/rules.php` file that contains all rules and returns them as an array
+* Added a static var in the `edac_register_rules` function to avoid re-reading the `includes/rules.php` file every time the method is called
+* Removed: `has_filter` check before calling `apply_filters`
+* Added: `edac_register_rules` unit test
+* Added: `edac_check_plugin_active` deprecated function
+* Updated: `edac_check_plugin_active` calls with `is_plugin_active`
+* Removed: calls to `add_option` and replaced with `update_option`
+* Updated: Use of `else` statement and bailed early when needed
+* Removed: `has_filter()` before applying apply_filters
+* Removed: hooks from `EDAC\Admin_Notices` constructor and call them from the `init_hooks` method
+* Added: `EDAC\Admin_Notices` unit tests
+* Added: `EDAC\Ajax` class and moved AJAX functions into this class
+* Removed: unnecessary `wp_ajax_nopriv_` hooks
+* Added: namespace to `Frontend_Highlight` class and only instantiated on `DOING_AJAX`
+* Removed: `EDAC_SVG_IGNORE_ICON` string and pulled it from the file
+* Removed: `$plugin_check` global variable
+* Removed: `$rules` global variable
+* Updated: `edac_ordinal` function to support all locales, safeguards against improper inputs, number format
+* Updated: JavaScript coding standards
+* Added: `includes/classes` directory to autoloader
+* Added: new directory admin to autoloader
+* Removed: `require_once` class calls
+* Created: `class-plugin.php` to load frontend classes
+* Created: `class-admin.php` to load admin classes
+* Updated: classes to follow new `EDAC\Admin` and `EDAC\Inc` namespaces
+* Updated: accessibility statement functions to a class
+* Updated: simplified summary functions to a class
+* Updated: lazyload Filter function into a class
+* Removed: removes calls to `add_post_meta` and uses `update_post_meta` where appropriate
+* Added: `EDAC\Inc\Accessibility_Statement` unit test
+* Added: `EDAC\Inc\Simplified_Summary` unit test
+* Added: local PHPUnit to run on wp-env test
+* Updated: enqueue scripts and styles setup to only load assets in the proper environments
+* Updated: email signup form
+
+= 1.7.1 =
+* Fixed: classic editor save conflict
+* Fixed: password protection message displaying repeatedly
+* Fixed: frontend highlighting asset url and debug error
+
+= 1.7.0 =
+* Added: Architecture for JavaScript-based checks for better code analysis
+* Updated: Color contrast check now uses axe-core rule for improved accuracy
+* Fixed: Issue with frontend highlighting panel blocking interactions
+* Fixed: Compatibility issue with PHP 8+ related to 'false' to array conversion
+* Removed: PHP color contrast check replaced with axe-core rule
+* Fixed: Conflict with RSS feeds
+
+= 1.6.8 =
+* Updated: system info to stop showing edac_authorization_username & edac_authorization_username
+* Updated: system info to show edacp_authorization_username & edacp_authorization_username for pro users
+
+= 1.6.7 =
+* Updated: logic for Link to MS Office file
+* Updated: last full-site scan label and date format
+
+= 1.6.6 =
+* Added: ability to force refresh welcome screen report
+
+= 1.6.5 =
+* Fixed: function edac_password_protected_notice_text to call from the admin notices class
+
+= 1.6.4 =
+* Fixed: password protected admin noticed function call
+
+= 1.6.3 =
+* Added: email opt-in to welcome page
+* Added: support for formatting numbers and percentages in PHP installs that were build without the intl library
+* Added: the see history button for audit history add-on
+* Updated: admin notices to load from a custom class
+
+= 1.6.2 =
+* Added: check for WordPress Playground
+
+= 1.6.1 =
+* Updated: passed percentage calculation
+* Updated: frontend highlighting disable styles to be compatible with optimization plugins
+* Fixed: average issue density percentage not accounting for site ID and ignores
+* Updated: body density to receive HTML rather than the dom object
+* Updated: empty link check logic
+* Added: minor coding standards improvements
+
+= 1.6.0 =
+* Added: dashboard reports widget
+* Added: frontend highlighting page scan trigger
+* Added: enhancements to the Low-quality Alternative Text check
+* Fixed: adherence to coding standards
+* Fixed: frontend highlighting responsiveness on mobile
+* Fixed: frontend highlighting's broken ARIA reference
+* Fixed: Issue Density bug when creating a new post
+* Fixed: a bug on the reports dashboard widget and welcome page when no post types are selected in the settings
+* Fixed: settings page tab order bug
+* Updated: scanning process to exclude the admin bar and the query monitor
+* Updated: improvements to the Ambiguous Anchor check
+* Updated: the Browser.php class has been restructured to load via Composer
+* Updated: the TextStatistics class is now loaded through Composer
+* Updated: text domain and internationalization on user-facing strings
+* Updated: reports dashboard widget and welcome page now have improved refresh and caching
+* Updated: the date format on the reports dashboard widget and the welcome page now respects the site's timezone setting
+* Updated: Improved performance during the purge of issues after changing the "post types to scan" setting
+* Removed: CSS output when a user is logged out
+
+= 1.5.6 =
+Fixed: reading level ajax timing issue
+
+= 1.5.5 =
+Fixed: frontend highlighting description panel close button JavaScript error
+Fixed: frontend highlighting no issues detected JavaScript error
+Fixed: frontend highlighting panel close button bug
+
+= 1.5.4 =
+Updated: welcome page data caching for better performance
+Removed: dashboard reports widget
+
+= 1.5.3 =
+Updated: prevent enqueue scripts from running if global post is not defined
+
+= 1.5.2 =
+Fixed: missing class
+Removed: Freemius
+
+= 1.5.1 =
+Updated: button screen reader text
+
+= 1.5.0 =
+Added: site wide summary
+Added: accessibility checker dashboard widget
+Updated: welcome page
+Updated: frontend highlighting accessibility
+
+= 1.4.4 =
+Removed: unused class
+
+= 1.4.3 =
+Updated: frontend highlighting to allow ignored items accessed via the view on page button
+Updated: frontend highlighting panel logic to match selected post types in the settings
+Updated: frontend highlighting button size and placement improvements
+Updated: frontend highlighting number of issues output
+Updated: frontend highlighting scroll-to improvements
+Fixed: Freemius icon output
+Updated: demo video
+
+= 1.4.2 =
+Added: frontend highlighting loading message
+Removed: frontend highlighting ignored issues
+Removed: frontend highlighting from customizer
+Fixed: frontend highlighting link styles
+Updated: frontend highlighting to allow elements that violate multiple rules
+Fixed: frontend highlighting elements not highlighting after closing the controls panel
+Fixed: frontend highlighting not finding images due to extra whitespace
+Updated: ambiguous text check to ignore svgs and icons
+Updated: animated gif check include animated webP images
+Updated: animated gif check to disregard URL parameters
+Fixed: undefined array key "query"
+Fixed: Reading level icon logic
+
+= 1.4.1 =
+Updated: Freemius SDK to the latest version
+
+= 1.4.0 =
+Added: frontend issue highlighting
+Updated: simple html dom to use strict on seek call to fix issue with too much recursion with complicated CSS
+Added: description and warning for Post Types to be Checked
+
+= 1.3.28 =
+Fixed: enqueue error on empty post types
+
+= 1.3.27 =
+Fixed: uninstall delete data
+
+= 1.3.26 =
+Fixed: database creation bug
+Fixed: simplified summary output
+
+= 1.3.25 =
+Fixed: video is present duplicating issues
+Updated: Missing subheadings word count
+Updated: prompt for simplified summary aded never option
+Fixed: minor coding standards
+Updated: Freemius SDK to version 2.5.8
+
+= 1.3.24 =
+Added: user_agent to file_get_html context
+Added: follow_location to file_get_html context to prevent scanning of offsite links
+Added: querystring check to file_get_html url to prevent malformed urls when the cache breaker string is appended
+Updated: get CSS via wp_remote_get
+
+= 1.3.23 =
+Added: GAAD Admin Notice
+
+= 1.3.22 =
+Fixed: conflict with full site editor
+Fixed: bug with the Image Empty Alternative Text check not detecting images
+Fixed: bug with ignore button not working on the open issues and the ignore log
+
+= 1.3.21 =
+Fixed: issue of reading level & simplified summary mismatching
+Updated: password protected admin notice to be dismissable
+Updated: position of password protected notice on single post
+Fixed: issue with summary panel not showing if password protected
+
+= 1.3.20 =
+Updated: freemius to the latest version
+
+= 1.3.19 =
+Updated: color contrast failure check
+
+= 1.3.18 =
+Updated: system info custom post type output
+
+= 1.3.17 =
+Fixed: license constant conflict
+
+= 1.3.16 =
+Fixed: issue with ignored issues being removed on post save
+Fixed: issue with escaped html displaying on simplified summary
+Fixed: Ignored items label
+
+= 1.3.15 =
+Remove: license tab
+Updated: license checks
+
+= 1.3.14 =
+Added: security fixes
+
+= 1.3.13 =
+Fixed: nonce plugin update conflict
+
+= 1.3.12 =
+Added: added security check to system info download
+
+= 1.3.11 =
+Updated: quick edit save to check if _inline_edit array key is set
+
+= 1.3.10 =
+Added: image column to details panel to display issue image
+Updated: details rule name to an H3 and added hidden h4 for each issue
+Added: aria-label to details expand button
+Added: space between number and error name in error details list
+Added: aria-expanded and aria-controls to buttons on details panel
+
+= 1.3.9 =
+Added: filter edac_no_verify_ssl to bypass SSL validation. Use: add_filter( 'edac_no_verify_ssl', '__return_true' );
+Fixed: undefined variable error color contrast failure check
+
+= 1.3.8 =
+Updated: database index on postid for better performance
+
+= 1.3.7 =
+Fixed: issue when restricted websites fail to generate post meta
+
+= 1.3.6 =
+Fixed: password protection notice logic
+
+= 1.3.5 =
+Fixed: marketing notice logic
+
+= 1.3.4 =
+* Updated: ARIA Hidden check to ignore for core spacer block
+* Updated: Ambiguous Anchor Text check to disregard spaces and punctuation
+* Updated: Footer statement link with 'opens in new window' aria-label
+* Updated: Link Opens New Window or Tab check to search for contained phrases rather than equal to phrases
+* Added: Support for role attribute to Missing Subheadings and Incorrect Heading Order checks
+* Added: Improper Use of Link check
+* Updated: Broken Skip or Anchor Link check to exclude error now flagged by the Improper Use of Link check
+* Added: Password protection notices
+
+= 1.3.3 =
+* Fixed: force color contrast font size value
+
+= 1.3.2 =
+* Fixed: minor bug in replace css variables function
+
+= 1.3.1 =
+* Fixed: compiled JavaScript to latest version
+
+= 1.3.0 =
+* Removed: Admin Notices from plugin settings pages
+* Updated: Location of ignore count and made less ambiguous on the details tab
+* Fixed: Code snippet wrapping
+* Updated: Database check to ensure tables exist
+* Added: Rule summary text to rules array
+
+= 1.2.14 =
+* Show Open Issues and Ignore Log admin pages to users with ignore permissions bug fix
+
+= 1.2.13 =
+* Show Open Issues and Ignore Log admin pages to users with ignore permissions
+* Fix bug when post types setting was blank
+
+= 1.2.12 =
+* Updates to system info
+
+= 1.2.11 =
+* Fix conflict with widgets block editor
+* Fix post types setting bug
+
+= 1.2.10 =
+* Fix issue with unmatched reading levels
+
+= 1.2.9 =
+* Add support for PHP 8
+* Make helper icons links less ambiguous
+
+= 1.2.8 =
+* Freemius Update
+
+= 1.2.7 =
+* Add accessibility statement page template
+
+= 1.2.6 =
+* Minor accessibility updates
+
+= 1.2.5 =
+* System info updates
+
+= 1.2.4 =
+* Add Oxygen Builder shortcode content to readability scan
+
+= 1.2.3 =
+* On save check post types to prevent menu save error
+
+= 1.2.2 =
+* Add support for Accessibility New Window Warning Plugin
+* Delete issues and meta data when post is added to trash
+* Color Contrast and Possible Heading minor bug fixes
+* Fixed post type purge bug when saving settings
+* Review notification
+
+= 1.2.1 =
+* Fixed database version that was preventing the database from being created on activation
+
+= 1.2.0 =
+* Improved ambiguous text check to include aria-label and aria-labelledby
+* Color contrast adjust ratio based on font size
+* Ajax security improvements
+* Basic CSS veriable support
+* Fast Track
+* Added support for Oxygen Builder
+
+= 1.1.3 =
+* Code object word break
+
+= 1.1.2 =
+* Improve legacy PHP compatibility
+
+= 1.1.1 =
+* Added filter for readability score content
+
+= 1.1.0 =
+* System info output added to settings
+
+= 1.0.13 =
+* Prevent page refresh when using classic editor
+
+= 1.0.12 =
+* Improved accuracy of skipped heading level
+
+= 1.0.11 =
+* Added informative error code to text justified and check within CSS
+* Update missing language attribute to only check the first html tag
+
+= 1.0.10 =
+* Text underlined, text small improvements
+* Updated deprecated jQuery
+
+= 1.0.9 =
+* Updates to missing title check
+
+= 1.0.8 =
+* Added support for fullsite scan
+* Added actions for log
+
+= 1.0.7 =
+* Ensure checks are not run if content not retrieved
+* Minor text fixes
+
+= 1.0.6 =
+* Check full page for issues
+* Check draft posts
+* Remove color contrast from error count
+* Update missing heading and heading order checks
+
+= 1.0.5 =
+* On post validate check that the post is published.
+
+= 1.0.4 =
+* Update policy page sanitize logic to allow for undefined value
+
+= 1.0.3 =
+* Minor bug fixes to activation redirect and quick edit post updating
+* Image map missing alternative text error if only a space is present
+
+= 1.0.2 =
+* use uninstall.php instead of register_uninstall_hook
+* add option to delete all data on uninstall
+
+= 1.0.1 =
+* update requires version
+* fix tooltip links
+* add filter to get_content function
+* update post empty logic
+
+= 1.0.0 =
+* Everything is new and shiny.
+* We think it's awesome you want to make your website more accessible.
+* Check for giphy and tenor animated gifs
