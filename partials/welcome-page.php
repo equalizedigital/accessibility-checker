@@ -205,6 +205,7 @@ use EDAC\Admin\Welcome_Page;
 					<li><?php esc_html_e( 'User restrictions on ignoring issues', 'accessibility-checker' ); ?></li>
 					<li><?php esc_html_e( 'Email support', 'accessibility-checker' ); ?></li>
 					<li><?php esc_html_e( '...and more', 'accessibility-checker' ); ?></li>
+					<li><?php esc_html_e( 'TEST TEST TEST', 'accessibility-checker' ); ?></li>
 				</ul>
 			</div>
 			<div class="edac-pro-callout-button--wrapper">
