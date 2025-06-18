@@ -98,7 +98,7 @@ jobs:
         run: |
           cd wordpress/wp-content/plugins/accessibility-checker
           ls -luh
-          wp i18n make-json ./languages/accessibility-checker.pot --no-purge --pretty-print --allow-root
+          wp i18n make-json ./languages ./languages --no-purge --pretty-print --allow-root
 
       - name: List files after JSON generation
         run: ls -luh wordpress/wp-content/plugins/accessibility-checker/languages
