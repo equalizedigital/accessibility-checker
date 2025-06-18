@@ -124,10 +124,11 @@ jobs:
       - name: Commit updated translation files
         if: steps.pot_diff.outputs.pot_changed == 'true'
         run: |
-          git add wordpress/wp-content/plugins/accessibility-checker/languages/*.pot || true
-          git add wordpress/wp-content/plugins/accessibility-checker/languages/*.json || true
+          rm languages -r || true
+          cp wordpress/wp-content/plugins/accessibility-checker/languages ./languages
+          git add languages
           if ! git diff --cached --quiet; then
-            git commit -m "Update translation files (POT/JSON) [skip ci]"
+            git commit -m "Update translation files (POT/JSON)"
           fi
         continue-on-error: true
 
@@ -141,3 +142,4 @@ jobs:
           branch: update-translations/${{ github.head_ref || github.ref_name }}
           base: ${{ github.head_ref || github.ref_name }}
           delete-branch: true
+
