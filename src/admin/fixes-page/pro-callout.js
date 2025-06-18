@@ -15,6 +15,7 @@ export const inlineFixesProUpsell = () => {
 		upsellLink.textContent = __( 'Get Pro' );
 		upsellLink.classList.add( 'edac-fix--upsell-link' );
 		upsellLink.setAttribute( 'aria-label', __( 'Get Pro to unlock this feature, opens in a new window.', 'accessibility-checker' ) );
+		upsellLink.setAttribute( 'data-test', __( 'TEST TEST TEST', 'accessibility-checker' ) );
 
 		const tableHead = element.closest( 'tr' )?.querySelector( 'th' );
 		if ( ! tableHead ) {
