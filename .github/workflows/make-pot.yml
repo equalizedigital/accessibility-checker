@@ -97,7 +97,8 @@ jobs:
       - name: Generate JSON files
         run: |
           cd wordpress/wp-content/plugins/accessibility-checker
-          wp i18n make-json ./languages --no-purge --pretty-print --allow-root
+          ls -luh
+          wp i18n make-json ./languages/accessibility-checker.pot --no-purge --pretty-print --allow-root
 
       - name: List files after JSON generation
         run: ls -luh wordpress/wp-content/plugins/accessibility-checker/languages
