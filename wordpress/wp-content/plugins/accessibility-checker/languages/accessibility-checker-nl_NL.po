@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "Toegankelijkheidscontrole"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "Controleer en audit de toegankelijkheid van je website voordat je publiceert. In-post toegankelijkheidsscan en begeleiding."
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "Verbeteringen"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "Algemene verbeteringen"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "Deze verbeteringen helpen de toegankelijkheid te verbeteren door HTML-elementen en gedragingen op je site aan te passen."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "Upgrade naar Pro om deze functie te ontgrendelen, opent in een nieuw venster."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "Ga voor pro"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "Opent in een nieuw venster."
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "Lees documentatie voor %s. Opent in een nieuw venster."
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "Onze toewijding aan webtoegang"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[YOUR COMPANY NAME] zet zich in voor het bieden van een volledig toegankelijke website-ervaring voor alle gebruikers, ongeacht hun vaardigheden, inclusief degenen die vertrouwen op ondersteunende technologieën zoals schermlezers, schermvergrotingssoftware en alternatieve toetsenbordinvoerapparaten om het web te navigeren."
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "Voortdurende inspanningen om toegankelijkheid te waarborgen"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "We volgen de <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) versie 2.1</a> als ons leidende principe voor het bepalen van toegankelijkheid. Dit zijn internationaal overeengekomen standaarden die een breed scala aan aanbevelingen en beste praktijken omvatten om content bruikbaar te maken. Terwijl we nieuwe pagina's en functionaliteit aan onze website toevoegen, worden alle ontwerpen, code en content-invoerpraktijken getoetst aan deze standaarden."
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Website-toegankelijkheid is een doorlopend proces. We testen voortdurend content en functies op WCAG 2.1 Niveau AA-naleving en verhelpen eventuele problemen om ervoor te zorgen dat we aan de standaarden voldoen of deze overtreffen. Het testen van onze website wordt uitgevoerd door onze teamleden met behulp van industriestandaard tools zoals de <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, kleurcontrastanalysators, toetsenbord-alleen navigatietechnieken en Flesch-Kincaid leesbaarheidstest."
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "Toegankelijkheidsfuncties op onze website"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "Hieronder volgt een lijst van items die we op onze website hebben opgenomen om de toegankelijkheid te verbeteren:"
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[LIJST VAN TOEGANKELIJKHEIDSFUNCTIES HIER]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "Waar we verbeteren"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "In onze inspanningen om onze website aan de standaard te laten voldoen, richten we ons op de volgende gebieden:"
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[LIJST VAN ITEMS WAAR U AAN WERKT HIER]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[HET KAN HELPEN OM HET TABBLAD MET OPEN PROBLEMEN TE BEKIJKEN OM DE MEEST VOORKOMENDE PROBLEMEN TE ZIEN]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "Dit maakt deel uit van onze bredere inspanning om ieders ervaring bij [NAAM BEDRIJF] gastvrij en plezierig te maken. Hoewel we er alles aan doen om informatie aan te bieden die toegankelijk is voor alle gebruikers, kunnen we de toegankelijkheid van websites van derden waarnaar we kunnen linken niet garanderen."
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "Contact voor toegankelijkheidsondersteuning"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "We verwelkomen opmerkingen, vragen en feedback over onze website. Als u ondersteunende technologieën gebruikt en moeite heeft met het gebruik van onze website, stuur dan een e-mail naar [UW E-MAILADRES VOOR TOEGANKELIJKHEID] of bel ons op [UW TELEFOONNUMMER]. We zullen ons best doen om u te helpen en problemen op te lossen."
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "We hebben de statistische berekeningen verbeterd in versie 1.21.0. Als gevolg hiervan kunnen sommige getallen in de onderstaande gegevens zijn veranderd. Lees meer in ons %1$srelease-aankondigingsbericht%2$s."
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "Toegang geweigerd"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "Update-optie was niet succesvol"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Black Friday-aanbieding! 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Upgrade naar een betaalde versie van Accessibility Checker van 25 november tot 3 december en krijg 30% korting! Volledige site-scanning, site-brede open problemen rapport, negeerlogboeken en meer."
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "Stel een pre-sales vraag"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "Nu upgraden"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 Krijg 25% korting op Accessibility Checker Pro ter ere van Global Accessibility Awareness Day! 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "Gebruik kortingscode GAAD25 van 13 mei tot 21 mei om toegang te krijgen tot volledige site-scanning en andere pro-functies met een speciale korting. Weet je niet zeker of upgraden iets voor jou is?"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "Hallo! Bedankt voor het gebruik van Accessibility Checker als onderdeel van je toegankelijkheidstoolkit. Aangezien je het al een tijdje gebruikt, zou je alsjeblieft een 5-sterren recensie van Accessibility Checker willen schrijven in de WordPress-plugindirectory? Dit zal onze zichtbaarheid vergroten, zodat meer mensen kunnen leren over het belang van webtoegang. Hartelijk bedankt!"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "Schrijf een recensie"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "Herinner me over twee weken"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "Vraag nooit meer"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "De recensie-actiewaarde was niet ingesteld"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "Oeps! Het lijkt erop dat uw website momenteel met een wachtwoord is beveiligd. De gratis versie van Accessibility Checker kan alleen live websites scannen. Om deze website te scannen op toegankelijkheidsproblemen, verwijder de wachtwoordbeveiliging of %s. Scanresultaten kunnen zijn opgeslagen van een eerdere scan."
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "Upgrade naar Accessibility Checker Pro. Opent in een nieuw venster."
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "upgrade naar pro"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "De post-ID was niet ingesteld"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "Er is geen vereenvoudigde samenvatting opgenomen voor deze inhoud."
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "Uw inhoud heeft een leesniveau van 9e klas of lager en vereist geen vereenvoudigde samenvatting."
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "Het leesniveau van de vereenvoudigde samenvatting is te hoog."
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "Er is een vereenvoudigde samenvatting opgenomen voor deze inhoud."
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s Fout"
+msgstr[1] "%s Fouten"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s Contrastfout"
+msgstr[1] "%s Contrastfouten"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s Waarschuwing"
+msgstr[1] "%s Waarschuwingen"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s Genegeerd item"
+msgstr[1] "%s Genegeerde items"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "Geen samenvatting om terug te geven"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "Ongeldige tabelnaam"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "Deze instellingen activeren globale oplossingen voor uw hele website."
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Pagina's moeten mogelijk opnieuw worden opgeslagen of er moet een volledige websitescan worden uitgevoerd om de oplossingen in de rapporten te zien."
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "Opslaan"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "Getroffen code"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "Bekijk probleem-ID %d op de website, opent een nieuw venster"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "Bekijk op pagina"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "Oplossing: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "Oplossen"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "Uw gebruikersaccount heeft geen toestemming om dit probleem te negeren."
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "Geen details om terug te geven"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "Geen leesbaarheidsgegevens om terug te geven"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "Geen negeergegevens om terug te geven"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "De samenvatting was niet ingesteld"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "De id-waarde was niet ingesteld"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "Probleemzoekopdracht leverde geen resultaten op"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "Objectzoekopdracht leverde geen resultaten op"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "Meest recente testsamenvatting"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "Tellingen bijwerken"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "Nieuwe scan starten"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "Bekijk alle openstaande problemen"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "Bekijk geschiedenis"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "Geslaagde tests"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "Unieke fout"
+msgstr[1] "Unieke fouten"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "Unieke kleurcontrastfout"
+msgstr[1] "Unieke kleurcontrastfouten"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "Unieke waarschuwing"
+msgstr[1] "Unieke waarschuwingen"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "Genegeerd item"
+msgstr[1] "Genegeerde items"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "Gemiddeld aantal problemen per pagina"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "Gemiddelde probleemdichtheid"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "Rapport laatst bijgewerkt:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "Nooit"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "Gescande URL's"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s van %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "Gecontroleerde berichttypen"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "URL's met 100% score"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "Deze samenvatting wordt automatisch elke 24 uur bijgewerkt, of wanneer een volledige websitescan is voltooid. U kunt deze resultaten ook handmatig bijwerken door op de knop Tellingen bijwerken te klikken."
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "Uw website heeft een groot aantal problemen. Om redenen van prestaties zijn niet alle problemen in deze samenvatting opgenomen."
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "Websitebrede toegankelijkheidsrapporten"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "Banner verbergen"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "Ontgrendel gedetailleerde toegankelijkheidsrapporten"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "Begin met het scannen van uw hele website op toegankelijkheidsproblemen, ontvang volledige websiterapporten en word sneller compliant met toegankelijkheidsrichtlijnen."
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "Upgrade Accessibility Checker"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "advertentie sluiten"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "Ontvang gedetailleerde toegankelijkheidsrapporten"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "Volledige websitetoegankelijkheidsstatus"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "Gescande URL's:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "Fouten:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "Kleurcontrastfouten:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "Waarschuwingen:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "Uw website heeft toegankelijkheidsproblemen die zo snel mogelijk moeten worden aangepakt om te voldoen aan de toegankelijkheidsrichtlijnen."
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "Goed gedaan! Accessibility Checker kan geen toegankelijkheidsproblemen vinden in de geteste inhoud. Sommige problemen kunnen niet door geautomatiseerde tools worden gevonden, dus vergeet niet om"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "uw website handmatig te testen"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "Problemen per berichttype"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "Berichttype"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "Fouten"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "Contrast"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "Waarschuwingen"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "Upgrade om te scannen"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "Bekijk meer rapporten"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "Leer over toegankelijkheid"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "Aanvullende bronnen"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "Blog (opent in een nieuw venster)"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "Blog"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "Documentatie (opent in een nieuw venster)"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "Documentatie"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "Toegankelijkheidsevenementen & nieuws in uw inbox"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "Abonneer u op de e-maillijst van Equalize Digital om toegang te krijgen tot gratis toegankelijkheidswebinars en trainingsmiddelen."
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "E-mail*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "Vul uw e-mailadres in"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "Voornaam"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "Vul uw voornaam in"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Accessibility Checker &mdash; auditgeschiedenis"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Accessibility Checker &mdash; gratis"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "Versie"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "Databaseversie"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "Beleidspagina"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "Niet ingesteld"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "Activeringsdatum"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "Voettekstverklaring"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "Gegevens verwijderen"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "Verklaringslink opnemen"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "Berichttypen"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "Positie vereenvoudigde samenvatting"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "Prompt vereenvoudigde samenvatting"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "Aantal berichten"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "Aantal fouten"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "Aantal waarschuwingen"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "Aantal DB-tabellen"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Accessibility Checker &mdash; pro"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "Licentiestatus"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "Autorisatie gebruikersnaam"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "Autorisatie wachtwoord"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "Scan-ID"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "Scantotaal"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "Kop vereenvoudigde samenvatting"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "Negeerrechten"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "Geen"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "Aantal genegeerde DB-tabellen"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "%1$s gebruikt %2$s om de toegankelijkheid van onze website te monitoren."
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "Toegankelijkheidscontrole (opent in een nieuw venster)"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "Lees ons %s"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "Toegankelijkheidsbeleid"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "Vereenvoudigde samenvatting"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "Grootte en type toevoegen aan bestandslinks"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "Context toevoegen aan gelinkte bestanden"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "Bestandsgrootte en -type toevoegen aan links"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "Voeg de bestandsgrootte en het type toe aan gelinkte bestanden die mogelijk een download starten."
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "Labels toevoegen aan ongelabelde formuliervelden"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "Formuliervelden labelen"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "Voeg labels toe aan ongelabelde formuliervelden als het doel van het veld kan worden bepaald."
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "Probeer labels toe te voegen aan formuliervelden die ze missen. Opmerking: Mogelijk moet u aangepaste stijlen toevoegen die gericht zijn op de %1$s-klasse als het toevoegen van labels uw formulierlay-outs beïnvloedt."
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "Ontbrekende of lege paginatitels toevoegen"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "HTML-paginatitels instellen"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "Ontbrekende paginatitel toevoegen"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "Voeg een %1$s-tag toe aan de pagina als deze ontbreekt of leeg is."
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "Waarschuwing toevoegen wanneer link een nieuw tabblad/venster opent"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "Label toevoegen aan links die een nieuw tabblad/venster openen"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "Voeg een label en pictogram toe aan links met %1$s om gebruikers te informeren dat ze een nieuw tabblad/venster zullen openen. %2$sOpmerking: Deze instelling heeft geen effect als de “Links blokkeren die nieuwe vensters openen”-fix is ingeschakeld.%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "PDF-uploads blokkeren"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "Beperk PDF-uploads voor gebruikers zonder de %1$s-mogelijkheid (standaard toegestaan voor beheerders)."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "Labels toevoegen aan reactie- en zoekformulieren"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "Reactie-/zoekvelden labelen"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "Labels voor reactie- en zoekformulieren"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "Voeg ontbrekende labels toe aan WordPress-reactie- en zoekformulieren."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "Reactieformulier labelen"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "Voeg ontbrekende labels toe aan het WordPress-reactieformulier."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "Zoekformulier labelen"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "Voeg een ontbrekend label toe aan het WordPress-zoekformulier."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "Reactie"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "Naam"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "E-mail"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "Website"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "Zoeken …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "Zoeken naar:"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "Zoeken"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "Instellingen om ontbrekende labels toe te voegen aan WordPress reactie- en zoekformulieren."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "Focusomlijning toevoegen"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "Focusomlijning"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "Voeg een omlijning toe aan elementen wanneer ze toetsenbordfocus krijgen."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "Focusomlijning toevoegen"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "Instellingen met betrekking tot het verbeteren van focusomlijningen voor betere toetsenbordtoegankelijkheid."
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "Lang & dir attributen toevoegen"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "Paginataal instellen"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "“lang” & “dir” attributen toevoegen"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "Voeg de site-taal (%1$s) en tekstrichting (%2$s) attributen toe aan het %3$s element."
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "Onderstreping toevoegen aan alle niet-navigatie links"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "Links onderstrepen"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "Link-onderstreping forceren"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "Zorg ervoor dat niet-navigatie links onderstreept zijn."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "Meta viewport tag schaalbaar maken"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "Zorg voor schaalbare viewport"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "Zorg ervoor dat de viewport tag op de pagina schalen toestaat."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "Viewport schaalbaar maken"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "Zorg ervoor dat de viewport tag schalen toestaat, wat de toegankelijkheid op mobiele apparaten verbetert."
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "Voorkomen dat links nieuwe vensters openen"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "Blokkeer links die nieuwe vensters openen"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "Voorkom dat links in een nieuw venster of tabblad openen door %1$s te verwijderen."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "“Lees” link met berichttitel toevoegen"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "Titel toevoegen aan lees meer link"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "Lees meer links"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "Berichttitel en links toevoegen "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "Berichttitel toevoegen aan “Lees meer”"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "Voeg de berichttitel toe aan “Lees meer” links in berichtlijsten wanneer je thema deze links weergeeft."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "Alleen voor schermlezers"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "Maakt de berichttitel toegevoegd aan “Lees meer” links alleen zichtbaar voor schermlezers."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "Deze fix voegt de berichttitel toe aan de “Lees meer” links in berichtlijsten bij het “Meer” blok en in samenvattingen."
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "Geef voorkeur aan toegankelijk label attribuut"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "Verwijder onnodige title attributen"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "Title attributen verwijderen"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "Verwijder %1$s attributen van elementen die al een voorkeurs toegankelijke naam hebben."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "Skip links toevoegen"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "Skip link"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "Skip link inschakelen"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "Voeg een skip link toe aan alle sitepagina's, waarmee gebruikers direct naar de hoofdinhoud kunnen springen."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "Doel hoofdinhoud (verplicht)"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "Definieer de ID('s) van het hoofdinhoudsgebied(en) waarop skip links zich moeten richten. Voer meerdere ID's in, gescheiden door komma's; het systeem zal door de lijst heen gaan om de juiste voor elke pagina te vinden."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "Navigatiedoel"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "Stel het ID-attribuut in van het navigatie-element. Dit is handig als je hoofdnavigatie acties bevat die de meeste sitebezoekers willen uitvoeren, zoals inloggen of zoekfuncties."
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "Als je thema nog geen skip link toevoegt die toetsenbordgebruikers in staat stelt de navigatie over te slaan en snel naar de hoofdinhoud te springen, schakel dan hier skip links in. %1$sLees meer over skip links.%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "Naar inhoud springen"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "Naar navigatie springen"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "Tabindex verwijderen van focusbare elementen"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "Tabindex verwijderen"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "Verwijder het %1$s attribuut van focusbare elementen."
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "Opmerking: Deze instelling wordt niet aanbevolen voor thema's die al toegankelijk zijn."
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "Fix niet gevonden"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "Kon opdracht %1$s niet registreren omdat %2$s"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "De ID van het bericht waarvan de statistieken moeten worden verwijderd."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "Geen bericht-ID opgegeven."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "Bericht-ID %1$s bestaat niet."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "Statistieken van %1$s verwijderd."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "Sleutels om in de resultaten te tonen. Standaard alle sleutels."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "Wis de cache voordat de statistieken worden opgehaald (kan intensief zijn)."
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "Statistische sleutel: %1$s niet gevonden in statistieken."
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "De ID van het bericht waarvoor statistieken moeten worden opgehaald."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "Bericht-ID %1$d bestaat niet."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "Ofwel het bericht is nog niet gescand, ofwel alle tests zijn geslaagd voor bericht-ID %1$d."
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "permalink van "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "permalink naar "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "Gratis bijwonen"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "Welkom bij toegankelijkheidscontrole"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "Instellingen toegankelijkheidscontrole"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Instellingen"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "Algemene instellingen"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "Instellingen vereenvoudigde samenvatting"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "Toegankelijkheidsverklaring in voettekst"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "Toegankelijkheidscontrole frontend"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "Te controleren berichttypen"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "Vragen om vereenvoudigde samenvatting"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "Positie vereenvoudigde samenvatting"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "Toegankelijkheidsverklaring in voettekst toevoegen"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "Link naar toegankelijkheidsbeleid opnemen"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "Pagina toegankelijkheidsbeleid"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "Voorbeeld toegankelijkheidsverklaring"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "Positie toegankelijkheidscontrole frontend"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "Gebruik onderstaande instellingen om de Toegankelijkheidscontrole te configureren. Aanvullende informatie over elke instelling is te vinden in de %1$s."
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "plug-indocumentatie (opent in een nieuw venster)"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "plug-indocumentatie"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "Meer functies en e-mailondersteuning zijn beschikbaar met %1$s."
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Accessibility Checker Pro (opent in een nieuw venster)"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Accessibility Checker Pro"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "Gebruik de onderstaande instellingen om de frontend toegankelijkheidscontrole te configureren."
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "De Webrichtlijnen voor Toegankelijkheid van Content (WCAG) op AAA-niveau vereisen dat alle inhoud met een leesniveau boven groep 7 van de middelbare school een alternatief heeft dat gemakkelijker te lezen is. Vereenvoudigde samenvattingstekst wordt toegevoegd op het tabblad leesbaarheid in het metavak van de Accessibility Checker op het bewerkingsscherm van elke post of pagina."
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "Lees meer over vereenvoudigde samenvattingen en leesbaarheidsvoorschriften (opent in een nieuw venster)"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "Lees meer over vereenvoudigde samenvattingen en leesbaarheidsvoorschriften."
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "Denk je “Wow, deze plugin is geweldig” en helpt het je om je website toegankelijker te maken? Deel je inspanningen om je website toegankelijker te maken met je klanten en laat hen weten dat je Accessibility Checker gebruikt om ervoor te zorgen dat iedereen je website kan gebruiken. Voeg een kleine tekstlink en verklaring toe in de voettekst van je website."
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "Voor de inhoud"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "Na de inhoud"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "Handmatig invoegen"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "Gebruik deze functie om de vereenvoudigde samenvatting handmatig aan je thema toe te voegen binnen de loop."
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "De functie accepteert optioneel de post-ID als parameter."
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "Stel in waar je wilt dat vereenvoudigde samenvattingen verschijnen ten opzichte van je inhoud, indien ingevuld."
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "Rechtsonder (standaard)"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "Linksonder"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "Stel in waar je wilt dat de frontend toegankelijkheidscontrole op de pagina verschijnt."
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "Wanneer vereist"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "Altijd"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Moet Accessibility Checker alleen om een vereenvoudigde samenvatting vragen wanneer het leesniveau van je post of pagina boven groep 7 van de middelbare school ligt, altijd vragen ongeacht het leesniveau, of nooit vragen ongeacht het leesniveau?"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "Om andere inhoud dan posts en pagina's te controleren, gelieve "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " (opent in een nieuw venster)"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "Kies welke berichttypes moeten worden gecontroleerd tijdens een scan. Let op: het verwijderen van een eerder geselecteerd berichttype zal de gescande informatie en eventuele aangepaste genegeerde waarschuwingen die zijn ingesteld, verwijderen."
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "Verwijder alle Accessibility Checker-gegevens wanneer de plugin wordt verwijderd."
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "Afbeelding mist alternatieve tekst"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "Een fout voor Afbeelding Mist Alternatieve Tekst betekent dat je afbeelding helemaal geen alt-attribuut (%1$s) in de afbeeldingstag (%2$s) heeft. Om een fout voor Afbeelding Mist Alternatieve Tekst op te lossen, moet je een alt-tag aan de afbeelding toevoegen met passende tekst die het doel van de afbeelding op de pagina beschrijft. Als de afbeelding decoratief is, kan het alt-attribuut leeg zijn, maar de HTML %1$s tag moet nog steeds aanwezig zijn."
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "Afbeelding heeft lege alternatieve tekst"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "Een waarschuwing voor Afbeelding Heeft Lege Alternatieve Tekst verschijnt als je een afbeelding hebt met een alt-attribuut (%s) dat leeg is. Alternatieve tekst vertelt mensen die niet kunnen zien wat de afbeelding is en voegt extra context toe aan de post of pagina. Het is alleen correct dat alternatieve tekst leeg is als de afbeelding puur decoratief is, zoals een rand of decoratief icoon. Om een waarschuwing voor Afbeelding Heeft Lege Alternatieve Tekst op te lossen, moet je bepalen of de afbeelding decoratief is of iets betekenisvols toevoegt aan de pagina. Als het niet decoratief is, moet je passende alternatieve tekst toevoegen om het doel van de afbeelding te beschrijven. Als de afbeelding decoratief is, laat je de alternatieve tekst leeg en kies je ervoor om de waarschuwing te “Negeren”."
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "Alternatieve tekst van lage kwaliteit"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "Een waarschuwing voor alternatieve tekst van lage kwaliteit verschijnt wanneer de alternatieve tekst bij een afbeelding trefwoorden bevat die onnodig zijn in alternatieve tekst (zoals “afbeelding” of “grafisch”), een bestandsextensie (zoals .JPG), of die mogelijk een decoratieve afbeelding beschrijft (zoals “spacer” of “pijl”). Om deze waarschuwing op te lossen, moet je de alternatieve tekst herschrijven voor alle afbeeldingen die de waarschuwing voor alternatieve tekst van lage kwaliteit hebben geactiveerd. Zorg ervoor dat de alternatieve tekst nauwkeurig, uniek en contextueel passend is, en geen overbodige of onnodige beschrijvingen bevat. Als de afbeelding puur decoratief is, is het correct om de alternatieve tekst leeg te laten."
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "Gekoppelde afbeelding mist alternatieve tekst"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Een foutmelding 'Gekoppelde afbeelding mist alternatieve tekst' verschijnt wanneer een afbeelding die gelinkt is aan een URL helemaal geen alt-attribuut (%s) in de afbeeldingstag heeft. Gekoppelde afbeeldingen moeten nauwkeurige alternatieve tekst hebben die beschrijft waar de link naartoe gaat, zodat schermlezers weten waarnaar de link verwijst. Om deze fout op te lossen, moet je betekenisvolle alt-tekst aan de afbeelding toevoegen. Je alt-tekst moet het doel van de link beschrijven, niet hoe de afbeelding eruit ziet."
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "Gekoppelde afbeelding heeft lege alternatieve tekst"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Een foutmelding 'Gekoppelde afbeelding heeft lege alternatieve tekst' verschijnt wanneer een afbeelding die gelinkt is aan een URL een alt-attribuut (%s) heeft zonder inhoud. Gekoppelde afbeeldingen moeten nauwkeurige alternatieve tekst hebben die beschrijft waar de link naartoe gaat, zodat schermlezers weten waarnaar de link verwijst. Om deze fout op te lossen, moet je betekenisvolle alt-tekst aan de afbeelding toevoegen. Je alt-tekst moet het doel van de link beschrijven, niet hoe de afbeelding eruit ziet."
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "Dubbele alternatieve tekst"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "Waarschuwingen voor dubbele alternatieve tekst verschijnen wanneer de alternatieve tekst voor een afbeelding op je bericht of pagina identiek is aan nabije of aangrenzende tekst, inclusief de titel of het bijschrift van de afbeelding. Deze waarschuwing treedt ook op als twee afbeeldingen op de pagina dezelfde alternatieve tekst hebben. Om deze waarschuwing op te lossen, moet je de tekst van een of beide elementen die de waarschuwing voor dubbele alternatieve tekst hebben geactiveerd, wijzigen. Zorg ervoor dat alle afbeeldingen unieke alt-tekst hebben en dat je je alt-tekst niet herhaalt in je afbeeldingstitels en bijschriften."
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "Onjuiste kopvolgorde"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "Een fout voor onjuiste kopvolgorde betekent dat je kopstructuur een niveau heeft overgeslagen. Als bijvoorbeeld je paginastructuur een kop van niveau 3 (%1$s) heeft onder een kop van niveau 1 (%2$s), zal er een “Onjuiste kopvolgorde” fout worden gemeld omdat er geen %3$s tag tussen de H1 en H3 staat. Om fouten in de kopvolgorde op te lossen, moet je ofwel het onjuiste kopniveau wijzigen naar het juiste niveau, of inhoud toevoegen met het juiste kopniveau tussen de twee bestaande niveaus."
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "Lege alineatag"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "Een waarschuwing voor een lege alineatag betekent dat er een alineatag aanwezig is die geen inhoud bevat. Deze kunnen worden aangekondigd door schermlezers of verwarring veroorzaken bij gebruikers. Om deze waarschuwing op te lossen, verwijder je de lege alinea's van de pagina. Als je ruimte tussen secties wilt toevoegen, moet dit worden gedaan met padding, marges of een spacerblok."
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "iframe mist titel"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "Een fout 'iframe mist titel' betekent dat een of meer van de iframes op je bericht of pagina geen toegankelijke titel heeft die de inhoud van het iframe beschrijft. Een iframe-titel is een attribuut dat kan worden toegevoegd aan de %1$s tag om de inhoud van het frame te beschrijven voor mensen die ondersteunende technologie gebruiken. Om een ontbrekende iframe-titel op te lossen, moet je een titel- of aria-label-attribuut toevoegen aan de %1$s tag. Het attribuut moet de inhoud van het iframe nauwkeurig beschrijven."
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "Ontbrekende subkoppen"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "Een waarschuwing over ontbrekende koppen betekent dat je bericht of pagina geen koptekstelementen (%1$s–%2$s) bevat binnen de inhoud van de hoofdtekst van het bericht of de pagina. Dit kan het voor gebruikers van schermlezers bijzonder moeilijk maken om door de inhoud op de pagina te navigeren. Om een pagina zonder koppen te corrigeren, moet je koptekstelementen toevoegen. Elke pagina moet minimaal één %1$s-tag hebben, wat meestal de paginatitel is. Voeg extra subkoppen toe waar dit passend is voor je inhoud. Als je hebt vastgesteld dat koppen zeker niet nodig zijn op de pagina, dan kun je de waarschuwing “Negeren”."
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "Tekst uitgevuld"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "Een waarschuwing voor Uitgevulde Tekst verschijnt in Accessibility Checker wanneer tekst met meer dan 200 tekens op je bericht of pagina is opgemaakt met uitgevulde uitlijning (text-align:justify). Om deze waarschuwing op te lossen, verwijder je de uitgevulde opmaak van de aangegeven tekstelementen."
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "Link opent nieuw venster of tabblad"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "Een waarschuwing voor 'Link Opent Nieuw Venster of Tabblad' verschijnt wanneer er op je website een link staat die is ingesteld om in een nieuw tabblad of venster te openen bij het klikken. Het wordt als beste praktijk beschouwd om geen nieuwe tabbladen of vensters te openen met links. Als links wel nieuwe tabbladen of vensters openen, moet er een visuele en auditieve waarschuwing zijn die aankondigt dat de link een nieuw venster of tabblad zal openen, zodat gebruikers dit gedrag kunnen verwachten en weten hoe ze terug moeten gaan na het klikken op de link. Om deze waarschuwing op te lossen, verander je de link zodat deze niet in een nieuw tabblad opent, of zorg je ervoor dat “opent nieuw venster” is opgenomen in de linktekst en “Negeer” je vervolgens de waarschuwing. Om automatisch meldingen toe te voegen aan alle links op je site en al deze waarschuwingen te verwijderen, installeer je onze gratis %s-plugin."
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "Toegankelijkheidswaarschuwingen voor nieuwe vensters"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "Afbeeldingskaart mist alternatieve tekst"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "De fout 'Afbeeldingskaart Mist Alternatieve Tekst' betekent dat een van de %1$s-elementen binnen je afbeeldingskaart geen alternatieve tekst heeft toegevoegd in een %2$s-attribuut. Om deze fout te corrigeren, moet je ontbrekende alt-tekst toevoegen aan alle area-tags die geen alt-tekst hebben. De alt-tekst moet de functie van de link in het gebied beschrijven, niet noodzakelijk hoe het gebied eruitziet."
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "Tabvolgorde gewijzigd"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "Een waarschuwing voor Gewijzigde Tabvolgorde verschijnt wanneer de logische tabvolgorde op de pagina is veranderd door het toevoegen van een attribuut voor tabindex dat groter is dan 0 aan een HTML-element (bijvoorbeeld %s). Dit kan navigatieproblemen veroorzaken voor gebruikers die alleen het toetsenbord gebruiken. Om een waarschuwing voor Gewijzigde Tabvolgorde op te lossen, moet je de voorkant van je website bekijken op de pagina of het bericht waar de tabvolgorde is gewijzigd en testen of de wijziging correct is of niet. Als de wijziging in de tabvolgorde geen problemen veroorzaakt, kun je de waarschuwing “Negeren”. Als de gewijzigde tabvolgorde ervoor zorgt dat informatie in de verkeerde volgorde wordt gepresenteerd, dan moet je het tabindex-attribuut verwijderen van het gemarkeerde element."
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "Lege koptag"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "Een fout voor Lege Koptag betekent dat er een koptag aanwezig is op je bericht of pagina die geen inhoud bevat. In code zou deze fout er zo uitzien: %s. Om een lege kop te corrigeren, moet je inhoud toevoegen aan de koptag die de fout Lege Koptag heeft veroorzaakt, of de lege tag verwijderen als deze niet nodig is op je pagina."
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "Lege link"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "Een Empty Link-fout betekent dat een van de links op de webpagina leeg is of geen tekst bevat die beschrijft waar de link naartoe leidt als erop wordt geklikt. Dit komt vaak voor bij links die webfonts, icoonfamilies en SVG's bevatten, of wanneer per ongeluk een link is aangemaakt in de contenteditor. Om een Empty Link-fout op te lossen, moet je de link vinden die wordt gemarkeerd en er beschrijvende tekst aan toevoegen. Je moet ofwel: tekstinhoud toevoegen binnen een leeg %1$s-element of, als je link een SVG of Webfont-icoon bevat, dat element verbergen met %2$s en een %3$s-attribuut toevoegen aan de %1$s-tag of schermlezer-tekst. De tekst of het label dat je toevoegt, moet beschrijvend zijn voor waar de link naartoe verwijst en niet dubbelzinnig zijn."
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "Lege knop"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "Een Empty Button-fout betekent dat een van de knoppen op de webpagina leeg is of geen tekst bevat die de functie van de knop beschrijft. Of, als het een afbeeldingsknop is, mist de afbeelding in de knop alternatieve tekst. Om een Empty Button-fout op te lossen, moet je de knop vinden die wordt gemarkeerd en er beschrijvende tekst aan toevoegen. Je moet ofwel: tekstinhoud toevoegen binnen een leeg %1$s-element, een value-attribuut toevoegen aan een %2$s dat er een mist, of alternatieve tekst toevoegen aan een knopafbeelding. De tekst moet beschrijvend zijn voor waar je knop voor wordt gebruikt of de actie die de knop activeert."
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "Lange alternatieve tekst voor afbeelding"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "Een waarschuwing voor lange alternatieve tekst bij afbeeldingen verschijnt als er meer dan 100 tekens in je alternatieve tekst staan. Alternatieve tekst is bedoeld om de afbeelding beknopt te beschrijven, zonder te wijdlopig te zijn. Om deze waarschuwing op te lossen, moet je de alt-tekst voor gemarkeerde afbeeldingen inkorten tot 100 tekens of minder. Als je hebt bepaald dat je alternatieve tekst goed is zoals die is, klik dan op “Negeren” bij de waarschuwing."
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Hidden"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "De ARIA Hidden-waarschuwing verschijnt wanneer inhoud op je bericht of pagina is verborgen met het attribuut aria-hidden=“true”. Wanneer dit attribuut aan een HTML-element wordt toegevoegd, zullen schermlezers het niet voorlezen aan gebruikers. Soms is het correct dat het element verborgen is voor schermlezers (zoals bij een decoratief icoon), maar andere keren is dit niet correct. Wanneer je deze waarschuwing ziet, moet je bepalen of het element verborgen moet zijn voor mensen die blind of slechtziend zijn. Als het correct verborgen is, klik je op “Negeren” bij de waarschuwing. Als het incorrect verborgen is en zichtbaar zou moeten zijn, verwijder je het aria-hidden=“true”-attribuut om de waarschuwing op te lossen."
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "Lege tabelkop"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "Een Empty Table Header-fout betekent dat een van de tabelkoppen op je bericht of pagina geen tekst bevat. Dit betekent dat het %1$s-element aanwezig is, maar er zo uitziet: %2$s zonder iets tussen de openings- en sluitingstags. Om een lege tabelkop op te lossen, moet je het juiste HTML-element (%1$s) vinden en er tekst aan toevoegen die de rij of kolom beschrijft waarop het van toepassing is."
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "Link naar MS Office-bestand"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Een Link to MS Office File-waarschuwing betekent dat een of meer links op je pagina of bericht verwijzen naar een bestand met een van de volgende extensies: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps of .ppsx. Deze waarschuwing verschijnt wanneer een MS Office-bestand aanwezig is als herinnering om je Word-documenten, PowerPoint-presentaties en Excel-spreadsheets handmatig te testen op toegankelijkheid en om te bevestigen dat ze voldoen aan alle relevante WCAG-richtlijnen. Om een Link to MS Office File-waarschuwing op te lossen, moet je: (1) zorgen dat er een directe link is om het document te bekijken of te downloaden als je een plugin gebruikt om het op de pagina in te sluiten; (2) ervoor zorgen dat de link naar het document gebruikers waarschuwt dat het een link naar een document is door de specifieke bestandsextensie in de linktekst weer te geven; en (3) je MS Office-bestand testen en corrigeren op toegankelijkheidsfouten. Nadat je hebt vastgesteld dat je bestand volledig toegankelijk is, kun je de waarschuwing veilig “Negeren”."
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "Link naar PDF"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Een Link naar PDF-waarschuwing betekent dat een of meer links op uw pagina of bericht naar een PDF-bestand verwijzen. Deze waarschuwing dient als herinnering om de gelinkte PDF handmatig te testen op toegankelijkheid en te bevestigen dat deze voldoet aan alle relevante WCAG-richtlijnen. Om een Link naar PDF-waarschuwing op te lossen, moet u: (1) zorgen voor een directe link om het document te bekijken of te downloaden als u een plugin gebruikt om het op de pagina in te sluiten; (2) ervoor zorgen dat de link naar het document gebruikers waarschuwt dat het een link naar een document is door de specifieke bestandsextensie in de linktekst weer te geven; en (3) uw document testen en corrigeren op toegankelijkheidsfouten. Nadat u heeft vastgesteld dat uw bestand volledig toegankelijk is, kunt u de waarschuwing veilig “Negeren”."
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "Link naar niet-HTML-bestand"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Een Link naar niet-HTML-document waarschuwing betekent dat een of meer links op uw pagina of bericht verwijzen naar een bestand met een van de volgende bestandsextensies: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, of .key. Deze waarschuwing dient als herinnering om het gelinkte document handmatig te testen op toegankelijkheid en te bevestigen dat het voldoet aan alle relevante WCAG-richtlijnen. Om een Link naar niet-HTML-document waarschuwing op te lossen, moet u: (1) zorgen voor een directe link om het document te bekijken of te downloaden als u een plugin gebruikt om het op de pagina in te sluiten; (2) ervoor zorgen dat de link naar het document gebruikers waarschuwt dat het een link naar een document is door de specifieke bestandsextensie in de linktekst weer te geven; en (3) uw document testen en corrigeren op toegankelijkheidsfouten. Nadat u heeft vastgesteld dat uw bestand volledig toegankelijk is, kunt u de waarschuwing veilig “Negeren”."
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "Lange beschrijving ongeldig"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "De fout Lange beschrijving ongeldig betekent dat een lange beschrijvingsattribuut (%s) bij een afbeelding geen geldige URL, bestandsnaam of bestandsextensie heeft. Het kan ook betekenen dat de lange beschrijving geen URL is, of leeg is gelaten. Het longdesc-attribuut wordt niet volledig ondersteund door HTML5, browsers en alle schermleessoftware. Vanwege dit gebrek aan ondersteuning is de beste oplossing voor deze fout om longdesc volledig uit uw img-tag te verwijderen."
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "Ontbrekend formulierlabel"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "Een Ontbrekend formulierlabel-fout wordt geactiveerd wanneer een %1$s (formulierveld) aanwezig is in uw formulier, maar niet is gekoppeld aan een %2$s-element. Dit kan betekenen dat het label aanwezig is maar een %3$s-attribuut mist om het te verbinden met het betreffende veld, of er is mogelijk helemaal geen label aanwezig en alleen een %1$s-tag. Om ontbrekende formulierlabel-fouten op te lossen, moet u bepalen hoe het veld en formulier zijn gemaakt en vervolgens veldlabels toevoegen of een correct %3$s-attribuut aan bestaande labels die niet aan een veld zijn gekoppeld."
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "Onduidelijke ankertekst"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "Onduidelijke ankertekst-fouten verschijnen wanneer er gelinkte tekst is die geen betekenis heeft buiten de omringende inhoud. Veelvoorkomende voorbeelden hiervan zijn het linken van zinnen zoals “klik hier” of “lees meer.” Om deze fout op te lossen, verandert u de linktekst zodat deze minder algemeen is en betekenis heeft als deze op zichzelf wordt gehoord."
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "Onderstreepte tekst"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "Een waarschuwing voor Onderstreepte tekst verschijnt als er tekst op uw pagina is omwikkeld met een HTML-onderstrepingstag (%1$s). In een online omgeving wordt onderstreepte tekst meestal gebruikt om gelinkte tekst aan te geven en wordt het niet als beste praktijk beschouwd om tekst alleen voor nadruk te onderstrepen. Om onderstreepte tekst op te lossen, moet u het %1$s-element of de CSS-stijlen die de tekst onderstrepen, verwijderen. Probeer andere stijlen te gebruiken, zoals cursief, gekleurde tekst of vetgedrukt, om woorden of zinnen te benadrukken of te onderscheiden."
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "Gebroken skip- of ankerlink"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "Een ankerkoppeling, soms ook een sprongkoppeling genoemd, is een link die, in plaats van een nieuwe pagina of URL te openen wanneer erop wordt geklikt, je naar een andere sectie op dezelfde pagina laat springen of scrollen. Deze links verwijzen naar een element dat begint met een hekje in plaats van een volledige URL. Je kunt bijvoorbeeld iemand naar de over ons-sectie van je startpagina laten scrollen door te linken naar #about. Fouten met betrekking tot gebroken Skip- of Ankerkoppelingen verschijnen wanneer er een link is die verwijst naar een andere sectie op dezelfde pagina, maar er geen element aanwezig is op de pagina met de genoemde id. Deze fout verschijnt ook als je alleen naar een # linkt. Om deze fout op te lossen, test je de link handmatig om te bevestigen dat deze werkt en vervolgens repareer je deze of “Negeer” je de fout indien van toepassing."
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "Ontbrekende tabelkop"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "Een fout voor een ontbrekende tabelkop betekent dat een van je tabellen gegevens bevat (informatie in een %1$s-tag) die geen bijbehorende kop (%2$s)-tag heeft. Bij het bekijken van de HTML van je formulier zullen er meer %1$s-elementen in een rij zijn dan %2$s-elementen in de tabel. Om een ontbrekende tabelkop te repareren, moet je het gedeelte van de code vinden dat minder %2$s-elementen bevat dan er aanwezig zouden moeten zijn voor het aantal rijen of kolommen met gegevens, en vervolgens een of meer extra %2$s-elementen toevoegen met tekst die de gegevens in die rij of kolom beschrijft."
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "Dubbel formulierlabel"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "Fouten met betrekking tot dubbele formulierlabels verschijnen wanneer er meer dan één label is gekoppeld aan een enkel veld in een formulier. Als er te veel formulierlabels aanwezig zijn, kan een schermlezer mogelijk de formuliervelden niet succesvol lezen om een visueel beperkte gebruiker te helpen bij het navigeren door en invullen van het formulier. Om fouten met dubbele formulierlabels op te lossen, moet je bepalen hoe het veld en formulier zijn gemaakt en vervolgens zorgen dat elk veld slechts één bijbehorend label heeft."
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "Tekst te klein"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "Een waarschuwing voor te kleine tekst verschijnt wanneer er tekst op je website staat die kleiner is dan 10px. De waarschuwing is een indicatie dat je mogelijk de lettergrootte moet heroverwegen en groter moet maken, zodat deze gemakkelijker te lezen is zonder dat een gebruiker hoeft in te zoomen in zijn browser. Om tekst die te klein is te corrigeren, moet je ervoor zorgen dat alle tekstelementen op je website minstens 10 punten groot zijn."
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "Mogelijke kop"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "Een waarschuwing voor een mogelijke kop verschijnt wanneer er tekst op een pagina staat die een kop lijkt te zijn, maar niet is gecodeerd met de juiste koptags. Deze waarschuwing verschijnt als er korte zinnen of tekstfragmenten van minder dan 50 tekens lang zijn die op een manier zijn opgemaakt die suggereert dat ze als koppen worden gebruikt (ze zijn 20 pixels of groter, of 16 pixels of groter en vetgedrukt en/of cursief). Om een waarschuwing voor een mogelijke kop op te lossen, moet je bepalen of de gemarkeerde tekst inderdaad bedoeld is als kop. Zo ja, dan moet je deze veranderen van een alinea naar een kop op het juiste niveau. Als het niet bedoeld is als kop, kun je de waarschuwing veilig “Negeren”."
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "Knipperende of scrollende inhoud"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "Fouten met betrekking tot knipperende of scrollende inhoud verschijnen wanneer elementen op je website een knipperende of scrollende functie hebben die is toegepast via CSS of in de HTML. Specifiek zal het volgende deze fout veroorzaken: de %1$s- of %2$s-HTML-tags of CSS %3$s. Om deze fout op te lossen, verwijder je de HTML-tags of CSS die ervoor zorgen dat de inhoud knippert."
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "Onvoldoende kleurcontrast"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "Onvoldoende kleurcontrast betekent dat we hebben vastgesteld dat een of meer kleurencombinaties op uw bericht of pagina niet voldoen aan de minimale kleurcontrastverhouding van 4,5:1. Afhankelijk van hoe uw site is gebouwd, kunnen er “vals-positieven” zijn voor deze fout, omdat sommige kleuren zich in verschillende HTML-lagen op de pagina bevinden. Om een fout voor onvoldoende kleurcontrast op te lossen, moet u ervoor zorgen dat de gemarkeerde elementen voldoen aan de minimaal vereiste verhouding van 4,5:1. Hiervoor moet u de hexadecimale codes van uw voorgrond- en achtergrondkleur vinden en deze testen in een kleurcontrastchecker. Als deze kleurcodes een verhouding van 4,5:1 of hoger hebben, kunt u deze fout “Negeren”. Als de kleurcodes geen verhouding van ten minste 4,5:1 hebben, moet u aanpassingen maken aan uw kleuren."
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "Ontbrekend transcript"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "Een foutmelding voor een ontbrekend transcript betekent dat er een audio- of videoclip op uw website staat zonder transcript, of dat er wel een transcript is maar dat deze niet als zodanig is gelabeld of meer dan 25 tekens verwijderd is van de ingesloten of gelinkte media. Om een fout voor een ontbrekend transcript op te lossen, moet u een transcript maken voor alle video- of audioclips die zijn gemarkeerd als ontbrekend transcript. Zodra u het transcript heeft gemaakt, kunt u de inhoud ervan rechtstreeks aan uw bericht of pagina toevoegen, of een link naar het transcript plaatsen als u het als een downloadbaar document of PDF-bestand opneemt. U moet expliciet het woord “transcript” opnemen in een kop vóór het transcript op de pagina of in de link naar uw bestand, en het moet binnen 25 tekens van de audio- of video-embed of -link staan."
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "Gebroken ARIA-verwijzing"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "Fouten met gebroken ARIA-verwijzingen komen voor als er een aria-labeledby of aria-describedby element op de pagina of het bericht aanwezig is, maar het referentiedoel niet bestaat. Dit betekent dat het element waarnaar wordt verwezen door het specifieke ARIA-attribuut dat u gebruikt, geen correct label of beschrijving heeft, of niet aanwezig is op de pagina. Om een gebroken ARIA-verwijzing te herstellen, moet u de ARIA-elementen vinden die worden gemarkeerd en ervoor zorgen dat hun referentiedoelen aanwezig en correct gelabeld zijn."
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "Ontbrekende taalverklaring"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "Een taalverklaring is een HTML-attribuut dat de standaardtaal van de inhoud op een pagina of bericht aangeeft. Taalverklaringen moeten in uw websitethema worden gecodeerd en automatisch in de head van de website verschijnen. Een fout voor een ontbrekende taalverklaring verschijnt als de %1$s-tag op de pagina geen %2$s- of %3$s-attribuut bevat, of als een van deze attributen aanwezig is maar leeg is. Om een fout voor een ontbrekende taalverklaring op te lossen, moet u uw themabestanden bewerken om het ontbrekende taalattribuut toe te voegen aan de HTML-tag helemaal bovenaan uw websiteheader. Als u een thema gebruikt dat updates ontvangt, moet u de wijziging in een child theme aanbrengen om ervoor te zorgen dat de fix niet wordt overschreven wanneer u uw thema de volgende keer bijwerkt."
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "Afbeelding geanimeerde GIF"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "Waarschuwingen voor geanimeerde GIF-afbeeldingen verschijnen wanneer er een geanimeerde GIF op uw bericht of pagina staat. Deze waarschuwing is een herinnering om handmatig alle geanimeerde GIF's op uw website te controleren op hun toegankelijkheid en/of het gebruik van geanimeerde GIF's te heroverwegen, en ze in plaats daarvan te vervangen door statische afbeeldingen of video's. Om deze waarschuwing op te lossen, moet u alle aanwezige GIF's beoordelen om er zeker van te zijn dat ze voldoen aan alle toepasselijke richtlijnen voor toegankelijkheid. Vervolgens kunt u de waarschuwing “Negeren” of de GIF van uw pagina of bericht verwijderen als deze niet toegankelijk is."
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "Er is een video aanwezig"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Omdat video's vaak toegankelijkheidsproblemen bevatten, waarvan vele alleen door een persoon kunnen worden geïdentificeerd, verschijnt de waarschuwing “Er is een video aanwezig” elke keer dat een video wordt gedetecteerd op een bericht of pagina als herinnering dat u de video handmatig moet testen op toegankelijkheid. Om deze waarschuwing op te lossen, moet u de frontend van uw website bezoeken en bevestigen dat de video in de waarschuwing toegankelijk is. Nadat u de video volledig heeft getest op toegankelijkheid, moet u eventuele fouten corrigeren en kunt u vervolgens de waarschuwing “Negeren” om deze als voltooid te markeren."
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "Er is een slider aanwezig"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Omdat sliders vaak toegankelijkheidsproblemen bevatten, waarvan vele alleen door een persoon kunnen worden geïdentificeerd, verschijnt de waarschuwing “Er is een slider aanwezig” elke keer dat een slider wordt gedetecteerd op een bericht of pagina als herinnering dat u de slider handmatig moet testen op toegankelijkheid. Om deze waarschuwing op te lossen, moet u de frontend van uw website bezoeken en bevestigen dat alle sliders op de pagina toegankelijk zijn. Nadat u uw sliders volledig heeft getest op toegankelijkheid, moet u eventuele fouten corrigeren en kunt u vervolgens de waarschuwing “Negeren” om deze als voltooid te markeren."
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "Ontbrekende titel"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "Een fout voor Ontbrekende Titel betekent dat uw bericht of pagina geen titelelement bevat (%1$s of %2$s). Dit kan gebeuren als het thema geen titeltag toevoegt, of als het titelveld van een bericht of pagina leeg is gelaten in het WordPress-bewerkingsscherm. Om een pagina zonder titel te corrigeren, moet u titelelementen toevoegen. Bepaal eerst of de titel ontbreekt omdat u het titel veld van de pagina of het bericht leeg hebt gelaten in de editor. Als dat zo is, vul het dan in. Als er een titel is ingevuld en zichtbaar is in de backend, dan moet de code in de van uw webpagina worden bewerkt om een %1$s tag of %2$s meta tag op te nemen."
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "Onjuist gebruik van link"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "Een fout voor Onjuist gebruik van link verschijnt als u links heeft die een %1$s attribuut missen of alleen gelinkt zijn aan een %2$s, en geen %3$s hebben. Links moeten worden gebruikt om mensen naar andere delen van uw site te leiden. Elke andere functionaliteit die een actie activeert, moet een knop zijn. Om deze fout op te lossen, moet u de link hercoderen om een %4$s tag te gebruiken (bij voorkeur) of %5$s toevoegen aan de bestaande %6$s tag. Als het element een schakelknop is (zoals een accordeon), zijn aanvullende ARIA-attributen vereist."
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "Zoomen en schalen uitgeschakeld"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "Zoomen is uitgeschakeld via een viewport meta-tag die `user-scalable=no` bevat of een `maximum-scale` waarde van minder dan 2. Dit beperkt slechtziende gebruikers die de tekstgrootte willen vergroten, willen inzoomen op de pagina of een vergrootglas gebruiken."
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "Instellingen opgeslagen. Om deze updates te bevestigen en weer te geven in de statistieken van uw site, moet u uw site opnieuw scannen. Als u een caching-plugin gebruikt, zorg er dan voor dat u de cache leegt om ervoor te zorgen dat de bijgewerkte fixes correct worden toegepast."
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "De Accessibility New Window Warnings plugin is geïnstalleerd. De fix voor links die in een nieuw venster openen, die hier is opgenomen, zal de functionaliteit ervan overschrijven. U kunt de plugin veilig verwijderen en in plaats daarvan deze fixes gebruiken."
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "Toegankelijkheid Checker probleempanelen"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "Samenvatting"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "Details"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "Leesbaarheid"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "Verwijder alle momenteel gevonden problemen"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "Problemen wissen"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Equalize Digital logo"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "Upgrade naar Accessibility Checker Pro"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "Scan alle berichttypes"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "Beheerderskolommen om de toegankelijkheidsstatus in één oogopslag te zien"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "Gecentraliseerde lijst van alle openstaande problemen"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "Negeerlogboek"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "Hernoem vereenvoudigde samenvatting"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "Gebruikersbeperkingen voor het negeren van problemen"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "E-mailondersteuning"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...en meer"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "Krijg Accessibility Checker Pro"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "Of activeer hier uw licentiesleutel."
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "Algemeen"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "versie"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Link naar Equalize Digital website"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "Snelstartgids"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "Volg deze stappen om te beginnen met het controleren van uw inhoud:"
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "Kies op de <a href=\"%s\">Instellingenpagina</a> welke berichttypes u wilt scannen."
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "Ga naar het bewerkingsscherm voor het bericht dat u wilt controleren."
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "Zoek het Accessibility Checker metavak onder uw inhoud. Als u een frontend paginabouwer gebruikt, moet u het backend bewerkingsscherm bezoeken om de Accessibility Checker resultaten te bekijken."
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "Als er fouten of waarschuwingen aanwezig zijn in uw bericht, open dan het detailtabblad in Accessibility Checker voor meer informatie."
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "Klap elk probleem uit om de code te zien, of klik op “bekijk op pagina” als u hulp nodig heeft bij het vinden van het element dat moet worden gerepareerd."
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "Als u niet weet wat een fout of waarschuwing betekent, klik dan op het “i”-pictogram om de documentatie te lezen en hoe u het kunt oplossen."
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "Als een probleem een vals positief is en het element toegankelijk is, kunt u problemen uit rapporten verwijderen met de functie “Negeren”."
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "Na het oplossen van elk probleem, werk het bericht bij om te zien hoe het toegankelijkheidsrapport verandert. Uw doel is om elke pagina 100% Geslaagde Tests te laten zeggen."
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "Bekijk een video van Accessibility Checker in gebruik."
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "Documentatie en veelgestelde vragen"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "Waarom zeggen we 100% Geslaagde Tests, niet 100% Toegankelijk?"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "(opent in een nieuw venster)"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "Hoe u uw website handmatig kunt controleren op toegankelijkheid"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "Wanneer toegankelijkheidsfouten genegeerd moeten worden"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "Wat te doen als een plugin die u gebruikt toegankelijkheidsfouten heeft"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "Wat te doen als er toegankelijkheidsfouten in uw thema zijn"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "Kan ik Equalize Digital inhuren om toegankelijkheidsproblemen op mijn website op te lossen?"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "Aanvullende bronnen om meer te leren over toegankelijkheid"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "Lees volledige documentatie"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "Ondersteuningsinformatie"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "Plugin-ondersteuning"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "Actieve licentiehouders van betaalde Accessibility Checker-plannen krijgen onbeperkte e-mailondersteuning voor plugingebruik en probleemoplossing."
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "Open ondersteuningsticket"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "Gratis plugin-ondersteuning"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "Gratis plugin-ondersteuning is beschikbaar via de WordPress.org forums. U moet een account aanmaken en dan kunt u een nieuw ondersteuningsonderwerp openen."
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "Ga naar ondersteuningsforum"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "Kantooruren"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "Open Q&A op Zoom om de andere week om u te helpen uw website te verbeteren."
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "Inbegrepen in Small Business en Agency plannen"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "Registreer voor kantooruren"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "Auditing en verbetering"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "Krijg hulp bij het toegankelijk maken van uw website. Deskundige auditing, gebruikerstests en ontwikkelaarsondersteuning. Conformiteitsbrieven beschikbaar."
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "Krijg hulp bij verbetering"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "Opslaan..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "Instellingen succesvol opgeslagen. U moet %sde editor bezoeken%s en het bericht opslaan om opnieuw te scannen en opgeloste problemen uit Accessibility Checker-rapporten te verwijderen."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "Instellingen succesvol opgeslagen."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "Opslaan mislukt."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "Fix-instellingen"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "Dit zal alle problemen voor dit bericht wissen. Er is een opslag nodig om een nieuwe scan van de berichtinhoud te starten. Wilt u doorgaan?"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "Wissen..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "Problemen succesvol gewist."
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "Wissen van problemen mislukt."
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "Er is een probleem opgetreden. Probeer het opnieuw."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "Sorry, uw inzending is mislukt. Verkort uw antwoorden en probeer het opnieuw."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "Sorry, uw inzending is mislukt. Probeer het opnieuw."
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "opent een nieuw venster"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: Geen overeenkomend doel-ID gevonden op de pagina voor de skiplink."
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: Fout bij het bijwerken van de geschiedenis voor skiplink."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "Sluit reparaties-modal"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Paginastijlen uitschakelen"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "Toon code"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Probleemtype:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "Stijlen inschakelen"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Stijlen uitschakelen"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "Er zijn geen instellingen om weer te geven."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Deze instellingen activeren globale reparaties voor uw hele site. Pagina's moeten mogelijk opnieuw worden opgeslagen of er moet een volledige sitescan worden uitgevoerd om de reparaties in rapporten te zien."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "Geen problemen gedetecteerd."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "fout"
+msgstr[1] "fouten"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "waarschuwing"
+msgstr[1] "waarschuwingen"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "en"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "genegeerd probleem"
+msgstr[1] "genegeerde problemen"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "gedetecteerd."
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "nieuw venster"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "nieuw tabblad"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "klik"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "klik hier"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "hier"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "ga hier"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "meer"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "meer..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "meer…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "details"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "meer details"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "link"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "deze pagina"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "doorgaan"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "lees verder"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "lees meer"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "openen"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "downloaden"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "knop"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "lees verder"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "meer informatie"

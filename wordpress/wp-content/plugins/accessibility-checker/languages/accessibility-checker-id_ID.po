@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "Pemeriksa aksesibilitas"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "Audit dan periksa aksesibilitas situs web Anda sebelum dipublikasikan. Pemindai aksesibilitas dalam pos dan panduan."
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "Perbaikan"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "Perbaikan umum"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "Perbaikan ini membantu meningkatkan aksesibilitas dengan memodifikasi elemen HTML dan perilaku di situs Anda."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "Dapatkan Pro untuk membuka fitur ini, terbuka di jendela baru."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "Dapatkan pro"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "Terbuka di jendela baru."
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "Baca dokumentasi untuk %s. Terbuka di jendela baru."
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "Komitmen kami terhadap aksesibilitas web"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[YOUR COMPANY NAME] berkomitmen untuk menyediakan pengalaman situs web yang sepenuhnya dapat diakses bagi semua pengguna dari semua kemampuan, termasuk mereka yang mengandalkan teknologi bantu seperti pembaca layar, perangkat lunak pembesaran layar, dan perangkat input keyboard alternatif untuk menavigasi web."
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "Upaya berkelanjutan untuk memastikan aksesibilitas"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "Kami mengikuti <a href=\"https://www.w3.org/TR/WCAG21/\">Pedoman Aksesibilitas Konten Web (WCAG) versi 2.1</a> sebagai prinsip panduan kami untuk menentukan aksesibilitas. Ini adalah standar yang disepakati secara internasional yang mencakup berbagai rekomendasi dan praktik terbaik untuk membuat konten dapat digunakan. Saat kami menambahkan halaman dan fungsi baru ke situs web kami, semua desain, kode, dan praktik entri konten diperiksa berdasarkan standar ini."
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Aksesibilitas situs web adalah proses berkelanjutan. Kami terus menguji konten dan fitur untuk kepatuhan WCAG 2.1 Level AA dan memperbaiki masalah apa pun untuk memastikan kami memenuhi atau melampaui standar. Pengujian situs web kami dilakukan oleh anggota tim kami menggunakan alat standar industri seperti <a href=\"https://a11ychecker.com/\">Plugin WordPress Accessibility Checker</a>, penganalisis kontras warna, teknik navigasi hanya keyboard, dan tes keterbacaan Flesch-Kincaid."
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "Fitur aksesibilitas di situs web kami"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "Berikut adalah daftar item yang telah kami sertakan dalam situs web kami untuk meningkatkan aksesibilitasnya:"
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[DAFTAR FITUR AKSESIBILITAS DI SINI]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "Di mana kami sedang meningkatkan"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "Dalam upaya kami untuk membawa situs web kami ke standar, kami menargetkan area-area berikut:"
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[DAFTAR ITEM YANG SEDANG ANDA PERBAIKI DI SINI]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[MUNGKIN AKAN MEMBANTU UNTUK MENINJAU TAB MASALAH TERBUKA UNTUK MELIHAT MASALAH YANG PALING UMUM]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "Ini adalah bagian dari upaya kami yang lebih luas untuk membuat pengalaman semua orang di [COMPANY NAME] menjadi menyambut dan menyenangkan. Harap diperhatikan bahwa meskipun kami berusaha keras untuk menyediakan informasi yang dapat diakses oleh semua pengguna, kami tidak dapat menjamin aksesibilitas situs web pihak ketiga yang mungkin kami tautkan."
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "Kontak dukungan aksesibilitas"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "Kami menyambut komentar, pertanyaan, dan umpan balik tentang situs web kami. Jika Anda menggunakan teknologi bantu dan mengalami kesulitan menggunakan situs web kami, silakan kirim email ke [ALAMAT EMAIL AKSESIBILITAS ANDA] atau hubungi kami di [NOMOR TELEPON ANDA]. Kami akan berusaha sebaik mungkin untuk membantu Anda dan menyelesaikan masalah."
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "Kami telah meningkatkan perhitungan statistik dalam versi 1.21.0. Akibatnya, beberapa angka dalam data di bawah ini mungkin berubah. Baca selengkapnya di %1$spos pengumuman rilis%2$s kami."
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "Izin ditolak"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "Pembaruan opsi tidak berhasil"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Spesial Black Friday! 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Tingkatkan ke versi berbayar Accessibility Checker dari 25 November hingga 3 Desember dan dapatkan diskon 30%! Pemindaian situs lengkap, laporan masalah terbuka seluruh situs, log pengabaian, dan banyak lagi."
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "Ajukan Pertanyaan Pra-Penjualan"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "Tingkatkan sekarang"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 Dapatkan diskon 25% untuk Accessibility Checker Pro dalam rangka Hari Kesadaran Aksesibilitas Global! 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "Gunakan kode kupon GAAD25 dari 13 Mei hingga 21 Mei untuk mendapatkan akses ke pemindaian situs lengkap dan fitur pro lainnya dengan diskon khusus. Tidak yakin apakah peningkatan ini tepat untuk Anda?"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "Halo! Terima kasih telah menggunakan Accessibility Checker sebagai bagian dari perangkat aksesibilitas Anda. Karena Anda telah menggunakannya untuk beberapa waktu, maukah Anda menulis ulasan bintang 5 untuk Accessibility Checker di direktori plugin WordPress? Ini akan membantu meningkatkan visibilitas kami sehingga lebih banyak orang dapat belajar tentang pentingnya aksesibilitas web. Terima kasih banyak!"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "Tulis ulasan"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "Ingatkan saya dalam dua minggu"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "Jangan tanyakan lagi"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "Nilai tindakan ulasan tidak diatur"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "Ups! Sepertinya situs web Anda saat ini dilindungi kata sandi. Versi gratis Accessibility Checker hanya dapat memindai situs web yang aktif. Untuk memindai situs web ini guna mendeteksi masalah aksesibilitas, hapus perlindungan kata sandi atau %s. Hasil pemindaian mungkin tersimpan dari pemindaian sebelumnya."
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "Tingkatkan ke Accessibility Checker Pro. Buka di jendela baru."
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "tingkatkan ke pro"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "ID pos tidak diatur"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "Ringkasan sederhana belum disertakan untuk konten ini."
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "Konten Anda memiliki tingkat keterbacaan setara atau di bawah kelas 9 dan tidak memerlukan ringkasan sederhana."
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "Tingkat keterbacaan ringkasan sederhana terlalu tinggi."
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "Ringkasan sederhana telah disertakan untuk konten ini."
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s Kesalahan"
+msgstr[1] "%s Kesalahan"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s Kesalahan kontras"
+msgstr[1] "%s Kesalahan kontras"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s Peringatan"
+msgstr[1] "%s Peringatan"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s Item diabaikan"
+msgstr[1] "%s Item diabaikan"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "Tidak ada ringkasan untuk dikembalikan"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "Nama tabel tidak valid"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "Pengaturan ini mengaktifkan perbaikan global di seluruh situs Anda."
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Halaman mungkin perlu disimpan ulang atau pemindaian situs penuh dijalankan untuk melihat perbaikan tercermin dalam laporan."
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "Simpan"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "Kode yang terpengaruh"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "Lihat Masalah ID %d di situs web, buka jendela baru"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "Lihat di halaman"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "Perbaikan: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "Perbaiki"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "Akun pengguna Anda tidak memiliki izin untuk mengabaikan masalah ini."
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "Tidak ada detail untuk dikembalikan"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "Tidak ada data keterbacaan untuk dikembalikan"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "Tidak ada data pengabaian untuk dikembalikan"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "Ringkasan tidak diatur"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "Nilai ID tidak diatur"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "Kueri masalah tidak mengembalikan hasil"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "Kueri objek tidak mengembalikan hasil"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "Ringkasan tes terbaru"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "Perbarui hitungan"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "Mulai pemindaian baru"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "Lihat semua masalah terbuka"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "Lihat riwayat"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "Tes yang lulus"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "Kesalahan unik"
+msgstr[1] "Kesalahan unik"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "Kesalahan kontras warna unik"
+msgstr[1] "Kesalahan kontras warna unik"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "Peringatan unik"
+msgstr[1] "Peringatan unik"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "Item yang diabaikan"
+msgstr[1] "Item yang diabaikan"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "Rata-rata masalah per halaman"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "Rata-rata kepadatan masalah"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "Laporan terakhir diperbarui:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "Tidak pernah"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "URL yang Dipindai"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s dari %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "Jenis pos yang diperiksa"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "URL dengan skor 100%"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "Ringkasan ini diperbarui secara otomatis setiap 24 jam, atau setiap kali pemindaian situs penuh selesai. Anda juga dapat memperbarui hasil ini secara manual dengan mengklik tombol Perbarui Hitungan."
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "Situs Anda memiliki sejumlah besar masalah. Untuk alasan kinerja, tidak semua masalah disertakan dalam ringkasan ini."
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "Laporan Aksesibilitas Seluruh Situs"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "Sembunyikan banner"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "Buka laporan aksesibilitas terperinci"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "Mulai memindai seluruh situs web Anda untuk masalah aksesibilitas, dapatkan laporan seluruh situs, dan jadilah lebih cepat sesuai dengan pedoman aksesibilitas."
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "Tingkatkan Accessibility Checker"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "tutup iklan"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "Dapatkan laporan aksesibilitas terperinci"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "Status aksesibilitas seluruh situs"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "URL yang Dipindai:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "Kesalahan:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "Kesalahan kontras warna:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "Peringatan:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "Situs Anda memiliki masalah aksesibilitas yang harus ditangani sesegera mungkin untuk memastikan kepatuhan terhadap pedoman aksesibilitas."
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "Keren! Accessibility Checker tidak dapat menemukan masalah aksesibilitas dalam konten yang diuji. Beberapa masalah tidak dapat ditemukan oleh alat otomatis, jadi jangan lupa untuk"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "menguji situs Anda secara manual"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "Masalah berdasarkan jenis pos"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "Jenis pos"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "Kesalahan"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "Kontras"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "Peringatan"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "Tingkatkan untuk memindai"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "Lihat lebih banyak laporan"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "Pelajari aksesibilitas"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "Sumber daya tambahan"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "Blog (buka di jendela baru)"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "Blog"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "Dokumentasi (buka di jendela baru)"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "Dokumentasi"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "Acara & berita aksesibilitas di kotak masuk Anda"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "Berlangganan daftar email Equalize Digital untuk mendapatkan akses ke webinar aksesibilitas gratis dan sumber daya pelatihan."
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "Email*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "Ketik email Anda"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "Nama depan"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "Ketik nama depan Anda"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Accessibility Checker &mdash; riwayat audit"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Accessibility Checker &mdash; gratis"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "Versi"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "Versi database"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "Halaman kebijakan"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "Belum diatur"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "Tanggal aktivasi"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "Pernyataan footer"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "Diaktifkan"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "Dinonaktifkan"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "Hapus data"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "Sertakan tautan pernyataan"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "Jenis pos"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "Posisi ringkasan sederhana"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "Prompt ringkasan sederhana"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "Jumlah pos"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "Jumlah kesalahan"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "Jumlah peringatan"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "Jumlah Tabel DB"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Accessibility Checker &mdash; pro"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "Status lisensi"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "Nama pengguna otorisasi"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "Kata sandi otorisasi"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "ID pemindaian"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "Total pemindaian"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "Judul ringkasan sederhana"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "Izin pengabaian"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "Tidak ada"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "Jumlah Tabel DB Pengabaian"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "%1$s menggunakan %2$s untuk memantau aksesibilitas situs web kami."
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "Pemeriksa Aksesibilitas (terbuka di jendela baru)"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "Baca %s kami"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "Kebijakan aksesibilitas"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "Ringkasan sederhana"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "Tambahkan ukuran & jenis ke tautan file"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "Tambahkan konteks ke file yang ditautkan"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "Tambahkan ukuran & jenis file ke tautan"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "Tambahkan ukuran dan jenis file ke tautan file yang mungkin memicu unduhan."
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "Tambahkan label ke bidang formulir yang belum diberi label"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "Beri label pada bidang formulir"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "Tambahkan label ke bidang formulir yang belum diberi label jika tujuan bidang dapat ditentukan."
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "Mencoba menambahkan label ke bidang formulir yang tidak memilikinya. Catatan: Anda mungkin perlu menambahkan gaya kustom yang menargetkan kelas %1$s jika penambahan label memengaruhi tata letak formulir Anda."
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "Tambahkan judul halaman yang hilang atau kosong"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "Atur Judul HTML Halaman"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "Tambahkan judul halaman yang hilang"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "Tambahkan tag %1$s ke halaman jika tidak ada atau kosong."
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "Tambahkan peringatan saat tautan membuka tab/jendela baru"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "Tambahkan label ke tautan yang membuka tab/jendela baru"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "Tambahkan label dan ikon ke tautan dengan %1$s yang memberi tahu pengguna bahwa mereka akan membuka tab/jendela baru. %2$sCatatan: Pengaturan ini tidak akan berpengaruh jika perbaikan “Blokir Tautan yang Membuka Jendela Baru” diaktifkan.%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "Blokir Unggahan PDF"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "Batasi unggahan PDF untuk pengguna tanpa kemampuan %1$s (diizinkan untuk admin secara default)."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "Tambahkan label ke formulir komentar dan pencarian"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "Beri label pada bidang komentar/pencarian"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "Label formulir komentar dan pencarian"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "Tambahkan label yang hilang ke formulir komentar dan pencarian WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "Beri label pada formulir komentar"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "Tambahkan label yang hilang ke formulir komentar WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "Beri label pada formulir pencarian"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "Tambahkan label yang hilang ke formulir pencarian WordPress."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "Komentar"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "Nama"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "Email"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "Situs Web"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "Cari …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "Cari:"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "Cari"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "Pengaturan untuk menambahkan label yang hilang pada formulir komentar dan pencarian WordPress."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "Tambahkan garis luar fokus"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "Garis luar fokus"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "Tambahkan garis luar ke elemen saat menerima fokus keyboard."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "Tambahkan garis luar fokus"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "Pengaturan terkait peningkatan garis luar fokus untuk aksesibilitas keyboard yang lebih baik."
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "Tambahkan Atribut lang & dir"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "Atur bahasa halaman"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "Tambahkan atribut “lang” & “dir”"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "Tambahkan atribut bahasa situs (%1$s) dan arah teks (%2$s) ke elemen %3$s."
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "Tambahkan Garis Bawah ke semua Tautan non-navigasi"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "Garis bawahi tautan"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "Paksa garis bawah tautan"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "Pastikan tautan non-navigasi diberi garis bawah."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "Buat tag meta viewport dapat diskalakan"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "Pastikan viewport dapat diskalakan"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "Pastikan bahwa tag viewport pada halaman memungkinkan penskalaan."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "Buat viewport dapat diskalakan"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "Pastikan tag viewport memungkinkan penskalaan, meningkatkan aksesibilitas pada perangkat seluler."
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "Cegah tautan membuka jendela baru"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "Blokir tautan yang membuka jendela baru"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "Cegah tautan membuka di jendela atau tab baru dengan menghapus %1$s."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "Tambahkan Tautan “Baca” dengan Judul Posting"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "Tambahkan judul ke tautan baca selengkapnya"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "Tautan Baca Selengkapnya"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "Tambahkan judul posting dan tautan "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "Tambahkan Judul Posting Ke “Baca Selengkapnya”"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "Tambahkan judul posting ke tautan “Baca Selengkapnya” dalam daftar posting saat tema Anda menampilkan tautan tersebut."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "Hanya untuk pembaca layar"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "Membuat judul posting yang ditambahkan ke tautan “Baca Selengkapnya” hanya terlihat oleh pembaca layar."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "Perbaikan ini menambahkan judul posting ke tautan “Baca Selengkapnya” dalam daftar posting pada blok “Selengkapnya” dan dalam kutipan."
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "Pilih atribut label yang dapat diakses"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "Hapus atribut judul yang tidak perlu"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "Hapus atribut judul"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "Hapus atribut %1$s dari elemen yang sudah memiliki nama yang dapat diakses yang lebih disukai."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "Tambahkan tautan lewati"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "Tautan lewati"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "Aktifkan tautan lewati"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "Tambahkan tautan lewati ke semua halaman situs, memungkinkan pengguna untuk langsung melompat ke konten utama."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "Target Konten Utama (wajib)"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "Tentukan ID area konten utama yang akan ditargetkan oleh tautan lewati. Masukkan beberapa ID dipisahkan dengan koma; sistem akan menggunakan daftar tersebut untuk menemukan yang sesuai untuk setiap halaman."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "Target navigasi"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "Atur atribut ID dari elemen navigasi. Ini berguna jika navigasi utama Anda berisi tindakan yang ingin dilakukan oleh sebagian besar pengunjung situs seperti fitur login atau pencarian."
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "Jika tema Anda belum menambahkan tautan lewati yang memungkinkan pengguna keyboard untuk melewati navigasi dan langsung melompat ke konten utama, aktifkan tautan lewati di sini. %1$sPelajari lebih lanjut tentang tautan lewati.%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "Lompat ke konten"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "Lompat ke navigasi"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "Hapus tabindex dari elemen yang dapat difokuskan"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "Hapus indeks tab"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "Hapus atribut %1$s dari elemen yang dapat difokuskan."
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "Catatan: Pengaturan ini tidak direkomendasikan untuk tema yang sudah siap aksesibilitas."
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "Perbaikan tidak ditemukan"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "Gagal mendaftarkan perintah %1$s karena %2$s"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "ID posting yang statistiknya akan dihapus."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "Tidak ada ID Posting yang diberikan."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "ID Posting %1$s tidak ada."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "Statistik %1$s dihapus."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "Kunci yang akan ditampilkan dalam hasil. Standarnya semua kunci."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "Bersihkan cache sebelum mengambil statistik (bisa intensif)."
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "Kunci statistik: %1$s tidak ditemukan dalam statistik."
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "ID posting yang statistiknya akan diambil."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "ID Posting %1$d tidak ada."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "Baik posting belum dipindai atau semua tes lulus untuk ID posting %1$d."
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "permalink dari "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "permalink ke "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "Hadiri gratis"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "Selamat datang di pemeriksa aksesibilitas"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "Pengaturan pemeriksa aksesibilitas"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Pengaturan"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "Pengaturan umum"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "Pengaturan ringkasan sederhana"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "Pernyataan aksesibilitas footer"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "Pemeriksa aksesibilitas frontend"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "Jenis posting yang akan diperiksa"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "Minta ringkasan sederhana"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "Posisi ringkasan sederhana"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "Tambahkan pernyataan aksesibilitas footer"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "Sertakan tautan ke kebijakan aksesibilitas"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "Halaman Kebijakan Aksesibilitas"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "Pratinjau pernyataan aksesibilitas"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "Posisi pemeriksa aksesibilitas frontend"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "Gunakan pengaturan di bawah ini untuk mengonfigurasi Accessibility Checker. Informasi tambahan tentang setiap pengaturan dapat ditemukan di %1$s."
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "dokumentasi plugin (buka di jendela baru)"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "dokumentasi plugin"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "Fitur tambahan dan dukungan email tersedia dengan %1$s."
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Accessibility Checker Pro (buka di jendela baru)"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Accessibility checker pro"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "Gunakan pengaturan di bawah ini untuk mengonfigurasi pemeriksa aksesibilitas frontend."
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "Pedoman Aksesibilitas Konten Web (WCAG) pada tingkat AAA mengharuskan konten apa pun dengan tingkat bacaan di atas kelas 9 memiliki alternatif yang lebih mudah dibaca. Teks ringkasan yang disederhanakan ditambahkan pada tab keterbacaan di kotak meta Accessibility Checker pada layar edit setiap pos atau halaman."
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "Pelajari lebih lanjut tentang ringkasan yang disederhanakan dan persyaratan keterbacaan (buka di jendela baru)"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "Pelajari lebih lanjut tentang ringkasan yang disederhanakan dan persyaratan keterbacaan."
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "Apakah Anda berpikir “Wow, plugin ini luar biasa” dan apakah ini membantu Anda membuat situs web Anda lebih mudah diakses? Bagikan upaya Anda untuk membuat situs web Anda lebih mudah diakses kepada pelanggan Anda dan beri tahu mereka bahwa Anda menggunakan Accessibility Checker untuk memastikan semua orang dapat menggunakan situs web Anda. Tambahkan tautan kecil berupa teks saja dan pernyataan di footer situs web Anda."
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "Sebelum konten"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "Setelah konten"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "Sisipkan secara manual"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "Gunakan fungsi ini untuk menambahkan ringkasan yang disederhanakan secara manual ke tema Anda dalam loop."
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "Fungsi ini secara opsional menerima ID pos sebagai parameter."
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "Tentukan di mana Anda ingin ringkasan yang disederhanakan muncul dalam kaitannya dengan konten Anda jika diisi."
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "Pojok Kanan Bawah (default)"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "Pojok kiri bawah"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "Tentukan di mana Anda ingin pemeriksa aksesibilitas frontend muncul di halaman."
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "Saat diperlukan"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "Selalu"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Haruskah Accessibility Checker hanya meminta ringkasan yang disederhanakan ketika tingkat bacaan pos atau halaman Anda di atas kelas 9, selalu memintanya terlepas dari tingkat bacaan, atau tidak pernah memintanya terlepas dari tingkat bacaan?"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "Untuk memeriksa konten selain pos dan halaman, silakan "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " (buka di jendela baru)"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "Pilih jenis pos mana yang harus diperiksa selama pemindaian. Harap diperhatikan, menghapus jenis pos yang sebelumnya dipilih akan menghapus informasi pemindaian dan peringatan yang diabaikan secara kustom yang telah diatur."
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "Hapus semua data Accessibility Checker ketika plugin dicopot."
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "Gambar tidak memiliki teks alternatif"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "Kesalahan Gambar Tidak Memiliki Teks Alternatif berarti bahwa gambar Anda tidak memiliki atribut alt (%1$s) yang terkandung dalam tag gambar (%2$s) sama sekali. Untuk memperbaiki kesalahan Gambar Tidak Memiliki Teks Alternatif, Anda perlu menambahkan tag alt ke gambar dengan teks yang sesuai yang menjelaskan tujuan gambar tersebut di halaman. Jika gambar hanya untuk dekorasi, atribut alt dapat dikosongkan, tetapi tag HTML %1$s tetap harus ada."
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "Gambar memiliki teks alternatif kosong"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "Peringatan Gambar Memiliki Teks Alternatif Kosong muncul jika Anda memiliki gambar dengan atribut alt (%s) yang kosong. Teks alternatif memberi tahu orang yang tidak dapat melihat apa isi gambar tersebut dan menambahkan konteks tambahan pada pos atau halaman. Teks alternatif yang kosong hanya benar jika gambar tersebut murni untuk dekorasi, seperti batas atau ikon dekoratif. Untuk memperbaiki peringatan Gambar Memiliki Teks Alternatif Kosong, Anda perlu menentukan apakah gambar tersebut dekoratif atau menambahkan sesuatu yang bermakna ke halaman. Jika tidak dekoratif, Anda perlu menambahkan teks alternatif yang sesuai untuk menjelaskan tujuan gambar. Jika gambar tersebut dekoratif, maka Anda akan membiarkan teks alternatif kosong dan “Abaikan” peringatan tersebut."
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "Teks alternatif berkualitas rendah"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "Peringatan Teks Alternatif Berkualitas Rendah muncul ketika teks alternatif pada gambar berisi kata kunci yang tidak perlu dalam teks alternatif (seperti “gambar” atau “grafik”), ekstensi file (seperti .JPG), yang mungkin mendeskripsikan gambar dekoratif (seperti “spacer” atau “panah”). Untuk memperbaiki peringatan ini, Anda perlu menulis ulang teks alternatif untuk gambar apa pun yang menandai peringatan Teks Alternatif Berkualitas Rendah, memastikan teks alternatif akurat, unik, sesuai konteks, dan tidak mengandung deskriptor yang berlebihan atau tidak perlu. Jika gambar tersebut murni dekoratif, benar untuk membiarkan teks alternatif kosong."
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "Gambar tertaut tanpa teks alternatif"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Kesalahan Gambar Tertaut Tanpa Teks Alternatif muncul ketika gambar yang tertaut ke URL tidak memiliki atribut alt (%s) sama sekali dalam tag gambar. Gambar tertaut harus memiliki teks alternatif yang akurat yang menjelaskan ke mana tautan mengarah sehingga pengguna pembaca layar tahu ke mana tautan tersebut mengarah. Untuk mengatasi kesalahan ini, Anda perlu menambahkan teks alt yang bermakna ke gambar. Teks alt Anda harus menjelaskan tujuan tautan, bukan seperti apa gambar tersebut."
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "Gambar tertaut dengan teks alternatif kosong"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Kesalahan Gambar Tertaut dengan Teks Alternatif Kosong muncul ketika gambar yang tertaut ke URL memiliki atribut alt (%s) tanpa isi. Gambar tertaut harus memiliki teks alternatif yang akurat yang menjelaskan ke mana tautan mengarah sehingga pengguna pembaca layar tahu ke mana tautan tersebut mengarah. Untuk mengatasi kesalahan ini, Anda perlu menambahkan teks alt yang bermakna ke gambar. Teks alt Anda harus menjelaskan tujuan tautan, bukan seperti apa gambar tersebut."
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "Teks alternatif duplikat"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "Peringatan Teks Alternatif Duplikat muncul ketika teks alternatif untuk gambar di pos atau halaman Anda identik dengan teks di sekitarnya atau yang berdekatan, termasuk judul atau keterangan gambar. Peringatan ini juga terjadi jika dua gambar di halaman memiliki teks alternatif yang sama. Untuk mengatasi peringatan ini, Anda perlu mengubah teks dari salah satu atau kedua elemen yang menandai peringatan Teks Alternatif Duplikat, memastikan bahwa semua gambar memiliki teks alt yang unik dan bahwa Anda tidak mengulangi teks alt Anda di judul dan keterangan gambar Anda."
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "Urutan judul tidak tepat"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "Kesalahan Urutan Judul Tidak Tepat berarti struktur judul Anda telah melewatkan satu tingkat. Misalnya, jika struktur halaman Anda memiliki judul level 3 (%1$s) di bawah judul level 1 (%2$s), kesalahan “Urutan Judul Tidak Tepat” akan ditandai karena tidak ada tag %3$s antara H1 dan H3. Untuk memperbaiki kesalahan urutan judul yang tidak tepat, Anda perlu mengubah level judul yang salah ke level judul yang benar, atau menambahkan konten dengan level judul yang benar di antara dua level yang sudah ada."
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "Tag paragraf kosong"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "Peringatan Tag Paragraf Kosong berarti ada tag paragraf yang tidak berisi konten. Ini mungkin diumumkan oleh pembaca layar atau menimbulkan kebingungan bagi pengguna. Untuk memperbaiki peringatan ini, hapus paragraf kosong dari halaman. Jika Anda perlu menambahkan spasi antara bagian, ini harus dilakukan dengan padding, margin, atau blok spacer."
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "iframe Tanpa Judul"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "Kesalahan iframe Tanpa Judul berarti satu atau lebih iframe di pos atau halaman Anda tidak memiliki judul yang dapat diakses yang menjelaskan isi iframe. Judul iframe adalah atribut yang dapat ditambahkan ke tag %1$s untuk menjelaskan isi frame kepada orang yang menggunakan teknologi bantu. Untuk memperbaiki judul iframe yang hilang, Anda perlu menambahkan atribut title atau aria-label ke tag %1$s. Atribut tersebut harus secara akurat mendeskripsikan isi iframe."
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "Sub-judul yang hilang"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "Peringatan tentang tajuk yang hilang berarti bahwa pos atau halaman Anda tidak mengandung elemen tajuk (%1$s–%2$s) dalam konten bagian badan pos atau halaman, yang dapat membuatnya sangat sulit bagi pengguna pembaca layar untuk menavigasi konten di halaman tersebut. Untuk memperbaiki halaman tanpa tajuk, Anda perlu menambahkan elemen tajuk. Minimal, setiap halaman harus memiliki satu tag %1$s, yang biasanya merupakan judul halaman. Tambahkan subtajuk tambahan sesuai kebutuhan untuk konten Anda. Jika Anda telah memutuskan bahwa tajuk benar-benar tidak diperlukan pada halaman tersebut, maka Anda dapat “Abaikan” peringatan tersebut."
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "Teks rata kanan-kiri"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "Peringatan Teks Rata Kanan-Kiri muncul di Pemeriksa Aksesibilitas ketika teks dengan lebih dari 200 karakter pada pos atau halaman Anda diberi gaya perataan rata kanan-kiri (text-align:justify). Untuk memperbaiki peringatan ini, hapus gaya perataan rata kanan-kiri dari elemen teks yang ditentukan."
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "Tautan membuka jendela atau tab baru"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "Peringatan Tautan Membuka Jendela atau Tab Baru muncul ketika ada tautan di situs web Anda yang telah diatur untuk membuka di tab atau jendela baru saat diklik. Dianggap praktik terbaik untuk tidak membuka tab atau jendela baru dengan tautan. Jika tautan membuka tab atau jendela baru, harus ada peringatan visual dan auditori yang mengumumkan bahwa tautan akan membuka jendela atau tab baru sehingga pengguna akan mengharapkan perilaku tersebut dan tahu cara kembali setelah mengklik tautan. Untuk memperbaiki peringatan ini, ubah tautan agar tidak membuka di tab baru atau pastikan “membuka jendela baru” disertakan dalam teks tautan kemudian “Abaikan” peringatan tersebut. Untuk secara otomatis menambahkan pemberitahuan ke semua tautan di situs Anda dan mengabaikan semua peringatan ini, pasang plugin %s gratis kami."
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "Peringatan aksesibilitas jendela baru"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "Peta gambar tidak memiliki teks alternatif"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "Kesalahan Peta Gambar Tidak Memiliki Teks Alternatif berarti bahwa salah satu elemen %1$s dalam peta gambar Anda tidak memiliki teks alternatif yang ditambahkan dalam atribut %2$s. Untuk memperbaiki kesalahan ini, Anda perlu menambahkan teks alt yang hilang ke tag area mana pun yang tidak memiliki teks alt. Teks alt perlu menjelaskan fungsi tautan yang terkandung dalam area tersebut, tidak harus menggambarkan seperti apa tampilan area tersebut."
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "Urutan tab dimodifikasi"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "Peringatan Urutan Tab Dimodifikasi muncul ketika urutan tab logis pada halaman telah diubah dengan menambahkan atribut untuk tabindex yang lebih besar dari 0 ke elemen HTML (misalnya, %s). Ini dapat menyebabkan masalah navigasi bagi pengguna yang hanya menggunakan keyboard. Untuk menyelesaikan peringatan Urutan Tab Dimodifikasi, Anda perlu melihat tampilan depan situs web Anda pada halaman atau pos di mana urutan tab telah dimodifikasi dan menguji untuk melihat apakah modifikasi tersebut benar atau tidak. Jika modifikasi urutan tab tidak menyebabkan masalah, maka Anda dapat “Abaikan” peringatan tersebut. Jika urutan tab yang dimodifikasi menyebabkan informasi disajikan tidak berurutan, maka Anda perlu menghapus atribut tabindex dari elemen yang ditandai."
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "Tag tajuk kosong"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "Kesalahan Tag Tajuk Kosong berarti bahwa ada tag tajuk di pos atau halaman Anda yang tidak berisi konten. Dalam kode, kesalahan ini akan terlihat seperti ini: %s. Untuk memperbaiki tajuk kosong, Anda perlu menambahkan konten ke tag tajuk yang telah menandai kesalahan Tag Tajuk Kosong atau menghapus tag kosong jika tidak diperlukan di halaman Anda."
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "Tautan kosong"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "Kesalahan Tautan Kosong berarti salah satu tautan yang ada di halaman web kosong atau tidak berisi teks yang menjelaskan ke mana tautan akan mengarah jika diklik. Ini umumnya terjadi pada tautan yang berisi webfont, icon font, dan SVG, atau ketika tautan secara tidak sengaja dibuat di editor konten. Untuk memperbaiki kesalahan tautan kosong, Anda perlu menemukan tautan yang ditandai dan menambahkan teks deskriptif padanya. Anda perlu: menambahkan konten teks dalam elemen %1$s yang kosong atau, jika tautan Anda berisi ikon SVG atau Webfont, sembunyikan elemen tersebut dengan %2$s dan tambahkan atribut %3$s ke tag %1$s atau teks pembaca layar. Teks atau label yang Anda tambahkan harus mendeskripsikan ke mana tautan tersebut mengarah dan tidak ambigu."
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "Tombol Kosong"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "Kesalahan Tombol Kosong berarti salah satu tombol yang ada di halaman web kosong atau tidak berisi teks yang menjelaskan fungsi tombol tersebut. Atau, jika itu adalah tombol gambar, gambar yang terdapat dalam tombol tersebut tidak memiliki teks alternatif. Untuk memperbaiki kesalahan tombol kosong, Anda perlu menemukan tombol yang ditandai dan menambahkan teks deskriptif padanya. Anda perlu: menambahkan konten teks dalam elemen %1$s yang kosong, menambahkan atribut value ke %2$s yang tidak memilikinya, atau menambahkan teks alternatif ke gambar tombol. Teks tersebut harus mendeskripsikan fungsi tombol Anda atau tindakan yang dipicu oleh tombol tersebut."
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "Teks Alternatif Panjang untuk Gambar"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "Peringatan Teks Alternatif Panjang untuk Gambar muncul jika ada lebih dari 100 karakter dalam teks alternatif Anda. Teks alternatif dimaksudkan untuk mendeskripsikan gambar secara ringkas, tanpa terlalu bertele-tele. Untuk memperbaiki peringatan ini, Anda perlu mempersingkat teks alt untuk gambar yang telah ditandai menjadi 100 karakter atau kurang. Jika Anda telah menentukan bahwa teks alternatif Anda sudah baik apa adanya, maka “Abaikan” peringatan tersebut."
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Tersembunyi"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "Peringatan ARIA Tersembunyi muncul ketika konten pada postingan atau halaman Anda telah disembunyikan menggunakan atribut aria-hidden=“true”. Ketika atribut ini ditambahkan ke elemen HTML, pembaca layar tidak akan membacakannya kepada pengguna. Terkadang memang benar jika elemen tersebut disembunyikan dari pembaca layar (seperti pada ikon dekoratif) tetapi di lain waktu ini tidak benar. Ketika Anda melihat peringatan ini, Anda perlu menentukan apakah elemen tersebut memang seharusnya disembunyikan dari orang yang buta atau memiliki gangguan penglihatan. Jika memang benar disembunyikan, “Abaikan” peringatan tersebut. Jika tidak benar disembunyikan dan seharusnya terlihat, hapus atribut aria-hidden=“true” untuk menyelesaikan peringatan."
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "Header Tabel Kosong"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "Kesalahan Header Tabel Kosong berarti salah satu header tabel pada postingan atau halaman Anda tidak berisi teks apapun. Ini berarti elemen %1$s ada tetapi terlihat seperti ini %2$s tanpa ada apapun di antara tag pembuka dan penutup. Untuk memperbaiki header tabel yang kosong, Anda perlu menemukan elemen HTML yang benar (%1$s) dan menambahkan teks yang mendeskripsikan baris atau kolom yang berlaku."
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "Tautan ke Berkas MS Office"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Peringatan Tautan ke Berkas MS Office berarti satu atau lebih tautan di halaman atau postingan Anda mengarah ke berkas dengan salah satu ekstensi berikut: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps atau .ppsx. Peringatan ini muncul ketika ada berkas MS Office sebagai pengingat untuk menguji secara manual dokumen Word, presentasi PowerPoint, dan spreadsheet Excel Anda untuk aksesibilitas dan memastikan bahwa mereka sesuai dengan semua pedoman WCAG yang relevan. Untuk menyelesaikan peringatan Tautan ke Berkas MS Office, Anda perlu: (1) memastikan tautan langsung untuk melihat atau mengunduh dokumen ada jika Anda menggunakan plugin untuk menyematkannya di halaman; (2) memastikan tautan ke dokumen memperingatkan pengguna bahwa itu adalah tautan ke dokumen dengan menampilkan ekstensi berkas tertentu di anchor tautan; dan (3) menguji dan memperbaiki berkas MS Office Anda untuk kesalahan aksesibilitas. Setelah menentukan bahwa berkas Anda sepenuhnya dapat diakses, Anda dapat dengan aman “Mengabaikan” peringatan tersebut."
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "Tautan ke PDF"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Peringatan Tautan ke PDF berarti bahwa satu atau lebih tautan di halaman atau pos Anda mengarah ke file PDF. Peringatan ini adalah pengingat untuk menguji secara manual aksesibilitas PDF yang ditautkan dan memastikan bahwa itu sesuai dengan semua pedoman WCAG yang relevan. Untuk menyelesaikan peringatan Tautan ke PDF, Anda perlu: (1) memastikan tautan langsung untuk melihat atau mengunduh dokumen tersedia jika Anda menggunakan plugin untuk menyematkannya di halaman; (2) memastikan tautan ke dokumen memperingatkan pengguna bahwa itu adalah tautan ke dokumen dengan menampilkan ekstensi file tertentu di anchor tautan; dan (3) menguji dan memperbaiki dokumen Anda untuk kesalahan aksesibilitas. Setelah menentukan bahwa file Anda sepenuhnya dapat diakses, Anda dapat dengan aman “Mengabaikan” peringatan tersebut."
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "Tautan ke File Non-HTML"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Peringatan Tautan ke Dokumen Non-HTML berarti bahwa satu atau lebih tautan di halaman atau pos Anda mengarah ke file dengan salah satu ekstensi file berikut: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, atau .key. Peringatan ini adalah pengingat untuk menguji secara manual aksesibilitas dokumen yang ditautkan dan memastikan bahwa itu sesuai dengan semua pedoman WCAG yang relevan. Untuk menyelesaikan peringatan Tautan ke Dokumen Non-HTML, Anda perlu: (1) memastikan tautan langsung untuk melihat atau mengunduh dokumen tersedia jika Anda menggunakan plugin untuk menyematkannya di halaman; (2) memastikan tautan ke dokumen memperingatkan pengguna bahwa itu adalah tautan ke dokumen dengan menampilkan ekstensi file tertentu di anchor tautan; dan (3) menguji dan memperbaiki dokumen Anda untuk kesalahan aksesibilitas. Setelah menentukan bahwa file Anda sepenuhnya dapat diakses, Anda dapat dengan aman “Mengabaikan” peringatan tersebut."
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "Deskripsi panjang tidak valid"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "Kesalahan Deskripsi Panjang Tidak Valid berarti bahwa atribut deskripsi panjang (%s) pada gambar tidak memiliki URL, nama file, atau ekstensi file yang sesuai. Ini juga bisa berarti bahwa deskripsi panjang bukan URL, atau telah dibiarkan kosong. Atribut longdesc tidak sepenuhnya didukung oleh HTML5, browser, dan semua pembaca layar. Karena kurangnya dukungan ini, perbaikan terbaik untuk kesalahan ini adalah menghapus longdesc dari tag gambar Anda sepenuhnya."
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "Label formulir tidak ada"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "Kesalahan Label Formulir Tidak Ada dipicu ketika %1$s (bidang formulir) ada dalam formulir Anda tetapi tidak terkait dengan elemen %2$s. Ini bisa berarti label ada tetapi tidak memiliki atribut %3$s untuk menghubungkannya dengan bidang yang sesuai atau mungkin tidak ada label sama sekali dan hanya ada tag %1$s. Untuk memperbaiki kesalahan label formulir yang tidak ada, Anda perlu menentukan bagaimana bidang dan formulir dibuat dan kemudian menambahkan label bidang atau atribut %3$s yang benar ke label yang ada yang tidak terhubung ke bidang."
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "Teks anchor ambigu"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "Kesalahan Teks Anchor Ambigu muncul ketika ada teks tertaut yang tidak memiliki arti di luar konten sekitarnya. Contoh umum dari ini termasuk menautkan frasa seperti “klik di sini” atau “pelajari lebih lanjut.” Untuk menyelesaikan kesalahan ini, ubah teks tautan menjadi kurang umum sehingga memiliki arti jika didengar secara terpisah."
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "Teks bergaris bawah"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "Peringatan Teks Bergaris Bawah muncul jika ada teks di halaman Anda yang dibungkus dalam tag HTML garis bawah (%1$s). Dalam lingkungan online, teks bergaris bawah umumnya digunakan untuk menunjukkan teks tertaut dan tidak dianggap sebagai praktik terbaik untuk menggarisbawahi teks hanya untuk penekanan. Untuk memperbaiki teks bergaris bawah, Anda perlu menghapus elemen %1$s dari teks atau gaya CSS yang membuatnya bergaris bawah. Cobalah menggunakan gaya lain, seperti huruf miring, teks berwarna, atau tebal untuk menekankan atau membedakan antara kata atau frasa."
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "Tautan lewati atau anchor rusak"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "Tautan jangkar, terkadang disebut tautan lompat, adalah tautan yang, alih-alih membuka halaman atau URL baru ketika diklik, melompat atau menggulir Anda ke bagian lain pada halaman yang sama. Tautan ini mengarah ke elemen yang dimulai dengan tanda pagar daripada URL lengkap. Misalnya, Anda mungkin menggulir seseorang ke bagian 'tentang' dari halaman utama Anda dengan menautkan ke #about. Kesalahan Tautan Lewati atau Jangkar yang Rusak muncul ketika ada tautan yang mengarah ke bagian lain pada halaman yang sama tetapi tidak ada elemen yang ada di halaman tersebut yang memiliki id yang dirujuk. Kesalahan ini juga akan muncul jika Anda menautkan hanya ke #. Untuk mengatasi kesalahan ini, uji tautan secara manual untuk memastikan bahwa tautan tersebut berfungsi dan kemudian perbaiki atau “Abaikan” kesalahan tersebut sesuai kebutuhan."
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "Header tabel tidak ada"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "Kesalahan Header Tabel Tidak Ada berarti bahwa salah satu tabel Anda berisi data (informasi yang terkandung dalam tag %1$s) yang tidak memiliki tag header (%2$s) yang sesuai. Ketika melihat HTML untuk formulir Anda, akan ada lebih banyak elemen %1$s dalam satu baris daripada elemen %2$s dalam tabel. Untuk memperbaiki header tabel yang hilang, Anda perlu menemukan bagian kode yang memiliki lebih sedikit elemen %2$s daripada yang seharusnya ada untuk jumlah baris atau kolom data, dan menambahkan satu atau lebih elemen %2$s tambahan yang berisi teks yang menjelaskan data dalam baris atau kolom tersebut."
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "Label formulir ganda"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "Kesalahan Label Formulir Ganda muncul ketika ada lebih dari satu label yang terkait dengan satu bidang pada formulir. Jika terlalu banyak label formulir yang ada, pembaca layar mungkin tidak dapat membaca bidang formulir dengan sukses untuk membantu pengguna dengan gangguan penglihatan menavigasi dan melengkapi formulir. Untuk memperbaiki kesalahan label formulir ganda, Anda perlu menentukan bagaimana bidang dan formulir dibuat dan kemudian memastikan bahwa setiap bidang hanya memiliki satu label yang terkait dengannya."
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "Teks terlalu kecil"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "Peringatan Teks Terlalu Kecil muncul ketika ada teks di situs web Anda yang berukuran kurang dari 10px. Peringatan ini menunjukkan bahwa Anda mungkin perlu memikirkan kembali ukuran font dan membuatnya lebih besar sehingga dapat dibaca dengan lebih mudah tanpa pengguna perlu memperbesar tampilan pada browser mereka. Untuk memperbaiki teks yang terlalu kecil, Anda perlu memastikan bahwa semua elemen teks di situs web Anda setidaknya berukuran 10 poin."
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "Kemungkinan judul"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "Peringatan Kemungkinan Judul muncul ketika ada teks di halaman yang tampak seperti judul, tetapi tidak dikodekan dengan tag judul yang tepat. Peringatan ini muncul jika ada frasa pendek atau rangkaian teks yang panjangnya kurang dari 50 karakter yang diformat dengan cara yang menunjukkan bahwa mereka mungkin digunakan sebagai header (berukuran 20 piksel atau lebih besar, atau berukuran 16 piksel atau lebih besar dan tebal dan/atau miring). Untuk memperbaiki peringatan Kemungkinan Judul, Anda perlu menentukan apakah teks yang ditandai memang dimaksudkan sebagai judul. Jika ya, Anda perlu mengubahnya dari paragraf menjadi judul pada level yang tepat. Jika tidak dimaksudkan sebagai judul, maka Anda dapat dengan aman “Mengabaikan” peringatan tersebut."
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "Konten berkedip atau bergulir"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "Kesalahan Konten Berkedip atau Bergulir muncul ketika elemen di situs web Anda memiliki fungsi berkedip atau bergulir yang diterapkan baik melalui CSS atau dalam HTML. Secara khusus, hal berikut akan menciptakan kesalahan ini: tag HTML %1$s atau %2$s atau CSS %3$s. Untuk mengatasi kesalahan ini, hapus tag HTML atau CSS yang menyebabkan konten berkedip."
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "Kontras warna tidak mencukupi"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "Kesalahan Kontras Warna yang Tidak Mencukupi berarti kami telah mengidentifikasi bahwa satu atau lebih kombinasi warna pada postingan atau halaman Anda tidak memenuhi rasio kontras warna minimum 4,5:1. Tergantung pada bagaimana situs Anda dibangun, mungkin ada “hasil positif palsu” untuk kesalahan ini karena beberapa warna terkandung dalam lapisan HTML yang berbeda pada halaman. Untuk memperbaiki kesalahan Kontras Warna yang Tidak Mencukupi, Anda perlu memastikan bahwa elemen yang ditandai memenuhi rasio minimum yang diperlukan yaitu 4,5:1. Untuk melakukannya, Anda perlu menemukan kode heksadesimal warna latar depan dan latar belakang Anda, dan mengujinya dalam pemeriksa kontras warna. Jika kode warna ini memiliki rasio 4,5:1 atau lebih, Anda dapat “Abaikan” kesalahan ini. Jika kode warna tidak memiliki rasio setidaknya 4,5:1, Anda perlu melakukan penyesuaian pada warna Anda."
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "Transkrip tidak ada"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "Kesalahan transkrip tidak ada berarti ada klip audio atau video di situs web Anda yang tidak memiliki transkrip atau ada transkrip tetapi tidak dilabeli sebagai transkrip atau diposisikan lebih dari 25 karakter jauhnya dari media yang disematkan atau ditautkan. Untuk memperbaiki kesalahan transkrip yang tidak ada, Anda perlu membuat transkrip untuk setiap klip video atau audio yang telah ditandai sebagai tidak memiliki transkrip. Setelah Anda membuat transkrip, Anda dapat menambahkan konten transkrip langsung di dalam postingan atau halaman Anda atau menautkan ke transkrip jika Anda menyertakannya sebagai dokumen atau file PDF yang dapat diunduh. Anda perlu secara eksplisit menyertakan kata “transkrip” dalam judul sebelum transkrip di halaman atau dalam tautan ke file Anda, dan itu perlu berada dalam jarak 25 karakter dari penyematan atau tautan audio atau video."
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "Referensi ARIA Rusak"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "Kesalahan Referensi ARIA Rusak muncul jika elemen aria-labeledby atau aria-describedby ada di halaman atau postingan tetapi target referensinya tidak ada. Ini berarti bahwa elemen yang dirujuk oleh atribut ARIA tertentu yang Anda gunakan tidak memiliki label atau deskriptor yang tepat, atau tidak ada di halaman. Untuk memperbaiki referensi ARIA yang rusak, Anda perlu menemukan elemen ARIA yang ditandai, dan memastikan bahwa target referensi mereka ada dan dilabeli dengan benar."
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "Deklarasi bahasa tidak ada"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "Deklarasi bahasa adalah atribut HTML yang menunjukkan bahasa default dari konten pada halaman atau postingan. Deklarasi bahasa harus dikodekan ke dalam tema situs web Anda dan muncul secara otomatis di bagian kepala situs web. Kesalahan Deklarasi Bahasa Tidak Ada muncul jika tag %1$s pada halaman tidak berisi atribut %2$s atau %3$s, atau salah satu dari atribut ini ada tetapi kosong. Untuk memperbaiki kesalahan Deklarasi Bahasa Tidak Ada, Anda perlu mengedit file tema Anda untuk menambahkan atribut bahasa yang hilang ke tag HTML di bagian paling atas header situs web Anda. Jika Anda menggunakan tema yang menerima pembaruan, maka Anda perlu melakukan perubahan dalam tema turunan untuk memastikan perbaikan tidak ditimpa ketika Anda memperbarui tema Anda berikutnya."
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "Gambar GIF Animasi"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "Peringatan Gambar GIF Animasi muncul ketika ada GIF animasi di postingan atau halaman Anda. Peringatan ini adalah pengingat untuk meninjau secara manual GIF animasi apa pun di situs web Anda untuk aksesibilitasnya dan/atau untuk mempertimbangkan kembali penggunaan GIF animasi, menggantikannya dengan gambar statis atau video. Untuk menyelesaikan peringatan ini, Anda perlu meninjau GIF apa pun yang ada untuk memastikan bahwa mereka memenuhi semua pedoman yang berlaku untuk aksesibilitas dan kemudian “Abaikan” peringatan atau hapus GIF dari halaman atau postingan Anda jika tidak dapat diakses."
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "Video tersedia"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Karena video sering mengandung masalah aksesibilitas, yang banyak di antaranya hanya dapat diidentifikasi oleh seseorang, peringatan Video Hadir muncul setiap kali video terdeteksi pada postingan atau halaman sebagai pengingat bahwa Anda perlu menguji video secara manual untuk aksesibilitas. Untuk menyelesaikan peringatan ini, Anda perlu mengunjungi tampilan depan situs web Anda dan memastikan bahwa video dalam peringatan tersebut dapat diakses. Setelah Anda sepenuhnya menguji video untuk aksesibilitas, Anda perlu memperbaiki kesalahan yang mungkin ada dan kemudian dapat “Abaikan” peringatan tersebut untuk menandainya sebagai selesai."
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "Slider hadir"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Karena slider sering mengandung masalah aksesibilitas, yang banyak di antaranya hanya dapat diidentifikasi oleh seseorang, peringatan Slider Hadir muncul setiap kali slider terdeteksi pada postingan atau halaman sebagai pengingat bahwa Anda perlu menguji slider secara manual untuk aksesibilitas. Untuk menyelesaikan peringatan ini, Anda perlu mengunjungi tampilan depan situs web Anda dan memastikan semua slider di halaman tersebut dapat diakses. Setelah Anda sepenuhnya menguji slider Anda untuk aksesibilitas, Anda perlu memperbaiki kesalahan yang mungkin ada dan kemudian dapat “Abaikan” peringatan tersebut untuk menandainya sebagai selesai."
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "Judul tidak ada"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "Kesalahan Judul Tidak Ada berarti bahwa postingan atau halaman Anda tidak memiliki elemen judul (%1$s atau %2$s). Ini bisa terjadi jika tema gagal menambahkan tag judul, atau jika kolom judul dari postingan atau halaman dibiarkan kosong di layar pengeditan WordPress. Untuk memperbaiki halaman tanpa judul, Anda perlu menambahkan elemen judul. Pertama, tentukan apakah judul tidak ada karena Anda membiarkan kolom judul halaman atau postingan kosong di editor. Jika ya, isilah. Jika judul sudah diisi dan terlihat di backend, maka kode di halaman web Anda perlu diedit untuk menyertakan tag %1$s atau tag meta %2$s."
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "Penggunaan tautan yang tidak tepat"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "Kesalahan Penggunaan Tautan yang Tidak Tepat muncul jika Anda memiliki tautan yang tidak memiliki atribut %1$s atau hanya tertaut ke %2$s, dan tidak memiliki %3$s di dalamnya. Tautan harus digunakan untuk mengarahkan orang ke bagian lain dari situs Anda. Fungsionalitas lain yang memicu tindakan harus berupa tombol. Untuk menyelesaikan kesalahan ini, Anda perlu mengkode ulang tautan untuk menggunakan tag %4$s (lebih disukai) atau menambahkan %5$s ke tag %6$s yang ada. Jika elemen tersebut adalah tombol toggle (seperti akordeon), atribut ARIA tambahan diperlukan."
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "Pembesaran dan penskalaan dinonaktifkan"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "Pembesaran dinonaktifkan melalui tag meta viewport yang mencakup `user-scalable=no` atau nilai `maximum-scale` kurang dari 2. Ini membatasi pengguna dengan penglihatan rendah yang ingin memperbesar ukuran teks, memperbesar halaman atau yang menggunakan alat pembesar."
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "Pengaturan Disimpan. Untuk mengkonfirmasi dan mencerminkan pembaruan ini dalam statistik situs Anda, harap pindai ulang situs Anda. Jika Anda menggunakan plugin caching, pastikan untuk menghapus cache untuk memastikan perbaikan yang diperbarui diterapkan dengan benar."
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "Plugin Accessibility New Window Warnings telah diinstal. Perbaikan untuk tautan yang terbuka di jendela baru yang disertakan di sini akan menggantikan fungsionalitasnya. Anda dapat menghapus plugin dengan aman dan menggunakan perbaikan ini sebagai gantinya."
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "Panel masalah Accessibility Checker"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "Ringkasan"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "Detail"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "Keterbacaan"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "Hapus semua masalah yang ditemukan saat ini"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "Bersihkan masalah"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Equalize digital logo"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "Tingkatkan ke accessibility checker pro"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "Pindai semua jenis pos"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "Kolom admin untuk melihat status aksesibilitas secara sekilas"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "Daftar terpusat dari semua masalah yang terbuka"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "Log pengabaian"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "Ganti nama ringkasan sederhana"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "Pembatasan pengguna dalam mengabaikan masalah"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "Dukungan email"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...dan banyak lagi"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "Dapatkan accessibility checker pro"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "Atau aktifkan kunci lisensi Anda di sini."
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "Umum"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "versi"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Tautan ke situs web equalize digital"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "Panduan mulai cepat"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "Ikuti langkah-langkah berikut untuk mulai memeriksa konten Anda:"
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "Pada <a href=\"%s\">Halaman Pengaturan</a>, pilih jenis pos yang ingin Anda pindai."
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "Buka layar edit untuk pos yang ingin Anda periksa."
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "Temukan kotak meta Accessibility Checker di bawah konten Anda. Jika menggunakan pembuat halaman front-end, Anda harus mengunjungi layar edit backend untuk melihat hasil Accessibility Checker."
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "Jika ada kesalahan atau peringatan pada pos Anda, buka tab detail di Accessibility Checker untuk informasi lebih lanjut."
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "Perluas setiap masalah untuk melihat kodenya, atau klik “lihat di halaman” jika Anda perlu bantuan menemukan elemen yang perlu diperbaiki."
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "Jika Anda tidak tahu apa arti suatu kesalahan atau peringatan, klik ikon “i” untuk membaca dokumentasi dan cara memperbaikinya."
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "Jika suatu masalah adalah positif palsu dan elemennya dapat diakses, Anda dapat menghapus masalah dari laporan dengan fitur “Abaikan”."
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "Setelah memperbaiki setiap masalah, perbarui pos untuk melihat perubahan laporan aksesibilitas. Tujuan Anda adalah membuat setiap halaman mengatakan 100% Lulus Tes."
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "Tonton video penggunaan Accessibility Checker."
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "Dokumentasi dan FAQ"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "Mengapa kami mengatakan 100% Lulus Tes, Bukan 100% Dapat Diakses?"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "(buka di jendela baru)"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "Cara memeriksa aksesibilitas situs web Anda secara manual"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "Kapan mengabaikan kesalahan aksesibilitas"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "Apa yang harus dilakukan jika Plugin yang Anda Gunakan memiliki Kesalahan Aksesibilitas"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "Apa yang harus dilakukan jika ada Kesalahan Aksesibilitas di Tema Anda"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "Bisakah saya menyewa equalize digital untuk memperbaiki masalah aksesibilitas di situs web saya?"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "Sumber daya tambahan untuk belajar tentang aksesibilitas"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "Baca dokumentasi lengkap"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "Informasi dukungan"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "Dukungan plugin"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "Pemegang lisensi aktif dari paket Accessibility Checker berbayar mendapatkan dukungan email tak terbatas untuk penggunaan dan pemecahan masalah plugin."
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "Buka tiket dukungan"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "Dukungan plugin gratis"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "Dukungan plugin gratis tersedia melalui forum WordPress.org. Anda perlu membuat akun lalu Anda dapat membuka thread dukungan baru."
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "Pergi ke forum dukungan"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "Jam kerja"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "Tanya Jawab terbuka di Zoom setiap dua minggu sekali untuk membantu Anda memperbaiki situs web Anda."
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "Termasuk dalam paket Bisnis Kecil dan Agensi"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "Daftar untuk jam kerja"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "Audit dan perbaikan"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "Dapatkan bantuan untuk membuat situs web Anda dapat diakses. Audit ahli, pengujian pengguna, dan dukungan pengembangan. Surat kesesuaian tersedia."
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "Dapatkan bantuan perbaikan"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "Menyimpan..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "Pengaturan berhasil disimpan. Anda harus %smengunjungi editor%s dan menyimpan pos untuk memindai ulang dan menghapus masalah yang telah diperbaiki dari laporan Accessibility Checker."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "Pengaturan berhasil disimpan."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "Gagal menyimpan."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "Pengaturan perbaikan"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "Ini akan menghapus semua masalah untuk pos ini. Penyimpanan akan diperlukan untuk memicu pemindaian baru dari konten pos. Apakah Anda ingin melanjutkan?"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "Menghapus..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "Masalah berhasil dihapus."
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "Gagal menghapus masalah."
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "Terjadi masalah. Silakan coba lagi."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "Maaf, pengiriman Anda gagal. Harap persingkat tanggapan Anda dan coba lagi."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "Maaf, pengajuan Anda gagal. Silakan coba lagi."
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "membuka jendela baru"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: Tidak menemukan ID target yang cocok di halaman untuk tautan langsung."
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: Kesalahan saat memperbarui riwayat untuk tautan langsung."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "Tutup modal perbaikan"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Nonaktifkan gaya halaman"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "Tampilkan kode"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Jenis masalah:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "Aktifkan gaya"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Nonaktifkan gaya"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "Tidak ada pengaturan yang ditampilkan."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Pengaturan ini mengaktifkan perbaikan global di seluruh situs Anda. Halaman mungkin perlu disimpan ulang atau pemindaian situs penuh dijalankan untuk melihat perbaikan tercermin dalam laporan."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "Tidak ada masalah terdeteksi."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "kesalahan"
+msgstr[1] "kesalahan"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "peringatan"
+msgstr[1] "peringatan"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "dan"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "masalah yang diabaikan"
+msgstr[1] "masalah yang diabaikan"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "terdeteksi."
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "jendela baru"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "tab baru"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "klik"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "klik di sini"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "di sini"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "pergi ke sini"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "selengkapnya"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "selengkapnya..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "selengkapnya…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "detail"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "detail lebih lanjut"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "tautan"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "halaman ini"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "lanjutkan"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "lanjutkan membaca"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "baca selengkapnya"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "buka"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "unduh"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "tombol"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "lanjutkan membaca"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "pelajari lebih lanjut"

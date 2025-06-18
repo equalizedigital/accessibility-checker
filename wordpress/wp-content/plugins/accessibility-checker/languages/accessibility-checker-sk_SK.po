@@ -1,0 +1,2153 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: accessibility-checker\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:50
+#: includes/options-page.php:43
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "Kontrola prístupnosti"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "Skontrolujte a preverte prístupnosť svojej webovej stránky pred jej zverejnením. Skener prístupnosti v príspevkoch a návod."
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:90
+msgid "Fixes"
+msgstr "Opravy"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "Všeobecné opravy"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "Tieto opravy pomáhajú zlepšiť prístupnosť úpravou HTML prvkov a správania na vašej stránke."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "Získajte Pro verziu pre odomknutie tejto funkcie, otvára sa v novom okne."
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+msgid "Get Pro"
+msgstr "Získať pro verziu"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:338
+msgid "Opens in a new window."
+msgstr "Otvára sa v novom okne."
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "Prečítajte si dokumentáciu pre %s. Otvára sa v novom okne."
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "Náš záväzok k webovej prístupnosti"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[YOUR COMPANY NAME] sa zaväzuje poskytovať plne prístupnú webovú skúsenosť pre všetkých používateľov všetkých schopností, vrátane tých, ktorí sa spoliehajú na asistenčné technológie ako čítačky obrazovky, softvér na zväčšenie obrazovky a alternatívne zariadenia na vstup z klávesnice pri navigácii na webe."
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "Priebežné úsilie o zabezpečenie prístupnosti"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "Riadime sa <a href=\"https://www.w3.org/TR/WCAG21/\">Smernicami pre prístupnosť webového obsahu (WCAG) verzia 2.1</a> ako našim hlavným princípom pri určovaní prístupnosti. Ide o medzinárodne dohodnuté štandardy, ktoré pokrývajú širokú škálu odporúčaní a osvedčených postupov pre tvorbu použiteľného obsahu. Pri pridávaní nových stránok a funkcionality na našu webovú stránku sa všetky návrhy, kódy a postupy vkladania obsahu kontrolujú podľa týchto štandardov."
+
+#: admin/class-accessibility-statement.php:56
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Prístupnosť webových stránok je nepretržitý proces. Neustále testujeme obsah a funkcie na súlad s WCAG 2.1 úrovne AA a odstraňujeme všetky problémy, aby sme zabezpečili, že spĺňame alebo prekračujeme tieto štandardy. Testovanie našej webovej stránky vykonávajú naši členovia tímu pomocou štandardných nástrojov ako je <a href=\"https://a11ychecker.com/\">plugin Accessibility Checker pre WordPress</a>, analyzátory farebného kontrastu, techniky navigácie len pomocou klávesnice a testy čitateľnosti Flesch-Kincaid."
+
+#: admin/class-accessibility-statement.php:57
+msgid "Accessibility Features On Our Website"
+msgstr "Funkcie prístupnosti na našej webovej stránke"
+
+#: admin/class-accessibility-statement.php:58
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "Nasleduje zoznam položiek, ktoré sme zahrnuli do našej webovej stránky na zlepšenie jej prístupnosti:"
+
+#: admin/class-accessibility-statement.php:59
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[TU UVEĎTE ZOZNAM FUNKCIÍ PRÍSTUPNOSTI]"
+
+#: admin/class-accessibility-statement.php:60
+msgid "Where We're Improving"
+msgstr "Kde sa zlepšujeme"
+
+#: admin/class-accessibility-statement.php:61
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "V našom úsilí priviesť našu webovú stránku na štandard sa zameriavame na nasledujúce oblasti:"
+
+#: admin/class-accessibility-statement.php:62
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[TU UVEĎTE ZOZNAM POLOŽIEK, NA KTORÝCH PRACUJETE]"
+
+#: admin/class-accessibility-statement.php:63
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[MÔŽE POMÔCŤ PREHLIADNUŤ SI KARTU OTVORENÝCH PROBLÉMOV, ABY STE VIDELI NAJČASTEJŠIE PROBLÉMY]"
+
+#: admin/class-accessibility-statement.php:64
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "Toto je súčasťou nášho širšieho úsilia urobiť skúsenosť každého v [NÁZOV SPOLOČNOSTI] príjemnou a prívetivou. Upozorňujeme, že hoci sa snažíme poskytovať informácie prístupné pre všetkých používateľov, nemôžeme zaručiť prístupnosť webových stránok tretích strán, na ktoré môžeme odkazovať."
+
+#: admin/class-accessibility-statement.php:65
+msgid "Accessibility Support Contact"
+msgstr "Kontakt pre podporu prístupnosti"
+
+#: admin/class-accessibility-statement.php:66
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "Vítame komentáre, otázky a spätnú väzbu k našej webovej stránke. Ak používate asistenčné technológie a máte ťažkosti s používaním našej webovej stránky, pošlite nám e-mail na adresu [VAŠA E-MAILOVÁ ADRESA PRE PRÍSTUPNOSŤ] alebo nám zavolajte na číslo [VAŠE TELEFÓNNE ČÍSLO]. Urobíme všetko pre to, aby sme vám pomohli a vyriešili problémy."
+
+#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
+#: admin/class-admin-notices.php:94
+msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
+msgstr "V verzii 1.21.0 sme vylepšili výpočty štatistík. V dôsledku toho sa niektoré čísla v údajoch nižšie mohli zmeniť. Prečítajte si viac v našom %1$soznámení o vydaní%2$s."
+
+#: admin/class-admin-notices.php:114
+#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:484
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:196
+#: admin/class-ajax.php:561
+#: admin/class-ajax.php:700
+#: admin/class-ajax.php:780
+#: admin/class-frontend-highlight.php:79
+msgid "Permission Denied"
+msgstr "Prístup zamietnutý"
+
+#: admin/class-admin-notices.php:123
+#: admin/class-admin-notices.php:234
+#: admin/class-admin-notices.php:325
+#: admin/class-admin-notices.php:422
+#: admin/class-admin-notices.php:493
+msgid "Update option wasn't successful"
+msgstr "Aktualizácia možnosti nebola úspešná"
+
+#: admin/class-admin-notices.php:203
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Špeciálna ponuka na Čierny piatok! 🎉"
+
+#: admin/class-admin-notices.php:204
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Inovujte na platenú verziu Accessibility Checker od 25. Novembra do 3. decembra a získajte 30% zľavu! Komplexné skenovanie stránky, správa o otvorených problémoch na celom webe, protokoly ignorovania a ďalšie."
+
+#: admin/class-admin-notices.php:205
+#: admin/class-admin-notices.php:293
+msgid "Ask a Pre-Sale Question"
+msgstr "Položiť predpredajnú otázku"
+
+#: admin/class-admin-notices.php:206
+#: admin/class-admin-notices.php:294
+msgid "Upgrade Now"
+msgstr "Inovovať teraz"
+
+#: admin/class-admin-notices.php:291
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 Získajte 25% zľavu na Accessibility Checker Pro pri príležitosti Svetového dňa povedomia o prístupnosti! 🎉"
+
+#: admin/class-admin-notices.php:292
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "Použite kupón GAAD25 od 13. Do 21. mája a získajte prístup k skenovaniu celého webu a ďalším pro funkciám so špeciálnou zľavou. Nie ste si istí, či je inovácia pre vás tá správna voľba?"
+
+#: admin/class-admin-notices.php:377
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "Ahoj! Ďakujeme, že používate Accessibility Checker ako súčasť vášho súboru nástrojov pre prístupnosť. Keďže ho už nejaký čas používate, mohli by ste, prosím, napísať 5-hviezdičkovú recenziu na Accessibility Checker v adresári pluginov WordPress? Pomôže to zvýšiť našu viditeľnosť, aby sa viac ľudí mohlo dozvedieť o dôležitosti webovej prístupnosti. Veľmi pekne ďakujeme!"
+
+#: admin/class-admin-notices.php:380
+msgid "Write A Review"
+msgstr "Napísať recenziu"
+
+#: admin/class-admin-notices.php:381
+msgid "Remind Me In Two Weeks"
+msgstr "Pripomenúť o dva týždne"
+
+#: admin/class-admin-notices.php:382
+msgid "Never Ask Again"
+msgstr "Už sa nikdy nepýtať"
+
+#: admin/class-admin-notices.php:409
+msgid "The review action value was not set"
+msgstr "Hodnota akcie pre recenziu nebola nastavená"
+
+#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
+#: admin/class-admin-notices.php:447
+msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
+msgstr "Ups! Zdá sa, že váš web je momentálne chránený heslom. Bezplatná verzia Accessibility Checker môže kontrolovať len verejne prístupné webové stránky. Ak chcete skontrolovať túto webovú stránku na problémy s prístupnosťou, buď odstráňte ochranu heslom alebo %s. Výsledky kontroly môžu byť uložené z predchádzajúcej kontroly."
+
+#: admin/class-admin-notices.php:450
+msgid "Upgrade to accessibility checker pro. Opens in a new window."
+msgstr "Prejdite na Accessibility Checker Pro. Otvorí sa v novom okne."
+
+#: admin/class-admin-notices.php:451
+#: includes/options-page.php:448
+msgid "upgrade to pro"
+msgstr "prejdite na Pro verziu"
+
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:203
+#: admin/class-ajax.php:568
+#: admin/class-ajax.php:787
+msgid "The post ID was not set"
+msgstr "ID príspevku nebolo nastavené"
+
+#: admin/class-ajax.php:92
+msgid "A Simplified summary has not been included for this content."
+msgstr "K tomuto obsahu nebol pridaný zjednodušený súhrn."
+
+#: admin/class-ajax.php:95
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "Váš obsah má úroveň čítania na úrovni 9. ročníka alebo nižšej a nevyžaduje zjednodušený súhrn."
+
+#: admin/class-ajax.php:98
+msgid "The reading level of the simplified summary is too high."
+msgstr "Úroveň čítania zjednodušeného súhrnu je príliš vysoká."
+
+#: admin/class-ajax.php:100
+msgid "A simplified summary has been included for this content."
+msgstr "K tomuto obsahu bol pridaný zjednodušený súhrn."
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:133
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s Chyba"
+msgstr[1] "%s Chýb"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:139
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s Chyba kontrastu"
+msgstr[1] "%s Chýb kontrastu"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:145
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s Upozornenie"
+msgstr[1] "%s Upozornení"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:151
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s Ignorovaná položka"
+msgstr[1] "%s Ignorovaných položiek"
+
+#: admin/class-ajax.php:173
+msgid "No summary to return"
+msgstr "Žiadny súhrn na vrátenie"
+
+#: admin/class-ajax.php:217
+msgid "Invalid table name"
+msgstr "Neplatný názov tabuľky"
+
+#: admin/class-ajax.php:363
+msgid "These settings enable global fixes across your entire site."
+msgstr "Tieto nastavenia umožňujú globálne opravy na celom vašom webe."
+
+#: admin/class-ajax.php:364
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Stránky môže byť potrebné znovu uložiť alebo spustiť úplnú kontrolu webu, aby sa opravy prejavili v reportoch."
+
+#: admin/class-ajax.php:392
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "Uložiť"
+
+#: admin/class-ajax.php:412
+msgid "Affected Code"
+msgstr "Ovplyvnený kód"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:477
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "Zobraziť problém s ID %d na webovej stránke, otvorí sa nové okno"
+
+#: admin/class-ajax.php:478
+msgid "View on page"
+msgstr "Zobraziť na stránke"
+
+#: admin/class-ajax.php:497
+msgid "Fix: "
+msgstr "Oprava: "
+
+#: admin/class-ajax.php:498
+msgid "Fix"
+msgstr "Opraviť"
+
+#: admin/class-ajax.php:521
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "Váš používateľský účet nemá povolenie ignorovať tento problém."
+
+#: admin/class-ajax.php:539
+msgid "No details to return"
+msgstr "Žiadne podrobnosti na vrátenie"
+
+#: admin/class-ajax.php:679
+msgid "No readability data to return"
+msgstr "Žiadne údaje o čitateľnosti na vrátenie"
+
+#: admin/class-ajax.php:736
+#: admin/class-ajax.php:759
+msgid "No ignore data to return"
+msgstr "Žiadne údaje o ignorovaní na vrátenie"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "Súhrn nebol nastavený"
+
+#: admin/class-frontend-highlight.php:84
+msgid "The id value was not set"
+msgstr "Hodnota id nebola nastavená"
+
+#: admin/class-frontend-highlight.php:92
+msgid "Issue query returned no results"
+msgstr "Dopyt na problém nevrátil žiadne výsledky"
+
+#: admin/class-frontend-highlight.php:137
+msgid "Object query returned no results"
+msgstr "Dopyt na objekt nevrátil žiadne výsledky"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "Súhrn posledného testu"
+
+#: admin/class-welcome-page.php:44
+msgid "Update Counts"
+msgstr "Aktualizovať počty"
+
+#: admin/class-welcome-page.php:48
+msgid "Start New Scan"
+msgstr "Začať novú kontrolu"
+
+#: admin/class-welcome-page.php:52
+msgid "View All Open Issues"
+msgstr "Zobraziť všetky otvorené problémy"
+
+#: admin/class-welcome-page.php:57
+msgid "See History"
+msgstr "Zobraziť históriu"
+
+#: admin/class-welcome-page.php:70
+#: admin/class-widgets.php:92
+msgid "Passed Tests"
+msgstr "Úspešné testy"
+
+#: admin/class-welcome-page.php:86
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "Jedinečná chyba"
+msgstr[1] "Jedinečné chyby"
+
+#: admin/class-welcome-page.php:111
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "Jedinečná chyba kontrastu farieb"
+msgstr[1] "Jedinečné chyby kontrastu farieb"
+
+#: admin/class-welcome-page.php:136
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "Jedinečné upozornenie"
+msgstr[1] "Jedinečné upozornenia"
+
+#: admin/class-welcome-page.php:161
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "Ignorovaná položka"
+msgstr[1] "Ignorované položky"
+
+#: admin/class-welcome-page.php:178
+msgid "Average Issues Per Page"
+msgstr "Priemerný počet problémov na stránku"
+
+#: admin/class-welcome-page.php:191
+msgid "Average Issue Density"
+msgstr "Priemerná hustota problémov"
+
+#: admin/class-welcome-page.php:204
+#: admin/class-widgets.php:99
+msgid "Report Last Updated:"
+msgstr "Report naposledy aktualizovaný:"
+
+#: admin/class-welcome-page.php:214
+#: includes/options-page.php:392
+msgid "Never"
+msgstr "Nikdy"
+
+#: admin/class-welcome-page.php:228
+msgid "URLs Scanned"
+msgstr "Skontrolované URL adresy"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:239
+msgid "%1$s of %2$s"
+msgstr "%1$s z %2$s"
+
+#: admin/class-welcome-page.php:248
+msgid "Post Types Checked"
+msgstr "Skontrolované typy príspevkov"
+
+#: admin/class-welcome-page.php:261
+msgid "URLs with 100% score"
+msgstr "URL adresy so skóre 100%"
+
+#: admin/class-welcome-page.php:269
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "Tento súhrn sa automaticky aktualizuje každých 24 hodín alebo vždy, keď sa dokončí úplná kontrola webu. Tieto výsledky môžete tiež manuálne aktualizovať kliknutím na tlačidlo Aktualizovať počty."
+
+#: admin/class-welcome-page.php:275
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "Váš web má veľké množstvo problémov. Z dôvodov výkonu neboli do tohto súhrnu zahrnuté všetky problémy."
+
+#: admin/class-welcome-page.php:285
+msgid "Site-Wide Accessibility Reports"
+msgstr "Celoplošné reporty o prístupnosti"
+
+#: admin/class-welcome-page.php:290
+msgid "Hide banner"
+msgstr "Skryť banner"
+
+#: admin/class-welcome-page.php:299
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "Odomknite podrobné reporty o prístupnosti"
+
+#: admin/class-welcome-page.php:302
+#: admin/class-widgets.php:65
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "Začnite kontrolovať celý svoj web na problémy s prístupnosťou, získajte reporty pre celý web a rýchlejšie dosiahnite súlad so smernicami o prístupnosti."
+
+#: admin/class-welcome-page.php:306
+#: admin/class-widgets.php:67
+msgid "Upgrade Accessibility Checker"
+msgstr "Vylepšiť Accessibility Checker"
+
+#: admin/class-widgets.php:63
+msgid "close ad"
+msgstr "zavrieť reklamu"
+
+#: admin/class-widgets.php:64
+msgid "Get Detailed Accessibility Reports"
+msgstr "Získajte podrobné reporty o prístupnosti"
+
+#: admin/class-widgets.php:82
+msgid "Full Site Accessibility Status"
+msgstr "Stav prístupnosti celého webu"
+
+#: admin/class-widgets.php:107
+msgid "URLs Scanned:"
+msgstr "Skontrolované URL adresy:"
+
+#: admin/class-widgets.php:115
+msgid "Errors:"
+msgstr "Chyby:"
+
+#: admin/class-widgets.php:119
+msgid "Color Contrast Errors:"
+msgstr "Chyby kontrastu farieb:"
+
+#: admin/class-widgets.php:123
+msgid "Warnings:"
+msgstr "Upozornenia:"
+
+#: admin/class-widgets.php:132
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "Váš web má problémy s prístupnosťou, ktoré by mali byť čo najskôr riešené, aby bol zabezpečený súlad so smernicami o prístupnosti."
+
+#: admin/class-widgets.php:135
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "Výborne! Accessibility Checker nenašiel žiadne problémy s prístupnosťou v testovanom obsahu. Niektoré problémy nemôžu byť nájdené automatickými nástrojmi, preto nezabudnite"
+
+#: admin/class-widgets.php:135
+msgid "manually test your site"
+msgstr "manuálne otestovať váš web"
+
+#: admin/class-widgets.php:150
+msgid "Issues By Post Type"
+msgstr "Problémy podľa typu príspevku"
+
+#: admin/class-widgets.php:157
+msgid "Post Type"
+msgstr "Typ príspevku"
+
+#: admin/class-widgets.php:160
+msgid "Errors"
+msgstr "Chyby"
+
+#: admin/class-widgets.php:163
+msgid "Contrast"
+msgstr "Kontrast"
+
+#: admin/class-widgets.php:166
+msgid "Warnings"
+msgstr "Upozornenia"
+
+#: admin/class-widgets.php:225
+msgid "Upgrade to Scan"
+msgstr "Prejdite na vyššiu verziu pre kontrolu"
+
+#: admin/class-widgets.php:254
+msgid "See More Reports"
+msgstr "Zobraziť viac reportov"
+
+#: admin/class-widgets.php:264
+#: partials/welcome-page.php:232
+msgid "Learn Accessibility"
+msgstr "Naučte sa o prístupnosti"
+
+#: admin/class-widgets.php:273
+msgid "Additional Resources"
+msgstr "Ďalšie zdroje"
+
+#: admin/class-widgets.php:274
+msgid "Blog (opens in a new window)"
+msgstr "Blog (otvorí sa v novom okne)"
+
+#: admin/class-widgets.php:274
+msgid "Blog"
+msgstr "Blog"
+
+#: admin/class-widgets.php:275
+msgid "Documentation (opens in a new window)"
+msgstr "Dokumentácia (otvorí sa v novom okne)"
+
+#: admin/class-widgets.php:275
+msgid "Documentation"
+msgstr "Dokumentácia"
+
+#: admin/opt-in/class-email-opt-in.php:114
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "Udalosti a novinky o prístupnosti vo vašej e-mailovej schránke"
+
+#: admin/opt-in/class-email-opt-in.php:120
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "Prihláste sa na odber e-mailového zoznamu Equalize Digital a získajte prístup k bezplatným webinárom o prístupnosti a vzdelávacím zdrojom."
+
+#: admin/opt-in/class-email-opt-in.php:126
+msgid "Email*"
+msgstr "E-mail*"
+
+#: admin/opt-in/class-email-opt-in.php:130
+msgid "Type your email"
+msgstr "Zadajte svoj e-mail"
+
+#: admin/opt-in/class-email-opt-in.php:138
+msgid "First Name"
+msgstr "Meno"
+
+#: admin/opt-in/class-email-opt-in.php:142
+msgid "Type your first name"
+msgstr "Zadajte svoje meno"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Accessibility Checker &mdash; história auditov"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Accessibility Checker &mdash; bezplatná verzia"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "Verzia"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "Verzia databázy"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "Stránka zásad"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+#: admin/site-health/class-pro.php:63
+#: admin/site-health/class-pro.php:67
+msgid "Unset"
+msgstr "Nenastavené"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "Dátum aktivácie"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "Vyhlásenie v pätičke"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "Povolené"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "Zakázané"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:137
+msgid "Delete Data"
+msgstr "Vymazať údaje"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "Zahrnúť odkaz na vyhlásenie"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "Typy príspevkov"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "Pozícia zjednodušeného súhrnu"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "Výzva pre zjednodušený súhrn"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "Počet príspevkov"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "Počet chýb"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "Počet upozornení"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "Počet DB tabuliek"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Accessibility Checker &mdash; Pro verzia"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "Stav licencie"
+
+#: admin/site-health/class-pro.php:62
+msgid "Authorization Username"
+msgstr "Autorizačné používateľské meno"
+
+#: admin/site-health/class-pro.php:66
+msgid "Authorization Password"
+msgstr "Autorizačné heslo"
+
+#: admin/site-health/class-pro.php:70
+msgid "Scan ID"
+msgstr "ID kontroly"
+
+#: admin/site-health/class-pro.php:74
+msgid "Scan Total"
+msgstr "Celkový počet kontrol"
+
+#: admin/site-health/class-pro.php:78
+msgid "Simplified Sum Heading"
+msgstr "Nadpis zjednodušeného súhrnu"
+
+#: admin/site-health/class-pro.php:82
+msgid "Ignore Permissions"
+msgstr "Povolenia na ignorovanie"
+
+#: admin/site-health/class-pro.php:83
+msgid "None"
+msgstr "Žiadne"
+
+#: admin/site-health/class-pro.php:86
+msgid "Ignores DB Table Count"
+msgstr "Počet DB tabuliek ignorovaných položiek"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "Na monitorovanie prístupnosti našej webovej stránky používa %1$s %2$s."
+
+#: includes/classes/class-accessibility-statement.php:49
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "Kontrola prístupnosti (otvorí sa v novom okne)"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:58
+msgid "Read our %s"
+msgstr "Prečítajte si naše %s"
+
+#: includes/classes/class-accessibility-statement.php:59
+msgid "Accessibility Policy"
+msgstr "Zásady prístupnosti"
+
+#: includes/classes/class-simplified-summary.php:73
+msgid "Simplified Summary"
+msgstr "Zjednodušené zhrnutie"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+msgid "Add Size & Type To File Links"
+msgstr "Pridať veľkosť a typ k odkazom na súbory"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+msgid "Add Context to Linked Files"
+msgstr "Pridať kontext k odkazovaným súborom"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+msgid "Add File Size & Type To Links"
+msgstr "Pridať veľkosť a typ súboru k odkazom"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "Pridajte veľkosť a typ súboru k odkazovaným súborom, ktoré môžu spustiť sťahovanie."
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "Pridať označenia k neoznačeným poliam formulára"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+msgid "Label Form Fields"
+msgstr "Označiť polia formulára"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "Pridajte označenia k neoznačeným poliam formulára, ak je možné určiť účel poľa."
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "Pokúste sa pridať označenia k poliam formulára, ktorým chýbajú. Poznámka: Možno budete musieť pridať vlastné štýly cielené na triedu %1$s, ak pridanie označení ovplyvní rozloženie vašich formulárov."
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+msgid "Add Missing or Empty Page Titles"
+msgstr "Pridať chýbajúce alebo prázdne titulky stránok"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+msgid "Set Page HTML Titles"
+msgstr "Nastaviť HTML titulky stránok"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+msgid "Add Missing Page Title"
+msgstr "Pridať chýbajúci titulok stránky"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "Pridajte tag %1$s na stránku, ak chýba alebo je prázdny."
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "Pridať upozornenie, keď sa odkaz otvorí v novej karte/okne"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "Pridať označenie k odkazom, ktoré sa otvárajú v novej karte/okne"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "Pridajte označenie a ikonu k odkazom s %1$s, ktoré informujú používateľov, že sa otvoria v novej karte/okne. %2$sPoznámka: Toto nastavenie nebude mať žiadny účinok, ak je povolená oprava „Blokovať odkazy otvárajúce nové okná“.%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+msgid "Block PDF Uploads"
+msgstr "Blokovať nahrávania PDF"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "Obmedziť nahrávania PDF pre používateľov bez oprávnenia %1$s (predvolene povolené pre administrátorov)."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "Pridať označenia k formulárom pre komentáre a vyhľadávanie"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "Označiť polia pre komentáre/vyhľadávanie"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "Označenia formulárov pre komentáre a vyhľadávanie"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "Pridať chýbajúce označenia k formulárom pre komentáre a vyhľadávanie vo WordPresse."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "Označiť formulár pre komentáre"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "Pridať chýbajúce označenia k formuláru pre komentáre vo WordPresse."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "Označiť formulár pre vyhľadávanie"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "Pridať chýbajúce označenie k formuláru pre vyhľadávanie vo WordPresse."
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "Komentár"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "Meno"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "E-mail"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "Webová stránka"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "Hľadať …"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "Hľadať:"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "Hľadať"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "Nastavenia pre pridanie chýbajúcich popisov k formulárom pre komentáre a vyhľadávanie vo WordPresse."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "Pridať zvýraznenie fokusu"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "Zvýraznenie fokusu"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "Pridať obrys prvkom pri získaní fokusu klávesnicou."
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "Pridať zvýraznenie fokusu"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "Nastavenia súvisiace so zlepšením zvýraznenia fokusu pre lepšiu prístupnosť pomocou klávesnice."
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "Pridať atribúty lang a dir"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "Nastaviť jazyk stránky"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "Pridať atribúty „lang“ a „dir“"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "Pridať atribúty jazyka stránky (%1$s) a smeru textu (%2$s) k prvku %3$s."
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "Pridať podčiarknutie všetkým odkazom mimo navigácie"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "Podčiarknuť odkazy"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "Vynútiť podčiarknutie odkazov"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "Zabezpečiť, aby odkazy mimo navigácie boli podčiarknuté."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "Povoliť škálovanie v meta tagu pre viewport"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "Zabezpečiť škálovateľný viewport"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "Zabezpečiť, aby tag viewport na stránke umožňoval škálovanie."
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "Povoliť škálovanie viewportu"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "Zabezpečiť, aby tag viewport umožňoval škálovanie, čím sa zlepší prístupnosť na mobilných zariadeniach."
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "Zabrániť odkazom otvárať nové okná"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "Blokovať odkazy otvárajúce nové okná"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "Zabrániť odkazom otvárať sa v novom okne alebo karte odstránením %1$s."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "Pridať odkaz „Čítať“ s názvom príspevku"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "Pridať názov k odkazu čítať viac"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "Odkazy Čítať viac"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "Pridať názov príspevku a odkazy "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "Pridať názov príspevku k „Čítať viac“"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "Pridať názov príspevku k odkazom „Čítať viac“ v zoznamoch príspevkov, keď ich vaša téma zobrazuje."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "Len pre čítačky obrazovky"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "Názov príspevku pridaný k odkazom „Čítať viac“ bude viditeľný len pre čítačky obrazovky."
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "Táto úprava pridáva názov príspevku k odkazom „Čítať viac“ v zoznamoch príspevkov pri bloku „Viac“ a v úryvkoch."
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "Uprednostniť prístupný atribút label"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "Odstrániť nepotrebné atribúty title"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "Odstrániť atribúty title"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "Odstrániť atribúty %1$s z prvkov, ktoré už majú preferovaný prístupný názov."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "Pridať preskočenie odkazov"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "Preskočiť odkaz"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "Povoliť preskočenie odkazu"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "Pridať odkaz na preskočenie na všetky stránky webu, umožňujúci používateľom preskočiť priamo na hlavný obsah."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "Cieľ hlavného obsahu (povinné)"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "Definujte ID hlavnej oblasti obsahu, na ktorú majú odkazy na preskočenie smerovať. Zadajte viacero ID oddelených čiarkami; systém postupne prejde zoznamom, aby našiel vhodný pre každú stránku."
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "Cieľ navigácie"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "Nastavte atribút ID pre navigačný prvok. Je to užitočné, ak vaša hlavná navigácia obsahuje akcie, ktoré väčšina návštevníkov stránky chce vykonať, ako napríklad prihlásenie alebo vyhľadávanie."
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "Ak vaša téma už nepridáva odkaz na preskočenie, ktorý umožňuje používateľom klávesnice obísť navigáciu a rýchlo prejsť na hlavný obsah, povoľte tu odkazy na preskočenie. %1$sDozvedieť sa viac o odkazoch na preskočenie.%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "Preskočiť na obsah"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "Preskočiť na navigáciu"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "Odstrániť tabindex z interaktívnych prvkov"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "Odstrániť tab index"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "Odstrániť atribút %1$s z interaktívnych prvkov."
+
+#: includes/classes/Fixes/FixesManager.php:240
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "Poznámka: Toto nastavenie sa neodporúča pre témy, ktoré sú už prístupné."
+
+#: includes/classes/Fixes/FixesManager.php:293
+msgid "Fix not found"
+msgstr "Úprava nebola nájdená"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:99
+msgid "Failed to register command %1$s because %2$s"
+msgstr "Nepodarilo sa zaregistrovať príkaz %1$s, pretože %2$s"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "ID príspevku, pre ktorý sa majú odstrániť štatistiky."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "Nebolo poskytnuté ID príspevku."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+msgid "Post ID %1$s does not exist."
+msgstr "ID príspevku %1$s neexistuje."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+msgid "Stats of %1$s deleted."
+msgstr "Štatistiky pre %1$s boli odstránené."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "Kľúče, ktoré sa majú zobraziť vo výsledkoch. Predvolene všetky kľúče."
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "Vyčistiť vyrovnávaciu pamäť pred získaním štatistík (môže byť náročné)."
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+msgid "Stat key: %1$s not found in stats."
+msgstr "Štatistický kľúč: %1$s nebol nájdený v štatistikách."
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "ID príspevku, pre ktorý sa majú získať štatistiky."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+msgid "Post ID %1$d does not exist."
+msgstr "ID príspevku %1$d neexistuje."
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "Buď príspevok ešte nebol skontrolovaný, alebo všetky testy prešli pre ID príspevku %1$d."
+
+#: includes/helper-functions.php:25
+msgid "permalink of "
+msgstr "trvalý odkaz na "
+
+#: includes/helper-functions.php:26
+msgid "permalink to "
+msgstr "trvalý odkaz na "
+
+#: includes/helper-functions.php:27
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:371
+msgid "Attend Free"
+msgstr "Zúčastnite sa zadarmo"
+
+#: includes/options-page.php:42
+msgid "Welcome to Accessibility Checker"
+msgstr "Vitajte v kontrole prístupnosti"
+
+#: includes/options-page.php:65
+msgid "Accessibility Checker Settings"
+msgstr "Nastavenia kontroly prístupnosti"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Nastavenia"
+
+#: includes/options-page.php:99
+msgid "General Settings"
+msgstr "Všeobecné nastavenia"
+
+#: includes/options-page.php:106
+msgid "Simplified Summary Settings"
+msgstr "Nastavenia zjednodušeného súhrnu"
+
+#: includes/options-page.php:113
+msgid "Footer Accessibility Statement"
+msgstr "Vyhlásenie o prístupnosti v pätičke"
+
+#: includes/options-page.php:120
+msgid "Frontend Accessibility Checker"
+msgstr "Kontrola prístupnosti na frontende"
+
+#: includes/options-page.php:128
+msgid "Post Types To Be Checked"
+msgstr "Typy príspevkov na kontrolu"
+
+#: includes/options-page.php:146
+msgid "Prompt for Simplified Summary"
+msgstr "Výzva na zjednodušený súhrn"
+
+#: includes/options-page.php:155
+msgid "Simplified Summary Position"
+msgstr "Pozícia zjednodušeného súhrnu"
+
+#: includes/options-page.php:164
+#: includes/options-page.php:517
+msgid "Add Footer Accessibility Statement"
+msgstr "Pridať vyhlásenie o prístupnosti do pätičky"
+
+#: includes/options-page.php:173
+#: includes/options-page.php:540
+msgid "Include Link to Accessibility Policy"
+msgstr "Zahrnúť odkaz na pravidlá prístupnosti"
+
+#: includes/options-page.php:182
+msgid "Accessibility Policy page"
+msgstr "Stránka pravidiel prístupnosti"
+
+#: includes/options-page.php:191
+msgid "Accessibility Statement Preview"
+msgstr "Náhľad vyhlásenia o prístupnosti"
+
+#: includes/options-page.php:200
+msgid "Frontend Accessibility Checker Position"
+msgstr "Pozícia kontroly prístupnosti na frontende"
+
+#. translators: %1$s: link to the plugin documentation website.
+#: includes/options-page.php:244
+msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
+msgstr "Použite nasledujúce nastavenia na konfiguráciu Kontroly prístupnosti. Dodatočné informácie o každom nastavení nájdete v %1$s."
+
+#: includes/options-page.php:245
+msgid "plugin documentation (opens in a new window)"
+msgstr "dokumentácii pluginu (otvorí sa v novom okne)"
+
+#: includes/options-page.php:245
+msgid "plugin documentation"
+msgstr "dokumentácii pluginu"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:251
+msgid "More features and email support is available with %1$s."
+msgstr "Viac funkcií a e-mailová podpora sú dostupné s %1$s."
+
+#: includes/options-page.php:252
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Accessibility Checker Pro (otvorí sa v novom okne)"
+
+#: includes/options-page.php:252
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Accessibility checker pro"
+
+#: includes/options-page.php:266
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "Použite nasledujúce nastavenia na konfiguráciu kontroly prístupnosti na frontende."
+
+#: includes/options-page.php:276
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "Smernice pre prístupnosť webového obsahu (WCAG) na úrovni AAA vyžadujú, aby akýkoľvek obsah s úrovňou čítania nad 9. Ročník mal alternatívu, ktorá je ľahšie čitateľná. Zjednodušený súhrnný text sa pridáva na karte čitateľnosti v meta boxe Accessibility Checker na obrazovke úprav každého príspevku alebo stránky."
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "Dozvedieť sa viac o zjednodušených súhrnoch a požiadavkách na čitateľnosť (otvorí sa v novom okne)"
+
+#: includes/options-page.php:277
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "Dozvedieť sa viac o zjednodušených súhrnoch a požiadavkách na čitateľnosť."
+
+#: includes/options-page.php:286
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "Myslíte si „Páni, tento plugin je úžasný“ a pomáha vám urobiť vašu webovú stránku prístupnejšou? Podeľte sa o svoje úsilie urobiť vašu webovú stránku prístupnejšou so svojimi zákazníkmi a dajte im vedieť, že používate Accessibility Checker na zabezpečenie toho, aby všetci ľudia mohli používať vašu webovú stránku. Pridajte malý textový odkaz a vyhlásenie v päte vašej webovej stránky."
+
+#: includes/options-page.php:299
+msgid "Before the content"
+msgstr "Pred obsahom"
+
+#: includes/options-page.php:304
+msgid "After the content"
+msgstr "Za obsahom"
+
+#: includes/options-page.php:309
+msgid "Insert manually"
+msgstr "Vložiť manuálne"
+
+#: includes/options-page.php:313
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "Použite túto funkciu na manuálne pridanie zjednodušeného súhrnu do vašej témy v rámci slučky."
+
+#: includes/options-page.php:315
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "Funkcia voliteľne prijíma ID príspevku ako parameter."
+
+#: includes/options-page.php:318
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "Nastavte, kde by sa mali zobraziť zjednodušené súhrny vo vzťahu k vášmu obsahu, ak sú vyplnené."
+
+#: includes/options-page.php:333
+msgid "Bottom Right Corner (default)"
+msgstr "Pravý dolný roh (predvolené)"
+
+#: includes/options-page.php:338
+msgid "Bottom Left Corner"
+msgstr "Ľavý dolný roh"
+
+#: includes/options-page.php:342
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "Nastavte, kde by sa mala na stránke zobraziť kontrola prístupnosti na frontende."
+
+#: includes/options-page.php:382
+msgid "When Required"
+msgstr "Keď je to potrebné"
+
+#: includes/options-page.php:387
+msgid "Always"
+msgstr "Vždy"
+
+#: includes/options-page.php:395
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Mal by Accessibility Checker žiadať o zjednodušený súhrn iba vtedy, keď je úroveň čítania vášho príspevku alebo stránky nad 9. ročník, vždy o to žiadať bez ohľadu na úroveň čítania, alebo nikdy o to nežiadať bez ohľadu na úroveň čítania?"
+
+#: includes/options-page.php:446
+msgid "To check content other than posts and pages, please "
+msgstr "Na kontrolu iného obsahu ako príspevkov a stránok, prosím "
+
+#: includes/options-page.php:449
+msgid " (opens in a new window)"
+msgstr " (otvorí sa v novom okne)"
+
+#: includes/options-page.php:454
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "Vyberte, ktoré typy príspevkov by mali byť kontrolované počas skenovania. Upozorňujeme, že odstránenie predtým vybraného typu príspevku odstráni jeho naskenované informácie a všetky vlastné ignorované upozornenia, ktoré boli nastavené."
+
+#: includes/options-page.php:592
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "Odstrániť všetky dáta Accessibility Checker pri odinštalovaní pluginu."
+
+#: includes/rules.php:21
+msgid "Image Missing Alternative Text"
+msgstr "Obrázku chýba alternatívny text"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+#: includes/rules.php:27
+msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
+msgstr "Chyba Chýbajúci alternatívny text obrázka znamená, že váš obrázok vôbec neobsahuje atribút alt (%1$s) v značke obrázka (%2$s). Na opravu chyby Chýbajúci alternatívny text obrázka budete musieť pridať značku alt k obrázku s vhodným textom popisujúcim účel obrázka na stránke. Ak je obrázok dekoratívny, atribút alt môže byť prázdny, ale HTML %1$s značka stále musí byť prítomná."
+
+#: includes/rules.php:34
+msgid "Image Empty Alternative Text"
+msgstr "Obrázok s prázdnym alternatívnym textom"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:40
+msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
+msgstr "Upozornenie na prázdny alternatívny text obrázka sa zobrazí, ak máte obrázok s atribútom alt (%s), ktorý je prázdny. Alternatívny text hovorí ľuďom, ktorí nevidia, čo obrázok znamená, a pridáva dodatočný kontext k príspevku alebo stránke. Je správne, aby bol alternatívny text prázdny, iba ak je obrázok čisto dekoratívny, ako napríklad okraj alebo dekoratívna ikona. Na opravu upozornenia na prázdny alternatívny text obrázka musíte určiť, či je obrázok dekoratívny alebo či pridáva niečo zmysluplné na stránku. Ak nie je dekoratívny, musíte pridať vhodný alternatívny text na popis účelu obrázka. Ak je obrázok dekoratívny, potom by ste nechali alternatívny text prázdny a „Ignorovali“ upozornenie."
+
+#: includes/rules.php:46
+msgid "Low-quality Alternative Text"
+msgstr "Nízka kvalita alternatívneho textu"
+
+#: includes/rules.php:50
+msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
+msgstr "Varovanie o nekvalitnom alternatívnom texte sa zobrazí, keď alternatívny text obrázka obsahuje kľúčové slová, ktoré sú v alternatívnom texte zbytočné (ako „obrázok“ alebo „grafika“), príponu súboru (ako .JPG), alebo môže opisovať dekoratívny obrázok (ako „medzera“ alebo „šípka“). Na odstránenie tohto varovania budete musieť prepísať alternatívny text pre všetky obrázky, ktoré vyvolali varovanie o nekvalitnom alternatívnom texte, pričom zabezpečíte, aby bol alternatívny text presný, jedinečný, kontextovo vhodný a neobsahoval redundantné alebo zbytočné popisné prvky. Ak je obrázok čisto dekoratívny, je správne ponechať alternatívny text prázdny."
+
+#: includes/rules.php:54
+msgid "Linked Image Missing Alternative Text"
+msgstr "Chýbajúci alternatívny text pre odkazovaný obrázok"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:60
+msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Chyba chýbajúceho alternatívneho textu pre odkazovaný obrázok sa zobrazí, keď obrázok odkazujúci na URL adresu nemá vôbec atribút alt (%s) v značke obrázka. Odkazované obrázky musia mať presný alternatívny text, ktorý opisuje, kam odkaz smeruje, aby používatelia čítačiek obrazovky vedeli, kam odkaz ukazuje. Na vyriešenie tejto chyby musíte pridať zmysluplný alt text k obrázku. Váš alt text by mal opisovať účel odkazu, nie to, ako obrázok vyzerá."
+
+#: includes/rules.php:66
+msgid "Linked Image Empty Alternative Text"
+msgstr "Prázdny alternatívny text pre odkazovaný obrázok"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/rules.php:72
+msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
+msgstr "Chyba prázdneho alternatívneho textu pre odkazovaný obrázok sa zobrazí, keď obrázok odkazujúci na URL adresu má atribút alt (%s), ale ten je prázdny. Odkazované obrázky musia mať presný alternatívny text, ktorý opisuje, kam odkaz smeruje, aby používatelia čítačiek obrazovky vedeli, kam odkaz ukazuje. Na vyriešenie tejto chyby musíte pridať zmysluplný alt text k obrázku. Váš alt text by mal opisovať účel odkazu, nie to, ako obrázok vyzerá."
+
+#: includes/rules.php:78
+msgid "Duplicate Alternative Text"
+msgstr "Duplicitný alternatívny text"
+
+#: includes/rules.php:82
+msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
+msgstr "Varovania o duplicitnom alternatívnom texte sa zobrazujú, keď je alternatívny text obrázka na vašom príspevku alebo stránke identický s blízkym alebo susediacim textom, vrátane názvu alebo popisu obrázka. Toto varovanie sa vyskytuje aj vtedy, ak majú dva obrázky na stránke rovnaký alternatívny text. Na vyriešenie tohto varovania budete musieť zmeniť text jedného alebo oboch prvkov, ktoré vyvolali varovanie o duplicitnom alternatívnom texte, pričom zabezpečíte, aby všetky obrázky mali jedinečný alt text a aby ste neopakovali svoj alt text v názvoch a popisoch obrázkov."
+
+#: includes/rules.php:86
+msgid "Incorrect Heading Order"
+msgstr "Nesprávne poradie nadpisov"
+
+#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
+#: includes/rules.php:92
+msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
+msgstr "Chyba nesprávneho poradia nadpisov znamená, že štruktúra vašich nadpisov preskočila jednu úroveň. Napríklad, ak má štruktúra vašej stránky nadpis úrovne 3 (%1$s) pod nadpisom úrovne 1 (%2$s), bude označená chyba „Nesprávne poradie nadpisov“, pretože medzi H1 a H3 nie je značka %3$s. Na opravu chýb nesprávneho poradia nadpisov budete musieť buď zmeniť nesprávnu úroveň nadpisu na správnu úroveň, alebo pridať obsah so správnou úrovňou nadpisu medzi dve už existujúce úrovne."
+
+#: includes/rules.php:103
+msgid "Empty Paragraph Tag"
+msgstr "Prázdna značka odstavca"
+
+#: includes/rules.php:107
+msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
+msgstr "Varovanie o prázdnej značke odstavca znamená, že je prítomná značka odstavca, ktorá neobsahuje žiadny obsah. Tieto môžu byť oznámené čítačkami obrazovky alebo vytvárať zmätok pre používateľov. Na odstránenie tohto varovania odstráňte prázdne odstavce zo stránky. Ak potrebujete pridať medzeru medzi sekciami, malo by sa to urobiť pomocou výplne, okrajov alebo bloku medzery."
+
+#: includes/rules.php:111
+msgid "iframe Missing Title"
+msgstr "Chýbajúci názov iframe"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code>.
+#: includes/rules.php:117
+msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
+msgstr "Chyba chýbajúceho názvu iframe znamená, že jeden alebo viac iframe na vašom príspevku alebo stránke nemá prístupný názov opisujúci obsah iframe. Názov iframe je atribút, ktorý možno pridať k značke %1$s na opis obsahu rámu pre ľudí používajúcich asistenčné technológie. Na opravu chýbajúceho názvu iframe budete musieť pridať atribút title alebo aria-label k značke %1$s. Atribút by mal presne opisovať obsah iframe."
+
+#: includes/rules.php:126
+msgid "Missing Subheadings"
+msgstr "Chýbajúce podnadpisy"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
+#: includes/rules.php:132
+msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
+msgstr "Upozornenie na chýbajúce nadpisy znamená, že váš príspevok alebo stránka neobsahuje žiadne nadpisové prvky (%1$s–%2$s) v obsahu hlavnej časti príspevku alebo stránky, čo môže značne sťažiť používateľom čítačiek obrazovky navigáciu v obsahu na stránke. Na opravu stránky bez nadpisov musíte pridať nadpisové prvky. Minimálne by mala mať každá stránka jeden tag %1$s, ktorý je zvyčajne titulkom stránky. Pridajte ďalšie podnadpisy podľa potreby vášho obsahu. Ak ste určili, že nadpisy na stránke určite nie sú potrebné, môžete upozornenie „Ignorovať“."
+
+#: includes/rules.php:140
+msgid "Text Justified"
+msgstr "Zarovnaný text"
+
+#: includes/rules.php:144
+msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
+msgstr "Upozornenie na zarovnaný text sa objaví v Kontrole prístupnosti, keď je text s viac ako 200 znakmi vo vašom príspevku alebo na stránke štylizovaný so zarovnaním do bloku (text-align:justify). Na opravu tohto upozornenia odstráňte štýl zarovnania do bloku z určených textových prvkov."
+
+#: includes/rules.php:148
+msgid "Link Opens New Window or Tab"
+msgstr "Odkaz otvára nové okno alebo kartu"
+
+#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
+#: includes/rules.php:154
+msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
+msgstr "Upozornenie \"Odkaz otvára nové okno alebo kartu\" sa objaví, keď je na vašej webovej stránke odkaz, ktorý je nastavený tak, aby sa po kliknutí otvoril v novej karte alebo okne. Považuje sa za osvedčený postup neotvárať nové karty alebo okná pomocou odkazov. Ak odkazy otvárajú nové karty alebo okná, musí existovať vizuálne a zvukové upozornenie oznamujúce, že odkaz otvorí nové okno alebo kartu, aby používatelia očakávali toto správanie a vedeli, ako sa po kliknutí na odkaz vrátiť. Na opravu tohto upozornenia buď zmeňte odkaz tak, aby sa neotváral v novej karte, alebo sa uistite, že v texte odkazu je uvedené „otvára sa v novom okne“, a potom upozornenie „Ignorujte“. Ak chcete automaticky pridať upozornenia ku všetkým odkazom na vašej stránke a odstrániť všetky tieto upozornenia, nainštalujte si náš bezplatný plugin %s."
+
+#: includes/rules.php:155
+msgid "Accessibility New Window Warnings"
+msgstr "Upozornenia prístupnosti na nové okno"
+
+#: includes/rules.php:167
+msgid "Image Map Missing Alternative Text"
+msgstr "Obrázkové mapy chýba alternatívny text"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
+#: includes/rules.php:173
+msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
+msgstr "Chyba \"Obrázkové mapy chýba alternatívny text\" znamená, že jeden z prvkov %1$s vo vašej obrázkovej mape nemá pridaný alternatívny text v atribúte %2$s. Na opravu tejto chyby budete musieť pridať chýbajúci alternatívny text ku všetkým tagom oblastí, ktoré ho nemajú. Alternatívny text musí opisovať funkciu odkazu obsiahnutého v oblasti, nie nevyhnutne popisovať, ako oblasť vyzerá."
+
+#: includes/rules.php:183
+msgid "Tab Order Modified"
+msgstr "Poradie tabulátora upravené"
+
+#. translators: %s is <code>tabindex="1"</code>.
+#: includes/rules.php:189
+msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
+msgstr "Upozornenie na upravené poradie tabulátora sa objaví, keď sa logické poradie tabulátora na stránke zmenilo pridaním atribútu tabindex väčšieho ako 0 k HTML prvku (napríklad %s). Môže to spôsobiť problémy s navigáciou pre používateľov ovládajúcich stránku len klávesnicou. Na vyriešenie upozornenia na upravené poradie tabulátora musíte zobraziť prednú časť vašej webovej stránky na stránke alebo v príspevku, kde bolo poradie tabulátora upravené, a otestovať, či je úprava správna alebo nie. Ak úprava poradia tabulátora nespôsobuje problémy, môžete upozornenie „Ignorovať“. Ak upravené poradie tabulátora spôsobuje, že informácie sú prezentované mimo poradia, musíte odstrániť atribút tabindex z označeného prvku."
+
+#: includes/rules.php:199
+msgid "Empty Heading Tag"
+msgstr "Prázdny tag nadpisu"
+
+#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
+#: includes/rules.php:205
+msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
+msgstr "Chyba \"Prázdny tag nadpisu\" znamená, že vo vašom príspevku alebo na stránke je tag nadpisu, ktorý neobsahuje obsah. V kóde by táto chyba vyzerala takto: %s. Na opravu prázdneho nadpisu budete musieť pridať obsah do tagu nadpisu, ktorý označil chybu Prázdny tag nadpisu, alebo odstrániť prázdny tag, ak nie je na vašej stránke potrebný."
+
+#: includes/rules.php:211
+msgid "Empty Link"
+msgstr "Prázdny odkaz"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
+#: includes/rules.php:217
+msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
+msgstr "Chyba Prázdny odkaz znamená, že jeden z odkazov prítomných na webovej stránke je prázdny alebo neobsahuje žiadny text popisujúci, kam odkaz smeruje po kliknutí. Toto sa bežne vyskytuje pri odkazoch obsahujúcich webové písma, ikonové písma a SVG, alebo keď bol odkaz náhodne vytvorený v editore obsahu. Na opravu chyby prázdneho odkazu budete musieť nájsť označený odkaz a pridať k nemu popisný text. Budete musieť buď: pridať textový obsah do prázdneho prvku %1$s, alebo ak váš odkaz obsahuje ikonu SVG alebo Webfont, skryť tento prvok pomocou %2$s a pridať atribút %3$s k tagu %1$s alebo text pre čítačky obrazovky. Pridaný text alebo označenie by malo popisovať, kam odkaz smeruje, a nemalo by byť nejednoznačné."
+
+#: includes/rules.php:225
+msgid "Empty Button"
+msgstr "Prázdne tlačidlo"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/rules.php:231
+msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
+msgstr "Chyba Prázdne tlačidlo znamená, že jedno z tlačidiel prítomných na webovej stránke je prázdne alebo neobsahuje žiadny text popisujúci funkciu tlačidla. Alebo ak ide o obrázkové tlačidlo, obrázok v tlačidle nemá alternatívny text. Na opravu chyby prázdneho tlačidla budete musieť nájsť označené tlačidlo a pridať k nemu popisný text. Budete musieť buď: pridať textový obsah do prázdneho prvku %1$s, pridať atribút hodnoty k %2$s, ktorému chýba, alebo pridať alternatívny text k obrázku tlačidla. Text by mal popisovať, na čo sa vaše tlačidlo používa alebo akú akciu tlačidlo spúšťa."
+
+#: includes/rules.php:238
+msgid "Image Long Alternative Text"
+msgstr "Dlhý alternatívny text obrázka"
+
+#: includes/rules.php:242
+msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
+msgstr "Upozornenie na Dlhý alternatívny text obrázka sa zobrazí, ak je v alternatívnom texte viac ako 100 znakov. Alternatívny text má byť výstižným popisom obrázka, bez zbytočnej rozvláčnosti. Na opravu tohto upozornenia musíte skrátiť alternatívny text pre všetky označené obrázky na 100 znakov alebo menej. Ak ste určili, že váš alternatívny text je dobrý tak, ako je, potom upozornenie „Ignorujte“."
+
+#: includes/rules.php:246
+msgid "ARIA Hidden"
+msgstr "ARIA Hidden"
+
+#: includes/rules.php:250
+msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
+msgstr "Upozornenie ARIA Hidden sa zobrazí, keď bol obsah na vašom príspevku alebo stránke skrytý pomocou atribútu aria-hidden=„true“. Keď je tento atribút pridaný k HTML prvku, čítačky obrazovky ho neprečítajú používateľom. Niekedy je správne, aby bol prvok skrytý pred čítačkami obrazovky (napríklad v prípade dekoratívnej ikony), inokedy to nie je správne. Keď uvidíte toto upozornenie, musíte určiť, či má byť prvok skrytý pred ľuďmi, ktorí sú nevidiaci alebo zrakovo postihnutí. Ak je správne skrytý, upozornenie „Ignorujte“. Ak je nesprávne skrytý a mal by byť viditeľný, odstráňte atribút aria-hidden=„true“, aby ste vyriešili upozornenie."
+
+#: includes/rules.php:257
+msgid "Empty Table Header"
+msgstr "Prázdna hlavička tabuľky"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
+#: includes/rules.php:263
+msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
+msgstr "Chyba Prázdna hlavička tabuľky znamená, že jedna z hlavičiek tabuľky na vašom príspevku alebo stránke neobsahuje žiadny text. To znamená, že prvok %1$s je prítomný, ale vyzerá takto %2$s, bez ničoho medzi otváracími a zatváracími značkami. Na opravu prázdnej hlavičky tabuľky musíte nájsť správny HTML prvok (%1$s) a pridať k nemu text, ktorý popisuje riadok alebo stĺpec, ktorý sa naň vzťahuje."
+
+#: includes/rules.php:270
+msgid "Link to MS Office File"
+msgstr "Odkaz na súbor MS Office"
+
+#: includes/rules.php:274
+msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Upozornenie Odkaz na súbor MS Office znamená, že jeden alebo viac odkazov na vašej stránke alebo príspevku smeruje na súbor s jednou z nasledujúcich prípon: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps alebo .ppsx. Toto upozornenie sa zobrazí, keď je prítomný súbor MS Office, ako pripomienka na manuálne testovanie vašich dokumentov Word, prezentácií PowerPoint a tabuliek Excel z hľadiska prístupnosti a na potvrdenie, že spĺňajú všetky relevantné smernice WCAG. Na vyriešenie upozornenia Odkaz na súbor MS Office musíte: (1) zabezpečiť, aby bol prítomný priamy odkaz na zobrazenie alebo stiahnutie dokumentu, ak používate plugin na jeho vloženie na stránku; (2) zabezpečiť, aby odkaz na dokument upozorňoval používateľov, že ide o odkaz na dokument, zobrazením konkrétnej prípony súboru v texte odkazu; a (3) otestovať a opraviť váš súbor MS Office z hľadiska chýb prístupnosti. Po zistení, že váš súbor je plne prístupný, môžete bezpečne upozornenie „Ignorovať“."
+
+#: includes/rules.php:278
+msgid "Link to PDF"
+msgstr "Odkaz na PDF"
+
+#: includes/rules.php:282
+msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Upozornenie na odkaz na PDF znamená, že jeden alebo viac odkazov na vašej stránke alebo príspevku smeruje na súbor PDF. Toto upozornenie slúži ako pripomienka, aby ste manuálne otestovali prepojený PDF súbor z hľadiska prístupnosti a potvrdili, že spĺňa všetky príslušné smernice WCAG. Na vyriešenie upozornenia na odkaz na PDF musíte: (1) zabezpečiť, aby bol prítomný priamy odkaz na zobrazenie alebo stiahnutie dokumentu, ak používate plugin na jeho vloženie na stránku; (2) zabezpečiť, aby odkaz na dokument upozorňoval používateľov, že ide o odkaz na dokument, zobrazením konkrétnej prípony súboru v texte odkazu; a (3) otestovať a opraviť chyby prístupnosti vo vašom dokumente. Po zistení, že váš súbor je plne prístupný, môžete bezpečne „Ignorovať“ upozornenie."
+
+#: includes/rules.php:286
+msgid "Link to Non-HTML File"
+msgstr "Odkaz na súbor iný ako HTML"
+
+#: includes/rules.php:290
+msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
+msgstr "Upozornenie na odkaz na dokument iný ako HTML znamená, že jeden alebo viac odkazov na vašej stránke alebo príspevku smeruje na súbor s jednou z nasledujúcich prípon: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages alebo .key. Toto upozornenie slúži ako pripomienka, aby ste manuálne otestovali prepojený dokument z hľadiska prístupnosti a potvrdili, že spĺňa všetky príslušné smernice WCAG. Na vyriešenie upozornenia na odkaz na dokument iný ako HTML musíte: (1) zabezpečiť, aby bol prítomný priamy odkaz na zobrazenie alebo stiahnutie dokumentu, ak používate plugin na jeho vloženie na stránku; (2) zabezpečiť, aby odkaz na dokument upozorňoval používateľov, že ide o odkaz na dokument, zobrazením konkrétnej prípony súboru v texte odkazu; a (3) otestovať a opraviť chyby prístupnosti vo vašom dokumente. Po zistení, že váš súbor je plne prístupný, môžete bezpečne „Ignorovať“ upozornenie."
+
+#: includes/rules.php:294
+msgid "Long Description Invalid"
+msgstr "Neplatný dlhý popis"
+
+#. translators: %s is <code>longdesc=""</code>.
+#: includes/rules.php:300
+msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
+msgstr "Chyba Neplatný dlhý popis znamená, že atribút dlhého popisu (%s) obrázka nemá vhodnú URL adresu, názov súboru alebo príponu súboru. Môže to tiež znamenať, že dlhý popis nie je URL adresou alebo zostal prázdny. Atribút longdesc nie je plne podporovaný v HTML5, prehliadačoch a všetkých čítačkách obrazovky. Vzhľadom na túto nedostatočnú podporu je najlepším riešením tejto chyby úplné odstránenie atribútu longdesc z vášho tagu obrázka."
+
+#: includes/rules.php:306
+msgid "Missing Form Label"
+msgstr "Chýbajúci popis formulára"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
+#: includes/rules.php:312
+msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
+msgstr "Chyba Chýbajúci popis formulára sa spustí, keď je vo vašom formulári prítomný %1$s (pole formulára), ale nie je spojený s elementom %2$s. To môže znamenať, že popis je prítomný, ale chýba mu atribút %3$s na prepojenie s príslušným poľom, alebo by mohol úplne chýbať popis a je prítomný len tag %1$s. Na opravu chýb chýbajúceho popisu formulára budete musieť zistiť, ako bolo pole a formulár vytvorené, a potom pridať popisy polí alebo správny atribút %3$s k existujúcim popisom, ktoré nie sú prepojené s poľom."
+
+#: includes/rules.php:325
+msgid "Ambiguous Anchor Text"
+msgstr "Nejednoznačný text odkazu"
+
+#: includes/rules.php:329
+msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
+msgstr "Chyby Nejednoznačný text odkazu sa objavujú, keď prepojený text nemá význam mimo svojho okolitého obsahu. Bežné príklady zahŕňajú prepojenie fráz ako „kliknite sem“ alebo „zistite viac.“ Na vyriešenie tejto chyby zmeňte text odkazu tak, aby bol menej všeobecný a mal význam, ak by bol vypočutý samostatne."
+
+#: includes/rules.php:333
+msgid "Underlined Text"
+msgstr "Podčiarknutý text"
+
+#. translators: %s is <code>&lt;u&gt;</code>.
+#: includes/rules.php:339
+msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
+msgstr "Upozornenie na Podčiarknutý text sa zobrazí, ak je akýkoľvek text na vašej stránke zabalený v HTML tagu pre podčiarknutie (%1$s). V online prostredí sa podčiarknutý text zvyčajne používa na označenie prepojených textov a nepovažuje sa za osvedčený postup používať podčiarknutie len na zvýraznenie. Na opravu podčiarknutého textu budete musieť odstrániť element %1$s z textu alebo CSS štýly, ktoré ho podčiarkujú. Skúste použiť iné štýly, ako napríklad kurzívu, farebný text alebo tučné písmo na zvýraznenie alebo rozlíšenie medzi slovami alebo frázami."
+
+#: includes/rules.php:345
+msgid "Broken Skip or Anchor Link"
+msgstr "Nefunkčný odkaz na preskočenie alebo kotvu"
+
+#: includes/rules.php:349
+msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
+msgstr "Kotviaci odkaz, niekedy nazývaný aj skokový odkaz, je odkaz, ktorý po kliknutí neotvorí novú stránku alebo URL, ale presunie alebo posunie vás na inú sekciu tej istej stránky. Tieto odkazy smerujú na element, ktorý začína mriežkou namiesto celej URL. Napríklad, môžete niekoho posunúť na sekciu 'o nás' na vašej domovskej stránke odkazom na #about. Chyby typu 'Nefunkčný preskočiť alebo kotviaci odkaz' sa objavia, keď existuje odkaz, ktorý smeruje na inú sekciu tej istej stránky, ale na stránke nie je prítomný element s odkazovaným id. Táto chyba sa tiež objaví, ak odkazujete len na #. Pre vyriešenie tejto chyby ručne otestujte odkaz, aby ste potvrdili, že funguje, a potom ho buď opravte, alebo „Ignorujte“ chybu podľa potreby."
+
+#: includes/rules.php:353
+msgid "Missing Table Header"
+msgstr "Chýbajúca hlavička tabuľky"
+
+#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
+#: includes/rules.php:359
+msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
+msgstr "Chyba 'Chýbajúca hlavička tabuľky' znamená, že jedna z vašich tabuliek obsahuje dáta (informácie obsiahnuté v tagu %1$s), ktoré nemajú zodpovedajúcu hlavičku (%2$s). Pri pohľade na HTML vášho formulára bude v riadku viac elementov %1$s ako elementov %2$s v tabuľke. Na opravu chýbajúcej hlavičky tabuľky musíte nájsť sekciu kódu, ktorá má menej elementov %2$s, ako by malo byť prítomných pre počet riadkov alebo stĺpcov dát, a pridať jeden alebo viac dodatočných elementov %2$s obsahujúcich text, ktorý popisuje dáta v danom riadku alebo stĺpci."
+
+#: includes/rules.php:366
+msgid "Duplicate Form Label"
+msgstr "Duplicitný štítok formulára"
+
+#: includes/rules.php:370
+msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
+msgstr "Chyby 'Duplicitný štítok formulára' sa objavia, keď je s jedným poľom formulára spojený viac ako jeden štítok. Ak je prítomných príliš veľa štítkov formulára, čítač obrazovky nemusí byť schopný úspešne prečítať polia formulára, aby pomohol zrakovo postihnutému užívateľovi prechádzať a vyplniť formulár. Na opravu chýb duplicitných štítkov formulára budete musieť určiť, ako bolo pole a formulár vytvorené, a potom zabezpečiť, aby každé pole malo spojený iba jeden štítok."
+
+#: includes/rules.php:375
+msgid "Text Too Small"
+msgstr "Príliš malý text"
+
+#: includes/rules.php:379
+msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
+msgstr "Upozornenie 'Príliš malý text' sa objaví, keď je na vašej webstránke text menší ako 10px. Upozornenie je indikáciou, že by ste mali prehodnotiť veľkosť písma a zväčšiť ju tak, aby bola ľahšie čitateľná bez toho, aby používateľ musel zväčšovať stránku vo svojom prehliadači. Na opravu príliš malého textu musíte zabezpečiť, aby všetky textové elementy na vašej webstránke mali aspoň 10 bodov."
+
+#: includes/rules.php:383
+msgid "Possible Heading"
+msgstr "Možná nadpis"
+
+#: includes/rules.php:387
+msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
+msgstr "Upozornenie 'Možný nadpis' sa objaví, keď je na stránke text, ktorý sa javí ako nadpis, ale nebol zakódovaný s príslušnými tagmi nadpisu. Toto upozornenie sa objaví, ak sú na stránke krátke frázy alebo reťazce textu dlhé menej ako 50 znakov, ktoré sú formátované spôsobom naznačujúcim, že by mohli byť použité ako nadpisy (majú 20 pixelov alebo viac, alebo majú 16 pixelov alebo viac a sú tučné a/alebo kurzívou). Na opravu upozornenia 'Možný nadpis' budete musieť určiť, či je označený text skutočne zamýšľaný ako nadpis. Ak áno, musíte ho zmeniť z odstavca na nadpis príslušnej úrovne. Ak to nemá byť nadpis, môžete upozornenie bezpečne „Ignorovať“."
+
+#: includes/rules.php:391
+msgid "Blinking or Scrolling Content"
+msgstr "Blikajúci alebo posúvajúci sa obsah"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/rules.php:397
+msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
+msgstr "Chyby 'Blikajúci alebo posúvajúci sa obsah' sa objavia, keď majú elementy na vašej webstránke aplikovanú funkciu blikania alebo posúvania buď cez CSS alebo v HTML. Konkrétne, nasledujúce vytvoria túto chybu: HTML tagy %1$s alebo %2$s, alebo CSS %3$s. Na vyriešenie tejto chyby odstráňte HTML tagy alebo CSS, ktoré spôsobujú blikanie obsahu."
+
+#: includes/rules.php:406
+msgid "Insufficient Color Contrast"
+msgstr "Nedostatočný farebný kontrast"
+
+#: includes/rules.php:410
+msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
+msgstr "Chyby nedostatočného farebného kontrastu znamenajú, že sme identifikovali jednu alebo viac farebných kombinácií vo vašom príspevku alebo na stránke, ktoré nespĺňajú minimálny pomer farebného kontrastu 4,5:1. V závislosti od toho, ako je vaša stránka vytvorená, môžu sa pri tejto chybe vyskytnúť „falošné pozitíva“, pretože niektoré farby sú obsiahnuté v rôznych HTML vrstvách na stránke. Na opravu chyby nedostatočného farebného kontrastu musíte zabezpečiť, aby označené prvky spĺňali minimálny požadovaný pomer 4,5:1. Na to budete musieť nájsť hexadecimálne kódy farby popredia a pozadia a otestovať ich v kontrolóre farebného kontrastu. Ak majú tieto farebné kódy pomer 4,5:1 alebo vyšší, môžete túto chybu „Ignorovať“. Ak farebné kódy nemajú pomer aspoň 4,5:1, budete musieť upraviť svoje farby."
+
+#: includes/rules.php:414
+msgid "Missing Transcript"
+msgstr "Chýbajúci prepis"
+
+#: includes/rules.php:418
+msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
+msgstr "Chyba chýbajúceho prepisu znamená, že na vašej webovej stránke je zvukový alebo video klip, ktorý nemá prepis, alebo prepis existuje, ale nie je označený ako prepis, alebo je umiestnený vo vzdialenosti väčšej ako 25 znakov od vloženého alebo odkazovaného média. Na opravu chyby chýbajúceho prepisu budete musieť vytvoriť prepis pre všetky video alebo zvukové klipy, ktoré boli označené ako chýbajúce prepisy. Po vytvorení prepisu môžete buď pridať obsah prepisu priamo do svojho príspevku alebo na stránku, alebo naň odkázať, ak ho zahŕňate ako stiahnuteľný dokument alebo PDF súbor. Musíte výslovne uviesť slovo „prepis“ v nadpise pred prepisom na stránke alebo v odkaze na váš súbor, a musí byť vo vzdialenosti do 25 znakov od vloženého zvuku alebo videa alebo odkazu naň."
+
+#: includes/rules.php:422
+msgid "Broken ARIA Reference"
+msgstr "Nefunkčný odkaz ARIA"
+
+#: includes/rules.php:426
+msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
+msgstr "Chyby nefunkčného odkazu ARIA sa objavia, ak je na stránke alebo v príspevku prítomný prvok aria-labeledby alebo aria-describedby, ale jeho cieľový odkaz neexistuje. To znamená, že prvok, na ktorý sa odkazuje konkrétny atribút ARIA, ktorý používate, buď nemá správny štítok alebo popis, alebo nie je na stránke prítomný. Na opravu nefunkčného odkazu ARIA budete musieť nájsť prvky ARIA, ktoré sú označené, a zabezpečiť, aby ich cieľové odkazy boli prítomné a správne označené."
+
+#: includes/rules.php:431
+msgid "Missing Language Declaration"
+msgstr "Chýbajúce deklarovanie jazyka"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
+#: includes/rules.php:437
+msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
+msgstr "Deklarácia jazyka je HTML atribút, ktorý označuje predvolený jazyk obsahu na stránke alebo v príspevku. Deklarácie jazyka by mali byť zakódované do témy vašej webovej stránky a automaticky sa objaviť v hlavičke webovej stránky. Chyba chýbajúcej deklarácie jazyka sa zobrazí, ak značka %1$s na stránke neobsahuje atribút %2$s alebo %3$s, alebo ak je jeden z týchto atribútov prítomný, ale je prázdny. Na opravu chyby chýbajúcej deklarácie jazyka budete musieť upraviť súbory témy a pridať chýbajúci jazykový atribút do značky HTML úplne na vrchu hlavičky vašej webovej stránky. Ak používate tému, ktorá dostáva aktualizácie, budete musieť urobiť zmenu v dcérskej téme, aby ste zabezpečili, že sa oprava neprepíše pri ďalšej aktualizácii vašej témy."
+
+#: includes/rules.php:451
+msgid "Image Animated GIF"
+msgstr "Obrázok animovaný GIF"
+
+#: includes/rules.php:455
+msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
+msgstr "Upozornenia na animovaný GIF obrázok sa objavia, keď je na vašom príspevku alebo stránke animovaný GIF. Toto upozornenie slúži ako pripomienka na manuálnu kontrolu všetkých animovaných GIFov na vašej webovej stránke z hľadiska ich prístupnosti a/alebo na prehodnotenie používania animovaných GIFov a ich nahradenie statickými obrázkami alebo videami. Na vyriešenie tohto upozornenia musíte skontrolovať všetky prítomné GIFy, aby ste sa uistili, že spĺňajú všetky príslušné pokyny pre prístupnosť, a potom buď upozornenie „Ignorovať“, alebo odstrániť GIF z vašej stránky alebo príspevku, ak nie je prístupný."
+
+#: includes/rules.php:460
+msgid "A Video is Present"
+msgstr "Je prítomné video"
+
+#: includes/rules.php:464
+msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Keďže videá často obsahujú problémy s prístupnosťou, z ktorých mnohé môže identifikovať len človek, upozornenie „Je prítomné video“ sa zobrazí vždy, keď je na príspevku alebo stránke zistené video, ako pripomienka, že potrebujete manuálne otestovať prístupnosť vášho videa. Na vyriešenie tohto upozornenia musíte navštíviť frontend vašej webovej stránky a potvrdiť, že video uvedené v upozornení je prístupné. Po úplnom otestovaní prístupnosti videa musíte opraviť všetky prípadné chyby a potom môžete upozornenie „Ignorovať“, čím ho označíte za dokončené."
+
+#: includes/rules.php:468
+msgid "A Slider is Present"
+msgstr "Je prítomný posúvač"
+
+#: includes/rules.php:472
+msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
+msgstr "Keďže posúvače často obsahujú problémy s prístupnosťou, z ktorých mnohé môže identifikovať len človek, upozornenie „Je prítomný posúvač“ sa zobrazí vždy, keď je na príspevku alebo stránke zistený posúvač, ako pripomienka, že potrebujete manuálne otestovať prístupnosť vášho posúvača. Na vyriešenie tohto upozornenia musíte navštíviť frontend vašej webovej stránky a potvrdiť, že všetky posúvače na stránke sú prístupné. Po úplnom otestovaní prístupnosti vašich posúvačov musíte opraviť všetky prípadné chyby a potom môžete upozornenie „Ignorovať“, čím ho označíte za dokončené."
+
+#: includes/rules.php:476
+msgid "Missing Title"
+msgstr "Chýbajúci nadpis"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/rules.php:482
+msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
+msgstr "Chyba Chýbajúci nadpis znamená, že váš príspevok alebo stránka neobsahuje prvok nadpisu (%1$s alebo %2$s). Môže sa to stať, ak téma nezahrnie značku nadpisu, alebo ak bolo pole nadpisu príspevku alebo stránky ponechané prázdne v editore WordPressu. Na opravu stránky bez nadpisov budete musieť pridať prvky nadpisu. Najprv zistite, či nadpis chýba preto, že ste nechali pole nadpisu stránky alebo príspevku prázdne v editore. Ak áno, vyplňte ho. Ak je nadpis vyplnený a viditeľný v administrácii, potom je potrebné upraviť kód v hlavičke vašej webovej stránky tak, aby obsahoval značku %1$s alebo meta značku %2$s."
+
+#: includes/rules.php:494
+msgid "Improper Use of Link"
+msgstr "Nesprávne použitie odkazu"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
+#: includes/rules.php:500
+msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
+msgstr "Chyba Nesprávne použitie odkazu sa zobrazí, ak máte odkazy, ktorým chýba atribút %1$s alebo sú prepojené len na %2$s a nemajú na sebe %3$s. Odkazy by mali slúžiť na presmerovanie ľudí na iné časti vašej stránky. Akákoľvek iná funkcionalita, ktorá spúšťa akciu, by mala byť tlačidlom. Na vyriešenie tejto chyby musíte prekódovať odkaz tak, aby použil značku %4$s (preferované) alebo pridať %5$s k existujúcej značke %6$s. Ak je prvok prepínacím tlačidlom (napríklad rozbaľovací prvok), sú potrebné dodatočné atribúty ARIA."
+
+#: includes/rules.php:511
+msgid "Zooming and Scaling Disabled"
+msgstr "Priblíženie a zmena mierky sú zakázané"
+
+#: includes/rules.php:515
+msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
+msgstr "Priblíženie je zakázané prostredníctvom meta tagu viewport, ktorý obsahuje `user-scalable=no` alebo hodnotu `maximum-scale` menšiu ako 2. Toto obmedzuje používateľov so zrakovým postihnutím, ktorí chcú zväčšiť veľkosť textu, priblížiť stránku alebo používajú lupu."
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "Nastavenia boli uložené. Na potvrdenie a zohľadnenie týchto aktualizácií v štatistikách vašej stránky znovu naskenujte svoju stránku. Ak používate plugin pre cachovanie, nezabudnite vymazať cache, aby sa správne aplikovali aktualizované opravy."
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "Plugin Accessibility New Window Warnings je nainštalovaný. Oprava pre odkazy otvárajúce sa v novom okne, ktorá je tu zahrnutá, prepíše jeho funkčnosť. Môžete bezpečne odstrániť tento plugin a namiesto neho použiť tieto opravy."
+
+#: partials/custom-meta-box.php:10
+msgid "Accessibility Checker issues panels"
+msgstr "Panely problémov Kontroly prístupnosti"
+
+#: partials/custom-meta-box.php:21
+msgid "Summary"
+msgstr "Zhrnutie"
+
+#: partials/custom-meta-box.php:31
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: partials/custom-meta-box.php:41
+msgid "Readability"
+msgstr "Čitateľnosť"
+
+#: partials/custom-meta-box.php:50
+msgid "Delete all currently found issues"
+msgstr "Odstrániť všetky aktuálne nájdené problémy"
+
+#: partials/custom-meta-box.php:52
+#: build/editorApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "Vymazať problémy"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:196
+msgid "Equalize Digital Logo"
+msgstr "Equalize Digital logo"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:197
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "Prejsť na Accessibility Checker Pro"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:200
+msgid "Scan all post types"
+msgstr "Skenovať všetky typy príspevkov"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:201
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "Stĺpce v administrácii na rýchle zobrazenie stavu prístupnosti"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:202
+msgid "Centralized list of all open issues"
+msgstr "Centralizovaný zoznam všetkých otvorených problémov"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:203
+msgid "Ignore log"
+msgstr "Záznam ignorovaných problémov"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:204
+msgid "Rename simplified summary"
+msgstr "Premenovať zjednodušené zhrnutie"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:205
+msgid "User restrictions on ignoring issues"
+msgstr "Obmedzenia používateľov pri ignorovaní problémov"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:206
+msgid "Email support"
+msgstr "E-mailová podpora"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:207
+msgid "...and more"
+msgstr "...a ďalšie"
+
+#: partials/pro-callout.php:36
+#: partials/welcome-page.php:212
+msgid "Get Accessibility Checker Pro"
+msgstr "Získať Accessibility Checker Pro"
+
+#: partials/pro-callout.php:46
+#: partials/welcome-page.php:220
+msgid "Or activate your license key here."
+msgstr "Alebo tu aktivujte váš licenčný kľúč."
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "Všeobecné"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "verzia"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Odkaz na webovú stránku Equalize Digital"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "Príručka pre rýchly štart"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "Postupujte podľa týchto krokov, aby ste začali kontrolovať váš obsah:"
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "Na <a href=\"%s\">stránke Nastavenia</a> vyberte typy príspevkov, ktoré chcete skenovať."
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "Prejdite na obrazovku úprav príspevku, ktorý chcete skontrolovať."
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "Nájdite meta box Kontroly prístupnosti pod vaším obsahom. Ak používate front-end editor stránok, musíte navštíviť obrazovku úprav v administrácii, aby ste videli výsledky Kontroly prístupnosti."
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "Ak sú vo vašom príspevku prítomné chyby alebo upozornenia, otvorte kartu podrobností v Kontrole prístupnosti pre viac informácií."
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "Rozbaľte každý problém, aby ste videli kód, alebo kliknite na „zobraziť na stránke“, ak potrebujete pomoc s nájdením prvku, ktorý treba opraviť."
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "Ak neviete, čo chyba alebo upozornenie znamená, kliknite na ikonu „i“, aby ste si prečítali dokumentáciu a spôsob opravy."
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "Ak je problém falošne pozitívny a prvok je prístupný, môžete odstrániť problémy zo správ pomocou funkcie „Ignorovať“."
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "Po oprave každého problému aktualizujte príspevok, aby ste videli zmenu v správe o prístupnosti. Vaším cieľom je dosiahnuť, aby každá stránka uvádzala 100% úspešných testov."
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "Pozrite si video o používaní Kontroly prístupnosti."
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "Dokumentácia a často kladené otázky"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "Prečo hovoríme o 100% úspešných testoch, nie o 100% prístupnosti?"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:213
+msgid "(opens in a new window)"
+msgstr "(otvorí sa v novom okne)"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "Ako manuálne skontrolovať prístupnosť vašej webovej stránky"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "Kedy ignorovať chyby prístupnosti"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "Čo robiť, ak plugin, ktorý používate, má chyby prístupnosti"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "Čo robiť, ak sú chyby prístupnosti vo vašej téme"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "Môžem si najať Equalize Digital na opravu problémov s prístupnosťou na mojej webovej stránke?"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "Ďalšie zdroje pre vzdelávanie o prístupnosti"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "Prečítať úplnú dokumentáciu"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "Informácie o podpore"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "Podpora pluginu"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "Aktívni držitelia licencií platených plánov Accessibility Checker získavajú neobmedzenú e-mailovú podporu pre používanie pluginu a riešenie problémov."
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "Otvoriť ticket podpory"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "Bezplatná podpora pluginu"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "Bezplatná podpora pluginu je k dispozícii prostredníctvom fór WordPress.org. Budete si musieť vytvoriť účet a potom môžete otvoriť nové vlákno podpory."
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "Prejsť na fórum podpory"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "Konzultačné hodiny"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "Otvorená otázka a odpoveď na Zoome každý druhý týždeň, aby vám pomohla napraviť vašu webovú stránku."
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "Zahrnuté v plánoch pre malé podniky a agentúry"
+
+#: partials/welcome-page.php:165
+msgid "Register for Office Hours"
+msgstr "Zaregistrovať sa na konzultačné hodiny"
+
+#: partials/welcome-page.php:170
+msgid "Auditing and Remediation"
+msgstr "Audit a náprava"
+
+#: partials/welcome-page.php:172
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "Získajte pomoc pri sprístupňovaní vašej webovej stránky. Expertný audit, testovanie používateľmi a podpora vývojárov. K dispozícii sú aj listy o zhode."
+
+#: partials/welcome-page.php:176
+msgid "Get Remediation Help"
+msgstr "Získať pomoc s nápravou"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "Ukladá sa..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "Nastavenia boli úspešne uložené. Musíte %snavštíviť editor%s a uložiť príspevok, aby sa vykonalo opätovné skenovanie a odstránili sa opravené problémy zo správ Kontroly prístupnosti."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "Nastavenia boli úspešne uložené."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "Uloženie zlyhalo."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "Nastavenia opravy"
+
+#: build/editorApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "Týmto sa vymažú všetky problémy pre tento príspevok. Bude potrebné uloženie na spustenie nového skenovania obsahu príspevku. Chcete pokračovať?"
+
+#: build/editorApp.bundle.js:2
+msgid "Clearing..."
+msgstr "Vymazáva sa..."
+
+#: build/editorApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "Problémy boli úspešne vymazané."
+
+#: build/editorApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "Nepodarilo sa vymazať problémy."
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "Vyskytol sa problém. Skúste to prosím znova."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "Prepáčte, vaše odoslanie zlyhalo. Skráťte prosím vaše odpovede a skúste to znova."
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "Prepáčte, vaše odoslanie zlyhalo. Skúste to znova, prosím."
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "otvorí sa v novom okne"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC: Na stránke sa nenašlo zodpovedajúce cieľové ID pre odkaz na preskočenie."
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC: Chyba pri aktualizácii histórie pre odkaz na preskočenie."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "Zatvoriť modálne okno s opravami"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Vypnúť štýly stránky"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "Zobraziť kód"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Typ problému:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "Zapnúť štýly"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Vypnúť štýly"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "Nie sú k dispozícii žiadne nastavenia na zobrazenie."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "Tieto nastavenia umožňujú globálne opravy na celom vašom webe. Môže byť potrebné znovu uložiť stránky alebo spustiť úplné skenovanie webu, aby sa opravy prejavili v správach."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "Neboli zistené žiadne problémy."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "chyba"
+msgstr[1] "chyby"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "upozornenie"
+msgstr[1] "upozornenia"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "a"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "ignorovaný problém"
+msgstr[1] "ignorované problémy"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "zistených."
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "nové okno"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "nová karta"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "kliknite"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "kliknite sem"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "tu"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "prejdite sem"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "viac"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "viac..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "viac…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "podrobnosti"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "viac podrobností"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "odkaz"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "táto stránka"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "pokračovať"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "pokračovať v čítaní"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "čítať ďalej"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "otvoriť"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "stiahnuť"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "tlačidlo"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "pokračovať v čítaní"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "dozvedieť sa viac"
