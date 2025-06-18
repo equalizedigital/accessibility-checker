@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-17T22:10:34+00:00\n"
+"POT-Creation-Date: 2025-06-18T17:28:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -543,7 +543,7 @@ msgid "See More Reports"
 msgstr ""
 
 #: admin/class-widgets.php:264
-#: partials/welcome-page.php:232
+#: partials/welcome-page.php:233
 msgid "Learn Accessibility"
 msgstr ""
 
@@ -1820,12 +1820,12 @@ msgid "...and more"
 msgstr ""
 
 #: partials/pro-callout.php:36
-#: partials/welcome-page.php:212
+#: partials/welcome-page.php:213
 msgid "Get Accessibility Checker Pro"
 msgstr ""
 
 #: partials/pro-callout.php:46
-#: partials/welcome-page.php:220
+#: partials/welcome-page.php:221
 msgid "Or activate your license key here."
 msgstr ""
 
@@ -1903,7 +1903,7 @@ msgstr ""
 #: partials/welcome-page.php:109
 #: partials/welcome-page.php:114
 #: partials/welcome-page.php:120
-#: partials/welcome-page.php:213
+#: partials/welcome-page.php:214
 msgid "(opens in a new window)"
 msgstr ""
 
@@ -1989,6 +1989,11 @@ msgstr ""
 
 #: partials/welcome-page.php:176
 msgid "Get Remediation Help"
+msgstr ""
+
+#: partials/welcome-page.php:208
+#: build/admin.bundle.js:2
+msgid "TEST TEST TEST"
 msgstr ""
 
 #: build/admin.bundle.js:2
