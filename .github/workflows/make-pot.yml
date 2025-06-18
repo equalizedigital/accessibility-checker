@@ -110,6 +110,7 @@ jobs:
             })
 
       - name: Upload POT and JSON files as artifact
+        if: steps.pot_diff.outputs.pot_changed == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: accessibility-checker-i18n
