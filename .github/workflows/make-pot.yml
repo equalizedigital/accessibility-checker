@@ -103,10 +103,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: |
-                The POT file has changed. Please update the POT file in your PR to keep translations up to date.
-                The updated POT file is available in the artifacts of this workflow run:
-                https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
+              body: 'The POT file has changed. Please update the POT file in your PR to keep translations up to date.\nThe updated POT file is available in the artifacts of this workflow run: https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + process.env.GITHUB_RUN_ID
             })
 
       - name: Upload POT and JSON files as artifact
