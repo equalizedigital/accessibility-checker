@@ -132,7 +132,7 @@ jobs:
           fi
         continue-on-error: true
 
-      - name: Create Pull Request with updated translations
+      - name: Create or Update Pull Request with updated translations
         if: steps.pot_diff.outputs.pot_changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
@@ -142,4 +142,4 @@ jobs:
           branch: update-translations/${{ github.head_ref || github.ref_name }}
           base: ${{ github.head_ref || github.ref_name }}
           delete-branch: true
-
+          update-branch: true
