@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { __ } from '@wordpress/i18n';
+const { __ } = wp.i18n;
 import {initOptInModal} from "./modal";
 
 const edac_on_submit_ok = function () {

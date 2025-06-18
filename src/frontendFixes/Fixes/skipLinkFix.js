@@ -1,4 +1,4 @@
-import { __ } from '@wordpress/i18n';
+const { __ } = wp.i18n;
 
 const findFirstLinkOutsideContainer = ( containerSelector ) => {
 	const links = document.querySelectorAll( 'body a:not(.ab-item)' );

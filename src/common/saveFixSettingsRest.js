@@ -1,4 +1,4 @@
-import { __, sprintf } from '@wordpress/i18n';
+const { __, sprintf } = wp.i18n;
 
 export const saveFixSettings = ( fixSettingsContainer ) => {
 	const settingsToSave = {};
