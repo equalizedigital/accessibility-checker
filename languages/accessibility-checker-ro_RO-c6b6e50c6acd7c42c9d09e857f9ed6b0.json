@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "\u0218tergerea problemelor a e\u0219uat."
+            ],
+            "An error occurred while clearing issues.": [
+                "A ap\u0103rut o eroare la \u0219tergerea problemelor."
             ]
         }
     }

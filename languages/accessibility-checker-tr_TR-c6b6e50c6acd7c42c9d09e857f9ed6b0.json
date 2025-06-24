@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Sorunlar temizlenemedi."
+            ],
+            "An error occurred while clearing issues.": [
+                "Sorunlar\u0131 temizlerken bir hata olu\u015ftu."
             ]
         }
     }

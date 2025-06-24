@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Nem siker\u00fclt t\u00f6r\u00f6lni a probl\u00e9m\u00e1kat."
+            ],
+            "An error occurred while clearing issues.": [
+                "Hiba t\u00f6rt\u00e9nt a probl\u00e9m\u00e1k t\u00f6rl\u00e9se k\u00f6zben."
             ]
         }
     }

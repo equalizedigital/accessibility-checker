@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Kunne ikke rydde problemer."
+            ],
+            "An error occurred while clearing issues.": [
+                "Der opstod en fejl under rydning af problemer."
             ]
         }
     }

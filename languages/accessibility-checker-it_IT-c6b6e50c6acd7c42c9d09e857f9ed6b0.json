@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Impossibile cancellare i problemi."
+            ],
+            "An error occurred while clearing issues.": [
+                "Si \u00e8 verificato un errore durante l'eliminazione dei problemi."
             ]
         }
     }

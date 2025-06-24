@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Nepodarilo sa vymaza\u0165 probl\u00e9my."
+            ],
+            "An error occurred while clearing issues.": [
+                "Pri vymaz\u00e1van\u00ed probl\u00e9mov sa vyskytla chyba."
             ]
         }
     }

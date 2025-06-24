@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Probleemide t\u00fchjendamine eba\u00f5nnestus."
+            ],
+            "An error occurred while clearing issues.": [
+                "Probleemide kustutamisel tekkis viga."
             ]
         }
     }

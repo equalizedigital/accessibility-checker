@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Ongelmien tyhjennys ep\u00e4onnistui."
+            ],
+            "An error occurred while clearing issues.": [
+                "Virhe tapahtui ongelmia tyhjennett\u00e4ess\u00e4."
             ]
         }
     }

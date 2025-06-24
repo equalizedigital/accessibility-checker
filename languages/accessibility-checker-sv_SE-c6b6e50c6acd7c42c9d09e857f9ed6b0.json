@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Misslyckades med att rensa problem."
+            ],
+            "An error occurred while clearing issues.": [
+                "Ett fel uppstod n\u00e4r problem skulle rensas."
             ]
         }
     }

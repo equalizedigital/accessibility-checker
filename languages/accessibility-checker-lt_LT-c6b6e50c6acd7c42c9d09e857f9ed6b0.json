@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Nepavyko i\u0161valyti problem\u0173."
+            ],
+            "An error occurred while clearing issues.": [
+                "\u012evyko klaida \u0161alinant problemas."
             ]
         }
     }

@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Falha ao limpar problemas."
+            ],
+            "An error occurred while clearing issues.": [
+                "Ocorreu um erro ao limpar os problemas."
             ]
         }
     }

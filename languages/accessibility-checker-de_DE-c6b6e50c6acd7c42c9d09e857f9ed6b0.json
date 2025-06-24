@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "L\u00f6schen der Probleme fehlgeschlagen."
+            ],
+            "An error occurred while clearing issues.": [
+                "Beim L\u00f6schen der Probleme ist ein Fehler aufgetreten."
             ]
         }
     }

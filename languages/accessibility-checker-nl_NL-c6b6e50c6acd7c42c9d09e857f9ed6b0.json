@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Wissen van problemen mislukt."
+            ],
+            "An error occurred while clearing issues.": [
+                "Er is een fout opgetreden bij het wissen van problemen."
             ]
         }
     }

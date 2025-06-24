@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Kunne ikke fjerne problemer."
+            ],
+            "An error occurred while clearing issues.": [
+                "Det oppstod en feil under sletting av problemer."
             ]
         }
     }

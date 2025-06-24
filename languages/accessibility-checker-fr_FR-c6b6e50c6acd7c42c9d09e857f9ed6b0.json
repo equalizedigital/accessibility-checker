@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "\u00c9chec de l'effacement des probl\u00e8mes."
+            ],
+            "An error occurred while clearing issues.": [
+                "Une erreur s'est produite lors de l'effacement des probl\u00e8mes."
             ]
         }
     }

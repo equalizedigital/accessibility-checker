@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Error al borrar los problemas."
+            ],
+            "An error occurred while clearing issues.": [
+                "Se produjo un error al borrar los problemas."
             ]
         }
     }

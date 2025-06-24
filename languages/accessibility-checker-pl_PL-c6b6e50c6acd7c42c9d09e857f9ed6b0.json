@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Nie uda\u0142o si\u0119 wyczy\u015bci\u0107 problem\u00f3w."
+            ],
+            "An error occurred while clearing issues.": [
+                "Wyst\u0105pi\u0142 b\u0142\u0105d podczas czyszczenia problem\u00f3w."
             ]
         }
     }

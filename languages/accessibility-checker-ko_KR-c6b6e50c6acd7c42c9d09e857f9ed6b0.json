@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "\uc774\uc288 \uc9c0\uc6b0\uae30\uc5d0 \uc2e4\ud328\ud588\uc2b5\ub2c8\ub2e4."
+            ],
+            "An error occurred while clearing issues.": [
+                "\ubb38\uc81c \ud574\uacb0 \uc911 \uc624\ub958\uac00 \ubc1c\uc0dd\ud588\uc2b5\ub2c8\ub2e4."
             ]
         }
     }

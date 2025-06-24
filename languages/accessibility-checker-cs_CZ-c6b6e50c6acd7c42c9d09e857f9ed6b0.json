@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Nepoda\u0159ilo se vymazat probl\u00e9my."
+            ],
+            "An error occurred while clearing issues.": [
+                "P\u0159i maz\u00e1n\u00ed probl\u00e9m\u016f do\u0161lo k chyb\u011b."
             ]
         }
     }

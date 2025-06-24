@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Brisanje te\u017eav ni uspelo."
+            ],
+            "An error occurred while clearing issues.": [
+                "Pri brisanju te\u017eav je pri\u0161lo do napake."
             ]
         }
     }

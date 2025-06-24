@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Gagal menghapus masalah."
+            ],
+            "An error occurred while clearing issues.": [
+                "Terjadi kesalahan saat menghapus masalah."
             ]
         }
     }
