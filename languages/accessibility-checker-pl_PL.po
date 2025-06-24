@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Project-Id-Version: Accessibility Checker 1.25.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"POT-Creation-Date: 2025-06-18T17:40:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 
 #. Plugin Name of the plugin
@@ -75,6 +75,7 @@ msgstr "Otwiera się w nowym oknie."
 
 #. translators: %s: the label of the fix
 #: admin/AdminPage/FixesSettingType/Text.php:54
+#, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Przeczytaj dokumentację dla %s. Otwiera się w nowym oknie."
 
@@ -140,14 +141,15 @@ msgstr "Zachęcamy do komentarzy, pytań i opinii na temat naszej strony interne
 
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
+#, php-format
 msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
 msgstr "Ulepszyliśmy obliczenia statystyk w wersji 1.21.0. W rezultacie niektóre liczby w poniższych danych mogły ulec zmianie. Przeczytaj więcej w naszym %1$spoście ogłaszającym wydanie%2$s."
 
 #: admin/class-admin-notices.php:114
 #: admin/class-admin-notices.php:225
-#: admin/class-admin-notices.php:313
-#: admin/class-admin-notices.php:402
-#: admin/class-admin-notices.php:484
+#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:401
+#: admin/class-admin-notices.php:483
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:196
 #: admin/class-ajax.php:561
@@ -159,9 +161,9 @@ msgstr "Odmowa dostępu"
 
 #: admin/class-admin-notices.php:123
 #: admin/class-admin-notices.php:234
-#: admin/class-admin-notices.php:325
-#: admin/class-admin-notices.php:422
-#: admin/class-admin-notices.php:493
+#: admin/class-admin-notices.php:324
+#: admin/class-admin-notices.php:421
+#: admin/class-admin-notices.php:492
 msgid "Update option wasn't successful"
 msgstr "Aktualizacja opcji nie powiodła się"
 
@@ -174,53 +176,54 @@ msgid "Upgrade to a paid version of Accessibility Checker from November 25th to 
 msgstr "Przejdź na płatną wersję Accessibility Checker od 25 listopada do 3 grudnia i otrzymaj 30% zniżki! Pełne skanowanie witryny, raport problemów dla całej witryny, dzienniki ignorowania i więcej."
 
 #: admin/class-admin-notices.php:205
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:292
 msgid "Ask a Pre-Sale Question"
 msgstr "Zadaj pytanie przed zakupem"
 
 #: admin/class-admin-notices.php:206
-#: admin/class-admin-notices.php:294
+#: admin/class-admin-notices.php:293
 msgid "Upgrade Now"
 msgstr "Kup teraz"
 
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:290
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Otrzymaj 25% zniżki na Accessibility Checker Pro z okazji Światowego Dnia Świadomości Dostępności! 🎉"
 
-#: admin/class-admin-notices.php:292
+#: admin/class-admin-notices.php:291
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Użyj kodu kuponu GAAD25 od 13 do 21 maja, aby uzyskać dostęp do pełnego skanowania witryny i innych funkcji pro ze specjalną zniżką. Nie jesteś pewien, czy aktualizacja jest dla Ciebie odpowiednia?"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:376
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Witaj! Dziękujemy za korzystanie z Accessibility Checker jako części Twojego zestawu narzędzi do dostępności. Skoro używasz go już od jakiegoś czasu, czy mógłbyś napisać 5-gwiazdkową recenzję Accessibility Checker w katalogu wtyczek WordPress? Pomoże to zwiększyć naszą widoczność, dzięki czemu więcej osób dowie się o znaczeniu dostępności internetowej. Bardzo dziękujemy!"
 
-#: admin/class-admin-notices.php:380
+#: admin/class-admin-notices.php:379
 msgid "Write A Review"
 msgstr "Napisz recenzję"
 
-#: admin/class-admin-notices.php:381
+#: admin/class-admin-notices.php:380
 msgid "Remind Me In Two Weeks"
 msgstr "Przypomnij mi za dwa tygodnie"
 
-#: admin/class-admin-notices.php:382
+#: admin/class-admin-notices.php:381
 msgid "Never Ask Again"
 msgstr "Nigdy więcej nie pytaj"
 
-#: admin/class-admin-notices.php:409
+#: admin/class-admin-notices.php:408
 msgid "The review action value was not set"
 msgstr "Wartość akcji recenzji nie została ustawiona"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-#: admin/class-admin-notices.php:447
+#: admin/class-admin-notices.php:446
+#, php-format
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
 msgstr "Ups! Wygląda na to, że Twoja strona internetowa jest obecnie chroniona hasłem. Darmowa wersja Accessibility Checker może skanować tylko aktywne strony internetowe. Aby przeskanować tę stronę pod kątem problemów z dostępnością, usuń ochronę hasłem lub %s. Wyniki skanowania mogą być przechowywane z poprzedniego skanu."
 
-#: admin/class-admin-notices.php:450
+#: admin/class-admin-notices.php:449
 msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Przejdź na wersję pro Accessibility Checker. Otwiera się w nowym oknie."
 
-#: admin/class-admin-notices.php:451
+#: admin/class-admin-notices.php:450
 #: includes/options-page.php:448
 msgid "upgrade to pro"
 msgstr "przejdź na wersję pro"
@@ -250,6 +253,7 @@ msgstr "Dołączono uproszczone podsumowanie dla tej treści."
 
 #. translators: %s: Number of errors
 #: admin/class-ajax.php:133
+#, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s Błąd"
@@ -257,6 +261,7 @@ msgstr[1] "%s Błędów"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:139
+#, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Błąd kontrastu"
@@ -264,6 +269,7 @@ msgstr[1] "%s Błędów kontrastu"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:145
+#, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s Ostrzeżenie"
@@ -271,6 +277,7 @@ msgstr[1] "%s Ostrzeżeń"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:151
+#, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s Zignorowany element"
@@ -303,6 +310,7 @@ msgstr "Kod, którego dotyczy problem"
 
 #. Translators: %d is the issue ID.
 #: admin/class-ajax.php:477
+#, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Zobacz problem o ID %d na stronie internetowej, otwiera nowe okno"
 
@@ -424,6 +432,7 @@ msgstr "Przeskanowane adresy URL"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
 #: admin/class-welcome-page.php:239
+#, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s z %2$s"
 
@@ -712,6 +721,7 @@ msgstr "Liczba tabel w bazie danych dla ignorowanych elementów"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:45
+#, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "%1$s używa %2$s do monitorowania dostępności naszej witryny."
 
@@ -721,6 +731,7 @@ msgstr "Narzędzie do sprawdzania dostępności (otwiera się w nowym oknie)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
 #: includes/classes/class-accessibility-statement.php:58
+#, php-format
 msgid "Read our %s"
 msgstr "Przeczytaj nasze %s"
 
@@ -764,6 +775,7 @@ msgstr "Dodaj etykiety do nieoznakowanych pól formularza, jeśli można określ
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Próba dodania etykiet do pól formularza, które ich nie mają. Uwaga: Może być konieczne dodanie niestandardowych stylów dla klasy %1$s, jeśli dodawanie etykiet wpływa na układ formularzy."
 
@@ -781,6 +793,7 @@ msgstr "Dodaj brakujący tytuł strony"
 
 #. translators: %1$s: a code tag with a title tag.
 #: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Dodaj tag %1$s do strony, jeśli go brakuje lub jest pusty."
 
@@ -794,6 +807,7 @@ msgstr "Dodaj etykietę do linków otwierających nową kartę/okno"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Dodaj etykietę i ikonę do linków z %1$s informujące użytkowników, że otworzą nową kartę/okno. %2$sUwaga: To ustawienie nie będzie miało wpływu, jeśli włączona jest poprawka „Blokuj linki otwierające nowe okna”.%3$s"
 
@@ -804,6 +818,7 @@ msgstr "Blokuj przesyłanie plików PDF"
 
 #. translators: %1$s: a code tag with the capability name.
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Ogranicz przesyłanie plików PDF dla użytkowników bez uprawnienia %1$s (domyślnie dozwolone dla administratorów)."
 
@@ -906,6 +921,7 @@ msgstr "Dodaj atrybuty „lang” i „dir”"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
 #: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Dodaj atrybuty języka strony (%1$s) i kierunku tekstu (%2$s) do elementu %3$s."
 
@@ -955,6 +971,7 @@ msgstr "Blokuj otwieranie linków w nowych oknach"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Zapobiegaj otwieraniu linków w nowym oknie lub karcie, usuwając %1$s."
 
@@ -1008,6 +1025,7 @@ msgstr "Usuń atrybuty title"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Usuń atrybuty %1$s z elementów, które już mają preferowaną dostępną nazwę."
 
@@ -1045,6 +1063,7 @@ msgstr "Ustaw atrybut ID elementu nawigacji. Jest to przydatne, jeśli twoja gł
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 #: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Jeśli twój motyw nie dodaje już linku pomijającego, który pozwala użytkownikom klawiatury ominąć nawigację i szybko przejść do głównej treści, włącz linki pomijające tutaj. %1$sDowiedz się więcej o linkach pomijających.%2$s"
 
@@ -1066,6 +1085,7 @@ msgstr "Usuń indeks tabulacji"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/TabindexFix.php:70
+#, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Usuń atrybut %1$s z elementów, które można fokusować."
 
@@ -1079,6 +1099,7 @@ msgstr "Nie znaleziono poprawki"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
 #: includes/classes/WPCLI/BootstrapCLI.php:99
+#, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Nie udało się zarejestrować polecenia %1$s, ponieważ %2$s"
 
@@ -1092,11 +1113,13 @@ msgstr "Nie podano ID wpisu."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:92
+#, php-format
 msgid "Post ID %1$s does not exist."
 msgstr "Wpis o ID %1$s nie istnieje."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:103
+#, php-format
 msgid "Stats of %1$s deleted."
 msgstr "Statystyki wpisu %1$s zostały usunięte."
 
@@ -1110,6 +1133,7 @@ msgstr "Wyczyść pamięć podręczną przed pobraniem statystyk (może być int
 
 #. translators: 1: a stat key that was requested but not found.
 #: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#, php-format
 msgid "Stat key: %1$s not found in stats."
 msgstr "Klucz statystyki: %1$s nie znaleziony w statystykach."
 
@@ -1119,11 +1143,13 @@ msgstr "ID wpisu, dla którego należy pobrać statystyki."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:126
+#, php-format
 msgid "Post ID %1$d does not exist."
 msgstr "Wpis o ID %1$d nie istnieje."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:142
+#, php-format
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Albo wpis nie został jeszcze przeskanowany, albo wszystkie testy przeszły dla wpisu o ID %1$d."
 
@@ -1207,6 +1233,7 @@ msgstr "Pozycja kontroli dostępności na stronie frontowej"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
+#, php-format
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
 msgstr "Użyj poniższych ustawień, aby skonfigurować kontrolę dostępności. Dodatkowe informacje o każdym ustawieniu można znaleźć w %1$s."
 
@@ -1220,6 +1247,7 @@ msgstr "dokumentacji wtyczki"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
 #: includes/options-page.php:251
+#, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Więcej funkcji i wsparcie e-mailowe są dostępne z %1$s."
 
@@ -1322,6 +1350,7 @@ msgstr "Brak alternatywnego tekstu dla obrazu"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
 #: includes/rules.php:27
+#, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "Błąd braku alternatywnego tekstu dla obrazu oznacza, że Twój obraz nie ma w ogóle atrybutu alt (%1$s) zawartego w tagu obrazu (%2$s). Aby naprawić błąd braku alternatywnego tekstu dla obrazu, musisz dodać tag alt do obrazu z odpowiednim tekstem opisującym cel obrazu na stronie. Jeśli obraz jest dekoracyjny, atrybut alt może być pusty, ale tag HTML %1$s nadal musi być obecny."
 
@@ -1331,6 +1360,7 @@ msgstr "Pusty alternatywny tekst dla obrazu"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:40
+#, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "Ostrzeżenie o pustym alternatywnym tekście dla obrazu pojawia się, jeśli masz obraz z atrybutem alt (%s), który jest pusty. Tekst alternatywny informuje osoby, które nie mogą zobaczyć, co przedstawia obraz i dodaje dodatkowy kontekst do wpisu lub strony. Pusty tekst alternatywny jest poprawny tylko wtedy, gdy obraz jest czysto dekoracyjny, jak obramowanie lub ozdobna ikona. Aby naprawić ostrzeżenie o pustym alternatywnym tekście dla obrazu, musisz określić, czy obraz jest dekoracyjny, czy dodaje coś znaczącego do strony. Jeśli nie jest dekoracyjny, musisz dodać odpowiedni tekst alternatywny opisujący cel obrazu. Jeśli obraz jest dekoracyjny, pozostawiłbyś tekst alternatywny pusty i „Zignorował” ostrzeżenie."
 
@@ -1348,6 +1378,7 @@ msgstr "Brak tekstu alternatywnego dla obrazu z linkiem"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:60
+#, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Błąd braku tekstu alternatywnego dla obrazu z linkiem pojawia się, gdy obraz, który jest połączony z adresem URL, nie ma w ogóle atrybutu alt (%s) w tagu obrazu. Obrazy z linkami muszą mieć dokładny tekst alternatywny opisujący, dokąd prowadzi link, aby użytkownicy czytników ekranu wiedzieli, gdzie kieruje link. Aby rozwiązać ten błąd, należy dodać znaczący tekst alternatywny do obrazu. Tekst alternatywny powinien opisywać cel linku, a nie to, jak wygląda obraz."
 
@@ -1357,6 +1388,7 @@ msgstr "Pusty tekst alternatywny dla obrazu z linkiem"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:72
+#, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Błąd pustego tekstu alternatywnego dla obrazu z linkiem pojawia się, gdy obraz, który jest połączony z adresem URL, ma atrybut alt (%s) bez zawartości. Obrazy z linkami muszą mieć dokładny tekst alternatywny opisujący, dokąd prowadzi link, aby użytkownicy czytników ekranu wiedzieli, gdzie kieruje link. Aby rozwiązać ten błąd, należy dodać znaczący tekst alternatywny do obrazu. Tekst alternatywny powinien opisywać cel linku, a nie to, jak wygląda obraz."
 
@@ -1374,6 +1406,7 @@ msgstr "Nieprawidłowa kolejność nagłówków"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
 #: includes/rules.php:92
+#, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "Błąd nieprawidłowej kolejności nagłówków oznacza, że struktura nagłówków pominęła jeden poziom. Na przykład, jeśli struktura strony ma nagłówek poziomu 3 (%1$s) pod nagłówkiem poziomu 1 (%2$s), zostanie zgłoszony błąd „nieprawidłowej kolejności nagłówków”, ponieważ brakuje tagu %3$s między H1 a H3. Aby naprawić błędy nieprawidłowej kolejności nagłówków, należy albo zmienić nieprawidłowy poziom nagłówka na właściwy, albo dodać treść z prawidłowym poziomem nagłówka między dwoma już istniejącymi poziomami."
 
@@ -1391,6 +1424,7 @@ msgstr "Brak tytułu w iframe"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
 #: includes/rules.php:117
+#, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "Błąd braku tytułu w iframe oznacza, że jeden lub więcej iframe'ów na twojej stronie lub w poście nie ma dostępnego tytułu opisującego zawartość iframe'a. Tytuł iframe'a to atrybut, który można dodać do tagu %1$s, aby opisać zawartość ramki dla osób korzystających z technologii wspomagających. Aby naprawić brak tytułu iframe'a, należy dodać atrybut title lub aria-label do tagu %1$s. Atrybut powinien dokładnie opisywać zawartość iframe'a."
 
@@ -1400,6 +1434,7 @@ msgstr "Brak podtytułów"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
 #: includes/rules.php:132
+#, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "Ostrzeżenie o brakujących nagłówkach oznacza, że Państwa post lub strona nie zawiera żadnych elementów nagłówka (%1$s-%2$s) w treści postu lub sekcji głównej strony, co może szczególnie utrudnić użytkownikom czytników ekranu poruszanie się po treści na stronie. Aby naprawić stronę bez nagłówków, należy dodać elementy nagłówków. Co najmniej, każda strona powinna mieć jeden tag %1$s, który zazwyczaj jest tytułem strony. Proszę dodać dodatkowe podtytuły w zależności od treści. Jeśli ustalono, że nagłówki zdecydowanie nie są potrzebne na stronie, można zignorować “” ostrzeżenie."
 
@@ -1417,6 +1452,7 @@ msgstr "Link otwiera nowe okno lub kartę"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
 #: includes/rules.php:154
+#, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "Ostrzeżenie o linku otwierającym nowe okno lub kartę pojawia się, gdy na Twojej stronie znajduje się link, który został ustawiony tak, aby otwierał się w nowej karcie lub oknie po kliknięciu. Uważa się za najlepszą praktykę, aby nie otwierać nowych kart lub okien za pomocą linków. Jeśli linki otwierają nowe karty lub okna, musi istnieć wizualne i dźwiękowe ostrzeżenie informujące, że link otworzy nowe okno lub kartę, aby użytkownicy spodziewali się takiego zachowania i wiedzieli, jak wrócić po kliknięciu linku. Aby rozwiązać to ostrzeżenie, zmień ustawienie linku tak, aby nie otwierał się w nowej karcie lub upewnij się, że fraza „otwiera nowe okno” jest zawarta w tekście linku, a następnie „Zignoruj” ostrzeżenie. Aby automatycznie dodać powiadomienia do wszystkich linków na Twojej stronie i odrzucić wszystkie te ostrzeżenia, zainstaluj naszą darmową wtyczkę %s."
 
@@ -1430,6 +1466,7 @@ msgstr "Mapa obrazu bez alternatywnego tekstu"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
 #: includes/rules.php:173
+#, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "Błąd braku alternatywnego tekstu dla mapy obrazu oznacza, że jeden z elementów %1$s w Twojej mapie obrazu nie ma dodanego tekstu alternatywnego w atrybucie %2$s. Aby naprawić ten błąd, musisz dodać brakujący tekst alternatywny do wszystkich znaczników obszaru, które go nie mają. Tekst alternatywny powinien opisywać funkcję linku zawartego w obszarze, niekoniecznie opisywać, jak obszar wygląda."
 
@@ -1439,6 +1476,7 @@ msgstr "Zmodyfikowana kolejność tabulacji"
 
 #. translators: %s is <code>tabindex="1"</code>.
 #: includes/rules.php:189
+#, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "Ostrzeżenie o zmodyfikowanej kolejności tabulacji pojawia się, gdy logiczna kolejność tabulacji na stronie została zmieniona przez dodanie atrybutu tabindex o wartości większej niż 0 do elementu HTML (na przykład %s). Może to powodować problemy z nawigacją dla użytkowników korzystających wyłącznie z klawiatury. Aby rozwiązać ostrzeżenie o zmodyfikowanej kolejności tabulacji, musisz sprawdzić front-end swojej strony internetowej na stronie lub wpisie, gdzie kolejność tabulacji została zmodyfikowana, i przetestować, czy modyfikacja jest poprawna, czy nie. Jeśli modyfikacja kolejności tabulacji nie powoduje problemów, możesz „Zignorować” ostrzeżenie. Jeśli zmodyfikowana kolejność tabulacji powoduje, że informacje są prezentowane w niewłaściwej kolejności, musisz usunąć atrybut tabindex z oznaczonego elementu."
 
@@ -1448,6 +1486,7 @@ msgstr "Pusty znacznik nagłówka"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
 #: includes/rules.php:205
+#, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "Błąd pustego znacznika nagłówka oznacza, że na Twoim wpisie lub stronie znajduje się znacznik nagłówka, który nie zawiera treści. W kodzie ten błąd wyglądałby tak: %s. Aby naprawić pusty nagłówek, musisz dodać treść do znacznika nagłówka, który wywołał błąd pustego znacznika nagłówka, lub usunąć pusty znacznik, jeśli nie jest potrzebny na Twojej stronie."
 
@@ -1457,6 +1496,7 @@ msgstr "Pusty link"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
 #: includes/rules.php:217
+#, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "Błąd pustego linku oznacza, że jeden z linków obecnych na stronie internetowej jest pusty lub nie zawiera tekstu opisującego, dokąd link prowadzi po kliknięciu. Często zdarza się to w przypadku linków zawierających czcionki internetowe, ikony lub SVG, lub gdy link został przypadkowo utworzony w edytorze treści. Aby naprawić błąd pustego linku, należy znaleźć oznaczony link i dodać do niego opisowy tekst. Trzeba albo: dodać treść tekstową w pustym elemencie %1$s, albo jeśli link zawiera ikonę SVG lub czcionkę internetową, ukryć ten element za pomocą %2$s i dodać atrybut %3$s do tagu %1$s lub tekst dla czytnika ekranu. Dodany tekst lub etykieta powinny opisywać miejsce, do którego prowadzi link i nie być niejednoznaczne."
 
@@ -1466,6 +1506,7 @@ msgstr "Pusty przycisk"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
 #: includes/rules.php:231
+#, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "Błąd pustego przycisku oznacza, że jeden z przycisków obecnych na stronie internetowej jest pusty lub nie zawiera tekstu opisującego funkcję przycisku. Lub, jeśli jest to przycisk z obrazem, obraz zawarty w przycisku nie ma alternatywnego tekstu. Aby naprawić błąd pustego przycisku, należy znaleźć oznaczony przycisk i dodać do niego opisowy tekst. Trzeba albo: dodać treść tekstową w pustym elemencie %1$s, dodać atrybut value do %2$s, który go nie ma, lub dodać alternatywny tekst do obrazu przycisku. Tekst powinien opisywać, do czego służy przycisk lub jaką akcję wywołuje."
 
@@ -1491,6 +1532,7 @@ msgstr "Pusty nagłówek tabeli"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
 #: includes/rules.php:263
+#, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "Błąd pustego nagłówka tabeli oznacza, że jeden z nagłówków tabeli w twoim poście lub na stronie nie zawiera żadnego tekstu. Oznacza to, że element %1$s jest obecny, ale wygląda tak %2$s, bez niczego między tagami otwierającymi i zamykającymi. Aby naprawić pusty nagłówek tabeli, należy znaleźć odpowiedni element HTML (%1$s) i dodać do niego tekst opisujący wiersz lub kolumnę, której dotyczy."
 
@@ -1524,6 +1566,7 @@ msgstr "Nieprawidłowy długi opis"
 
 #. translators: %s is <code>longdesc=""</code>.
 #: includes/rules.php:300
+#, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "Błąd Nieprawidłowy długi opis oznacza, że atrybut długiego opisu (%s) dla obrazu nie ma odpowiedniego adresu URL, nazwy pliku lub rozszerzenia pliku. Może to również oznaczać, że długi opis nie jest adresem URL lub został pozostawiony pusty. Atrybut longdesc nie jest w pełni obsługiwany przez HTML5, przeglądarki i wszystkie czytniki ekranu. Ze względu na ten brak wsparcia, najlepszym rozwiązaniem tego błędu jest całkowite usunięcie longdesc z tagu obrazu."
 
@@ -1533,6 +1576,7 @@ msgstr "Brakująca etykieta formularza"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
 #: includes/rules.php:312
+#, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "Błąd Brakująca etykieta formularza pojawia się, gdy w formularzu występuje %1$s (pole formularza), ale nie jest powiązany z elementem %2$s. Może to oznaczać, że etykieta jest obecna, ale brakuje atrybutu %3$s łączącego ją z odpowiednim polem, lub może w ogóle nie być etykiety, a jedynie tag %1$s. Aby naprawić błędy brakujących etykiet formularza, należy ustalić, w jaki sposób utworzono pole i formularz, a następnie dodać etykiety pól lub poprawny atrybut %3$s do istniejących etykiet, które nie są połączone z polem."
 
@@ -1550,6 +1594,7 @@ msgstr "Podkreślony tekst"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
 #: includes/rules.php:339
+#, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "Ostrzeżenie Podkreślony tekst pojawia się, jeśli jakikolwiek tekst na Twojej stronie jest otoczony tagiem HTML podkreślenia (%1$s). W środowisku online podkreślony tekst jest zazwyczaj używany do oznaczenia tekstu z linkiem i nie jest uważane za najlepszą praktykę podkreślanie tekstu wyłącznie dla podkreślenia. Aby naprawić podkreślony tekst, należy usunąć element %1$s z tekstu lub style CSS, które powodują jego podkreślenie. Spróbuj użyć innych stylizacji, takich jak kursywa, kolorowy tekst lub pogrubienie, aby podkreślić lub rozróżnić słowa lub frazy."
 
@@ -1567,6 +1612,7 @@ msgstr "Brakujący nagłówek tabeli"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
 #: includes/rules.php:359
+#, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "Błąd 'Brakujący nagłówek tabeli' oznacza, że jedna z tabel zawiera dane (informacje zawarte w tagu %1$s), które nie mają odpowiadającego im nagłówka w tagu (%2$s). Patrząc na kod HTML formularza, będzie więcej elementów %1$s w wierszu niż elementów %2$s w tabeli. Aby naprawić brakujący nagłówek tabeli, należy znaleźć sekcję kodu, która ma mniej elementów %2$s niż powinno być dla liczby wierszy lub kolumn danych, i dodać jeden lub więcej dodatkowych elementów %2$s zawierających tekst opisujący dane w tym wierszu lub kolumnie."
 
@@ -1600,6 +1646,7 @@ msgstr "Migająca lub przewijająca się treść"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
 #: includes/rules.php:397
+#, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Błędy 'Migająca lub przewijająca się zawartość' pojawiają się, gdy elementy na stronie internetowej mają zastosowaną funkcję migania lub przewijania, albo za pomocą CSS, albo w HTML. Konkretnie, następujące elementy spowodują ten błąd: tagi HTML %1$s lub %2$s lub CSS %3$s. Aby rozwiązać ten błąd, usuń tagi HTML lub CSS, które powodują miganie treści."
 
@@ -1633,6 +1680,7 @@ msgstr "Brak deklaracji języka"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
 #: includes/rules.php:437
+#, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "Deklaracja języka to atrybut HTML, który oznacza domyślny język treści na stronie lub w poście. Deklaracje języka powinny być zakodowane w motywie Twojej strony internetowej i pojawiać się automatycznie w nagłówku witryny. Błąd Braku Deklaracji Języka pojawia się, jeśli tag %1$s na stronie nie zawiera atrybutu %2$s lub %3$s, lub jeden z tych atrybutów jest obecny, ale pusty. Aby naprawić błąd Braku Deklaracji Języka, musisz edytować pliki motywu, aby dodać brakujący atrybut języka do tagu HTML na samym początku nagłówka Twojej strony. Jeśli używasz motywu, który otrzymuje aktualizacje, będziesz musiał wprowadzić zmianę w motywie potomnym, aby upewnić się, że poprawka nie zostanie nadpisana przy kolejnej aktualizacji motywu."
 
@@ -1666,6 +1714,7 @@ msgstr "Brakujący tytuł"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
 #: includes/rules.php:482
+#, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "Błąd braku tytułu oznacza, że Państwa post lub strona nie zawiera elementu tytułu (%1$s lub %2$s). Może się tak zdarzyć, jeśli motyw nie doda tagu tytułu lub jeśli pole tytułu postu lub strony pozostało puste na ekranie edycji WordPress. Aby naprawić stronę bez tytułu, należy dodać elementy tytułu. Najpierw należy ustalić, czy tytuł nie został pominięty, ponieważ pole tytułu strony lub postu pozostało puste w edytorze. Jeśli tak, proszę je wypełnić. Jeśli tytuł jest wypełniony i widoczny na zapleczu, wówczas należy edytować kod strony internetowej, aby zawierał znacznik %1$s lub metatag %2$s."
 
@@ -1675,6 +1724,7 @@ msgstr "Niewłaściwe użycie linku"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
 #: includes/rules.php:500
+#, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "Błąd Niewłaściwego Użycia Linku pojawia się, jeśli masz linki, którym brakuje atrybutu %1$s lub są połączone tylko z %2$s i nie mają %3$s. Linki powinny być używane do kierowania ludzi do innych części Twojej strony. Każda inna funkcjonalność, która wyzwala akcję, powinna być przyciskiem. Aby rozwiązać ten błąd, musisz przekodować link, używając znacznika %4$s (preferowane) lub dodać %5$s do istniejącego znacznika %6$s. Jeśli element jest przyciskiem przełączającym (takim jak akordeon), wymagane są dodatkowe atrybuty ARIA."
 
@@ -1801,6 +1851,7 @@ msgstr "Wykonaj te kroki, aby rozpocząć sprawdzanie swojej treści:"
 
 #. translators: %s: path to settings page.
 #: partials/welcome-page.php:57
+#, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "Na <a href=\"%s\">Stronie ustawień</a> wybierz, które typy wpisów chcesz skanować."
 
@@ -1947,6 +1998,7 @@ msgstr "Zapisywanie..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Ustawienia zostały pomyślnie zapisane. Musisz %sodwiedzić edytor%s i zapisać wpis, aby ponownie przeskanować i usunąć naprawione problemy z raportów Accessibility Checker."
 
@@ -1980,6 +2032,10 @@ msgstr "Problemy zostały pomyślnie wyczyszczone."
 #: build/editorApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Nie udało się wyczyścić problemów."
+
+#: build/editorApp.bundle.js:2
+msgid "An error occurred while clearing issues."
+msgstr "Wystąpił błąd podczas czyszczenia problemów."
 
 #: build/emailOptIn.bundle.js:2
 msgid "There was a problem. Please try again."
