@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Project-Id-Version: Accessibility Checker 1.25.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"POT-Creation-Date: 2025-06-18T17:40:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 
 #. Plugin Name of the plugin
@@ -75,6 +75,7 @@ msgstr "Odpre se v novem oknu."
 
 #. translators: %s: the label of the fix
 #: admin/AdminPage/FixesSettingType/Text.php:54
+#, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Preberite dokumentacijo za %s. Odpre se v novem oknu."
 
@@ -140,14 +141,15 @@ msgstr "Veseli smo komentarjev, vprašanj in povratnih informacij o naši spletn
 
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
+#, php-format
 msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
 msgstr "V različici 1.21.0 smo izboljšali izračune statistik. Zaradi tega so se nekatere številke v spodnjih podatkih morda spremenile. Preberite več v našem %1$sobjavljenem sporočilu ob izdaji%2$s."
 
 #: admin/class-admin-notices.php:114
 #: admin/class-admin-notices.php:225
-#: admin/class-admin-notices.php:313
-#: admin/class-admin-notices.php:402
-#: admin/class-admin-notices.php:484
+#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:401
+#: admin/class-admin-notices.php:483
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:196
 #: admin/class-ajax.php:561
@@ -159,9 +161,9 @@ msgstr "Dovoljenje zavrnjeno"
 
 #: admin/class-admin-notices.php:123
 #: admin/class-admin-notices.php:234
-#: admin/class-admin-notices.php:325
-#: admin/class-admin-notices.php:422
-#: admin/class-admin-notices.php:493
+#: admin/class-admin-notices.php:324
+#: admin/class-admin-notices.php:421
+#: admin/class-admin-notices.php:492
 msgid "Update option wasn't successful"
 msgstr "Posodobitev možnosti ni bila uspešna"
 
@@ -174,53 +176,54 @@ msgid "Upgrade to a paid version of Accessibility Checker from November 25th to 
 msgstr "Nadgradite na plačljivo različico Accessibility Checkerja od 25. Novembra do 3. decembra in prihranite 30%! Celotno skeniranje strani, poročilo o odprtih težavah na celotni strani, dnevniki ignoriranja in še več."
 
 #: admin/class-admin-notices.php:205
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:292
 msgid "Ask a Pre-Sale Question"
 msgstr "Postavite predprodajno vprašanje"
 
 #: admin/class-admin-notices.php:206
-#: admin/class-admin-notices.php:294
+#: admin/class-admin-notices.php:293
 msgid "Upgrade Now"
 msgstr "Nadgradite zdaj"
 
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:290
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Dobite 25% popusta na Accessibility Checker Pro v čast Svetovnemu dnevu ozaveščanja o dostopnosti! 🎉"
 
-#: admin/class-admin-notices.php:292
+#: admin/class-admin-notices.php:291
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Uporabite kupon GAAD25 od 13. Do 21. maja za dostop do celotnega skeniranja strani in drugih profesionalnih funkcij s posebnim popustom. Niste prepričani, ali je nadgradnja prava za vas?"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:376
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Pozdravljeni! Hvala, ker uporabljate Accessibility Checker kot del vašega nabora orodij za dostopnost. Ker ga že nekaj časa uporabljate, vas prosimo, da napišete 5-zvezdično oceno Accessibility Checkerja v imeniku vtičnikov WordPress. To bo pomagalo povečati našo prepoznavnost, da bo več ljudi izvedelo o pomenu spletne dostopnosti. Najlepša hvala!"
 
-#: admin/class-admin-notices.php:380
+#: admin/class-admin-notices.php:379
 msgid "Write A Review"
 msgstr "Napišite oceno"
 
-#: admin/class-admin-notices.php:381
+#: admin/class-admin-notices.php:380
 msgid "Remind Me In Two Weeks"
 msgstr "Opomni me čez dva tedna"
 
-#: admin/class-admin-notices.php:382
+#: admin/class-admin-notices.php:381
 msgid "Never Ask Again"
 msgstr "Nikoli več ne vprašaj"
 
-#: admin/class-admin-notices.php:409
+#: admin/class-admin-notices.php:408
 msgid "The review action value was not set"
 msgstr "Vrednost dejanja za oceno ni bila nastavljena"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-#: admin/class-admin-notices.php:447
+#: admin/class-admin-notices.php:446
+#, php-format
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
 msgstr "Ups! Videti je, da je vaša spletna stran trenutno zaščitena z geslom. Brezplačna različica Accessibility Checkerja lahko pregleduje le aktivne spletne strani. Za pregled te spletne strani glede težav z dostopnostjo odstranite zaščito z geslom ali %s. Rezultati pregleda so morda shranjeni iz prejšnjega pregleda."
 
-#: admin/class-admin-notices.php:450
+#: admin/class-admin-notices.php:449
 msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Nadgradite na Accessibility Checker Pro. Odpre se v novem oknu."
 
-#: admin/class-admin-notices.php:451
+#: admin/class-admin-notices.php:450
 #: includes/options-page.php:448
 msgid "upgrade to pro"
 msgstr "nadgradite na Pro"
@@ -250,6 +253,7 @@ msgstr "Za to vsebino je bil vključen poenostavljen povzetek."
 
 #. translators: %s: Number of errors
 #: admin/class-ajax.php:133
+#, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s Napaka"
@@ -257,6 +261,7 @@ msgstr[1] "%s Napak"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:139
+#, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Napaka kontrasta"
@@ -264,6 +269,7 @@ msgstr[1] "%s Napak kontrasta"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:145
+#, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s Opozorilo"
@@ -271,6 +277,7 @@ msgstr[1] "%s Opozoril"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:151
+#, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s Prezrt element"
@@ -303,6 +310,7 @@ msgstr "Prizadeta koda"
 
 #. Translators: %d is the issue ID.
 #: admin/class-ajax.php:477
+#, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Oglejte si težavo z ID %d na spletni strani, odpre se novo okno"
 
@@ -424,6 +432,7 @@ msgstr "Pregledani URL-ji"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
 #: admin/class-welcome-page.php:239
+#, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s od %2$s"
 
@@ -712,6 +721,7 @@ msgstr "Število tabel v podatkovni bazi za prezrtje"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:45
+#, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "Za spremljanje dostopnosti naše spletne strani %1$s uporablja %2$s."
 
@@ -721,6 +731,7 @@ msgstr "Preverjevalnik dostopnosti (odpre se v novem oknu)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
 #: includes/classes/class-accessibility-statement.php:58
+#, php-format
 msgid "Read our %s"
 msgstr "Preberite naš %s"
 
@@ -764,6 +775,7 @@ msgstr "Dodaj oznake neoznačenim poljem obrazca, če je mogoče določiti namen
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Poskusi dodati oznake poljem obrazca, ki jih nimajo. Opomba: Morda boste morali dodati prilagojene sloge, ki ciljajo na razred %1$s, če dodajanje oznak vpliva na postavitev vašega obrazca."
 
@@ -781,6 +793,7 @@ msgstr "Dodaj manjkajoči naslov strani"
 
 #. translators: %1$s: a code tag with a title tag.
 #: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Dodaj značko %1$s na stran, če manjka ali je prazna."
 
@@ -794,6 +807,7 @@ msgstr "Dodaj oznako povezavam, ki se odprejo v novem zavihku/oknu"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Dodaj oznako in ikono povezavam z %1$s, ki uporabnike obveščajo, da se bodo odprle v novem zavihku/oknu. %2$sOpomba: Ta nastavitev ne bo imela učinka, če je omogočena popravek „Blokiraj povezave, ki odpirajo nova okna“.%3$s"
 
@@ -804,6 +818,7 @@ msgstr "Blokiraj nalaganje PDF datotek"
 
 #. translators: %1$s: a code tag with the capability name.
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Omeji nalaganje PDF datotek za uporabnike brez zmožnosti %1$s (privzeto dovoljeno za administratorje)."
 
@@ -906,6 +921,7 @@ msgstr "Dodaj atributa „lang“ in „dir“"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
 #: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Dodaj atributa za jezik spletnega mesta (%1$s) in smer besedila (%2$s) elementu %3$s."
 
@@ -955,6 +971,7 @@ msgstr "Blokiraj odpiranje povezav v novih oknih"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Prepreči odpiranje povezav v novem oknu ali zavihku z odstranitvijo %1$s."
 
@@ -1008,6 +1025,7 @@ msgstr "Odstrani atribute naslova"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Odstrani atribute %1$s z elementov, ki že imajo prednostno dostopno ime."
 
@@ -1045,6 +1063,7 @@ msgstr "Nastavi ID atribut navigacijskega elementa. To je koristno, če vaša gl
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 #: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Če vaša tema še ne dodaja preskočne povezave, ki uporabnikom tipkovnice omogoča obiti navigacijo in hitro skočiti na glavno vsebino, tukaj omogočite preskočne povezave. %1$sVeč o preskočnih povezavah.%2$s"
 
@@ -1066,6 +1085,7 @@ msgstr "Odstrani tabindex"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/TabindexFix.php:70
+#, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Odstrani atribut %1$s z elementov, ki lahko prejmejo fokus."
 
@@ -1079,6 +1099,7 @@ msgstr "Popravek ni bil najden"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
 #: includes/classes/WPCLI/BootstrapCLI.php:99
+#, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Registracija ukaza %1$s ni uspela, ker %2$s"
 
@@ -1092,11 +1113,13 @@ msgstr "ID prispevka ni bil podan."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:92
+#, php-format
 msgid "Post ID %1$s does not exist."
 msgstr "ID prispevka %1$s ne obstaja."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:103
+#, php-format
 msgid "Stats of %1$s deleted."
 msgstr "Statistika za %1$s je bila izbrisana."
 
@@ -1110,6 +1133,7 @@ msgstr "Počisti predpomnilnik pred pridobivanjem statistike (lahko je intenzivn
 
 #. translators: 1: a stat key that was requested but not found.
 #: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#, php-format
 msgid "Stat key: %1$s not found in stats."
 msgstr "Statistični ključ: %1$s ni bil najden v statistiki."
 
@@ -1119,11 +1143,13 @@ msgstr "ID prispevka, za katerega je treba pridobiti statistiko."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:126
+#, php-format
 msgid "Post ID %1$d does not exist."
 msgstr "ID prispevka %1$d ne obstaja."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:142
+#, php-format
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Prispevek še ni bil pregledan ali pa so bili vsi testi uspešno opravljeni za ID prispevka %1$d."
 
@@ -1207,6 +1233,7 @@ msgstr "Položaj preverjalnika dostopnosti na sprednji strani"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
+#, php-format
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
 msgstr "Uporabite spodnje nastavitve za konfiguriranje Preverjalnika dostopnosti. Dodatne informacije o vsaki nastavitvi lahko najdete v %1$s."
 
@@ -1220,6 +1247,7 @@ msgstr "dokumentaciji vtičnika"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
 #: includes/options-page.php:251
+#, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Več funkcij in e-poštna podpora sta na voljo s %1$s."
 
@@ -1322,6 +1350,7 @@ msgstr "Sliki manjka nadomestno besedilo"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
 #: includes/rules.php:27
+#, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "Napaka 'Sliki manjka nadomestno besedilo' pomeni, da vaša slika sploh nima atributa alt (%1$s) v oznaki slike (%2$s). Za odpravo napake 'Sliki manjka nadomestno besedilo' morate sliki dodati oznako alt z ustreznim besedilom, ki opisuje namen slike na strani. Če je slika okrasna, je lahko atribut alt prazen, vendar mora biti HTML %1$s oznaka še vedno prisotna."
 
@@ -1331,6 +1360,7 @@ msgstr "Prazno nadomestno besedilo slike"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:40
+#, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "Opozorilo 'Prazno nadomestno besedilo slike' se pojavi, če imate sliko z atributom alt (%s), ki je prazen. Nadomestno besedilo pove ljudem, ki ne morejo videti, kaj slika prikazuje, in doda dodaten kontekst objavi ali strani. Prazno nadomestno besedilo je pravilno le, če je slika povsem okrasna, kot na primer obroba ali okrasna ikona. Za odpravo opozorila 'Prazno nadomestno besedilo slike' morate ugotoviti, ali je slika okrasna ali dodaja nekaj smiselnega strani. Če ni okrasna, morate dodati ustrezno nadomestno besedilo, ki opisuje namen slike. Če je slika okrasna, potem pustite nadomestno besedilo prazno in „Ignorirajte“ opozorilo."
 
@@ -1348,6 +1378,7 @@ msgstr "Povezana slika brez nadomestnega besedila"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:60
+#, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Napaka 'Povezana slika brez nadomestnega besedila' se pojavi, ko slika, ki je povezana z URL-jem, sploh nima atributa alt (%s) v oznaki slike. Povezane slike morajo imeti natančno nadomestno besedilo, ki opisuje, kam vodi povezava, da uporabniki bralnikov zaslona vedo, kam povezava kaže. Za odpravo te napake morate sliki dodati smiselno nadomestno besedilo. Vaše nadomestno besedilo mora opisati namen povezave, ne pa videza slike."
 
@@ -1357,6 +1388,7 @@ msgstr "Povezana slika s praznim nadomestnim besedilom"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:72
+#, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Napaka 'Povezana slika s praznim nadomestnim besedilom' se pojavi, ko ima slika, ki je povezana z URL-jem, prazen atribut alt (%s). Povezane slike morajo imeti natančno nadomestno besedilo, ki opisuje, kam vodi povezava, da uporabniki bralnikov zaslona vedo, kam povezava kaže. Za odpravo te napake morate sliki dodati smiselno nadomestno besedilo. Vaše nadomestno besedilo mora opisati namen povezave, ne pa videza slike."
 
@@ -1374,6 +1406,7 @@ msgstr "Napačen vrstni red naslovov"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
 #: includes/rules.php:92
+#, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "Napaka 'Napačen vrstni red naslovov' pomeni, da je vaša struktura naslovov preskočila raven. Na primer, če ima struktura vaše strani naslov ravni 3 (%1$s) pod naslovom ravni 1 (%2$s), bo označena napaka „Napačen vrstni red naslovov“, ker med H1 in H3 ni oznake %3$s. Za odpravo napak napačnega vrstnega reda naslovov boste morali bodisi spremeniti napačno raven naslova v pravilno raven bodisi dodati vsebino s pravilno ravnjo naslova med dvema že obstoječima ravnema."
 
@@ -1391,6 +1424,7 @@ msgstr "iframe brez naslova"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
 #: includes/rules.php:117
+#, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "Napaka 'iframe brez naslova' pomeni, da eden ali več iframe-ov na vaši objavi ali strani nima dostopnega naslova, ki bi opisoval vsebino iframe-a. Naslov iframe-a je atribut, ki ga lahko dodate oznaki %1$s za opis vsebine okvira ljudem, ki uporabljajo podporno tehnologijo. Za odpravo manjkajočega naslova iframe-a boste morali oznaki %1$s dodati naslov ali atribut aria-label. Atribut mora natančno opisati vsebino iframe-a."
 
@@ -1400,6 +1434,7 @@ msgstr "Manjkajoči podnaslovi"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
 #: includes/rules.php:132
+#, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "Opozorilo o manjkajočih naslovih pomeni, da vaša objava ali stran ne vsebuje nobenih elementov naslovov (%1$s–%2$s) v vsebini telesa objave ali strani, kar lahko uporabnikom bralnikov zaslona oteži navigacijo po vsebini na strani. Za odpravo strani brez naslovov boste morali dodati elemente naslovov. Vsaka stran bi morala imeti vsaj eno oznako %1$s, ki je običajno naslov strani. Dodajte dodatne podnaslove, kot je primerno za vašo vsebino. Če ste ugotovili, da naslovi na strani zagotovo niso potrebni, lahko opozorilo „Ignorirate“."
 
@@ -1417,6 +1452,7 @@ msgstr "Povezava odpre novo okno ali zavihek"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
 #: includes/rules.php:154
+#, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "Opozorilo Povezava odpre novo okno ali zavihek se pojavi, ko je na vaši spletni strani povezava nastavljena tako, da se ob kliku odpre v novem zavihku ali oknu. Velja za dobro prakso, da se povezave ne odpirajo v novih zavihkih ali oknih. Če se povezave odpirajo v novih zavihkih ali oknih, mora biti prisotno vizualno in zvočno opozorilo, ki najavi, da bo povezava odprla novo okno ali zavihek, da bodo uporabniki pričakovali to vedenje in vedeli, kako se vrniti po kliku na povezavo. Za odpravo tega opozorila bodisi spremenite povezavo tako, da se ne odpre v novem zavihku, ali pa zagotovite, da je „odpre novo okno“ vključeno v besedilo povezave, nato pa opozorilo „Ignorirajte“. Če želite samodejno dodati obvestila vsem povezavam na vašem spletnem mestu in odpraviti vsa ta opozorila, namestite naš brezplačni vtičnik %s."
 
@@ -1430,6 +1466,7 @@ msgstr "Slikovni zemljevid manjka nadomestno besedilo"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
 #: includes/rules.php:173
+#, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "Napaka Slikovni zemljevid manjka nadomestno besedilo pomeni, da eden od elementov %1$s v vašem slikovnem zemljevidu nima dodanega nadomestnega besedila v atributu %2$s. Za odpravo te napake boste morali dodati manjkajoče nadomestno besedilo vsem oznakam območij, ki nimajo nadomestnega besedila. Nadomestno besedilo mora opisati funkcijo povezave, ki jo vsebuje območje, ne nujno opisati, kako območje izgleda."
 
@@ -1439,6 +1476,7 @@ msgstr "Spremenjen vrstni red tabulatorja"
 
 #. translators: %s is <code>tabindex="1"</code>.
 #: includes/rules.php:189
+#, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "Opozorilo o spremenjenem vrstnem redu tabulatorja se pojavi, ko je bil logični vrstni red tabulatorja na strani spremenjen z dodajanjem atributa za tabindex, ki je večji od 0, HTML elementu (na primer %s). To lahko povzroči težave pri navigaciji za uporabnike, ki uporabljajo samo tipkovnico. Za razrešitev opozorila o spremenjenem vrstnem redu tabulatorja morate pregledati prednjo stran vaše spletne strani na strani ali objavi, kjer je bil vrstni red tabulatorja spremenjen, in preveriti, ali je sprememba pravilna ali ne. Če sprememba vrstnega reda tabulatorja ne povzroča težav, lahko opozorilo „Ignorirate“. Če spremenjen vrstni red tabulatorja povzroča, da so informacije predstavljene v napačnem vrstnem redu, morate odstraniti atribut tabindex iz označenega elementa."
 
@@ -1448,6 +1486,7 @@ msgstr "Prazna oznaka naslova"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
 #: includes/rules.php:205
+#, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "Napaka Prazna oznaka naslova pomeni, da je na vaši objavi ali strani prisotna oznaka naslova, ki ne vsebuje vsebine. V kodi bi ta napaka izgledala tako: %s. Za odpravo praznega naslova boste morali dodati vsebino v oznako naslova, ki je sprožila napako Prazna oznaka naslova, ali odstraniti prazno oznako, če na vaši strani ni potrebna."
 
@@ -1457,6 +1496,7 @@ msgstr "Prazna povezava"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
 #: includes/rules.php:217
+#, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "Napaka prazne povezave pomeni, da je ena od povezav na spletni strani prazna ali ne vsebuje besedila, ki opisuje, kam bo povezava vodila ob kliku. To se pogosto zgodi pri povezavah, ki vsebujejo spletne pisave, ikone ali SVG-je, ali ko je bila povezava pomotoma ustvarjena v urejevalniku vsebine. Za odpravo napake prazne povezave morate najti označeno povezavo in ji dodati opisno besedilo. Storiti morate eno od naslednjega: dodati besedilno vsebino znotraj praznega elementa %1$s ali, če vaša povezava vsebuje SVG ali ikono spletne pisave, skriti ta element z %2$s in dodati atribut %3$s oznaki %1$s ali besedilo za bralnik zaslona. Besedilo ali oznaka, ki jo dodate, mora biti opisna glede cilja povezave in ne dvoumna."
 
@@ -1466,6 +1506,7 @@ msgstr "Prazen gumb"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
 #: includes/rules.php:231
+#, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "Napaka praznega gumba pomeni, da je eden od gumbov na spletni strani prazen ali ne vsebuje besedila, ki opisuje funkcijo gumba. Če gre za gumb s sliko, pa sliki v gumbu manjka nadomestno besedilo. Za odpravo napake praznega gumba morate najti označeni gumb in mu dodati opisno besedilo. Storiti morate eno od naslednjega: dodati besedilno vsebino znotraj praznega elementa %1$s, dodati atribut value elementu %2$s, ki ga nima, ali dodati nadomestno besedilo sliki gumba. Besedilo mora opisovati, za kaj se gumb uporablja ali kakšno dejanje sproži."
 
@@ -1491,6 +1532,7 @@ msgstr "Prazno glavo tabele"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
 #: includes/rules.php:263
+#, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "Napaka prazne glave tabele pomeni, da ena od glav tabele v vaši objavi ali na strani ne vsebuje nobenega besedila. To pomeni, da je element %1$s prisoten, vendar izgleda tako %2$s, brez ničesar med začetno in končno oznako. Za odpravo prazne glave tabele morate najti pravilni HTML element (%1$s) in mu dodati besedilo, ki opisuje vrstico ali stolpec, na katerega se nanaša."
 
@@ -1524,6 +1566,7 @@ msgstr "Neveljavni dolgi opis"
 
 #. translators: %s is <code>longdesc=""</code>.
 #: includes/rules.php:300
+#, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "Napaka 'Neveljavni dolgi opis' pomeni, da atribut dolgega opisa (%s) na sliki nima ustreznega URL-ja, imena datoteke ali končnice datoteke. Lahko pomeni tudi, da dolgi opis ni URL ali je ostal prazen. Atribut longdesc ni v celoti podprt odpira novo okno v HTML5, brskalnikih in vseh bralnikih zaslona. Zaradi tega pomanjkanja podpore je najboljša rešitev za to napako popolna odstranitev longdesc iz vaše oznake slike."
 
@@ -1533,6 +1576,7 @@ msgstr "Manjkajoča oznaka obrazca"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
 #: includes/rules.php:312
+#, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "Napaka 'Manjkajoča oznaka obrazca' se sproži, ko je v vašem obrazcu prisoten %1$s (polje obrazca), vendar ni povezan z elementom %2$s. To lahko pomeni, da je oznaka prisotna, vendar ji manjka atribut %3$s za povezavo z ustreznim poljem, ali pa oznake sploh ni in je prisotna samo oznaka %1$s. Za odpravo napak manjkajočih oznak obrazca boste morali ugotoviti, kako sta bila polje in obrazec ustvarjena, nato pa dodati oznake polj ali pravilni atribut %3$s obstoječim oznakam, ki niso povezane s poljem."
 
@@ -1550,6 +1594,7 @@ msgstr "Podčrtano besedilo"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
 #: includes/rules.php:339
+#, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "Opozorilo 'Podčrtano besedilo' se pojavi, če je katerokoli besedilo na vaši strani ovito v HTML oznako za podčrtavanje (%1$s). V spletnem okolju se podčrtano besedilo običajno uporablja za označevanje povezanega besedila in se ne šteje za dobro prakso, da se besedilo podčrta samo za poudarjanje. Za odpravo podčrtanega besedila boste morali odstraniti element %1$s iz besedila ali CSS stile, ki ga podčrtujejo. Poskusite uporabiti druge oblike stilizacije, kot so ležeče pisave, barvno besedilo ali krepko pisavo, da poudarite ali razlikujete med besedami ali frazami."
 
@@ -1567,6 +1612,7 @@ msgstr "Manjkajoča glava tabele"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
 #: includes/rules.php:359
+#, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "Napaka 'Manjkajoča glava tabele' pomeni, da ena od vaših tabel vsebuje podatke (informacije v oznaki %1$s), ki nimajo ustrezne glave (%2$s). Pri pregledu HTML-ja vaše tabele bo več elementov %1$s v vrstici kot elementov %2$s v tabeli. Za odpravo manjkajoče glave tabele morate najti del kode, ki ima manj elementov %2$s, kot bi jih moralo biti prisotnih glede na število vrstic ali stolpcev podatkov, in dodati enega ali več dodatnih elementov %2$s, ki vsebujejo besedilo, ki opisuje podatke v tej vrstici ali stolpcu."
 
@@ -1600,6 +1646,7 @@ msgstr "Utripajoča ali drseča vsebina"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
 #: includes/rules.php:397
+#, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Napake 'Utripajoča ali drseča vsebina' se pojavijo, ko imajo elementi na vaši spletni strani funkcijo utripanja ali drsenja, ki je aplicirana bodisi prek CSS-ja ali v HTML-ju. Konkretno, naslednje bo ustvarilo to napako: HTML oznaki %1$s ali %2$s ali CSS %3$s. Za odpravo te napake odstranite HTML oznake ali CSS, ki povzročajo utripanje vsebine."
 
@@ -1633,6 +1680,7 @@ msgstr "Manjkajoča deklaracija jezika"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
 #: includes/rules.php:437
+#, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "Deklaracija jezika je atribut HTML, ki označuje privzeti jezik vsebine na strani ali objavi. Deklaracije jezika bi morale biti kodirane v temo vašega spletnega mesta in se samodejno pojaviti v glavi spletnega mesta. Napaka manjkajoče deklaracije jezika se pojavi, če oznaka %1$s na strani ne vsebuje atributa %2$s ali %3$s, ali če je eden od teh atributov prisoten, vendar je prazen. Za odpravo napake manjkajoče deklaracije jezika boste morali urediti datoteke svoje teme in dodati manjkajoči jezikovni atribut oznaki HTML na samem vrhu glave svojega spletnega mesta. Če uporabljate temo, ki prejema posodobitve, boste morali spremembo narediti v podrejeni temi, da zagotovite, da se popravek ne bo prepisal, ko boste naslednjič posodobili svojo temo."
 
@@ -1666,6 +1714,7 @@ msgstr "Manjkajoč naslov"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
 #: includes/rules.php:482
+#, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "Napaka Manjkajoč naslov pomeni, da vaša objava ali stran ne vsebuje elementa naslova (%1$s ali %2$s). To se lahko zgodi, če tema ne doda oznake naslova ali če je polje za naslov objave ali strani v urejevalniku WordPress ostalo prazno. Za popravilo strani brez naslovov boste morali dodati elemente naslova. Najprej ugotovite, ali naslov manjka, ker ste pustili prazno polje za naslov strani ali objave v urejevalniku. Če je tako, ga izpolnite. Če je naslov izpolnjen in viden v zaledju, je treba urediti kodo v glavi vaše spletne strani tako, da vključuje oznako %1$s ali meta oznako %2$s."
 
@@ -1675,6 +1724,7 @@ msgstr "Nepravilna uporaba povezave"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
 #: includes/rules.php:500
+#, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "Napaka Nepravilna uporaba povezave se pojavi, če imate povezave, ki nimajo atributa %1$s ali so povezane samo s %2$s in nimajo %3$s. Povezave bi morale biti uporabljene za usmerjanje ljudi na druge dele vašega spletnega mesta. Vsaka druga funkcionalnost, ki sproži dejanje, bi morala biti gumb. Za odpravo te napake morate prekodirati povezavo tako, da uporabite oznako %4$s (priporočljivo) ali dodate %5$s obstoječi oznaki %6$s. Če je element preklopni gumb (na primer harmonika), so potrebni dodatni atributi ARIA."
 
@@ -1801,6 +1851,7 @@ msgstr "Sledite tem korakom za začetek preverjanja vaše vsebine:"
 
 #. translators: %s: path to settings page.
 #: partials/welcome-page.php:57
+#, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "Na <a href=\"%s\">strani z nastavitvami</a> izberite vrste objav, ki jih želite pregledati."
 
@@ -1947,6 +1998,7 @@ msgstr "Shranjevanje..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Nastavitve so uspešno shranjene. Morate %sobiskati urejevalnik%s in shraniti objavo, da ponovno pregledate in odstranite popravljene težave iz poročil Preverjalnika dostopnosti."
 
@@ -1980,6 +2032,10 @@ msgstr "Težave so uspešno izbrisane."
 #: build/editorApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Brisanje težav ni uspelo."
+
+#: build/editorApp.bundle.js:2
+msgid "An error occurred while clearing issues."
+msgstr "Pri brisanju težav je prišlo do napake."
 
 #: build/emailOptIn.bundle.js:2
 msgid "There was a problem. Please try again."
