@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Project-Id-Version: Accessibility Checker 1.25.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"POT-Creation-Date: 2025-06-18T17:40:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 
 #. Plugin Name of the plugin
@@ -75,6 +75,7 @@ msgstr "Opent in een nieuw venster."
 
 #. translators: %s: the label of the fix
 #: admin/AdminPage/FixesSettingType/Text.php:54
+#, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Lees documentatie voor %s. Opent in een nieuw venster."
 
@@ -140,14 +141,15 @@ msgstr "We verwelkomen opmerkingen, vragen en feedback over onze website. Als u 
 
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
+#, php-format
 msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
 msgstr "We hebben de statistische berekeningen verbeterd in versie 1.21.0. Als gevolg hiervan kunnen sommige getallen in de onderstaande gegevens zijn veranderd. Lees meer in ons %1$srelease-aankondigingsbericht%2$s."
 
 #: admin/class-admin-notices.php:114
 #: admin/class-admin-notices.php:225
-#: admin/class-admin-notices.php:313
-#: admin/class-admin-notices.php:402
-#: admin/class-admin-notices.php:484
+#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:401
+#: admin/class-admin-notices.php:483
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:196
 #: admin/class-ajax.php:561
@@ -159,9 +161,9 @@ msgstr "Toegang geweigerd"
 
 #: admin/class-admin-notices.php:123
 #: admin/class-admin-notices.php:234
-#: admin/class-admin-notices.php:325
-#: admin/class-admin-notices.php:422
-#: admin/class-admin-notices.php:493
+#: admin/class-admin-notices.php:324
+#: admin/class-admin-notices.php:421
+#: admin/class-admin-notices.php:492
 msgid "Update option wasn't successful"
 msgstr "Update-optie was niet succesvol"
 
@@ -174,53 +176,54 @@ msgid "Upgrade to a paid version of Accessibility Checker from November 25th to 
 msgstr "Upgrade naar een betaalde versie van Accessibility Checker van 25 november tot 3 december en krijg 30% korting! Volledige site-scanning, site-brede open problemen rapport, negeerlogboeken en meer."
 
 #: admin/class-admin-notices.php:205
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:292
 msgid "Ask a Pre-Sale Question"
 msgstr "Stel een pre-sales vraag"
 
 #: admin/class-admin-notices.php:206
-#: admin/class-admin-notices.php:294
+#: admin/class-admin-notices.php:293
 msgid "Upgrade Now"
 msgstr "Nu upgraden"
 
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:290
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Krijg 25% korting op Accessibility Checker Pro ter ere van Global Accessibility Awareness Day! 🎉"
 
-#: admin/class-admin-notices.php:292
+#: admin/class-admin-notices.php:291
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Gebruik kortingscode GAAD25 van 13 mei tot 21 mei om toegang te krijgen tot volledige site-scanning en andere pro-functies met een speciale korting. Weet je niet zeker of upgraden iets voor jou is?"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:376
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Hallo! Bedankt voor het gebruik van Accessibility Checker als onderdeel van je toegankelijkheidstoolkit. Aangezien je het al een tijdje gebruikt, zou je alsjeblieft een 5-sterren recensie van Accessibility Checker willen schrijven in de WordPress-plugindirectory? Dit zal onze zichtbaarheid vergroten, zodat meer mensen kunnen leren over het belang van webtoegang. Hartelijk bedankt!"
 
-#: admin/class-admin-notices.php:380
+#: admin/class-admin-notices.php:379
 msgid "Write A Review"
 msgstr "Schrijf een recensie"
 
-#: admin/class-admin-notices.php:381
+#: admin/class-admin-notices.php:380
 msgid "Remind Me In Two Weeks"
 msgstr "Herinner me over twee weken"
 
-#: admin/class-admin-notices.php:382
+#: admin/class-admin-notices.php:381
 msgid "Never Ask Again"
 msgstr "Vraag nooit meer"
 
-#: admin/class-admin-notices.php:409
+#: admin/class-admin-notices.php:408
 msgid "The review action value was not set"
 msgstr "De recensie-actiewaarde was niet ingesteld"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-#: admin/class-admin-notices.php:447
+#: admin/class-admin-notices.php:446
+#, php-format
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
 msgstr "Oeps! Het lijkt erop dat uw website momenteel met een wachtwoord is beveiligd. De gratis versie van Accessibility Checker kan alleen live websites scannen. Om deze website te scannen op toegankelijkheidsproblemen, verwijder de wachtwoordbeveiliging of %s. Scanresultaten kunnen zijn opgeslagen van een eerdere scan."
 
-#: admin/class-admin-notices.php:450
+#: admin/class-admin-notices.php:449
 msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Upgrade naar Accessibility Checker Pro. Opent in een nieuw venster."
 
-#: admin/class-admin-notices.php:451
+#: admin/class-admin-notices.php:450
 #: includes/options-page.php:448
 msgid "upgrade to pro"
 msgstr "upgrade naar pro"
@@ -250,6 +253,7 @@ msgstr "Er is een vereenvoudigde samenvatting opgenomen voor deze inhoud."
 
 #. translators: %s: Number of errors
 #: admin/class-ajax.php:133
+#, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s Fout"
@@ -257,6 +261,7 @@ msgstr[1] "%s Fouten"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:139
+#, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Contrastfout"
@@ -264,6 +269,7 @@ msgstr[1] "%s Contrastfouten"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:145
+#, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s Waarschuwing"
@@ -271,6 +277,7 @@ msgstr[1] "%s Waarschuwingen"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:151
+#, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s Genegeerd item"
@@ -303,6 +310,7 @@ msgstr "Getroffen code"
 
 #. Translators: %d is the issue ID.
 #: admin/class-ajax.php:477
+#, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Bekijk probleem-ID %d op de website, opent een nieuw venster"
 
@@ -424,6 +432,7 @@ msgstr "Gescande URL's"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
 #: admin/class-welcome-page.php:239
+#, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s van %2$s"
 
@@ -712,6 +721,7 @@ msgstr "Aantal genegeerde DB-tabellen"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:45
+#, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "%1$s gebruikt %2$s om de toegankelijkheid van onze website te monitoren."
 
@@ -721,6 +731,7 @@ msgstr "Toegankelijkheidscontrole (opent in een nieuw venster)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
 #: includes/classes/class-accessibility-statement.php:58
+#, php-format
 msgid "Read our %s"
 msgstr "Lees ons %s"
 
@@ -764,6 +775,7 @@ msgstr "Voeg labels toe aan ongelabelde formuliervelden als het doel van het vel
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Probeer labels toe te voegen aan formuliervelden die ze missen. Opmerking: Mogelijk moet u aangepaste stijlen toevoegen die gericht zijn op de %1$s-klasse als het toevoegen van labels uw formulierlay-outs beïnvloedt."
 
@@ -781,6 +793,7 @@ msgstr "Ontbrekende paginatitel toevoegen"
 
 #. translators: %1$s: a code tag with a title tag.
 #: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Voeg een %1$s-tag toe aan de pagina als deze ontbreekt of leeg is."
 
@@ -794,6 +807,7 @@ msgstr "Label toevoegen aan links die een nieuw tabblad/venster openen"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Voeg een label en pictogram toe aan links met %1$s om gebruikers te informeren dat ze een nieuw tabblad/venster zullen openen. %2$sOpmerking: Deze instelling heeft geen effect als de “Links blokkeren die nieuwe vensters openen”-fix is ingeschakeld.%3$s"
 
@@ -804,6 +818,7 @@ msgstr "PDF-uploads blokkeren"
 
 #. translators: %1$s: a code tag with the capability name.
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Beperk PDF-uploads voor gebruikers zonder de %1$s-mogelijkheid (standaard toegestaan voor beheerders)."
 
@@ -906,6 +921,7 @@ msgstr "“lang” & “dir” attributen toevoegen"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
 #: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Voeg de site-taal (%1$s) en tekstrichting (%2$s) attributen toe aan het %3$s element."
 
@@ -955,6 +971,7 @@ msgstr "Blokkeer links die nieuwe vensters openen"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Voorkom dat links in een nieuw venster of tabblad openen door %1$s te verwijderen."
 
@@ -1008,6 +1025,7 @@ msgstr "Title attributen verwijderen"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Verwijder %1$s attributen van elementen die al een voorkeurs toegankelijke naam hebben."
 
@@ -1045,6 +1063,7 @@ msgstr "Stel het ID-attribuut in van het navigatie-element. Dit is handig als je
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 #: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Als je thema nog geen skip link toevoegt die toetsenbordgebruikers in staat stelt de navigatie over te slaan en snel naar de hoofdinhoud te springen, schakel dan hier skip links in. %1$sLees meer over skip links.%2$s"
 
@@ -1066,6 +1085,7 @@ msgstr "Tabindex verwijderen"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/TabindexFix.php:70
+#, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Verwijder het %1$s attribuut van focusbare elementen."
 
@@ -1079,6 +1099,7 @@ msgstr "Fix niet gevonden"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
 #: includes/classes/WPCLI/BootstrapCLI.php:99
+#, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Kon opdracht %1$s niet registreren omdat %2$s"
 
@@ -1092,11 +1113,13 @@ msgstr "Geen bericht-ID opgegeven."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:92
+#, php-format
 msgid "Post ID %1$s does not exist."
 msgstr "Bericht-ID %1$s bestaat niet."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:103
+#, php-format
 msgid "Stats of %1$s deleted."
 msgstr "Statistieken van %1$s verwijderd."
 
@@ -1110,6 +1133,7 @@ msgstr "Wis de cache voordat de statistieken worden opgehaald (kan intensief zij
 
 #. translators: 1: a stat key that was requested but not found.
 #: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#, php-format
 msgid "Stat key: %1$s not found in stats."
 msgstr "Statistische sleutel: %1$s niet gevonden in statistieken."
 
@@ -1119,11 +1143,13 @@ msgstr "De ID van het bericht waarvoor statistieken moeten worden opgehaald."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:126
+#, php-format
 msgid "Post ID %1$d does not exist."
 msgstr "Bericht-ID %1$d bestaat niet."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:142
+#, php-format
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Ofwel het bericht is nog niet gescand, ofwel alle tests zijn geslaagd voor bericht-ID %1$d."
 
@@ -1207,6 +1233,7 @@ msgstr "Positie toegankelijkheidscontrole frontend"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
+#, php-format
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
 msgstr "Gebruik onderstaande instellingen om de Toegankelijkheidscontrole te configureren. Aanvullende informatie over elke instelling is te vinden in de %1$s."
 
@@ -1220,6 +1247,7 @@ msgstr "plug-indocumentatie"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
 #: includes/options-page.php:251
+#, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Meer functies en e-mailondersteuning zijn beschikbaar met %1$s."
 
@@ -1322,6 +1350,7 @@ msgstr "Afbeelding mist alternatieve tekst"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
 #: includes/rules.php:27
+#, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "Een fout voor Afbeelding Mist Alternatieve Tekst betekent dat je afbeelding helemaal geen alt-attribuut (%1$s) in de afbeeldingstag (%2$s) heeft. Om een fout voor Afbeelding Mist Alternatieve Tekst op te lossen, moet je een alt-tag aan de afbeelding toevoegen met passende tekst die het doel van de afbeelding op de pagina beschrijft. Als de afbeelding decoratief is, kan het alt-attribuut leeg zijn, maar de HTML %1$s tag moet nog steeds aanwezig zijn."
 
@@ -1331,6 +1360,7 @@ msgstr "Afbeelding heeft lege alternatieve tekst"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:40
+#, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "Een waarschuwing voor Afbeelding Heeft Lege Alternatieve Tekst verschijnt als je een afbeelding hebt met een alt-attribuut (%s) dat leeg is. Alternatieve tekst vertelt mensen die niet kunnen zien wat de afbeelding is en voegt extra context toe aan de post of pagina. Het is alleen correct dat alternatieve tekst leeg is als de afbeelding puur decoratief is, zoals een rand of decoratief icoon. Om een waarschuwing voor Afbeelding Heeft Lege Alternatieve Tekst op te lossen, moet je bepalen of de afbeelding decoratief is of iets betekenisvols toevoegt aan de pagina. Als het niet decoratief is, moet je passende alternatieve tekst toevoegen om het doel van de afbeelding te beschrijven. Als de afbeelding decoratief is, laat je de alternatieve tekst leeg en kies je ervoor om de waarschuwing te “Negeren”."
 
@@ -1348,6 +1378,7 @@ msgstr "Gekoppelde afbeelding mist alternatieve tekst"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:60
+#, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Een foutmelding 'Gekoppelde afbeelding mist alternatieve tekst' verschijnt wanneer een afbeelding die gelinkt is aan een URL helemaal geen alt-attribuut (%s) in de afbeeldingstag heeft. Gekoppelde afbeeldingen moeten nauwkeurige alternatieve tekst hebben die beschrijft waar de link naartoe gaat, zodat schermlezers weten waarnaar de link verwijst. Om deze fout op te lossen, moet je betekenisvolle alt-tekst aan de afbeelding toevoegen. Je alt-tekst moet het doel van de link beschrijven, niet hoe de afbeelding eruit ziet."
 
@@ -1357,6 +1388,7 @@ msgstr "Gekoppelde afbeelding heeft lege alternatieve tekst"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:72
+#, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Een foutmelding 'Gekoppelde afbeelding heeft lege alternatieve tekst' verschijnt wanneer een afbeelding die gelinkt is aan een URL een alt-attribuut (%s) heeft zonder inhoud. Gekoppelde afbeeldingen moeten nauwkeurige alternatieve tekst hebben die beschrijft waar de link naartoe gaat, zodat schermlezers weten waarnaar de link verwijst. Om deze fout op te lossen, moet je betekenisvolle alt-tekst aan de afbeelding toevoegen. Je alt-tekst moet het doel van de link beschrijven, niet hoe de afbeelding eruit ziet."
 
@@ -1374,6 +1406,7 @@ msgstr "Onjuiste kopvolgorde"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
 #: includes/rules.php:92
+#, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "Een fout voor onjuiste kopvolgorde betekent dat je kopstructuur een niveau heeft overgeslagen. Als bijvoorbeeld je paginastructuur een kop van niveau 3 (%1$s) heeft onder een kop van niveau 1 (%2$s), zal er een “Onjuiste kopvolgorde” fout worden gemeld omdat er geen %3$s tag tussen de H1 en H3 staat. Om fouten in de kopvolgorde op te lossen, moet je ofwel het onjuiste kopniveau wijzigen naar het juiste niveau, of inhoud toevoegen met het juiste kopniveau tussen de twee bestaande niveaus."
 
@@ -1391,6 +1424,7 @@ msgstr "iframe mist titel"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
 #: includes/rules.php:117
+#, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "Een fout 'iframe mist titel' betekent dat een of meer van de iframes op je bericht of pagina geen toegankelijke titel heeft die de inhoud van het iframe beschrijft. Een iframe-titel is een attribuut dat kan worden toegevoegd aan de %1$s tag om de inhoud van het frame te beschrijven voor mensen die ondersteunende technologie gebruiken. Om een ontbrekende iframe-titel op te lossen, moet je een titel- of aria-label-attribuut toevoegen aan de %1$s tag. Het attribuut moet de inhoud van het iframe nauwkeurig beschrijven."
 
@@ -1400,6 +1434,7 @@ msgstr "Ontbrekende subkoppen"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
 #: includes/rules.php:132
+#, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "Een waarschuwing over ontbrekende koppen betekent dat je bericht of pagina geen koptekstelementen (%1$s–%2$s) bevat binnen de inhoud van de hoofdtekst van het bericht of de pagina. Dit kan het voor gebruikers van schermlezers bijzonder moeilijk maken om door de inhoud op de pagina te navigeren. Om een pagina zonder koppen te corrigeren, moet je koptekstelementen toevoegen. Elke pagina moet minimaal één %1$s-tag hebben, wat meestal de paginatitel is. Voeg extra subkoppen toe waar dit passend is voor je inhoud. Als je hebt vastgesteld dat koppen zeker niet nodig zijn op de pagina, dan kun je de waarschuwing “Negeren”."
 
@@ -1417,6 +1452,7 @@ msgstr "Link opent nieuw venster of tabblad"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
 #: includes/rules.php:154
+#, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "Een waarschuwing voor 'Link Opent Nieuw Venster of Tabblad' verschijnt wanneer er op je website een link staat die is ingesteld om in een nieuw tabblad of venster te openen bij het klikken. Het wordt als beste praktijk beschouwd om geen nieuwe tabbladen of vensters te openen met links. Als links wel nieuwe tabbladen of vensters openen, moet er een visuele en auditieve waarschuwing zijn die aankondigt dat de link een nieuw venster of tabblad zal openen, zodat gebruikers dit gedrag kunnen verwachten en weten hoe ze terug moeten gaan na het klikken op de link. Om deze waarschuwing op te lossen, verander je de link zodat deze niet in een nieuw tabblad opent, of zorg je ervoor dat “opent nieuw venster” is opgenomen in de linktekst en “Negeer” je vervolgens de waarschuwing. Om automatisch meldingen toe te voegen aan alle links op je site en al deze waarschuwingen te verwijderen, installeer je onze gratis %s-plugin."
 
@@ -1430,6 +1466,7 @@ msgstr "Afbeeldingskaart mist alternatieve tekst"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
 #: includes/rules.php:173
+#, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "De fout 'Afbeeldingskaart Mist Alternatieve Tekst' betekent dat een van de %1$s-elementen binnen je afbeeldingskaart geen alternatieve tekst heeft toegevoegd in een %2$s-attribuut. Om deze fout te corrigeren, moet je ontbrekende alt-tekst toevoegen aan alle area-tags die geen alt-tekst hebben. De alt-tekst moet de functie van de link in het gebied beschrijven, niet noodzakelijk hoe het gebied eruitziet."
 
@@ -1439,6 +1476,7 @@ msgstr "Tabvolgorde gewijzigd"
 
 #. translators: %s is <code>tabindex="1"</code>.
 #: includes/rules.php:189
+#, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "Een waarschuwing voor Gewijzigde Tabvolgorde verschijnt wanneer de logische tabvolgorde op de pagina is veranderd door het toevoegen van een attribuut voor tabindex dat groter is dan 0 aan een HTML-element (bijvoorbeeld %s). Dit kan navigatieproblemen veroorzaken voor gebruikers die alleen het toetsenbord gebruiken. Om een waarschuwing voor Gewijzigde Tabvolgorde op te lossen, moet je de voorkant van je website bekijken op de pagina of het bericht waar de tabvolgorde is gewijzigd en testen of de wijziging correct is of niet. Als de wijziging in de tabvolgorde geen problemen veroorzaakt, kun je de waarschuwing “Negeren”. Als de gewijzigde tabvolgorde ervoor zorgt dat informatie in de verkeerde volgorde wordt gepresenteerd, dan moet je het tabindex-attribuut verwijderen van het gemarkeerde element."
 
@@ -1448,6 +1486,7 @@ msgstr "Lege koptag"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
 #: includes/rules.php:205
+#, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "Een fout voor Lege Koptag betekent dat er een koptag aanwezig is op je bericht of pagina die geen inhoud bevat. In code zou deze fout er zo uitzien: %s. Om een lege kop te corrigeren, moet je inhoud toevoegen aan de koptag die de fout Lege Koptag heeft veroorzaakt, of de lege tag verwijderen als deze niet nodig is op je pagina."
 
@@ -1457,6 +1496,7 @@ msgstr "Lege link"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
 #: includes/rules.php:217
+#, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "Een Empty Link-fout betekent dat een van de links op de webpagina leeg is of geen tekst bevat die beschrijft waar de link naartoe leidt als erop wordt geklikt. Dit komt vaak voor bij links die webfonts, icoonfamilies en SVG's bevatten, of wanneer per ongeluk een link is aangemaakt in de contenteditor. Om een Empty Link-fout op te lossen, moet je de link vinden die wordt gemarkeerd en er beschrijvende tekst aan toevoegen. Je moet ofwel: tekstinhoud toevoegen binnen een leeg %1$s-element of, als je link een SVG of Webfont-icoon bevat, dat element verbergen met %2$s en een %3$s-attribuut toevoegen aan de %1$s-tag of schermlezer-tekst. De tekst of het label dat je toevoegt, moet beschrijvend zijn voor waar de link naartoe verwijst en niet dubbelzinnig zijn."
 
@@ -1466,6 +1506,7 @@ msgstr "Lege knop"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
 #: includes/rules.php:231
+#, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "Een Empty Button-fout betekent dat een van de knoppen op de webpagina leeg is of geen tekst bevat die de functie van de knop beschrijft. Of, als het een afbeeldingsknop is, mist de afbeelding in de knop alternatieve tekst. Om een Empty Button-fout op te lossen, moet je de knop vinden die wordt gemarkeerd en er beschrijvende tekst aan toevoegen. Je moet ofwel: tekstinhoud toevoegen binnen een leeg %1$s-element, een value-attribuut toevoegen aan een %2$s dat er een mist, of alternatieve tekst toevoegen aan een knopafbeelding. De tekst moet beschrijvend zijn voor waar je knop voor wordt gebruikt of de actie die de knop activeert."
 
@@ -1491,6 +1532,7 @@ msgstr "Lege tabelkop"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
 #: includes/rules.php:263
+#, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "Een Empty Table Header-fout betekent dat een van de tabelkoppen op je bericht of pagina geen tekst bevat. Dit betekent dat het %1$s-element aanwezig is, maar er zo uitziet: %2$s zonder iets tussen de openings- en sluitingstags. Om een lege tabelkop op te lossen, moet je het juiste HTML-element (%1$s) vinden en er tekst aan toevoegen die de rij of kolom beschrijft waarop het van toepassing is."
 
@@ -1524,6 +1566,7 @@ msgstr "Lange beschrijving ongeldig"
 
 #. translators: %s is <code>longdesc=""</code>.
 #: includes/rules.php:300
+#, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "De fout Lange beschrijving ongeldig betekent dat een lange beschrijvingsattribuut (%s) bij een afbeelding geen geldige URL, bestandsnaam of bestandsextensie heeft. Het kan ook betekenen dat de lange beschrijving geen URL is, of leeg is gelaten. Het longdesc-attribuut wordt niet volledig ondersteund door HTML5, browsers en alle schermleessoftware. Vanwege dit gebrek aan ondersteuning is de beste oplossing voor deze fout om longdesc volledig uit uw img-tag te verwijderen."
 
@@ -1533,6 +1576,7 @@ msgstr "Ontbrekend formulierlabel"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
 #: includes/rules.php:312
+#, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "Een Ontbrekend formulierlabel-fout wordt geactiveerd wanneer een %1$s (formulierveld) aanwezig is in uw formulier, maar niet is gekoppeld aan een %2$s-element. Dit kan betekenen dat het label aanwezig is maar een %3$s-attribuut mist om het te verbinden met het betreffende veld, of er is mogelijk helemaal geen label aanwezig en alleen een %1$s-tag. Om ontbrekende formulierlabel-fouten op te lossen, moet u bepalen hoe het veld en formulier zijn gemaakt en vervolgens veldlabels toevoegen of een correct %3$s-attribuut aan bestaande labels die niet aan een veld zijn gekoppeld."
 
@@ -1550,6 +1594,7 @@ msgstr "Onderstreepte tekst"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
 #: includes/rules.php:339
+#, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "Een waarschuwing voor Onderstreepte tekst verschijnt als er tekst op uw pagina is omwikkeld met een HTML-onderstrepingstag (%1$s). In een online omgeving wordt onderstreepte tekst meestal gebruikt om gelinkte tekst aan te geven en wordt het niet als beste praktijk beschouwd om tekst alleen voor nadruk te onderstrepen. Om onderstreepte tekst op te lossen, moet u het %1$s-element of de CSS-stijlen die de tekst onderstrepen, verwijderen. Probeer andere stijlen te gebruiken, zoals cursief, gekleurde tekst of vetgedrukt, om woorden of zinnen te benadrukken of te onderscheiden."
 
@@ -1567,6 +1612,7 @@ msgstr "Ontbrekende tabelkop"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
 #: includes/rules.php:359
+#, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "Een fout voor een ontbrekende tabelkop betekent dat een van je tabellen gegevens bevat (informatie in een %1$s-tag) die geen bijbehorende kop (%2$s)-tag heeft. Bij het bekijken van de HTML van je formulier zullen er meer %1$s-elementen in een rij zijn dan %2$s-elementen in de tabel. Om een ontbrekende tabelkop te repareren, moet je het gedeelte van de code vinden dat minder %2$s-elementen bevat dan er aanwezig zouden moeten zijn voor het aantal rijen of kolommen met gegevens, en vervolgens een of meer extra %2$s-elementen toevoegen met tekst die de gegevens in die rij of kolom beschrijft."
 
@@ -1600,6 +1646,7 @@ msgstr "Knipperende of scrollende inhoud"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
 #: includes/rules.php:397
+#, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Fouten met betrekking tot knipperende of scrollende inhoud verschijnen wanneer elementen op je website een knipperende of scrollende functie hebben die is toegepast via CSS of in de HTML. Specifiek zal het volgende deze fout veroorzaken: de %1$s- of %2$s-HTML-tags of CSS %3$s. Om deze fout op te lossen, verwijder je de HTML-tags of CSS die ervoor zorgen dat de inhoud knippert."
 
@@ -1633,6 +1680,7 @@ msgstr "Ontbrekende taalverklaring"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
 #: includes/rules.php:437
+#, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "Een taalverklaring is een HTML-attribuut dat de standaardtaal van de inhoud op een pagina of bericht aangeeft. Taalverklaringen moeten in uw websitethema worden gecodeerd en automatisch in de head van de website verschijnen. Een fout voor een ontbrekende taalverklaring verschijnt als de %1$s-tag op de pagina geen %2$s- of %3$s-attribuut bevat, of als een van deze attributen aanwezig is maar leeg is. Om een fout voor een ontbrekende taalverklaring op te lossen, moet u uw themabestanden bewerken om het ontbrekende taalattribuut toe te voegen aan de HTML-tag helemaal bovenaan uw websiteheader. Als u een thema gebruikt dat updates ontvangt, moet u de wijziging in een child theme aanbrengen om ervoor te zorgen dat de fix niet wordt overschreven wanneer u uw thema de volgende keer bijwerkt."
 
@@ -1666,6 +1714,7 @@ msgstr "Ontbrekende titel"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
 #: includes/rules.php:482
+#, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "Een fout voor Ontbrekende Titel betekent dat uw bericht of pagina geen titelelement bevat (%1$s of %2$s). Dit kan gebeuren als het thema geen titeltag toevoegt, of als het titelveld van een bericht of pagina leeg is gelaten in het WordPress-bewerkingsscherm. Om een pagina zonder titel te corrigeren, moet u titelelementen toevoegen. Bepaal eerst of de titel ontbreekt omdat u het titel veld van de pagina of het bericht leeg hebt gelaten in de editor. Als dat zo is, vul het dan in. Als er een titel is ingevuld en zichtbaar is in de backend, dan moet de code in de van uw webpagina worden bewerkt om een %1$s tag of %2$s meta tag op te nemen."
 
@@ -1675,6 +1724,7 @@ msgstr "Onjuist gebruik van link"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
 #: includes/rules.php:500
+#, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "Een fout voor Onjuist gebruik van link verschijnt als u links heeft die een %1$s attribuut missen of alleen gelinkt zijn aan een %2$s, en geen %3$s hebben. Links moeten worden gebruikt om mensen naar andere delen van uw site te leiden. Elke andere functionaliteit die een actie activeert, moet een knop zijn. Om deze fout op te lossen, moet u de link hercoderen om een %4$s tag te gebruiken (bij voorkeur) of %5$s toevoegen aan de bestaande %6$s tag. Als het element een schakelknop is (zoals een accordeon), zijn aanvullende ARIA-attributen vereist."
 
@@ -1801,6 +1851,7 @@ msgstr "Volg deze stappen om te beginnen met het controleren van uw inhoud:"
 
 #. translators: %s: path to settings page.
 #: partials/welcome-page.php:57
+#, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "Kies op de <a href=\"%s\">Instellingenpagina</a> welke berichttypes u wilt scannen."
 
@@ -1947,6 +1998,7 @@ msgstr "Opslaan..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Instellingen succesvol opgeslagen. U moet %sde editor bezoeken%s en het bericht opslaan om opnieuw te scannen en opgeloste problemen uit Accessibility Checker-rapporten te verwijderen."
 
@@ -1980,6 +2032,10 @@ msgstr "Problemen succesvol gewist."
 #: build/editorApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Wissen van problemen mislukt."
+
+#: build/editorApp.bundle.js:2
+msgid "An error occurred while clearing issues."
+msgstr "Er is een fout opgetreden bij het wissen van problemen."
 
 #: build/emailOptIn.bundle.js:2
 msgid "There was a problem. Please try again."
