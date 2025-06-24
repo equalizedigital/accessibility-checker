@@ -171,7 +171,7 @@ msgstr "🎉 Musta reede eripakkumine! 🎉"
 
 #: admin/class-admin-notices.php:204
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Uuenda Accessibility Checkeri tasulist versiooni 25. Novembrist 3. detsembrini ja saa 30% allahindlust! Täielik saidi skaneerimine, kogu saidi avatud probleemide aruanne, ignoreerimislogid ja palju muud."
+msgstr "Uuendage 25. Novembrist kuni 3. detsembrini Accessibility Checker'i tasulisele versioonile ja saate 30% allahindlust! Täielik saidi skaneerimine, kogu saidi hõlmav aruanne avatud probleemidest, ignoreerimisprotokollid ja palju muud."
 
 #: admin/class-admin-notices.php:205
 #: admin/class-admin-notices.php:292
@@ -185,7 +185,7 @@ msgstr "Uuenda kohe"
 
 #: admin/class-admin-notices.php:290
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 Ülemaailmse ligipääsetavuse teadlikkuse päeva auks saad Accessibility Checker Pro 25% soodsamalt! 🎉"
+msgstr "🎉 Saa 25% allahindlust Accessibility Checker Pro'lt ülemaailmse ligipääsetavuse päeva auks! 🎉"
 
 #: admin/class-admin-notices.php:291
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
@@ -193,7 +193,7 @@ msgstr "Kasuta kupongikoodi GAAD25 13. Maist kuni 21. maini, et saada juurdepä�
 
 #: admin/class-admin-notices.php:376
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
-msgstr "Tere! Täname, et kasutate Accessibility Checkerit osana oma ligipääsetavuse tööriistakomplektist. Kuna olete seda juba mõnda aega kasutanud, kas kirjutaksite palun 5-tärni arvustuse Accessibility Checkeri kohta WordPressi pluginate kataloogis? See aitab suurendada meie nähtavust, et rohkem inimesi saaks teada veebi ligipääsetavuse tähtsusest. Suur tänu!"
+msgstr "Tere! Täname teid, et kasutate Accessibility Checker'i kui osa oma ligipääsetavuse tööriistakomplektist. Kuna te olete seda juba mõnda aega kasutanud, siis kirjutage palun 5-tärni arvustus Accessibility Checker'ile WordPressi pluginate kataloogis. See aitab suurendada meie nähtavust, et rohkem inimesi saaks teada veebi juurdepääsetavuse olulisusest. Suur tänu!"
 
 #: admin/class-admin-notices.php:379
 msgid "Write A Review"
@@ -214,7 +214,7 @@ msgstr "Arvustuse tegevuse väärtust ei määratud"
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
 #: admin/class-admin-notices.php:446
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
-msgstr "Ups! Paistab, et teie veebisait on hetkel parooliga kaitstud. Accessibility Checkeri tasuta versioon saab skaneerida ainult avalikke veebisaite. Et skaneerida seda veebisaiti ligipääsetavuse probleemide suhtes, eemaldage paroolikaitse või %s. Skannimise tulemused võivad olla salvestatud eelmisest skaneerimisest."
+msgstr "Ups! Paistab, et teie veebisait on praegu parooliga kaitstud. Accessibility Checker'i tasuta versioon saab skaneerida ainult live-veebisaite. Selle veebisaidi skaneerimiseks ligipääsetavusprobleemide suhtes eemaldage kas paroolikaitse või %s. Skaneerimistulemused võivad olla salvestatud eelmisest skaneerimisest."
 
 #: admin/class-admin-notices.php:449
 msgid "Upgrade to accessibility checker pro. Opens in a new window."
@@ -463,7 +463,7 @@ msgstr "Alusta kogu oma veebisaidi ligipääsetavuse probleemide kontrollimist, 
 #: admin/class-welcome-page.php:306
 #: admin/class-widgets.php:67
 msgid "Upgrade Accessibility Checker"
-msgstr "Uuenda Accessibility Checkerit"
+msgstr "Upgrade Accessibility Checker (juurdepääsetavuse kontrollija)"
 
 #: admin/class-widgets.php:63
 msgid "close ad"
@@ -499,7 +499,7 @@ msgstr "Teie saidil on ligipääsetavuse probleemid, mida tuleks võimalikult ki
 
 #: admin/class-widgets.php:135
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
-msgstr "Tubli töö! Accessibility Checker ei leia testitud sisus ühtegi ligipääsetavuse probleemi. Mõningaid probleeme ei saa automaatsed tööriistad leida, seega ärge unustage"
+msgstr "Hästi läks! Accessibility Checker ei leia testitud sisust ühtegi juurdepääsetavusprobleemi. Mõned probleemid ei ole automaatsete vahenditega leitavad, seega ärge unustage, et"
 
 #: admin/class-widgets.php:135
 msgid "manually test your site"
@@ -584,11 +584,11 @@ msgstr "Sisesta oma eesnimi"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
-msgstr "Accessibility Checker &mdash; Auditi ajalugu"
+msgstr "Juurdepääsetavuse kontroll &mdash; auditiajalugu"
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
-msgstr "Accessibility Checker &mdash; Tasuta"
+msgstr "Ligipääsetavuse kontrollija &mdash; tasuta"
 
 #: admin/site-health/class-free.php:49
 #: admin/site-health/class-pro.php:50
@@ -672,7 +672,7 @@ msgstr "Andmebaasi tabelite arv"
 
 #: admin/site-health/class-pro.php:47
 msgid "Accessibility Checker &mdash; Pro"
-msgstr "Accessibility Checker &mdash; Pro"
+msgstr "Ligipääsetavuse kontrollija &mdash; Pro"
 
 #: admin/site-health/class-pro.php:58
 msgid "License Status"
@@ -717,7 +717,7 @@ msgstr "%1$s kasutab %2$s, et jälgida meie veebisaidi ligipääsetavust."
 
 #: includes/classes/class-accessibility-statement.php:49
 msgid "Accessibility Checker (opens in a new window)"
-msgstr "Accessibility Checker (avaneb uues aknas)"
+msgstr "Ligipääsetavuse kontroll (avaneb uues aknas)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
 #: includes/classes/class-accessibility-statement.php:58
@@ -1145,11 +1145,11 @@ msgstr "Osale tasuta"
 
 #: includes/options-page.php:42
 msgid "Welcome to Accessibility Checker"
-msgstr "Tere tulemast Accessibility Checkerisse"
+msgstr "Tere tulemast Accessibility Checker'ile"
 
 #: includes/options-page.php:65
 msgid "Accessibility Checker Settings"
-msgstr "Accessibility Checkeri seaded"
+msgstr "Ligipääsetavuse kontrollija seaded"
 
 #: includes/options-page.php:66
 msgid "Settings"
@@ -1169,7 +1169,7 @@ msgstr "Jaluse ligipääsetavuse teade"
 
 #: includes/options-page.php:120
 msgid "Frontend Accessibility Checker"
-msgstr "Kasutajaliidese Accessibility Checker"
+msgstr "Frontend Accessibility Checker"
 
 #: includes/options-page.php:128
 msgid "Post Types To Be Checked"
@@ -1203,12 +1203,12 @@ msgstr "Ligipääsetavuse teate eelvaade"
 
 #: includes/options-page.php:200
 msgid "Frontend Accessibility Checker Position"
-msgstr "Kasutajaliidese Accessibility Checkeri asukoht"
+msgstr "Frontend juurdepääsetavuse kontrollija positsioon"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
-msgstr "Kasutage allolevaid seadeid Accessibility Checkeri konfigureerimiseks. Lisateavet iga seade kohta leiate %1$s."
+msgstr "Kasutage allpool olevaid seadistusi, et konfigureerida juurdepääsetavuse kontrollimist. Lisateavet iga seadistuse kohta leiate %1$s."
 
 #: includes/options-page.php:245
 msgid "plugin documentation (opens in a new window)"
@@ -1230,7 +1230,7 @@ msgstr "Accessibility Checker Pro (avaneb uues aknas)"
 #: includes/options-page.php:252
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
-msgstr "Accessibility Checker Pro"
+msgstr "Ligipääsetavuse kontrollija Pro"
 
 #: includes/options-page.php:266
 msgid "Use the settings below to configure the frontend accessibility checker."
@@ -1238,7 +1238,7 @@ msgstr "Kasutage allolevaid seadeid eesliidese ligipääsetavuse kontrollija kon
 
 #: includes/options-page.php:276
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
-msgstr "Veebi sisu ligipääsetavuse suunised (WCAG) AAA tasemel nõuavad, et igal sisul, mille lugemistase on üle 9. Klassi taseme, oleks lihtsam alternatiiv. Lihtsustatud kokkuvõtte tekst lisatakse loetavuse vahekaardil Accessibility Checkeri metakastis iga postituse või lehe muutmise ekraanil."
+msgstr "Veebisisu juurdepääsetavuse suunised (WCAG) AAA-tasemel nõuavad, et iga sisu, mille lugemistase on kõrgem kui 9. Klass, peab olema lihtsamini loetav. Lihtsustatud kokkuvõttev tekst lisatakse iga postituse või lehe redigeerimisekraani ligipääsetavuse kontrollija metakasti loetavuse vahekaardile."
 
 #: includes/options-page.php:277
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
@@ -1250,7 +1250,7 @@ msgstr "Loe lähemalt lihtsustatud kokkuvõtete ja loetavuse nõuete kohta."
 
 #: includes/options-page.php:286
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
-msgstr "Kas te mõtlete „Vau, see plugin on uskumatu“ ja kas see aitab teil oma veebisaiti ligipääsetavamaks muuta? Jagage oma pingutusi veebisaidi ligipääsetavamaks muutmisel oma klientidega ja andke neile teada, et kasutate Accessibility Checkerit, et tagada kõigile inimestele teie veebisaidi kasutamise võimalus. Lisage oma veebisaidi jaluses väike ainult tekstist koosnev link ja avaldus."
+msgstr "Kas sa mõtled \"Wow, see plugin on hämmastav\" ja kas see aitab sul oma veebilehte kättesaadavamaks muuta? Jagage oma jõupingutusi oma veebisaidi ligipääsetavamaks muutmisel oma klientidega ja andke neile teada, et kasutate Accessibility Checker'i, et tagada, et kõik inimesed saaksid teie veebisaiti kasutada. Lisage oma veebisaidi jalusesse väike tekstiline link ja avaldus."
 
 #: includes/options-page.php:299
 msgid "Before the content"
@@ -1298,7 +1298,7 @@ msgstr "Alati"
 
 #: includes/options-page.php:395
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
-msgstr "Kas Accessibility Checker peaks küsima lihtsustatud kokkuvõtet ainult siis, kui teie postituse või lehe lugemistase on üle 9. klassi taseme, küsima seda alati olenemata lugemistasemest või mitte kunagi küsima olenemata lugemistasemest?"
+msgstr "Kas Accessibility Checker peaks küsima lihtsustatud kokkuvõtet ainult siis, kui teie postituse või lehe lugemise tase on üle 9. klassi, küsima seda alati olenemata lugemise tasemest või mitte kunagi küsima seda olenemata lugemise tasemest?"
 
 #: includes/options-page.php:446
 msgid "To check content other than posts and pages, please "
@@ -1314,7 +1314,7 @@ msgstr "Valige, milliseid postituse tüüpe tuleks skannimise ajal kontrollida. 
 
 #: includes/options-page.php:592
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
-msgstr "Kustuta kõik Accessibility Checkeri andmed plugina desinstallimisel."
+msgstr "Kustuta kõik Accessibility Checkeri andmed, kui plugin eemaldatakse."
 
 #: includes/rules.php:21
 msgid "Image Missing Alternative Text"
@@ -1409,7 +1409,7 @@ msgstr "Tekst õigustatud"
 
 #: includes/rules.php:144
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
-msgstr "Tekstijoonduse hoiatus ilmub Accessibility Checkeris, kui teie postituses või lehel on rohkem kui 200 tähemärki teksti, mis on vormindatud rööpjoondusega (text-align:justify). Selle hoiatuse parandamiseks eemaldage määratud tekstielementidest rööpjoonduse vormindus."
+msgstr "Accessibility Checkeris ilmub teksti õigustamise hoiatus, kui teie postituses või lehel on rohkem kui 200 tähemärki sisaldav tekst vormindatud õigustatud joondusega (text-align:justify). Selle hoiatuse parandamiseks eemaldage määratud tekstielementidelt õigustatud vormindus."
 
 #: includes/rules.php:148
 msgid "Link Opens New Window or Tab"
@@ -1810,11 +1810,11 @@ msgstr "Minge kontrollitava postituse redigeerimise ekraanile."
 
 #: partials/welcome-page.php:65
 msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
-msgstr "Leidke Accessibility Checkeri metakast oma sisu all. Kui kasutate esilehe lehe koosturit, peate Accessibility Checkeri tulemuste vaatamiseks külastama tagasüsteemi muutmise ekraani."
+msgstr "Leia Accessibility Checkeri metakast oma sisu all. Kui kasutate eesmise osa lehekujundajat, peate Accessibility Checkeri tulemuste vaatamiseks külastama tagumise osa redigeerimisekraani."
 
 #: partials/welcome-page.php:66
 msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
-msgstr "Kui teie postituses esineb vigu või hoiatusi, avage Accessibility Checkeris üksikasjade vahekaart, et saada lisateavet."
+msgstr "Kui teie postituses on vigu või hoiatusi, avage Accessibility Checkeris üksikasjade vahekaart lisateabe saamiseks."
 
 #: partials/welcome-page.php:67
 msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
@@ -1834,7 +1834,7 @@ msgstr "Pärast iga probleemi parandamist värskendage postitust, et näha ligip
 
 #: partials/welcome-page.php:74
 msgid "Watch a video of Accessibility Checker in use."
-msgstr "Vaadake videot Accessibility Checkeri kasutamisest."
+msgstr "Vaata videot Accessibility Checkeri kasutamisest."
 
 #: partials/welcome-page.php:80
 msgid "Documentation and FAQs"
@@ -1894,7 +1894,7 @@ msgstr "Pistikprogrammi tugi"
 
 #: partials/welcome-page.php:135
 msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
-msgstr "Accessibility Checkeri tasuliste plaanide aktiivse litsentsi omanikud saavad piiramatu e-posti toe plugina kasutamise ja veaotsinguga seotud küsimustes."
+msgstr "Accessibility Checkeri tasuliste plaanide kehtiva litsentsi omanikud saavad piiramatu e-posti toe plugina kasutamise ja probleemide lahendamise osas."
 
 #: partials/welcome-page.php:138
 msgid "Open Support Ticket"
@@ -1948,7 +1948,7 @@ msgstr "Salvestamine..."
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
-msgstr "Sätted on edukalt salvestatud. Peate %skülastama redaktorit%s ja salvestama postituse, et uuesti kontrollida ja eemaldada parandatud probleemid Accessibility Checkeri aruannetest."
+msgstr "Sätted salvestati edukalt. Peate %skülastama redaktorit%s ja salvestama postituse, et uuesti skaneerida ja eemaldada parandatud probleemid Accessibility Checkeri aruannetest."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
