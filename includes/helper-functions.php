@@ -630,10 +630,11 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
  * @param string $base_url the base URL to which UTM parameters will be added.
  * @param string $campaign the UTM campaign name, optional.
  * @param string $content the UTM content name, optional.
+ * @param bool   $directly_echo whether to echo the link or return it. Default is true.
  *
- * @return void
+ * @return void|string
  */
-function edac_simple_utm_link_wrapper( $base_url, $campaign = '', $content = '' ) {
+function edac_simple_utm_link_wrapper( $base_url, $campaign = '', $content = '', $directly_echo = true ) {
 	if ( empty( $base_url ) || ! is_string( $base_url ) ) {
 		return;
 	}
@@ -647,13 +648,17 @@ function edac_simple_utm_link_wrapper( $base_url, $campaign = '', $content = '' 
 		$params['utm_content'] = $content;
 	}
 
-	echo esc_url(
-		edac_generate_link_type(
-			$params,
-			'custom',
-			[ 'base_url' => $base_url ]
-		)
+	$link = edac_generate_link_type(
+		$params,
+		'custom',
+		[ 'base_url' => $base_url ]
 	);
+
+	if ( ! $directly_echo ) {
+		return esc_url( $link );
+	}
+
+	echo esc_url( $link );
 }
 
 /**
