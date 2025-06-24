@@ -1,4 +1,4 @@
-import { __ } from '@wordpress/i18n';
+const { __ } = wp.i18n;
 
 export const inlineFixesProUpsell = () => {
 	// find elements with 'edac-fix--upsell' class
