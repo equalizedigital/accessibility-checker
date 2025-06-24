@@ -10,6 +10,60 @@ import { getPageDensity } from './helpers/density';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
+// Landmark tags for semantic regions
+const LANDMARK_TAGS = [ 'MAIN', 'HEADER', 'FOOTER', 'NAV', 'ASIDE' ];
+const LANDMARK_ROLES = [
+	'main',
+	'navigation',
+	'banner',
+	'contentinfo',
+	'complementary',
+];
+
+function getLandmarkForSelector( selector ) {
+	const el = document.querySelector( selector );
+	if ( ! el ) {
+		return { type: null, selector: null };
+	}
+	let current = el;
+	while ( current && current !== document.body ) {
+		if ( LANDMARK_TAGS.includes( current.tagName ) ) {
+			return { type: current.tagName.toLowerCase(), selector: getElementSelector( current ) };
+		}
+		if ( current.hasAttribute( 'role' ) ) {
+			const role = current.getAttribute( 'role' ).toLowerCase();
+			if ( LANDMARK_ROLES.includes( role ) ) {
+				return { type: role, selector: getElementSelector( current ) };
+			}
+		}
+		current = current.parentElement;
+	}
+	return { type: null, selector: null };
+}
+
+// Helper to get a unique CSS selector for an element
+function getElementSelector( element ) {
+	if ( ! element ) {
+		return null;
+	}
+	if ( element.id ) {
+		return `#${ element.id }`;
+	}
+	const path = [];
+	while ( element && element.nodeType === Node.ELEMENT_NODE && element !== document.body ) {
+		let selector = element.nodeName.toLowerCase();
+		if ( element.className ) {
+			const classes = element.className.trim().split( /\s+/ ).join( '.' );
+			selector += `.${ classes }`;
+		}
+		const siblingIndex = Array.from( element.parentNode.children ).indexOf( element ) + 1;
+		selector += `:nth-child(${ siblingIndex })`;
+		path.unshift( selector );
+		element = element.parentElement;
+	}
+	return path.length ? path.join( ' > ' ) : null;
+}
+
 // Read the data passed from the parent document.
 const body = document.querySelector( 'body' );
 const iframeId = body.getAttribute( 'data-iframe-id' );
@@ -58,12 +112,17 @@ const scan = async (
 				//Build an array of the dom selectors and ruleIDs for violations/failed tests
 				item.violations.forEach( ( violation ) => {
 					if ( violation.result === 'failed' ) {
+						const selector = violation.node.selector;
+						const html = document.querySelector( selector )?.outerHTML;
+						const landmark = getLandmarkForSelector( selector );
 						violations.push( {
-							selector: violation.node.selector,
-							html: document.querySelector( violation.node.selector ).outerHTML,
+							selector,
+							html,
 							ruleId: item.id,
 							impact: item.impact,
 							tags: item.tags,
+							landmark: landmark.type,
+							landmarkSelector: landmark.selector,
 						} );
 					}
 				} );
@@ -71,12 +130,17 @@ const scan = async (
 				// Handle incomplete results for form-field-multiple-labels only.
 				if ( item.id === 'form-field-multiple-labels' ) { // Allow incomplete results for this rule.
 					item.incomplete.forEach( ( incompleteItem ) => {
+						const selector = incompleteItem.node.selector;
+						const html = document.querySelector( selector )?.outerHTML;
+						const landmark = getLandmarkForSelector( selector );
 						violations.push( {
-							selector: incompleteItem.node.selector,
-							html: document.querySelector( incompleteItem.node.selector ).outerHTML,
+							selector,
+							html,
 							ruleId: item.id,
 							impact: item.impact,
 							tags: item.tags,
+							landmark: landmark.type,
+							landmarkSelector: landmark.selector,
 						} );
 					} );
 				}
