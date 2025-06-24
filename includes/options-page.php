@@ -242,7 +242,7 @@ function edac_general_cb() {
 	printf(
 		/* translators: %1$s: link to the plugin documentation website. */
 		esc_html__( 'Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s.', 'accessibility-checker' ),
-		'<a href="' . esc_url( edac_simple_utm_link_wrapper( 'https://a11ychecker.com/', 'settings-page', '', false ) . '" target="_blank" aria-label="' . esc_attr__( 'plugin documentation (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'plugin documentation', 'accessibility-checker' ) ) . '</a>'
+		'<a href="' . esc_url( edac_simple_utm_link_wrapper( 'https://a11ychecker.com/', 'settings-page', '', false ) ) . '" target="_blank" aria-label="' . esc_attr__( 'plugin documentation (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'plugin documentation', 'accessibility-checker' ) . '</a>'
 	);
 
 	if ( EDAC_KEY_VALID === false ) {
