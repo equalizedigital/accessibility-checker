@@ -655,7 +655,7 @@ function edac_simple_utm_link_wrapper( $base_url, $campaign = '', $content = '',
 	);
 
 	if ( ! $directly_echo ) {
-		return esc_url( $link );
+		return $link;
 	}
 
 	echo esc_url( $link );
