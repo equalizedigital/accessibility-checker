@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Project-Id-Version: Accessibility Checker 1.26.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"POT-Creation-Date: 2025-06-24T21:54:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
-msgstr "Akadálymentességi ellenőrző"
+msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
@@ -96,7 +96,7 @@ msgstr "Az akadálymentesség meghatározásánál irányadó elvként követjü
 
 #: admin/class-accessibility-statement.php:56
 msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
-msgstr "A weboldal akadálymentesítése egy folyamatos folyamat. Folyamatosan teszteljük a tartalmat és a funkciókat a WCAG 2.1 AA szintű megfelelés érdekében, és kijavítjuk a felmerülő problémákat, hogy biztosítsuk a szabványok teljesítését vagy túlteljesítését. Weboldalunk tesztelését csapatunk tagjai végzik olyan iparági szabvány eszközökkel, mint az <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress bővítmény</a>, színkontraszt-elemzők, kizárólag billentyűzettel történő navigációs technikák és Flesch-Kincaid olvashatósági tesztek."
+msgstr "A weboldal akadálymentessége egy folyamatos folyamat. Folyamatosan teszteljük a tartalmat és a funkciókat a WCAG 2.1 AA szintű megfelelés érdekében, és kijavítjuk a problémákat, hogy biztosítsuk a szabványok teljesítését vagy túlteljesítését. Weboldalunk tesztelését csapatunk tagjai végzik iparági szabványoknak megfelelő eszközökkel, mint például az <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress bővítmény</a>, színkontraszt-elemzők, csak billentyűzetes navigációs technikák és Flesch-Kincaid olvashatósági tesztek."
 
 #: admin/class-accessibility-statement.php:57
 msgid "Accessibility Features On Our Website"
@@ -145,9 +145,9 @@ msgstr "Az 1.21.0-s verzióban javítottuk a statisztikai számítások pontoss�
 
 #: admin/class-admin-notices.php:114
 #: admin/class-admin-notices.php:225
-#: admin/class-admin-notices.php:313
-#: admin/class-admin-notices.php:402
-#: admin/class-admin-notices.php:484
+#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:401
+#: admin/class-admin-notices.php:483
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:196
 #: admin/class-ajax.php:561
@@ -159,9 +159,9 @@ msgstr "Hozzáférés megtagadva"
 
 #: admin/class-admin-notices.php:123
 #: admin/class-admin-notices.php:234
-#: admin/class-admin-notices.php:325
-#: admin/class-admin-notices.php:422
-#: admin/class-admin-notices.php:493
+#: admin/class-admin-notices.php:324
+#: admin/class-admin-notices.php:421
+#: admin/class-admin-notices.php:492
 msgid "Update option wasn't successful"
 msgstr "A frissítési opció nem volt sikeres"
 
@@ -171,56 +171,56 @@ msgstr "🎉 Black Friday akció! 🎉"
 
 #: admin/class-admin-notices.php:204
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Frissítsen az Accessibility Checker fizetős verziójára november 25. És december 3. között, és kapjon 30% kedvezményt! Teljes webhelyellenőrzés, webhelyszintű nyitott problémák jelentése, figyelmen kívül hagyási naplók és még sok más."
+msgstr "Frissítsen az Accessibility Checker fizetős verziójára november 25. És december 3. között, és kapjon 30% kedvezményt! Teljes webhely-szkennelés, webhelyszintű nyitott problémák jelentése, figyelmen kívül hagyási naplók és még sok más."
 
 #: admin/class-admin-notices.php:205
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:292
 msgid "Ask a Pre-Sale Question"
 msgstr "Tegyen fel kérdést vásárlás előtt"
 
 #: admin/class-admin-notices.php:206
-#: admin/class-admin-notices.php:294
+#: admin/class-admin-notices.php:293
 msgid "Upgrade Now"
 msgstr "Frissítés most"
 
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:290
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 Kapjon 25% kedvezményt az Accessibility Checker Pro verzióra a Globális Akadálymentesítési Tudatosság Napja alkalmából! 🎉"
+msgstr "🎉 25% kedvezmény az Accessibility Checker Pro-ra a Globális Akadálymentesítési Tudatosság Napja alkalmából! 🎉"
 
-#: admin/class-admin-notices.php:292
+#: admin/class-admin-notices.php:291
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Használja a GAAD25 kuponkódot május 13. És május 21. között, hogy hozzáférjen a teljes webhelyellenőrzéshez és más pro funkciókhoz speciális kedvezménnyel. Nem biztos benne, hogy érdemes frissítenie?"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:376
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
-msgstr "Üdvözöljük! Köszönjük, hogy az Accessibility Checkert használja az akadálymentesítési eszköztára részeként. Mivel már egy ideje használja, kérjük, írjon egy 5 csillagos értékelést az Accessibility Checkerről a WordPress bővítmény könyvtárban. Ez segít növelni a láthatóságunkat, hogy több ember megismerhesse a webes akadálymentesség fontosságát. Nagyon köszönjük!"
+msgstr "Üdvözöljük! Köszönjük, hogy az Accessibility Checkert használja az akadálymentesítési eszköztára részeként. Mivel már egy ideje használja, megírná az Accessibility Checker 5 csillagos értékelését a WordPress bővítmény könyvtárban? Ez segítene növelni a láthatóságunkat, hogy több ember megismerhesse a webes akadálymentesség fontosságát. Nagyon köszönjük!"
 
-#: admin/class-admin-notices.php:380
+#: admin/class-admin-notices.php:379
 msgid "Write A Review"
 msgstr "Értékelés írása"
 
-#: admin/class-admin-notices.php:381
+#: admin/class-admin-notices.php:380
 msgid "Remind Me In Two Weeks"
 msgstr "Emlékeztessen két hét múlva"
 
-#: admin/class-admin-notices.php:382
+#: admin/class-admin-notices.php:381
 msgid "Never Ask Again"
 msgstr "Ne kérdezzen többé"
 
-#: admin/class-admin-notices.php:409
+#: admin/class-admin-notices.php:408
 msgid "The review action value was not set"
 msgstr "Az értékelési művelet értéke nem lett beállítva"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-#: admin/class-admin-notices.php:447
+#: admin/class-admin-notices.php:446
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
-msgstr "Hoppá! Úgy tűnik, a weboldala jelenleg jelszóval védett. Az Accessibility Checker ingyenes verziója csak élő weboldalakat tud ellenőrizni. A webhely akadálymentességi problémáinak ellenőrzéséhez vagy távolítsa el a jelszavas védelmet, vagy %s. Az ellenőrzés eredményei egy korábbi vizsgálatból származhatnak."
+msgstr "Hoppá! Úgy tűnik, a weboldala jelenleg jelszóval védett. Az Accessibility Checker ingyenes verziója csak élő weboldalakat tud szkennelni. Az akadálymentesítési problémák ellenőrzéséhez vagy távolítsa el a jelszavas védelmet, vagy %s. A szkennelési eredmények egy korábbi szkennelésből tárolódhatnak."
 
-#: admin/class-admin-notices.php:450
+#: admin/class-admin-notices.php:449
 msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Frissítés az Accessibility Checker Pro verzióra. Új ablakban nyílik meg."
 
-#: admin/class-admin-notices.php:451
+#: admin/class-admin-notices.php:450
 #: includes/options-page.php:448
 msgid "upgrade to pro"
 msgstr "frissítés pro verzióra"
@@ -463,7 +463,7 @@ msgstr "Kezdje el ellenőrizni teljes webhelyét akadálymentességi problémák
 #: admin/class-welcome-page.php:306
 #: admin/class-widgets.php:67
 msgid "Upgrade Accessibility Checker"
-msgstr "Accessibility Checker frissítése"
+msgstr "Frissítse az Accessibility Checkert"
 
 #: admin/class-widgets.php:63
 msgid "close ad"
@@ -499,7 +499,7 @@ msgstr "A webhelyén akadálymentességi problémák vannak, amelyeket a lehető
 
 #: admin/class-widgets.php:135
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
-msgstr "Remek munka! Az Accessibility Checker nem talált akadálymentességi problémákat a tesztelt tartalomban. Egyes problémákat az automatikus eszközök nem tudnak felismerni, ezért ne felejtse el"
+msgstr "Remek munka! Az Accessibility Checker nem talált akadálymentesítési problémákat a tesztelt tartalomban. Néhány probléma nem található meg automatizált eszközökkel, ezért ne felejtsen el"
 
 #: admin/class-widgets.php:135
 msgid "manually test your site"
@@ -558,37 +558,37 @@ msgstr "Dokumentáció (új ablakban nyílik meg)"
 msgid "Documentation"
 msgstr "Dokumentáció"
 
-#: admin/opt-in/class-email-opt-in.php:114
+#: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
 msgstr "Akadálymentességi események és hírek a postaládájában"
 
-#: admin/opt-in/class-email-opt-in.php:120
+#: admin/opt-in/class-email-opt-in.php:121
 msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
-msgstr "Iratkozzon fel az Equalize Digital e-mail listájára, hogy hozzáférjen ingyenes akadálymentességi webináriumokhoz és oktatási forrásokhoz."
+msgstr "Iratkozzon fel az Equalize Digital e-mail listájára, hogy hozzáférjen ingyenes akadálymentesítési webináriumokhoz és képzési anyagokhoz."
 
-#: admin/opt-in/class-email-opt-in.php:126
+#: admin/opt-in/class-email-opt-in.php:127
 msgid "Email*"
 msgstr "E-mail*"
 
-#: admin/opt-in/class-email-opt-in.php:130
+#: admin/opt-in/class-email-opt-in.php:131
 msgid "Type your email"
 msgstr "Írja be az e-mail címét"
 
-#: admin/opt-in/class-email-opt-in.php:138
+#: admin/opt-in/class-email-opt-in.php:139
 msgid "First Name"
 msgstr "Keresztnév"
 
-#: admin/opt-in/class-email-opt-in.php:142
+#: admin/opt-in/class-email-opt-in.php:143
 msgid "Type your first name"
 msgstr "Írja be a keresztnevét"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
-msgstr "Accessibility Checker &mdash; ellenőrzési előzmények"
+msgstr "Accessibility Checker &mdash; Ellenőrzési előzmények"
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
-msgstr "Accessibility Checker &mdash; ingyenes"
+msgstr "Accessibility Checker &mdash; Ingyenes"
 
 #: admin/site-health/class-free.php:49
 #: admin/site-health/class-pro.php:50
@@ -672,7 +672,7 @@ msgstr "Adatbázistábla-szám"
 
 #: admin/site-health/class-pro.php:47
 msgid "Accessibility Checker &mdash; Pro"
-msgstr "Accessibility Checker &mdash; pro"
+msgstr "Accessibility Checker &mdash; Pro"
 
 #: admin/site-health/class-pro.php:58
 msgid "License Status"
@@ -717,7 +717,7 @@ msgstr "A %1$s használja a %2$s-t weboldalunk akadálymentességének figyelés
 
 #: includes/classes/class-accessibility-statement.php:49
 msgid "Accessibility Checker (opens in a new window)"
-msgstr "Akadálymentességi ellenőrző (új ablakban nyílik meg)"
+msgstr "Accessibility Checker (új ablakban nyílik meg)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
 #: includes/classes/class-accessibility-statement.php:58
@@ -1069,11 +1069,11 @@ msgstr "Tabindex eltávolítása"
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "A %1$s attribútum eltávolítása a fókuszálható elemekről."
 
-#: includes/classes/Fixes/FixesManager.php:240
+#: includes/classes/Fixes/FixesManager.php:241
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Megjegyzés: Ez a beállítás nem ajánlott olyan témákhoz, amelyek már akadálymentesítésre készek."
 
-#: includes/classes/Fixes/FixesManager.php:293
+#: includes/classes/Fixes/FixesManager.php:294
 msgid "Fix not found"
 msgstr "A javítás nem található"
 
@@ -1145,11 +1145,11 @@ msgstr "Ingyenes részvétel"
 
 #: includes/options-page.php:42
 msgid "Welcome to Accessibility Checker"
-msgstr "Üdvözöljük az akadálymentességi ellenőrzőben"
+msgstr "Üdvözöljük az Accessibility Checkerben"
 
 #: includes/options-page.php:65
 msgid "Accessibility Checker Settings"
-msgstr "Akadálymentességi ellenőrző beállításai"
+msgstr "Accessibility Checker beállítások"
 
 #: includes/options-page.php:66
 msgid "Settings"
@@ -1169,7 +1169,7 @@ msgstr "Láblécben megjelenő akadálymentességi nyilatkozat"
 
 #: includes/options-page.php:120
 msgid "Frontend Accessibility Checker"
-msgstr "Frontend akadálymentességi ellenőrző"
+msgstr "Frontend Accessibility Checker"
 
 #: includes/options-page.php:128
 msgid "Post Types To Be Checked"
@@ -1203,12 +1203,12 @@ msgstr "Akadálymentességi nyilatkozat előnézete"
 
 #: includes/options-page.php:200
 msgid "Frontend Accessibility Checker Position"
-msgstr "Frontend akadálymentességi ellenőrző pozíciója"
+msgstr "Frontend Accessibility Checker pozíciója"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
-msgstr "Az alábbi beállításokkal konfigurálhatja az Akadálymentességi Ellenőrzőt. További információk az egyes beállításokról a %1$s találhatók."
+msgstr "Az alábbi beállításokkal konfigurálhatja az Accessibility Checkert. További információk az egyes beállításokról a %1$s találhatók."
 
 #: includes/options-page.php:245
 msgid "plugin documentation (opens in a new window)"
@@ -1225,12 +1225,12 @@ msgstr "További funkciók és e-mail támogatás %1$s esetén érhető el."
 
 #: includes/options-page.php:252
 msgid "Accessibility Checker Pro (opens in a new window)"
-msgstr "Akadálymentesítés-ellenőrző Pro (új ablakban nyílik meg)"
+msgstr "Accessibility Checker Pro (új ablakban nyílik meg)"
 
 #: includes/options-page.php:252
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
-msgstr "Akadálymentesítés-ellenőrző pro"
+msgstr "Accessibility Checker Pro"
 
 #: includes/options-page.php:266
 msgid "Use the settings below to configure the frontend accessibility checker."
@@ -1238,7 +1238,7 @@ msgstr "Az alábbi beállításokkal konfigurálhatja a frontend akadálymentes�
 
 #: includes/options-page.php:276
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
-msgstr "A Web Akadálymentesítési Irányelvek (WCAG) AAA szintjén minden olyan tartalom esetében, amelynek olvasási szintje meghaladja a 9. Osztályos szintet, könnyen érthető alternatívát kell biztosítani. Az egyszerűsített összefoglaló szövegét az Akadálymentesítés-ellenőrző meta dobozában lévő olvashatósági fülön lehet hozzáadni minden bejegyzés vagy oldal szerkesztési képernyőjén."
+msgstr "A Web Akadálymentesítési Útmutató (WCAG) AAA szintje megköveteli, hogy minden olyan tartalom, amelynek olvasási szintje meghaladja a 9. Osztályos szintet, rendelkezzen egy könnyebben olvasható alternatívával. Az egyszerűsített összefoglaló szöveg az Accessibility Checker metadoboz olvashatósági fülén adható hozzá minden bejegyzés vagy oldal szerkesztési képernyőjén."
 
 #: includes/options-page.php:277
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
@@ -1250,7 +1250,7 @@ msgstr "További információ az egyszerűsített összefoglalókról és az olv
 
 #: includes/options-page.php:286
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
-msgstr "Arra gondol, hogy „Hű, ez a bővítmény fantasztikus”, és segít Önnek abban, hogy a webhelye akadálymentesebb legyen? Ossza meg az ügyfelekkel az akadálymentesítési erőfeszítéseit, és tudassa velük, hogy az Akadálymentesítés-ellenőrzőt használja annak biztosítására, hogy mindenki használhassa a weboldalát. Adjon hozzá egy rövid, csak szöveges linket és nyilatkozatot a webhelye láblécéhez."
+msgstr "Arra gondol, hogy „Hű, ez a bővítmény fantasztikus”, és segít Önnek a weboldala akadálymentesítésében? Ossza meg erőfeszítéseit az ügyfelekkel, és tudassa velük, hogy az Accessibility Checkert használja annak biztosítására, hogy minden ember használhassa a weboldalát. Adjon hozzá egy kis, csak szöveges linket és nyilatkozatot a weboldala láblécében."
 
 #: includes/options-page.php:299
 msgid "Before the content"
@@ -1298,7 +1298,7 @@ msgstr "Mindig"
 
 #: includes/options-page.php:395
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
-msgstr "Az Akadálymentesítés-ellenőrző csak akkor kérjen egyszerűsített összefoglalót, ha a bejegyzés vagy oldal olvasási szintje meghaladja a 9. osztályos szintet, mindig kérje függetlenül az olvasási szinttől, vagy soha ne kérje függetlenül az olvasási szinttől?"
+msgstr "Az Accessibility Checker csak akkor kérjen egyszerűsített összefoglalót, ha a bejegyzés vagy oldal olvasási szintje meghaladja a 9. osztályos szintet, vagy mindig kérje függetlenül az olvasási szinttől, vagy soha ne kérje függetlenül az olvasási szinttől?"
 
 #: includes/options-page.php:446
 msgid "To check content other than posts and pages, please "
@@ -1314,7 +1314,7 @@ msgstr "Válassza ki, mely bejegyzéstípusokat kell ellenőrizni a vizsgálat s
 
 #: includes/options-page.php:592
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
-msgstr "Az Akadálymentesítés-ellenőrző összes adatának törlése a bővítmény eltávolításakor."
+msgstr "Törölje az összes Accessibility Checker adatot a bővítmény eltávolításakor."
 
 #: includes/rules.php:21
 msgid "Image Missing Alternative Text"
@@ -1409,7 +1409,7 @@ msgstr "Sorkizárt szöveg"
 
 #: includes/rules.php:144
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
-msgstr "Egy Sorkizárt szöveg figyelmeztetés jelenik meg az Akadálymentesség-ellenőrzőben, amikor a bejegyzésében vagy oldalán lévő, 200 karakternél hosszabb szöveg sorkizárt igazítással (text-align:justify) van formázva. A figyelmeztetés kijavításához távolítsa el a sorkizárt formázást a megadott szövegelemekről."
+msgstr "Szöveg sorkizárás figyelmeztetés jelenik meg az Accessibility Checkerben, amikor a bejegyzésében vagy oldalán 200 karakternél hosszabb szöveg sorkizárt igazítással (text-align:justify) van formázva. A figyelmeztetés javításához távolítsa el a sorkizárt formázást a megadott szövegelemekből."
 
 #: includes/rules.php:148
 msgid "Link Opens New Window or Tab"
@@ -1696,7 +1696,7 @@ msgstr "Az Accessibility New Window Warnings bővítmény telepítve van. Az itt
 
 #: partials/custom-meta-box.php:10
 msgid "Accessibility Checker issues panels"
-msgstr "Accessibility Checker probléma panelek"
+msgstr "Accessibility Checker problémapanelek"
 
 #: partials/custom-meta-box.php:21
 msgid "Summary"
@@ -1727,7 +1727,7 @@ msgstr "Equalize Digital logó"
 #: partials/pro-callout.php:16
 #: partials/welcome-page.php:197
 msgid "Upgrade to Accessibility Checker Pro"
-msgstr "Frissítés Accessibility Checker Pro verzióra"
+msgstr "Frissítés Accessibility Checker Pro-ra"
 
 #: partials/pro-callout.php:20
 #: partials/welcome-page.php:200
@@ -1772,7 +1772,7 @@ msgstr "...és még több"
 #: partials/pro-callout.php:36
 #: partials/welcome-page.php:212
 msgid "Get Accessibility Checker Pro"
-msgstr "Szerezze be az Accessibility Checker Pro verziót"
+msgstr "Szerezze be az Accessibility Checker Pro-t"
 
 #: partials/pro-callout.php:46
 #: partials/welcome-page.php:220
@@ -1789,7 +1789,7 @@ msgstr "verzió"
 
 #: partials/welcome-page.php:40
 msgid "Link to Equalize Digital Website"
-msgstr "Hivatkozás az Equalize Digital weboldalára"
+msgstr "Link az Equalize Digital weboldalára"
 
 #: partials/welcome-page.php:49
 msgid "Quick Start Guide"
@@ -1810,11 +1810,11 @@ msgstr "Menjen a szerkeszteni kívánt bejegyzés szerkesztési képernyőjére.
 
 #: partials/welcome-page.php:65
 msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
-msgstr "Keresse meg az Accessibility Checker meta dobozt a tartalom alatt. Ha front-end oldal szerkesztőt használ, a háttérrendszer szerkesztési képernyőjére kell lépnie az Accessibility Checker eredményeinek megtekintéséhez."
+msgstr "Keresse meg az Accessibility Checker metadobozt a tartalom alatt. Ha frontend oldalszerkesztőt használ, látogasson el a backend szerkesztési képernyőre az Accessibility Checker eredményeinek megtekintéséhez."
 
 #: partials/welcome-page.php:66
 msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
-msgstr "Ha hibák vagy figyelmeztetések vannak a bejegyzésben, nyissa meg a részletek fület az Accessibility Checkerben további információkért."
+msgstr "Ha hibák vagy figyelmeztetések vannak jelen a bejegyzésben, nyissa meg a részletek fület az Accessibility Checkerben további információkért."
 
 #: partials/welcome-page.php:67
 msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
@@ -1874,7 +1874,7 @@ msgstr "Mit tegyen, ha akadálymentességi hibák vannak a témájában"
 
 #: partials/welcome-page.php:109
 msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
-msgstr "Felbérelhetem az Equalize Digital-t a webhelyem akadálymentességi problémáinak javítására?"
+msgstr "Felbérelhetem az Equalize Digital-t, hogy kijavítsa a weboldalamon lévő akadálymentesítési problémákat?"
 
 #: partials/welcome-page.php:114
 msgid "Additional Resources for Learning About Accessibility"
@@ -1948,7 +1948,7 @@ msgstr "Mentés..."
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
-msgstr "Beállítások sikeresen mentve. %sLátogassa meg a szerkesztőt%s és mentse el a bejegyzést az újraellenőrzéshez és a javított problémák eltávolításához az Accessibility Checker jelentéseiből."
+msgstr "A beállítások sikeresen mentve. Az Accessibility Checker jelentésekben szereplő javított problémák újraellenőrzéséhez és eltávolításához %smeg kell látogatnia a szerkesztőt%s, és mentenie kell a bejegyzést."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
@@ -1980,6 +1980,10 @@ msgstr "Problémák sikeresen törölve."
 #: build/editorApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Nem sikerült törölni a problémákat."
+
+#: build/editorApp.bundle.js:2
+msgid "An error occurred while clearing issues."
+msgstr "Hiba történt a problémák törlése közben."
 
 #: build/emailOptIn.bundle.js:2
 msgid "There was a problem. Please try again."
