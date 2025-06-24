@@ -7,6 +7,29 @@
 
 use EDAC\Admin\Welcome_Page;
 
+/**
+ * Inline helper to generate links with UTM parameters for the welcome page.
+ *
+ * @param string $base_url the url to add utms to.
+ * @param string $content the content to add to the utm_content parameter.
+ *
+ * @return void
+ */
+function welcome_page_link_generator( $base_url, $content = '' ) {
+	$params = [
+		'utm_campaign' => 'welcome-page',
+	];
+	if ( ! empty( $content ) ) {
+		$params['utm_content'] = $content;
+	}
+	echo esc_url(
+		edac_generate_link_type(
+			$params,
+			'custom',
+			[ 'base_url' => $base_url ]
+		)
+	);
+}
 ?>
 
 <div class="wrap edac-welcome-container">
