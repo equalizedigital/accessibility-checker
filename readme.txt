@@ -211,6 +211,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+= 1.26.0 =
+* Enhanced: Better translation handling across the plugin.
+
 = 1.25.0 =
 * Added: Ability to scan the main posts archive (blog page).
 * Enhanced: Improved the Anchor Exists rule to handle more situations.
