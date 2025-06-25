@@ -1,5 +1,4 @@
 import { __ } from '@wordpress/i18n';
-
 export const inlineFixesProUpsell = () => {
 	// find elements with 'edac-fix--upsell' class
 	const upsellElements = document.querySelectorAll( '.edac-fix--upsell' );

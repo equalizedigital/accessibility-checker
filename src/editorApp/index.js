@@ -1,7 +1,7 @@
 /* global edac_editor_app */
 
 import { init as initCheckPage } from './checkPage';
-import { __ } from '@wordpress/i18n';
+const { __ } = wp.i18n;
 
 window.addEventListener( 'DOMContentLoaded', () => {
 	// eslint-disable-next-line camelcase
