@@ -1,6 +1,6 @@
 <?php
 /**
- * Accessibility Checker pluign file.
+ * Accessibility Checker plugin file.
  *
  * @package Accessibility_Checker
  */
