@@ -380,7 +380,10 @@ class REST_Api {
 						 */
 						do_action( 'edac_before_rule', $post_id, $actual_rule_id, 'js' );
 
-						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html );
+						$landmark          = isset( $violation['landmark'] ) ? $violation['landmark'] : null;
+						$landmark_selector = isset( $violation['landmarkSelector'] ) ? $violation['landmarkSelector'] : null;
+
+						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html, $landmark, $landmark_selector );
 
 						/**
 						 * Fires after a rule is run against the content.
