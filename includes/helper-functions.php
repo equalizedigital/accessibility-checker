@@ -651,7 +651,7 @@ function edac_simple_utm_link_wrapper( $base_url, $campaign = '', $content = '',
 	$link = edac_generate_link_type(
 		$params,
 		'custom',
-		[ 'base_url' => $base_url ]
+		[ 'base_link' => $base_url ]
 	);
 
 	if ( ! $directly_echo ) {
