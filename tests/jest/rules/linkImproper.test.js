@@ -115,6 +115,11 @@ describe( 'Link Improper Rule', () => {
 				element.setAttribute( 'aria-hidden', 'true' );
 			},
 		},
+		{
+			name: 'Passes with role="tab"',
+			html: '<a href="#" role="tab">Link with role of tab</a>',
+			shouldPass: true,
+		},
 	] )( '$name', async ( { html, shouldPass, setup } ) => {
 		document.body.innerHTML = html;
 
