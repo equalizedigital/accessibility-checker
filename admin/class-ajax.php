@@ -165,8 +165,22 @@ class Ajax {
 				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>
-		<div id="edac-summary-disclaimer" class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
 		';
+
+		$html['content'] .= '<div class="edac-summary-disclaimer" id="edac-summary-disclaimer"><small>' . PHP_EOL;
+		$html['content'] .= sprintf(
+			'* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s.',
+			'<a href="' . edac_generate_link_type(
+				[
+					'utm_campaign' => 'dashboard-widget',
+					'utm_content'  => 'how-to-manually-check',
+				],
+				'help',
+				[ 'help_id' => 4280 ]
+			) . '">',
+			'</a>'
+		) . PHP_EOL;
+		$html['content'] .= '</small></div>' . PHP_EOL;
 
 		if ( ! $html ) {
 

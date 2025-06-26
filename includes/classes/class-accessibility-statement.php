@@ -35,7 +35,7 @@ class Accessibility_Statement {
 		$add_footer_statement   = get_option( 'edac_add_footer_accessibility_statement' );
 		$include_statement_link = get_option( 'edac_include_accessibility_statement_link' );
 		$policy_page            = get_option( 'edac_accessibility_policy_page' );
-		$policy_page            = is_numeric( $policy_page ) 
+		$policy_page            = is_numeric( $policy_page )
 			? get_page_link( $policy_page )
 			: $policy_page;
 
@@ -44,8 +44,9 @@ class Accessibility_Statement {
 				// translators: %1$s is the site name, %2$s is a link with the plugin name.
 				esc_html__( '%1$s uses %2$s to monitor our website\'s accessibility.', 'accessibility-checker' ),
 				get_bloginfo( 'name' ),
+				// The link below intentionally doesn't use the utm helper links because we want to pair down the utms to just these.
 				sprintf(
-					'<a href="https://equalizedigital.com/accessibility-checker" target="_blank" aria-label="%1$s">%2$s</a>',
+					'<a href="https://equalizedigital.com/accessibility-checker?utm_source=accessibility-checker&utm_medium=software&utm_campaign=wordpress-general" target="_blank" aria-label="%1$s">%2$s</a>',
 					esc_attr__( 'Accessibility Checker (opens in a new window)', 'accessibility-checker' ),
 					esc_html__( 'Accessibility Checker', 'accessibility-checker' )
 				)

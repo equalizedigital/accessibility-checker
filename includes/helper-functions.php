@@ -1,6 +1,6 @@
 <?php
 /**
- * Accessibility Checker pluign file.
+ * Accessibility Checker plugin file.
  *
  * @package Accessibility_Checker
  */
@@ -623,6 +623,45 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 }
 
 /**
+ * Echo a link with some utms.
+ *
+ * This is just a simplified wrapper around `edac_generate_link_type` to generate a link with UTM parameters.
+ *
+ * @param string $base_url the base URL to which UTM parameters will be added.
+ * @param string $campaign the UTM campaign name, optional.
+ * @param string $content the UTM content name, optional.
+ * @param bool   $directly_echo whether to echo the link or return it. Default is true.
+ *
+ * @return void|string
+ */
+function edac_simple_utm_link_wrapper( $base_url, $campaign = '', $content = '', $directly_echo = true ) {
+	if ( empty( $base_url ) || ! is_string( $base_url ) ) {
+		return;
+	}
+
+	$params = [];
+	if ( ! empty( $campaign ) ) {
+		$params['utm_campaign'] = $campaign;
+	}
+
+	if ( ! empty( $content ) ) {
+		$params['utm_content'] = $content;
+	}
+
+	$link = edac_generate_link_type(
+		$params,
+		'custom',
+		[ 'base_link' => $base_url ]
+	);
+
+	if ( ! $directly_echo ) {
+		return $link;
+	}
+
+	echo esc_url( $link );
+}
+
+/**
  * Check if WooCommerce is enabled.
  *
  * This just checks for existence of the main WooCommerce function and class.
@@ -649,7 +688,7 @@ function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
 
 /**
  * Parse HTML content to extract image or SVG elements
- * 
+ *
  * @param string $html The HTML content to parse.
  * @return array Array containing 'img' (string) and 'svg' (string) keys.
  */
