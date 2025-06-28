@@ -284,7 +284,10 @@ class Scans_Stats {
 			$data['posts_without_issues'] = $wpdb->get_var( $posts_without_issues ) + $wpdb->get_var( $posts_with_just_ignored_issues );
 			$data['avg_issues_per_post']  = round( ( $data['warnings'] + $data['errors'] ) / $data['posts_scanned'], 2 );
 
-			if ( $data['avg_issues_per_post'] < 1 && 0 !== $data['avg_issues_per_post'] ) {
+			// If there are no issues at all, show 0. If there are issues but average is less than 1, show "< 1".
+			if ( 0 === $data['warnings'] && 0 === $data['errors'] ) {
+				$data['avg_issues_per_post'] = 0;
+			} elseif ( $data['avg_issues_per_post'] < 1 && 0 !== $data['avg_issues_per_post'] ) {
 				$data['avg_issues_per_post'] = '< 1';
 			}
 		}
