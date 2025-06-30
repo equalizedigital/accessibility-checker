@@ -30,7 +30,16 @@
 	<div class="edac-pro-callout-button--wrapper">
 		<a
 			class="edac-pro-callout-button"
-			href="https://equalizedigital.com/accessibility-checker/pricing/"
+			href="
+			<?php
+			edac_generate_link_type(
+				[
+					'utm-campaign' => 'pro-callout',
+					'utm-content'  => 'get-pro',
+				] 
+			);
+			?>
+			"
 			target="_blank"
 		>
 			<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?>

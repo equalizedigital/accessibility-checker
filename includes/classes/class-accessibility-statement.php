@@ -44,7 +44,7 @@ class Accessibility_Statement {
 				// translators: %1$s is the site name, %2$s is a link with the plugin name.
 				esc_html__( '%1$s uses %2$s to monitor our website\'s accessibility.', 'accessibility-checker' ),
 				get_bloginfo( 'name' ),
-				// The link below intentionally doesn't use the utm helper links because we want to pair down the utms to just these.
+				// The link below intentionally doesn't use the utm helper links because it appears on the frontend, we only want a reduced set.
 				sprintf(
 					'<a href="https://equalizedigital.com/accessibility-checker?utm_source=accessibility-checker&utm_medium=software&utm_campaign=wordpress-general" target="_blank" aria-label="%1$s">%2$s</a>',
 					esc_attr__( 'Accessibility Checker (opens in a new window)', 'accessibility-checker' ),
