@@ -9,7 +9,6 @@
 	<exclude-pattern>./dist/</exclude-pattern>
 	<exclude-pattern>./vendor/</exclude-pattern>
 	<exclude-pattern>./node_modules/</exclude-pattern>
-	<exclude-pattern>./.wp-env/</exclude-pattern>
 	<exclude-pattern>./update-composer-config.php</exclude-pattern>
 
 	<!-- Scan only PHP files -->
