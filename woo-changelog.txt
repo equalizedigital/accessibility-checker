@@ -1,0 +1,180 @@
+= 1.26.0 - 2025-06-30 =
+* Tweak - Enhanced: Better translation handling across the plugin.
+
+= 1.25.0 - 2025-05-28 =
+* Add - Ability to scan the main posts archive (blog page).
+* Tweak - Improved the Anchor Exists rule to handle more situations.
+* Fix - Avoid console error for clear button on CPTs that are not scannable.
+
+= 1.24.0 - 2025-04-24 =
+* Add - Translations for 33 languages.
+* Tweak - Handle Elementor buttons better in the new warnings fix.
+* Fix - Several typo and grammar issues corrected in the plugin.
+* Fix - Signup modal now works in Firefox under more conditions.
+* Fix - Make sure that translations in JS files can be detected.
+
+= 1.23.1 - 2025-03-27 =
+* Remove - Remove the str_get_html fallback shim.
+
+= 1.23.0 - 2025-03-13 =
+* Add - Jest testing framework for accessibility rules with test case generation.
+* Tweak - Added fallback for str_get_html() with deprecation notice.
+* Tweak - Added density calculation capability in JS scanner.
+* Remove - Legacy PHP scan code.
+* Remove - PHP Simple HTML DOM Parser.
+* Dev - Converted multiple rules to JS for improved performance and compatibility.
+
+= 1.22.2 - 2025-02-15 =
+* Tweak - Announce Global Accessibility Awareness Day in the admin during that week.
+
+= 1.22.1 - 2025-02-06 =
+* Tweak - Make the skip-link fix handle sites with forced smooth scroll.
+* Tweak - Make the zooming and scaling handle additional ways the tag can block scaling.
+* Fix - Swap to graphql for getting meetup data for display in the admin.
+
+= 1.22.0 - 2025-01-30 =
+* Tweak - Improve the new window warning migration to handle more edge cases.
+* Fix - Avoid checking theme Tags when theme sandbox recovery is in play.
+* Fix - When parsing block content for scanning avoid stomping on post_content of a global.
+
+= 1.21.0 - 2024-12-19 =
+* Tweak - Improve how density statistics are counted. You will see a notice about this change on the welcome page.
+* Fix - Ensure that the scanned posts counts are accurate to all posts scanned, not just ones that have issues.
+* Fix - Properly count posts that are scanned but have no issues to remediate.
+
+= 1.20.0 - 2024-11-14 =
+* Tweak - Process dynamic blocks and oEmbeds more reliably in scans.
+* Tweak - Improve detection for missing_transcripts if there are several oEmbed videos from same provider on page.
+* Fix - Ensure notice dismiss function works correctly on all pages and that review notice buttons are styled.
+* Fix - Correct some cases where pluralization of phrases could be misapplied.
+
+= 1.19.0 - 2024-10-10 =
+* Tweak - Improve the text_size_too_small check in scanner to avoid more false positives.
+* Fix - Ensure that our notifications can appear on our own admin pages.
+* Fix - No longer trigger password protected notice on other pages when scanning woocommerse checkout page.
+
+= 1.18.0 - 2024-09-12 =
+* Add - A new fix for adding a new tab/window warning to links with target="_blank".
+* Tweak - Allow cache bypass from stats requests to force latest numbers.
+* Tweak - Make a clear-issues endpoint more usable in different situations.
+* Remove - Removed some code that was trying to force no notifications on the plugin pages.
+
+= 1.17.0 - 2024-08-15 =
+* Add - A new fix for adding a new tab/window warning to links with target="_blank".
+* Add - REST endpoint to retrieve a site scan summary.
+* Tweak - Ensure frontend highlighter can load even when Cloudflare Rocket Loader is enabled.
+* Tweak - Only show ignore button when user can ignore issues.
+* Fix - URLs without issues would always output `0` when viewed on welcome widget.
+
+= 1.16.4 - 2024-07-18 =
+* Tweak - Improve the table header detection and validation for row headers.
+* Tweak - Show notice on fixes settings when they are saved from options page.
+* Fix - Don't check for possible header if there is no text content.
+* Fix - Multisite query fix to make sure issues are assigned correct site id.
+* Fix - Correct where a scan link points.
+
+= 1.16.3 - 2024-06-20 =
+* Add - Fix settings to site health info panels.
+* Fix - Corrected a string that was misplaced in a fix.
+
+= 1.16.2 - 2024-05-23 =
+* Tweak - Use better names for fix modal titles.
+* Tweak - Improve the link_pdf rule to detect more accurately.
+* Tweak - Improve the link_ms_office_doc rule to detect more accurately.
+* Fix - Rely on labels for link_ambiguous_text rule first before checking just the text content.
+* Fix - Remove a duplicatable rule empty_form_label.
+
+= 1.16.1 - 2024-04-25 =
+* Fix - Remove redundant empty_form_label rule definition.
+
+= 1.16.0 - 2024-03-28 =
+* Add - Introduced a system to handle automated fixes for issues that the scanner would discover.
+* Add - Fix to remove or update bad tabindex values on elements.
+* Add - Fix to remove title attributes in favor of preferred accessible names to elements.
+* Add - Fix to add missing lang and dir attributes to the <html> element.
+* Add - Fix to add skip links to pages where they are missing.
+* Add - Fix to add labels to comment and search forms.
+* Add - Fix to ensure that the meta viewport tag does not prevent user scaling or zooming.
+* Add - Fix to ensure that focus outlines are present on focusable elements.
+* Tweak - Improve the tabindex_modified check to handle every element with tabindex.
+* Tweak - Improve the link_blank rule to check on fully rendered pages.
+* Tweak - Improve the link_ambiguous_text rule to check on fully rendered pages.
+* Tweak - Improve the broken_skip_anchor_link rule to check on fully rendered pages.
+
+= 1.15.0 - 2024-02-29 =
+* Add - Option to ignore issues by user role.
+* Tweak - Improved performance for large sites.
+* Fix - Corrected issue with scan scheduling on multisite.
+
+= 1.14.0 - 2024-01-25 =
+* Add - Bulk scan improvements for custom post types.
+* Tweak - Updated accessibility rules for WCAG 2.2.
+* Fix - Fixed error with admin notices on plugin activation.
+
+= 1.13.0 - 2023-12-21 =
+* Add - New dashboard widget for scan summaries.
+* Tweak - Enhanced compatibility with WordPress 6.4.
+* Fix - Fixed bug with scan results not saving on draft posts.
+
+= 1.12.0 - 2023-11-16 =
+* Add - Option to export scan results to CSV.
+* Tweak - Improved error messages for failed scans.
+* Fix - Fixed issue with scan button not appearing for some users.
+
+= 1.11.0 - 2023-10-19 =
+* Add - Support for additional languages in plugin interface.
+* Tweak - Improved scan speed for large content sites.
+* Fix - Fixed bug with accessibility statement generation.
+
+= 1.10.0 - 2023-09-21 =
+* Add - New rules for ARIA attributes.
+* Tweak - Updated plugin settings UI for clarity.
+* Fix - Fixed issue with plugin deactivation not cleaning up options.
+
+= 1.9.0 - 2023-08-17 =
+* Add - Option to schedule scans.
+* Tweak - Improved scan accuracy for custom blocks.
+* Fix - Fixed bug with scan results display in admin.
+
+= 1.8.0 - 2023-07-20 =
+* Add - Integration with third-party accessibility tools.
+* Tweak - Improved scan result filtering.
+* Fix - Fixed error with scan summary widget.
+
+= 1.7.0 - 2023-06-22 =
+* Add - Option to ignore specific rules per post.
+* Tweak - Improved compatibility with WooCommerce product pages.
+* Fix - Fixed bug with scan scheduling on multisite.
+
+= 1.6.0 - 2023-05-18 =
+* Add - New onboarding wizard for setup.
+* Tweak - Improved help documentation links.
+* Fix - Fixed error with scan results export.
+
+= 1.5.0 - 2023-04-20 =
+* Add - Option to enable/disable specific rules.
+* Tweak - Improved scan result UI.
+* Fix - Fixed bug with scan results not updating after post save.
+
+= 1.4.0 - 2023-03-16 =
+* Add - Support for multisite network settings.
+* Tweak - Improved scan accuracy for media attachments.
+* Fix - Fixed error with scan scheduling on network sites.
+
+= 1.3.0 - 2023-02-16 =
+* Add - Option to export accessibility statement.
+* Tweak - Improved scan result sorting.
+* Fix - Fixed bug with scan results not displaying for some users.
+
+= 1.2.0 - 2023-01-19 =
+* Add - New rules for color contrast.
+* Tweak - Improved scan performance for large sites.
+* Fix - Fixed error with scan results export.
+
+= 1.1.0 - 2022-12-15 =
+* Add - Option to schedule recurring scans.
+* Tweak - Improved scan result UI for accessibility.
+* Fix - Fixed bug with scan results not saving on draft posts.
+
+= 1.0.0 - 2022-11-17 =
+* Initial release.
