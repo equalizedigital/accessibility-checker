@@ -254,9 +254,7 @@ function edac_general_cb() {
 					[
 						'utm_campaign' => 'settings-page',
 						'utm_content'  => 'features-and-support',
-					],
-					'pro',
-					[ 'base_link' => 'https://equalizedigital.com/accessibility-checker/pricing/' ]
+					]
 				)
 			) . '" target="_blank" aria-label="' . esc_attr__( 'Accessibility Checker Pro (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'Accessibility Checker Pro', 'accessibility-checker' ) . '</a>'
 		);
