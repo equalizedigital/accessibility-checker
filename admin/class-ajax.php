@@ -336,7 +336,7 @@ class Ajax {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 				$expand_rule = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A ) );
 
-				$tool_tip_link = edac_simple_utm_link_wrapper( $rule['info_url'], 'frontend-highlighter', $rule['slug'], false );
+				$tool_tip_link = edac_link_wrapper( $rule['info_url'], 'frontend-highlighter', $rule['slug'], false );
 
 				$html .= '<div class="edac-details-rule">';
 
@@ -685,7 +685,7 @@ class Ajax {
 			</form>';
 		}
 
-		$html .= '<span class="dashicons dashicons-info"></span><a href="' . esc_url( edac_simple_utm_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
+		$html .= '<span class="dashicons dashicons-info"></span><a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
 
 		if ( ! $html ) {
 

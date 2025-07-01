@@ -133,7 +133,7 @@ class Widgets {
 			</div>
 			';
 
-				$manually_check_link = edac_simple_utm_link_wrapper(
+				$manually_check_link = edac_link_wrapper(
 					'https://equalizedigital.com/accessibility-checker/how-to-manually-check-your-website-for-accessibility/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget',
 					'dashboard-widget',
 					'how-to-manually-check',
@@ -292,13 +292,13 @@ class Widgets {
 		<hr class="edac-hr" />
 		<div class="edac-widget-footer-link-list">';
 
-		$blog_link = edac_simple_utm_link_wrapper(
+		$blog_link = edac_link_wrapper(
 			'https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget',
 			'dashboard-widget',
 			'blog',
 			false
 		);
-		$docs_link = edac_simple_utm_link_wrapper(
+		$docs_link = edac_link_wrapper(
 			'https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget',
 			'dashboard-widget',
 			'docs',

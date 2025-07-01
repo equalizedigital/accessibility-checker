@@ -591,7 +591,7 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 }
 
 /**
- * Echo a link with some utms.
+ * Echo or return a link with some utms.
  *
  * This is just a simplified wrapper around `edac_generate_link_type` to generate a link with UTM parameters.
  *
@@ -602,7 +602,7 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
  *
  * @return void|string
  */
-function edac_simple_utm_link_wrapper( $base_url, $campaign = '', $content = '', $directly_echo = true ) {
+function edac_link_wrapper( $base_url, $campaign = '', $content = '', $directly_echo = true ) {
 	if ( empty( $base_url ) || ! is_string( $base_url ) ) {
 		return;
 	}
