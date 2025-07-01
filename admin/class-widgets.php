@@ -293,13 +293,13 @@ class Widgets {
 		<div class="edac-widget-footer-link-list">';
 
 		$blog_link = edac_link_wrapper(
-			'https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget',
+			'https://equalizedigital.com/resources/',
 			'dashboard-widget',
 			'blog',
 			false
 		);
 		$docs_link = edac_link_wrapper(
-			'https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget',
+			'https://equalizedigital.com/accessibility-checker/documentation/',
 			'dashboard-widget',
 			'docs',
 			false
