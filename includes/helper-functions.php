@@ -555,6 +555,14 @@ function edac_generate_summary_stat( string $item_class, int $count, string $lab
  */
 function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ): string {
 
+	if ( ! is_array( $query_args ) ) {
+		$query_args = [];
+	}
+
+	if ( ! is_array( $args ) ) {
+		$args = [];
+	}
+
 	$date_now        = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
 	$activation_date = new DateTime( get_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s' ) ) );
 	$interval        = $date_now->diff( $activation_date );
