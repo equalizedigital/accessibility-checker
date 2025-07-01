@@ -88,7 +88,7 @@ class Admin_Notices {
 		<div class="notice notice-info is-dismissible edac-stats-improvement-notice">
 			<p>
 				<?php
-					$release_post_link = edac_generate_link_type( [], 'custom', [ 'base_link' => 'https://equalizedigital.com/corrected-calculations-in-accessibility-checker-pro-and-audit-history/' ] );
+					$release_post_link = edac_simple_utm_link_wrapper( 'https://equalizedigital.com/corrected-calculations-in-accessibility-checker-pro-and-audit-history/', 'admin-notice', 'stats-improvement', false );
 					printf(
 						// translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 						esc_html__( 'We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s.', 'accessibility-checker' ),
