@@ -302,7 +302,7 @@ class Welcome_Page {
 									<?php esc_html_e( 'Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster.', 'accessibility-checker' ); ?>
 								</p>
 								<p class="edac-align-center">
-									<a class="button button-primary" href="<?php edac_simple_utm_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'welcome-page', 'upgrade' ); ?>" target="_blank" rel="noopener noreferrer">
+									<a class="button button-primary" href="<?php edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'welcome-page', 'upgrade' ); ?>" target="_blank" rel="noopener noreferrer">
 										<?php esc_html_e( 'Upgrade Accessibility Checker', 'accessibility-checker' ); ?>
 									</a>
 								</p>

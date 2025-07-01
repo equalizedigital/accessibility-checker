@@ -88,7 +88,7 @@ class Admin_Notices {
 		<div class="notice notice-info is-dismissible edac-stats-improvement-notice">
 			<p>
 				<?php
-					$release_post_link = edac_generate_link_type( [], 'custom', [ 'base_link' => 'https://equalizedigital.com/corrected-calculations-in-accessibility-checker-pro-and-audit-history/' ] );
+					$release_post_link = edac_link_wrapper( 'https://equalizedigital.com/corrected-calculations-in-accessibility-checker-pro-and-audit-history/', 'admin-notice', 'stats-improvement', false );
 					printf(
 						// translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 						esc_html__( 'We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s.', 'accessibility-checker' ),
@@ -202,8 +202,8 @@ class Admin_Notices {
 		$message  = '<div class="edac_black_friday_notice notice notice-info is-dismissible">';
 		$message .= '<p><strong>' . esc_html__( '🎉 Black Friday special! 🎉', 'accessibility-checker' ) . '</strong><br />';
 		$message .= esc_html__( 'Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more.', 'accessibility-checker' ) . '<br />';
-		$message .= '<a class="button button-primary" href="' . esc_url( edac_simple_utm_link_wrapper( 'https://my.equalizedigital.com/support/pre-sale-questions/', 'BF2025-admin-notice', 'presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
-		$message .= '<a class="button button-primary" href="' . esc_url( edac_simple_utm_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'BF2025-admin-notice', 'pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
+		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/support/pre-sale-questions/', 'BF2025-admin-notice', 'presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
+		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'BF2025-admin-notice', 'pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		$message .= '</div>';
 
 		return $message;
@@ -289,8 +289,8 @@ class Admin_Notices {
 		$message  = '<div class="edac_gaad_notice notice notice-info is-dismissible">';
 		$message .= '<p><strong>' . esc_html__( '🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', 'accessibility-checker' ) . '</strong><br />';
 		$message .= esc_html__( 'Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?', 'accessibility-checker' ) . '<br />';
-		$message .= '<a class="button button-primary" href="' . esc_url( edac_simple_utm_link_wrapper( 'https://equalizedigital.com/contact/', 'GAAD25-admin-notice', 'presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
-		$message .= '<a class="button button-primary" href="' . esc_url( edac_simple_utm_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'GAAD25-admin-notice', 'pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
+		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/contact/', 'GAAD25-admin-notice', 'presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
+		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'GAAD25-admin-notice', 'pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		$message .= '</div>';
 
 		return $message;

@@ -242,7 +242,7 @@ function edac_general_cb() {
 	printf(
 		/* translators: %1$s: link to the plugin documentation website. */
 		esc_html__( 'Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s.', 'accessibility-checker' ),
-		'<a href="' . esc_url( edac_simple_utm_link_wrapper( 'https://a11ychecker.com/', 'settings-page', '', false ) ) . '" target="_blank" aria-label="' . esc_attr__( 'plugin documentation (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'plugin documentation', 'accessibility-checker' ) . '</a>'
+		'<a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/', 'settings-page', '', false ) ) . '" target="_blank" aria-label="' . esc_attr__( 'plugin documentation (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'plugin documentation', 'accessibility-checker' ) . '</a>'
 	);
 
 	if ( EDAC_KEY_VALID === false ) {
@@ -254,9 +254,7 @@ function edac_general_cb() {
 					[
 						'utm_campaign' => 'settings-page',
 						'utm_content'  => 'features-and-support',
-					],
-					'pro',
-					[ 'base_link' => 'https://equalizedigital.com/accessibility-checker/pricing/' ]
+					]
 				)
 			) . '" target="_blank" aria-label="' . esc_attr__( 'Accessibility Checker Pro (opens in a new window)', 'accessibility-checker' ) . '">' . esc_html__( 'Accessibility Checker Pro', 'accessibility-checker' ) . '</a>'
 		);
@@ -463,7 +461,7 @@ function edac_post_types_cb() {
 				<?php
 				echo esc_html__( 'To check content other than posts and pages, please ', 'accessibility-checker' );
 				?>
-				<a href="<?php edac_simple_utm_link_wrapper( 'https://my.equalizedigital.com/', 'settings-page' ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html__( 'upgrade to pro', 'accessibility-checker' ); ?></a>
+				<a href="<?php edac_link_wrapper( 'https://my.equalizedigital.com/', 'settings-page' ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html__( 'upgrade to pro', 'accessibility-checker' ); ?></a>
 				<?php esc_html_e( ' (opens in a new window)', 'accessibility-checker' ); ?>
 			</p>
 		<?php } else { ?>
