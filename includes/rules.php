@@ -20,7 +20,6 @@ return [
 	[
 		'title'     => esc_html__( 'Image Missing Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1927',
-		'help_id'   => 1927,
 		'slug'      => 'img_alt_missing',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -34,7 +33,6 @@ return [
 	[
 		'title'     => esc_html__( 'Image Empty Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4991',
-		'help_id'   => 4991,
 		'slug'      => 'img_alt_empty',
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
@@ -47,7 +45,6 @@ return [
 	[
 		'title'     => esc_html__( 'Low-quality Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1977',
-		'help_id'   => 1977,
 		'slug'      => 'img_alt_invalid',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as "image" or "graphic"), a file extension (such as .JPG), that may be describing a decorative image (such as "spacer" or "arrow"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank.', 'accessibility-checker' ),
@@ -56,7 +53,6 @@ return [
 	[
 		'title'     => esc_html__( 'Linked Image Missing Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1930',
-		'help_id'   => 1930,
 		'slug'      => 'img_linked_alt_missing',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -69,7 +65,6 @@ return [
 	[
 		'title'     => esc_html__( 'Linked Image Empty Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1930',
-		'help_id'   => 1930,
 		'slug'      => 'img_linked_alt_empty',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -82,7 +77,6 @@ return [
 	[
 		'title'     => esc_html__( 'Duplicate Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1976',
-		'help_id'   => 1976,
 		'slug'      => 'img_alt_redundant',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions.', 'accessibility-checker' ),
@@ -91,7 +85,6 @@ return [
 	[
 		'title'     => esc_html__( 'Incorrect Heading Order', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1940',
-		'help_id'   => 1940,
 		'slug'      => 'incorrect_heading_order',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -109,7 +102,6 @@ return [
 	[
 		'title'     => esc_html__( 'Empty Paragraph Tag', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help7870',
-		'help_id'   => 7870,
 		'slug'      => 'empty_paragraph_tag',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block.', 'accessibility-checker' ),
@@ -118,7 +110,6 @@ return [
 	[
 		'title'     => esc_html__( 'iframe Missing Title', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1953',
-		'help_id'   => 1953,
 		'slug'      => 'iframe_missing_title',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -134,7 +125,6 @@ return [
 	[
 		'title'     => esc_html__( 'Missing Subheadings', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1967',
-		'help_id'   => 1967,
 		'slug'      => 'missing_headings',
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
@@ -149,7 +139,6 @@ return [
 	[
 		'title'     => esc_html__( 'Text Justified', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1980',
-		'help_id'   => 1980,
 		'slug'      => 'text_justified',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements.', 'accessibility-checker' ),
@@ -158,7 +147,6 @@ return [
 	[
 		'title'     => esc_html__( 'Link Opens New Window or Tab', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1982',
-		'help_id'   => 1982,
 		'slug'      => 'link_blank',
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
@@ -178,7 +166,6 @@ return [
 	[
 		'title'     => esc_html__( 'Image Map Missing Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1938',
-		'help_id'   => 1938,
 		'slug'      => 'image_map_missing_alt_text',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -195,7 +182,6 @@ return [
 	[
 		'title'     => esc_html__( 'Tab Order Modified', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1974',
-		'help_id'   => 1974,
 		'slug'      => 'tab_order_modified',
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
@@ -212,7 +198,6 @@ return [
 	[
 		'title'     => esc_html__( 'Empty Heading Tag', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1957',
-		'help_id'   => 1957,
 		'slug'      => 'empty_heading_tag',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -225,7 +210,6 @@ return [
 	[
 		'title'     => esc_html__( 'Empty Link', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4108',
-		'help_id'   => 4108,
 		'slug'      => 'empty_link',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -240,7 +224,6 @@ return [
 	[
 		'title'     => esc_html__( 'Empty Button', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1960',
-		'help_id'   => 1960,
 		'slug'      => 'empty_button',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -254,7 +237,6 @@ return [
 	[
 		'title'     => esc_html__( 'Image Long Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1966',
-		'help_id'   => 1966,
 		'slug'      => 'img_alt_long',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then "Ignore" the warning.', 'accessibility-checker' ),
@@ -263,7 +245,6 @@ return [
 	[
 		'title'     => esc_html__( 'ARIA Hidden', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1979',
-		'help_id'   => 1979,
 		'slug'      => 'aria_hidden',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden="true" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, "Ignore" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden="true" attribute to resolve the warning.', 'accessibility-checker' ),
@@ -275,7 +256,6 @@ return [
 	[
 		'title'     => esc_html__( 'Empty Table Header', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1963',
-		'help_id'   => 1963,
 		'slug'      => 'empty_table_header',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -289,7 +269,6 @@ return [
 	[
 		'title'     => esc_html__( 'Link to MS Office File', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1970',
-		'help_id'   => 1970,
 		'slug'      => 'link_ms_office_file',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you\'re using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning.', 'accessibility-checker' ),
@@ -298,7 +277,6 @@ return [
 	[
 		'title'     => esc_html__( 'Link to PDF', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1972',
-		'help_id'   => 1972,
 		'slug'      => 'link_pdf',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you\'re using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning.', 'accessibility-checker' ),
@@ -307,7 +285,6 @@ return [
 	[
 		'title'     => esc_html__( 'Link to Non-HTML File', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1973',
-		'help_id'   => 1973,
 		'slug'      => 'link_non_html_file',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you\'re using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning.', 'accessibility-checker' ),
@@ -316,7 +293,6 @@ return [
 	[
 		'title'     => esc_html__( 'Long Description Invalid', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1948',
-		'help_id'   => 1948,
 		'slug'      => 'long_description_invalid',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -329,7 +305,6 @@ return [
 	[
 		'title'     => esc_html__( 'Missing Form Label', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1949',
-		'help_id'   => 1949,
 		'slug'      => 'missing_form_label',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -349,7 +324,6 @@ return [
 	[
 		'title'     => esc_html__( 'Ambiguous Anchor Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1944',
-		'help_id'   => 1944,
 		'slug'      => 'link_ambiguous_text',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like "click here" or "learn more." To resolve this error, change the link text to be less generic so that it has meaning if heard on its own.', 'accessibility-checker' ),
@@ -358,7 +332,6 @@ return [
 	[
 		'title'     => esc_html__( 'Underlined Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1978',
-		'help_id'   => 1978,
 		'slug'      => 'underlined_text',
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
@@ -371,7 +344,6 @@ return [
 	[
 		'title'     => esc_html__( 'Broken Skip or Anchor Link', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1962',
-		'help_id'   => 1962,
 		'slug'      => 'broken_skip_anchor_link',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or "Ignore" the error as applicable.', 'accessibility-checker' ),
@@ -380,7 +352,6 @@ return [
 	[
 		'title'     => esc_html__( 'Missing Table Header', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1963',
-		'help_id'   => 1963,
 		'slug'      => 'missing_table_header',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -394,7 +365,6 @@ return [
 	[
 		'title'     => esc_html__( 'Duplicate Form Label', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1954',
-		'help_id'   => 1954,
 		'slug'      => 'duplicate_form_label',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it.', 'accessibility-checker' ),
@@ -404,7 +374,6 @@ return [
 	[
 		'title'     => esc_html__( 'Text Too Small', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1975',
-		'help_id'   => 1975,
 		'slug'      => 'text_small',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points.', 'accessibility-checker' ),
@@ -413,7 +382,6 @@ return [
 	[
 		'title'     => esc_html__( 'Possible Heading', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1969',
-		'help_id'   => 1969,
 		'slug'      => 'possible_heading',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning.', 'accessibility-checker' ),
@@ -422,7 +390,6 @@ return [
 	[
 		'title'     => esc_html__( 'Blinking or Scrolling Content', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1965',
-		'help_id'   => 1965,
 		'slug'      => 'text_blinking_scrolling',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -438,7 +405,6 @@ return [
 	[
 		'title'     => esc_html__( 'Insufficient Color Contrast', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1983',
-		'help_id'   => 1983,
 		'slug'      => 'color_contrast_failure',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be "false positives" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors.', 'accessibility-checker' ),
@@ -447,7 +413,6 @@ return [
 	[
 		'title'     => esc_html__( 'Missing Transcript', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1947',
-		'help_id'   => 1947,
 		'slug'      => 'missing_transcript',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link.', 'accessibility-checker' ),
@@ -456,7 +421,6 @@ return [
 	[
 		'title'     => esc_html__( 'Broken ARIA Reference', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1956',
-		'help_id'   => 1956,
 		'slug'      => 'broken_aria_reference',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled.', 'accessibility-checker' ),
@@ -466,7 +430,6 @@ return [
 	[
 		'title'     => esc_html__( 'Missing Language Declaration', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4429',
-		'help_id'   => 4429,
 		'slug'      => 'missing_lang_attr',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -487,7 +450,6 @@ return [
 	[
 		'title'     => esc_html__( 'Image Animated GIF', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4428',
-		'help_id'   => 4428,
 		'slug'      => 'img_animated_gif',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible.', 'accessibility-checker' ),
@@ -497,7 +459,6 @@ return [
 	[
 		'title'     => esc_html__( 'A Video is Present', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4414',
-		'help_id'   => 4414,
 		'slug'      => 'video_present',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
@@ -506,7 +467,6 @@ return [
 	[
 		'title'     => esc_html__( 'A Slider is Present', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help3264',
-		'help_id'   => 3264,
 		'slug'      => 'slider_present',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
@@ -515,7 +475,6 @@ return [
 	[
 		'title'     => esc_html__( 'Missing Title', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4431',
-		'help_id'   => 4431,
 		'slug'      => 'missing_title',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -534,7 +493,6 @@ return [
 	[
 		'title'     => esc_html__( 'Improper Use of Link', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help6473',
-		'help_id'   => 6473,
 		'slug'      => 'link_improper',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
@@ -552,7 +510,6 @@ return [
 	[
 		'title'     => esc_html__( 'Zooming and Scaling Disabled', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help7947',
-		'help_id'   => 7947,
 		'slug'      => 'meta_viewport',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier.', 'accessibility-checker' ),
