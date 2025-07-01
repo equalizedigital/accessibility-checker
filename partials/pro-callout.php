@@ -32,11 +32,13 @@
 			class="edac-pro-callout-button"
 			href="
 			<?php
-			edac_generate_link_type(
-				[
-					'utm-campaign' => 'pro-callout',
-					'utm-content'  => 'get-pro',
-				] 
+			echo esc_url(
+				edac_generate_link_type(
+					[
+						'utm-campaign' => 'pro-callout',
+						'utm-content'  => 'get-pro',
+					]
+				)
 			);
 			?>
 			"
