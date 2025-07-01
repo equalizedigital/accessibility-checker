@@ -571,6 +571,12 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 		'days_active'      => $days_active,
 	];
 
+	// Add the ref parameter if one is set via filter.
+	$ref = apply_filters( 'edac_filter_generate_link_type_ref', '' );
+	if ( ! empty( $ref ) && is_string( $ref ) ) {
+		$query_args['ref'] = $ref;
+	}
+
 	$query_args = array_merge( $query_defaults, $query_args );
 
 	switch ( $type ) {
