@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Project-Id-Version: Accessibility Checker 1.26.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"POT-Creation-Date: 2025-06-24T21:54:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
-msgstr "Έλεγχος προσβασιμότητας"
+msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
@@ -36,7 +36,7 @@ msgstr "Ελέγξτε και επιθεωρήστε τον ιστότοπό σ�
 #. Author of the plugin
 #: accessibility-checker.php
 msgid "Equalize Digital"
-msgstr "Equalize digital"
+msgstr "Equalize Digital"
 
 #. Author URI of the plugin
 #: accessibility-checker.php
@@ -96,7 +96,7 @@ msgstr "Ακολουθούμε τις <a href=\"https://www.w3.org/TR/WCAG21/\">
 
 #: admin/class-accessibility-statement.php:56
 msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
-msgstr "Η προσβασιμότητα ιστοσελίδων είναι μια συνεχής διαδικασία. Ελέγχουμε συνεχώς το περιεχόμενο και τις λειτουργίες για συμμόρφωση με το WCAG 2.1 Επίπεδο AA και διορθώνουμε τυχόν προβλήματα για να διασφαλίσουμε ότι πληρούμε ή υπερβαίνουμε τα πρότυπα. Ο έλεγχος του ιστοτόπου μας πραγματοποιείται από τα μέλη της ομάδας μας χρησιμοποιώντας εργαλεία βιομηχανικού προτύπου όπως το <a href=\"https://a11ychecker.com/\">Πρόσθετο WordPress Accessibility Checker</a>, αναλυτές αντίθεσης χρωμάτων, τεχνικές πλοήγησης μόνο με πληκτρολόγιο και δοκιμές αναγνωσιμότητας Flesch-Kincaid."
+msgstr "Η προσβασιμότητα ιστοσελίδων είναι μια συνεχής διαδικασία. Ελέγχουμε διαρκώς το περιεχόμενο και τις λειτουργίες για συμμόρφωση με το επίπεδο AA του WCAG 2.1 και διορθώνουμε τυχόν προβλήματα για να διασφαλίσουμε ότι πληρούμε ή υπερβαίνουμε τα πρότυπα. Ο έλεγχος του ιστοτόπου μας πραγματοποιείται από τα μέλη της ομάδας μας χρησιμοποιώντας εργαλεία βιομηχανικού προτύπου όπως το <a href=\"https://a11ychecker.com/\">Πρόσθετο WordPress Accessibility Checker</a>, αναλυτές αντίθεσης χρωμάτων, τεχνικές πλοήγησης μόνο με πληκτρολόγιο και δοκιμές αναγνωσιμότητας Flesch-Kincaid."
 
 #: admin/class-accessibility-statement.php:57
 msgid "Accessibility Features On Our Website"
@@ -145,9 +145,9 @@ msgstr "Έχουμε βελτιώσει τους υπολογισμούς στα
 
 #: admin/class-admin-notices.php:114
 #: admin/class-admin-notices.php:225
-#: admin/class-admin-notices.php:313
-#: admin/class-admin-notices.php:402
-#: admin/class-admin-notices.php:484
+#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:401
+#: admin/class-admin-notices.php:483
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:196
 #: admin/class-ajax.php:561
@@ -159,9 +159,9 @@ msgstr "Άρνηση πρόσβασης"
 
 #: admin/class-admin-notices.php:123
 #: admin/class-admin-notices.php:234
-#: admin/class-admin-notices.php:325
-#: admin/class-admin-notices.php:422
-#: admin/class-admin-notices.php:493
+#: admin/class-admin-notices.php:324
+#: admin/class-admin-notices.php:421
+#: admin/class-admin-notices.php:492
 msgid "Update option wasn't successful"
 msgstr "Η ενημέρωση της επιλογής δεν ήταν επιτυχής"
 
@@ -171,56 +171,56 @@ msgstr "🎉 Ειδική προσφορά Black Friday! 🎉"
 
 #: admin/class-admin-notices.php:204
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Αναβαθμίστε σε μια επί πληρωμή έκδοση του Accessibility Checker από τις 25 Νοεμβρίου έως τις 3 Δεκεμβρίου και λάβετε έκπτωση 30%! Πλήρης σάρωση ιστοτόπου, αναφορά ανοιχτών ζητημάτων σε όλο τον ιστότοπο, αρχεία καταγραφής αγνόησης και πολλά άλλα."
+msgstr "Αναβαθμίστε σε μια επί πληρωμή έκδοση του Accessibility Checker από τις 25 Νοεμβρίου έως τις 3 Δεκεμβρίου και λάβετε έκπτωση 30%! Πλήρης σάρωση ιστοσελίδας, αναφορά ανοιχτών ζητημάτων σε όλο τον ιστότοπο, αρχεία καταγραφής αγνόησης και πολλά άλλα."
 
 #: admin/class-admin-notices.php:205
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:292
 msgid "Ask a Pre-Sale Question"
 msgstr "Κάντε μια ερώτηση πριν την αγορά"
 
 #: admin/class-admin-notices.php:206
-#: admin/class-admin-notices.php:294
+#: admin/class-admin-notices.php:293
 msgid "Upgrade Now"
 msgstr "Αναβαθμίστε τώρα"
 
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:290
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 Λάβετε 25% έκπτωση στο Accessibility Checker Pro προς τιμήν της Παγκόσμιας Ημέρας Ευαισθητοποίησης για την Προσβασιμότητα! 🎉"
+msgstr "🎉 Αποκτήστε 25% έκπτωση στο Accessibility Checker Pro για την Παγκόσμια Ημέρα Ευαισθητοποίησης για την Προσβασιμότητα! 🎉"
 
-#: admin/class-admin-notices.php:292
+#: admin/class-admin-notices.php:291
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Χρησιμοποιήστε τον κωδικό κουπονιού GAAD25 από τις 13 έως τις 21 Μαΐου για να αποκτήσετε πρόσβαση σε πλήρη σάρωση ιστοτόπου και άλλες λειτουργίες pro με ειδική έκπτωση. Δεν είστε σίγουροι αν η αναβάθμιση είναι κατάλληλη για εσάς;?"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:376
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
-msgstr "Γεια σας! Σας ευχαριστούμε που χρησιμοποιείτε το Accessibility Checker ως μέρος των εργαλείων προσβασιμότητάς σας. Εφόσον το χρησιμοποιείτε για λίγο καιρό, θα μπορούσατε να γράψετε μια κριτική 5 αστέρων για το Accessibility Checker στον κατάλογο πρόσθετων του WordPress; Αυτό θα βοηθήσει στην αύξηση της ορατότητάς μας ώστε περισσότεροι άνθρωποι να μάθουν για τη σημασία της προσβασιμότητας στο διαδίκτυο. Σας ευχαριστούμε πολύ!"
+msgstr "Γεια σας! Σας ευχαριστούμε που χρησιμοποιείτε το Accessibility Checker ως μέρος των εργαλείων προσβασιμότητάς σας. Εφόσον το χρησιμοποιείτε για κάποιο διάστημα, θα μπορούσατε να γράψετε μια αξιολόγηση 5 αστέρων για το Accessibility Checker στον κατάλογο πρόσθετων του WordPress; Αυτό θα βοηθήσει στην αύξηση της προβολής μας ώστε περισσότεροι άνθρωποι να μάθουν για τη σημασία της προσβασιμότητας στο διαδίκτυο. Σας ευχαριστούμε πολύ!"
 
-#: admin/class-admin-notices.php:380
+#: admin/class-admin-notices.php:379
 msgid "Write A Review"
 msgstr "Γράψτε μια κριτική"
 
-#: admin/class-admin-notices.php:381
+#: admin/class-admin-notices.php:380
 msgid "Remind Me In Two Weeks"
 msgstr "Υπενθύμιση σε δύο εβδομάδες"
 
-#: admin/class-admin-notices.php:382
+#: admin/class-admin-notices.php:381
 msgid "Never Ask Again"
 msgstr "Μην ξαναρωτήσετε"
 
-#: admin/class-admin-notices.php:409
+#: admin/class-admin-notices.php:408
 msgid "The review action value was not set"
 msgstr "Η τιμή της ενέργειας κριτικής δεν ορίστηκε"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-#: admin/class-admin-notices.php:447
+#: admin/class-admin-notices.php:446
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
-msgstr "Ωχ! Φαίνεται ότι ο ιστότοπός σας προστατεύεται αυτή τη στιγμή με κωδικό πρόσβασης. Η δωρεάν έκδοση του Accessibility Checker μπορεί να ελέγξει μόνο ζωντανούς ιστότοπους. Για να ελέγξετε αυτόν τον ιστότοπο για προβλήματα προσβασιμότητας, είτε αφαιρέστε την προστασία με κωδικό πρόσβασης είτε %s. Τα αποτελέσματα του ελέγχου μπορεί να έχουν αποθηκευτεί από προηγούμενο έλεγχο."
+msgstr "Ωχ! Φαίνεται ότι ο ιστότοπός σας προστατεύεται αυτή τη στιγμή με κωδικό πρόσβασης. Η δωρεάν έκδοση του Accessibility Checker μπορεί να σαρώσει μόνο ζωντανούς ιστότοπους. Για να σαρώσετε αυτόν τον ιστότοπο για προβλήματα προσβασιμότητας, είτε αφαιρέστε την προστασία κωδικού πρόσβασης είτε %s. Τα αποτελέσματα σάρωσης μπορεί να αποθηκευτούν από μια προηγούμενη σάρωση."
 
-#: admin/class-admin-notices.php:450
+#: admin/class-admin-notices.php:449
 msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Αναβάθμιση στο Accessibility Checker Pro. Ανοίγει σε νέο παράθυρο."
 
-#: admin/class-admin-notices.php:451
+#: admin/class-admin-notices.php:450
 #: includes/options-page.php:448
 msgid "upgrade to pro"
 msgstr "αναβάθμιση σε pro"
@@ -463,7 +463,7 @@ msgstr "Ξεκινήστε τη σάρωση ολόκληρου του ιστό�
 #: admin/class-welcome-page.php:306
 #: admin/class-widgets.php:67
 msgid "Upgrade Accessibility Checker"
-msgstr "Αναβάθμιση Accessibility Checker"
+msgstr "Αναβάθμιση του Accessibility Checker"
 
 #: admin/class-widgets.php:63
 msgid "close ad"
@@ -499,7 +499,7 @@ msgstr "Ο ιστότοπός σας έχει ζητήματα προσβασι�
 
 #: admin/class-widgets.php:135
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
-msgstr "Μπράβο! Το Accessibility Checker δεν μπορεί να βρει κανένα πρόβλημα προσβασιμότητας στο περιεχόμενο που έλεγξε. Ορισμένα προβλήματα δεν μπορούν να εντοπιστούν από αυτοματοποιημένα εργαλεία, οπότε μην ξεχάσετε να"
+msgstr "Μπράβο! Το Accessibility Checker δεν μπορεί να εντοπίσει προβλήματα προσβασιμότητας στο περιεχόμενο που έλεγξε. Ορισμένα προβλήματα δεν μπορούν να εντοπιστούν από αυτοματοποιημένα εργαλεία, οπότε μην ξεχάσετε να"
 
 #: admin/class-widgets.php:135
 msgid "manually test your site"
@@ -558,37 +558,37 @@ msgstr "Τεκμηρίωση (ανοίγει σε νέο παράθυρο)"
 msgid "Documentation"
 msgstr "Τεκμηρίωση"
 
-#: admin/opt-in/class-email-opt-in.php:114
+#: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
 msgstr "Εκδηλώσεις και νέα προσβασιμότητας στα εισερχόμενά σας"
 
-#: admin/opt-in/class-email-opt-in.php:120
+#: admin/opt-in/class-email-opt-in.php:121
 msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
-msgstr "Εγγραφείτε στη λίστα email της Equalize Digital για να αποκτήσετε πρόσβαση σε δωρεάν διαδικτυακά σεμινάρια προσβασιμότητας και εκπαιδευτικούς πόρους."
+msgstr "Εγγραφείτε στη λίστα email της Equalize Digital για να αποκτήσετε πρόσβαση σε δωρεάν διαδικτυακά σεμινάρια και εκπαιδευτικό υλικό για την προσβασιμότητα."
 
-#: admin/opt-in/class-email-opt-in.php:126
+#: admin/opt-in/class-email-opt-in.php:127
 msgid "Email*"
 msgstr "Email*"
 
-#: admin/opt-in/class-email-opt-in.php:130
+#: admin/opt-in/class-email-opt-in.php:131
 msgid "Type your email"
 msgstr "Πληκτρολογήστε το email σας"
 
-#: admin/opt-in/class-email-opt-in.php:138
+#: admin/opt-in/class-email-opt-in.php:139
 msgid "First Name"
 msgstr "Όνομα"
 
-#: admin/opt-in/class-email-opt-in.php:142
+#: admin/opt-in/class-email-opt-in.php:143
 msgid "Type your first name"
 msgstr "Πληκτρολογήστε το όνομά σας"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
-msgstr "Έλεγχος προσβασιμότητας &mdash; ιστορικό ελέγχου"
+msgstr "Accessibility Checker &mdash; Ιστορικό Ελέγχων"
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
-msgstr "Ελεγκτής προσβασιμότητας &mdash; δωρεάν"
+msgstr "Accessibility Checker &mdash; Δωρεάν"
 
 #: admin/site-health/class-free.php:49
 #: admin/site-health/class-pro.php:50
@@ -672,7 +672,7 @@ msgstr "Αριθμός πινάκων DB"
 
 #: admin/site-health/class-pro.php:47
 msgid "Accessibility Checker &mdash; Pro"
-msgstr "Ελεγκτής προσβασιμότητας &mdash; pro"
+msgstr "Accessibility Checker &mdash; Pro"
 
 #: admin/site-health/class-pro.php:58
 msgid "License Status"
@@ -717,7 +717,7 @@ msgstr "%1$s χρησιμοποιεί το %2$s για την παρακολού
 
 #: includes/classes/class-accessibility-statement.php:49
 msgid "Accessibility Checker (opens in a new window)"
-msgstr "Έλεγχος Προσβασιμότητας (ανοίγει σε νέο παράθυρο)"
+msgstr "Accessibility Checker (ανοίγει σε νέο παράθυρο)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
 #: includes/classes/class-accessibility-statement.php:58
@@ -1069,11 +1069,11 @@ msgstr "Αφαίρεση δείκτη καρτέλας"
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Αφαιρέστε το χαρακτηριστικό %1$s από εστιάσιμα στοιχεία."
 
-#: includes/classes/Fixes/FixesManager.php:240
+#: includes/classes/Fixes/FixesManager.php:241
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Σημείωση: Αυτή η ρύθμιση δεν συνιστάται για θέματα που είναι ήδη έτοιμα για προσβασιμότητα."
 
-#: includes/classes/Fixes/FixesManager.php:293
+#: includes/classes/Fixes/FixesManager.php:294
 msgid "Fix not found"
 msgstr "Η διόρθωση δεν βρέθηκε"
 
@@ -1145,11 +1145,11 @@ msgstr "Παρακολουθήστε δωρεάν"
 
 #: includes/options-page.php:42
 msgid "Welcome to Accessibility Checker"
-msgstr "Καλώς ήρθατε στον έλεγχο προσβασιμότητας"
+msgstr "Καλώς ήρθατε στο Accessibility Checker"
 
 #: includes/options-page.php:65
 msgid "Accessibility Checker Settings"
-msgstr "Ρυθμίσεις ελέγχου προσβασιμότητας"
+msgstr "Ρυθμίσεις Accessibility Checker"
 
 #: includes/options-page.php:66
 msgid "Settings"
@@ -1169,7 +1169,7 @@ msgstr "Δήλωση προσβασιμότητας υποσέλιδου"
 
 #: includes/options-page.php:120
 msgid "Frontend Accessibility Checker"
-msgstr "Έλεγχος προσβασιμότητας εμπρόσθιου μέρους"
+msgstr "Frontend Accessibility Checker"
 
 #: includes/options-page.php:128
 msgid "Post Types To Be Checked"
@@ -1203,12 +1203,12 @@ msgstr "Προεπισκόπηση δήλωσης προσβασιμότητας
 
 #: includes/options-page.php:200
 msgid "Frontend Accessibility Checker Position"
-msgstr "Θέση ελέγχου προσβασιμότητας εμπρόσθιου μέρους"
+msgstr "Θέση Frontend Accessibility Checker"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
-msgstr "Χρησιμοποιήστε τις παρακάτω ρυθμίσεις για να διαμορφώσετε τον Έλεγχο Προσβασιμότητας. Πρόσθετες πληροφορίες για κάθε ρύθμιση μπορούν να βρεθούν στο %1$s."
+msgstr "Χρησιμοποιήστε τις παρακάτω ρυθμίσεις για να διαμορφώσετε το Accessibility Checker. Πρόσθετες πληροφορίες για κάθε ρύθμιση μπορείτε να βρείτε στο %1$s."
 
 #: includes/options-page.php:245
 msgid "plugin documentation (opens in a new window)"
@@ -1230,7 +1230,7 @@ msgstr "Accessibility Checker Pro (ανοίγει σε νέο παράθυρο)"
 #: includes/options-page.php:252
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
-msgstr "Accessibility checker pro"
+msgstr "Accessibility Checker Pro"
 
 #: includes/options-page.php:266
 msgid "Use the settings below to configure the frontend accessibility checker."
@@ -1238,7 +1238,7 @@ msgstr "Χρησιμοποιήστε τις παρακάτω ρυθμίσεις 
 
 #: includes/options-page.php:276
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
-msgstr "Οι Οδηγίες για την Προσβασιμότητα του Περιεχομένου Ιστού (WCAG) σε επίπεδο AAA απαιτούν οποιοδήποτε περιεχόμενο με επίπεδο ανάγνωσης πάνω από την 9η τάξη να έχει μια εναλλακτική που είναι πιο εύκολη στην ανάγνωση. Το απλοποιημένο κείμενο περίληψης προστίθεται στην καρτέλα αναγνωσιμότητας στο πλαίσιο μετα-πληροφοριών του Accessibility Checker στην οθόνη επεξεργασίας κάθε άρθρου ή σελίδας."
+msgstr "Οι Οδηγίες για την Προσβασιμότητα του Περιεχομένου Ιστού (WCAG) στο επίπεδο AAA απαιτούν οποιοδήποτε περιεχόμενο με επίπεδο ανάγνωσης πάνω από την 9η τάξη να έχει μια εναλλακτική που είναι ευκολότερη στην ανάγνωση. Το απλοποιημένο κείμενο περίληψης προστίθεται στην καρτέλα αναγνωσιμότητας στο πλαίσιο μετα-πληροφοριών του Accessibility Checker στην οθόνη επεξεργασίας κάθε άρθρου ή σελίδας."
 
 #: includes/options-page.php:277
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
@@ -1250,7 +1250,7 @@ msgstr "Μάθετε περισσότερα για τις απλοποιημέν
 
 #: includes/options-page.php:286
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
-msgstr "Σκέφτεστε “Ουάου, αυτό το πρόσθετο είναι καταπληκτικό” και σας βοηθάει να κάνετε τον ιστότοπό σας πιο προσβάσιμο; Μοιραστείτε τις προσπάθειές σας να κάνετε τον ιστότοπό σας πιο προσβάσιμο με τους πελάτες σας και ενημερώστε τους ότι χρησιμοποιείτε το Accessibility Checker για να διασφαλίσετε ότι όλοι οι άνθρωποι μπορούν να χρησιμοποιήσουν τον ιστότοπό σας. Προσθέστε έναν μικρό σύνδεσμο μόνο κειμένου και μια δήλωση στο υποσέλιδο του ιστοτόπου σας."
+msgstr "Σκέφτεστε “Ουάου, αυτό το πρόσθετο είναι καταπληκτικό” και σας βοηθάει να κάνετε τον ιστότοπό σας πιο προσβάσιμο; Μοιραστείτε τις προσπάθειές σας για να κάνετε τον ιστότοπό σας πιο προσβάσιμο με τους πελάτες σας και ενημερώστε τους ότι χρησιμοποιείτε το Accessibility Checker για να διασφαλίσετε ότι όλοι οι άνθρωποι μπορούν να χρησιμοποιήσουν τον ιστότοπό σας. Προσθέστε έναν μικρό σύνδεσμο μόνο κειμένου και μια δήλωση στο υποσέλιδο του ιστοτόπου σας."
 
 #: includes/options-page.php:299
 msgid "Before the content"
@@ -1298,7 +1298,7 @@ msgstr "Πάντα"
 
 #: includes/options-page.php:395
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
-msgstr "Πρέπει το Accessibility Checker να ζητά απλοποιημένη περίληψη μόνο όταν το επίπεδο ανάγνωσης του άρθρου ή της σελίδας σας είναι πάνω από την 9η τάξη, να τη ζητά πάντα ανεξάρτητα από το επίπεδο ανάγνωσης, ή να μην τη ζητά ποτέ ανεξάρτητα από το επίπεδο ανάγνωσης;?"
+msgstr "Θα πρέπει το Accessibility Checker να ζητά απλοποιημένη περίληψη μόνο όταν το επίπεδο ανάγνωσης του άρθρου ή της σελίδας σας είναι πάνω από την 9η τάξη, να τη ζητά πάντα ανεξάρτητα από το επίπεδο ανάγνωσης, ή να μην τη ζητά ποτέ ανεξάρτητα από το επίπεδο ανάγνωσης;?"
 
 #: includes/options-page.php:446
 msgid "To check content other than posts and pages, please "
@@ -1409,7 +1409,7 @@ msgstr "Πλήρης στοίχιση κειμένου"
 
 #: includes/rules.php:144
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
-msgstr "Μια προειδοποίηση Πλήρους Στοίχισης Κειμένου εμφανίζεται στον Έλεγχο Προσβασιμότητας όταν το κείμενο με περισσότερους από 200 χαρακτήρες στην ανάρτηση ή τη σελίδα σας έχει μορφοποιηθεί με πλήρη στοίχιση (text-align:justify). Για να διορθώσετε αυτήν την προειδοποίηση, αφαιρέστε τη μορφοποίηση πλήρους στοίχισης από τα συγκεκριμένα στοιχεία κειμένου."
+msgstr "Μια προειδοποίηση Δικαιολογημένου Κειμένου εμφανίζεται στο Accessibility Checker όταν κείμενο με περισσότερους από 200 χαρακτήρες στο άρθρο ή τη σελίδα σας έχει στυλ με δικαιολογημένη στοίχιση (text-align:justify). Για να διορθώσετε αυτήν την προειδοποίηση, αφαιρέστε το δικαιολογημένο στυλ από τα συγκεκριμένα στοιχεία κειμένου."
 
 #: includes/rules.php:148
 msgid "Link Opens New Window or Tab"
@@ -1696,7 +1696,7 @@ msgstr "Το πρόσθετο Accessibility New Window Warnings είναι εγ�
 
 #: partials/custom-meta-box.php:10
 msgid "Accessibility Checker issues panels"
-msgstr "Πίνακες ζητημάτων Accessibility Checker"
+msgstr "Πίνακες ζητημάτων του Accessibility Checker"
 
 #: partials/custom-meta-box.php:21
 msgid "Summary"
@@ -1722,7 +1722,7 @@ msgstr "Εκκαθάριση ζητημάτων"
 #: partials/pro-callout.php:13
 #: partials/welcome-page.php:196
 msgid "Equalize Digital Logo"
-msgstr "Equalize Digital λογότυπο"
+msgstr "Λογότυπο Equalize Digital"
 
 #: partials/pro-callout.php:16
 #: partials/welcome-page.php:197
@@ -1789,7 +1789,7 @@ msgstr "έκδοση"
 
 #: partials/welcome-page.php:40
 msgid "Link to Equalize Digital Website"
-msgstr "Σύνδεσμος προς την ιστοσελίδα του Equalize Digital"
+msgstr "Σύνδεσμος προς τον ιστότοπο της Equalize Digital"
 
 #: partials/welcome-page.php:49
 msgid "Quick Start Guide"
@@ -1810,11 +1810,11 @@ msgstr "Πηγαίνετε στην οθόνη επεξεργασίας για �
 
 #: partials/welcome-page.php:65
 msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
-msgstr "Βρείτε το πλαίσιο μετα-δεδομένων του Accessibility Checker κάτω από το περιεχόμενό σας. Αν χρησιμοποιείτε ένα εργαλείο δημιουργίας σελίδων στο frontend, πρέπει να επισκεφθείτε την οθόνη επεξεργασίας του backend για να δείτε τα αποτελέσματα του Accessibility Checker."
+msgstr "Βρείτε το πλαίσιο μετα-πληροφοριών του Accessibility Checker κάτω από το περιεχόμενό σας. Αν χρησιμοποιείτε ένα εργαλείο δημιουργίας σελίδων frontend, πρέπει να επισκεφθείτε την οθόνη επεξεργασίας backend για να δείτε τα αποτελέσματα του Accessibility Checker."
 
 #: partials/welcome-page.php:66
 msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
-msgstr "Αν υπάρχουν σφάλματα ή προειδοποιήσεις στη δημοσίευσή σας, ανοίξτε την καρτέλα λεπτομερειών στο Accessibility Checker για περισσότερες πληροφορίες."
+msgstr "Εάν υπάρχουν σφάλματα ή προειδοποιήσεις στο άρθρο σας, ανοίξτε την καρτέλα λεπτομερειών στο Accessibility Checker για περισσότερες πληροφορίες."
 
 #: partials/welcome-page.php:67
 msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
@@ -1834,7 +1834,7 @@ msgstr "Αφού διορθώσετε κάθε ζήτημα, ενημερώστ�
 
 #: partials/welcome-page.php:74
 msgid "Watch a video of Accessibility Checker in use."
-msgstr "Παρακολουθήστε ένα βίντεο του Accessibility Checker σε χρήση."
+msgstr "Παρακολουθήστε ένα βίντεο του Accessibility Checker εν χρήσει."
 
 #: partials/welcome-page.php:80
 msgid "Documentation and FAQs"
@@ -1874,7 +1874,7 @@ msgstr "Τι να κάνετε αν υπάρχουν Σφάλματα Προσβ
 
 #: partials/welcome-page.php:109
 msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
-msgstr "Μπορώ να προσλάβω την Equalize Digital για να διορθώσει ζητήματα προσβασιμότητας στον ιστότοπό μου;?"
+msgstr "Μπορώ να προσλάβω την Equalize Digital για να διορθώσει προβλήματα προσβασιμότητας στην ιστοσελίδα μου;?"
 
 #: partials/welcome-page.php:114
 msgid "Additional Resources for Learning About Accessibility"
@@ -1894,7 +1894,7 @@ msgstr "Υποστήριξη πρόσθετου"
 
 #: partials/welcome-page.php:135
 msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
-msgstr "Οι ενεργοί κάτοχοι άδειας χρήσης των επί πληρωμή πλάνων του Accessibility Checker λαμβάνουν απεριόριστη υποστήριξη μέσω email για τη χρήση του πρόσθετου και την αντιμετώπιση προβλημάτων."
+msgstr "Οι ενεργοί κάτοχοι άδειας χρήσης επί πληρωμή πλάνων του Accessibility Checker λαμβάνουν απεριόριστη υποστήριξη μέσω email για τη χρήση και την αντιμετώπιση προβλημάτων του πρόσθετου."
 
 #: partials/welcome-page.php:138
 msgid "Open Support Ticket"
@@ -1948,7 +1948,7 @@ msgstr "Αποθήκευση..."
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
-msgstr "Οι ρυθμίσεις αποθηκεύτηκαν με επιτυχία. Πρέπει να %sεπισκεφθείτε τον επεξεργαστή%s και να αποθηκεύσετε τη δημοσίευση για να γίνει επανασάρωση και να αφαιρεθούν τα διορθωμένα ζητήματα από τις αναφορές του Accessibility Checker."
+msgstr "Οι ρυθμίσεις αποθηκεύτηκαν με επιτυχία. Πρέπει να %sεπισκεφθείτε τον επεξεργαστή%s και να αποθηκεύσετε την ανάρτηση για να γίνει επανέλεγχος και να αφαιρεθούν τα διορθωμένα ζητήματα από τις αναφορές του Accessibility Checker."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
@@ -1980,6 +1980,10 @@ msgstr "Τα ζητήματα εκκαθαρίστηκαν με επιτυχία
 #: build/editorApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Αποτυχία εκκαθάρισης ζητημάτων."
+
+#: build/editorApp.bundle.js:2
+msgid "An error occurred while clearing issues."
+msgstr "Παρουσιάστηκε σφάλμα κατά την εκκαθάριση των ζητημάτων."
 
 #: build/emailOptIn.bundle.js:2
 msgid "There was a problem. Please try again."

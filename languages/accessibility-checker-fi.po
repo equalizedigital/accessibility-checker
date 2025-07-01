@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Project-Id-Version: Accessibility Checker 1.26.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"POT-Creation-Date: 2025-06-24T21:54:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
-msgstr "Esteettömyyden tarkistustyökalu"
+msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
@@ -36,7 +36,7 @@ msgstr "Tarkasta ja arvioi verkkosivustosi esteettömyys ennen julkaisua. Artikk
 #. Author of the plugin
 #: accessibility-checker.php
 msgid "Equalize Digital"
-msgstr "Equalize digital"
+msgstr "Equalize Digital"
 
 #. Author URI of the plugin
 #: accessibility-checker.php
@@ -96,7 +96,7 @@ msgstr "Noudatamme <a href=\"https://www.w3.org/TR/WCAG21/\">Verkkosisällön sa
 
 #: admin/class-accessibility-statement.php:56
 msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
-msgstr "Verkkosivuston esteettömyys on jatkuva prosessi. Testaamme jatkuvasti sisältöä ja ominaisuuksia WCAG 2.1 tason AA vaatimusten mukaisuuden osalta ja korjaamme mahdolliset ongelmat varmistaaksemme, että täytämme tai ylitämme standardit. Tiimimme jäsenet testaavat verkkosivustoamme käyttäen alan standardoituja työkaluja, kuten <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress-lisäosaa</a>, värikontrastin analysointityökaluja, vain näppäimistöllä tapahtuvaa navigointitekniikkaa ja Flesch-Kincaid-luettavuustestejä."
+msgstr "Verkkosivuston saavutettavuus on jatkuva prosessi. Testaamme jatkuvasti sisältöä ja ominaisuuksia WCAG 2.1 tason AA vaatimusten mukaisesti ja korjaamme mahdolliset ongelmat varmistaaksemme, että täytämme tai ylitämme standardit. Tiimimme jäsenet testaavat verkkosivustoamme käyttäen alan standardityökaluja, kuten <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress -lisäosaa</a>, värikontrastin analysointityökaluja, pelkän näppäimistön navigointitekniikoita ja Flesch-Kincaid -luettavuustestejä."
 
 #: admin/class-accessibility-statement.php:57
 msgid "Accessibility Features On Our Website"
@@ -145,9 +145,9 @@ msgstr "Olemme parantaneet tilastojen laskentaa versiossa 1.21.0. Tämän seurau
 
 #: admin/class-admin-notices.php:114
 #: admin/class-admin-notices.php:225
-#: admin/class-admin-notices.php:313
-#: admin/class-admin-notices.php:402
-#: admin/class-admin-notices.php:484
+#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:401
+#: admin/class-admin-notices.php:483
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:196
 #: admin/class-ajax.php:561
@@ -159,9 +159,9 @@ msgstr "Käyttöoikeus evätty"
 
 #: admin/class-admin-notices.php:123
 #: admin/class-admin-notices.php:234
-#: admin/class-admin-notices.php:325
-#: admin/class-admin-notices.php:422
-#: admin/class-admin-notices.php:493
+#: admin/class-admin-notices.php:324
+#: admin/class-admin-notices.php:421
+#: admin/class-admin-notices.php:492
 msgid "Update option wasn't successful"
 msgstr "Vaihtoehdon päivitys ei onnistunut"
 
@@ -171,56 +171,56 @@ msgstr "🎉 Black Friday -tarjous! 🎉"
 
 #: admin/class-admin-notices.php:204
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Päivitä Accessibility Checker maksulliseen versioon 25.11.-3.12. Välisenä aikana ja saat 30 % alennuksen! Koko sivuston skannaus, sivustonlaajuinen avointen ongelmien raportti, ohituslokit ja paljon muuta."
+msgstr "Päivitä maksulliseen Accessibility Checker -versioon 25.11.-3.12. Välisenä aikana ja saat 30 % alennuksen! Koko sivuston skannaus, sivustonlaajuinen avointen ongelmien raportti, ohitusloki ja paljon muuta."
 
 #: admin/class-admin-notices.php:205
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:292
 msgid "Ask a Pre-Sale Question"
 msgstr "Kysy myyntiä edeltävä kysymys"
 
 #: admin/class-admin-notices.php:206
-#: admin/class-admin-notices.php:294
+#: admin/class-admin-notices.php:293
 msgid "Upgrade Now"
 msgstr "Päivitä nyt"
 
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:290
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 Saat 25 % alennuksen Accessibility Checker Pro -versiosta Maailmanlaajuisen esteettömyystietoisuuden päivän kunniaksi! 🎉"
+msgstr "🎉 Saat 25 % alennuksen Accessibility Checker Pro:sta kansainvälisen saavutettavuustietoisuuden päivän kunniaksi! 🎉"
 
-#: admin/class-admin-notices.php:292
+#: admin/class-admin-notices.php:291
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Käytä kuponkikoodia GAAD25 13.5.-21.5. Välisenä aikana saadaksesi pääsyn koko sivuston skannaukseen ja muihin pro-ominaisuuksiin erikoishintaan. Etkö ole varma, onko päivittäminen sinulle sopiva vaihtoehto?"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:376
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
-msgstr "Hei! Kiitos, että käytät Accessibility Checkeriä osana esteettömyystyökaluvalikoimaasi. Koska olet käyttänyt sitä jo jonkin aikaa, kirjoittaisitko ystävällisesti 5 tähden arvostelun Accessibility Checkeristä WordPress-lisäosahakemistoon? Tämä auttaa lisäämään näkyvyyttämme, jotta useammat ihmiset voivat oppia verkon esteettömyyden tärkeydestä. Kiitos paljon!"
+msgstr "Hei! Kiitos, että käytät Accessibility Checkeriä osana saavutettavuustyökaluvalikoimaasi. Koska olet käyttänyt sitä jo jonkin aikaa, voisitko ystävällisesti kirjoittaa 5 tähden arvostelun Accessibility Checkeristä WordPress-lisäosahakemistoon? Tämä auttaa lisäämään näkyvyyttämme, jotta useammat ihmiset voivat oppia verkkosivujen saavutettavuuden tärkeydestä. Kiitos paljon!"
 
-#: admin/class-admin-notices.php:380
+#: admin/class-admin-notices.php:379
 msgid "Write A Review"
 msgstr "Kirjoita arvostelu"
 
-#: admin/class-admin-notices.php:381
+#: admin/class-admin-notices.php:380
 msgid "Remind Me In Two Weeks"
 msgstr "Muistuta kahden viikon kuluttua"
 
-#: admin/class-admin-notices.php:382
+#: admin/class-admin-notices.php:381
 msgid "Never Ask Again"
 msgstr "Älä kysy enää koskaan"
 
-#: admin/class-admin-notices.php:409
+#: admin/class-admin-notices.php:408
 msgid "The review action value was not set"
 msgstr "Arvostelutoiminnon arvoa ei asetettu"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-#: admin/class-admin-notices.php:447
+#: admin/class-admin-notices.php:446
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
-msgstr "Hups! Näyttää siltä, että verkkosivustosi on tällä hetkellä salasanasuojattu. Accessibility Checkerin ilmaisversio voi skannata vain julkisia verkkosivustoja. Skannataksesi tämän sivuston esteettömyysongelmien varalta, poista joko salasanasuojaus tai %s. Skannauksen tulokset saattavat olla tallennettuna aiemmasta skannauksesta."
+msgstr "Hups! Näyttää siltä, että verkkosivustosi on tällä hetkellä salasanasuojattu. Accessibility Checkerin ilmaisversio voi skannata vain julkisia verkkosivustoja. Jotta voisit skannata tämän sivuston saavutettavuusongelmien varalta, poista salasanasuojaus tai %s. Skannauksen tulokset voidaan tallentaa aiemmasta skannauksesta."
 
-#: admin/class-admin-notices.php:450
+#: admin/class-admin-notices.php:449
 msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Päivitä Accessibility Checker Pro -versioon. Avautuu uuteen ikkunaan."
 
-#: admin/class-admin-notices.php:451
+#: admin/class-admin-notices.php:450
 #: includes/options-page.php:448
 msgid "upgrade to pro"
 msgstr "päivitä pro-versioon"
@@ -499,7 +499,7 @@ msgstr "Sivustollasi on esteettömyysongelmia, jotka tulisi korjata mahdollisimm
 
 #: admin/class-widgets.php:135
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
-msgstr "Hienoa työtä! Accessibility Checker ei löytänyt esteettömyysongelmia testaamastaan sisällöstä. Automaattiset työkalut eivät löydä kaikkia ongelmia, joten muista"
+msgstr "Hienoa työtä! Accessibility Checker ei löydä yhtään saavutettavuusongelmaa testaamastaan sisällöstä. Automaattiset työkalut eivät kuitenkaan voi havaita kaikkia ongelmia, joten muista"
 
 #: admin/class-widgets.php:135
 msgid "manually test your site"
@@ -558,37 +558,37 @@ msgstr "Dokumentaatio (avautuu uuteen ikkunaan)"
 msgid "Documentation"
 msgstr "Dokumentaatio"
 
-#: admin/opt-in/class-email-opt-in.php:114
+#: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
 msgstr "Esteettömyystapahtumat ja -uutiset sähköpostiisi"
 
-#: admin/opt-in/class-email-opt-in.php:120
+#: admin/opt-in/class-email-opt-in.php:121
 msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
-msgstr "Tilaa Equalize Digitalin sähköpostilista saadaksesi pääsyn ilmaisiin esteettömyyswebinaareihin ja koulutusresursseihin."
+msgstr "Tilaa Equalize Digitalin sähköpostilista saadaksesi ilmaisia esteettömyyswebinaareja ja koulutusresursseja."
 
-#: admin/opt-in/class-email-opt-in.php:126
+#: admin/opt-in/class-email-opt-in.php:127
 msgid "Email*"
 msgstr "Sähköposti*"
 
-#: admin/opt-in/class-email-opt-in.php:130
+#: admin/opt-in/class-email-opt-in.php:131
 msgid "Type your email"
 msgstr "Kirjoita sähköpostiosoitteesi"
 
-#: admin/opt-in/class-email-opt-in.php:138
+#: admin/opt-in/class-email-opt-in.php:139
 msgid "First Name"
 msgstr "Etunimi"
 
-#: admin/opt-in/class-email-opt-in.php:142
+#: admin/opt-in/class-email-opt-in.php:143
 msgid "Type your first name"
 msgstr "Kirjoita etunimesi"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
-msgstr "Accessibility Checker &mdash; tarkastushistoria"
+msgstr "Accessibility Checker &mdash; Tarkastushistoria"
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
-msgstr "Accessibility Checker &mdash; ilmainen"
+msgstr "Accessibility Checker &mdash; Ilmainen"
 
 #: admin/site-health/class-free.php:49
 #: admin/site-health/class-pro.php:50
@@ -672,7 +672,7 @@ msgstr "Tietokantataulujen määrä"
 
 #: admin/site-health/class-pro.php:47
 msgid "Accessibility Checker &mdash; Pro"
-msgstr "Accessibility Checker &mdash; pro"
+msgstr "Accessibility Checker &mdash; Pro"
 
 #: admin/site-health/class-pro.php:58
 msgid "License Status"
@@ -717,7 +717,7 @@ msgstr "%1$s käyttää %2$s sivustomme saavutettavuuden seurantaan."
 
 #: includes/classes/class-accessibility-statement.php:49
 msgid "Accessibility Checker (opens in a new window)"
-msgstr "Esteettömyyden tarkistaja (avautuu uudessa ikkunassa)"
+msgstr "Accessibility Checker (avautuu uudessa ikkunassa)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
 #: includes/classes/class-accessibility-statement.php:58
@@ -1069,11 +1069,11 @@ msgstr "Poista välilehtijärjestys"
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Poista %1$s-attribuutti kohdistettavista elementeistä."
 
-#: includes/classes/Fixes/FixesManager.php:240
+#: includes/classes/Fixes/FixesManager.php:241
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Huomautus: Tätä asetusta ei suositella teemoille, jotka ovat jo saavutettavuusvalmiita."
 
-#: includes/classes/Fixes/FixesManager.php:293
+#: includes/classes/Fixes/FixesManager.php:294
 msgid "Fix not found"
 msgstr "Korjausta ei löytynyt"
 
@@ -1145,11 +1145,11 @@ msgstr "Osallistu ilmaiseksi"
 
 #: includes/options-page.php:42
 msgid "Welcome to Accessibility Checker"
-msgstr "Tervetuloa saavutettavuustarkistajaan"
+msgstr "Tervetuloa Accessibility Checkeriin"
 
 #: includes/options-page.php:65
 msgid "Accessibility Checker Settings"
-msgstr "Saavutettavuustarkistajan asetukset"
+msgstr "Accessibility Checkerin asetukset"
 
 #: includes/options-page.php:66
 msgid "Settings"
@@ -1169,7 +1169,7 @@ msgstr "Alatunnisteen saavutettavuuslausunto"
 
 #: includes/options-page.php:120
 msgid "Frontend Accessibility Checker"
-msgstr "Etusivun saavutettavuustarkistaja"
+msgstr "Etusivun Accessibility Checker"
 
 #: includes/options-page.php:128
 msgid "Post Types To Be Checked"
@@ -1203,12 +1203,12 @@ msgstr "Saavutettavuuslausunnon esikatselu"
 
 #: includes/options-page.php:200
 msgid "Frontend Accessibility Checker Position"
-msgstr "Etusivun saavutettavuustarkistajan sijainti"
+msgstr "Etusivun Accessibility Checkerin sijainti"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
-msgstr "Käytä alla olevia asetuksia määrittääksesi Saavutettavuustarkistajan. Lisätietoja jokaisesta asetuksesta löydät %1$s."
+msgstr "Käytä alla olevia asetuksia Accessibility Checkerin määrittämiseen. Lisätietoja jokaisesta asetuksesta löydät %1$s."
 
 #: includes/options-page.php:245
 msgid "plugin documentation (opens in a new window)"
@@ -1238,7 +1238,7 @@ msgstr "Käytä alla olevia asetuksia määrittääksesi etusivun saavutettavuus
 
 #: includes/options-page.php:276
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
-msgstr "Verkkosisällön saavutettavuusohjeiden (WCAG) AAA-tason mukaan yli 9. Luokan lukutasoa vaativalle sisällölle on oltava helppolukuisempi vaihtoehto. Yksinkertaistettu yhteenvetoteksti lisätään luettavuus-välilehdelle Accessibility Checker -metatietolaatikossa kunkin artikkelin tai sivun muokkausnäytöllä."
+msgstr "Verkkosisällön saavutettavuusohjeet (WCAG) tasolla AAA edellyttävät, että sisällölle, jonka luettavuustaso on yli 9. Luokan tasoa, on tarjottava helppolukuisempi vaihtoehto. Yksinkertaistettu yhteenvetoteksti lisätään luettavuusvälilehdelle Accessibility Checker -metatietolaatikossa kunkin artikkelin tai sivun muokkausnäytöllä."
 
 #: includes/options-page.php:277
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
@@ -1250,7 +1250,7 @@ msgstr "Lue lisää yksinkertaistetuista yhteenvedoista ja luettavuusvaatimuksis
 
 #: includes/options-page.php:286
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
-msgstr "Ajatteletko ”Vau, tämä lisäosa on mahtava” ja auttaako se sinua tekemään verkkosivustostasi saavutettavamman? Jaa pyrkimyksesi tehdä verkkosivustostasi saavutettavampi asiakkaillesi ja kerro heille, että käytät Accessibility Checkeriä varmistaaksesi, että kaikki ihmiset voivat käyttää sivustoasi. Lisää pieni tekstilinkki ja lausunto verkkosivustosi alatunnisteeseen."
+msgstr "Ajatteletko ”Vau, tämä lisäosa on mahtava” ja auttaako se sinua tekemään verkkosivustostasi saavutettavamman? Jaa pyrkimyksesi tehdä verkkosivustostasi saavutettavampi asiakkaillesi ja kerro heille, että käytät Accessibility Checkeriä varmistaaksesi, että kaikki ihmiset voivat käyttää verkkosivustoasi. Lisää pieni tekstilinkki ja lausunto verkkosivustosi alatunnisteeseen."
 
 #: includes/options-page.php:299
 msgid "Before the content"
@@ -1298,7 +1298,7 @@ msgstr "Aina"
 
 #: includes/options-page.php:395
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
-msgstr "Tulisiko Accessibility Checkerin pyytää yksinkertaistettua yhteenvetoa vain silloin, kun artikkelin tai sivun lukutaso on yli 9. luokan, aina lukutasosta riippumatta, vai ei koskaan lukutasosta riippumatta?"
+msgstr "Pitäisikö Accessibility Checkerin pyytää yksinkertaistettua yhteenvetoa vain silloin, kun artikkelin tai sivun luettavuustaso on yli 9. luokan tasoa, pyytää sitä aina luettavuustasosta riippumatta vai ei koskaan pyytää sitä luettavuustasosta riippumatta?"
 
 #: includes/options-page.php:446
 msgid "To check content other than posts and pages, please "
@@ -1409,7 +1409,7 @@ msgstr "Tasattu teksti"
 
 #: includes/rules.php:144
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
-msgstr "Tasatun tekstin varoitus ilmestyy Accessibility Checkeriin, kun artikkelissasi tai sivullasi on yli 200 merkkiä sisältävää tekstiä, joka on muotoiltu tasatuksi (text-align:justify). Korjataksesi tämän varoituksen, poista tasaus määritetyistä tekstielementeistä."
+msgstr "Accessibility Checkerissä näkyy tekstin tasauksen varoitus, kun artikkelin tai sivun yli 200 merkin pituinen teksti on muotoiltu tasatuksi (text-align:justify). Korjataksesi tämän varoituksen poista tasattu muotoilu määritetyistä tekstielementeistä."
 
 #: includes/rules.php:148
 msgid "Link Opens New Window or Tab"
@@ -1696,7 +1696,7 @@ msgstr "Accessibility New Window Warnings -lisäosa on asennettu. Tässä oleva 
 
 #: partials/custom-meta-box.php:10
 msgid "Accessibility Checker issues panels"
-msgstr "Accessibility Checker -ongelmaosiot"
+msgstr "Accessibility Checkerin ongelmataulut"
 
 #: partials/custom-meta-box.php:21
 msgid "Summary"
@@ -1722,12 +1722,12 @@ msgstr "Tyhjennä ongelmat"
 #: partials/pro-callout.php:13
 #: partials/welcome-page.php:196
 msgid "Equalize Digital Logo"
-msgstr "Equalize Digital -logo"
+msgstr "Equalize Digitalin logo"
 
 #: partials/pro-callout.php:16
 #: partials/welcome-page.php:197
 msgid "Upgrade to Accessibility Checker Pro"
-msgstr "Päivitä Accessibility Checker Pro -versioon"
+msgstr "Päivitä Accessibility Checker Pro:hon"
 
 #: partials/pro-callout.php:20
 #: partials/welcome-page.php:200
@@ -1789,7 +1789,7 @@ msgstr "versio"
 
 #: partials/welcome-page.php:40
 msgid "Link to Equalize Digital Website"
-msgstr "Linkki Equalize Digital -verkkosivustolle"
+msgstr "Linkki Equalize Digitalin verkkosivustolle"
 
 #: partials/welcome-page.php:49
 msgid "Quick Start Guide"
@@ -1810,11 +1810,11 @@ msgstr "Siirry muokkausnäkymään sen artikkelin kohdalla, jonka haluat tarkist
 
 #: partials/welcome-page.php:65
 msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
-msgstr "Etsi Accessibility Checker -metalaatikko sisältösi alapuolelta. Jos käytät etupuolen sivunrakentajaa, sinun on mentävä taustapuolen muokkausnäkymään nähdäksesi Accessibility Checker -tulokset."
+msgstr "Etsi Accessibility Checker -metatietolaatikko sisältösi alapuolelta. Jos käytät etusivun sivunrakentajaa, sinun on käytävä taustapuolen muokkausnäytöllä nähdäksesi Accessibility Checkerin tulokset."
 
 #: partials/welcome-page.php:66
 msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
-msgstr "Jos artikkelissasi on virheitä tai varoituksia, avaa yksityiskohtien välilehti Accessibility Checkerissä saadaksesi lisätietoja."
+msgstr "Jos artikkelissasi on virheitä tai varoituksia, avaa yksityiskohtavälilehti Accessibility Checkerissä saadaksesi lisätietoja."
 
 #: partials/welcome-page.php:67
 msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
@@ -1874,7 +1874,7 @@ msgstr "Mitä tehdä, jos teemassasi on esteettömyysvirheitä"
 
 #: partials/welcome-page.php:109
 msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
-msgstr "Voinko palkata Equalize Digitalin korjaamaan esteettömyysongelmia verkkosivustollani?"
+msgstr "Voinko palkata Equalize Digitalin korjaamaan verkkosivustoni saavutettavuusongelmia?"
 
 #: partials/welcome-page.php:114
 msgid "Additional Resources for Learning About Accessibility"
@@ -1894,7 +1894,7 @@ msgstr "Lisäosan tuki"
 
 #: partials/welcome-page.php:135
 msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
-msgstr "Maksullisten Accessibility Checker -suunnitelmien aktiiviset lisenssinhaltijat saavat rajoittamattoman sähköpostituen lisäosan käyttöön ja vianmääritykseen."
+msgstr "Maksullisten Accessibility Checker -suunnitelmien aktiiviset lisenssinhaltijat saavat rajoittamatonta sähköpostitukea lisäosan käyttöön ja ongelmanratkaisuun."
 
 #: partials/welcome-page.php:138
 msgid "Open Support Ticket"
@@ -1948,7 +1948,7 @@ msgstr "Tallennetaan..."
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
-msgstr "Asetukset tallennettu onnistuneesti. Sinun täytyy %svierailla muokkaimessa%s ja tallentaa artikkeli skannataksesi uudelleen ja poistaaksesi korjatut ongelmat Accessibility Checker -raporteista."
+msgstr "Asetukset tallennettu onnistuneesti. Sinun täytyy %svierailla editorissa%s ja tallentaa artikkeli skannataksesi uudelleen ja poistaaksesi korjatut ongelmat Accessibility Checkerin raporteista."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
@@ -1980,6 +1980,10 @@ msgstr "Ongelmat tyhjennetty onnistuneesti."
 #: build/editorApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Ongelmien tyhjennys epäonnistui."
+
+#: build/editorApp.bundle.js:2
+msgid "An error occurred while clearing issues."
+msgstr "Virhe tapahtui ongelmia tyhjennettäessä."
 
 #: build/emailOptIn.bundle.js:2
 msgid "There was a problem. Please try again."

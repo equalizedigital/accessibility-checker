@@ -55,6 +55,7 @@ class Email_Opt_In {
 
 		wp_enqueue_style( 'email-opt-in-form', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/emailOptIn.css', false, EDAC_VERSION, 'all' );
 		wp_enqueue_script( 'email-opt-in-form', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/emailOptIn.bundle.js', false, EDAC_VERSION, true );
+		wp_set_script_translations( 'email-opt-in-form', 'accessibility-checker', plugins_url( 'languages', EDAC_PLUGIN_FILE ) );
 
 		wp_localize_script(
 			'email-opt-in-form',
