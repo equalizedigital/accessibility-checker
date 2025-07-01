@@ -170,13 +170,15 @@ class Ajax {
 		$html['content'] .= '<div class="edac-summary-disclaimer" id="edac-summary-disclaimer"><small>' . PHP_EOL;
 		$html['content'] .= sprintf(
 			'* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s.',
-			'<a href="' . edac_generate_link_type(
-				[
-					'utm_campaign' => 'dashboard-widget',
-					'utm_content'  => 'how-to-manually-check',
-				],
-				'help',
-				[ 'help_id' => 4280 ]
+			'<a href="' . esc_url(
+				edac_generate_link_type(
+					[
+						'utm_campaign' => 'dashboard-widget',
+						'utm_content'  => 'how-to-manually-check',
+					],
+					'help',
+					[ 'help_id' => 4280 ]
+				)
 			) . '">',
 			'</a>'
 		) . PHP_EOL;
