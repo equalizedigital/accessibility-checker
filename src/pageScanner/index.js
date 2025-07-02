@@ -20,6 +20,10 @@ const LANDMARK_ROLES = [
 	'complementary',
 ];
 
+// Conditional landmark tags that only become landmarks when they have accessible names
+const CONDITIONAL_LANDMARK_TAGS = [ 'SECTION', 'ARTICLE', 'FORM' ];
+const CONDITIONAL_LANDMARK_ROLES = [ 'region', 'article', 'form' ];
+
 function getLandmarkForSelector( selector ) {
 	const el = document.querySelector( selector );
 	if ( ! el ) {
@@ -27,15 +31,37 @@ function getLandmarkForSelector( selector ) {
 	}
 	let current = el;
 	while ( current && current !== document.body ) {
+		// Check unconditional landmark tags
 		if ( LANDMARK_TAGS.includes( current.tagName ) ) {
 			return { type: current.tagName.toLowerCase(), selector: getElementSelector( current ) };
 		}
+
+		// Check conditional landmark tags (require accessible name)
+		if (
+			CONDITIONAL_LANDMARK_TAGS.includes( current.tagName ) &&
+			( current.hasAttribute( 'aria-label' ) || current.hasAttribute( 'aria-labelledby' ) )
+		) {
+			return { type: current.tagName.toLowerCase(), selector: getElementSelector( current ) };
+		}
+
+		// Check roles
 		if ( current.hasAttribute( 'role' ) ) {
 			const role = current.getAttribute( 'role' ).toLowerCase();
+
+			// Check unconditional landmark roles
 			if ( LANDMARK_ROLES.includes( role ) ) {
 				return { type: role, selector: getElementSelector( current ) };
 			}
+
+			// Check conditional landmark roles (require accessible name)
+			if (
+				CONDITIONAL_LANDMARK_ROLES.includes( role ) &&
+				( current.hasAttribute( 'aria-label' ) || current.hasAttribute( 'aria-labelledby' ) )
+			) {
+				return { type: role, selector: getElementSelector( current ) };
+			}
 		}
+
 		current = current.parentElement;
 	}
 	return { type: null, selector: null };
