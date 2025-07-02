@@ -72,20 +72,91 @@ function getElementSelector( element ) {
 	if ( ! element ) {
 		return null;
 	}
+
+	// Use ID if available (most reliable)
 	if ( element.id ) {
 		return `#${ element.id }`;
 	}
-	const path = [];
-	while ( element && element.nodeType === Node.ELEMENT_NODE && element !== document.body ) {
-		let selector = element.nodeName.toLowerCase();
-		if ( element.className ) {
-			const classes = element.className.trim().split( /\s+/ ).join( '.' );
-			selector += `.${ classes }`;
+
+	// For landmark elements, try to use semantic selectors first
+	const tagName = element.tagName.toLowerCase();
+
+	// For main element, use tag selector if it's unique
+	if ( tagName === 'main' ) {
+		const mainElements = document.querySelectorAll( 'main' );
+		if ( mainElements.length === 1 ) {
+			return 'main';
 		}
-		const siblingIndex = Array.from( element.parentNode.children ).indexOf( element ) + 1;
-		selector += `:nth-child(${ siblingIndex })`;
+	}
+
+	// For header/footer, check if they're direct children of body
+	if ( ( tagName === 'header' || tagName === 'footer' ) && element.parentElement === document.body ) {
+		return tagName;
+	}
+
+	// For nav elements, try role-based selector first
+	if ( tagName === 'nav' || element.getAttribute( 'role' ) === 'navigation' ) {
+		const navElements = document.querySelectorAll( 'nav, [role="navigation"]' );
+		if ( navElements.length === 1 ) {
+			return tagName === 'nav' ? 'nav' : '[role="navigation"]';
+		}
+		// If multiple, try to use aria-label or other identifying attributes
+		if ( element.hasAttribute( 'aria-label' ) ) {
+			const ariaLabel = element.getAttribute( 'aria-label' );
+			return `${ tagName === 'nav' ? 'nav' : '[role="navigation"]' }[aria-label="${ ariaLabel }"]`;
+		}
+	}
+
+	// For other landmark roles, use role selector if unique
+	const role = element.getAttribute( 'role' );
+	if ( role && LANDMARK_ROLES.includes( role ) ) {
+		const roleElements = document.querySelectorAll( `[role="${ role }"]` );
+		if ( roleElements.length === 1 ) {
+			return `[role="${ role }"]`;
+		}
+		// If multiple, try to use aria-label
+		if ( element.hasAttribute( 'aria-label' ) ) {
+			const ariaLabel = element.getAttribute( 'aria-label' );
+			return `[role="${ role }"][aria-label="${ ariaLabel }"]`;
+		}
+	}
+
+	// Fallback to path-based selector (simplified)
+	const path = [];
+	let current = element;
+	while ( current && current.nodeType === Node.ELEMENT_NODE && current !== document.body ) {
+		let selector = current.nodeName.toLowerCase();
+
+		// Add ID if available
+		if ( current.id ) {
+			selector = `#${ current.id }`;
+			path.unshift( selector );
+			break; // Stop here since ID is unique
+		}
+
+		// Add stable classes (avoid dynamic/generated classes)
+		if ( current.className ) {
+			const classes = current.className.trim().split( /\s+/ )
+				.filter( ( cls ) => ! cls.match( /^(wp-|js-|css-|generated-|dynamic-)/ ) ) // Filter out common dynamic classes
+				.slice( 0, 2 ); // Limit to first 2 classes for stability
+			if ( classes.length > 0 ) {
+				selector += `.${ classes.join( '.' ) }`;
+			}
+		}
+
+		// Only add nth-child as last resort and only if element has no other identifying features
+		if ( ! current.id && ! current.className ) {
+			const siblingIndex = Array.from( current.parentNode.children ).indexOf( current ) + 1;
+			selector += `:nth-child(${ siblingIndex })`;
+		}
+
 		path.unshift( selector );
-		element = element.parentElement;
+		current = current.parentElement;
+
+		// Limit path depth to avoid overly complex selectors
+		if ( path.length >= 4 ) {
+			break;
+		}
 	}
 	return path.length ? path.join( ' > ' ) : null;
 }

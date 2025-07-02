@@ -32,6 +32,7 @@ class AccessibilityCheckerHighlight {
 		this.fixes = null;
 		this.currentButtonIndex = null;
 		this.urlParameter = this.get_url_parameter( 'edac' );
+		this.landmarkParameter = this.get_url_parameter( 'edac_landmark' );
 		this.currentIssueStatus = null;
 		this.tooltips = [];
 		this.panelControlsFocusTrap = createFocusTrap( '#' + this.panelControls.id, {
@@ -97,6 +98,8 @@ class AccessibilityCheckerHighlight {
 		// Open panel if a URL parameter exists
 		if ( this.urlParameter ) {
 			this.panelOpen( this.urlParameter );
+		} else if ( this.landmarkParameter ) {
+			this.highlightLandmark( this.landmarkParameter );
 		}
 	}
 
@@ -242,6 +245,9 @@ class AccessibilityCheckerHighlight {
 		buttons.forEach( ( button ) => {
 			button.remove();
 		} );
+
+		// Clean up any landmark labels
+		this.removeLandmarkLabels();
 	}
 
 	/**
@@ -577,6 +583,9 @@ class AccessibilityCheckerHighlight {
 				selectedElement.removeAttribute( 'class' );
 			}
 		} );
+
+		// Clean up any landmark labels when highlights are removed
+		this.removeLandmarkLabels();
 	};
 
 	/**
@@ -888,6 +897,189 @@ class AccessibilityCheckerHighlight {
 		}
 
 		div.textContent = textContent;
+	}
+
+	/**
+	 * This function highlights a landmark based on the selector.
+	 * @param {string} encodedSelector Base64-encoded CSS selector for the landmark
+	 */
+	highlightLandmark( encodedSelector ) {
+		try {
+			// Decode the base64 selector
+			const selector = atob( encodedSelector );
+
+			// Find the landmark element using multiple strategies
+			let landmarkElement = null;
+
+			try {
+				// Try the original selector first
+				landmarkElement = document.querySelector( selector );
+			} catch ( error ) {
+				// Selector might be invalid, try fallbacks
+			}
+
+			// If original selector failed, try some fallback strategies
+			if ( ! landmarkElement ) {
+				// Try common landmark selectors as fallbacks
+				const fallbackSelectors = [
+					// Remove complex pseudo-selectors and try simpler versions
+					selector.replace( /:nth-child\(\d+\)/g, '' ).replace( /\s+>\s+/g, ' ' ),
+					// Try just the last part of the selector
+					selector.split( ' > ' ).pop(),
+					// Try without classes
+					selector.replace( /\.[^:\s>]+/g, '' ),
+				];
+
+				for ( const fallback of fallbackSelectors ) {
+					if ( fallback && fallback.trim() ) {
+						try {
+							landmarkElement = document.querySelector( fallback.trim() );
+							if ( landmarkElement ) {
+								break;
+							}
+						} catch ( e ) {
+							// Continue to next fallback
+						}
+					}
+				}
+			}
+
+			if ( landmarkElement ) {
+				// Clean up any existing landmark labels first
+				this.removeLandmarkLabels();
+
+				// Add highlighting styles
+				landmarkElement.classList.add( 'edac-highlight-element-selected' );
+				landmarkElement.classList.add( 'edac-landmark-highlight' );
+
+				// Create and add landmark type label
+				const landmarkType = this.getLandmarkType( landmarkElement );
+				const landmarkLabel = document.createElement( 'div' );
+				landmarkLabel.classList.add( 'edac-landmark-label' );
+				landmarkLabel.textContent = `Landmark: ${ landmarkType }`;
+				landmarkLabel.setAttribute( 'aria-hidden', 'true' );
+				landmarkLabel.style.cssText = `
+					position: absolute;
+					background: #072446;
+					color: white;
+					padding: 4px 8px;
+					font-size: 12px;
+					font-weight: bold;
+					border-radius: 3px;
+					z-index: 999999;
+					pointer-events: none;
+					font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+					line-height: 1;
+					box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+				`;
+
+				// Position the label inside the top-left corner of the landmark
+				const rect = landmarkElement.getBoundingClientRect();
+				landmarkLabel.style.left = ( rect.left + window.scrollX - 0 ) + 'px'; // 15px inside from left edge
+				landmarkLabel.style.top = ( rect.top + window.scrollY - 0 ) + 'px'; // 15px inside from top edge
+
+				// Add label to the page
+				document.body.appendChild( landmarkLabel );
+
+				// Store reference for cleanup
+				landmarkElement.setAttribute( 'data-edac-landmark-label-id', Date.now() );
+				landmarkLabel.setAttribute( 'data-edac-landmark-for', landmarkElement.getAttribute( 'data-edac-landmark-label-id' ) );
+
+				// Adjust for small elements
+				if ( landmarkElement.offsetWidth < 20 ) {
+					landmarkElement.classList.add( 'edac-highlight-element-selected-min-width' );
+				}
+
+				if ( landmarkElement.offsetHeight < 5 ) {
+					landmarkElement.classList.add( 'edac-highlight-element-selected-min-height' );
+				}
+
+				// Scroll to the landmark
+				landmarkElement.scrollIntoView( { block: 'center', behavior: 'smooth' } );
+
+			} else {
+				// Landmark element not found - silently fail
+			}
+		} catch ( error ) {
+			// Error highlighting landmark - silently fail
+		}
+	}
+
+	/**
+	 * Determines the landmark type of an element
+	 * @param {HTMLElement} element The element to check
+	 * @return {string} The landmark type (e.g., "Header", "Navigation", "Main")
+	 */
+	getLandmarkType( element ) {
+		// Check explicit ARIA role first
+		const role = element.getAttribute( 'role' );
+		if ( role ) {
+			switch ( role.toLowerCase() ) {
+				case 'banner':
+					return 'Header';
+				case 'navigation':
+					return 'Navigation';
+				case 'main':
+					return 'Main';
+				case 'complementary':
+					return 'Complementary';
+				case 'contentinfo':
+					return 'Footer';
+				case 'search':
+					return 'Search';
+				case 'form':
+					return 'Form';
+				case 'region':
+					return 'Region';
+				default:
+					return role.charAt( 0 ).toUpperCase() + role.slice( 1 );
+			}
+		}
+
+		// Check semantic HTML elements
+		const tagName = element.tagName.toLowerCase();
+		switch ( tagName ) {
+			case 'header':
+				return 'Header';
+			case 'nav':
+				return 'Navigation';
+			case 'main':
+				return 'Main';
+			case 'aside':
+				return 'Complementary';
+			case 'footer':
+				return 'Footer';
+			case 'section':
+				// Check if section has accessible name
+				const hasAccessibleName = element.getAttribute( 'aria-label' ) ||
+					element.getAttribute( 'aria-labelledby' ) ||
+					element.querySelector( 'h1, h2, h3, h4, h5, h6' );
+				return hasAccessibleName ? 'Region' : 'Section';
+			case 'form':
+				// Check if form has accessible name
+				const formHasAccessibleName = element.getAttribute( 'aria-label' ) ||
+					element.getAttribute( 'aria-labelledby' );
+				return formHasAccessibleName ? 'Form' : 'Form (unlabeled)';
+			default:
+				return 'Landmark';
+		}
+	}
+
+	/**
+	 * Remove all landmark labels from the page
+	 */
+	removeLandmarkLabels() {
+		const landmarkLabels = document.querySelectorAll( '.edac-landmark-label' );
+		landmarkLabels.forEach( ( label ) => {
+			label.remove();
+		} );
+
+		// Remove landmark highlight classes
+		const landmarkHighlights = document.querySelectorAll( '.edac-landmark-highlight' );
+		landmarkHighlights.forEach( ( element ) => {
+			element.classList.remove( 'edac-landmark-highlight' );
+			element.removeAttribute( 'data-edac-landmark-label-id' );
+		} );
 	}
 }
 
