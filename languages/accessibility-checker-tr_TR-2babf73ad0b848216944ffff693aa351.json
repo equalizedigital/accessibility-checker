@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/admin.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Kaydediliyor..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Ayarlar ba\u015far\u0131yla kaydedildi. D\u00fczeltilen sorunlar\u0131 Eri\u015filebilirlik Denetleyicisi raporlar\u0131ndan kald\u0131rmak i\u00e7in %sd\u00fczenleyiciyi ziyaret etmeli%s ve g\u00f6nderiyi kaydetmelisiniz."
+                "Ayarlar ba\u015far\u0131yla kaydedildi. Accessibility Checker raporlar\u0131ndan d\u00fczeltilmi\u015f sorunlar\u0131 yeniden taramak ve kald\u0131rmak i\u00e7in %sedit\u00f6r\u00fc ziyaret etmeli%s ve yaz\u0131y\u0131 kaydetmelisin."
             ],
             "Settings saved successfully.": [
                 "Ayarlar ba\u015far\u0131yla kaydedildi."

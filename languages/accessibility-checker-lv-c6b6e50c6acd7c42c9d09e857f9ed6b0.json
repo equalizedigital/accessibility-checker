@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/editorApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Neizdev\u0101s not\u012br\u012bt probl\u0113mas."
+            ],
+            "An error occurred while clearing issues.": [
+                "Rad\u0101s k\u013c\u016bda, t\u012brot probl\u0113mas."
             ]
         }
     }
