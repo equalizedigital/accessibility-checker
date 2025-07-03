@@ -2002,3 +2002,15 @@
 	color: variables.$color-gray;
 	text-decoration: none;
 }
+
+.edac-plugin-action-links {
+  &__go-pro {
+    color: variables.$color-red;
+    font-weight: bold;
+    &:hover,
+    &:focus {
+      color: variables.$color-red;
+      text-decoration: underline;
+    }
+  }
+}

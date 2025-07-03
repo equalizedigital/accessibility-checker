@@ -48,6 +48,9 @@ class Admin {
 		add_action( 'wp_trash_post', [ Purge_Post_Data::class, 'delete_post' ] );
 		add_action( 'save_post', [ Post_Save::class, 'delete_issue_data_on_post_trashing' ], 10, 3 );
 
+		$plugin_action_links = new Plugin_Action_Links();
+		$plugin_action_links->init_hooks();
+
 		$admin_notices = new Admin_Notices();
 		$admin_notices->init_hooks();
 
