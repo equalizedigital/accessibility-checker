@@ -1049,17 +1049,19 @@ class AccessibilityCheckerHighlight {
 				return 'Complementary';
 			case 'footer':
 				return 'Footer';
-			case 'section':
+			case 'section': {
 				// Check if section has accessible name
 				const hasAccessibleName = element.getAttribute( 'aria-label' ) ||
 					element.getAttribute( 'aria-labelledby' ) ||
 					element.querySelector( 'h1, h2, h3, h4, h5, h6' );
 				return hasAccessibleName ? 'Region' : 'Section';
-			case 'form':
+			}
+			case 'form': {
 				// Check if form has accessible name
 				const formHasAccessibleName = element.getAttribute( 'aria-label' ) ||
 					element.getAttribute( 'aria-labelledby' );
 				return formHasAccessibleName ? 'Form' : 'Form (unlabeled)';
+			}
 			default:
 				return 'Landmark';
 		}
