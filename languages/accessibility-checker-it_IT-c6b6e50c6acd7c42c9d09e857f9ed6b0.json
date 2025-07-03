@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/editorApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Impossibile cancellare i problemi."
+            ],
+            "An error occurred while clearing issues.": [
+                "Si \u00e8 verificato un errore durante l'eliminazione dei problemi."
             ]
         }
     }

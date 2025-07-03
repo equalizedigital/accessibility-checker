@@ -1,6 +1,6 @@
 <?php
 /**
- * Accessibility Checker pluign file.
+ * Accessibility Checker plugin file.
  *
  * @package Accessibility_Checker
  */
@@ -146,38 +146,6 @@ function edac_days_active() {
 		return abs( round( $diff / 86400 ) );
 	}
 	return 0;
-}
-
-/**
- * Documentation Link.
- *
- * @param array $rule to get link from.
- * @return string markup for link.
- */
-function edac_documentation_link( $rule ) {
-	global $wp_version;
-	$days_active = edac_days_active();
-
-	if ( ! $rule['info_url'] || ! isset( $rule['slug'] ) ) {
-		return '';
-	}
-
-	return add_query_arg(
-		[
-			'utm_source'       => 'accessibility-checker',
-			'utm_medium'       => 'software',
-			'utm_term'         => esc_attr( $rule['slug'] ),
-			'utm_content'      => 'content-analysis',
-			'utm_campaign'     => 'wordpress-general',
-			'php_version'      => PHP_VERSION,
-			'platform'         => 'wordpress',
-			'platform_version' => $wp_version,
-			'software'         => 'free',
-			'software_version' => EDAC_VERSION,
-			'days_active'      => $days_active,
-		],
-		$rule['info_url']
-	);
 }
 
 /**
@@ -587,6 +555,14 @@ function edac_generate_summary_stat( string $item_class, int $count, string $lab
  */
 function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ): string {
 
+	if ( ! is_array( $query_args ) ) {
+		$query_args = [];
+	}
+
+	if ( ! is_array( $args ) ) {
+		$args = [];
+	}
+
 	$date_now        = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
 	$activation_date = new DateTime( get_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s' ) ) );
 	$interval        = $date_now->diff( $activation_date );
@@ -602,6 +578,12 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 		'software_version' => defined( 'EDACP_VERSION' ) ? EDACP_VERSION : EDAC_VERSION,
 		'days_active'      => $days_active,
 	];
+
+	// Add the ref parameter if one is set via filter.
+	$ref = apply_filters( 'edac_filter_generate_link_type_ref', '' );
+	if ( ! empty( $ref ) && is_string( $ref ) ) {
+		$query_args['ref'] = $ref;
+	}
 
 	$query_args = array_merge( $query_defaults, $query_args );
 
@@ -620,6 +602,45 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 			break;
 	}
 	return add_query_arg( $query_args, $base_link );
+}
+
+/**
+ * Echo or return a link with some utms.
+ *
+ * This is just a simplified wrapper around `edac_generate_link_type` to generate a link with UTM parameters.
+ *
+ * @param string $base_url the base URL to which UTM parameters will be added.
+ * @param string $campaign the UTM campaign name, optional.
+ * @param string $content the UTM content name, optional.
+ * @param bool   $directly_echo whether to echo the link or return it. Default is true.
+ *
+ * @return void|string
+ */
+function edac_link_wrapper( $base_url, $campaign = '', $content = '', $directly_echo = true ) {
+	if ( empty( $base_url ) || ! is_string( $base_url ) ) {
+		return;
+	}
+
+	$params = [];
+	if ( ! empty( $campaign ) ) {
+		$params['utm_campaign'] = $campaign;
+	}
+
+	if ( ! empty( $content ) ) {
+		$params['utm_content'] = $content;
+	}
+
+	$link = edac_generate_link_type(
+		$params,
+		'custom',
+		[ 'base_link' => $base_url ]
+	);
+
+	if ( ! $directly_echo ) {
+		return $link;
+	}
+
+	echo esc_url( $link );
 }
 
 /**
@@ -649,7 +670,7 @@ function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
 
 /**
  * Parse HTML content to extract image or SVG elements
- * 
+ *
  * @param string $html The HTML content to parse.
  * @return array Array containing 'img' (string) and 'svg' (string) keys.
  */
