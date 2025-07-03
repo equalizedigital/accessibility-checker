@@ -100,9 +100,14 @@ class Insert_Rule_Data {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 				$wpdb->query(
 					$wpdb->prepare(
-						'UPDATE %i SET recordcheck = %d, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s',
+						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, selector = %s, ancestry = %s, xpath = %s, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s',
 						$table_name,
 						1,
+						$rule_data['landmark'],
+						$rule_data['landmark_selector'],
+						$rule_data['selector'],
+						$rule_data['ancestry'],
+						$rule_data['xpath'],
 						$rule_data['ignre'],
 						$rule_data['siteid'],
 						$rule_data['postid'],
