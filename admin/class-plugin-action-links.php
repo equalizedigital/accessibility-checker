@@ -27,12 +27,12 @@ class Plugin_Action_Links {
 	 */
 	public function init_hooks(): void {
 		if ( defined( 'EDAC_PLUGIN_FILE' ) ) {
-			add_filter( 'plugin_action_links_' . plugin_basename( EDAC_PLUGIN_FILE ), [ $this, 'plugin_action_links' ] );
+			add_filter( 'plugin_action_links_' . plugin_basename( EDAC_PLUGIN_FILE ), [ $this, 'add_plugin_action_links' ] );
 		}
 	}
 
 	/**
-	 * Plugin action links.
+	 * Add plugin action links.
 	 *
 	 * Adds action links to the plugin list table
 	 *
@@ -45,7 +45,7 @@ class Plugin_Action_Links {
 	 *
 	 * @return array An array of plugin action links.
 	 */
-	public function plugin_action_links( $links ): array {
+	public function add_plugin_action_links( $links ): array {
 		$settings_link = sprintf( 
 			'<a href="%1$s">%2$s</a>', 
 			admin_url( 'admin.php?page=accessibility_checker_settings' ), 
