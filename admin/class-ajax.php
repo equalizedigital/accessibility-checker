@@ -481,13 +481,11 @@ class Ajax {
 							);
 							
 							// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-							$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), $landmark );
+							$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), ucwords( $landmark ) );
 							// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-							$html .= '<a href="' . $landmark_url . '" class="edac-details-rule-records-record-landmark-link" target="_blank" aria-label="' . esc_attr( $landmark_aria_label ) . '" title="' . esc_attr( sprintf( __( 'Click to highlight the %s landmark on the page', 'accessibility-checker' ), $landmark ) ) . '">' . $landmark . '</a>';
+							$html .= '<a href="' . $landmark_url . '" class="edac-details-rule-records-record-landmark-link" target="_blank" aria-label="' . esc_attr( $landmark_aria_label ) . '">' . ucwords( $landmark ) . '</a>';
 						} elseif ( $landmark ) {
-							$html .= $landmark;
-						} else {
-							$html .= '<span class="edac-no-landmark">—</span>';
+							$html .= ucwords( $landmark );
 						}
 
 						$html .= '</div>';
