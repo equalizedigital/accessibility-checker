@@ -994,8 +994,13 @@ class AccessibilityCheckerHighlight {
 					landmarkElement.classList.add( 'edac-highlight-element-selected-min-height' );
 				}
 
-				// Scroll to the landmark
-				landmarkElement.scrollIntoView( { block: 'center', behavior: 'smooth' } );
+				// Scroll to the landmark with 20px offset from start
+				const elementRect = landmarkElement.getBoundingClientRect();
+				const elementTop = elementRect.top + window.scrollY - 75;
+				window.scrollTo( {
+					top: elementTop,
+					behavior: 'smooth',
+				} );
 
 			} else {
 				// Landmark element not found - silently fail
