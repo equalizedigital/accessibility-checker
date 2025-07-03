@@ -321,7 +321,7 @@ class Ajax {
 
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
+				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
 				$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
 				$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
 
@@ -422,6 +422,8 @@ class Ajax {
 						$html .= ob_get_clean();
 					}
 
+
+
 					$html .=
 						'<div class="edac-details-rule-records-labels">
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
@@ -429,6 +431,9 @@ class Ajax {
 							</div>
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
 								Image
+							</div>
+							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
+								Landmark
 							</div>
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
 								Actions
@@ -473,6 +478,30 @@ class Ajax {
 							$html .= '<img src="' . $object_img . '" alt="image for issue ' . $id . '" />';
 						} elseif ( $object_svg ) {
 							$html .= $object_svg;
+						}
+
+						$html .= '</div>';
+
+						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-landmark">';
+
+						$landmark          = isset( $row['landmark'] ) ? esc_html( $row['landmark'] ) : '';
+						$landmark_selector = isset( $row['landmark_selector'] ) ? $row['landmark_selector'] : '';
+						
+						if ( $landmark && $landmark_selector ) {
+							$landmark_url = add_query_arg(
+								[
+									'edac_landmark' => base64_encode( $landmark_selector ),
+									'edac_nonce'    => wp_create_nonce( 'edac_highlight' ),
+								],
+								get_the_permalink( $postid )
+							);
+							
+							// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+							$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), ucwords( $landmark ) );
+							// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+							$html .= '<a href="' . $landmark_url . '" class="edac-details-rule-records-record-landmark-link" target="_blank" aria-label="' . esc_attr( $landmark_aria_label ) . '">' . ucwords( $landmark ) . '</a>';
+						} elseif ( $landmark ) {
+							$html .= ucwords( $landmark );
 						}
 
 						$html .= '</div>';

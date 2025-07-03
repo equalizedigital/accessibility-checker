@@ -10,6 +10,158 @@ import { getPageDensity } from './helpers/density';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
+// Landmark tags for semantic regions
+const LANDMARK_TAGS = [ 'MAIN', 'HEADER', 'FOOTER', 'NAV', 'ASIDE' ];
+const LANDMARK_ROLES = [
+	'main',
+	'navigation',
+	'banner',
+	'contentinfo',
+	'complementary',
+];
+
+// Conditional landmark tags that only become landmarks when they have accessible names
+const CONDITIONAL_LANDMARK_TAGS = [ 'SECTION', 'ARTICLE', 'FORM' ];
+const CONDITIONAL_LANDMARK_ROLES = [ 'region', 'article', 'form' ];
+
+function getLandmarkForSelector( selector ) {
+	const el = document.querySelector( selector );
+	if ( ! el ) {
+		return { type: null, selector: null };
+	}
+	let current = el;
+	while ( current && current !== document.body ) {
+		// Check unconditional landmark tags
+		if ( LANDMARK_TAGS.includes( current.tagName ) ) {
+			return { type: current.tagName.toLowerCase(), selector: getElementSelector( current ) };
+		}
+
+		// Check conditional landmark tags (require accessible name)
+		if (
+			CONDITIONAL_LANDMARK_TAGS.includes( current.tagName ) &&
+			( current.hasAttribute( 'aria-label' ) || current.hasAttribute( 'aria-labelledby' ) )
+		) {
+			return { type: current.tagName.toLowerCase(), selector: getElementSelector( current ) };
+		}
+
+		// Check roles
+		if ( current.hasAttribute( 'role' ) ) {
+			const role = current.getAttribute( 'role' ).toLowerCase();
+
+			// Check unconditional landmark roles
+			if ( LANDMARK_ROLES.includes( role ) ) {
+				return { type: role, selector: getElementSelector( current ) };
+			}
+
+			// Check conditional landmark roles (require accessible name)
+			if (
+				CONDITIONAL_LANDMARK_ROLES.includes( role ) &&
+				( current.hasAttribute( 'aria-label' ) || current.hasAttribute( 'aria-labelledby' ) )
+			) {
+				return { type: role, selector: getElementSelector( current ) };
+			}
+		}
+
+		current = current.parentElement;
+	}
+	return { type: null, selector: null };
+}
+
+// Helper to get a unique CSS selector for an element
+function getElementSelector( element ) {
+	if ( ! element ) {
+		return null;
+	}
+
+	// Use ID if available (most reliable)
+	if ( element.id ) {
+		return `#${ element.id }`;
+	}
+
+	// For landmark elements, try to use semantic selectors first
+	const tagName = element.tagName.toLowerCase();
+
+	// For main element, use tag selector if it's unique
+	if ( tagName === 'main' ) {
+		const mainElements = document.querySelectorAll( 'main' );
+		if ( mainElements.length === 1 ) {
+			return 'main';
+		}
+	}
+
+	// For header/footer, check if they're direct children of body
+	if ( ( tagName === 'header' || tagName === 'footer' ) && element.parentElement === document.body ) {
+		return tagName;
+	}
+
+	// For nav elements, try role-based selector first
+	if ( tagName === 'nav' || element.getAttribute( 'role' ) === 'navigation' ) {
+		const navElements = document.querySelectorAll( 'nav, [role="navigation"]' );
+		if ( navElements.length === 1 ) {
+			return tagName === 'nav' ? 'nav' : '[role="navigation"]';
+		}
+		// If multiple, try to use aria-label or other identifying attributes
+		if ( element.hasAttribute( 'aria-label' ) ) {
+			const ariaLabel = element.getAttribute( 'aria-label' );
+			return `${ tagName === 'nav' ? 'nav' : '[role="navigation"]' }[aria-label="${ ariaLabel }"]`;
+		}
+	}
+
+	// For other landmark roles, use role selector if unique
+	const role = element.getAttribute( 'role' );
+	if ( role && LANDMARK_ROLES.includes( role ) ) {
+		const roleElements = document.querySelectorAll( `[role="${ role }"]` );
+		if ( roleElements.length === 1 ) {
+			return `[role="${ role }"]`;
+		}
+		// If multiple, try to use aria-label
+		if ( element.hasAttribute( 'aria-label' ) ) {
+			const ariaLabel = element.getAttribute( 'aria-label' );
+			return `[role="${ role }"][aria-label="${ ariaLabel }"]`;
+		}
+	}
+
+	// Fallback to path-based selector (simplified)
+	const path = [];
+	let current = element;
+	while ( current && current.nodeType === Node.ELEMENT_NODE && current !== document.body ) {
+		let selector = current.nodeName.toLowerCase();
+
+		// Add ID if available
+		if ( current.id ) {
+			selector = `#${ current.id }`;
+			path.unshift( selector );
+			break; // Stop here since ID is unique
+		}
+
+		// Add stable classes (avoid dynamic/generated classes)
+		if ( current.className ) {
+			const classes = current.className.trim().split( /\s+/ )
+				.map( ( cls ) => CSS.escape( cls ) )
+				.filter( ( cls ) => ! cls.match( /^(wp-|js-|css-|generated-|dynamic-)/ ) ) // Filter out common dynamic classes
+				.slice( 0, 2 ); // Limit to first 2 classes for stability
+			if ( classes.length > 0 ) {
+				selector += `.${ classes.join( '.' ) }`;
+			}
+		}
+
+		// Only add nth-child as last resort and only if element has no other identifying features
+		if ( ! current.id && ! current.className ) {
+			const siblingIndex = Array.from( current.parentNode.children ).indexOf( current ) + 1;
+			selector += `:nth-child(${ siblingIndex })`;
+		}
+
+		path.unshift( selector );
+		current = current.parentElement;
+
+		// Limit path depth to avoid overly complex selectors
+		if ( path.length >= 4 ) {
+			break;
+		}
+	}
+	return path.length ? path.join( ' > ' ) : null;
+}
+
 // Read the data passed from the parent document.
 const body = document.querySelector( 'body' );
 const iframeId = body.getAttribute( 'data-iframe-id' );
@@ -58,12 +210,17 @@ const scan = async (
 				//Build an array of the dom selectors and ruleIDs for violations/failed tests
 				item.violations.forEach( ( violation ) => {
 					if ( violation.result === 'failed' ) {
+						const selector = violation.node.selector;
+						const html = document.querySelector( selector )?.outerHTML;
+						const landmark = getLandmarkForSelector( selector );
 						violations.push( {
-							selector: violation.node.selector,
-							html: document.querySelector( violation.node.selector ).outerHTML,
+							selector,
+							html,
 							ruleId: item.id,
 							impact: item.impact,
 							tags: item.tags,
+							landmark: landmark.type,
+							landmarkSelector: landmark.selector,
 						} );
 					}
 				} );
@@ -71,12 +228,17 @@ const scan = async (
 				// Handle incomplete results for form-field-multiple-labels only.
 				if ( item.id === 'form-field-multiple-labels' ) { // Allow incomplete results for this rule.
 					item.incomplete.forEach( ( incompleteItem ) => {
+						const selector = incompleteItem.node.selector;
+						const html = document.querySelector( selector )?.outerHTML;
+						const landmark = getLandmarkForSelector( selector );
 						violations.push( {
-							selector: incompleteItem.node.selector,
-							html: document.querySelector( incompleteItem.node.selector ).outerHTML,
+							selector,
+							html,
 							ruleId: item.id,
 							impact: item.impact,
 							tags: item.tags,
+							landmark: landmark.type,
+							landmarkSelector: landmark.selector,
 						} );
 					} );
 				}
