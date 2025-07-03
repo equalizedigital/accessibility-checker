@@ -210,36 +210,14 @@ const scan = async (
 				//Build an array of the dom selectors and ruleIDs for violations/failed tests
 				item.violations.forEach( ( violation ) => {
 					if ( violation.result === 'failed' ) {
-						const selector = violation.node.selector;
-						const html = document.querySelector( selector )?.outerHTML;
-						const landmark = getLandmarkForSelector( selector );
-						violations.push( {
-							selector,
-							html,
-							ruleId: item.id,
-							impact: item.impact,
-							tags: item.tags,
-							landmark: landmark.type,
-							landmarkSelector: landmark.selector,
-						} );
+						violations.push( processViolation( violation, item ) );
 					}
 				} );
 
 				// Handle incomplete results for form-field-multiple-labels only.
 				if ( item.id === 'form-field-multiple-labels' ) { // Allow incomplete results for this rule.
 					item.incomplete.forEach( ( incompleteItem ) => {
-						const selector = incompleteItem.node.selector;
-						const html = document.querySelector( selector )?.outerHTML;
-						const landmark = getLandmarkForSelector( selector );
-						violations.push( {
-							selector,
-							html,
-							ruleId: item.id,
-							impact: item.impact,
-							tags: item.tags,
-							landmark: landmark.type,
-							landmarkSelector: landmark.selector,
-						} );
+						violations.push( processViolation( incompleteItem, item ) );
 					} );
 				}
 			} );
@@ -350,3 +328,23 @@ scan().then( ( results ) => {
 } ).catch( ( err ) => {
 	onDone( [], [ err.message ], true );
 } );
+
+// Helper to process a violation and return the formatted object
+function processViolation( violation, item ) {
+	const selector = violation.node.selector;
+	const landmark = getLandmarkForSelector( selector );
+	const ancestry = violation.node.ancestry || [];
+	const xpath = violation.node.xpath || [];
+	const html = document.querySelector( selector )?.outerHTML;
+	return {
+		selector,
+		ancestry,
+		xpath,
+		html,
+		ruleId: item.id,
+		impact: item.impact,
+		tags: item.tags,
+		landmark: landmark.type,
+		landmarkSelector: landmark.selector,
+	};
+}
