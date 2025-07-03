@@ -13,14 +13,6 @@ namespace EDAC\Admin;
 class Plugin_Action_Links {
 
 	/**
-	 * Class constructor.
-	 *
-	 * Initializes the hooks for the plugin action links.
-	 */
-	public function __construct() {
-	}
-
-	/**
 	 * Initialize hooks.
 	 *
 	 * @return void
@@ -48,7 +40,7 @@ class Plugin_Action_Links {
 	public function add_plugin_action_links( $links ): array {
 		$settings_link = sprintf( 
 			'<a href="%1$s">%2$s</a>', 
-			admin_url( 'admin.php?page=accessibility_checker_settings' ), 
+			esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ), 
 			esc_html__( 'Settings', 'accessibility-checker' ) 
 		);
 
@@ -60,7 +52,7 @@ class Plugin_Action_Links {
 			
 			$links['go_pro'] = sprintf( 
 				'<a href="%1$s" target="_blank" class="edac-plugin-action-links__go-pro" aria-label="%2$s">%3$s</a>', 
-				edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'plugin-action-links', 'get-pro-link', false ), 
+				esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'plugin-action-links', 'get-pro-link', false ) ), 
 				esc_attr__( 'Get Accessibility Checker Pro, opens in new window', 'accessibility-checker' ),
 				$go_pro_text 
 			);
