@@ -966,7 +966,7 @@ class AccessibilityCheckerHighlight {
 					font-size: 12px;
 					font-weight: bold;
 					border-radius: 3px;
-					z-index: 999999;
+					z-index: 99998;
 					pointer-events: none;
 					font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 					line-height: 1;
