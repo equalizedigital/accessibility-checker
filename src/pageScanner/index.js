@@ -137,6 +137,7 @@ function getElementSelector( element ) {
 		// Add stable classes (avoid dynamic/generated classes)
 		if ( current.className ) {
 			const classes = current.className.trim().split( /\s+/ )
+				.map( ( cls ) => CSS.escape( cls ) )
 				.filter( ( cls ) => ! cls.match( /^(wp-|js-|css-|generated-|dynamic-)/ ) ) // Filter out common dynamic classes
 				.slice( 0, 2 ); // Limit to first 2 classes for stability
 			if ( classes.length > 0 ) {
