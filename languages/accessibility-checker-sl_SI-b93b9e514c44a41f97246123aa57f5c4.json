@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Shranjevanje..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Nastavitve so uspe\u0161no shranjene. Morate %sobiskati urejevalnik%s in shraniti objavo, da ponovno pregledate in odstranite popravljene te\u017eave iz poro\u010dil Preverjalnika dostopnosti."
+                "Nastavitve so bile uspe\u0161no shranjene. Za ponovno skeniranje in odstranitev popravljenih te\u017eav iz poro\u010dil Accessibility Checkerja mora\u0161 %sobiskati urejevalnik%s in shraniti objavo."
             ],
             "Settings saved successfully.": [
                 "Nastavitve so uspe\u0161no shranjene."

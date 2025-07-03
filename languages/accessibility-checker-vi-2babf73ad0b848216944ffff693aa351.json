@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/admin.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "\u0110ang l\u01b0u..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "\u0110\u00e3 l\u01b0u c\u00e0i \u0111\u1eb7t th\u00e0nh c\u00f4ng. B\u1ea1n ph\u1ea3i %struy c\u1eadp tr\u00ecnh so\u1ea1n th\u1ea3o%s v\u00e0 l\u01b0u b\u00e0i vi\u1ebft \u0111\u1ec3 qu\u00e9t l\u1ea1i v\u00e0 x\u00f3a c\u00e1c v\u1ea5n \u0111\u1ec1 \u0111\u00e3 s\u1eeda kh\u1ecfi b\u00e1o c\u00e1o Tr\u00ecnh ki\u1ec3m tra Kh\u1ea3 n\u0103ng Ti\u1ebfp c\u1eadn."
+                "\u0110\u00e3 l\u01b0u c\u00e0i \u0111\u1eb7t th\u00e0nh c\u00f4ng. B\u1ea1n ph\u1ea3i %struy c\u1eadp tr\u00ecnh so\u1ea1n th\u1ea3o%s v\u00e0 l\u01b0u b\u00e0i vi\u1ebft \u0111\u1ec3 qu\u00e9t l\u1ea1i v\u00e0 x\u00f3a c\u00e1c v\u1ea5n \u0111\u1ec1 \u0111\u00e3 \u0111\u01b0\u1ee3c kh\u1eafc ph\u1ee5c kh\u1ecfi b\u00e1o c\u00e1o c\u1ee7a Accessibility Checker."
             ],
             "Settings saved successfully.": [
                 "\u0110\u00e3 l\u01b0u c\u00e0i \u0111\u1eb7t th\u00e0nh c\u00f4ng."
