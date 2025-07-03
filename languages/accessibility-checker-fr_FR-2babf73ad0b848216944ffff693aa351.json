@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/admin.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Enregistrement..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Param\u00e8tres enregistr\u00e9s avec succ\u00e8s. Vous devez %svisiter l'\u00e9diteur%s et enregistrer la publication pour rescanner et supprimer les probl\u00e8mes corrig\u00e9s des rapports d'Accessibility Checker."
+                "Param\u00e8tres enregistr\u00e9s avec succ\u00e8s. Vous devez %svisiter l'\u00e9diteur%s et enregistrer l'article pour r\u00e9analyser et supprimer les probl\u00e8mes r\u00e9solus des rapports d'Accessibility Checker."
             ],
             "Settings saved successfully.": [
                 "Param\u00e8tres enregistr\u00e9s avec succ\u00e8s."

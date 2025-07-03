@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "\u6b63\u5728\u4fdd\u5b58..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "\u8bbe\u7f6e\u4fdd\u5b58\u6210\u529f\u3002\u60a8\u5fc5\u987b%s\u8bbf\u95ee\u7f16\u8f91\u5668%s\u5e76\u4fdd\u5b58\u6587\u7ae0\u4ee5\u91cd\u65b0\u626b\u63cf\u5e76\u4ece\u65e0\u969c\u788d\u68c0\u67e5\u5668\u62a5\u544a\u4e2d\u5220\u9664\u5df2\u4fee\u590d\u7684\u95ee\u9898\u3002"
+                "\u8bbe\u7f6e\u5df2\u6210\u529f\u4fdd\u5b58\u3002\u60a8\u5fc5\u987b%s\u8bbf\u95ee\u7f16\u8f91\u5668%s\u5e76\u4fdd\u5b58\u6587\u7ae0\uff0c\u4ee5\u91cd\u65b0\u626b\u63cf\u5e76\u4ece Accessibility Checker \u62a5\u544a\u4e2d\u79fb\u9664\u5df2\u4fee\u590d\u7684\u95ee\u9898\u3002"
             ],
             "Settings saved successfully.": [
                 "\u8bbe\u7f6e\u4fdd\u5b58\u6210\u529f\u3002"

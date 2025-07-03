@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Zapisywanie..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Ustawienia zosta\u0142y pomy\u015blnie zapisane. Musisz %sodwiedzi\u0107 edytor%s i zapisa\u0107 wpis, aby ponownie przeskanowa\u0107 i usun\u0105\u0107 naprawione problemy z raport\u00f3w Accessibility Checker."
+                "Ustawienia zosta\u0142y zapisane pomy\u015blnie. Musisz %sodwiedzi\u0107 edytor%s i zapisa\u0107 wpis, aby ponownie przeskanowa\u0107 i usun\u0105\u0107 naprawione problemy z raport\u00f3w Accessibility Checker."
             ],
             "Settings saved successfully.": [
                 "Ustawienia zosta\u0142y pomy\u015blnie zapisane."

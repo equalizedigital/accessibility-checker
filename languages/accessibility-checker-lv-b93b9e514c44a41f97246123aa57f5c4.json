@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Saglab\u0101..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Iestat\u012bjumi veiksm\u012bgi saglab\u0101ti. Jums j\u0101%sapmekl\u0113 redaktors%s un j\u0101saglab\u0101 ieraksts, lai atk\u0101rtoti sken\u0113tu un no\u0146emtu labot\u0101s probl\u0113mas no Accessibility Checker zi\u0146ojumiem."
+                "Iestat\u012bjumi ir veiksm\u012bgi saglab\u0101ti. Jums j\u0101%sapmekl\u0113 redaktors%s un j\u0101saglab\u0101 ieraksts, lai atk\u0101rtoti p\u0101rbaud\u012btu un no\u0146emtu labot\u0101s probl\u0113mas no Accessibility Checker zi\u0146ojumiem."
             ],
             "Settings saved successfully.": [
                 "Iestat\u012bjumi veiksm\u012bgi saglab\u0101ti."

@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Salvando..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Configura\u00e7\u00f5es salvas com sucesso. Voc\u00ea deve %svisitar o editor%s e salvar o post para reescanear e remover problemas corrigidos dos relat\u00f3rios do Accessibility Checker."
+                "Configura\u00e7\u00f5es salvas com sucesso. Voc\u00ea deve %svisitar o editor%s e salvar o post para reexaminar e remover os problemas corrigidos dos relat\u00f3rios do Accessibility Checker."
             ],
             "Settings saved successfully.": [
                 "Configura\u00e7\u00f5es salvas com sucesso."
