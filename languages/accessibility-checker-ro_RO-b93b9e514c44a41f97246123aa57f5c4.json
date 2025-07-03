@@ -1,0 +1,78 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "build\/frontendHighlighterApp.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "en",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Save": [
+                "Salveaz\u0103"
+            ],
+            "Saving...": [
+                "Se salveaz\u0103..."
+            ],
+            "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
+                "Set\u0103rile au fost salvate cu succes. Trebuie s\u0103 %svizita\u021bi editorul%s \u0219i s\u0103 salva\u021bi postarea pentru a rescana \u0219i elimina problemele rezolvate din rapoartele Accessibility Checker."
+            ],
+            "Settings saved successfully.": [
+                "Set\u0103rile au fost salvate cu succes."
+            ],
+            "Saving failed.": [
+                "Salvarea a e\u0219uat."
+            ],
+            "Fix Settings": [
+                "Set\u0103ri de remediere"
+            ],
+            "Close fixes modal": [
+                "\u00cenchide modalul de remedieri"
+            ],
+            "Disable Page Styles": [
+                "Dezactiveaz\u0103 stilurile paginii"
+            ],
+            "Show Code": [
+                "Arat\u0103 codul"
+            ],
+            "Issue type:": [
+                "Tipul problemei:"
+            ],
+            "Enable Styles": [
+                "Activeaz\u0103 stilurile"
+            ],
+            "Disable Styles": [
+                "Dezactiveaz\u0103 stilurile"
+            ],
+            "There are no settings to display.": [
+                "Nu exist\u0103 set\u0103ri de afi\u0219at."
+            ],
+            "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports.": [
+                "Aceste set\u0103ri activeaz\u0103 remedieri globale pe \u00eentregul site. Este posibil ca paginile s\u0103 trebuiasc\u0103 resalvate sau s\u0103 fie rulat\u0103 o scanare complet\u0103 a site-ului pentru a vedea remedierile reflectate \u00een rapoarte."
+            ],
+            "No issues detected.": [
+                "Nu s-au detectat probleme."
+            ],
+            "error": [
+                "eroare",
+                "erori"
+            ],
+            "warning": [
+                "avertisment",
+                "avertismente"
+            ],
+            "and": [
+                "\u0219i"
+            ],
+            "ignored issue": [
+                "problem\u0103 ignorat\u0103",
+                "probleme ignorate"
+            ],
+            "detected.": [
+                "detectate."
+            ]
+        }
+    }
+}

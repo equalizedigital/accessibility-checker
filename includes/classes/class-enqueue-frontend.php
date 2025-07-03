@@ -110,7 +110,7 @@ class Enqueue_Frontend {
 				]
 			);
 
-			wp_set_script_translations( 'edac-frontend-highlighter-app', 'accessibility-checker' );
+			wp_set_script_translations( 'edac-frontend-highlighter-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
 		}
 	}
