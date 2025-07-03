@@ -13,6 +13,14 @@ namespace EDAC\Admin;
 class Plugin_Action_Links {
 
 	/**
+	 * Class constructor.
+	 *
+	 * Initializes the hooks for the plugin action links.
+	 */
+	public function __construct() {
+	}
+
+	/**
 	 * Initialize hooks.
 	 *
 	 * @return void
@@ -35,7 +43,7 @@ class Plugin_Action_Links {
 	 *
 	 * @return array An array of plugin action links.
 	 */
-	public function plugin_action_links( $links ) { // phpcs:ignore Generic.NamingConventions.ConstructorName.OldStyle
+	public function plugin_action_links( $links ): array {
 		$settings_link = sprintf( 
 			'<a href="%1$s">%2$s</a>', 
 			admin_url( 'admin.php?page=accessibility_checker_settings' ), 
