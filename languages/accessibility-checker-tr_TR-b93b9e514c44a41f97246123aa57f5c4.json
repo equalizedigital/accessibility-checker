@@ -1,0 +1,78 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "build\/frontendHighlighterApp.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "en",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Save": [
+                "Kaydet"
+            ],
+            "Saving...": [
+                "Kaydediliyor..."
+            ],
+            "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
+                "Ayarlar ba\u015far\u0131yla kaydedildi. D\u00fczeltilen sorunlar\u0131 Eri\u015filebilirlik Denetleyicisi raporlar\u0131ndan kald\u0131rmak i\u00e7in %sd\u00fczenleyiciyi ziyaret etmeli%s ve g\u00f6nderiyi kaydetmelisiniz."
+            ],
+            "Settings saved successfully.": [
+                "Ayarlar ba\u015far\u0131yla kaydedildi."
+            ],
+            "Saving failed.": [
+                "Kaydetme ba\u015far\u0131s\u0131z oldu."
+            ],
+            "Fix Settings": [
+                "Ayarlar\u0131 d\u00fczelt"
+            ],
+            "Close fixes modal": [
+                "D\u00fczeltmeler modal\u0131n\u0131 kapat"
+            ],
+            "Disable Page Styles": [
+                "Sayfa stillerini devre d\u0131\u015f\u0131 b\u0131rak"
+            ],
+            "Show Code": [
+                "Kodu g\u00f6ster"
+            ],
+            "Issue type:": [
+                "Sorun t\u00fcr\u00fc:"
+            ],
+            "Enable Styles": [
+                "Stilleri etkinle\u015ftir"
+            ],
+            "Disable Styles": [
+                "Stilleri devre d\u0131\u015f\u0131 b\u0131rak"
+            ],
+            "There are no settings to display.": [
+                "G\u00f6r\u00fcnt\u00fclenecek ayar yok."
+            ],
+            "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports.": [
+                "Bu ayarlar, t\u00fcm siteniz genelinde global d\u00fczeltmeleri etkinle\u015ftirir. D\u00fczeltmelerin raporlarda g\u00f6r\u00fcnmesi i\u00e7in sayfalar\u0131n yeniden kaydedilmesi veya tam site taramas\u0131 yap\u0131lmas\u0131 gerekebilir."
+            ],
+            "No issues detected.": [
+                "Hi\u00e7bir sorun tespit edilmedi."
+            ],
+            "error": [
+                "hata",
+                "hata"
+            ],
+            "warning": [
+                "uyar\u0131",
+                "uyar\u0131"
+            ],
+            "and": [
+                "ve"
+            ],
+            "ignored issue": [
+                "g\u00f6z ard\u0131 edilen sorun",
+                "g\u00f6z ard\u0131 edilen sorun"
+            ],
+            "detected.": [
+                "tespit edildi."
+            ]
+        }
+    }
+}

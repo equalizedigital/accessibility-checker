@@ -93,9 +93,9 @@ function edac_ordinal( $number ) {
 }
 
 /**
- * Remove element from multidimensional array
+ * Remove element from multi-dimensional array
  *
- * @param array  $items The multidimensional array.
+ * @param array  $items The multi-dimensional array.
  * @param string $key The key of the element.
  * @param string $value The value of the element.
  * @return array
@@ -110,11 +110,11 @@ function edac_remove_element_with_value( $items, $key, $value ) {
 }
 
 /**
- * Filter a multi-demensional array
+ * Filter a multi-dimensional array
  *
  * @param array  $items The multi-dimensional array.
  * @param string $index The index of the element.
- * @param string $value of the array.
+ * @param string $value The element value to match.
  * @return array
  */
 function edac_filter_by_value( $items, $index, $value ) {

@@ -1,0 +1,158 @@
+name: Generate POT file
+
+on:
+  workflow_dispatch:
+    inputs:
+      base:
+        description: 'Base branch to compare and create PR against.'
+        required: false
+        default: 'develop'
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  make-pot:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm install --ignore-scripts
+
+      - name: Build plugin (dotorg dist)
+        run: npm run dist:dotorg
+
+      - name: Install PHP and required extensions
+        run: |
+          sudo apt-get update && sudo apt-get install -y php php-mysql php-xml php-curl
+          echo "xdebug.max_nesting_level=1024" | sudo tee -a /etc/php/$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')/cli/conf.d/20-xdebug.ini
+
+      - name: Download wp-cli
+        run: |
+          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod +x wp-cli.phar
+          sudo mv wp-cli.phar /usr/local/bin/wp
+
+      - name: Download and configure WordPress
+        run: |
+          curl -O https://wordpress.org/latest.tar.gz
+          tar -xzf latest.tar.gz
+          cp -r dist/accessibility-checker wordpress/wp-content/plugins/accessibility-checker
+          cp wordpress/wp-config-sample.php wordpress/wp-config.php
+          sed -i \
+            -e "s/database_name_here/wordpress/" \
+            -e "s/username_here/root/" \
+            -e "s/password_here/root/" \
+            -e "s/'DB_HOST', 'localhost'/'DB_HOST', '127.0.0.1:3306'/" \
+            wordpress/wp-config.php
+          echo "define('FS_METHOD', 'direct');" >> wordpress/wp-config.php
+
+      - name: Wait for MySQL to be ready
+        run: |
+          for i in {1..30}; do
+            if mysqladmin ping -h127.0.0.1 -uroot -proot --silent; then
+              break
+            fi
+            sleep 2
+          done
+
+      - name: Install WordPress
+        run: |
+          cd wordpress
+          wp core install --url=localhost --title=Test --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email --allow-root
+
+      - name: Generate POT file
+        run: |
+          cd wordpress/wp-content/plugins/accessibility-checker
+          wp i18n make-pot . ./languages/accessibility-checker.pot --allow-root
+
+      - name: Generate JSON files
+        run: |
+          cd wordpress/wp-content/plugins/accessibility-checker
+          wp i18n make-json ./languages ./languages --no-purge --pretty-print --allow-root
+
+      - name: Check if POT file changed (ignoring some headers)
+        id: pot_diff
+        run: |
+          if [ -f wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot ] && [ -f dist/accessibility-checker/languages/accessibility-checker.pot ]; then
+            diff_output=$(diff \
+              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#|$)' wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot) \
+              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#|$)' dist/accessibility-checker/languages/accessibility-checker.pot) || true)
+            if [ -n "$diff_output" ]; then
+              echo "pot_changed=true" >> $GITHUB_OUTPUT
+            else
+              echo "pot_changed=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "pot_changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment on PR if POT file changed
+        if: steps.pot_diff.outputs.pot_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'The POT file has changed. Please update the POT file in your PR to keep translations up to date.\nThe updated POT file is available in the artifacts of this workflow run: https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + process.env.GITHUB_RUN_ID
+            })
+
+      - name: Upload POT and JSON files as artifact
+        if: steps.pot_diff.outputs.pot_changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-checker-i18n
+          path: |
+            wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot
+            wordpress/wp-content/plugins/accessibility-checker/languages/*.json
+
+      - name: Set up Git for PR
+        if: steps.pot_diff.outputs.pot_changed == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Replace root languages folder with built one
+        if: steps.pot_diff.outputs.pot_changed == 'true'
+        run: |
+          rm -rf languages
+          cp -r wordpress/wp-content/plugins/accessibility-checker/languages ./languages
+
+      - name: Create or Update Pull Request with updated translations
+        if: steps.pot_diff.outputs.pot_changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          add-paths: ./languages
+          commit-message: Update translation files (POT/JSON)
+          title: Update translation files (POT/JSON)
+          body: This PR updates the translation files (POT/JSON) generated by the workflow.
+          branch: update-translations/${{ github.head_ref || github.ref_name }}
+          base: ${{ github.event.inputs.base || github.head_ref || github.ref_name }}
+          delete-branch: true
