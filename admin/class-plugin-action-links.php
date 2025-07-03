@@ -26,7 +26,9 @@ class Plugin_Action_Links {
 	 * @return void
 	 */
 	public function init_hooks(): void {
-		add_filter( 'plugin_action_links_' . plugin_basename( EDAC_PLUGIN_FILE ), [ $this, 'plugin_action_links' ] );
+		if ( defined( 'EDAC_PLUGIN_FILE' ) ) {
+			add_filter( 'plugin_action_links_' . plugin_basename( EDAC_PLUGIN_FILE ), [ $this, 'plugin_action_links' ] );
+		}
 	}
 
 	/**
