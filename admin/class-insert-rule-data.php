@@ -31,7 +31,7 @@ class Insert_Rule_Data {
 	 * @return void|int|\WP_Error The ID of the inserted record, void if no
 	 * record was inserted or a WP_Error if the insert failed.
 	 */
-	public function insert( object $post, string $rule, string $ruletype, string $rule_obj, $landmark = null, $landmark_selector = null ) {
+	public function insert( object $post, string $rule, string $ruletype, string $rule_obj, ?string $landmark = null, ?string $landmark_selector = null ) {
 
 		if ( ! isset( $post->ID, $post->post_type )
 			|| empty( $rule )
