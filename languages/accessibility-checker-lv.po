@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.23.1\n"
+"Project-Id-Version: Accessibility Checker 1.26.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-03T13:44:51+00:00\n"
+"POT-Creation-Date: 2025-06-24T21:54:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
-msgstr "Pieejamības pārbaudītājs"
+msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
@@ -36,7 +36,7 @@ msgstr "Auditējiet un pārbaudiet savas vietnes pieejamību, pirms publicējat.
 #. Author of the plugin
 #: accessibility-checker.php
 msgid "Equalize Digital"
-msgstr "Equalize digital"
+msgstr "Equalize Digital"
 
 #. Author URI of the plugin
 #: accessibility-checker.php
@@ -96,7 +96,7 @@ msgstr "Mēs sekojam <a href=\"https://www.w3.org/TR/WCAG21/\">Tīmekļa satura 
 
 #: admin/class-accessibility-statement.php:56
 msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
-msgstr "Tīmekļa vietnes pieejamība ir nepārtraukts process. Mēs pastāvīgi testējam saturu un funkcijas atbilstoši WCAG 2.1 AA līmenim un novēršam jebkādas problēmas, lai nodrošinātu, ka mēs atbilstam vai pārsniedzam standartus. Mūsu tīmekļa vietnes testēšanu veic mūsu komandas locekļi, izmantojot nozares standarta rīkus, piemēram, <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress spraudni</a>, krāsu kontrasta analizatorus, tikai tastatūras navigācijas metodes un Flesch-Kincaid lasāmības testus."
+msgstr "Tīmekļa vietnes pieejamība ir nepārtraukts process. Mēs pastāvīgi pārbaudām saturu un funkcijas atbilstoši WCAG 2.1 AA līmeņa prasībām un novēršam jebkādas problēmas, lai nodrošinātu, ka mēs atbilstam vai pārsniedzam standartus. Mūsu tīmekļa vietnes testēšanu veic mūsu komandas locekļi, izmantojot nozares standarta rīkus, piemēram, <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress spraudni</a>, krāsu kontrasta analizatorus, navigācijas tehnikas tikai ar tastatūru un Fleša-Kinkeida lasāmības testus."
 
 #: admin/class-accessibility-statement.php:57
 msgid "Accessibility Features On Our Website"
@@ -145,9 +145,9 @@ msgstr "Mēs esam uzlabojuši statistikas aprēķinus versijā 1.21.0. Rezultāt
 
 #: admin/class-admin-notices.php:114
 #: admin/class-admin-notices.php:225
-#: admin/class-admin-notices.php:313
-#: admin/class-admin-notices.php:402
-#: admin/class-admin-notices.php:484
+#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:401
+#: admin/class-admin-notices.php:483
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:196
 #: admin/class-ajax.php:561
@@ -159,9 +159,9 @@ msgstr "Atļauja liegta"
 
 #: admin/class-admin-notices.php:123
 #: admin/class-admin-notices.php:234
-#: admin/class-admin-notices.php:325
-#: admin/class-admin-notices.php:422
-#: admin/class-admin-notices.php:493
+#: admin/class-admin-notices.php:324
+#: admin/class-admin-notices.php:421
+#: admin/class-admin-notices.php:492
 msgid "Update option wasn't successful"
 msgstr "Atjaunināšanas opcija nebija veiksmīga"
 
@@ -171,56 +171,56 @@ msgstr "🎉 Melnās piektdienas īpašais piedāvājums! 🎉"
 
 #: admin/class-admin-notices.php:204
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Jauniniet uz Accessibility Checker maksas versiju no 25. Novembra līdz 3. decembrim un saņemiet 30% atlaidi! Pilnas vietnes skenēšana, visas vietnes atvērto problēmu pārskats, ignorēšanas žurnāli un daudz kas cits."
+msgstr "Jauniniet uz maksas Accessibility Checker versiju no 25. Novembra līdz 3. decembrim un saņemiet 30% atlaidi! Pilnas vietnes skenēšana, vietnes mēroga atvērto problēmu ziņojums, ignorēšanas žurnāli un daudz kas cits."
 
 #: admin/class-admin-notices.php:205
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:292
 msgid "Ask a Pre-Sale Question"
 msgstr "Uzdot pārdošanas jautājumu"
 
 #: admin/class-admin-notices.php:206
-#: admin/class-admin-notices.php:294
+#: admin/class-admin-notices.php:293
 msgid "Upgrade Now"
 msgstr "Jaunināt tagad"
 
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:290
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 Saņemiet 25% atlaidi Accessibility Checker Pro par godu Globālajai pieejamības izpratnes dienai! 🎉"
+msgstr "🎉 Iegūstiet 25% atlaidi Accessibility Checker Pro par godu Globālajai pieejamības izpratnes dienai! 🎉"
 
-#: admin/class-admin-notices.php:292
+#: admin/class-admin-notices.php:291
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Izmantojiet kupona kodu GAAD25 no 13. Maija līdz 21. maijam, lai piekļūtu pilnas vietnes skenēšanai un citām pro funkcijām ar īpašu atlaidi. Neesat pārliecināts, vai jaunināšana ir jums piemērota?"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:376
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
-msgstr "Sveiki! Paldies, ka izmantojat Accessibility Checker kā daļu no jūsu pieejamības rīku komplekta. Tā kā jūs to lietojat jau kādu laiku, vai jūs, lūdzu, varētu uzrakstīt 5 zvaigžņu atsauksmi par Accessibility Checker WordPress spraudņu direktorijā? Tas palīdzēs palielināt mūsu redzamību, lai vairāk cilvēku varētu uzzināt par tīmekļa pieejamības nozīmi. Liels paldies!"
+msgstr "Sveiki! Paldies, ka izmantojat Accessibility Checker kā daļu no jūsu pieejamības rīku komplekta. Tā kā jūs to jau kādu laiku izmantojat, vai jūs, lūdzu, varētu uzrakstīt 5 zvaigžņu atsauksmi par Accessibility Checker WordPress spraudņu direktorijā? Tas palīdzēs palielināt mūsu redzamību, lai vairāk cilvēku varētu uzzināt par tīmekļa pieejamības nozīmi. Liels paldies!"
 
-#: admin/class-admin-notices.php:380
+#: admin/class-admin-notices.php:379
 msgid "Write A Review"
 msgstr "Uzrakstīt atsauksmi"
 
-#: admin/class-admin-notices.php:381
+#: admin/class-admin-notices.php:380
 msgid "Remind Me In Two Weeks"
 msgstr "Atgādināt pēc divām nedēļām"
 
-#: admin/class-admin-notices.php:382
+#: admin/class-admin-notices.php:381
 msgid "Never Ask Again"
 msgstr "Vairs nejautāt"
 
-#: admin/class-admin-notices.php:409
+#: admin/class-admin-notices.php:408
 msgid "The review action value was not set"
 msgstr "Atsauksmes darbības vērtība netika iestatīta"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-#: admin/class-admin-notices.php:447
+#: admin/class-admin-notices.php:446
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
-msgstr "Ak vai! Izskatās, ka jūsu vietne pašlaik ir aizsargāta ar paroli. Accessibility Checker bezmaksas versija var pārbaudīt tikai publiski pieejamas vietnes. Lai pārbaudītu šīs vietnes pieejamības problēmas, noņemiet paroles aizsardzību vai %s. Pārbaudes rezultāti var būt saglabāti no iepriekšējās pārbaudes."
+msgstr "Ai! Šķiet, ka jūsu tīmekļa vietne pašlaik ir aizsargāta ar paroli. Bezmaksas Accessibility Checker versija var skenēt tikai publiski pieejamas vietnes. Lai skenētu šo vietni uz pieejamības problēmām, vai nu noņemiet paroles aizsardzību, vai %s. Skenēšanas rezultāti var būt saglabāti no iepriekšējās skenēšanas."
 
-#: admin/class-admin-notices.php:450
+#: admin/class-admin-notices.php:449
 msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Jaunināt uz Accessibility Checker Pro. Atveras jaunā logā."
 
-#: admin/class-admin-notices.php:451
+#: admin/class-admin-notices.php:450
 #: includes/options-page.php:448
 msgid "upgrade to pro"
 msgstr "jaunināt uz pro versiju"
@@ -499,7 +499,7 @@ msgstr "Jūsu vietnē ir pieejamības problēmas, kas jānovērš pēc iespējas
 
 #: admin/class-widgets.php:135
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
-msgstr "Lieliski! Accessibility Checker neatrod nekādas pieejamības problēmas pārbaudītajā saturā. Dažas problēmas nevar atrast automātiskie rīki, tāpēc neaizmirstiet"
+msgstr "Lieliski! Accessibility Checker nevar atrast nekādas pieejamības problēmas pārbaudītajā saturā. Dažas problēmas nevar atrast automatizēti rīki, tāpēc neaizmirstiet"
 
 #: admin/class-widgets.php:135
 msgid "manually test your site"
@@ -558,37 +558,37 @@ msgstr "Dokumentācija (atveras jaunā logā)"
 msgid "Documentation"
 msgstr "Dokumentācija"
 
-#: admin/opt-in/class-email-opt-in.php:114
+#: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
 msgstr "Pieejamības pasākumi un ziņas jūsu e-pastā"
 
-#: admin/opt-in/class-email-opt-in.php:120
+#: admin/opt-in/class-email-opt-in.php:121
 msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
-msgstr "Pierakstieties Equalize Digital e-pasta sarakstam, lai piekļūtu bezmaksas pieejamības vebināriem un apmācības resursiem."
+msgstr "Pierakstieties Equalize Digital e-pasta sarakstā, lai iegūtu piekļuvi bezmaksas pieejamības vebināriem un apmācību resursiem."
 
-#: admin/opt-in/class-email-opt-in.php:126
+#: admin/opt-in/class-email-opt-in.php:127
 msgid "Email*"
 msgstr "E-pasts*"
 
-#: admin/opt-in/class-email-opt-in.php:130
+#: admin/opt-in/class-email-opt-in.php:131
 msgid "Type your email"
 msgstr "Ievadiet savu e-pastu"
 
-#: admin/opt-in/class-email-opt-in.php:138
+#: admin/opt-in/class-email-opt-in.php:139
 msgid "First Name"
 msgstr "Vārds"
 
-#: admin/opt-in/class-email-opt-in.php:142
+#: admin/opt-in/class-email-opt-in.php:143
 msgid "Type your first name"
 msgstr "Ievadiet savu vārdu"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
-msgstr "Accessibility Checker &mdash; audita vēsture"
+msgstr "Accessibility Checker &mdash; Audita vēsture"
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
-msgstr "Accessibility Checker &mdash; bezmaksas"
+msgstr "Accessibility Checker &mdash; Bezmaksas"
 
 #: admin/site-health/class-free.php:49
 #: admin/site-health/class-pro.php:50
@@ -672,7 +672,7 @@ msgstr "DB tabulu skaits"
 
 #: admin/site-health/class-pro.php:47
 msgid "Accessibility Checker &mdash; Pro"
-msgstr "Accessibility Checker &mdash; pro"
+msgstr "Accessibility Checker &mdash; Pro"
 
 #: admin/site-health/class-pro.php:58
 msgid "License Status"
@@ -717,7 +717,7 @@ msgstr "Lai uzraudzītu mūsu tīmekļa vietnes pieejamību, %1$s izmanto %2$s."
 
 #: includes/classes/class-accessibility-statement.php:49
 msgid "Accessibility Checker (opens in a new window)"
-msgstr "Pieejamības pārbaudītājs (atveras jaunā logā)"
+msgstr "Accessibility Checker (atveras jaunā logā)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
 #: includes/classes/class-accessibility-statement.php:58
@@ -1069,11 +1069,11 @@ msgstr "Noņemt tabulācijas indeksu"
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Noņemt %1$s atribūtu no fokusējamiem elementiem."
 
-#: includes/classes/Fixes/FixesManager.php:240
+#: includes/classes/Fixes/FixesManager.php:241
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Piezīme: Šis iestatījums nav ieteicams tēmām, kas jau ir sagatavotas piekļūstamībai."
 
-#: includes/classes/Fixes/FixesManager.php:293
+#: includes/classes/Fixes/FixesManager.php:294
 msgid "Fix not found"
 msgstr "Labojums nav atrasts"
 
@@ -1145,11 +1145,11 @@ msgstr "Apmeklēt bez maksas"
 
 #: includes/options-page.php:42
 msgid "Welcome to Accessibility Checker"
-msgstr "Laipni lūdzam piekļūstamības pārbaudītājā"
+msgstr "Laipni lūdzam Accessibility Checker"
 
 #: includes/options-page.php:65
 msgid "Accessibility Checker Settings"
-msgstr "Piekļūstamības pārbaudītāja iestatījumi"
+msgstr "Accessibility Checker iestatījumi"
 
 #: includes/options-page.php:66
 msgid "Settings"
@@ -1169,7 +1169,7 @@ msgstr "Kājenes piekļūstamības paziņojums"
 
 #: includes/options-page.php:120
 msgid "Frontend Accessibility Checker"
-msgstr "Priekšgala piekļūstamības pārbaudītājs"
+msgstr "Priekšgala Accessibility Checker"
 
 #: includes/options-page.php:128
 msgid "Post Types To Be Checked"
@@ -1203,12 +1203,12 @@ msgstr "Piekļūstamības paziņojuma priekšskatījums"
 
 #: includes/options-page.php:200
 msgid "Frontend Accessibility Checker Position"
-msgstr "Priekšgala piekļūstamības pārbaudītāja pozīcija"
+msgstr "Priekšgala Accessibility Checker pozīcija"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
-msgstr "Izmantojiet zemāk esošos iestatījumus, lai konfigurētu Piekļūstamības pārbaudītāju. Papildu informāciju par katru iestatījumu var atrast %1$s."
+msgstr "Izmantojiet zemāk esošos iestatījumus, lai konfigurētu Accessibility Checker. Papildu informāciju par katru iestatījumu var atrast %1$s."
 
 #: includes/options-page.php:245
 msgid "plugin documentation (opens in a new window)"
@@ -1238,7 +1238,7 @@ msgstr "Izmantojiet zemāk esošos iestatījumus, lai konfigurētu priekšgala p
 
 #: includes/options-page.php:276
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
-msgstr "Tīmekļa satura pieejamības vadlīnijas (WCAG) AAA līmenī prasa, lai jebkuram saturam ar lasāmības līmeni virs 9. Klases būtu alternatīva, kas ir vieglāk lasāma. Vienkāršots kopsavilkuma teksts tiek pievienots lasāmības cilnē Accessibility Checker meta lodziņā katras ziņas vai lapas rediģēšanas ekrānā."
+msgstr "Tīmekļa satura pieejamības vadlīnijas (WCAG) AAA līmenī pieprasa, lai jebkuram saturam ar lasīšanas līmeni virs 9. Klases būtu alternatīva, kas ir vieglāk lasāma. Vienkāršots kopsavilkuma teksts tiek pievienots lasāmības cilnē Accessibility Checker meta lodziņā katrā raksta vai lapas rediģēšanas ekrānā."
 
 #: includes/options-page.php:277
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
@@ -1250,7 +1250,7 @@ msgstr "Uzziniet vairāk par vienkāršotiem kopsavilkumiem un lasāmības pras�
 
 #: includes/options-page.php:286
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
-msgstr "Vai jūs domājat “Vau, šis spraudnis ir lieliski” un vai tas jums palīdz padarīt jūsu vietni pieejamāku? Dalieties ar saviem pūliņiem padarīt jūsu vietni pieejamāku ar saviem klientiem un ļaujiet viņiem zināt, ka jūs izmantojat Accessibility Checker, lai nodrošinātu, ka visi cilvēki var izmantot jūsu vietni. Pievienojiet nelielu tikai teksta saiti un paziņojumu jūsu vietnes kājenē."
+msgstr "Vai jūs domājat, “Vau, šis spraudnis ir lieliski”, un vai tas jums palīdz padarīt jūsu tīmekļa vietni pieejamāku? Dalieties ar saviem centieniem padarīt jūsu tīmekļa vietni pieejamāku ar saviem klientiem un informējiet viņus, ka jūs izmantojat Accessibility Checker, lai nodrošinātu, ka visi cilvēki var izmantot jūsu tīmekļa vietni. Pievienojiet nelielu tikai teksta saiti un paziņojumu jūsu tīmekļa vietnes kājenē."
 
 #: includes/options-page.php:299
 msgid "Before the content"
@@ -1298,7 +1298,7 @@ msgstr "Vienmēr"
 
 #: includes/options-page.php:395
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
-msgstr "Vai Accessibility Checker vajadzētu prasīt vienkāršotu kopsavilkumu tikai tad, kad jūsu ziņas vai lapas lasāmības līmenis ir virs 9. klases, vienmēr prasīt to neatkarīgi no lasāmības līmeņa, vai nekad neprasīt to neatkarīgi no lasāmības līmeņa?"
+msgstr "Vai Accessibility Checker vajadzētu prasīt vienkāršotu kopsavilkumu tikai tad, kad jūsu raksta vai lapas lasīšanas līmenis ir virs 9. klases, vienmēr prasīt to neatkarīgi no lasīšanas līmeņa vai nekad neprasīt to neatkarīgi no lasīšanas līmeņa?"
 
 #: includes/options-page.php:446
 msgid "To check content other than posts and pages, please "
@@ -1314,7 +1314,7 @@ msgstr "Izvēlieties, kuri ziņu veidi jāpārbauda skenēšanas laikā. Lūdzu,
 
 #: includes/options-page.php:592
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
-msgstr "Dzēst visus Accessibility Checker datus, kad spraudnis tiek atinstalēts."
+msgstr "Izdzēst visus Accessibility Checker datus, kad spraudnis tiek atinstalēts."
 
 #: includes/rules.php:21
 msgid "Image Missing Alternative Text"
@@ -1409,7 +1409,7 @@ msgstr "Teksts līdzināts"
 
 #: includes/rules.php:144
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
-msgstr "Brīdinājums par līdzinātu tekstu parādās Accessibility Checker, kad teksts ar vairāk nekā 200 rakstzīmēm jūsu ierakstā vai lapā ir noformēts ar abpusēju līdzinājumu (text-align:justify). Lai novērstu šo brīdinājumu, noņemiet abpusējo līdzinājumu no norādītajiem teksta elementiem."
+msgstr "Teksta izlīdzināšanas brīdinājums parādās Accessibility Checker, kad teksts ar vairāk nekā 200 rakstzīmēm jūsu rakstā vai lapā ir noformēts ar izlīdzinātu līdzinājumu (text-align:justify). Lai novērstu šo brīdinājumu, noņemiet izlīdzināto noformējumu no norādītajiem teksta elementiem."
 
 #: includes/rules.php:148
 msgid "Link Opens New Window or Tab"
@@ -1727,7 +1727,7 @@ msgstr "Equalize Digital logotips"
 #: partials/pro-callout.php:16
 #: partials/welcome-page.php:197
 msgid "Upgrade to Accessibility Checker Pro"
-msgstr "Jaunināt uz Accessibility Checker Pro"
+msgstr "Jauniniet uz Accessibility Checker Pro"
 
 #: partials/pro-callout.php:20
 #: partials/welcome-page.php:200
@@ -1772,7 +1772,7 @@ msgstr "...un vēl vairāk"
 #: partials/pro-callout.php:36
 #: partials/welcome-page.php:212
 msgid "Get Accessibility Checker Pro"
-msgstr "Iegūt Accessibility Checker Pro"
+msgstr "Iegūstiet Accessibility Checker Pro"
 
 #: partials/pro-callout.php:46
 #: partials/welcome-page.php:220
@@ -1810,11 +1810,11 @@ msgstr "Dodieties uz rediģēšanas ekrānu ierakstam, kuru vēlaties pārbaudī
 
 #: partials/welcome-page.php:65
 msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
-msgstr "Atrodiet Accessibility Checker meta lodziņu zem sava satura. Ja izmantojat priekšgala lapu veidotāju, jums jāapmeklē aizmugures rediģēšanas ekrāns, lai skatītu Accessibility Checker rezultātus."
+msgstr "Atrodiet Accessibility Checker meta lodziņu zem jūsu satura. Ja izmantojat priekšgala lapas veidotāju, jums jāapmeklē aizmugures rediģēšanas ekrāns, lai skatītu Accessibility Checker rezultātus."
 
 #: partials/welcome-page.php:66
 msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
-msgstr "Ja jūsu ierakstā ir kļūdas vai brīdinājumi, atveriet detaļu cilni Accessibility Checker, lai iegūtu papildu informāciju."
+msgstr "Ja jūsu rakstā ir kļūdas vai brīdinājumi, atveriet detaļu cilni Accessibility Checker, lai iegūtu vairāk informācijas."
 
 #: partials/welcome-page.php:67
 msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
@@ -1834,7 +1834,7 @@ msgstr "Pēc katras problēmas labošanas atjauniniet ierakstu, lai redzētu pie
 
 #: partials/welcome-page.php:74
 msgid "Watch a video of Accessibility Checker in use."
-msgstr "Skatieties video par Accessibility Checker lietošanu."
+msgstr "Skatīties video par Accessibility Checker lietošanu."
 
 #: partials/welcome-page.php:80
 msgid "Documentation and FAQs"
@@ -1894,7 +1894,7 @@ msgstr "Spraudņa atbalsts"
 
 #: partials/welcome-page.php:135
 msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
-msgstr "Aktīvi licences turētāji ar maksas Accessibility Checker plāniem saņem neierobežotu e-pasta atbalstu par spraudņa lietošanu un problēmu novēršanu."
+msgstr "Aktīvās licences turētāji maksas Accessibility Checker plāniem saņem neierobežotu e-pasta atbalstu par spraudņa lietošanu un problēmu novēršanu."
 
 #: partials/welcome-page.php:138
 msgid "Open Support Ticket"
@@ -1948,7 +1948,7 @@ msgstr "Saglabā..."
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
-msgstr "Iestatījumi veiksmīgi saglabāti. Jums jā%sapmeklē redaktors%s un jāsaglabā ieraksts, lai atkārtoti skenētu un noņemtu labotās problēmas no Accessibility Checker ziņojumiem."
+msgstr "Iestatījumi ir veiksmīgi saglabāti. Jums jā%sapmeklē redaktors%s un jāsaglabā ieraksts, lai atkārtoti pārbaudītu un noņemtu labotās problēmas no Accessibility Checker ziņojumiem."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
@@ -1980,6 +1980,10 @@ msgstr "Problēmas veiksmīgi notīrītas."
 #: build/editorApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Neizdevās notīrīt problēmas."
+
+#: build/editorApp.bundle.js:2
+msgid "An error occurred while clearing issues."
+msgstr "Radās kļūda, tīrot problēmas."
 
 #: build/emailOptIn.bundle.js:2
 msgid "There was a problem. Please try again."
