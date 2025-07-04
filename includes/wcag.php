@@ -10,7 +10,7 @@ return [
     [
         'number'   => '1.1.1',
         'title'    => esc_html__( 'Non-text Content', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.1 Text Alternatives', 'accessibility-checker' ),
@@ -27,7 +27,7 @@ return [
     [
         'number'   => '1.2.1',
         'title'    => esc_html__( 'Prerecorded Audio-only and Video-only', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -44,7 +44,7 @@ return [
     [
         'number'   => '1.2.2',
         'title'    => esc_html__( 'Captions (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -61,7 +61,7 @@ return [
     [
         'number'   => '1.2.3',
         'title'    => esc_html__( 'Audio Description or Media Alternative (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -78,7 +78,7 @@ return [
     [
         'number'   => '1.2.4',
         'title'    => esc_html__( 'Captions (Live)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -95,7 +95,7 @@ return [
     [
         'number'   => '1.2.5',
         'title'    => esc_html__( 'Audio Description (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -111,7 +111,7 @@ return [
     [
         'number'   => '1.2.6',
         'title'    => esc_html__( 'Sign Language (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -127,7 +127,7 @@ return [
     [
         'number'   => '1.2.7',
         'title'    => esc_html__( 'Extended Audio Description (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -143,7 +143,7 @@ return [
     [
         'number'   => '1.2.8',
         'title'    => esc_html__( 'Media Alternative (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -161,7 +161,7 @@ return [
     [
         'number'   => '1.2.9',
         'title'    => esc_html__( 'Audio-only (Live)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -178,7 +178,7 @@ return [
     [
         'number'   => '1.3.1',
         'title'    => esc_html__( 'Info and Relationships', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -197,7 +197,7 @@ return [
     [
         'number'   => '1.3.2',
         'title'    => esc_html__( 'Meaningful Sequence', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -215,7 +215,7 @@ return [
     [
         'number'   => '1.3.3',
         'title'    => esc_html__( 'Sensory Characteristics', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -232,7 +232,7 @@ return [
     [
         'number'   => '1.3.4',
         'title'    => esc_html__( 'Orientation', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -248,7 +248,7 @@ return [
     [
         'number'   => '1.3.5',
         'title'    => esc_html__( 'Identify Input Purpose', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -265,7 +265,7 @@ return [
     [
         'number'   => '1.3.6',
         'title'    => esc_html__( 'Identify Purpose', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -282,7 +282,7 @@ return [
     [
         'number'   => '1.4.1',
         'title'    => esc_html__( 'Use of Color', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -299,7 +299,7 @@ return [
     [
         'number'   => '1.4.10',
         'title'    => esc_html__( 'Reflow', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -316,7 +316,7 @@ return [
     [
         'number'   => '1.4.11',
         'title'    => esc_html__( 'Non-text Contrast', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -332,7 +332,7 @@ return [
     [
         'number'   => '1.4.12',
         'title'    => esc_html__( 'Text Spacing', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -349,7 +349,7 @@ return [
     [
         'number'   => '1.4.13',
         'title'    => esc_html__( 'Content on Hover or Focus', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -367,7 +367,7 @@ return [
     [
         'number'   => '1.4.2',
         'title'    => esc_html__( 'Audio Control', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -385,7 +385,7 @@ return [
     [
         'number'   => '1.4.3',
         'title'    => esc_html__( 'Contrast (Minimum)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -402,7 +402,7 @@ return [
     [
         'number'   => '1.4.4',
         'title'    => esc_html__( 'Resize text', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -418,7 +418,7 @@ return [
     [
         'number'   => '1.4.5',
         'title'    => esc_html__( 'Images of Text', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -434,7 +434,7 @@ return [
     [
         'number'   => '1.4.6',
         'title'    => esc_html__( 'Contrast (Enhanced)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -451,7 +451,7 @@ return [
     [
         'number'   => '1.4.7',
         'title'    => esc_html__( 'Low or No Background Audio', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -467,7 +467,7 @@ return [
     [
         'number'   => '1.4.8',
         'title'    => esc_html__( 'Visual Presentation', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -484,7 +484,7 @@ return [
     [
         'number'   => '1.4.9',
         'title'    => esc_html__( 'Images of Text (No Exception)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -500,7 +500,7 @@ return [
     [
         'number'   => '2.1.1',
         'title'    => esc_html__( 'Keyboard', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.1 Keyboard Accessible', 'accessibility-checker' ),
@@ -518,7 +518,7 @@ return [
     [
         'number'   => '2.1.2',
         'title'    => esc_html__( 'No Keyboard Trap', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.1 Keyboard Accessible', 'accessibility-checker' ),
@@ -536,7 +536,7 @@ return [
     [
         'number'   => '2.1.3',
         'title'    => esc_html__( 'Keyboard (No Exception)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.1 Keyboard Accessible', 'accessibility-checker' ),
@@ -554,7 +554,7 @@ return [
     [
         'number'   => '2.1.4',
         'title'    => esc_html__( 'Character Key Shortcuts', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.1 Keyboard Accessible', 'accessibility-checker' ),
@@ -570,7 +570,7 @@ return [
     [
         'number'   => '2.2.1',
         'title'    => esc_html__( 'Timing Adjustable', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -588,7 +588,7 @@ return [
     [
         'number'   => '2.2.2',
         'title'    => esc_html__( 'Pause, Stop, Hide', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -606,7 +606,7 @@ return [
     [
         'number'   => '2.2.3',
         'title'    => esc_html__( 'No Timing', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -624,7 +624,7 @@ return [
     [
         'number'   => '2.2.4',
         'title'    => esc_html__( 'Interruptions', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -643,7 +643,7 @@ return [
     [
         'number'   => '2.2.5',
         'title'    => esc_html__( 'Re-authenticating', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -661,7 +661,7 @@ return [
     [
         'number'   => '2.2.6',
         'title'    => esc_html__( 'Timeouts', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -679,7 +679,7 @@ return [
     [
         'number'   => '2.3.1',
         'title'    => esc_html__( 'Three Flashes or Below Threshold', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.3 Seizures and Physical Reactions', 'accessibility-checker' ),
@@ -695,7 +695,7 @@ return [
     [
         'number'   => '2.3.2',
         'title'    => esc_html__( 'Three Flashes', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.3 Seizures and Physical Reactions', 'accessibility-checker' ),
@@ -711,7 +711,7 @@ return [
     [
         'number'   => '2.3.3',
         'title'    => esc_html__( 'Animation from Interactions', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.3 Seizures and Physical Reactions', 'accessibility-checker' ),
@@ -727,7 +727,7 @@ return [
     [
         'number'   => '2.4.1',
         'title'    => esc_html__( 'Bypass Blocks', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -744,7 +744,7 @@ return [
     [
         'number'   => '2.4.10',
         'title'    => esc_html__( 'Section Headings', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -762,7 +762,7 @@ return [
     [
         'number'   => '2.4.11',
         'title'    => esc_html__( 'Focus Not Obscured (Minimum)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -778,7 +778,7 @@ return [
     [
         'number'   => '',
         'title'    => esc_html__( '2.4.12 Focus Not Obscured (Enhanced)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -794,7 +794,7 @@ return [
     [
         'number'   => '2.4.13',
         'title'    => esc_html__( 'Focus Appearance', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -810,7 +810,7 @@ return [
     [
         'number'   => '2.4.2',
         'title'    => esc_html__( 'Page Titled', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -828,7 +828,7 @@ return [
     [
         'number'   => '2.4.3',
         'title'    => esc_html__( 'Focus Order', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -846,7 +846,7 @@ return [
     [
         'number'   => '2.4.4',
         'title'    => esc_html__( 'Link Purpose (In Context)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -863,7 +863,7 @@ return [
     [
         'number'   => '2.4.5',
         'title'    => esc_html__( 'Multiple Ways', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -881,7 +881,7 @@ return [
     [
         'number'   => '2.4.6',
         'title'    => esc_html__( 'Headings and Labels', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -899,7 +899,7 @@ return [
     [
         'number'   => '2.4.7',
         'title'    => esc_html__( 'Focus Visible', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -917,7 +917,7 @@ return [
     [
         'number'   => '2.4.8',
         'title'    => esc_html__( 'Location', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -934,7 +934,7 @@ return [
     [
         'number'   => '2.4.9',
         'title'    => esc_html__( 'Link Purpose (Link Only)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -951,7 +951,7 @@ return [
     [
         'number'   => '2.5.1',
         'title'    => esc_html__( 'Pointer Gestures', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -969,7 +969,7 @@ return [
     [
         'number'   => '2.5.2',
         'title'    => esc_html__( 'Pointer Cancellation', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -988,7 +988,7 @@ return [
     [
         'number'   => '2.5.3',
         'title'    => esc_html__( 'Label in Name', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1004,7 +1004,7 @@ return [
     [
         'number'   => '2.5.4',
         'title'    => esc_html__( 'Motion Actuation', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1020,7 +1020,7 @@ return [
     [
         'number'   => '2.5.5',
         'title'    => esc_html__( 'Target Size', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1039,7 +1039,7 @@ return [
     [
         'number'   => '2.5.6',
         'title'    => esc_html__( 'Concurrent Input Mechanisms', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1053,9 +1053,9 @@ return [
         'tags'     => [],
     ],
     [
-        'number'   => '',
-        'title'    => esc_html__( '2.5.7 Dragging Movements', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'number'   => '2.5.7',
+        'title'    => esc_html__( 'Dragging Movements', 'accessibility-checker' ),
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1069,9 +1069,9 @@ return [
         'tags'     => [],
     ],
     [
-        'number'   => '',
-        'title'    => esc_html__( '2.5.8 Target Size (Minimum)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'number'   => '2.5.8',
+        'title'    => esc_html__( 'Target Size (Minimum)', 'accessibility-checker' ),
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1090,7 +1090,7 @@ return [
     [
         'number'   => '3.1.1',
         'title'    => esc_html__( 'Language of Page', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1107,7 +1107,7 @@ return [
     [
         'number'   => '3.1.2',
         'title'    => esc_html__( 'Language of Parts', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1124,7 +1124,7 @@ return [
     [
         'number'   => '3.1.3',
         'title'    => esc_html__( 'Unusual Words', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1142,7 +1142,7 @@ return [
     [
         'number'   => '3.1.4',
         'title'    => esc_html__( 'Abbreviations', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1160,7 +1160,7 @@ return [
     [
         'number'   => '3.1.5',
         'title'    => esc_html__( 'Reading Level', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1178,7 +1178,7 @@ return [
     [
         'number'   => '3.1.6',
         'title'    => esc_html__( 'Pronunciation', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1196,7 +1196,7 @@ return [
     [
         'number'   => '3.2.1',
         'title'    => esc_html__( 'On Focus', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1214,7 +1214,7 @@ return [
     [
         'number'   => '3.2.2',
         'title'    => esc_html__( 'On Input', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1233,7 +1233,7 @@ return [
     [
         'number'   => '3.2.3',
         'title'    => esc_html__( 'Consistent Navigation', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1251,7 +1251,7 @@ return [
     [
         'number'   => '3.2.4',
         'title'    => esc_html__( 'Consistent Identification', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1269,7 +1269,7 @@ return [
     [
         'number'   => '3.2.5',
         'title'    => esc_html__( 'Change on Request', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1288,7 +1288,7 @@ return [
     [
         'number'   => '3.2.6',
         'title'    => esc_html__( 'Consistent Help', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.2',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1304,7 +1304,7 @@ return [
     [
         'number'   => '3.3.1',
         'title'    => esc_html__( 'Error Identification', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1322,7 +1322,7 @@ return [
     [
         'number'   => '3.3.2',
         'title'    => esc_html__( 'Labels or Instructions', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1340,7 +1340,7 @@ return [
     [
         'number'   => '3.3.3',
         'title'    => esc_html__( 'Error Suggestion', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1358,7 +1358,7 @@ return [
     [
         'number'   => '3.3.4',
         'title'    => esc_html__( 'Error Prevention (Legal, Financial, Data)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1376,7 +1376,7 @@ return [
     [
         'number'   => '3.3.5',
         'title'    => esc_html__( 'Help', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1394,7 +1394,7 @@ return [
     [
         'number'   => '3.3.6',
         'title'    => esc_html__( 'Error Prevention (All)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1410,9 +1410,9 @@ return [
         'tags'     => [],
     ],
     [
-        'number'   => '',
-        'title'    => esc_html__( '3.3.7 Redundant Entry', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'number'   => '3.3.7',
+        'title'    => esc_html__( 'Redundant Entry', 'accessibility-checker' ),
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.2',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1427,9 +1427,9 @@ return [
         'tags'     => [],
     ],
     [
-        'number'   => '',
-        'title'    => esc_html__( '3.3.8 Accessible Authentication (Minimum)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'number'   => 'v',
+        'title'    => esc_html__( 'Accessible Authentication (Minimum)', 'accessibility-checker' ),
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1443,9 +1443,9 @@ return [
         'tags'     => [],
     ],
     [
-        'number'   => '',
-        'title'    => esc_html__( '3.3.9 Accessible Authentication (Enhanced)', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'number'   => '3.3.9',
+        'title'    => esc_html__( 'Accessible Authentication (Enhanced)', 'accessibility-checker' ),
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1461,7 +1461,7 @@ return [
     [
         'number'   => '4.1.1',
         'title'    => esc_html__( 'Parsing', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '4.1 Compatible', 'accessibility-checker' ),
@@ -1479,7 +1479,7 @@ return [
     [
         'number'   => '4.1.2',
         'title'    => esc_html__( 'Name, Role, Value', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '4.1 Compatible', 'accessibility-checker' ),
@@ -1497,7 +1497,7 @@ return [
     [
         'number'   => '4.1.3',
         'title'    => esc_html__( 'Status Messages', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '4.1 Compatible', 'accessibility-checker' ),
@@ -1511,9 +1511,9 @@ return [
         'tags'     => [],
     ],
     [
-        'number'   => '',
+        'number'   => '0.1',
         'title'    => esc_html__( 'Best Practice', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('A usability improvement or convention that enhances accessibility but is not required for WCAG compliance.', 'accessibility-checker'),
         'level'    => '',
         'version'  => '',
         'guidelines' => '',
@@ -1525,9 +1525,9 @@ return [
         'tags'     => [],
     ],
     [
-        'number'   => '',
+        'number'   => '0.2',
         'title'    => esc_html__( 'Non-WCAG Accessibility Issue', 'accessibility-checker' ),
-        'criteria_description' => '',
+        'criteria_description' => esc_html__('A problem that affects users with disabilities but doesn’t map directly to a current WCAG success criterion.', 'accessibility-checker'),
         'level'    => '',
         'version'  => '',
         'guidelines' => '',
