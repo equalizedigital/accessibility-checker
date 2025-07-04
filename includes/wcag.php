@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Returns an array of WCAG Success Criteria and relevant information.
@@ -10,7 +9,7 @@ return [
     [
         'number'   => '1.1.1',
         'title'    => esc_html__( 'Non-text Content', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('All non-text content must have a text alternative that serves the same purpose, unless it falls into specific exceptions like controls, media, tests, sensory content, CAPTCHA, or decorative elements. Each type must follow specific guidance to ensure accessibility without interfering with the user experience.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.1 Text Alternatives', 'accessibility-checker' ),
@@ -27,7 +26,7 @@ return [
     [
         'number'   => '1.2.1',
         'title'    => esc_html__( 'Prerecorded Audio-only and Video-only', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -44,7 +43,7 @@ return [
     [
         'number'   => '1.2.2',
         'title'    => esc_html__( 'Captions (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -61,7 +60,7 @@ return [
     [
         'number'   => '1.2.3',
         'title'    => esc_html__( 'Audio Description or Media Alternative (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn’t spoken.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -78,7 +77,7 @@ return [
     [
         'number'   => '1.2.4',
         'title'    => esc_html__( 'Captions (Live)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -95,7 +94,7 @@ return [
     [
         'number'   => '1.2.5',
         'title'    => esc_html__( 'Audio Description (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -111,7 +110,7 @@ return [
     [
         'number'   => '1.2.6',
         'title'    => esc_html__( 'Sign Language (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -127,7 +126,7 @@ return [
     [
         'number'   => '1.2.7',
         'title'    => esc_html__( 'Extended Audio Description (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can’t be described during the natural pauses in the audio.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -143,7 +142,7 @@ return [
     [
         'number'   => '1.2.8',
         'title'    => esc_html__( 'Media Alternative (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -161,7 +160,7 @@ return [
     [
         'number'   => '1.2.9',
         'title'    => esc_html__( 'Audio-only (Live)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -178,7 +177,7 @@ return [
     [
         'number'   => '1.3.1',
         'title'    => esc_html__( 'Info and Relationships', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -197,7 +196,7 @@ return [
     [
         'number'   => '1.3.2',
         'title'    => esc_html__( 'Meaningful Sequence', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -215,7 +214,7 @@ return [
     [
         'number'   => '1.3.3',
         'title'    => esc_html__( 'Sensory Characteristics', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -232,7 +231,7 @@ return [
     [
         'number'   => '1.3.4',
         'title'    => esc_html__( 'Orientation', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -248,7 +247,7 @@ return [
     [
         'number'   => '1.3.5',
         'title'    => esc_html__( 'Identify Input Purpose', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -265,7 +264,7 @@ return [
     [
         'number'   => '1.3.6',
         'title'    => esc_html__( 'Identify Purpose', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.3 Adaptable', 'accessibility-checker' ),
@@ -282,7 +281,7 @@ return [
     [
         'number'   => '1.4.1',
         'title'    => esc_html__( 'Use of Color', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -299,7 +298,7 @@ return [
     [
         'number'   => '1.4.10',
         'title'    => esc_html__( 'Reflow', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -316,7 +315,7 @@ return [
     [
         'number'   => '1.4.11',
         'title'    => esc_html__( 'Non-text Contrast', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -332,7 +331,7 @@ return [
     [
         'number'   => '1.4.12',
         'title'    => esc_html__( 'Text Spacing', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Users can override text spacing to improve readability without losing content or functionality.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -349,7 +348,7 @@ return [
     [
         'number'   => '1.4.13',
         'title'    => esc_html__( 'Content on Hover or Focus', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -367,7 +366,7 @@ return [
     [
         'number'   => '1.4.2',
         'title'    => esc_html__( 'Audio Control', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -385,7 +384,7 @@ return [
     [
         'number'   => '1.4.3',
         'title'    => esc_html__( 'Contrast (Minimum)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -402,7 +401,7 @@ return [
     [
         'number'   => '1.4.4',
         'title'    => esc_html__( 'Resize text', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -418,7 +417,7 @@ return [
     [
         'number'   => '1.4.5',
         'title'    => esc_html__( 'Images of Text', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -434,7 +433,7 @@ return [
     [
         'number'   => '1.4.6',
         'title'    => esc_html__( 'Contrast (Enhanced)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -451,7 +450,7 @@ return [
     [
         'number'   => '1.4.7',
         'title'    => esc_html__( 'Low or No Background Audio', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -467,7 +466,7 @@ return [
     [
         'number'   => '1.4.8',
         'title'    => esc_html__( 'Visual Presentation', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -484,7 +483,7 @@ return [
     [
         'number'   => '1.4.9',
         'title'    => esc_html__( 'Images of Text (No Exception)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.4 Distinguishable', 'accessibility-checker' ),
@@ -500,7 +499,7 @@ return [
     [
         'number'   => '2.1.1',
         'title'    => esc_html__( 'Keyboard', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.1 Keyboard Accessible', 'accessibility-checker' ),
@@ -518,7 +517,7 @@ return [
     [
         'number'   => '2.1.2',
         'title'    => esc_html__( 'No Keyboard Trap', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Keyboard users can move to and away from all parts of the content without getting stuck.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.1 Keyboard Accessible', 'accessibility-checker' ),
@@ -536,7 +535,7 @@ return [
     [
         'number'   => '2.1.3',
         'title'    => esc_html__( 'Keyboard (No Exception)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('All functionality is available from a keyboard interface, with no exceptions.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.1 Keyboard Accessible', 'accessibility-checker' ),
@@ -554,7 +553,7 @@ return [
     [
         'number'   => '2.1.4',
         'title'    => esc_html__( 'Character Key Shortcuts', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.1 Keyboard Accessible', 'accessibility-checker' ),
@@ -570,7 +569,7 @@ return [
     [
         'number'   => '2.2.1',
         'title'    => esc_html__( 'Timing Adjustable', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -588,7 +587,7 @@ return [
     [
         'number'   => '2.2.2',
         'title'    => esc_html__( 'Pause, Stop, Hide', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -606,7 +605,7 @@ return [
     [
         'number'   => '2.2.3',
         'title'    => esc_html__( 'No Timing', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -624,7 +623,7 @@ return [
     [
         'number'   => '2.2.4',
         'title'    => esc_html__( 'Interruptions', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -643,7 +642,7 @@ return [
     [
         'number'   => '2.2.5',
         'title'    => esc_html__( 'Re-authenticating', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -661,7 +660,7 @@ return [
     [
         'number'   => '2.2.6',
         'title'    => esc_html__( 'Timeouts', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Users are warned of impending timeouts and can request more time or save their work before timing out.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.2 Enough Time', 'accessibility-checker' ),
@@ -679,7 +678,7 @@ return [
     [
         'number'   => '2.3.1',
         'title'    => esc_html__( 'Three Flashes or Below Threshold', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.3 Seizures and Physical Reactions', 'accessibility-checker' ),
@@ -695,7 +694,7 @@ return [
     [
         'number'   => '2.3.2',
         'title'    => esc_html__( 'Three Flashes', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('No part of the content flashes more than three times per second, with no exceptions.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.3 Seizures and Physical Reactions', 'accessibility-checker' ),
@@ -711,7 +710,7 @@ return [
     [
         'number'   => '2.3.3',
         'title'    => esc_html__( 'Animation from Interactions', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.3 Seizures and Physical Reactions', 'accessibility-checker' ),
@@ -727,7 +726,7 @@ return [
     [
         'number'   => '2.4.1',
         'title'    => esc_html__( 'Bypass Blocks', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -744,7 +743,7 @@ return [
     [
         'number'   => '2.4.10',
         'title'    => esc_html__( 'Section Headings', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Section headings are used to organize content, making it easier to understand and navigate.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -762,7 +761,7 @@ return [
     [
         'number'   => '2.4.11',
         'title'    => esc_html__( 'Focus Not Obscured (Minimum)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('When an element receives keyboard focus, it is at least partially visible and not hidden by other content.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -776,9 +775,9 @@ return [
         'tags'     => [],
     ],
     [
-        'number'   => '',
-        'title'    => esc_html__( '2.4.12 Focus Not Obscured (Enhanced)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'number'   => '2.4.12',
+        'title'    => esc_html__( 'Focus Not Obscured (Enhanced)', 'accessibility-checker' ),
+        'criteria_description' => esc_html__('When an element receives keyboard focus, it is fully visible and not hidden by other content.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -794,7 +793,7 @@ return [
     [
         'number'   => '2.4.13',
         'title'    => esc_html__( 'Focus Appearance', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -810,7 +809,7 @@ return [
     [
         'number'   => '2.4.2',
         'title'    => esc_html__( 'Page Titled', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Web pages have descriptive titles that help users understand the topic or purpose of the page.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -828,7 +827,7 @@ return [
     [
         'number'   => '2.4.3',
         'title'    => esc_html__( 'Focus Order', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -846,7 +845,7 @@ return [
     [
         'number'   => '2.4.4',
         'title'    => esc_html__( 'Link Purpose (In Context)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -863,7 +862,7 @@ return [
     [
         'number'   => '2.4.5',
         'title'    => esc_html__( 'Multiple Ways', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -881,7 +880,7 @@ return [
     [
         'number'   => '2.4.6',
         'title'    => esc_html__( 'Headings and Labels', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -899,7 +898,7 @@ return [
     [
         'number'   => '2.4.7',
         'title'    => esc_html__( 'Focus Visible', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -917,7 +916,7 @@ return [
     [
         'number'   => '2.4.8',
         'title'    => esc_html__( 'Location', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -934,7 +933,7 @@ return [
     [
         'number'   => '2.4.9',
         'title'    => esc_html__( 'Link Purpose (Link Only)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('The purpose of each link can be determined by the link text alone, without needing additional context.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '2.4 Navigable', 'accessibility-checker' ),
@@ -951,7 +950,7 @@ return [
     [
         'number'   => '2.5.1',
         'title'    => esc_html__( 'Pointer Gestures', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -969,7 +968,7 @@ return [
     [
         'number'   => '2.5.2',
         'title'    => esc_html__( 'Pointer Cancellation', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -988,7 +987,7 @@ return [
     [
         'number'   => '2.5.3',
         'title'    => esc_html__( 'Label in Name', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1004,7 +1003,7 @@ return [
     [
         'number'   => '2.5.4',
         'title'    => esc_html__( 'Motion Actuation', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1020,7 +1019,7 @@ return [
     [
         'number'   => '2.5.5',
         'title'    => esc_html__( 'Target Size', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1039,7 +1038,7 @@ return [
     [
         'number'   => '2.5.6',
         'title'    => esc_html__( 'Concurrent Input Mechanisms', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1055,7 +1054,7 @@ return [
     [
         'number'   => '2.5.7',
         'title'    => esc_html__( 'Dragging Movements', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1071,7 +1070,7 @@ return [
     [
         'number'   => '2.5.8',
         'title'    => esc_html__( 'Target Size (Minimum)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '2.5 Input Modalities', 'accessibility-checker' ),
@@ -1090,7 +1089,7 @@ return [
     [
         'number'   => '3.1.1',
         'title'    => esc_html__( 'Language of Page', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1107,7 +1106,7 @@ return [
     [
         'number'   => '3.1.2',
         'title'    => esc_html__( 'Language of Parts', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1124,7 +1123,7 @@ return [
     [
         'number'   => '3.1.3',
         'title'    => esc_html__( 'Unusual Words', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1142,7 +1141,7 @@ return [
     [
         'number'   => '3.1.4',
         'title'    => esc_html__( 'Abbreviations', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1160,7 +1159,7 @@ return [
     [
         'number'   => '3.1.5',
         'title'    => esc_html__( 'Reading Level', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Content is written in a clear and simple language, and does not require specialized knowledge to understand.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1178,7 +1177,7 @@ return [
     [
         'number'   => '3.1.6',
         'title'    => esc_html__( 'Pronunciation', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('A pronunciation guide is available for unusual or difficult words, so users can understand how to say them.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.1 Readable', 'accessibility-checker' ),
@@ -1196,7 +1195,7 @@ return [
     [
         'number'   => '3.2.1',
         'title'    => esc_html__( 'On Focus', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1214,7 +1213,7 @@ return [
     [
         'number'   => '3.2.2',
         'title'    => esc_html__( 'On Input', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1233,7 +1232,7 @@ return [
     [
         'number'   => '3.2.3',
         'title'    => esc_html__( 'Consistent Navigation', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Navigation mechanisms are consistent across the website, so users can predictably move through the site.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1251,7 +1250,7 @@ return [
     [
         'number'   => '3.2.4',
         'title'    => esc_html__( 'Consistent Identification', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1269,7 +1268,7 @@ return [
     [
         'number'   => '3.2.5',
         'title'    => esc_html__( 'Change on Request', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1288,7 +1287,7 @@ return [
     [
         'number'   => '3.2.6',
         'title'    => esc_html__( 'Consistent Help', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Help and documentation are available and are easy to find, so users can get assistance when needed.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.2',
         'guidelines' => esc_html__( '3.2 Predictable', 'accessibility-checker' ),
@@ -1304,7 +1303,7 @@ return [
     [
         'number'   => '3.3.1',
         'title'    => esc_html__( 'Error Identification', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1322,7 +1321,7 @@ return [
     [
         'number'   => '3.3.2',
         'title'    => esc_html__( 'Labels or Instructions', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Labels or instructions are provided when an input field requires user input, so users know what information is needed.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1340,7 +1339,7 @@ return [
     [
         'number'   => '3.3.3',
         'title'    => esc_html__( 'Error Suggestion', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1358,7 +1357,7 @@ return [
     [
         'number'   => '3.3.4',
         'title'    => esc_html__( 'Error Prevention (Legal, Financial, Data)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For web pages that require user input, users are warned of errors and can correct them before finalizing the submission.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1376,7 +1375,7 @@ return [
     [
         'number'   => '3.3.5',
         'title'    => esc_html__( 'Help', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Help and documentation are available and are easy to find, so users can get assistance when needed.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1394,7 +1393,7 @@ return [
     [
         'number'   => '3.3.6',
         'title'    => esc_html__( 'Error Prevention (All)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For web pages that require user input, users are warned of errors and can correct them before finalizing the submission.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1412,7 +1411,7 @@ return [
     [
         'number'   => '3.3.7',
         'title'    => esc_html__( 'Redundant Entry', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Users are not required to enter the same information multiple times, reducing the risk of errors and saving time.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.2',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1427,9 +1426,9 @@ return [
         'tags'     => [],
     ],
     [
-        'number'   => 'v',
+        'number'   => '3.3.8',
         'title'    => esc_html__( 'Accessible Authentication (Minimum)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Authentication processes do not rely on cognitive function tests like remembering a password or solving a puzzle, unless an alternative is provided.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1445,7 +1444,7 @@ return [
     [
         'number'   => '3.3.9',
         'title'    => esc_html__( 'Accessible Authentication (Enhanced)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Enhanced authentication methods are provided that do not rely on cognitive function tests, such as remembering passwords, and do not require a test of cognitive function.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.2',
         'guidelines' => esc_html__( '3.3 Input Assistance', 'accessibility-checker' ),
@@ -1461,7 +1460,7 @@ return [
     [
         'number'   => '4.1.1',
         'title'    => esc_html__( 'Parsing', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Content is coded so that assistive technologies can accurately interpret and present it to users.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '4.1 Compatible', 'accessibility-checker' ),
@@ -1479,7 +1478,7 @@ return [
     [
         'number'   => '4.1.2',
         'title'    => esc_html__( 'Name, Role, Value', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('User interface components have names, roles, and values that can be programmatically determined, so assistive technologies can communicate them to users.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '4.1 Compatible', 'accessibility-checker' ),
@@ -1497,7 +1496,7 @@ return [
     [
         'number'   => '4.1.3',
         'title'    => esc_html__( 'Status Messages', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Status messages are programmatically determined so that assistive technologies can notify users of important changes, such as form errors or updates.', 'accessibility-checker'),
         'level'    => 'AA',
         'version'  => '2.1',
         'guidelines' => esc_html__( '4.1 Compatible', 'accessibility-checker' ),
