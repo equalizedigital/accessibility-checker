@@ -22,6 +22,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#non-text-content',
         'tags'     => [ 'img', 'svg', 'icon', 'input', 'button', 'media', 'captcha', 'decorative', 'text alternative', 'alt' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.2.1',
@@ -39,6 +55,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#audio-only-and-video-only-prerecorded',
         'tags'     => [ 'audio', 'video', 'media', 'transcript', 'text alternative' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.2.2',
@@ -56,6 +88,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#captions-prerecorded',
         'tags'     => [ 'video', 'audio', 'media', 'captions', 'subtitles', 'transcript' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.2.3',
@@ -73,6 +121,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/audio-description-or-media-alternative-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#audio-description-or-media-alternative-prerecorded',
         'tags'     => [ 'video', 'audio', 'media', 'audio description', 'transcript', 'description' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.2.4',
@@ -90,6 +154,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/captions-live.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#captions-live',
         'tags'     => [ 'video', 'audio', 'media', 'captions', 'live', 'real-time' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.2.5',
@@ -106,6 +186,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/audio-description-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#audio-description-prerecorded',
         'tags'     => [ 'video', 'audio', 'media', 'audio description', 'description' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.2.6',
@@ -122,6 +218,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/sign-language-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#sign-language-prerecorded',
         'tags'     => [ 'video', 'audio', 'media', 'sign language', 'interpretation' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '1.2.7',
@@ -138,6 +235,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/extended-audio-description-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#extended-audio-description-prerecorded',
         'tags'     => [ 'video', 'audio', 'media', 'audio description', 'description', 'extended' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '1.2.8',
@@ -156,6 +254,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/media-alternative-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#media-alternative-prerecorded',
         'tags'     => [ 'video', 'audio', 'media', 'transcript', 'text alternative' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '1.2.9',
@@ -173,6 +272,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-live.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#audio-only-live',
         'tags'     => [ 'audio', 'media', 'live', 'transcript', 'text alternative' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '1.3.1',
@@ -192,6 +292,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#info-and-relationships',
         'tags'     => [ 'structure', 'heading', 'list', 'table', 'form', 'label', 'aria', 'landmark', 'relationship', 'programmatic' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.3.2',
@@ -210,6 +326,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#meaningful-sequence',
         'tags'     => [ 'order', 'reading', 'sequence', 'screen reader', 'programmatic', 'content' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.3.3',
@@ -227,6 +359,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#sensory-characteristics',
         'tags'     => [ 'instruction', 'color', 'shape', 'sound', 'size', 'sensory', 'label' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.3.4',
@@ -243,6 +391,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/orientation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#orientation',
         'tags'     => [ 'orientation', 'mobile', 'portrait', 'landscape', 'responsive', 'layout' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.3.5',
@@ -260,6 +419,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#identify-input-purpose',
         'tags'     => [ 'input', 'form', 'autocomplete', 'purpose', 'field', 'user info' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.3.6',
@@ -277,6 +447,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/identify-purpose.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#identify-purpose',
         'tags'     => [ 'input', 'form', 'button', 'icon', 'region', 'aria', 'purpose', 'role' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '1.4.1',
@@ -294,6 +465,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#use-of-color',
         'tags'     => [ 'color', 'visual', 'link', 'button', 'chart', 'graph', 'distinguish' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.4.10',
@@ -311,6 +498,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/reflow.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#reflow',
         'tags'     => [ 'responsive', 'zoom', 'mobile', 'layout', 'scroll', 'css', 'viewport' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.4.11',
@@ -327,6 +525,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#non-text-contrast',
         'tags'     => [ 'contrast', 'button', 'icon', 'focus', 'visual', 'ui component', 'graphics' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.4.12',
@@ -344,6 +553,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#text-spacing',
         'tags'     => [ 'text', 'spacing', 'css', 'line height', 'letter spacing', 'word spacing', 'paragraph' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.4.13',
@@ -362,6 +582,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus',
         'tags'     => [ 'hover', 'focus', 'tooltip', 'popup', 'menu', 'overlay', 'pointer', 'keyboard', 'dismiss' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.4.2',
@@ -380,6 +611,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/audio-control.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#audio-control',
         'tags'     => [ 'audio', 'media', 'autoplay', 'volume', 'control', 'pause', 'stop', 'sound' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.4.3',
@@ -397,6 +644,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#contrast-minimum',
         'tags'     => [ 'contrast', 'text', 'color', 'visual', 'font', 'readability' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.4.4',
@@ -413,6 +676,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#resize-text',
         'tags'     => [ 'text', 'resize', 'zoom', 'font', 'css', 'responsive' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.4.5',
@@ -429,6 +708,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#images-of-text',
         'tags'     => [ 'image', 'text', 'visual', 'font', 'decorative', 'essential', 'presentation' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '1.4.6',
@@ -446,6 +741,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#contrast-enhanced',
         'tags'     => [ 'contrast', 'text', 'color', 'visual', 'font', 'readability', 'enhanced' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '1.4.7',
@@ -462,6 +758,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/low-or-no-background-audio.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#low-or-no-background-audio',
         'tags'     => [ 'audio', 'media', 'background', 'sound', 'speech', 'clarity' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '1.4.8',
@@ -479,6 +776,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/visual-presentation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#visual-presentation',
         'tags'     => [ 'visual', 'presentation', 'text', 'color', 'spacing', 'line length', 'css', 'readability' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '1.4.9',
@@ -495,6 +793,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text-no-exception.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#images-of-text-no-exception',
         'tags'     => [ 'image', 'text', 'visual', 'decorative', 'essential', 'presentation', 'no exception' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.1.1',
@@ -513,6 +812,23 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#keyboard',
         'tags'     => [ 'keyboard', 'focus', 'tab', 'navigation', 'input', 'control', 'access' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.1.2',
@@ -531,6 +847,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#no-keyboard-trap',
         'tags'     => [ 'keyboard', 'focus', 'navigation', 'control', 'escape', 'tab' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.1.3',
@@ -549,6 +881,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard-no-exception.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#keyboard-no-exception',
         'tags'     => [ 'keyboard', 'focus', 'tab', 'navigation', 'input', 'control', 'access' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.1.4',
@@ -565,6 +898,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/character-key-shortcuts.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#character-key-shortcuts',
         'tags'     => [ 'keyboard', 'shortcut', 'accesskey', 'focus', 'input', 'control', 'customization' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.2.1',
@@ -583,6 +927,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#timing-adjustable',
         'tags'     => [ 'timing', 'timeout', 'session', 'form', 'input', 'timer', 'adjustable', 'control' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.2.2',
@@ -601,6 +961,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#pause-stop-hide',
         'tags'     => [ 'animation', 'pause', 'stop', 'hide', 'marquee', 'carousel', 'auto-update', 'scroll', 'blink', 'motion' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.2.3',
@@ -619,6 +995,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/no-timing.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#no-timing',
         'tags'     => [ 'timing', 'timeout', 'session', 'form', 'input', 'timer', 'no timing', 'control' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.2.4',
@@ -638,6 +1015,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/interruptions.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#interruptions',
         'tags'     => [ 'interrupt', 'notification', 'auto-update', 'alert', 'timing', 'session', 'control' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.2.5',
@@ -656,6 +1034,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/re-authenticating.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#re-authenticating',
         'tags'     => [ 'authentication', 'session', 'timeout', 'login', 'form', 're-authentication', 'data loss' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.2.6',
@@ -674,6 +1053,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/timeouts.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#timeouts',
         'tags'     => [ 'timeout', 'warning', 'session', 'timer', 'form', 'input', 'save', 'extend' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.3.1',
@@ -690,6 +1070,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#three-flashes-or-below-threshold',
         'tags'     => [ 'animation', 'flash', 'video', 'media', 'seizure', 'motion', 'threshold' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.3.2',
@@ -706,6 +1102,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/three-flashes.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#three-flashes',
         'tags'     => [ 'animation', 'flash', 'video', 'media', 'seizure', 'motion', 'no exception' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.3.3',
@@ -722,6 +1119,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#animation-from-interactions',
         'tags'     => [ 'animation', 'motion', 'interaction', 'toggle', 'reduce motion', 'preference' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.4.1',
@@ -739,6 +1137,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#bypass-blocks',
         'tags'     => [ 'skip link', 'navigation', 'menu', 'landmark', 'main', 'header', 'footer', 'bypass', 'block' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.4.10',
@@ -757,6 +1171,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/section-headings.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#section-headings',
         'tags'     => [ 'heading', 'section', 'structure', 'navigation', 'outline', 'label' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.4.11',
@@ -773,6 +1188,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#focus-not-obscured-minimum',
         'tags'     => [ 'focus', 'keyboard', 'visibility', 'tab', 'input', 'control', 'obscured' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.4.12',
@@ -789,6 +1205,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-enhanced.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#focus-not-obscured-enhanced',
         'tags'     => [ 'focus', 'keyboard', 'visibility', 'tab', 'input', 'control', 'obscured', 'enhanced' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.4.13',
@@ -805,6 +1222,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#focus-appearance',
         'tags'     => [ 'focus', 'keyboard', 'indicator', 'visible', 'contrast', 'size', 'appearance' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.4.2',
@@ -823,6 +1241,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/page-titled.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#page-titled',
         'tags'     => [ 'title', 'page', 'head', 'document', 'context', 'navigation' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.4.3',
@@ -841,6 +1275,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#focus-order',
         'tags'     => [ 'focus', 'order', 'keyboard', 'tab', 'navigation', 'sequence', 'logic' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.4.4',
@@ -858,6 +1308,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#link-purpose-in-context',
         'tags'     => [ 'link', 'purpose', 'context', 'anchor', 'navigation', 'text' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.4.5',
@@ -876,6 +1342,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/multiple-ways.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#multiple-ways',
         'tags'     => [ 'navigation', 'menu', 'search', 'sitemap', 'breadcrumbs', 'multiple ways', 'find' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.4.6',
@@ -894,6 +1376,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#headings-and-labels',
         'tags'     => [ 'heading', 'label', 'form', 'input', 'aria-label', 'aria-labelledby', 'legend', 'fieldset', 'structure', 'search' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.4.7',
@@ -912,6 +1410,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#focus-visible',
         'tags'     => [ 'focus', 'keyboard', 'tab', 'input', 'button', 'link', 'visible', 'outline', 'navigation' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.4.8',
@@ -929,6 +1443,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/location.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#location',
         'tags'     => [ 'breadcrumb', 'navigation', 'location', 'page', 'title', 'header', 'aria-current', 'search' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.4.9',
@@ -946,6 +1461,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#link-purpose-link-only',
         'tags'     => [ 'link', 'anchor', 'a', 'href', 'button', 'purpose', 'text', 'search' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.5.1',
@@ -964,6 +1480,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#pointer-gestures',
         'tags'     => [ 'pointer', 'gesture', 'touch', 'mouse', 'drag', 'swipe', 'tap', 'input', 'search' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.5.2',
@@ -983,6 +1510,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#pointer-cancellation',
         'tags'     => [ 'pointer', 'gesture', 'touch', 'mouse', 'cancel', 'input', 'button', 'search' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.5.3',
@@ -999,6 +1537,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#label-in-name',
         'tags'     => [ 'label', 'name', 'button', 'input', 'aria-label', 'aria-labelledby', 'form', 'search' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.5.4',
@@ -1015,6 +1564,17 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/motion-actuation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#motion-actuation',
         'tags'     => [ 'motion', 'gesture', 'device motion', 'touch', 'input', 'button', 'search' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '2.5.5',
@@ -1034,6 +1594,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/target-size.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#target-size',
         'tags'     => [ 'target', 'size', 'button', 'link', 'input', 'touch', 'pointer', 'search' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.5.6',
@@ -1050,6 +1611,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/concurrent-input-mechanisms.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#concurrent-input-mechanisms',
         'tags'     => [ 'input', 'mechanism', 'keyboard', 'mouse', 'touch', 'voice', 'alternative', 'concurrent', 'search' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.5.7',
@@ -1066,6 +1628,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#dragging-movements',
         'tags'     => [ 'drag', 'drag-and-drop', 'mouse', 'touch', 'keyboard', 'input', 'movement', 'alternative', 'search' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '2.5.8',
@@ -1085,6 +1648,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#target-size-minimum',
         'tags'     => [ 'target', 'size', 'button', 'link', 'input', 'touch', 'pointer', 'minimum', 'search' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '3.1.1',
@@ -1102,6 +1666,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#language-of-page',
         'tags'     => [ 'html', 'lang', 'language', 'page', 'document', 'assistive technology' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
 
     ],
     [
@@ -1120,6 +1700,20 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#language-of-parts',
         'tags'     => [ 'html', 'lang', 'span', 'language', 'parts', 'assistive technology' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
 
     ],
     [
@@ -1139,6 +1733,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/unusual-words.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#unusual-words',
         'tags'     => [ 'abbr', 'dfn', 'glossary', 'definition', 'tooltip', 'unusual word', 'explanation' ],
+        'also_applies_to' => [],
 
     ],
     [
@@ -1158,6 +1753,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/abbreviations.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#abbreviations',
         'tags'     => [ 'abbr', 'acronym', 'dfn', 'glossary', 'definition', 'tooltip', 'explanation' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '3.1.5',
@@ -1176,6 +1772,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/reading-level.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#reading-level',
         'tags'     => [ 'text', 'reading level', 'plain language', 'summary', 'explanation', 'content' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '3.1.6',
@@ -1194,6 +1791,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/pronunciation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#pronunciation',
         'tags'     => [ 'pronunciation', 'phonetic', 'tooltip', 'explanation', 'assistive technology' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '3.2.1',
@@ -1212,6 +1810,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/on-focus.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#on-input',
         'tags'     => [ 'focus', 'input', 'button', 'link', 'form', 'change', 'interaction', 'event' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
 
     ],
     [
@@ -1232,6 +1846,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/on-input.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#on-input',
         'tags'     => [ 'input', 'form', 'change', 'event', 'submit', 'interaction', 'field' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
 
     ],
     [
@@ -1251,7 +1881,19 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/consistent-navigation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#consistent-navigation',
         'tags'     => [ 'navigation', 'menu', 'link', 'header', 'footer', 'sidebar', 'consistency' ],
-
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software) - does not apply to non-web software',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs) - does not apply to non-web docs',
+            ],
+        ],
     ],
     [
         'number'   => '3.2.4',
@@ -1270,7 +1912,19 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/consistent-identification.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#consistent-identification',
         'tags'     => [ 'button', 'link', 'icon', 'input', 'form', 'label', 'consistency', 'identification' ],
-
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software) - does not apply to non-web software',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs) - does not apply to non-web docs',
+            ],
+        ],
     ],
     [
         'number'   => '3.2.5',
@@ -1290,6 +1944,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/change-on-request.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#change-on-request',
         'tags'     => [ 'input', 'form', 'button', 'link', 'change', 'event', 'notification', 'context', 'request' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '3.2.6',
@@ -1306,6 +1961,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#consistent-help',
         'tags'     => [ 'help', 'support', 'documentation', 'contact', 'faq', 'search', 'assistance' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '3.3.1',
@@ -1324,6 +1980,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#error-identification',
         'tags'     => [ 'error', 'input', 'form', 'validation', 'message', 'field', 'suggestion', 'notification' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '3.3.2',
@@ -1342,6 +2014,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#labels-or-instructions',
         'tags'     => [ 'label', 'input', 'form', 'instruction', 'field', 'aria-label', 'aria-labelledby', 'placeholder' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '3.3.3',
@@ -1359,7 +2047,23 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#error-suggestion',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#error-suggestion',
-        'tags'     => [],
+        'tags'     => [ 'error', 'input', 'form', 'validation', 'suggestion', 'message', 'field', 'notification' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '3.3.4',
@@ -1378,6 +2082,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-legal-financial-data.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#minimize-error-reversible',
         'tags'     => [ 'error', 'input', 'form', 'validation', 'suggestion', 'message', 'field', 'notification' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '3.3.5',
@@ -1396,6 +2116,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/help.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#help',
         'tags'     => [ 'help', 'support', 'documentation', 'contact', 'faq', 'search', 'assistance' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '3.3.6',
@@ -1414,6 +2135,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-all.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#error-prevention-all',
         'tags'     => [ 'error', 'input', 'form', 'validation', 'prevention', 'confirmation', 'review', 'submission', 'data' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '3.3.7',
@@ -1431,6 +2153,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#redundant-entry',
         'tags'     => [ 'input', 'form', 'redundant', 'entry', 'field', 'auto-fill', 'user info' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '3.3.8',
@@ -1447,6 +2170,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#accessible-authentication-minimum',
         'tags'     => [ 'authentication', 'login', 'password', 'captcha', 'alternative', 'cognitive', 'form', 'user' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '3.3.9',
@@ -1463,6 +2187,7 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#accessible-authentication-enhanced',
         'tags'     => [ 'authentication', 'login', 'password', 'captcha', 'alternative', 'cognitive', 'form', 'user', 'enhanced' ],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '4.1.1',
@@ -1481,6 +2206,22 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/parsing.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#parsing',
         'tags'     => [ 'html', 'xml', 'syntax', 'element', 'attribute', 'aria', 'parsing', 'structure', 'assistive technology' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.1.1.1.2 (Closed Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '4.1.2',
@@ -1499,6 +2240,21 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#name-role-value',
         'tags'     => [ 'aria', 'role', 'name', 'value', 'button', 'input', 'form', 'widget', 'state', 'property', 'assistive technology' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+            'Revised Section 508' => [
+                '501 (Web)(Software)',
+                '504.2 (Authoring Tool)',
+                '602.3 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '4.1.3',
@@ -1515,6 +2271,16 @@ return [
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#status-messages',
         'tags'     => [ 'status', 'aria-live', 'alert', 'notification', 'form', 'update', 'assistive technology', 'message' ],
+        'also_applies_to' => [
+            'EN 301 549 Criteria' => [
+                '9.1.1.1 (Web)',
+                '10.1.1.1 (Non-web document)',
+                '11.1.1.1.1 (Open Functionality Software)',
+                '11.8.2 (Authoring Tool)',
+                '12.1.2 (Product Docs)',
+                '12.2.4 (Support Docs)',
+            ],
+        ],
     ],
     [
         'number'   => '0.1',
@@ -1529,6 +2295,7 @@ return [
         'understanding_url' => '',
         'wcag_url' => '',
         'tags'     => [],
+        'also_applies_to' => [],
     ],
     [
         'number'   => '0.2',
@@ -1543,5 +2310,6 @@ return [
         'understanding_url' => '',
         'wcag_url' => '',
         'tags'     => [],
+        'also_applies_to' => [],
     ],
 ];
