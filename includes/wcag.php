@@ -21,7 +21,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#non-text-content',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#non-text-content',
-        'tags'     => [],
+        'tags'     => [ 'img', 'svg', 'icon', 'input', 'button', 'media', 'captcha', 'decorative', 'text alternative', 'alt' ],
     ],
     [
         'number'   => '1.2.1',
@@ -38,7 +38,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#audio-only-and-video-only-prerecorded',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#audio-only-and-video-only-prerecorded',
-        'tags'     => [],
+        'tags'     => [ 'audio', 'video', 'media', 'transcript', 'text alternative' ],
     ],
     [
         'number'   => '1.2.2',
@@ -55,7 +55,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#captions-prerecorded',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#captions-prerecorded',
-        'tags'     => [],
+        'tags'     => [ 'video', 'audio', 'media', 'captions', 'subtitles', 'transcript' ],
     ],
     [
         'number'   => '1.2.3',
@@ -72,7 +72,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#audio-description-or-media-alternative-prerecorded',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/audio-description-or-media-alternative-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#audio-description-or-media-alternative-prerecorded',
-        'tags'     => [],
+        'tags'     => [ 'video', 'audio', 'media', 'audio description', 'transcript', 'description' ],
     ],
     [
         'number'   => '1.2.4',
@@ -89,7 +89,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#captions-live',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/captions-live.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#captions-live',
-        'tags'     => [],
+        'tags'     => [ 'video', 'audio', 'media', 'captions', 'live', 'real-time' ],
     ],
     [
         'number'   => '1.2.5',
@@ -105,7 +105,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#audio-description-prerecorded',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/audio-description-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#audio-description-prerecorded',
-        'tags'     => [],
+        'tags'     => [ 'video', 'audio', 'media', 'audio description', 'description' ],
     ],
     [
         'number'   => '1.2.6',
@@ -121,7 +121,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#sign-language-prerecorded',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/sign-language-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#sign-language-prerecorded',
-        'tags'     => [],
+        'tags'     => [ 'video', 'audio', 'media', 'sign language', 'interpretation' ],
     ],
     [
         'number'   => '1.2.7',
@@ -137,7 +137,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#extended-audio-description-prerecorded',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/extended-audio-description-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#extended-audio-description-prerecorded',
-        'tags'     => [],
+        'tags'     => [ 'video', 'audio', 'media', 'audio description', 'description', 'extended' ],
     ],
     [
         'number'   => '1.2.8',
@@ -155,7 +155,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#media-alternative-prerecorded',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/media-alternative-prerecorded.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#media-alternative-prerecorded',
-        'tags'     => [],
+        'tags'     => [ 'video', 'audio', 'media', 'transcript', 'text alternative' ],
     ],
     [
         'number'   => '1.2.9',
@@ -172,7 +172,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#audio-only-live',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-live.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#audio-only-live',
-        'tags'     => [],
+        'tags'     => [ 'audio', 'media', 'live', 'transcript', 'text alternative' ],
     ],
     [
         'number'   => '1.3.1',
@@ -191,7 +191,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#info-and-relationships',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#info-and-relationships',
-        'tags'     => [],
+        'tags'     => [ 'structure', 'heading', 'list', 'table', 'form', 'label', 'aria', 'landmark', 'relationship', 'programmatic' ],
     ],
     [
         'number'   => '1.3.2',
@@ -209,7 +209,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#meaningful-sequence',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#meaningful-sequence',
-        'tags'     => [],
+        'tags'     => [ 'order', 'reading', 'sequence', 'screen reader', 'programmatic', 'content' ],
     ],
     [
         'number'   => '1.3.3',
@@ -226,7 +226,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#sensory-characteristics',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#sensory-characteristics',
-        'tags'     => [],
+        'tags'     => [ 'instruction', 'color', 'shape', 'sound', 'size', 'sensory', 'label' ],
     ],
     [
         'number'   => '1.3.4',
@@ -242,7 +242,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#orientation',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/orientation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#orientation',
-        'tags'     => [],
+        'tags'     => [ 'orientation', 'mobile', 'portrait', 'landscape', 'responsive', 'layout' ],
     ],
     [
         'number'   => '1.3.5',
@@ -259,7 +259,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#identify-input-purpose',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#identify-input-purpose',
-        'tags'     => [],
+        'tags'     => [ 'input', 'form', 'autocomplete', 'purpose', 'field', 'user info' ],
     ],
     [
         'number'   => '1.3.6',
@@ -276,7 +276,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#identify-purpose',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/identify-purpose.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#identify-purpose',
-        'tags'     => [],
+        'tags'     => [ 'input', 'form', 'button', 'icon', 'region', 'aria', 'purpose', 'role' ],
     ],
     [
         'number'   => '1.4.1',
@@ -293,7 +293,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#use-of-color',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#use-of-color',
-        'tags'     => [],
+        'tags'     => [ 'color', 'visual', 'link', 'button', 'chart', 'graph', 'distinguish' ],
     ],
     [
         'number'   => '1.4.10',
@@ -310,7 +310,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#reflow',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/reflow.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#reflow',
-        'tags'     => [],
+        'tags'     => [ 'responsive', 'zoom', 'mobile', 'layout', 'scroll', 'css', 'viewport' ],
     ],
     [
         'number'   => '1.4.11',
@@ -326,7 +326,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#non-text-contrast',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#non-text-contrast',
-        'tags'     => [],
+        'tags'     => [ 'contrast', 'button', 'icon', 'focus', 'visual', 'ui component', 'graphics' ],
     ],
     [
         'number'   => '1.4.12',
@@ -343,7 +343,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#text-spacing',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#text-spacing',
-        'tags'     => [],
+        'tags'     => [ 'text', 'spacing', 'css', 'line height', 'letter spacing', 'word spacing', 'paragraph' ],
     ],
     [
         'number'   => '1.4.13',
@@ -361,7 +361,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#content-on-hover-or-focus',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus',
-        'tags'     => [],
+        'tags'     => [ 'hover', 'focus', 'tooltip', 'popup', 'menu', 'overlay', 'pointer', 'keyboard', 'dismiss' ],
     ],
     [
         'number'   => '1.4.2',
@@ -379,7 +379,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#audio-control',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/audio-control.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#audio-control',
-        'tags'     => [],
+        'tags'     => [ 'audio', 'media', 'autoplay', 'volume', 'control', 'pause', 'stop', 'sound' ],
     ],
     [
         'number'   => '1.4.3',
@@ -396,7 +396,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#contrast-minimum',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#contrast-minimum',
-        'tags'     => [],
+        'tags'     => [ 'contrast', 'text', 'color', 'visual', 'font', 'readability' ],
     ],
     [
         'number'   => '1.4.4',
@@ -412,7 +412,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#resize-text',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#resize-text',
-        'tags'     => [],
+        'tags'     => [ 'text', 'resize', 'zoom', 'font', 'css', 'responsive' ],
     ],
     [
         'number'   => '1.4.5',
@@ -428,7 +428,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#images-of-text',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#images-of-text',
-        'tags'     => [],
+        'tags'     => [ 'image', 'text', 'visual', 'font', 'decorative', 'essential', 'presentation' ],
     ],
     [
         'number'   => '1.4.6',
@@ -445,7 +445,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#contrast-enhanced',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#contrast-enhanced',
-        'tags'     => [],
+        'tags'     => [ 'contrast', 'text', 'color', 'visual', 'font', 'readability', 'enhanced' ],
     ],
     [
         'number'   => '1.4.7',
@@ -461,7 +461,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#low-or-no-background-audio',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/low-or-no-background-audio.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#low-or-no-background-audio',
-        'tags'     => [],
+        'tags'     => [ 'audio', 'media', 'background', 'sound', 'speech', 'clarity' ],
     ],
     [
         'number'   => '1.4.8',
@@ -478,7 +478,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#visual-presentation',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/visual-presentation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#visual-presentation',
-        'tags'     => [],
+        'tags'     => [ 'visual', 'presentation', 'text', 'color', 'spacing', 'line length', 'css', 'readability' ],
     ],
     [
         'number'   => '1.4.9',
@@ -494,7 +494,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#images-of-text-no-exception',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text-no-exception.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#images-of-text-no-exception',
-        'tags'     => [],
+        'tags'     => [ 'image', 'text', 'visual', 'decorative', 'essential', 'presentation', 'no exception' ],
     ],
     [
         'number'   => '2.1.1',
@@ -512,7 +512,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#keyboard',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#keyboard',
-        'tags'     => [],
+        'tags'     => [ 'keyboard', 'focus', 'tab', 'navigation', 'input', 'control', 'access' ],
     ],
     [
         'number'   => '2.1.2',
@@ -530,7 +530,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#no-keyboard-trap',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#no-keyboard-trap',
-        'tags'     => [],
+        'tags'     => [ 'keyboard', 'focus', 'navigation', 'control', 'escape', 'tab' ],
     ],
     [
         'number'   => '2.1.3',
@@ -548,7 +548,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#keyboard-no-exception',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard-no-exception.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#keyboard-no-exception',
-        'tags'     => [],
+        'tags'     => [ 'keyboard', 'focus', 'tab', 'navigation', 'input', 'control', 'access' ],
     ],
     [
         'number'   => '2.1.4',
@@ -564,7 +564,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#character-key-shortcuts',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/character-key-shortcuts.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#character-key-shortcuts',
-        'tags'     => [],
+        'tags'     => [ 'keyboard', 'shortcut', 'accesskey', 'focus', 'input', 'control', 'customization' ],
     ],
     [
         'number'   => '2.2.1',
@@ -582,7 +582,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#timing-adjustable',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#timing-adjustable',
-        'tags'     => [],
+        'tags'     => [ 'timing', 'timeout', 'session', 'form', 'input', 'timer', 'adjustable', 'control' ],
     ],
     [
         'number'   => '2.2.2',
@@ -600,7 +600,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#pause-stop-hide',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#pause-stop-hide',
-        'tags'     => [],
+        'tags'     => [ 'animation', 'pause', 'stop', 'hide', 'marquee', 'carousel', 'auto-update', 'scroll', 'blink', 'motion' ],
     ],
     [
         'number'   => '2.2.3',
@@ -618,7 +618,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#no-timing',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/no-timing.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#no-timing',
-        'tags'     => [],
+        'tags'     => [ 'timing', 'timeout', 'session', 'form', 'input', 'timer', 'no timing', 'control' ],
     ],
     [
         'number'   => '2.2.4',
@@ -637,7 +637,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#interruptions',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/interruptions.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#interruptions',
-        'tags'     => [],
+        'tags'     => [ 'interrupt', 'notification', 'auto-update', 'alert', 'timing', 'session', 'control' ],
     ],
     [
         'number'   => '2.2.5',
@@ -655,7 +655,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#re-authenticating',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/re-authenticating.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#re-authenticating',
-        'tags'     => [],
+        'tags'     => [ 'authentication', 'session', 'timeout', 'login', 'form', 're-authentication', 'data loss' ],
     ],
     [
         'number'   => '2.2.6',
@@ -673,7 +673,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#timeouts',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/timeouts.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#timeouts',
-        'tags'     => [],
+        'tags'     => [ 'timeout', 'warning', 'session', 'timer', 'form', 'input', 'save', 'extend' ],
     ],
     [
         'number'   => '2.3.1',
@@ -689,7 +689,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#three-flashes-or-below-threshold',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#three-flashes-or-below-threshold',
-        'tags'     => [],
+        'tags'     => [ 'animation', 'flash', 'video', 'media', 'seizure', 'motion', 'threshold' ],
     ],
     [
         'number'   => '2.3.2',
@@ -705,7 +705,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#three-flashes',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/three-flashes.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#three-flashes',
-        'tags'     => [],
+        'tags'     => [ 'animation', 'flash', 'video', 'media', 'seizure', 'motion', 'no exception' ],
     ],
     [
         'number'   => '2.3.3',
@@ -721,7 +721,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#animation-from-interactions',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#animation-from-interactions',
-        'tags'     => [],
+        'tags'     => [ 'animation', 'motion', 'interaction', 'toggle', 'reduce motion', 'preference' ],
     ],
     [
         'number'   => '2.4.1',
@@ -738,7 +738,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#bypass-blocks',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#bypass-blocks',
-        'tags'     => [],
+        'tags'     => [ 'skip link', 'navigation', 'menu', 'landmark', 'main', 'header', 'footer', 'bypass', 'block' ],
     ],
     [
         'number'   => '2.4.10',
@@ -756,7 +756,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#section-headings',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/section-headings.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#section-headings',
-        'tags'     => [],
+        'tags'     => [ 'heading', 'section', 'structure', 'navigation', 'outline', 'label' ],
     ],
     [
         'number'   => '2.4.11',
@@ -772,7 +772,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG22/quickref/#focus-not-obscured-minimum',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#focus-not-obscured-minimum',
-        'tags'     => [],
+        'tags'     => [ 'focus', 'keyboard', 'visibility', 'tab', 'input', 'control', 'obscured' ],
     ],
     [
         'number'   => '2.4.12',
@@ -788,7 +788,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG22/quickref/#focus-not-obscured-enhanced',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-enhanced.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#focus-not-obscured-enhanced',
-        'tags'     => [],
+        'tags'     => [ 'focus', 'keyboard', 'visibility', 'tab', 'input', 'control', 'obscured', 'enhanced' ],
     ],
     [
         'number'   => '2.4.13',
@@ -804,7 +804,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG22/quickref/#focus-appearance',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#focus-appearance',
-        'tags'     => [],
+        'tags'     => [ 'focus', 'keyboard', 'indicator', 'visible', 'contrast', 'size', 'appearance' ],
     ],
     [
         'number'   => '2.4.2',
@@ -822,7 +822,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#page-titled',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/page-titled.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#page-titled',
-        'tags'     => [],
+        'tags'     => [ 'title', 'page', 'head', 'document', 'context', 'navigation' ],
     ],
     [
         'number'   => '2.4.3',
@@ -840,7 +840,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#focus-order',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#focus-order',
-        'tags'     => [],
+        'tags'     => [ 'focus', 'order', 'keyboard', 'tab', 'navigation', 'sequence', 'logic' ],
     ],
     [
         'number'   => '2.4.4',
@@ -857,7 +857,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#link-purpose-in-context',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#link-purpose-in-context',
-        'tags'     => [],
+        'tags'     => [ 'link', 'purpose', 'context', 'anchor', 'navigation', 'text' ],
     ],
     [
         'number'   => '2.4.5',
@@ -875,7 +875,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#multiple-ways',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/multiple-ways.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#multiple-ways',
-        'tags'     => [],
+        'tags'     => [ 'navigation', 'menu', 'search', 'sitemap', 'breadcrumbs', 'multiple ways', 'find' ],
     ],
     [
         'number'   => '2.4.6',
@@ -893,7 +893,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#headings-and-labels',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#headings-and-labels',
-        'tags'     => [],
+        'tags'     => [ 'heading', 'label', 'form', 'input', 'aria-label', 'aria-labelledby', 'legend', 'fieldset', 'structure', 'search' ],
     ],
     [
         'number'   => '2.4.7',
@@ -911,7 +911,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#focus-visible',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#focus-visible',
-        'tags'     => [],
+        'tags'     => [ 'focus', 'keyboard', 'tab', 'input', 'button', 'link', 'visible', 'outline', 'navigation' ],
     ],
     [
         'number'   => '2.4.8',
@@ -928,7 +928,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#location',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/location.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#location',
-        'tags'     => [],
+        'tags'     => [ 'breadcrumb', 'navigation', 'location', 'page', 'title', 'header', 'aria-current', 'search' ],
     ],
     [
         'number'   => '2.4.9',
@@ -945,7 +945,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#link-purpose-link-only',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#link-purpose-link-only',
-        'tags'     => [],
+        'tags'     => [ 'link', 'anchor', 'a', 'href', 'button', 'purpose', 'text', 'search' ],
     ],
     [
         'number'   => '2.5.1',
@@ -963,7 +963,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#pointer-gestures',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#pointer-gestures',
-        'tags'     => [],
+        'tags'     => [ 'pointer', 'gesture', 'touch', 'mouse', 'drag', 'swipe', 'tap', 'input', 'search' ],
     ],
     [
         'number'   => '2.5.2',
@@ -982,7 +982,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#pointer-cancellation',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#pointer-cancellation',
-        'tags'     => [],
+        'tags'     => [ 'pointer', 'gesture', 'touch', 'mouse', 'cancel', 'input', 'button', 'search' ],
     ],
     [
         'number'   => '2.5.3',
@@ -998,7 +998,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#label-in-name',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#label-in-name',
-        'tags'     => [],
+        'tags'     => [ 'label', 'name', 'button', 'input', 'aria-label', 'aria-labelledby', 'form', 'search' ],
     ],
     [
         'number'   => '2.5.4',
@@ -1014,7 +1014,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#motion-actuation',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/motion-actuation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#motion-actuation',
-        'tags'     => [],
+        'tags'     => [ 'motion', 'gesture', 'device motion', 'touch', 'input', 'button', 'search' ],
     ],
     [
         'number'   => '2.5.5',
@@ -1033,7 +1033,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#target-size',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/target-size.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#target-size',
-        'tags'     => [],
+        'tags'     => [ 'target', 'size', 'button', 'link', 'input', 'touch', 'pointer', 'search' ],
     ],
     [
         'number'   => '2.5.6',
@@ -1049,7 +1049,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#concurrent-input-mechanisms',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/concurrent-input-mechanisms.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#concurrent-input-mechanisms',
-        'tags'     => [],
+        'tags'     => [ 'input', 'mechanism', 'keyboard', 'mouse', 'touch', 'voice', 'alternative', 'concurrent', 'search' ],
     ],
     [
         'number'   => '2.5.7',
@@ -1065,7 +1065,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG22/quickref/#dragging-movements',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#dragging-movements',
-        'tags'     => [],
+        'tags'     => [ 'drag', 'drag-and-drop', 'mouse', 'touch', 'keyboard', 'input', 'movement', 'alternative', 'search' ],
     ],
     [
         'number'   => '2.5.8',
@@ -1084,7 +1084,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG22/quickref/#target-size-minimum',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#target-size-minimum',
-        'tags'     => [],
+        'tags'     => [ 'target', 'size', 'button', 'link', 'input', 'touch', 'pointer', 'minimum', 'search' ],
     ],
     [
         'number'   => '3.1.1',
@@ -1101,7 +1101,8 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#language-of-page',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#language-of-page',
-        'tags'     => [],
+        'tags'     => [ 'html', 'lang', 'language', 'page', 'document', 'assistive technology' ],
+
     ],
     [
         'number'   => '3.1.2',
@@ -1118,7 +1119,8 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#language-of-parts',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#language-of-parts',
-        'tags'     => [],
+        'tags'     => [ 'html', 'lang', 'span', 'language', 'parts', 'assistive technology' ],
+
     ],
     [
         'number'   => '3.1.3',
@@ -1136,7 +1138,8 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#unusual-words',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/unusual-words.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#unusual-words',
-        'tags'     => [],
+        'tags'     => [ 'abbr', 'dfn', 'glossary', 'definition', 'tooltip', 'unusual word', 'explanation' ],
+
     ],
     [
         'number'   => '3.1.4',
@@ -1154,7 +1157,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#abbreviations',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/abbreviations.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#abbreviations',
-        'tags'     => [],
+        'tags'     => [ 'abbr', 'acronym', 'dfn', 'glossary', 'definition', 'tooltip', 'explanation' ],
     ],
     [
         'number'   => '3.1.5',
@@ -1172,7 +1175,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#reading-level',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/reading-level.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#reading-level',
-        'tags'     => [],
+        'tags'     => [ 'text', 'reading level', 'plain language', 'summary', 'explanation', 'content' ],
     ],
     [
         'number'   => '3.1.6',
@@ -1190,7 +1193,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#pronunciation',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/pronunciation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#pronunciation',
-        'tags'     => [],
+        'tags'     => [ 'pronunciation', 'phonetic', 'tooltip', 'explanation', 'assistive technology' ],
     ],
     [
         'number'   => '3.2.1',
@@ -1208,7 +1211,8 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#on-focus',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/on-focus.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#on-input',
-        'tags'     => [],
+        'tags'     => [ 'focus', 'input', 'button', 'link', 'form', 'change', 'interaction', 'event' ],
+
     ],
     [
         'number'   => '3.2.2',
@@ -1227,7 +1231,8 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#on-input',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/on-input.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#on-input',
-        'tags'     => [],
+        'tags'     => [ 'input', 'form', 'change', 'event', 'submit', 'interaction', 'field' ],
+
     ],
     [
         'number'   => '3.2.3',
@@ -1245,7 +1250,8 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#consistent-navigation',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/consistent-navigation.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#consistent-navigation',
-        'tags'     => [],
+        'tags'     => [ 'navigation', 'menu', 'link', 'header', 'footer', 'sidebar', 'consistency' ],
+
     ],
     [
         'number'   => '3.2.4',
@@ -1263,7 +1269,8 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#consistent-identification',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/consistent-identification.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#consistent-identification',
-        'tags'     => [],
+        'tags'     => [ 'button', 'link', 'icon', 'input', 'form', 'label', 'consistency', 'identification' ],
+
     ],
     [
         'number'   => '3.2.5',
@@ -1282,7 +1289,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#change-on-request',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/change-on-request.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#change-on-request',
-        'tags'     => [],
+        'tags'     => [ 'input', 'form', 'button', 'link', 'change', 'event', 'notification', 'context', 'request' ],
     ],
     [
         'number'   => '3.2.6',
@@ -1298,7 +1305,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG22/quickref/#consistent-help',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#consistent-help',
-        'tags'     => [],
+        'tags'     => [ 'help', 'support', 'documentation', 'contact', 'faq', 'search', 'assistance' ],
     ],
     [
         'number'   => '3.3.1',
@@ -1316,7 +1323,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#error-identification',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#error-identification',
-        'tags'     => [],
+        'tags'     => [ 'error', 'input', 'form', 'validation', 'message', 'field', 'suggestion', 'notification' ],
     ],
     [
         'number'   => '3.3.2',
@@ -1334,7 +1341,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#labels-or-instructions',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#labels-or-instructions',
-        'tags'     => [],
+        'tags'     => [ 'label', 'input', 'form', 'instruction', 'field', 'aria-label', 'aria-labelledby', 'placeholder' ],
     ],
     [
         'number'   => '3.3.3',
@@ -1370,7 +1377,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#error-prevention-legal-financial-data',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-legal-financial-data.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#minimize-error-reversible',
-        'tags'     => [],
+        'tags'     => [ 'error', 'input', 'form', 'validation', 'suggestion', 'message', 'field', 'notification' ],
     ],
     [
         'number'   => '3.3.5',
@@ -1388,7 +1395,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#help',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/help.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#help',
-        'tags'     => [],
+        'tags'     => [ 'help', 'support', 'documentation', 'contact', 'faq', 'search', 'assistance' ],
     ],
     [
         'number'   => '3.3.6',
@@ -1406,7 +1413,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#error-prevention-all',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-all.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#error-prevention-all',
-        'tags'     => [],
+        'tags'     => [ 'error', 'input', 'form', 'validation', 'prevention', 'confirmation', 'review', 'submission', 'data' ],
     ],
     [
         'number'   => '3.3.7',
@@ -1423,7 +1430,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG22/quickref/#redundant-entry',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#redundant-entry',
-        'tags'     => [],
+        'tags'     => [ 'input', 'form', 'redundant', 'entry', 'field', 'auto-fill', 'user info' ],
     ],
     [
         'number'   => '3.3.8',
@@ -1439,7 +1446,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG22/quickref/#accessible-authentication-minimum',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#accessible-authentication-minimum',
-        'tags'     => [],
+        'tags'     => [ 'authentication', 'login', 'password', 'captcha', 'alternative', 'cognitive', 'form', 'user' ],
     ],
     [
         'number'   => '3.3.9',
@@ -1455,7 +1462,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG22/quickref/#accessible-authentication-enhanced',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG22/#accessible-authentication-enhanced',
-        'tags'     => [],
+        'tags'     => [ 'authentication', 'login', 'password', 'captcha', 'alternative', 'cognitive', 'form', 'user', 'enhanced' ],
     ],
     [
         'number'   => '4.1.1',
@@ -1473,7 +1480,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#parsing',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/parsing.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#parsing',
-        'tags'     => [],
+        'tags'     => [ 'html', 'xml', 'syntax', 'element', 'attribute', 'aria', 'parsing', 'structure', 'assistive technology' ],
     ],
     [
         'number'   => '4.1.2',
@@ -1491,7 +1498,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#name-role-value',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#name-role-value',
-        'tags'     => [],
+        'tags'     => [ 'aria', 'role', 'name', 'value', 'button', 'input', 'form', 'widget', 'state', 'property', 'assistive technology' ],
     ],
     [
         'number'   => '4.1.3',
@@ -1507,7 +1514,7 @@ return [
         'how_to_meet_url' => 'https://www.w3.org/WAI/WCAG21/quickref/#status-messages',
         'understanding_url' => 'https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html',
         'wcag_url' => 'https://www.w3.org/TR/WCAG21/#status-messages',
-        'tags'     => [],
+        'tags'     => [ 'status', 'aria-live', 'alert', 'notification', 'form', 'update', 'assistive technology', 'message' ],
     ],
     [
         'number'   => '0.1',
