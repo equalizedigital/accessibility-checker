@@ -60,7 +60,7 @@ return [
     [
         'number'   => '1.2.3',
         'title'    => esc_html__( 'Audio Description or Media Alternative (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn’t spoken.', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn\'t spoken.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -126,7 +126,7 @@ return [
     [
         'number'   => '1.2.7',
         'title'    => esc_html__( 'Extended Audio Description (Prerecorded)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can’t be described during the natural pauses in the audio.', 'accessibility-checker'),
+        'criteria_description' => esc_html__('For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can\'t be described during the natural pauses in the audio.', 'accessibility-checker'),
         'level'    => 'AAA',
         'version'  => '2.0',
         'guidelines' => esc_html__( '1.2 Time-based Media', 'accessibility-checker' ),
@@ -1533,7 +1533,7 @@ return [
     [
         'number'   => '0.2',
         'title'    => esc_html__( 'Non-WCAG Accessibility Issue', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('A problem that affects users with disabilities but doesn’t map directly to a current WCAG success criterion.', 'accessibility-checker'),
+        'criteria_description' => esc_html__('A problem that affects users with disabilities but doesn\'t map directly to a current WCAG success criterion.', 'accessibility-checker'),
         'level'    => '',
         'version'  => '',
         'guidelines' => '',
