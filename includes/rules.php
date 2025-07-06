@@ -24,11 +24,34 @@ return [
 		'rule_type' => 'error',
 		'summary'   => sprintf(
 			// translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
-			esc_html__( 'An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present.', 'accessibility-checker' ),
+			esc_html__( 'This image does not have an alt attribute (%1$s) contained in the image tag (%2$s).', 'accessibility-checker' ),
 			'<code>alt=""</code>',
-			'<code>&lt;a&gt;</code>'
+			'<code>&lt;img&gt;</code>'
 		),
+		'why_it_matters' => esc_html__( 'Alternative text is used by screen readers to describe images to people who cannot see them. If the alt attribute is missing, the screen reader will only say \'Image\' or may read out the file URL. Alternative text is also used by search engines to understand the content of the image. If an image does not have alternative text, it can create a poor user experience for people with visual impairments and can negatively impact your site\'s SEO.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>alt=""</code>
+			esc_html__( 'Add an alt attribute to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s attribute still needs to be present.', 'accessibility-checker' ),
+			'<code>alt=""</code>',
+		),
+		'references' => [
+			[
+				'text' => __( 'HTML Standard: The img element', 'accessibility-checker' ),
+				'url'  => 'https://html.spec.whatwg.org/multipage/images.html#the-img-element',
+			],
+			[
+				'text' => __( 'Alt Decision Tree', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/images/decision-tree/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.1.1',
+		'severity' => 1, // Critical.
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Image Empty Alternative Text', 'accessibility-checker' ),
@@ -37,64 +60,162 @@ return [
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
 			// translators: %s is <code>alt=""</code>.
-			esc_html__( 'An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image\'s purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning.', 'accessibility-checker' ),
+			esc_html__( 'This image has an empty alt attribute (%s).', 'accessibility-checker' ),
 			'<code>alt=""</code>',
 		),
+		'why_it_matters' => esc_html__( 'Screen readers rely on alternative text to describe images to users who cannot see them. If the alt attribute is empty, it signals that the image is decorative and should be skipped. However, if a meaningful image has an empty alt attribute, users with visual impairments will miss important information. Proper use of alternative text improves accessibility and ensures all users can understand the content.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>alt=""</code> and %2$s is <code>role="presentation"</code>.
+			esc_html__( 'Review the image to determine if it is decorative. If it is dectorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the "Ignore" feature in Accessibility Checker or adding %2$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image\'s purpose or meaning.', 'accessibility-checker' ),
+			'<code>alt=""</code>',
+			'<code>role="presentation"</code>',
+		),
+		'references' => [
+			[
+				'text' => __( 'W3C Tutorial on Images: Decorative Images', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/images/decorative/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.1.1',
+		'severity'  => 1, // Critical.
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Low-quality Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1977',
 		'slug'      => 'img_alt_invalid',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as "image" or "graphic"), a file extension (such as .JPG), that may be describing a decorative image (such as "spacer" or "arrow"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This image has alternative text that may be vague, redundant, or include unnecessary words or file names.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Alternative text helps people using screen readers understand the purpose of an image. When alt text includes words like “image,” “graphic,” or a file extension, it adds no useful information and can create confusion or distraction. Clear and relevant alt text improves comprehension and user experience.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Rewrite the alternative text to accurately and concisely describe the purpose of the image in context. Avoid including words like “image,” “graphic,” file names or extensions (e.g., .jpg, .png), or placeholder terms like “spacer” or “arrow.” If the image is decorative, leave the alt attribute empty.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'W3C Tutorial on Images: Informative Images', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/images/informative/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.1.1',
+		'severity'  => 3, // Medium.
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Linked Image Missing Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1930',
 		'slug'      => 'img_linked_alt_missing',
 		'rule_type' => 'error',
-		'summary'   => sprintf(
-		// translators: %s is <code>alt=""</code>.
-			esc_html__( 'A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
-			'<code>alt=""</code>'
+		'summary'   => esc_html__( 'This image is inside a link but does not have an alt attribute and there is no other text within the link.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Screen reader users rely on alternative text to understand the purpose of linked images. Without it, they cannot determine where the link leads, making navigation difficult or impossible.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %s is <code>aria-label"</code>.
+			esc_html__( 'Add an alt attribute that describes the purpose of the link. Focus on where the link goes, not what the image looks like. Alternatively, add an %s to the link.', 'accessibility-checker' ),
+			'<code>aria-label</code>',
 		),
+		'references' => [
+			[
+				'text' => __( 'W3C Tutorial on Images: Functional Images', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/images/functional/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.1.1',
+		'severity'  => 1, // critical
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Linked Image Empty Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1930',
 		'slug'      => 'img_linked_alt_empty',
 		'rule_type' => 'error',
-		'summary'   => sprintf(
-		// translators: %s is <code>alt=""</code>.
-			esc_html__( 'A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like.', 'accessibility-checker' ),
-			'<code>alt=""</code>'
-		),
+		'summary'   => esc_html__( 'This image is inside a link and has an empty alt attribute and there is no other text within the link.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'An empty alt attribute on a linked image causes screen reader users to hear just "link" with no context. This makes navigation confusing and may cause them to skip important content.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Replace the empty alt attribute with meaningful alternative text that clearly describes the link’s destination or purpose.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'W3C Tutorial on Images: Functional Images', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/images/functional/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.1.1',
+		'severity'  => 1, // critical
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Duplicate Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1976',
 		'slug'      => 'img_alt_redundant',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This image has alternative text that is identical to nearby content or to another image on the page.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'When alternative text repeats nearby text or appears identically across multiple images, it creates confusion for screen reader users. Repetition provides no additional context and makes it difficult to distinguish between different elements or understand their purpose.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'If the alt text duplicates a nearby caption, heading, or visible text, remove the redundancy by shortening or omitting the alt text—especially if the surrounding text already provides the same information. If multiple images have the same alt text, revise each one to be unique and describe the purpose of that specific image in its context.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'W3C Tutorial on Images: Informative Images', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/images/informative/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.1.1',
+		'severity'  => 3, // medium
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Incorrect Heading Order', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1940',
 		'slug'      => 'incorrect_heading_order',
 		'rule_type' => 'error',
-		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
-			esc_html__( 'An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an "Incorrect Heading Order" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels.', 'accessibility-checker' ),
+		'summary' => sprintf(
+			// translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>)
+			esc_html__( 'This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels.', 'accessibility-checker' ),
 			'<code>&lt;h3&gt;</code>',
+			'<code>&lt;h1&gt;</code>'
+		),
+		'why_it_matters' => esc_html__( 'Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code>
+			esc_html__( 'Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level.', 'accessibility-checker' ),
 			'<code>&lt;h1&gt;</code>',
+			'<code>&lt;h3&gt;</code>',
 			'<code>&lt;h2&gt;</code>'
 		),
+		'references' => [
+			[
+				'text' => __( 'W3C Page Structure Tutorial: Headings', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/page-structure/headings/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.3.1',
+		'severity'  => 2, // high
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Cognitive',
+			'Deafblind',
+			'Mobility',
+		],
 		'combines'  => [
 			'heading-order',
 		],
@@ -104,8 +225,36 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help7870',
 		'slug'      => 'empty_paragraph_tag',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This page contains a <p> tag with no content inside.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Empty paragraph tags can be announced by screen readers as blank lines or pauses, which may confuse users or disrupt reading flow. They can also interfere with visual layout or spacing, especially in assistive technology or mobile contexts.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Remove the empty <p> tags from your content. If spacing is needed between sections, use margin, padding, or a visual spacer block instead of inserting blank paragraphs.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'MDN Web Docs: The Paragraph Element - Accessibility' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/p#accessibility',
+			],
+			[
+				'text' => __( 'WordPress Spacer Block', 'accessibility-checker' ),
+				'url' => 'https://wordpress.org/documentation/article/spacer-block/',
+			],
+			[
+				'text' => __( 'MDN Web Docs: CSS Padding', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/CSS/padding',
+			],
+			[
+				'text' => __( 'MDN Web Docs: CSS Margin', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/CSS/margin',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '0.1',
+		'severity'  => 4, // low
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Cognitive',
+			'Deafblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'iframe Missing Title', 'accessibility-checker' ),
@@ -113,11 +262,35 @@ return [
 		'slug'      => 'iframe_missing_title',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;iframe&gt;</code>.
-			esc_html__( 'An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe.', 'accessibility-checker' ),
+			// translators: %1$s is <code>&lt;iframe&gt;</code>
+			esc_html__( 'This %1$s does not have a descriptive title attribute.', 'accessibility-checker' ),
 			'<code>&lt;iframe&gt;</code>'
 		),
+		'why_it_matters' => esc_html__( 'Screen readers rely on the title attribute of an iframe to describe its purpose or content. Without a title, users may not understand what the embedded content is, making the page harder to navigate and use.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;iframe&gt;</code>
+			esc_html__( 'Add a title attribute to the %1$s tag that accurately describes the content or function of the embedded frame. If the iframe is added by a plugin and the title cannot be edited directly, check the plugin settings for an accessibility option, or contact the developer for support. Consider switching to a wordPress core embed instead.', 'accessibility-checker' ),
+			'<code>&lt;iframe&gt;</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'W3C: Techniques for WCAG 2.1 - H64: Using the title attribute of the iframe element', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/html/H64',
+			],
+			[
+				'text' => __( 'MDN Web Docs: <iframe>', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '4.1.2',
+		'severity'  => 2, // high
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+			'Mobility',
+		],
 		'combines'  => [
 			'frame-title',
 		],
@@ -128,33 +301,93 @@ return [
 		'slug'      => 'missing_headings',
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
-			esc_html__( 'A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning.', 'accessibility-checker' ),
+			// translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>
+			esc_html__( 'This page does not contain any heading elements between %1$s and %2$s in the main content area and has more than 400 words.', 'accessibility-checker' ),
 			'<code>&lt;h1&gt;</code>',
 			'<code>&lt;h6&gt;</code>'
 		),
+		'why_it_matters' => esc_html__( 'Headings provide structure and make content easier for users of all abilities to scan. They also help screen reader users and keyboard-only users navigate the page. Without headings, users must read through content linearly without an easy way to jump between sections.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;h1&gt;</code>
+			esc_html__( 'Add meaningful heading elements throughout your content to organize it into sections. At a minimum, include one %1$s tag as the main page title, and add subheadings where appropriate to break up content into logical parts.', 'accessibility-checker' ),
+			'<code>&lt;h1&gt;</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'W3C Tutorial: Headings', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/page-structure/headings/',
+			],
+		],
 		'viewable'  => false,
 		'ruleset'   => 'js',
+		'wcag'      => '1.3.1',
+		'severity'  => 3, // medium
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Cognitive',
+			'Deafblind',
+			'Mobility',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Text Justified', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1980',
 		'slug'      => 'text_justified',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements.', 'accessibility-checker' ),
+		'summary'   => sprintf(
+			// translators: %s is <code>text-align: justify</code>
+			esc_html__( 'This page contains long blocks of text that are styled with %s.', 'accessibility-checker' ),
+			'<code>text-align: justify</code>'
+		),
+		'why_it_matters' => esc_html__( 'Justified text can create uneven spacing between words, forming distracting "rivers" of white space that make reading difficult—especially for people with dyslexia, low vision, or cognitive disabilities. Left-aligned text is more predictable and easier to read.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %s is <code>text-align: justify</code>
+			esc_html__( 'Remove the %s CSS rule from long blocks of text, especially paragraphs over 200 characters. Use left-aligned text instead for better readability and accessibility.', 'accessibility-checker' ),
+			'<code>text-align: justify</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'W3C: Making Content Usable for People with Cognitive and Learning Disabilities', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/TR/coga-usable/#use-left-and-right-alignment-consistently',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.4.8',
+		'severity'  => 4, // low
+		'affected_disabilities' => [
+			'Low-vision',
+			'Cognitive',
+			'Dyslexia',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Link Opens New Window or Tab', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1982',
 		'slug'      => 'link_blank',
 		'rule_type' => 'warning',
-		'summary'   => sprintf(
-			// translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
-			esc_html__( 'A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure "opens new window" is included in the link text then "Ignore" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin.', 'accessibility-checker' ),
-			'<a href="https://wordpress.org/plugins/accessibility-new-window-warnings/" target="_blank">' . esc_html__( 'Accessibility New Window Warnings', 'accessibility-checker' ) . '</a>'
+		'summary'   => esc_html__( 'This link is set to open in a new browser tab or window.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'When a link opens in a new tab or window without warning, it can be disorienting, especially for users with cognitive disabilities, screen reader users, or anyone relying on keyboard navigation. They may not realize a new context has opened or understand how to return.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>target="_blank"</code>.
+			esc_html__( 'Avoid using %1$s unless absolutely necessary. If a link must open in a new tab or window, add a visible icon and screen reader text such as "opens in a new window" or "opens in a new tab" to inform users. To automate this and dismiss the warning sitewide, you can activate the \'Add Label To Links That Open A New Tab/Window\' fix in Accessibility Checker settings.', 'accessibility-checker' ),
+			'<code>target="_blank"</code>',
 		),
+		'references' => [
+			[
+				'text' => __( 'W3C Technique H83: Using the target attribute to open a new window on user request and indicating this in link text', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/html/H83',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '3.2.5',
+		'severity'  => 3, // medium
+		'affected_disabilities' => [
+			'Cognitive',
+			'Blind',
+			'Low-vision',
+			'Motor',
+		],
 		'combines'  => [
 			'link_blank',
 		],
@@ -169,16 +402,40 @@ return [
 		'slug'      => 'image_map_missing_alt_text',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
-			esc_html__( 'The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like.', 'accessibility-checker' ),
+			// translators: %1$s is <code>&lt;area&gt;</code>
+			esc_html__( 'One or more %1$s elements in an image map are missing alternative text.', 'accessibility-checker' ),
+			'<code>&lt;area&gt;</code>'
+		),
+		'why_it_matters' => esc_html__( 'Image maps use area elements to define interactive regions. Without alternative text, screen reader users won\'t know what each clickable area does, making it impossible to understand or interact with the map.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>
+			esc_html__( 'Add a descriptive %2$s attribute to each %1$s element in your image map. The text should explain the function or destination of the link, not what the area looks like.', 'accessibility-checker' ),
 			'<code>&lt;area&gt;</code>',
 			'<code>alt=""</code>'
 		),
+		'references' => [
+			[
+				'text' => __( 'W3C: HTML Image Maps', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/images/imagemap/',
+			],
+			[
+				'text' => __( 'MDN Web Docs: <area>', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.1.1',
+		'severity'  => 2, // high
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+		],
 		'combines'  => [
 			'area-alt',
 		],
 	],
+
 	[
 		'title'     => esc_html__( 'Tab Order Modified', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1974',
