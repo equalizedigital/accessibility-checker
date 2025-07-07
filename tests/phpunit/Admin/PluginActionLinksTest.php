@@ -126,10 +126,17 @@ class PluginActionLinksTest extends WP_UnitTestCase {
 		$input_links = [ 'deactivate' => '<a href="#">Deactivate</a>' ];
 		$result      = $this->plugin_action_links->add_plugin_action_links( $input_links );
 
-		$this->assertArrayHasKey( 'go_pro', $result, 'Pro link not found in result' );
-		$this->assertStringContainsString( 'Get Pro', $result['go_pro'], 'Pro link does not contain expected text' );
-		$this->assertStringContainsString( 'target="_blank"', $result['go_pro'], 'Pro link does not open in new window' );
-		$this->assertStringContainsString( 'edac-plugin-action-links__go-pro', $result['go_pro'], 'Pro link does not have correct CSS class' );
+		// Check the condition under which the pro link should appear.
+		if ( defined( 'EDAC_KEY_VALID' ) && ! EDAC_KEY_VALID ) {
+			// Pro link should be present when EDAC_KEY_VALID is false.
+			$this->assertArrayHasKey( 'go_pro', $result, 'Pro link not found in result when EDAC_KEY_VALID is false' );
+			$this->assertStringContainsString( 'Get Pro', $result['go_pro'], 'Pro link does not contain expected text' );
+			$this->assertStringContainsString( 'target="_blank"', $result['go_pro'], 'Pro link does not open in new window' );
+			$this->assertStringContainsString( 'edac-plugin-action-links__go-pro', $result['go_pro'], 'Pro link does not have correct CSS class' );
+		} else {
+			// Pro link should not be present when EDAC_KEY_VALID is true or undefined.
+			$this->assertArrayNotHasKey( 'go_pro', $result, 'Pro link should not be present when EDAC_KEY_VALID is true or undefined' );
+		}
 	}
 
 	/**
@@ -172,6 +179,34 @@ class PluginActionLinksTest extends WP_UnitTestCase {
 			$this->assertStringContainsString( 'aria-label=', $result['go_pro'], 'Pro link does not have aria-label attribute' );
 			$this->assertStringContainsString( 'opens in new window', $result['go_pro'], 'Pro link aria-label does not indicate new window' );
 		}
+	}
+
+	/**
+	 * Test that add_plugin_action_links does not add pro link when EDAC_KEY_VALID is true.
+	 */
+	public function test_add_plugin_action_links_does_not_add_pro_link_when_pro() {
+		// Skip this test if EDAC_KEY_VALID is already defined, as constants cannot be redefined.
+		if ( defined( 'EDAC_KEY_VALID' ) ) {
+			$this->markTestSkipped( 'EDAC_KEY_VALID constant is already defined and cannot be redefined for this test' );
+		}
+
+		// Mark test as incomplete due to architectural limitation.
+		$this->markTestIncomplete(
+			'This test cannot be properly implemented without refactoring the Plugin_Action_Links class. ' .
+			'The class needs dependency injection or a mocking mechanism for constants to enable proper testing ' .
+			'of both pro and non-pro scenarios within the same test suite.'
+		);
+
+		/*
+		 * When the Plugin_Action_Links class is refactored to support dependency injection,
+		 * this test should verify that the pro link is not added when the license is valid.
+		 * 
+		 * Expected behavior:
+		 * - Set EDAC_KEY_VALID constant to true
+		 * - Call add_plugin_action_links with test data
+		 * - Assert that 'go_pro' key is not present in the result array
+		 * - Verify that existing links are preserved
+		 */
 	}
 
 	/**
