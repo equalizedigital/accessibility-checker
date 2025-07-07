@@ -23,8 +23,14 @@ return [
 		'slug'      => 'img_alt_missing',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
+			// translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;img&gt;</code> tag.
 			esc_html__( 'This image does not have an alt attribute (%1$s) contained in the image tag (%2$s).', 'accessibility-checker' ),
+			'<code>alt=""</code>',
+			'<code>&lt;img&gt;</code>'
+		),
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;img&gt;</code> tag.
+			esc_html__( 'These images do not have an alt attribute (%1$s) contained in their image tags (%2$s).', 'accessibility-checker' ),
 			'<code>alt=""</code>',
 			'<code>&lt;img&gt;</code>'
 		),
@@ -63,6 +69,11 @@ return [
 			esc_html__( 'This image has an empty alt attribute (%s).', 'accessibility-checker' ),
 			'<code>alt=""</code>',
 		),
+		'summary_plural' => sprintf(
+			// translators: %s is <code>alt=""</code>.
+			esc_html__( 'These images have empty alt attributes (%s).', 'accessibility-checker' ),
+			'<code>alt=""</code>',
+		),
 		'why_it_matters' => esc_html__( 'Screen readers rely on alternative text to describe images to users who cannot see them. If the alt attribute is empty, it signals that the image is decorative and should be skipped. However, if a meaningful image has an empty alt attribute, users with visual impairments will miss important information. Proper use of alternative text improves accessibility and ensures all users can understand the content.', 'accessibility-checker' ),
 		'how_to_fix' => sprintf(
 			// translators: %1$s is <code>alt=""</code> and %2$s is <code>role="presentation"</code>.
@@ -91,6 +102,7 @@ return [
 		'slug'      => 'img_alt_invalid',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'This image has alternative text that may be vague, redundant, or include unnecessary words or file names.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These images have alternative text that may be vague, redundant, or include unnecessary words or file names.', 'accessibility-checker' ),
 		'why_it_matters' => esc_html__( 'Alternative text helps people using screen readers understand the purpose of an image. When alt text includes words like “image,” “graphic,” or a file extension, it adds no useful information and can create confusion or distraction. Clear and relevant alt text improves comprehension and user experience.', 'accessibility-checker' ),
 		'how_to_fix' => esc_html__( 'Rewrite the alternative text to accurately and concisely describe the purpose of the image in context. Avoid including words like “image,” “graphic,” file names or extensions (e.g., .jpg, .png), or placeholder terms like “spacer” or “arrow.” If the image is decorative, leave the alt attribute empty.', 'accessibility-checker' ),
 		'references' => [
@@ -595,7 +607,11 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1966',
 		'slug'      => 'img_alt_long',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'This image has alternative text longer than %s characters.', 'accessibility-checker' ),
+		'summary'   => sprintf(
+			// translators: %s is the maximum character count for alt text.
+			esc_html__( 'This image has alternative text longer than %s characters.', 'accessibility-checker' ),
+			'300'
+		),
 		'why_it_matters' => esc_html__( 'Alternative text should be concise and focused on describing the purpose or meaning of the image. Overly long alt text may overwhelm screen reader users, reduce readability, and distract from other content on the page.', 'accessibility-checker' ),
 		'how_to_fix' => esc_html__( 'Shorten the alt text to fewer than characters while still describing the image\'s function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image\'s alt text does not need to be changed, dismiss this warning using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
 		'references' => [
