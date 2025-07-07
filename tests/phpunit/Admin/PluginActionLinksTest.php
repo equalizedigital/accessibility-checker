@@ -24,6 +24,39 @@ class PluginActionLinksTest extends WP_UnitTestCase {
 	 */
 	protected function setUp(): void {
 		$this->plugin_action_links = new Plugin_Action_Links();
+		
+		// Set up mock function and constants for all tests.
+		$this->setupMocks();
+	}
+
+	/**
+	 * Set up mocks and constants for testing.
+	 */
+	private function setupMocks(): void {
+		// Define constants if not already defined.
+		if ( ! defined( 'EDAC_PLUGIN_FILE' ) ) {
+			define( 'EDAC_PLUGIN_FILE', __FILE__ );
+		}
+		
+		if ( ! defined( 'EDAC_KEY_VALID' ) ) {
+			define( 'EDAC_KEY_VALID', false );
+		}
+
+		// Mock the edac_link_wrapper function if it doesn't exist.
+		if ( ! function_exists( 'edac_link_wrapper' ) ) {
+			/**
+			 * Mock the edac_link_wrapper function.
+			 *
+			 * @param string $url      The URL to wrap.
+			 * @param string $source   The source parameter.
+			 * @param string $campaign The campaign parameter.
+			 * @param bool   $unused   Unused parameter for compatibility.
+			 * @return string The wrapped URL.
+			 */
+			function edac_link_wrapper( $url, $source, $campaign, $unused ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+				return $url . '?utm_source=' . $source . '&utm_campaign=' . $campaign;
+			}
+		}
 	}
 
 	/**
@@ -50,11 +83,6 @@ class PluginActionLinksTest extends WP_UnitTestCase {
 	 * Test that init_hooks registers the filter when EDAC_PLUGIN_FILE is defined.
 	 */
 	public function test_init_hooks_registers_filter_when_constant_defined() {
-		// Define the constant for this test.
-		if ( ! defined( 'EDAC_PLUGIN_FILE' ) ) {
-			define( 'EDAC_PLUGIN_FILE', __FILE__ );
-		}
-
 		// Clear any existing filters.
 		remove_all_filters( 'plugin_action_links_' . plugin_basename( EDAC_PLUGIN_FILE ) );
 
@@ -95,27 +123,6 @@ class PluginActionLinksTest extends WP_UnitTestCase {
 	 * Test that add_plugin_action_links adds pro link when EDAC_KEY_VALID is false.
 	 */
 	public function test_add_plugin_action_links_adds_pro_link_when_not_pro() {
-		// Define the constant as false for this test.
-		if ( ! defined( 'EDAC_KEY_VALID' ) ) {
-			define( 'EDAC_KEY_VALID', false );
-		}
-
-		// Mock the edac_link_wrapper function if it doesn't exist.
-		if ( ! function_exists( 'edac_link_wrapper' ) ) {
-			/**
-			 * Mock the edac_link_wrapper function.
-			 *
-			 * @param string $url      The URL to wrap.
-			 * @param string $source   The source parameter.
-			 * @param string $campaign The campaign parameter.
-			 * @param bool   $unused   Unused parameter for compatibility.
-			 * @return string The wrapped URL.
-			 */
-			function edac_link_wrapper( $url, $source, $campaign, $unused ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-				return $url . '?utm_source=' . $source . '&utm_campaign=' . $campaign;
-			}
-		}
-
 		$input_links = [ 'deactivate' => '<a href="#">Deactivate</a>' ];
 		$result      = $this->plugin_action_links->add_plugin_action_links( $input_links );
 
@@ -158,27 +165,6 @@ class PluginActionLinksTest extends WP_UnitTestCase {
 	 * Test that add_plugin_action_links includes proper accessibility attributes.
 	 */
 	public function test_add_plugin_action_links_includes_accessibility_attributes() {
-		// Define the constant as false for this test.
-		if ( ! defined( 'EDAC_KEY_VALID' ) ) {
-			define( 'EDAC_KEY_VALID', false );
-		}
-
-		// Mock the edac_link_wrapper function if it doesn't exist.
-		if ( ! function_exists( 'edac_link_wrapper' ) ) {
-			/**
-			 * Mock the edac_link_wrapper function.
-			 *
-			 * @param string $url      The URL to wrap.
-			 * @param string $source   The source parameter.
-			 * @param string $campaign The campaign parameter.
-			 * @param bool   $unused   Unused parameter for compatibility.
-			 * @return string The wrapped URL.
-			 */
-			function edac_link_wrapper( $url, $source, $campaign, $unused ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-				return $url . '?utm_source=' . $source . '&utm_campaign=' . $campaign;
-			}
-		}
-
 		$input_links = [ 'deactivate' => '<a href="#">Deactivate</a>' ];
 		$result      = $this->plugin_action_links->add_plugin_action_links( $input_links );
 
