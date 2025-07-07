@@ -384,9 +384,9 @@ class REST_Api {
 						$landmark_selector = $violation['landmarkSelector'] ?? null;
 
 						$selectors = [
-							'selector' => $violation['selector'] ?? '',
-							'ancestry' => $violation['ancestry'] ?? '',
-							'xpath'    => $violation['xpath'] ?? '',
+							'selector' => $violation['selector'] ?? [],
+							'ancestry' => $violation['ancestry'] ?? [],
+							'xpath'    => $violation['xpath'] ?? [],
 						];
 						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html, $landmark, $landmark_selector, $selectors );
 
