@@ -38,21 +38,40 @@ class PluginRowMetaTest extends WP_UnitTestCase {
 			define( 'EDAC_PLUGIN_FILE', __FILE__ );
 		}
 
-		// Mock the edac_link_wrapper function if it doesn't exist.
+		// Mock the edac_link_wrapper function using WordPress filters.
+		add_filter( 'edac_link_wrapper_test_mode', '__return_true' );
+		add_filter( 'edac_link_wrapper_mock', [ $this, 'mock_edac_link_wrapper' ], 10, 3 );
+		
+		// Create a global function that checks for test mode and uses our mock.
 		if ( ! function_exists( 'edac_link_wrapper' ) ) {
 			/**
-			 * Mock the edac_link_wrapper function.
+			 * Wrapper function that delegates to mock in test mode.
 			 *
-			 * @param string $url      The URL to wrap.
-			 * @param string $source   The source parameter.
+			 * @param string $base_url The base URL to wrap.
 			 * @param string $campaign The campaign parameter.
-			 * @param bool   $unused   Unused parameter for compatibility.
+			 * @param string $content  The content parameter (unused in mock).
 			 * @return string The wrapped URL.
 			 */
-			function edac_link_wrapper( $url, $source, $campaign, $unused ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-				return $url . '?utm_source=' . $source . '&utm_campaign=' . $campaign;
+			function edac_link_wrapper( $base_url, $campaign, $content = '' ) {
+				if ( apply_filters( 'edac_link_wrapper_test_mode', false ) ) {
+					return apply_filters( 'edac_link_wrapper_mock', $base_url, $campaign, $content );
+				}
+				// Fallback for when real function isn't available in tests.
+				return $base_url;
 			}
 		}
+	}
+
+	/**
+	 * Mock implementation of edac_link_wrapper with correct signature.
+	 *
+	 * @param string $base_url The base URL to wrap.
+	 * @param string $campaign The campaign parameter.
+	 * @param string $content  The content parameter (unused).
+	 * @return string The wrapped URL with UTM parameters.
+	 */
+	public function mock_edac_link_wrapper( $base_url, $campaign, $content ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+		return $base_url . '?utm_source=plugin_row_meta&utm_campaign=' . $campaign;
 	}
 
 	/**
@@ -241,5 +260,7 @@ class PluginRowMetaTest extends WP_UnitTestCase {
 	protected function tearDown(): void {
 		// Clean up any filters that were added during tests.
 		remove_all_filters( 'plugin_row_meta' );
+		remove_all_filters( 'edac_link_wrapper_test_mode' );
+		remove_all_filters( 'edac_link_wrapper_mock' );
 	}
 }
