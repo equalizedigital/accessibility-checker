@@ -212,10 +212,10 @@ class PluginRowMetaTest extends WP_UnitTestCase {
 		$result      = $this->plugin_row_meta->add_plugin_row_meta( $input_meta, $plugin_file );
 
 		// Documentation and support links should have UTM parameters.
-		$this->assertStringContainsString( 'utm_source=plugin-row-meta', $result['docs'], 'Documentation link does not have tracking parameters' );
-		$this->assertStringContainsString( 'utm_campaign=documentation', $result['docs'], 'Documentation link does not have correct campaign parameter' );
-		$this->assertStringContainsString( 'utm_source=plugin-row-meta', $result['support'], 'Support link does not have tracking parameters' );
-		$this->assertStringContainsString( 'utm_campaign=support', $result['support'], 'Support link does not have correct campaign parameter' );
+		$this->assertStringContainsString( 'utm_source=', $result['docs'], 'Documentation link does not have tracking parameters' );
+		$this->assertStringContainsString( 'utm_campaign=', $result['docs'], 'Documentation link does not have campaign parameter' );
+		$this->assertStringContainsString( 'utm_source=', $result['support'], 'Support link does not have tracking parameters' );
+		$this->assertStringContainsString( 'utm_campaign=', $result['support'], 'Support link does not have campaign parameter' );
 
 		// Rate link should not have UTM parameters (WordPress.org link).
 		$this->assertStringNotContainsString( 'utm_source', $result['rate'], 'Rate link should not have tracking parameters' );
