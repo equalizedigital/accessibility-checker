@@ -62,7 +62,7 @@ class PluginActionLinksTest extends WP_UnitTestCase {
 		$this->plugin_action_links->init_hooks();
 
 		// Check that the filter was added.
-		$this->assertTrue(
+		$this->assertNotFalse(
 			has_filter( 'plugin_action_links_' . plugin_basename( EDAC_PLUGIN_FILE ), [ $this->plugin_action_links, 'add_plugin_action_links' ] ),
 			'Filter was not registered'
 		);
