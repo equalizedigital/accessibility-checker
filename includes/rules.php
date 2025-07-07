@@ -425,7 +425,7 @@ return [
 		],
 		'ruleset'   => 'js',
 		'wcag'      => '1.1.1',
-		'severity'  => 2, // high
+		'severity'  => 1, // critical
 		'affected_disabilities' => [
 			'Blind',
 			'Low-vision',
@@ -435,18 +435,42 @@ return [
 			'area-alt',
 		],
 	],
-
 	[
 		'title'     => esc_html__( 'Tab Order Modified', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1974',
 		'slug'      => 'tab_order_modified',
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
-			// translators: %s is <code>tabindex="1"</code>.
-			esc_html__( 'A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can "Ignore" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element.', 'accessibility-checker' ),
-			'<code>tabindex="1"</code>'
+			// translators: %1$s is <code>tabindex="1"</code> and %2$s is <code>tabindex</code>.
+			esc_html__( 'This page contains an element with %1$s or another positive %2$s, which modifies the natural tab order.', 'accessibility-checker' ),
+			'<code>tabindex="1"</code>',
+			'<code>tabindex</code>'
 		),
+		'why_it_matters' => esc_html__( 'The natural tab order of a page follows the structure of the HTML. Changing this order using positive tabindex values can cause confusion for keyboard-only users and screen reader users, especially if the focus moves in an unexpected way or skips important content.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %s is <code>tabindex</code>
+			esc_html__( 'Remove positive %s values (greater than 0) from elements unless there is a very specific, user-tested reason to change the focus order. If needed, use tabindex="0" to include custom elements in the natural tab flow without disrupting order. To fix this and other elements site-wide, enable the \'Remove Tab Index\' fix in Accessibility Checker settings.', 'accessibility-checker' ),
+			'<code>tabindex</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'ARIA Authoring Practices Guide: Developing a Keyboard Interface', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/',
+			],
+			[
+				'text' => __( 'W3C: Focus Order and Keyboard Navigation', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/general/G59',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '2.4.3',
+		'severity'  => 2, // high
+		'affected_disabilities' => [
+			'Mobility',
+			'Cognitive',
+			'Blind',
+			'Low-vision',
+		],
 		'combines'  => [ 'tabindex' ],
 		'fixes'     => [
 			TabindexFix::get_slug(),
@@ -458,25 +482,68 @@ return [
 		'slug'      => 'empty_heading_tag',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
-			esc_html__( 'An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page.', 'accessibility-checker' ),
+			// translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>
+			esc_html__( 'This is an empty %s heading that doesn\'t contain any content.', 'accessibility-checker' ),
 			'<code>&lt;h1&gt;&lt;/h1&gt;</code>'
 		),
+		'why_it_matters' => esc_html__( 'Headings help structure content and provide important navigation points for screen reader users. An empty heading communicates no useful information and may cause confusion or disorientation when navigating by headings.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Add meaningful content inside the heading tag to describe the section that follows. If the heading is not needed, remove it entirely to avoid misleading assistive technologies.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'MDN: HTML heading elements', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements',
+			],
+			[
+				'text' => __( 'W3C: Techniques for WCAG 2.1 – H42: Using h1–h6 to identify headings', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/html/H42',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.3.1',
+		'severity'  => 3, // medium
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Empty Link', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4108',
 		'slug'      => 'empty_link',
 		'rule_type' => 'error',
-		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
-			esc_html__( 'An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This is an empty link that does not contain any meaningful content for assitive technologies.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Screen reader users rely on link text to understand the purpose or destination of a link. An empty link provides no information, making it difficult or impossible for users to decide whether or not to follow it.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>
+			esc_html__( 'Add descriptive text inside the %1$s element. If the link uses only an icon (e.g., SVG or webfont), hide the icon with %2$s and add a descriptive %3$s to the link or include screen reader-only text to explain where the link goes.', 'accessibility-checker' ),
 			'<code>&lt;a&gt;</code>',
-			'code>aria-hidden="true"</code>',
+			'<code>aria-hidden="true"</code>',
 			'<code>aria-label</code>'
 		),
+		'references' => [
+						[
+				'text' => __( 'W3C Technique H30: Providing link text that describes the purpose of a link', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/html/H30',
+			],
+			[
+				'text' => __( 'WebAIM: Links and Hypertext', 'accessibility-checker' ),
+				'url'  => 'https://webaim.org/techniques/hypertext/',
+			],
+			[
+				'text' => __( 'WordPress: The CSS class screen-reader-text', 'accessibility-checker' ),
+				'url'  => 'https://make.wordpress.org/accessibility/handbook/markup/the-css-class-screen-reader-text/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '2.4.4',
+		'severity'  => 1, // critical
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+			'Cognitive',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Empty Button', 'accessibility-checker' ),
@@ -484,28 +551,103 @@ return [
 		'slug'      => 'empty_button',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
-			esc_html__( 'An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers.', 'accessibility-checker' ),
+			// translators: %s is <code>&lt;button&gt;</code>.
+			esc_html__( 'This element is a %s with no accessible label or text.', 'accessibility-checker' ),
 			'<code>&lt;button&gt;</code>',
 			'<code>&lt;input&gt;</code>'
 		),
+		'why_it_matters' => esc_html__( 'Buttons must clearly describe the action they perform. An empty button provides no information to screen readers or keyboard users, making it impossible to understand what clicking the button will do. This creates a barrier for people relying on assistive technologies.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>value</code>, %3$s is <code>alt</code>, %4$s is <code>aria-hidden="true"</code>, %5$s is <code>aria-label</code>.
+			esc_html__( 'Add visible text inside the %1$s element, set a %2$s attribute on an input button, or include an %3$s attribute on a button image. If the button uses only an icon (e.g., SVG or webfont), hide the icon with %4$s and add a descriptive %5$s to the button or include screen reader-only text.  Each button must have a label that clearly describes its purpose or action.', 'accessibility-checker' ),
+			'<code>&lt;button&gt;</code>',
+			'<code>value</code>',
+			'<code>alt</code>',
+			'<code>aria-hidden="true"</code>',
+			'<code>aria-label</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'MDN Wed Docs: <button>', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button',
+			],
+			[
+				'text' => __( 'W3C Technique H44: Using the button element', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/html/H44',
+			],
+			[
+				'text' => __( 'WordPress: The CSS class screen-reader-text', 'accessibility-checker' ),
+				'url'  => 'https://make.wordpress.org/accessibility/handbook/markup/the-css-class-screen-reader-text/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '4.1.2',
+		'severity'  => 3, // critical
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+			'Cognitive',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Image Long Alternative Text', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1966',
 		'slug'      => 'img_alt_long',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then "Ignore" the warning.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This image has alternative text longer than %s characters.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Alternative text should be concise and focused on describing the purpose or meaning of the image. Overly long alt text may overwhelm screen reader users, reduce readability, and distract from other content on the page.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Shorten the alt text to fewer than characters while still describing the image\'s function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image\'s alt text does not need to be changed, dismiss this warning using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'W3C Tutorial: Informative Images', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/images/informative/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.1.1',
+		'severity'  => 4, // low
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+			'Cognitive',
+		],
 	],
-	[
+[
 		'title'     => esc_html__( 'ARIA Hidden', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1979',
 		'slug'      => 'aria_hidden',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden="true" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, "Ignore" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden="true" attribute to resolve the warning.', 'accessibility-checker' ),
+		'summary'   => sprintf(
+			// translators: %s is <code>aria-hidden="true"</code>
+			esc_html__( 'This element uses %s, which hides it from screen readers.', 'accessibility-checker' ),
+			'<code>aria-hidden="true"</code>'
+		),
+		'why_it_matters' => esc_html__( 'The aria-hidden attribute is used to hide content from assistive technologies. While this is useful for decorative or redundant elements, it can cause accessibility issues if applied to important content that screen reader users need to access.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %s is <code>aria-hidden="true"</code>
+			esc_html__( 'Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it\'s decorative or redundant, leave the element alone and dismiss this warning using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+			'<code>aria-hidden="true"</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'W3C: ARIA Authoring Practices - aria-hidden', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/ARIA/apg/practices/hiding/',
+			],
+			[
+				'text' => __( 'MDN Web Docs: aria-hidden - Accessibility Attribute', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.3.1',
+		'severity'  => 3, // medium
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+		],
 		'combines'  => [
 			'aria_hidden_validation',
 		],
@@ -516,20 +658,66 @@ return [
 		'slug'      => 'empty_table_header',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
-			esc_html__( 'An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to.', 'accessibility-checker' ),
+			// translators: %s is <code>&lt;th&gt;</code>
+			esc_html__( 'This element is a table header cell (%s) with no text content.', 'accessibility-checker' ),
 			'<code>&lt;th&gt;</code>',
-			'<code>&lt;th&gt;&lt;/th&gt;</code>'
 		),
+		'why_it_matters' => esc_html__( 'Table headers provide context for the data in rows and columns. When a table header is empty, screen readers and other assistive technologies cannot convey the meaning of the associated data, making the table difficult or impossible to interpret.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %s is <code>&lt;th&gt;</code>
+			esc_html__( 'Add descriptive text inside each %s element that explains the purpose of the row or column. Avoid using empty header cells or placeholder text that lacks meaning. If necessary, you can visually hide text in a table header cell with a screen-reader-text class.', 'accessibility-checker' ),
+			'<code>&lt;th&gt;</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'W3C: Tables Tutorial', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/tables/',
+			],
+			[
+				'text' => __( 'MDN Web Docs: <th>', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.3.1',
+		'severity'  => 2, // high
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+			'Cognitive',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Link to MS Office File', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1970',
 		'slug'      => 'link_ms_office_file',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you\'re using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This is linked to a Microsoft Office file, such as a Word, Excel, or PowerPoint document.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Documents in Word, Excel, or PowerPoint format may not be accessible to all users, especially if they are not tagged correctly or do not follow accessibility best practices. Accessibility laws require that documents posted on web pages also conform to WCAG. Additionally, users should be warned when a link opens a downloadable file instead of a webpage.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the "Ignore" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the \'Add File Size & Type To Links\' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'WebAIM: Creating Accessible Word Documents', 'accessibility-checker' ),
+				'url'  => 'https://webaim.org/techniques/word/',
+			],
+			[
+				'text' => __( 'Microsoft: Make your Word documents accessible to people with disabilities', 'accessibility-checker' ),
+				'url'  => 'https://support.microsoft.com/en-us/office/make-your-word-documents-accessible-to-people-with-disabilities-6f7772b2-2f33-4bd2-8ca7-dae3b2b3ef25',
+			],
+			[
+				'text' => __( 'W3C: Accessible Document Links', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/page-structure/labels/#document-links',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '2.4.4',
+		'severity'  => 3, // medium
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Cognitive',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Link to PDF', 'accessibility-checker' ),
