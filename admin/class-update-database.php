@@ -59,7 +59,7 @@ class Update_Database {
 				ignre_user bigint(20) NULL,
 				ignre_date timestamp NULL,
 				ignre_comment mediumtext NULL,
-				UNIQUE KEY id (id),
+				PRIMARY KEY (id),
 				KEY postid_index (postid)
 			) $charset_collate;";
 
