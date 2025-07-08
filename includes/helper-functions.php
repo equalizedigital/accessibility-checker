@@ -219,7 +219,9 @@ function edac_get_valid_table_name( $table_name ) {
 
 	// Verify that the table actually exists in the database.
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ) !== $table_name ) {
+	// Use SQLite compatible query to check for table existence.
+	$query = $wpdb->prepare( 'SELECT name FROM sqlite_master WHERE type="table" AND name=%s', $table_name );
+	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) !== $table_name && $wpdb->get_var( $query ) !== $table_name ) {
 		// Table does not exist.
 		return null;
 	}
