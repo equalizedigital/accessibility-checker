@@ -61,16 +61,14 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		// Call init.
 		$this->upgrade_promotion->init();
 		
-		// Check that the action was added.
-		$this->assertTrue(
-			has_action( 'admin_menu', [ $this->upgrade_promotion, 'add_menu_item' ] ),
-			'admin_menu action was not added'
-		);
+		// Check that the action was added and get the priority.
+		$priority = has_action( 'admin_menu', [ $this->upgrade_promotion, 'add_menu_item' ] );
+		$this->assertNotFalse( $priority, 'admin_menu action was not added' );
 		
 		// Check priority is 999.
 		$this->assertEquals(
 			999,
-			has_action( 'admin_menu', [ $this->upgrade_promotion, 'add_menu_item' ] ),
+			$priority,
 			'admin_menu action priority is not 999'
 		);
 	}
