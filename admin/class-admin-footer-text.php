@@ -72,7 +72,7 @@ class Admin_Footer_Text {
 
 		// Sanitize and check if it's an accessibility checker page.
 		$page = sanitize_text_field( wp_unslash( $_GET['page'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		return strpos( $page, 'accessibility_checker' ) !== false;
+		return strpos( $page, 'accessibility_checker' ) === 0;
 	}
 
 	/**
