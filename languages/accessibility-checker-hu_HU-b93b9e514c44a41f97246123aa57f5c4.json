@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Oldal st\u00edlusainak kikapcsol\u00e1sa"
             ],
+            "An error occurred when loading the issues.": [
+                "Hiba t\u00f6rt\u00e9nt a probl\u00e9m\u00e1k bet\u00f6lt\u00e9sekor."
+            ],
             "Show Code": [
                 "K\u00f3d megjelen\u00edt\u00e9se"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "\u00e9szlelve."
+            ],
+            "Scanner function not found.": [
+                "A vizsg\u00e1lati funkci\u00f3 nem tal\u00e1lhat\u00f3."
+            ],
+            "Scanning...": [
+                "Vizsg\u00e1lat..."
+            ],
+            "No violations found, skipping save.": [
+                "Nem tal\u00e1ltunk hib\u00e1kat, ment\u00e9s kihagyva."
+            ],
+            "Missing postId or nonce.": [
+                "Hi\u00e1nyz\u00f3 postId vagy nonce."
+            ],
+            "Accessibility scan error.": [
+                "Akad\u00e1lymentess\u00e9gi vizsg\u00e1lati hiba."
+            ],
+            "Error saving scan results.": [
+                "Hiba t\u00f6rt\u00e9nt a vizsg\u00e1lati eredm\u00e9nyek ment\u00e9sekor."
             ]
         }
     }

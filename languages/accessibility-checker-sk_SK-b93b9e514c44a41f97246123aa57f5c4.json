@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Vypn\u00fa\u0165 \u0161t\u00fdly str\u00e1nky"
             ],
+            "An error occurred when loading the issues.": [
+                "Pri na\u010d\u00edtavan\u00ed probl\u00e9mov sa vyskytla chyba."
+            ],
             "Show Code": [
                 "Zobrazi\u0165 k\u00f3d"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "zisten\u00fdch."
+            ],
+            "Scanner function not found.": [
+                "Skenovacia funkcia nebola n\u00e1jden\u00e1."
+            ],
+            "Scanning...": [
+                "Prebieha skenovanie..."
+            ],
+            "No violations found, skipping save.": [
+                "Neboli n\u00e1jden\u00e9 \u017eiadne poru\u0161enia, preskakujem ulo\u017eenie."
+            ],
+            "Missing postId or nonce.": [
+                "Ch\u00fdba postId alebo nonce."
+            ],
+            "Accessibility scan error.": [
+                "Chyba pri skenovan\u00ed pr\u00edstupnosti."
+            ],
+            "Error saving scan results.": [
+                "Chyba pri ukladan\u00ed v\u00fdsledkov skenovania."
             ]
         }
     }

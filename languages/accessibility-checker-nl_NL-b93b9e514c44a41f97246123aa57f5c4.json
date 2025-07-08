@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Paginastijlen uitschakelen"
             ],
+            "An error occurred when loading the issues.": [
+                "Er is een fout opgetreden bij het laden van de problemen."
+            ],
             "Show Code": [
                 "Toon code"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "gedetecteerd."
+            ],
+            "Scanner function not found.": [
+                "Scannerfunctie niet gevonden."
+            ],
+            "Scanning...": [
+                "Bezig met scannen..."
+            ],
+            "No violations found, skipping save.": [
+                "Geen overtredingen gevonden, opslaan wordt overgeslagen."
+            ],
+            "Missing postId or nonce.": [
+                "Ontbrekende postId of nonce."
+            ],
+            "Accessibility scan error.": [
+                "Fout bij toegankelijkheidsscan."
+            ],
+            "Error saving scan results.": [
+                "Fout bij het opslaan van scanresultaten."
             ]
         }
     }

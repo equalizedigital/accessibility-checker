@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
+"POT-Creation-Date: 2025-07-08T20:56:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,6 +18,7 @@ msgstr ""
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -46,6 +47,7 @@ msgstr "https://equalizedigital.com"
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:90
+#: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr "إصلاحات"
 
@@ -65,7 +67,7 @@ msgstr "احصل على النسخة الاحترافية لفتح هذه الم
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
-#: admin/class-plugin-action-links.php:51
+#: admin/class-plugin-action-links.php:55
 msgid "Get Pro"
 msgstr "احصل على النسخة الاحترافية"
 
@@ -142,6 +144,26 @@ msgstr "جهة الاتصال لدعم إمكانية الوصول"
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "نرحب بالتعليقات والأسئلة والملاحظات حول موقعنا الإلكتروني. إذا كنت تستخدم تقنيات مساعدة وتواجه صعوبة في استخدام موقعنا الإلكتروني، يرجى إرسال بريد إلكتروني إلى [عنوان البريد الإلكتروني الخاص بإمكانية الوصول] أو الاتصال بنا على [رقم هاتفك]. سنبذل قصارى جهدنا لمساعدتك وحل المشكلات."
 
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:46
+#, php-format
+msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
+msgstr "هل تستمتع باستخدام Accessibility Checker؟ %1$sيرجى منحنا تقييم ★★★★★.%2$s نحن نقدر دعمك كثيرًا!"
+
+#: admin/class-admin-footer-text.php:47
+msgid "Please leave us a five star rating (opens in new window)"
+msgstr "يرجى منحنا تقييم خمس نجوم (يفتح في نافذة جديدة)"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:55
+#, php-format
+msgid "Want to do more with Accessibility Checker? %1$sUnlock Pro Features%2$s"
+msgstr "هل ترغب في القيام بالمزيد مع Accessibility Checker؟ %1$sافتح الميزات الاحترافية%2$s"
+
+#: admin/class-admin-footer-text.php:56
+msgid "Unlock Pro Features (opens in new window)"
+msgstr "افتح الميزات الاحترافية (يفتح في نافذة جديدة)"
+
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
 #, php-format
@@ -155,9 +177,9 @@ msgstr "لقد قمنا بتحسين حسابات الإحصائيات في ال
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:212
-#: admin/class-ajax.php:577
-#: admin/class-ajax.php:715
-#: admin/class-ajax.php:795
+#: admin/class-ajax.php:606
+#: admin/class-ajax.php:744
+#: admin/class-ajax.php:824
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "تم رفض الإذن"
@@ -233,8 +255,8 @@ msgstr "الترقية إلى النسخة الاحترافية"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:219
-#: admin/class-ajax.php:584
-#: admin/class-ajax.php:802
+#: admin/class-ajax.php:613
+#: admin/class-ajax.php:831
 msgid "The post ID was not set"
 msgstr "لم يتم تعيين معرف المنشور"
 
@@ -307,46 +329,52 @@ msgstr "قد تحتاج الصفحات إلى إعادة حفظ أو إجراء 
 msgid "Save"
 msgstr "حفظ"
 
-#: admin/class-ajax.php:428
+#: admin/class-ajax.php:430
 msgid "Affected Code"
 msgstr "الكود المتأثر"
 
+#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+#: admin/class-ajax.php:500
+#, php-format
+msgid "View %s landmark on website, opens a new window"
+msgstr "عرض %s علامة مميزة على الموقع، يفتح نافذة جديدة"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:493
+#: admin/class-ajax.php:522
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "عرض المشكلة ذات المعرف %d على الموقع، يفتح في نافذة جديدة"
 
-#: admin/class-ajax.php:494
+#: admin/class-ajax.php:523
 msgid "View on page"
 msgstr "عرض في الصفحة"
 
-#: admin/class-ajax.php:513
+#: admin/class-ajax.php:542
 msgid "Fix: "
 msgstr "إصلاح: "
 
-#: admin/class-ajax.php:514
+#: admin/class-ajax.php:543
 msgid "Fix"
 msgstr "إصلاح"
 
-#: admin/class-ajax.php:537
+#: admin/class-ajax.php:566
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "حساب المستخدم الخاص بك لا يملك صلاحية تجاهل هذه المشكلة."
 
-#: admin/class-ajax.php:555
+#: admin/class-ajax.php:584
 msgid "No details to return"
 msgstr "لا توجد تفاصيل للإرجاع"
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:723
 msgid "No readability data to return"
 msgstr "لا توجد بيانات قابلية القراءة للإرجاع"
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:774
+#: admin/class-ajax.php:780
+#: admin/class-ajax.php:803
 msgid "No ignore data to return"
 msgstr "لا توجد بيانات تجاهل للإرجاع"
 
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:838
 msgid "The summary was not set"
 msgstr "لم يتم تعيين الملخص"
 
@@ -362,38 +390,52 @@ msgstr "استعلام المشكلة لم يرجع أي نتائج"
 msgid "Object query returned no results"
 msgstr "استعلام الكائن لم يرجع أي نتائج"
 
-#: admin/class-plugin-row-meta.php:49
-msgid "View Accessibility Checker Documentation (opens in new window)"
-msgstr "عرض وثائق Accessibility Checker (يفتح في نافذة جديدة)"
-
-#: admin/class-plugin-row-meta.php:50
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "الوثائق"
-
-#: admin/class-plugin-row-meta.php:55
-msgid "Get support for Accessibility Checker (opens in new window)"
-msgstr "الحصول على الدعم لـ Accessibility Checker (يفتح في نافذة جديدة)"
-
-#: admin/class-plugin-row-meta.php:56
-msgid "Support"
-msgstr "الدعم"
-
-#: admin/class-plugin-row-meta.php:61
-msgid "Rate Accessibility Checker plugin (opens in new window)"
-msgstr "تقييم إضافة Accessibility Checker (يفتح في نافذة جديدة)"
-
-#: admin/class-plugin-row-meta.php:62
-msgid "Rate plugin"
-msgstr "Rate plugin"
-
+#: admin/class-plugin-action-links.php:48
+#: includes/classes/class-admin-toolbar.php:94
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "الإعدادات"
 
-#: admin/class-plugin-action-links.php:56
+#: admin/class-plugin-action-links.php:60
 msgid "Get Accessibility Checker Pro, opens in new window"
 msgstr "احصل على Accessibility Checker Pro، يفتح في نافذة جديدة"
+
+#: admin/class-plugin-row-meta.php:53
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "عرض وثائق Accessibility Checker (يفتح في نافذة جديدة)"
+
+#: admin/class-plugin-row-meta.php:54
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "الوثائق"
+
+#: admin/class-plugin-row-meta.php:59
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "الحصول على الدعم لـ Accessibility Checker (يفتح في نافذة جديدة)"
+
+#: admin/class-plugin-row-meta.php:60
+msgid "Support"
+msgstr "الدعم"
+
+#: admin/class-plugin-row-meta.php:65
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "تقييم إضافة Accessibility Checker (يفتح في نافذة جديدة)"
+
+#: admin/class-plugin-row-meta.php:66
+msgid "Rate plugin"
+msgstr "تقييم الإضافة"
+
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "الترقية إلى النسخة الاحترافية"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "تخفيض على الترقية الآن"
+
+#: admin/class-upgrade-promotion.php:93
+msgid "Unable to redirect to upgrade page."
+msgstr "تعذر إعادة التوجيه إلى صفحة الترقية."
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -770,6 +812,16 @@ msgstr "اقرأ %s الخاصة بنا"
 #: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "سياسة إمكانية الوصول"
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "احصل على Accessibility Checker Pro"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "احصل على Accessibility Checker Pro (يفتح في نافذة جديدة)"
 
 #: includes/classes/class-simplified-summary.php:73
 msgid "Simplified Summary"
@@ -1847,11 +1899,6 @@ msgstr "دعم البريد الإلكتروني"
 msgid "...and more"
 msgstr "...والمزيد"
 
-#: partials/pro-callout.php:47
-#: partials/welcome-page.php:215
-msgid "Get Accessibility Checker Pro"
-msgstr "احصل على Accessibility Checker Pro"
-
 #: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
@@ -2099,6 +2146,10 @@ msgid "Disable Page Styles"
 msgstr "تعطيل أنماط الصفحة"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "An error occurred when loading the issues."
+msgstr "حدث خطأ أثناء تحميل المشكلات."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Show Code"
 msgstr "عرض الكود"
 
@@ -2151,6 +2202,30 @@ msgstr[1] "مشاكل تم تجاهلها"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
 msgstr "تم اكتشافها."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanner function not found."
+msgstr "وظيفة الفحص غير موجودة."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanning..."
+msgstr "جارٍ الفحص..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "لم يتم العثور على انتهاكات، تخطي الحفظ."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Missing postId or nonce."
+msgstr "معرف المنشور أو رمز nonce مفقود."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility scan error."
+msgstr "خطأ في فحص إمكانية الوصول."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error saving scan results."
+msgstr "خطأ في حفظ نتائج الفحص."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"

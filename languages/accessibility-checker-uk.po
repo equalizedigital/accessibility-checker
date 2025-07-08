@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
+"POT-Creation-Date: 2025-07-08T20:56:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,6 +18,7 @@ msgstr ""
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -46,6 +47,7 @@ msgstr "https://equalizedigital.com"
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:90
+#: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr "Виправлення"
 
@@ -65,7 +67,7 @@ msgstr "Отримайте Pro, щоб розблокувати цю функц�
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
-#: admin/class-plugin-action-links.php:51
+#: admin/class-plugin-action-links.php:55
 msgid "Get Pro"
 msgstr "Отримати pro"
 
@@ -142,6 +144,26 @@ msgstr "Контакт для підтримки доступності"
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "Ми вітаємо коментарі, запитання та відгуки щодо нашого веб-сайту. Якщо ви використовуєте допоміжні технології і маєте труднощі з використанням нашого веб-сайту, будь ласка, напишіть на електронну пошту [YOUR ACCESSIBILITY EMAIL ADDRESS] або зателефонуйте нам за номером [YOUR PHONE NUMBER]. Ми зробимо все можливе, щоб допомогти вам та вирішити проблеми."
 
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:46
+#, php-format
+msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
+msgstr "Вам подобається Accessibility Checker? %1$sБудь ласка, поставте нам оцінку ★★★★★.%2$s Ми дуже цінуємо вашу підтримку!"
+
+#: admin/class-admin-footer-text.php:47
+msgid "Please leave us a five star rating (opens in new window)"
+msgstr "Будь ласка, поставте нам п'ятизіркову оцінку (відкриється в новому вікні)"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:55
+#, php-format
+msgid "Want to do more with Accessibility Checker? %1$sUnlock Pro Features%2$s"
+msgstr "Хочете отримати більше можливостей з Accessibility Checker? %1$sРозблокуйте функції Pro%2$s"
+
+#: admin/class-admin-footer-text.php:56
+msgid "Unlock Pro Features (opens in new window)"
+msgstr "Розблокувати функції Pro (відкриється в новому вікні)"
+
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
 #, php-format
@@ -155,9 +177,9 @@ msgstr "Ми покращили розрахунки статистики у в�
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:212
-#: admin/class-ajax.php:577
-#: admin/class-ajax.php:715
-#: admin/class-ajax.php:795
+#: admin/class-ajax.php:606
+#: admin/class-ajax.php:744
+#: admin/class-ajax.php:824
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "У доступі відмовлено"
@@ -233,8 +255,8 @@ msgstr "оновитися до Pro"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:219
-#: admin/class-ajax.php:584
-#: admin/class-ajax.php:802
+#: admin/class-ajax.php:613
+#: admin/class-ajax.php:831
 msgid "The post ID was not set"
 msgstr "ID публікації не було встановлено"
 
@@ -307,46 +329,52 @@ msgstr "Можливо, знадобиться повторно зберегти
 msgid "Save"
 msgstr "Зберегти"
 
-#: admin/class-ajax.php:428
+#: admin/class-ajax.php:430
 msgid "Affected Code"
 msgstr "Код, що зазнав впливу"
 
+#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+#: admin/class-ajax.php:500
+#, php-format
+msgid "View %s landmark on website, opens a new window"
+msgstr "Переглянути %s орієнтир на веб-сайті, відкриється нове вікно"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:493
+#: admin/class-ajax.php:522
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Переглянути проблему з ID %d на сайті, відкривається в новому вікні"
 
-#: admin/class-ajax.php:494
+#: admin/class-ajax.php:523
 msgid "View on page"
 msgstr "Переглянути на сторінці"
 
-#: admin/class-ajax.php:513
+#: admin/class-ajax.php:542
 msgid "Fix: "
 msgstr "Виправлення: "
 
-#: admin/class-ajax.php:514
+#: admin/class-ajax.php:543
 msgid "Fix"
 msgstr "Виправити"
 
-#: admin/class-ajax.php:537
+#: admin/class-ajax.php:566
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Ваш обліковий запис користувача не має дозволу ігнорувати цю проблему."
 
-#: admin/class-ajax.php:555
+#: admin/class-ajax.php:584
 msgid "No details to return"
 msgstr "Немає деталей для повернення"
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:723
 msgid "No readability data to return"
 msgstr "Немає даних про читабельність для повернення"
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:774
+#: admin/class-ajax.php:780
+#: admin/class-ajax.php:803
 msgid "No ignore data to return"
 msgstr "Немає даних про ігнорування для повернення"
 
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:838
 msgid "The summary was not set"
 msgstr "Підсумок не було встановлено"
 
@@ -362,38 +390,52 @@ msgstr "Запит проблеми не повернув результатів
 msgid "Object query returned no results"
 msgstr "Запит об'єкта не повернув результатів"
 
-#: admin/class-plugin-row-meta.php:49
-msgid "View Accessibility Checker Documentation (opens in new window)"
-msgstr "Переглянути документацію Accessibility Checker (відкриється в новому вікні)"
-
-#: admin/class-plugin-row-meta.php:50
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "Документація"
-
-#: admin/class-plugin-row-meta.php:55
-msgid "Get support for Accessibility Checker (opens in new window)"
-msgstr "Отримати підтримку для Accessibility Checker (відкриється в новому вікні)"
-
-#: admin/class-plugin-row-meta.php:56
-msgid "Support"
-msgstr "Підтримка"
-
-#: admin/class-plugin-row-meta.php:61
-msgid "Rate Accessibility Checker plugin (opens in new window)"
-msgstr "Оцінити плагін Accessibility Checker (відкриється в новому вікні)"
-
-#: admin/class-plugin-row-meta.php:62
-msgid "Rate plugin"
-msgstr "Rate plugin"
-
+#: admin/class-plugin-action-links.php:48
+#: includes/classes/class-admin-toolbar.php:94
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "Налаштування"
 
-#: admin/class-plugin-action-links.php:56
+#: admin/class-plugin-action-links.php:60
 msgid "Get Accessibility Checker Pro, opens in new window"
 msgstr "Отримати Accessibility Checker Pro, відкриється в новому вікні"
+
+#: admin/class-plugin-row-meta.php:53
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Переглянути документацію Accessibility Checker (відкриється в новому вікні)"
+
+#: admin/class-plugin-row-meta.php:54
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Документація"
+
+#: admin/class-plugin-row-meta.php:59
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Отримати підтримку для Accessibility Checker (відкриється в новому вікні)"
+
+#: admin/class-plugin-row-meta.php:60
+msgid "Support"
+msgstr "Підтримка"
+
+#: admin/class-plugin-row-meta.php:65
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Оцінити плагін Accessibility Checker (відкриється в новому вікні)"
+
+#: admin/class-plugin-row-meta.php:66
+msgid "Rate plugin"
+msgstr "Оцінити плагін"
+
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Оновитися до pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Розпродаж оновлень зараз"
+
+#: admin/class-upgrade-promotion.php:93
+msgid "Unable to redirect to upgrade page."
+msgstr "Не вдалося перенаправити на сторінку оновлення."
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -770,6 +812,16 @@ msgstr "Прочитайте наші %s"
 #: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "Політика доступності"
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "Отримати Accessibility Checker Pro"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "Отримати Accessibility Checker Pro (відкривається у новому вікні)"
 
 #: includes/classes/class-simplified-summary.php:73
 msgid "Simplified Summary"
@@ -1847,11 +1899,6 @@ msgstr "Підтримка електронною поштою"
 msgid "...and more"
 msgstr "...і багато іншого"
 
-#: partials/pro-callout.php:47
-#: partials/welcome-page.php:215
-msgid "Get Accessibility Checker Pro"
-msgstr "Отримати Accessibility Checker Pro"
-
 #: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
@@ -2099,6 +2146,10 @@ msgid "Disable Page Styles"
 msgstr "Вимкнути стилі сторінки"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "An error occurred when loading the issues."
+msgstr "Виникла помилка під час завантаження проблем."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Show Code"
 msgstr "Показати код"
 
@@ -2151,6 +2202,30 @@ msgstr[1] "проігнорованих проблем"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
 msgstr "виявлено."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanner function not found."
+msgstr "Функцію сканера не знайдено."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanning..."
+msgstr "Сканування..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "Порушень не виявлено, пропускаємо збереження."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Missing postId or nonce."
+msgstr "Відсутній postId або nonce."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility scan error."
+msgstr "Помилка сканування доступності."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error saving scan results."
+msgstr "Помилка збереження результатів сканування."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"

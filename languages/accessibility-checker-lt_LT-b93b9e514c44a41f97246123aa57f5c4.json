@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "I\u0161jungti puslapio stilius"
             ],
+            "An error occurred when loading the issues.": [
+                "\u012evyko klaida \u012fkeliant problemas."
+            ],
             "Show Code": [
                 "Rodyti kod\u0105"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "aptikta."
+            ],
+            "Scanner function not found.": [
+                "Skanavimo funkcija nerasta."
+            ],
+            "Scanning...": [
+                "Skenuojama..."
+            ],
+            "No violations found, skipping save.": [
+                "Pa\u017eeidim\u0173 nerasta, i\u0161saugojimas praleid\u017eiamas."
+            ],
+            "Missing postId or nonce.": [
+                "Tr\u016bksta postId arba nonce."
+            ],
+            "Accessibility scan error.": [
+                "Prieinamumo skenavimo klaida."
+            ],
+            "Error saving scan results.": [
+                "Klaida i\u0161saugant skenavimo rezultatus."
             ]
         }
     }
