@@ -21,17 +21,18 @@ class Insert_Rule_Data {
 	 *
 	 * @since 1.10.0
 	 *
-	 * @param object      $post     The post object. Must have a valid ID.
-	 * @param string      $rule     The rule.
-	 * @param string      $ruletype The rule type.
-	 * @param string      $rule_obj The object.
-	 * @param string|null $landmark The landmark type (main, header, footer, nav), optional.
+	 * @param object      $post              The post object. Must have a valid ID.
+	 * @param string      $rule              The rule.
+	 * @param string      $ruletype          The rule type.
+	 * @param string      $rule_obj          The object.
+	 * @param string|null $landmark          The landmark type (main, header, footer, nav), optional.
 	 * @param string|null $landmark_selector The landmark selector, optional.
+	 * @param array       $selectors         An array of selectors that point to the object, optional.
 	 *
 	 * @return void|int|\WP_Error The ID of the inserted record, void if no
 	 * record was inserted or a WP_Error if the insert failed.
 	 */
-	public function insert( object $post, string $rule, string $ruletype, string $rule_obj, ?string $landmark = null, ?string $landmark_selector = null ) {
+	public function insert( object $post, string $rule, string $ruletype, string $rule_obj, ?string $landmark = null, ?string $landmark_selector = null, array $selectors = [] ) {
 
 		if ( ! isset( $post->ID, $post->post_type )
 			|| empty( $rule )
@@ -51,6 +52,9 @@ class Insert_Rule_Data {
 			'type'              => $post->post_type,
 			'landmark'          => $landmark,
 			'landmark_selector' => $landmark_selector,
+			'selector'          => $selectors['selector'][0] ?? null,
+			'ancestry'          => $selectors['ancestry'][0] ?? null,
+			'xpath'             => $selectors['xpath'][0] ?? null,
 			'rule'              => $rule,
 			'ruletype'          => $ruletype,
 			'object'            => esc_attr( $rule_obj ),
@@ -96,9 +100,14 @@ class Insert_Rule_Data {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 				$wpdb->query(
 					$wpdb->prepare(
-						'UPDATE %i SET recordcheck = %d, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s',
+						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, selector = %s, ancestry = %s, xpath = %s, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s',
 						$table_name,
 						1,
+						$rule_data['landmark'],
+						$rule_data['landmark_selector'],
+						$rule_data['selector'],
+						$rule_data['ancestry'],
+						$rule_data['xpath'],
 						$rule_data['ignre'],
 						$rule_data['siteid'],
 						$rule_data['postid'],
@@ -134,6 +143,9 @@ class Insert_Rule_Data {
 				'type'              => sanitize_text_field( $rule_data['type'] ),
 				'landmark'          => isset( $rule_data['landmark'] ) ? sanitize_text_field( $rule_data['landmark'] ) : null,
 				'landmark_selector' => isset( $rule_data['landmark_selector'] ) ? sanitize_text_field( $rule_data['landmark_selector'] ) : null,
+				'selector'          => sanitize_text_field( $rule_data['selector'] ?? '' ),
+				'ancestry'          => sanitize_text_field( $rule_data['ancestry'] ?? '' ),
+				'xpath'             => sanitize_text_field( $rule_data['xpath'] ?? '' ),
 				'rule'              => sanitize_text_field( $rule_data['rule'] ),
 				'ruletype'          => sanitize_text_field( $rule_data['ruletype'] ),
 				'object'            => esc_attr( $rule_data['object'] ),

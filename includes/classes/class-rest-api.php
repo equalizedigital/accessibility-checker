@@ -383,7 +383,12 @@ class REST_Api {
 						$landmark          = $violation['landmark'] ?? null;
 						$landmark_selector = $violation['landmarkSelector'] ?? null;
 
-						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html, $landmark, $landmark_selector );
+						$selectors = [
+							'selector' => $violation['selector'] ?? [],
+							'ancestry' => $violation['ancestry'] ?? [],
+							'xpath'    => $violation['xpath'] ?? [],
+						];
+						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html, $landmark, $landmark_selector, $selectors );
 
 						/**
 						 * Fires after a rule is run against the content.
