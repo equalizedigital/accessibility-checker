@@ -34,8 +34,10 @@ class Upgrade_Promotion {
 	 * @return void
 	 */
 	public function add_menu_item(): void {
+		$required_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
+		
 		// Only show to users who can manage options and don't have pro version.
-		if ( ! current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ) ) {
+		if ( ! current_user_can( $required_capability ) ) {
 			return;
 		}
 
@@ -54,7 +56,7 @@ class Upgrade_Promotion {
 			'accessibility_checker',
 			'',
 			$menu_label,
-			apply_filters( 'edac_filter_settings_capability', 'manage_options' ),
+			$required_capability,
 			'accessibility_checker_upgrade',
 			[ $this, 'handle_redirect' ]
 		);
@@ -92,8 +94,10 @@ class Upgrade_Promotion {
 			return;
 		}
 
+		$required_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
+		
 		// Only add styling if user can see the menu and pro is not active.
-		if ( ! current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ) ) {
+		if ( ! current_user_can( $required_capability ) ) {
 			return;
 		}
 
