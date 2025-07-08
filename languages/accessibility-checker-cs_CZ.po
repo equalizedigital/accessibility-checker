@@ -362,7 +362,14 @@ msgstr "Dotaz na problém nevrátil žádné výsledky"
 msgid "Object query returned no results"
 msgstr "Dotaz na objekt nevrátil žádné výsledky"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Upgradujte na pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Zobrazit dokumentaci Accessibility Checker (otevře se v novém okně)"
 
