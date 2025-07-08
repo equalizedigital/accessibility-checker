@@ -397,9 +397,9 @@ return [
 		'wcag'      => '1.4.8',
 		'severity'  => 4, // low
 		'affected_disabilities' => [
-			esc_html__('Low-vision', 'accessibility-checker'),
-			esc_html__('Dyslexia', 'accessibility-checker'),
-			esc_html__('Cognitive', 'accessibility-checker'),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Dyslexia', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -1184,7 +1184,7 @@ return [
 		'wcag'      => '1.4.4',
 		'severity'  => 3, // medium
 		'affected_disabilities' => [
-			esc_html__('Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
 		],
 	],
 	[
