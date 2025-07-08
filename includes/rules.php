@@ -126,6 +126,7 @@ return [
 		'slug'      => 'img_linked_alt_missing',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'This image is inside a link but does not have an alt attribute and there is no other text within the link.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These images are inside links but do not have alt attributes and there is no other text within the links.', 'accessibility-checker' ),
 		'why_it_matters' => esc_html__( 'Screen reader users rely on alternative text to understand the purpose of linked images. Without it, they cannot determine where the link leads, making navigation difficult or impossible.', 'accessibility-checker' ),
 		'how_to_fix' => sprintf(
 			// translators: %s is <code>aria-label"</code>.
@@ -153,6 +154,7 @@ return [
 		'slug'      => 'img_linked_alt_empty',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'This image is inside a link and has an empty alt attribute and there is no other text within the link.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These images are inside links and have empty alt attributes and there is no other text within the links.', 'accessibility-checker' ),
 		'why_it_matters' => esc_html__( 'An empty alt attribute on a linked image causes screen reader users to hear just "link" with no context. This makes navigation confusing and may cause them to skip important content.', 'accessibility-checker' ),
 		'how_to_fix' => esc_html__( 'Replace the empty alt attribute with meaningful alternative text that clearly describes the link’s destination or purpose.', 'accessibility-checker' ),
 		'references' => [
@@ -176,6 +178,7 @@ return [
 		'slug'      => 'img_alt_redundant',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'This image has alternative text that is identical to nearby content or to another image on the page.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These images have alternative text that is identical to nearby content or to other images on the page.', 'accessibility-checker' ),
 		'why_it_matters' => esc_html__( 'When alternative text repeats nearby text or appears identically across multiple images, it creates confusion for screen reader users. Repetition provides no additional context and makes it difficult to distinguish between different elements or understand their purpose.', 'accessibility-checker' ),
 		'how_to_fix' => esc_html__( 'If the alt text duplicates a nearby caption, heading, or visible text, remove the redundancy by shortening or omitting the alt text—especially if the surrounding text already provides the same information. If multiple images have the same alt text, revise each one to be unique and describe the purpose of that specific image in its context.', 'accessibility-checker' ),
 		'references' => [
@@ -203,6 +206,13 @@ return [
 			esc_html__( 'This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels.', 'accessibility-checker' ),
 			'<code>&lt;h3&gt;</code>',
 			'<code>&lt;h1&gt;</code>'
+		),
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code>
+			esc_html__( 'These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between.', 'accessibility-checker' ),
+			'<code>&lt;h1&gt;</code>',
+			'<code>&lt;h3&gt;</code>',
+			'<code>&lt;h2&gt;</code>'
 		),
 		'why_it_matters' => esc_html__( 'Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently.', 'accessibility-checker' ),
 		'how_to_fix' => sprintf(
@@ -238,6 +248,7 @@ return [
 		'slug'      => 'empty_paragraph_tag',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'This page contains a <p> tag with no content inside.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These pages contain <p> tags with no content inside.', 'accessibility-checker' ),
 		'why_it_matters' => esc_html__( 'Empty paragraph tags can be announced by screen readers as blank lines or pauses, which may confuse users or disrupt reading flow. They can also interfere with visual layout or spacing, especially in assistive technology or mobile contexts.', 'accessibility-checker' ),
 		'how_to_fix' => esc_html__( 'Remove the empty <p> tags from your content. If spacing is needed between sections, use margin, padding, or a visual spacer block instead of inserting blank paragraphs.', 'accessibility-checker' ),
 		'references' => [
@@ -278,6 +289,11 @@ return [
 			esc_html__( 'This %1$s does not have a descriptive title attribute.', 'accessibility-checker' ),
 			'<code>&lt;iframe&gt;</code>'
 		),
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>&lt;iframe&gt;</code>
+			esc_html__( 'These %1$s do not have descriptive title attributes.', 'accessibility-checker' ),
+			'<code>&lt;iframe&gt;</code>'
+		),
 		'why_it_matters' => esc_html__( 'Screen readers rely on the title attribute of an iframe to describe its purpose or content. Without a title, users may not understand what the embedded content is, making the page harder to navigate and use.', 'accessibility-checker' ),
 		'how_to_fix' => sprintf(
 			// translators: %1$s is <code>&lt;iframe&gt;</code>
@@ -313,10 +329,18 @@ return [
 		'slug'      => 'missing_headings',
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>
-			esc_html__( 'This page does not contain any heading elements between %1$s and %2$s in the main content area and has more than 400 words.', 'accessibility-checker' ),
+			// translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>, %3$s is the word count threshold.
+			esc_html__( 'This page does not contain any heading elements between %1$s and %2$s in the main content area and has more than %3$s words.', 'accessibility-checker' ),
 			'<code>&lt;h1&gt;</code>',
-			'<code>&lt;h6&gt;</code>'
+			'<code>&lt;h6&gt;</code>',
+			'400'
+		),
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>, %3$s is '400' or the number defined in the settings
+			esc_html__( 'These pages do not contain any heading elements between %1$s and %2$s in the main content area and have more than %3$s words.', 'accessibility-checker' ),
+			'<code>&lt;h1&gt;</code>',
+			'<code>&lt;h6&gt;</code>',
+			'400'
 		),
 		'why_it_matters' => esc_html__( 'Headings provide structure and make content easier for users of all abilities to scan. They also help screen reader users and keyboard-only users navigate the page. Without headings, users must read through content linearly without an easy way to jump between sections.', 'accessibility-checker' ),
 		'how_to_fix' => sprintf(
@@ -352,6 +376,11 @@ return [
 			esc_html__( 'This page contains long blocks of text that are styled with %s.', 'accessibility-checker' ),
 			'<code>text-align: justify</code>'
 		),
+		'summary_plural' => sprintf(
+			// translators: %s is <code>text-align: justify</code>
+			esc_html__( 'These pages contain long blocks of text that are styled with %s.', 'accessibility-checker' ),
+			'<code>text-align: justify</code>'
+		),
 		'why_it_matters' => esc_html__( 'Justified text can create uneven spacing between words, forming distracting "rivers" of white space that make reading difficult—especially for people with dyslexia, low vision, or cognitive disabilities. Left-aligned text is more predictable and easier to read.', 'accessibility-checker' ),
 		'how_to_fix' => sprintf(
 			// translators: %s is <code>text-align: justify</code>
@@ -379,6 +408,7 @@ return [
 		'slug'      => 'link_blank',
 		'rule_type' => 'warning',
 		'summary'   => esc_html__( 'This link is set to open in a new browser tab or window.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These links are set to open in new browser tabs or windows.', 'accessibility-checker' ),
 		'why_it_matters' => esc_html__( 'When a link opens in a new tab or window without warning, it can be disorienting, especially for users with cognitive disabilities, screen reader users, or anyone relying on keyboard navigation. They may not realize a new context has opened or understand how to return.', 'accessibility-checker' ),
 		'how_to_fix' => sprintf(
 			// translators: %1$s is <code>target="_blank"</code>.
@@ -392,7 +422,7 @@ return [
 			],
 		],
 		'ruleset'   => 'js',
-		'wcag'      => '3.2.5',
+		'wcag'      => '3.2.2',
 		'severity'  => 3, // medium
 		'affected_disabilities' => [
 			'Cognitive',
@@ -416,6 +446,11 @@ return [
 		'summary'   => sprintf(
 			// translators: %1$s is <code>&lt;area&gt;</code>
 			esc_html__( 'One or more %1$s elements in an image map are missing alternative text.', 'accessibility-checker' ),
+			'<code>&lt;area&gt;</code>'
+		),
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>&lt;area&gt;</code>
+			esc_html__( 'One or more %1$s elements in image maps are missing alternative text.', 'accessibility-checker' ),
 			'<code>&lt;area&gt;</code>'
 		),
 		'why_it_matters' => esc_html__( 'Image maps use area elements to define interactive regions. Without alternative text, screen reader users won\'t know what each clickable area does, making it impossible to understand or interact with the map.', 'accessibility-checker' ),
@@ -455,6 +490,12 @@ return [
 		'summary'   => sprintf(
 			// translators: %1$s is <code>tabindex="1"</code> and %2$s is <code>tabindex</code>.
 			esc_html__( 'This page contains an element with %1$s or another positive %2$s, which modifies the natural tab order.', 'accessibility-checker' ),
+			'<code>tabindex="1"</code>',
+			'<code>tabindex</code>'
+		),
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>tabindex="1"</code> and %2$s is <code>tabindex</code>.
+			esc_html__( 'These pages contain elements with %1$s or other positive %2$s, which modify the natural tab order.', 'accessibility-checker' ),
 			'<code>tabindex="1"</code>',
 			'<code>tabindex</code>'
 		),
@@ -498,6 +539,11 @@ return [
 			esc_html__( 'This is an empty %s heading that doesn\'t contain any content.', 'accessibility-checker' ),
 			'<code>&lt;h1&gt;&lt;/h1&gt;</code>'
 		),
+		'summary_plural' => sprintf(
+			// translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>
+			esc_html__( 'These are empty %s headings that don\'t contain any content.', 'accessibility-checker' ),
+			'<code>&lt;h1&gt;&lt;/h1&gt;</code>'
+		),
 		'why_it_matters' => esc_html__( 'Headings help structure content and provide important navigation points for screen reader users. An empty heading communicates no useful information and may cause confusion or disorientation when navigating by headings.', 'accessibility-checker' ),
 		'how_to_fix' => esc_html__( 'Add meaningful content inside the heading tag to describe the section that follows. If the heading is not needed, remove it entirely to avoid misleading assistive technologies.', 'accessibility-checker' ),
 		'references' => [
@@ -525,6 +571,7 @@ return [
 		'slug'      => 'empty_link',
 		'rule_type' => 'error',
 		'summary'   => esc_html__( 'This is an empty link that does not contain any meaningful content for assitive technologies.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These are empty links that do not contain any meaningful content for assistive technologies.', 'accessibility-checker' ),
 		'why_it_matters' => esc_html__( 'Screen reader users rely on link text to understand the purpose or destination of a link. An empty link provides no information, making it difficult or impossible for users to decide whether or not to follow it.', 'accessibility-checker' ),
 		'how_to_fix' => sprintf(
 			// translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>
@@ -567,6 +614,11 @@ return [
 			esc_html__( 'This element is a %s with no accessible label or text.', 'accessibility-checker' ),
 			'<code>&lt;button&gt;</code>',
 			'<code>&lt;input&gt;</code>'
+		),
+		'summary_plural' => sprintf(
+			// translators: %s is <code>&lt;button&gt;</code>.
+			esc_html__( 'These elements are %s with no accessible label or text.', 'accessibility-checker' ),
+			'<code>&lt;button&gt;</code>'
 		),
 		'why_it_matters' => esc_html__( 'Buttons must clearly describe the action they perform. An empty button provides no information to screen readers or keyboard users, making it impossible to understand what clicking the button will do. This creates a barrier for people relying on assistive technologies.', 'accessibility-checker' ),
 		'how_to_fix' => sprintf(
@@ -612,6 +664,11 @@ return [
 			esc_html__( 'This image has alternative text longer than %s characters.', 'accessibility-checker' ),
 			'300'
 		),
+		'summary_plural' => sprintf(
+			// translators: %s is the maximum character count for alt text.
+			esc_html__( 'These images have alternative text longer than %s characters.', 'accessibility-checker' ),
+			'300'
+		),
 		'why_it_matters' => esc_html__( 'Alternative text should be concise and focused on describing the purpose or meaning of the image. Overly long alt text may overwhelm screen reader users, reduce readability, and distract from other content on the page.', 'accessibility-checker' ),
 		'how_to_fix' => esc_html__( 'Shorten the alt text to fewer than characters while still describing the image\'s function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image\'s alt text does not need to be changed, dismiss this warning using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
 		'references' => [
@@ -638,6 +695,11 @@ return [
 		'summary'   => sprintf(
 			// translators: %s is <code>aria-hidden="true"</code>
 			esc_html__( 'This element uses %s, which hides it from screen readers.', 'accessibility-checker' ),
+			'<code>aria-hidden="true"</code>'
+		),
+		'summary_plural' => sprintf(
+			// translators: %s is <code>aria-hidden="true"</code>
+			esc_html__( 'These elements use %s, which hides them from screen readers.', 'accessibility-checker' ),
 			'<code>aria-hidden="true"</code>'
 		),
 		'why_it_matters' => esc_html__( 'The aria-hidden attribute is used to hide content from assistive technologies. While this is useful for decorative or redundant elements, it can cause accessibility issues if applied to important content that screen reader users need to access.', 'accessibility-checker' ),
@@ -678,6 +740,11 @@ return [
 			esc_html__( 'This element is a table header cell (%s) with no text content.', 'accessibility-checker' ),
 			'<code>&lt;th&gt;</code>',
 		),
+		'summary_plural' => sprintf(
+			// translators: %s is <code>&lt;th&gt;</code>
+			esc_html__( 'These elements are table header cells (%s) with no text content.', 'accessibility-checker' ),
+			'<code>&lt;th&gt;</code>'
+		),
 		'why_it_matters' => esc_html__( 'Table headers provide context for the data in rows and columns. When a table header is empty, screen readers and other assistive technologies cannot convey the meaning of the associated data, making the table difficult or impossible to interpret.', 'accessibility-checker' ),
 		'how_to_fix' => sprintf(
 			// translators: %s is <code>&lt;th&gt;</code>
@@ -709,7 +776,8 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1970',
 		'slug'      => 'link_ms_office_file',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'This is linked to a Microsoft Office file, such as a Word, Excel, or PowerPoint document.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This is a link to a Microsoft Office file, such as a Word, Excel, or PowerPoint document.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These are links to Microsoft Office files, such as Word, Excel, or PowerPoint documents.', 'accessibility-checker' ),
 		'why_it_matters' => esc_html__( 'Documents in Word, Excel, or PowerPoint format may not be accessible to all users, especially if they are not tagged correctly or do not follow accessibility best practices. Accessibility laws require that documents posted on web pages also conform to WCAG. Additionally, users should be warned when a link opens a downloadable file instead of a webpage.', 'accessibility-checker' ),
 		'how_to_fix' => esc_html__( 'Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the "Ignore" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the \'Add File Size & Type To Links\' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it.', 'accessibility-checker' ),
 		'references' => [
