@@ -40,7 +40,7 @@ if ( ! defined( 'EDAC_VERSION' ) ) {
 
 // Current database version.
 if ( ! defined( 'EDAC_DB_VERSION' ) ) {
-	define( 'EDAC_DB_VERSION', '1.0.5' );
+	define( 'EDAC_DB_VERSION', '1.0.4' );
 }
 
 // Plugin Folder Path.
