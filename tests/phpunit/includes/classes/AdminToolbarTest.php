@@ -33,7 +33,11 @@ class AdminToolbarTest extends WP_UnitTestCase {
 		parent::setUp();
 
 		$this->admin_toolbar = new Admin_Toolbar();
-		$this->wp_admin_bar  = $this->createMock( WP_Admin_Bar::class );
+		
+		// Create a generic mock object with add_menu method.
+		$this->wp_admin_bar = $this->getMockBuilder( stdClass::class )
+			->addMethods( [ 'add_menu' ] )
+			->getMock();
 
 		// Create a user with manage_options capability.
 		$user_id = $this->factory->user->create( [ 'role' => 'administrator' ] );
