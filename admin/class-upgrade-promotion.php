@@ -83,8 +83,24 @@ class Upgrade_Promotion {
 			'menu-upgrade-to-pro',
 			false
 		);
+		
+		// Add the domain to allowed hosts before redirecting.
+		add_filter( 'allowed_redirect_hosts', [ $this, 'allow_redirect_host' ] );
 		wp_safe_redirect( $upgrade_url );
 		exit;
+	}
+	
+	/**
+	 * Allow redirects to the Equalize Digital domain.
+	 *
+	 * @since 1.27.0
+	 *
+	 * @param array $hosts Array of allowed hosts.
+	 * @return array Modified array of allowed hosts.
+	 */
+	public function allow_redirect_host( array $hosts ): array {
+		$hosts[] = 'equalizedigital.com';
+		return $hosts;
 	}
 
 	/**

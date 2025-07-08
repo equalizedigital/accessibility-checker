@@ -97,6 +97,29 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that allow_redirect_host method exists.
+	 */
+	public function test_allow_redirect_host_method_exists() {
+		$this->assertTrue(
+			method_exists( $this->upgrade_promotion, 'allow_redirect_host' ),
+			'Class does not have method allow_redirect_host'
+		);
+	}
+
+	/**
+	 * Test that allow_redirect_host correctly adds domain to hosts.
+	 */
+	public function test_allow_redirect_host_adds_domain() {
+		$initial_hosts  = [ 'wordpress.org', 'example.com' ];
+		$expected_hosts = array_merge( $initial_hosts, [ 'equalizedigital.com' ] );
+		
+		$result = $this->upgrade_promotion->allow_redirect_host( $initial_hosts );
+		
+		$this->assertEquals( $expected_hosts, $result, 'allow_redirect_host should add equalizedigital.com to hosts array' );
+		$this->assertContains( 'equalizedigital.com', $result, 'allow_redirect_host should add equalizedigital.com to hosts array' );
+	}
+
+	/**
 	 * Test that add_menu_styling method exists.
 	 */
 	public function test_add_menu_styling_method_exists() {
@@ -313,7 +336,7 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		);
 		
 		// Test that all expected methods are public/private as intended.
-		$public_methods  = [ 'init', 'add_menu_item', 'handle_redirect', 'add_menu_styling' ];
+		$public_methods  = [ 'init', 'add_menu_item', 'handle_redirect', 'add_menu_styling', 'allow_redirect_host' ];
 		$private_methods = [ 'is_pro_active', 'is_sale_time' ];
 		
 		foreach ( $public_methods as $method_name ) {
