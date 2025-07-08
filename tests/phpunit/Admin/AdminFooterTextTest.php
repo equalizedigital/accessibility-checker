@@ -34,14 +34,17 @@ class AdminFooterTextTest extends WP_UnitTestCase {
 			/**
 			 * Mock edac_link_wrapper for testing.
 			 *
+			 * This is a simplified mock that intentionally ignores most parameters
+			 * and only returns the base URL for testing purposes.
+			 *
 			 * @param string $url URL.
-			 * @param string $campaign Campaign.
-			 * @param string $content Content.
-			 * @param bool   $directly_echo Echo.
+			 * @param string $campaign Campaign - intentionally unused in mock.
+			 * @param string $content Content - intentionally unused in mock.
+			 * @param bool   $directly_echo Echo - intentionally unused in mock.
 			 * @return string
 			 */
-			function edac_link_wrapper( $url, $campaign = '', $content = '', $directly_echo = true ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-				// Simple mock that ignores parameters and returns the URL.
+			function edac_link_wrapper( $url, $campaign = '', $content = '', $directly_echo = true ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Mock function intentionally ignores parameters
+				// Simple mock that ignores tracking parameters and returns the URL.
 				return $url;
 			}
 		}
