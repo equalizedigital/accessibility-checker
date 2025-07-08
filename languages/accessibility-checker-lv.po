@@ -9,15 +9,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-24T21:54:49+00:00\n"
+"POT-Creation-Date: 2025-07-01T15:48:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
-#: includes/classes/class-accessibility-statement.php:50
+#: includes/classes/class-accessibility-statement.php:51
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -69,12 +69,13 @@ msgid "Get Pro"
 msgstr "Iegūt pro versiju"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:338
+#: admin/class-ajax.php:352
 msgid "Opens in a new window."
 msgstr "Atveras jaunā logā."
 
 #. translators: %s: the label of the fix
 #: admin/AdminPage/FixesSettingType/Text.php:54
+#, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Lasīt dokumentāciju par %s. Atveras jaunā logā."
 
@@ -94,52 +95,55 @@ msgstr "Nepārtraukti centieni nodrošināt pieejamību"
 msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
 msgstr "Mēs sekojam <a href=\"https://www.w3.org/TR/WCAG21/\">Tīmekļa satura pieejamības vadlīnijām (WCAG) 2.1 versijai</a> kā mūsu vadošajam principam pieejamības noteikšanai. Šie ir starptautiski atzīti standarti, kas aptver plašu rekomendāciju un labākās prakses klāstu satura lietojamības nodrošināšanai. Pievienojot jaunas lapas un funkcionalitāti mūsu tīmekļa vietnei, visi dizaini, kodi un satura ievades prakses tiek pārbaudītas atbilstoši šiem standartiem."
 
-#: admin/class-accessibility-statement.php:56
-msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
-msgstr "Tīmekļa vietnes pieejamība ir nepārtraukts process. Mēs pastāvīgi pārbaudām saturu un funkcijas atbilstoši WCAG 2.1 AA līmeņa prasībām un novēršam jebkādas problēmas, lai nodrošinātu, ka mēs atbilstam vai pārsniedzam standartus. Mūsu tīmekļa vietnes testēšanu veic mūsu komandas locekļi, izmantojot nozares standarta rīkus, piemēram, <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress spraudni</a>, krāsu kontrasta analizatorus, navigācijas tehnikas tikai ar tastatūru un Fleša-Kinkeida lasāmības testus."
+#. translators: 1 - A link opening tag, 2 - link closing tag
+#: admin/class-accessibility-statement.php:58
+#, php-format
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the %1$sAccessibility Checker WordPress Plugin%2$s, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Tīmekļa vietņu pieejamība ir nepārtraukts process. Mēs pastāvīgi testējam saturu un funkcijas atbilstoši WCAG 2.1 AA līmeņa prasībām un novēršam jebkādas problēmas, lai nodrošinātu, ka mēs atbilstam vai pārsniedzam standartus. Mūsu tīmekļa vietnes testēšanu veic mūsu komandas locekļi, izmantojot nozares standarta rīkus, piemēram, %1$sAccessibility Checker WordPress spraudni%2$s, krāsu kontrasta analizatorus, navigāciju, izmantojot tikai tastatūru, un Fleša-Kinkeidsa lasāmības testus."
 
-#: admin/class-accessibility-statement.php:57
+#: admin/class-accessibility-statement.php:62
 msgid "Accessibility Features On Our Website"
 msgstr "Pieejamības funkcijas mūsu tīmekļa vietnē"
 
-#: admin/class-accessibility-statement.php:58
+#: admin/class-accessibility-statement.php:63
 msgid "The following is a list of items we have included in our website to improve its accessibility:"
 msgstr "Šeit ir saraksts ar elementiem, ko esam iekļāvuši mūsu tīmekļa vietnē, lai uzlabotu tās pieejamību:"
 
-#: admin/class-accessibility-statement.php:59
+#: admin/class-accessibility-statement.php:64
 msgid "[LIST ACCESSIBILITY FEATURES HERE]"
 msgstr "[UZSKAITIET PIEEJAMĪBAS FUNKCIJAS ŠEIT]"
 
-#: admin/class-accessibility-statement.php:60
+#: admin/class-accessibility-statement.php:65
 msgid "Where We're Improving"
 msgstr "Kur mēs uzlabojam"
 
-#: admin/class-accessibility-statement.php:61
+#: admin/class-accessibility-statement.php:66
 msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
 msgstr "Mūsu centienos uzlabot mūsu tīmekļa vietni līdz standartam, mēs koncentrējamies uz šādām jomām:"
 
-#: admin/class-accessibility-statement.php:62
+#: admin/class-accessibility-statement.php:67
 msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
 msgstr "[UZSKAITIET ŠEIT LIETAS, PIE KURĀM STRĀDĀJAT, LAI LABOTU]"
 
-#: admin/class-accessibility-statement.php:63
+#: admin/class-accessibility-statement.php:68
 msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
 msgstr "[VAR PALĪDZĒT PĀRSKATĪT ATVĒRTO PROBLĒMU CILNI, LAI REDZĒTU VISBIEŽĀK SASTOPAMĀS PROBLĒMAS]"
 
-#: admin/class-accessibility-statement.php:64
+#: admin/class-accessibility-statement.php:69
 msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
 msgstr "Tas ir daļa no mūsu plašākiem centieniem padarīt ikviena pieredzi [COMPANY NAME] viesmīlīgu un patīkamu. Lūdzu, ņemiet vērā, ka, lai gan mēs cenšamies nodrošināt informāciju, kas pieejama visiem lietotājiem, mēs nevaram garantēt trešo pušu tīmekļa vietņu pieejamību, uz kurām mēs varam norādīt saites."
 
-#: admin/class-accessibility-statement.php:65
+#: admin/class-accessibility-statement.php:70
 msgid "Accessibility Support Contact"
 msgstr "Pieejamības atbalsta kontakti"
 
-#: admin/class-accessibility-statement.php:66
+#: admin/class-accessibility-statement.php:71
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "Mēs atzinīgi novērtējam komentārus, jautājumus un atsauksmes par mūsu tīmekļa vietni. Ja izmantojat palīgtehnoloģijas un jums ir grūtības lietot mūsu tīmekļa vietni, lūdzu, sūtiet e-pastu uz [YOUR ACCESSIBILITY EMAIL ADDRESS] vai zvaniet mums pa tālruni [YOUR PHONE NUMBER]. Mēs darīsim visu iespējamo, lai jums palīdzētu un atrisinātu problēmas."
 
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
+#, php-format
 msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
 msgstr "Mēs esam uzlabojuši statistikas aprēķinus versijā 1.21.0. Rezultātā daži skaitļi zemāk esošajos datos var būt mainījušies. Uzziniet vairāk mūsu %1$sizlaišanas paziņojuma ierakstā%2$s."
 
@@ -147,12 +151,12 @@ msgstr "Mēs esam uzlabojuši statistikas aprēķinus versijā 1.21.0. Rezultāt
 #: admin/class-admin-notices.php:225
 #: admin/class-admin-notices.php:312
 #: admin/class-admin-notices.php:401
-#: admin/class-admin-notices.php:483
+#: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:196
-#: admin/class-ajax.php:561
-#: admin/class-ajax.php:700
-#: admin/class-ajax.php:780
+#: admin/class-ajax.php:210
+#: admin/class-ajax.php:575
+#: admin/class-ajax.php:713
+#: admin/class-ajax.php:793
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "Atļauja liegta"
@@ -161,7 +165,7 @@ msgstr "Atļauja liegta"
 #: admin/class-admin-notices.php:234
 #: admin/class-admin-notices.php:324
 #: admin/class-admin-notices.php:421
-#: admin/class-admin-notices.php:492
+#: admin/class-admin-notices.php:498
 msgid "Update option wasn't successful"
 msgstr "Atjaunināšanas opcija nebija veiksmīga"
 
@@ -213,6 +217,7 @@ msgstr "Atsauksmes darbības vērtība netika iestatīta"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
 #: admin/class-admin-notices.php:446
+#, php-format
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
 msgstr "Ai! Šķiet, ka jūsu tīmekļa vietne pašlaik ir aizsargāta ar paroli. Bezmaksas Accessibility Checker versija var skenēt tikai publiski pieejamas vietnes. Lai skenētu šo vietni uz pieejamības problēmām, vai nu noņemiet paroles aizsardzību, vai %s. Skenēšanas rezultāti var būt saglabāti no iepriekšējās skenēšanas."
 
@@ -221,14 +226,14 @@ msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Jaunināt uz Accessibility Checker Pro. Atveras jaunā logā."
 
 #: admin/class-admin-notices.php:450
-#: includes/options-page.php:448
+#: includes/options-page.php:464
 msgid "upgrade to pro"
 msgstr "jaunināt uz pro versiju"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:203
-#: admin/class-ajax.php:568
-#: admin/class-ajax.php:787
+#: admin/class-ajax.php:217
+#: admin/class-ajax.php:582
+#: admin/class-ajax.php:800
 msgid "The post ID was not set"
 msgstr "Ieraksta ID netika iestatīts"
 
@@ -250,6 +255,7 @@ msgstr "Šim saturam ir pievienots vienkāršots kopsavilkums."
 
 #. translators: %s: Number of errors
 #: admin/class-ajax.php:133
+#, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s Kļūda"
@@ -257,6 +263,7 @@ msgstr[1] "%s Kļūdas"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:139
+#, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Kontrasta kļūda"
@@ -264,6 +271,7 @@ msgstr[1] "%s Kontrasta kļūdas"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:145
+#, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s Brīdinājums"
@@ -271,71 +279,73 @@ msgstr[1] "%s Brīdinājumi"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:151
+#, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s Ignorētais vienums"
 msgstr[1] "%s Ignorētie vienumi"
 
-#: admin/class-ajax.php:173
+#: admin/class-ajax.php:187
 msgid "No summary to return"
 msgstr "Nav kopsavilkuma, ko atgriezt"
 
-#: admin/class-ajax.php:217
+#: admin/class-ajax.php:231
 msgid "Invalid table name"
 msgstr "Nederīgs tabulas nosaukums"
 
-#: admin/class-ajax.php:363
+#: admin/class-ajax.php:377
 msgid "These settings enable global fixes across your entire site."
 msgstr "Šie iestatījumi iespējo globālus labojumus visā jūsu vietnē."
 
-#: admin/class-ajax.php:364
+#: admin/class-ajax.php:378
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Lai redzētu labojumus atspoguļotus pārskatos, var būt nepieciešams atkārtoti saglabāt lapas vai veikt pilnas vietnes pārbaudi."
 
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:406
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "Saglabāt"
 
-#: admin/class-ajax.php:412
+#: admin/class-ajax.php:426
 msgid "Affected Code"
 msgstr "Ietekmētais kods"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:491
+#, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Skatīt problēmu ar ID %d vietnē, atveras jaunā logā"
 
-#: admin/class-ajax.php:478
+#: admin/class-ajax.php:492
 msgid "View on page"
 msgstr "Skatīt lapā"
 
-#: admin/class-ajax.php:497
+#: admin/class-ajax.php:511
 msgid "Fix: "
 msgstr "Labojums: "
 
-#: admin/class-ajax.php:498
+#: admin/class-ajax.php:512
 msgid "Fix"
 msgstr "Labot"
 
-#: admin/class-ajax.php:521
+#: admin/class-ajax.php:535
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Jūsu lietotāja kontam nav atļaujas ignorēt šo problēmu."
 
-#: admin/class-ajax.php:539
+#: admin/class-ajax.php:553
 msgid "No details to return"
 msgstr "Nav detaļu, ko atgriezt"
 
-#: admin/class-ajax.php:679
+#: admin/class-ajax.php:692
 msgid "No readability data to return"
 msgstr "Nav lasāmības datu, ko atgriezt"
 
-#: admin/class-ajax.php:736
-#: admin/class-ajax.php:759
+#: admin/class-ajax.php:749
+#: admin/class-ajax.php:772
 msgid "No ignore data to return"
 msgstr "Nav ignorēšanas datu, ko atgriezt"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:807
 msgid "The summary was not set"
 msgstr "Kopsavilkums netika iestatīts"
 
@@ -372,7 +382,7 @@ msgid "See History"
 msgstr "Skatīt vēsturi"
 
 #: admin/class-welcome-page.php:70
-#: admin/class-widgets.php:92
+#: admin/class-widgets.php:98
 msgid "Passed Tests"
 msgstr "Izturētie testi"
 
@@ -409,12 +419,12 @@ msgid "Average Issue Density"
 msgstr "Vidējais problēmu blīvums"
 
 #: admin/class-welcome-page.php:204
-#: admin/class-widgets.php:99
+#: admin/class-widgets.php:105
 msgid "Report Last Updated:"
 msgstr "Pārskats pēdējo reizi atjaunināts:"
 
 #: admin/class-welcome-page.php:214
-#: includes/options-page.php:392
+#: includes/options-page.php:408
 msgid "Never"
 msgstr "Nekad"
 
@@ -424,6 +434,7 @@ msgstr "Pārbaudītie URL"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
 #: admin/class-welcome-page.php:239
+#, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s no %2$s"
 
@@ -456,105 +467,105 @@ msgid "Unlock Detailed Accessibility Reports"
 msgstr "Atbloķēt detalizētus pieejamības pārskatus"
 
 #: admin/class-welcome-page.php:302
-#: admin/class-widgets.php:65
+#: admin/class-widgets.php:71
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Sāciet pārbaudīt visu savu vietni pieejamības problēmām, iegūstiet visas vietnes pārskatus un ātrāk panāciet atbilstību pieejamības vadlīnijām."
 
 #: admin/class-welcome-page.php:306
-#: admin/class-widgets.php:67
+#: admin/class-widgets.php:73
 msgid "Upgrade Accessibility Checker"
 msgstr "Jaunināt Accessibility Checker"
 
-#: admin/class-widgets.php:63
+#: admin/class-widgets.php:69
 msgid "close ad"
 msgstr "aizvērt reklāmu"
 
-#: admin/class-widgets.php:64
+#: admin/class-widgets.php:70
 msgid "Get Detailed Accessibility Reports"
 msgstr "Iegūt detalizētus pieejamības pārskatus"
 
-#: admin/class-widgets.php:82
+#: admin/class-widgets.php:88
 msgid "Full Site Accessibility Status"
 msgstr "Visas vietnes pieejamības statuss"
 
-#: admin/class-widgets.php:107
+#: admin/class-widgets.php:113
 msgid "URLs Scanned:"
 msgstr "Pārbaudītie URL:"
 
-#: admin/class-widgets.php:115
+#: admin/class-widgets.php:121
 msgid "Errors:"
 msgstr "Kļūdas:"
 
-#: admin/class-widgets.php:119
+#: admin/class-widgets.php:125
 msgid "Color Contrast Errors:"
 msgstr "Krāsu kontrasta kļūdas:"
 
-#: admin/class-widgets.php:123
+#: admin/class-widgets.php:129
 msgid "Warnings:"
 msgstr "Brīdinājumi:"
 
-#: admin/class-widgets.php:132
+#: admin/class-widgets.php:144
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
 msgstr "Jūsu vietnē ir pieejamības problēmas, kas jānovērš pēc iespējas ātrāk, lai nodrošinātu atbilstību pieejamības vadlīnijām."
 
-#: admin/class-widgets.php:135
+#: admin/class-widgets.php:147
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
 msgstr "Lieliski! Accessibility Checker nevar atrast nekādas pieejamības problēmas pārbaudītajā saturā. Dažas problēmas nevar atrast automatizēti rīki, tāpēc neaizmirstiet"
 
-#: admin/class-widgets.php:135
+#: admin/class-widgets.php:147
 msgid "manually test your site"
 msgstr "manuāli pārbaudīt savu vietni"
 
-#: admin/class-widgets.php:150
+#: admin/class-widgets.php:162
 msgid "Issues By Post Type"
 msgstr "Problēmas pēc ierakstu veida"
 
-#: admin/class-widgets.php:157
+#: admin/class-widgets.php:169
 msgid "Post Type"
 msgstr "Ieraksta veids"
 
-#: admin/class-widgets.php:160
+#: admin/class-widgets.php:172
 msgid "Errors"
 msgstr "Kļūdas"
 
-#: admin/class-widgets.php:163
+#: admin/class-widgets.php:175
 msgid "Contrast"
 msgstr "Kontrasts"
 
-#: admin/class-widgets.php:166
+#: admin/class-widgets.php:178
 msgid "Warnings"
 msgstr "Brīdinājumi"
 
-#: admin/class-widgets.php:225
+#: admin/class-widgets.php:247
 msgid "Upgrade to Scan"
 msgstr "Jauniniet, lai pārbaudītu"
 
-#: admin/class-widgets.php:254
+#: admin/class-widgets.php:276
 msgid "See More Reports"
 msgstr "Skatīt vairāk pārskatu"
 
-#: admin/class-widgets.php:264
-#: partials/welcome-page.php:232
+#: admin/class-widgets.php:286
+#: partials/welcome-page.php:235
 msgid "Learn Accessibility"
 msgstr "Apgūt pieejamību"
 
-#: admin/class-widgets.php:273
+#: admin/class-widgets.php:307
 msgid "Additional Resources"
 msgstr "Papildu resursi"
 
-#: admin/class-widgets.php:274
+#: admin/class-widgets.php:308
 msgid "Blog (opens in a new window)"
 msgstr "Emuārs (atveras jaunā logā)"
 
-#: admin/class-widgets.php:274
+#: admin/class-widgets.php:308
 msgid "Blog"
 msgstr "Emuārs"
 
-#: admin/class-widgets.php:275
+#: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentācija (atveras jaunā logā)"
 
-#: admin/class-widgets.php:275
+#: admin/class-widgets.php:309
 msgid "Documentation"
 msgstr "Dokumentācija"
 
@@ -712,19 +723,21 @@ msgstr "Ignorēto DB tabulu skaits"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:45
+#, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "Lai uzraudzītu mūsu tīmekļa vietnes pieejamību, %1$s izmanto %2$s."
 
-#: includes/classes/class-accessibility-statement.php:49
+#: includes/classes/class-accessibility-statement.php:50
 msgid "Accessibility Checker (opens in a new window)"
 msgstr "Accessibility Checker (atveras jaunā logā)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
-#: includes/classes/class-accessibility-statement.php:58
+#: includes/classes/class-accessibility-statement.php:59
+#, php-format
 msgid "Read our %s"
 msgstr "Lasīt mūsu %s"
 
-#: includes/classes/class-accessibility-statement.php:59
+#: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "Pieejamības politika"
 
@@ -764,6 +777,7 @@ msgstr "Pievienot etiķetes nemarķētiem veidlapas laukiem, ja var noteikt lauk
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Mēģināt pievienot etiķetes veidlapas laukiem, kuriem tās trūkst. Piezīme: Jums var būt nepieciešams pievienot pielāgotus stilus, kas mērķē uz %1$s klasi, ja etiķešu pievienošana ietekmē jūsu veidlapu izkārtojumu."
 
@@ -781,6 +795,7 @@ msgstr "Pievienot trūkstošu lapas virsrakstu"
 
 #. translators: %1$s: a code tag with a title tag.
 #: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Pievienot %1$s tagu lapai, ja tas trūkst vai ir tukšs."
 
@@ -794,6 +809,7 @@ msgstr "Pievienot etiķeti saitēm, kas atver jaunu cilni/logu"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Pievienot etiķeti un ikonu saitēm ar %1$s, informējot lietotājus, ka tās atvērs jaunu cilni/logu. %2$sPiezīme: Šim iestatījumam nebūs efekta, ja ir iespējots labojums “Bloķēt saites, kas atver jaunus logus”.%3$s"
 
@@ -804,6 +820,7 @@ msgstr "Bloķēt PDF augšupielādes"
 
 #. translators: %1$s: a code tag with the capability name.
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Ierobežot PDF augšupielādes lietotājiem bez %1$s iespējas (pēc noklusējuma atļauts administratoriem)."
 
@@ -906,6 +923,7 @@ msgstr "Pievienot “lang” un “dir” atribūtus"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
 #: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Pievienot vietnes valodas (%1$s) un teksta virziena (%2$s) atribūtus %3$s elementam."
 
@@ -955,6 +973,7 @@ msgstr "Bloķēt saišu atvēršanos jaunos logos"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Novērst saišu atvēršanos jaunā logā vai cilnē, noņemot %1$s."
 
@@ -1008,6 +1027,7 @@ msgstr "Noņemt virsraksta atribūtus"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Noņemt %1$s atribūtus no elementiem, kuriem jau ir vēlamais piekļūstamais nosaukums."
 
@@ -1045,6 +1065,7 @@ msgstr "Iestatiet navigācijas elementa ID atribūtu. Tas ir noderīgi, ja jūsu
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 #: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Ja jūsu tēma jau nepievieno izlaišanas saiti, kas ļauj tastatūras lietotājiem apiet navigāciju un ātri pāriet uz galveno saturu, iespējojiet izlaišanas saites šeit. %1$sUzziniet vairāk par izlaišanas saitēm.%2$s"
 
@@ -1066,6 +1087,7 @@ msgstr "Noņemt tabulācijas indeksu"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/TabindexFix.php:70
+#, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Noņemt %1$s atribūtu no fokusējamiem elementiem."
 
@@ -1079,6 +1101,7 @@ msgstr "Labojums nav atrasts"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
 #: includes/classes/WPCLI/BootstrapCLI.php:99
+#, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Neizdevās reģistrēt komandu %1$s, jo %2$s"
 
@@ -1092,11 +1115,13 @@ msgstr "Nav norādīts raksta ID."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:92
+#, php-format
 msgid "Post ID %1$s does not exist."
 msgstr "Raksta ID %1$s neeksistē."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:103
+#, php-format
 msgid "Stats of %1$s deleted."
 msgstr "Raksta %1$s statistika ir izdzēsta."
 
@@ -1110,6 +1135,7 @@ msgstr "Notīrīt kešatmiņu pirms statistikas iegūšanas (var būt resursieti
 
 #. translators: 1: a stat key that was requested but not found.
 #: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#, php-format
 msgid "Stat key: %1$s not found in stats."
 msgstr "Statistikas atslēga: %1$s statistikā nav atrasta."
 
@@ -1119,11 +1145,13 @@ msgstr "Raksta ID, kuram iegūt statistiku."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:126
+#, php-format
 msgid "Post ID %1$d does not exist."
 msgstr "Raksta ID %1$d neeksistē."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:142
+#, php-format
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Vai nu raksts vēl nav skenēts, vai arī visi testi ir izturēti rakstam ar ID %1$d."
 
@@ -1139,7 +1167,7 @@ msgstr "pastāvīgā saite uz "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:371
+#: includes/helper-functions.php:339
 msgid "Attend Free"
 msgstr "Apmeklēt bez maksas"
 
@@ -1184,12 +1212,12 @@ msgid "Simplified Summary Position"
 msgstr "Vienkāršotā kopsavilkuma pozīcija"
 
 #: includes/options-page.php:164
-#: includes/options-page.php:517
+#: includes/options-page.php:533
 msgid "Add Footer Accessibility Statement"
 msgstr "Pievienot kājenes piekļūstamības paziņojumu"
 
 #: includes/options-page.php:173
-#: includes/options-page.php:540
+#: includes/options-page.php:556
 msgid "Include Link to Accessibility Policy"
 msgstr "Iekļaut saiti uz piekļūstamības politiku"
 
@@ -1207,6 +1235,7 @@ msgstr "Priekšgala Accessibility Checker pozīcija"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
+#, php-format
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
 msgstr "Izmantojiet zemāk esošos iestatījumus, lai konfigurētu Accessibility Checker. Papildu informāciju par katru iestatījumu var atrast %1$s."
 
@@ -1220,99 +1249,100 @@ msgstr "spraudņa dokumentācijā"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
 #: includes/options-page.php:251
+#, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Vairāk funkciju un e-pasta atbalsts ir pieejams ar %1$s."
 
-#: includes/options-page.php:252
+#: includes/options-page.php:259
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (atveras jaunā logā)"
 
-#: includes/options-page.php:252
+#: includes/options-page.php:259
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:273
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Izmantojiet zemāk esošos iestatījumus, lai konfigurētu priekšgala pieejamības pārbaudītāju."
 
-#: includes/options-page.php:276
+#: includes/options-page.php:283
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Tīmekļa satura pieejamības vadlīnijas (WCAG) AAA līmenī pieprasa, lai jebkuram saturam ar lasīšanas līmeni virs 9. Klases būtu alternatīva, kas ir vieglāk lasāma. Vienkāršots kopsavilkuma teksts tiek pievienots lasāmības cilnē Accessibility Checker meta lodziņā katrā raksta vai lapas rediģēšanas ekrānā."
 
-#: includes/options-page.php:277
+#: includes/options-page.php:293
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Uzziniet vairāk par vienkāršotiem kopsavilkumiem un lasāmības prasībām (atveras jaunā logā)"
 
-#: includes/options-page.php:277
+#: includes/options-page.php:293
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Uzziniet vairāk par vienkāršotiem kopsavilkumiem un lasāmības prasībām."
 
-#: includes/options-page.php:286
+#: includes/options-page.php:302
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Vai jūs domājat, “Vau, šis spraudnis ir lieliski”, un vai tas jums palīdz padarīt jūsu tīmekļa vietni pieejamāku? Dalieties ar saviem centieniem padarīt jūsu tīmekļa vietni pieejamāku ar saviem klientiem un informējiet viņus, ka jūs izmantojat Accessibility Checker, lai nodrošinātu, ka visi cilvēki var izmantot jūsu tīmekļa vietni. Pievienojiet nelielu tikai teksta saiti un paziņojumu jūsu tīmekļa vietnes kājenē."
 
-#: includes/options-page.php:299
+#: includes/options-page.php:315
 msgid "Before the content"
 msgstr "Pirms satura"
 
-#: includes/options-page.php:304
+#: includes/options-page.php:320
 msgid "After the content"
 msgstr "Pēc satura"
 
-#: includes/options-page.php:309
+#: includes/options-page.php:325
 msgid "Insert manually"
 msgstr "Ievietot manuāli"
 
-#: includes/options-page.php:313
+#: includes/options-page.php:329
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Izmantojiet šo funkciju, lai manuāli pievienotu vienkāršotu kopsavilkumu jūsu tēmai cilpas ietvaros."
 
-#: includes/options-page.php:315
+#: includes/options-page.php:331
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funkcija pēc izvēles pieņem ziņas ID kā parametru."
 
-#: includes/options-page.php:318
+#: includes/options-page.php:334
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Iestatiet, kur vēlaties, lai vienkāršotie kopsavilkumi parādītos attiecībā pret jūsu saturu, ja tie ir aizpildīti."
 
-#: includes/options-page.php:333
+#: includes/options-page.php:349
 msgid "Bottom Right Corner (default)"
 msgstr "Apakšējais labais stūris (noklusējums)"
 
-#: includes/options-page.php:338
+#: includes/options-page.php:354
 msgid "Bottom Left Corner"
 msgstr "Apakšējais kreisais stūris"
 
-#: includes/options-page.php:342
+#: includes/options-page.php:358
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Iestatiet, kur vēlaties, lai priekšgala pieejamības pārbaudītājs parādītos lapā."
 
-#: includes/options-page.php:382
+#: includes/options-page.php:398
 msgid "When Required"
 msgstr "Kad nepieciešams"
 
-#: includes/options-page.php:387
+#: includes/options-page.php:403
 msgid "Always"
 msgstr "Vienmēr"
 
-#: includes/options-page.php:395
+#: includes/options-page.php:411
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Vai Accessibility Checker vajadzētu prasīt vienkāršotu kopsavilkumu tikai tad, kad jūsu raksta vai lapas lasīšanas līmenis ir virs 9. klases, vienmēr prasīt to neatkarīgi no lasīšanas līmeņa vai nekad neprasīt to neatkarīgi no lasīšanas līmeņa?"
 
-#: includes/options-page.php:446
+#: includes/options-page.php:462
 msgid "To check content other than posts and pages, please "
 msgstr "Lai pārbaudītu citu saturu, nevis ziņas un lapas, lūdzu "
 
-#: includes/options-page.php:449
+#: includes/options-page.php:465
 msgid " (opens in a new window)"
 msgstr " (atveras jaunā logā)"
 
-#: includes/options-page.php:454
+#: includes/options-page.php:470
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Izvēlieties, kuri ziņu veidi jāpārbauda skenēšanas laikā. Lūdzu, ņemiet vērā, ka iepriekš atlasīta ziņu veida noņemšana noņems tā skenēto informāciju un visus pielāgotos ignorētos brīdinājumus, kas ir iestatīti."
 
-#: includes/options-page.php:592
+#: includes/options-page.php:608
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Izdzēst visus Accessibility Checker datus, kad spraudnis tiek atinstalēts."
 
@@ -1321,368 +1351,390 @@ msgid "Image Missing Alternative Text"
 msgstr "Attēlam trūkst alternatīvā teksta"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
-#: includes/rules.php:27
+#: includes/rules.php:28
+#, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "Attēla alternatīvā teksta trūkuma kļūda nozīmē, ka jūsu attēlam vispār nav alt atribūta (%1$s) attēla tagā (%2$s). Lai labotu attēla alternatīvā teksta trūkuma kļūdu, jums būs jāpievieno attēlam alt tags ar atbilstošu tekstu, kas apraksta attēla nozīmi lapā. Ja attēls ir dekoratīvs, alt atribūts var būt tukšs, bet HTML %1$s tagam joprojām jābūt klātesošam."
 
-#: includes/rules.php:34
+#: includes/rules.php:35
 msgid "Image Empty Alternative Text"
 msgstr "Attēlam tukšs alternatīvais teksts"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:40
+#: includes/rules.php:42
+#, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "Attēla tukša alternatīvā teksta brīdinājums parādās, ja jums ir attēls ar alt atribūtu (%s), kas ir tukšs. Alternatīvais teksts pastāsta cilvēkiem, kuri nevar redzēt, kas attēlā ir, un pievieno papildu kontekstu ziņai vai lapai. Alternatīvajam tekstam ir pareizi būt tukšam tikai tad, ja attēls ir tīri dekoratīvs, piemēram, robeža vai dekoratīva ikona. Lai labotu attēla tukša alternatīvā teksta brīdinājumu, jums jānosaka, vai attēls ir dekoratīvs vai pievieno kaut ko nozīmīgu lapai. Ja tas nav dekoratīvs, jums jāpievieno atbilstošs alternatīvais teksts, lai aprakstītu attēla nozīmi. Ja attēls ir dekoratīvs, tad jūs atstātu alternatīvo tekstu tukšu un “Ignorētu” brīdinājumu."
 
-#: includes/rules.php:46
+#: includes/rules.php:48
 msgid "Low-quality Alternative Text"
 msgstr "Zemas kvalitātes alternatīvais teksts"
 
-#: includes/rules.php:50
+#: includes/rules.php:53
 msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
 msgstr "Brīdinājums par zemas kvalitātes alternatīvo tekstu parādās, kad attēla alternatīvais teksts satur nevajadzīgus atslēgvārdus (piemēram, “attēls” vai “grafika”), faila paplašinājumu (piemēram, .JPG) vai apraksta dekoratīvu attēlu (piemēram, “atstarpe” vai “bultiņa”). Lai novērstu šo brīdinājumu, jums būs jāpārraksta alternatīvais teksts visiem attēliem, kas izraisīja zemas kvalitātes alternatīvā teksta brīdinājumu, nodrošinot, ka alternatīvais teksts ir precīzs, unikāls, kontekstuāli atbilstošs un nesatur liekas vai nevajadzīgas aprakstošās frāzes. Ja attēls ir tīri dekoratīvs, ir pareizi atstāt alternatīvo tekstu tukšu."
 
-#: includes/rules.php:54
+#: includes/rules.php:57
 msgid "Linked Image Missing Alternative Text"
 msgstr "Saites attēlam trūkst alternatīvā teksta"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:60
+#: includes/rules.php:64
+#, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Saistītā attēla alternatīvā teksta trūkuma kļūda tiek parādīta, ja attēlam, kas ir saistīts ar URL, attēla tagā vispār nav alt atribūta (%s). Saistītiem attēliem jābūt precīzam alternatīvajam tekstam, kas apraksta saiti, lai ekrānlasītāju lietotāji zinātu, uz kurieni norāda saite. Lai novērstu šo kļūdu, attēlam jāpievieno jēgpilns alt teksts. Alt tekstam jāapraksta saites mērķis, nevis attēla izskats."
 
-#: includes/rules.php:66
+#: includes/rules.php:70
 msgid "Linked Image Empty Alternative Text"
 msgstr "Saites attēlam tukšs alternatīvais teksts"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:72
+#: includes/rules.php:77
+#, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Saistītā attēla tukšā alternatīvā teksta kļūda tiek parādīta, ja attēlam, kas ir saistīts ar URL, ir alt atribūts (%s), kurā nav nekā. Saistītiem attēliem jābūt precīzam alternatīvajam tekstam, kas apraksta saiti, lai ekrānlasītāju lietotāji zinātu, uz kurieni norāda saite. Lai novērstu šo kļūdu, attēlam jāpievieno jēgpilns alt teksts. Alt tekstam jāapraksta saites mērķis, nevis attēla izskats."
 
-#: includes/rules.php:78
+#: includes/rules.php:83
 msgid "Duplicate Alternative Text"
 msgstr "Dublēts alternatīvais teksts"
 
-#: includes/rules.php:82
+#: includes/rules.php:88
 msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
 msgstr "Brīdinājumi par dublētu alternatīvo tekstu parādās, kad attēla alternatīvais teksts jūsu ierakstā vai lapā ir identisks tuvumā esošam vai blakus esošam tekstam, ieskaitot attēla nosaukumu vai parakstu. Šis brīdinājums parādās arī tad, ja diviem attēliem lapā ir vienāds alternatīvais teksts. Lai novērstu šo brīdinājumu, jums būs jāmaina viens vai abi elementi, kas izraisīja dublētā alternatīvā teksta brīdinājumu, nodrošinot, ka visiem attēliem ir unikāls alternatīvais teksts un ka jūs neatkārtojat savu alternatīvo tekstu attēlu nosaukumos un parakstos."
 
-#: includes/rules.php:86
+#: includes/rules.php:92
 msgid "Incorrect Heading Order"
 msgstr "Nepareiza virsrakstu secība"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
-#: includes/rules.php:92
+#: includes/rules.php:99
+#, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "Kļūda “Nepareiza virsrakstu secība” nozīmē, ka jūsu virsrakstu struktūra ir izlaidusi vienu līmeni. Piemēram, ja jūsu lapas struktūrā ir 3. Līmeņa virsraksts (%1$s) zem 1. līmeņa virsraksta (%2$s), tiks atzīmēta kļūda “Nepareiza virsrakstu secība”, jo starp H1 un H3 nav %3$s atzīmes. Lai labotu nepareizas virsrakstu secības kļūdas, jums būs vai nu jāmaina nepareizais virsraksta līmenis uz pareizo virsraksta līmeni, vai jāpievieno saturs ar pareizo virsraksta līmeni starp diviem jau esošajiem līmeņiem."
 
-#: includes/rules.php:103
+#: includes/rules.php:110
 msgid "Empty Paragraph Tag"
 msgstr "Tukša rindkopas atzīme"
 
-#: includes/rules.php:107
+#: includes/rules.php:115
 msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
 msgstr "Brīdinājums par tukšu rindkopas atzīmi nozīmē, ka ir rindkopas atzīme, kas nesatur saturu. Ekrānlasītāji var tās izziņot vai tās var radīt neskaidrības lietotājiem. Lai novērstu šo brīdinājumu, noņemiet tukšās rindkopas no lapas. Ja jums nepieciešams pievienot atstarpes starp sadaļām, to vajadzētu darīt, izmantojot atstarpju, malu vai atstarpes bloku."
 
-#: includes/rules.php:111
+#: includes/rules.php:119
 msgid "iframe Missing Title"
 msgstr "iframe trūkst nosaukuma"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
-#: includes/rules.php:117
+#: includes/rules.php:126
+#, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "Iframe Trūkst virsraksta kļūda nozīmē, ka vienam vai vairākiem iframe rāmjiem jūsu ierakstā vai lapā nav pieejams virsraksts, kas apraksta iframe saturu. Iframe virsraksts ir atribūts, ko var pievienot %1$s tagam, lai aprakstītu rāmja saturu cilvēkiem, kuri izmanto palīgtehnoloģijas. Lai novērstu iframe virsraksta trūkumu, jums būs jāpievieno virsraksts vai aria-label atribūts tagam %1$s. Atribūtam precīzi jāapraksta iframe saturs."
 
-#: includes/rules.php:126
+#: includes/rules.php:135
 msgid "Missing Subheadings"
 msgstr "Trūkst apakšvirsrakstu"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
-#: includes/rules.php:132
+#: includes/rules.php:142
+#, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "Brīdinājums par trūkstošajām virsrakstu atzīmēm nozīmē, ka jūsu ierakstā vai lapā nav neviena virsraksta elementa (%1$s–%2$s) ieraksta vai lapas pamatteksta sadaļā, kas var apgrūtināt ekrānlasītāju lietotājiem navigāciju lapas saturā. Lai labotu lapu bez virsrakstiem, jums būs jāpievieno virsrakstu elementi. Minimālajā variantā katrai lapai vajadzētu būt vismaz vienam %1$s tagam, kas parasti ir lapas virsraksts. Pievienojiet papildu apakšvirsrakstus atbilstoši jūsu saturam. Ja esat noteicis, ka virsraksti lapā noteikti nav nepieciešami, tad varat “Ignorēt” brīdinājumu."
 
-#: includes/rules.php:140
+#: includes/rules.php:150
 msgid "Text Justified"
 msgstr "Teksts līdzināts"
 
-#: includes/rules.php:144
+#: includes/rules.php:155
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
 msgstr "Teksta izlīdzināšanas brīdinājums parādās Accessibility Checker, kad teksts ar vairāk nekā 200 rakstzīmēm jūsu rakstā vai lapā ir noformēts ar izlīdzinātu līdzinājumu (text-align:justify). Lai novērstu šo brīdinājumu, noņemiet izlīdzināto noformējumu no norādītajiem teksta elementiem."
 
-#: includes/rules.php:148
+#: includes/rules.php:159
 msgid "Link Opens New Window or Tab"
 msgstr "Saite atver jaunu logu vai cilni"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
-#: includes/rules.php:154
+#: includes/rules.php:166
+#, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "Brīdinājums \"Saite atver jaunu logu vai cilni\" parādās, kad jūsu vietnē ir saite, kas iestatīta, lai atvērtos jaunā cilnē vai logā, kad uz tās noklikšķina. Tiek uzskatīts par labo praksi neatvērt jaunas cilnes vai logus ar saitēm. Ja saites tomēr atver jaunas cilnes vai logus, jābūt vizuālam un audiālam brīdinājumam, kas paziņo, ka saite atvērs jaunu logu vai cilni, lai lietotāji varētu to sagaidīt un zinātu, kā atgriezties pēc saites noklikšķināšanas. Lai novērstu šo brīdinājumu, vai nu mainiet saiti, lai tā neatvērtos jaunā cilnē, vai pārliecinieties, ka saites tekstā ir iekļauts “atver jaunu logu”, un pēc tam “Ignorējiet” brīdinājumu. Lai automātiski pievienotu paziņojumus visām saitēm jūsu vietnē un atceltu visus šos brīdinājumus, instalējiet mūsu bezmaksas %s spraudni."
 
-#: includes/rules.php:155
+#: includes/rules.php:167
 msgid "Accessibility New Window Warnings"
 msgstr "Pieejamības brīdinājumi par jauniem logiem"
 
-#: includes/rules.php:167
+#: includes/rules.php:179
 msgid "Image Map Missing Alternative Text"
 msgstr "Attēla kartei trūkst alternatīvā teksta"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
-#: includes/rules.php:173
+#: includes/rules.php:186
+#, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "Kļūda \"Attēla kartei trūkst alternatīvā teksta\" nozīmē, ka vienam no %1$s elementiem jūsu attēla kartē nav pievienots alternatīvais teksts %2$s atribūtā. Lai novērstu šo kļūdu, jums būs jāpievieno trūkstošais alternatīvais teksts visiem area tagiem, kuriem nav alternatīvā teksta. Alternatīvajam tekstam jāapraksta saitē ietvertā funkcija, nevis obligāti jāapraksta, kā izskatās attiecīgā zona."
 
-#: includes/rules.php:183
+#: includes/rules.php:196
 msgid "Tab Order Modified"
 msgstr "Tabulācijas secība modificēta"
 
 #. translators: %s is <code>tabindex="1"</code>.
-#: includes/rules.php:189
+#: includes/rules.php:203
+#, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "Brīdinājums \"Tabulācijas secība modificēta\" parādās, kad lapas loģiskā tabulācijas secība ir mainīta, pievienojot HTML elementam tabindex atribūtu, kas ir lielāks par 0 (piemēram, %s). Tas var radīt navigācijas problēmas lietotājiem, kuri izmanto tikai tastatūru. Lai atrisinātu brīdinājumu par modificētu tabulācijas secību, jums jāapskata jūsu vietnes priekšplāns lapā vai ierakstā, kur tabulācijas secība ir modificēta, un jāpārbauda, vai modifikācija ir pareiza vai nē. Ja tabulācijas secības modifikācija nerada problēmas, tad varat “Ignorēt” brīdinājumu. Ja modificētā tabulācijas secība izraisa informācijas parādīšanos nepareizā secībā, tad jums jānoņem tabindex atribūts no atzīmētā elementa."
 
-#: includes/rules.php:199
+#: includes/rules.php:213
 msgid "Empty Heading Tag"
 msgstr "Tukšs virsraksta tags"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
-#: includes/rules.php:205
+#: includes/rules.php:220
+#, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "Kļūda \"Tukšs virsraksta tags\" nozīmē, ka jūsu ierakstā vai lapā ir virsraksta tags, kas nesatur saturu. Kodā šī kļūda izskatītos šādi: %s. Lai labotu tukšu virsrakstu, jums būs jāpievieno saturs virsraksta tagam, kas izraisījis kļūdu \"Tukšs virsraksta tags\", vai jānoņem tukšais tags, ja tas nav nepieciešams jūsu lapā."
 
-#: includes/rules.php:211
+#: includes/rules.php:226
 msgid "Empty Link"
 msgstr "Tukša saite"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
-#: includes/rules.php:217
+#: includes/rules.php:233
+#, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "Tukšas saites kļūda nozīmē, ka viena no saitēm tīmekļa lapā ir tukša vai nesatur tekstu, kas apraksta, kur saite ved, ja uz tās noklikšķina. Tas bieži notiek ar saitēm, kas satur tīmekļa fontus, ikonu fontus un SVG, vai kad satura redaktorā nejauši ir izveidota saite. Lai labotu tukšas saites kļūdu, jums jāatrod saite, kas tiek atzīmēta, un jāpievieno tai aprakstošs teksts. Jums būs jāveic viena no šīm darbībām: jāpievieno teksta saturs tukšam %1$s elementam vai, ja jūsu saite satur SVG vai tīmekļa fonta ikonu, jāpaslēpj šis elements ar %2$s un jāpievieno %3$s atribūts %1$s tagam vai ekrānlasītāja teksts. Pievienotajam tekstam vai etiķetei jābūt aprakstošai par to, uz kurieni saite ved, un tai nevajadzētu būt neskaidrai."
 
-#: includes/rules.php:225
+#: includes/rules.php:241
 msgid "Empty Button"
 msgstr "Tukša poga"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
-#: includes/rules.php:231
+#: includes/rules.php:248
+#, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "Tukšas pogas kļūda nozīmē, ka viena no pogām tīmekļa lapā ir tukša vai nesatur tekstu, kas apraksta pogas funkciju. Vai, ja tā ir attēla poga, attēlam, kas atrodas pogā, trūkst alternatīvā teksta. Lai labotu tukšas pogas kļūdu, jums jāatrod poga, kas tiek atzīmēta, un jāpievieno tai aprakstošs teksts. Jums būs jāveic viena no šīm darbībām: jāpievieno teksta saturs tukšam %1$s elementam, jāpievieno vērtības atribūts %2$s, kuram tas trūkst, vai jāpievieno alternatīvais teksts pogas attēlam. Tekstam jābūt aprakstošam par to, kam jūsu poga tiek izmantota, vai darbību, ko poga izraisa."
 
-#: includes/rules.php:238
+#: includes/rules.php:255
 msgid "Image Long Alternative Text"
 msgstr "Attēla garais alternatīvais teksts"
 
-#: includes/rules.php:242
+#: includes/rules.php:260
 msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
 msgstr "Attēla garā alternatīvā teksta brīdinājums parādās, ja alternatīvajā tekstā ir vairāk nekā 100 rakstzīmes. Alternatīvajam tekstam ir jābūt aprakstošam par attēlu, bet kodolīgā veidā, bez pārmērīgas daudzrunības. Lai labotu šo brīdinājumu, jums jāsaīsina alternatīvais teksts jebkuriem attēliem, kas ir atzīmēti, līdz 100 rakstzīmēm vai mazāk. Ja esat nolēmis, ka jūsu alternatīvais teksts ir labs tāds, kāds tas ir, tad “Ignorējiet” brīdinājumu."
 
-#: includes/rules.php:246
+#: includes/rules.php:264
 msgid "ARIA Hidden"
 msgstr "ARIA slēpts"
 
-#: includes/rules.php:250
+#: includes/rules.php:269
 msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
 msgstr "ARIA slēptā brīdinājums parādās, kad saturs jūsu ierakstā vai lapā ir paslēpts, izmantojot atribūtu aria-hidden=“true”. Kad šis atribūts tiek pievienots HTML elementam, ekrānlasītāji to nenolasīs lietotājiem. Dažreiz ir pareizi, ka elements ir paslēpts no ekrānlasītājiem (piemēram, dekoratīvas ikonas gadījumā), bet citreiz tas nav pareizi. Kad redzat šo brīdinājumu, jums jānosaka, vai elementam vajadzētu būt paslēptam no cilvēkiem, kuri ir neredzīgi vai vājredzīgi. Ja tas ir pareizi paslēpts, “Ignorējiet” brīdinājumu. Ja tas ir nepareizi paslēpts un tam vajadzētu būt redzamam, noņemiet atribūtu aria-hidden=“true”, lai atrisinātu brīdinājumu."
 
-#: includes/rules.php:257
+#: includes/rules.php:276
 msgid "Empty Table Header"
 msgstr "Tukša tabulas galvene"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
-#: includes/rules.php:263
+#: includes/rules.php:283
+#, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "Tukšas tabulas galvenes kļūda nozīmē, ka viena no tabulas galvenēm jūsu ierakstā vai lapā nesatur nekādu tekstu. Tas nozīmē, ka %1$s elements ir klātesošs, bet izskatās šādi %2$s bez nekā starp atverošo un aizverošo tagu. Lai labotu tukšu tabulas galveni, jums jāatrod pareizais HTML elements (%1$s) un jāpievieno tam teksts, kas apraksta rindu vai kolonnu, uz kuru tas attiecas."
 
-#: includes/rules.php:270
+#: includes/rules.php:290
 msgid "Link to MS Office File"
 msgstr "Saite uz MS Office failu"
 
-#: includes/rules.php:274
+#: includes/rules.php:295
 msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Brīdinājums par saiti uz MS Office failu nozīmē, ka viena vai vairākas saites jūsu lapā vai ierakstā ved uz failu ar kādu no šiem faila paplašinājumiem: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps vai .ppsx. Šis brīdinājums parādās, kad ir klātesošs MS Office fails, kā atgādinājums manuāli pārbaudīt jūsu Word dokumentus, PowerPoint prezentācijas un Excel izklājlapas uz pieejamību un apstiprināt, ka tie atbilst visām attiecīgajām WCAG vadlīnijām. Lai atrisinātu brīdinājumu par saiti uz MS Office failu, jums nepieciešams: (1) pārliecināties, ka ir klātesoša tieša saite uz faila skatīšanu vai lejupielādi, ja izmantojat spraudni, lai iegultu to lapā; (2) pārliecināties, ka saite uz dokumentu brīdina lietotājus, ka tā ir saite uz dokumentu, parādot konkrēto faila paplašinājumu saites enkurā; un (3) pārbaudīt un novērst pieejamības kļūdas jūsu MS Office failā. Pēc tam, kad esat noteicis, ka jūsu fails ir pilnībā pieejams, jūs varat droši “Ignorēt” brīdinājumu."
 
-#: includes/rules.php:278
+#: includes/rules.php:299
 msgid "Link to PDF"
 msgstr "Saite uz PDF"
 
-#: includes/rules.php:282
+#: includes/rules.php:304
 msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Brīdinājums par saiti uz PDF nozīmē, ka viena vai vairākas saites jūsu lapā vai ierakstā ved uz PDF failu. Šis brīdinājums ir atgādinājums manuāli pārbaudīt saistītā PDF pieejamību un apstiprināt, ka tas atbilst visām attiecīgajām WCAG vadlīnijām. Lai atrisinātu brīdinājumu par saiti uz PDF, jums nepieciešams: (1) nodrošināt, ka ir pieejama tieša saite uz dokumenta skatīšanu vai lejupielādi, ja izmantojat spraudni, lai to iegultu lapā; (2) nodrošināt, ka saite uz dokumentu brīdina lietotājus, ka tā ir saite uz dokumentu, parādot konkrēto faila paplašinājumu saites enkurā; un (3) pārbaudīt un novērst sava dokumenta pieejamības kļūdas. Pēc tam, kad esat noteicis, ka jūsu fails ir pilnībā pieejams, varat droši “Ignorēt” brīdinājumu."
 
-#: includes/rules.php:286
+#: includes/rules.php:308
 msgid "Link to Non-HTML File"
 msgstr "Saite uz ne-HTML failu"
 
-#: includes/rules.php:290
+#: includes/rules.php:313
 msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Brīdinājums par saiti uz ne-HTML dokumentu nozīmē, ka viena vai vairākas saites jūsu lapā vai ierakstā ved uz failu ar kādu no šiem failu paplašinājumiem: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages vai .key. Šis brīdinājums ir atgādinājums manuāli pārbaudīt saistītā dokumenta pieejamību un apstiprināt, ka tas atbilst visām attiecīgajām WCAG vadlīnijām. Lai atrisinātu brīdinājumu par saiti uz ne-HTML dokumentu, jums nepieciešams: (1) nodrošināt, ka ir pieejama tieša saite uz dokumenta skatīšanu vai lejupielādi, ja izmantojat spraudni, lai to iegultu lapā; (2) nodrošināt, ka saite uz dokumentu brīdina lietotājus, ka tā ir saite uz dokumentu, parādot konkrēto faila paplašinājumu saites enkurā; un (3) pārbaudīt un novērst sava dokumenta pieejamības kļūdas. Pēc tam, kad esat noteicis, ka jūsu fails ir pilnībā pieejams, varat droši “Ignorēt” brīdinājumu."
 
-#: includes/rules.php:294
+#: includes/rules.php:317
 msgid "Long Description Invalid"
 msgstr "Nederīgs garais apraksts"
 
 #. translators: %s is <code>longdesc=""</code>.
-#: includes/rules.php:300
+#: includes/rules.php:324
+#, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "Kļūda \"Nederīgs garais apraksts\" nozīmē, ka attēla garā apraksta atribūtam (%s) nav atbilstošas URL adreses, faila nosaukuma vai faila paplašinājuma. Tas var arī nozīmēt, ka garais apraksts nav URL, vai tas ir atstāts tukšs. HTML5, pārlūkprogrammas un visi ekrāna lasītāji pilnībā neatbalsta longdesc atribūtu. Šī atbalsta trūkuma dēļ labākais risinājums šai kļūdai ir pilnībā noņemt longdesc no jūsu attēla taga."
 
-#: includes/rules.php:306
+#: includes/rules.php:330
 msgid "Missing Form Label"
 msgstr "Trūkst veidlapas etiķetes"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
-#: includes/rules.php:312
+#: includes/rules.php:337
+#, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "Kļūda \"Trūkst veidlapas etiķetes\" tiek izraisīta, kad jūsu veidlapā ir %1$s (veidlapas lauks), bet tas nav saistīts ar %2$s elementu. Tas varētu nozīmēt, ka etiķete ir klātesoša, bet tai trūkst %3$s atribūta, lai to savienotu ar attiecīgo lauku, vai arī etiķetes vispār nav un ir tikai %1$s tags. Lai labotu kļūdas par trūkstošām veidlapas etiķetēm, jums būs jānosaka, kā lauks un veidlapa tika izveidoti, un pēc tam jāpievieno lauka etiķetes vai pareizs %3$s atribūts esošajām etiķetēm, kas nav savienotas ar lauku."
 
-#: includes/rules.php:325
+#: includes/rules.php:350
 msgid "Ambiguous Anchor Text"
 msgstr "Neskaidrs enkura teksts"
 
-#: includes/rules.php:329
+#: includes/rules.php:355
 msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
 msgstr "Kļūdas par neskaidru enkura tekstu parādās, kad ir saistīts teksts, kuram nav nozīmes ārpus tā apkārtējā satura. Biežākie šādu piemēru gadījumi ir frāžu saistīšana, piemēram, “noklikšķiniet šeit” vai “uzziniet vairāk.” Lai novērstu šo kļūdu, mainiet saites tekstu, lai tas būtu mazāk vispārīgs un tam būtu nozīme, ja to dzirdētu atsevišķi."
 
-#: includes/rules.php:333
+#: includes/rules.php:359
 msgid "Underlined Text"
 msgstr "Pasvītrots teksts"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
-#: includes/rules.php:339
+#: includes/rules.php:366
+#, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "Brīdinājums par pasvītrotu tekstu parādās, ja jebkurš teksts jūsu lapā ir ietīts HTML pasvītrojuma tagā (%1$s). Tiešsaistes vidē pasvītrots teksts parasti tiek izmantots, lai norādītu uz saistīto tekstu, un nav uzskatāms par labu praksi pasvītrot tekstu tikai uzsvara nolūkos. Lai labotu pasvītrotu tekstu, jums būs jānoņem %1$s elements no teksta vai CSS stili, kas to padara pasvītrotu. Mēģiniet izmantot citus stilizēšanas veidus, piemēram, slīprakstu, krāsainu tekstu vai treknrakstu, lai uzsvērtu vai atšķirtu vārdus vai frāzes."
 
-#: includes/rules.php:345
+#: includes/rules.php:372
 msgid "Broken Skip or Anchor Link"
 msgstr "Salauzta izlaišanas vai enkura saite"
 
-#: includes/rules.php:349
+#: includes/rules.php:377
 msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
 msgstr "Enkura saite, ko dažreiz sauc par pārlēkšanas saiti, ir saite, kas, noklikšķinot uz tās, nevis atver jaunu lapu vai URL, bet gan pārlec vai ritina uz citu sadaļu tajā pašā lapā. Šīs saites ved uz elementu, kas sākas ar '#' zīmi, nevis pilnu URL. Piemēram, jūs varētu ritināt kādu uz jūsu mājas lapas sadaļu \"Par mums\", izveidojot saiti uz #about. Kļūdas \"Bojāta pārlēkšanas vai enkura saite\" parādās, kad ir saite, kas ved uz citu sadaļu tajā pašā lapā, bet lapā nav elementa ar norādīto id. Šī kļūda parādīsies arī tad, ja jūs veidojat saiti tikai uz '#'. Lai atrisinātu šo kļūdu, manuāli pārbaudiet saiti, lai apstiprinātu, ka tā darbojas, un tad vai nu salabojiet to, vai “Ignorējiet” kļūdu atbilstoši situācijai."
 
-#: includes/rules.php:353
+#: includes/rules.php:381
 msgid "Missing Table Header"
 msgstr "Trūkst tabulas galvene"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
-#: includes/rules.php:359
+#: includes/rules.php:388
+#, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "Kļūda \"Trūkst tabulas galvene\" nozīmē, ka vienā no jūsu tabulām ir dati (informācija, kas atrodas %1$s tagā), kuriem nav atbilstoša galvenes (%2$s) taga. Apskatot tabulas HTML kodu, rindā būs vairāk %1$s elementu nekā %2$s elementu tabulā. Lai labotu trūkstošo tabulas galveni, jums jāatrod koda daļa, kurā ir mazāk %2$s elementu, nekā vajadzētu būt datu rindu vai kolonnu skaitam, un jāpievieno viens vai vairāki papildu %2$s elementi, kas satur tekstu, kurš apraksta datus šajā rindā vai kolonnā."
 
-#: includes/rules.php:366
+#: includes/rules.php:395
 msgid "Duplicate Form Label"
 msgstr "Dublēta veidlapas etiķete"
 
-#: includes/rules.php:370
+#: includes/rules.php:400
 msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
 msgstr "Kļūdas \"Dublēta veidlapas etiķete\" parādās, kad vienam veidlapas laukam ir piesaistītas vairākas etiķetes. Ja ir pārāk daudz veidlapas etiķešu, ekrāna lasītājs var nespēt veiksmīgi nolasīt veidlapas laukus, lai palīdzētu vājredzīgam lietotājam pārvietoties un aizpildīt veidlapu. Lai labotu dublētu veidlapas etiķešu kļūdas, jums jānosaka, kā tika izveidots lauks un veidlapa, un pēc tam jāpārliecinās, ka katram laukam ir piesaistīta tikai viena etiķete."
 
-#: includes/rules.php:375
+#: includes/rules.php:405
 msgid "Text Too Small"
 msgstr "Pārāk mazs teksts"
 
-#: includes/rules.php:379
+#: includes/rules.php:410
 msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
 msgstr "Brīdinājums \"Pārāk mazs teksts\" parādās, kad jūsu vietnē ir teksts, kas ir mazāks par 10px izmērā. Šis brīdinājums norāda, ka jums, iespējams, vajadzētu pārdomāt fonta izmēru un padarīt to lielāku, lai to varētu vieglāk izlasīt bez nepieciešamības lietotājam tuvināt pārlūkprogrammā. Lai labotu pārāk mazu tekstu, jums jānodrošina, ka visi teksta elementi jūsu vietnē ir vismaz 10 punktu lieli."
 
-#: includes/rules.php:383
+#: includes/rules.php:414
 msgid "Possible Heading"
 msgstr "Iespējama virsraksta teksts"
 
-#: includes/rules.php:387
+#: includes/rules.php:419
 msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
 msgstr "Brīdinājums \"Iespējama virsraksta teksts\" parādās, kad lapā ir teksts, kas izskatās pēc virsraksta, bet nav kodēts ar atbilstošiem virsraksta tagiem. Šis brīdinājums parādās, ja ir īsas frāzes vai teksta virknes, kas ir īsākas par 50 rakstzīmēm un ir formatētas tā, ka varētu tikt izmantotas kā virsraksti (tās ir 20 pikseļu vai lielākas, vai ir 16 pikseļu vai lielākas un treknrakstā un/vai slīprakstā). Lai labotu brīdinājumu \"Iespējama virsraksta teksts\", jums jānosaka, vai atzīmētais teksts patiešām ir paredzēts kā virsraksts. Ja tā ir, jums tas jāmaina no rindkopas uz atbilstoša līmeņa virsrakstu. Ja tas nav paredzēts kā virsraksts, tad jūs varat droši “Ignorēt” brīdinājumu."
 
-#: includes/rules.php:391
+#: includes/rules.php:423
 msgid "Blinking or Scrolling Content"
 msgstr "Mirgojošs vai ritinošs saturs"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
-#: includes/rules.php:397
+#: includes/rules.php:430
+#, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Kļūdas \"Mirgojošs vai ritinošs saturs\" parādās, kad elementiem jūsu vietnē ir piemērota mirgošanas vai ritināšanas funkcija, izmantojot CSS vai HTML. Konkrēti, šādi elementi radīs šo kļūdu: HTML tagi %1$s vai %2$s, vai CSS %3$s. Lai atrisinātu šo kļūdu, noņemiet HTML tagus vai CSS, kas izraisa satura mirgošanu."
 
-#: includes/rules.php:406
+#: includes/rules.php:439
 msgid "Insufficient Color Contrast"
 msgstr "Nepietiekams krāsu kontrasts"
 
-#: includes/rules.php:410
+#: includes/rules.php:444
 msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
 msgstr "Nepietiekama krāsu kontrasta kļūdas nozīmē, ka esam konstatējuši, ka viens vai vairāki krāsu salikumi jūsu ierakstā vai lapā neatbilst minimālajam krāsu kontrasta koeficientam 4,5:1. Atkarībā no tā, kā jūsu vietne ir veidota, šai kļūdai var būt “viltus pozitīvi” rezultāti, jo dažas krāsas var atrasties dažādos HTML slāņos lapā. Lai labotu nepietiekama krāsu kontrasta kļūdu, jums jānodrošina, ka atzīmētie elementi atbilst minimālajam nepieciešamajam koeficientam 4,5:1. Lai to izdarītu, jums jāatrod sava priekšplāna un fona krāsas heksadecimālie kodi un jāpārbauda tie krāsu kontrasta pārbaudītājā. Ja šo krāsu kodu attiecība ir 4,5:1 vai lielāka, jūs varat šo kļūdu “Ignorēt”. Ja krāsu kodu attiecība nav vismaz 4,5:1, jums būs jāveic korekcijas savās krāsās."
 
-#: includes/rules.php:414
+#: includes/rules.php:448
 msgid "Missing Transcript"
 msgstr "Trūkst transkripcijas"
 
-#: includes/rules.php:418
+#: includes/rules.php:453
 msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
 msgstr "Trūkstošas transkripcijas kļūda nozīmē, ka jūsu vietnē ir audio vai video klips, kuram nav transkripcijas, vai arī transkripcija ir, bet tā nav apzīmēta kā transkripcija vai atrodas tālāk nekā 25 rakstzīmes no iegultā vai saistītā medija. Lai labotu trūkstošas transkripcijas kļūdu, jums būs jāizveido transkripcija visiem video vai audio klipiem, kuriem atzīmēts, ka trūkst transkripcijas. Kad esat izveidojis transkripciju, varat vai nu pievienot transkripcijas saturu tieši savā ierakstā vai lapā, vai arī saistīt uz transkripciju, ja to iekļaujat kā lejupielādējamu dokumentu vai PDF failu. Jums nepārprotami jāiekļauj vārds “transkripcija” virsrakstā pirms transkripcijas lapā vai saitē uz jūsu failu, un tam jābūt 25 rakstzīmju attālumā no audio vai video iegulšanas vai saites."
 
-#: includes/rules.php:422
+#: includes/rules.php:457
 msgid "Broken ARIA Reference"
 msgstr "Bojāta ARIA atsauce"
 
-#: includes/rules.php:426
+#: includes/rules.php:462
 msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
 msgstr "Bojātas ARIA atsauces kļūdas parādās, ja lapā vai ierakstā ir aria-labeledby vai aria-describedby elements, bet tā atsauces mērķis neeksistē. Tas nozīmē, ka elementam, uz kuru atsaucas konkrētais ARIA atribūts, ko izmantojat, vai nu nav pareiza etiķete vai aprakstītājs, vai arī tas nav klātesošs lapā. Lai labotu bojātu ARIA atsauci, jums būs jāatrod ARIA elementi, kas tiek atzīmēti, un jāpārliecinās, ka to atsauces mērķi ir klātesoši un pareizi marķēti."
 
-#: includes/rules.php:431
+#: includes/rules.php:467
 msgid "Missing Language Declaration"
 msgstr "Trūkst valodas deklarācijas"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
-#: includes/rules.php:437
+#: includes/rules.php:474
+#, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "Valodas deklarācija ir HTML atribūts, kas norāda lapas vai ieraksta satura noklusējuma valodu. Valodas deklarācijām jābūt iekodētām jūsu vietnes tēmā un jāparādās automātiski vietnes galvenē. Trūkstošas valodas deklarācijas kļūda parādās, ja %1$s tagam lapā nav %2$s vai %3$s atribūta, vai arī viens no šiem atribūtiem ir klātesošs, bet ir tukšs. Lai labotu trūkstošas valodas deklarācijas kļūdu, jums būs jārediģē savas tēmas faili, lai pievienotu trūkstošo valodas atribūtu HTML tagam pašā vietnes galvenes augšā. Ja izmantojat tēmu, kas saņem atjauninājumus, tad jums būs jāveic izmaiņas bērna tēmā, lai nodrošinātu, ka labojums netiek pārrakstīts, kad nākamreiz atjaunināsiet savu tēmu."
 
-#: includes/rules.php:451
+#: includes/rules.php:488
 msgid "Image Animated GIF"
 msgstr "Attēla animētais GIF"
 
-#: includes/rules.php:455
+#: includes/rules.php:493
 msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
 msgstr "Attēla animētā GIF brīdinājumi parādās, kad jūsu ierakstā vai lapā ir animēts GIF. Šis brīdinājums ir atgādinājums manuāli pārskatīt visus animētos GIF jūsu vietnē to pieejamības dēļ un/vai pārdomāt animēto GIF izmantošanu, aizstājot tos ar statiskiem attēliem vai video. Lai atrisinātu šo brīdinājumu, jums jāpārskata visi klātesošie GIF, lai pārliecinātos, ka tie atbilst visām piemērojamajām pieejamības vadlīnijām, un tad vai nu “Ignorēt” brīdinājumu, vai noņemt GIF no jūsu lapas vai ieraksta, ja tas nav pieejams."
 
-#: includes/rules.php:460
+#: includes/rules.php:498
 msgid "A Video is Present"
 msgstr "Ir klātesošs video"
 
-#: includes/rules.php:464
+#: includes/rules.php:503
 msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
 msgstr "Tā kā video bieži satur pieejamības problēmas, no kurām daudzas var identificēt tikai cilvēks, brīdinājums “Video ir klātesošs” parādās katru reizi, kad ierakstā vai lapā tiek konstatēts video, kā atgādinājums, ka jums manuāli jāpārbauda video pieejamība. Lai atrisinātu šo brīdinājumu, jums jāapmeklē jūsu vietnes priekšējā daļa un jāapstiprina, ka brīdinājumā minētais video ir pieejams. Kad esat pilnībā pārbaudījis video pieejamību, jums jānovērš visas kļūdas, kas var būt, un pēc tam varat “Ignorēt” brīdinājumu, lai atzīmētu to kā pabeigtu."
 
-#: includes/rules.php:468
+#: includes/rules.php:507
 msgid "A Slider is Present"
 msgstr "Slīdnis ir klātesošs"
 
-#: includes/rules.php:472
+#: includes/rules.php:512
 msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
 msgstr "Tā kā slīdņi bieži satur pieejamības problēmas, no kurām daudzas var identificēt tikai cilvēks, brīdinājums “Slīdnis ir klātesošs” parādās katru reizi, kad ierakstā vai lapā tiek konstatēts slīdnis, kā atgādinājums, ka jums manuāli jāpārbauda jūsu slīdņa pieejamība. Lai atrisinātu šo brīdinājumu, jums jāapmeklē jūsu vietnes priekšējā daļa un jāapstiprina, ka visi slīdņi lapā ir pieejami. Kad esat pilnībā pārbaudījis savus slīdņus pieejamībai, jums jānovērš visas kļūdas, kas var būt, un pēc tam varat “Ignorēt” brīdinājumu, lai atzīmētu to kā pabeigtu."
 
-#: includes/rules.php:476
+#: includes/rules.php:516
 msgid "Missing Title"
 msgstr "Trūkst virsraksta"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
-#: includes/rules.php:482
+#: includes/rules.php:523
+#, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "Kļūda \"Trūkst nosaukuma\" nozīmē, ka jūsu ziņojumam vai lapai nav nosaukuma elementa (%1$s vai %2$s). Tas var notikt, ja tēmai neizdodas pievienot nosaukuma tagu vai ja WordPress rediģēšanas ekrānā ir atstāts tukšs amata vai lapas nosaukuma lauks. Lai salabotu lapu bez virsrakstiem, jums būs jāpievieno virsraksta elementi. Vispirms noskaidrojiet, vai virsraksta nav tāpēc, ka lapas vai amata nosaukuma lauks redaktorā ir atstāts tukšs. Ja tā, aizpildiet to. Ja virsraksts ir aizpildīts un redzams aizmugurē, tad ir jārediģē kods jūsu tīmekļa lapā, lai iekļautu %1$s tagu vai %2$s meta tagu."
 
-#: includes/rules.php:494
+#: includes/rules.php:535
 msgid "Improper Use of Link"
 msgstr "Nepareiza saites izmantošana"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
-#: includes/rules.php:500
+#: includes/rules.php:542
+#, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "Ja ir saites, kurām nav atribūta %1$s vai kuras ir saistītas tikai ar %2$s, bet tām nav %3$s, tiek parādīta kļūda Nepareiza saites izmantošana. Saites jāizmanto, lai novirzītu cilvēkus uz citām vietnes daļām. Jebkurai citai funkcijai, kas izraisa darbību, jābūt pogai. Lai novērstu šo kļūdu, jums ir jāpārkodē saite, lai izmantotu %4$s tagu (vēlams), vai esošajam %6$s tagam jāpievieno %5$s. Ja elements ir pārslēgšanas poga (piemēram, akordeons), ir nepieciešami papildu ARIA atribūti."
 
-#: includes/rules.php:511
+#: includes/rules.php:553
 msgid "Zooming and Scaling Disabled"
 msgstr "Tālummaiņa un mērogošana atspējota"
 
-#: includes/rules.php:515
+#: includes/rules.php:558
 msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
 msgstr "Tālummaiņa ir atspējota, izmantojot viewport meta tagu, kas ietver `user-scalable=no` vai `maximum-scale` vērtību, kas mazāka par 2. Tas ierobežo lietotājus ar redzes traucējumiem, kuri vēlas palielināt teksta izmēru, pietuvināt lapu vai izmanto palielinātāju."
 
@@ -1720,62 +1772,62 @@ msgid "Clear Issues"
 msgstr "Notīrīt problēmas"
 
 #: partials/pro-callout.php:13
-#: partials/welcome-page.php:196
+#: partials/welcome-page.php:199
 msgid "Equalize Digital Logo"
 msgstr "Equalize Digital logotips"
 
 #: partials/pro-callout.php:16
-#: partials/welcome-page.php:197
+#: partials/welcome-page.php:200
 msgid "Upgrade to Accessibility Checker Pro"
 msgstr "Jauniniet uz Accessibility Checker Pro"
 
 #: partials/pro-callout.php:20
-#: partials/welcome-page.php:200
+#: partials/welcome-page.php:203
 msgid "Scan all post types"
 msgstr "Skenēt visus ierakstu veidus"
 
 #: partials/pro-callout.php:21
-#: partials/welcome-page.php:201
+#: partials/welcome-page.php:204
 msgid "Admin columns to see accessibility status at a glance"
 msgstr "Administratora kolonnas, lai ātri pārskatītu pieejamības statusu"
 
 #: partials/pro-callout.php:22
-#: partials/welcome-page.php:202
+#: partials/welcome-page.php:205
 msgid "Centralized list of all open issues"
 msgstr "Centralizēts saraksts ar visām atklātajām problēmām"
 
 #: partials/pro-callout.php:23
-#: partials/welcome-page.php:203
+#: partials/welcome-page.php:206
 msgid "Ignore log"
 msgstr "Ignorēšanas žurnāls"
 
 #: partials/pro-callout.php:24
-#: partials/welcome-page.php:204
+#: partials/welcome-page.php:207
 msgid "Rename simplified summary"
 msgstr "Pārdēvēt vienkāršoto kopsavilkumu"
 
 #: partials/pro-callout.php:25
-#: partials/welcome-page.php:205
+#: partials/welcome-page.php:208
 msgid "User restrictions on ignoring issues"
 msgstr "Lietotāju ierobežojumi problēmu ignorēšanai"
 
 #: partials/pro-callout.php:26
-#: partials/welcome-page.php:206
+#: partials/welcome-page.php:209
 msgid "Email support"
 msgstr "E-pasta atbalsts"
 
 #: partials/pro-callout.php:27
-#: partials/welcome-page.php:207
+#: partials/welcome-page.php:210
 msgid "...and more"
 msgstr "...un vēl vairāk"
 
-#: partials/pro-callout.php:36
-#: partials/welcome-page.php:212
+#: partials/pro-callout.php:45
+#: partials/welcome-page.php:215
 msgid "Get Accessibility Checker Pro"
 msgstr "Iegūstiet Accessibility Checker Pro"
 
-#: partials/pro-callout.php:46
-#: partials/welcome-page.php:220
+#: partials/pro-callout.php:55
+#: partials/welcome-page.php:223
 msgid "Or activate your license key here."
 msgstr "Vai aktivizējiet savu licences atslēgu šeit."
 
@@ -1801,6 +1853,7 @@ msgstr "Izpildiet šīs darbības, lai sāktu pārbaudīt savu saturu:"
 
 #. translators: %s: path to settings page.
 #: partials/welcome-page.php:57
+#, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "<a href=\"%s\">Iestatījumu lapā</a> izvēlieties, kurus ierakstu veidus vēlaties skenēt."
 
@@ -1852,7 +1905,7 @@ msgstr "Kāpēc mēs sakām 100% izturētu testu, nevis 100% pieejams?"
 #: partials/welcome-page.php:109
 #: partials/welcome-page.php:114
 #: partials/welcome-page.php:120
-#: partials/welcome-page.php:213
+#: partials/welcome-page.php:216
 msgid "(opens in a new window)"
 msgstr "(atveras jaunā logā)"
 
@@ -1924,19 +1977,19 @@ msgstr "Atvērtā Q&A Zoom katru otro nedēļu, lai palīdzētu jums uzlabot sav
 msgid "Included in Small Business and Agency plans"
 msgstr "Iekļauts Mazo uzņēmumu un Aģentūru plānos"
 
-#: partials/welcome-page.php:165
+#: partials/welcome-page.php:166
 msgid "Register for Office Hours"
 msgstr "Reģistrēties pieņemšanas laikiem"
 
-#: partials/welcome-page.php:170
+#: partials/welcome-page.php:172
 msgid "Auditing and Remediation"
 msgstr "Audits un novēršana"
 
-#: partials/welcome-page.php:172
+#: partials/welcome-page.php:174
 msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
 msgstr "Saņemiet palīdzību, lai padarītu savu tīmekļa vietni pieejamu. Ekspertu audits, lietotāju testēšana un izstrādātāju atbalsts. Pieejamas atbilstības vēstules."
 
-#: partials/welcome-page.php:176
+#: partials/welcome-page.php:178
 msgid "Get Remediation Help"
 msgstr "Saņemt palīdzību novēršanā"
 
@@ -1947,6 +2000,7 @@ msgstr "Saglabā..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Iestatījumi ir veiksmīgi saglabāti. Jums jā%sapmeklē redaktors%s un jāsaglabā ieraksts, lai atkārtoti pārbaudītu un noņemtu labotās problēmas no Accessibility Checker ziņojumiem."
 
