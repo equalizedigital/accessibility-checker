@@ -19,6 +19,7 @@ class AccessibilityCheckerHighlight {
 		};
 
 		this.settings = { ...defaultSettings, ...settings };
+		this._scanAttempted = false;
 
 		this.highlightPanel = this.addHighlightPanel();
 		this.nextButton = document.querySelector( '#edac-highlight-next' );
