@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Onemogo\u010di sloge strani"
             ],
+            "An error occurred when loading the issues.": [
+                "Pri nalaganju te\u017eav je pri\u0161lo do napake."
+            ],
             "Show Code": [
                 "Prika\u017ei kodo"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "zaznanih."
+            ],
+            "Scanner function not found.": [
+                "Funkcija pregledovalnika ni najdena."
+            ],
+            "Scanning...": [
+                "Pregledovanje..."
+            ],
+            "No violations found, skipping save.": [
+                "Ni najdenih kr\u0161itev, preskakujem shranjevanje."
+            ],
+            "Missing postId or nonce.": [
+                "Manjka postId ali nonce."
+            ],
+            "Accessibility scan error.": [
+                "Napaka pri pregledu dostopnosti."
+            ],
+            "Error saving scan results.": [
+                "Napaka pri shranjevanju rezultatov pregleda."
             ]
         }
     }

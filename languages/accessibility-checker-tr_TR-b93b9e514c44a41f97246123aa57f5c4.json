@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Sayfa stillerini devre d\u0131\u015f\u0131 b\u0131rak"
             ],
+            "An error occurred when loading the issues.": [
+                "Sorunlar y\u00fcklenirken bir hata olu\u015ftu."
+            ],
             "Show Code": [
                 "Kodu g\u00f6ster"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "tespit edildi."
+            ],
+            "Scanner function not found.": [
+                "Taray\u0131c\u0131 i\u015flevi bulunamad\u0131."
+            ],
+            "Scanning...": [
+                "Taran\u0131yor..."
+            ],
+            "No violations found, skipping save.": [
+                "Hi\u00e7bir ihlal bulunamad\u0131, kaydetme atlan\u0131yor."
+            ],
+            "Missing postId or nonce.": [
+                "PostId veya nonce eksik."
+            ],
+            "Accessibility scan error.": [
+                "Eri\u015filebilirlik tarama hatas\u0131."
+            ],
+            "Error saving scan results.": [
+                "Tarama sonu\u00e7lar\u0131 kaydedilirken hata olu\u015ftu."
             ]
         }
     }

@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Dezactiveaz\u0103 stilurile paginii"
             ],
+            "An error occurred when loading the issues.": [
+                "A ap\u0103rut o eroare la \u00eenc\u0103rcarea problemelor."
+            ],
             "Show Code": [
                 "Arat\u0103 codul"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "detectate."
+            ],
+            "Scanner function not found.": [
+                "Func\u021bia de scanare nu a fost g\u0103sit\u0103."
+            ],
+            "Scanning...": [
+                "Se scaneaz\u0103..."
+            ],
+            "No violations found, skipping save.": [
+                "Nu s-au g\u0103sit \u00eenc\u0103lc\u0103ri, se omite salvarea."
+            ],
+            "Missing postId or nonce.": [
+                "Lipse\u0219te postId sau nonce."
+            ],
+            "Accessibility scan error.": [
+                "Eroare la scanarea de accesibilitate."
+            ],
+            "Error saving scan results.": [
+                "Eroare la salvarea rezultatelor scan\u0103rii."
             ]
         }
     }

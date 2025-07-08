@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Inaktivera sidans stilar"
             ],
+            "An error occurred when loading the issues.": [
+                "Ett fel uppstod n\u00e4r problemen skulle laddas."
+            ],
             "Show Code": [
                 "Visa kod"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "uppt\u00e4ckta."
+            ],
+            "Scanner function not found.": [
+                "Skanningsfunktionen hittades inte."
+            ],
+            "Scanning...": [
+                "Skannar..."
+            ],
+            "No violations found, skipping save.": [
+                "Inga \u00f6vertr\u00e4delser hittades, hoppar \u00f6ver sparande."
+            ],
+            "Missing postId or nonce.": [
+                "Saknar postId eller nonce."
+            ],
+            "Accessibility scan error.": [
+                "Fel vid tillg\u00e4nglighetsskanning."
+            ],
+            "Error saving scan results.": [
+                "Fel vid sparande av skanningsresultat."
             ]
         }
     }

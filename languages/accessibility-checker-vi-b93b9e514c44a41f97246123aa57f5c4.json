@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "T\u1eaft ki\u1ec3u trang"
             ],
+            "An error occurred when loading the issues.": [
+                "\u0110\u00e3 x\u1ea3y ra l\u1ed7i khi t\u1ea3i c\u00e1c v\u1ea5n \u0111\u1ec1."
+            ],
             "Show Code": [
                 "Hi\u1ec3n th\u1ecb m\u00e3"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "\u0111\u00e3 ph\u00e1t hi\u1ec7n."
+            ],
+            "Scanner function not found.": [
+                "Kh\u00f4ng t\u00ecm th\u1ea5y ch\u1ee9c n\u0103ng qu\u00e9t."
+            ],
+            "Scanning...": [
+                "\u0110ang qu\u00e9t..."
+            ],
+            "No violations found, skipping save.": [
+                "Kh\u00f4ng t\u00ecm th\u1ea5y vi ph\u1ea1m, b\u1ecf qua vi\u1ec7c l\u01b0u."
+            ],
+            "Missing postId or nonce.": [
+                "Thi\u1ebfu postId ho\u1eb7c nonce."
+            ],
+            "Accessibility scan error.": [
+                "L\u1ed7i qu\u00e9t kh\u1ea3 n\u0103ng truy c\u1eadp."
+            ],
+            "Error saving scan results.": [
+                "L\u1ed7i khi l\u01b0u k\u1ebft qu\u1ea3 qu\u00e9t."
             ]
         }
     }

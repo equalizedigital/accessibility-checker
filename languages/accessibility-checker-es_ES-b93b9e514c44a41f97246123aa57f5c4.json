@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Desactivar estilos de p\u00e1gina"
             ],
+            "An error occurred when loading the issues.": [
+                "Se produjo un error al cargar los problemas."
+            ],
             "Show Code": [
                 "Mostrar c\u00f3digo"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "detectados."
+            ],
+            "Scanner function not found.": [
+                "Funci\u00f3n de esc\u00e1ner no encontrada."
+            ],
+            "Scanning...": [
+                "Escaneando..."
+            ],
+            "No violations found, skipping save.": [
+                "No se encontraron infracciones, se omite el guardado."
+            ],
+            "Missing postId or nonce.": [
+                "Falta postId o nonce."
+            ],
+            "Accessibility scan error.": [
+                "Error en el escaneo de accesibilidad."
+            ],
+            "Error saving scan results.": [
+                "Error al guardar los resultados del escaneo."
             ]
         }
     }

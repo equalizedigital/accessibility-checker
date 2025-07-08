@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Nonaktifkan gaya halaman"
             ],
+            "An error occurred when loading the issues.": [
+                "Terjadi kesalahan saat memuat masalah."
+            ],
             "Show Code": [
                 "Tampilkan kode"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "terdeteksi."
+            ],
+            "Scanner function not found.": [
+                "Fungsi pemindai tidak ditemukan."
+            ],
+            "Scanning...": [
+                "Memindai..."
+            ],
+            "No violations found, skipping save.": [
+                "Tidak ditemukan pelanggaran, melewati penyimpanan."
+            ],
+            "Missing postId or nonce.": [
+                "ID pos atau nonce tidak ada."
+            ],
+            "Accessibility scan error.": [
+                "Kesalahan pemindaian aksesibilitas."
+            ],
+            "Error saving scan results.": [
+                "Kesalahan menyimpan hasil pemindaian."
             ]
         }
     }
