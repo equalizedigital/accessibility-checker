@@ -362,7 +362,14 @@ msgstr "Το ερώτημα για το ζήτημα δεν επέστρεψε �
 msgid "Object query returned no results"
 msgstr "Το ερώτημα για το αντικείμενο δεν επέστρεψε αποτελέσματα"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Αναβαθμίστε σε pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Προβολή Τεκμηρίωσης του Accessibility Checker (ανοίγει σε νέο παράθυρο)"
 
