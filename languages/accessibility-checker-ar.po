@@ -362,7 +362,31 @@ msgstr "استعلام المشكلة لم يرجع أي نتائج"
 msgid "Object query returned no results"
 msgstr "استعلام الكائن لم يرجع أي نتائج"
 
-#: admin/class-plugin-action-links.php:44
+#: admin/class-plugin-row-meta.php:49
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "عرض وثائق Accessibility Checker (يفتح في نافذة جديدة)"
+
+#: admin/class-plugin-row-meta.php:50
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "الوثائق"
+
+#: admin/class-plugin-row-meta.php:55
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "الحصول على الدعم لـ Accessibility Checker (يفتح في نافذة جديدة)"
+
+#: admin/class-plugin-row-meta.php:56
+msgid "Support"
+msgstr "الدعم"
+
+#: admin/class-plugin-row-meta.php:61
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "تقييم إضافة Accessibility Checker (يفتح في نافذة جديدة)"
+
+#: admin/class-plugin-row-meta.php:62
+msgid "Rate plugin"
+msgstr "Rate plugin"
+
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "الإعدادات"
@@ -574,10 +598,6 @@ msgstr "المدونة"
 #: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "الوثائق (تفتح في نافذة جديدة)"
-
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "الوثائق"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
