@@ -86,8 +86,11 @@ class Upgrade_Promotion {
 		
 		// Add the domain to allowed hosts before redirecting.
 		add_filter( 'allowed_redirect_hosts', [ $this, 'allow_redirect_host' ] );
-		wp_safe_redirect( $upgrade_url );
-		exit;
+		if ( wp_safe_redirect( $upgrade_url ) ) {
+			exit;
+		}
+		// Fallback if redirect fails.
+		wp_die( esc_html__( 'Unable to redirect to upgrade page.', 'accessibility-checker' ) );
 	}
 	
 	/**
