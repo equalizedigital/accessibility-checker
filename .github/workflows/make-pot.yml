@@ -123,8 +123,27 @@ jobs:
             echo "pot_changed=true" >> $GITHUB_OUTPUT
           fi
 
+      - name: Check if JSON files changed
+        id: json_diff
+        run: |
+          json_changed=false
+          for file in wordpress/wp-content/plugins/accessibility-checker/languages/*.json; do
+            base_file="dist/accessibility-checker/languages/$(basename $file)"
+            if [ -f "$base_file" ]; then
+              diff_output=$(diff <(grep -vE '^#|^$' "$file") <(grep -vE '^#|^$' "$base_file") || true)
+              if [ -n "$diff_output" ]; then
+                json_changed=true
+                break
+              fi
+            else
+              json_changed=true
+              break
+            fi
+          done
+          echo "json_changed=$json_changed" >> $GITHUB_OUTPUT
+
       - name: Comment on PR if POT file changed
-        if: steps.pot_diff.outputs.pot_changed == 'true'
+        if: (steps.pot_diff.outputs.pot_changed == 'true' || steps.json_diff.outputs.json_changed == 'true') && github.event.pull_request
         uses: actions/github-script@v7
         with:
           script: |
@@ -132,11 +151,11 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'The POT file has changed. Please update the POT file in your PR to keep translations up to date.\nThe updated POT file is available in the artifacts of this workflow run: https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + process.env.GITHUB_RUN_ID
+              body: 'The POT or JSON translation files have changed. Please update the translation files in your PR to keep translations up to date.\nThe updated files are available in the artifacts of this workflow run: https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + process.env.GITHUB_RUN_ID
             })
 
       - name: Upload POT and JSON files as artifact
-        if: steps.pot_diff.outputs.pot_changed == 'true'
+        if: steps.pot_diff.outputs.pot_changed == 'true' || steps.json_diff.outputs.json_changed == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: accessibility-checker-i18n
@@ -145,19 +164,19 @@ jobs:
             wordpress/wp-content/plugins/accessibility-checker/languages/*.json
 
       - name: Set up Git for PR
-        if: steps.pot_diff.outputs.pot_changed == 'true'
+        if: steps.pot_diff.outputs.pot_changed == 'true' || steps.json_diff.outputs.json_changed == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Replace root languages folder with built one
-        if: steps.pot_diff.outputs.pot_changed == 'true'
+        if: steps.pot_diff.outputs.pot_changed == 'true' || steps.json_diff.outputs.json_changed == 'true'
         run: |
           rm -rf languages
           cp -r wordpress/wp-content/plugins/accessibility-checker/languages ./languages
 
       - name: Create or Update Pull Request with updated translations
-        if: steps.pot_diff.outputs.pot_changed == 'true'
+        if: steps.pot_diff.outputs.pot_changed == 'true' || steps.json_diff.outputs.json_changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           add-paths: ./languages
