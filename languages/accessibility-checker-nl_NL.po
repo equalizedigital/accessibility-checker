@@ -362,7 +362,31 @@ msgstr "Probleemzoekopdracht leverde geen resultaten op"
 msgid "Object query returned no results"
 msgstr "Objectzoekopdracht leverde geen resultaten op"
 
-#: admin/class-plugin-action-links.php:44
+#: admin/class-plugin-row-meta.php:49
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Bekijk Accessibility Checker-documentatie (opent in nieuw venster)"
+
+#: admin/class-plugin-row-meta.php:50
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Documentatie"
+
+#: admin/class-plugin-row-meta.php:55
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Krijg ondersteuning voor Accessibility Checker (opent in nieuw venster)"
+
+#: admin/class-plugin-row-meta.php:56
+msgid "Support"
+msgstr "Ondersteuning"
+
+#: admin/class-plugin-row-meta.php:61
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Beoordeel Accessibility Checker-plugin (opent in nieuw venster)"
+
+#: admin/class-plugin-row-meta.php:62
+msgid "Rate plugin"
+msgstr "Rate plugin"
+
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "Instellingen"
@@ -574,10 +598,6 @@ msgstr "Blog"
 #: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "Documentatie (opent in een nieuw venster)"
-
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "Documentatie"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"

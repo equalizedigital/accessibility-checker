@@ -362,7 +362,31 @@ msgstr "Probleemi päring ei andnud tulemusi"
 msgid "Object query returned no results"
 msgstr "Objekti päring ei andnud tulemusi"
 
-#: admin/class-plugin-action-links.php:44
+#: admin/class-plugin-row-meta.php:49
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Vaata Accessibility Checkeri dokumentatsiooni (avaneb uues aknas)"
+
+#: admin/class-plugin-row-meta.php:50
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Dokumentatsioon"
+
+#: admin/class-plugin-row-meta.php:55
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Hankige Accessibility Checkeri tugi (avaneb uues aknas)"
+
+#: admin/class-plugin-row-meta.php:56
+msgid "Support"
+msgstr "Tugi"
+
+#: admin/class-plugin-row-meta.php:61
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Hinnake Accessibility Checkeri pluginat (avaneb uues aknas)"
+
+#: admin/class-plugin-row-meta.php:62
+msgid "Rate plugin"
+msgstr "Rate plugin"
+
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "Seaded"
@@ -574,10 +598,6 @@ msgstr "Blogi"
 #: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentatsioon (avaneb uues aknas)"
-
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "Dokumentatsioon"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"

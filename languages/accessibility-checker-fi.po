@@ -362,7 +362,31 @@ msgstr "Ongelmakysely ei tuottanut tuloksia"
 msgid "Object query returned no results"
 msgstr "Objektikysely ei tuottanut tuloksia"
 
-#: admin/class-plugin-action-links.php:44
+#: admin/class-plugin-row-meta.php:49
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Katso Accessibility Checkerin dokumentaatio (avautuu uudessa ikkunassa)"
+
+#: admin/class-plugin-row-meta.php:50
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Dokumentaatio"
+
+#: admin/class-plugin-row-meta.php:55
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Hanki tukea Accessibility Checkerille (avautuu uudessa ikkunassa)"
+
+#: admin/class-plugin-row-meta.php:56
+msgid "Support"
+msgstr "Tuki"
+
+#: admin/class-plugin-row-meta.php:61
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Arvioi Accessibility Checker -lisäosa (avautuu uudessa ikkunassa)"
+
+#: admin/class-plugin-row-meta.php:62
+msgid "Rate plugin"
+msgstr "Rate plugin"
+
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "Asetukset"
@@ -574,10 +598,6 @@ msgstr "Blogi"
 #: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentaatio (avautuu uuteen ikkunaan)"
-
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "Dokumentaatio"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
