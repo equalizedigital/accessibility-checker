@@ -362,6 +362,12 @@ msgstr ""
 msgid "Object query returned no results"
 msgstr ""
 
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
 #: admin/class-plugin-row-meta.php:49
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr ""
