@@ -9,11 +9,15 @@ namespace EDAC\Admin;
 
 /**
  * Plugin Action Links handling class.
+ *
+ * @since 1.27.0
  */
 class Plugin_Action_Links {
 
 	/**
 	 * Initialize hooks.
+	 *
+	 * @since 1.27.0
 	 *
 	 * @return void
 	 */
