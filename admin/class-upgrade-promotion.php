@@ -113,7 +113,7 @@ class Upgrade_Promotion {
 	public function add_menu_styling(): void {
 		// Only add styling on accessibility checker admin pages.
 		$screen = get_current_screen();
-		if ( ! $screen || ! str_contains( $screen->id, 'accessibility_checker' ) ) {
+		if ( ! $screen || strpos( $screen->id, 'accessibility_checker' ) === false ) {
 			return;
 		}
 
