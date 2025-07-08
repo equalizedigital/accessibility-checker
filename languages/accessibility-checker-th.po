@@ -362,7 +362,31 @@ msgstr "การค้นหาปัญหาไม่พบผลลัพธ
 msgid "Object query returned no results"
 msgstr "การค้นหาวัตถุไม่พบผลลัพธ์"
 
-#: admin/class-plugin-action-links.php:44
+#: admin/class-plugin-row-meta.php:49
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "ดูเอกสารประกอบของ Accessibility Checker (เปิดในหน้าต่างใหม่)"
+
+#: admin/class-plugin-row-meta.php:50
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "เอกสาร"
+
+#: admin/class-plugin-row-meta.php:55
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "รับการสนับสนุนสำหรับ Accessibility Checker (เปิดในหน้าต่างใหม่)"
+
+#: admin/class-plugin-row-meta.php:56
+msgid "Support"
+msgstr "การสนับสนุน"
+
+#: admin/class-plugin-row-meta.php:61
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "ให้คะแนนปลั๊กอิน Accessibility Checker (เปิดในหน้าต่างใหม่)"
+
+#: admin/class-plugin-row-meta.php:62
+msgid "Rate plugin"
+msgstr "Rate plugin"
+
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "การตั้งค่า"
@@ -574,10 +598,6 @@ msgstr "บล็อก"
 #: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "เอกสาร (เปิดในหน้าต่างใหม่)"
-
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "เอกสาร"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
