@@ -48,6 +48,8 @@ class Update_Database {
 				postid bigint(20) NOT NULL,
 				siteid text NOT NULL,
 				type text NOT NULL,
+				landmark varchar(20) NULL,
+				landmark_selector text NULL,
 				rule text NOT NULL,
 				ruletype text NOT NULL,
 				object mediumtext NOT NULL,
