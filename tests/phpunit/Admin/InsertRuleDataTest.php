@@ -37,6 +37,8 @@ class InsertRuleDataTest extends WP_UnitTestCase {
 				ignre_user bigint(20) NULL,
 				ignre_date timestamp NULL,
 				ignre_comment mediumtext NULL,
+				landmark varchar(20) NULL,
+				landmark_selector text NULL,
 				UNIQUE KEY id (id),
 				KEY postid_index (postid)
 			) $charset_collate;";
