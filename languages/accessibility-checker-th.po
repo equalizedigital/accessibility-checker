@@ -362,7 +362,14 @@ msgstr "การค้นหาปัญหาไม่พบผลลัพธ
 msgid "Object query returned no results"
 msgstr "การค้นหาวัตถุไม่พบผลลัพธ์"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "อัปเกรดเป็นแบบโปร"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "ดูเอกสารประกอบของ Accessibility Checker (เปิดในหน้าต่างใหม่)"
 
