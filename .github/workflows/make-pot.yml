@@ -8,11 +8,20 @@ on:
         required: false
         default: 'develop'
   pull_request:
-    branches:
-      - develop
+    types:
+      - opened
 
 jobs:
   make-pot:
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event_name == 'pull_request' &&
+        (
+          startsWith(github.event.pull_request.title, 'automatic_translations_') ||
+          startsWith(github.event.pull_request.title, 'tm_edits_')
+        )
+      )
     runs-on: ubuntu-latest
     services:
       mysql:
