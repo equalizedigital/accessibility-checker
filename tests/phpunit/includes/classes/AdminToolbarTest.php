@@ -106,6 +106,8 @@ class AdminToolbarTest extends WP_UnitTestCase {
 
 	/**
 	 * Test that default menu items are added correctly.
+	 *
+	 * @runInSeparateProcess
 	 */
 	public function test_add_toolbar_items_adds_default_menu_items() {
 		// Expect parent menu + 3 default items (Settings, Fixes, Get Pro).
@@ -113,22 +115,17 @@ class AdminToolbarTest extends WP_UnitTestCase {
 			->method( 'add_menu' );
 
 		// Mock constants for pro check.
-		if ( ! defined( 'EDAC_KEY_VALID' ) ) {
-			define( 'EDAC_KEY_VALID', false );
-		}
+		define( 'EDAC_KEY_VALID', false );
 
 		$this->admin_toolbar->add_toolbar_items( $this->wp_admin_bar );
 	}
 
 	/**
 	 * Test that Get Pro menu item is not added when pro is installed and license is valid.
+	 *
+	 * @runInSeparateProcess
 	 */
 	public function test_add_toolbar_items_hides_pro_link_when_pro_active() {
-		// Skip this test if constants are already defined from other tests.
-		if ( defined( 'EDACP_VERSION' ) || defined( 'EDAC_KEY_VALID' ) ) {
-			$this->markTestSkipped( 'Constants already defined from previous tests' );
-		}
-
 		// Mock pro version and valid license.
 		define( 'EDACP_VERSION', '1.0.0' );
 		define( 'EDAC_KEY_VALID', true );
@@ -142,6 +139,8 @@ class AdminToolbarTest extends WP_UnitTestCase {
 
 	/**
 	 * Test that the filter allows modification of menu items.
+	 *
+	 * @runInSeparateProcess
 	 */
 	public function test_menu_items_filter_is_applied() {
 		$filter_called = false;
@@ -162,9 +161,7 @@ class AdminToolbarTest extends WP_UnitTestCase {
 		);
 
 		// Mock constants.
-		if ( ! defined( 'EDAC_KEY_VALID' ) ) {
-			define( 'EDAC_KEY_VALID', false );
-		}
+		define( 'EDAC_KEY_VALID', false );
 
 		$this->admin_toolbar->add_toolbar_items( $this->wp_admin_bar );
 
@@ -215,12 +212,12 @@ class AdminToolbarTest extends WP_UnitTestCase {
 
 	/**
 	 * Test that Get Pro menu item has correct parameters including accessibility attributes.
+	 *
+	 * @runInSeparateProcess
 	 */
 	public function test_get_pro_menu_item_parameters() {
 		// Mock constants to ensure pro item is shown.
-		if ( ! defined( 'EDAC_KEY_VALID' ) ) {
-			define( 'EDAC_KEY_VALID', false );
-		}
+		define( 'EDAC_KEY_VALID', false );
 
 		$menu_items = $this->get_default_menu_items_via_reflection();
 
@@ -245,13 +242,10 @@ class AdminToolbarTest extends WP_UnitTestCase {
 
 	/**
 	 * Test that Get Pro link uses edac_generate_link_type function when available.
+	 *
+	 * @runInSeparateProcess
 	 */
 	public function test_get_pro_link_uses_generate_link_function() {
-		// Skip if the real function already exists.
-		if ( function_exists( 'edac_generate_link_type' ) ) {
-			$this->markTestSkipped( 'Real edac_generate_link_type function already exists' );
-		}
-
 		// Mock the function.
 		/**
 		 * Mock function for testing pro link generation.
@@ -264,9 +258,7 @@ class AdminToolbarTest extends WP_UnitTestCase {
 		}
 
 		// Mock constants to ensure pro item is shown.
-		if ( ! defined( 'EDAC_KEY_VALID' ) ) {
-			define( 'EDAC_KEY_VALID', false );
-		}
+		define( 'EDAC_KEY_VALID', false );
 
 		$menu_items = $this->get_default_menu_items_via_reflection();
 
