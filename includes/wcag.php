@@ -2315,7 +2315,7 @@ return [
     [
         'number'   => '0.3',
         'title'    => esc_html__( 'Manual Testing Needed (Multiple Success Criteria)', 'accessibility-checker' ),
-        'criteria_description' => esc_html__('Used for documents and other non-scannable content that require manual testing and are likely to fail multiple WCAG success criteria.', 'accessibility-checker'),
+        'criteria_description' => esc_html__('Used for documents, media, and other non-scannable content that require manual testing and are likely to fail multiple WCAG success criteria.', 'accessibility-checker'),
         'level'    => 'A',
         'version'  => '',
         'guidelines' => '',

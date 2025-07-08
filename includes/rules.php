@@ -54,9 +54,9 @@ return [
 		'wcag'      => '1.1.1',
 		'severity' => 1, // Critical.
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -91,9 +91,9 @@ return [
 		'wcag'      => '1.1.1',
 		'severity'  => 2, // high
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -115,9 +115,9 @@ return [
 		'wcag'      => '1.1.1',
 		'severity'  => 3, // Medium.
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -143,9 +143,9 @@ return [
 		'wcag'      => '1.1.1',
 		'severity'  => 1, // critical
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -167,9 +167,9 @@ return [
 		'wcag'      => '1.1.1',
 		'severity'  => 1, // critical
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -191,9 +191,9 @@ return [
 		'wcag'      => '1.1.1',
 		'severity'  => 3, // medium
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -232,11 +232,11 @@ return [
 		'wcag'      => '1.3.1',
 		'severity'  => 2, // high
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Cognitive',
-			'Deafblind',
-			'Mobility',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
 		],
 		'combines'  => [
 			'heading-order',
@@ -273,10 +273,10 @@ return [
 		'wcag'      => '0.1',
 		'severity'  => 4, // low
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Cognitive',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -314,10 +314,10 @@ return [
 		'wcag'      => '4.1.2',
 		'severity'  => 2, // high
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
-			'Mobility',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
 		],
 		'combines'  => [
 			'frame-title',
@@ -359,11 +359,11 @@ return [
 		'wcag'      => '1.3.1',
 		'severity'  => 3, // medium
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Cognitive',
-			'Deafblind',
-			'Mobility',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -397,9 +397,9 @@ return [
 		'wcag'      => '1.4.8',
 		'severity'  => 4, // low
 		'affected_disabilities' => [
-			'Low-vision',
-			'Cognitive',
-			'Dyslexia',
+			esc_html__('Low-vision', 'accessibility-checker'),
+			esc_html__('Dyslexia', 'accessibility-checker'),
+			esc_html__('Cognitive', 'accessibility-checker'),
 		],
 	],
 	[
@@ -425,10 +425,11 @@ return [
 		'wcag'      => '3.2.2',
 		'severity'  => 3, // medium
 		'affected_disabilities' => [
-			'Cognitive',
-			'Blind',
-			'Low-vision',
-			'Motor',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
 		],
 		'combines'  => [
 			'link_blank',
@@ -474,9 +475,9 @@ return [
 		'wcag'      => '1.1.1',
 		'severity'  => 1, // critical
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
 		],
 		'combines'  => [
 			'area-alt',
@@ -519,10 +520,11 @@ return [
 		'wcag'      => '2.4.3',
 		'severity'  => 2, // high
 		'affected_disabilities' => [
-			'Mobility',
-			'Cognitive',
-			'Blind',
-			'Low-vision',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
 		],
 		'combines'  => [ 'tabindex' ],
 		'fixes'     => [
@@ -560,9 +562,9 @@ return [
 		'wcag'      => '1.3.1',
 		'severity'  => 3, // medium
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -598,10 +600,10 @@ return [
 		'wcag'      => '2.4.4',
 		'severity'  => 1, // critical
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
-			'Cognitive',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -648,10 +650,10 @@ return [
 		'wcag'      => '4.1.2',
 		'severity'  => 3, // critical
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
-			'Cognitive',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -681,10 +683,10 @@ return [
 		'wcag'      => '1.1.1',
 		'severity'  => 4, // low
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
-			'Cognitive',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
 		],
 	],
 [
@@ -722,9 +724,9 @@ return [
 		'wcag'      => '1.3.1',
 		'severity'  => 3, // medium
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
 		],
 		'combines'  => [
 			'aria_hidden_validation',
@@ -765,10 +767,10 @@ return [
 		'wcag'      => '1.3.1',
 		'severity'  => 2, // high
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
-			'Cognitive',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -818,12 +820,12 @@ return [
 		'wcag'      => '0.3',
 		'severity'  => 2, // high
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Cognitive',
-			'Deafblind',
-			'Mobility',
-			'Colorblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
+			esc_html__( 'Colorblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -857,12 +859,12 @@ return [
 		'wcag'      => '0.3',
 		'severity'  => 2, // high
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Cognitive',
-			'Deafblind',
-			'Mobility',
-			'Colorblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
+			esc_html__( 'Colorblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -879,12 +881,12 @@ return [
 		'wcag'      => '0.3',
 		'severity'  => 3, // medium
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Cognitive',
-			'Deafblind',
-			'Mobility',
-			'Colorblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
+			esc_html__( 'Colorblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -926,9 +928,9 @@ return [
 		'wcag'      => '1.1.1',
 		'severity'  => 2, // high
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Deafblind',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -971,10 +973,11 @@ return [
 		'wcag'      => '1.3.1',
 		'severity'  => 1, // critical
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Cognitive',
-			'Mobility',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
 		],
 		'combines'  => [ 'label' ],
 		'fixes'     => [
@@ -1013,9 +1016,11 @@ return [
 		'wcag'      => '2.4.4',
 		'severity'  => 1, // critical
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Cognitive',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -1042,8 +1047,8 @@ return [
 		'wcag'      => '1.3.1',
 		'severity'  => 4, // low
 		'affected_disabilities' => [
-			'Cognitive',
-			'Low-vision',
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -1069,9 +1074,10 @@ return [
 		'wcag'      => '2.4.1',
 		'severity'  => 2, // high
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Mobility',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -1110,9 +1116,10 @@ return [
 		'wcag'      => '1.3.1',
 		'severity'  => 1, // critical
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Cognitive',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
 		],
 	],
 	[
@@ -1143,9 +1150,10 @@ return [
 		'wcag'      => '1.3.1',
 		'severity'  => 3, // medium
 		'affected_disabilities' => [
-			'Blind',
-			'Low-vision',
-			'Cognitive',
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
 		],
 		'combines'  => [ 'form-field-multiple-labels' ],
 	],
@@ -1154,56 +1162,194 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1975',
 		'slug'      => 'text_small',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This text is smaller than 10 pixels and may be difficult to read.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These text elements are smaller than 10 pixels and may be difficult to read.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Text that is too small can be hard to read, especially for people with low vision. Ensuring a minimum readable size improves overall accessibility and usability, reducing the need for users to zoom.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %s is <code>10px</code>.
+			esc_html__( 'Update your styles so that all text is at least %s in size. Use relative units like em or rem when possible to support user preferences and browser scaling.', 'accessibility-checker' ),
+			'<code>10px</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'MDN: font-size CSS property', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-size',
+			],
+			[
+				'text' => __( 'How to Add Custom CSS in WordPress', 'accessibility-checker' ),
+				'url'  => 'https://developer.wordpress.org/advanced-administration/wordpress/css/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.4.4',
+		'severity'  => 3, // medium
+		'affected_disabilities' => [
+			esc_html__('Low-vision', 'accessibility-checker' ),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Possible Heading', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1969',
 		'slug'      => 'possible_heading',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This text appears visually styled like a heading but is not marked up with a heading tag.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These text elements appear visually styled like headings but are not marked up with heading tags.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Screen reader users and other assistive technologies rely on heading tags to understand page structure and navigate efficiently. Text that looks like a heading but is not coded as one can make it difficult for screen reader users to navigate the page.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>
+			esc_html__( 'Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading,  you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+			'<code>&lt;h1&gt;</code>',
+			'<code>&lt;h6&gt;</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'W3C: Using HTML headings to identify headings', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/html/H42',
+			],
+			[
+				'text' => __( 'MDN: HTML heading elements', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.3.1',
+		'severity'  => 2, // high
+		'affected_disabilities' => [
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Blinking or Scrolling Content', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1965',
 		'slug'      => 'text_blinking_scrolling',
 		'rule_type' => 'error',
-		'summary'   => sprintf(
+		'summary'   => esc_html__( 'This element uses blinking or scrolling effects that may be disruptive for users or cause seizures.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These elements use blinking or scrolling effects that may be disruptive for users or cause seizures.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Blinking or scrolling content can be distracting or trigger seizures in some users, especially those with photosensitive epilepsy or cognitive disabilities. These effects are deprecated and can negatively impact readability and focus.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
 			// translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
-			esc_html__( 'Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink.', 'accessibility-checker' ),
+			esc_html__( 'Remove any HTML or CSS that causes blinking or scrolling effects, such as %1$s, %2$s, or %3$s.', 'accessibility-checker' ),
 			'<code>&lt;blink&gt;</code>',
 			'<code>&lt;marquee&gt;</code>',
 			'<code>text-decoration: blink</code>'
 		),
+		'references' => [
+			[
+				'text' => __( 'W3C: Techniques for WCAG 2.1 - Avoiding the use of the blink element', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/failures/F47',
+			],
+			[
+				'text' => __( 'MDN: <marquee> element (obsolete)', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/marquee',
+			],
+		],
 		'ruleset'   => 'js',
-		'combines'  => [ 'blink', 'marquee' ],
+		'wcag'      => '2.2.2',
+		'severity'  => 1, // critical
+		'affected_disabilities' => [
+			esc_html__( 'Seizure disorders', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'ADHD', 'accessibility-checker' ),
+		],
+		'combines' => [ 'blink', 'marquee' ],
 	],
 	[
 		'title'     => esc_html__( 'Insufficient Color Contrast', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1983',
 		'slug'      => 'color_contrast_failure',
 		'rule_type' => 'error',
-		'summary'   => esc_html__( 'Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be "false positives" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This element has foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These elements have foreground and background colors that do not meet the minimum contrast ratio Level AA conformance.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Insufficient color contrast makes text and interactive elements difficult or impossible to read for users with low vision or color blindness. Ensuring adequate contrast helps all users access your content clearly.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Adjust the foreground and background colors of the flagged elements to ensure a contrast ratio of at least 4.5:1 for normal text. Use a contrast checker to confirm that your color combinations meet this requirement.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'Brand Color Contrast Grid', 'accessibility-checker' ),
+				'url'  => 'https://contrast-grid.equalizedigital.com/',
+			],
+			[
+				'text' => __( 'WebAIM Contrast Checker', 'accessibility-checker' ),
+				'url'  => 'https://webaim.org/resources/contrastchecker/',
+			],
+			[
+				'text' => __( 'TPGI Colour Contrast Analyser', 'accessibility-checker' ),
+				'url'  => 'https://www.tpgi.com/color-contrast-checker/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.4.3',
+		'severity'  => 2, // high
+		'affected_disabilities' => [
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Colorblind', 'accessibility-checker' ),
+		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Transcript', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1947',
 		'slug'      => 'missing_transcript',
 		'rule_type' => 'error',
-		'summary'   => esc_html__( 'A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link.', 'accessibility-checker' ),
-		'ruleset'   => 'js',
+		'summary'   => esc_html__( 'This element contains or links to audio or video content that does not have a properly labeled or positioned transcript, or may not have a transcript at all.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These elements contain or link to audio or video content that do not have properly labeled or positioned transcripts, or may not have a transcript at all.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Transcripts provide access to audio and video content for individuals who are deaf, hard of hearing, or prefer to read rather than listen. Without a transcript, important information may be missed.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Create a transcript for each flagged audio or video clip. Include the transcript on the same page or link to a file that contains it. The word “transcript” should appear in a heading before the transcript or in the link text, and must be within 25 characters of the audio or video element.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'W3C: Transcripts Documentation', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/media/av/transcripts/',
+			],
+			[
+				'text' => __( 'Practical Advice for Meeting Caption, Transcript, and Sign Language Requirements (Webinar)', 'accessibility-checker' ),
+				'url'  => 'https://equalizedigital.com/practical-advice-for-meeting-caption-transcript-and-sign-language-requirements-amber-hinds/',
+			],
+		],
+		'wcag'     => '1.2.1',
+		'severity' => 2, // high
+		'affected_disabilities' => [
+			esc_html__( 'Deaf', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Hard of hearing', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Language learners', 'accessibility-checker' ),
+		],
+		'ruleset' => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Broken ARIA Reference', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1956',
 		'slug'      => 'broken_aria_reference',
 		'rule_type' => 'error',
-		'summary'   => esc_html__( 'Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled.', 'accessibility-checker' ),
-		'ruleset'   => 'js',
-		'combines'  => [ 'aria_broken_reference' ],
+		'summary'   => esc_html__( 'This element uses an ARIA attribute that references another element which does not exist or is not properly labeled.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These elements use ARIA attributes that reference other elements which do not exist or are not properly labeled.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'ARIA attributes like aria-labelledby and aria-describedby are used to improve accessibility by connecting elements to their labels or descriptions. If the reference target does not exist, users of assistive technology will miss important context or instructions.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Inspect the ARIA attributes (such as aria-labelledby or aria-describedby) on the flagged elements and ensure that each one points to a valid, correctly labeled ID that exists in the document.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'MDN Web Docs: ARIA: aria-labelledb attribute', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby',
+			],
+			[
+				'text' => __( 'MDN Web Docs: ARIA: aria-describedby attribute', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby',
+			],
+			[
+				'text' => __( 'ARIA for Beginners (Webinar)', 'accessibility-checker' ),
+				'url'  => 'https://equalizedigital.com/aria-for-beginners-maria-maldonado/',
+			],
+		],
+		'wcag'     => '4.1.2',
+		'severity' => 2, // high
+		'affected_disabilities' => [
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
+		],
+		'combines' => [ 'aria_broken_reference' ],
+		'ruleset'  => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Missing Language Declaration', 'accessibility-checker' ),
@@ -1211,44 +1357,143 @@ return [
 		'slug'      => 'missing_lang_attr',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
-			esc_html__( 'A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme.', 'accessibility-checker' ),
+			// translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang</code>, %3$s is <code>xml:lang</code>.
+			esc_html__( 'This element is a top-level %1$s tag that is missing a language attribute such as %2$s or %3$s, or has an empty language attribute.', 'accessibility-checker' ),
 			'<code>&lt;html&gt;</code>',
 			'<code>lang</code>',
 			'<code>xml:lang</code>'
 		),
-		'ruleset'   => 'js',
-		'combines'  => [ 'html-lang-valid', 'html-has-lang' ],
-		'viewable'  => false,
-		'fixes'     => [
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang</code>, %3$s is <code>xml:lang</code>.
+			esc_html__( 'These elements are top-level %1$s tags that are missing a language attribute such as %2$s or %3$s, or have an empty language attribute.', 'accessibility-checker' ),
+			'<code>&lt;html&gt;</code>',
+			'<code>lang</code>',
+			'<code>xml:lang</code>'
+		),
+		'why_it_matters' => esc_html__( 'Screen readers and other assistive technologies use the language attribute to determine how to pronounce and interpret the content. Without it, the content may be read incorrectly, which can be confusing or misleading for users.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %s is an example of a valid lang attribute.
+			esc_html__( 'Edit your theme\'s header file to ensure the <html> tag includes a valid lang attribute (e.g., %s). If your theme receives updates, make this change in a child theme to prevent it from being overwritten. To fix this automatically site-wide, enable the \'Add "lang" & "dir" Attributes\' fix in Accessibility Checker settings.', 'accessibility-checker' ),
+			'<code>lang="en"</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'W3C: Language of Page', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/html/H57',
+			],
+			[
+				'text' => __( 'MDN: The HTML lang attribute', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang',
+			],
+		],
+		'wcag'     => '3.1.1',
+		'severity' => 2, // high
+		'affected_disabilities' => [
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+		],
+		'combines' => [ 'html-lang-valid', 'html-has-lang' ],
+		'ruleset'  => 'js',
+		'viewable' => false,
+		'fixes'    => [
 			HTMLLangAndDirFix::get_slug(),
 		],
 	],
-	// The name and slug of this rule references GIFs but the rule also checks webp.
+	// The name and slug of this rule references GIFs but the rule also checks animated WebP images.
 	[
 		'title'     => esc_html__( 'Image Animated GIF', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4428',
 		'slug'      => 'img_animated_gif',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible.', 'accessibility-checker' ),
-		'ruleset'   => 'js',
-		'combines'  => [ 'img_animated' ],
+		'summary'   => esc_html__( 'This element is an animated image file (e.g., GIF or animated WebP).', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These elements are animated image files (e.g., GIFs or animated WebPs).', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Animated images can be distracting, induce seizures in some individuals, or create cognitive load. WCAG guidelines require that animations that flash or loop continuously provide a mechanism to pause, stop, or hide them.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'Should you use animated GIFs?', 'accessibility-checker' ),
+				'url'  => 'https://theadminbar.com/accessibility-weekly/should-you-use-animated-gifs/',
+			],
+			[
+				'text' => __( 'W3C: G152: Setting animated gif images to stop blinking after n cycles (within 5 seconds)', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/TR/WCAG20-TECHS/G152.html',
+			],
+			[
+				'text' => __( 'Pause Animated GIFs Plugin', 'accessibility-checker' ),
+				'url'  => 'https://github.com/equalizedigital/accessibility-pause-animated-gifs',
+			],
+		],
+		'wcag'     => '2.2.2',
+		'severity' => 1, // medium
+		'affected_disabilities' => [
+			esc_html__( 'Seizure disorders', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Vestibular disorders', 'accessibility-checker' ),
+		],
+		'ruleset'  => 'js',
+		'combines' => [ 'img_animated' ],
 	],
 	[
 		'title'     => esc_html__( 'A Video is Present', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help4414',
 		'slug'      => 'video_present',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
-		'ruleset'   => 'js',
+		'summary'   => esc_html__( 'This element is a video. Because many accessibility issues with video content require manual review, this warning appears any time a video is detected on a post or page.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These elements are videos. Because many accessibility issues with video content require manual review, this warning appears any time one or more videos are detected on a post or page.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Videos must include accurate captions, transcripts, and audio descriptions (or enhanced transcripts) to be fully accessible to users who are deaf, hard of hearing, blind, or have cognitive disabilities.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'W3C: Media Alternatives', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/quickref/#provide-alternatives-for-time-based-media',
+			],
+			[
+				'text' => __( 'W3C: Understanding Guideline 1.2', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Understanding/time-based-media.html',
+			],
+		],
+		'wcag' => '0.3',
+		'severity' => 1, // critical
+		'affected_disabilities' => [
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Language learners', 'accessibility-checker' ),
+			esc_html__( 'Deaf', 'accessibility-checker' ),
+			esc_html__( 'Hard of hearing', 'accessibility-checker' ),
+		],
+		'ruleset' => 'js',
 	],
 	[
 		'title'     => esc_html__( 'A Slider is Present', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help3264',
 		'slug'      => 'slider_present',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete.', 'accessibility-checker' ),
-		'ruleset'   => 'js',
+		'summary'   => esc_html__( 'This element is a slider or carousel. Because many accessibility issues with sliders require manual review, this warning appears any time a slider is detected on a post or page.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These elements are sliders or carousels. Because many accessibility issues with sliders require manual review, this warning appears any time one or more sliders are detected on a post or page.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Sliders are often difficult to use with screen readers and keyboards. Inaccessible sliders can interfere with navigation, trap focus, or move too quickly for users to engage with the content.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'W3C: Carousels Tutorial', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/carousels/',
+			],
+			[
+				'text' => __( 'W3C ARIA Authoring Practices Guide: Carousel (Slide Show or Image Rotator) Pattern', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/ARIA/apg/patterns/carousel/',
+			],
+		],
+		'wcag' => '0.3',
+		'severity' => 1, // critical
+		'affected_disabilities' => [
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Cognitive', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
+		],
+		'ruleset' => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Missing Title', 'accessibility-checker' ),
@@ -1257,14 +1502,36 @@ return [
 		'rule_type' => 'error',
 		'summary'   => sprintf(
 			// translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
-			esc_html__( 'A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag.', 'accessibility-checker' ),
+			esc_html__( 'This element is missing a title tag (%1$s or %2$s). This may happen if the post or page title field is empty or if the theme fails to output a title tag in the document head.', 'accessibility-checker' ),
 			'<code>&lt;title&gt;</code>',
 			'<code>og:title</code>'
 		),
-		'ruleset'   => 'js',
-		'combines'  => [ 'document-title' ],
-		'viewable'  => false,
-		'fixes'     => [
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+			esc_html__( 'These elements are missing title tags (%1$s or %2$s). This may happen if post or page title fields are empty or if the theme fails to output title tags in the document head.', 'accessibility-checker' ),
+			'<code>&lt;title&gt;</code>',
+			'<code>og:title</code>'
+		),
+		'why_it_matters' => esc_html__( 'The title element is used by screen readers, search engines, and browser tabs to identify the page. Without a title, users may have difficulty determining the purpose of the page.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Ensure the post or page title field is filled in on the backend. If the title field is not empty and the error persists, check your theme\'s code to make sure it outputs a valid <title> tag and/or og:title meta tag in the document head. To fix this issue site-wide, enable the \'Add Missing Page Title\' fix in Accessibility Checker settings.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'MDN: <title> element', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title',
+			],
+		],
+		'wcag' => '2.4.2',
+		'severity' => 2, // high
+		'affected_disabilities' => [
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
+		],
+		'ruleset'  => 'js',
+		'combines' => [ 'document-title' ],
+		'viewable' => false,
+		'fixes'    => [
 			AddMissingOrEmptyPageTitleFix::get_slug(),
 		],
 	],
@@ -1274,26 +1541,87 @@ return [
 		'slug'      => 'link_improper',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
-			esc_html__( 'An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required.', 'accessibility-checker' ),
+			// translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>.
+			esc_html__( 'This element is an anchor tag missing a valid %1$s attribute or is linked to %2$s without having %3$s.', 'accessibility-checker' ),
 			'<code>href</code>',
 			'<code>#</code>',
-			'<code>role="button"</code>',
-			'<code>&lt;button&gt;</code>',
-			'<code>role="button"</code>',
-			'<code>&lt;a&gt;</code>'
+			'<code>role="button"</code>'
 		),
-		'ruleset'   => 'js',
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>.
+			esc_html__( 'These elements are anchor tags missing valid %1$s attributes or are linked to %2$s without having %3$s.', 'accessibility-checker' ),
+			'<code>href</code>',
+			'<code>#</code>',
+			'<code>role="button"</code>'
+		),
+		'why_it_matters' => esc_html__( 'Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+			esc_html__( 'If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality.', 'accessibility-checker' ),
+			'<code>&lt;button&gt;</code>',
+			'<code>role="button"</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'MDN Web Docs: ARIA button role', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/button_role',
+			],
+			[
+				'text' => __( 'W3 Schools: Accessibility Buttons & Links', 'accessibility-checker' ),
+				'url'  => 'https://www.w3schools.com/accessibility/accessibility_buttons_links.php',
+			],
+		],
+		'wcag' => '4.1.2',
+		'severity' => 2, // high
+		'affected_disabilities' => [
+			esc_html__( 'Blind', 'accessibility-checker' ),
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+			esc_html__( 'Deafblind', 'accessibility-checker' ),
+			esc_html__( 'Mobility', 'accessibility-checker' ),
+		],
+		'ruleset' => 'js',
 	],
 	[
 		'title'     => esc_html__( 'Zooming and Scaling Disabled', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help7947',
 		'slug'      => 'meta_viewport',
 		'rule_type' => 'error',
-		'summary'   => esc_html__( 'Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier.', 'accessibility-checker' ),
-		'ruleset'   => 'js',
-		'combines'  => [ 'meta-viewport' ],
-		'viewable'  => false,
-		'fixes'     => [ MetaViewportScalableFix::get_slug() ],
+		'summary'   => sprintf(
+			// translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>.
+			esc_html__( 'This page disables zooming by using a viewport meta tag with either %1$s or a %2$s value of less than 2. This prevents users from enlarging content to improve readability.', 'accessibility-checker' ),
+			'<code>user-scalable=no</code>',
+			'<code>maximum-scale</code>'
+		),
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>.
+			esc_html__( 'These pages disable zooming by using viewport meta tags with either %1$s or a %2$s value of less than 2. This prevents users from enlarging content to improve readability.', 'accessibility-checker' ),
+			'<code>user-scalable=no</code>',
+			'<code>maximum-scale</code>'
+		),
+		'why_it_matters' => esc_html__( 'Restricting a user\'s ability to zoom creates barriers for individuals with low vision or other visual impairments. These users may rely on browser zoom features, pinch-zooming on mobile, or magnifiers to access content comfortably.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>, %3$s is <head>.
+			esc_html__( 'Edit the viewport meta tag in your themes\'s %3$s section and remove %1$s and any %2$s value less than 2. To fix this site-wide, enable the \'Make Viewport Scalable\' fix in Accessibility Checker Settings.', 'accessibility-checker' ),
+			'<code>user-scalable=no</code>',
+			'<code>maximum-scale</code>',
+			'<code>&lt;head&gt;</code>'
+		),
+		'references' => [
+			[
+				'text' => esc_html__( 'MDN Web Docs: <meta name="viewport">', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/viewport',
+			],
+		],
+		'wcag' => '1.4.4',
+		'severity' => 1, // critical
+		'affected_disabilities' => [
+			esc_html__( 'Low-vision', 'accessibility-checker' ),
+		],
+		'ruleset'  => 'js',
+		'combines' => [ 'meta-viewport' ],
+		'viewable' => false,
+		'fixes'    => [
+			MetaViewportScalableFix::get_slug(),
+		],
 	],
 ];
