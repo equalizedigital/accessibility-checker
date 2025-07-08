@@ -9,15 +9,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-24T21:54:49+00:00\n"
+"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
-#: includes/classes/class-accessibility-statement.php:50
+#: includes/classes/class-accessibility-statement.php:51
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -65,16 +65,18 @@ msgstr "احصل على النسخة الاحترافية لفتح هذه الم
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
+#: admin/class-plugin-action-links.php:51
 msgid "Get Pro"
 msgstr "احصل على النسخة الاحترافية"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:338
+#: admin/class-ajax.php:354
 msgid "Opens in a new window."
 msgstr "يفتح في نافذة جديدة."
 
 #. translators: %s: the label of the fix
 #: admin/AdminPage/FixesSettingType/Text.php:54
+#, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "اقرأ الوثائق الخاصة بـ %s. يفتح في نافذة جديدة."
 
@@ -94,52 +96,55 @@ msgstr "الجهود المستمرة لضمان إمكانية الوصول"
 msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
 msgstr "نتبع <a href=\"https://www.w3.org/TR/WCAG21/\">إرشادات إمكانية الوصول إلى محتوى الويب (WCAG) الإصدار 2.1</a> كمبدأ توجيهي لنا لتحديد إمكانية الوصول. هذه هي المعايير المتفق عليها دوليًا التي تغطي مجموعة واسعة من التوصيات وأفضل الممارسات لجعل المحتوى قابلاً للاستخدام. عند إضافة صفحات جديدة ووظائف إلى موقعنا الإلكتروني، يتم التحقق من جميع التصميمات والشفرات وممارسات إدخال المحتوى مقابل هذه المعايير."
 
-#: admin/class-accessibility-statement.php:56
-msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
-msgstr "إمكانية الوصول إلى الموقع هي عملية مستمرة. نقوم باختبار المحتوى والميزات باستمرار للتوافق مع معايير WCAG 2.1 المستوى AA ونعالج أي مشكلات لضمان تلبية أو تجاوز المعايير. يتم إجراء اختبارات موقعنا من قبل أعضاء فريقنا باستخدام أدوات قياسية في الصناعة مثل <a href=\"https://a11ychecker.com/\">إضافة Accessibility Checker لووردبريس</a>، ومحللات تباين الألوان، وتقنيات التنقل باستخدام لوحة المفاتيح فقط، واختبارات قابلية القراءة Flesch-Kincaid."
+#. translators: 1 - A link opening tag, 2 - link closing tag
+#: admin/class-accessibility-statement.php:58
+#, php-format
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the %1$sAccessibility Checker WordPress Plugin%2$s, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "إن إمكانية الوصول إلى الموقع الإلكتروني هي عملية مستمرة. نحن نختبر باستمرار المحتوى والميزات للتوافق مع معايير WCAG 2.1 المستوى AA ونعالج أي مشكلات لضمان تلبية أو تجاوز المعايير. يتم اختبار موقعنا الإلكتروني من قبل أعضاء فريقنا باستخدام أدوات قياسية في الصناعة مثل إضافة %1$sAccessibility Checker%2$s لووردبريس، ومحللات تباين الألوان، وتقنيات التنقل باستخدام لوحة المفاتيح فقط، واختبارات قابلية القراءة Flesch-Kincaid."
 
-#: admin/class-accessibility-statement.php:57
+#: admin/class-accessibility-statement.php:62
 msgid "Accessibility Features On Our Website"
 msgstr "ميزات إمكانية الوصول على موقعنا الإلكتروني"
 
-#: admin/class-accessibility-statement.php:58
+#: admin/class-accessibility-statement.php:63
 msgid "The following is a list of items we have included in our website to improve its accessibility:"
 msgstr "فيما يلي قائمة بالعناصر التي أدرجناها في موقعنا الإلكتروني لتحسين إمكانية الوصول إليه:"
 
-#: admin/class-accessibility-statement.php:59
+#: admin/class-accessibility-statement.php:64
 msgid "[LIST ACCESSIBILITY FEATURES HERE]"
 msgstr "[قم بإدراج ميزات إمكانية الوصول هنا]"
 
-#: admin/class-accessibility-statement.php:60
+#: admin/class-accessibility-statement.php:65
 msgid "Where We're Improving"
 msgstr "المجالات التي نعمل على تحسينها"
 
-#: admin/class-accessibility-statement.php:61
+#: admin/class-accessibility-statement.php:66
 msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
 msgstr "في جهودنا لرفع مستوى موقعنا الإلكتروني إلى المعايير المطلوبة، نستهدف المجالات التالية:"
 
-#: admin/class-accessibility-statement.php:62
+#: admin/class-accessibility-statement.php:67
 msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
 msgstr "[قم بإدراج العناصر التي تعمل على إصلاحها هنا]"
 
-#: admin/class-accessibility-statement.php:63
+#: admin/class-accessibility-statement.php:68
 msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
 msgstr "[قد يساعد مراجعة علامة التبويب 'المشكلات المفتوحة' لمعرفة المشكلات الأكثر شيوعًا]"
 
-#: admin/class-accessibility-statement.php:64
+#: admin/class-accessibility-statement.php:69
 msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
 msgstr "هذا جزء من جهودنا الأوسع لجعل تجربة الجميع في [اسم الشركة] مرحبة وممتعة. يرجى ملاحظة أنه على الرغم من أننا نبذل كل جهد ممكن لتوفير معلومات يمكن الوصول إليها لجميع المستخدمين، لا يمكننا ضمان إمكانية الوصول إلى مواقع الويب الخارجية التي قد نقوم بالربط إليها."
 
-#: admin/class-accessibility-statement.php:65
+#: admin/class-accessibility-statement.php:70
 msgid "Accessibility Support Contact"
 msgstr "جهة الاتصال لدعم إمكانية الوصول"
 
-#: admin/class-accessibility-statement.php:66
+#: admin/class-accessibility-statement.php:71
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "نرحب بالتعليقات والأسئلة والملاحظات حول موقعنا الإلكتروني. إذا كنت تستخدم تقنيات مساعدة وتواجه صعوبة في استخدام موقعنا الإلكتروني، يرجى إرسال بريد إلكتروني إلى [عنوان البريد الإلكتروني الخاص بإمكانية الوصول] أو الاتصال بنا على [رقم هاتفك]. سنبذل قصارى جهدنا لمساعدتك وحل المشكلات."
 
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
+#, php-format
 msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
 msgstr "لقد قمنا بتحسين حسابات الإحصائيات في الإصدار 1.21.0. نتيجة لذلك، قد تكون بعض الأرقام في البيانات أدناه قد تغيرت. اقرأ المزيد في %1$sمنشور إعلان الإصدار%2$s الخاص بنا."
 
@@ -147,12 +152,12 @@ msgstr "لقد قمنا بتحسين حسابات الإحصائيات في ال
 #: admin/class-admin-notices.php:225
 #: admin/class-admin-notices.php:312
 #: admin/class-admin-notices.php:401
-#: admin/class-admin-notices.php:483
+#: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:196
-#: admin/class-ajax.php:561
-#: admin/class-ajax.php:700
-#: admin/class-ajax.php:780
+#: admin/class-ajax.php:212
+#: admin/class-ajax.php:577
+#: admin/class-ajax.php:715
+#: admin/class-ajax.php:795
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "تم رفض الإذن"
@@ -161,7 +166,7 @@ msgstr "تم رفض الإذن"
 #: admin/class-admin-notices.php:234
 #: admin/class-admin-notices.php:324
 #: admin/class-admin-notices.php:421
-#: admin/class-admin-notices.php:492
+#: admin/class-admin-notices.php:498
 msgid "Update option wasn't successful"
 msgstr "لم تنجح عملية تحديث الخيار"
 
@@ -213,6 +218,7 @@ msgstr "لم يتم تعيين قيمة إجراء المراجعة"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
 #: admin/class-admin-notices.php:446
+#, php-format
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
 msgstr "عذرًا! يبدو أن موقعك الإلكتروني محمي حاليًا بكلمة مرور. يمكن للإصدار المجاني من Accessibility Checker فحص المواقع الحية فقط. لفحص هذا الموقع بحثًا عن مشاكل إمكانية الوصول، إما قم بإزالة حماية كلمة المرور أو %s. قد يتم تخزين نتائج الفحص من فحص سابق."
 
@@ -221,14 +227,14 @@ msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "الترقية إلى Accessibility Checker Pro. يفتح في نافذة جديدة."
 
 #: admin/class-admin-notices.php:450
-#: includes/options-page.php:448
+#: includes/options-page.php:464
 msgid "upgrade to pro"
 msgstr "الترقية إلى النسخة الاحترافية"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:203
-#: admin/class-ajax.php:568
-#: admin/class-ajax.php:787
+#: admin/class-ajax.php:219
+#: admin/class-ajax.php:584
+#: admin/class-ajax.php:802
 msgid "The post ID was not set"
 msgstr "لم يتم تعيين معرف المنشور"
 
@@ -250,6 +256,7 @@ msgstr "تم إدراج ملخص مبسط لهذا المحتوى."
 
 #. translators: %s: Number of errors
 #: admin/class-ajax.php:133
+#, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s خطأ"
@@ -257,6 +264,7 @@ msgstr[1] "%s أخطاء"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:139
+#, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s خطأ في التباين"
@@ -264,6 +272,7 @@ msgstr[1] "%s أخطاء في التباين"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:145
+#, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s تحذير"
@@ -271,71 +280,73 @@ msgstr[1] "%s تحذيرات"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:151
+#, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s عنصر متجاهل"
 msgstr[1] "%s عناصر متجاهلة"
 
-#: admin/class-ajax.php:173
+#: admin/class-ajax.php:189
 msgid "No summary to return"
 msgstr "لا يوجد ملخص للإرجاع"
 
-#: admin/class-ajax.php:217
+#: admin/class-ajax.php:233
 msgid "Invalid table name"
 msgstr "اسم الجدول غير صالح"
 
-#: admin/class-ajax.php:363
+#: admin/class-ajax.php:379
 msgid "These settings enable global fixes across your entire site."
 msgstr "تمكّن هذه الإعدادات الإصلاحات العامة في جميع أنحاء موقعك."
 
-#: admin/class-ajax.php:364
+#: admin/class-ajax.php:380
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "قد تحتاج الصفحات إلى إعادة حفظ أو إجراء فحص كامل للموقع لرؤية الإصلاحات المنعكسة في التقارير."
 
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:408
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "حفظ"
 
-#: admin/class-ajax.php:412
+#: admin/class-ajax.php:428
 msgid "Affected Code"
 msgstr "الكود المتأثر"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:493
+#, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "عرض المشكلة ذات المعرف %d على الموقع، يفتح في نافذة جديدة"
 
-#: admin/class-ajax.php:478
+#: admin/class-ajax.php:494
 msgid "View on page"
 msgstr "عرض في الصفحة"
 
-#: admin/class-ajax.php:497
+#: admin/class-ajax.php:513
 msgid "Fix: "
 msgstr "إصلاح: "
 
-#: admin/class-ajax.php:498
+#: admin/class-ajax.php:514
 msgid "Fix"
 msgstr "إصلاح"
 
-#: admin/class-ajax.php:521
+#: admin/class-ajax.php:537
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "حساب المستخدم الخاص بك لا يملك صلاحية تجاهل هذه المشكلة."
 
-#: admin/class-ajax.php:539
+#: admin/class-ajax.php:555
 msgid "No details to return"
 msgstr "لا توجد تفاصيل للإرجاع"
 
-#: admin/class-ajax.php:679
+#: admin/class-ajax.php:694
 msgid "No readability data to return"
 msgstr "لا توجد بيانات قابلية القراءة للإرجاع"
 
-#: admin/class-ajax.php:736
-#: admin/class-ajax.php:759
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:774
 msgid "No ignore data to return"
 msgstr "لا توجد بيانات تجاهل للإرجاع"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:809
 msgid "The summary was not set"
 msgstr "لم يتم تعيين الملخص"
 
@@ -350,6 +361,39 @@ msgstr "استعلام المشكلة لم يرجع أي نتائج"
 #: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "استعلام الكائن لم يرجع أي نتائج"
+
+#: admin/class-plugin-row-meta.php:49
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "عرض وثائق Accessibility Checker (يفتح في نافذة جديدة)"
+
+#: admin/class-plugin-row-meta.php:50
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "الوثائق"
+
+#: admin/class-plugin-row-meta.php:55
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "الحصول على الدعم لـ Accessibility Checker (يفتح في نافذة جديدة)"
+
+#: admin/class-plugin-row-meta.php:56
+msgid "Support"
+msgstr "الدعم"
+
+#: admin/class-plugin-row-meta.php:61
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "تقييم إضافة Accessibility Checker (يفتح في نافذة جديدة)"
+
+#: admin/class-plugin-row-meta.php:62
+msgid "Rate plugin"
+msgstr "Rate plugin"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "الإعدادات"
+
+#: admin/class-plugin-action-links.php:56
+msgid "Get Accessibility Checker Pro, opens in new window"
+msgstr "احصل على Accessibility Checker Pro، يفتح في نافذة جديدة"
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -372,7 +416,7 @@ msgid "See History"
 msgstr "عرض السجل"
 
 #: admin/class-welcome-page.php:70
-#: admin/class-widgets.php:92
+#: admin/class-widgets.php:98
 msgid "Passed Tests"
 msgstr "الاختبارات الناجحة"
 
@@ -409,12 +453,12 @@ msgid "Average Issue Density"
 msgstr "متوسط كثافة المشاكل"
 
 #: admin/class-welcome-page.php:204
-#: admin/class-widgets.php:99
+#: admin/class-widgets.php:105
 msgid "Report Last Updated:"
 msgstr "آخر تحديث للتقرير:"
 
 #: admin/class-welcome-page.php:214
-#: includes/options-page.php:392
+#: includes/options-page.php:408
 msgid "Never"
 msgstr "أبدًا"
 
@@ -424,6 +468,7 @@ msgstr "عناوين URL التي تم فحصها"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
 #: admin/class-welcome-page.php:239
+#, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s من %2$s"
 
@@ -456,107 +501,103 @@ msgid "Unlock Detailed Accessibility Reports"
 msgstr "فتح تقارير إمكانية الوصول المفصلة"
 
 #: admin/class-welcome-page.php:302
-#: admin/class-widgets.php:65
+#: admin/class-widgets.php:71
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "ابدأ في فحص موقعك بالكامل بحثًا عن مشاكل إمكانية الوصول، واحصل على تقارير كاملة للموقع، وكن متوافقًا مع إرشادات إمكانية الوصول بشكل أسرع."
 
 #: admin/class-welcome-page.php:306
-#: admin/class-widgets.php:67
+#: admin/class-widgets.php:73
 msgid "Upgrade Accessibility Checker"
 msgstr "ترقية Accessibility Checker"
 
-#: admin/class-widgets.php:63
+#: admin/class-widgets.php:69
 msgid "close ad"
 msgstr "إغلاق الإعلان"
 
-#: admin/class-widgets.php:64
+#: admin/class-widgets.php:70
 msgid "Get Detailed Accessibility Reports"
 msgstr "احصل على تقارير مفصلة عن إمكانية الوصول"
 
-#: admin/class-widgets.php:82
+#: admin/class-widgets.php:88
 msgid "Full Site Accessibility Status"
 msgstr "حالة إمكانية الوصول للموقع بالكامل"
 
-#: admin/class-widgets.php:107
+#: admin/class-widgets.php:113
 msgid "URLs Scanned:"
 msgstr "عناوين URL التي تم فحصها:"
 
-#: admin/class-widgets.php:115
+#: admin/class-widgets.php:121
 msgid "Errors:"
 msgstr "الأخطاء:"
 
-#: admin/class-widgets.php:119
+#: admin/class-widgets.php:125
 msgid "Color Contrast Errors:"
 msgstr "أخطاء تباين الألوان:"
 
-#: admin/class-widgets.php:123
+#: admin/class-widgets.php:129
 msgid "Warnings:"
 msgstr "التحذيرات:"
 
-#: admin/class-widgets.php:132
+#: admin/class-widgets.php:144
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
 msgstr "يحتوي موقعك على مشاكل في إمكانية الوصول يجب معالجتها في أقرب وقت ممكن لضمان التوافق مع إرشادات إمكانية الوصول."
 
-#: admin/class-widgets.php:135
+#: admin/class-widgets.php:147
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
 msgstr "أحسنت! لم يتمكن Accessibility Checker من العثور على أي مشاكل في إمكانية الوصول في المحتوى الذي تم اختباره. لا يمكن العثور على بعض المشاكل بواسطة الأدوات الآلية لذا لا تنس أن"
 
-#: admin/class-widgets.php:135
+#: admin/class-widgets.php:147
 msgid "manually test your site"
 msgstr "اختبار موقعك يدويًا"
 
-#: admin/class-widgets.php:150
+#: admin/class-widgets.php:162
 msgid "Issues By Post Type"
 msgstr "المشاكل حسب نوع المنشور"
 
-#: admin/class-widgets.php:157
+#: admin/class-widgets.php:169
 msgid "Post Type"
 msgstr "نوع المنشور"
 
-#: admin/class-widgets.php:160
+#: admin/class-widgets.php:172
 msgid "Errors"
 msgstr "الأخطاء"
 
-#: admin/class-widgets.php:163
+#: admin/class-widgets.php:175
 msgid "Contrast"
 msgstr "التباين"
 
-#: admin/class-widgets.php:166
+#: admin/class-widgets.php:178
 msgid "Warnings"
 msgstr "التحذيرات"
 
-#: admin/class-widgets.php:225
+#: admin/class-widgets.php:247
 msgid "Upgrade to Scan"
 msgstr "الترقية للفحص"
 
-#: admin/class-widgets.php:254
+#: admin/class-widgets.php:276
 msgid "See More Reports"
 msgstr "رؤية المزيد من التقارير"
 
-#: admin/class-widgets.php:264
-#: partials/welcome-page.php:232
+#: admin/class-widgets.php:286
+#: partials/welcome-page.php:235
 msgid "Learn Accessibility"
 msgstr "تعلم إمكانية الوصول"
 
-#: admin/class-widgets.php:273
+#: admin/class-widgets.php:307
 msgid "Additional Resources"
 msgstr "موارد إضافية"
 
-#: admin/class-widgets.php:274
+#: admin/class-widgets.php:308
 msgid "Blog (opens in a new window)"
 msgstr "المدونة (تفتح في نافذة جديدة)"
 
-#: admin/class-widgets.php:274
+#: admin/class-widgets.php:308
 msgid "Blog"
 msgstr "المدونة"
 
-#: admin/class-widgets.php:275
+#: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "الوثائق (تفتح في نافذة جديدة)"
-
-#: admin/class-widgets.php:275
-msgid "Documentation"
-msgstr "الوثائق"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
@@ -712,19 +753,21 @@ msgstr "عدد جداول قاعدة بيانات التجاهل"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:45
+#, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "%1$s يستخدم %2$s لمراقبة إمكانية الوصول إلى موقعنا الإلكتروني."
 
-#: includes/classes/class-accessibility-statement.php:49
+#: includes/classes/class-accessibility-statement.php:50
 msgid "Accessibility Checker (opens in a new window)"
 msgstr "Accessibility Checker (يفتح في نافذة جديدة)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
-#: includes/classes/class-accessibility-statement.php:58
+#: includes/classes/class-accessibility-statement.php:59
+#, php-format
 msgid "Read our %s"
 msgstr "اقرأ %s الخاصة بنا"
 
-#: includes/classes/class-accessibility-statement.php:59
+#: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "سياسة إمكانية الوصول"
 
@@ -764,6 +807,7 @@ msgstr "إضافة تسميات إلى حقول النموذج غير المسم
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "محاولة إضافة تسميات إلى حقول النموذج التي تفتقر إليها. ملاحظة: قد تحتاج إلى إضافة أنماط مخصصة تستهدف الفئة %1$s إذا كانت إضافة التسميات تؤثر على تخطيطات النموذج الخاص بك."
 
@@ -781,6 +825,7 @@ msgstr "إضافة عنوان الصفحة المفقود"
 
 #. translators: %1$s: a code tag with a title tag.
 #: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "إضافة وسم %1$s إلى الصفحة إذا كان مفقودًا أو فارغًا."
 
@@ -794,6 +839,7 @@ msgstr "إضافة تسمية للروابط التي تفتح نافذة/علا
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "إضافة تسمية وأيقونة إلى الروابط التي تحتوي على %1$s لإعلام المستخدمين بأنها ستفتح نافذة/علامة تبويب جديدة. %2$sملاحظة: لن يكون لهذا الإعداد أي تأثير إذا تم تمكين إصلاح ”حظر الروابط التي تفتح نوافذ جديدة“.%3$s"
 
@@ -804,6 +850,7 @@ msgstr "حظر تحميلات ملفات PDF"
 
 #. translators: %1$s: a code tag with the capability name.
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "تقييد تحميلات ملفات PDF للمستخدمين الذين ليس لديهم القدرة %1$s (مسموح للمسؤولين بشكل افتراضي)."
 
@@ -906,6 +953,7 @@ msgstr "إضافة سمات ”lang“ و ”dir“"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
 #: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "إضافة سمات لغة الموقع (%1$s) واتجاه النص (%2$s) إلى عنصر %3$s."
 
@@ -955,6 +1003,7 @@ msgstr "حظر الروابط التي تفتح نوافذ جديدة"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "منع الروابط من الفتح في نافذة أو علامة تبويب جديدة عن طريق إزالة %1$s."
 
@@ -1008,6 +1057,7 @@ msgstr "إزالة سمات العنوان"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "إزالة سمات %1$s من العناصر التي لديها بالفعل اسم يمكن الوصول إليه مفضل."
 
@@ -1045,6 +1095,7 @@ msgstr "قم بتعيين سمة المعرف لعنصر التنقل. هذا م
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 #: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "إذا لم يكن القالب الخاص بك يضيف بالفعل رابط تخطي يسمح لمستخدمي لوحة المفاتيح بتجاوز التنقل والانتقال سريعًا إلى المحتوى الرئيسي، قم بتمكين روابط التخطي هنا. %1$sتعرف على المزيد حول روابط التخطي.%2$s"
 
@@ -1066,6 +1117,7 @@ msgstr "إزالة مؤشر التبويب"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/TabindexFix.php:70
+#, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "إزالة سمة %1$s من العناصر القابلة للتركيز."
 
@@ -1079,6 +1131,7 @@ msgstr "لم يتم العثور على الإصلاح"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
 #: includes/classes/WPCLI/BootstrapCLI.php:99
+#, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "فشل تسجيل الأمر %1$s بسبب %2$s"
 
@@ -1092,11 +1145,13 @@ msgstr "لم يتم توفير معرف المقال."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:92
+#, php-format
 msgid "Post ID %1$s does not exist."
 msgstr "معرف المقال %1$s غير موجود."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:103
+#, php-format
 msgid "Stats of %1$s deleted."
 msgstr "تم حذف إحصائيات %1$s."
 
@@ -1110,6 +1165,7 @@ msgstr "مسح ذاكرة التخزين المؤقت قبل استرجاع ال
 
 #. translators: 1: a stat key that was requested but not found.
 #: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#, php-format
 msgid "Stat key: %1$s not found in stats."
 msgstr "مفتاح الإحصائية: %1$s غير موجود في الإحصائيات."
 
@@ -1119,11 +1175,13 @@ msgstr "معرف المقال للحصول على إحصائياته."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:126
+#, php-format
 msgid "Post ID %1$d does not exist."
 msgstr "معرف المقال %1$d غير موجود."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:142
+#, php-format
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "إما أن المقال لم يتم فحصه بعد أو أن جميع الاختبارات قد نجحت لمعرف المقال %1$d."
 
@@ -1139,7 +1197,7 @@ msgstr "الرابط الدائم إلى "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:371
+#: includes/helper-functions.php:339
 msgid "Attend Free"
 msgstr "حضور مجاني"
 
@@ -1150,10 +1208,6 @@ msgstr "مرحبًا بك في Accessibility Checker"
 #: includes/options-page.php:65
 msgid "Accessibility Checker Settings"
 msgstr "إعدادات Accessibility Checker"
-
-#: includes/options-page.php:66
-msgid "Settings"
-msgstr "الإعدادات"
 
 #: includes/options-page.php:99
 msgid "General Settings"
@@ -1184,12 +1238,12 @@ msgid "Simplified Summary Position"
 msgstr "موقع الملخص المبسط"
 
 #: includes/options-page.php:164
-#: includes/options-page.php:517
+#: includes/options-page.php:533
 msgid "Add Footer Accessibility Statement"
 msgstr "إضافة بيان إمكانية الوصول في التذييل"
 
 #: includes/options-page.php:173
-#: includes/options-page.php:540
+#: includes/options-page.php:556
 msgid "Include Link to Accessibility Policy"
 msgstr "تضمين رابط لسياسة إمكانية الوصول"
 
@@ -1207,6 +1261,7 @@ msgstr "موضع Accessibility Checker للواجهة الأمامية"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
+#, php-format
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
 msgstr "استخدم الإعدادات أدناه لتكوين Accessibility Checker. يمكن العثور على معلومات إضافية حول كل إعداد في %1$s."
 
@@ -1220,99 +1275,100 @@ msgstr "وثائق الإضافة"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
 #: includes/options-page.php:251
+#, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "تتوفر المزيد من الميزات والدعم عبر البريد الإلكتروني مع %1$s."
 
-#: includes/options-page.php:252
+#: includes/options-page.php:259
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (يفتح في نافذة جديدة)"
 
-#: includes/options-page.php:252
+#: includes/options-page.php:259
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:273
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "استخدم الإعدادات أدناه لتكوين مدقق الوصول في الواجهة الأمامية."
 
-#: includes/options-page.php:276
+#: includes/options-page.php:283
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "تتطلب إرشادات محتوى الويب لإمكانية الوصول (WCAG) على المستوى AAA أن يكون لأي محتوى بمستوى قراءة أعلى من الصف التاسع بديل أسهل للقراءة. يتم إضافة نص ملخص مبسط في علامة التبويب الخاصة بقابلية القراءة في مربع التحرير الخاص بـ Accessibility Checker في شاشة تحرير كل مقال أو صفحة."
 
-#: includes/options-page.php:277
+#: includes/options-page.php:293
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "تعرف على المزيد حول الملخصات المبسطة ومتطلبات سهولة القراءة (يفتح في نافذة جديدة)"
 
-#: includes/options-page.php:277
+#: includes/options-page.php:293
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "تعرف على المزيد حول الملخصات المبسطة ومتطلبات سهولة القراءة."
 
-#: includes/options-page.php:286
+#: includes/options-page.php:302
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "هل تفكر ”واو، هذه الإضافة مذهلة“ وهل تساعدك في جعل موقعك الإلكتروني أكثر سهولة في الوصول؟ شارك جهودك لجعل موقعك الإلكتروني أكثر سهولة في الوصول مع عملائك وأخبرهم أنك تستخدم Accessibility Checker لضمان قدرة جميع الأشخاص على استخدام موقعك. أضف رابطًا صغيرًا نصيًا وبيانًا في تذييل موقعك الإلكتروني."
 
-#: includes/options-page.php:299
+#: includes/options-page.php:315
 msgid "Before the content"
 msgstr "قبل المحتوى"
 
-#: includes/options-page.php:304
+#: includes/options-page.php:320
 msgid "After the content"
 msgstr "بعد المحتوى"
 
-#: includes/options-page.php:309
+#: includes/options-page.php:325
 msgid "Insert manually"
 msgstr "إدراج يدويًا"
 
-#: includes/options-page.php:313
+#: includes/options-page.php:329
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "استخدم هذه الوظيفة لإضافة الملخص المبسط يدويًا إلى قالبك داخل الحلقة."
 
-#: includes/options-page.php:315
+#: includes/options-page.php:331
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "تقبل الوظيفة اختياريًا معرف المنشور كمعامل."
 
-#: includes/options-page.php:318
+#: includes/options-page.php:334
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "حدد المكان الذي تريد أن تظهر فيه الملخصات المبسطة بالنسبة للمحتوى الخاص بك إذا تم ملؤها."
 
-#: includes/options-page.php:333
+#: includes/options-page.php:349
 msgid "Bottom Right Corner (default)"
 msgstr "الزاوية السفلية اليمنى (الافتراضي)"
 
-#: includes/options-page.php:338
+#: includes/options-page.php:354
 msgid "Bottom Left Corner"
 msgstr "الزاوية السفلية اليسرى"
 
-#: includes/options-page.php:342
+#: includes/options-page.php:358
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "حدد المكان الذي تريد أن يظهر فيه مدقق الوصول في الواجهة الأمامية على الصفحة."
 
-#: includes/options-page.php:382
+#: includes/options-page.php:398
 msgid "When Required"
 msgstr "عند الحاجة"
 
-#: includes/options-page.php:387
+#: includes/options-page.php:403
 msgid "Always"
 msgstr "دائمًا"
 
-#: includes/options-page.php:395
+#: includes/options-page.php:411
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "هل يجب على Accessibility Checker أن يطلب ملخصًا مبسطًا فقط عندما يكون مستوى القراءة لمقالك أو صفحتك أعلى من الصف التاسع، أم يطلبه دائمًا بغض النظر عن مستوى القراءة، أم لا يطلبه أبدًا بغض النظر عن مستوى القراءة؟?"
 
-#: includes/options-page.php:446
+#: includes/options-page.php:462
 msgid "To check content other than posts and pages, please "
 msgstr "للتحقق من محتوى آخر غير المنشورات والصفحات، يرجى "
 
-#: includes/options-page.php:449
+#: includes/options-page.php:465
 msgid " (opens in a new window)"
 msgstr " (يفتح في نافذة جديدة)"
 
-#: includes/options-page.php:454
+#: includes/options-page.php:470
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "اختر أنواع المنشورات التي يجب فحصها أثناء المسح. يرجى ملاحظة أن إزالة نوع منشور تم تحديده مسبقًا سيؤدي إلى إزالة معلومات المسح الخاصة به وأي تحذيرات مخصصة تم تجاهلها."
 
-#: includes/options-page.php:592
+#: includes/options-page.php:608
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "حذف جميع بيانات Accessibility Checker عند إلغاء تثبيت الإضافة."
 
@@ -1322,6 +1378,7 @@ msgstr "الصورة تفتقد إلى النص البديل"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
 #: includes/rules.php:27
+#, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "يعني خطأ \"الصورة تفتقد إلى النص البديل\" أن صورتك لا تحتوي على سمة alt (%1$s) مضمنة في علامة الصورة (%2$s) على الإطلاق. لإصلاح خطأ \"الصورة تفتقد إلى النص البديل\"، ستحتاج إلى إضافة علامة alt للصورة مع نص مناسب يصف الغرض من الصورة في الصفحة. إذا كانت الصورة زخرفية، يمكن أن تكون سمة alt فارغة، ولكن يجب أن تكون علامة HTML %1$s موجودة."
 
@@ -1331,6 +1388,7 @@ msgstr "الصورة تحتوي على نص بديل فارغ"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:40
+#, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "يظهر تحذير \"الصورة تحتوي على نص بديل فارغ\" إذا كان لديك صورة بسمة alt (%s) فارغة. يخبر النص البديل الأشخاص الذين لا يستطيعون الرؤية بما تمثله الصورة ويضيف سياقًا إضافيًا للمنشور أو الصفحة. يكون النص البديل الفارغ صحيحًا فقط إذا كانت الصورة زخرفية بحتة، مثل حدود أو أيقونة زخرفية. لإصلاح تحذير \"الصورة تحتوي على نص بديل فارغ\"، تحتاج إلى تحديد ما إذا كانت الصورة زخرفية أم تضيف شيئًا ذا معنى للصفحة. إذا لم تكن زخرفية، فأنت بحاجة إلى إضافة نص بديل مناسب لوصف الغرض من الصورة. إذا كانت الصورة زخرفية، فعليك ترك النص البديل فارغًا و ”تجاهل“ التحذير."
 
@@ -1348,6 +1406,7 @@ msgstr "صورة مرتبطة تفتقد النص البديل"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:60
+#, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "يظهر خطأ الصورة المرتبطة المفقودة للنص البديل عندما لا تحتوي صورة مرتبطة بعنوان URL على سمة alt (%s) في وسم الصورة على الإطلاق. يجب أن تحتوي الصور المرتبطة على نص بديل دقيق يصف وجهة الرابط حتى يعرف مستخدمو قارئ الشاشة إلى أين يشير الرابط. لحل هذا الخطأ، تحتاج إلى إضافة نص بديل ذي معنى للصورة. يجب أن يصف النص البديل الخاص بك الغرض من الرابط وليس شكل الصورة."
 
@@ -1357,6 +1416,7 @@ msgstr "صورة مرتبطة ذات نص بديل فارغ"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:72
+#, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "يظهر خطأ الصورة المرتبطة ذات النص البديل الفارغ عندما تحتوي صورة مرتبطة بعنوان URL على سمة alt (%s) بدون أي محتوى فيها. يجب أن تحتوي الصور المرتبطة على نص بديل دقيق يصف وجهة الرابط حتى يعرف مستخدمو قارئ الشاشة إلى أين يشير الرابط. لحل هذا الخطأ، تحتاج إلى إضافة نص بديل ذي معنى للصورة. يجب أن يصف النص البديل الخاص بك الغرض من الرابط وليس شكل الصورة."
 
@@ -1374,6 +1434,7 @@ msgstr "ترتيب العناوين غير صحيح"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
 #: includes/rules.php:92
+#, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "يعني خطأ ترتيب العناوين غير الصحيح أن هيكل العناوين الخاص بك قد تخطى مستوى. على سبيل المثال، إذا كان هيكل صفحتك يحتوي على عنوان من المستوى 3 (%1$s) تحت عنوان من المستوى 1 (%2$s)، فسيتم الإشارة إلى خطأ ”ترتيب العناوين غير الصحيح“ لأنه لا يوجد وسم %3$s بين H1 و H3. لإصلاح أخطاء ترتيب العناوين غير الصحيحة، ستحتاج إما إلى تغيير مستوى العنوان غير الصحيح إلى المستوى الصحيح، أو إضافة محتوى بمستوى العنوان الصحيح بين المستويين الموجودين بالفعل."
 
@@ -1391,6 +1452,7 @@ msgstr "إطار iframe يفتقد العنوان"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
 #: includes/rules.php:117
+#, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "يعني خطأ إطار iframe المفقود للعنوان أن واحدًا أو أكثر من إطارات iframe في منشورك أو صفحتك لا يحتوي على عنوان يمكن الوصول إليه يصف محتويات الإطار iframe. عنوان الإطار iframe هو سمة يمكن إضافتها إلى الوسم %1$s لوصف محتويات الإطار للأشخاص الذين يستخدمون التقنيات المساعدة. لإصلاح عنوان إطار iframe المفقود، ستحتاج إلى إضافة عنوان أو سمة aria-label إلى الوسم %1$s. يجب أن تصف السمة بدقة محتويات الإطار iframe."
 
@@ -1400,6 +1462,7 @@ msgstr "العناوين الفرعية مفقودة"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
 #: includes/rules.php:132
+#, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "يشير التحذير بشأن الترويسات المفقودة إلى أن منشورك أو صفحتك لا تحتوي على أي عناصر ترويسة (%1$s–%2$s) ضمن محتوى قسم نص المنشور أو الصفحة، مما قد يجعل من الصعب بشكل خاص على مستخدمي قارئات الشاشة التنقل عبر المحتوى الموجود في الصفحة. لإصلاح صفحة بدون ترويسات، ستحتاج إلى إضافة عناصر الترويسة. كحد أدنى، يجب أن تحتوي كل صفحة على وسم %1$s واحد، والذي يكون عادةً عنوان الصفحة. أضف عناوين فرعية إضافية حسب الاقتضاء لمحتواك. إذا قررت أن الترويسات غير ضرورية بالتأكيد في الصفحة، فيمكنك ”تجاهل“ التحذير."
 
@@ -1417,6 +1480,7 @@ msgstr "الرابط يفتح نافذة أو علامة تبويب جديدة"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
 #: includes/rules.php:154
+#, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "يظهر تحذير \"الرابط يفتح نافذة أو علامة تبويب جديدة\" عندما يكون هناك رابط على موقعك الإلكتروني تم تعيينه ليفتح في علامة تبويب أو نافذة جديدة عند النقر عليه. يعتبر من أفضل الممارسات عدم فتح علامات تبويب أو نوافذ جديدة بالروابط. إذا كانت الروابط تفتح علامات تبويب أو نوافذ جديدة، فيجب أن يكون هناك تحذير مرئي وصوتي يعلن أن الرابط سيفتح نافذة أو علامة تبويب جديدة حتى يتوقع المستخدمون هذا السلوك ويعرفوا كيفية العودة بعد النقر على الرابط. لإصلاح هذا التحذير، إما قم بتغيير الرابط بحيث لا يفتح في علامة تبويب جديدة أو تأكد من تضمين ”يفتح نافذة جديدة“ في نص الرابط ثم ”تجاهل“ التحذير. لإضافة إشعارات تلقائيًا لجميع الروابط على موقعك وتجاهل جميع هذه التحذيرات، قم بتثبيت إضافة %s المجانية الخاصة بنا."
 
@@ -1430,6 +1494,7 @@ msgstr "خريطة الصورة تفتقد إلى النص البديل"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
 #: includes/rules.php:173
+#, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "يعني خطأ \"خريطة الصورة تفتقد إلى النص البديل\" أن أحد عناصر %1$s داخل خريطة الصورة الخاصة بك لا يحتوي على نص بديل مضاف في سمة %2$s. لإصلاح هذا الخطأ، ستحتاج إلى إضافة نص بديل مفقود إلى أي وسوم منطقة لا تحتوي على نص بديل. يحتاج النص البديل إلى وصف وظيفة الرابط الموجود في المنطقة، وليس بالضرورة وصف مظهر المنطقة."
 
@@ -1439,6 +1504,7 @@ msgstr "ترتيب التبويب معدّل"
 
 #. translators: %s is <code>tabindex="1"</code>.
 #: includes/rules.php:189
+#, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "يظهر تحذير \"ترتيب التبويب معدّل\" عندما يتم تغيير ترتيب التبويب المنطقي في الصفحة عن طريق إضافة سمة لـ tabindex أكبر من 0 إلى عنصر HTML (على سبيل المثال، %s). يمكن أن يسبب هذا مشاكل في التنقل للمستخدمين الذين يستخدمون لوحة المفاتيح فقط. لحل تحذير \"ترتيب التبويب معدّل\"، تحتاج إلى عرض الواجهة الأمامية لموقعك الإلكتروني على الصفحة أو المنشور حيث تم تعديل ترتيب التبويب واختبار ما إذا كان التعديل صحيحًا أم لا. إذا لم يسبب تعديل ترتيب التبويب أي مشاكل، فيمكنك ”تجاهل“ التحذير. إذا تسبب ترتيب التبويب المعدل في عرض المعلومات خارج الترتيب، فعليك إزالة سمة tabindex من العنصر المشار إليه."
 
@@ -1448,6 +1514,7 @@ msgstr "وسم ترويسة فارغ"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
 #: includes/rules.php:205
+#, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "يعني خطأ \"وسم ترويسة فارغ\" أن هناك وسم ترويسة موجود في منشورك أو صفحتك لا يحتوي على محتوى. في الكود، سيبدو هذا الخطأ كما يلي: %s. لإصلاح ترويسة فارغة، ستحتاج إلى إضافة محتوى إلى وسم الترويسة الذي أشار إلى خطأ \"وسم ترويسة فارغ\" أو إزالة الوسم الفارغ إذا لم يكن هناك حاجة إليه في صفحتك."
 
@@ -1457,6 +1524,7 @@ msgstr "رابط فارغ"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
 #: includes/rules.php:217
+#, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "يشير خطأ الرابط الفارغ إلى أن أحد الروابط الموجودة على صفحة الويب فارغ أو لا يحتوي على نص يصف وجهة الرابط عند النقر عليه. يحدث هذا عادة مع الروابط التي تحتوي على خطوط ويب أو أيقونات أو صور SVG، أو عندما يتم إنشاء رابط بالخطأ في محرر المحتوى. لإصلاح خطأ الرابط الفارغ، ستحتاج إلى العثور على الرابط المشار إليه وإضافة نص وصفي له. ستحتاج إما إلى: إضافة محتوى نصي داخل عنصر %1$s فارغ، أو إذا كان الرابط يحتوي على أيقونة SVG أو خط ويب، قم بإخفاء هذا العنصر باستخدام %2$s وإضافة سمة %3$s إلى علامة %1$s أو نص لقارئ الشاشة. يجب أن يكون النص أو التسمية التي تضيفها وصفية لوجهة الرابط وغير مبهمة."
 
@@ -1466,6 +1534,7 @@ msgstr "زر فارغ"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
 #: includes/rules.php:231
+#, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "يشير خطأ الزر الفارغ إلى أن أحد الأزرار الموجودة على صفحة الويب فارغ أو لا يحتوي على نص يصف وظيفة الزر. أو، إذا كان زرًا للصورة، فإن الصورة الموجودة في الزر تفتقد إلى نص بديل. لإصلاح خطأ الزر الفارغ، ستحتاج إلى العثور على الزر المشار إليه وإضافة نص وصفي له. ستحتاج إما إلى: إضافة محتوى نصي داخل عنصر %1$s فارغ، أو إضافة سمة القيمة إلى %2$s المفقودة، أو إضافة نص بديل لصورة الزر. يجب أن يكون النص وصفيًا لما يُستخدم الزر من أجله أو الإجراء الذي يؤدي إليه الزر."
 
@@ -1491,6 +1560,7 @@ msgstr "رأس جدول فارغ"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
 #: includes/rules.php:263
+#, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "يشير خطأ رأس الجدول الفارغ إلى أن أحد رؤوس الجداول في منشورك أو صفحتك لا يحتوي على أي نص. هذا يعني أن عنصر %1$s موجود ولكنه يبدو هكذا %2$s بدون أي شيء بين علامتي الفتح والإغلاق. لإصلاح رأس جدول فارغ، تحتاج إلى العثور على عنصر HTML الصحيح (%1$s) وإضافة نص إليه يصف الصف أو العمود الذي ينطبق عليه."
 
@@ -1524,6 +1594,7 @@ msgstr "الوصف الطويل غير صالح"
 
 #. translators: %s is <code>longdesc=""</code>.
 #: includes/rules.php:300
+#, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "يعني خطأ الوصف الطويل غير الصالح أن سمة الوصف الطويل (%s) لصورة ما لا تحتوي على عنوان URL مناسب أو اسم ملف أو امتداد ملف. قد يعني أيضًا أن الوصف الطويل ليس عنوان URL، أو أنه تُرك فارغًا. سمة longdesc غير مدعومة بالكامل في HTML5 والمتصفحات وجميع قارئات الشاشة. نظرًا لهذا النقص في الدعم، فإن أفضل إصلاح لهذا الخطأ هو إزالة longdesc من وسم الصورة الخاص بك تمامًا."
 
@@ -1533,6 +1604,7 @@ msgstr "تسمية النموذج مفقودة"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
 #: includes/rules.php:312
+#, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "يتم تشغيل خطأ تسمية النموذج المفقودة عندما يكون %1$s (حقل النموذج) موجودًا في نموذجك ولكنه غير مرتبط بعنصر %2$s. قد يعني هذا أن التسمية موجودة ولكنها تفتقد إلى سمة %3$s لربطها بالحقل المعني أو قد لا تكون هناك تسمية موجودة على الإطلاق ويوجد فقط وسم %1$s. لإصلاح أخطاء تسمية النموذج المفقودة، ستحتاج إلى تحديد كيفية إنشاء الحقل والنموذج ثم إضافة تسميات الحقول أو سمة %3$s الصحيحة للتسميات الموجودة التي لا ترتبط بحقل."
 
@@ -1550,6 +1622,7 @@ msgstr "نص مسطر"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
 #: includes/rules.php:339
+#, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "يظهر تحذير النص المسطر إذا كان أي نص على صفحتك ملفوفًا في وسم HTML للتسطير (%1$s). في البيئة الإلكترونية، يُستخدم النص المسطر عادةً للإشارة إلى النص المرتبط ولا يعتبر من أفضل الممارسات تسطير النص للتأكيد فقط. لإصلاح النص المسطر، ستحتاج إلى إزالة عنصر %1$s من النص أو أنماط CSS التي تجعله مسطرًا. حاول استخدام أساليب تنسيق أخرى، مثل الخط المائل أو النص الملون أو التعريض للتأكيد أو التمييز بين الكلمات أو العبارات."
 
@@ -1567,6 +1640,7 @@ msgstr "رأس جدول مفقود"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
 #: includes/rules.php:359
+#, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "خطأ 'رأس جدول مفقود' يعني أن أحد جداولك يحتوي على بيانات (معلومات موجودة في وسم %1$s) ليس لها رأس مقابل (%2$s). عند النظر إلى HTML للنموذج الخاص بك، سيكون هناك المزيد من عناصر %1$s في صف أكثر من عناصر %2$s في الجدول. لإصلاح رأس جدول مفقود، تحتاج إلى العثور على قسم الكود الذي يحتوي على عناصر %2$s أقل مما يجب أن يكون موجودًا لعدد الصفوف أو الأعمدة من البيانات، وإضافة واحد أو أكثر من عناصر %2$s الإضافية التي تحتوي على نص يصف البيانات في ذلك الصف أو العمود."
 
@@ -1600,6 +1674,7 @@ msgstr "محتوى وامض أو متحرك"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
 #: includes/rules.php:397
+#, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "تظهر أخطاء 'المحتوى الوامض أو المتحرك' عندما يتم تطبيق وظيفة وميض أو تمرير على العناصر في موقعك الإلكتروني إما عبر CSS أو في HTML. على وجه التحديد، سيؤدي ما يلي إلى إنشاء هذا الخطأ: علامات HTML %1$s أو %2$s أو CSS %3$s. لحل هذا الخطأ، قم بإزالة علامات HTML أو CSS التي تتسبب في وميض المحتوى."
 
@@ -1633,6 +1708,7 @@ msgstr "إعلان اللغة مفقود"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
 #: includes/rules.php:437
+#, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "إعلان اللغة هو سمة HTML تشير إلى اللغة الافتراضية لمحتوى الصفحة أو المنشور. يجب أن يتم ترميز إعلانات اللغة في سمة موقعك وتظهر تلقائيًا في رأس الموقع. يظهر خطأ إعلان اللغة المفقود إذا كانت علامة %1$s في الصفحة لا تحتوي على سمة %2$s أو %3$s، أو إذا كانت إحدى هذه السمات موجودة ولكنها فارغة. لإصلاح خطأ إعلان اللغة المفقود، ستحتاج إلى تحرير ملفات السمة الخاصة بك لإضافة سمة اللغة المفقودة إلى علامة HTML في أعلى رأس موقعك. إذا كنت تستخدم سمة تتلقى تحديثات، فستحتاج إلى إجراء التغيير في سمة فرعية لضمان عدم استبدال الإصلاح عند تحديث السمة في المرة القادمة."
 
@@ -1666,6 +1742,7 @@ msgstr "عنوان مفقود"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
 #: includes/rules.php:482
+#, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "يعني خطأ 'العنوان المفقود' أن منشورك أو صفحتك لا تحتوي على عنصر عنوان (%1$s أو %2$s). قد يحدث هذا إذا فشل القالب في إضافة علامة العنوان، أو إذا تُرك حقل العنوان فارغًا في شاشة تحرير ووردبريس. لإصلاح صفحة بدون عناوين، ستحتاج إلى إضافة عناصر العنوان. أولاً، حدد ما إذا كان العنوان مفقودًا لأنك تركت حقل عنوان الصفحة أو المنشور فارغًا في المحرر. إذا كان الأمر كذلك، قم بملئه. إذا تم ملء العنوان وكان مرئيًا في الواجهة الخلفية، فيجب تحرير الشفرة في رأس صفحة الويب الخاصة بك لتتضمن علامة %1$s أو علامة تعريف %2$s."
 
@@ -1675,6 +1752,7 @@ msgstr "استخدام غير صحيح للرابط"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
 #: includes/rules.php:500
+#, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "يظهر خطأ 'استخدام غير صحيح للرابط' إذا كان لديك روابط تفتقر إلى سمة %1$s أو مرتبطة فقط بـ %2$s، ولا تحتوي على %3$s. يجب استخدام الروابط لتوجيه الأشخاص إلى أجزاء أخرى من موقعك. أي وظيفة أخرى تؤدي إلى إجراء يجب أن تكون زرًا. لحل هذا الخطأ، تحتاج إلى إعادة ترميز الرابط لاستخدام علامة %4$s (مفضل) أو إضافة %5$s إلى علامة %6$s الحالية. إذا كان العنصر زر تبديل (مثل الأكورديون)، فهناك حاجة إلى سمات ARIA إضافية."
 
@@ -1720,62 +1798,62 @@ msgid "Clear Issues"
 msgstr "مسح المشكلات"
 
 #: partials/pro-callout.php:13
-#: partials/welcome-page.php:196
+#: partials/welcome-page.php:199
 msgid "Equalize Digital Logo"
 msgstr "شعار Equalize Digital"
 
 #: partials/pro-callout.php:16
-#: partials/welcome-page.php:197
+#: partials/welcome-page.php:200
 msgid "Upgrade to Accessibility Checker Pro"
 msgstr "الترقية إلى Accessibility Checker Pro"
 
 #: partials/pro-callout.php:20
-#: partials/welcome-page.php:200
+#: partials/welcome-page.php:203
 msgid "Scan all post types"
 msgstr "فحص جميع أنواع المنشورات"
 
 #: partials/pro-callout.php:21
-#: partials/welcome-page.php:201
+#: partials/welcome-page.php:204
 msgid "Admin columns to see accessibility status at a glance"
 msgstr "أعمدة المشرف لرؤية حالة إمكانية الوصول بلمحة"
 
 #: partials/pro-callout.php:22
-#: partials/welcome-page.php:202
+#: partials/welcome-page.php:205
 msgid "Centralized list of all open issues"
 msgstr "قائمة مركزية لجميع المشكلات المفتوحة"
 
 #: partials/pro-callout.php:23
-#: partials/welcome-page.php:203
+#: partials/welcome-page.php:206
 msgid "Ignore log"
 msgstr "سجل التجاهل"
 
 #: partials/pro-callout.php:24
-#: partials/welcome-page.php:204
+#: partials/welcome-page.php:207
 msgid "Rename simplified summary"
 msgstr "إعادة تسمية الملخص المبسط"
 
 #: partials/pro-callout.php:25
-#: partials/welcome-page.php:205
+#: partials/welcome-page.php:208
 msgid "User restrictions on ignoring issues"
 msgstr "قيود المستخدم على تجاهل المشكلات"
 
 #: partials/pro-callout.php:26
-#: partials/welcome-page.php:206
+#: partials/welcome-page.php:209
 msgid "Email support"
 msgstr "دعم البريد الإلكتروني"
 
 #: partials/pro-callout.php:27
-#: partials/welcome-page.php:207
+#: partials/welcome-page.php:210
 msgid "...and more"
 msgstr "...والمزيد"
 
-#: partials/pro-callout.php:36
-#: partials/welcome-page.php:212
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
 msgid "Get Accessibility Checker Pro"
 msgstr "احصل على Accessibility Checker Pro"
 
-#: partials/pro-callout.php:46
-#: partials/welcome-page.php:220
+#: partials/pro-callout.php:57
+#: partials/welcome-page.php:223
 msgid "Or activate your license key here."
 msgstr "أو قم بتفعيل مفتاح الترخيص الخاص بك هنا."
 
@@ -1801,6 +1879,7 @@ msgstr "اتبع هذه الخطوات للبدء في فحص المحتوى ا�
 
 #. translators: %s: path to settings page.
 #: partials/welcome-page.php:57
+#, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "في <a href=\"%s\">صفحة الإعدادات</a>، اختر أنواع المنشورات التي تريد فحصها."
 
@@ -1852,7 +1931,7 @@ msgstr "لماذا نقول 100% اجتياز الاختبارات، وليس 10
 #: partials/welcome-page.php:109
 #: partials/welcome-page.php:114
 #: partials/welcome-page.php:120
-#: partials/welcome-page.php:213
+#: partials/welcome-page.php:216
 msgid "(opens in a new window)"
 msgstr "(يفتح في نافذة جديدة)"
 
@@ -1924,19 +2003,19 @@ msgstr "أسئلة وأجوبة مفتوحة على Zoom كل أسبوعين ل�
 msgid "Included in Small Business and Agency plans"
 msgstr "متضمنة في خطط الأعمال الصغيرة والوكالات"
 
-#: partials/welcome-page.php:165
+#: partials/welcome-page.php:166
 msgid "Register for Office Hours"
 msgstr "التسجيل لساعات العمل"
 
-#: partials/welcome-page.php:170
+#: partials/welcome-page.php:172
 msgid "Auditing and Remediation"
 msgstr "التدقيق والإصلاح"
 
-#: partials/welcome-page.php:172
+#: partials/welcome-page.php:174
 msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
 msgstr "احصل على المساعدة في جعل موقع الويب الخاص بك قابلاً للوصول. تدقيق خبير، اختبار المستخدم، ودعم المطورين. خطابات المطابقة متاحة."
 
-#: partials/welcome-page.php:176
+#: partials/welcome-page.php:178
 msgid "Get Remediation Help"
 msgstr "الحصول على مساعدة في الإصلاح"
 
@@ -1947,6 +2026,7 @@ msgstr "جارٍ الحفظ..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "تم حفظ الإعدادات بنجاح. يجب عليك %sزيارة المحرر%s وحفظ المنشور لإعادة الفحص وإزالة المشكلات المصححة من تقارير Accessibility Checker."
 

@@ -9,7 +9,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2025-07-08T04:13:04+00:00\n"
+=======
+"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
+>>>>>>> develop
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -67,6 +71,7 @@ msgstr ""
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
+#: admin/class-plugin-action-links.php:51
 msgid "Get Pro"
 msgstr ""
 
@@ -363,6 +368,44 @@ msgstr ""
 msgid "Object query returned no results"
 msgstr ""
 
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+#: admin/class-plugin-row-meta.php:49
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr ""
+
+#: admin/class-plugin-row-meta.php:50
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr ""
+
+#: admin/class-plugin-row-meta.php:55
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr ""
+
+#: admin/class-plugin-row-meta.php:56
+msgid "Support"
+msgstr ""
+
+#: admin/class-plugin-row-meta.php:61
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr ""
+
+#: admin/class-plugin-row-meta.php:62
+msgid "Rate plugin"
+#: admin/class-plugin-action-links.php:44
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr ""
+
+#: admin/class-plugin-action-links.php:56
+msgid "Get Accessibility Checker Pro, opens in new window"
+msgstr ""
+
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
 msgstr ""
@@ -565,10 +608,6 @@ msgstr ""
 
 #: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
-msgstr ""
-
-#: admin/class-widgets.php:309
-msgid "Documentation"
 msgstr ""
 
 #: admin/opt-in/class-email-opt-in.php:115
@@ -1834,6 +1873,14 @@ msgstr ""
 msgid "...and more"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr ""
+
+>>>>>>> develop
 #: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."

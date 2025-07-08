@@ -9,15 +9,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-24T21:54:49+00:00\n"
+"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
-#: includes/classes/class-accessibility-statement.php:50
+#: includes/classes/class-accessibility-statement.php:51
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -65,16 +65,18 @@ msgstr "Selle funktsiooni avamiseks hangi Pro versioon, avaneb uues aknas."
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
+#: admin/class-plugin-action-links.php:51
 msgid "Get Pro"
 msgstr "Hangi Pro versioon"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:338
+#: admin/class-ajax.php:354
 msgid "Opens in a new window."
 msgstr "Avaneb uues aknas."
 
 #. translators: %s: the label of the fix
 #: admin/AdminPage/FixesSettingType/Text.php:54
+#, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Loe %s dokumentatsiooni. Avaneb uues aknas."
 
@@ -94,52 +96,55 @@ msgstr "Jätkuvad pingutused ligipääsetavuse tagamiseks"
 msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
 msgstr "Järgime <a href=\"https://www.w3.org/TR/WCAG21/\">Veebi sisu ligipääsetavuse suuniseid (WCAG) versioon 2.1</a> kui meie juhtprintsiipi ligipääsetavuse määramisel. Need on rahvusvaheliselt kokkulepitud standardid, mis hõlmavad laia valikut soovitusi ja parimaid tavasid sisu kasutatavaks muutmisel. Kui lisame oma veebisaidile uusi lehti ja funktsionaalsust, kontrollitakse kõiki disaine, koodi ja sisu sisestamise tavasid nende standardite vastu."
 
-#: admin/class-accessibility-statement.php:56
-msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
-msgstr "Veebilehe juurdepääsetavus on pidev protsess. Me testime pidevalt sisu ja funktsioone WCAG 2.1 AA-taseme nõuetele vastavuse suhtes ja parandame kõik probleemid, et tagada standardite täitmine või ületamine. Meie meeskonnaliikmed testivad meie veebisaiti, kasutades tööstusstandardite kohaseid vahendeid, nagu <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, värvikontrasti analüsaatorid, ainult klaviatuuriga navigeerimise meetodid ja Flesch-Kincaidi loetavuse testid."
+#. translators: 1 - A link opening tag, 2 - link closing tag
+#: admin/class-accessibility-statement.php:58
+#, php-format
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the %1$sAccessibility Checker WordPress Plugin%2$s, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Veebisaidi ligipääsetavus on pidev protsess. Testime pidevalt sisu ja funktsioone WCAG 2.1 AA taseme nõuetele vastavuse osas ning parandame kõik probleemid, et tagada standardite täitmine või ületamine. Meie veebisaidi testimist teostavad meie meeskonnaliikmed, kasutades tööstusharu standardseid tööriistu nagu %1$sAccessibility Checker WordPressi plugin%2$s, värvikontrastide analüsaatoreid, ainult klaviatuuriga navigeerimise tehnikaid ja Flesch-Kincaidi loetavusteste."
 
-#: admin/class-accessibility-statement.php:57
+#: admin/class-accessibility-statement.php:62
 msgid "Accessibility Features On Our Website"
 msgstr "Ligipääsetavuse funktsioonid meie veebisaidil"
 
-#: admin/class-accessibility-statement.php:58
+#: admin/class-accessibility-statement.php:63
 msgid "The following is a list of items we have included in our website to improve its accessibility:"
 msgstr "Järgnev on loetelu elementidest, mille oleme lisanud oma veebisaidile selle ligipääsetavuse parandamiseks:"
 
-#: admin/class-accessibility-statement.php:59
+#: admin/class-accessibility-statement.php:64
 msgid "[LIST ACCESSIBILITY FEATURES HERE]"
 msgstr "[LOETLEGE LIGIPÄÄSETAVUSE FUNKTSIOONID SIIN]"
 
-#: admin/class-accessibility-statement.php:60
+#: admin/class-accessibility-statement.php:65
 msgid "Where We're Improving"
 msgstr "Kus me end parandame"
 
-#: admin/class-accessibility-statement.php:61
+#: admin/class-accessibility-statement.php:66
 msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
 msgstr "Oma püüdlustes viia oma veebisait standardile vastavaks, keskendume järgmistele valdkondadele:"
 
-#: admin/class-accessibility-statement.php:62
+#: admin/class-accessibility-statement.php:67
 msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
 msgstr "[LOETLEGE SIIA ASJAD, MIDA PÜÜATE PARANDADA]"
 
-#: admin/class-accessibility-statement.php:63
+#: admin/class-accessibility-statement.php:68
 msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
 msgstr "[VÕIB OLLA KASULIK VAADATA AVATUD PROBLEEMIDE VAHEKAARTI, ET NÄHA KÕIGE SAGEDASEMAID PROBLEEME]"
 
-#: admin/class-accessibility-statement.php:64
+#: admin/class-accessibility-statement.php:69
 msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
 msgstr "See on osa meie laiemast püüdlusest muuta kõigi kogemus [COMPANY NAME] juures tervitavaks ja nauditavaks. Palun pange tähele, et kuigi teeme kõik endast oleneva, et pakkuda teavet, mis on kõigile kasutajatele ligipääsetav, ei saa me garanteerida kolmandate osapoolte veebisaitide ligipääsetavust, millele võime linkida."
 
-#: admin/class-accessibility-statement.php:65
+#: admin/class-accessibility-statement.php:70
 msgid "Accessibility Support Contact"
 msgstr "Ligipääsetavuse toe kontakt"
 
-#: admin/class-accessibility-statement.php:66
+#: admin/class-accessibility-statement.php:71
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "Tervitame kommentaare, küsimusi ja tagasisidet meie veebisaidi kohta. Kui kasutate abitehnoloogiaid ja teil on raskusi meie veebisaidi kasutamisega, palun saatke e-kiri aadressile [YOUR ACCESSIBILITY EMAIL ADDRESS] või helistage meile numbril [YOUR PHONE NUMBER]. Teeme oma parima, et teid aidata ja probleemid lahendada."
 
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
+#, php-format
 msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
 msgstr "Oleme parandanud statistika arvutusi versioonis 1.21.0. Selle tulemusena võivad mõned numbrid allolevas andmestikus olla muutunud. Loe rohkem meie %1$sväljalasketeate postitusest%2$s."
 
@@ -147,12 +152,12 @@ msgstr "Oleme parandanud statistika arvutusi versioonis 1.21.0. Selle tulemusena
 #: admin/class-admin-notices.php:225
 #: admin/class-admin-notices.php:312
 #: admin/class-admin-notices.php:401
-#: admin/class-admin-notices.php:483
+#: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:196
-#: admin/class-ajax.php:561
-#: admin/class-ajax.php:700
-#: admin/class-ajax.php:780
+#: admin/class-ajax.php:212
+#: admin/class-ajax.php:577
+#: admin/class-ajax.php:715
+#: admin/class-ajax.php:795
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "Juurdepääs keelatud"
@@ -161,7 +166,7 @@ msgstr "Juurdepääs keelatud"
 #: admin/class-admin-notices.php:234
 #: admin/class-admin-notices.php:324
 #: admin/class-admin-notices.php:421
-#: admin/class-admin-notices.php:492
+#: admin/class-admin-notices.php:498
 msgid "Update option wasn't successful"
 msgstr "Valiku uuendamine ei õnnestunud"
 
@@ -171,7 +176,7 @@ msgstr "🎉 Musta reede eripakkumine! 🎉"
 
 #: admin/class-admin-notices.php:204
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Uuenda Accessibility Checkeri tasulist versiooni 25. Novembrist 3. detsembrini ja saa 30% allahindlust! Täielik saidi skaneerimine, kogu saidi avatud probleemide aruanne, ignoreerimislogid ja palju muud."
+msgstr "Uuendage 25. Novembrist kuni 3. detsembrini Accessibility Checker'i tasulisele versioonile ja saate 30% allahindlust! Täielik saidi skaneerimine, kogu saidi hõlmav aruanne avatud probleemidest, ignoreerimisprotokollid ja palju muud."
 
 #: admin/class-admin-notices.php:205
 #: admin/class-admin-notices.php:292
@@ -185,7 +190,7 @@ msgstr "Uuenda kohe"
 
 #: admin/class-admin-notices.php:290
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 Ülemaailmse ligipääsetavuse teadlikkuse päeva auks saad Accessibility Checker Pro 25% soodsamalt! 🎉"
+msgstr "🎉 Saa 25% allahindlust Accessibility Checker Pro'lt ülemaailmse ligipääsetavuse päeva auks! 🎉"
 
 #: admin/class-admin-notices.php:291
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
@@ -193,7 +198,7 @@ msgstr "Kasuta kupongikoodi GAAD25 13. Maist kuni 21. maini, et saada juurdepä�
 
 #: admin/class-admin-notices.php:376
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
-msgstr "Tere! Täname, et kasutate Accessibility Checkerit osana oma ligipääsetavuse tööriistakomplektist. Kuna olete seda juba mõnda aega kasutanud, kas kirjutaksite palun 5-tärni arvustuse Accessibility Checkeri kohta WordPressi pluginate kataloogis? See aitab suurendada meie nähtavust, et rohkem inimesi saaks teada veebi ligipääsetavuse tähtsusest. Suur tänu!"
+msgstr "Tere! Täname teid, et kasutate Accessibility Checker'i kui osa oma ligipääsetavuse tööriistakomplektist. Kuna te olete seda juba mõnda aega kasutanud, siis kirjutage palun 5-tärni arvustus Accessibility Checker'ile WordPressi pluginate kataloogis. See aitab suurendada meie nähtavust, et rohkem inimesi saaks teada veebi juurdepääsetavuse olulisusest. Suur tänu!"
 
 #: admin/class-admin-notices.php:379
 msgid "Write A Review"
@@ -213,22 +218,23 @@ msgstr "Arvustuse tegevuse väärtust ei määratud"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
 #: admin/class-admin-notices.php:446
+#, php-format
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
-msgstr "Ups! Paistab, et teie veebisait on hetkel parooliga kaitstud. Accessibility Checkeri tasuta versioon saab skaneerida ainult avalikke veebisaite. Et skaneerida seda veebisaiti ligipääsetavuse probleemide suhtes, eemaldage paroolikaitse või %s. Skannimise tulemused võivad olla salvestatud eelmisest skaneerimisest."
+msgstr "Ups! Paistab, et teie veebisait on praegu parooliga kaitstud. Accessibility Checker'i tasuta versioon saab skaneerida ainult live-veebisaite. Selle veebisaidi skaneerimiseks ligipääsetavusprobleemide suhtes eemaldage kas paroolikaitse või %s. Skaneerimistulemused võivad olla salvestatud eelmisest skaneerimisest."
 
 #: admin/class-admin-notices.php:449
 msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Täienda Accessibility Checker Pro-le. Avaneb uues aknas."
 
 #: admin/class-admin-notices.php:450
-#: includes/options-page.php:448
+#: includes/options-page.php:464
 msgid "upgrade to pro"
 msgstr "täienda Pro-versioonile"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:203
-#: admin/class-ajax.php:568
-#: admin/class-ajax.php:787
+#: admin/class-ajax.php:219
+#: admin/class-ajax.php:584
+#: admin/class-ajax.php:802
 msgid "The post ID was not set"
 msgstr "Postituse ID-d ei määratud"
 
@@ -250,6 +256,7 @@ msgstr "Selle sisu jaoks on lisatud lihtsustatud kokkuvõte."
 
 #. translators: %s: Number of errors
 #: admin/class-ajax.php:133
+#, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s Viga"
@@ -257,6 +264,7 @@ msgstr[1] "%s Viga"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:139
+#, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Kontrasti viga"
@@ -264,6 +272,7 @@ msgstr[1] "%s Kontrasti viga"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:145
+#, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s Hoiatus"
@@ -271,71 +280,73 @@ msgstr[1] "%s Hoiatust"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:151
+#, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s Ignoreeritud üksus"
 msgstr[1] "%s Ignoreeritud üksust"
 
-#: admin/class-ajax.php:173
+#: admin/class-ajax.php:189
 msgid "No summary to return"
 msgstr "Kokkuvõte puudub"
 
-#: admin/class-ajax.php:217
+#: admin/class-ajax.php:233
 msgid "Invalid table name"
 msgstr "Vigane tabeli nimi"
 
-#: admin/class-ajax.php:363
+#: admin/class-ajax.php:379
 msgid "These settings enable global fixes across your entire site."
 msgstr "Need seaded võimaldavad globaalseid parandusi üle kogu teie saidi."
 
-#: admin/class-ajax.php:364
+#: admin/class-ajax.php:380
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Lehed võib olla vaja uuesti salvestada või läbi viia täielik saidi kontroll, et parandused raportites kajastuksid."
 
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:408
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "Salvesta"
 
-#: admin/class-ajax.php:412
+#: admin/class-ajax.php:428
 msgid "Affected Code"
 msgstr "Mõjutatud kood"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:493
+#, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Vaata probleemi ID %d veebisaidil, avaneb uues aknas"
 
-#: admin/class-ajax.php:478
+#: admin/class-ajax.php:494
 msgid "View on page"
 msgstr "Vaata lehel"
 
-#: admin/class-ajax.php:497
+#: admin/class-ajax.php:513
 msgid "Fix: "
 msgstr "Paranda: "
 
-#: admin/class-ajax.php:498
+#: admin/class-ajax.php:514
 msgid "Fix"
 msgstr "Paranda"
 
-#: admin/class-ajax.php:521
+#: admin/class-ajax.php:537
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Teie kasutajakontol pole õigust seda probleemi ignoreerida."
 
-#: admin/class-ajax.php:539
+#: admin/class-ajax.php:555
 msgid "No details to return"
 msgstr "Üksikasju pole"
 
-#: admin/class-ajax.php:679
+#: admin/class-ajax.php:694
 msgid "No readability data to return"
 msgstr "Loetavuse andmeid pole"
 
-#: admin/class-ajax.php:736
-#: admin/class-ajax.php:759
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:774
 msgid "No ignore data to return"
 msgstr "Ignoreerimise andmeid pole"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:809
 msgid "The summary was not set"
 msgstr "Kokkuvõtet ei määratud"
 
@@ -350,6 +361,39 @@ msgstr "Probleemi päring ei andnud tulemusi"
 #: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "Objekti päring ei andnud tulemusi"
+
+#: admin/class-plugin-row-meta.php:49
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Vaata Accessibility Checkeri dokumentatsiooni (avaneb uues aknas)"
+
+#: admin/class-plugin-row-meta.php:50
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Dokumentatsioon"
+
+#: admin/class-plugin-row-meta.php:55
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Hankige Accessibility Checkeri tugi (avaneb uues aknas)"
+
+#: admin/class-plugin-row-meta.php:56
+msgid "Support"
+msgstr "Tugi"
+
+#: admin/class-plugin-row-meta.php:61
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Hinnake Accessibility Checkeri pluginat (avaneb uues aknas)"
+
+#: admin/class-plugin-row-meta.php:62
+msgid "Rate plugin"
+msgstr "Rate plugin"
+
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Seaded"
+
+#: admin/class-plugin-action-links.php:56
+msgid "Get Accessibility Checker Pro, opens in new window"
+msgstr "Hangi Accessibility Checker Pro, avaneb uues aknas"
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -372,7 +416,7 @@ msgid "See History"
 msgstr "Vaata ajalugu"
 
 #: admin/class-welcome-page.php:70
-#: admin/class-widgets.php:92
+#: admin/class-widgets.php:98
 msgid "Passed Tests"
 msgstr "Läbitud testid"
 
@@ -409,12 +453,12 @@ msgid "Average Issue Density"
 msgstr "Keskmine probleemide tihedus"
 
 #: admin/class-welcome-page.php:204
-#: admin/class-widgets.php:99
+#: admin/class-widgets.php:105
 msgid "Report Last Updated:"
 msgstr "Raport viimati uuendatud:"
 
 #: admin/class-welcome-page.php:214
-#: includes/options-page.php:392
+#: includes/options-page.php:408
 msgid "Never"
 msgstr "Mitte kunagi"
 
@@ -424,6 +468,7 @@ msgstr "Kontrollitud URL-id"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
 #: admin/class-welcome-page.php:239
+#, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s / %2$s"
 
@@ -456,107 +501,103 @@ msgid "Unlock Detailed Accessibility Reports"
 msgstr "Ava üksikasjalikud ligipääsetavuse raportid"
 
 #: admin/class-welcome-page.php:302
-#: admin/class-widgets.php:65
+#: admin/class-widgets.php:71
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Alusta kogu oma veebisaidi ligipääsetavuse probleemide kontrollimist, saa täieliku saidi raportid ja muutu kiiremini ligipääsetavuse suunistele vastavaks."
 
 #: admin/class-welcome-page.php:306
-#: admin/class-widgets.php:67
+#: admin/class-widgets.php:73
 msgid "Upgrade Accessibility Checker"
-msgstr "Uuenda Accessibility Checkerit"
+msgstr "Upgrade Accessibility Checker (juurdepääsetavuse kontrollija)"
 
-#: admin/class-widgets.php:63
+#: admin/class-widgets.php:69
 msgid "close ad"
 msgstr "sulge reklaam"
 
-#: admin/class-widgets.php:64
+#: admin/class-widgets.php:70
 msgid "Get Detailed Accessibility Reports"
 msgstr "Hangi üksikasjalikud ligipääsetavuse raportid"
 
-#: admin/class-widgets.php:82
+#: admin/class-widgets.php:88
 msgid "Full Site Accessibility Status"
 msgstr "Kogu saidi ligipääsetavuse staatus"
 
-#: admin/class-widgets.php:107
+#: admin/class-widgets.php:113
 msgid "URLs Scanned:"
 msgstr "Kontrollitud URL-id:"
 
-#: admin/class-widgets.php:115
+#: admin/class-widgets.php:121
 msgid "Errors:"
 msgstr "Vead:"
 
-#: admin/class-widgets.php:119
+#: admin/class-widgets.php:125
 msgid "Color Contrast Errors:"
 msgstr "Värvikontrasti vead:"
 
-#: admin/class-widgets.php:123
+#: admin/class-widgets.php:129
 msgid "Warnings:"
 msgstr "Hoiatused:"
 
-#: admin/class-widgets.php:132
+#: admin/class-widgets.php:144
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
 msgstr "Teie saidil on ligipääsetavuse probleemid, mida tuleks võimalikult kiiresti lahendada, et tagada vastavus ligipääsetavuse suunistele."
 
-#: admin/class-widgets.php:135
+#: admin/class-widgets.php:147
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
-msgstr "Tubli töö! Accessibility Checker ei leia testitud sisus ühtegi ligipääsetavuse probleemi. Mõningaid probleeme ei saa automaatsed tööriistad leida, seega ärge unustage"
+msgstr "Hästi läks! Accessibility Checker ei leia testitud sisust ühtegi juurdepääsetavusprobleemi. Mõned probleemid ei ole automaatsete vahenditega leitavad, seega ärge unustage, et"
 
-#: admin/class-widgets.php:135
+#: admin/class-widgets.php:147
 msgid "manually test your site"
 msgstr "oma saiti käsitsi testida"
 
-#: admin/class-widgets.php:150
+#: admin/class-widgets.php:162
 msgid "Issues By Post Type"
 msgstr "Probleemid postituse tüübi järgi"
 
-#: admin/class-widgets.php:157
+#: admin/class-widgets.php:169
 msgid "Post Type"
 msgstr "Postituse tüüp"
 
-#: admin/class-widgets.php:160
+#: admin/class-widgets.php:172
 msgid "Errors"
 msgstr "Vead"
 
-#: admin/class-widgets.php:163
+#: admin/class-widgets.php:175
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: admin/class-widgets.php:166
+#: admin/class-widgets.php:178
 msgid "Warnings"
 msgstr "Hoiatused"
 
-#: admin/class-widgets.php:225
+#: admin/class-widgets.php:247
 msgid "Upgrade to Scan"
 msgstr "Täienda, et kontrollida"
 
-#: admin/class-widgets.php:254
+#: admin/class-widgets.php:276
 msgid "See More Reports"
 msgstr "Vaata rohkem raporteid"
 
-#: admin/class-widgets.php:264
-#: partials/welcome-page.php:232
+#: admin/class-widgets.php:286
+#: partials/welcome-page.php:235
 msgid "Learn Accessibility"
 msgstr "Õpi ligipääsetavust"
 
-#: admin/class-widgets.php:273
+#: admin/class-widgets.php:307
 msgid "Additional Resources"
 msgstr "Täiendavad ressursid"
 
-#: admin/class-widgets.php:274
+#: admin/class-widgets.php:308
 msgid "Blog (opens in a new window)"
 msgstr "Blogi (avaneb uues aknas)"
 
-#: admin/class-widgets.php:274
+#: admin/class-widgets.php:308
 msgid "Blog"
 msgstr "Blogi"
 
-#: admin/class-widgets.php:275
+#: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentatsioon (avaneb uues aknas)"
-
-#: admin/class-widgets.php:275
-msgid "Documentation"
-msgstr "Dokumentatsioon"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
@@ -584,11 +625,11 @@ msgstr "Sisesta oma eesnimi"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
-msgstr "Accessibility Checker &mdash; Auditi ajalugu"
+msgstr "Juurdepääsetavuse kontroll &mdash; auditiajalugu"
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
-msgstr "Accessibility Checker &mdash; Tasuta"
+msgstr "Ligipääsetavuse kontrollija &mdash; tasuta"
 
 #: admin/site-health/class-free.php:49
 #: admin/site-health/class-pro.php:50
@@ -672,7 +713,7 @@ msgstr "Andmebaasi tabelite arv"
 
 #: admin/site-health/class-pro.php:47
 msgid "Accessibility Checker &mdash; Pro"
-msgstr "Accessibility Checker &mdash; Pro"
+msgstr "Ligipääsetavuse kontrollija &mdash; Pro"
 
 #: admin/site-health/class-pro.php:58
 msgid "License Status"
@@ -712,19 +753,21 @@ msgstr "Ignoreerimiste andmebaasi tabelite arv"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:45
+#, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "%1$s kasutab %2$s, et jälgida meie veebisaidi ligipääsetavust."
 
-#: includes/classes/class-accessibility-statement.php:49
+#: includes/classes/class-accessibility-statement.php:50
 msgid "Accessibility Checker (opens in a new window)"
-msgstr "Accessibility Checker (avaneb uues aknas)"
+msgstr "Ligipääsetavuse kontroll (avaneb uues aknas)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
-#: includes/classes/class-accessibility-statement.php:58
+#: includes/classes/class-accessibility-statement.php:59
+#, php-format
 msgid "Read our %s"
 msgstr "Loe meie %s"
 
-#: includes/classes/class-accessibility-statement.php:59
+#: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "Ligipääsetavuse põhimõtted"
 
@@ -764,6 +807,7 @@ msgstr "Lisa sildid märgistamata vormielementidele, kui elemendi otstarve on tu
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Püüa lisada sildid vormielementidele, millel need puuduvad. Märkus: Võimalik, et pead lisama kohandatud stiile, mis on suunatud %1$s klassile, kui siltide lisamine mõjutab sinu vormi paigutust."
 
@@ -781,6 +825,7 @@ msgstr "Lisa puuduv lehekülje pealkiri"
 
 #. translators: %1$s: a code tag with a title tag.
 #: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Lisa lehele %1$s silt, kui see puudub või on tühi."
 
@@ -794,6 +839,7 @@ msgstr "Lisa silt linkidele, mis avavad uue vahelehe/akna"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Lisa silt ja ikoon linkidele, millel on %1$s, teavitades kasutajaid, et need avavad uue vahelehe/akna. %2$sMärkus: See seadistus ei mõju, kui „Blokeeri uusi aknaid avavad lingid“ parandus on lubatud.%3$s"
 
@@ -804,6 +850,7 @@ msgstr "Blokeeri PDF-failide üleslaadimine"
 
 #. translators: %1$s: a code tag with the capability name.
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Piira PDF-failide üleslaadimist kasutajatele, kellel pole %1$s õigust (vaikimisi lubatud administraatoritele)."
 
@@ -906,6 +953,7 @@ msgstr "Lisa „lang“ ja „dir“ atribuudid"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
 #: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Lisa saidi keele (%1$s) ja tekstisuuna (%2$s) atribuudid %3$s elemendile."
 
@@ -955,6 +1003,7 @@ msgstr "Blokeeri linkide avanemine uutes akendes"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Väldi linkide avanemist uues aknas või vahekaardil, eemaldades %1$s."
 
@@ -1008,6 +1057,7 @@ msgstr "Eemalda pealkirja atribuudid"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Eemalda %1$s atribuudid elementidelt, millel on juba eelistatud ligipääsetav nimi."
 
@@ -1045,6 +1095,7 @@ msgstr "Määra navigatsioonielemendi ID atribuut. See on kasulik, kui teie peam
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 #: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Kui teie teema ei lisa juba kiirlinki, mis võimaldab klaviatuurikasutajatel navigatsiooni vahele jätta ja kiiresti põhisisu juurde liikuda, lubage kiirlingid siin. %1$sLoe rohkem kiirlinkide kohta.%2$s"
 
@@ -1066,6 +1117,7 @@ msgstr "Eemalda vahekaardi indeks"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/TabindexFix.php:70
+#, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Eemalda %1$s atribuut fookust võtvatelt elementidelt."
 
@@ -1079,6 +1131,7 @@ msgstr "Parandust ei leitud"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
 #: includes/classes/WPCLI/BootstrapCLI.php:99
+#, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Käsu %1$s registreerimine ebaõnnestus, sest %2$s"
 
@@ -1092,11 +1145,13 @@ msgstr "Postituse ID-d ei esitatud."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:92
+#, php-format
 msgid "Post ID %1$s does not exist."
 msgstr "Postituse ID-d %1$s ei eksisteeri."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:103
+#, php-format
 msgid "Stats of %1$s deleted."
 msgstr "Postituse %1$s statistika kustutatud."
 
@@ -1110,6 +1165,7 @@ msgstr "Puhasta vahemälu enne statistika hankimist (võib olla ressursimahukas)
 
 #. translators: 1: a stat key that was requested but not found.
 #: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#, php-format
 msgid "Stat key: %1$s not found in stats."
 msgstr "Statistika võtit %1$s ei leitud statistikas."
 
@@ -1119,11 +1175,13 @@ msgstr "Postituse ID, mille statistikat hankida."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:126
+#, php-format
 msgid "Post ID %1$d does not exist."
 msgstr "Postituse ID-d %1$d ei eksisteeri."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:142
+#, php-format
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Kas postitus pole veel skaneeritud või kõik testid läbiti edukalt postituse ID-le %1$d."
 
@@ -1139,21 +1197,17 @@ msgstr "püsilink "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:371
+#: includes/helper-functions.php:339
 msgid "Attend Free"
 msgstr "Osale tasuta"
 
 #: includes/options-page.php:42
 msgid "Welcome to Accessibility Checker"
-msgstr "Tere tulemast Accessibility Checkerisse"
+msgstr "Tere tulemast Accessibility Checker'ile"
 
 #: includes/options-page.php:65
 msgid "Accessibility Checker Settings"
-msgstr "Accessibility Checkeri seaded"
-
-#: includes/options-page.php:66
-msgid "Settings"
-msgstr "Seaded"
+msgstr "Ligipääsetavuse kontrollija seaded"
 
 #: includes/options-page.php:99
 msgid "General Settings"
@@ -1169,7 +1223,7 @@ msgstr "Jaluse ligipääsetavuse teade"
 
 #: includes/options-page.php:120
 msgid "Frontend Accessibility Checker"
-msgstr "Kasutajaliidese Accessibility Checker"
+msgstr "Frontend Accessibility Checker"
 
 #: includes/options-page.php:128
 msgid "Post Types To Be Checked"
@@ -1184,12 +1238,12 @@ msgid "Simplified Summary Position"
 msgstr "Lihtsustatud kokkuvõtte asukoht"
 
 #: includes/options-page.php:164
-#: includes/options-page.php:517
+#: includes/options-page.php:533
 msgid "Add Footer Accessibility Statement"
 msgstr "Lisa jaluse ligipääsetavuse teade"
 
 #: includes/options-page.php:173
-#: includes/options-page.php:540
+#: includes/options-page.php:556
 msgid "Include Link to Accessibility Policy"
 msgstr "Lisa link ligipääsetavuse eeskirjale"
 
@@ -1203,12 +1257,13 @@ msgstr "Ligipääsetavuse teate eelvaade"
 
 #: includes/options-page.php:200
 msgid "Frontend Accessibility Checker Position"
-msgstr "Kasutajaliidese Accessibility Checkeri asukoht"
+msgstr "Frontend juurdepääsetavuse kontrollija positsioon"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
+#, php-format
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
-msgstr "Kasutage allolevaid seadeid Accessibility Checkeri konfigureerimiseks. Lisateavet iga seade kohta leiate %1$s."
+msgstr "Kasutage allpool olevaid seadistusi, et konfigureerida juurdepääsetavuse kontrollimist. Lisateavet iga seadistuse kohta leiate %1$s."
 
 #: includes/options-page.php:245
 msgid "plugin documentation (opens in a new window)"
@@ -1220,101 +1275,102 @@ msgstr "plugina dokumentatsioon"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
 #: includes/options-page.php:251
+#, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Rohkem funktsioone ja e-posti tugi on saadaval koos %1$s."
 
-#: includes/options-page.php:252
+#: includes/options-page.php:259
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (avaneb uues aknas)"
 
-#: includes/options-page.php:252
+#: includes/options-page.php:259
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
-msgstr "Accessibility Checker Pro"
+msgstr "Ligipääsetavuse kontrollija Pro"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:273
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Kasutage allolevaid seadeid eesliidese ligipääsetavuse kontrollija konfigureerimiseks."
 
-#: includes/options-page.php:276
+#: includes/options-page.php:283
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
-msgstr "Veebi sisu ligipääsetavuse suunised (WCAG) AAA tasemel nõuavad, et igal sisul, mille lugemistase on üle 9. Klassi taseme, oleks lihtsam alternatiiv. Lihtsustatud kokkuvõtte tekst lisatakse loetavuse vahekaardil Accessibility Checkeri metakastis iga postituse või lehe muutmise ekraanil."
+msgstr "Veebisisu juurdepääsetavuse suunised (WCAG) AAA-tasemel nõuavad, et iga sisu, mille lugemistase on kõrgem kui 9. Klass, peab olema lihtsamini loetav. Lihtsustatud kokkuvõttev tekst lisatakse iga postituse või lehe redigeerimisekraani ligipääsetavuse kontrollija metakasti loetavuse vahekaardile."
 
-#: includes/options-page.php:277
+#: includes/options-page.php:293
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Loe lähemalt lihtsustatud kokkuvõtete ja loetavuse nõuete kohta (avaneb uues aknas)"
 
-#: includes/options-page.php:277
+#: includes/options-page.php:293
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Loe lähemalt lihtsustatud kokkuvõtete ja loetavuse nõuete kohta."
 
-#: includes/options-page.php:286
+#: includes/options-page.php:302
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
-msgstr "Kas te mõtlete „Vau, see plugin on uskumatu“ ja kas see aitab teil oma veebisaiti ligipääsetavamaks muuta? Jagage oma pingutusi veebisaidi ligipääsetavamaks muutmisel oma klientidega ja andke neile teada, et kasutate Accessibility Checkerit, et tagada kõigile inimestele teie veebisaidi kasutamise võimalus. Lisage oma veebisaidi jaluses väike ainult tekstist koosnev link ja avaldus."
+msgstr "Kas sa mõtled \"Wow, see plugin on hämmastav\" ja kas see aitab sul oma veebilehte kättesaadavamaks muuta? Jagage oma jõupingutusi oma veebisaidi ligipääsetavamaks muutmisel oma klientidega ja andke neile teada, et kasutate Accessibility Checker'i, et tagada, et kõik inimesed saaksid teie veebisaiti kasutada. Lisage oma veebisaidi jalusesse väike tekstiline link ja avaldus."
 
-#: includes/options-page.php:299
+#: includes/options-page.php:315
 msgid "Before the content"
 msgstr "Enne sisu"
 
-#: includes/options-page.php:304
+#: includes/options-page.php:320
 msgid "After the content"
 msgstr "Pärast sisu"
 
-#: includes/options-page.php:309
+#: includes/options-page.php:325
 msgid "Insert manually"
 msgstr "Sisesta käsitsi"
 
-#: includes/options-page.php:313
+#: includes/options-page.php:329
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Kasutage seda funktsiooni, et lisada lihtsustatud kokkuvõte käsitsi oma teemale tsükli sees."
 
-#: includes/options-page.php:315
+#: includes/options-page.php:331
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funktsioon võtab valikuliselt parameetrina vastu postituse ID."
 
-#: includes/options-page.php:318
+#: includes/options-page.php:334
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Määrake, kus soovite, et lihtsustatud kokkuvõtted ilmuksid teie sisu suhtes, kui need on täidetud."
 
-#: includes/options-page.php:333
+#: includes/options-page.php:349
 msgid "Bottom Right Corner (default)"
 msgstr "Alumine parempoolne nurk (vaikimisi)"
 
-#: includes/options-page.php:338
+#: includes/options-page.php:354
 msgid "Bottom Left Corner"
 msgstr "Alumine vasakpoolne nurk"
 
-#: includes/options-page.php:342
+#: includes/options-page.php:358
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Määrake, kus soovite, et eesliidese ligipääsetavuse kontrollija lehel ilmuks."
 
-#: includes/options-page.php:382
+#: includes/options-page.php:398
 msgid "When Required"
 msgstr "Vajadusel"
 
-#: includes/options-page.php:387
+#: includes/options-page.php:403
 msgid "Always"
 msgstr "Alati"
 
-#: includes/options-page.php:395
+#: includes/options-page.php:411
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
-msgstr "Kas Accessibility Checker peaks küsima lihtsustatud kokkuvõtet ainult siis, kui teie postituse või lehe lugemistase on üle 9. klassi taseme, küsima seda alati olenemata lugemistasemest või mitte kunagi küsima olenemata lugemistasemest?"
+msgstr "Kas Accessibility Checker peaks küsima lihtsustatud kokkuvõtet ainult siis, kui teie postituse või lehe lugemise tase on üle 9. klassi, küsima seda alati olenemata lugemise tasemest või mitte kunagi küsima seda olenemata lugemise tasemest?"
 
-#: includes/options-page.php:446
+#: includes/options-page.php:462
 msgid "To check content other than posts and pages, please "
 msgstr "Muu sisu kui postituste ja lehtede kontrollimiseks palun "
 
-#: includes/options-page.php:449
+#: includes/options-page.php:465
 msgid " (opens in a new window)"
 msgstr " (avaneb uues aknas)"
 
-#: includes/options-page.php:454
+#: includes/options-page.php:470
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Valige, milliseid postituse tüüpe tuleks skannimise ajal kontrollida. Pange tähele, et varem valitud postituse tüübi eemaldamine kustutab selle skannitud teabe ja kõik kohandatud eiratud hoiatused, mis on seadistatud."
 
-#: includes/options-page.php:592
+#: includes/options-page.php:608
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
-msgstr "Kustuta kõik Accessibility Checkeri andmed plugina desinstallimisel."
+msgstr "Kustuta kõik Accessibility Checkeri andmed, kui plugin eemaldatakse."
 
 #: includes/rules.php:21
 msgid "Image Missing Alternative Text"
@@ -1322,6 +1378,7 @@ msgstr "Pildil puudub alternatiivne tekst"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
 #: includes/rules.php:27
+#, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "Puuduva alternatiivse teksti viga tähendab, et teie pildil pole üldse alt-atribuuti (%1$s) pildi märgendis (%2$s). Puuduva alternatiivse teksti vea parandamiseks peate lisama pildile alt-märgendi koos sobiva tekstiga, mis kirjeldab pildi eesmärki lehel. Kui pilt on dekoratiivne, võib alt-atribuut olla tühi, kuid HTML %1$s märgend peab siiski olemas olema."
 
@@ -1331,6 +1388,7 @@ msgstr "Pildil tühi alternatiivne tekst"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:40
+#, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "Tühja alternatiivse teksti hoiatus ilmub, kui teil on pilt alt-atribuudiga (%s), mis on tühi. Alternatiivne tekst ütleb inimestele, kes ei näe, mis pildil on, ja lisab postitusele või lehele täiendavat konteksti. Alternatiivne tekst on õige jätta tühjaks ainult siis, kui pilt on puhtalt dekoratiivne, nagu ääris või kaunistav ikoon. Tühja alternatiivse teksti hoiatuse parandamiseks peate otsustama, kas pilt on dekoratiivne või lisab see lehele midagi tähenduslikku. Kui see pole dekoratiivne, peate lisama sobiva alternatiivse teksti, et kirjeldada pildi eesmärki. Kui pilt on dekoratiivne, siis jätaksite alternatiivse teksti tühjaks ja „Eiraks“ hoiatust."
 
@@ -1348,6 +1406,7 @@ msgstr "Lingitud pildil puudub alternatiivne tekst"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:60
+#, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Lingitud pildil puudub alternatiivse teksti viga ilmub, kui URL-iga lingitud pildil puudub alt atribuut (%s) pildi märgendis üldse. Lingitud piltidel peab olema täpne alternatiivne tekst, mis kirjeldab, kuhu link viib, et ekraanilugeja kasutajad teaksid, kuhu link suunab. Selle vea lahendamiseks peate lisama pildile tähendusrikka alternatiivse teksti. Teie alternatiivne tekst peaks kirjeldama lingi eesmärki, mitte seda, millise pilt välja näeb."
 
@@ -1357,6 +1416,7 @@ msgstr "Lingitud pildil on tühi alternatiivne tekst"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:72
+#, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Lingitud pildil tühja alternatiivse teksti viga ilmub, kui URL-iga lingitud pildil on alt atribuut (%s), kuid see on tühi. Lingitud piltidel peab olema täpne alternatiivne tekst, mis kirjeldab, kuhu link viib, et ekraanilugeja kasutajad teaksid, kuhu link suunab. Selle vea lahendamiseks peate lisama pildile tähendusrikka alternatiivse teksti. Teie alternatiivne tekst peaks kirjeldama lingi eesmärki, mitte seda, millise pilt välja näeb."
 
@@ -1374,6 +1434,7 @@ msgstr "Ebakorrektne pealkirjade järjekord"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
 #: includes/rules.php:92
+#, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "Ebakorrektse pealkirjade järjekorra viga tähendab, et teie pealkirjade struktuur on taseme vahele jätnud. Näiteks kui teie lehe struktuuris on 3. Taseme pealkiri (%1$s) 1. taseme pealkirja (%2$s) all, märgitakse „ebakorrektse pealkirjade järjekorra“ viga, sest H1 ja H3 vahel puudub %3$s silt. Ebakorrektse pealkirjade järjekorra vigade parandamiseks peate kas muutma vale pealkirja taseme õigeks või lisama sisu õige pealkirja tasemega kahe olemasoleva taseme vahele."
 
@@ -1391,6 +1452,7 @@ msgstr "iframe'il puudub pealkiri"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
 #: includes/rules.php:117
+#, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "Iframe'il puudub pealkirja viga tähendab, et ühel või mitmel teie postituse või lehe iframe'il puudub juurdepääsetav pealkiri, mis kirjeldaks iframe'i sisu. Iframe'i pealkiri on atribuut, mida saab lisada %1$s sildile, et kirjeldada raami sisu abitehnoloogiaid kasutavatele inimestele. Puuduva iframe'i pealkirja parandamiseks peate lisama %1$s sildile pealkirja või aria-label atribuudi. Atribuut peaks täpselt kirjeldama iframe'i sisu."
 
@@ -1400,6 +1462,7 @@ msgstr "Puuduvad alapealkirjad"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
 #: includes/rules.php:132
+#, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "Hoiatus pealkirjade puudumise kohta tähendab, et teie postitus või lehekülg ei sisalda postituse või lehe kehaosa sisus ühtegi pealkirjaelementi (%1$s-%2$s), mis võib muuta lehe sisus navigeerimise ekraanilugeja kasutajatele eriti keeruliseks. Pealkirjadeta lehe parandamiseks peate lisama pealkirjaelemendid. Igal lehel peaks olema vähemalt üks %1$s silt, mis on tavaliselt lehekülje pealkiri. Lisage täiendavaid alapealkirju vastavalt oma sisule. Kui olete kindlaks teinud, et pealkirju ei ole lehel kindlasti vaja, siis saate hoiatuse “Ignore”."
 
@@ -1409,7 +1472,7 @@ msgstr "Tekst õigustatud"
 
 #: includes/rules.php:144
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
-msgstr "Tekstijoonduse hoiatus ilmub Accessibility Checkeris, kui teie postituses või lehel on rohkem kui 200 tähemärki teksti, mis on vormindatud rööpjoondusega (text-align:justify). Selle hoiatuse parandamiseks eemaldage määratud tekstielementidest rööpjoonduse vormindus."
+msgstr "Accessibility Checkeris ilmub teksti õigustamise hoiatus, kui teie postituses või lehel on rohkem kui 200 tähemärki sisaldav tekst vormindatud õigustatud joondusega (text-align:justify). Selle hoiatuse parandamiseks eemaldage määratud tekstielementidelt õigustatud vormindus."
 
 #: includes/rules.php:148
 msgid "Link Opens New Window or Tab"
@@ -1417,6 +1480,7 @@ msgstr "Link avaneb uues aknas või vahekaardil"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
 #: includes/rules.php:154
+#, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "Hoiatus „Link avaneb uues aknas või vahekaardil“ ilmub, kui teie veebisaidil on link, mis on seadistatud klõpsamisel avanema uues vahekaardis või aknas. Heaks tavaks peetakse mitte avada linke uutes vahekaartides või akendes. Kui lingid avanevad uutes vahekaartides või akendes, peab olema visuaalne ja kuuldav hoiatus, mis teatab, et link avaneb uues aknas või vahekaardis, et kasutajad ootaksid sellist käitumist ja teaksid, kuidas pärast lingi klõpsamist tagasi minna. Selle hoiatuse lahendamiseks muutke kas linki nii, et see ei avane uues vahekaardis, või veenduge, et lingi tekstis sisaldub „avaneb uues aknas“, seejärel „Ignoreeri“ hoiatust. Et automaatselt lisada teateid kõigile oma saidi linkidele ja lahendada kõik need hoiatused, installige meie tasuta %s plugin."
 
@@ -1430,6 +1494,7 @@ msgstr "Pildikaardilt puudub alternatiivne tekst"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
 #: includes/rules.php:173
+#, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "Pildikaardi puuduva alternatiivse teksti viga tähendab, et teie pildikaardi ühes %1$s elemendis ei ole lisatud alternatiivset teksti atribuudis %2$s. Selle vea parandamiseks peate lisama puuduva alt-teksti kõigile alatagidele, millel puudub alt-tekst. Alt-tekst peab kirjeldama piirkonnas sisalduva lingi funktsiooni, mitte tingimata kirjeldama, kuidas piirkond välja näeb."
 
@@ -1439,6 +1504,7 @@ msgstr "Vahekaardi järjestust on muudetud"
 
 #. translators: %s is <code>tabindex="1"</code>.
 #: includes/rules.php:189
+#, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "Hoiatus „Vahekaardi järjestust on muudetud“ ilmub, kui lehe loogilist vahelehtede järjestust on muudetud, lisades HTML-elemendile tabindex-atribuudi, mille väärtus on suurem kui 0 (näiteks %s). See võib põhjustada navigeerimisprobleeme ainult klaviatuuri kasutajatele. Vahekaardi järjestuse muutmise hoiatuse lahendamiseks peate vaatama oma veebisaidi esilehte lehel või postituses, kus vahelehtede järjestust on muudetud, ja testima, kas muudatus on õige või mitte. Kui vahelehtede järjestuse muutmine ei põhjusta probleeme, võite hoiatuse „Ignoreerida“. Kui muudetud vahelehtede järjestus põhjustab teabe esitamist vales järjekorras, peate märgistatud elemendilt eemaldama tabindex-atribuudi."
 
@@ -1448,6 +1514,7 @@ msgstr "Tühi pealkirja silt"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
 #: includes/rules.php:205
+#, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "Tühja pealkirja viga tähendab, et teie postituses või lehel on olemas pealkirja silt, mis ei sisalda sisu. Koodis näeks see viga välja järgmiselt: %s. Tühja pealkirja parandamiseks peate lisama sisu pealkirjasildile, mis on märkinud tühja pealkirjasildi vea, või eemaldama tühja pealkirja, kui seda ei ole teie lehel vaja."
 
@@ -1457,6 +1524,7 @@ msgstr "Tühi link"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
 #: includes/rules.php:217
+#, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "Tühja lingi viga tähendab, et üks veebilehel olevatest linkidest on tühi või ei sisalda teksti, mis kirjeldaks, kuhu link klõpsamisel viib. See juhtub sageli linkidega, mis sisaldavad veebifonte, ikoonifonte ja SVG-sid, või kui sisuredaktoris on kogemata loodud link. Tühja lingi vea parandamiseks peate leidma märgistatud lingi ja lisama sellele kirjeldava teksti. Peate kas lisama tekstisisu tühja %1$s elemendi sisse või kui teie link sisaldab SVG või veebifondiikooni, peitma selle elemendi %2$s abil ja lisama %1$s sildile %3$s atribuudi või ekraanilugeja teksti. Lisatav tekst või silt peaks kirjeldama, kuhu link viitab, ja ei tohiks olla mitmemõtteline."
 
@@ -1466,6 +1534,7 @@ msgstr "Tühi nupp"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
 #: includes/rules.php:231
+#, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "Tühja nupu viga tähendab, et üks veebilehel olevatest nuppudest on tühi või ei sisalda teksti, mis kirjeldaks nupu funktsiooni. Või kui tegemist on pildiga nupuga, puudub nupus oleval pildil alternatiivne tekst. Tühja nupu vea parandamiseks peate leidma märgistatud nupu ja lisama sellele kirjeldava teksti. Peate kas lisama tekstisisu tühja %1$s elemendi sisse, lisama väärtuse atribuudi %2$s-le, millel see puudub, või lisama alternatiivse teksti nupupildile. Tekst peaks kirjeldama, milleks teie nuppu kasutatakse või millist tegevust nupp käivitab."
 
@@ -1491,6 +1560,7 @@ msgstr "Tühi tabelipäis"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
 #: includes/rules.php:263
+#, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "Tühja tabelipäise viga tähendab, et üks teie postituse või lehe tabelipäistest ei sisalda teksti. See tähendab, et %1$s element on olemas, kuid näeb välja nii: %2$s, ilma millegi ava- ja sulgemisjärgu vahel. Tühja tabelipäise parandamiseks peate leidma õige HTML elemendi (%1$s) ja lisama sellele teksti, mis kirjeldab rida või veergu, millele see kehtib."
 
@@ -1524,6 +1594,7 @@ msgstr "Pikk kirjeldus vigane"
 
 #. translators: %s is <code>longdesc=""</code>.
 #: includes/rules.php:300
+#, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "Pikk kirjeldus vigane viga tähendab, et pika kirjelduse atribuudil (%s) pildil ei ole sobivat URL-i, failinime või faililaiendit. See võib tähendada ka seda, et pikk kirjeldus ei ole URL või on jäetud tühjaks. HTML5, brauserid ja kõik ekraanilugejad ei toeta täielikult longdesc atribuuti. Selle toe puudumise tõttu on selle vea parim lahendus eemaldada longdesc täielikult teie pildi märgendist."
 
@@ -1533,6 +1604,7 @@ msgstr "Puuduv vormi silt"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
 #: includes/rules.php:312
+#, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "Puuduv vormi sildi viga ilmneb, kui vormis on %1$s (vormiväli), kuid see pole seotud %2$s elemendiga. See võib tähendada, et silt on olemas, kuid sellel puudub %3$s atribuut, mis ühendaks selle vastava väljaga, või pole üldse silti olemas ja on ainult %1$s märgend. Puuduvate vormi siltide vigade parandamiseks peate kindlaks tegema, kuidas väli ja vorm loodi, ning seejärel lisama välja sildid või õige %3$s atribuudi olemasolevatele siltidele, mis pole väljaga ühendatud."
 
@@ -1550,6 +1622,7 @@ msgstr "Allajoonitud tekst"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
 #: includes/rules.php:339
+#, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "Allajoonitud teksti hoiatus ilmub, kui teie lehel on tekst, mis on ümbritsetud HTML-i allajoonimise märgendiga (%1$s). Veebikeskkonnas kasutatakse allajoonitud teksti tavaliselt lingitud teksti tähistamiseks ja ainult rõhutamiseks ei peeta seda heaks tavaks allajoonida teksti. Allajoonitud teksti parandamiseks peate eemaldama %1$s elemendi tekstist või CSS-stiilidest, mis muudavad selle allajoonitatuks. Proovige kasutada teisi stiliseerimisviise, nagu kursiiv, värviline tekst või paksendamine, et rõhutada või eristada sõnu või fraase."
 
@@ -1567,6 +1640,7 @@ msgstr "Puuduv tabeli päis"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
 #: includes/rules.php:359
+#, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "Puuduva tabeli päise viga tähendab, et üks teie tabelitest sisaldab andmeid (teavet %1$s siltide sees), millel pole vastavat päise (%2$s) silti. Kui vaadata teie vormi HTML-i, on ühes reas rohkem %1$s elemente kui %2$s elemente tabelis. Puuduva tabeli päise parandamiseks peate leidma koodilõigu, kus on vähem %2$s elemente, kui peaks olema andmeridade või -veergude arvu jaoks, ning lisama ühe või mitu täiendavat %2$s elementi, mis sisaldavad selle rea või veeru andmeid kirjeldavat teksti."
 
@@ -1600,6 +1674,7 @@ msgstr "Vilkuv või keritav sisu"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
 #: includes/rules.php:397
+#, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Vilkuva või keritava sisu vead ilmnevad siis, kui teie veebisaidi elementidele on rakendatud vilkumis- või kerimisfunktsioon kas CSS-i või HTML-i kaudu. Konkreetselt tekitavad seda viga järgmised elemendid: HTML-sildid %1$s või %2$s või CSS %3$s. Selle vea lahendamiseks eemaldage HTML-sildid või CSS, mis põhjustab sisu vilkumist."
 
@@ -1633,6 +1708,7 @@ msgstr "Keeledeklaratsioon puudub"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
 #: includes/rules.php:437
+#, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "Keeledeklaratsioon on HTML-atribuut, mis tähistab lehe või postituse sisu vaikekeelt. Keeledeklaratsioonid peaksid olema kodeeritud teie veebilehe teemasse ja ilmuma automaatselt veebilehe päises. Puuduva keeledeklaratsiooni viga ilmneb, kui lehe %1$s sildil puudub %2$s või %3$s atribuut, või üks neist atribuutidest on olemas, kuid tühi. Puuduva keeledeklaratsiooni vea parandamiseks peate redigeerima oma teemafaile, et lisada puuduv keeleatribuut HTML-sildile teie veebilehe päise alguses. Kui kasutate teemat, mis saab uuendusi, peate muudatuse tegema alamteemas, et tagada, et parandus ei kirjutataks üle, kui teemat järgmine kord uuendate."
 
@@ -1666,6 +1742,7 @@ msgstr "Puuduv pealkiri"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
 #: includes/rules.php:482
+#, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "Puuduva pealkirja viga tähendab, et teie postitusel või lehel puudub pealkirja element (%1$s või %2$s). See võib juhtuda, kui teema ei lisa pealkirja silti või kui postituse või lehe pealkirja väli on WordPress'i redigeerimiskuval tühjaks jäetud. Pealkirjata lehe parandamiseks peate lisama pealkirja elemendid. Kõigepealt tehke kindlaks, kas pealkiri puudub sellepärast, et jätsite redigeerija pealkirja välja tühjaks. Kui jah, täitke see. Kui pealkiri on täidetud ja haldusliideses nähtav, siis tuleb teie veebilehe koodi muuta, et lisada %1$s silt või %2$s meta-silt."
 
@@ -1675,6 +1752,7 @@ msgstr "Lingi vale kasutamine"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
 #: includes/rules.php:500
+#, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "Lingi vale kasutamise viga ilmub, kui teil on linke, millel puudub %1$s atribuut või mis on seotud ainult %2$s-ga ja millel pole %3$s. Linke tuleks kasutada inimeste suunamiseks teie saidi teistesse osadesse. Iga muu funktsionaalsus, mis käivitab tegevuse, peaks olema nupp. Selle vea lahendamiseks peate lingi ümber kodeerima, kasutades %4$s silti (eelistatavalt) või lisama %5$s olemasolevale %6$s sildile. Kui element on lülitusnupp (näiteks akordion), on nõutavad täiendavad ARIA atribuudid."
 
@@ -1720,62 +1798,62 @@ msgid "Clear Issues"
 msgstr "Tühjenda probleemid"
 
 #: partials/pro-callout.php:13
-#: partials/welcome-page.php:196
+#: partials/welcome-page.php:199
 msgid "Equalize Digital Logo"
 msgstr "Equalize Digital'i logo"
 
 #: partials/pro-callout.php:16
-#: partials/welcome-page.php:197
+#: partials/welcome-page.php:200
 msgid "Upgrade to Accessibility Checker Pro"
 msgstr "Uuenda Accessibility Checker Pro-le"
 
 #: partials/pro-callout.php:20
-#: partials/welcome-page.php:200
+#: partials/welcome-page.php:203
 msgid "Scan all post types"
 msgstr "Skanni kõik postituse tüübid"
 
 #: partials/pro-callout.php:21
-#: partials/welcome-page.php:201
+#: partials/welcome-page.php:204
 msgid "Admin columns to see accessibility status at a glance"
 msgstr "Administraatori veerud ligipääsetavuse oleku kiireks ülevaateks"
 
 #: partials/pro-callout.php:22
-#: partials/welcome-page.php:202
+#: partials/welcome-page.php:205
 msgid "Centralized list of all open issues"
 msgstr "Tsentraliseeritud nimekiri kõigist avatud probleemidest"
 
 #: partials/pro-callout.php:23
-#: partials/welcome-page.php:203
+#: partials/welcome-page.php:206
 msgid "Ignore log"
 msgstr "Ignoreerimise logi"
 
 #: partials/pro-callout.php:24
-#: partials/welcome-page.php:204
+#: partials/welcome-page.php:207
 msgid "Rename simplified summary"
 msgstr "Nimeta lihtsustatud kokkuvõte ümber"
 
 #: partials/pro-callout.php:25
-#: partials/welcome-page.php:205
+#: partials/welcome-page.php:208
 msgid "User restrictions on ignoring issues"
 msgstr "Kasutajapiirangud probleemide ignoreerimisel"
 
 #: partials/pro-callout.php:26
-#: partials/welcome-page.php:206
+#: partials/welcome-page.php:209
 msgid "Email support"
 msgstr "E-posti tugi"
 
 #: partials/pro-callout.php:27
-#: partials/welcome-page.php:207
+#: partials/welcome-page.php:210
 msgid "...and more"
 msgstr "...ja palju muud"
 
-#: partials/pro-callout.php:36
-#: partials/welcome-page.php:212
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
 msgid "Get Accessibility Checker Pro"
 msgstr "Hangi Accessibility Checker Pro"
 
-#: partials/pro-callout.php:46
-#: partials/welcome-page.php:220
+#: partials/pro-callout.php:57
+#: partials/welcome-page.php:223
 msgid "Or activate your license key here."
 msgstr "Või aktiveeri oma litsentsivõti siin."
 
@@ -1801,6 +1879,7 @@ msgstr "Sisu kontrollimise alustamiseks järgige neid samme:"
 
 #. translators: %s: path to settings page.
 #: partials/welcome-page.php:57
+#, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "Valige <a href=\"%s\">Seadete lehel</a>, milliseid postituse tüüpe soovite skannida."
 
@@ -1810,11 +1889,11 @@ msgstr "Minge kontrollitava postituse redigeerimise ekraanile."
 
 #: partials/welcome-page.php:65
 msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
-msgstr "Leidke Accessibility Checkeri metakast oma sisu all. Kui kasutate esilehe lehe koosturit, peate Accessibility Checkeri tulemuste vaatamiseks külastama tagasüsteemi muutmise ekraani."
+msgstr "Leia Accessibility Checkeri metakast oma sisu all. Kui kasutate eesmise osa lehekujundajat, peate Accessibility Checkeri tulemuste vaatamiseks külastama tagumise osa redigeerimisekraani."
 
 #: partials/welcome-page.php:66
 msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
-msgstr "Kui teie postituses esineb vigu või hoiatusi, avage Accessibility Checkeris üksikasjade vahekaart, et saada lisateavet."
+msgstr "Kui teie postituses on vigu või hoiatusi, avage Accessibility Checkeris üksikasjade vahekaart lisateabe saamiseks."
 
 #: partials/welcome-page.php:67
 msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
@@ -1834,7 +1913,7 @@ msgstr "Pärast iga probleemi parandamist värskendage postitust, et näha ligip
 
 #: partials/welcome-page.php:74
 msgid "Watch a video of Accessibility Checker in use."
-msgstr "Vaadake videot Accessibility Checkeri kasutamisest."
+msgstr "Vaata videot Accessibility Checkeri kasutamisest."
 
 #: partials/welcome-page.php:80
 msgid "Documentation and FAQs"
@@ -1852,7 +1931,7 @@ msgstr "Miks me ütleme 100% Läbitud Testid, mitte 100% Ligipääsetav?"
 #: partials/welcome-page.php:109
 #: partials/welcome-page.php:114
 #: partials/welcome-page.php:120
-#: partials/welcome-page.php:213
+#: partials/welcome-page.php:216
 msgid "(opens in a new window)"
 msgstr "(avaneb uues aknas)"
 
@@ -1894,7 +1973,7 @@ msgstr "Pistikprogrammi tugi"
 
 #: partials/welcome-page.php:135
 msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
-msgstr "Accessibility Checkeri tasuliste plaanide aktiivse litsentsi omanikud saavad piiramatu e-posti toe plugina kasutamise ja veaotsinguga seotud küsimustes."
+msgstr "Accessibility Checkeri tasuliste plaanide kehtiva litsentsi omanikud saavad piiramatu e-posti toe plugina kasutamise ja probleemide lahendamise osas."
 
 #: partials/welcome-page.php:138
 msgid "Open Support Ticket"
@@ -1924,19 +2003,19 @@ msgstr "Avatud küsimused ja vastused Zoomis iga kahe nädala tagant, et aidata 
 msgid "Included in Small Business and Agency plans"
 msgstr "Sisaldub Väikeettevõtte ja Agentuuri plaanides"
 
-#: partials/welcome-page.php:165
+#: partials/welcome-page.php:166
 msgid "Register for Office Hours"
 msgstr "Registreeru vastuvõtuaegadele"
 
-#: partials/welcome-page.php:170
+#: partials/welcome-page.php:172
 msgid "Auditing and Remediation"
 msgstr "Auditeerimine ja parandamine"
 
-#: partials/welcome-page.php:172
+#: partials/welcome-page.php:174
 msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
 msgstr "Saage abi oma veebisaidi ligipääsetavaks muutmisel. Ekspertide auditeerimine, kasutajate testimine ja arendaja tugi. Saadaval on vastavuskirjad."
 
-#: partials/welcome-page.php:176
+#: partials/welcome-page.php:178
 msgid "Get Remediation Help"
 msgstr "Hangi abi parandamiseks"
 
@@ -1947,8 +2026,9 @@ msgstr "Salvestamine..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
-msgstr "Sätted on edukalt salvestatud. Peate %skülastama redaktorit%s ja salvestama postituse, et uuesti kontrollida ja eemaldada parandatud probleemid Accessibility Checkeri aruannetest."
+msgstr "Sätted salvestati edukalt. Peate %skülastama redaktorit%s ja salvestama postituse, et uuesti skaneerida ja eemaldada parandatud probleemid Accessibility Checkeri aruannetest."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2

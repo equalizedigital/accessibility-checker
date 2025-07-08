@@ -19,6 +19,7 @@ class AccessibilityCheckerHighlight {
 		};
 
 		this.settings = { ...defaultSettings, ...settings };
+		this._scanAttempted = false;
 
 		this.highlightPanel = this.addHighlightPanel();
 		this.nextButton = document.querySelector( '#edac-highlight-next' );
@@ -32,6 +33,7 @@ class AccessibilityCheckerHighlight {
 		this.fixes = null;
 		this.currentButtonIndex = null;
 		this.urlParameter = this.get_url_parameter( 'edac' );
+		this.landmarkParameter = this.get_url_parameter( 'edac_landmark' );
 		this.currentIssueStatus = null;
 		this.tooltips = [];
 		this.panelControlsFocusTrap = createFocusTrap( '#' + this.panelControls.id, {
@@ -97,6 +99,8 @@ class AccessibilityCheckerHighlight {
 		// Open panel if a URL parameter exists
 		if ( this.urlParameter ) {
 			this.panelOpen( this.urlParameter );
+		} else if ( this.landmarkParameter ) {
+			this.highlightLandmark( this.landmarkParameter );
 		}
 	}
 
@@ -185,14 +189,20 @@ class AccessibilityCheckerHighlight {
 								},
 							);
 						}
+					} else if ( ! self._scanAttempted && response.data?.[ 0 ]?.code === -3 ) {
+						// Only try kickoffScan once per highlightAjax call
+						self._scanAttempted = true;
+						self.kickoffScan();
+						// After kickoffScan, try highlightAjax again, but only once
+						setTimeout( () => {
+							self.highlightAjax().then( resolve ).catch( reject );
+						}, 5000 ); // Wait 5s for scan to complete.
 					} else {
-						resolve( [] );
-						//console.log(response);
+						// Default: resolve with empty issues/fixes
+						resolve( { issues: [], fixes: [] } );
 					}
 				} else {
 					self.showWait( false );
-
-					//console.log( 'Request failed.  Returned status of ' + xhr.status );
 
 					reject( {
 						status: xhr.status,
@@ -242,6 +252,9 @@ class AccessibilityCheckerHighlight {
 		buttons.forEach( ( button ) => {
 			button.remove();
 		} );
+
+		// Clean up any landmark labels
+		this.removeLandmarkLabels();
 	}
 
 	/**
@@ -535,7 +548,11 @@ class AccessibilityCheckerHighlight {
 				}
 			}
 		).catch( ( err ) => {
-			//TODO:
+			// Output a message that says that there are no issues or that the issues could not be loaded.
+			const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+			if ( summary ) {
+				summary.textContent = __( 'An error occurred when loading the issues.', 'accessibility-checker' );
+			}
 		} );
 	}
 
@@ -577,6 +594,9 @@ class AccessibilityCheckerHighlight {
 				selectedElement.removeAttribute( 'class' );
 			}
 		} );
+
+		// Clean up any landmark labels when highlights are removed
+		this.removeLandmarkLabels();
 	};
 
 	/**
@@ -888,6 +908,305 @@ class AccessibilityCheckerHighlight {
 		}
 
 		div.textContent = textContent;
+	}
+
+	/**
+	 * This function highlights a landmark based on the selector.
+	 * @param {string} encodedSelector Base64-encoded CSS selector for the landmark
+	 */
+	highlightLandmark( encodedSelector ) {
+		try {
+			// Decode the base64 selector
+			const selector = atob( encodedSelector );
+
+			// Find the landmark element using multiple strategies
+			let landmarkElement = null;
+
+			try {
+				// Try the original selector first
+				landmarkElement = document.querySelector( selector );
+			} catch ( error ) {
+				// Selector might be invalid, try fallbacks
+			}
+
+			// If original selector failed, try some fallback strategies
+			if ( ! landmarkElement ) {
+				// Try common landmark selectors as fallbacks
+				const fallbackSelectors = [
+					// Remove complex pseudo-selectors and try simpler versions
+					selector.replace( /:nth-child\(\d+\)/g, '' ).replace( /\s+>\s+/g, ' ' ),
+					// Try just the last part of the selector
+					selector.split( ' > ' ).pop(),
+					// Try without classes
+					selector.replace( /\.[^:\s>]+/g, '' ),
+				];
+
+				for ( const fallback of fallbackSelectors ) {
+					if ( fallback && fallback.trim() ) {
+						try {
+							landmarkElement = document.querySelector( fallback.trim() );
+							if ( landmarkElement ) {
+								break;
+							}
+						} catch ( e ) {
+							// Continue to next fallback
+						}
+					}
+				}
+			}
+
+			if ( landmarkElement ) {
+				// Clean up any existing landmark labels first
+				this.removeLandmarkLabels();
+
+				// Add highlighting styles
+				landmarkElement.classList.add( 'edac-highlight-element-selected' );
+				landmarkElement.classList.add( 'edac-landmark-highlight' );
+
+				// Create and add landmark type label
+				const landmarkType = this.getLandmarkType( landmarkElement );
+				const landmarkLabel = document.createElement( 'div' );
+				landmarkLabel.classList.add( 'edac-landmark-label' );
+				landmarkLabel.textContent = `Landmark: ${ landmarkType }`;
+				landmarkLabel.setAttribute( 'aria-hidden', 'true' );
+				landmarkLabel.style.cssText = `
+					position: absolute;
+					background: #072446;
+					color: white;
+					padding: 4px 8px;
+					font-size: 12px;
+					font-weight: bold;
+					border-radius: 3px;
+					z-index: 99998;
+					pointer-events: none;
+					font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+					line-height: 1;
+					box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+				`;
+
+				// Position the label inside the top-left corner of the landmark
+				const rect = landmarkElement.getBoundingClientRect();
+				landmarkLabel.style.left = ( rect.left + window.scrollX - 0 ) + 'px'; // 15px inside from left edge
+				landmarkLabel.style.top = ( rect.top + window.scrollY - 0 ) + 'px'; // 15px inside from top edge
+
+				// Add label to the page
+				document.body.appendChild( landmarkLabel );
+
+				// Store reference for cleanup
+				landmarkElement.setAttribute( 'data-edac-landmark-label-id', Date.now() );
+				landmarkLabel.setAttribute( 'data-edac-landmark-for', landmarkElement.getAttribute( 'data-edac-landmark-label-id' ) );
+
+				// Adjust for small elements
+				if ( landmarkElement.offsetWidth < 20 ) {
+					landmarkElement.classList.add( 'edac-highlight-element-selected-min-width' );
+				}
+
+				if ( landmarkElement.offsetHeight < 5 ) {
+					landmarkElement.classList.add( 'edac-highlight-element-selected-min-height' );
+				}
+
+				// Scroll to the landmark with 20px offset from start
+				const elementRect = landmarkElement.getBoundingClientRect();
+				const elementTop = elementRect.top + window.scrollY - 75;
+				window.scrollTo( {
+					top: elementTop,
+					behavior: 'smooth',
+				} );
+
+			} else {
+				// Landmark element not found - silently fail
+			}
+		} catch ( error ) {
+			// Error highlighting landmark - silently fail
+		}
+	}
+
+	/**
+	 * Determines the landmark type of an element
+	 * @param {HTMLElement} element The element to check
+	 * @return {string} The landmark type (e.g., "Header", "Navigation", "Main")
+	 */
+	getLandmarkType( element ) {
+		// Check explicit ARIA role first
+		const role = element.getAttribute( 'role' );
+		if ( role ) {
+			switch ( role.toLowerCase() ) {
+				case 'banner':
+					return 'Header';
+				case 'navigation':
+					return 'Navigation';
+				case 'main':
+					return 'Main';
+				case 'complementary':
+					return 'Complementary';
+				case 'contentinfo':
+					return 'Footer';
+				case 'search':
+					return 'Search';
+				case 'form':
+					return 'Form';
+				case 'region':
+					return 'Region';
+				default:
+					return role.charAt( 0 ).toUpperCase() + role.slice( 1 );
+			}
+		}
+
+		// Check semantic HTML elements
+		const tagName = element.tagName.toLowerCase();
+		switch ( tagName ) {
+			case 'header':
+				return 'Header';
+			case 'nav':
+				return 'Navigation';
+			case 'main':
+				return 'Main';
+			case 'aside':
+				return 'Complementary';
+			case 'footer':
+				return 'Footer';
+			case 'section': {
+				// Check if section has accessible name
+				const hasAccessibleName = element.getAttribute( 'aria-label' ) ||
+					element.getAttribute( 'aria-labelledby' ) ||
+					element.querySelector( 'h1, h2, h3, h4, h5, h6' );
+				return hasAccessibleName ? 'Region' : 'Section';
+			}
+			case 'form': {
+				// Check if form has accessible name
+				const formHasAccessibleName = element.getAttribute( 'aria-label' ) ||
+					element.getAttribute( 'aria-labelledby' );
+				return formHasAccessibleName ? 'Form' : 'Form (unlabeled)';
+			}
+			default:
+				return 'Landmark';
+		}
+	}
+
+	/**
+	 * Remove all landmark labels from the page
+	 */
+	removeLandmarkLabels() {
+		const landmarkLabels = document.querySelectorAll( '.edac-landmark-label' );
+		landmarkLabels.forEach( ( label ) => {
+			label.remove();
+		} );
+
+		// Remove landmark highlight classes
+		const landmarkHighlights = document.querySelectorAll( '.edac-landmark-highlight' );
+		landmarkHighlights.forEach( ( element ) => {
+			element.classList.remove( 'edac-landmark-highlight' );
+			element.removeAttribute( 'data-edac-landmark-label-id' );
+		} );
+	}
+
+	/**
+	 * Kick off the accessibility scan.
+	 */
+	kickoffScan() {
+		const getPageDensity = () => {
+			const elementCount = document.body.getElementsByTagName( '*' ).length;
+			const contentLength = document.body.innerText.length;
+			return { elementCount, contentLength };
+		};
+		const densityMetrics = getPageDensity();
+		const self = this;
+		const scriptId = 'edac-accessibility-checker-scanner-script';
+		if ( ! document.getElementById( scriptId ) ) {
+			const script = document.createElement( 'script' );
+			script.src = window.edacFrontendHighlighterApp?.scannerBundleUrl || '/wp-content/plugins/accessibility-checker/build/pageScanner.bundle.js';
+			script.id = scriptId;
+			script.onload = function() {
+				setTimeout( () => {
+					self._runScanOrShowError( densityMetrics );
+				}, 100 );
+			};
+			script.onerror = function() {
+				self.showWait( false );
+				self.showScanError( 'Failed to load scanner script.' );
+			};
+			document.head.appendChild( script );
+		} else {
+			self._runScanOrShowError( densityMetrics );
+		}
+	}
+
+	_runScanOrShowError( densityMetrics ) {
+		if ( window.runAccessibilityScan ) {
+			this.runAccessibilityScanAndSave( densityMetrics );
+		} else {
+			this.showWait( false );
+			this.showScanError( __( 'Scanner function not found.', 'accessibility-checker' ) );
+		}
+	}
+
+	runAccessibilityScanAndSave( densityMetrics ) {
+		const self = this;
+		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		if ( summary ) {
+			summary.textContent = __( 'Scanning...', 'accessibility-checker' );
+			summary.classList.remove( 'edac-error' );
+		}
+		window.runAccessibilityScan().then( ( result ) => {
+			const postId = window.edacFrontendHighlighterApp && window.edacFrontendHighlighterApp.postID;
+			const nonce = window.edacFrontendHighlighterApp && window.edacFrontendHighlighterApp.restNonce;
+			if ( ! postId || ! nonce ) {
+				self.showWait( false );
+				self.showScanError( __( 'Missing postId or nonce.', 'accessibility-checker' ) );
+				return;
+			}
+			if ( ! result || ! result.violations || result.violations.length === 0 ) {
+				self.showWait( false );
+				self.showScanError( __( 'No violations found, skipping save.', 'accessibility-checker' ) );
+				return;
+			}
+			self.saveScanResults( postId, nonce, result.violations, densityMetrics );
+		} ).catch( () => {
+			self.showWait( false );
+			self.showScanError( __( 'Accessibility scan error.', 'accessibility-checker' ) );
+		} );
+	}
+
+	saveScanResults( postId, nonce, violations, densityMetrics ) {
+		const self = this;
+		fetch( '/wp-json/accessibility-checker/v1/post-scan-results/' + postId, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-WP-Nonce': nonce,
+			},
+			body: JSON.stringify( {
+				violations,
+				isSkipped: false,
+				isFailure: false,
+				densityMetrics,
+			} ),
+		} )
+			.then( ( response ) => response.json() )
+			.then( ( data ) => {
+				self.showWait( false );
+				if ( data && data.success ) {
+					// Optionally show a success message or update UI
+				} else {
+					self.showScanError( __( 'Saving failed.', 'accessibility-checker' ) );
+				}
+			} )
+			.catch( () => {
+				self.showWait( false );
+				self.showScanError( __( 'Error saving scan results.', 'accessibility-checker' ) );
+			} );
+	}
+
+	/**
+	 * Show an error message in the scan panel or as an alert fallback.
+	 * @param {string} message
+	 */
+	showScanError( message ) {
+		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		if ( summary ) {
+			summary.textContent = message;
+			summary.classList.add( 'edac-error' );
+		}
 	}
 }
 

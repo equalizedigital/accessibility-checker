@@ -20,29 +20,11 @@ class InsertRuleDataTest extends WP_UnitTestCase {
 	public function setUp(): void {
 		global $wpdb;
 		$this->table_name = $wpdb->prefix . 'accessibility_checker';
-		$charset_collate  = $wpdb->get_charset_collate();
-		$sql              = "CREATE TABLE $this->table_name (
-				id bigint(20) NOT NULL AUTO_INCREMENT,
-				postid bigint(20) NOT NULL,
-				siteid text NOT NULL,
-				type text NOT NULL,
-				rule text NOT NULL,
-				ruletype text NOT NULL,
-				object mediumtext NOT NULL,
-				recordcheck mediumint(9) NOT NULL,
-				created timestamp NOT NULL default CURRENT_TIMESTAMP,
-				user bigint(20) NOT NULL,
-				ignre mediumint(9) NOT NULL,
-				ignre_global mediumint(9) NOT NULL,
-				ignre_user bigint(20) NULL,
-				ignre_date timestamp NULL,
-				ignre_comment mediumtext NULL,
-				UNIQUE KEY id (id),
-				KEY postid_index (postid)
-			) $charset_collate;";
 
-		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-		dbDelta( $sql );
+		// Use the Update_Database class to create/update the table schema.
+		require_once dirname( __DIR__, 3 ) . '/admin/class-update-database.php';
+		$update_db = new \EDAC\Admin\Update_Database();
+		$update_db->edac_update_database();
 	}
 
 	/**
