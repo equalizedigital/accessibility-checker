@@ -19,6 +19,7 @@ class AccessibilityCheckerHighlight {
 		};
 
 		this.settings = { ...defaultSettings, ...settings };
+		this._scanAttempted = false;
 
 		this.highlightPanel = this.addHighlightPanel();
 		this.nextButton = document.querySelector( '#edac-highlight-next' );
@@ -188,14 +189,20 @@ class AccessibilityCheckerHighlight {
 								},
 							);
 						}
+					} else if ( ! self._scanAttempted && response.data?.[ 0 ]?.code === -3 ) {
+						// Only try kickoffScan once per highlightAjax call
+						self._scanAttempted = true;
+						self.kickoffScan();
+						// After kickoffScan, try highlightAjax again, but only once
+						setTimeout( () => {
+							self.highlightAjax().then( resolve ).catch( reject );
+						}, 5000 ); // Wait 5s for scan to complete.
 					} else {
-						resolve( [] );
-						//console.log(response);
+						// Default: resolve with empty issues/fixes
+						resolve( { issues: [], fixes: [] } );
 					}
 				} else {
 					self.showWait( false );
-
-					//console.log( 'Request failed.  Returned status of ' + xhr.status );
 
 					reject( {
 						status: xhr.status,
@@ -541,7 +548,11 @@ class AccessibilityCheckerHighlight {
 				}
 			}
 		).catch( ( err ) => {
-			//TODO:
+			// Output a message that says that there are no issues or that the issues could not be loaded.
+			const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+			if ( summary ) {
+				summary.textContent = __( 'An error occurred when loading the issues.', 'accessibility-checker' );
+			}
 		} );
 	}
 
@@ -1087,6 +1098,115 @@ class AccessibilityCheckerHighlight {
 			element.classList.remove( 'edac-landmark-highlight' );
 			element.removeAttribute( 'data-edac-landmark-label-id' );
 		} );
+	}
+
+	/**
+	 * Kick off the accessibility scan.
+	 */
+	kickoffScan() {
+		const getPageDensity = () => {
+			const elementCount = document.body.getElementsByTagName( '*' ).length;
+			const contentLength = document.body.innerText.length;
+			return { elementCount, contentLength };
+		};
+		const densityMetrics = getPageDensity();
+		const self = this;
+		const scriptId = 'edac-accessibility-checker-scanner-script';
+		if ( ! document.getElementById( scriptId ) ) {
+			const script = document.createElement( 'script' );
+			script.src = window.edacFrontendHighlighterApp?.scannerBundleUrl || '/wp-content/plugins/accessibility-checker/build/pageScanner.bundle.js';
+			script.id = scriptId;
+			script.onload = function() {
+				setTimeout( () => {
+					self._runScanOrShowError( densityMetrics );
+				}, 100 );
+			};
+			script.onerror = function() {
+				self.showWait( false );
+				self.showScanError( 'Failed to load scanner script.' );
+			};
+			document.head.appendChild( script );
+		} else {
+			self._runScanOrShowError( densityMetrics );
+		}
+	}
+
+	_runScanOrShowError( densityMetrics ) {
+		if ( window.runAccessibilityScan ) {
+			this.runAccessibilityScanAndSave( densityMetrics );
+		} else {
+			this.showWait( false );
+			this.showScanError( __( 'Scanner function not found.', 'accessibility-checker' ) );
+		}
+	}
+
+	runAccessibilityScanAndSave( densityMetrics ) {
+		const self = this;
+		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		if ( summary ) {
+			summary.textContent = __( 'Scanning...', 'accessibility-checker' );
+			summary.classList.remove( 'edac-error' );
+		}
+		window.runAccessibilityScan().then( ( result ) => {
+			const postId = window.edacFrontendHighlighterApp && window.edacFrontendHighlighterApp.postID;
+			const nonce = window.edacFrontendHighlighterApp && window.edacFrontendHighlighterApp.restNonce;
+			if ( ! postId || ! nonce ) {
+				self.showWait( false );
+				self.showScanError( __( 'Missing postId or nonce.', 'accessibility-checker' ) );
+				return;
+			}
+			if ( ! result || ! result.violations || result.violations.length === 0 ) {
+				self.showWait( false );
+				self.showScanError( __( 'No violations found, skipping save.', 'accessibility-checker' ) );
+				return;
+			}
+			self.saveScanResults( postId, nonce, result.violations, densityMetrics );
+		} ).catch( () => {
+			self.showWait( false );
+			self.showScanError( __( 'Accessibility scan error.', 'accessibility-checker' ) );
+		} );
+	}
+
+	saveScanResults( postId, nonce, violations, densityMetrics ) {
+		const self = this;
+		fetch( '/wp-json/accessibility-checker/v1/post-scan-results/' + postId, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-WP-Nonce': nonce,
+			},
+			body: JSON.stringify( {
+				violations,
+				isSkipped: false,
+				isFailure: false,
+				densityMetrics,
+			} ),
+		} )
+			.then( ( response ) => response.json() )
+			.then( ( data ) => {
+				self.showWait( false );
+				if ( data && data.success ) {
+					// Optionally show a success message or update UI
+				} else {
+					self.showScanError( __( 'Saving failed.', 'accessibility-checker' ) );
+				}
+			} )
+			.catch( () => {
+				self.showWait( false );
+				self.showScanError( __( 'Error saving scan results.', 'accessibility-checker' ) );
+			} );
+	}
+
+	/**
+	 * Show an error message in the scan panel or as an alert fallback.
+	 * @param {string} message
+	 */
+	showScanError( message ) {
+		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		if ( summary ) {
+			summary.textContent = message;
+			summary.classList.add( 'edac-error' );
+		}
 	}
 }
 

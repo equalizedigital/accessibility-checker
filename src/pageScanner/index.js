@@ -10,6 +10,9 @@ import { getPageDensity } from './helpers/density';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
+// Hold the timeout for the scan so it can bail on long-running scans.
+let tooLongTimeout;
+
 // Landmark tags for semantic regions
 const LANDMARK_TAGS = [ 'MAIN', 'HEADER', 'FOOTER', 'NAV', 'ASIDE' ];
 const LANDMARK_ROLES = [
@@ -168,6 +171,30 @@ const iframeId = body.getAttribute( 'data-iframe-id' );
 const eventName = body.getAttribute( 'data-iframe-event-name' );
 const postId = body.getAttribute( 'data-iframe-post-id' );
 
+/**
+ * Check if the current context the script is loaded in is a scanner iframe.
+ *
+ * @return {boolean} True if in iframe context, false otherwise.
+ */
+function isIframeContext() {
+	return !! ( body && body.hasAttribute( 'data-iframe-id' ) && body.hasAttribute( 'data-iframe-event-name' ) );
+}
+
+/**
+ * Get the iframe options from the body attributes/
+ *
+ * @return {Object} {{configOptions: {}, runOptions: {}, iframeId: string | Attribute, eventName: string | Attribute, postId: string | Attribute}}
+ */
+function getIframeOptions() {
+	return {
+		configOptions: {},
+		runOptions: {},
+		iframeId: body.getAttribute( 'data-iframe-id' ),
+		eventName: body.getAttribute( 'data-iframe-event-name' ),
+		postId: body.getAttribute( 'data-iframe-post-id' ),
+	};
+}
+
 const scan = async (
 	options = { configOptions: {}, runOptions: {} }
 ) => {
@@ -283,6 +310,7 @@ function dispatchDoneEvent( violations, errorMsgs, error ) {
 	top.dispatchEvent( customEvent );
 }
 
+// eslint-disable-next-line no-unused-vars
 const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 	// cleanup the timeout.
 	clearTimeout( tooLongTimeout );
@@ -293,41 +321,57 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 			function() {
 				axe.teardown();
 				axe = null;
-
-				dispatchDoneEvent( violations, errorMsgs, error );
+				dispatchDoneEvent( violations, errorMsgs, '' );
 			},
 			function() {
 				axe.teardown();
 				axe = null;
-
-				// Create a custom event
 				errorMsgs.push( '***** axe.cleanup() failed.' );
-
-				dispatchDoneEvent( violations, errorMsgs, error );
+				dispatchDoneEvent( violations, errorMsgs, 'cleanup-failed' );
 			}
 		);
 	} else {
-		error = true;
-
 		errorMsgs.push( '***** axe.cleanup() does not exist.' );
 		axe = null;
-
-		dispatchDoneEvent( violations, errorMsgs, error );
+		dispatchDoneEvent( violations, errorMsgs, 'cleanup-not-exists' );
 	}
 };
 
-// Fire a failed event if the scan doesn't complete on time.
-const tooLongTimeout = setTimeout( function() {
-	onDone( [], [ '***** axe scan took too long.' ], true );
-}, SCAN_TIMEOUT_IN_SECONDS * 1000 );
+/**
+ * Attach an axe runner to the window object to allow for running the scan from
+ * the active document.
+ *
+ * @param {Object} options Options for the accessibility scan.
+ * @return {Promise<Object>} Promise resolving to the scan result.
+ */
+window.runAccessibilityScan = async function( options = {} ) {
+	return scan( options )
+		.then( ( result ) => {
+			if ( typeof options.onComplete === 'function' ) {
+				options.onComplete( result );
+			}
+			return result;
+		} )
+		.catch( ( err ) => {
+			if ( typeof options.onComplete === 'function' ) {
+				options.onComplete( null, err );
+			}
+			throw err;
+		} );
+};
 
-// Start the scan.
-scan().then( ( results ) => {
-	const violations = JSON.parse( JSON.stringify( results.violations ) );
-	onDone( violations );
-} ).catch( ( err ) => {
-	onDone( [], [ err.message ], true );
-} );
+// Auto-run scan and dispatch event to parent frame if in iframe context
+if ( isIframeContext() ) {
+	const iframeOptions = getIframeOptions();
+
+	tooLongTimeout = setTimeout( () => {
+		dispatchDoneEvent( [], [ 'Scan timed out' ], 'timeout' );
+	}, SCAN_TIMEOUT_IN_SECONDS * 1000 );
+
+	scan( iframeOptions )
+		.then( ( result ) => onDone( result.violations, [], null ) )
+		.catch( ( err ) => onDone( [], [ err.message || 'Unknown error' ], err.message ) );
+}
 
 // Helper to process a violation and return the formatted object
 function processViolation( violation, item ) {
