@@ -362,7 +362,14 @@ msgstr "Problemos užklausa negrąžino rezultatų"
 msgid "Object query returned no results"
 msgstr "Objekto užklausa negrąžino rezultatų"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Atnaujinti į \"pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Peržiūrėti Accessibility Checker dokumentaciją (atsidaro naujame lange)"
 
