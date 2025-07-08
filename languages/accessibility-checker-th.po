@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
+"POT-Creation-Date: 2025-07-08T20:56:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,6 +18,7 @@ msgstr ""
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -46,6 +47,7 @@ msgstr "https://equalizedigital.com"
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:90
+#: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr "การแก้ไข"
 
@@ -65,7 +67,7 @@ msgstr "อัปเกรดเป็นเวอร์ชัน Pro เพื�
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
-#: admin/class-plugin-action-links.php:51
+#: admin/class-plugin-action-links.php:55
 msgid "Get Pro"
 msgstr "อัปเกรดเป็น Pro"
 
@@ -142,6 +144,26 @@ msgstr "ติดต่อสนับสนุนด้านการเข้
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "เรายินดีรับความคิดเห็น คำถาม และข้อเสนอแนะเกี่ยวกับเว็บไซต์ของเรา หากคุณกำลังใช้เทคโนโลยีช่วยเหลือและประสบปัญหาในการใช้งานเว็บไซต์ของเรา กรุณาส่งอีเมลมาที่ [YOUR ACCESSIBILITY EMAIL ADDRESS] หรือโทรหาเราที่ [YOUR PHONE NUMBER] เราจะพยายามอย่างดีที่สุดเพื่อช่วยเหลือคุณและแก้ไขปัญหา."
 
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:46
+#, php-format
+msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
+msgstr "คุณชอบ Accessibility Checker ไหม? %1$sกรุณาให้คะแนน ★★★★★ แก่เรา%2$s เราขอบคุณในการสนับสนุนของคุณมากๆ!"
+
+#: admin/class-admin-footer-text.php:47
+msgid "Please leave us a five star rating (opens in new window)"
+msgstr "กรุณาให้คะแนนห้าดาวแก่เรา (เปิดในหน้าต่างใหม่)"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:55
+#, php-format
+msgid "Want to do more with Accessibility Checker? %1$sUnlock Pro Features%2$s"
+msgstr "ต้องการใช้งาน Accessibility Checker ให้มากขึ้นไหม? %1$sปลดล็อกคุณสมบัติ Pro%2$s"
+
+#: admin/class-admin-footer-text.php:56
+msgid "Unlock Pro Features (opens in new window)"
+msgstr "ปลดล็อกคุณสมบัติ Pro (เปิดในหน้าต่างใหม่)"
+
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
 #, php-format
@@ -155,9 +177,9 @@ msgstr "เราได้ปรับปรุงการคำนวณสถ
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:212
-#: admin/class-ajax.php:577
-#: admin/class-ajax.php:715
-#: admin/class-ajax.php:795
+#: admin/class-ajax.php:606
+#: admin/class-ajax.php:744
+#: admin/class-ajax.php:824
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "การอนุญาตถูกปฏิเสธ"
@@ -233,8 +255,8 @@ msgstr "อัปเกรดเป็นเวอร์ชัน Pro"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:219
-#: admin/class-ajax.php:584
-#: admin/class-ajax.php:802
+#: admin/class-ajax.php:613
+#: admin/class-ajax.php:831
 msgid "The post ID was not set"
 msgstr "ไม่ได้กำหนดรหัสโพสต์"
 
@@ -307,46 +329,52 @@ msgstr "อาจจำเป็นต้องบันทึกหน้าใ
 msgid "Save"
 msgstr "บันทึก"
 
-#: admin/class-ajax.php:428
+#: admin/class-ajax.php:430
 msgid "Affected Code"
 msgstr "โค้ดที่ได้รับผลกระทบ"
 
+#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+#: admin/class-ajax.php:500
+#, php-format
+msgid "View %s landmark on website, opens a new window"
+msgstr "ดู %s แลนด์มาร์คบนเว็บไซต์ เปิดหน้าต่างใหม่"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:493
+#: admin/class-ajax.php:522
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "ดูปัญหา ID %d บนเว็บไซต์ (เปิดในหน้าต่างใหม่)"
 
-#: admin/class-ajax.php:494
+#: admin/class-ajax.php:523
 msgid "View on page"
 msgstr "ดูบนหน้าเว็บ"
 
-#: admin/class-ajax.php:513
+#: admin/class-ajax.php:542
 msgid "Fix: "
 msgstr "แก้ไข: "
 
-#: admin/class-ajax.php:514
+#: admin/class-ajax.php:543
 msgid "Fix"
 msgstr "แก้ไข"
 
-#: admin/class-ajax.php:537
+#: admin/class-ajax.php:566
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "บัญชีผู้ใช้ของคุณไม่มีสิทธิ์ในการละเว้นปัญหานี้."
 
-#: admin/class-ajax.php:555
+#: admin/class-ajax.php:584
 msgid "No details to return"
 msgstr "ไม่มีรายละเอียดที่จะส่งคืน"
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:723
 msgid "No readability data to return"
 msgstr "ไม่มีข้อมูลความสามารถในการอ่านที่จะส่งคืน"
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:774
+#: admin/class-ajax.php:780
+#: admin/class-ajax.php:803
 msgid "No ignore data to return"
 msgstr "ไม่มีข้อมูลการละเว้นที่จะส่งคืน"
 
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:838
 msgid "The summary was not set"
 msgstr "ไม่ได้กำหนดบทสรุป"
 
@@ -362,38 +390,52 @@ msgstr "การค้นหาปัญหาไม่พบผลลัพธ
 msgid "Object query returned no results"
 msgstr "การค้นหาวัตถุไม่พบผลลัพธ์"
 
-#: admin/class-plugin-row-meta.php:49
-msgid "View Accessibility Checker Documentation (opens in new window)"
-msgstr "ดูเอกสารประกอบของ Accessibility Checker (เปิดในหน้าต่างใหม่)"
-
-#: admin/class-plugin-row-meta.php:50
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "เอกสาร"
-
-#: admin/class-plugin-row-meta.php:55
-msgid "Get support for Accessibility Checker (opens in new window)"
-msgstr "รับการสนับสนุนสำหรับ Accessibility Checker (เปิดในหน้าต่างใหม่)"
-
-#: admin/class-plugin-row-meta.php:56
-msgid "Support"
-msgstr "การสนับสนุน"
-
-#: admin/class-plugin-row-meta.php:61
-msgid "Rate Accessibility Checker plugin (opens in new window)"
-msgstr "ให้คะแนนปลั๊กอิน Accessibility Checker (เปิดในหน้าต่างใหม่)"
-
-#: admin/class-plugin-row-meta.php:62
-msgid "Rate plugin"
-msgstr "Rate plugin"
-
+#: admin/class-plugin-action-links.php:48
+#: includes/classes/class-admin-toolbar.php:94
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "การตั้งค่า"
 
-#: admin/class-plugin-action-links.php:56
+#: admin/class-plugin-action-links.php:60
 msgid "Get Accessibility Checker Pro, opens in new window"
 msgstr "รับ Accessibility Checker Pro เปิดในหน้าต่างใหม่"
+
+#: admin/class-plugin-row-meta.php:53
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "ดูเอกสารประกอบของ Accessibility Checker (เปิดในหน้าต่างใหม่)"
+
+#: admin/class-plugin-row-meta.php:54
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "เอกสาร"
+
+#: admin/class-plugin-row-meta.php:59
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "รับการสนับสนุนสำหรับ Accessibility Checker (เปิดในหน้าต่างใหม่)"
+
+#: admin/class-plugin-row-meta.php:60
+msgid "Support"
+msgstr "การสนับสนุน"
+
+#: admin/class-plugin-row-meta.php:65
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "ให้คะแนนปลั๊กอิน Accessibility Checker (เปิดในหน้าต่างใหม่)"
+
+#: admin/class-plugin-row-meta.php:66
+msgid "Rate plugin"
+msgstr "ให้คะแนนปลั๊กอิน"
+
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "อัปเกรดเป็นแบบโปร"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "โปรโมชันอัปเกรดตอนนี้"
+
+#: admin/class-upgrade-promotion.php:93
+msgid "Unable to redirect to upgrade page."
+msgstr "ไม่สามารถเปลี่ยนเส้นทางไปยังหน้าอัปเกรดได้."
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -770,6 +812,16 @@ msgstr "อ่าน %s ของเรา"
 #: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "นโยบายการเข้าถึง"
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "รับ Accessibility Checker Pro"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "รับ Accessibility Checker Pro (เปิดในหน้าต่างใหม่)"
 
 #: includes/classes/class-simplified-summary.php:73
 msgid "Simplified Summary"
@@ -1847,11 +1899,6 @@ msgstr "การสนับสนุนทางอีเมล"
 msgid "...and more"
 msgstr "...และอื่น ๆ อีกมากมาย"
 
-#: partials/pro-callout.php:47
-#: partials/welcome-page.php:215
-msgid "Get Accessibility Checker Pro"
-msgstr "รับ Accessibility Checker Pro"
-
 #: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
@@ -2099,6 +2146,10 @@ msgid "Disable Page Styles"
 msgstr "ปิดการใช้งานสไตล์หน้า"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "An error occurred when loading the issues."
+msgstr "เกิดข้อผิดพลาดขณะโหลดปัญหา."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Show Code"
 msgstr "แสดงโค้ด"
 
@@ -2151,6 +2202,30 @@ msgstr[1] "ปัญหาที่ถูกละเว้น"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
 msgstr "ที่ตรวจพบ."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanner function not found."
+msgstr "ไม่พบฟังก์ชันสแกนเนอร์."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanning..."
+msgstr "กำลังสแกน..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "ไม่พบการละเมิด ข้ามการบันทึก."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Missing postId or nonce."
+msgstr "ไม่มี postId หรือ nonce."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility scan error."
+msgstr "ข้อผิดพลาดในการสแกนการเข้าถึง."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error saving scan results."
+msgstr "เกิดข้อผิดพลาดในการบันทึกผลการสแกน."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
