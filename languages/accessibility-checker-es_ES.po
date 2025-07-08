@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-01T15:48:13+00:00\n"
+"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -65,11 +65,12 @@ msgstr "Obtén la versión Pro para desbloquear esta función, se abre en una nu
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
+#: admin/class-plugin-action-links.php:51
 msgid "Get Pro"
 msgstr "Obtener pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:352
+#: admin/class-ajax.php:354
 msgid "Opens in a new window."
 msgstr "Se abre en una nueva ventana."
 
@@ -153,10 +154,10 @@ msgstr "Hemos mejorado los cálculos estadísticos en la versión 1.21.0. Como r
 #: admin/class-admin-notices.php:401
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:210
-#: admin/class-ajax.php:575
-#: admin/class-ajax.php:713
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:212
+#: admin/class-ajax.php:577
+#: admin/class-ajax.php:715
+#: admin/class-ajax.php:795
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "Permiso denegado"
@@ -231,9 +232,9 @@ msgid "upgrade to pro"
 msgstr "actualizar a pro"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:217
-#: admin/class-ajax.php:582
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:219
+#: admin/class-ajax.php:584
+#: admin/class-ajax.php:802
 msgid "The post ID was not set"
 msgstr "No se ha establecido el ID de la entrada"
 
@@ -285,67 +286,67 @@ msgid_plural "%s Ignored Items"
 msgstr[0] "%s Elemento ignorado"
 msgstr[1] "%s Elementos ignorados"
 
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:189
 msgid "No summary to return"
 msgstr "No hay resumen para devolver"
 
-#: admin/class-ajax.php:231
+#: admin/class-ajax.php:233
 msgid "Invalid table name"
 msgstr "Nombre de tabla no válido"
 
-#: admin/class-ajax.php:377
+#: admin/class-ajax.php:379
 msgid "These settings enable global fixes across your entire site."
 msgstr "Estas configuraciones habilitan correcciones globales en todo tu sitio."
 
-#: admin/class-ajax.php:378
+#: admin/class-ajax.php:380
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Es posible que sea necesario volver a guardar las páginas o ejecutar un análisis completo del sitio para ver las correcciones reflejadas en los informes."
 
-#: admin/class-ajax.php:406
+#: admin/class-ajax.php:408
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "Guardar"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:428
 msgid "Affected Code"
 msgstr "Código afectado"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:491
+#: admin/class-ajax.php:493
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Ver el problema ID %d en el sitio web, se abre en una nueva ventana"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:494
 msgid "View on page"
 msgstr "Ver en la página"
 
-#: admin/class-ajax.php:511
+#: admin/class-ajax.php:513
 msgid "Fix: "
 msgstr "Corrección: "
 
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:514
 msgid "Fix"
 msgstr "Corregir"
 
-#: admin/class-ajax.php:535
+#: admin/class-ajax.php:537
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Tu cuenta de usuario no tiene permisos para ignorar este problema."
 
-#: admin/class-ajax.php:553
+#: admin/class-ajax.php:555
 msgid "No details to return"
 msgstr "No hay detalles para devolver"
 
-#: admin/class-ajax.php:692
+#: admin/class-ajax.php:694
 msgid "No readability data to return"
 msgstr "No hay datos de legibilidad para devolver"
 
-#: admin/class-ajax.php:749
-#: admin/class-ajax.php:772
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:774
 msgid "No ignore data to return"
 msgstr "No hay datos de ignorar para devolver"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:809
 msgid "The summary was not set"
 msgstr "No se ha establecido el resumen"
 
@@ -360,6 +361,15 @@ msgstr "La consulta de problemas no devolvió resultados"
 #: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "La consulta de objetos no devolvió resultados"
+
+#: admin/class-plugin-action-links.php:44
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Ajustes"
+
+#: admin/class-plugin-action-links.php:56
+msgid "Get Accessibility Checker Pro, opens in new window"
+msgstr "Obtén Accessibility Checker Pro, se abre en una nueva ventana"
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -1179,10 +1189,6 @@ msgstr "Bienvenido a Accessibility Checker"
 msgid "Accessibility Checker Settings"
 msgstr "Configuración de Accessibility Checker"
 
-#: includes/options-page.php:66
-msgid "Settings"
-msgstr "Ajustes"
-
 #: includes/options-page.php:99
 msgid "General Settings"
 msgstr "Ajustes generales"
@@ -1351,390 +1357,390 @@ msgid "Image Missing Alternative Text"
 msgstr "Imagen sin texto alternativo"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
-#: includes/rules.php:28
+#: includes/rules.php:27
 #, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "Un error de Imagen sin Texto Alternativo significa que tu imagen no tiene un atributo alt (%1$s) contenido en la etiqueta de la imagen (%2$s) en absoluto. Para corregir un error de Imagen sin Texto Alternativo, necesitarás añadir una etiqueta alt a la imagen con el texto apropiado describiendo el propósito de la imagen en la página. Si la imagen es decorativa, el atributo alt puede estar vacío, pero la etiqueta HTML %1$s aún necesita estar presente."
 
-#: includes/rules.php:35
+#: includes/rules.php:34
 msgid "Image Empty Alternative Text"
 msgstr "Imagen con texto alternativo vacío"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:42
+#: includes/rules.php:40
 #, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "Una advertencia de Imagen con Texto Alternativo Vacío aparece si tienes una imagen con un atributo alt (%s) que está vacío. El texto alternativo le dice a las personas que no pueden ver qué es la imagen y añade contexto adicional a la entrada o página. Solo es correcto que el texto alternativo esté vacío si la imagen es puramente decorativa, como un borde o un icono decorativo. Para corregir una advertencia de Imagen con Texto Alternativo Vacío, necesitas determinar si la imagen es decorativa o si añade algo significativo a la página. Si no es decorativa, necesitas añadir un texto alternativo apropiado para describir el propósito de la imagen. Si la imagen es decorativa, entonces dejarías el texto alternativo en blanco e “Ignorarías” la advertencia."
 
-#: includes/rules.php:48
+#: includes/rules.php:46
 msgid "Low-quality Alternative Text"
 msgstr "Texto alternativo de baja calidad"
 
-#: includes/rules.php:53
+#: includes/rules.php:50
 msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
 msgstr "Una advertencia de texto alternativo de baja calidad aparece cuando el texto alternativo de una imagen contiene palabras clave innecesarias (como “imagen” o “gráfico”), una extensión de archivo (como .JPG), o puede estar describiendo una imagen decorativa (como “espaciador” o “flecha”). Para solucionar esta advertencia, deberás reescribir el texto alternativo de las imágenes que hayan generado la advertencia de texto alternativo de baja calidad, asegurándote de que sea preciso, único, contextualmente apropiado y no contenga descriptores redundantes o innecesarios. Si la imagen es puramente decorativa, es correcto dejar el texto alternativo en blanco."
 
-#: includes/rules.php:57
+#: includes/rules.php:54
 msgid "Linked Image Missing Alternative Text"
 msgstr "Imagen enlazada sin texto alternativo"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:64
+#: includes/rules.php:60
 #, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Un error de imagen enlazada sin texto alternativo aparece cuando una imagen que está vinculada a una URL no tiene un atributo alt (%s) en la etiqueta de la imagen. Las imágenes enlazadas deben tener un texto alternativo preciso que describa adónde lleva el enlace para que los usuarios de lectores de pantalla sepan a dónde apunta el enlace. Para resolver este error, debes añadir un texto alternativo significativo a la imagen. Tu texto alternativo debe describir el propósito del enlace, no cómo se ve la imagen."
 
-#: includes/rules.php:70
+#: includes/rules.php:66
 msgid "Linked Image Empty Alternative Text"
 msgstr "Imagen enlazada con texto alternativo vacío"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:77
+#: includes/rules.php:72
 #, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Un error de imagen enlazada con texto alternativo vacío aparece cuando una imagen que está vinculada a una URL tiene un atributo alt (%s) sin contenido. Las imágenes enlazadas deben tener un texto alternativo preciso que describa adónde lleva el enlace para que los usuarios de lectores de pantalla sepan a dónde apunta el enlace. Para resolver este error, debes añadir un texto alternativo significativo a la imagen. Tu texto alternativo debe describir el propósito del enlace, no cómo se ve la imagen."
 
-#: includes/rules.php:83
+#: includes/rules.php:78
 msgid "Duplicate Alternative Text"
 msgstr "Texto alternativo duplicado"
 
-#: includes/rules.php:88
+#: includes/rules.php:82
 msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
 msgstr "Las advertencias de texto alternativo duplicado aparecen cuando el texto alternativo de una imagen en tu publicación o página es idéntico al texto cercano o adyacente, incluyendo el título o pie de foto de la imagen. Esta advertencia también ocurre si dos imágenes en la página tienen el mismo texto alternativo. Para resolver esta advertencia, deberás cambiar el texto de uno o ambos elementos que generaron la advertencia de texto alternativo duplicado, asegurándote de que todas las imágenes tengan un texto alternativo único y que no estés repitiendo tu texto alternativo en los títulos y pies de foto de las imágenes."
 
-#: includes/rules.php:92
+#: includes/rules.php:86
 msgid "Incorrect Heading Order"
 msgstr "Orden incorrecto de encabezados"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
-#: includes/rules.php:99
+#: includes/rules.php:92
 #, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "Un error de orden incorrecto de encabezados significa que la estructura de encabezados se ha saltado un nivel. Por ejemplo, si la estructura de tu página tiene un encabezado de nivel 3 (%1$s) debajo de un encabezado de nivel 1 (%2$s), se marcará un error de “Orden incorrecto de encabezados” porque no hay una etiqueta %3$s entre el H1 y el H3. Para corregir los errores de orden incorrecto de encabezados, deberás cambiar el nivel de encabezado incorrecto al nivel correcto, o añadir contenido con el nivel de encabezado correcto entre los dos niveles ya existentes."
 
-#: includes/rules.php:110
+#: includes/rules.php:103
 msgid "Empty Paragraph Tag"
 msgstr "Etiqueta de párrafo vacía"
 
-#: includes/rules.php:115
+#: includes/rules.php:107
 msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
 msgstr "Una advertencia de etiqueta de párrafo vacía significa que hay una etiqueta de párrafo presente que no contiene contenido. Estas pueden ser anunciadas por los lectores de pantalla o crear confusión para los usuarios. Para solucionar esta advertencia, elimina los párrafos vacíos de la página. Si necesitas añadir espacio entre secciones, esto debe hacerse con relleno, márgenes o un bloque espaciador."
 
-#: includes/rules.php:119
+#: includes/rules.php:111
 msgid "iframe Missing Title"
 msgstr "iframe sin título"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
-#: includes/rules.php:126
+#: includes/rules.php:117
 #, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "Un error de iframe sin título significa que uno o más de los iframes en tu publicación o página no tiene un título accesible que describa el contenido del iframe. Un título de iframe es un atributo que se puede añadir a la etiqueta %1$s para describir el contenido del marco a las personas que utilizan tecnología de asistencia. Para corregir un título de iframe que falta, deberás añadir un atributo title o aria-label a la etiqueta %1$s. El atributo debe describir con precisión el contenido del iframe."
 
-#: includes/rules.php:135
+#: includes/rules.php:126
 msgid "Missing Subheadings"
 msgstr "Faltan subtítulos"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
-#: includes/rules.php:142
+#: includes/rules.php:132
 #, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "Una advertencia sobre encabezados ausentes significa que tu entrada o página no contiene elementos de encabezado (%1$s–%2$s) dentro del contenido de la sección del cuerpo de la entrada o página, lo que puede dificultar especialmente a los usuarios de lectores de pantalla navegar por el contenido de la página. Para corregir una página sin encabezados, deberás añadir elementos de encabezado. Como mínimo, cada página debería tener una etiqueta %1$s, que suele ser el título de la página. Añade subtítulos adicionales según sea apropiado para tu contenido. Si has determinado que definitivamente no se necesitan encabezados en la página, entonces puedes “Ignorar” la advertencia."
 
-#: includes/rules.php:150
+#: includes/rules.php:140
 msgid "Text Justified"
 msgstr "Texto justificado"
 
-#: includes/rules.php:155
+#: includes/rules.php:144
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
 msgstr "Aparece una advertencia de Texto Justificado en Accessibility Checker cuando el texto con más de 200 caracteres en tu entrada o página tiene un estilo de alineación justificada (text-align:justify). Para solucionar esta advertencia, elimina el estilo justificado de los elementos de texto especificados."
 
-#: includes/rules.php:159
+#: includes/rules.php:148
 msgid "Link Opens New Window or Tab"
 msgstr "El enlace abre una nueva ventana o pestaña"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
-#: includes/rules.php:166
+#: includes/rules.php:154
 #, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "Una advertencia de Enlace abre nueva ventana o pestaña aparece cuando hay un enlace en tu sitio web que se ha configurado para abrirse en una nueva pestaña o ventana al hacer clic. Se considera una buena práctica no abrir nuevas pestañas o ventanas con enlaces. Si los enlaces abren nuevas pestañas o ventanas, debe haber una advertencia visual y auditiva anunciando que el enlace abrirá una nueva ventana o pestaña para que los usuarios esperen ese comportamiento y sepan cómo volver después de hacer clic en el enlace. Para solucionar esta advertencia, cambia el enlace para que no se abra en una nueva pestaña o asegúrate de que “abre nueva ventana” esté incluido en el texto del enlace y luego “Ignora” la advertencia. Para añadir automáticamente avisos a todos los enlaces de tu sitio y descartar todas estas advertencias, instala nuestro plugin gratuito %s."
 
-#: includes/rules.php:167
+#: includes/rules.php:155
 msgid "Accessibility New Window Warnings"
 msgstr "Avisos de accesibilidad de nueva ventana"
 
-#: includes/rules.php:179
+#: includes/rules.php:167
 msgid "Image Map Missing Alternative Text"
 msgstr "Mapa de imagen sin texto alternativo"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
-#: includes/rules.php:186
+#: includes/rules.php:173
 #, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "El error de Mapa de Imagen Sin Texto Alternativo significa que uno de los elementos %1$s dentro de tu mapa de imagen no tiene texto alternativo añadido en un atributo %2$s. Para corregir este error, tendrás que añadir el texto alternativo que falta a cualquier etiqueta de área que no tenga texto alternativo. El texto alternativo debe describir la función del enlace contenido en el área, no necesariamente describir el aspecto del área."
 
-#: includes/rules.php:196
+#: includes/rules.php:183
 msgid "Tab Order Modified"
 msgstr "Orden de tabulación modificado"
 
 #. translators: %s is <code>tabindex="1"</code>.
-#: includes/rules.php:203
+#: includes/rules.php:189
 #, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "Una Advertencia de Orden de Tabulación Modificado aparece cuando el orden lógico de tabulación en la página se ha cambiado añadiendo un atributo para tabindex que es mayor que 0 a un elemento HTML (por ejemplo, %s). Esto puede causar problemas de navegación para los usuarios que solo utilizan el teclado. Para resolver una advertencia de Orden de Tabulación Modificado, necesitas ver el frontend de tu sitio web en la página o entrada donde se ha modificado el orden de tabulación y probar si la modificación es correcta o no. Si la modificación del orden de tabulación no causa problemas, entonces puedes “Ignorar” la advertencia. Si el orden de tabulación modificado hace que la información se presente fuera de orden, entonces necesitas eliminar el atributo tabindex del elemento señalado."
 
-#: includes/rules.php:213
+#: includes/rules.php:199
 msgid "Empty Heading Tag"
 msgstr "Etiqueta de encabezado vacía"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
-#: includes/rules.php:220
+#: includes/rules.php:205
 #, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "Un error de Etiqueta de Encabezado Vacía significa que hay una etiqueta de encabezado presente en tu entrada o página que no contiene contenido. En el código, este error se vería así: %s. Para corregir un encabezado vacío, tendrás que añadir contenido a la etiqueta de encabezado que ha señalado el error de Etiqueta de Encabezado Vacía o eliminar la etiqueta vacía si no es necesaria en tu página."
 
-#: includes/rules.php:226
+#: includes/rules.php:211
 msgid "Empty Link"
 msgstr "Enlace vacío"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
-#: includes/rules.php:233
+#: includes/rules.php:217
 #, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "Un error de Enlace vacío significa que uno de los enlaces presentes en la página web está vacío o no contiene texto que describa adónde llevará el enlace si se hace clic. Esto ocurre comúnmente con enlaces que contienen fuentes web, fuentes de iconos y SVG, o cuando se ha creado accidentalmente un enlace en el editor de contenido. Para corregir un error de enlace vacío, deberás encontrar el enlace que se está señalando y añadirle texto descriptivo. Tendrás que: añadir contenido de texto dentro de un elemento %1$s vacío o, si tu enlace contiene un icono SVG o de fuente web, ocultar ese elemento con %2$s y añadir un atributo %3$s a la etiqueta %1$s o texto para lectores de pantalla. El texto o etiqueta que añadas debe ser descriptivo del lugar al que apunta el enlace y no ambiguo."
 
-#: includes/rules.php:241
+#: includes/rules.php:225
 msgid "Empty Button"
 msgstr "Botón vacío"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
-#: includes/rules.php:248
+#: includes/rules.php:231
 #, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "Un error de Botón vacío significa que uno de los botones presentes en la página web está vacío o no contiene texto que describa la función del botón. O, si es un botón de imagen, la imagen contenida en el botón carece de texto alternativo. Para corregir un error de botón vacío, deberás encontrar el botón que se está señalando y añadirle texto descriptivo. Tendrás que: añadir contenido de texto dentro de un elemento %1$s vacío, añadir un atributo de valor a un %2$s que carezca de uno, o añadir texto alternativo a una imagen de botón. El texto debe ser descriptivo de para qué se está utilizando tu botón o de la acción que el botón desencadena."
 
-#: includes/rules.php:255
+#: includes/rules.php:238
 msgid "Image Long Alternative Text"
 msgstr "Texto alternativo largo de imagen"
 
-#: includes/rules.php:260
+#: includes/rules.php:242
 msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
 msgstr "Una advertencia de Texto alternativo largo de imagen aparece si hay más de 100 caracteres en tu texto alternativo. El texto alternativo debe ser descriptivo de la imagen pero de manera sucinta, sin ser demasiado extenso. Para corregir esta advertencia, necesitas acortar tu texto alternativo para cualquier imagen que haya sido señalada a 100 caracteres o menos. Si has determinado que tu texto alternativo está bien como está, entonces “Ignora” la advertencia."
 
-#: includes/rules.php:264
+#: includes/rules.php:246
 msgid "ARIA Hidden"
 msgstr "ARIA oculto"
 
-#: includes/rules.php:269
+#: includes/rules.php:250
 msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
 msgstr "La advertencia de ARIA oculto aparece cuando el contenido de tu entrada o página ha sido ocultado utilizando el atributo aria-hidden=“true”. Cuando este atributo se añade a un elemento HTML, los lectores de pantalla no lo leerán a los usuarios. A veces es correcto que el elemento esté oculto para los lectores de pantalla (como con un icono decorativo), pero otras veces no lo es. Cuando veas esta advertencia, necesitas determinar si el elemento debe estar oculto para las personas ciegas o con discapacidad visual. Si está correctamente oculto, “Ignora” la advertencia. Si está incorrectamente oculto y debería ser visible, elimina el atributo aria-hidden=“true” para resolver la advertencia."
 
-#: includes/rules.php:276
+#: includes/rules.php:257
 msgid "Empty Table Header"
 msgstr "Encabezado de tabla vacío"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
-#: includes/rules.php:283
+#: includes/rules.php:263
 #, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "Un error de Encabezado de tabla vacío significa que uno de los encabezados de tabla en tu entrada o página no contiene ningún texto. Esto significa que el elemento %1$s está presente pero se ve así %2$s sin nada entre las etiquetas de apertura y cierre. Para corregir un encabezado de tabla vacío, necesitas encontrar el elemento HTML correcto (%1$s) y añadirle texto que describa la fila o columna a la que se aplica."
 
-#: includes/rules.php:290
+#: includes/rules.php:270
 msgid "Link to MS Office File"
 msgstr "Enlace a archivo de MS Office"
 
-#: includes/rules.php:295
+#: includes/rules.php:274
 msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Una advertencia de Enlace a archivo de MS Office significa que uno o más de los enlaces en tu página o entrada dirige a un archivo con una de las siguientes extensiones: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps o .ppsx. Esta advertencia aparece cuando hay un archivo de MS Office presente como recordatorio para probar manualmente tus documentos de Word, presentaciones de PowerPoint y hojas de cálculo de Excel en cuanto a accesibilidad y para confirmar que cumplen con todas las pautas WCAG relevantes. Para resolver una advertencia de Enlace a archivo de MS Office, necesitas: (1) asegurarte de que haya un enlace directo para ver o descargar el documento si estás usando un plugin para incrustarlo en la página; (2) asegurarte de que el enlace al documento advierta a los usuarios que es un enlace a un documento mostrando la extensión específica del archivo en el ancla del enlace; y (3) probar y corregir tu archivo de MS Office en busca de errores de accesibilidad. Después de determinar que tu archivo es completamente accesible, puedes “Ignorar” la advertencia con seguridad."
 
-#: includes/rules.php:299
+#: includes/rules.php:278
 msgid "Link to PDF"
 msgstr "Enlace a PDF"
 
-#: includes/rules.php:304
+#: includes/rules.php:282
 msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Un aviso de Enlace a PDF significa que uno o más enlaces de tu página o entrada dirigen a un archivo PDF. Este aviso es un recordatorio para probar manualmente la accesibilidad del PDF enlazado y confirmar que cumple con todas las pautas WCAG relevantes. Para resolver un aviso de Enlace a PDF, debes: (1) asegurarte de que haya un enlace directo para ver o descargar el documento si estás usando un plugin para incrustarlo en la página; (2) asegurarte de que el enlace al documento advierta a los usuarios que es un enlace a un documento mostrando la extensión específica del archivo en el texto del enlace; y (3) probar y corregir tu documento para errores de accesibilidad. Después de determinar que tu archivo es completamente accesible, puedes “Ignorar” el aviso con seguridad."
 
-#: includes/rules.php:308
+#: includes/rules.php:286
 msgid "Link to Non-HTML File"
 msgstr "Enlace a archivo no HTML"
 
-#: includes/rules.php:313
+#: includes/rules.php:290
 msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Un aviso de Enlace a Documento no HTML significa que uno o más enlaces de tu página o entrada dirigen a un archivo con una de las siguientes extensiones: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages o .key. Este aviso es un recordatorio para probar manualmente la accesibilidad del documento enlazado y confirmar que cumple con todas las pautas WCAG relevantes. Para resolver un aviso de Enlace a Documento no HTML, debes: (1) asegurarte de que haya un enlace directo para ver o descargar el documento si estás usando un plugin para incrustarlo en la página; (2) asegurarte de que el enlace al documento advierta a los usuarios que es un enlace a un documento mostrando la extensión específica del archivo en el texto del enlace; y (3) probar y corregir tu documento para errores de accesibilidad. Después de determinar que tu archivo es completamente accesible, puedes “Ignorar” el aviso con seguridad."
 
-#: includes/rules.php:317
+#: includes/rules.php:294
 msgid "Long Description Invalid"
 msgstr "Descripción larga no válida"
 
 #. translators: %s is <code>longdesc=""</code>.
-#: includes/rules.php:324
+#: includes/rules.php:300
 #, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "El error de Descripción Larga No Válida significa que un atributo de descripción larga (%s) en una imagen no tiene una URL, nombre de archivo o extensión de archivo apropiada. También puede significar que la descripción larga no es una URL o se ha dejado en blanco. El atributo longdesc no está completamente soportado por HTML5, navegadores y todos los lectores de pantalla. Debido a esta falta de soporte, la mejor solución para este error es eliminar completamente longdesc de tu etiqueta de imagen."
 
-#: includes/rules.php:330
+#: includes/rules.php:306
 msgid "Missing Form Label"
 msgstr "Etiqueta de formulario faltante"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
-#: includes/rules.php:337
+#: includes/rules.php:312
 #, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "Un error de Etiqueta de Formulario Faltante se activa cuando un %1$s (campo de formulario) está presente en tu formulario pero no está asociado con un elemento %2$s. Esto podría significar que la etiqueta está presente pero le falta un atributo %3$s para conectarla al campo correspondiente, o podría no haber ninguna etiqueta presente en absoluto y solo una etiqueta %1$s. Para corregir errores de etiqueta de formulario faltante, necesitarás determinar cómo se crearon el campo y el formulario y luego añadir etiquetas de campo o un atributo %3$s correcto a las etiquetas existentes que no estén conectadas a un campo."
 
-#: includes/rules.php:350
+#: includes/rules.php:325
 msgid "Ambiguous Anchor Text"
 msgstr "Texto de anclaje ambiguo"
 
-#: includes/rules.php:355
+#: includes/rules.php:329
 msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
 msgstr "Los errores de Texto de Anclaje Ambiguo aparecen cuando hay texto enlazado que no tiene significado fuera de su contenido circundante. Ejemplos comunes de esto incluyen frases de enlace como “haz clic aquí” o “saber más.” Para resolver este error, cambia el texto del enlace para que sea menos genérico y tenga significado si se escucha por sí solo."
 
-#: includes/rules.php:359
+#: includes/rules.php:333
 msgid "Underlined Text"
 msgstr "Texto subrayado"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
-#: includes/rules.php:366
+#: includes/rules.php:339
 #, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "Una advertencia de Texto Subrayado aparece si cualquier texto en tu página está envuelto en una etiqueta HTML de subrayado (%1$s). En un entorno en línea, el texto subrayado generalmente se usa para indicar texto enlazado y no se considera una buena práctica subrayar texto solo para enfatizarlo. Para corregir el texto subrayado, necesitarás eliminar el elemento %1$s del texto o los estilos CSS que lo están subrayando. Intenta usar otras estilizaciones, como cursiva, texto de color o negrita para enfatizar o diferenciar entre palabras o frases."
 
-#: includes/rules.php:372
+#: includes/rules.php:345
 msgid "Broken Skip or Anchor Link"
 msgstr "Enlace de salto o anclaje roto"
 
-#: includes/rules.php:377
+#: includes/rules.php:349
 msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
 msgstr "Un enlace de anclaje, a veces llamado enlace de salto, es un enlace que, en lugar de abrir una nueva página o URL al pulsarlo, salta o le desplaza a una sección diferente de la misma página. Estos enlaces van a un elemento que comienza con una etiqueta en lugar de una URL completa. Por ejemplo, puede desplazar a alguien a la sección \"Acerca de\" de su página de inicio mediante un enlace a #about. Los errores de salto roto o enlace de anclaje aparecen cuando hay un enlace que se dirige a otra sección de la misma página pero no hay ningún elemento presente en la página que tenga el id referenciado. Este error también aparecerá si está enlazando sólo a un #. Para resolver este error, pruebe manualmente el enlace para confirmar que funciona y luego arréglelo o \"Ignore\" el error según corresponda."
 
-#: includes/rules.php:381
+#: includes/rules.php:353
 msgid "Missing Table Header"
 msgstr "Falta el encabezado de la tabla"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
-#: includes/rules.php:388
+#: includes/rules.php:359
 #, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "Un error de Falta de Encabezado de Tabla significa que una de tus tablas contiene datos (información contenida en una etiqueta %1$s) que no tiene un encabezado (%2$s) correspondiente. Al mirar el HTML de tu formulario, habrá más elementos %1$s en una fila que elementos %2$s en la tabla. Para corregir un encabezado de tabla faltante, necesitas encontrar la sección de código que tiene menos elementos %2$s de los que deberían estar presentes para el número de filas o columnas de datos, y añadir uno o más elementos %2$s adicionales que contengan texto que describa los datos en esa fila o columna."
 
-#: includes/rules.php:395
+#: includes/rules.php:366
 msgid "Duplicate Form Label"
 msgstr "Etiqueta de formulario duplicada"
 
-#: includes/rules.php:400
+#: includes/rules.php:370
 msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
 msgstr "Los errores de Etiqueta de Formulario Duplicada aparecen cuando hay más de una etiqueta asociada a un solo campo en un formulario. Si hay demasiadas etiquetas de formulario presentes, un lector de pantalla puede no ser capaz de leer correctamente los campos del formulario para ayudar a un usuario con discapacidad visual a navegar y completar el formulario. Para corregir los errores de etiqueta de formulario duplicada, deberás determinar cómo se crearon el campo y el formulario y luego asegurarte de que cada campo tenga solo una etiqueta asociada."
 
-#: includes/rules.php:405
+#: includes/rules.php:375
 msgid "Text Too Small"
 msgstr "Texto demasiado pequeño"
 
-#: includes/rules.php:410
+#: includes/rules.php:379
 msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
 msgstr "Una advertencia de Texto Demasiado Pequeño ocurre cuando hay texto en tu sitio web que es menor de 10px de tamaño. La advertencia es una indicación de que tal vez deberías reconsiderar el tamaño de la fuente y hacerla más grande para que se pueda leer más fácilmente sin que el usuario necesite hacer zoom en su navegador. Para corregir el texto que es demasiado pequeño, deberás asegurarte de que todos los elementos de texto en tu sitio web sean de al menos 10 puntos."
 
-#: includes/rules.php:414
+#: includes/rules.php:383
 msgid "Possible Heading"
 msgstr "Posible encabezado"
 
-#: includes/rules.php:419
+#: includes/rules.php:387
 msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
 msgstr "Una advertencia de Posible Encabezado ocurre cuando hay texto en una página que parece ser un encabezado, pero no se ha codificado con las etiquetas de encabezado adecuadas. Esta advertencia aparece si hay frases cortas o cadenas de texto de menos de 50 caracteres de longitud que están formateadas de una manera que sugiere que podrían estar siendo utilizadas como encabezados (tienen 20 píxeles o más, o tienen 16 píxeles o más y están en negrita y/o cursiva). Para corregir una advertencia de Posible Encabezado, deberás determinar si el texto marcado está efectivamente destinado a ser un encabezado. Si es así, necesitas cambiarlo de párrafo a encabezado en el nivel apropiado. Si no se supone que sea un encabezado, entonces puedes “Ignorar” la advertencia con seguridad."
 
-#: includes/rules.php:423
+#: includes/rules.php:391
 msgid "Blinking or Scrolling Content"
 msgstr "Contenido parpadeante o deslizante"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
-#: includes/rules.php:430
+#: includes/rules.php:397
 #, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Los errores de Contenido Parpadeante o Deslizante aparecen cuando los elementos de tu sitio web tienen una función de parpadeo o deslizamiento aplicada, ya sea a través de CSS o en el HTML. Específicamente, lo siguiente creará este error: las etiquetas HTML %1$s o %2$s o el CSS %3$s. Para resolver este error, elimina las etiquetas HTML o CSS que están causando que el contenido parpadee."
 
-#: includes/rules.php:439
+#: includes/rules.php:406
 msgid "Insufficient Color Contrast"
 msgstr "Contraste de color insuficiente"
 
-#: includes/rules.php:444
+#: includes/rules.php:410
 msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
 msgstr "Los errores de Contraste de Color Insuficiente significan que hemos identificado que una o más de las combinaciones de colores en su publicación o página no cumplen con la relación mínima de contraste de color de 4,5:1. Dependiendo de cómo esté construido su sitio, puede haber “falsos positivos” para este error, ya que algunos colores están contenidos en diferentes capas HTML en la página. Para corregir un error de Contraste de Color Insuficiente, deberá asegurarse de que los elementos señalados cumplan con la relación mínima requerida de 4,5:1. Para hacerlo, necesitará encontrar los códigos hexadecimales de su color de primer plano y de fondo, y probarlos en un verificador de contraste de color. Si estos códigos de color tienen una relación de 4,5:1 o mayor, puede “Ignorar” este error. Si los códigos de color no tienen una relación de al menos 4,5:1, deberá hacer ajustes a sus colores."
 
-#: includes/rules.php:448
+#: includes/rules.php:414
 msgid "Missing Transcript"
 msgstr "Transcripción faltante"
 
-#: includes/rules.php:453
+#: includes/rules.php:418
 msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
 msgstr "Un error de transcripción faltante significa que hay un clip de audio o video en su sitio web que no tiene una transcripción o hay una transcripción pero no está etiquetada como tal o está posicionada a más de 25 caracteres del medio incrustado o enlazado. Para corregir un error de transcripción faltante, deberá crear una transcripción para cualquiera de los clips de video o audio que se hayan marcado como faltantes de transcripción. Una vez que haya creado la transcripción, puede agregar el contenido de la transcripción directamente dentro de su publicación o página o enlazar a la transcripción si la está incluyendo como un documento descargable o archivo PDF. Necesita incluir explícitamente la palabra “transcripción” dentro de un encabezado antes de la transcripción en la página o en el enlace a su archivo, y debe estar dentro de 25 caracteres del enlace o incrustación del audio o video."
 
-#: includes/rules.php:457
+#: includes/rules.php:422
 msgid "Broken ARIA Reference"
 msgstr "Referencia ARIA rota"
 
-#: includes/rules.php:462
+#: includes/rules.php:426
 msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
 msgstr "Los errores de Referencia ARIA rota aparecen si un elemento aria-labeledby o aria-describedby está presente en la página o publicación, pero su objetivo de referencia no existe. Esto significa que el elemento al que se refiere el atributo ARIA específico que está utilizando no tiene una etiqueta o descriptor adecuado, o no está presente en la página. Para corregir una referencia ARIA rota, deberá encontrar los elementos ARIA que están siendo marcados y asegurarse de que sus objetivos de referencia estén presentes y correctamente etiquetados."
 
-#: includes/rules.php:467
+#: includes/rules.php:431
 msgid "Missing Language Declaration"
 msgstr "Declaración de idioma faltante"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
-#: includes/rules.php:474
+#: includes/rules.php:437
 #, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "Una declaración de idioma es un atributo HTML que denota el idioma predeterminado del contenido en una página o publicación. Las declaraciones de idioma deben estar codificadas en el tema de su sitio web y aparecer automáticamente en el encabezado del sitio web. Un error de Declaración de Idioma Faltante aparece si la etiqueta %1$s en la página no contiene un atributo %2$s o %3$s, o uno de estos atributos está presente pero está vacío. Para corregir un error de Declaración de Idioma Faltante, deberá editar los archivos de su tema para agregar el atributo de idioma faltante a la etiqueta HTML en la parte superior del encabezado de su sitio web. Si está utilizando un tema que recibe actualizaciones, entonces deberá hacer el cambio en un tema hijo para asegurarse de que la corrección no se sobrescriba cuando actualice su tema la próxima vez."
 
-#: includes/rules.php:488
+#: includes/rules.php:451
 msgid "Image Animated GIF"
 msgstr "Imagen GIF animada"
 
-#: includes/rules.php:493
+#: includes/rules.php:455
 msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
 msgstr "Las advertencias de Imagen GIF Animada aparecen cuando hay un GIF animado en su publicación o página. Esta advertencia es un recordatorio para revisar manualmente cualquier GIF animado en su sitio web para su accesibilidad y/o reconsiderar el uso de GIFs animados, reemplazándolos en su lugar con imágenes estáticas o videos. Para resolver esta advertencia, debe revisar cualquier GIF presente para asegurarse de que cumpla con todas las pautas aplicables de accesibilidad y luego “Ignorar” la advertencia o eliminar el GIF de su página o publicación si no es accesible."
 
-#: includes/rules.php:498
+#: includes/rules.php:460
 msgid "A Video is Present"
 msgstr "Un video está presente"
 
-#: includes/rules.php:503
+#: includes/rules.php:464
 msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
 msgstr "Debido a que los vídeos suelen contener problemas de accesibilidad, muchos de los cuales solo pueden ser identificados por una persona, la advertencia de Presencia de Vídeo aparece cada vez que se detecta un vídeo en una entrada o página como recordatorio de que necesitas probar manualmente tu vídeo para comprobar su accesibilidad. Para resolver esta advertencia, debes visitar la parte pública de tu sitio web y confirmar que el vídeo mencionado en la advertencia es accesible. Una vez que hayas probado completamente el vídeo en cuanto a accesibilidad, debes corregir cualquier error que pueda estar presente y luego puedes “Ignorar” la advertencia para marcarla como completada."
 
-#: includes/rules.php:507
+#: includes/rules.php:468
 msgid "A Slider is Present"
 msgstr "Hay un carrusel presente"
 
-#: includes/rules.php:512
+#: includes/rules.php:472
 msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
 msgstr "Debido a que los carruseles suelen contener problemas de accesibilidad, muchos de los cuales solo pueden ser identificados por una persona, la advertencia de Presencia de Carrusel aparece cada vez que se detecta un carrusel en una entrada o página como recordatorio de que necesitas probar manualmente tu carrusel para comprobar su accesibilidad. Para resolver esta advertencia, debes visitar la parte pública de tu sitio web y confirmar que todos los carruseles en la página son accesibles. Una vez que hayas probado completamente tus carruseles en cuanto a accesibilidad, debes corregir cualquier error que pueda estar presente y luego puedes “Ignorar” la advertencia para marcarla como completada."
 
-#: includes/rules.php:516
+#: includes/rules.php:476
 msgid "Missing Title"
 msgstr "Falta el título"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
-#: includes/rules.php:523
+#: includes/rules.php:482
 #, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "Un error de Título Ausente significa que tu entrada o página no contiene un elemento de título (%1$s o %2$s). Esto podría ocurrir si el tema no agrega una etiqueta de título, o si el campo de título de una entrada o página se ha dejado en blanco en la pantalla de edición de WordPress. Para arreglar una página sin títulos, necesitarás añadir elementos de título. Primero, determina si el título falta porque dejaste el campo de título de la página o entrada en blanco en el editor. Si es así, rellénalo. Si hay un título rellenado y visible en el backend, entonces el código en el de tu página web necesita ser editado para incluir una etiqueta %1$s o una etiqueta meta %2$s."
 
-#: includes/rules.php:535
+#: includes/rules.php:494
 msgid "Improper Use of Link"
 msgstr "Uso incorrecto de enlace"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
-#: includes/rules.php:542
+#: includes/rules.php:500
 #, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "Un error de Uso Incorrecto de Enlace aparece si tienes enlaces que carecen de un atributo %1$s o están vinculados solo a un %2$s, y no tienen %3$s en ellos. Los enlaces deben usarse para dirigir a las personas a otras partes de tu sitio. Cualquier otra funcionalidad que desencadene una acción debería ser un botón. Para resolver este error, necesitas recodificar el enlace para usar una etiqueta %4$s (preferiblemente) o añadir %5$s a la etiqueta %6$s existente. Si el elemento es un botón de alternancia (como un acordeón), se requieren atributos ARIA adicionales."
 
-#: includes/rules.php:553
+#: includes/rules.php:511
 msgid "Zooming and Scaling Disabled"
 msgstr "Zoom y escalado desactivados"
 
-#: includes/rules.php:558
+#: includes/rules.php:515
 msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
 msgstr "El zoom está desactivado mediante la etiqueta meta del viewport que incluye `user-scalable=no` o un valor `maximum-scale` inferior a 2. Esto limita a los usuarios con baja visión que quieren aumentar el tamaño del texto, hacer zoom en la página o que usan una lupa."
 
@@ -1821,12 +1827,12 @@ msgstr "Soporte por email"
 msgid "...and more"
 msgstr "...y más"
 
-#: partials/pro-callout.php:45
+#: partials/pro-callout.php:47
 #: partials/welcome-page.php:215
 msgid "Get Accessibility Checker Pro"
 msgstr "Obtener Accessibility Checker Pro"
 
-#: partials/pro-callout.php:55
+#: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
 msgstr "O active su clave de licencia aquí."
