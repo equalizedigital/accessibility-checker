@@ -362,7 +362,14 @@ msgstr "Заявката за проблем не върна резултати"
 msgid "Object query returned no results"
 msgstr "Заявката за обект не върна резултати"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Надгради до про"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Преглед на документацията на Accessibility Checker (отваря се в нов прозорец)"
 
