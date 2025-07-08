@@ -362,7 +362,14 @@ msgstr "Dopyt na problém nevrátil žiadne výsledky"
 msgid "Object query returned no results"
 msgstr "Dopyt na objekt nevrátil žiadne výsledky"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Prejsť na pro verziu"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Zobraziť dokumentáciu Accessibility Checker (otvorí sa v novom okne)"
 
