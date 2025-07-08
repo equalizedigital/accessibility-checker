@@ -362,7 +362,14 @@ msgstr "问题查询未返回结果"
 msgid "Object query returned no results"
 msgstr "对象查询未返回结果"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "升级到专业版"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "查看 Accessibility Checker 文档（在新窗口中打开）"
 
