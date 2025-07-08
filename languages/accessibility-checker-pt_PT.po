@@ -18,6 +18,7 @@ msgstr ""
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -46,6 +47,7 @@ msgstr "https://equalizedigital.com"
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:90
+#: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr "Correções"
 
@@ -362,7 +364,14 @@ msgstr "A consulta do problema não devolveu resultados"
 msgid "Object query returned no results"
 msgstr "A consulta do objeto não devolveu resultados"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Atualizar para Pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Ver a documentação do Accessibility Checker (abre numa nova janela)"
 
@@ -770,6 +779,19 @@ msgstr "Leia a nossa %s"
 #: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "Política de acessibilidade"
+
+#: includes/classes/class-admin-toolbar.php:94
+#: includes/options-page.php:66
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "Obter o Accessibility Checker Pro"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "Obter o Accessibility Checker Pro (abre numa nova janela)"
 
 #: includes/classes/class-simplified-summary.php:73
 msgid "Simplified Summary"
@@ -1849,8 +1871,6 @@ msgstr "...e muito mais"
 
 #: partials/pro-callout.php:47
 #: partials/welcome-page.php:215
-msgid "Get Accessibility Checker Pro"
-msgstr "Obter o Accessibility Checker Pro"
 
 #: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
