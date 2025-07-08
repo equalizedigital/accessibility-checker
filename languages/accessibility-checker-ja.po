@@ -362,7 +362,14 @@ msgstr "問題のクエリで結果が返されませんでした"
 msgid "Object query returned no results"
 msgstr "オブジェクトのクエリで結果が返されませんでした"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "プロにアップグレード"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Accessibility Checkerのドキュメントを表示（新しいウィンドウで開きます）"
 
