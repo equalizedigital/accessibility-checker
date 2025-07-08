@@ -17,7 +17,7 @@
                 "Salvestamine..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "S\u00e4tted on edukalt salvestatud. Peate %sk\u00fclastama redaktorit%s ja salvestama postituse, et uuesti kontrollida ja eemaldada parandatud probleemid Accessibility Checkeri aruannetest."
+                "S\u00e4tted salvestati edukalt. Peate %sk\u00fclastama redaktorit%s ja salvestama postituse, et uuesti skaneerida ja eemaldada parandatud probleemid Accessibility Checkeri aruannetest."
             ],
             "Settings saved successfully.": [
                 "Seaded edukalt salvestatud."
