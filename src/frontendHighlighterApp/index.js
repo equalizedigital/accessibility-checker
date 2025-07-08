@@ -186,7 +186,7 @@ class AccessibilityCheckerHighlight {
 								},
 							);
 						}
-					} else if ( ! self._scanAttempted && response.data && response.data[ 0 ] && response.data[ 0 ].code === -3 ) {
+					} else if ( ! self._scanAttempted && response.data?.[ 0 ]?.code === -3 ) {
 						// Only try kickoffScan once per highlightAjax call
 						self._scanAttempted = true;
 						self.kickoffScan();
