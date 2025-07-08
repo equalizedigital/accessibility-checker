@@ -15,6 +15,13 @@ namespace EqualizeDigital\AccessibilityChecker\Admin;
 class Upgrade_Promotion {
 
 	/**
+	 * The upgrade URL for the pricing page.
+	 *
+	 * @since 1.27.0
+	 */
+	private const UPGRADE_URL = 'https://equalizedigital.com/accessibility-checker/pricing/';
+
+	/**
 	 * Initialize the upgrade promotion.
 	 *
 	 * @since 1.27.0
@@ -71,7 +78,7 @@ class Upgrade_Promotion {
 	 */
 	public function handle_redirect(): void {
 		$upgrade_url = edac_link_wrapper( 
-			'https://equalizedigital.com/accessibility-checker/pricing/', 
+			self::UPGRADE_URL,
 			'admin-menu-promotion',
 			'menu-upgrade-to-pro',
 			false
