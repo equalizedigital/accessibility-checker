@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-01T15:48:13+00:00\n"
+"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -65,11 +65,12 @@ msgstr "Nâng cấp lên bản Pro để mở khóa tính năng này, mở trong
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
+#: admin/class-plugin-action-links.php:51
 msgid "Get Pro"
 msgstr "Nâng cấp lên bản Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:352
+#: admin/class-ajax.php:354
 msgid "Opens in a new window."
 msgstr "Mở trong cửa sổ mới."
 
@@ -153,10 +154,10 @@ msgstr "Chúng tôi đã cải thiện các tính toán thống kê trong phiên
 #: admin/class-admin-notices.php:401
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:210
-#: admin/class-ajax.php:575
-#: admin/class-ajax.php:713
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:212
+#: admin/class-ajax.php:577
+#: admin/class-ajax.php:715
+#: admin/class-ajax.php:795
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "Quyền truy cập bị từ chối"
@@ -231,9 +232,9 @@ msgid "upgrade to pro"
 msgstr "nâng cấp lên pro"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:217
-#: admin/class-ajax.php:582
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:219
+#: admin/class-ajax.php:584
+#: admin/class-ajax.php:802
 msgid "The post ID was not set"
 msgstr "ID bài viết chưa được thiết lập"
 
@@ -285,67 +286,67 @@ msgid_plural "%s Ignored Items"
 msgstr[0] "%s Mục bị bỏ qua"
 msgstr[1] "%s Mục bị bỏ qua"
 
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:189
 msgid "No summary to return"
 msgstr "Không có bản tóm tắt để trả về"
 
-#: admin/class-ajax.php:231
+#: admin/class-ajax.php:233
 msgid "Invalid table name"
 msgstr "Tên bảng không hợp lệ"
 
-#: admin/class-ajax.php:377
+#: admin/class-ajax.php:379
 msgid "These settings enable global fixes across your entire site."
 msgstr "Những cài đặt này cho phép sửa lỗi toàn cục trên toàn bộ trang web của bạn."
 
-#: admin/class-ajax.php:378
+#: admin/class-ajax.php:380
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Các trang có thể cần được lưu lại hoặc quét toàn bộ trang web cần được thực hiện để thấy các sửa đổi được phản ánh trong báo cáo."
 
-#: admin/class-ajax.php:406
+#: admin/class-ajax.php:408
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "Lưu"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:428
 msgid "Affected Code"
 msgstr "Mã bị ảnh hưởng"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:491
+#: admin/class-ajax.php:493
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Xem Vấn đề ID %d trên trang web, mở cửa sổ mới"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:494
 msgid "View on page"
 msgstr "Xem trên trang"
 
-#: admin/class-ajax.php:511
+#: admin/class-ajax.php:513
 msgid "Fix: "
 msgstr "Sửa: "
 
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:514
 msgid "Fix"
 msgstr "Sửa"
 
-#: admin/class-ajax.php:535
+#: admin/class-ajax.php:537
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Tài khoản người dùng của bạn không có quyền bỏ qua vấn đề này."
 
-#: admin/class-ajax.php:553
+#: admin/class-ajax.php:555
 msgid "No details to return"
 msgstr "Không có chi tiết để trả về"
 
-#: admin/class-ajax.php:692
+#: admin/class-ajax.php:694
 msgid "No readability data to return"
 msgstr "Không có dữ liệu khả năng đọc để trả về"
 
-#: admin/class-ajax.php:749
-#: admin/class-ajax.php:772
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:774
 msgid "No ignore data to return"
 msgstr "Không có dữ liệu bỏ qua để trả về"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:809
 msgid "The summary was not set"
 msgstr "Bản tóm tắt chưa được thiết lập"
 
@@ -360,6 +361,15 @@ msgstr "Truy vấn vấn đề không trả về kết quả nào"
 #: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "Truy vấn đối tượng không trả về kết quả nào"
+
+#: admin/class-plugin-action-links.php:44
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: admin/class-plugin-action-links.php:56
+msgid "Get Accessibility Checker Pro, opens in new window"
+msgstr "Tải Accessibility Checker Pro, mở trong cửa sổ mới"
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -1179,10 +1189,6 @@ msgstr "Chào mừng đến với Accessibility Checker"
 msgid "Accessibility Checker Settings"
 msgstr "Cài đặt Accessibility Checker"
 
-#: includes/options-page.php:66
-msgid "Settings"
-msgstr "Cài đặt"
-
 #: includes/options-page.php:99
 msgid "General Settings"
 msgstr "Cài đặt chung"
@@ -1351,390 +1357,390 @@ msgid "Image Missing Alternative Text"
 msgstr "Hình ảnh thiếu văn bản thay thế"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
-#: includes/rules.php:28
+#: includes/rules.php:27
 #, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "Lỗi Hình ảnh Thiếu Văn bản Thay thế nghĩa là hình ảnh của bạn không có thuộc tính alt (%1$s) chứa trong thẻ hình ảnh (%2$s). Để sửa lỗi Hình ảnh Thiếu Văn bản Thay thế, bạn cần thêm một thẻ alt vào hình ảnh với văn bản thích hợp mô tả mục đích của hình ảnh trong trang. Nếu hình ảnh chỉ mang tính trang trí, thuộc tính alt có thể để trống, nhưng thẻ HTML %1$s vẫn cần phải có mặt."
 
-#: includes/rules.php:35
+#: includes/rules.php:34
 msgid "Image Empty Alternative Text"
 msgstr "Hình ảnh có văn bản thay thế trống"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:42
+#: includes/rules.php:40
 #, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "Cảnh báo Image Empty Alternative Text sẽ xuất hiện nếu bạn có hình ảnh có thuộc tính alt (%s) trống. Alternative text sẽ cho những người không thể xem hình ảnh biết đó là gì và thêm ngữ cảnh bổ sung vào bài đăng hoặc trang. Alternative text chỉ được để trống nếu hình ảnh chỉ mang tính trang trí, như đường viền hoặc biểu tượng trang trí. Để khắc phục cảnh báo Image Empty Alternative Text, bạn cần xác định xem hình ảnh có mang tính trang trí hay chỉ thêm nội dung có ý nghĩa vào trang. Nếu hình ảnh không mang tính trang trí, bạn cần thêm alternative text phù hợp để mô tả mục đích của hình ảnh. Nếu hình ảnh mang tính trang trí, bạn sẽ để alternative text trống và “Bỏ qua” cảnh báo."
 
-#: includes/rules.php:48
+#: includes/rules.php:46
 msgid "Low-quality Alternative Text"
 msgstr "Văn bản thay thế chất lượng thấp"
 
-#: includes/rules.php:53
+#: includes/rules.php:50
 msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
 msgstr "Cảnh báo Văn bản thay thế chất lượng thấp xuất hiện khi văn bản thay thế trên hình ảnh chứa các từ khóa không cần thiết trong văn bản thay thế (chẳng hạn như \"hình ảnh\" hoặc \"đồ họa\"), phần mở rộng tệp (chẳng hạn như.JPG), có thể mô tả hình ảnh trang trí (chẳng hạn như \"khoảng cách\" hoặc \"mũi tên\"). Để khắc phục cảnh báo này, bạn sẽ cần viết lại văn bản thay thế cho bất kỳ hình ảnh nào được gắn cờ cảnh báo Văn bản thay thế chất lượng thấp, đảm bảo văn bản thay thế chính xác, duy nhất, phù hợp với ngữ cảnh và không chứa các mô tả thừa hoặc không cần thiết. Nếu hình ảnh chỉ mang tính trang trí, thì việc để trống văn bản thay thế là đúng."
 
-#: includes/rules.php:57
+#: includes/rules.php:54
 msgid "Linked Image Missing Alternative Text"
 msgstr "Hình ảnh có liên kết thiếu văn bản thay thế"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:64
+#: includes/rules.php:60
 #, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Lỗi Hình ảnh Liên kết Thiếu Văn bản Thay thế xuất hiện khi một hình ảnh được liên kết đến một URL không có thuộc tính alt (%s) trong thẻ hình ảnh. Hình ảnh liên kết phải có văn bản thay thế chính xác mô tả đích đến của liên kết để người dùng trình đọc màn hình biết liên kết đang trỏ đến đâu. Để khắc phục lỗi này, bạn cần thêm văn bản alt có ý nghĩa cho hình ảnh. Văn bản alt của bạn nên mô tả mục đích của liên kết chứ không phải hình ảnh trông như thế nào."
 
-#: includes/rules.php:70
+#: includes/rules.php:66
 msgid "Linked Image Empty Alternative Text"
 msgstr "Hình ảnh liên kết có văn bản thay thế trống"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:77
+#: includes/rules.php:72
 #, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Lỗi Hình ảnh Liên kết Có Văn bản Thay thế Trống xuất hiện khi một hình ảnh được liên kết đến một URL có thuộc tính alt (%s) nhưng không có nội dung bên trong. Hình ảnh liên kết phải có văn bản thay thế chính xác mô tả đích đến của liên kết để người dùng trình đọc màn hình biết liên kết đang trỏ đến đâu. Để khắc phục lỗi này, bạn cần thêm văn bản alt có ý nghĩa cho hình ảnh. Văn bản alt của bạn nên mô tả mục đích của liên kết chứ không phải hình ảnh trông như thế nào."
 
-#: includes/rules.php:83
+#: includes/rules.php:78
 msgid "Duplicate Alternative Text"
 msgstr "Văn bản thay thế trùng lặp"
 
-#: includes/rules.php:88
+#: includes/rules.php:82
 msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
 msgstr "Cảnh báo Văn bản Thay thế Trùng lặp xuất hiện khi văn bản thay thế cho một hình ảnh trên bài viết hoặc trang của bạn giống hệt với văn bản gần đó hoặc liền kề, bao gồm cả tiêu đề hoặc chú thích của hình ảnh. Cảnh báo này cũng xảy ra nếu hai hình ảnh trên trang có cùng văn bản thay thế. Để giải quyết cảnh báo này, bạn sẽ cần thay đổi văn bản của một hoặc cả hai phần tử đã gây ra cảnh báo Văn bản Thay thế Trùng lặp, đảm bảo rằng tất cả các hình ảnh đều có văn bản alt riêng biệt và bạn không lặp lại văn bản alt trong tiêu đề và chú thích hình ảnh của mình."
 
-#: includes/rules.php:92
+#: includes/rules.php:86
 msgid "Incorrect Heading Order"
 msgstr "Thứ tự tiêu đề không chính xác"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
-#: includes/rules.php:99
+#: includes/rules.php:92
 #, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "Lỗi Thứ tự Tiêu đề Không chính xác nghĩa là cấu trúc tiêu đề của bạn đã bỏ qua một cấp. Ví dụ, nếu cấu trúc trang của bạn có tiêu đề cấp 3 (%1$s) ngay dưới tiêu đề cấp 1 (%2$s), một lỗi \"Thứ tự Tiêu đề Không chính xác\" sẽ được đánh dấu vì không có thẻ %3$s giữa H1 và H3. Để sửa lỗi thứ tự tiêu đề không chính xác, bạn sẽ cần thay đổi cấp tiêu đề không chính xác thành cấp tiêu đề đúng, hoặc thêm nội dung với cấp tiêu đề chính xác giữa hai cấp đã tồn tại."
 
-#: includes/rules.php:110
+#: includes/rules.php:103
 msgid "Empty Paragraph Tag"
 msgstr "Thẻ đoạn văn trống"
 
-#: includes/rules.php:115
+#: includes/rules.php:107
 msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
 msgstr "Cảnh báo Thẻ Đoạn văn Trống nghĩa là có một thẻ đoạn văn hiện diện nhưng không chứa nội dung. Những thẻ này có thể được thông báo bởi trình đọc màn hình hoặc tạo ra sự nhầm lẫn cho người dùng. Để khắc phục cảnh báo này, hãy xóa các đoạn văn trống khỏi trang. Nếu bạn cần thêm khoảng cách giữa các phần, điều này nên được thực hiện bằng padding, margins, hoặc một khối spacer."
 
-#: includes/rules.php:119
+#: includes/rules.php:111
 msgid "iframe Missing Title"
 msgstr "iframe Thiếu Tiêu đề"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
-#: includes/rules.php:126
+#: includes/rules.php:117
 #, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "Lỗi iframe Thiếu tiêu đề có nghĩa là một hoặc nhiều iframe trên bài viết hoặc trang của bạn không có tiêu đề truy cập được mô tả nội dung của iframe. Tiêu đề iframe là một thuộc tính có thể được thêm vào thẻ %1$s để mô tả nội dung của khung cho người dùng công nghệ hỗ trợ. Để sửa lỗi thiếu tiêu đề iframe, bạn sẽ cần thêm một thuộc tính title hoặc aria-label vào thẻ %1$s. Thuộc tính này nên mô tả chính xác nội dung của iframe."
 
-#: includes/rules.php:135
+#: includes/rules.php:126
 msgid "Missing Subheadings"
 msgstr "Thiếu tiêu đề phụ"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
-#: includes/rules.php:142
+#: includes/rules.php:132
 #, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "Cảnh báo về việc thiếu tiêu đề có nghĩa là bài viết hoặc trang của bạn không chứa bất kỳ phần tử tiêu đề nào (%1$s–%2$s) trong nội dung của phần thân bài viết hoặc trang, điều này có thể gây khó khăn đặc biệt cho người dùng trình đọc màn hình khi điều hướng qua nội dung trên trang. Để sửa một trang không có tiêu đề, bạn sẽ cần thêm các phần tử tiêu đề. Tối thiểu, mỗi trang nên có một thẻ %1$s, thường là tiêu đề trang. Thêm các tiêu đề phụ bổ sung khi thích hợp cho nội dung của bạn. Nếu bạn đã xác định rằng chắc chắn không cần tiêu đề trên trang, thì bạn có thể \"Bỏ qua\" cảnh báo."
 
-#: includes/rules.php:150
+#: includes/rules.php:140
 msgid "Text Justified"
 msgstr "Văn bản căn đều"
 
-#: includes/rules.php:155
+#: includes/rules.php:144
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
 msgstr "Cảnh báo Văn bản Căn đều xuất hiện trong Accessibility Checker khi văn bản có hơn 200 ký tự trên bài viết hoặc trang của bạn được định dạng với căn chỉnh đều (text-align:justify). Để khắc phục cảnh báo này, hãy xóa định dạng căn đều khỏi các phần tử văn bản được chỉ định."
 
-#: includes/rules.php:159
+#: includes/rules.php:148
 msgid "Link Opens New Window or Tab"
 msgstr "Liên kết mở cửa sổ hoặc tab mới"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
-#: includes/rules.php:166
+#: includes/rules.php:154
 #, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "Một cảnh báo \"Liên kết mở cửa sổ mới hoặc tab mới\" xuất hiện khi có một liên kết trên trang web của bạn đã được thiết lập để mở trong một tab hoặc cửa sổ mới khi được nhấp vào. Thông lệ tốt nhất là không mở tab hoặc cửa sổ mới bằng liên kết. Nếu liên kết mở tab hoặc cửa sổ mới, phải có cảnh báo trực quan và âm thanh thông báo rằng liên kết sẽ mở cửa sổ hoặc tab mới để người dùng có thể dự đoán hành vi đó và biết cách quay lại sau khi nhấp vào liên kết. Để sửa cảnh báo này, hãy thay đổi liên kết để không mở trong tab mới hoặc đảm bảo \"mở cửa sổ mới\" được bao gồm trong văn bản liên kết rồi \"Bỏ qua\" cảnh báo. Để tự động thêm thông báo vào tất cả các liên kết trên trang web của bạn và bỏ qua tất cả các cảnh báo này, hãy cài đặt plugin %s miễn phí của chúng tôi."
 
-#: includes/rules.php:167
+#: includes/rules.php:155
 msgid "Accessibility New Window Warnings"
 msgstr "Cảnh báo cửa sổ mới về khả năng tiếp cận"
 
-#: includes/rules.php:179
+#: includes/rules.php:167
 msgid "Image Map Missing Alternative Text"
 msgstr "Sơ đồ ảnh thiếu văn bản thay thế"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
-#: includes/rules.php:186
+#: includes/rules.php:173
 #, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "Lỗi \"Sơ đồ ảnh thiếu văn bản thay thế\" có nghĩa là một trong các phần tử %1$s trong sơ đồ ảnh của bạn không có văn bản thay thế được thêm vào thuộc tính %2$s. Để sửa lỗi này, bạn cần thêm văn bản thay thế còn thiếu vào bất kỳ thẻ area nào không có văn bản thay thế. Văn bản thay thế cần mô tả chức năng của liên kết chứa trong area, không nhất thiết phải mô tả diện mạo của area đó."
 
-#: includes/rules.php:196
+#: includes/rules.php:183
 msgid "Tab Order Modified"
 msgstr "Thứ tự tab đã được sửa đổi"
 
 #. translators: %s is <code>tabindex="1"</code>.
-#: includes/rules.php:203
+#: includes/rules.php:189
 #, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "Một Cảnh báo Thứ tự Tab đã được sửa đổi xuất hiện khi thứ tự tab logic trên trang đã bị thay đổi bằng cách thêm một thuộc tính tabindex lớn hơn 0 vào một phần tử HTML (ví dụ: %s). Điều này có thể gây ra vấn đề về điều hướng cho người dùng chỉ sử dụng bàn phím. Để giải quyết cảnh báo Thứ tự Tab đã được sửa đổi, bạn cần xem giao diện người dùng của trang web trên trang hoặc bài viết nơi thứ tự tab đã bị sửa đổi và kiểm tra xem sự thay đổi có chính xác hay không. Nếu việc sửa đổi thứ tự tab không gây ra vấn đề, bạn có thể \"Bỏ qua\" cảnh báo. Nếu thứ tự tab đã sửa đổi khiến thông tin được trình bày không đúng thứ tự, bạn cần xóa thuộc tính tabindex khỏi phần tử bị đánh dấu."
 
-#: includes/rules.php:213
+#: includes/rules.php:199
 msgid "Empty Heading Tag"
 msgstr "Thẻ tiêu đề trống"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
-#: includes/rules.php:220
+#: includes/rules.php:205
 #, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "Lỗi Thẻ tiêu đề trống có nghĩa là có một thẻ tiêu đề hiện diện trên bài viết hoặc trang của bạn mà không chứa nội dung. Trong mã, lỗi này sẽ trông như thế này: %s. Để sửa một tiêu đề trống, bạn sẽ cần thêm nội dung vào thẻ tiêu đề đã gây ra lỗi Thẻ tiêu đề trống hoặc xóa thẻ trống nếu không cần thiết trên trang của bạn."
 
-#: includes/rules.php:226
+#: includes/rules.php:211
 msgid "Empty Link"
 msgstr "Liên kết trống"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
-#: includes/rules.php:233
+#: includes/rules.php:217
 #, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "Lỗi Liên kết trống có nghĩa là một trong các liên kết hiện diện trên trang web bị trống hoặc không chứa văn bản mô tả nơi liên kết sẽ dẫn đến khi được nhấp vào. Điều này thường xảy ra với các liên kết chứa webfonts, icon fonts và SVG, hoặc khi một liên kết vô tình được tạo ra trong trình soạn thảo nội dung. Để sửa lỗi liên kết trống, bạn sẽ cần tìm liên kết bị đánh dấu và thêm văn bản mô tả vào đó. Bạn sẽ cần: thêm nội dung văn bản vào một phần tử %1$s trống hoặc, nếu liên kết của bạn chứa một biểu tượng SVG hoặc Webfont, ẩn phần tử đó bằng %2$s và thêm thuộc tính %3$s vào thẻ %1$s hoặc văn bản cho trình đọc màn hình. Văn bản hoặc nhãn bạn thêm vào nên mô tả nơi liên kết trỏ đến và không nên mơ hồ."
 
-#: includes/rules.php:241
+#: includes/rules.php:225
 msgid "Empty Button"
 msgstr "Nút trống"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
-#: includes/rules.php:248
+#: includes/rules.php:231
 #, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "Lỗi Nút trống có nghĩa là một trong các nút hiện diện trên trang web bị trống hoặc không chứa văn bản mô tả chức năng của nút. Hoặc, nếu đó là một nút hình ảnh, hình ảnh chứa trong nút bị thiếu văn bản thay thế. Để sửa lỗi nút trống, bạn sẽ cần tìm nút bị đánh dấu và thêm văn bản mô tả vào đó. Bạn sẽ cần: thêm nội dung văn bản vào một phần tử %1$s trống, thêm thuộc tính value vào một %2$s bị thiếu, hoặc thêm văn bản thay thế cho hình ảnh nút. Văn bản nên mô tả mục đích sử dụng của nút hoặc hành động mà nút kích hoạt."
 
-#: includes/rules.php:255
+#: includes/rules.php:238
 msgid "Image Long Alternative Text"
 msgstr "Văn bản thay thế dài cho hình ảnh"
 
-#: includes/rules.php:260
+#: includes/rules.php:242
 msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
 msgstr "Cảnh báo Văn bản thay thế dài hình ảnh sẽ xuất hiện nếu văn bản thay thế của bạn có hơn 100 ký tự. Văn bản thay thế có nghĩa là mô tả hình ảnh nhưng theo cách ngắn gọn, không quá dài dòng. Để khắc phục cảnh báo này, bạn cần rút ngắn văn bản thay thế của mình cho bất kỳ hình ảnh nào đã được gắn cờ xuống còn 100 ký tự hoặc ít hơn. Nếu bạn đã xác định rằng văn bản thay thế của mình là tốt như hiện tại, thì hãy \"Bỏ qua\" cảnh báo."
 
-#: includes/rules.php:264
+#: includes/rules.php:246
 msgid "ARIA Hidden"
 msgstr "ARIA Ẩn"
 
-#: includes/rules.php:269
+#: includes/rules.php:250
 msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
 msgstr "Cảnh báo ARIA Hidden xuất hiện khi nội dung trên bài đăng hoặc trang của bạn đã bị ẩn bằng thuộc tính aria-hidden=\"true\". Khi thuộc tính này được thêm vào một phần tử HTML, trình đọc màn hình sẽ không đọc nó cho người dùng. Đôi khi, việc ẩn phần tử khỏi trình đọc màn hình là đúng (chẳng hạn như bằng biểu tượng trang trí) nhưng đôi khi lại không đúng. Khi bạn thấy cảnh báo này, bạn cần xác định xem phần tử có được cho là ẩn khỏi những người mù hoặc khiếm thị hay không. Nếu phần tử được ẩn đúng cách, hãy \"Bỏ qua\" cảnh báo. Nếu phần tử được ẩn không đúng cách và cần phải hiển thị, hãy xóa thuộc tính aria-hidden=\"true\" để giải quyết cảnh báo."
 
-#: includes/rules.php:276
+#: includes/rules.php:257
 msgid "Empty Table Header"
 msgstr "Tiêu đề bảng trống"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
-#: includes/rules.php:283
+#: includes/rules.php:263
 #, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "Lỗi Tiêu đề Bảng Trống nghĩa là một trong các tiêu đề bảng trên bài đăng hoặc trang của bạn không chứa bất kỳ văn bản nào. Điều này có nghĩa là phần tử %1$s có mặt nhưng trông như thế này %2$s mà không có gì giữa thẻ mở và đóng. Để sửa tiêu đề bảng trống, bạn cần tìm phần tử HTML chính xác (%1$s) và thêm văn bản mô tả hàng hoặc cột mà nó áp dụng."
 
-#: includes/rules.php:290
+#: includes/rules.php:270
 msgid "Link to MS Office File"
 msgstr "Liên kết đến Tệp MS Office"
 
-#: includes/rules.php:295
+#: includes/rules.php:274
 msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Cảnh báo Liên kết đến Tệp MS Office có nghĩa là một hoặc nhiều liên kết trên trang hoặc bài đăng của bạn chuyển hướng đến một tệp có một trong các phần mở rộng tệp sau: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps hoặc .ppsx. Cảnh báo này xuất hiện khi có tệp MS Office để nhắc nhở bạn kiểm tra thủ công tài liệu Word, bản trình bày PowerPoint và bảng tính Excel về khả năng truy cập và xác nhận rằng chúng tuân thủ tất cả các hướng dẫn WCAG có liên quan. Để giải quyết cảnh báo Liên kết đến Tệp MS Office, bạn cần: (1) đảm bảo có liên kết trực tiếp để xem hoặc tải xuống tài liệu nếu bạn đang sử dụng plugin để nhúng tài liệu vào trang; (2) đảm bảo liên kết đến tài liệu cảnh báo người dùng rằng đó là liên kết đến một tài liệu bằng cách hiển thị phần mở rộng tệp cụ thể trong liên kết neo; và (3) kiểm tra và khắc phục lỗi khả năng truy cập của tệp MS Office. Sau khi xác định tệp của bạn có thể truy cập đầy đủ, bạn có thể yên tâm “Bỏ qua” cảnh báo."
 
-#: includes/rules.php:299
+#: includes/rules.php:278
 msgid "Link to PDF"
 msgstr "Liên kết đến PDF"
 
-#: includes/rules.php:304
+#: includes/rules.php:282
 msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Cảnh báo Liên kết đến PDF có nghĩa là một hoặc nhiều liên kết trên trang hoặc bài đăng của bạn chuyển hướng đến tệp PDF. Cảnh báo này là lời nhắc nhở để kiểm tra thủ công PDF được liên kết về khả năng truy cập và xác nhận rằng tệp tuân thủ tất cả các hướng dẫn WCAG có liên quan. Để giải quyết cảnh báo Liên kết đến PDF, bạn cần: (1) đảm bảo có liên kết trực tiếp để xem hoặc tải xuống tài liệu nếu bạn đang sử dụng plugin để nhúng tài liệu vào trang; (2) đảm bảo liên kết đến tài liệu cảnh báo người dùng rằng đó là liên kết đến tài liệu bằng cách hiển thị phần mở rộng tệp cụ thể trong neo liên kết; và (3) kiểm tra và khắc phục lỗi khả năng truy cập trong tài liệu của bạn. Sau khi xác định tệp của bạn có thể truy cập hoàn toàn, bạn có thể an toàn “Bỏ qua” cảnh báo."
 
-#: includes/rules.php:308
+#: includes/rules.php:286
 msgid "Link to Non-HTML File"
 msgstr "Liên kết đến Tệp Không phải HTML"
 
-#: includes/rules.php:313
+#: includes/rules.php:290
 msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Cảnh báo Liên kết đến Tài liệu Không phải HTML có nghĩa là một hoặc nhiều liên kết trên trang hoặc bài đăng của bạn chuyển hướng đến một tệp có một trong các phần mở rộng tệp sau: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages hoặc .key. Cảnh báo này là lời nhắc nhở để kiểm tra thủ công tài liệu được liên kết về khả năng truy cập và xác nhận rằng tài liệu đó tuân thủ tất cả các hướng dẫn WCAG có liên quan. Để giải quyết cảnh báo Liên kết đến Tài liệu Không phải HTML, bạn cần: (1) đảm bảo có liên kết trực tiếp để xem hoặc tải xuống tài liệu nếu bạn đang sử dụng plugin để nhúng tài liệu đó vào trang; (2) đảm bảo liên kết đến tài liệu cảnh báo người dùng rằng đó là liên kết đến một tài liệu bằng cách hiển thị phần mở rộng tệp cụ thể trong neo liên kết; và (3) kiểm tra và khắc phục lỗi khả năng truy cập trong tài liệu của bạn. Sau khi xác định tệp của bạn có thể truy cập đầy đủ, bạn có thể yên tâm “Bỏ qua” cảnh báo."
 
-#: includes/rules.php:317
+#: includes/rules.php:294
 msgid "Long Description Invalid"
 msgstr "Mô tả dài không hợp lệ"
 
 #. translators: %s is <code>longdesc=""</code>.
-#: includes/rules.php:324
+#: includes/rules.php:300
 #, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "Lỗi Mô tả Dài Không Hợp lệ nghĩa là thuộc tính mô tả dài (%s) trên một hình ảnh không có URL, tên tập tin, hoặc phần mở rộng tập tin phù hợp. Nó cũng có thể có nghĩa là mô tả dài không phải là một URL, hoặc nó đã bị để trống. Thuộc tính longdesc không được hỗ trợ đầy đủ mở cửa sổ mới bởi HTML5, các trình duyệt, và tất cả các trình đọc màn hình. Do thiếu sự hỗ trợ này, cách sửa tốt nhất cho lỗi này là xóa hoàn toàn longdesc khỏi thẻ hình ảnh của bạn."
 
-#: includes/rules.php:330
+#: includes/rules.php:306
 msgid "Missing Form Label"
 msgstr "Thiếu nhãn biểu mẫu"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
-#: includes/rules.php:337
+#: includes/rules.php:312
 #, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "Lỗi Thiếu Nhãn Biểu mẫu được kích hoạt khi một %1$s (trường biểu mẫu) có mặt trong biểu mẫu của bạn nhưng không được liên kết với một phần tử %2$s. Điều này có thể có nghĩa là nhãn đã có nhưng thiếu thuộc tính %3$s để kết nối nó với trường tương ứng hoặc có thể không có nhãn nào hiện diện và chỉ có thẻ %1$s. Để sửa lỗi thiếu nhãn biểu mẫu, bạn sẽ cần xác định cách trường và biểu mẫu được tạo ra và sau đó thêm nhãn trường hoặc thuộc tính %3$s chính xác vào các nhãn hiện có mà không được kết nối với một trường."
 
-#: includes/rules.php:350
+#: includes/rules.php:325
 msgid "Ambiguous Anchor Text"
 msgstr "Văn bản neo không rõ ràng"
 
-#: includes/rules.php:355
+#: includes/rules.php:329
 msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
 msgstr "Lỗi Văn bản neo mơ hồ xuất hiện khi có văn bản được liên kết không có ý nghĩa bên ngoài nội dung xung quanh. Ví dụ phổ biến về điều này bao gồm các cụm từ liên kết như \"nhấp vào đây\" hoặc \"tìm hiểu thêm\". Để giải quyết lỗi này, hãy thay đổi văn bản liên kết thành ít chung chung hơn để có ý nghĩa khi nghe riêng."
 
-#: includes/rules.php:359
+#: includes/rules.php:333
 msgid "Underlined Text"
 msgstr "Văn bản gạch chân"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
-#: includes/rules.php:366
+#: includes/rules.php:339
 #, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "Cảnh báo Văn bản Gạch chân xuất hiện nếu bất kỳ văn bản nào trên trang của bạn được bọc trong thẻ HTML gạch chân (%1$s). Trong môi trường trực tuyến, văn bản gạch chân thường được sử dụng để chỉ ra văn bản được liên kết và không được coi là một phương pháp tốt nhất để chỉ gạch chân văn bản để nhấn mạnh. Để sửa văn bản gạch chân, bạn sẽ cần phải xóa phần tử %1$s khỏi văn bản hoặc các kiểu CSS đang làm cho nó bị gạch chân. Hãy thử sử dụng các kiểu dáng khác, như in nghiêng, văn bản có màu, hoặc in đậm để nhấn mạnh hoặc phân biệt giữa các từ hoặc cụm từ."
 
-#: includes/rules.php:372
+#: includes/rules.php:345
 msgid "Broken Skip or Anchor Link"
 msgstr "Liên kết bỏ qua hoặc liên kết neo bị hỏng"
 
-#: includes/rules.php:377
+#: includes/rules.php:349
 msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
 msgstr "Liên kết neo, đôi khi được gọi là liên kết nhảy, là liên kết thay vì mở một trang hoặc URL mới khi nhấp vào, sẽ nhảy hoặc cuộn bạn đến một phần khác trên cùng một trang. Các liên kết này sẽ chuyển đến một phần tử bắt đầu bằng hashtag thay vì URL đầy đủ. Ví dụ: bạn có thể cuộn ai đó đến phần giới thiệu về trang chủ của mình bằng cách liên kết đến #about. Lỗi Liên kết bỏ qua hoặc liên kết neo bị hỏng xuất hiện khi có một liên kết nhắm mục tiêu đến một phần khác trên cùng một trang nhưng không có phần tử nào có trong trang có id được tham chiếu. Lỗi này cũng sẽ xuất hiện nếu bạn chỉ liên kết đến #. Để giải quyết lỗi này, hãy kiểm tra thủ công liên kết để xác nhận rằng liên kết hoạt động và sau đó sửa lỗi hoặc \"Bỏ qua\" lỗi nếu có."
 
-#: includes/rules.php:381
+#: includes/rules.php:353
 msgid "Missing Table Header"
 msgstr "Thiếu tiêu đề bảng"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
-#: includes/rules.php:388
+#: includes/rules.php:359
 #, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "Lỗi Thiếu Tiêu đề Bảng nghĩa là một trong các bảng của bạn chứa dữ liệu (thông tin trong thẻ %1$s) mà không có thẻ tiêu đề (%2$s) tương ứng. Khi xem mã HTML của biểu mẫu, sẽ có nhiều phần tử %1$s trong một hàng hơn số phần tử %2$s trong bảng. Để sửa lỗi thiếu tiêu đề bảng, bạn cần tìm phần mã có ít phần tử %2$s hơn so với số lượng cần có cho số hàng hoặc cột dữ liệu, và thêm một hoặc nhiều phần tử %2$s chứa văn bản mô tả dữ liệu trong hàng hoặc cột đó."
 
-#: includes/rules.php:395
+#: includes/rules.php:366
 msgid "Duplicate Form Label"
 msgstr "Nhãn biểu mẫu trùng lặp"
 
-#: includes/rules.php:400
+#: includes/rules.php:370
 msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
 msgstr "Lỗi Nhãn Biểu mẫu Trùng lặp xuất hiện khi có nhiều hơn một nhãn được liên kết với một trường đơn trong biểu mẫu. Nếu có quá nhiều nhãn biểu mẫu, trình đọc màn hình có thể không đọc được các trường biểu mẫu để giúp người dùng khiếm thị điều hướng và hoàn thành biểu mẫu. Để sửa lỗi nhãn biểu mẫu trùng lặp, bạn cần xác định cách tạo trường và biểu mẫu, sau đó đảm bảo mỗi trường chỉ có một nhãn liên kết với nó."
 
-#: includes/rules.php:405
+#: includes/rules.php:375
 msgid "Text Too Small"
 msgstr "Văn bản quá nhỏ"
 
-#: includes/rules.php:410
+#: includes/rules.php:379
 msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
 msgstr "Cảnh báo Văn bản Quá nhỏ xuất hiện khi có văn bản trên trang web của bạn có kích thước nhỏ hơn 10px. Cảnh báo này cho thấy bạn có thể cần xem xét lại kích thước phông chữ và làm cho nó lớn hơn để dễ đọc hơn mà không cần người dùng phải phóng to trên trình duyệt. Để sửa văn bản quá nhỏ, bạn cần đảm bảo tất cả các phần tử văn bản trên trang web của bạn có ít nhất 10 điểm."
 
-#: includes/rules.php:414
+#: includes/rules.php:383
 msgid "Possible Heading"
 msgstr "Tiêu đề có thể"
 
-#: includes/rules.php:419
+#: includes/rules.php:387
 msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
 msgstr "Cảnh báo Tiêu đề Có thể xuất hiện khi có văn bản trên trang có vẻ là tiêu đề, nhưng không được mã hóa với các thẻ tiêu đề thích hợp. Cảnh báo này xuất hiện nếu có các cụm từ ngắn hoặc chuỗi văn bản dài dưới 50 ký tự được định dạng theo cách gợi ý chúng có thể đang được sử dụng như tiêu đề (chúng có kích thước 20 pixel trở lên, hoặc 16 pixel trở lên và in đậm và/hoặc in nghiêng). Để sửa cảnh báo Tiêu đề Có thể, bạn cần xác định xem văn bản được đánh dấu có thực sự là tiêu đề hay không. Nếu đúng, bạn cần thay đổi nó từ đoạn văn thành tiêu đề ở cấp độ thích hợp. Nếu nó không phải là tiêu đề, bạn có thể an toàn \"Bỏ qua\" cảnh báo."
 
-#: includes/rules.php:423
+#: includes/rules.php:391
 msgid "Blinking or Scrolling Content"
 msgstr "Nội dung nhấp nháy hoặc cuộn"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
-#: includes/rules.php:430
+#: includes/rules.php:397
 #, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Lỗi Nội dung Nhấp nháy hoặc Cuộn xuất hiện khi các phần tử trên trang web của bạn có chức năng nhấp nháy hoặc cuộn được áp dụng thông qua CSS hoặc trong HTML. Cụ thể, những điều sau sẽ tạo ra lỗi này: các thẻ HTML %1$s hoặc %2$s hoặc CSS %3$s. Để giải quyết lỗi này, hãy xóa các thẻ HTML hoặc CSS đang gây ra việc nội dung nhấp nháy."
 
-#: includes/rules.php:439
+#: includes/rules.php:406
 msgid "Insufficient Color Contrast"
 msgstr "Độ tương phản màu sắc không đủ"
 
-#: includes/rules.php:444
+#: includes/rules.php:410
 msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
 msgstr "Lỗi Độ tương phản Màu sắc Không đủ nghĩa là chúng tôi đã xác định rằng một hoặc nhiều kết hợp màu sắc trên bài đăng hoặc trang của bạn không đáp ứng tỷ lệ tương phản màu tối thiểu là 4.5:1. Tùy thuộc vào cách xây dựng trang web của bạn, có thể có \"kết quả dương tính giả\" cho lỗi này vì một số màu sắc nằm trong các lớp HTML khác nhau trên trang. Để sửa lỗi Độ tương phản Màu sắc Không đủ, bạn cần đảm bảo rằng các phần tử được đánh dấu đáp ứng tỷ lệ tối thiểu yêu cầu là 4.5:1. Để làm điều này, bạn cần tìm mã hex của màu chữ và màu nền, và kiểm tra chúng trong công cụ kiểm tra độ tương phản màu sắc. Nếu các mã màu này có tỷ lệ 4.5:1 trở lên, bạn có thể \"Bỏ qua\" lỗi này. Nếu các mã màu không có tỷ lệ ít nhất là 4.5:1, bạn sẽ cần điều chỉnh màu sắc của mình."
 
-#: includes/rules.php:448
+#: includes/rules.php:414
 msgid "Missing Transcript"
 msgstr "Thiếu bản ghi"
 
-#: includes/rules.php:453
+#: includes/rules.php:418
 msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
 msgstr "Lỗi thiếu bản ghi âm có nghĩa là có một đoạn âm thanh hoặc video trên trang web của bạn mà không có bản ghi âm, hoặc có bản ghi âm nhưng không được gắn nhãn là bản ghi âm hoặc được đặt cách xa hơn 25 ký tự so với phương tiện được nhúng hoặc liên kết. Để sửa lỗi thiếu bản ghi âm, bạn cần tạo bản ghi âm cho bất kỳ đoạn video hoặc âm thanh nào bị đánh dấu là thiếu bản ghi âm. Sau khi bạn đã tạo bản ghi âm, bạn có thể thêm nội dung bản ghi âm trực tiếp vào bài viết hoặc trang của mình hoặc liên kết đến bản ghi âm nếu bạn đang đưa nó vào dưới dạng tài liệu hoặc tệp PDF có thể tải xuống. Bạn cần đưa rõ ràng từ \"bản ghi âm\" vào một tiêu đề trước bản ghi âm trên trang hoặc trong liên kết đến tệp của bạn, và nó cần phải nằm trong phạm vi 25 ký tự so với phần nhúng hoặc liên kết âm thanh hoặc video."
 
-#: includes/rules.php:457
+#: includes/rules.php:422
 msgid "Broken ARIA Reference"
 msgstr "Tham chiếu ARIA bị hỏng"
 
-#: includes/rules.php:462
+#: includes/rules.php:426
 msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
 msgstr "Lỗi Tham chiếu ARIA bị hỏng xuất hiện nếu một phần tử aria-labeledby hoặc aria-describedby có mặt trên trang hoặc bài viết nhưng mục tiêu tham chiếu của nó không tồn tại. Điều này có nghĩa là phần tử được đề cập bởi thuộc tính ARIA cụ thể mà bạn đang sử dụng không có nhãn hoặc mô tả phù hợp, hoặc nó không có mặt trên trang. Để sửa tham chiếu ARIA bị hỏng, bạn sẽ cần tìm các phần tử ARIA đang bị đánh dấu và đảm bảo rằng các mục tiêu tham chiếu của chúng hiện diện và được gắn nhãn đúng cách."
 
-#: includes/rules.php:467
+#: includes/rules.php:431
 msgid "Missing Language Declaration"
 msgstr "Thiếu khai báo ngôn ngữ"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
-#: includes/rules.php:474
+#: includes/rules.php:437
 #, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "Khai báo ngôn ngữ là một thuộc tính HTML chỉ định ngôn ngữ mặc định của nội dung trên một trang hoặc bài viết. Khai báo ngôn ngữ nên được mã hóa vào chủ đề trang web của bạn và xuất hiện tự động trong phần đầu của trang web. Lỗi Thiếu Khai báo Ngôn ngữ xuất hiện nếu thẻ %1$s trên trang không chứa thuộc tính %2$s hoặc %3$s, hoặc một trong những thuộc tính này hiện diện nhưng trống. Để sửa lỗi Thiếu Khai báo Ngôn ngữ, bạn sẽ cần chỉnh sửa các tệp chủ đề của mình để thêm thuộc tính ngôn ngữ còn thiếu vào thẻ HTML ở đầu tiêu đề trang web của bạn. Nếu bạn đang sử dụng một chủ đề nhận các bản cập nhật, thì bạn sẽ cần thực hiện thay đổi trong một chủ đề con để đảm bảo việc sửa chữa không bị ghi đè khi bạn cập nhật chủ đề lần tới."
 
-#: includes/rules.php:488
+#: includes/rules.php:451
 msgid "Image Animated GIF"
 msgstr "Hình ảnh GIF động"
 
-#: includes/rules.php:493
+#: includes/rules.php:455
 msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
 msgstr "Cảnh báo Hình ảnh GIF động xuất hiện khi có một GIF động trên bài viết hoặc trang của bạn. Cảnh báo này là một lời nhắc để xem xét thủ công bất kỳ GIF động nào trên trang web của bạn về khả năng truy cập của chúng và/hoặc để xem xét lại việc sử dụng GIF động, thay thế chúng bằng hình ảnh tĩnh hoặc video. Để giải quyết cảnh báo này, bạn cần xem xét bất kỳ GIF nào hiện có để đảm bảo rằng chúng đáp ứng tất cả các hướng dẫn áp dụng cho khả năng truy cập và sau đó hoặc \"Bỏ qua\" cảnh báo hoặc xóa GIF khỏi trang hoặc bài viết của bạn nếu nó không thể truy cập được."
 
-#: includes/rules.php:498
+#: includes/rules.php:460
 msgid "A Video is Present"
 msgstr "Có video hiện diện"
 
-#: includes/rules.php:503
+#: includes/rules.php:464
 msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
 msgstr "Bởi vì video thường chứa các vấn đề về khả năng truy cập, nhiều vấn đề chỉ có thể được xác định bởi con người, cảnh báo Có Video Hiện Diện xuất hiện bất cứ khi nào phát hiện một video trên một bài viết hoặc trang như một lời nhắc rằng bạn cần kiểm tra thủ công video của mình về khả năng truy cập. Để giải quyết cảnh báo này, bạn cần truy cập giao diện người dùng của trang web và xác nhận rằng video trong cảnh báo có thể truy cập được. Sau khi bạn đã kiểm tra đầy đủ video về khả năng truy cập, bạn cần sửa bất kỳ lỗi nào có thể xuất hiện và sau đó có thể \"Bỏ qua\" cảnh báo để đánh dấu nó là hoàn thành."
 
-#: includes/rules.php:507
+#: includes/rules.php:468
 msgid "A Slider is Present"
 msgstr "Có trình chiếu hiện diện"
 
-#: includes/rules.php:512
+#: includes/rules.php:472
 msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
 msgstr "Bởi vì trình chiếu thường chứa các vấn đề về khả năng truy cập, nhiều vấn đề chỉ có thể được xác định bởi con người, cảnh báo Có Trình Chiếu Hiện Diện xuất hiện bất cứ khi nào phát hiện một trình chiếu trên một bài viết hoặc trang như một lời nhắc rằng bạn cần kiểm tra thủ công trình chiếu của mình về khả năng truy cập. Để giải quyết cảnh báo này, bạn cần truy cập giao diện người dùng của trang web và xác nhận rằng tất cả các trình chiếu trên trang đều có thể truy cập được. Sau khi bạn đã kiểm tra đầy đủ các trình chiếu về khả năng truy cập, bạn cần sửa bất kỳ lỗi nào có thể xuất hiện và sau đó có thể \"Bỏ qua\" cảnh báo để đánh dấu nó là hoàn thành."
 
-#: includes/rules.php:516
+#: includes/rules.php:476
 msgid "Missing Title"
 msgstr "Thiếu tiêu đề"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
-#: includes/rules.php:523
+#: includes/rules.php:482
 #, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "Lỗi Thiếu Tiêu đề có nghĩa là bài đăng hoặc trang của bạn không chứa phần tử tiêu đề (%1$s hoặc %2$s). Điều này có thể xảy ra nếu giao diện không thêm thẻ tiêu đề, hoặc nếu trường tiêu đề của bài đăng hoặc trang bị để trống trong màn hình chỉnh sửa WordPress. Để sửa một trang không có tiêu đề, bạn sẽ cần thêm các phần tử tiêu đề. Đầu tiên, hãy xác định xem tiêu đề có bị thiếu vì bạn để trống trường tiêu đề trang hoặc bài đăng trong trình chỉnh sửa hay không. Nếu vậy, hãy điền vào. Nếu tiêu đề đã được điền và hiển thị ở phía sau, thì mã trong phần của trang web của bạn cần được chỉnh sửa để bao gồm thẻ %1$s hoặc thẻ meta %2$s."
 
-#: includes/rules.php:535
+#: includes/rules.php:494
 msgid "Improper Use of Link"
 msgstr "Sử dụng liên kết không đúng cách"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
-#: includes/rules.php:542
+#: includes/rules.php:500
 #, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "Lỗi Sử dụng Liên kết Không đúng cách xuất hiện nếu bạn có các liên kết thiếu thuộc tính %1$s hoặc chỉ liên kết đến %2$s, và không có %3$s trên chúng. Liên kết nên được sử dụng để chỉ dẫn người dùng đến các phần khác của trang web của bạn. Bất kỳ chức năng nào khác kích hoạt một hành động nên là một nút. Để giải quyết lỗi này, bạn cần mã hóa lại liên kết để sử dụng thẻ %4$s (ưu tiên) hoặc thêm %5$s vào thẻ %6$s hiện có. Nếu phần tử là nút chuyển đổi (như một accordion), cần bổ sung thêm các thuộc tính ARIA."
 
-#: includes/rules.php:553
+#: includes/rules.php:511
 msgid "Zooming and Scaling Disabled"
 msgstr "Đã tắt chức năng thu phóng và chia tỷ lệ"
 
-#: includes/rules.php:558
+#: includes/rules.php:515
 msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
 msgstr "Chức năng thu phóng đã bị vô hiệu hóa thông qua thẻ meta viewport bao gồm `user-scalable=no` hoặc giá trị `maximum-scale` nhỏ hơn 2. Điều này hạn chế người dùng thị lực kém muốn tăng kích thước chữ, phóng to trang hoặc sử dụng công cụ phóng đại."
 
@@ -1821,12 +1827,12 @@ msgstr "Hỗ trợ qua email"
 msgid "...and more"
 msgstr "...và nhiều hơn nữa"
 
-#: partials/pro-callout.php:45
+#: partials/pro-callout.php:47
 #: partials/welcome-page.php:215
 msgid "Get Accessibility Checker Pro"
 msgstr "Nhận Accessibility Checker Pro"
 
-#: partials/pro-callout.php:55
+#: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
 msgstr "Hoặc kích hoạt mã giấy phép của bạn tại đây."

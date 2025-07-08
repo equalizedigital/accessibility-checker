@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-01T15:48:13+00:00\n"
+"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -65,11 +65,12 @@ msgstr "Få Pro for at låse op for denne funktion, åbnes i et nyt vindue."
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
+#: admin/class-plugin-action-links.php:51
 msgid "Get Pro"
 msgstr "Få Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:352
+#: admin/class-ajax.php:354
 msgid "Opens in a new window."
 msgstr "Åbnes i et nyt vindue."
 
@@ -153,10 +154,10 @@ msgstr "Vi har forbedret statistikberegningerne i version 1.21.0. Som følge her
 #: admin/class-admin-notices.php:401
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:210
-#: admin/class-ajax.php:575
-#: admin/class-ajax.php:713
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:212
+#: admin/class-ajax.php:577
+#: admin/class-ajax.php:715
+#: admin/class-ajax.php:795
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "Adgang nægtet"
@@ -231,9 +232,9 @@ msgid "upgrade to pro"
 msgstr "opgrader til pro"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:217
-#: admin/class-ajax.php:582
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:219
+#: admin/class-ajax.php:584
+#: admin/class-ajax.php:802
 msgid "The post ID was not set"
 msgstr "Post-ID'et blev ikke indstillet"
 
@@ -285,67 +286,67 @@ msgid_plural "%s Ignored Items"
 msgstr[0] "%s Ignoreret element"
 msgstr[1] "%s Ignorerede elementer"
 
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:189
 msgid "No summary to return"
 msgstr "Intet resumé at returnere"
 
-#: admin/class-ajax.php:231
+#: admin/class-ajax.php:233
 msgid "Invalid table name"
 msgstr "Ugyldigt tabelnavn"
 
-#: admin/class-ajax.php:377
+#: admin/class-ajax.php:379
 msgid "These settings enable global fixes across your entire site."
 msgstr "Disse indstillinger aktiverer globale rettelser på tværs af hele din hjemmeside."
 
-#: admin/class-ajax.php:378
+#: admin/class-ajax.php:380
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Sider skal muligvis gemmes igen, eller en fuld hjemmesidescanning skal køres for at se rettelser afspejlet i rapporter."
 
-#: admin/class-ajax.php:406
+#: admin/class-ajax.php:408
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "Gem"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:428
 msgid "Affected Code"
 msgstr "Berørt kode"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:491
+#: admin/class-ajax.php:493
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Se Problem-ID %d på hjemmesiden, åbner et nyt vindue"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:494
 msgid "View on page"
 msgstr "Se på siden"
 
-#: admin/class-ajax.php:511
+#: admin/class-ajax.php:513
 msgid "Fix: "
 msgstr "Ret: "
 
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:514
 msgid "Fix"
 msgstr "Ret"
 
-#: admin/class-ajax.php:535
+#: admin/class-ajax.php:537
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Din brugerkonto har ikke tilladelse til at ignorere dette problem."
 
-#: admin/class-ajax.php:553
+#: admin/class-ajax.php:555
 msgid "No details to return"
 msgstr "Ingen detaljer at returnere"
 
-#: admin/class-ajax.php:692
+#: admin/class-ajax.php:694
 msgid "No readability data to return"
 msgstr "Ingen læsbarhedsdata at returnere"
 
-#: admin/class-ajax.php:749
-#: admin/class-ajax.php:772
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:774
 msgid "No ignore data to return"
 msgstr "Ingen ignorer-data at returnere"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:809
 msgid "The summary was not set"
 msgstr "Resuméet blev ikke indstillet"
 
@@ -360,6 +361,15 @@ msgstr "Problemforespørgsel returnerede ingen resultater"
 #: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "Objektforespørgsel returnerede ingen resultater"
+
+#: admin/class-plugin-action-links.php:44
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: admin/class-plugin-action-links.php:56
+msgid "Get Accessibility Checker Pro, opens in new window"
+msgstr "Hent Accessibility Checker Pro, åbner i nyt vindue"
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -1179,10 +1189,6 @@ msgstr "Velkommen til Accessibility Checker"
 msgid "Accessibility Checker Settings"
 msgstr "Indstillinger for Accessibility Checker"
 
-#: includes/options-page.php:66
-msgid "Settings"
-msgstr "Indstillinger"
-
 #: includes/options-page.php:99
 msgid "General Settings"
 msgstr "Generelle indstillinger"
@@ -1351,390 +1357,390 @@ msgid "Image Missing Alternative Text"
 msgstr "Billede mangler alternativ tekst"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
-#: includes/rules.php:28
+#: includes/rules.php:27
 #, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "En fejl om manglende alternativ tekst til billede betyder, at dit billede slet ikke har en alt-attribut (%1$s) i billedtaget (%2$s). For at rette en fejl om manglende alternativ tekst til billede skal du tilføje en alt-tag til billedet med passende tekst, der beskriver billedets formål på siden. Hvis billedet er dekorativt, kan alt-attributten være tom, men HTML %1$s-tagget skal stadig være til stede."
 
-#: includes/rules.php:35
+#: includes/rules.php:34
 msgid "Image Empty Alternative Text"
 msgstr "Billede med tom alternativ tekst"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:42
+#: includes/rules.php:40
 #, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "En advarsel om tom alternativ tekst til billede vises, hvis du har et billede med en alt-attribut (%s), der er tom. Alternativ tekst fortæller personer, der ikke kan se, hvad billedet er, og tilføjer yderligere kontekst til indlægget eller siden. Det er kun korrekt at have tom alternativ tekst, hvis billedet er rent dekorativt, som en kant eller et dekorativt ikon. For at rette en advarsel om tom alternativ tekst til billede skal du afgøre, om billedet er dekorativt, eller om det tilføjer noget meningsfuldt til siden. Hvis det ikke er dekorativt, skal du tilføje passende alternativ tekst for at beskrive billedets formål. Hvis billedet er dekorativt, skal du lade den alternative tekst være tom og »Ignorer« advarslen."
 
-#: includes/rules.php:48
+#: includes/rules.php:46
 msgid "Low-quality Alternative Text"
 msgstr "Alternativ tekst af lav kvalitet"
 
-#: includes/rules.php:53
+#: includes/rules.php:50
 msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
 msgstr "En advarsel om alternativ tekst af lav kvalitet vises, når den alternative tekst på et billede indeholder nøgleord, der er unødvendige i alternativ tekst (såsom »billede« eller »grafik«), en filendelse (såsom .JPG), eller som muligvis beskriver et dekorativt billede (såsom »mellemrum« eller »pil«). For at løse denne advarsel skal du omskrive den alternative tekst for alle billeder, der udløste advarslen om alternativ tekst af lav kvalitet, og sikre, at den alternative tekst er præcis, unik, kontekstuelt passende og ikke indeholder overflødige eller unødvendige beskrivelser. Hvis billedet er rent dekorativt, er det korrekt at lade den alternative tekst være tom."
 
-#: includes/rules.php:57
+#: includes/rules.php:54
 msgid "Linked Image Missing Alternative Text"
 msgstr "Linket billede mangler alternativ tekst"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:64
+#: includes/rules.php:60
 #, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "En fejl om manglende alternativ tekst for linket billede opstår, når et billede, der er linket til en URL, slet ikke har en alt-attribut (%s) i billedtagget. Linkede billeder skal have præcis alternativ tekst, der beskriver, hvor linket fører hen, så skærmlæserbrugere ved, hvor linket peger hen. For at løse denne fejl skal du tilføje meningsfuld alternativ tekst til billedet. Din alternative tekst bør beskrive linkformålet, ikke hvordan billedet ser ud."
 
-#: includes/rules.php:70
+#: includes/rules.php:66
 msgid "Linked Image Empty Alternative Text"
 msgstr "Linket billede har tom alternativ tekst"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:77
+#: includes/rules.php:72
 #, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "En fejl om tom alternativ tekst for linket billede opstår, når et billede, der er linket til en URL, har en alt-attribut (%s) uden indhold. Linkede billeder skal have præcis alternativ tekst, der beskriver, hvor linket fører hen, så skærmlæserbrugere ved, hvor linket peger hen. For at løse denne fejl skal du tilføje meningsfuld alternativ tekst til billedet. Din alternative tekst bør beskrive linkformålet, ikke hvordan billedet ser ud."
 
-#: includes/rules.php:83
+#: includes/rules.php:78
 msgid "Duplicate Alternative Text"
 msgstr "Duplikeret alternativ tekst"
 
-#: includes/rules.php:88
+#: includes/rules.php:82
 msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
 msgstr "Advarsler om duplikeret alternativ tekst vises, når den alternative tekst for et billede på dit indlæg eller din side er identisk med nærliggende eller tilstødende tekst, herunder billedets titel eller billedtekst. Denne advarsel opstår også, hvis to billeder på siden har den samme alternative tekst. For at løse denne advarsel skal du ændre teksten for et eller begge elementer, der udløste advarslen om duplikeret alternativ tekst, og sikre, at alle billeder har unik alternativ tekst, og at du ikke gentager din alternative tekst i dine billedtitler og billedtekster."
 
-#: includes/rules.php:92
+#: includes/rules.php:86
 msgid "Incorrect Heading Order"
 msgstr "Forkert overskriftsrækkefølge"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
-#: includes/rules.php:99
+#: includes/rules.php:92
 #, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "En fejl om forkert overskriftsrækkefølge betyder, at din overskriftsstruktur har sprunget et niveau over. For eksempel, hvis din sidestruktur har en niveau 3-overskrift (%1$s) under en niveau 1-overskrift (%2$s), vil en »Forkert overskriftsrækkefølge«-fejl blive markeret, fordi der ikke er noget %3$s-tag mellem H1 og H3. For at rette fejl i overskriftsrækkefølgen skal du enten ændre det forkerte overskriftsniveau til det korrekte niveau eller tilføje indhold med det korrekte overskriftsniveau mellem de to eksisterende niveauer."
 
-#: includes/rules.php:110
+#: includes/rules.php:103
 msgid "Empty Paragraph Tag"
 msgstr "Tom afsnitsmarkør"
 
-#: includes/rules.php:115
+#: includes/rules.php:107
 msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
 msgstr "En advarsel om tom afsnitsmarkør betyder, at der er en afsnitsmarkør til stede, som ikke indeholder indhold. Disse kan blive oplæst af skærmlæsere eller skabe forvirring for brugere. For at løse denne advarsel skal du fjerne de tomme afsnit fra siden. Hvis du har brug for at tilføje mellemrum mellem sektioner, bør dette gøres med padding, margener eller en mellemrumsblok."
 
-#: includes/rules.php:119
+#: includes/rules.php:111
 msgid "iframe Missing Title"
 msgstr "iframe mangler titel"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
-#: includes/rules.php:126
+#: includes/rules.php:117
 #, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "En fejl om manglende iframe-titel betyder, at en eller flere af iframes på dit indlæg eller din side ikke har en tilgængelig titel, der beskriver indholdet af iframen. En iframe-titel er en attribut, der kan tilføjes til %1$s-tagget for at beskrive indholdet af rammen for personer, der bruger hjælpeteknologi. For at rette en manglende iframe-titel skal du tilføje en title- eller aria-label-attribut til %1$s-tagget. Attributten bør præcist beskrive indholdet af iframen."
 
-#: includes/rules.php:135
+#: includes/rules.php:126
 msgid "Missing Subheadings"
 msgstr "Manglende underoverskrifter"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
-#: includes/rules.php:142
+#: includes/rules.php:132
 #, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "En advarsel om manglende overskrifter betyder, at dit indlæg eller din side ikke indeholder nogen overskriftselementer (%1$s–%2$s) i indholdet af indlæggets eller sidens brødtekstafsnit, hvilket kan gøre det særligt vanskeligt for skærmlæserbrugere at navigere gennem indholdet på siden. For at rette en side uden overskrifter skal du tilføje overskriftselementer. Som minimum bør hver side have en %1$s-tag, hvilket typisk er sidetitlen. Tilføj yderligere underoverskrifter efter behov for dit indhold. Hvis du har besluttet, at overskrifter bestemt ikke er nødvendige på siden, kan du »Ignorere« advarslen."
 
-#: includes/rules.php:150
+#: includes/rules.php:140
 msgid "Text Justified"
 msgstr "Justeret tekst"
 
-#: includes/rules.php:155
+#: includes/rules.php:144
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
 msgstr "En advarsel om Justeret tekst vises i Accessibility Checker, når tekst med mere end 200 tegn på dit indlæg eller din side er formateret med justeret justering (text-align:justify). For at løse denne advarsel skal du fjerne den justerede formatering fra de angivne tekstelementer."
 
-#: includes/rules.php:159
+#: includes/rules.php:148
 msgid "Link Opens New Window or Tab"
 msgstr "Link åbner nyt vindue eller fane"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
-#: includes/rules.php:166
+#: includes/rules.php:154
 #, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "En advarsel om Link åbner nyt vindue eller fane vises, når der er et link på din hjemmeside, der er indstillet til at åbne i en ny fane eller et nyt vindue, når der klikkes på det. Det anses for bedste praksis ikke at åbne nye faner eller vinduer med links. Hvis links åbner nye faner eller vinduer, skal der være en visuel og auditiv advarsel, der annoncerer, at linket vil åbne et nyt vindue eller en ny fane, så brugerne forventer denne adfærd og ved, hvordan de kommer tilbage efter at have klikket på linket. For at rette denne advarsel skal du enten ændre linket til ikke at åbne i en ny fane eller sikre, at »åbner nyt vindue« er inkluderet i linkteksten og derefter »Ignorere« advarslen. For automatisk at tilføje meddelelser til alle links på din side og afvise alle disse advarsler, skal du installere vores gratis %s-plugin."
 
-#: includes/rules.php:167
+#: includes/rules.php:155
 msgid "Accessibility New Window Warnings"
 msgstr "Tilgængelighedsadvarsler om nyt vindue"
 
-#: includes/rules.php:179
+#: includes/rules.php:167
 msgid "Image Map Missing Alternative Text"
 msgstr "Billedkort mangler alternativ tekst"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
-#: includes/rules.php:186
+#: includes/rules.php:173
 #, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "Fejlen Billedkort mangler alternativ tekst betyder, at et af %1$s-elementerne i dit billedkort ikke har alternativ tekst tilføjet i et %2$s-attribut. For at rette denne fejl skal du tilføje manglende alt-tekst til eventuelle område-tags, der ikke har alt-tekst. Alt-teksten skal beskrive funktionen af linket indeholdt i området, ikke nødvendigvis beskrive, hvordan området ser ud."
 
-#: includes/rules.php:196
+#: includes/rules.php:183
 msgid "Tab Order Modified"
 msgstr "Fanenes rækkefølge ændret"
 
 #. translators: %s is <code>tabindex="1"</code>.
-#: includes/rules.php:203
+#: includes/rules.php:189
 #, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "En advarsel om Ændret fanerækkefølge vises, når den logiske fanerækkefølge på siden er blevet ændret ved at tilføje et attribut for tabindex, der er større end 0 til et HTML-element (for eksempel, %s). Dette kan forårsage navigationsproblemer for brugere, der kun bruger tastatur. For at løse en advarsel om Ændret fanerækkefølge skal du se forsiden af din hjemmeside på den side eller det indlæg, hvor fanerækkefølgen er blevet ændret, og teste for at se, om ændringen er korrekt eller ej. Hvis ændringen af fanerækkefølgen ikke forårsager problemer, kan du »Ignorere« advarslen. Hvis den ændrede fanerækkefølge får information til at blive præsenteret i forkert rækkefølge, skal du fjerne tabindex-attributten fra det markerede element."
 
-#: includes/rules.php:213
+#: includes/rules.php:199
 msgid "Empty Heading Tag"
 msgstr "Tom overskriftstag"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
-#: includes/rules.php:220
+#: includes/rules.php:205
 #, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "En fejl med Tom overskriftstag betyder, at der er en overskriftstag på dit indlæg eller din side, som ikke indeholder noget indhold. I kode ville denne fejl se sådan ud: %s. For at rette en tom overskrift skal du tilføje indhold til den overskriftstag, der har udløst fejlen Tom overskriftstag, eller fjerne den tomme tag, hvis den ikke er nødvendig på din side."
 
-#: includes/rules.php:226
+#: includes/rules.php:211
 msgid "Empty Link"
 msgstr "Tomt link"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
-#: includes/rules.php:233
+#: includes/rules.php:217
 #, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "En fejl med Tomt Link betyder, at et af linkene på websiden er tomt eller ikke indeholder tekst, der beskriver, hvor linket fører hen, hvis man klikker på det. Dette sker ofte med links, der indeholder webskrifttyper, ikonfonte og SVG'er, eller når et link ved et uheld er blevet oprettet i indholdseditoren. For at rette en fejl med tomt link skal du finde det link, der er markeret, og tilføje beskrivende tekst til det. Du skal enten: tilføje tekstindhold i et tomt %1$s-element eller, hvis dit link indeholder et SVG- eller webfont-ikon, skjule det element med %2$s og tilføje en %3$s-attribut til %1$s-tagget eller skærmlæsertekst. Den tekst eller etiket, du tilføjer, bør være beskrivende for, hvor linket peger hen, og ikke være tvetydig."
 
-#: includes/rules.php:241
+#: includes/rules.php:225
 msgid "Empty Button"
 msgstr "Tom knap"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
-#: includes/rules.php:248
+#: includes/rules.php:231
 #, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "En fejl med Tom Knap betyder, at en af knapperne på websiden er tom eller ikke indeholder tekst, der beskriver knappens funktion. Eller hvis det er en billedknap, mangler billedet i knappen alternativ tekst. For at rette en fejl med tom knap skal du finde den knap, der er markeret, og tilføje beskrivende tekst til den. Du skal enten: tilføje tekstindhold i et tomt %1$s-element, tilføje en værdi-attribut til et %2$s, der mangler en, eller tilføje alternativ tekst til et knapbillede. Teksten bør være beskrivende for, hvad din knap bruges til, eller den handling, som knappen udløser."
 
-#: includes/rules.php:255
+#: includes/rules.php:238
 msgid "Image Long Alternative Text"
 msgstr "Lang alternativ tekst til billede"
 
-#: includes/rules.php:260
+#: includes/rules.php:242
 msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
 msgstr "En advarsel om Lang Alternativ Tekst til Billede vises, hvis der er mere end 100 tegn i din alternative tekst. Alternativ tekst skal være beskrivende for billedet, men på en kortfattet måde, uden at være for ordrig. For at løse denne advarsel skal du forkorte din alt-tekst for alle billeder, der er blevet markeret, til 100 tegn eller mindre. Hvis du har bestemt, at din alternative tekst er god, som den er, kan du »Ignorere« advarslen."
 
-#: includes/rules.php:264
+#: includes/rules.php:246
 msgid "ARIA Hidden"
 msgstr "ARIA Skjult"
 
-#: includes/rules.php:269
+#: includes/rules.php:250
 msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
 msgstr "Advarslen ARIA Skjult vises, når indhold på dit indlæg eller din side er blevet skjult ved hjælp af attributten aria-hidden=»true«. Når denne attribut tilføjes til et HTML-element, vil skærmlæsere ikke læse det op for brugerne. Nogle gange er det korrekt, at elementet er skjult for skærmlæsere (såsom med et dekorativt ikon), men andre gange er det ikke korrekt. Når du ser denne advarsel, skal du afgøre, om elementet skal være skjult for personer, der er blinde eller synshæmmede. Hvis det er korrekt skjult, kan du »Ignorere« advarslen. Hvis det er forkert skjult og bør være synligt, skal du fjerne attributten aria-hidden=»true« for at løse advarslen."
 
-#: includes/rules.php:276
+#: includes/rules.php:257
 msgid "Empty Table Header"
 msgstr "Tom tabeloverskrift"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
-#: includes/rules.php:283
+#: includes/rules.php:263
 #, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "En fejl med Tom Tabeloverskrift betyder, at en af tabeloverskrifterne i dit indlæg eller på din side ikke indeholder nogen tekst. Det betyder, at %1$s-elementet er til stede, men ser sådan ud %2$s uden noget mellem åbnings- og lukketagsene. For at rette en tom tabeloverskrift skal du finde det korrekte HTML-element (%1$s) og tilføje tekst til det, der beskriver den række eller kolonne, det gælder for."
 
-#: includes/rules.php:290
+#: includes/rules.php:270
 msgid "Link to MS Office File"
 msgstr "Link til MS Office-fil"
 
-#: includes/rules.php:295
+#: includes/rules.php:274
 msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "En advarsel om Link til MS Office-fil betyder, at et eller flere af linkene på din side eller i dit indlæg fører til en fil med en af følgende filtyper: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps eller .ppsx. Denne advarsel vises, når en MS Office-fil er til stede, som en påmindelse om manuelt at teste dine Word-dokumenter, PowerPoint-præsentationer og Excel-regneark for tilgængelighed og bekræfte, at de overholder alle relevante WCAG-retningslinjer. For at løse en advarsel om Link til MS Office-fil skal du: (1) sikre, at der er et direkte link til at se eller downloade dokumentet, hvis du bruger et plugin til at indlejre det på siden; (2) sikre, at linket til dokumentet advarer brugerne om, at det er et link til et dokument ved at vise den specifikke filtype i linkankeret; og (3) teste og udbedre din MS Office-fil for tilgængelighedsfejl. Efter at have fastslået, at din fil er fuldt tilgængelig, kan du trygt »Ignorere« advarslen."
 
-#: includes/rules.php:299
+#: includes/rules.php:278
 msgid "Link to PDF"
 msgstr "Link til PDF"
 
-#: includes/rules.php:304
+#: includes/rules.php:282
 msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "En advarsel om Link til PDF betyder, at et eller flere af linkene på din side eller i dit opslag fører til en PDF-fil. Denne advarsel er en påmindelse om manuelt at teste den linkede PDF for tilgængelighed og bekræfte, at den overholder alle relevante WCAG-retningslinjer. For at løse en advarsel om Link til PDF skal du: (1) sikre, at der er et direkte link til at se eller downloade dokumentet, hvis du bruger et plugin til at indlejre det på siden; (2) sikre, at linket til dokumentet advarer brugerne om, at det er et link til et dokument ved at vise den specifikke filtype i link-teksten; og (3) teste og udbedre dit dokument for tilgængelighedsfejl. Efter at have fastslået, at din fil er fuldt tilgængelig, kan du trygt »Ignorere« advarslen."
 
-#: includes/rules.php:308
+#: includes/rules.php:286
 msgid "Link to Non-HTML File"
 msgstr "Link til ikke-HTML-fil"
 
-#: includes/rules.php:313
+#: includes/rules.php:290
 msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "En advarsel om Link til ikke-HTML-dokument betyder, at et eller flere af linkene på din side eller i dit opslag fører til en fil med en af følgende filtyper: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages eller .key. Denne advarsel er en påmindelse om manuelt at teste det linkede dokument for tilgængelighed og bekræfte, at det overholder alle relevante WCAG-retningslinjer. For at løse en advarsel om Link til ikke-HTML-dokument skal du: (1) sikre, at der er et direkte link til at se eller downloade dokumentet, hvis du bruger et plugin til at indlejre det på siden; (2) sikre, at linket til dokumentet advarer brugerne om, at det er et link til et dokument ved at vise den specifikke filtype i link-teksten; og (3) teste og udbedre dit dokument for tilgængelighedsfejl. Efter at have fastslået, at din fil er fuldt tilgængelig, kan du trygt »Ignorere« advarslen."
 
-#: includes/rules.php:317
+#: includes/rules.php:294
 msgid "Long Description Invalid"
 msgstr "Ugyldig lang beskrivelse"
 
 #. translators: %s is <code>longdesc=""</code>.
-#: includes/rules.php:324
+#: includes/rules.php:300
 #, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "Fejlen Ugyldig lang beskrivelse betyder, at et attribut for lang beskrivelse (%s) på et billede ikke har en passende URL, filnavn eller filtype. Det kan også betyde, at den lange beskrivelse ikke er en URL, eller at den er blevet efterladt tom. Attributten longdesc understøttes ikke fuldt ud af HTML5, browsere og alle skærmlæsere. På grund af denne manglende understøttelse er den bedste løsning på denne fejl at fjerne longdesc helt fra dit billedtag."
 
-#: includes/rules.php:330
+#: includes/rules.php:306
 msgid "Missing Form Label"
 msgstr "Manglende formular-etiket"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
-#: includes/rules.php:337
+#: includes/rules.php:312
 #, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "En fejl om Manglende formular-etiket udløses, når et %1$s (formularfelt) er til stede i din formular, men ikke er tilknyttet et %2$s-element. Dette kan betyde, at etiketten er til stede, men mangler et %3$s-attribut for at forbinde det til det relevante felt, eller der kan slet ikke være nogen etiket til stede, kun et %1$s-tag. For at rette fejl med manglende formular-etiketter skal du fastslå, hvordan feltet og formularen blev oprettet, og derefter tilføje feltetiketter eller et korrekt %3$s-attribut til eksisterende etiketter, der ikke er forbundet til et felt."
 
-#: includes/rules.php:350
+#: includes/rules.php:325
 msgid "Ambiguous Anchor Text"
 msgstr "Tvetydig ankertekst"
 
-#: includes/rules.php:355
+#: includes/rules.php:329
 msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
 msgstr "Fejl med Tvetydig ankertekst opstår, når der er linket tekst, som ikke giver mening uden for dens omgivende indhold. Almindelige eksempler på dette omfatter at linke fraser som »klik her« eller »lær mere.« For at løse denne fejl skal du ændre linkteksten til at være mindre generisk, så den giver mening, hvis den høres alene."
 
-#: includes/rules.php:359
+#: includes/rules.php:333
 msgid "Underlined Text"
 msgstr "Understreget tekst"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
-#: includes/rules.php:366
+#: includes/rules.php:339
 #, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "En advarsel om Understreget tekst vises, hvis tekst på din side er omsluttet af et HTML-understregnings-tag (%1$s). I et online miljø bruges understreget tekst generelt til at indikere linket tekst, og det anses ikke for god praksis kun at understrege tekst for at fremhæve den. For at rette understreget tekst skal du fjerne %1$s-elementet fra teksten eller CSS-stilarter, der gør den understreget. Prøv at bruge andre stilarter, såsom kursiv, farvet tekst eller fed skrift for at fremhæve eller skelne mellem ord eller sætninger."
 
-#: includes/rules.php:372
+#: includes/rules.php:345
 msgid "Broken Skip or Anchor Link"
 msgstr "Brudt spring- eller ankerlink"
 
-#: includes/rules.php:377
+#: includes/rules.php:349
 msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
 msgstr "Et ankerlink, også kaldet et springlink, er et link, der i stedet for at åbne en ny side eller URL, når det klikkes, springer eller ruller dig til et andet afsnit på samme side. Disse links går til et element, der starter med en hashtag i stedet for en fuld URL. For eksempel kan du rulle nogen til om-afsnittet på din hjemmeside ved at linke til #about. Fejl med brudte spring- eller ankerlinks opstår, når der er et link, der peger på et andet afsnit på samme side, men der ikke er et element til stede på siden, der har det refererede id. Denne fejl vil også forekomme, hvis du linker til bare et #. For at løse denne fejl skal du manuelt teste linket for at bekræfte, at det virker, og derefter enten rette det eller »Ignorere« fejlen efter behov."
 
-#: includes/rules.php:381
+#: includes/rules.php:353
 msgid "Missing Table Header"
 msgstr "Manglende tabeloverskrift"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
-#: includes/rules.php:388
+#: includes/rules.php:359
 #, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "En fejl med manglende tabeloverskrift betyder, at en af dine tabeller indeholder data (information indeholdt i et %1$s-tag), som ikke har en tilsvarende overskrift (%2$s)-tag. Når du ser på HTML'en for din formular, vil der være flere %1$s-elementer i en række end %2$s-elementer i tabellen. For at rette en manglende tabeloverskrift skal du finde det kodestykke, der har færre %2$s-elementer, end der burde være til stede for antallet af rækker eller kolonner med data, og tilføje et eller flere ekstra %2$s-elementer, der indeholder tekst, som beskriver dataene i den pågældende række eller kolonne."
 
-#: includes/rules.php:395
+#: includes/rules.php:366
 msgid "Duplicate Form Label"
 msgstr "Duplikeret formularetiket"
 
-#: includes/rules.php:400
+#: includes/rules.php:370
 msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
 msgstr "Fejl med duplikerede formularmærkater opstår, når der er mere end én etiket knyttet til et enkelt felt i en formular. Hvis der er for mange formularmærkater til stede, kan en skærmlæser muligvis ikke læse formularfelterne korrekt for at hjælpe en synshandicappet bruger med at navigere gennem og udfylde formularen. For at rette fejl med duplikerede formularmærkater skal du bestemme, hvordan feltet og formularen blev oprettet, og derefter sikre, at hvert felt kun har én tilknyttet etiket."
 
-#: includes/rules.php:405
+#: includes/rules.php:375
 msgid "Text Too Small"
 msgstr "Tekst for lille"
 
-#: includes/rules.php:410
+#: includes/rules.php:379
 msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
 msgstr "En advarsel om for lille tekst opstår, når der er tekst på dit websted, som er mindre end 10px i størrelse. Advarslen er en indikation af, at du måske bør genoverveje skriftstørrelsen og gøre den større, så den nemmere kan læses uden at en bruger behøver at zoome ind i deres browser. For at rette tekst, der er for lille, skal du sikre, at alle tekstelementer på dit websted er mindst 10 point."
 
-#: includes/rules.php:414
+#: includes/rules.php:383
 msgid "Possible Heading"
 msgstr "Mulig overskrift"
 
-#: includes/rules.php:419
+#: includes/rules.php:387
 msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
 msgstr "En advarsel om mulig overskrift opstår, når der er tekst på en side, som ser ud til at være en overskrift, men ikke er kodet med korrekte overskriftstags. Denne advarsel vises, hvis der er korte sætninger eller tekststrenge på mindre end 50 tegn, som er formateret på en måde, der antyder, at de måske bruges som overskrifter (de er 20 pixels eller større, eller er 16 pixels eller større og fede og/eller kursiverede). For at rette en advarsel om mulig overskrift skal du afgøre, om den markerede tekst rent faktisk er tiltænkt som overskrift. Hvis ja, skal du ændre den fra et afsnit til en overskrift på det rette niveau. Hvis den ikke skal være en overskrift, kan du trygt »Ignorere« advarslen."
 
-#: includes/rules.php:423
+#: includes/rules.php:391
 msgid "Blinking or Scrolling Content"
 msgstr "Blinkende eller rullende indhold"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
-#: includes/rules.php:430
+#: includes/rules.php:397
 #, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Fejl med blinkende eller rullende indhold opstår, når elementer på dit websted har en blinkende eller rullende funktion anvendt på dem enten via CSS eller i HTML'en. Specifikt vil følgende skabe denne fejl: %1$s- eller %2$s-HTML-tags eller CSS %3$s. For at løse denne fejl skal du fjerne de HTML-tags eller CSS, der får indholdet til at blinke."
 
-#: includes/rules.php:439
+#: includes/rules.php:406
 msgid "Insufficient Color Contrast"
 msgstr "Utilstrækkelig farvekontrast"
 
-#: includes/rules.php:444
+#: includes/rules.php:410
 msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
 msgstr "Fejl med utilstrækkelig farvekontrast betyder, at vi har identificeret, at en eller flere af farvekombinationerne på dit opslag eller din side ikke opfylder det minimale farvekontrastforhold på 4,5:1. Afhængigt af hvordan dit websted er opbygget, kan der være »falske positiver« for denne fejl, da nogle farver er indeholdt i forskellige HTML-lag på siden. For at rette en fejl med utilstrækkelig farvekontrast skal du sikre, at de markerede elementer opfylder det krævede minimumsforhold på 4,5:1. For at gøre dette skal du finde de hexadecimale koder for din forgrundsfarve og baggrundsfarve og teste dem i en farvekontrastkontrol. Hvis disse farvekoder har et forhold på 4,5:1 eller højere, kan du »Ignorere« denne fejl. Hvis farvekoderne ikke har et forhold på mindst 4,5:1, skal du justere dine farver."
 
-#: includes/rules.php:448
+#: includes/rules.php:414
 msgid "Missing Transcript"
 msgstr "Manglende udskrift"
 
-#: includes/rules.php:453
+#: includes/rules.php:418
 msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
 msgstr "En fejl med manglende udskrift betyder, at der er et lyd- eller videoklip på dit websted, som ikke har en udskrift, eller der er en udskrift, men den ikke er mærket som en udskrift eller er placeret mere end 25 tegn væk fra det indlejrede eller linkede medie. For at rette en fejl med manglende udskrift skal du oprette en udskrift for alle de video- eller lydklip, der er markeret som manglende en udskrift. Når du har oprettet udskriften, kan du enten tilføje udskriftens indhold direkte i dit opslag eller på din side eller linke til udskriften, hvis du inkluderer den som et dokument eller en PDF-fil, der kan downloades. Du skal eksplicit inkludere ordet »udskrift« i en overskrift før udskriften på siden eller i linket til din fil, og det skal være inden for 25 tegn fra lyd- eller videoindlejringen eller linket."
 
-#: includes/rules.php:457
+#: includes/rules.php:422
 msgid "Broken ARIA Reference"
 msgstr "Brudt ARIA-reference"
 
-#: includes/rules.php:462
+#: includes/rules.php:426
 msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
 msgstr "Fejl med brudt ARIA-reference opstår, hvis et aria-labeledby- eller aria-describedby-element er til stede på siden eller opslaget, men dets referencemål ikke eksisterer. Dette betyder, at det element, der henvises til af den specifikke ARIA-attribut, du bruger, enten ikke har en korrekt etiket eller beskrivelse, eller det er ikke til stede på siden. For at rette en brudt ARIA-reference skal du finde de ARIA-elementer, der er markeret, og sikre, at deres referencemål er til stede og korrekt mærket."
 
-#: includes/rules.php:467
+#: includes/rules.php:431
 msgid "Missing Language Declaration"
 msgstr "Manglende sprogdeklaration"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
-#: includes/rules.php:474
+#: includes/rules.php:437
 #, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "En sprogdeklaration er en HTML-attribut, der angiver standardsproget for indholdet på en side eller et opslag. Sprogdeklarationer bør være kodet ind i dit webstedstema og vises automatisk i webstedets hoved. En fejl med manglende sprogdeklaration opstår, hvis %1$s-tagget på siden ikke indeholder en %2$s- eller %3$s-attribut, eller hvis en af disse attributter er til stede, men er tom. For at rette en fejl med manglende sprogdeklaration skal du redigere dine temafiler for at tilføje den manglende sprogattribut til HTML-tagget øverst i din webstedsheader. Hvis du bruger et tema, der modtager opdateringer, skal du foretage ændringen i et underordnet tema for at sikre, at rettelsen ikke bliver overskrevet, når du næste gang opdaterer dit tema."
 
-#: includes/rules.php:488
+#: includes/rules.php:451
 msgid "Image Animated GIF"
 msgstr "Billede animeret GIF"
 
-#: includes/rules.php:493
+#: includes/rules.php:455
 msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
 msgstr "Advarsler om billede animeret GIF vises, når der er en animeret GIF på dit opslag eller din side. Denne advarsel er en påmindelse om manuelt at gennemgå alle animerede GIF'er på dit websted for deres tilgængelighed og/eller at genoverveje brugen af animerede GIF'er og i stedet erstatte dem med statiske billeder eller videoer. For at løse denne advarsel skal du gennemgå alle tilstedeværende GIF'er for at sikre, at de opfylder alle gældende retningslinjer for tilgængelighed, og derefter enten »Ignorere« advarslen eller fjerne GIF'en fra din side eller opslag, hvis den ikke er tilgængelig."
 
-#: includes/rules.php:498
+#: includes/rules.php:460
 msgid "A Video is Present"
 msgstr "En video er til stede"
 
-#: includes/rules.php:503
+#: includes/rules.php:464
 msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
 msgstr "Fordi videoer ofte indeholder tilgængelighedsproblemer, hvoraf mange kun kan identificeres af en person, vises advarslen 'En video er til stede', når der opdages en video på et indlæg eller en side som en påmindelse om, at du manuelt skal teste din video for tilgængelighed. For at løse denne advarsel skal du besøge forsiden af din hjemmeside og bekræfte, at videoen i advarslen er tilgængelig. Når du har testet videoen grundigt for tilgængelighed, skal du rette eventuelle fejl og derefter kan du »Ignorere« advarslen for at markere den som fuldført."
 
-#: includes/rules.php:507
+#: includes/rules.php:468
 msgid "A Slider is Present"
 msgstr "En slider er til stede"
 
-#: includes/rules.php:512
+#: includes/rules.php:472
 msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
 msgstr "Fordi sliders ofte indeholder tilgængelighedsproblemer, hvoraf mange kun kan identificeres af en person, vises advarslen 'En slider er til stede', når der opdages en slider på et indlæg eller en side som en påmindelse om, at du manuelt skal teste din slider for tilgængelighed. For at løse denne advarsel skal du besøge forsiden af din hjemmeside og bekræfte, at alle sliders på siden er tilgængelige. Når du har testet dine sliders grundigt for tilgængelighed, skal du rette eventuelle fejl og derefter kan du »Ignorere« advarslen for at markere den som fuldført."
 
-#: includes/rules.php:516
+#: includes/rules.php:476
 msgid "Missing Title"
 msgstr "Manglende titel"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
-#: includes/rules.php:523
+#: includes/rules.php:482
 #, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "En 'Manglende titel'-fejl betyder, at dit indlæg eller din side ikke indeholder et titel-element (%1$s eller %2$s). Dette kan ske, hvis temaet ikke tilføjer et titel-tag, eller hvis titelfeltet i et indlæg eller en side er blevet efterladt tomt i WordPress-redigeringsskærmen. For at rette en side uden titel skal du tilføje titel-elementer. Først skal du afgøre, om titlen mangler, fordi du har efterladt side- eller indlægstitlen tom i editoren. Hvis det er tilfældet, så udfyld den. Hvis en titel er udfyldt og synlig på backend, skal koden i din webside redigeres til at inkludere et %1$s-tag eller %2$s meta-tag."
 
-#: includes/rules.php:535
+#: includes/rules.php:494
 msgid "Improper Use of Link"
 msgstr "Forkert brug af link"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
-#: includes/rules.php:542
+#: includes/rules.php:500
 #, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "En 'Forkert brug af link'-fejl vises, hvis du har links, der mangler en %1$s-attribut eller kun er linket til et %2$s, og ikke har %3$s på dem. Links bør bruges til at dirigere folk til andre dele af dit websted. Enhver anden funktionalitet, der udløser en handling, bør være en knap. For at løse denne fejl skal du omkode linket til at bruge et %4$s-tag (foretrukket) eller tilføje %5$s til det eksisterende %6$s-tag. Hvis elementet er en toggle-knap (såsom en accordion), kræves yderligere ARIA-attributter."
 
-#: includes/rules.php:553
+#: includes/rules.php:511
 msgid "Zooming and Scaling Disabled"
 msgstr "Zoom og skalering deaktiveret"
 
-#: includes/rules.php:558
+#: includes/rules.php:515
 msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
 msgstr "Zoom er deaktiveret via viewport meta-tag, der indeholder `user-scalable=no` eller en `maximum-scale`-værdi på mindre end 2. Dette begrænser brugere med nedsat syn, der ønsker at forstørre tekststørrelser, zoome ind på siden eller bruge forstørrelsesglas."
 
@@ -1821,12 +1827,12 @@ msgstr "E-mailsupport"
 msgid "...and more"
 msgstr "...og mere"
 
-#: partials/pro-callout.php:45
+#: partials/pro-callout.php:47
 #: partials/welcome-page.php:215
 msgid "Get Accessibility Checker Pro"
 msgstr "Få Accessibility Checker Pro"
 
-#: partials/pro-callout.php:55
+#: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
 msgstr "Eller aktiver din licensnøgle her."
