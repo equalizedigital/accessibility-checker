@@ -218,12 +218,24 @@ function edac_get_valid_table_name( $table_name ) {
 	}
 
 	// Verify that the table actually exists in the database.
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	// Use SQLite compatible query to check for table existence.
-	$query = $wpdb->prepare( 'SELECT name FROM sqlite_master WHERE type="table" AND name=%s', $table_name );
-	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) !== $table_name && $wpdb->get_var( $query ) !== $table_name ) {
-		// Table does not exist.
-		return null;
+	// Use a flag to determine if we are using SQLite.
+	// This is a simplified check; a more robust check might involve checking $wpdb->is_mysql or $wpdb->dbdriver.
+	$is_sqlite = ( strpos( $wpdb->dbh->getAttribute( \PDO::ATTR_DRIVER_NAME ), 'sqlite' ) !== false );
+
+	if ( $is_sqlite ) {
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$query = $wpdb->prepare( 'SELECT name FROM sqlite_master WHERE type="table" AND name=%s', $table_name );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		if ( $wpdb->get_var( $query ) !== $table_name ) {
+			// Table does not exist in SQLite.
+			return null;
+		}
+	} else {
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ) !== $table_name ) {
+			// Table does not exist in MySQL.
+			return null;
+		}
 	}
 
 	return $table_name;
