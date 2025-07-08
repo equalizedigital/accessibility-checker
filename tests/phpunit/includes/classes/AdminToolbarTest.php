@@ -87,16 +87,31 @@ class AdminToolbarTest extends WP_UnitTestCase {
 			->addMethods( [ 'add_menu' ] )
 			->getMock();
 
+		// Capture the arguments passed to add_menu for validation.
+		$captured_args = null;
 		$wp_admin_bar->expects( $this->once() )
 			->method( 'add_menu' )
-			->with(
-				$this->callback( [ $this, 'validate_parent_menu_args' ] )
+			->willReturnCallback(
+				function ( $args ) use ( &$captured_args ) {
+					$captured_args = $args;
+				} 
 			);
 
 		// Mock the filter to return empty array so only parent menu is added.
-		add_filter( 'edac_admin_toolbar_menu_items', [ $this, 'filter_return_empty_array' ] );
+		add_filter(
+			'edac_admin_toolbar_menu_items',
+			function () {
+				return [];
+			} 
+		);
 
 		$this->admin_toolbar->add_toolbar_items( $wp_admin_bar );
+
+		// Validate the captured arguments.
+		$this->assertNotNull( $captured_args, 'add_menu should have been called with arguments' );
+		$this->assertEquals( 'accessibility-checker', $captured_args['id'] );
+		$this->assertStringContainsString( 'dashicons-universal-access-alt', $captured_args['title'] );
+		$this->assertStringContainsString( 'admin.php?page=accessibility_checker', $captured_args['href'] );
 	}
 
 	/**
@@ -160,8 +175,19 @@ class AdminToolbarTest extends WP_UnitTestCase {
 		$wp_admin_bar->expects( $this->exactly( 5 ) )
 			->method( 'add_menu' );
 
-		// Add filter to add a custom menu item.
-		add_filter( 'edac_admin_toolbar_menu_items', [ $this, 'filter_add_custom_menu_item' ] );
+		// Add filter to add a custom menu item using anonymous function.
+		add_filter(
+			'edac_admin_toolbar_menu_items',
+			function ( $menu_items ) {
+				$menu_items[] = [
+					'id'     => 'custom-test-item',
+					'parent' => 'accessibility-checker',
+					'title'  => 'Test Item',
+					'href'   => 'http://example.com',
+				];
+				return $menu_items;
+			} 
+		);
 
 		$this->admin_toolbar->add_toolbar_items( $wp_admin_bar );
 	}
@@ -286,30 +312,5 @@ class AdminToolbarTest extends WP_UnitTestCase {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * Callback method to validate parent menu arguments.
-	 *
-	 * @param array $args Menu arguments.
-	 * @return bool
-	 */
-	public function validate_parent_menu_args( $args ) {
-		$expected_id             = 'accessibility-checker';
-		$expected_title_contains = 'dashicons-universal-access-alt';
-		$expected_href_contains  = 'admin.php?page=accessibility_checker';
-		
-		return isset( $args['id'] ) && $expected_id === $args['id'] &&
-				isset( $args['title'] ) && false !== strpos( $args['title'], $expected_title_contains ) &&
-				isset( $args['href'] ) && false !== strpos( $args['href'], $expected_href_contains );
-	}
-
-	/**
-	 * Filter callback to return empty array for menu items.
-	 *
-	 * @return array
-	 */
-	public function filter_return_empty_array() {
-		return [];
 	}
 }
