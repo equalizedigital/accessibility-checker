@@ -900,7 +900,9 @@ class AccessibilityCheckerHighlight {
 		div.textContent = textContent;
 	}
 
-	// Refactored: move scan and save logic to helper methods
+	/**
+	 * Kick off the accessibility scan.
+	 */
 	kickoffScan() {
 		const getPageDensity = () => {
 			const elementCount = document.body.getElementsByTagName( '*' ).length;
@@ -934,7 +936,7 @@ class AccessibilityCheckerHighlight {
 			this.runAccessibilityScanAndSave( densityMetrics );
 		} else {
 			this.showWait( false );
-			this.showScanError( 'Scanner function not found.' );
+			this.showScanError( __( 'Scanner function not found.', 'accessibility-checker' ) );
 		}
 	}
 
@@ -950,18 +952,18 @@ class AccessibilityCheckerHighlight {
 			const nonce = window.edacFrontendHighlighterApp && window.edacFrontendHighlighterApp.restNonce;
 			if ( ! postId || ! nonce ) {
 				self.showWait( false );
-				self.showScanError( 'Missing postId or nonce.' );
+				self.showScanError( __( 'Missing postId or nonce.', 'accessibility-checker' ) );
 				return;
 			}
 			if ( ! result || ! result.violations || result.violations.length === 0 ) {
 				self.showWait( false );
-				self.showScanError( 'No violations found, skipping save.' );
+				self.showScanError( __( 'No violations found, skipping save.', 'accessibility-checker' ) );
 				return;
 			}
 			self.saveScanResults( postId, nonce, result.violations, densityMetrics );
 		} ).catch( () => {
 			self.showWait( false );
-			self.showScanError( 'Accessibility scan error.' );
+			self.showScanError( __( 'Accessibility scan error.', 'accessibility-checker' ) );
 		} );
 	}
 
@@ -986,12 +988,12 @@ class AccessibilityCheckerHighlight {
 				if ( data && data.success ) {
 					// Optionally show a success message or update UI
 				} else {
-					self.showScanError( 'Saving failed.' );
+					self.showScanError( __( 'Saving failed.', 'accessibility-checker' ) );
 				}
 			} )
 			.catch( () => {
 				self.showWait( false );
-				self.showScanError( 'Error saving scan results.' );
+				self.showScanError( __( 'Error saving scan results.', 'accessibility-checker' ) );
 			} );
 	}
 
