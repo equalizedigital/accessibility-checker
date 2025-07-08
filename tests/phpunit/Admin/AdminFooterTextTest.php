@@ -51,6 +51,15 @@ class AdminFooterTextTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Clean up after each test.
+	 */
+	protected function tearDown(): void {
+		// Clean up global state.
+		unset( $_GET['page'] );
+		parent::tearDown();
+	}
+
+	/**
 	 * Test instantiation of Admin_Footer_Text class.
 	 */
 	public function test_can_instantiate_class() {
@@ -293,21 +302,33 @@ class AdminFooterTextTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that page parameter is properly sanitized.
+	 * Test that page parameter is properly sanitized and XSS content is not present in output.
 	 */
 	public function test_page_parameter_sanitization() {
 		// Set up admin context with potentially malicious page param.
 		set_current_screen( 'admin' );
-		$_GET['page'] = 'accessibility_checker<script>alert("xss")</script>';
+		$malicious_input = 'accessibility_checker<script>alert("xss")</script>';
+		$_GET['page']    = $malicious_input;
 
 		$reflection = new \ReflectionClass( $this->admin_footer_text );
 		$method     = $reflection->getMethod( 'is_settings_page' );
 		$method->setAccessible( true );
 
 		// Should still return true because it contains 'accessibility_checker'.
-		// But the script tags should be sanitized internally.
 		$result = $method->invoke( $this->admin_footer_text );
 		$this->assertTrue( $result );
+
+		// Test that malicious script content is not present in the filtered output.
+		$original_text = 'Original footer text';
+		$filtered_text = $this->admin_footer_text->filter_admin_footer_text( $original_text );
+		
+		// Verify that script tags are not present in the output.
+		$this->assertStringNotContainsString( '<script>', $filtered_text );
+		$this->assertStringNotContainsString( 'alert("xss")', $filtered_text );
+		$this->assertStringNotContainsString( $malicious_input, $filtered_text );
+		
+		// Verify that the output contains expected safe content.
+		$this->assertStringContainsString( 'Thank you for creating', $filtered_text );
 
 		// Clean up.
 		unset( $_GET['page'] );
