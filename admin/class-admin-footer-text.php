@@ -41,11 +41,21 @@ class Admin_Footer_Text {
 		}
 
 		if ( $this->is_pro_active() ) {
-			return 'Enjoying Accessibility Checker? <a href="https://wordpress.org/support/plugin/accessibility-checker/reviews/#new-post" target="_blank" aria-label="Please leave us a five star rating (opens in new window)">Please leave us a ★★★★★ rating.</a> We really appreciate your support!';
+			return sprintf(
+				/* translators: %1$s: opening link tag, %2$s: closing link tag */
+				esc_html__( 'Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!', 'accessibility-checker' ),
+				'<a href="' . esc_url( 'https://wordpress.org/support/plugin/accessibility-checker/reviews/#new-post' ) . '" target="_blank" aria-label="' . esc_attr__( 'Please leave us a five star rating (opens in new window)', 'accessibility-checker' ) . '">',
+				'</a>'
+			);
 		}
 
 		$pro_link = edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-footer', 'admin-footer-text', false );
-		return 'Want to do more with Accessibility Checker? <a href="' . esc_url( $pro_link ) . '" target="_blank" aria-label="Unlock Pro Features (opens in new window)">Unlock Pro Features</a>';
+		return sprintf(
+			/* translators: %1$s: opening link tag, %2$s: closing link tag */
+			esc_html__( 'Want to do more with Accessibility Checker? %1$sUnlock Pro Features%2$s', 'accessibility-checker' ),
+			'<a href="' . esc_url( $pro_link ) . '" target="_blank" aria-label="' . esc_attr__( 'Unlock Pro Features (opens in new window)', 'accessibility-checker' ) . '">',
+			'</a>'
+		);
 	}
 
 	/**
