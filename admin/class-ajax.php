@@ -165,8 +165,24 @@ class Ajax {
 				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>
-		<div id="edac-summary-disclaimer" class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
 		';
+
+		$html['content'] .= '<div class="edac-summary-disclaimer" id="edac-summary-disclaimer"><small>' . PHP_EOL;
+		$html['content'] .= sprintf(
+			'* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s.',
+			'<a href="' . esc_url(
+				edac_generate_link_type(
+					[
+						'utm_campaign' => 'dashboard-widget',
+						'utm_content'  => 'how-to-manually-check',
+					],
+					'help',
+					[ 'help_id' => 4280 ]
+				)
+			) . '">',
+			'</a>'
+		) . PHP_EOL;
+		$html['content'] .= '</small></div>' . PHP_EOL;
 
 		if ( ! $html ) {
 
@@ -322,7 +338,7 @@ class Ajax {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 				$expand_rule = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A ) );
 
-				$tool_tip_link = edac_documentation_link( $rule );
+				$tool_tip_link = edac_link_wrapper( $rule['info_url'], 'frontend-highlighter', $rule['slug'], false );
 
 				$html .= '<div class="edac-details-rule">';
 
@@ -700,8 +716,7 @@ class Ajax {
 			</form>';
 		}
 
-		global $wp_version;
-		$html .= '<span class="dashicons dashicons-info"></span><a href="https://a11ychecker.com/help3265?utm_source=accessibility-checker&utm_medium=software&utm_term=readability&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . edac_days_active() . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
+		$html .= '<span class="dashicons dashicons-info"></span><a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
 
 		if ( ! $html ) {
 

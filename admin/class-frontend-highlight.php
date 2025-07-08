@@ -1,6 +1,6 @@
 <?php
 /**
- * Accessibility Checker pluign file.
+ * Accessibility Checker plugin file.
  *
  * @package Accessibility_Checker
  */
@@ -113,7 +113,7 @@ class Frontend_Highlight {
 			$array['slug']       = $rule[0]['slug'];
 			$array['rule_title'] = $rule[0]['title'];
 			$array['summary']    = $rule[0]['summary'];
-			$array['link']       = edac_documentation_link( $rule[0] );
+			$array['link']       = edac_link_wrapper( $rule[0]['info_url'], 'frontend-highlighter', $rule[0]['slug'], false );
 			$array['object']     = html_entity_decode( esc_html( $result['object'] ) );
 			$array['id']         = $result['id'];
 			$array['ignored']    = $result['ignre'];
