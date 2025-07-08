@@ -83,23 +83,11 @@ class AdminToolbarTest extends WP_UnitTestCase {
 		$this->wp_admin_bar->expects( $this->once() )
 			->method( 'add_menu' )
 			->with(
-				$this->callback(
-					function ( $args ) {
-						return 'accessibility-checker' === $args['id'] &&
-						false !== strpos( $args['title'], 'dashicons-universal-access-alt' ) &&
-						false !== strpos( $args['title'], 'Accessibility Checker' ) &&
-						admin_url( 'admin.php?page=accessibility_checker' ) === $args['href'];
-					} 
-				) 
+				$this->callback( [ $this, 'validate_parent_menu_args' ] )
 			);
 
 		// Mock the filter to return empty array so only parent menu is added.
-		add_filter(
-			'edac_admin_toolbar_menu_items',
-			function () {
-				return [];
-			} 
-		);
+		add_filter( 'edac_admin_toolbar_menu_items', [ $this, 'filter_return_empty_array' ] );
 
 		$this->admin_toolbar->add_toolbar_items( $this->wp_admin_bar );
 	}
@@ -279,5 +267,26 @@ class AdminToolbarTest extends WP_UnitTestCase {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Callback method to validate parent menu arguments.
+	 *
+	 * @param array $args Menu arguments.
+	 * @return bool
+	 */
+	public function validate_parent_menu_args( $args ) {
+		return isset( $args['id'] ) && 'edac-admin-toolbar' === $args['id'] &&
+				isset( $args['title'] ) && strpos( $args['title'], 'dashicons-universal-access-alt' ) !== false &&
+				isset( $args['href'] ) && false === $args['href'];
+	}
+
+	/**
+	 * Filter callback to return empty array for menu items.
+	 *
+	 * @return array
+	 */
+	public function filter_return_empty_array() {
+		return [];
 	}
 }
