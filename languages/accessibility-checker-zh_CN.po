@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
+"POT-Creation-Date: 2025-07-08T20:56:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,6 +18,7 @@ msgstr ""
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -46,6 +47,7 @@ msgstr "https://equalizedigital.com"
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:90
+#: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr "修复"
 
@@ -65,7 +67,7 @@ msgstr "升级到专业版以解锁此功能，将在新窗口中打开。"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
-#: admin/class-plugin-action-links.php:51
+#: admin/class-plugin-action-links.php:55
 msgid "Get Pro"
 msgstr "获取专业版"
 
@@ -142,6 +144,26 @@ msgstr "无障碍支持联系"
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "我们欢迎对我们的网站提出意见、问题和反馈。如果您正在使用辅助技术并在使用我们的网站时遇到困难，请发送电子邮件至[YOUR ACCESSIBILITY EMAIL ADDRESS]或致电[YOUR PHONE NUMBER]。我们将尽最大努力为您提供帮助并解决问题。"
 
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:46
+#, php-format
+msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
+msgstr "喜欢使用 Accessibility Checker 吗？%1$s请给我们一个 ★★★★★ 评分。%2$s我们非常感谢您的支持！"
+
+#: admin/class-admin-footer-text.php:47
+msgid "Please leave us a five star rating (opens in new window)"
+msgstr "请给我们一个五星评分（在新窗口中打开）"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:55
+#, php-format
+msgid "Want to do more with Accessibility Checker? %1$sUnlock Pro Features%2$s"
+msgstr "想要使用 Accessibility Checker 做更多事情吗？%1$s解锁专业版功能%2$s"
+
+#: admin/class-admin-footer-text.php:56
+msgid "Unlock Pro Features (opens in new window)"
+msgstr "解锁专业版功能（在新窗口中打开）"
+
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
 #, php-format
@@ -155,9 +177,9 @@ msgstr "我们在1.21.0版本中改进了统计计算。因此，下面数据中
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:212
-#: admin/class-ajax.php:577
-#: admin/class-ajax.php:715
-#: admin/class-ajax.php:795
+#: admin/class-ajax.php:606
+#: admin/class-ajax.php:744
+#: admin/class-ajax.php:824
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "权限被拒绝"
@@ -233,8 +255,8 @@ msgstr "升级为专业版"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:219
-#: admin/class-ajax.php:584
-#: admin/class-ajax.php:802
+#: admin/class-ajax.php:613
+#: admin/class-ajax.php:831
 msgid "The post ID was not set"
 msgstr "未设置帖子 ID"
 
@@ -307,46 +329,52 @@ msgstr "可能需要重新保存页面或进行全站扫描，才能在报告中
 msgid "Save"
 msgstr "节省"
 
-#: admin/class-ajax.php:428
+#: admin/class-ajax.php:430
 msgid "Affected Code"
 msgstr "受影响的代码"
 
+#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+#: admin/class-ajax.php:500
+#, php-format
+msgid "View %s landmark on website, opens a new window"
+msgstr "在网站上查看 %s 地标，将在新窗口中打开"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:493
+#: admin/class-ajax.php:522
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "在网站上查看问题 ID %d，打开一个新窗口"
 
-#: admin/class-ajax.php:494
+#: admin/class-ajax.php:523
 msgid "View on page"
 msgstr "在页面上查看"
 
-#: admin/class-ajax.php:513
+#: admin/class-ajax.php:542
 msgid "Fix: "
 msgstr "修复： "
 
-#: admin/class-ajax.php:514
+#: admin/class-ajax.php:543
 msgid "Fix"
 msgstr "修复"
 
-#: admin/class-ajax.php:537
+#: admin/class-ajax.php:566
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "您的用户账户没有权限忽略此问题。"
 
-#: admin/class-ajax.php:555
+#: admin/class-ajax.php:584
 msgid "No details to return"
 msgstr "没有返回的详细信息"
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:723
 msgid "No readability data to return"
 msgstr "无可读性数据返回"
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:774
+#: admin/class-ajax.php:780
+#: admin/class-ajax.php:803
 msgid "No ignore data to return"
 msgstr "没有要返回的忽略数据"
 
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:838
 msgid "The summary was not set"
 msgstr "未设置摘要"
 
@@ -362,38 +390,52 @@ msgstr "问题查询未返回结果"
 msgid "Object query returned no results"
 msgstr "对象查询未返回结果"
 
-#: admin/class-plugin-row-meta.php:49
-msgid "View Accessibility Checker Documentation (opens in new window)"
-msgstr "查看 Accessibility Checker 文档（在新窗口中打开）"
-
-#: admin/class-plugin-row-meta.php:50
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "文档"
-
-#: admin/class-plugin-row-meta.php:55
-msgid "Get support for Accessibility Checker (opens in new window)"
-msgstr "获取 Accessibility Checker 支持（在新窗口中打开）"
-
-#: admin/class-plugin-row-meta.php:56
-msgid "Support"
-msgstr "支持"
-
-#: admin/class-plugin-row-meta.php:61
-msgid "Rate Accessibility Checker plugin (opens in new window)"
-msgstr "为 Accessibility Checker 插件评分（在新窗口中打开）"
-
-#: admin/class-plugin-row-meta.php:62
-msgid "Rate plugin"
-msgstr "Rate plugin"
-
+#: admin/class-plugin-action-links.php:48
+#: includes/classes/class-admin-toolbar.php:94
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "设置"
 
-#: admin/class-plugin-action-links.php:56
+#: admin/class-plugin-action-links.php:60
 msgid "Get Accessibility Checker Pro, opens in new window"
 msgstr "获取 Accessibility Checker Pro，在新窗口中打开"
+
+#: admin/class-plugin-row-meta.php:53
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "查看 Accessibility Checker 文档（在新窗口中打开）"
+
+#: admin/class-plugin-row-meta.php:54
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "文档"
+
+#: admin/class-plugin-row-meta.php:59
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "获取 Accessibility Checker 支持（在新窗口中打开）"
+
+#: admin/class-plugin-row-meta.php:60
+msgid "Support"
+msgstr "支持"
+
+#: admin/class-plugin-row-meta.php:65
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "为 Accessibility Checker 插件评分（在新窗口中打开）"
+
+#: admin/class-plugin-row-meta.php:66
+msgid "Rate plugin"
+msgstr "评价插件"
+
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "升级到专业版"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "升级特惠进行中"
+
+#: admin/class-upgrade-promotion.php:93
+msgid "Unable to redirect to upgrade page."
+msgstr "无法重定向到升级页面。"
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -770,6 +812,16 @@ msgstr "阅读我们的%s"
 #: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "无障碍政策"
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "获取 Accessibility Checker Pro"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "获取 Accessibility Checker Pro（在新窗口中打开）"
 
 #: includes/classes/class-simplified-summary.php:73
 msgid "Simplified Summary"
@@ -1847,11 +1899,6 @@ msgstr "电子邮件支持"
 msgid "...and more"
 msgstr "...以及更多"
 
-#: partials/pro-callout.php:47
-#: partials/welcome-page.php:215
-msgid "Get Accessibility Checker Pro"
-msgstr "获取 Accessibility Checker Pro"
-
 #: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
@@ -2099,6 +2146,10 @@ msgid "Disable Page Styles"
 msgstr "禁用页面样式"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "An error occurred when loading the issues."
+msgstr "加载问题时发生错误。"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Show Code"
 msgstr "显示代码"
 
@@ -2151,6 +2202,30 @@ msgstr[1] "已忽略的问题"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
 msgstr "已检测到。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanner function not found."
+msgstr "未找到扫描功能。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanning..."
+msgstr "正在扫描..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "未发现违规，跳过保存。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Missing postId or nonce."
+msgstr "缺少 postId 或 nonce。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility scan error."
+msgstr "无障碍扫描错误。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error saving scan results."
+msgstr "保存扫描结果时出错。"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
