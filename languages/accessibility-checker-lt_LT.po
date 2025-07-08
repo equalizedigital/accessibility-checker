@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-01T15:48:13+00:00\n"
+"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -65,11 +65,12 @@ msgstr "Gaukite Pro versiją, kad atrakintumėte šią funkciją, atsidaro nauja
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
+#: admin/class-plugin-action-links.php:51
 msgid "Get Pro"
 msgstr "Gauti Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:352
+#: admin/class-ajax.php:354
 msgid "Opens in a new window."
 msgstr "Atsidaro naujame lange."
 
@@ -153,10 +154,10 @@ msgstr "Mes patobulinome statistikos skaičiavimus 1.21.0 versijoje. Dėl to kai
 #: admin/class-admin-notices.php:401
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:210
-#: admin/class-ajax.php:575
-#: admin/class-ajax.php:713
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:212
+#: admin/class-ajax.php:577
+#: admin/class-ajax.php:715
+#: admin/class-ajax.php:795
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "Prieiga uždrausta"
@@ -231,9 +232,9 @@ msgid "upgrade to pro"
 msgstr "atnaujinti į \"pro"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:217
-#: admin/class-ajax.php:582
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:219
+#: admin/class-ajax.php:584
+#: admin/class-ajax.php:802
 msgid "The post ID was not set"
 msgstr "Įrašo ID nebuvo nustatytas"
 
@@ -285,67 +286,67 @@ msgid_plural "%s Ignored Items"
 msgstr[0] "%s Ignoruojamas elementas"
 msgstr[1] "%s Ignoruojamų elementų"
 
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:189
 msgid "No summary to return"
 msgstr "Nėra santraukos grąžinimui"
 
-#: admin/class-ajax.php:231
+#: admin/class-ajax.php:233
 msgid "Invalid table name"
 msgstr "Neteisingas lentelės pavadinimas"
 
-#: admin/class-ajax.php:377
+#: admin/class-ajax.php:379
 msgid "These settings enable global fixes across your entire site."
 msgstr "Šie nustatymai įgalina globalius pataisymus visoje jūsų svetainėje."
 
-#: admin/class-ajax.php:378
+#: admin/class-ajax.php:380
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Kad pataisymai atsispindėtų ataskaitose, gali reikėti iš naujo išsaugoti puslapius arba atlikti pilną svetainės skenavimą."
 
-#: admin/class-ajax.php:406
+#: admin/class-ajax.php:408
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "Išsaugoti"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:428
 msgid "Affected Code"
 msgstr "Paveiktas kodas"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:491
+#: admin/class-ajax.php:493
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Peržiūrėti problemą ID %d svetainėje, atsidarys naujas langas"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:494
 msgid "View on page"
 msgstr "Peržiūrėti puslapyje"
 
-#: admin/class-ajax.php:511
+#: admin/class-ajax.php:513
 msgid "Fix: "
 msgstr "Pataisymas: "
 
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:514
 msgid "Fix"
 msgstr "Pataisyti"
 
-#: admin/class-ajax.php:535
+#: admin/class-ajax.php:537
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Jūsų naudotojo paskyra neturi leidimo ignoruoti šią problemą."
 
-#: admin/class-ajax.php:553
+#: admin/class-ajax.php:555
 msgid "No details to return"
 msgstr "Nėra detalių grąžinimui"
 
-#: admin/class-ajax.php:692
+#: admin/class-ajax.php:694
 msgid "No readability data to return"
 msgstr "Nėra skaitomumo duomenų grąžinimui"
 
-#: admin/class-ajax.php:749
-#: admin/class-ajax.php:772
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:774
 msgid "No ignore data to return"
 msgstr "Nėra ignoravimo duomenų grąžinimui"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:809
 msgid "The summary was not set"
 msgstr "Santrauka nebuvo nustatyta"
 
@@ -360,6 +361,15 @@ msgstr "Problemos užklausa negrąžino rezultatų"
 #: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "Objekto užklausa negrąžino rezultatų"
+
+#: admin/class-plugin-action-links.php:44
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Nustatymai"
+
+#: admin/class-plugin-action-links.php:56
+msgid "Get Accessibility Checker Pro, opens in new window"
+msgstr "Gaukite Accessibility Checker Pro, atsidaro naujame lange"
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -1179,10 +1189,6 @@ msgstr "Sveiki atvykę į Accessibility Checker"
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker nustatymai"
 
-#: includes/options-page.php:66
-msgid "Settings"
-msgstr "Nustatymai"
-
 #: includes/options-page.php:99
 msgid "General Settings"
 msgstr "Bendrieji nustatymai"
@@ -1351,390 +1357,390 @@ msgid "Image Missing Alternative Text"
 msgstr "Paveiksle trūksta alternatyvaus teksto"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
-#: includes/rules.php:28
+#: includes/rules.php:27
 #, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "Klaida \"Image Missing Alternative Text\" reiškia, kad jūsų paveikslėlyje apskritai nėra atributo alt (%1$s), esančio paveikslėlio žyma (%2$s). Norėdami ištaisyti klaidą \"Image Missing Alternative Text\", turite prie paveikslėlio pridėti žymą alt su atitinkamu tekstu, apibūdinančiu paveikslėlio paskirtį puslapyje. Jei paveikslėlis yra dekoratyvinis, atributas alt gali būti tuščias, tačiau HTML žyma %1$s vis tiek turi būti pateikta."
 
-#: includes/rules.php:35
+#: includes/rules.php:34
 msgid "Image Empty Alternative Text"
 msgstr "Paveikslo tuščias alternatyvus tekstas"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:42
+#: includes/rules.php:40
 #, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "Įspėjimas „Paveikslo tuščias alternatyvus tekstas“ pasirodo, jei turite paveikslą su alt atributu (%s), kuris yra tuščias. Alternatyvus tekstas informuoja žmones, kurie negali matyti, kas yra paveiksle, ir suteikia papildomą kontekstą įrašui ar puslapiui. Alternatyvus tekstas gali būti tuščias tik tuo atveju, jei paveikslas yra grynai dekoratyvinis, pavyzdžiui, rėmelis ar dekoratyvus piktograma. Norėdami ištaisyti įspėjimą „Paveikslo tuščias alternatyvus tekstas“, turite nustatyti, ar paveikslas yra dekoratyvinis, ar jis prideda kažką prasmingo puslapiui. Jei jis nėra dekoratyvinis, turite pridėti tinkamą alternatyvų tekstą, aprašantį paveikslo paskirtį. Jei paveikslas yra dekoratyvinis, tuomet alternatyvų tekstą paliktumėte tuščią ir „Ignoruotumėte“ įspėjimą."
 
-#: includes/rules.php:48
+#: includes/rules.php:46
 msgid "Low-quality Alternative Text"
 msgstr "Žemos kokybės alternatyvus tekstas"
 
-#: includes/rules.php:53
+#: includes/rules.php:50
 msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
 msgstr "Įspėjimas apie prastos kokybės alternatyvų tekstą rodomas, kai alternatyviame vaizdo tekste yra raktinių žodžių, kurie alternatyviame tekste nereikalingi (pvz., \"vaizdas\" arba \"grafika\"), failo plėtinys (pvz., .JPG), kuris gali apibūdinti dekoratyvinį vaizdą (pvz., \"tarpinė\" arba \"rodyklė\"). Norėdami ištaisyti šį įspėjimą, turėsite perrašyti visų vaizdų, dėl kurių buvo pažymėtas įspėjimas \"Mažos kokybės alternatyvus tekstas\", alternatyvų tekstą, užtikrindami, kad alternatyvus tekstas būtų tikslus, unikalus, tinkamas kontekstui ir jame nebūtų perteklinių ar nereikalingų deskriptorių. Jei paveikslėlis yra tik dekoratyvinis, teisinga palikti alternatyvų tekstą tuščią."
 
-#: includes/rules.php:57
+#: includes/rules.php:54
 msgid "Linked Image Missing Alternative Text"
 msgstr "Susietas paveikslėlis, kuriame trūksta alternatyvaus teksto"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:64
+#: includes/rules.php:60
 #, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Klaida Susietas paveikslėlis neturi alternatyvaus teksto rodoma, kai paveikslėlyje, kuris susietas su URL adresu, paveikslėlio žyma neturi atributo alt (%s). Susieti paveikslėliai turi turėti tikslų alternatyvųjį tekstą, kuriame būtų aprašyta, kur eina nuoroda, kad ekrano skaitytuvų naudotojai žinotų, kur nukreipia nuoroda. Norėdami išspręsti šią klaidą, turite prie paveikslėlio pridėti prasmingą alt tekstą. Alt tekstas turėtų apibūdinti nuorodos paskirtį, o ne tai, kaip atrodo paveikslėlis."
 
-#: includes/rules.php:70
+#: includes/rules.php:66
 msgid "Linked Image Empty Alternative Text"
 msgstr "Susietas paveikslėlis tuščias alternatyvus tekstas"
 
 #. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:77
+#: includes/rules.php:72
 #, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Susietos paveikslo tuščio alternatyvaus teksto klaida atsiranda, kai paveikslėlis, kuris yra susietas su URL, turi alt atributą (%s), kuris yra tuščias. Susieti paveikslėliai privalo turėti tikslų alternatyvų tekstą, aprašantį, kur veda nuoroda, kad ekrano skaitytuvų naudotojai žinotų, į ką nukreipia nuoroda. Norint ištaisyti šią klaidą, reikia pridėti prasmingą alt tekstą paveikslėliui. Jūsų alt tekstas turėtų aprašyti nuorodos paskirtį, o ne tai, kaip atrodo paveikslėlis."
 
-#: includes/rules.php:83
+#: includes/rules.php:78
 msgid "Duplicate Alternative Text"
 msgstr "Pasikartojantis alternatyvus tekstas"
 
-#: includes/rules.php:88
+#: includes/rules.php:82
 msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
 msgstr "Pasikartojančio alternatyvaus teksto įspėjimai atsiranda, kai paveikslėlio alternatyvus tekstas jūsų įraše ar puslapyje yra identiškas šalia esančiam ar gretimam tekstui, įskaitant paveikslėlio pavadinimą ar antraštę. Šis įspėjimas taip pat pasirodo, jei du paveikslėliai puslapyje turi tą patį alternatyvų tekstą. Norint išspręsti šį įspėjimą, reikės pakeisti vieno arba abiejų elementų, kurie sukėlė pasikartojančio alternatyvaus teksto įspėjimą, tekstą, užtikrinant, kad visi paveikslėliai turėtų unikalų alt tekstą ir kad nekartotumėte savo alt teksto paveikslėlių pavadinimuose ir antraštėse."
 
-#: includes/rules.php:92
+#: includes/rules.php:86
 msgid "Incorrect Heading Order"
 msgstr "Neteisingas antraščių eiliškumas"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
-#: includes/rules.php:99
+#: includes/rules.php:92
 #, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "Neteisingo antraščių eiliškumo klaida reiškia, kad jūsų antraščių struktūra praleido vieną lygį. Pavyzdžiui, jei jūsų puslapio struktūroje yra 3 lygio antraštė (%1$s) po 1 lygio antraštės (%2$s), bus pažymėta „neteisingo antraščių eiliškumo“ klaida, nes nėra %3$s žymos tarp H1 ir H3. Norint ištaisyti neteisingo antraščių eiliškumo klaidas, reikės arba pakeisti neteisingą antraštės lygį į teisingą antraštės lygį, arba pridėti turinio su teisingu antraštės lygiu tarp dviejų jau esančių lygių."
 
-#: includes/rules.php:110
+#: includes/rules.php:103
 msgid "Empty Paragraph Tag"
 msgstr "Tuščia pastraipos žyma"
 
-#: includes/rules.php:115
+#: includes/rules.php:107
 msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
 msgstr "Tuščios pastraipos žymos įspėjimas reiškia, kad yra pastraipos žyma, kuri neturi turinio. Ekrano skaitytuvai gali jas paskelbti arba jos gali sukelti painiavą naudotojams. Norint ištaisyti šį įspėjimą, pašalinkite tuščias pastraipas iš puslapio. Jei reikia pridėti tarpų tarp skyrių, tai turėtų būti daroma naudojant įtraukas, paraštės ar tarpiklio bloką."
 
-#: includes/rules.php:119
+#: includes/rules.php:111
 msgid "iframe Missing Title"
 msgstr "iframe trūksta pavadinimo"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
-#: includes/rules.php:126
+#: includes/rules.php:117
 #, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "Iframe trūkstamo pavadinimo klaida reiškia, kad vienas ar daugiau iframe elementų jūsų įraše ar puslapyje neturi prieinamo pavadinimo, aprašančio iframe turinį. Iframe pavadinimas yra atributas, kurį galima pridėti prie %1$s žymos, kad būtų aprašytas rėmelio turinys žmonėms, naudojantiems pagalbines technologijas. Norint ištaisyti trūkstamą iframe pavadinimą, reikės pridėti pavadinimo arba aria-label atributą prie %1$s žymos. Atributas turėtų tiksliai aprašyti iframe turinį."
 
-#: includes/rules.php:135
+#: includes/rules.php:126
 msgid "Missing Subheadings"
 msgstr "Trūksta poantraščių"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
-#: includes/rules.php:142
+#: includes/rules.php:132
 #, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "Įspėjimas apie trūkstamas antraštes reiškia, kad jūsų įraše arba puslapyje nėra jokių antraštės elementų (%1$s-%2$s), esančių įrašo arba puslapio pagrindiniame skyriuje, todėl ekrano skaitytuvų naudotojams gali būti ypač sunku naršyti po puslapio turinį. Norėdami pataisyti puslapį be antraščių, turėsite pridėti antraščių elementų. Kiekviename puslapyje turėtų būti bent viena %1$s žyma, kuri paprastai yra puslapio antraštė. Pridėkite papildomų paantraštinių antraščių, jei tai tinka jūsų turiniui. Jei nustatėte, kad antraštės puslapyje tikrai nereikalingos, galite “Ignoruoti” įspėjimą."
 
-#: includes/rules.php:150
+#: includes/rules.php:140
 msgid "Text Justified"
 msgstr "Pateisintas tekstas"
 
-#: includes/rules.php:155
+#: includes/rules.php:144
 msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
 msgstr "Accessibility Checker rodo įspėjimą apie tekstą su lygiuote per visą plotį, kai jūsų įraše ar puslapyje yra daugiau nei 200 simbolių teksto, suformatuoto su lygiuote per visą plotį (text-align:justify). Norėdami pašalinti šį įspėjimą, pašalinkite lygiuotės per visą plotį formatavimą iš nurodytų teksto elementų."
 
-#: includes/rules.php:159
+#: includes/rules.php:148
 msgid "Link Opens New Window or Tab"
 msgstr "Nuoroda atidaromas naujas langas arba skirtukas"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
-#: includes/rules.php:166
+#: includes/rules.php:154
 #, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "Įspėjimas \"Nuoroda atidaro naują langą arba skirtuką\" rodomas, kai jūsų svetainėje yra nuoroda, kuri nustatyta taip, kad spustelėjus ją būtų atidaryta naujame skirtuke arba lange. Geriausia praktika yra neatidarinėti naujų skirtukų ar langų su nuorodomis. Jei nuorodos atveria naujus skirtukus ar langus, turi būti vaizdinis ir garsinis įspėjimas, kad nuoroda atidaro naują langą ar skirtuką, kad naudotojai tikėtųsi tokio elgesio ir žinotų, kaip spustelėjus nuorodą grįžti atgal. Norėdami ištaisyti šį įspėjimą, pakeiskite nuorodą taip, kad ji neatsidarytų naujame skirtuke, arba užtikrinkite, kad nuorodos tekste būtų įrašyta \"atidaro naują langą\", tada \"ignoruokite\" įspėjimą. Norėdami automatiškai pridėti pranešimus prie visų savo svetainės nuorodų ir atmesti visus šiuos įspėjimus, įdiekite mūsų nemokamą %s įskiepį."
 
-#: includes/rules.php:167
+#: includes/rules.php:155
 msgid "Accessibility New Window Warnings"
 msgstr "Naujo lango prieinamumo įspėjimai"
 
-#: includes/rules.php:179
+#: includes/rules.php:167
 msgid "Image Map Missing Alternative Text"
 msgstr "Paveikslėlio žemėlapyje trūksta alternatyvaus teksto"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
-#: includes/rules.php:186
+#: includes/rules.php:173
 #, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "Vaizdų žemėlapio alternatyvaus teksto nebuvimo klaida reiškia, kad prie vieno iš %1$s elementų jūsų vaizdų žemėlapyje nepridėtas alternatyvus tekstas atribute %2$s. Norėdami ištaisyti šią klaidą, turėsite pridėti trūkstamą alternatyvųjį tekstą prie visų sričių žymų, kuriose nėra alternatyviojo teksto. Alt tekstas turi apibūdinti srityje esančios nuorodos funkciją, nebūtinai apibūdinti, kaip sritis atrodo."
 
-#: includes/rules.php:196
+#: includes/rules.php:183
 msgid "Tab Order Modified"
 msgstr "Pakeista skirtuko tvarka"
 
 #. translators: %s is <code>tabindex="1"</code>.
-#: includes/rules.php:203
+#: includes/rules.php:189
 #, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "Įspėjimas apie pakeistą kortelių tvarką atsiranda, kai loginis kortelių eiliškumas puslapyje buvo pakeistas pridedant atributą tabindex, kurio reikšmė didesnė nei 0, prie HTML elemento (pavyzdžiui, %s). Tai gali sukelti naršymo problemų vartotojams, naudojantiems tik klaviatūrą. Norėdami išspręsti įspėjimą dėl pakeistos kortelių tvarkos, turite peržiūrėti savo svetainės priekinę dalį tame puslapyje ar įraše, kuriame buvo pakeista kortelių tvarka, ir patikrinti, ar pakeitimas yra teisingas. Jei kortelių tvarkos pakeitimas nesukelia problemų, galite „Ignoruoti“ įspėjimą. Jei pakeista kortelių tvarka lemia, kad informacija pateikiama netinkama tvarka, turite pašalinti tabindex atributą iš pažymėto elemento."
 
-#: includes/rules.php:213
+#: includes/rules.php:199
 msgid "Empty Heading Tag"
 msgstr "Tuščia antraštės žymė"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
-#: includes/rules.php:220
+#: includes/rules.php:205
 #, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "Klaida \"Tuščia antraštės žymė\" reiškia, kad jūsų įraše ar puslapyje yra antraštės žymė, kuri neturi turinio. Kode ši klaida atrodytų taip: %s. Norėdami ištaisyti tuščią antraštę, turėsite pridėti turinio į antraštės žymę, kuri sukėlė klaidą \"Tuščia antraštės žymė\", arba pašalinti tuščią žymę, jei ji nėra reikalinga jūsų puslapyje."
 
-#: includes/rules.php:226
+#: includes/rules.php:211
 msgid "Empty Link"
 msgstr "Tuščia nuoroda"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
-#: includes/rules.php:233
+#: includes/rules.php:217
 #, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "Tuščios nuorodos klaida reiškia, kad viena iš tinklalapyje esančių nuorodų yra tuščia arba neturi teksto, aprašančio, kur nukreips nuoroda ją paspaudus. Tai dažnai pasitaiko nuorodose, kuriose naudojami tinklo šriftai, piktogramų šriftai ir SVG, arba kai nuoroda netyčia buvo sukurta turinio redaktoriuje. Norėdami ištaisyti tuščios nuorodos klaidą, turite rasti pažymėtą nuorodą ir pridėti prie jos aprašomojo teksto. Jums reikės arba: pridėti teksto turinį tuščiame %1$s elemente, arba, jei jūsų nuorodoje yra SVG ar tinklo šrifto piktograma, paslėpti tą elementą naudojant %2$s ir pridėti %3$s atributą prie %1$s žymos arba ekrano skaitytuvui skirtą tekstą. Pridėtas tekstas ar etiketė turėtų aprašyti, į kur nuoroda veda, ir nebūti dviprasmiška."
 
-#: includes/rules.php:241
+#: includes/rules.php:225
 msgid "Empty Button"
 msgstr "Tuščias mygtukas"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
-#: includes/rules.php:248
+#: includes/rules.php:231
 #, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "Tuščio mygtuko klaida reiškia, kad vienas iš tinklalapyje esančių mygtukų yra tuščias arba neturi teksto, aprašančio mygtuko funkciją. Arba, jei tai paveikslėlio mygtukas, paveikslėliui, esančiam mygtuke, trūksta alternatyvaus teksto. Norėdami ištaisyti tuščio mygtuko klaidą, turite rasti pažymėtą mygtuką ir pridėti prie jo aprašomojo teksto. Jums reikės arba: pridėti teksto turinį tuščiame %1$s elemente, pridėti value atributą %2$s elementui, kuriam jo trūksta, arba pridėti alternatyvų tekstą mygtuko paveikslėliui. Tekstas turėtų aprašyti, kam jūsų mygtukas naudojamas arba kokį veiksmą mygtukas inicijuoja."
 
-#: includes/rules.php:255
+#: includes/rules.php:238
 msgid "Image Long Alternative Text"
 msgstr "Ilgas alternatyvus paveikslėlio tekstas"
 
-#: includes/rules.php:260
+#: includes/rules.php:242
 msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
 msgstr "Įspėjimas apie ilgą alternatyvų paveikslėlio tekstą pasirodo, jei alternatyviame tekste yra daugiau nei 100 simbolių. Alternatyvus tekstas turėtų aprašyti paveikslėlį, bet glaustai, nebūdamas per daug žodžiauskas. Norėdami ištaisyti šį įspėjimą, turite sutrumpinti alt tekstą bet kuriam pažymėtam paveikslėliui iki 100 simbolių ar mažiau. Jei nusprendėte, kad jūsų alternatyvus tekstas yra geras toks, koks yra, tada „Ignoruokite“ įspėjimą."
 
-#: includes/rules.php:264
+#: includes/rules.php:246
 msgid "ARIA Hidden"
 msgstr "ARIA Paslėpta"
 
-#: includes/rules.php:269
+#: includes/rules.php:250
 msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
 msgstr "ARIA Paslėpta įspėjimas pasirodo, kai turinys jūsų įraše ar puslapyje buvo paslėptas naudojant aria-hidden=„true“ atributą. Kai šis atributas pridedamas prie HTML elemento, ekrano skaitytuvai jo neperskaitys vartotojams. Kartais yra teisinga, kad elementas būtų paslėptas nuo ekrano skaitytuvų (pavyzdžiui, dekoratyvinės piktogramos atveju), tačiau kitais atvejais tai nėra teisinga. Kai matote šį įspėjimą, turite nuspręsti, ar elementas turėtų būti paslėptas nuo aklų ar silpnaregių žmonių. Jei jis teisingai paslėptas, „Ignoruokite“ įspėjimą. Jei jis neteisingai paslėptas ir turėtų būti matomas, pašalinkite aria-hidden=„true“ atributą, kad išspręstumėte įspėjimą."
 
-#: includes/rules.php:276
+#: includes/rules.php:257
 msgid "Empty Table Header"
 msgstr "Tuščia lentelės antraštė"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
-#: includes/rules.php:283
+#: includes/rules.php:263
 #, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "Tuščios lentelės antraštės klaida reiškia, kad viena iš lentelės antraščių jūsų įraše ar puslapyje neturi jokio teksto. Tai reiškia, kad %1$s elementas yra, bet atrodo taip %2$s, be nieko tarp atidarančios ir uždarančios žymų. Norėdami ištaisyti tuščią lentelės antraštę, turite rasti teisingą HTML elementą (%1$s) ir pridėti tekstą, aprašantį eilutę ar stulpelį, kuriam jis taikomas."
 
-#: includes/rules.php:290
+#: includes/rules.php:270
 msgid "Link to MS Office File"
 msgstr "Nuoroda į MS Office failą"
 
-#: includes/rules.php:295
+#: includes/rules.php:274
 msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Įspėjimas apie nuorodą į MS Office failą reiškia, kad viena ar daugiau nuorodų jūsų puslapyje ar įraše nukreipia į failą su vienu iš šių plėtinių: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps arba .ppsx. Šis įspėjimas pasirodo, kai yra MS Office failas, kaip priminimas rankiniu būdu patikrinti jūsų Word dokumentus, PowerPoint pristatymus ir Excel skaičiuokles dėl prieinamumo ir patvirtinti, kad jie atitinka visas atitinkamas WCAG gaires. Norėdami išspręsti įspėjimą apie nuorodą į MS Office failą, turite: (1) užtikrinti, kad yra tiesioginė nuoroda dokumento peržiūrai ar atsisiuntimui, jei naudojate įskiepį jam įterpti puslapyje; (2) užtikrinti, kad nuoroda į dokumentą įspėja vartotojus, jog tai yra nuoroda į dokumentą, rodydama konkretų failo plėtinį nuorodos tekste; ir (3) patikrinti ir ištaisyti savo MS Office failą dėl prieinamumo klaidų. Kai nustatysite, kad jūsų failas yra visiškai prieinamas, galite saugiai „Ignoruoti“ įspėjimą."
 
-#: includes/rules.php:299
+#: includes/rules.php:278
 msgid "Link to PDF"
 msgstr "Nuoroda į PDF"
 
-#: includes/rules.php:304
+#: includes/rules.php:282
 msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Įspėjimas \"Nuoroda į PDF\" reiškia, kad viena ar kelios jūsų puslapyje ar pranešime esančios nuorodos nukreipia į PDF failą. Šis įspėjimas - tai priminimas, kad rankiniu būdu patikrintumėte, ar susietas PDF failas yra prieinamas, ir įsitikintumėte, kad jis atitinka visas atitinkamas WCAG gaires. Norėdami pašalinti įspėjimą \"Link to PDF\", turite: (1) užtikrinti, kad būtų pateikta tiesioginė nuoroda į dokumento peržiūrą arba atsisiuntimą, jei naudojate įskiepį dokumentui įkelti į puslapį; (2) užtikrinti, kad nuoroda į dokumentą įspėtų naudotojus, jog tai yra nuoroda į dokumentą, nuorodos inkare rodant konkretų failo plėtinį; ir (3) patikrinti ir ištaisyti dokumento prieinamumo klaidas. Nustatę, kad jūsų failas yra visiškai prieinamas, galite drąsiai “Ignoruoti” įspėjimą."
 
-#: includes/rules.php:308
+#: includes/rules.php:286
 msgid "Link to Non-HTML File"
 msgstr "Nuoroda į ne HTML failą"
 
-#: includes/rules.php:313
+#: includes/rules.php:290
 msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
 msgstr "Įspėjimas apie nuorodą į ne HTML dokumentą reiškia, kad viena ar kelios jūsų puslapyje ar pranešime esančios nuorodos nukreipia į failą su vienu iš šių plėtinių: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages arba .key. Šis įspėjimas - tai priminimas, kad rankiniu būdu patikrintumėte susieto dokumento prieinamumą ir įsitikintumėte, kad jis atitinka visas atitinkamas WCAG gaires. Norėdami pašalinti įspėjimą \"Nuoroda į ne HTML dokumentą\", turite: (1) užtikrinti, kad būtų pateikta tiesioginė nuoroda, kuria galima peržiūrėti arba atsisiųsti dokumentą, jei naudojate įskiepį jam įterpti į puslapį; (2) užtikrinti, kad nuoroda į dokumentą įspėtų naudotojus, jog tai yra nuoroda į dokumentą, nuorodos inkare rodant konkretų failo plėtinį; ir (3) patikrinti ir ištaisyti dokumento prieinamumo klaidas. Nustatę, kad jūsų failas yra visiškai prieinamas, galite drąsiai “Ignoruoti” įspėjimą."
 
-#: includes/rules.php:317
+#: includes/rules.php:294
 msgid "Long Description Invalid"
 msgstr "Ilgas aprašymas negalioja"
 
 #. translators: %s is <code>longdesc=""</code>.
-#: includes/rules.php:324
+#: includes/rules.php:300
 #, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "Klaida \"Ilgas aprašymas negalioja\" reiškia, kad paveikslėlio ilgo aprašymo atributas (%s) neturi tinkamo URL adreso, failo vardo arba failo plėtinio. Ji taip pat gali reikšti, kad ilgasis aprašymas nėra URL arba jis paliktas tuščias. Atributas longdesc nėra visiškai palaikomas HTML5, naršyklės ir visi ekrano skaitytuvai atveria naują langą. Dėl šio palaikymo trūkumo geriausia šios klaidos taisymo priemonė - visiškai pašalinti longdesc iš vaizdo žymės."
 
-#: includes/rules.php:330
+#: includes/rules.php:306
 msgid "Missing Form Label"
 msgstr "Trūksta formos etiketės"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
-#: includes/rules.php:337
+#: includes/rules.php:312
 #, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "Klaida \"Trūksta formos etiketės\" atsiranda, kai formoje yra %1$s (formos laukas), bet jis nesusijęs su elementu %2$s. Tai gali reikšti, kad etiketė yra, bet trūksta atributo %3$s, kuris ją susietų su atitinkamu lauku, arba etiketės iš viso nėra, o yra tik žyma %1$s. Norėdami ištaisyti trūkstamų formos etikečių klaidas, turėsite nustatyti, kaip buvo sukurtas laukas ir forma, o tada prie esamų etikečių, nesusijusių su lauku, pridėti lauko etiketes arba teisingą atributą %3$s."
 
-#: includes/rules.php:350
+#: includes/rules.php:325
 msgid "Ambiguous Anchor Text"
 msgstr "Dviprasmiškas prieraišo tekstas"
 
-#: includes/rules.php:355
+#: includes/rules.php:329
 msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
 msgstr "Dviprasmiško prieraišo teksto klaidos atsiranda, kai yra susietas tekstas, neturintis prasmės be jį supančio turinio. Įprasti tokių klaidų pavyzdžiai yra frazių, tokių kaip „spauskite čia“ arba „sužinokite daugiau,“ susiejimas. Norint išspręsti šią klaidą, pakeiskite nuorodos tekstą į mažiau bendrą, kad jis turėtų prasmę, kai yra girdimas atskirai."
 
-#: includes/rules.php:359
+#: includes/rules.php:333
 msgid "Underlined Text"
 msgstr "Pabrauktas tekstas"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
-#: includes/rules.php:366
+#: includes/rules.php:339
 #, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "Pabraukto teksto įspėjimas atsiranda, jei bet koks tekstas jūsų puslapyje yra apgaubtas HTML pabraukimo žyme (%1$s). Internetinėje aplinkoje pabrauktas tekstas paprastai naudojamas nurodyti susietą tekstą, ir nelaikoma gera praktika pabraukti tekstą tik išryškinimo tikslais. Norėdami ištaisyti pabrauktą tekstą, turėsite pašalinti %1$s elementą iš teksto arba CSS stilius, kurie jį pabraukia. Pabandykite naudoti kitokį stilizavimą, pavyzdžiui, kursyvą, spalvotą tekstą arba paryškinimą, kad pabrėžtumėte ar atskirtumėte žodžius ar frazes."
 
-#: includes/rules.php:372
+#: includes/rules.php:345
 msgid "Broken Skip or Anchor Link"
 msgstr "Sugedusi praleisti arba prieraišo nuoroda"
 
-#: includes/rules.php:377
+#: includes/rules.php:349
 msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
 msgstr "Inkarinė nuoroda, kartais vadinama šuolio nuoroda, yra nuoroda, kurią spustelėjus ne atidaromas naujas puslapis arba URL adresas, o peršokama į kitą to paties puslapio skyrių. Šios nuorodos nukreipia į elementą, kuris prasideda hashtag'u, o ne pilnu URL adresu. Pavyzdžiui, nuorodą #about galite perkelti į savo pagrindinio puslapio skyrių apie žmogų. Sugadintos praleidimo arba inkarinės nuorodos klaidos atsiranda, kai yra nuoroda, nukreipianti į kitą to paties puslapio skyrių, tačiau puslapyje nėra elemento, turinčio nurodomą id. Ši klaida taip pat bus rodoma, jei nuorodą pateikiate tik į #. Norėdami išspręsti šią klaidą, rankiniu būdu išbandykite nuorodą, kad įsitikintumėte, jog ji veikia, ir tada ją ištaisykite arba atitinkamai \"ignoruokite\" klaidą."
 
-#: includes/rules.php:381
+#: includes/rules.php:353
 msgid "Missing Table Header"
 msgstr "Trūksta lentelės antraštės"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
-#: includes/rules.php:388
+#: includes/rules.php:359
 #, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "Trūkstamos lentelės antraštės klaida reiškia, kad vienoje iš jūsų lentelių yra duomenų (informacija, esanti %1$s žymėje), kurie neturi atitinkamos antraštės (%2$s) žymės. Žiūrint į jūsų formos HTML, vienoje eilutėje bus daugiau %1$s elementų nei %2$s elementų lentelėje. Norėdami ištaisyti trūkstamą lentelės antraštę, turite rasti kodo dalį, kurioje yra mažiau %2$s elementų, nei turėtų būti pagal duomenų eilučių ar stulpelių skaičių, ir pridėti vieną ar daugiau papildomų %2$s elementų su tekstu, aprašančiu duomenis toje eilutėje ar stulpelyje."
 
-#: includes/rules.php:395
+#: includes/rules.php:366
 msgid "Duplicate Form Label"
 msgstr "Pasikartojanti formos etiketė"
 
-#: includes/rules.php:400
+#: includes/rules.php:370
 msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
 msgstr "Pasikartojančios formos etiketės klaidos atsiranda, kai su vienu formos lauku susieta daugiau nei viena etiketė. Jei yra per daug formos etikečių, ekrano skaitytuvas gali nepajėgti sėkmingai nuskaityti formos laukų, kad padėtų regos negalią turinčiam vartotojui naršyti ir užpildyti formą. Norėdami ištaisyti pasikartojančios formos etiketės klaidas, turėsite nustatyti, kaip buvo sukurtas laukas ir forma, o tada užtikrinti, kad su kiekvienu lauku būtų susieta tik viena etiketė."
 
-#: includes/rules.php:405
+#: includes/rules.php:375
 msgid "Text Too Small"
 msgstr "Per mažas tekstas"
 
-#: includes/rules.php:410
+#: includes/rules.php:379
 msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
 msgstr "Per mažo teksto įspėjimas atsiranda, kai jūsų svetainėje yra teksto, kurio dydis mažesnis nei 10 pikselių. Šis įspėjimas rodo, kad galbūt reikėtų persvarstyti šrifto dydį ir padidinti jį, kad tekstą būtų galima lengviau perskaityti be naršyklės mastelio keitimo. Norėdami ištaisyti per mažą tekstą, turite užtikrinti, kad visi teksto elementai jūsų svetainėje būtų bent 10 taškų dydžio."
 
-#: includes/rules.php:414
+#: includes/rules.php:383
 msgid "Possible Heading"
 msgstr "Galima antraštė"
 
-#: includes/rules.php:419
+#: includes/rules.php:387
 msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
 msgstr "Galimos antraštės įspėjimas atsiranda, kai puslapyje yra tekstas, kuris atrodo kaip antraštė, bet nėra užkoduotas tinkamomis antraštės žymėmis. Šis įspėjimas pasirodo, jei yra trumpų frazių ar teksto eilučių, trumpesnių nei 50 simbolių, kurios suformatuotos taip, kad gali būti naudojamos kaip antraštės (jos yra 20 pikselių ar didesnės, arba 16 pikselių ar didesnės ir paryškintos ir/arba pasvirusios). Norėdami ištaisyti Galimos antraštės įspėjimą, turėsite nustatyti, ar pažymėtas tekstas iš tikrųjų turėtų būti antraštė. Jei taip, turite pakeisti jį iš pastraipos į tinkamo lygio antraštę. Jei jis neturėtų būti antraštė, galite saugiai „Ignoruoti“ įspėjimą."
 
-#: includes/rules.php:423
+#: includes/rules.php:391
 msgid "Blinking or Scrolling Content"
 msgstr "Mirksintis ar slenkantis turinys"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
-#: includes/rules.php:430
+#: includes/rules.php:397
 #, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Mirksinčio ar slenkančio turinio klaidos atsiranda, kai jūsų svetainės elementams yra pritaikyta mirksėjimo ar slinkimo funkcija, naudojant CSS arba HTML. Konkrečiai, šią klaidą sukuria: %1$s arba %2$s HTML žymės arba CSS %3$s. Norėdami išspręsti šią klaidą, pašalinkite HTML žymes arba CSS, kurie verčia turinį mirksėti."
 
-#: includes/rules.php:439
+#: includes/rules.php:406
 msgid "Insufficient Color Contrast"
 msgstr "Nepakankamas spalvų kontrastas"
 
-#: includes/rules.php:444
+#: includes/rules.php:410
 msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
 msgstr "Nepakankamo spalvų kontrasto klaidos reiškia, kad aptikome vieną ar daugiau spalvų derinių jūsų įraše ar puslapyje, kurie neatitinka minimalaus spalvų kontrasto santykio 4,5:1. Priklausomai nuo to, kaip sukurta jūsų svetainė, gali būti „klaidingų teigiamų rezultatų“ šiai klaidai, nes kai kurios spalvos yra skirtinguose HTML sluoksniuose puslapyje. Norėdami ištaisyti nepakankamo spalvų kontrasto klaidą, turite užtikrinti, kad pažymėti elementai atitiktų minimalų reikalaujamą 4,5:1 santykį. Tam reikės rasti savo priekinio plano ir fono spalvų šešioliktainius kodus ir patikrinti juos spalvų kontrasto tikrintuve. Jei šie spalvų kodai turi 4,5:1 ar didesnį santykį, galite šią klaidą „Ignoruoti“. Jei spalvų kodai neturi bent 4,5:1 santykio, turėsite pakoreguoti savo spalvas."
 
-#: includes/rules.php:448
+#: includes/rules.php:414
 msgid "Missing Transcript"
 msgstr "Trūksta transkripcijos"
 
-#: includes/rules.php:453
+#: includes/rules.php:418
 msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
 msgstr "Trūkstamos transkripcijos klaida reiškia, kad jūsų svetainėje yra garso ar vaizdo įrašas, kuris neturi transkripcijos, arba yra transkripcija, bet ji nėra pažymėta kaip transkripcija, arba yra daugiau nei 25 simbolių atstumu nuo įterpto ar susieto turinio. Norėdami ištaisyti trūkstamos transkripcijos klaidą, turėsite sukurti transkripciją bet kuriam vaizdo ar garso įrašui, kuris pažymėtas kaip neturintis transkripcijos. Sukūrę transkripciją, galite arba įterpti transkripcijos turinį tiesiai į savo įrašą ar puslapį, arba pateikti nuorodą į transkripciją, jei ją įtraukiate kaip atsisiunčiamą dokumentą ar PDF failą. Turite aiškiai įtraukti žodį „transkripcija“ antraštėje prieš transkripciją puslapyje arba nuorodoje į jūsų failą, ir ji turi būti ne toliau kaip 25 simbolių atstumu nuo garso ar vaizdo įrašo įterpimo ar nuorodos."
 
-#: includes/rules.php:457
+#: includes/rules.php:422
 msgid "Broken ARIA Reference"
 msgstr "Sugedusi ARIA nuoroda"
 
-#: includes/rules.php:462
+#: includes/rules.php:426
 msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
 msgstr "Sugedusios ARIA nuorodos klaidos atsiranda, jei puslapyje ar įraše yra aria-labeledby arba aria-describedby elementas, bet jo nurodytas tikslas neegzistuoja. Tai reiškia, kad elementas, į kurį nurodo konkretus jūsų naudojamas ARIA atributas, arba neturi tinkamos etiketės ar aprašymo, arba jo nėra puslapyje. Norėdami ištaisyti sugedusią ARIA nuorodą, turėsite rasti pažymėtus ARIA elementus ir įsitikinti, kad jų nurodyti tikslai yra ir tinkamai pažymėti."
 
-#: includes/rules.php:467
+#: includes/rules.php:431
 msgid "Missing Language Declaration"
 msgstr "Trūksta kalbos deklaracijos"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
-#: includes/rules.php:474
+#: includes/rules.php:437
 #, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "Kalbos deklaracija yra HTML atributas, nurodantis numatytąją puslapio ar įrašo turinio kalbą. Kalbos deklaracijos turėtų būti užkoduotos jūsų svetainės temoje ir automatiškai atsirasti svetainės antraštėje. Trūkstamos kalbos deklaracijos klaida atsiranda, jei %1$s žymoje puslapyje nėra %2$s arba %3$s atributo, arba vienas iš šių atributų yra, bet yra tuščias. Norėdami ištaisyti trūkstamos kalbos deklaracijos klaidą, turėsite redaguoti savo temos failus, kad pridėtumėte trūkstamą kalbos atributą į HTML žymą pačioje svetainės antraštės viršuje. Jei naudojate temą, kuri gauna atnaujinimus, tuosite atlikti pakeitimą antrinėje temoje, kad užtikrintumėte, jog pataisymas nebus perrašytas, kai kitą kartą atnaujinsite savo temą."
 
-#: includes/rules.php:488
+#: includes/rules.php:451
 msgid "Image Animated GIF"
 msgstr "Animuotas GIF vaizdas"
 
-#: includes/rules.php:493
+#: includes/rules.php:455
 msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
 msgstr "Animuoto GIF vaizdo įspėjimai atsiranda, kai jūsų įraše ar puslapyje yra animuotas GIF. Šis įspėjimas yra priminimas rankiniu būdu peržiūrėti bet kokius animuotus GIF jūsų svetainėje dėl jų prieinamumo ir (arba) apsvarstyti animuotų GIF naudojimą, pakeičiant juos statiniais vaizdais ar vaizdo įrašais. Norėdami išspręsti šį įspėjimą, turite peržiūrėti visus esamus GIF, kad įsitikintumėte, jog jie atitinka visas taikomas prieinamumo gaires, ir tada arba „Ignoruoti“ įspėjimą, arba pašalinti GIF iš savo puslapio ar įrašo, jei jis nėra prieinamas."
 
-#: includes/rules.php:498
+#: includes/rules.php:460
 msgid "A Video is Present"
 msgstr "Yra vaizdo įrašas"
 
-#: includes/rules.php:503
+#: includes/rules.php:464
 msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
 msgstr "Kadangi vaizdo įrašuose dažnai pasitaiko prieinamumo problemų, kurių daugelį gali nustatyti tik žmogus, įspėjimas A Video is Present (Vaizdo įrašas yra) rodomas kiekvieną kartą, kai įraše ar puslapyje aptinkamas vaizdo įrašas, ir primena, kad reikia rankiniu būdu patikrinti vaizdo įrašo prieinamumą. Norėdami išspręsti šio įspėjimo problemą, turite apsilankyti savo svetainės priekinėje dalyje ir patvirtinti, kad įspėjime nurodytas vaizdo įrašas yra prieinamas. Visiškai išbandę vaizdo įrašą dėl prieinamumo, turite ištaisyti visas galimas klaidas ir tada galite “Ignoruoti” įspėjimą pažymėti kaip baigtą."
 
-#: includes/rules.php:507
+#: includes/rules.php:468
 msgid "A Slider is Present"
 msgstr "Yra slankiklis"
 
-#: includes/rules.php:512
+#: includes/rules.php:472
 msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
 msgstr "Kadangi šliaužikliuose dažnai būna prieinamumo problemų, kurių daugelį gali nustatyti tik žmogus, įspėjimas A Slider is Present (Šliaužiklis yra) rodomas kiekvieną kartą, kai įraše ar puslapyje aptinkamas šliaužiklis, kaip priminimas, kad reikia rankiniu būdu patikrinti šliaužiklio prieinamumą. Norėdami išspręsti šį įspėjimą, turite apsilankyti savo svetainės priekinėje dalyje ir patvirtinti, kad visi puslapyje esantys šliaužikliai yra prieinami. Visiškai išbandę savo šliaužiklius dėl prieinamumo, turite ištaisyti visas galimas klaidas ir tada galite “Ignoruoti” įspėjimą pažymėti kaip baigtą."
 
-#: includes/rules.php:516
+#: includes/rules.php:476
 msgid "Missing Title"
 msgstr "Trūksta pavadinimo"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
-#: includes/rules.php:523
+#: includes/rules.php:482
 #, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "Klaida \"Trūksta antraštės\" reiškia, kad jūsų įraše arba puslapyje nėra antraštės elemento (%1$s arba %2$s). Taip gali atsitikti, jei temoje nepavyksta pridėti antraštės žymos arba jei \"WordPress\" redagavimo ekrane įrašo ar puslapio antraštės laukas liko tuščias. Norėdami pataisyti puslapį be pavadinimų, turėsite pridėti pavadinimo elementų. Pirmiausia nustatykite, ar pavadinimo nėra dėl to, kad redaktoriaus ekrane palikote tuščią puslapio arba įrašo pavadinimo lauką. Jei taip, užpildykite jį. Jei antraštė užpildyta ir matoma galinėje versijoje, tuomet reikia redaguoti tinklalapio kodą, kad būtų įtraukta %1$s žyma arba %2$s metažyma."
 
-#: includes/rules.php:535
+#: includes/rules.php:494
 msgid "Improper Use of Link"
 msgstr "Netinkamas nuorodos naudojimas"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
-#: includes/rules.php:542
+#: includes/rules.php:500
 #, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "Netinkamo nuorodos naudojimo klaida atsiranda, kai turite nuorodas, kurioms trūksta %1$s atributo arba jos susietos tik su %2$s ir neturi %3$s. Nuorodos turėtų būti naudojamos nukreipti žmones į kitas jūsų svetainės dalis. Bet kokia kita funkcija, kuri inicijuoja veiksmą, turėtų būti mygtukas. Norėdami išspręsti šią klaidą, turite perkodruoti nuorodą naudodami %4$s žymę (pageidautina) arba pridėti %5$s prie esamos %6$s žymės. Jei elementas yra perjungimo mygtukas (pvz., akordeono tipo), reikalingi papildomi ARIA atributai."
 
-#: includes/rules.php:553
+#: includes/rules.php:511
 msgid "Zooming and Scaling Disabled"
 msgstr "Išjungtas mastelio keitimas ir priartinimas"
 
-#: includes/rules.php:558
+#: includes/rules.php:515
 msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
 msgstr "Priartinimas išjungiamas naudojant peržiūros metažymą, kurioje yra `user-scalable=no` arba `maximum-scale` reikšmė mažesnė nei 2. Tai apriboja silpnos regos naudotojus, kurie nori padidinti teksto dydį, priartinti puslapį arba naudoja didinimo priemonę."
 
@@ -1821,12 +1827,12 @@ msgstr "Pagalba el. paštu"
 msgid "...and more"
 msgstr "...ir daugiau"
 
-#: partials/pro-callout.php:45
+#: partials/pro-callout.php:47
 #: partials/welcome-page.php:215
 msgid "Get Accessibility Checker Pro"
 msgstr "Gauti Accessibility Checker Pro"
 
-#: partials/pro-callout.php:55
+#: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
 msgstr "Arba aktyvuokite savo licencijos raktą čia."
