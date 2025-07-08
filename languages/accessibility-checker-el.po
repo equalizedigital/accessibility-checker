@@ -18,6 +18,7 @@ msgstr ""
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -46,6 +47,7 @@ msgstr "https://equalizedigital.com"
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:90
+#: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr "Διορθώσεις"
 
@@ -362,7 +364,14 @@ msgstr "Το ερώτημα για το ζήτημα δεν επέστρεψε �
 msgid "Object query returned no results"
 msgstr "Το ερώτημα για το αντικείμενο δεν επέστρεψε αποτελέσματα"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Αναβαθμίστε σε pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Προβολή Τεκμηρίωσης του Accessibility Checker (ανοίγει σε νέο παράθυρο)"
 
@@ -770,6 +779,19 @@ msgstr "Διαβάστε την %s"
 #: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "Πολιτική προσβασιμότητας"
+
+#: includes/classes/class-admin-toolbar.php:94
+#: includes/options-page.php:66
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "Αποκτήστε το Accessibility Checker Pro"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "Αποκτήστε το Accessibility Checker Pro (ανοίγει σε νέο παράθυρο)"
 
 #: includes/classes/class-simplified-summary.php:73
 msgid "Simplified Summary"
@@ -1849,8 +1871,6 @@ msgstr "...και πολλά άλλα"
 
 #: partials/pro-callout.php:47
 #: partials/welcome-page.php:215
-msgid "Get Accessibility Checker Pro"
-msgstr "Αποκτήστε το Accessibility Checker Pro"
 
 #: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
