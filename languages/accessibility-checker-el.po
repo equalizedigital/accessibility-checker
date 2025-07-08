@@ -362,7 +362,31 @@ msgstr "Το ερώτημα για το ζήτημα δεν επέστρεψε �
 msgid "Object query returned no results"
 msgstr "Το ερώτημα για το αντικείμενο δεν επέστρεψε αποτελέσματα"
 
-#: admin/class-plugin-action-links.php:44
+#: admin/class-plugin-row-meta.php:49
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Προβολή Τεκμηρίωσης του Accessibility Checker (ανοίγει σε νέο παράθυρο)"
+
+#: admin/class-plugin-row-meta.php:50
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Τεκμηρίωση"
+
+#: admin/class-plugin-row-meta.php:55
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Λάβετε υποστήριξη για το Accessibility Checker (ανοίγει σε νέο παράθυρο)"
+
+#: admin/class-plugin-row-meta.php:56
+msgid "Support"
+msgstr "Υποστήριξη"
+
+#: admin/class-plugin-row-meta.php:61
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Αξιολογήστε το πρόσθετο Accessibility Checker (ανοίγει σε νέο παράθυρο)"
+
+#: admin/class-plugin-row-meta.php:62
+msgid "Rate plugin"
+msgstr "Rate plugin"
+
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "Ρυθμίσεις"
@@ -574,10 +598,6 @@ msgstr "Ιστολόγιο"
 #: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "Τεκμηρίωση (ανοίγει σε νέο παράθυρο)"
-
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "Τεκμηρίωση"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
