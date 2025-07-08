@@ -43,9 +43,9 @@ class Update_Database {
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Prepare above, Safe variable used for table name, caching not required for one time operation.
 		if ( EDAC_DB_VERSION !== $db_version || $wpdb->get_var( $query ) !== $table_name ) {
 
-			// If going from db version of below 1.0.3 then drop the UNIQUE index on `id` column, it
+			// If going from db version of below 1.0.4 then drop the UNIQUE index on `id` column, it
 			// is replaced by a PRIMARY KEY that has a PRIMARY index that constrains uniqueness.
-			if ( version_compare( $db_version, '1.0.3', '<' ) ) {
+			if ( version_compare( $db_version, '1.0.4', '<' ) ) {
 				// phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery.SchemaChange -- Swapping from UNIQUE to PRIMARY indexing.
 				$wpdb->query( "ALTER TABLE $table_name DROP INDEX id" );
 			}
