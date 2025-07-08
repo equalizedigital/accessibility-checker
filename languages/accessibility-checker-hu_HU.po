@@ -362,7 +362,14 @@ msgstr "A probléma lekérdezése nem adott eredményt"
 msgid "Object query returned no results"
 msgstr "Az objektum lekérdezése nem adott eredményt"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Váltás prémium verzióra"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Accessibility Checker dokumentáció megtekintése (új ablakban nyílik meg)"
 
