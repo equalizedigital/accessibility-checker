@@ -362,7 +362,14 @@ msgstr "문제 쿼리 결과 없음"
 msgid "Object query returned no results"
 msgstr "객체 쿼리 결과 없음"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "프로로 업그레이드하기"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Accessibility Checker 문서 보기 (새 창에서 열림)"
 
