@@ -111,7 +111,7 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	 */
 	public function test_add_menu_item_checks_user_capability() {
 		// Create a user without manage_options capability.
-		$user_id = $this->factory->user->create( [ 'role' => 'subscriber' ] );
+		$user_id = $this->factory()->user->create( [ 'role' => 'subscriber' ] );
 		wp_set_current_user( $user_id );
 		
 		// Mock the global submenu to check if anything was added.
@@ -134,7 +134,7 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	 */
 	public function test_add_menu_item_adds_menu_for_admin_user() {
 		// Create an admin user.
-		$user_id = $this->factory->user->create( [ 'role' => 'administrator' ] );
+		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $user_id );
 		
 		// Ensure pro version is not active (no constants defined).
@@ -181,18 +181,59 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	 */
 	public function test_menu_label_changes_with_sale_status() {
 		// Create an admin user.
-		$user_id = $this->factory->user->create( [ 'role' => 'administrator' ] );
+		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $user_id );
+		
+		global $submenu;
+		$original_submenu = $submenu;
 		
 		// Test normal state (no sale).
 		add_filter( 'edac_is_sale_time', '__return_false' );
+		$submenu = [];
+		
+		$this->upgrade_promotion->add_menu_item();
+		
+		// Check that the normal menu label is used.
+		$this->assertNotEmpty( $submenu, 'No submenu was added for normal state' );
+		$this->assertArrayHasKey( 'accessibility_checker', $submenu, 'accessibility_checker submenu not found' );
+		
+		$menu_items   = $submenu['accessibility_checker'];
+		$upgrade_item = null;
+		foreach ( $menu_items as $item ) {
+			if ( isset( $item[2] ) && 'accessibility_checker_upgrade' === $item[2] ) {
+				$upgrade_item = $item;
+				break;
+			}
+		}
+		
+		$this->assertNotNull( $upgrade_item, 'Upgrade menu item not found in normal state' );
+		$this->assertEquals( 'Upgrade to Pro', $upgrade_item[0], 'Normal state menu label is incorrect' );
 		
 		// Test sale state.
+		remove_filter( 'edac_is_sale_time', '__return_false' );
 		add_filter( 'edac_is_sale_time', '__return_true' );
+		$submenu = [];
 		
-		// The actual menu title testing would require more complex mocking,
-		// but we've tested the is_sale_time logic which drives the menu title.
-		$this->assertTrue( true, 'Menu label logic is driven by tested sale time filter' );
+		$this->upgrade_promotion->add_menu_item();
+		
+		// Check that the sale menu label is used.
+		$this->assertNotEmpty( $submenu, 'No submenu was added for sale state' );
+		$this->assertArrayHasKey( 'accessibility_checker', $submenu, 'accessibility_checker submenu not found in sale state' );
+		
+		$menu_items   = $submenu['accessibility_checker'];
+		$upgrade_item = null;
+		foreach ( $menu_items as $item ) {
+			if ( isset( $item[2] ) && 'accessibility_checker_upgrade' === $item[2] ) {
+				$upgrade_item = $item;
+				break;
+			}
+		}
+		
+		$this->assertNotNull( $upgrade_item, 'Upgrade menu item not found in sale state' );
+		$this->assertEquals( 'Upgrade Sale Now', $upgrade_item[0], 'Sale state menu label is incorrect' );
+		
+		// Restore original submenu.
+		$submenu = $original_submenu;
 	}
 
 	/**
