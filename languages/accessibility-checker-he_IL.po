@@ -362,7 +362,14 @@ msgstr "שאילתת הבעיה לא החזירה תוצאות"
 msgid "Object query returned no results"
 msgstr "שאילתת האובייקט לא החזירה תוצאות"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "שדרג לפרו"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "צפה בתיעוד של Accessibility Checker (נפתח בחלון חדש)"
 
