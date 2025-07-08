@@ -23,6 +23,7 @@ class Upgrade_Promotion {
 	 */
 	public function init(): void {
 		add_action( 'admin_menu', [ $this, 'add_menu_item' ], 999 );
+		add_action( 'admin_head', [ $this, 'add_menu_styling' ] );
 	}
 
 	/**
@@ -57,9 +58,6 @@ class Upgrade_Promotion {
 			'accessibility_checker_upgrade',
 			[ $this, 'handle_redirect' ]
 		);
-
-		// Add styling to make the upgrade item stand out.
-		add_action( 'admin_head', [ $this, 'add_menu_styling' ] );
 	}
 
 	/**
@@ -91,6 +89,15 @@ class Upgrade_Promotion {
 		// Only add styling on accessibility checker admin pages.
 		$screen = get_current_screen();
 		if ( ! $screen || strpos( $screen->id, 'accessibility_checker' ) === false ) {
+			return;
+		}
+
+		// Only add styling if user can see the menu and pro is not active.
+		if ( ! current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ) ) {
+			return;
+		}
+
+		if ( $this->is_pro_active() ) {
 			return;
 		}
 
