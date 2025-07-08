@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
+"POT-Creation-Date: 2025-07-08T20:56:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,6 +18,7 @@ msgstr ""
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -46,6 +47,7 @@ msgstr "https://equalizedigital.com"
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:90
+#: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr "Javítások"
 
@@ -65,7 +67,7 @@ msgstr "Váltson Pro verzióra a funkció feloldásához, új ablakban nyílik m
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
-#: admin/class-plugin-action-links.php:51
+#: admin/class-plugin-action-links.php:55
 msgid "Get Pro"
 msgstr "Pro verzió beszerzése"
 
@@ -142,6 +144,26 @@ msgstr "Akadálymentességi támogatás elérhetősége"
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "Szívesen fogadjuk a megjegyzéseket, kérdéseket és visszajelzéseket weboldalunkkal kapcsolatban. Ha támogató technológiákat használ, és nehézségei vannak weboldalunk használatával, kérjük, küldjön e-mailt a [YOUR ACCESSIBILITY EMAIL ADDRESS] címre, vagy hívjon minket a [YOUR PHONE NUMBER] telefonszámon. Mindent megteszünk, hogy segítsünk és megoldjuk a problémákat."
 
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:46
+#, php-format
+msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
+msgstr "Tetszik az Accessibility Checker? %1$sKérjük, adjon nekünk ★★★★★ értékelést.%2$s Nagyra értékeljük a támogatását!"
+
+#: admin/class-admin-footer-text.php:47
+msgid "Please leave us a five star rating (opens in new window)"
+msgstr "Kérjük, adjon nekünk ötcsillagos értékelést (új ablakban nyílik meg)"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:55
+#, php-format
+msgid "Want to do more with Accessibility Checker? %1$sUnlock Pro Features%2$s"
+msgstr "Többet szeretne tenni az Accessibility Checkerrel? %1$sPro funkciók feloldása%2$s"
+
+#: admin/class-admin-footer-text.php:56
+msgid "Unlock Pro Features (opens in new window)"
+msgstr "Pro funkciók feloldása (új ablakban nyílik meg)"
+
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
 #, php-format
@@ -155,9 +177,9 @@ msgstr "Az 1.21.0-s verzióban javítottuk a statisztikai számítások pontoss�
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:212
-#: admin/class-ajax.php:577
-#: admin/class-ajax.php:715
-#: admin/class-ajax.php:795
+#: admin/class-ajax.php:606
+#: admin/class-ajax.php:744
+#: admin/class-ajax.php:824
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "Hozzáférés megtagadva"
@@ -233,8 +255,8 @@ msgstr "frissítés pro verzióra"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:219
-#: admin/class-ajax.php:584
-#: admin/class-ajax.php:802
+#: admin/class-ajax.php:613
+#: admin/class-ajax.php:831
 msgid "The post ID was not set"
 msgstr "A bejegyzés azonosítója nem volt beállítva"
 
@@ -307,46 +329,52 @@ msgstr "Előfordulhat, hogy az oldalakat újra kell menteni, vagy teljes webhely
 msgid "Save"
 msgstr "Mentés"
 
-#: admin/class-ajax.php:428
+#: admin/class-ajax.php:430
 msgid "Affected Code"
 msgstr "Érintett kód"
 
+#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+#: admin/class-ajax.php:500
+#, php-format
+msgid "View %s landmark on website, opens a new window"
+msgstr "%s jelölő megtekintése a weboldalon, új ablakban nyílik meg"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:493
+#: admin/class-ajax.php:522
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "%d Azonosítójú probléma megtekintése a weboldalon, új ablakban nyílik meg"
 
-#: admin/class-ajax.php:494
+#: admin/class-ajax.php:523
 msgid "View on page"
 msgstr "Megtekintés az oldalon"
 
-#: admin/class-ajax.php:513
+#: admin/class-ajax.php:542
 msgid "Fix: "
 msgstr "Javítás: "
 
-#: admin/class-ajax.php:514
+#: admin/class-ajax.php:543
 msgid "Fix"
 msgstr "Javítás"
 
-#: admin/class-ajax.php:537
+#: admin/class-ajax.php:566
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "A felhasználói fiókjának nincs jogosultsága ennek a problémának a figyelmen kívül hagyására."
 
-#: admin/class-ajax.php:555
+#: admin/class-ajax.php:584
 msgid "No details to return"
 msgstr "Nincsenek visszaadható részletek"
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:723
 msgid "No readability data to return"
 msgstr "Nincsenek visszaadható olvashatósági adatok"
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:774
+#: admin/class-ajax.php:780
+#: admin/class-ajax.php:803
 msgid "No ignore data to return"
 msgstr "Nincsenek visszaadható figyelmen kívül hagyási adatok"
 
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:838
 msgid "The summary was not set"
 msgstr "Az összefoglaló nem volt beállítva"
 
@@ -362,38 +390,52 @@ msgstr "A probléma lekérdezése nem adott eredményt"
 msgid "Object query returned no results"
 msgstr "Az objektum lekérdezése nem adott eredményt"
 
-#: admin/class-plugin-row-meta.php:49
-msgid "View Accessibility Checker Documentation (opens in new window)"
-msgstr "Accessibility Checker dokumentáció megtekintése (új ablakban nyílik meg)"
-
-#: admin/class-plugin-row-meta.php:50
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "Dokumentáció"
-
-#: admin/class-plugin-row-meta.php:55
-msgid "Get support for Accessibility Checker (opens in new window)"
-msgstr "Segítség kérése az Accessibility Checkerhez (új ablakban nyílik meg)"
-
-#: admin/class-plugin-row-meta.php:56
-msgid "Support"
-msgstr "Támogatás"
-
-#: admin/class-plugin-row-meta.php:61
-msgid "Rate Accessibility Checker plugin (opens in new window)"
-msgstr "Értékelje az Accessibility Checker bővítményt (új ablakban nyílik meg)"
-
-#: admin/class-plugin-row-meta.php:62
-msgid "Rate plugin"
-msgstr "Rate plugin"
-
+#: admin/class-plugin-action-links.php:48
+#: includes/classes/class-admin-toolbar.php:94
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "Beállítások"
 
-#: admin/class-plugin-action-links.php:56
+#: admin/class-plugin-action-links.php:60
 msgid "Get Accessibility Checker Pro, opens in new window"
 msgstr "Szerezze be az Accessibility Checker Pro-t, új ablakban nyílik meg"
+
+#: admin/class-plugin-row-meta.php:53
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Accessibility Checker dokumentáció megtekintése (új ablakban nyílik meg)"
+
+#: admin/class-plugin-row-meta.php:54
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Dokumentáció"
+
+#: admin/class-plugin-row-meta.php:59
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Segítség kérése az Accessibility Checkerhez (új ablakban nyílik meg)"
+
+#: admin/class-plugin-row-meta.php:60
+msgid "Support"
+msgstr "Támogatás"
+
+#: admin/class-plugin-row-meta.php:65
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Értékelje az Accessibility Checker bővítményt (új ablakban nyílik meg)"
+
+#: admin/class-plugin-row-meta.php:66
+msgid "Rate plugin"
+msgstr "Bővítmény értékelése"
+
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Váltás prémium verzióra"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Akciós frissítés most"
+
+#: admin/class-upgrade-promotion.php:93
+msgid "Unable to redirect to upgrade page."
+msgstr "Nem sikerült átirányítani a frissítési oldalra."
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -770,6 +812,16 @@ msgstr "Olvassa el %s-unkat"
 #: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "Akadálymentességi irányelvek"
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "Szerezze be az Accessibility Checker Pro-t"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "Szerezze be az Accessibility Checker Pro-t (új ablakban nyílik meg)"
 
 #: includes/classes/class-simplified-summary.php:73
 msgid "Simplified Summary"
@@ -1847,11 +1899,6 @@ msgstr "E-mailes támogatás"
 msgid "...and more"
 msgstr "...és még több"
 
-#: partials/pro-callout.php:47
-#: partials/welcome-page.php:215
-msgid "Get Accessibility Checker Pro"
-msgstr "Szerezze be az Accessibility Checker Pro-t"
-
 #: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
@@ -2099,6 +2146,10 @@ msgid "Disable Page Styles"
 msgstr "Oldal stílusainak kikapcsolása"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "An error occurred when loading the issues."
+msgstr "Hiba történt a problémák betöltésekor."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Show Code"
 msgstr "Kód megjelenítése"
 
@@ -2151,6 +2202,30 @@ msgstr[1] "figyelmen kívül hagyott probléma"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
 msgstr "észlelve."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanner function not found."
+msgstr "A vizsgálati funkció nem található."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanning..."
+msgstr "Vizsgálat..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "Nem találtunk hibákat, mentés kihagyva."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Missing postId or nonce."
+msgstr "Hiányzó postId vagy nonce."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility scan error."
+msgstr "Akadálymentességi vizsgálati hiba."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error saving scan results."
+msgstr "Hiba történt a vizsgálati eredmények mentésekor."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
