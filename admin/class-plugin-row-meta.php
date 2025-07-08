@@ -9,11 +9,15 @@ namespace EDAC\Admin;
 
 /**
  * Plugin Row Meta handling class.
+ *
+ * @since 1.27.0
  */
 class Plugin_Row_Meta {
 
 	/**
 	 * Initialize hooks.
+	 *
+	 * @since 1.27.0
 	 *
 	 * @return void
 	 */
