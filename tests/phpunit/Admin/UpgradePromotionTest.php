@@ -63,7 +63,10 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		
 		// Check that the action was added and get the priority.
 		$priority = has_action( 'admin_menu', [ $this->upgrade_promotion, 'add_menu_item' ] );
+		
+		// has_action returns false if not found, or the priority (integer) if found.
 		$this->assertNotFalse( $priority, 'admin_menu action was not added' );
+		$this->assertIsInt( $priority, 'Priority should be an integer' );
 		
 		// Check priority is 999.
 		$this->assertEquals(
