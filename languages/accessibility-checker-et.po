@@ -362,7 +362,14 @@ msgstr "Probleemi päring ei andnud tulemusi"
 msgid "Object query returned no results"
 msgstr "Objekti päring ei andnud tulemusi"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Täienda proversiooniks"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Vaata Accessibility Checkeri dokumentatsiooni (avaneb uues aknas)"
 
