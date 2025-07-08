@@ -331,6 +331,7 @@ scan().then( ( results ) => {
 
 // Helper to process a violation and return the formatted object
 function processViolation( violation, item ) {
+	// Note that this is an array, generally with one item, but can be more.
 	const selector = violation.node.selector;
 	const landmark = getLandmarkForSelector( selector );
 	const ancestry = violation.node.ancestry || [];
