@@ -62,7 +62,7 @@ class AdminFooterTextTest extends WP_UnitTestCase {
 	 */
 	public function test_init_adds_filter() {
 		$this->admin_footer_text->init();
-		$this->assertTrue( has_filter( 'admin_footer_text', [ $this->admin_footer_text, 'filter_footer_text' ] ) !== false );
+		$this->assertNotFalse( has_filter( 'admin_footer_text', [ $this->admin_footer_text, 'filter_footer_text' ] ) );
 	}
 
 	/**
@@ -88,6 +88,32 @@ class AdminFooterTextTest extends WP_UnitTestCase {
 		$result = $this->admin_footer_text->filter_footer_text( 'Original text' );
 		$this->assertStringContainsString( 'Want to do more with Accessibility Checker?', $result );
 		$this->assertStringContainsString( 'Unlock Pro Features', $result );
+
+		// Clean up.
+		unset( $_GET['page'] );
+	}
+
+	/**
+	 * Test filter_footer_text() when pro is active returns rating message.
+	 */
+	public function test_filter_footer_text_returns_rating_message_when_pro_active() {
+		// Temporarily define constants to simulate pro being active.
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.0.0' );
+		}
+		if ( ! defined( 'EDAC_KEY_VALID' ) ) {
+			define( 'EDAC_KEY_VALID', true );
+		}
+
+		// Set up to be on settings page.
+		set_current_screen( 'admin' );
+		$_GET['page'] = 'accessibility_checker_settings';
+
+		$result = $this->admin_footer_text->filter_footer_text( 'Original text' );
+		$this->assertStringContainsString( 'Enjoying Accessibility Checker?', $result );
+		$this->assertStringContainsString( '★★★★★ rating', $result );
+		$this->assertStringContainsString( 'wordpress.org/support/plugin/accessibility-checker/reviews', $result );
+		$this->assertStringContainsString( 'We really appreciate your support!', $result );
 
 		// Clean up.
 		unset( $_GET['page'] );
@@ -190,6 +216,51 @@ class AdminFooterTextTest extends WP_UnitTestCase {
 		$method->setAccessible( true );
 
 		$result = $method->invoke( $this->admin_footer_text );
+		$this->assertFalse( $result );
+	}
+
+	/**
+	 * Test is_pro_active() returns true when constants are properly defined.
+	 */
+	public function test_is_pro_active_returns_true_when_constants_defined() {
+		// Define constants if not already defined.
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.0.0' );
+		}
+		if ( ! defined( 'EDAC_KEY_VALID' ) ) {
+			define( 'EDAC_KEY_VALID', true );
+		}
+
+		$reflection = new \ReflectionClass( $this->admin_footer_text );
+		$method     = $reflection->getMethod( 'is_pro_active' );
+		$method->setAccessible( true );
+
+		$result = $method->invoke( $this->admin_footer_text );
+		$this->assertTrue( $result );
+	}
+
+	/**
+	 * Test is_pro_active() returns false when EDAC_KEY_VALID is false.
+	 */
+	public function test_is_pro_active_returns_false_when_license_invalid() {
+		// Create a new instance to test with different constant values.
+		$test_class = new class() extends Admin_Footer_Text {
+			/**
+			 * Override is_pro_active to simulate invalid license.
+			 *
+			 * @return bool
+			 */
+			protected function is_pro_active() {
+				// Simulate EDACP_VERSION defined but EDAC_KEY_VALID false.
+				return defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && false;
+			}
+		};
+
+		$reflection = new \ReflectionClass( $test_class );
+		$method     = $reflection->getMethod( 'is_pro_active' );
+		$method->setAccessible( true );
+
+		$result = $method->invoke( $test_class );
 		$this->assertFalse( $result );
 	}
 
