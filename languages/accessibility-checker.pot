@@ -9,11 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2025-07-08T04:13:04+00:00\n"
-=======
 "POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
->>>>>>> develop
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -1873,14 +1869,11 @@ msgstr ""
 msgid "...and more"
 msgstr ""
 
-<<<<<<< HEAD
-=======
 #: partials/pro-callout.php:47
 #: partials/welcome-page.php:215
 msgid "Get Accessibility Checker Pro"
 msgstr ""
 
->>>>>>> develop
 #: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
