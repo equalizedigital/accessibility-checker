@@ -156,7 +156,7 @@ class Upgrade_Promotion {
 	 * @return bool
 	 */
 	private function is_pro_active(): bool {
-		return defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID;
+		return defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && (bool) EDAC_KEY_VALID;
 	}
 
 	/**
