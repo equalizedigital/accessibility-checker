@@ -89,7 +89,7 @@ return [
 		],
 		'ruleset'   => 'js',
 		'wcag'      => '1.1.1',
-		'severity'  => 1, // Critical.
+		'severity'  => 2, // high
 		'affected_disabilities' => [
 			'Blind',
 			'Low-vision',
@@ -776,31 +776,54 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1970',
 		'slug'      => 'link_ms_office_file',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'This is a link to a Microsoft Office file, such as a Word, Excel, or PowerPoint document.', 'accessibility-checker' ),
-		'summary_plural' => esc_html__( 'These are links to Microsoft Office files, such as Word, Excel, or PowerPoint documents.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This is a link to a Microsoft Office file, such as a Word, Excel, or PowerPoint document. All linked documents must be manually tested for accessibility.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These are links to Microsoft Office files, such as Word, Excel, or PowerPoint documents. All linked documents must be manually tested for accessibility.', 'accessibility-checker' ),
 		'why_it_matters' => esc_html__( 'Documents in Word, Excel, or PowerPoint format may not be accessible to all users, especially if they are not tagged correctly or do not follow accessibility best practices. Accessibility laws require that documents posted on web pages also conform to WCAG. Additionally, users should be warned when a link opens a downloadable file instead of a webpage.', 'accessibility-checker' ),
-		'how_to_fix' => esc_html__( 'Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the "Ignore" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the \'Add File Size & Type To Links\' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the "Ignore" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the \'Add File Size & Type To Links\' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead.', 'accessibility-checker' ),
 		'references' => [
+			[
+				'text' => __( 'Microsoft: Accessibility best practices with Excel spreadsheets', 'accessibility-checker' ),
+				'url'  => 'https://support.microsoft.com/en-us/office/accessibility-best-practices-with-excel-spreadsheets-6cc05fc5-1314-48b5-8eb3-683e49b3e593',
+			],
+			[
+				'text' => __( 'Microsoft: Make your PowerPoint presentations accessible to people with disabilities', 'accessibility-checker' ),
+				'url'  => 'https://support.microsoft.com/en-us/office/make-your-word-documents-accessible-to-people-with-disabilities-6f7772b2-2f33-4bd2-8ca7-dae3b2b3ef25',
+			],
+			[
+				'text' => __( 'Microsoft: Make your Word documents accessible to people with disabilities', 'accessibility-checker' ),
+				'url'  => 'https://support.microsoft.com/en-us/office/make-your-word-documents-accessible-to-people-with-disabilities-d9bf3683-87ac-47ea-b91a-78dcacb3c66d',
+			],
+			[
+				'text' => __( 'Google: Make your document, presentation, sheets & videos more accessible', 'accessibility-checker' ),
+				'url'  => 'https://support.google.com/docs/answer/6199477?hl=en',
+			],
 			[
 				'text' => __( 'WebAIM: Creating Accessible Word Documents', 'accessibility-checker' ),
 				'url'  => 'https://webaim.org/techniques/word/',
 			],
 			[
-				'text' => __( 'Microsoft: Make your Word documents accessible to people with disabilities', 'accessibility-checker' ),
-				'url'  => 'https://support.microsoft.com/en-us/office/make-your-word-documents-accessible-to-people-with-disabilities-6f7772b2-2f33-4bd2-8ca7-dae3b2b3ef25',
+				'text' => __( 'WebAIM: Creating Accessible PowerPoint Presentations', 'accessibility-checker' ),
+				'url'  => 'https://webaim.org/techniques/powerpoint/',
 			],
 			[
-				'text' => __( 'W3C: Accessible Document Links', 'accessibility-checker' ),
-				'url'  => 'https://www.w3.org/WAI/tutorials/page-structure/labels/#document-links',
+				'text' => __( 'WebAIM: Creating Accessible Excel Spreadsheets', 'accessibility-checker' ),
+				'url'  => 'https://webaim.org/techniques/excel/',
+			],
+			[
+				'text' => __( 'Section 508.gov: Create Accessible Documents (Webinar)', 'accessibility-checker' ),
+				'url'  => 'https://www.section508.gov/create/documents/',
 			],
 		],
 		'ruleset'   => 'js',
-		'wcag'      => '2.4.4',
-		'severity'  => 3, // medium
+		'wcag'      => '0.3',
+		'severity'  => 2, // high
 		'affected_disabilities' => [
 			'Blind',
 			'Low-vision',
 			'Cognitive',
+			'Deafblind',
+			'Mobility',
+			'Colorblind',
 		],
 	],
 	[
@@ -808,16 +831,61 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1972',
 		'slug'      => 'link_pdf',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you\'re using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This is a link to a PDF document. All linked documents must be manually tested for accessibility.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These are links to PDF documents. All linked documents must be manually tested for accessibility.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'PDFs may not be accessible to all users, especially if they are not tagged correctly or fail to meet WCAG requirements. Accessibility laws require that documents posted on websites meet the same accessibility standards as HTML content. Additionally, users should be warned when a link opens a downloadable file instead of a web page.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the "Ignore" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the \'Add File Size & Type To Links\' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'Adobe: Create and verify PDF accessibility (Acrobat Pro)', 'accessibility-checker' ),
+				'url'  => 'https://helpx.adobe.com/acrobat/using/create-verify-pdf-accessibility.html',
+			],
+			[
+				'text' => __( 'WebAIM: PDF Accessibility', 'accessibility-checker' ),
+				'url'  => 'https://webaim.org/techniques/acrobat/',
+			],
+			[
+				'text' => __( 'PDF Accessibility on the Web: Tricks and Traps (Webinar)', 'accessibility-checker' ),
+				'url'  => 'https://equalizedigital.com/pdf-accessibility-on-the-web-tricks-and-traps-ricky-onsman/',
+			],
+			[
+				'text' => __( 'InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)', 'accessibility-checker' ),
+				'url'  => 'https://equalizedigital.com/indesign-pdf-accessibility-colleen-gratzer/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '0.3',
+		'severity'  => 2, // high
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Cognitive',
+			'Deafblind',
+			'Mobility',
+			'Colorblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Link to Non-HTML File', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1973',
 		'slug'      => 'link_non_html_file',
 		'rule_type' => 'warning',
-		'summary'   => esc_html__( 'A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you\'re using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This element is a link to a non-HTML document format with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These elements are links to non-HTML document formats with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Non-HTML document formats may not be fully accessible to assistive technologies unless tested and remediated. Users should be warned when a link opens a downloadable file rather than a standard web page.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the "Ignore" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the \'Add File Size & Type To Links\' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead.', 'accessibility-checker' ),
+		'references' => [],
 		'ruleset'   => 'js',
+		'wcag'      => '0.3',
+		'severity'  => 3, // medium
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Cognitive',
+			'Deafblind',
+			'Mobility',
+			'Colorblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Long Description Invalid', 'accessibility-checker' ),
@@ -825,11 +893,43 @@ return [
 		'slug'      => 'long_description_invalid',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %s is <code>longdesc=""</code>.
-			esc_html__( 'The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely.', 'accessibility-checker' ),
+			// translators: %s is <code>longdesc=""</code>
+			esc_html__( 'This element uses the %s attribute with an invalid or unsupported value.', 'accessibility-checker' ),
 			'<code>longdesc=""</code>'
 		),
+		'summary_plural' => sprintf(
+			// translators: %s is <code>longdesc=""</code>
+			esc_html__( 'These elements use the %s attribute with invalid or unsupported values.', 'accessibility-checker' ),
+			'<code>longdesc=""</code>'
+		),
+		'why_it_matters' => esc_html__( 'The longdesc attribute is intended to provide a URL to a long description of an image for screen reader users. However, it is no longer supported in HTML5 and is not reliably recognized by browsers or assistive technologies. Invalid values or blank longdesc attributes may confuse users or fail to convey important information.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %s is <code>longdesc</code>
+			esc_html__( 'Remove the %s attribute from the image element. If a long description is needed, include it in nearby visible text like a caption, use a link to a separate description page, or use ARIA techniques such as aria-describedby.', 'accessibility-checker' ),
+			'<code>longdesc</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'W3C: Techniques for WCAG 2.1 – H45: Using longdesc', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/html/H45',
+			],
+			[
+				'text' => __( 'MDN Web Docs: longdesc – HTML attribute', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#longdesc',
+			],
+			[
+				'text' => __( 'MDN Web Docs: ARIA: aria-describedby attribute', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.1.1',
+		'severity'  => 2, // high
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Deafblind',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Form Label', 'accessibility-checker' ),
@@ -837,13 +937,45 @@ return [
 		'slug'      => 'missing_form_label',
 		'rule_type' => 'error',
 		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
-			esc_html__( 'A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field.', 'accessibility-checker' ),
+			// translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;textarea&gt;</code>, %3$s is <code>&lt;select&gt;</code>
+			esc_html__( 'This element is an %1$s, %2$s, or %3$s form field without an associated label.', 'accessibility-checker' ),
 			'<code>&lt;input&gt;</code>',
+			'<code>&lt;textarea&gt;</code>',
+			'<code>&lt;select&gt;</code>'
+		),
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;textarea&gt;</code>, %3$s is <code>&lt;select&gt;</code>
+			esc_html__( 'These elements are %1$s, %2$s, or %3$s form fields without associated labels.', 'accessibility-checker' ),
+			'<code>&lt;input&gt;</code>',
+			'<code>&lt;textarea&gt;</code>',
+			'<code>&lt;select&gt;</code>'
+		),
+		'why_it_matters' => esc_html__( 'Form fields must be clearly labeled so that users of screen readers and voice input technologies can understand their purpose. Without labels, users may not know what information to enter or how the form will behave.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;label&gt;</code>, %2$s is <code>for=""</code>
+			esc_html__( 'Add a visible %1$s element that describes the field. Connect it to the corresponding form element using the %2$s attribute, or use aria-label or aria-labelledby if needed. To fix all unlabelled fields automatically, enable the \'Label Form Fields\' fix in Accessibility Checker settings.', 'accessibility-checker' ),
 			'<code>&lt;label&gt;</code>',
 			'<code>for=""</code>'
 		),
+		'references' => [
+			[
+				'text' => __( 'W3C: Labeling Controls', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/forms/labels/',
+			],
+			[
+				'text' => __( 'MDN: label element', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.3.1',
+		'severity'  => 1, // critical
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Cognitive',
+			'Mobility',
+		],
 		'combines'  => [ 'label' ],
 		'fixes'     => [
 			AddLabelToUnlabelledFormFieldsFix::get_slug(),
@@ -855,8 +987,36 @@ return [
 		'info_url'  => 'https://a11ychecker.com/help1944',
 		'slug'      => 'link_ambiguous_text',
 		'rule_type' => 'error',
-		'summary'   => esc_html__( 'Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like "click here" or "learn more." To resolve this error, change the link text to be less generic so that it has meaning if heard on its own.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This link uses generic or vague anchor text that does not describe its purpose.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These links use generic or vague anchor text that does not describe their purpose.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Screen reader users often browse a list of links out of context. If links use ambiguous phrases like "click here" or "learn more," users will not understand where the link goes or what it does. This can lead to confusion and reduce the usability of your website.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>aria-label</code>, %
+			esc_html__( 'Revise the anchor text to clearly describe the destination or purpose of the link. For example, instead of "click here," use "download the annual report" or "learn more about us." Additional context can be added to links with an %1$s or screen-reader-text.', 'accessibility-checker' ),
+			'<code>aria-label</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'MDN Web Docs: a element – Accessible names', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#accessibility_concerns',
+			],
+			[
+				'text' => __( 'MDN Web Docs: ARIA: aria-label attribute', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label',
+			],
+			[
+				'text' => __( 'Screen Reader Text Format Plugin (for the block editor)', 'accessibility-checker' ),
+				'url'  => 'https://wordpress.org/plugins/screen-reader-text-format/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '2.4.4',
+		'severity'  => 1, // critical
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Cognitive',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Underlined Text', 'accessibility-checker' ),
@@ -864,40 +1024,129 @@ return [
 		'slug'      => 'underlined_text',
 		'rule_type' => 'warning',
 		'summary'   => sprintf(
-			// translators: %s is <code>&lt;u&gt;</code>.
-			esc_html__( 'An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases.', 'accessibility-checker' ),
-			'<code>&lt;u&gt;</code>'
+			// translators: %1$s is <code>&lt;u&gt;</code>, %2$s is <code>text-decoration: underline;</code>
+			esc_html__( 'This element contains underlined text using the %1$s tag or %2$s CSS styles and does not appear to be a link.', 'accessibility-checker' ),
+			'<code>&lt;u&gt;</code>',
+			'<code>text-decoration: underline;</code>'
 		),
+		'summary_plural' => sprintf(
+			// translators: %1$s is <code>&lt;u&gt;</code>, %2$s is <code>text-decoration: underline;</code>
+			esc_html__( 'These elements contain underlined text using the %1$s tag or %2$s CSS styles and do not appear to be links.', 'accessibility-checker' ),
+			'<code>&lt;u&gt;</code>',
+			'<code>text-decoration: underline;</code>'
+		),
+		'why_it_matters' => esc_html__( 'Underlined text is commonly associated with links. When non-link text is underlined, it can be confusing for users, especially those with cognitive disabilities or those relying on visual cues to identify links.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+		'references' => [],
 		'ruleset'   => 'js',
+		'wcag'      => '1.3.1',
+		'severity'  => 4, // low
+		'affected_disabilities' => [
+			'Cognitive',
+			'Low-vision',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Broken Skip or Anchor Link', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1962',
 		'slug'      => 'broken_skip_anchor_link',
 		'rule_type' => 'error',
-		'summary'   => esc_html__( 'An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or "Ignore" the error as applicable.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This link points to an anchor target on the same page, but no element with the referenced ID exists.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These links point to anchor targets on the same page, but no elements with the referenced IDs exist.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Skip and anchor links are important for efficient keyboard and screen reader navigation. When these links are broken, users may be confused or lose their place on the page, leading to a frustrating experience—especially for people who rely on keyboard shortcuts or assistive technology.', 'accessibility-checker' ),
+		'how_to_fix' => esc_html__( 'Confirm that the link is pointing to a valid ID on the page. If the target element exists, make sure it has a matching id attribute. To automatically fix broken skip links throughout your site, enable the \'Enable Skip Link\' fix in Accessibility Checker settings.', 'accessibility-checker' ),
+		'references' => [
+			[
+				'text' => __( 'How to Make Your WordPress Site More Accessible With Skip Links', 'accessibility-checker' ),
+				'url'  => 'https://equalizedigital.com/how-to-make-your-wordpress-site-more-accessible-with-skip-links/',
+			],
+			[
+				'text' => __( 'How to Fix Broken Skip Links in Elementor', 'accessibility-checker' ),
+				'url'  => 'https://equalizedigital.com/how-to-fix-broken-skip-links-in-elementor/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '2.4.1',
+		'severity'  => 2, // high
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Mobility',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Missing Table Header', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1963',
 		'slug'      => 'missing_table_header',
 		'rule_type' => 'error',
-		'summary'   => sprintf(
-			// translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
-			esc_html__( 'A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column.', 'accessibility-checker' ),
-			'<code>&lt;td&gt;</code>',
-			'<code>&lt;th&gt;</code>'
+		'summary'   => esc_html__( 'This table contains data cells but does not have the required table header cells.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These tables contain data cells but do not have the required table header cells.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Table headers are used by assistive technologies to help users understand the relationships between cells and navigate the data. Without table headers, screen reader users may not be able to determine what the data represents.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;td&gt;</code>.
+			esc_html__( 'Add one or more %1$s elements that describe the columns or rows of data in your table. Each %2$s cell should be associated with a descriptive header to provide proper context for screen reader users.', 'accessibility-checker' ),
+			'<code>&lt;th&gt;</code>',
+			'<code>&lt;td&gt;</code>'
 		),
+		'references' => [
+			[
+				'text' => __( 'W3C: H51 - Using table markup to present tabular information', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/html/H51',
+			],
+			[
+				'text' => __( 'W3C: Tables Tutorial', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/tutorials/tables/',
+			],
+			[
+				'text' => __( 'MDN Web Docs: <table> - Headers and accessibility', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/table#accessibility',
+			],
+			[
+				'text' => __( 'WordPress: Table block documentation', 'accessibility-checker' ),
+				'url'  => 'https://wordpress.org/documentation/article/table-block/',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.3.1',
+		'severity'  => 1, // critical
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Cognitive',
+		],
 	],
 	[
 		'title'     => esc_html__( 'Duplicate Form Label', 'accessibility-checker' ),
 		'info_url'  => 'https://a11ychecker.com/help1954',
 		'slug'      => 'duplicate_form_label',
 		'rule_type' => 'error',
-		'summary'   => esc_html__( 'Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it.', 'accessibility-checker' ),
+		'summary'   => esc_html__( 'This form field has more than one label associated with it.', 'accessibility-checker' ),
+		'summary_plural' => esc_html__( 'These form fields have more than one label associated with them.', 'accessibility-checker' ),
+		'why_it_matters' => esc_html__( 'Assistive technologies rely on a one-to-one relationship between form fields and labels to provide accurate guidance to users. When multiple labels are associated with the same field, it can confuse screen reader users and make form completion difficult as the screen reader may read the incorrect label for a field.', 'accessibility-checker' ),
+		'how_to_fix' => sprintf(
+			// translators: %1$s is <code>&lt;label&gt;</code>, %2$s is <code>for=""</code>.
+			esc_html__( 'Ensure each form field has only one %1$s element associated with it. If multiple labels are present, remove extras or consolidate them into a single %1$s with a clear description. Make sure each %1$s element correctly references its form field using the %2$s attribute and that all elements on the page have unique IDs. This error happen when you have the same form embedded on a page twice and can be resolved by creating unique forms for different parts of a page rather than repeating the same form throughout.', 'accessibility-checker' ),
+			'<code>&lt;label&gt;</code>',
+			'<code>for=""</code>'
+		),
+		'references' => [
+			[
+				'text' => __( 'MDN: <label> – The HTML Label element', 'accessibility-checker' ),
+				'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label',
+			],
+			[
+				'text' => __( 'W3C: H44 – Using label elements to associate text labels with form controls', 'accessibility-checker' ),
+				'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/html/H44',
+			],
+		],
 		'ruleset'   => 'js',
+		'wcag'      => '1.3.1',
+		'severity'  => 3, // medium
+		'affected_disabilities' => [
+			'Blind',
+			'Low-vision',
+			'Cognitive',
+		],
 		'combines'  => [ 'form-field-multiple-labels' ],
 	],
 	[
