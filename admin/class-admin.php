@@ -10,6 +10,7 @@ namespace EDAC\Admin;
 use EDAC\Admin\SiteHealth\Information;
 use EDAC\Admin\Purge_Post_Data;
 use EDAC\Admin\Post_Save;
+use EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion;
 
 /**
  * Admin handling class.
@@ -56,6 +57,9 @@ class Admin {
 
 		$site_health_info = new Information();
 		$site_health_info->init_hooks();
+
+		$upgrade_promotion = new Upgrade_Promotion();
+		$upgrade_promotion->init();
 
 		$this->init_ajax();
 
