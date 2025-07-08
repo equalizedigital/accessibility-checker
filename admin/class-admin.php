@@ -61,6 +61,9 @@ class Admin {
 		$site_health_info = new Information();
 		$site_health_info->init_hooks();
 
+		$plugin_row_meta = new Plugin_Row_Meta();
+		$plugin_row_meta->init_hooks();
+		
 		$admin_footer_text = new Admin_Footer_Text();
 		$admin_footer_text->init();
 
