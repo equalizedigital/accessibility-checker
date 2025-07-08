@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Deaktiver sidestilarter"
             ],
+            "An error occurred when loading the issues.": [
+                "Der opstod en fejl under indl\u00e6sning af problemerne."
+            ],
             "Show Code": [
                 "Vis kode"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "registreret."
+            ],
+            "Scanner function not found.": [
+                "Scannerfunktion ikke fundet."
+            ],
+            "Scanning...": [
+                "Scanner..."
+            ],
+            "No violations found, skipping save.": [
+                "Ingen overtr\u00e6delser fundet, springer over gemning."
+            ],
+            "Missing postId or nonce.": [
+                "Manglende postId eller nonce."
+            ],
+            "Accessibility scan error.": [
+                "Fejl i tilg\u00e6ngelighedsscanning."
+            ],
+            "Error saving scan results.": [
+                "Fejl ved gemning af scanningsresultater."
             ]
         }
     }

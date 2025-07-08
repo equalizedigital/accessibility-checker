@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Keela lehe stiilid"
             ],
+            "An error occurred when loading the issues.": [
+                "Probleemide laadimisel ilmnes viga."
+            ],
             "Show Code": [
                 "N\u00e4ita koodi"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "tuvastatud."
+            ],
+            "Scanner function not found.": [
+                "Skanneri funktsiooni ei leitud."
+            ],
+            "Scanning...": [
+                "Skanneerimine..."
+            ],
+            "No violations found, skipping save.": [
+                "Rikkumisi ei leitud, salvestamine j\u00e4etakse vahele."
+            ],
+            "Missing postId or nonce.": [
+                "Puudub postId v\u00f5i nonce."
+            ],
+            "Accessibility scan error.": [
+                "Ligip\u00e4\u00e4setavuse skannimise viga."
+            ],
+            "Error saving scan results.": [
+                "Viga skannimistulemuste salvestamisel."
             ]
         }
     }

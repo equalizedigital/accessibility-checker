@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Wy\u0142\u0105cz style strony"
             ],
+            "An error occurred when loading the issues.": [
+                "Wyst\u0105pi\u0142 b\u0142\u0105d podczas \u0142adowania problem\u00f3w."
+            ],
             "Show Code": [
                 "Poka\u017c kod"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "wykryto."
+            ],
+            "Scanner function not found.": [
+                "Nie znaleziono funkcji skanowania."
+            ],
+            "Scanning...": [
+                "Skanowanie..."
+            ],
+            "No violations found, skipping save.": [
+                "Nie znaleziono narusze\u0144, pomijanie zapisu."
+            ],
+            "Missing postId or nonce.": [
+                "Brak identyfikatora wpisu lub tokenu jednorazowego."
+            ],
+            "Accessibility scan error.": [
+                "B\u0142\u0105d skanowania dost\u0119pno\u015bci."
+            ],
+            "Error saving scan results.": [
+                "B\u0142\u0105d podczas zapisywania wynik\u00f3w skanowania."
             ]
         }
     }

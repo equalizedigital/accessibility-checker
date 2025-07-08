@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Atsp\u0113jot lapas stilus"
             ],
+            "An error occurred when loading the issues.": [
+                "Rad\u0101s k\u013c\u016bda, iel\u0101d\u0113jot probl\u0113mas."
+            ],
             "Show Code": [
                 "R\u0101d\u012bt kodu"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "konstat\u0113tas."
+            ],
+            "Scanner function not found.": [
+                "Skenera funkcija nav atrasta."
+            ],
+            "Scanning...": [
+                "Notiek sken\u0113\u0161ana..."
+            ],
+            "No violations found, skipping save.": [
+                "Nav atrasti p\u0101rk\u0101pumi, izlai\u017eam saglab\u0101\u0161anu."
+            ],
+            "Missing postId or nonce.": [
+                "Tr\u016bkst postId vai nonce."
+            ],
+            "Accessibility scan error.": [
+                "Pieejam\u012bbas sken\u0113\u0161anas k\u013c\u016bda."
+            ],
+            "Error saving scan results.": [
+                "K\u013c\u016bda, saglab\u0101jot sken\u0113\u0161anas rezult\u0101tus."
             ]
         }
     }

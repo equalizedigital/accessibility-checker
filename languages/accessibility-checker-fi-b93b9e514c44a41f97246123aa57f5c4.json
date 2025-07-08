@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Poista sivun tyylit k\u00e4yt\u00f6st\u00e4"
             ],
+            "An error occurred when loading the issues.": [
+                "Virhe ongelmien lataamisessa."
+            ],
             "Show Code": [
                 "N\u00e4yt\u00e4 koodi"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "havaittu."
+            ],
+            "Scanner function not found.": [
+                "Skannausfunktiota ei l\u00f6ydy."
+            ],
+            "Scanning...": [
+                "Skannataan..."
+            ],
+            "No violations found, skipping save.": [
+                "Ei l\u00f6ytynyt rikkomuksia, ohitetaan tallennus."
+            ],
+            "Missing postId or nonce.": [
+                "Puuttuva postId tai nonce."
+            ],
+            "Accessibility scan error.": [
+                "Saavutettavuusskannauksen virhe."
+            ],
+            "Error saving scan results.": [
+                "Virhe skannaustulosten tallentamisessa."
             ]
         }
     }

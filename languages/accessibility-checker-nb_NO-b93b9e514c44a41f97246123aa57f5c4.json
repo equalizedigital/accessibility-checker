@@ -34,6 +34,9 @@
             "Disable Page Styles": [
                 "Deaktiver sidestiler"
             ],
+            "An error occurred when loading the issues.": [
+                "Det oppstod en feil under lasting av problemer."
+            ],
             "Show Code": [
                 "Vis kode"
             ],
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "oppdaget."
+            ],
+            "Scanner function not found.": [
+                "Skannerfunksjon ikke funnet."
+            ],
+            "Scanning...": [
+                "Skanner..."
+            ],
+            "No violations found, skipping save.": [
+                "Ingen brudd funnet, hopper over lagring."
+            ],
+            "Missing postId or nonce.": [
+                "Mangler postId eller nonce."
+            ],
+            "Accessibility scan error.": [
+                "Feil under tilgjengelighetsskanning."
+            ],
+            "Error saving scan results.": [
+                "Feil ved lagring av skanneresultater."
             ]
         }
     }
