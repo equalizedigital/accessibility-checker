@@ -362,7 +362,14 @@ msgstr "A consulta do problema não retornou resultados"
 msgid "Object query returned no results"
 msgstr "A consulta do objeto não retornou resultados"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Atualize para pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Ver a documentação do Accessibility Checker (abre em uma nova janela)"
 
