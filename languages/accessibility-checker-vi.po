@@ -362,7 +362,14 @@ msgstr "Truy vấn vấn đề không trả về kết quả nào"
 msgid "Object query returned no results"
 msgstr "Truy vấn đối tượng không trả về kết quả nào"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Nâng cấp lên bản pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Xem Tài liệu Accessibility Checker (mở trong cửa sổ mới)"
 
