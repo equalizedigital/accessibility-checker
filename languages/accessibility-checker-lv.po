@@ -362,7 +362,14 @@ msgstr "Problēmas vaicājums neatgrieza rezultātus"
 msgid "Object query returned no results"
 msgstr "Objekta vaicājums neatgrieza rezultātus"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Atjaunināt uz pro versiju"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Skatīt Accessibility Checker dokumentāciju (atveras jaunā logā)"
 
