@@ -362,7 +362,14 @@ msgstr "استعلام المشكلة لم يرجع أي نتائج"
 msgid "Object query returned no results"
 msgstr "استعلام الكائن لم يرجع أي نتائج"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "الترقية إلى النسخة الاحترافية"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "عرض وثائق Accessibility Checker (يفتح في نافذة جديدة)"
 
