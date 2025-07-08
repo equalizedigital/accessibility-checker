@@ -300,21 +300,6 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test filter hook documentation and naming.
-	 */
-	public function test_filter_hook_naming() {
-		// Test that the filter hook follows WordPress naming conventions.
-		$expected_filter = 'edac_is_sale_time';
-		
-		// This is more of a documentation test - ensure the filter name is consistent.
-		$this->assertEquals(
-			'edac_is_sale_time',
-			$expected_filter,
-			'Filter hook name should follow plugin naming conventions'
-		);
-	}
-
-	/**
 	 * Test class namespace and structure.
 	 */
 	public function test_class_namespace_and_structure() {
