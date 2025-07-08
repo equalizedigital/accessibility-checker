@@ -362,7 +362,14 @@ msgstr "Problemabfrage ergab keine Ergebnisse"
 msgid "Object query returned no results"
 msgstr "Objektabfrage ergab keine Ergebnisse"
 
-#: admin/class-plugin-row-meta.php:49
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Upgrade auf Pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade Sale Now"
+
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Accessibility Checker Dokumentation anzeigen (öffnet in neuem Fenster)"
 
