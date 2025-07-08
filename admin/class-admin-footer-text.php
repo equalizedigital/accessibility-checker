@@ -83,6 +83,6 @@ class Admin_Footer_Text {
 	 */
 	protected function is_pro_active() {
 		// Pro is active if EDACP_VERSION is defined and license is valid.
-		return defined( 'EDACP_VERSION' ) && ( defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID );
+		return defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID;
 	}
 }
