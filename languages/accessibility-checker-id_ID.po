@@ -362,7 +362,31 @@ msgstr "Kueri masalah tidak mengembalikan hasil"
 msgid "Object query returned no results"
 msgstr "Kueri objek tidak mengembalikan hasil"
 
-#: admin/class-plugin-action-links.php:44
+#: admin/class-plugin-row-meta.php:49
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Lihat Dokumentasi Accessibility Checker (dibuka di jendela baru)"
+
+#: admin/class-plugin-row-meta.php:50
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Dokumentasi"
+
+#: admin/class-plugin-row-meta.php:55
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Dapatkan dukungan untuk Accessibility Checker (dibuka di jendela baru)"
+
+#: admin/class-plugin-row-meta.php:56
+msgid "Support"
+msgstr "Dukungan"
+
+#: admin/class-plugin-row-meta.php:61
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Beri nilai plugin Accessibility Checker (dibuka di jendela baru)"
+
+#: admin/class-plugin-row-meta.php:62
+msgid "Rate plugin"
+msgstr "Rate plugin"
+
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "Pengaturan"
@@ -574,10 +598,6 @@ msgstr "Blog"
 #: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentasi (buka di jendela baru)"
-
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "Dokumentasi"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
