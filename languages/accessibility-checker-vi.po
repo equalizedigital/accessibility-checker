@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-03T20:51:30+00:00\n"
+"POT-Creation-Date: 2025-07-08T20:56:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,6 +18,7 @@ msgstr ""
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -46,6 +47,7 @@ msgstr "https://equalizedigital.com"
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:90
+#: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr "Sửa lỗi"
 
@@ -65,7 +67,7 @@ msgstr "Nâng cấp lên bản Pro để mở khóa tính năng này, mở trong
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
-#: admin/class-plugin-action-links.php:51
+#: admin/class-plugin-action-links.php:55
 msgid "Get Pro"
 msgstr "Nâng cấp lên bản Pro"
 
@@ -142,6 +144,26 @@ msgstr "Liên hệ hỗ trợ về khả năng tiếp cận"
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "Chúng tôi hoan nghênh các nhận xét, câu hỏi và phản hồi về trang web của chúng tôi. Nếu bạn đang sử dụng các công nghệ hỗ trợ và gặp khó khăn khi sử dụng trang web của chúng tôi, vui lòng gửi email đến [ĐỊA CHỈ EMAIL TIẾP CẬN CỦA BẠN] hoặc gọi cho chúng tôi theo số [SỐ ĐIỆN THOẠI CỦA BẠN]. Chúng tôi sẽ cố gắng hết sức để hỗ trợ bạn và giải quyết các vấn đề."
 
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:46
+#, php-format
+msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
+msgstr "Bạn thích Accessibility Checker? %1$sHãy để lại đánh giá ★★★★★ cho chúng tôi.%2$s Chúng tôi rất cảm kích sự ủng hộ của bạn!"
+
+#: admin/class-admin-footer-text.php:47
+msgid "Please leave us a five star rating (opens in new window)"
+msgstr "Vui lòng để lại đánh giá năm sao (mở trong cửa sổ mới)"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:55
+#, php-format
+msgid "Want to do more with Accessibility Checker? %1$sUnlock Pro Features%2$s"
+msgstr "Muốn làm được nhiều hơn với Accessibility Checker? %1$sMở khóa tính năng Pro%2$s"
+
+#: admin/class-admin-footer-text.php:56
+msgid "Unlock Pro Features (opens in new window)"
+msgstr "Mở khóa tính năng Pro (mở trong cửa sổ mới)"
+
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
 #, php-format
@@ -155,9 +177,9 @@ msgstr "Chúng tôi đã cải thiện các tính toán thống kê trong phiên
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:212
-#: admin/class-ajax.php:577
-#: admin/class-ajax.php:715
-#: admin/class-ajax.php:795
+#: admin/class-ajax.php:606
+#: admin/class-ajax.php:744
+#: admin/class-ajax.php:824
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "Quyền truy cập bị từ chối"
@@ -233,8 +255,8 @@ msgstr "nâng cấp lên pro"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:219
-#: admin/class-ajax.php:584
-#: admin/class-ajax.php:802
+#: admin/class-ajax.php:613
+#: admin/class-ajax.php:831
 msgid "The post ID was not set"
 msgstr "ID bài viết chưa được thiết lập"
 
@@ -307,46 +329,52 @@ msgstr "Các trang có thể cần được lưu lại hoặc quét toàn bộ t
 msgid "Save"
 msgstr "Lưu"
 
-#: admin/class-ajax.php:428
+#: admin/class-ajax.php:430
 msgid "Affected Code"
 msgstr "Mã bị ảnh hưởng"
 
+#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+#: admin/class-ajax.php:500
+#, php-format
+msgid "View %s landmark on website, opens a new window"
+msgstr "Xem %s điểm mốc trên trang web, mở cửa sổ mới"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:493
+#: admin/class-ajax.php:522
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Xem Vấn đề ID %d trên trang web, mở cửa sổ mới"
 
-#: admin/class-ajax.php:494
+#: admin/class-ajax.php:523
 msgid "View on page"
 msgstr "Xem trên trang"
 
-#: admin/class-ajax.php:513
+#: admin/class-ajax.php:542
 msgid "Fix: "
 msgstr "Sửa: "
 
-#: admin/class-ajax.php:514
+#: admin/class-ajax.php:543
 msgid "Fix"
 msgstr "Sửa"
 
-#: admin/class-ajax.php:537
+#: admin/class-ajax.php:566
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Tài khoản người dùng của bạn không có quyền bỏ qua vấn đề này."
 
-#: admin/class-ajax.php:555
+#: admin/class-ajax.php:584
 msgid "No details to return"
 msgstr "Không có chi tiết để trả về"
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:723
 msgid "No readability data to return"
 msgstr "Không có dữ liệu khả năng đọc để trả về"
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:774
+#: admin/class-ajax.php:780
+#: admin/class-ajax.php:803
 msgid "No ignore data to return"
 msgstr "Không có dữ liệu bỏ qua để trả về"
 
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:838
 msgid "The summary was not set"
 msgstr "Bản tóm tắt chưa được thiết lập"
 
@@ -362,38 +390,52 @@ msgstr "Truy vấn vấn đề không trả về kết quả nào"
 msgid "Object query returned no results"
 msgstr "Truy vấn đối tượng không trả về kết quả nào"
 
-#: admin/class-plugin-row-meta.php:49
-msgid "View Accessibility Checker Documentation (opens in new window)"
-msgstr "Xem Tài liệu Accessibility Checker (mở trong cửa sổ mới)"
-
-#: admin/class-plugin-row-meta.php:50
-#: admin/class-widgets.php:309
-msgid "Documentation"
-msgstr "Tài liệu"
-
-#: admin/class-plugin-row-meta.php:55
-msgid "Get support for Accessibility Checker (opens in new window)"
-msgstr "Nhận hỗ trợ cho Accessibility Checker (mở trong cửa sổ mới)"
-
-#: admin/class-plugin-row-meta.php:56
-msgid "Support"
-msgstr "Hỗ trợ"
-
-#: admin/class-plugin-row-meta.php:61
-msgid "Rate Accessibility Checker plugin (opens in new window)"
-msgstr "Đánh giá plugin Accessibility Checker (mở trong cửa sổ mới)"
-
-#: admin/class-plugin-row-meta.php:62
-msgid "Rate plugin"
-msgstr "Rate plugin"
-
+#: admin/class-plugin-action-links.php:48
+#: includes/classes/class-admin-toolbar.php:94
 #: includes/options-page.php:66
 msgid "Settings"
 msgstr "Cài đặt"
 
-#: admin/class-plugin-action-links.php:56
+#: admin/class-plugin-action-links.php:60
 msgid "Get Accessibility Checker Pro, opens in new window"
 msgstr "Tải Accessibility Checker Pro, mở trong cửa sổ mới"
+
+#: admin/class-plugin-row-meta.php:53
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Xem Tài liệu Accessibility Checker (mở trong cửa sổ mới)"
+
+#: admin/class-plugin-row-meta.php:54
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Tài liệu"
+
+#: admin/class-plugin-row-meta.php:59
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Nhận hỗ trợ cho Accessibility Checker (mở trong cửa sổ mới)"
+
+#: admin/class-plugin-row-meta.php:60
+msgid "Support"
+msgstr "Hỗ trợ"
+
+#: admin/class-plugin-row-meta.php:65
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Đánh giá plugin Accessibility Checker (mở trong cửa sổ mới)"
+
+#: admin/class-plugin-row-meta.php:66
+msgid "Rate plugin"
+msgstr "Đánh giá plugin"
+
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Nâng cấp lên bản pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Khuyến mãi nâng cấp đang diễn ra"
+
+#: admin/class-upgrade-promotion.php:93
+msgid "Unable to redirect to upgrade page."
+msgstr "Không thể chuyển hướng đến trang nâng cấp."
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -770,6 +812,16 @@ msgstr "Đọc %s của chúng tôi"
 #: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "Chính sách về khả năng truy cập"
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "Nhận Accessibility Checker Pro"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "Nhận Accessibility Checker Pro (mở trong cửa sổ mới)"
 
 #: includes/classes/class-simplified-summary.php:73
 msgid "Simplified Summary"
@@ -1847,11 +1899,6 @@ msgstr "Hỗ trợ qua email"
 msgid "...and more"
 msgstr "...và nhiều hơn nữa"
 
-#: partials/pro-callout.php:47
-#: partials/welcome-page.php:215
-msgid "Get Accessibility Checker Pro"
-msgstr "Nhận Accessibility Checker Pro"
-
 #: partials/pro-callout.php:57
 #: partials/welcome-page.php:223
 msgid "Or activate your license key here."
@@ -2099,6 +2146,10 @@ msgid "Disable Page Styles"
 msgstr "Tắt kiểu trang"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "An error occurred when loading the issues."
+msgstr "Đã xảy ra lỗi khi tải các vấn đề."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Show Code"
 msgstr "Hiển thị mã"
 
@@ -2151,6 +2202,30 @@ msgstr[1] "vấn đề bị bỏ qua"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
 msgstr "đã phát hiện."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanner function not found."
+msgstr "Không tìm thấy chức năng quét."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanning..."
+msgstr "Đang quét..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "Không tìm thấy vi phạm, bỏ qua việc lưu."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Missing postId or nonce."
+msgstr "Thiếu postId hoặc nonce."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility scan error."
+msgstr "Lỗi quét khả năng truy cập."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error saving scan results."
+msgstr "Lỗi khi lưu kết quả quét."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
