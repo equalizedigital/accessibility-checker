@@ -82,7 +82,12 @@ class AdminToolbarTest extends WP_UnitTestCase {
 	 * @runInSeparateProcess
 	 */
 	public function test_add_toolbar_items_adds_parent_menu() {
-		$this->wp_admin_bar->expects( $this->once() )
+		// Create mock within this test to avoid serialization issues.
+		$wp_admin_bar = $this->getMockBuilder( stdClass::class )
+			->addMethods( [ 'add_menu' ] )
+			->getMock();
+
+		$wp_admin_bar->expects( $this->once() )
 			->method( 'add_menu' )
 			->with(
 				$this->callback( [ $this, 'validate_parent_menu_args' ] )
@@ -91,7 +96,7 @@ class AdminToolbarTest extends WP_UnitTestCase {
 		// Mock the filter to return empty array so only parent menu is added.
 		add_filter( 'edac_admin_toolbar_menu_items', [ $this, 'filter_return_empty_array' ] );
 
-		$this->admin_toolbar->add_toolbar_items( $this->wp_admin_bar );
+		$this->admin_toolbar->add_toolbar_items( $wp_admin_bar );
 	}
 
 	/**
@@ -100,14 +105,19 @@ class AdminToolbarTest extends WP_UnitTestCase {
 	 * @runInSeparateProcess
 	 */
 	public function test_add_toolbar_items_adds_default_menu_items() {
+		// Create mock within this test to avoid serialization issues.
+		$wp_admin_bar = $this->getMockBuilder( stdClass::class )
+			->addMethods( [ 'add_menu' ] )
+			->getMock();
+
 		// Expect parent menu + 3 default items (Settings, Fixes, Get Pro).
-		$this->wp_admin_bar->expects( $this->exactly( 4 ) )
+		$wp_admin_bar->expects( $this->exactly( 4 ) )
 			->method( 'add_menu' );
 
 		// Mock constants for pro check.
 		define( 'EDAC_KEY_VALID', false );
 
-		$this->admin_toolbar->add_toolbar_items( $this->wp_admin_bar );
+		$this->admin_toolbar->add_toolbar_items( $wp_admin_bar );
 	}
 
 	/**
@@ -116,15 +126,20 @@ class AdminToolbarTest extends WP_UnitTestCase {
 	 * @runInSeparateProcess
 	 */
 	public function test_add_toolbar_items_hides_pro_link_when_pro_active() {
+		// Create mock within this test to avoid serialization issues.
+		$wp_admin_bar = $this->getMockBuilder( stdClass::class )
+			->addMethods( [ 'add_menu' ] )
+			->getMock();
+
 		// Mock pro version and valid license.
 		define( 'EDACP_VERSION', '1.0.0' );
 		define( 'EDAC_KEY_VALID', true );
 
 		// Expect parent menu + 2 default items (Settings, Fixes) - no Get Pro.
-		$this->wp_admin_bar->expects( $this->exactly( 3 ) )
+		$wp_admin_bar->expects( $this->exactly( 3 ) )
 			->method( 'add_menu' );
 
-		$this->admin_toolbar->add_toolbar_items( $this->wp_admin_bar );
+		$this->admin_toolbar->add_toolbar_items( $wp_admin_bar );
 	}
 
 	/**
@@ -133,17 +148,22 @@ class AdminToolbarTest extends WP_UnitTestCase {
 	 * @runInSeparateProcess
 	 */
 	public function test_menu_items_filter_is_applied() {
+		// Create mock within this test to avoid serialization issues.
+		$wp_admin_bar = $this->getMockBuilder( stdClass::class )
+			->addMethods( [ 'add_menu' ] )
+			->getMock();
+
 		// Mock constants.
 		define( 'EDAC_KEY_VALID', false );
 
 		// Expect parent menu + 3 default items + 1 custom item = 5 total.
-		$this->wp_admin_bar->expects( $this->exactly( 5 ) )
+		$wp_admin_bar->expects( $this->exactly( 5 ) )
 			->method( 'add_menu' );
 
 		// Add filter to add a custom menu item.
 		add_filter( 'edac_admin_toolbar_menu_items', [ $this, 'filter_add_custom_menu_item' ] );
 
-		$this->admin_toolbar->add_toolbar_items( $this->wp_admin_bar );
+		$this->admin_toolbar->add_toolbar_items( $wp_admin_bar );
 	}
 
 	/**
