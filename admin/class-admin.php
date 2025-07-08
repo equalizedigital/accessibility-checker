@@ -11,6 +11,7 @@ use EDAC\Admin\SiteHealth\Information;
 use EDAC\Admin\Purge_Post_Data;
 use EDAC\Admin\Post_Save;
 use EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion;
+use EqualizeDigital\AccessibilityChecker\Admin\Admin_Footer_Text;
 
 /**
  * Admin handling class.
@@ -49,6 +50,9 @@ class Admin {
 		add_action( 'wp_trash_post', [ Purge_Post_Data::class, 'delete_post' ] );
 		add_action( 'save_post', [ Post_Save::class, 'delete_issue_data_on_post_trashing' ], 10, 3 );
 
+		$plugin_action_links = new Plugin_Action_Links();
+		$plugin_action_links->init_hooks();
+
 		$admin_notices = new Admin_Notices();
 		$admin_notices->init_hooks();
 
@@ -60,6 +64,12 @@ class Admin {
 
 		$upgrade_promotion = new Upgrade_Promotion();
 		$upgrade_promotion->init();
+		
+		$plugin_row_meta = new Plugin_Row_Meta();
+		$plugin_row_meta->init_hooks();
+		
+		$admin_footer_text = new Admin_Footer_Text();
+		$admin_footer_text->init();
 
 		$this->init_ajax();
 
