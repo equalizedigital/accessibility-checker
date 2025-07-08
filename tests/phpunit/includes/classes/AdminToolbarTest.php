@@ -40,7 +40,7 @@ class AdminToolbarTest extends WP_UnitTestCase {
 			->getMock();
 
 		// Create a user with manage_options capability.
-		$user_id = $this->factory->user->create( [ 'role' => 'administrator' ] );
+		$user_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $user_id );
 	}
 
@@ -67,7 +67,7 @@ class AdminToolbarTest extends WP_UnitTestCase {
 	 */
 	public function test_add_toolbar_items_requires_manage_options_capability() {
 		// Create a user without manage_options capability.
-		$user_id = $this->factory->user->create( [ 'role' => 'subscriber' ] );
+		$user_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
 		wp_set_current_user( $user_id );
 
 		$this->wp_admin_bar->expects( $this->never() )
@@ -131,16 +131,17 @@ class AdminToolbarTest extends WP_UnitTestCase {
 	 * @runInSeparateProcess
 	 */
 	public function test_menu_items_filter_is_applied() {
-		// Use a static variable to track filter calls since closures can't be serialized.
-		add_filter( 'edac_admin_toolbar_menu_items', [ $this, 'filter_add_custom_menu_item' ] );
-
 		// Mock constants.
 		define( 'EDAC_KEY_VALID', false );
 
-		$this->admin_toolbar->add_toolbar_items( $this->wp_admin_bar );
+		// Expect parent menu + 3 default items + 1 custom item = 5 total.
+		$this->wp_admin_bar->expects( $this->exactly( 5 ) )
+			->method( 'add_menu' );
 
-		// Check that the filter was applied by verifying global state.
-		$this->assertTrue( did_action( 'edac_admin_toolbar_menu_items' ) > 0, 'Filter should have been called' );
+		// Add filter to add a custom menu item.
+		add_filter( 'edac_admin_toolbar_menu_items', [ $this, 'filter_add_custom_menu_item' ] );
+
+		$this->admin_toolbar->add_toolbar_items( $this->wp_admin_bar );
 	}
 
 	/**
@@ -276,9 +277,13 @@ class AdminToolbarTest extends WP_UnitTestCase {
 	 * @return bool
 	 */
 	public function validate_parent_menu_args( $args ) {
-		return isset( $args['id'] ) && 'edac-admin-toolbar' === $args['id'] &&
-				isset( $args['title'] ) && strpos( $args['title'], 'dashicons-universal-access-alt' ) !== false &&
-				isset( $args['href'] ) && false === $args['href'];
+		$expected_id             = 'accessibility-checker';
+		$expected_title_contains = 'dashicons-universal-access-alt';
+		$expected_href_contains  = 'admin.php?page=accessibility_checker';
+		
+		return isset( $args['id'] ) && $expected_id === $args['id'] &&
+				isset( $args['title'] ) && false !== strpos( $args['title'], $expected_title_contains ) &&
+				isset( $args['href'] ) && false !== strpos( $args['href'], $expected_href_contains );
 	}
 
 	/**
