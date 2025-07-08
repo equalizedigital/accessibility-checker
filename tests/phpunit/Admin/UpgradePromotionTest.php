@@ -256,9 +256,26 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	 * Test that styling is only added on accessibility checker pages.
 	 */
 	public function test_styling_only_on_accessibility_checker_pages() {
-		// This test would require mocking get_current_screen() which is complex in this context.
-		// The logic is straightforward: check if screen ID contains 'accessibility_checker'.
-		$this->assertTrue( true, 'Styling logic tested via screen ID check' );
+		// Create an admin user for proper capability check.
+		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $user_id );
+		
+		// Test on a non-accessibility checker page.
+		set_current_screen( 'dashboard' );
+		ob_start();
+		$this->upgrade_promotion->add_menu_styling();
+		$output = ob_get_clean();
+		$this->assertEmpty( $output, 'Styling should not be added on non-plugin pages' );
+		
+		// Test on an accessibility checker page.
+		set_current_screen( 'toplevel_page_accessibility_checker' );
+		ob_start();
+		$this->upgrade_promotion->add_menu_styling();
+		$output = ob_get_clean();
+		$this->assertNotEmpty( $output, 'Styling should be added on plugin pages' );
+		$this->assertStringContainsString( '<style', $output, 'Output should contain CSS styles' );
+		$this->assertStringContainsString( 'accessibility_checker_upgrade', $output, 'CSS should target upgrade menu item' );
+		$this->assertStringContainsString( '#00ff80', $output, 'CSS should contain the expected green color' );
 	}
 
 	/**
