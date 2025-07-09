@@ -31,6 +31,7 @@ class Upgrade_Promotion {
 	public function init(): void {
 		add_action( 'admin_menu', [ $this, 'add_menu_item' ], 999 );
 		add_action( 'admin_head', [ $this, 'add_menu_styling' ] );
+		add_action( 'admin_init', [ $this, 'maybe_handle_redirect' ] );
 	}
 
 	/**
@@ -65,18 +66,42 @@ class Upgrade_Promotion {
 			$menu_label,
 			$required_capability,
 			'accessibility_checker_upgrade',
-			[ $this, 'handle_redirect' ]
+			[ $this, 'dummy_page_callback' ]
 		);
 	}
 
 	/**
-	 * Handle upgrade menu click by redirecting to pricing page.
+	 * Dummy page callback (redirect happens in admin_init).
 	 *
 	 * @since 1.27.0
 	 *
 	 * @return void
 	 */
-	public function handle_redirect(): void {
+	public function dummy_page_callback(): void {
+		// This should never be reached due to redirect in admin_init.
+		wp_die( esc_html__( 'Unable to redirect to upgrade page.', 'accessibility-checker' ) );
+	}
+
+	/**
+	 * Check if we should handle redirect and do it early.
+	 *
+	 * @since 1.27.0
+	 *
+	 * @return void
+	 */
+	public function maybe_handle_redirect(): void {
+		// Check if we're on the upgrade page.
+		if ( ! isset( $_GET['page'] ) || 'accessibility_checker_upgrade' !== $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is a simple page check for redirect, no form processing.
+			return;
+		}
+
+		$required_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
+		
+		// Only redirect if user has capability and pro is not active.
+		if ( ! current_user_can( $required_capability ) || $this->is_pro_active() ) {
+			return;
+		}
+
 		$upgrade_url = edac_link_wrapper( 
 			self::UPGRADE_URL,
 			'admin-menu-promotion',
@@ -89,10 +114,8 @@ class Upgrade_Promotion {
 		if ( wp_safe_redirect( $upgrade_url ) ) {
 			exit;
 		}
-		// Fallback if redirect fails.
-		wp_die( esc_html__( 'Unable to redirect to upgrade page.', 'accessibility-checker' ) );
 	}
-	
+
 	/**
 	 * Allow redirects to the Equalize Digital domain.
 	 *
