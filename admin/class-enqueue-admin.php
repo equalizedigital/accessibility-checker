@@ -37,7 +37,7 @@ class Enqueue_Admin {
 	 * @return void
 	 */
 	public static function enqueue_styles() {
-		wp_enqueue_style( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/admin.css', [], EDAC_VERSION, 'all' );
+		wp_enqueue_style( 'edac', EDAC_PLUGIN_URL . 'build/css/admin.css', [], EDAC_VERSION, 'all' );
 	}
 
 	/**
@@ -75,7 +75,7 @@ class Enqueue_Admin {
 
 			global $post;
 			$post_id = is_object( $post ) ? $post->ID : null;
-			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery' ], EDAC_VERSION, false );
+			wp_enqueue_script( 'edac', EDAC_PLUGIN_URL . 'build/admin.bundle.js', [ 'jquery' ], EDAC_VERSION, false );
 			wp_set_script_translations( 'edac', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
 			wp_localize_script(
@@ -105,7 +105,7 @@ class Enqueue_Admin {
 					$debug = false;
 				}
 
-				wp_enqueue_script( 'edac-editor-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
+				wp_enqueue_script( 'edac-editor-app', EDAC_PLUGIN_URL . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 				wp_set_script_translations( 'edac-editor-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
 				// If this is the frontpage or homepage, preview URLs won't work. Use the live URL.
