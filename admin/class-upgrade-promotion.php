@@ -139,7 +139,7 @@ class Upgrade_Promotion {
 	public function add_menu_styling(): void {
 		// Only add styling on accessibility checker admin pages.
 		$screen = get_current_screen();
-		if ( ! $screen || strpos( $screen->id, 'accessibility_checker' ) === false ) {
+		if ( ! $screen || false === strpos( $screen->id, 'accessibility_checker' ) ) {
 			return;
 		}
 
@@ -158,14 +158,14 @@ class Upgrade_Promotion {
 		<style type="text/css">
 			/* Style the upgrade promotion menu item - WCAG AAA compliant colors */
 			#adminmenu .wp-submenu a[href$="accessibility_checker_upgrade"] {
-				color: #00ff80 !important; /* Bright green - 7.8:1 contrast ratio on #2c3338 */
+				color: #f3cd1e !important;
 				font-weight: 600 !important;
 			}
 			
 			#adminmenu .wp-submenu a[href$="accessibility_checker_upgrade"]:hover,
 			#adminmenu .wp-submenu a[href$="accessibility_checker_upgrade"]:focus {
-				color: #00ff80 !important; /* Same bright green - 7.8:1 contrast ratio */
-				background-color: rgba(0, 255, 128, 0.15) !important;
+				color: #f3cd1e !important;
+				background-color: rgba(243, 205, 30, 0.15) !important;
 			}
 		</style>
 		<?php
