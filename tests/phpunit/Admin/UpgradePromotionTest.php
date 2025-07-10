@@ -318,7 +318,7 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		$this->assertNotEmpty( $output, 'Styling should be added on plugin pages' );
 		$this->assertStringContainsString( '<style', $output, 'Output should contain CSS styles' );
 		$this->assertStringContainsString( 'accessibility_checker_upgrade', $output, 'CSS should target upgrade menu item' );
-		$this->assertStringContainsString( '#00ff80', $output, 'CSS should contain the expected green color' );
+		$this->assertStringContainsString( '#f3cd1e', $output, 'CSS should contain the expected yellow color' );
 	}
 
 	/**
