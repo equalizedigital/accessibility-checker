@@ -9,7 +9,7 @@
 <div class="edac-pro-callout">
 	<img
 		class="edac-pro-callout-icon"
-		src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/edac-emblem.png"
+		src="<?php echo esc_url( EDAC_PLUGIN_URL ); ?>assets/images/edac-emblem.png"
 		alt="<?php esc_attr_e( 'Equalize Digital Logo', 'accessibility-checker' ); ?>"
 	>
 	<h4 class="edac-pro-callout-title">
