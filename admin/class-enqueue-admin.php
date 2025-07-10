@@ -125,7 +125,7 @@ class Enqueue_Admin {
 						'postID'       => $post_id,
 						'edacUrl'      => esc_url_raw( get_site_url() ),
 						'edacApiUrl'   => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-						'baseurl'      => EDAC_PLUGIN_URL,
+						'baseurl'      => esc_url_raw( EDAC_PLUGIN_URL ),
 						'active'       => $active,
 						'pro'          => $pro,
 						'authOk'       => false === (bool) get_option( 'edac_password_protected', false ),
