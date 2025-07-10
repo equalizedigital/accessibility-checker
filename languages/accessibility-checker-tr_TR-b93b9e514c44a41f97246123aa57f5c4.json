@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Kaydediliyor..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Ayarlar ba\u015far\u0131yla kaydedildi. D\u00fczeltilen sorunlar\u0131 Eri\u015filebilirlik Denetleyicisi raporlar\u0131ndan kald\u0131rmak i\u00e7in %sd\u00fczenleyiciyi ziyaret etmeli%s ve g\u00f6nderiyi kaydetmelisiniz."
+                "Ayarlar ba\u015far\u0131yla kaydedildi. Accessibility Checker raporlar\u0131ndan d\u00fczeltilmi\u015f sorunlar\u0131 yeniden taramak ve kald\u0131rmak i\u00e7in %sedit\u00f6r\u00fc ziyaret etmeli%s ve yaz\u0131y\u0131 kaydetmelisin."
             ],
             "Settings saved successfully.": [
                 "Ayarlar ba\u015far\u0131yla kaydedildi."
@@ -33,6 +33,9 @@
             ],
             "Disable Page Styles": [
                 "Sayfa stillerini devre d\u0131\u015f\u0131 b\u0131rak"
+            ],
+            "An error occurred when loading the issues.": [
+                "Sorunlar y\u00fcklenirken bir hata olu\u015ftu."
             ],
             "Show Code": [
                 "Kodu g\u00f6ster"
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "tespit edildi."
+            ],
+            "Scanner function not found.": [
+                "Taray\u0131c\u0131 i\u015flevi bulunamad\u0131."
+            ],
+            "Scanning...": [
+                "Taran\u0131yor..."
+            ],
+            "No violations found, skipping save.": [
+                "Hi\u00e7bir ihlal bulunamad\u0131, kaydetme atlan\u0131yor."
+            ],
+            "Missing postId or nonce.": [
+                "PostId veya nonce eksik."
+            ],
+            "Accessibility scan error.": [
+                "Eri\u015filebilirlik tarama hatas\u0131."
+            ],
+            "Error saving scan results.": [
+                "Tarama sonu\u00e7lar\u0131 kaydedilirken hata olu\u015ftu."
             ]
         }
     }

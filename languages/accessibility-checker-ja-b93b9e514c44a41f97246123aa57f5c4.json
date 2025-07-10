@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "\u4fdd\u5b58\u4e2d..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "\u8a2d\u5b9a\u304c\u6b63\u5e38\u306b\u4fdd\u5b58\u3055\u308c\u307e\u3057\u305f\u3002Accessibility Checker\u30ec\u30dd\u30fc\u30c8\u304b\u3089\u4fee\u6b63\u3055\u308c\u305f\u8ab2\u984c\u3092\u524a\u9664\u3059\u308b\u306b\u306f\u3001%s\u30a8\u30c7\u30a3\u30bf\u30fc\u306b\u30a2\u30af\u30bb\u30b9%s\u3057\u3066\u6295\u7a3f\u3092\u4fdd\u5b58\u3059\u308b\u5fc5\u8981\u304c\u3042\u308a\u307e\u3059\u3002"
+                "\u8a2d\u5b9a\u304c\u6b63\u5e38\u306b\u4fdd\u5b58\u3055\u308c\u307e\u3057\u305f\u3002\u30a8\u30c7\u30a3\u30bf\u30fc\u306b%s\u30a2\u30af\u30bb\u30b9\u3057\u3066%s\u6295\u7a3f\u3092\u4fdd\u5b58\u3057\u3001Accessibility Checker\u306e\u30ec\u30dd\u30fc\u30c8\u304b\u3089\u4fee\u6b63\u6e08\u307f\u306e\u554f\u984c\u3092\u518d\u30b9\u30ad\u30e3\u30f3\u3057\u3066\u524a\u9664\u3059\u308b\u5fc5\u8981\u304c\u3042\u308a\u307e\u3059\u3002"
             ],
             "Settings saved successfully.": [
                 "\u8a2d\u5b9a\u304c\u6b63\u5e38\u306b\u4fdd\u5b58\u3055\u308c\u307e\u3057\u305f\u3002"
@@ -33,6 +33,9 @@
             ],
             "Disable Page Styles": [
                 "\u30da\u30fc\u30b8\u30b9\u30bf\u30a4\u30eb\u3092\u7121\u52b9\u306b\u3059\u308b"
+            ],
+            "An error occurred when loading the issues.": [
+                "\u554f\u984c\u306e\u8aad\u307f\u8fbc\u307f\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002"
             ],
             "Show Code": [
                 "\u30b3\u30fc\u30c9\u3092\u8868\u793a"
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "\u304c\u691c\u51fa\u3055\u308c\u307e\u3057\u305f\u3002"
+            ],
+            "Scanner function not found.": [
+                "\u30b9\u30ad\u30e3\u30ca\u30fc\u6a5f\u80fd\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3002"
+            ],
+            "Scanning...": [
+                "\u30b9\u30ad\u30e3\u30f3\u4e2d..."
+            ],
+            "No violations found, skipping save.": [
+                "\u9055\u53cd\u306f\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f\u3002\u4fdd\u5b58\u3092\u30b9\u30ad\u30c3\u30d7\u3057\u307e\u3059\u3002"
+            ],
+            "Missing postId or nonce.": [
+                "postId\u307e\u305f\u306fnonce\u304c\u6b20\u843d\u3057\u3066\u3044\u307e\u3059\u3002"
+            ],
+            "Accessibility scan error.": [
+                "\u30a2\u30af\u30bb\u30b7\u30d3\u30ea\u30c6\u30a3\u30b9\u30ad\u30e3\u30f3\u30a8\u30e9\u30fc\u3002"
+            ],
+            "Error saving scan results.": [
+                "\u30b9\u30ad\u30e3\u30f3\u7d50\u679c\u306e\u4fdd\u5b58\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002"
             ]
         }
     }

@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Opslaan..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Instellingen succesvol opgeslagen. U moet %sde editor bezoeken%s en het bericht opslaan om opnieuw te scannen en opgeloste problemen uit Accessibility Checker-rapporten te verwijderen."
+                "Instellingen succesvol opgeslagen. Je moet %sde editor bezoeken%s en het bericht opslaan om opnieuw te scannen en opgeloste problemen uit de Accessibility Checker-rapporten te verwijderen."
             ],
             "Settings saved successfully.": [
                 "Instellingen succesvol opgeslagen."
@@ -33,6 +33,9 @@
             ],
             "Disable Page Styles": [
                 "Paginastijlen uitschakelen"
+            ],
+            "An error occurred when loading the issues.": [
+                "Er is een fout opgetreden bij het laden van de problemen."
             ],
             "Show Code": [
                 "Toon code"
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "gedetecteerd."
+            ],
+            "Scanner function not found.": [
+                "Scannerfunctie niet gevonden."
+            ],
+            "Scanning...": [
+                "Bezig met scannen..."
+            ],
+            "No violations found, skipping save.": [
+                "Geen overtredingen gevonden, opslaan wordt overgeslagen."
+            ],
+            "Missing postId or nonce.": [
+                "Ontbrekende postId of nonce."
+            ],
+            "Accessibility scan error.": [
+                "Fout bij toegankelijkheidsscan."
+            ],
+            "Error saving scan results.": [
+                "Fout bij het opslaan van scanresultaten."
             ]
         }
     }

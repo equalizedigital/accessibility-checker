@@ -9,15 +9,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-24T21:54:49+00:00\n"
+"POT-Creation-Date: 2025-07-08T20:56:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
-#: includes/classes/class-accessibility-statement.php:50
+#: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -46,6 +47,7 @@ msgstr "https://equalizedigital.com"
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:90
+#: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr "Remedieri"
 
@@ -65,16 +67,18 @@ msgstr "Obțineți versiunea Pro pentru a debloca această funcție, se deschide
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
+#: admin/class-plugin-action-links.php:55
 msgid "Get Pro"
 msgstr "Obțineți versiunea Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:338
+#: admin/class-ajax.php:354
 msgid "Opens in a new window."
 msgstr "Se deschide într-o fereastră nouă."
 
 #. translators: %s: the label of the fix
 #: admin/AdminPage/FixesSettingType/Text.php:54
+#, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Citiți documentația pentru %s. Se deschide într-o fereastră nouă."
 
@@ -94,52 +98,75 @@ msgstr "Eforturi continue pentru asigurarea accesibilității"
 msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
 msgstr "Urmăm <a href=\"https://www.w3.org/TR/WCAG21/\">Ghidul pentru Accesibilitatea Conținutului Web (WCAG) versiunea 2.1</a> ca principiu călăuzitor pentru determinarea accesibilității. Acestea sunt standarde agreate la nivel internațional care acoperă o gamă largă de recomandări și bune practici pentru a face conținutul utilizabil. Pe măsură ce adăugăm pagini noi și funcționalități la site-ul nostru web, toate designurile, codurile și practicile de introducere a conținutului sunt verificate în raport cu aceste standarde."
 
-#: admin/class-accessibility-statement.php:56
-msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
-msgstr "Accesibilitatea site-ului web este un proces continuu. Testăm în mod constant conținutul și funcționalitățile pentru conformitatea cu WCAG 2.1 Nivelul AA și remediem orice probleme pentru a ne asigura că îndeplinim sau depășim standardele. Testarea site-ului nostru este efectuată de membrii echipei noastre folosind instrumente standard din industrie, cum ar fi <a href=\"https://a11ychecker.com/\">Plugin-ul WordPress Accessibility Checker</a>, analizatori de contrast al culorilor, tehnici de navigare exclusiv cu tastatura și teste de lizibilitate Flesch-Kincaid."
+#. translators: 1 - A link opening tag, 2 - link closing tag
+#: admin/class-accessibility-statement.php:58
+#, php-format
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the %1$sAccessibility Checker WordPress Plugin%2$s, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Accesibilitatea site-ului web este un proces continuu. Testăm în mod constant conținutul și funcționalitățile pentru conformitatea cu WCAG 2.1 Nivel AA și remediem orice problemă pentru a ne asigura că îndeplinim sau depășim standardele. Testarea site-ului nostru este efectuată de membrii echipei noastre folosind instrumente standard din industrie, cum ar fi plugin-ul WordPress %1$sAccessibility Checker%2$s, analizoare de contrast al culorilor, tehnici de navigare exclusiv cu tastatura și teste de lizibilitate Flesch-Kincaid."
 
-#: admin/class-accessibility-statement.php:57
+#: admin/class-accessibility-statement.php:62
 msgid "Accessibility Features On Our Website"
 msgstr "Caracteristici de accesibilitate pe site-ul nostru web"
 
-#: admin/class-accessibility-statement.php:58
+#: admin/class-accessibility-statement.php:63
 msgid "The following is a list of items we have included in our website to improve its accessibility:"
 msgstr "Următoarea este o listă de elemente pe care le-am inclus pe site-ul nostru web pentru a-i îmbunătăți accesibilitatea:"
 
-#: admin/class-accessibility-statement.php:59
+#: admin/class-accessibility-statement.php:64
 msgid "[LIST ACCESSIBILITY FEATURES HERE]"
 msgstr "[LISTAȚI AICI CARACTERISTICILE DE ACCESIBILITATE]"
 
-#: admin/class-accessibility-statement.php:60
+#: admin/class-accessibility-statement.php:65
 msgid "Where We're Improving"
 msgstr "Unde ne îmbunătățim"
 
-#: admin/class-accessibility-statement.php:61
+#: admin/class-accessibility-statement.php:66
 msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
 msgstr "În eforturile noastre de a aduce site-ul nostru web la standarde, vizăm următoarele domenii:"
 
-#: admin/class-accessibility-statement.php:62
+#: admin/class-accessibility-statement.php:67
 msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
 msgstr "[LISTAȚI AICI ELEMENTELE LA CARE LUCRAȚI PENTRU A LE REMEDIA]"
 
-#: admin/class-accessibility-statement.php:63
+#: admin/class-accessibility-statement.php:68
 msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
 msgstr "[AR PUTEA FI UTIL SĂ REVIZUIȚI FILA CU PROBLEME DESCHISE PENTRU A VEDEA CELE MAI FRECVENTE PROBLEME]"
 
-#: admin/class-accessibility-statement.php:64
+#: admin/class-accessibility-statement.php:69
 msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
 msgstr "Aceasta face parte din efortul nostru mai amplu de a face experiența tuturor la [COMPANY NAME] una primitoare și plăcută. Vă rugăm să rețineți că, deși depunem toate eforturile pentru a oferi informații accesibile tuturor utilizatorilor, nu putem garanta accesibilitatea site-urilor web terțe către care putem face trimitere."
 
-#: admin/class-accessibility-statement.php:65
+#: admin/class-accessibility-statement.php:70
 msgid "Accessibility Support Contact"
 msgstr "Contact pentru suport de accesibilitate"
 
-#: admin/class-accessibility-statement.php:66
+#: admin/class-accessibility-statement.php:71
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "Primim cu plăcere comentarii, întrebări și feedback despre site-ul nostru web. Dacă folosiți tehnologii de asistență și întâmpinați dificultăți în utilizarea site-ului nostru web, vă rugăm să trimiteți un e-mail la [YOUR ACCESSIBILITY EMAIL ADDRESS] sau să ne sunați la [YOUR PHONE NUMBER]. Vom face tot posibilul pentru a vă ajuta și a rezolva problemele."
 
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:46
+#, php-format
+msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
+msgstr "Vă place Accessibility Checker? %1$sVă rugăm să ne lăsați o evaluare de ★★★★★.%2$s Apreciem foarte mult sprijinul dumneavoastră!"
+
+#: admin/class-admin-footer-text.php:47
+msgid "Please leave us a five star rating (opens in new window)"
+msgstr "Vă rugăm să ne lăsați o evaluare de cinci stele (se deschide într-o fereastră nouă)"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:55
+#, php-format
+msgid "Want to do more with Accessibility Checker? %1$sUnlock Pro Features%2$s"
+msgstr "Doriți să faceți mai multe cu Accessibility Checker? %1$sDeblocați funcțiile Pro%2$s"
+
+#: admin/class-admin-footer-text.php:56
+msgid "Unlock Pro Features (opens in new window)"
+msgstr "Deblocați funcțiile Pro (se deschide într-o fereastră nouă)"
+
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
+#, php-format
 msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
 msgstr "Am îmbunătățit calculele statisticilor în versiunea 1.21.0. Ca urmare, unele cifre din datele de mai jos s-ar putea să se fi modificat. Citiți mai multe în %1$sanunțul nostru de lansare%2$s."
 
@@ -147,12 +174,12 @@ msgstr "Am îmbunătățit calculele statisticilor în versiunea 1.21.0. Ca urma
 #: admin/class-admin-notices.php:225
 #: admin/class-admin-notices.php:312
 #: admin/class-admin-notices.php:401
-#: admin/class-admin-notices.php:483
+#: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:196
-#: admin/class-ajax.php:561
-#: admin/class-ajax.php:700
-#: admin/class-ajax.php:780
+#: admin/class-ajax.php:212
+#: admin/class-ajax.php:606
+#: admin/class-ajax.php:744
+#: admin/class-ajax.php:824
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "Permisiune refuzată"
@@ -161,7 +188,7 @@ msgstr "Permisiune refuzată"
 #: admin/class-admin-notices.php:234
 #: admin/class-admin-notices.php:324
 #: admin/class-admin-notices.php:421
-#: admin/class-admin-notices.php:492
+#: admin/class-admin-notices.php:498
 msgid "Update option wasn't successful"
 msgstr "Actualizarea opțiunii nu a reușit"
 
@@ -213,6 +240,7 @@ msgstr "Valoarea acțiunii de recenzie nu a fost setată"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
 #: admin/class-admin-notices.php:446
+#, php-format
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
 msgstr "Ups! Se pare că site-ul dvs. Web este în prezent protejat cu parolă. Versiunea gratuită a Accessibility Checker poate scana doar site-uri web live. Pentru a scana acest site web pentru probleme de accesibilitate, fie eliminați protecția cu parolă, fie %s. Rezultatele scanării pot fi stocate dintr-o scanare anterioară."
 
@@ -221,14 +249,14 @@ msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Treceți la versiunea pro a Accessibility Checker. Se deschide într-o fereastră nouă."
 
 #: admin/class-admin-notices.php:450
-#: includes/options-page.php:448
+#: includes/options-page.php:464
 msgid "upgrade to pro"
 msgstr "treceți la versiunea pro"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:203
-#: admin/class-ajax.php:568
-#: admin/class-ajax.php:787
+#: admin/class-ajax.php:219
+#: admin/class-ajax.php:613
+#: admin/class-ajax.php:831
 msgid "The post ID was not set"
 msgstr "ID-ul postării nu a fost setat"
 
@@ -250,6 +278,7 @@ msgstr "A fost inclus un rezumat simplificat pentru acest conținut."
 
 #. translators: %s: Number of errors
 #: admin/class-ajax.php:133
+#, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s Eroare"
@@ -257,6 +286,7 @@ msgstr[1] "%s Erori"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:139
+#, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Eroare de contrast"
@@ -264,6 +294,7 @@ msgstr[1] "%s Erori de contrast"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:145
+#, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s Avertisment"
@@ -271,71 +302,79 @@ msgstr[1] "%s Avertismente"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:151
+#, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s Element ignorat"
 msgstr[1] "%s Elemente ignorate"
 
-#: admin/class-ajax.php:173
+#: admin/class-ajax.php:189
 msgid "No summary to return"
 msgstr "Niciun rezumat de returnat"
 
-#: admin/class-ajax.php:217
+#: admin/class-ajax.php:233
 msgid "Invalid table name"
 msgstr "Nume de tabel invalid"
 
-#: admin/class-ajax.php:363
+#: admin/class-ajax.php:379
 msgid "These settings enable global fixes across your entire site."
 msgstr "Aceste setări activează corecții globale pe întregul dvs. site."
 
-#: admin/class-ajax.php:364
+#: admin/class-ajax.php:380
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Paginile ar putea necesita resalvare sau o scanare completă a site-ului pentru a vedea corecțiile reflectate în rapoarte."
 
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:408
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "Salvează"
 
-#: admin/class-ajax.php:412
+#: admin/class-ajax.php:430
 msgid "Affected Code"
 msgstr "Cod afectat"
 
+#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+#: admin/class-ajax.php:500
+#, php-format
+msgid "View %s landmark on website, opens a new window"
+msgstr "Vizualizați %s reper pe site-ul web, se deschide o fereastră nouă"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:522
+#, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Vizualizați problema cu ID-ul %d pe site, se deschide o fereastră nouă"
 
-#: admin/class-ajax.php:478
+#: admin/class-ajax.php:523
 msgid "View on page"
 msgstr "Vizualizați pe pagină"
 
-#: admin/class-ajax.php:497
+#: admin/class-ajax.php:542
 msgid "Fix: "
 msgstr "Corecție: "
 
-#: admin/class-ajax.php:498
+#: admin/class-ajax.php:543
 msgid "Fix"
 msgstr "Corectează"
 
-#: admin/class-ajax.php:521
+#: admin/class-ajax.php:566
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Contul dvs. de utilizator nu are permisiunea de a ignora această problemă."
 
-#: admin/class-ajax.php:539
+#: admin/class-ajax.php:584
 msgid "No details to return"
 msgstr "Nu există detalii de returnat"
 
-#: admin/class-ajax.php:679
+#: admin/class-ajax.php:723
 msgid "No readability data to return"
 msgstr "Nu există date de lizibilitate de returnat"
 
-#: admin/class-ajax.php:736
-#: admin/class-ajax.php:759
+#: admin/class-ajax.php:780
+#: admin/class-ajax.php:803
 msgid "No ignore data to return"
 msgstr "Nu există date de ignorare de returnat"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:838
 msgid "The summary was not set"
 msgstr "Rezumatul nu a fost setat"
 
@@ -350,6 +389,53 @@ msgstr "Interogarea problemei nu a returnat niciun rezultat"
 #: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "Interogarea obiectului nu a returnat niciun rezultat"
+
+#: admin/class-plugin-action-links.php:48
+#: includes/classes/class-admin-toolbar.php:94
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Setări"
+
+#: admin/class-plugin-action-links.php:60
+msgid "Get Accessibility Checker Pro, opens in new window"
+msgstr "Obține Accessibility Checker Pro, se deschide într-o fereastră nouă"
+
+#: admin/class-plugin-row-meta.php:53
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Vizualizează documentația Accessibility Checker (se deschide într-o fereastră nouă)"
+
+#: admin/class-plugin-row-meta.php:54
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Documentație"
+
+#: admin/class-plugin-row-meta.php:59
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Obține suport pentru Accessibility Checker (se deschide într-o fereastră nouă)"
+
+#: admin/class-plugin-row-meta.php:60
+msgid "Support"
+msgstr "Suport"
+
+#: admin/class-plugin-row-meta.php:65
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Evaluează plugin-ul Accessibility Checker (se deschide într-o fereastră nouă)"
+
+#: admin/class-plugin-row-meta.php:66
+msgid "Rate plugin"
+msgstr "Evaluați plugin-ul"
+
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Treci la versiunea pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Upgrade în ofertă acum"
+
+#: admin/class-upgrade-promotion.php:93
+msgid "Unable to redirect to upgrade page."
+msgstr "Nu s-a putut redirecționa către pagina de upgrade."
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -372,7 +458,7 @@ msgid "See History"
 msgstr "Vezi istoricul"
 
 #: admin/class-welcome-page.php:70
-#: admin/class-widgets.php:92
+#: admin/class-widgets.php:98
 msgid "Passed Tests"
 msgstr "Teste trecute"
 
@@ -409,12 +495,12 @@ msgid "Average Issue Density"
 msgstr "Densitatea medie a problemelor"
 
 #: admin/class-welcome-page.php:204
-#: admin/class-widgets.php:99
+#: admin/class-widgets.php:105
 msgid "Report Last Updated:"
 msgstr "Raport actualizat ultima dată:"
 
 #: admin/class-welcome-page.php:214
-#: includes/options-page.php:392
+#: includes/options-page.php:408
 msgid "Never"
 msgstr "Niciodată"
 
@@ -424,6 +510,7 @@ msgstr "URL-uri scanate"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
 #: admin/class-welcome-page.php:239
+#, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s din %2$s"
 
@@ -456,107 +543,103 @@ msgid "Unlock Detailed Accessibility Reports"
 msgstr "Deblochează rapoarte detaliate de accesibilitate"
 
 #: admin/class-welcome-page.php:302
-#: admin/class-widgets.php:65
+#: admin/class-widgets.php:71
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Începeți să scanați întregul dvs. site web pentru probleme de accesibilitate, obțineți rapoarte complete pentru site și deveniți conformi cu ghidurile de accesibilitate mai rapid."
 
 #: admin/class-welcome-page.php:306
-#: admin/class-widgets.php:67
+#: admin/class-widgets.php:73
 msgid "Upgrade Accessibility Checker"
 msgstr "Faceți upgrade la Accessibility Checker"
 
-#: admin/class-widgets.php:63
+#: admin/class-widgets.php:69
 msgid "close ad"
 msgstr "închide reclama"
 
-#: admin/class-widgets.php:64
+#: admin/class-widgets.php:70
 msgid "Get Detailed Accessibility Reports"
 msgstr "Obțineți rapoarte detaliate de accesibilitate"
 
-#: admin/class-widgets.php:82
+#: admin/class-widgets.php:88
 msgid "Full Site Accessibility Status"
 msgstr "Starea de accesibilitate a întregului site"
 
-#: admin/class-widgets.php:107
+#: admin/class-widgets.php:113
 msgid "URLs Scanned:"
 msgstr "URL-uri scanate:"
 
-#: admin/class-widgets.php:115
+#: admin/class-widgets.php:121
 msgid "Errors:"
 msgstr "Erori:"
 
-#: admin/class-widgets.php:119
+#: admin/class-widgets.php:125
 msgid "Color Contrast Errors:"
 msgstr "Erori de contrast al culorilor:"
 
-#: admin/class-widgets.php:123
+#: admin/class-widgets.php:129
 msgid "Warnings:"
 msgstr "Avertismente:"
 
-#: admin/class-widgets.php:132
+#: admin/class-widgets.php:144
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
 msgstr "Site-ul dvs. are probleme de accesibilitate care ar trebui abordate cât mai curând posibil pentru a asigura conformitatea cu ghidurile de accesibilitate."
 
-#: admin/class-widgets.php:135
+#: admin/class-widgets.php:147
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
 msgstr "Bravo! Accessibility Checker nu poate găsi nicio problemă de accesibilitate în conținutul pe care l-a testat. Unele probleme nu pot fi detectate de instrumentele automate, așa că nu uitați să"
 
-#: admin/class-widgets.php:135
+#: admin/class-widgets.php:147
 msgid "manually test your site"
 msgstr "testați manual site-ul dvs"
 
-#: admin/class-widgets.php:150
+#: admin/class-widgets.php:162
 msgid "Issues By Post Type"
 msgstr "Probleme pe tip de postare"
 
-#: admin/class-widgets.php:157
+#: admin/class-widgets.php:169
 msgid "Post Type"
 msgstr "Tip de postare"
 
-#: admin/class-widgets.php:160
+#: admin/class-widgets.php:172
 msgid "Errors"
 msgstr "Erori"
 
-#: admin/class-widgets.php:163
+#: admin/class-widgets.php:175
 msgid "Contrast"
 msgstr "Contrast"
 
-#: admin/class-widgets.php:166
+#: admin/class-widgets.php:178
 msgid "Warnings"
 msgstr "Avertismente"
 
-#: admin/class-widgets.php:225
+#: admin/class-widgets.php:247
 msgid "Upgrade to Scan"
 msgstr "Actualizați pentru a scana"
 
-#: admin/class-widgets.php:254
+#: admin/class-widgets.php:276
 msgid "See More Reports"
 msgstr "Vezi mai multe rapoarte"
 
-#: admin/class-widgets.php:264
-#: partials/welcome-page.php:232
+#: admin/class-widgets.php:286
+#: partials/welcome-page.php:235
 msgid "Learn Accessibility"
 msgstr "Învață despre accesibilitate"
 
-#: admin/class-widgets.php:273
+#: admin/class-widgets.php:307
 msgid "Additional Resources"
 msgstr "Resurse suplimentare"
 
-#: admin/class-widgets.php:274
+#: admin/class-widgets.php:308
 msgid "Blog (opens in a new window)"
 msgstr "Blog (se deschide într-o fereastră nouă)"
 
-#: admin/class-widgets.php:274
+#: admin/class-widgets.php:308
 msgid "Blog"
 msgstr "Blog"
 
-#: admin/class-widgets.php:275
+#: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "Documentație (se deschide într-o fereastră nouă)"
-
-#: admin/class-widgets.php:275
-msgid "Documentation"
-msgstr "Documentație"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
@@ -712,21 +795,33 @@ msgstr "Număr de tabele de ignorare în BD"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:45
+#, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "%1$s folosește %2$s pentru a monitoriza accesibilitatea site-ului nostru web."
 
-#: includes/classes/class-accessibility-statement.php:49
+#: includes/classes/class-accessibility-statement.php:50
 msgid "Accessibility Checker (opens in a new window)"
 msgstr "Accessibility Checker (se deschide într-o fereastră nouă)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
-#: includes/classes/class-accessibility-statement.php:58
+#: includes/classes/class-accessibility-statement.php:59
+#, php-format
 msgid "Read our %s"
 msgstr "Citește %s"
 
-#: includes/classes/class-accessibility-statement.php:59
+#: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "Politica de accesibilitate"
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "Obține Accessibility Checker Pro"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "Obțineți Accessibility Checker Pro (se deschide într-o fereastră nouă)"
 
 #: includes/classes/class-simplified-summary.php:73
 msgid "Simplified Summary"
@@ -764,6 +859,7 @@ msgstr "Adaugă etichete la câmpurile de formular neetichetate dacă scopul câ
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Încearcă să adaugi etichete la câmpurile de formular care nu au. Notă: Este posibil să fie nevoie să adaugi stiluri personalizate care vizează clasa %1$s dacă adăugarea de etichete afectează aspectul formularelor tale."
 
@@ -781,6 +877,7 @@ msgstr "Adaugă titlu de pagină lipsă"
 
 #. translators: %1$s: a code tag with a title tag.
 #: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Adaugă un tag %1$s la pagină dacă acesta lipsește sau este gol."
 
@@ -794,6 +891,7 @@ msgstr "Adaugă etichetă la link-urile care deschid o filă/fereastră nouă"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Adaugă o etichetă și o pictogramă la link-urile cu %1$s informând utilizatorii că vor deschide o filă/fereastră nouă. %2$sNotă: Această setare nu va avea niciun efect dacă remedierea „Blochează link-urile care deschid ferestre noi” este activată.%3$s"
 
@@ -804,6 +902,7 @@ msgstr "Blochează încărcările de PDF-uri"
 
 #. translators: %1$s: a code tag with the capability name.
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Restricționează încărcările de PDF-uri pentru utilizatorii fără capacitatea %1$s (permisă implicit pentru administratori)."
 
@@ -906,6 +1005,7 @@ msgstr "Adaugă atributele „lang” și „dir”"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
 #: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Adaugă atributele pentru limba site-ului (%1$s) și direcția textului (%2$s) elementului %3$s."
 
@@ -955,6 +1055,7 @@ msgstr "Blochează deschiderea linkurilor în ferestre noi"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Previne deschiderea linkurilor într-o fereastră sau filă nouă prin eliminarea %1$s."
 
@@ -1008,6 +1109,7 @@ msgstr "Elimină atributele title"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Elimină atributele %1$s de la elementele care au deja un nume accesibil preferat."
 
@@ -1045,6 +1147,7 @@ msgstr "Setează atributul ID al elementului de navigare. Acest lucru este util 
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 #: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Dacă tema ta nu adaugă deja un link de omitere care permite utilizatorilor de tastatură să ocolească navigarea și să sară rapid la conținutul principal, activează linkurile de omitere aici. %1$sAflă mai multe despre linkurile de omitere.%2$s"
 
@@ -1066,6 +1169,7 @@ msgstr "Elimină index de tabelare"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/TabindexFix.php:70
+#, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Elimină atributul %1$s de la elementele focalizabile."
 
@@ -1079,6 +1183,7 @@ msgstr "Remediere negăsită"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
 #: includes/classes/WPCLI/BootstrapCLI.php:99
+#, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Nu s-a putut înregistra comanda %1$s deoarece %2$s"
 
@@ -1092,11 +1197,13 @@ msgstr "Nu s-a furnizat niciun ID de postare."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:92
+#, php-format
 msgid "Post ID %1$s does not exist."
 msgstr "ID-ul postării %1$s nu există."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:103
+#, php-format
 msgid "Stats of %1$s deleted."
 msgstr "Statisticile pentru %1$s au fost șterse."
 
@@ -1110,6 +1217,7 @@ msgstr "Șterge cache-ul înainte de a prelua statisticile (poate fi intensiv)."
 
 #. translators: 1: a stat key that was requested but not found.
 #: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#, php-format
 msgid "Stat key: %1$s not found in stats."
 msgstr "Cheia statistică: %1$s nu a fost găsită în statistici."
 
@@ -1119,11 +1227,13 @@ msgstr "ID-ul postării pentru care să se obțină statisticile."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:126
+#, php-format
 msgid "Post ID %1$d does not exist."
 msgstr "ID-ul postării %1$d nu există."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:142
+#, php-format
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Fie postarea nu a fost încă scanată, fie toate testele au trecut pentru ID-ul postării %1$d."
 
@@ -1139,7 +1249,7 @@ msgstr "permalink către "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:371
+#: includes/helper-functions.php:339
 msgid "Attend Free"
 msgstr "Participă gratuit"
 
@@ -1150,10 +1260,6 @@ msgstr "Bine ați venit la Accessibility Checker"
 #: includes/options-page.php:65
 msgid "Accessibility Checker Settings"
 msgstr "Setări Accessibility Checker"
-
-#: includes/options-page.php:66
-msgid "Settings"
-msgstr "Setări"
 
 #: includes/options-page.php:99
 msgid "General Settings"
@@ -1184,12 +1290,12 @@ msgid "Simplified Summary Position"
 msgstr "Poziția rezumatului simplificat"
 
 #: includes/options-page.php:164
-#: includes/options-page.php:517
+#: includes/options-page.php:533
 msgid "Add Footer Accessibility Statement"
 msgstr "Adaugă declarație de accesibilitate în subsol"
 
 #: includes/options-page.php:173
-#: includes/options-page.php:540
+#: includes/options-page.php:556
 msgid "Include Link to Accessibility Policy"
 msgstr "Include link către politica de accesibilitate"
 
@@ -1207,6 +1313,7 @@ msgstr "Poziția Verificatorului de Accesibilitate Frontend"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
+#, php-format
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
 msgstr "Utilizați setările de mai jos pentru a configura Accessibility Checker. Informații suplimentare despre fiecare setare pot fi găsite în %1$s."
 
@@ -1220,99 +1327,100 @@ msgstr "documentația plugin-ului"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
 #: includes/options-page.php:251
+#, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Mai multe funcționalități și asistență prin e-mail sunt disponibile cu %1$s."
 
-#: includes/options-page.php:252
+#: includes/options-page.php:259
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (se deschide într-o fereastră nouă)"
 
-#: includes/options-page.php:252
+#: includes/options-page.php:259
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:273
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Folosiți setările de mai jos pentru a configura verificatorul de accesibilitate pentru interfața frontend."
 
-#: includes/options-page.php:276
+#: includes/options-page.php:283
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Ghidurile de Accesibilitate a Conținutului Web (WCAG) la nivelul AAA necesită ca orice conținut cu un nivel de lectură peste clasa a 9-a să aibă o alternativă mai ușor de citit. Textul simplificat de rezumat este adăugat în fila de lizibilitate din caseta meta Accessibility Checker de pe ecranul de editare al fiecărui post sau pagină."
 
-#: includes/options-page.php:277
+#: includes/options-page.php:293
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Aflați mai multe despre rezumatele simplificate și cerințele de lizibilitate (se deschide într-o fereastră nouă)"
 
-#: includes/options-page.php:277
+#: includes/options-page.php:293
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Aflați mai multe despre rezumatele simplificate și cerințele de lizibilitate."
 
-#: includes/options-page.php:286
+#: includes/options-page.php:302
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Vă gândiți „Wow, acest plugin este uimitor” și vă ajută să faceți site-ul dvs. Web mai accesibil? Împărtășiți eforturile dvs. de a face site-ul web mai accesibil cu clienții dvs. și informați-i că utilizați Accessibility Checker pentru a vă asigura că toate persoanele pot folosi site-ul dvs. web. Adăugați un mic link text și o declarație în subsolul site-ului dvs. web."
 
-#: includes/options-page.php:299
+#: includes/options-page.php:315
 msgid "Before the content"
 msgstr "Înaintea conținutului"
 
-#: includes/options-page.php:304
+#: includes/options-page.php:320
 msgid "After the content"
 msgstr "După conținut"
 
-#: includes/options-page.php:309
+#: includes/options-page.php:325
 msgid "Insert manually"
 msgstr "Introduceți manual"
 
-#: includes/options-page.php:313
+#: includes/options-page.php:329
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Folosiți această funcție pentru a adăuga manual rezumatul simplificat în tema dumneavoastră în interiorul buclei."
 
-#: includes/options-page.php:315
+#: includes/options-page.php:331
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funcția acceptă opțional ID-ul postării ca parametru."
 
-#: includes/options-page.php:318
+#: includes/options-page.php:334
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Stabiliți unde doriți să apară rezumatele simplificate în raport cu conținutul dumneavoastră, dacă sunt completate."
 
-#: includes/options-page.php:333
+#: includes/options-page.php:349
 msgid "Bottom Right Corner (default)"
 msgstr "Colțul din dreapta jos (implicit)"
 
-#: includes/options-page.php:338
+#: includes/options-page.php:354
 msgid "Bottom Left Corner"
 msgstr "Colțul din stânga jos"
 
-#: includes/options-page.php:342
+#: includes/options-page.php:358
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Stabiliți unde doriți să apară verificatorul de accesibilitate pentru interfața frontend pe pagină."
 
-#: includes/options-page.php:382
+#: includes/options-page.php:398
 msgid "When Required"
 msgstr "Când este necesar"
 
-#: includes/options-page.php:387
+#: includes/options-page.php:403
 msgid "Always"
 msgstr "Întotdeauna"
 
-#: includes/options-page.php:395
+#: includes/options-page.php:411
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Ar trebui ca Accessibility Checker să ceară un rezumat simplificat doar atunci când nivelul de citire al postării sau paginii dvs. este peste clasa a 9-a, să-l ceară întotdeauna indiferent de nivelul de citire, sau să nu-l ceară niciodată indiferent de nivelul de citire?"
 
-#: includes/options-page.php:446
+#: includes/options-page.php:462
 msgid "To check content other than posts and pages, please "
 msgstr "Pentru a verifica alt conținut în afară de postări și pagini, vă rugăm să "
 
-#: includes/options-page.php:449
+#: includes/options-page.php:465
 msgid " (opens in a new window)"
 msgstr " (se deschide într-o fereastră nouă)"
 
-#: includes/options-page.php:454
+#: includes/options-page.php:470
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Alegeți ce tipuri de postări ar trebui verificate în timpul unei scanări. Vă rugăm să rețineți, eliminarea unui tip de postare selectat anterior va șterge informațiile scanate ale acestuia și orice avertismente personalizate ignorate care au fost configurate."
 
-#: includes/options-page.php:592
+#: includes/options-page.php:608
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Ștergeți toate datele Accessibility Checker când plugin-ul este dezinstalat."
 
@@ -1322,6 +1430,7 @@ msgstr "Imagine lipsă text alternativ"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
 #: includes/rules.php:27
+#, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "O eroare de Imagine lipsă text alternativ înseamnă că imaginea dumneavoastră nu are deloc un atribut alt (%1$s) în eticheta imaginii (%2$s). Pentru a remedia o eroare de Imagine lipsă text alternativ, va trebui să adăugați o etichetă alt imaginii cu un text corespunzător care descrie scopul imaginii în pagină. Dacă imaginea este decorativă, atributul alt poate fi gol, dar eticheta HTML %1$s trebuie să fie totuși prezentă."
 
@@ -1331,6 +1440,7 @@ msgstr "Imagine cu text alternativ gol"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:40
+#, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "O avertizare de Imagine cu text alternativ gol apare dacă aveți o imagine cu un atribut alt (%s) care este gol. Textul alternativ le spune persoanelor care nu pot vedea ce reprezintă imaginea și adaugă context suplimentar postării sau paginii. Este corect ca textul alternativ să fie gol doar dacă imaginea este pur decorativă, precum o bordură sau o pictogramă decorativă. Pentru a remedia o avertizare de Imagine cu text alternativ gol, trebuie să determinați dacă imaginea este decorativă sau dacă adaugă ceva semnificativ paginii. Dacă nu este decorativă, trebuie să adăugați un text alternativ adecvat pentru a descrie scopul imaginii. Dacă imaginea este decorativă, atunci lăsați textul alternativ gol și „Ignorați” avertizarea."
 
@@ -1348,6 +1458,7 @@ msgstr "Imagine cu link lipsă text alternativ"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:60
+#, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "O eroare de imagine cu link lipsă text alternativ apare atunci când o imagine care are un link către un URL nu are deloc un atribut alt (%s) în eticheta imaginii. Imaginile cu link trebuie să aibă un text alternativ precis care să descrie destinația linkului, astfel încât utilizatorii de cititoare de ecran să știe unde duce linkul. Pentru a rezolva această eroare, trebuie să adaugi un text alternativ semnificativ imaginii. Textul alternativ ar trebui să descrie scopul linkului, nu cum arată imaginea."
 
@@ -1357,6 +1468,7 @@ msgstr "Imagine cu link text alternativ gol"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:72
+#, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "O eroare de imagine cu link text alternativ gol apare atunci când o imagine care are un link către un URL are un atribut alt (%s) gol. Imaginile cu link trebuie să aibă un text alternativ precis care să descrie destinația linkului, astfel încât utilizatorii de cititoare de ecran să știe unde duce linkul. Pentru a rezolva această eroare, trebuie să adaugi un text alternativ semnificativ imaginii. Textul alternativ ar trebui să descrie scopul linkului, nu cum arată imaginea."
 
@@ -1374,6 +1486,7 @@ msgstr "Ordine incorectă a titlurilor"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
 #: includes/rules.php:92
+#, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "O eroare de ordine incorectă a titlurilor înseamnă că structura titlurilor tale a sărit peste un nivel. De exemplu, dacă structura paginii tale are un titlu de nivel 3 (%1$s) sub un titlu de nivel 1 (%2$s), va fi semnalată o eroare de „Ordine incorectă a titlurilor” deoarece nu există nicio etichetă %3$s între H1 și H3. Pentru a rezolva erorile de ordine incorectă a titlurilor, va trebui fie să schimbi nivelul titlului incorect la nivelul corect, fie să adaugi conținut cu nivelul corect de titlu între cele două niveluri deja existente."
 
@@ -1391,6 +1504,7 @@ msgstr "iframe fără titlu"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
 #: includes/rules.php:117
+#, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "O eroare de iframe fără titlu înseamnă că unul sau mai multe dintre iframe-urile de pe postarea sau pagina ta nu au un titlu accesibil care să descrie conținutul iframe-ului. Un titlu de iframe este un atribut care poate fi adăugat la eticheta %1$s pentru a descrie conținutul cadrului pentru persoanele care folosesc tehnologii de asistență. Pentru a remedia un titlu de iframe lipsă, va trebui să adaugi un atribut title sau aria-label la eticheta %1$s. Atributul ar trebui să descrie cu acuratețe conținutul iframe-ului."
 
@@ -1400,6 +1514,7 @@ msgstr "Subtitluri lipsă"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
 #: includes/rules.php:132
+#, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "O avertizare despre lipsa titlurilor înseamnă că postarea sau pagina dvs. Nu conține niciun element de titlu (%1$s–%2$s) în conținutul secțiunii corpului postării sau paginii, ceea ce poate face deosebit de dificil pentru utilizatorii de cititoare de ecran să navigheze prin conținutul paginii. Pentru a repara o pagină fără titluri, va trebui să adăugați elemente de titlu. Cel puțin, fiecare pagină ar trebui să aibă o etichetă %1$s, care este de obicei titlul paginii. Adăugați subtitluri suplimentare după cum este potrivit pentru conținutul dvs. Dacă ați stabilit că titlurile nu sunt cu siguranță necesare pe pagină, atunci puteți „Ignora” avertizarea."
 
@@ -1417,6 +1532,7 @@ msgstr "Linkul deschide o fereastră sau un tab nou"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
 #: includes/rules.php:154
+#, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "O avertizare de Link Deschide Fereastră sau Tab Nou apare atunci când există un link pe site-ul dvs. Web care a fost setat să se deschidă într-un tab sau fereastră nouă când este accesat. Este considerată o bună practică să nu deschideți taburi sau ferestre noi cu linkuri. Dacă linkurile deschid taburi sau ferestre noi, trebuie să existe o avertizare vizuală și auditivă care să anunțe că linkul va deschide o fereastră sau un tab nou, astfel încât utilizatorii să se aștepte la acest comportament și să știe cum să se întoarcă după ce au făcut clic pe link. Pentru a rezolva această avertizare, fie schimbați linkul să nu se deschidă într-un tab nou, fie asigurați-vă că „deschide fereastră nouă” este inclus în textul linkului, apoi „Ignorați” avertizarea. Pentru a adăuga automat notificări la toate linkurile de pe site-ul dvs. și a elimina toate aceste avertizări, instalați pluginul nostru gratuit %s."
 
@@ -1430,6 +1546,7 @@ msgstr "Hartă de imagine lipsește textul alternativ"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
 #: includes/rules.php:173
+#, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "Eroarea de Hartă de Imagine Lipsește Textul Alternativ înseamnă că unul dintre elementele %1$s din harta dvs. De imagine nu are text alternativ adăugat într-un atribut %2$s. Pentru a remedia această eroare, va trebui să adăugați textul alternativ lipsă la orice etichete de zonă care nu au text alt. Textul alt trebuie să descrie funcția linkului conținut în zonă, nu neapărat să descrie cum arată zona."
 
@@ -1439,6 +1556,7 @@ msgstr "Ordine de tabulare modificată"
 
 #. translators: %s is <code>tabindex="1"</code>.
 #: includes/rules.php:189
+#, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "O Avertizare de Ordine de Tabulare Modificată apare atunci când ordinea logică de tabulare de pe pagină a fost schimbată prin adăugarea unui atribut pentru tabindex mai mare decât 0 la un element HTML (de exemplu, %s). Acest lucru poate cauza probleme de navigare pentru utilizatorii care folosesc doar tastatura. Pentru a rezolva o avertizare de Ordine de Tabulare Modificată, trebuie să vizualizați partea din față a site-ului dvs. Web pe pagina sau postarea unde ordinea de tabulare a fost modificată și să testați pentru a vedea dacă modificarea este corectă sau nu. Dacă modificarea ordinii de tabulare nu cauzează probleme, atunci puteți „Ignora” avertizarea. Dacă ordinea de tabulare modificată face ca informațiile să fie prezentate în dezordine, atunci trebuie să eliminați atributul tabindex din elementul semnalat."
 
@@ -1448,6 +1566,7 @@ msgstr "Etichetă de titlu goală"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
 #: includes/rules.php:205
+#, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "O eroare de Etichetă de Titlu Goală înseamnă că există o etichetă de titlu prezentă în postarea sau pagina dvs. Care nu conține conținut. În cod, această eroare ar arăta astfel: %s. Pentru a remedia un titlu gol, va trebui să adăugați conținut la eticheta de titlu care a semnalat eroarea de Etichetă de Titlu Goală sau să eliminați eticheta goală dacă nu este necesară pe pagina dvs."
 
@@ -1457,6 +1576,7 @@ msgstr "Link gol"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
 #: includes/rules.php:217
+#, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "O eroare de Legătură Goală înseamnă că una dintre legăturile prezente pe pagina web este goală sau nu conține text care să descrie destinația legăturii. Acest lucru apare frecvent la legături care conțin fonturi web, fonturi de iconițe și SVG-uri, sau când o legătură a fost creată accidental în editorul de conținut. Pentru a remedia o eroare de legătură goală, va trebui să găsiți legătura semnalată și să îi adăugați text descriptiv. Va trebui fie: să adăugați conținut text în interiorul unui element %1$s gol, fie, dacă legătura conține o iconiță SVG sau font web, să ascundeți acel element cu %2$s și să adăugați un atribut %3$s la eticheta %1$s sau text pentru cititorul de ecran. Textul sau eticheta pe care o adăugați ar trebui să fie descriptivă pentru destinația legăturii și să nu fie ambiguă."
 
@@ -1466,6 +1586,7 @@ msgstr "Buton gol"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
 #: includes/rules.php:231
+#, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "O eroare de Buton Gol înseamnă că unul dintre butoanele prezente pe pagina web este gol sau nu conține text care să descrie funcția butonului. Sau, dacă este un buton imagine, imaginea conținută în buton nu are text alternativ. Pentru a remedia o eroare de buton gol, va trebui să găsiți butonul semnalat și să îi adăugați text descriptiv. Va trebui fie: să adăugați conținut text în interiorul unui element %1$s gol, să adăugați un atribut value la un %2$s care nu are unul, sau să adăugați text alternativ la o imagine de buton. Textul ar trebui să fie descriptiv pentru funcția butonului sau acțiunea pe care o declanșează."
 
@@ -1491,6 +1612,7 @@ msgstr "Antet de tabel gol"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
 #: includes/rules.php:263
+#, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "O eroare de Antet de Tabel Gol înseamnă că unul dintre anteturile de tabel de pe postarea sau pagina dumneavoastră nu conține niciun text. Aceasta înseamnă că elementul %1$s este prezent, dar arată astfel %2$s, fără nimic între etichetele de deschidere și închidere. Pentru a remedia un antet de tabel gol, trebuie să găsiți elementul HTML corect (%1$s) și să îi adăugați text care descrie rândul sau coloana la care se aplică."
 
@@ -1524,6 +1646,7 @@ msgstr "Descriere lungă invalidă"
 
 #. translators: %s is <code>longdesc=""</code>.
 #: includes/rules.php:300
+#, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "Eroarea de Descriere Lungă Invalidă înseamnă că un atribut de descriere lungă (%s) pentru o imagine nu are un URL, nume de fișier sau extensie de fișier adecvată. Poate însemna, de asemenea, că descrierea lungă nu este un URL sau a fost lăsată goală. Atributul longdesc nu este complet suportat deschide o fereastră nouă de HTML5, browsere și toate cititoarele de ecran. Din cauza acestei lipse de suport, cea mai bună soluție pentru această eroare este să eliminați complet longdesc din eticheta imaginii."
 
@@ -1533,6 +1656,7 @@ msgstr "Etichetă de formular lipsă"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
 #: includes/rules.php:312
+#, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "O eroare de Etichetă de Formular Lipsă este declanșată atunci când un %1$s (câmp de formular) este prezent în formularul dvs., dar nu este asociat cu un element %2$s. Acest lucru ar putea însemna că eticheta este prezentă, dar îi lipsește un atribut %3$s pentru a o conecta la câmpul aplicabil, sau ar putea să nu existe deloc o etichetă și să fie prezentă doar o etichetă %1$s. Pentru a remedia erorile de etichetă de formular lipsă, va trebui să determinați cum au fost create câmpul și formularul și apoi să adăugați etichete de câmp sau un atribut %3$s corect la etichetele existente care nu sunt conectate la un câmp."
 
@@ -1550,6 +1674,7 @@ msgstr "Text subliniat"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
 #: includes/rules.php:339
+#, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "Un avertisment de Text Subliniat apare dacă orice text de pe pagina dvs. Este înfășurat într-o etichetă HTML de subliniere (%1$s). Într-un mediu online, textul subliniat este în general folosit pentru a indica textul legat și nu este considerat o practică bună să subliniați textul doar pentru accentuare. Pentru a remedia textul subliniat, va trebui să eliminați elementul %1$s din text sau stilurile CSS care îl fac subliniat. Încercați să folosiți alte stilizări, cum ar fi italicele, textul colorat sau îngroșarea pentru a accentua sau diferenția între cuvinte sau fraze."
 
@@ -1567,6 +1692,7 @@ msgstr "Antet de tabel lipsă"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
 #: includes/rules.php:359
+#, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "O eroare de Antet de Tabel Lipsă înseamnă că unul dintre tabelele dvs. Conține date (informații conținute într-o etichetă %1$s) care nu au un antet corespunzător cu eticheta (%2$s). Când vă uitați la codul HTML al formularului dvs., vor fi mai multe elemente %1$s într-un rând decât elemente %2$s în tabel. Pentru a remedia un antet de tabel lipsă, trebuie să găsiți secțiunea de cod care are mai puține elemente %2$s decât ar trebui să fie prezente pentru numărul de rânduri sau coloane de date și să adăugați unul sau mai multe elemente %2$s suplimentare care conțin text ce descrie datele din acel rând sau coloană."
 
@@ -1600,6 +1726,7 @@ msgstr "Conținut care clipește sau derulează"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
 #: includes/rules.php:397
+#, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Erorile de Conținut care Clipește sau Derulează apar atunci când elementele de pe site-ul dvs. Web au o funcție de clipire sau derulare aplicată fie prin CSS, fie în HTML. În mod specific, următoarele vor crea această eroare: etichetele HTML %1$s sau %2$s sau CSS %3$s. Pentru a rezolva această eroare, eliminați etichetele HTML sau CSS care fac conținutul să clipească."
 
@@ -1633,6 +1760,7 @@ msgstr "Declarație de limbă lipsă"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
 #: includes/rules.php:437
+#, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "O declarație de limbă este un atribut HTML care indică limba implicită a conținutului de pe o pagină sau postare. Declarațiile de limbă ar trebui să fie codate în tema site-ului dumneavoastră și să apară automat în antetul site-ului. O eroare de Declarație de Limbă Lipsă apare dacă eticheta %1$s de pe pagină nu conține un atribut %2$s sau %3$s, sau unul dintre aceste atribute este prezent, dar este gol. Pentru a remedia o eroare de Declarație de Limbă Lipsă, va trebui să editați fișierele temei dumneavoastră pentru a adăuga atributul de limbă lipsă la eticheta HTML din partea de sus a antetului site-ului dumneavoastră. Dacă utilizați o temă care primește actualizări, atunci va trebui să faceți modificarea într-o temă copil pentru a vă asigura că remedierea nu va fi suprascrisă când veți actualiza tema data viitoare."
 
@@ -1666,6 +1794,7 @@ msgstr "Titlu lipsă"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
 #: includes/rules.php:482
+#, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "O eroare de Titlu lipsă înseamnă că postarea sau pagina dvs. Nu conține un element de titlu (%1$s sau %2$s). Acest lucru se poate întâmpla dacă tema nu reușește să adauge o etichetă de titlu sau dacă câmpul de titlu al unei postări sau pagini a fost lăsat gol în ecranul de editare WordPress. Pentru a remedia o pagină fără titluri, va trebui să adăugați elemente de titlu. Mai întâi, determinați dacă titlul lipsește pentru că ați lăsat gol câmpul de titlu al paginii sau postării în editor. Dacă da, completați-l. Dacă un titlu este completat și vizibil în backend, atunci codul din antetul paginii dvs. web trebuie editat pentru a include o etichetă %1$s sau o etichetă meta %2$s."
 
@@ -1675,6 +1804,7 @@ msgstr "Utilizare necorespunzătoare a linkului"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
 #: includes/rules.php:500
+#, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "O eroare de Utilizare necorespunzătoare a linkului apare dacă aveți linkuri care nu au un atribut %1$s sau sunt legate doar de un %2$s și nu au %3$s pe ele. Linkurile ar trebui folosite pentru a direcționa oamenii către alte părți ale site-ului dvs. Orice altă funcționalitate care declanșează o acțiune ar trebui să fie un buton. Pentru a rezolva această eroare, trebuie să recodificați linkul pentru a utiliza o etichetă %4$s (de preferat) sau să adăugați %5$s la eticheta %6$s existentă. Dacă elementul este un buton de comutare (cum ar fi un acordeon), sunt necesare atribute ARIA suplimentare."
 
@@ -1720,62 +1850,57 @@ msgid "Clear Issues"
 msgstr "Șterge problemele"
 
 #: partials/pro-callout.php:13
-#: partials/welcome-page.php:196
+#: partials/welcome-page.php:199
 msgid "Equalize Digital Logo"
 msgstr "Logo-ul Equalize Digital"
 
 #: partials/pro-callout.php:16
-#: partials/welcome-page.php:197
+#: partials/welcome-page.php:200
 msgid "Upgrade to Accessibility Checker Pro"
 msgstr "Actualizează la Accessibility Checker Pro"
 
 #: partials/pro-callout.php:20
-#: partials/welcome-page.php:200
+#: partials/welcome-page.php:203
 msgid "Scan all post types"
 msgstr "Scanează toate tipurile de postări"
 
 #: partials/pro-callout.php:21
-#: partials/welcome-page.php:201
+#: partials/welcome-page.php:204
 msgid "Admin columns to see accessibility status at a glance"
 msgstr "Coloane de administrare pentru a vedea starea de accesibilitate dintr-o privire"
 
 #: partials/pro-callout.php:22
-#: partials/welcome-page.php:202
+#: partials/welcome-page.php:205
 msgid "Centralized list of all open issues"
 msgstr "Lista centralizată a tuturor problemelor deschise"
 
 #: partials/pro-callout.php:23
-#: partials/welcome-page.php:203
+#: partials/welcome-page.php:206
 msgid "Ignore log"
 msgstr "Jurnal de ignorare"
 
 #: partials/pro-callout.php:24
-#: partials/welcome-page.php:204
+#: partials/welcome-page.php:207
 msgid "Rename simplified summary"
 msgstr "Redenumește rezumatul simplificat"
 
 #: partials/pro-callout.php:25
-#: partials/welcome-page.php:205
+#: partials/welcome-page.php:208
 msgid "User restrictions on ignoring issues"
 msgstr "Restricții pentru utilizatori la ignorarea problemelor"
 
 #: partials/pro-callout.php:26
-#: partials/welcome-page.php:206
+#: partials/welcome-page.php:209
 msgid "Email support"
 msgstr "Asistență prin e-mail"
 
 #: partials/pro-callout.php:27
-#: partials/welcome-page.php:207
+#: partials/welcome-page.php:210
 msgid "...and more"
 msgstr "...și multe altele"
 
-#: partials/pro-callout.php:36
-#: partials/welcome-page.php:212
-msgid "Get Accessibility Checker Pro"
-msgstr "Obține Accessibility Checker Pro"
-
-#: partials/pro-callout.php:46
-#: partials/welcome-page.php:220
+#: partials/pro-callout.php:57
+#: partials/welcome-page.php:223
 msgid "Or activate your license key here."
 msgstr "Sau activați cheia dvs. de licență aici."
 
@@ -1801,6 +1926,7 @@ msgstr "Urmați acești pași pentru a începe verificarea conținutului dvs.:"
 
 #. translators: %s: path to settings page.
 #: partials/welcome-page.php:57
+#, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "Pe <a href=\"%s\">Pagina de Setări</a>, alegeți ce tipuri de postări doriți să scanați."
 
@@ -1852,7 +1978,7 @@ msgstr "De ce spunem 100% Teste Trecute, Nu 100% Accesibil?"
 #: partials/welcome-page.php:109
 #: partials/welcome-page.php:114
 #: partials/welcome-page.php:120
-#: partials/welcome-page.php:213
+#: partials/welcome-page.php:216
 msgid "(opens in a new window)"
 msgstr "(se deschide într-o fereastră nouă)"
 
@@ -1924,19 +2050,19 @@ msgstr "Sesiuni deschise de întrebări și răspunsuri pe Zoom la fiecare două
 msgid "Included in Small Business and Agency plans"
 msgstr "Inclus în planurile pentru Întreprinderi Mici și Agenții"
 
-#: partials/welcome-page.php:165
+#: partials/welcome-page.php:166
 msgid "Register for Office Hours"
 msgstr "Înregistrați-vă pentru programul de consultații"
 
-#: partials/welcome-page.php:170
+#: partials/welcome-page.php:172
 msgid "Auditing and Remediation"
 msgstr "Auditare și remediere"
 
-#: partials/welcome-page.php:172
+#: partials/welcome-page.php:174
 msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
 msgstr "Obțineți ajutor pentru a face site-ul dvs. Web accesibil. Auditare de experți, testare cu utilizatori și asistență pentru dezvoltare. Scrisori de conformitate disponibile."
 
-#: partials/welcome-page.php:176
+#: partials/welcome-page.php:178
 msgid "Get Remediation Help"
 msgstr "Obțineți ajutor pentru remediere"
 
@@ -1947,6 +2073,7 @@ msgstr "Se salvează..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Setările au fost salvate cu succes. Trebuie să %svizitezi editorul%s și să salvezi postarea pentru a rescana și a elimina problemele rezolvate din rapoartele Accessibility Checker."
 
@@ -2019,6 +2146,10 @@ msgid "Disable Page Styles"
 msgstr "Dezactivează stilurile paginii"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "An error occurred when loading the issues."
+msgstr "A apărut o eroare la încărcarea problemelor."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Show Code"
 msgstr "Arată codul"
 
@@ -2071,6 +2202,30 @@ msgstr[1] "probleme ignorate"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
 msgstr "detectate."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanner function not found."
+msgstr "Funcția de scanare nu a fost găsită."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanning..."
+msgstr "Se scanează..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "Nu s-au găsit încălcări, se omite salvarea."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Missing postId or nonce."
+msgstr "Lipsește postId sau nonce."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility scan error."
+msgstr "Eroare la scanarea de accesibilitate."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error saving scan results."
+msgstr "Eroare la salvarea rezultatelor scanării."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"

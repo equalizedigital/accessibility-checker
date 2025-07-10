@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Wird gespeichert..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Einstellungen erfolgreich gespeichert. Sie m\u00fcssen %sden Editor besuchen%s und den Beitrag speichern, um einen erneuten Scan durchzuf\u00fchren und behobene Probleme aus den Accessibility Checker-Berichten zu entfernen."
+                "Einstellungen erfolgreich gespeichert. Sie m\u00fcssen %sden Editor besuchen%s und den Beitrag speichern, um erneut zu scannen und behobene Probleme aus den Accessibility Checker-Berichten zu entfernen."
             ],
             "Settings saved successfully.": [
                 "Einstellungen erfolgreich gespeichert."
@@ -33,6 +33,9 @@
             ],
             "Disable Page Styles": [
                 "Seitenstile deaktivieren"
+            ],
+            "An error occurred when loading the issues.": [
+                "Beim Laden der Probleme ist ein Fehler aufgetreten."
             ],
             "Show Code": [
                 "Code anzeigen"
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "erkannt."
+            ],
+            "Scanner function not found.": [
+                "Scannerfunktion nicht gefunden."
+            ],
+            "Scanning...": [
+                "Wird gescannt..."
+            ],
+            "No violations found, skipping save.": [
+                "Keine Verst\u00f6\u00dfe gefunden, Speichern wird \u00fcbersprungen."
+            ],
+            "Missing postId or nonce.": [
+                "Fehlende postId oder Nonce."
+            ],
+            "Accessibility scan error.": [
+                "Fehler beim Barrierefreiheits-Scan."
+            ],
+            "Error saving scan results.": [
+                "Fehler beim Speichern der Scan-Ergebnisse."
             ]
         }
     }

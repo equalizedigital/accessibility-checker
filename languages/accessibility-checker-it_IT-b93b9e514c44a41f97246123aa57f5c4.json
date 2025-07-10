@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Salvataggio in corso..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Impostazioni salvate con successo. Devi %svisitare l'editor%s e salvare il post per eseguire una nuova scansione e rimuovere i problemi risolti dai report di Accessibility Checker."
+                "Impostazioni salvate con successo. Devi %svisitare l'editor%s e salvare il post per eseguire nuovamente la scansione e rimuovere i problemi risolti dai rapporti di Accessibility Checker."
             ],
             "Settings saved successfully.": [
                 "Impostazioni salvate con successo."
@@ -33,6 +33,9 @@
             ],
             "Disable Page Styles": [
                 "Disattiva gli stili della pagina"
+            ],
+            "An error occurred when loading the issues.": [
+                "Si \u00e8 verificato un errore durante il caricamento dei problemi."
             ],
             "Show Code": [
                 "Mostra codice"
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "rilevati."
+            ],
+            "Scanner function not found.": [
+                "Funzione di scansione non trovata."
+            ],
+            "Scanning...": [
+                "Scansione in corso..."
+            ],
+            "No violations found, skipping save.": [
+                "Nessuna violazione trovata, salvataggio saltato."
+            ],
+            "Missing postId or nonce.": [
+                "Manca postId o nonce."
+            ],
+            "Accessibility scan error.": [
+                "Errore nella scansione di accessibilit\u00e0."
+            ],
+            "Error saving scan results.": [
+                "Errore nel salvare i risultati della scansione."
             ]
         }
     }

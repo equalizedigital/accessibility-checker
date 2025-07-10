@@ -33,6 +33,10 @@ class Plugin {
 		$rest_api = new REST_Api();
 		$rest_api->init_hooks();
 
+		// Initialize the admin toolbar.
+		$admin_toolbar = new Admin_Toolbar();
+		$admin_toolbar->init();
+
 		$this->register_fixes_manager();
 
 		// When WP CLI is enabled, load the CLI commands.
