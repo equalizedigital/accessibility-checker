@@ -518,4 +518,12 @@ return [
 		'viewable'  => false,
 		'fixes'     => [ MetaViewportScalableFix::get_slug() ],
 	],
+	[
+		'title'     => esc_html__( 'Naked Link', 'accessibility-checker' ),
+		'info_url'  => 'https://a11ychecker.com/help????',
+		'slug'      => 'naked_link',
+		'rule_type' => 'warning',
+		'summary'   => esc_html__( 'A Naked Links warning appears when there are links on your post or page that are not descriptive of where they will take a user if clicked. This commonly occurs with links that are just a URL, such as "https://example.com" or "www.example.com". To fix a Naked Links warning, you need to change the link text to be descriptive of where the link will take a user if clicked. For example, instead of linking to "https://example.com", you could link to "Visit Example".', 'accessibility-checker' ),
+		'ruleset'   => 'js',
+	],
 ];
