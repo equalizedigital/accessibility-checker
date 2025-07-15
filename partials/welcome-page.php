@@ -37,7 +37,7 @@ use EDAC\Admin\Welcome_Page;
 
 		<div class="edac-welcome-header-right">
 				<a href="<?php edac_link_wrapper( 'https://equalizedigital.com/?utm_source=accessibility-checker&utm_medium=software', 'welcome-page', 'logo-link' ); ?>" target="_blank">
-					<img src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/accessibility-checker-logo-transparent-bg.svg" alt="<?php esc_attr_e( 'Link to Equalize Digital Website', 'accessibility-checker' ); ?>">
+					<img rc="<?php echo esc_url( EDAC_PLUGIN_URL . 'assets/images/accessibility-checker-logo-transparent-bg.svg' ); ?>" alt="<?php esc_attr_e( 'Link to Equalize Digital Website', 'accessibility-checker' ); ?>">
 				</a>
 			</div>
 		</div>

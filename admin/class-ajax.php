@@ -486,7 +486,7 @@ class Ajax {
 
 						$landmark          = isset( $row['landmark'] ) ? esc_html( $row['landmark'] ) : '';
 						$landmark_selector = isset( $row['landmark_selector'] ) ? $row['landmark_selector'] : '';
-						
+
 						if ( $landmark && $landmark_selector ) {
 							$landmark_url = add_query_arg(
 								[
@@ -495,7 +495,7 @@ class Ajax {
 								],
 								get_the_permalink( $postid )
 							);
-							
+
 							// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
 							$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), ucwords( $landmark ) );
 							// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
@@ -678,7 +678,7 @@ class Ajax {
 
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
-					<span class="edac-readability-list-item-icon"><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/warning-icon-yellow.png" alt="" width="22"></span>
+					<span class="edac-readability-list-item-icon"><img src="' . esc_url( EDAC_PLUGIN_URL . 'assets/images/warning-icon-yellow.png' ) . '" alt="" width="22"></span>
 					<p class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</p>
 						<p class="edac-readability-list-item-description">Your Prompt for Simplified Summary is set to "never." If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
 				</li>';
@@ -696,7 +696,7 @@ class Ajax {
 
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
-					<span class="edac-readability-list-item-icon"><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/warning-icon-yellow.png" alt="" width="22"></span>
+					<span class="edac-readability-list-item-icon"><img src="' . esc_url( EDAC_PLUGIN_URL . 'assets/images/warning-icon-yellow.png' ) . '" alt="" width="22"></span>
 					<p class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</p>
 						<p class="edac-readability-list-item-description">Your Simplified Summary location is set to "manually" which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
 				</li>';
