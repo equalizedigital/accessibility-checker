@@ -32,7 +32,7 @@ function edac_compare_strings( $string1, $string2 ) {
 		$content = wp_strip_all_tags( $content );
 		$content = trim( $content, " \t\n\r\0\x0B\xC2\xA0" );
 
-		return html_entity_decode( $content );
+		return html_entity_decode( $content, ENT_QUOTES | ENT_HTML5 );
 	};
 
 	return $prepare_strings( $string1 ) === $prepare_strings( $string2 );
