@@ -190,7 +190,10 @@ class GenerateLandmarkLinkTest extends WP_UnitTestCase {
 		
 		// Should contain encoded selector.
 		$encoded_selector = base64_encode( $landmark_selector );
-		$this->assertStringContainsString( "edac_landmark={$encoded_selector}", $result );
+		// Verify base64 encoded selector is present in URL.
+		$this->assertStringContainsString( 'edac_landmark=', $result );
+		preg_match( '/edac_landmark=([^&"]+)/', $result, $matches );
+		$this->assertEquals( $encoded_selector, urldecode( $matches[1] ) );
 		$this->assertStringContainsString( '>Main</a>', $result );
 	}
 
