@@ -749,3 +749,50 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 		)
 	);
 }
+
+/**
+ * Generate a landmark link with proper URL and ARIA label
+ *
+ * @param string $landmark The landmark type (e.g., "header", "navigation", "main").
+ * @param string $landmark_selector The CSS selector for the landmark.
+ * @param int    $post_id The post ID to link to.
+ * @param string $css_class Optional CSS class for the link. Default 'edac-details-rule-records-record-landmark-link'.
+ * @param bool   $target_blank Whether to open link in new window. Default true.
+ *
+ * @return string The HTML for the landmark link or just the landmark text if no selector.
+ */
+function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $css_class = 'edac-details-rule-records-record-landmark-link', $target_blank = true ) {
+	$landmark = esc_html( $landmark );
+	
+	if ( empty( $landmark ) ) {
+		return '';
+	}
+	
+	// If we have both landmark and selector, create a link.
+	if ( ! empty( $landmark_selector ) ) {
+		$landmark_url = add_query_arg(
+			[
+				'edac_landmark' => base64_encode( $landmark_selector ),
+				'edac_nonce'    => wp_create_nonce( 'edac_highlight' ),
+			],
+			get_the_permalink( $post_id )
+		);
+		
+		// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+		$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), ucwords( $landmark ) );
+		
+		$target_attr = $target_blank ? ' target="_blank"' : '';
+		
+		return sprintf(
+			'<a href="%s" class="%s"%s aria-label="%s">%s</a>',
+			esc_url( $landmark_url ),
+			esc_attr( $css_class ),
+			$target_attr,
+			esc_attr( $landmark_aria_label ),
+			ucwords( $landmark )
+		);
+	}
+	
+	// If we only have landmark text, return it formatted.
+	return ucwords( $landmark );
+}
