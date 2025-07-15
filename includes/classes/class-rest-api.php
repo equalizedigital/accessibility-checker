@@ -61,7 +61,7 @@ class REST_Api {
 							return new \WP_REST_Response( [ 'messages' => $messages ], 200 );
 						},
 						'permission_callback' => function () {
-							return true;
+							return current_user_can( 'edit_posts' );
 						},
 					]
 				);
