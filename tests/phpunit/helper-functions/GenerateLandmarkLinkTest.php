@@ -259,6 +259,8 @@ class GenerateLandmarkLinkTest extends WP_UnitTestCase {
 		
 		$this->assertArrayHasKey( 'edac_landmark', $query_params );
 		$this->assertArrayHasKey( 'edac_nonce', $query_params );
-		$this->assertEquals( base64_encode( $landmark_selector ), $query_params['edac_landmark'] );
+		// Decode and compare the landmark selector.
+		$decoded_selector = base64_decode( $query_params['edac_landmark'] );
+		$this->assertEquals( $landmark_selector, $decoded_selector );
 	}
 }
