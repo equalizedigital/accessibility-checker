@@ -63,7 +63,7 @@ class Post_Save {
 		// handle the case when the custom post is quick edited.
 		if ( isset( $_POST['_inline_edit'] ) ) {
 			$inline_edit = sanitize_text_field( $_POST['_inline_edit'] );
-			if ( wp_verify_nonce( $inline_edit, 'inlineeditnonce' ) ) {
+			if ( ! wp_verify_nonce( $inline_edit, 'inlineeditnonce' ) ) {
 				return;
 			}
 		}
