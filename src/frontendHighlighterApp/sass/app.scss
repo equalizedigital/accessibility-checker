@@ -286,6 +286,22 @@ body {
 					background-color: variables.$color-white !important;
 				}
 			}
+
+			&-summary {
+				display: block;
+			}
+
+			&-how-to-fix {
+				display: inline-block;
+				margin-bottom: 0 !important;
+
+				&-title {
+					display: block;
+					font-weight: bold !important;
+					margin-top: 10px !important;
+					margin-bottom: 5px !important;
+				}
+			}
 		}
 
 		&-controls {
