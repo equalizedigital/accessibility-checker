@@ -119,9 +119,9 @@ function edac_register_rules() {
 		return $default_rules;
 	}
 
-	// If we got this far, this is the 1st time we called this function.
-	// We need to load the rules from the filesystem, and apply any filters.
-	$default_rules = include __DIR__ . '/includes/rules.php';
+	// Use the new class-based rules system.
+	$default_rules = \EqualizeDigital\AccessibilityChecker\Rules\RuleRegistry::load_rules();
+	
 	/**
 	 * Filter the default rules.
 	 *
