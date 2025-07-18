@@ -28,8 +28,8 @@ class LinkAmbiguousTextRule implements RuleInterface {
 			'summary_plural'        => esc_html__( 'These links use generic or vague anchor text that does not describe their purpose.', 'accessibility-checker' ),
 			'why_it_matters'        => esc_html__( 'Screen reader users often browse a list of links out of context. If links use ambiguous phrases like "click here" or "learn more," users will not understand where the link goes or what it does. This can lead to confusion and reduce the usability of your website.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
-			// translators: %1$s is <code>aria-label</code>,.
-				esc_html__( 'Revise the anchor text to clearly describe the destination or purpose of the link. For example, instead of "click here," use "download the annual report" or "learn more about us." Additional context can be added to links with an %1$s or screen-reader-text.', 'accessibility-checker' ),
+			// translators: %1$s is <code>aria-label</code>.
+				esc_html__( 'Revise the anchor text to clearly describe the destination or purpose of the link. For example, instead of "click here," use "download the annual report" or "learn more about us." Additional context can be added to links with an %1$s attribute or a screen-reader-text class.', 'accessibility-checker' ),
 				'<code>aria-label</code>'
 			),
 			'references'            => [
