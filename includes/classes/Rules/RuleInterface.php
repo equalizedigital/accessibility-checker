@@ -5,6 +5,8 @@
  * @package EqualizeDigital\AccessibilityChecker
  */
 
+declare(strict_types=1);
+
 namespace EqualizeDigital\AccessibilityChecker\Rules;
 
 /**
