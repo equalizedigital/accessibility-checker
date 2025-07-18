@@ -28,7 +28,7 @@ class TextSmallRule implements RuleInterface {
 			'summary_plural'        => esc_html__( 'These text elements are smaller than 10 pixels and may be difficult to read.', 'accessibility-checker' ),
 			'why_it_matters'        => esc_html__( 'Text that is too small can be hard to read, especially for people with low vision. Ensuring a minimum readable size improves overall accessibility and usability, reducing the need for users to zoom.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
-			// translators: %s is <code>10px</code>.
+				// translators: %s is <code>10px</code>.
 				esc_html__( 'Update your styles so that all text is at least %s in size. Use relative units like em or rem when possible to support user preferences and browser scaling.', 'accessibility-checker' ),
 				'<code>10px</code>'
 			),
