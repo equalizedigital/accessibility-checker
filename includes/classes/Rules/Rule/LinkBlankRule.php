@@ -34,7 +34,7 @@ class LinkBlankRule implements RuleInterface {
 			'how_to_fix'            => sprintf(
 			// translators: %1$s is <code>target="_blank"</code>.
 				esc_html__( 'Avoid using %1$s unless absolutely necessary. If a link must open in a new tab or window, add a visible icon and screen reader text such as "opens in a new window" or "opens in a new tab" to inform users. To automate this and dismiss the warning sitewide, you can activate the \'Add Label To Links That Open A New Tab/Window\' fix in Accessibility Checker settings.', 'accessibility-checker' ),
-				'<code>target="_blank"</code>',
+				'<code>target="_blank"</code>'
 			),
 			'references'            => [
 				[
