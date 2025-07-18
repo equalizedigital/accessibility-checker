@@ -25,18 +25,18 @@ class EmptyTableHeaderRule implements RuleInterface {
 			'slug'                  => 'empty_table_header',
 			'rule_type'             => 'error',
 			'summary'               => sprintf(
-			// translators: %s is <code>&lt;th&gt;</code.
+			/* translators: %s is <code>&lt;th&gt;</code>. */
 				esc_html__( 'This element is a table header cell (%s) with no text content.', 'accessibility-checker' ),
 				'<code>&lt;th&gt;</code>',
 			),
 			'summary_plural'        => sprintf(
-			// translators: %s is <code>&lt;th&gt;</code.
+			/* translators: %s is <code>&lt;th&gt;</code>. */
 				esc_html__( 'These elements are table header cells (%s) with no text content.', 'accessibility-checker' ),
 				'<code>&lt;th&gt;</code>'
 			),
 			'why_it_matters'        => esc_html__( 'Table headers provide context for the data in rows and columns. When a table header is empty, screen readers and other assistive technologies cannot convey the meaning of the associated data, making the table difficult or impossible to interpret.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
-			// translators: %s is <code>&lt;th&gt;</code.
+			/* translators: %s is <code>&lt;th&gt;</code>. */
 				esc_html__( 'Add descriptive text inside each %s element that explains the purpose of the row or column. Avoid using empty header cells or placeholder text that lacks meaning. If necessary, you can visually hide text in a table header cell with a screen-reader-text class.', 'accessibility-checker' ),
 				'<code>&lt;th&gt;</code>'
 			),
