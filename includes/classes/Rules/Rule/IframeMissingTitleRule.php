@@ -37,7 +37,7 @@ class IframeMissingTitleRule implements RuleInterface {
 			'why_it_matters'        => esc_html__( 'Screen readers rely on the title attribute of an iframe to describe its purpose or content. Without a title, users may not understand what the embedded content is, making the page harder to navigate and use.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
 			// translators: %1$s is <code>&lt;iframe&gt;</code.
-				esc_html__( 'Add a title attribute to the %1$s tag that accurately describes the content or function of the embedded frame. If the iframe is added by a plugin and the title cannot be edited directly, check the plugin settings for an accessibility option, or contact the developer for support. Consider switching to a wordPress core embed instead.', 'accessibility-checker' ),
+				esc_html__( 'Add a title attribute to the %1$s tag that accurately describes the content or function of the embedded frame. If the iframe is added by a plugin and the title cannot be edited directly, check the plugin settings for an accessibility option, or contact the developer for support. Consider switching to a WordPress core embed instead.', 'accessibility-checker' ),
 				'<code>&lt;iframe&gt;</code>'
 			),
 			'references'            => [
