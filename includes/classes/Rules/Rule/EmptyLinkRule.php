@@ -24,7 +24,7 @@ class EmptyLinkRule implements RuleInterface {
 			'info_url'              => 'https://a11ychecker.com/help4108',
 			'slug'                  => 'empty_link',
 			'rule_type'             => 'error',
-			'summary'               => esc_html__( 'This is an empty link that does not contain any meaningful content for assitive technologies.', 'accessibility-checker' ),
+			'summary'               => esc_html__( 'This is an empty link that does not contain any meaningful content for assistive technologies.', 'accessibility-checker' ),
 			'summary_plural'        => esc_html__( 'These are empty links that do not contain any meaningful content for assistive technologies.', 'accessibility-checker' ),
 			'why_it_matters'        => esc_html__( 'Screen reader users rely on link text to understand the purpose or destination of a link. An empty link provides no information, making it difficult or impossible for users to decide whether or not to follow it.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
