@@ -37,7 +37,7 @@ class TextJustifiedRule implements RuleInterface {
 			'why_it_matters'        => esc_html__( 'Justified text can create uneven spacing between words, forming distracting "rivers" of white space that make reading difficult—especially for people with dyslexia, low vision, or cognitive disabilities. Left-aligned text is more predictable and easier to read.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
 			// translators: %s is <code>text-align: justify</code.
-				esc_html__( 'Remove the %s CSS rule from long blocks of text, especially paragraphs over 200 characters. Use left-aligned text instead for better readability and accessibility.', 'accessibility-checker' ),
+				esc_html__( 'Remove the %s CSS rule from long blocks of text, especially paragraphs longer than 200 characters. Use left-aligned text instead for better readability and accessibility.', 'accessibility-checker' ),
 				'<code>text-align: justify</code>'
 			),
 			'references'            => [
