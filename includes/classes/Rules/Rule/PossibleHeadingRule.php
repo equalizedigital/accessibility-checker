@@ -29,7 +29,7 @@ class PossibleHeadingRule implements RuleInterface {
 			'why_it_matters'        => esc_html__( 'Screen reader users and other assistive technologies rely on heading tags to understand page structure and navigate efficiently. Text that looks like a heading but is not coded as one can make it difficult for screen reader users to navigate the page.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
 			// translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
-				esc_html__( 'Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading,  you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+				esc_html__( 'Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
 				'<code>&lt;h1&gt;</code>',
 				'<code>&lt;h6&gt;</code>'
 			),
