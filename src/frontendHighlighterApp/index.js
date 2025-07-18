@@ -607,7 +607,7 @@ class AccessibilityCheckerHighlight {
 
 			// Get the summary of the issue
 			if ( matchingObj.summary ) {
-				content += `<p class="class="edac-highlight-panel-description-summary"">${ matchingObj.summary }</p>`;
+				content += `<p class="edac-highlight-panel-description-summary">${ matchingObj.summary }</p>`;
 			}
 
 			// Get the how to fix information
