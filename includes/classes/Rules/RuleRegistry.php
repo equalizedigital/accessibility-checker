@@ -70,7 +70,7 @@ class RuleRegistry {
 			$full_class_name = __NAMESPACE__ . '\\Rule\\' . $class_name;
 			
 			// PSR-4 autoloader will handle loading the class.
-			if ( class_exists( $full_class_name ) && method_exists( $full_class_name, 'get_rule' ) ) {
+			if ( is_subclass_of( $full_class_name, RuleInterface::class ) ) {
 				$rules[] = $full_class_name::get_rule();
 			}
 		}
