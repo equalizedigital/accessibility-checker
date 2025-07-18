@@ -25,14 +25,14 @@ class EmptyHeadingTagRule implements RuleInterface {
 			'slug'                  => 'empty_heading_tag',
 			'rule_type'             => 'error',
 			'summary'               => sprintf(
-			// translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code.
+			// translators: %s represents any heading element like <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;h2&gt;&lt;/h2&gt;</code>, etc.
 				esc_html__( 'This is an empty %s heading that doesn\'t contain any content.', 'accessibility-checker' ),
-				'<code>&lt;h1&gt;&lt;/h1&gt;</code>'
+				'<code>&lt;h#&gt;&lt;/h#&gt;</code>'
 			),
 			'summary_plural'        => sprintf(
-			// translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code.
+			// translators: %s represents any heading element like <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;h2&gt;&lt;/h2&gt;</code>, etc.
 				esc_html__( 'These are empty %s headings that don\'t contain any content.', 'accessibility-checker' ),
-				'<code>&lt;h1&gt;&lt;/h1&gt;</code>'
+				'<code>&lt;h#&gt;&lt;/h#&gt;</code>'
 			),
 			'why_it_matters'        => esc_html__( 'Headings help structure content and provide important navigation points for screen reader users. An empty heading communicates no useful information and may cause confusion or disorientation when navigating by headings.', 'accessibility-checker' ),
 			'how_to_fix'            => esc_html__( 'Add meaningful content inside the heading tag to describe the section that follows. If the heading is not needed, remove it entirely to avoid misleading assistive technologies.', 'accessibility-checker' ),
