@@ -62,7 +62,7 @@ class EmptyButtonRule implements RuleInterface {
 			],
 			'ruleset'               => 'js',
 			'wcag'                  => '4.1.2',
-			'severity'              => 3, // Critical..
+			'severity'              => 1, // Critical.
 			'affected_disabilities' => [
 				esc_html__( 'Blind', 'accessibility-checker' ),
 				esc_html__( 'Low-vision', 'accessibility-checker' ),
