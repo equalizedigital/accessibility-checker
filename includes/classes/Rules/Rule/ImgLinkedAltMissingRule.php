@@ -28,7 +28,7 @@ class ImgLinkedAltMissingRule implements RuleInterface {
 			'summary_plural'        => esc_html__( 'These images are inside links but do not have alt attributes and there is no other text within the links.', 'accessibility-checker' ),
 			'why_it_matters'        => esc_html__( 'Screen reader users rely on alternative text to understand the purpose of linked images. Without it, they cannot determine where the link leads, making navigation difficult or impossible.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
-			// translators: %s is <code>aria-label"</code>.
+			/* translators: %s is <code>aria-label</code>. */
 				esc_html__( 'Add an alt attribute that describes the purpose of the link. Focus on where the link goes, not what the image looks like. Alternatively, add an %s to the link.', 'accessibility-checker' ),
 				'<code>aria-label</code>',
 			),
