@@ -52,7 +52,7 @@ class MetaViewportRule implements RuleInterface {
 				],
 			],
 			'wcag'                  => '1.4.4',
-			'severity'              => 1, // Critical..
+			'severity'              => 1, // Critical.
 			'affected_disabilities' => [
 				esc_html__( 'Low-vision', 'accessibility-checker' ),
 			],
