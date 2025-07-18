@@ -25,15 +25,16 @@ class EmptyButtonRule implements RuleInterface {
 			'slug'                  => 'empty_button',
 			'rule_type'             => 'error',
 			'summary'               => sprintf(
-			// translators: %s is <code>&lt;button&gt;</code>.
-				esc_html__( 'This element is a %s with no accessible label or text.', 'accessibility-checker' ),
+			// translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+				esc_html__( 'This element is a %1$s or %2$s with no accessible label or text.', 'accessibility-checker' ),
 				'<code>&lt;button&gt;</code>',
 				'<code>&lt;input&gt;</code>'
 			),
 			'summary_plural'        => sprintf(
-			// translators: %s is <code>&lt;button&gt;</code>.
-				esc_html__( 'These elements are %s with no accessible label or text.', 'accessibility-checker' ),
-				'<code>&lt;button&gt;</code>'
+			// translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+				esc_html__( 'These elements are %1$s or %2$s with no accessible label or text.', 'accessibility-checker' ),
+				'<code>&lt;button&gt;</code>',
+				'<code>&lt;input&gt;</code>'
 			),
 			'why_it_matters'        => esc_html__( 'Buttons must clearly describe the action they perform. An empty button provides no information to screen readers or keyboard users, making it impossible to understand what clicking the button will do. This creates a barrier for people relying on assistive technologies.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
