@@ -30,7 +30,7 @@ class BrokenAriaReferenceRule implements RuleInterface {
 			'how_to_fix'            => esc_html__( 'Inspect the ARIA attributes (such as aria-labelledby or aria-describedby) on the flagged elements and ensure that each one points to a valid, correctly labeled ID that exists in the document.', 'accessibility-checker' ),
 			'references'            => [
 				[
-					'text' => __( 'MDN Web Docs: ARIA: aria-labelledb attribute', 'accessibility-checker' ),
+					'text' => __( 'MDN Web Docs: ARIA: aria-labelledby attribute', 'accessibility-checker' ),
 					'url'  => 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby',
 				],
 				[
