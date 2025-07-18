@@ -25,7 +25,7 @@ class ColorContrastFailureRule implements RuleInterface {
 			'slug'                  => 'color_contrast_failure',
 			'rule_type'             => 'error',
 			'summary'               => esc_html__( 'This element has foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance.', 'accessibility-checker' ),
-			'summary_plural'        => esc_html__( 'These elements have foreground and background colors that do not meet the minimum contrast ratio Level AA conformance.', 'accessibility-checker' ),
+			'summary_plural'        => esc_html__( 'These elements have foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance.', 'accessibility-checker' ),
 			'why_it_matters'        => esc_html__( 'Insufficient color contrast makes text and interactive elements difficult or impossible to read for users with low vision or color blindness. Ensuring adequate contrast helps all users access your content clearly.', 'accessibility-checker' ),
 			'how_to_fix'            => esc_html__( 'Adjust the foreground and background colors of the flagged elements to ensure a contrast ratio of at least 4.5:1 for normal text. Use a contrast checker to confirm that your color combinations meet this requirement.', 'accessibility-checker' ),
 			'references'            => [
