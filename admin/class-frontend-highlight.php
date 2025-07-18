@@ -113,7 +113,7 @@ class Frontend_Highlight {
 			$array['slug']       = $rule[0]['slug'];
 			$array['rule_title'] = $rule[0]['title'];
 			$array['summary']    = $rule[0]['summary'];
-			$array['how_to_fix'] = $rule[0]['how_to_fix'] ?? '';
+			$array['how_to_fix'] = wp_kses_post( $rule[0]['how_to_fix'] ?? '' );
 			$array['link']       = edac_link_wrapper( $rule[0]['info_url'], 'frontend-highlighter', $rule[0]['slug'], false );
 			$array['object']     = html_entity_decode( esc_html( $result['object'] ) );
 			$array['id']         = $result['id'];
