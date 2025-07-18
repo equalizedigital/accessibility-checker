@@ -40,7 +40,7 @@ class MetaViewportRule implements RuleInterface {
 			'why_it_matters'        => esc_html__( 'Restricting a user\'s ability to zoom creates barriers for individuals with low vision or other visual impairments. These users may rely on browser zoom features, pinch-zooming on mobile, or magnifiers to access content comfortably.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
 			// translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>, %3$s is <head>.
-				esc_html__( 'Edit the viewport meta tag in your themes\'s %3$s section and remove %1$s and any %2$s value less than 2. To fix this site-wide, enable the \'Make Viewport Scalable\' fix in Accessibility Checker Settings.', 'accessibility-checker' ),
+				esc_html__( 'Edit the viewport meta tag in your theme\'s %3$s section and remove %1$s and any %2$s value less than 2. To fix this site-wide, enable the \'Make Viewport Scalable\' fix in Accessibility Checker Settings.', 'accessibility-checker' ),
 				'<code>user-scalable=no</code>',
 				'<code>maximum-scale</code>',
 				'<code>&lt;head&gt;</code>'
