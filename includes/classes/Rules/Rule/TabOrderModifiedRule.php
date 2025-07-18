@@ -39,7 +39,7 @@ class TabOrderModifiedRule implements RuleInterface {
 			),
 			'why_it_matters'        => esc_html__( 'The natural tab order of a page follows the structure of the HTML. Changing this order using positive tabindex values can cause confusion for keyboard-only users and screen reader users, especially if the focus moves in an unexpected way or skips important content.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
-			// translators: %s is <code>tabindex</code.
+			// translators: %s is <code>tabindex</code>.
 				esc_html__( 'Remove positive %s values (greater than 0) from elements unless there is a very specific, user-tested reason to change the focus order. If needed, use tabindex="0" to include custom elements in the natural tab flow without disrupting order. To fix this and other elements site-wide, enable the \'Remove Tab Index\' fix in Accessibility Checker settings.', 'accessibility-checker' ),
 				'<code>tabindex</code>'
 			),
