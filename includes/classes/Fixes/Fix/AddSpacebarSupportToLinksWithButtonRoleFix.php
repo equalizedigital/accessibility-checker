@@ -33,8 +33,8 @@ class AddSpacebarSupportToLinksWithButtonRoleFix implements FixInterface {
 	public static function get_nicename(): string {
 		return sprintf(
 			/* translators: %1$s is a html role attribute with value of 'button' */
-			__( 'Add spacebar handling to links with %1$s"', 'accessibility-checker' ),
-			'role="button'
+			__( 'Add spacebar handling to links with %1$s', 'accessibility-checker' ),
+			'role="button"'
 		);
 	}
 
