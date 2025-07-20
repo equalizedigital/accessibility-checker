@@ -1,6 +1,6 @@
 <?php
 /**
- * Fix for adding file size and type to linked files.
+ * Fix for adding spacebar support to links with role="button".
  *
  * @package accessibility-checker
  */
@@ -10,7 +10,7 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
 /**
- * Fix for adding file size and type to linked files.
+ * Fix for adding spacebar support to links with role="button".
  *
  * @since 1.16.0
  */
