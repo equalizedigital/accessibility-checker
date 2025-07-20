@@ -75,13 +75,13 @@ class AddSpacebarSupportToLinksWithButtonRoleFix implements FixInterface {
 	 */
 	public function get_fields_array( array $fields = [] ): array {
 
-		$fields[ 'edac_fix_' . $this->get_slug() ] = [
+		$fields[ 'edac_fix_' . self::get_slug() ] = [
 			'type'        => 'checkbox',
 			'label'       => esc_html__( 'Add Spacebar Support to Links with Button Role', 'accessibility-checker' ),
 			'labelledby'  => 'add_spacebar_support_to_links_with_button_role',
 			'description' => esc_html__( 'Ensure links with role="button" respond to spacebar keypress for better accessibility.', 'accessibility-checker' ),
 			'upsell'      => isset( $this->is_pro ) && $this->is_pro ? false : true,
-			'fix_slug'    => $this->get_slug(),
+			'fix_slug'    => self::get_slug(),
 			'help_id'     => 0000,
 		];
 
