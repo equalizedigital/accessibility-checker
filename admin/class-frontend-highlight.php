@@ -114,7 +114,7 @@ class Frontend_Highlight {
 			$array['rule_title'] = $rule[0]['title'];
 			$array['summary']    = $rule[0]['summary'];
 			$array['link']       = edac_link_wrapper( $rule[0]['info_url'], 'frontend-highlighter', $rule[0]['slug'], false );
-			$array['object']     = html_entity_decode( esc_html( $result['object'] ), ENT_QUOTES | ENT_HTML5 );
+			$array['object']     = html_entity_decode( $result['object'], ENT_QUOTES | ENT_HTML5 );
 			$array['id']         = $result['id'];
 			$array['ignored']    = $result['ignre'];
 
