@@ -35,6 +35,7 @@ jobs:
           php-version: '7.4'
           coverage: none
           tools: cs2pr
+          github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
 
       # Validate the composer.json file.
       # @link https://getcomposer.org/doc/03-cli.md#validate
