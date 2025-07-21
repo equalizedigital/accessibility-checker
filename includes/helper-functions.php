@@ -762,11 +762,11 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
  * @return string The HTML for the landmark link or just the landmark text if no selector.
  */
 function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $css_class = 'edac-details-rule-records-record-landmark-link', $target_blank = true ) {
-	$landmark = esc_html( $landmark );
-	
 	if ( empty( $landmark ) ) {
 		return '';
 	}
+	$landmark = ucwords( $landmark );
+	$landmark = esc_html( $landmark );
 	
 	// If we have both landmark and selector, create a link.
 	if ( ! empty( $landmark_selector ) ) {
@@ -779,7 +779,7 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 		);
 		
 		// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-		$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), ucwords( $landmark ) );
+		$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), $landmark );
 		
 		$target_attr = $target_blank ? ' target="_blank"' : '';
 		
@@ -789,10 +789,10 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 			esc_attr( $css_class ),
 			$target_attr,
 			esc_attr( $landmark_aria_label ),
-			ucwords( $landmark )
+			$landmark
 		);
 	}
 	
 	// If we only have landmark text, return it formatted.
-	return ucwords( $landmark );
+	return $landmark;
 }
