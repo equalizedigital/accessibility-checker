@@ -13,6 +13,13 @@ use EDAC\Admin\Insert_Rule_Data;
 class InsertRuleDataTest extends WP_UnitTestCase {
 
 	/**
+	 * Table name for the accessibility checker.
+	 *
+	 * @var string
+	 */
+	protected $table_name;
+
+	/**
 	 * Create table to test against.
 	 *
 	 * @return void

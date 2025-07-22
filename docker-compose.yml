@@ -1,0 +1,31 @@
+services:
+  db-phpunit:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpunit:
+    build:
+      context: .
+      dockerfile: Dockerfile.phpunit
+    depends_on:
+      - db-phpunit
+    environment:
+      WORDPRESS_DB_HOST: db-phpunit:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./:/var/www/html/wp-content/plugins/accessibility-checker
+    working_dir: /var/www/html/wp-content/plugins/accessibility-checker
+    entrypoint: ["/bin/bash"]
+    tty: true
+
+volumes:
+  db_data:
+

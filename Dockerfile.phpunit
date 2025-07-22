@@ -1,0 +1,18 @@
+FROM wordpress:php8.4-apache
+
+ARG CACHEBUST=1
+
+# Install svn, default-mysql-client, and libicu-dev for WordPress test environment
+RUN apt-get update \
+    && apt-get install -y subversion default-mysql-client libicu-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install and enable the intl PHP extension
+RUN docker-php-ext-install intl
+
+# Install and enable Xdebug for code coverage
+RUN pecl install xdebug \
+    && echo "zend_extension=xdebug\nxdebug.mode=coverage,debug\nxdebug.start_with_request=trigger" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# Show PHP version and loaded modules for debugging
+RUN php -v && php -m
