@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.26.0\n"
+"Project-Id-Version: Accessibility Checker 1.27.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-08T20:56:24+00:00\n"
+"POT-Creation-Date: 2025-07-22T16:16:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -177,9 +177,9 @@ msgstr "バージョン1.21.0で統計計算を改善しました。その結果
 #: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:212
-#: admin/class-ajax.php:606
-#: admin/class-ajax.php:744
-#: admin/class-ajax.php:824
+#: admin/class-ajax.php:591
+#: admin/class-ajax.php:729
+#: admin/class-ajax.php:809
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "権限がありません"
@@ -255,8 +255,8 @@ msgstr "Proにアップグレード"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:219
-#: admin/class-ajax.php:613
-#: admin/class-ajax.php:831
+#: admin/class-ajax.php:598
+#: admin/class-ajax.php:816
 msgid "The post ID was not set"
 msgstr "投稿IDが設定されていません"
 
@@ -333,48 +333,42 @@ msgstr "保存"
 msgid "Affected Code"
 msgstr "影響を受けるコード"
 
-#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: admin/class-ajax.php:500
-#, php-format
-msgid "View %s landmark on website, opens a new window"
-msgstr "%sランドマークをウェブサイトで表示（新しいウィンドウで開きます）"
-
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:522
+#: admin/class-ajax.php:507
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "ウェブサイトで問題ID %dを表示する（新しいウィンドウで開きます）"
 
-#: admin/class-ajax.php:523
+#: admin/class-ajax.php:508
 msgid "View on page"
 msgstr "ページで表示"
 
-#: admin/class-ajax.php:542
+#: admin/class-ajax.php:527
 msgid "Fix: "
 msgstr "修正: "
 
-#: admin/class-ajax.php:543
+#: admin/class-ajax.php:528
 msgid "Fix"
 msgstr "修正"
 
-#: admin/class-ajax.php:566
+#: admin/class-ajax.php:551
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "あなたのユーザーアカウントには、この問題を無視する権限がありません。"
 
-#: admin/class-ajax.php:584
+#: admin/class-ajax.php:569
 msgid "No details to return"
 msgstr "返す詳細がありません"
 
-#: admin/class-ajax.php:723
+#: admin/class-ajax.php:708
 msgid "No readability data to return"
 msgstr "返す読みやすさデータがありません"
 
-#: admin/class-ajax.php:780
-#: admin/class-ajax.php:803
+#: admin/class-ajax.php:765
+#: admin/class-ajax.php:788
 msgid "No ignore data to return"
 msgstr "返す無視データがありません"
 
-#: admin/class-ajax.php:838
+#: admin/class-ajax.php:823
 msgid "The summary was not set"
 msgstr "要約が設定されていません"
 
@@ -386,7 +380,7 @@ msgstr "ID値が設定されていません"
 msgid "Issue query returned no results"
 msgstr "問題のクエリで結果が返されませんでした"
 
-#: admin/class-frontend-highlight.php:137
+#: admin/class-frontend-highlight.php:138
 msgid "Object query returned no results"
 msgstr "オブジェクトのクエリで結果が返されませんでした"
 
@@ -425,15 +419,15 @@ msgstr "Accessibility Checkerプラグインを評価する（新しいウィン
 msgid "Rate plugin"
 msgstr "プラグインを評価"
 
-#: admin/class-upgrade-promotion.php:57
+#: admin/class-upgrade-promotion.php:58
 msgid "Upgrade to Pro"
 msgstr "プロにアップグレード"
 
-#: admin/class-upgrade-promotion.php:59
+#: admin/class-upgrade-promotion.php:60
 msgid "Upgrade Sale Now"
 msgstr "今すぐアップグレードセール"
 
-#: admin/class-upgrade-promotion.php:93
+#: admin/class-upgrade-promotion.php:82
 msgid "Unable to redirect to upgrade page."
 msgstr "アップグレードページへのリダイレクトができません。"
 
@@ -1181,6 +1175,1579 @@ msgstr "注意：この設定は、既にアクセシビリティ対応のテー
 msgid "Fix not found"
 msgstr "修正が見つかりません"
 
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:23
+msgid "ARIA Hidden"
+msgstr "ARIA Hidden"
+
+#. translators: %s is <code>aria-hidden="true"</code.
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:29
+#, php-format
+msgid "This element uses %s, which hides it from screen readers."
+msgstr "この要素は%sを使用しており、スクリーンリーダーから隠されています。"
+
+#. translators: %s is <code>aria-hidden="true"</code.
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:34
+#, php-format
+msgid "These elements use %s, which hides them from screen readers."
+msgstr "これらの要素は%sを使用しており、スクリーンリーダーから隠されています。"
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:37
+msgid "The aria-hidden attribute is used to hide content from assistive technologies. While this is useful for decorative or redundant elements, it can cause accessibility issues if applied to important content that screen reader users need to access."
+msgstr "aria-hidden属性は、支援技術からコンテンツを隠すために使用されます。装飾的または冗長な要素には便利ですが、スクリーンリーダーユーザーがアクセスする必要がある重要なコンテンツに適用すると、アクセシビリティの問題を引き起こす可能性があります。"
+
+#. translators: %s is <code>aria-hidden="true"</code.
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:40
+#, php-format
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
+msgstr "その要素が本当にスクリーンリーダーユーザーから隠されるべきかどうか確認してください。重要なコンテンツや機能が含まれている場合は、%sを削除してください。装飾的または冗長な場合は、要素をそのままにして、Accessibility Checkerの「無視」機能を使用してこの警告を却下してください。"
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:45
+msgid "W3C: ARIA Authoring Practices - aria-hidden"
+msgstr "W3C：ARIAオーサリングプラクティス - aria-hidden"
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:49
+msgid "MDN Web Docs: aria-hidden - Accessibility Attribute"
+msgstr "MDN Web Docs：aria-hidden - アクセシビリティ属性"
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:57
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:48
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:45
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:50
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:67
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:53
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:55
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:53
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:57
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:57
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:58
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:54
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:41
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:53
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:59
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:41
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:41
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:45
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:58
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:53
+#: includes/classes/Rules/Rule/LinkBlankRule.php:49
+#: includes/classes/Rules/Rule/LinkImproperRule.php:61
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:69
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:36
+#: includes/classes/Rules/Rule/LinkPdfRule.php:53
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:61
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:66
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:58
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:61
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:58
+#: includes/classes/Rules/Rule/MissingTitleRule.php:51
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:50
+#: includes/classes/Rules/Rule/SliderPresentRule.php:44
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:60
+#: includes/classes/Rules/Rule/VideoPresentRule.php:44
+msgid "Blind"
+msgstr "視覚障害"
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:58
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:49
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:46
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:49
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:51
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:68
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:54
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:56
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:54
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:58
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:58
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:59
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:55
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:42
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:54
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:60
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:42
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:42
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:46
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:59
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:54
+#: includes/classes/Rules/Rule/LinkBlankRule.php:50
+#: includes/classes/Rules/Rule/LinkImproperRule.php:62
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:70
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:37
+#: includes/classes/Rules/Rule/LinkPdfRule.php:54
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:62
+#: includes/classes/Rules/Rule/MetaViewportRule.php:57
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:67
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:59
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:59
+#: includes/classes/Rules/Rule/MissingTitleRule.php:52
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:51
+#: includes/classes/Rules/Rule/SliderPresentRule.php:45
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:61
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:53
+#: includes/classes/Rules/Rule/TextSmallRule.php:49
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:46
+#: includes/classes/Rules/Rule/VideoPresentRule.php:45
+msgid "Low-vision"
+msgstr "弱視"
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:59
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:50
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:47
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:52
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:69
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:55
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:57
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:55
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:59
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:59
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:60
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:56
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:43
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:55
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:61
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:43
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:43
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:47
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:60
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:55
+#: includes/classes/Rules/Rule/LinkBlankRule.php:51
+#: includes/classes/Rules/Rule/LinkImproperRule.php:63
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:71
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:38
+#: includes/classes/Rules/Rule/LinkPdfRule.php:55
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:63
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:68
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:60
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:62
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:60
+#: includes/classes/Rules/Rule/MissingTitleRule.php:53
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:45
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:52
+#: includes/classes/Rules/Rule/SliderPresentRule.php:46
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:62
+#: includes/classes/Rules/Rule/VideoPresentRule.php:46
+msgid "Deafblind"
+msgstr "盲ろう"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:23
+msgid "Broken ARIA Reference"
+msgstr "ARIA参照の破損"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:27
+msgid "This element uses an ARIA attribute that references another element which does not exist or is not properly labeled."
+msgstr "この要素は、存在しないか適切にラベル付けされていない別の要素を参照するARIA属性を使用しています。"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:28
+msgid "These elements use ARIA attributes that reference other elements which do not exist or are not properly labeled."
+msgstr "これらの要素は、存在しないか適切にラベル付けされていない他の要素を参照するARIA属性を使用しています。"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:29
+msgid "ARIA attributes like aria-labelledby and aria-describedby are used to improve accessibility by connecting elements to their labels or descriptions. If the reference target does not exist, users of assistive technology will miss important context or instructions."
+msgstr "aria-labelledbyやaria-describedbyなどのARIA属性は、要素をそのラベルや説明に接続することでアクセシビリティを向上させるために使用されます。参照先が存在しない場合、支援技術のユーザーは重要な文脈や指示を見逃してしまいます。"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:30
+msgid "Inspect the ARIA attributes (such as aria-labelledby or aria-describedby) on the flagged elements and ensure that each one points to a valid, correctly labeled ID that exists in the document."
+msgstr "フラグが付けられた要素のARIA属性（aria-labelledbyやaria-describedbyなど）を確認し、それぞれが文書内に存在する有効で正しくラベル付けされたIDを指していることを確認してください。"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:33
+msgid "MDN Web Docs: ARIA: aria-labelledby attribute"
+msgstr "MDN Web Docs：ARIA：aria-labelledby属性"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:37
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:53
+msgid "MDN Web Docs: ARIA: aria-describedby attribute"
+msgstr "MDN Web Docs：ARIA：aria-describedby属性"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:41
+msgid "ARIA for Beginners (Webinar)"
+msgstr "初心者向けARIA（ウェビナー）"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:51
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:48
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:60
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:62
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:57
+#: includes/classes/Rules/Rule/LinkBlankRule.php:53
+#: includes/classes/Rules/Rule/LinkImproperRule.php:64
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:73
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:40
+#: includes/classes/Rules/Rule/LinkPdfRule.php:57
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:70
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:62
+#: includes/classes/Rules/Rule/MissingTitleRule.php:54
+#: includes/classes/Rules/Rule/SliderPresentRule.php:48
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:64
+msgid "Mobility"
+msgstr "運動障害"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:23
+msgid "Broken Skip or Anchor Link"
+msgstr "破損したスキップリンクまたはアンカーリンク"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:27
+msgid "This link points to an anchor target on the same page, but no element with the referenced ID exists."
+msgstr "このリンクは同じページ上のアンカーターゲットを指していますが、参照されているIDを持つ要素が存在しません。"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:28
+msgid "These links point to anchor targets on the same page, but no elements with the referenced IDs exist."
+msgstr "これらのリンクは同じページ上のアンカーターゲットを指していますが、参照されているIDを持つ要素が存在しません。"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:29
+msgid "Skip and anchor links are important for efficient keyboard and screen reader navigation. When these links are broken, users may be confused or lose their place on the page, leading to a frustrating experience—especially for people who rely on keyboard shortcuts or assistive technology."
+msgstr "スキップリンクとアンカーリンクは、キーボードとスクリーンリーダーのナビゲーションを効率的に行うために重要です。これらのリンクが壊れていると、ユーザーが混乱したりページ上で位置を見失ったりして、特にキーボードショートカットや支援技術に頼っている人々にとってはフラストレーションのたまる経験になる可能性があります。"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:30
+msgid "Confirm that the link is pointing to a valid ID on the page. If the target element exists, make sure it has a matching id attribute. To automatically fix broken skip links throughout your site, enable the 'Enable Skip Link' fix in Accessibility Checker settings."
+msgstr "リンクが有効なページ上のIDを指しているか確認してください。ターゲット要素が存在する場合は、一致するid属性があることを確認してください。サイト全体の壊れたスキップリンクを自動的に修正するには、Accessibility Checker設定で「スキップリンクを有効にする」修正を有効にしてください。"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:33
+msgid "How to Make Your WordPress Site More Accessible With Skip Links"
+msgstr "スキップリンクを使用してWordPressサイトをよりアクセシブルにする方法"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:37
+msgid "How to Fix Broken Skip Links in Elementor"
+msgstr "Elementorで壊れたスキップリンクを修正する方法"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:23
+msgid "Insufficient Color Contrast"
+msgstr "不十分な色のコントラスト"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:27
+msgid "This element has foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance."
+msgstr "この要素は、レベルAAの適合性に必要な最小コントラスト比を満たしていない前景色と背景色を持っています。"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:28
+msgid "These elements have foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance."
+msgstr "これらの要素は、レベルAAの適合性に必要な最小コントラスト比を満たしていない前景色と背景色を持っています。"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:29
+msgid "Insufficient color contrast makes text and interactive elements difficult or impossible to read for users with low vision or color blindness. Ensuring adequate contrast helps all users access your content clearly."
+msgstr "不十分な色のコントラストは、弱視や色覚異常のユーザーにとってテキストやインタラクティブな要素を読むのが困難または不可能になります。適切なコントラストを確保することで、すべてのユーザーがコンテンツを明確にアクセスできるようになります。"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:30
+msgid "Adjust the foreground and background colors of the flagged elements to ensure a contrast ratio of at least 4.5:1 for normal text. Use a contrast checker to confirm that your color combinations meet this requirement."
+msgstr "フラグが付けられた要素の前景色と背景色を調整して、通常のテキストで少なくとも4.5:1のコントラスト比を確保してください。コントラストチェッカーを使用して、色の組み合わせがこの要件を満たしていることを確認してください。"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:33
+msgid "Brand Color Contrast Grid"
+msgstr "ブランドカラーコントラストグリッド"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:37
+msgid "WebAIM Contrast Checker"
+msgstr "WebAIMコントラストチェッカー"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:41
+msgid "TPGI Colour Contrast Analyser"
+msgstr "TPGIカラーコントラスト分析ツール"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:50
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:74
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:41
+#: includes/classes/Rules/Rule/LinkPdfRule.php:58
+msgid "Colorblind"
+msgstr "色覚異常"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:23
+msgid "Duplicate Form Label"
+msgstr "重複したフォームラベル"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:27
+msgid "This form field has more than one label associated with it."
+msgstr "このフォームフィールドには複数のラベルが関連付けられています。"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:28
+msgid "These form fields have more than one label associated with them."
+msgstr "これらのフォームフィールドには複数のラベルが関連付けられています。"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:29
+msgid "Assistive technologies rely on a one-to-one relationship between form fields and labels to provide accurate guidance to users. When multiple labels are associated with the same field, it can confuse screen reader users and make form completion difficult as the screen reader may read the incorrect label for a field."
+msgstr "支援技術は、フォームフィールドとラベルの1対1の関係に依存して、ユーザーに正確なガイダンスを提供します。同じフィールドに複数のラベルが関連付けられていると、スクリーンリーダーユーザーを混乱させ、フィールドの不正確なラベルを読み上げる可能性があるため、フォームの入力が困難になる場合があります。"
+
+#. translators: %1$s is <code>&lt;label&gt;</code>, %2$s is <code>for=""</code>.
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:32
+#, php-format
+msgid "Ensure each form field has only one %1$s element associated with it. If multiple labels are present, remove extras or consolidate them into a single %1$s with a clear description. Make sure each %1$s element correctly references its form field using the %2$s attribute and that all elements on the page have unique IDs. This error happens when you have the same form embedded on a page twice and can be resolved by creating unique forms for different parts of a page rather than repeating the same form throughout."
+msgstr "各フォームフィールドに関連付けられた%1$s要素が1つだけであることを確認してね。複数のラベルがある場合は、余分なものを削除するか、明確な説明を持つ1つの%1$sにまとめてね。各%1$s要素が%2$s属性を使って正しくフォームフィールドを参照していることを確認し、ページ上のすべての要素に一意のIDがあることを確認してね。このエラーは、同じフォームがページに2回埋め込まれている場合に発生するので、ページ全体で同じフォームを繰り返すのではなく、ページの異なる部分に一意のフォームを作成することで解決できるよ。"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:38
+msgid "MDN: <label> – The HTML Label element"
+msgstr "MDN: <label> – HTMLのLabel要素"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:42
+msgid "W3C: H44 – Using label elements to associate text labels with form controls"
+msgstr "W3C: H44 – label要素を使用してテキストラベルをフォームコントロールに関連付ける"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:53
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:70
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:58
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:56
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:60
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:56
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:49
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:61
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:56
+#: includes/classes/Rules/Rule/LinkBlankRule.php:52
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:72
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:39
+#: includes/classes/Rules/Rule/LinkPdfRule.php:56
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:69
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:61
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:61
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:47
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:53
+#: includes/classes/Rules/Rule/SliderPresentRule.php:47
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:63
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:52
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:55
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:47
+#: includes/classes/Rules/Rule/VideoPresentRule.php:47
+msgid "Cognitive"
+msgstr "認知的"
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:23
+msgid "Empty Button"
+msgstr "空のボタン"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:29
+#, php-format
+msgid "This element is a %1$s or %2$s with no accessible label or text."
+msgstr "この要素はアクセシブルなラベルやテキストのない%1$sまたは%2$sだよ。"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:35
+#, php-format
+msgid "These elements are %1$s or %2$s with no accessible label or text."
+msgstr "これらの要素はアクセシブルなラベルやテキストのない%1$sまたは%2$sだよ。"
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:39
+msgid "Buttons must clearly describe the action they perform. An empty button provides no information to screen readers or keyboard users, making it impossible to understand what clicking the button will do. This creates a barrier for people relying on assistive technologies."
+msgstr "ボタンは、実行するアクションを明確に説明する必要があるんだ。空のボタンは、スクリーンリーダーやキーボードユーザーに情報を提供しないため、ボタンをクリックしたときの動作を理解できなくなってしまうんだ。これは支援技術に頼っている人々にとって障壁になるんだよ。"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>value</code>, %3$s is <code>alt</code>, %4$s is <code>aria-hidden="true"</code>, %5$s is <code>aria-label</code>.
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:42
+#, php-format
+msgid "Add visible text inside the %1$s element, set a %2$s attribute on an input button, or include an %3$s attribute on a button image. If the button uses only an icon (e.g., SVG or webfont), hide the icon with %4$s and add a descriptive %5$s to the button or include screen reader-only text.  Each button must have a label that clearly describes its purpose or action."
+msgstr "%1$s要素の中に見えるテキストを追加するか、入力ボタンに%2$s属性を設定するか、ボタン画像に%3$s属性を含めてね。ボタンがアイコン（SVGやWebフォントなど）のみを使用している場合は、アイコンを%4$sで隠し、ボタンに説明的な%5$sを追加するか、スクリーンリーダー専用のテキストを含めてね。各ボタンには、その目的やアクションを明確に説明するラベルが必要だよ。"
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:51
+msgid "MDN Wed Docs: <button>"
+msgstr "MDN Web Docs: <button>"
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:55
+msgid "W3C Technique H44: Using the button element"
+msgstr "W3C テクニック H44: button要素の使用"
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:59
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:47
+msgid "WordPress: The CSS class screen-reader-text"
+msgstr "WordPress: CSSクラス screen-reader-text"
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:23
+msgid "Empty Heading Tag"
+msgstr "空の見出しタグ"
+
+#. translators: %s represents any heading element like <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;h2&gt;&lt;/h2&gt;</code>, etc.
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:29
+#, php-format
+msgid "This is an empty %s heading that doesn't contain any content."
+msgstr "これは内容のない空の%s見出しだよ。"
+
+#. translators: %s represents any heading element like <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;h2&gt;&lt;/h2&gt;</code>, etc.
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:34
+#, php-format
+msgid "These are empty %s headings that don't contain any content."
+msgstr "これらは内容のない空の%s見出しだよ。"
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:37
+msgid "Headings help structure content and provide important navigation points for screen reader users. An empty heading communicates no useful information and may cause confusion or disorientation when navigating by headings."
+msgstr "見出しはコンテンツの構造化を助け、スクリーンリーダーユーザーに重要なナビゲーションポイントを提供するんだ。空の見出しは有用な情報を伝えず、見出しによるナビゲーション時に混乱や方向感覚の喪失を引き起こす可能性があるんだよ。"
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:38
+msgid "Add meaningful content inside the heading tag to describe the section that follows. If the heading is not needed, remove it entirely to avoid misleading assistive technologies."
+msgstr "見出しタグの中に、後に続くセクションを説明する意味のある内容を追加してね。見出しが必要ない場合は、支援技術を誤解させないように完全に削除してね。"
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:41
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:42
+msgid "MDN: HTML heading elements"
+msgstr "MDN: HTML見出し要素"
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:45
+msgid "W3C: Techniques for WCAG 2.1 – H42: Using h1–h6 to identify headings"
+msgstr "W3C: WCAG 2.1のテクニック – H42: h1–h6を使用して見出しを識別する"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:23
+msgid "Empty Link"
+msgstr "空のリンク"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:27
+msgid "This is an empty link that does not contain any meaningful content for assistive technologies."
+msgstr "これは支援技術にとって意味のある内容を含まない空のリンクだよ。"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:28
+msgid "These are empty links that do not contain any meaningful content for assistive technologies."
+msgstr "これらは支援技術にとって意味のある内容を含まない空のリンクだよ。"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:29
+msgid "Screen reader users rely on link text to understand the purpose or destination of a link. An empty link provides no information, making it difficult or impossible for users to decide whether or not to follow it."
+msgstr "スクリーンリーダーユーザーは、リンクの目的や行き先を理解するためにリンクテキストに頼っているんだ。空のリンクは情報を提供しないため、ユーザーがそのリンクをたどるかどうかを判断するのが難しくなったり、不可能になったりするんだよ。"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code.
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:32
+#, php-format
+msgid "Add descriptive text inside the %1$s element. If the link uses only an icon (e.g., SVG or webfont), hide the icon with %2$s and add a descriptive %3$s to the link or include screen reader-only text to explain where the link goes."
+msgstr "%1$s要素の中に説明的なテキストを追加してね。リンクがアイコン（SVGやWebフォントなど）のみを使用している場合は、アイコンを%2$sで隠し、リンクに説明的な%3$sを追加するか、リンクの行き先を説明するスクリーンリーダー専用のテキストを含めてね。"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:39
+msgid "W3C Technique H30: Providing link text that describes the purpose of a link"
+msgstr "W3C テクニック H30: リンクの目的を説明するリンクテキストの提供"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:43
+msgid "WebAIM: Links and Hypertext"
+msgstr "WebAIM: リンクとハイパーテキスト"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:23
+msgid "Empty Paragraph Tag"
+msgstr "空の段落タグ"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:27
+msgid "This page contains a <p> tag with no content inside."
+msgstr "このページには内容のない<p>タグが含まれているよ。"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:28
+msgid "These pages contain <p> tags with no content inside."
+msgstr "これらのページには内容のない<p>タグが含まれているよ。"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:29
+msgid "Empty paragraph tags can be announced by screen readers as blank lines or pauses, which may confuse users or disrupt reading flow. They can also interfere with visual layout or spacing, especially in assistive technology or mobile contexts."
+msgstr "空の段落タグは、スクリーンリーダーによって空白行や一時停止として通知される可能性があり、ユーザーを混乱させたり、読み取りの流れを妨げたりする可能性があるんだ。また、特に支援技術やモバイルの環境では、視覚的なレイアウトや間隔にも影響を与える可能性があるよ。"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:30
+msgid "Remove the empty <p> tags from your content. If spacing is needed between sections, use margin, padding, or a visual spacer block instead of inserting blank paragraphs."
+msgstr "コンテンツから空の<p>タグを削除してね。セクション間に間隔が必要な場合は、空の段落を挿入する代わりに、マージン、パディング、または視覚的なスペーサーブロックを使用してね。"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:33
+msgid "MDN Web Docs: The Paragraph Element - Accessibility"
+msgstr "MDN Web Docs: 段落要素 - アクセシビリティ"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:37
+msgid "WordPress Spacer Block"
+msgstr "WordPress スペーサーブロック"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:41
+msgid "MDN Web Docs: CSS Padding"
+msgstr "MDN Web Docs: CSS パディング"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:45
+msgid "MDN Web Docs: CSS Margin"
+msgstr "MDN Web Docs: CSS マージン"
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:23
+msgid "Empty Table Header"
+msgstr "空のテーブルヘッダー"
+
+#. translators: %s is <code>&lt;th&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:29
+#, php-format
+msgid "This element is a table header cell (%s) with no text content."
+msgstr "この要素はテキスト内容のないテーブルヘッダーセル(%s)だよ。"
+
+#. translators: %s is <code>&lt;th&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:34
+#, php-format
+msgid "These elements are table header cells (%s) with no text content."
+msgstr "これらの要素はテキスト内容のないテーブルヘッダーセル(%s)だよ。"
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:37
+msgid "Table headers provide context for the data in rows and columns. When a table header is empty, screen readers and other assistive technologies cannot convey the meaning of the associated data, making the table difficult or impossible to interpret."
+msgstr "テーブルヘッダーは行と列のデータに文脈を提供します。テーブルヘッダーが空の場合、スクリーンリーダーやその他の支援技術は関連するデータの意味を伝えることができず、テーブルの解釈が困難または不可能になります。"
+
+#. translators: %s is <code>&lt;th&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:40
+#, php-format
+msgid "Add descriptive text inside each %s element that explains the purpose of the row or column. Avoid using empty header cells or placeholder text that lacks meaning. If necessary, you can visually hide text in a table header cell with a screen-reader-text class."
+msgstr "各%s要素内に、行または列の目的を説明する説明文を追加してください。空のヘッダーセルや意味のないプレースホルダーテキストは避けてください。必要な場合は、screen-reader-textクラスを使用してテーブルヘッダーセル内のテキストを視覚的に隠すことができます。"
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:45
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:42
+msgid "W3C: Tables Tutorial"
+msgstr "W3C：テーブルチュートリアル"
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:49
+msgid "MDN Web Docs: <th>"
+msgstr "MDN Web Docs：<th>"
+
+#: includes/classes/Rules/Rule/ExampleNewRule.php:27
+msgid "Example New Rule"
+msgstr "新しいルールの例"
+
+#: includes/classes/Rules/Rule/ExampleNewRule.php:31
+msgid "This is an example of a new rule added to the system."
+msgstr "これはシステムに追加された新しいルールの例です。"
+
+#: includes/classes/Rules/Rule/ExampleNewRule.php:32
+msgid "These are examples of new rules added to the system."
+msgstr "これらはシステムに追加された新しいルールの例です。"
+
+#: includes/classes/Rules/Rule/ExampleNewRule.php:33
+msgid "This example demonstrates how easy it is to add new accessibility rules to the checker using the class-based system."
+msgstr "この例は、クラスベースのシステムを使用して、新しいアクセシビリティルールをチェッカーに簡単に追加する方法を示しています。"
+
+#: includes/classes/Rules/Rule/ExampleNewRule.php:34
+msgid "To implement this rule, you would add the actual accessibility checking logic and provide specific remediation steps."
+msgstr "このルールを実装するには、実際のアクセシビリティチェックのロジックを追加し、具体的な改善手順を提供する必要があります。"
+
+#: includes/classes/Rules/Rule/ExampleNewRule.php:37
+msgid "WCAG Guidelines"
+msgstr "WCAGガイドライン"
+
+#: includes/classes/Rules/Rule/ExampleNewRule.php:45
+msgid "Example disability impact"
+msgstr "障害への影響の例"
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:23
+msgid "iframe Missing Title"
+msgstr "iframeにタイトルがありません"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code.
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:29
+#, php-format
+msgid "This %1$s does not have a descriptive title attribute."
+msgstr "この%1$sには説明的なtitle属性がありません。"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code.
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:34
+#, php-format
+msgid "These %1$s do not have descriptive title attributes."
+msgstr "これらの%1$sには説明的なtitle属性がありません。"
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:37
+msgid "Screen readers rely on the title attribute of an iframe to describe its purpose or content. Without a title, users may not understand what the embedded content is, making the page harder to navigate and use."
+msgstr "スクリーンリーダーはiframeのtitle属性に依存して、その目的や内容を説明します。titleがないと、ユーザーは埋め込まれたコンテンツが何なのかを理解できず、ページのナビゲーションや使用が難しくなります。"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code.
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:40
+#, php-format
+msgid "Add a title attribute to the %1$s tag that accurately describes the content or function of the embedded frame. If the iframe is added by a plugin and the title cannot be edited directly, check the plugin settings for an accessibility option, or contact the developer for support. Consider switching to a WordPress core embed instead."
+msgstr "%1$sタグに、埋め込まれたフレームの内容や機能を正確に説明するtitle属性を追加してください。iframeがプラグインによって追加され、titleを直接編集できない場合は、プラグインの設定でアクセシビリティオプションを確認するか、開発者にサポートを求めてください。代わりにWordPressコアの埋め込み機能を使用することも検討してください。"
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:45
+msgid "W3C: Techniques for WCAG 2.1 - H64: Using the title attribute of the iframe element"
+msgstr "W3C：WCAG 2.1のテクニック - H64：iframe要素のtitle属性の使用"
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:49
+msgid "MDN Web Docs: <iframe>"
+msgstr "MDN Web Docs：<iframe>"
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:23
+msgid "Image Map Missing Alternative Text"
+msgstr "イメージマップに代替テキストがない"
+
+#. translators: %1$s is <code>&lt;area&gt;</code.
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:29
+#, php-format
+msgid "One or more %1$s elements in an image map are missing alternative text."
+msgstr "イメージマップ内の1つ以上の%1$s要素に代替テキストがありません。"
+
+#. translators: %1$s is <code>&lt;area&gt;</code.
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:34
+#, php-format
+msgid "One or more %1$s elements in image maps are missing alternative text."
+msgstr "イメージマップ内の1つ以上の%1$s要素に代替テキストがありません。"
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:37
+msgid "Image maps use area elements to define interactive regions. Without alternative text, screen reader users won't know what each clickable area does, making it impossible to understand or interact with the map."
+msgstr "イメージマップはarea要素を使用して対話可能な領域を定義します。代替テキストがないと、スクリーンリーダーユーザーは各クリック可能な領域の機能を知ることができず、マップを理解したり操作したりすることが不可能になります。"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code.
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:40
+#, php-format
+msgid "Add a descriptive %2$s attribute to each %1$s element in your image map. The text should explain the function or destination of the link, not what the area looks like."
+msgstr "イメージマップ内の各%1$s要素に説明的な%2$s属性を追加してください。テキストは、その領域の見た目ではなく、リンクの機能や目的地を説明する必要があります。"
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:46
+msgid "W3C: HTML Image Maps"
+msgstr "W3C：HTMLイメージマップ"
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:50
+msgid "MDN Web Docs: <area>"
+msgstr "MDN Web Docs：<area>"
+
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:23
+msgid "Image Empty Alternative Text"
+msgstr "画像の代替テキストが空です"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:29
+#, php-format
+msgid "This image has an empty alt attribute (%s)."
+msgstr "この画像には空のalt属性(%s)があります。"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:34
+#, php-format
+msgid "These images have empty alt attributes (%s)."
+msgstr "これらの画像には空のalt属性(%s)があります。"
+
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:37
+msgid "Screen readers rely on alternative text to describe images to users who cannot see them. If the alt attribute is empty, it signals that the image is decorative and should be skipped. However, if a meaningful image has an empty alt attribute, users with visual impairments will miss important information. Proper use of alternative text improves accessibility and ensures all users can understand the content."
+msgstr "スクリーンリーダーは代替テキストに依存して、視覚障害のあるユーザーに画像を説明します。alt属性が空の場合、その画像が装飾的であり、スキップすべきであることを示します。しかし、意味のある画像に空のalt属性がある場合、視覚障害のあるユーザーは重要な情報を見逃してしまいます。代替テキストを適切に使用することで、アクセシビリティが向上し、すべてのユーザーがコンテンツを理解できるようになります。"
+
+#. translators: %1$s is <code>alt=""</code> and %2$s is <code>role="presentation"</code>.
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:40
+#, php-format
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "画像が装飾的かどうかを確認してください。装飾的な場合は、空の%1$s属性を使用するのが正しいです。Accessibility Checkerの「無視」機能を使用するか、画像に%2$sを追加してページを再スキャンすることで、この警告を無視できます。画像が情報を伝えている場合は、画像の目的や意味を伝える説明的なalt属性を追加してください。"
+
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:46
+msgid "W3C Tutorial on Images: Decorative Images"
+msgstr "W3C画像チュートリアル：装飾的な画像"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:23
+msgid "Low-quality Alternative Text"
+msgstr "低品質の代替テキスト"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:27
+msgid "This image has alternative text that may be vague, redundant, or include unnecessary words or file names."
+msgstr "この画像には、曖昧、冗長、または不必要な単語やファイル名を含む可能性のある代替テキストがあります。"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:28
+msgid "These images have alternative text that may be vague, redundant, or include unnecessary words or file names."
+msgstr "これらの画像には、曖昧、冗長、または不必要な単語やファイル名を含む可能性のある代替テキストがあります。"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:29
+msgid "Alternative text helps people using screen readers understand the purpose of an image. When alt text includes words like “image,” “graphic,” or a file extension, it adds no useful information and can create confusion or distraction. Clear and relevant alt text improves comprehension and user experience."
+msgstr "代替テキストは、スクリーンリーダーを使用する人々が画像の目的を理解するのに役立ちます。alt属性に「画像」、「グラフィック」、またはファイル拡張子などの単語が含まれていると、有用な情報が追加されず、混乱や注意散漫を引き起こす可能性があります。明確で関連性のあるalt属性は、理解とユーザー体験を向上させます。"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:30
+msgid "Rewrite the alternative text to accurately and concisely describe the purpose of the image in context. Avoid including words like “image,” “graphic,” file names or extensions (e.g., .jpg, .png), or placeholder terms like “spacer” or “arrow.” If the image is decorative, leave the alt attribute empty."
+msgstr "画像の目的を正確かつ簡潔に説明するように代替テキストを書き直してね。「画像」、「グラフィック」、ファイル名や拡張子（.jpgや.pngなど）、「スペーサー」や「矢印」などのプレースホルダー用語は避けてね。装飾的な画像の場合は、alt属性を空にしてね。"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:33
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:33
+msgid "W3C Tutorial on Images: Informative Images"
+msgstr "W3Cチュートリアル：情報を伝える画像について"
+
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:23
+msgid "Image Long Alternative Text"
+msgstr "画像の長い代替テキスト"
+
+#. translators: %s is the maximum character count for alt text.
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:29
+#, php-format
+msgid "This image has alternative text longer than %s characters."
+msgstr "この画像の代替テキストは%s文字を超えています。"
+
+#. translators: %s is the maximum character count for alt text.
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:34
+#, php-format
+msgid "These images have alternative text longer than %s characters."
+msgstr "これらの画像の代替テキストは%s文字を超えています。"
+
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:37
+msgid "Alternative text should be concise and focused on describing the purpose or meaning of the image. Overly long alt text may overwhelm screen reader users, reduce readability, and distract from other content on the page."
+msgstr "代替テキストは簡潔で、画像の目的や意味を説明することに焦点を当てるべきだよ。長すぎる代替テキストは、スクリーンリーダーユーザーの負担になったり、読みやすさを低下させたり、ページの他のコンテンツから注意をそらしてしまう可能性があるんだ。"
+
+#. translators: %s is the maximum character count for alt text.
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:40
+#, php-format
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
+msgstr "画像の機能や目的を説明しつつ、代替テキストを%s文字未満に短縮してね。説明はシンプルにして、周囲のコンテンツを繰り返さないようにしよう。画像の代替テキストを変更する必要がない場合は、Accessibility Checkerの「無視」機能を使ってこの警告を却下してね。"
+
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:45
+msgid "W3C Tutorial: Informative Images"
+msgstr "W3Cチュートリアル：情報を伝える画像"
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:23
+msgid "Image Missing Alternative Text"
+msgstr "画像に代替テキストがありません"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;img&gt;</code> tag.
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:29
+#, php-format
+msgid "This image does not have an alt attribute (%1$s) contained in the image tag (%2$s)."
+msgstr "この画像には画像タグ内にalt属性（%1$s）が含まれていません（%2$s）。"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;img&gt;</code> tag.
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:35
+#, php-format
+msgid "These images do not have an alt attribute (%1$s) contained in their image tags (%2$s)."
+msgstr "これらの画像には画像タグ内にalt属性（%1$s）が含まれていません（%2$s）。"
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:39
+msgid "Alternative text is used by screen readers to describe images to people who cannot see them. If the alt attribute is missing, the screen reader will only say 'Image' or may read out the file URL. Alternative text is also used by search engines to understand the content of the image. If an image does not have alternative text, it can create a poor user experience for people with visual impairments and can negatively impact your site's SEO."
+msgstr "代替テキストは、スクリーンリーダーが画像を見ることができない人に説明するために使用されるんだ。alt属性がない場合、スクリーンリーダーは単に「画像」と言うか、ファイルのURLを読み上げるだけになってしまうよ。代替テキストは、検索エンジンが画像の内容を理解するためにも使用されるんだ。画像に代替テキストがないと、視覚障害のある人にとって使いにくい体験になったり、サイトのSEOにも悪影響を与える可能性があるんだ。"
+
+#. translators: %1$s is <code>alt=""</code.
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:42
+#, php-format
+msgid "Add an alt attribute to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s attribute still needs to be present."
+msgstr "画像にalt属性を追加して、ページ内での画像の目的を適切に説明するテキストを入れてね。装飾的な画像の場合、alt属性は空にできるけど、HTML %1$s 属性自体は存在する必要があるよ。"
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:47
+msgid "HTML Standard: The img element"
+msgstr "HTML標準：img要素"
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:51
+msgid "Alt Decision Tree"
+msgstr "Alt決定木"
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:23
+msgid "Duplicate Alternative Text"
+msgstr "代替テキストが重複しています"
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:27
+msgid "This image has alternative text that is identical to nearby content or to another image on the page."
+msgstr "この画像の代替テキストが近くのコンテンツや、ページ上の別の画像と同じになっています。"
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:28
+msgid "These images have alternative text that is identical to nearby content or to other images on the page."
+msgstr "これらの画像の代替テキストが近くのコンテンツや、ページ上の他の画像と同じになっています。"
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:29
+msgid "When alternative text repeats nearby text or appears identically across multiple images, it creates confusion for screen reader users. Repetition provides no additional context and makes it difficult to distinguish between different elements or understand their purpose."
+msgstr "代替テキストが近くのテキストを繰り返したり、複数の画像で同じように表示されたりすると、スクリーンリーダーユーザーに混乱を招くんだ。繰り返しは追加のコンテキストを提供せず、異なる要素を区別したり、その目的を理解したりするのが難しくなってしまうよ。"
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:30
+msgid "If the alt text duplicates a nearby caption, heading, or visible text, remove the redundancy by shortening or omitting the alt text—especially if the surrounding text already provides the same information. If multiple images have the same alt text, revise each one to be unique and describe the purpose of that specific image in its context."
+msgstr "代替テキストが近くのキャプション、見出し、または表示されているテキストと重複している場合は、代替テキストを短くするか省略して、冗長性を取り除いてね。特に周囲のテキストが既に同じ情報を提供している場合はね。複数の画像が同じ代替テキストを持っている場合は、それぞれを一意のものに修正して、その特定の画像の目的をそのコンテキストで説明するようにしよう。"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:23
+msgid "Image Animated GIF"
+msgstr "アニメーションGIF画像"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:27
+msgid "This element is an animated image file (e.g., GIF or animated WebP)."
+msgstr "この要素はアニメーション画像ファイル（GIFやアニメーションWebPなど）です。"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:28
+msgid "These elements are animated image files (e.g., GIFs or animated WebPs)."
+msgstr "これらの要素はアニメーション画像ファイル（GIFやアニメーションWebPなど）です。"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:29
+msgid "Animated images can be distracting, induce seizures in some individuals, or create cognitive load. WCAG guidelines require that animations that flash or loop continuously provide a mechanism to pause, stop, or hide them."
+msgstr "アニメーション画像は気が散る原因になったり、一部の人にてんかん発作を引き起こしたり、認知的負荷を生み出す可能性があるんだ。WCAGガイドラインでは、点滅したり連続的にループするアニメーションには、一時停止、停止、または非表示にするメカニズムを提供する必要があるよ。"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:30
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
+msgstr "アニメーション画像を静止画像や、コントロールを含む動画に置き換えてね。どうしてもアニメーション画像を使用する必要がある場合は、1秒間に3回以上点滅しないようにして、5秒以上再生される場合は一時停止または停止のコントロールを提供してね。画像がアクセシブルで一時停止可能であることを確認した場合は、Accessibility Checkerの「無視」機能を使用してこの警告を却下できるよ。"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:33
+msgid "Should you use animated GIFs?"
+msgstr "アニメーションGIFを使うべき？"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:37
+msgid "W3C: G152: Setting animated gif images to stop blinking after n cycles (within 5 seconds)"
+msgstr "W3C：G152：アニメーションGIF画像をn回のサイクル後（5秒以内に）点滅を停止するように設定する"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:41
+msgid "Pause Animated GIFs Plugin"
+msgstr "アニメーションGIFを一時停止するプラグイン"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:48
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:51
+msgid "Seizure disorders"
+msgstr "てんかん障害"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:50
+msgid "Vestibular disorders"
+msgstr "前庭障害"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:23
+msgid "Linked Image Empty Alternative Text"
+msgstr "リンクされた画像の代替テキストが空です"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:27
+msgid "This image is inside a link and has an empty alt attribute and there is no other text within the link."
+msgstr "この画像はリンク内にあり、空のalt属性を持っていて、リンク内に他のテキストがありません。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:28
+msgid "These images are inside links and have empty alt attributes and there is no other text within the links."
+msgstr "これらの画像はリンク内にあり、空のalt属性を持っていて、リンク内に他のテキストがありません。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:29
+msgid "An empty alt attribute on a linked image causes screen reader users to hear just \"link\" with no context. This makes navigation confusing and may cause them to skip important content."
+msgstr "リンクされた画像に空のalt属性があると、スクリーンリーダーユーザーは文脈なしで単に「リンク」と聞こえるだけです。これはナビゲーションを混乱させ、重要なコンテンツをスキップさせる可能性があります。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:30
+msgid "Replace the empty alt attribute with meaningful alternative text that clearly describes the link’s destination or purpose."
+msgstr "空のalt属性を、リンクの目的地や目的を明確に説明する意味のある代替テキストに置き換えてください。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:33
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:37
+msgid "W3C Tutorial on Images: Functional Images"
+msgstr "W3Cチュートリアル：機能的な画像"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:23
+msgid "Linked Image Missing Alternative Text"
+msgstr "リンクされた画像に代替テキストがありません"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:27
+msgid "This image is inside a link but does not have an alt attribute and there is no other text within the link."
+msgstr "この画像はリンク内にありますが、alt属性がなく、リンク内に他のテキストもありません。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:28
+msgid "These images are inside links but do not have alt attributes and there is no other text within the links."
+msgstr "これらの画像はリンク内にありますが、alt属性がなく、リンク内に他のテキストもありません。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:29
+msgid "Screen reader users rely on alternative text to understand the purpose of linked images. Without it, they cannot determine where the link leads, making navigation difficult or impossible."
+msgstr "スクリーンリーダーユーザーは、リンクされた画像の目的を理解するために代替テキストに頼っています。それがないと、リンクの行き先を判断できず、ナビゲーションが困難または不可能になります。"
+
+#. translators: %s is <code>aria-label</code>.
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:32
+#, php-format
+msgid "Add an alt attribute that describes the purpose of the link. Focus on where the link goes, not what the image looks like. Alternatively, add an %s to the link."
+msgstr "リンクの目的を説明するalt属性を追加してください。画像の見た目ではなく、リンクの行き先に焦点を当ててください。または、リンクに%sを追加してください。"
+
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:23
+msgid "Incorrect Heading Order"
+msgstr "見出しの順序が正しくありません"
+
+#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:29
+#, php-format
+msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
+msgstr "このページでは見出しの順序が正しくありません。これは%1$sの後に%2$sが来ており、1つ以上の見出しレベルをスキップしています。"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:35
+#, php-format
+msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
+msgstr "これらのページでは見出しの順序が正しくなく、1つ以上の見出しレベルをスキップしています。例えば、%1$sから%2$sに飛んでいて、その間に%3$sがありません。"
+
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:40
+msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
+msgstr "見出しは全てのユーザー、特にスクリーンリーダーやキーボードナビゲーションを使用するユーザーがページ構造を理解するのに役立ちます。見出しレベルをスキップすると混乱を招き、コンテンツの階層を理解したり効率的にナビゲートしたりすることが難しくなります。"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:43
+#, php-format
+msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
+msgstr "見出しを論理的な順序に従って、レベルをスキップせずに修正してください。例えば、%1$sの後に%2$sが続く場合、%2$sを%3$sに変更するか、適切な構造を保つために%3$sセクションを追加してください。必要に応じて、CSSやブロック/ページビルダーの設定を使用して見出しのスタイルを設定し、不適切なレベルを設定しないようにしてください。"
+
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:50
+msgid "W3C Page Structure Tutorial: Headings"
+msgstr "W3Cページ構造チュートリアル：見出し"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:23
+msgid "Ambiguous Anchor Text"
+msgstr "曖昧なアンカーテキスト"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:27
+msgid "This link uses generic or vague anchor text that does not describe its purpose."
+msgstr "このリンクは、その目的を説明していない一般的または曖昧なアンカーテキストを使用しています。"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:28
+msgid "These links use generic or vague anchor text that does not describe their purpose."
+msgstr "これらのリンクは、その目的を説明していない一般的または曖昧なアンカーテキストを使用しています。"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:29
+msgid "Screen reader users often browse a list of links out of context. If links use ambiguous phrases like \"click here\" or \"learn more,\" users will not understand where the link goes or what it does. This can lead to confusion and reduce the usability of your website."
+msgstr "スクリーンリーダーユーザーは、しばしばリンクのリストを文脈なしで閲覧します。リンクが「ここをクリック」や「詳細を見る」のような曖昧な表現を使用していると、ユーザーはリンクの行き先や機能を理解できません。これは混乱を招き、ウェブサイトの使いやすさを低下させる可能性があります。"
+
+#. translators: %1$s is <code>aria-label</code>.
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:32
+#, php-format
+msgid "Revise the anchor text to clearly describe the destination or purpose of the link. For example, instead of \"click here,\" use \"download the annual report\" or \"learn more about us.\" Additional context can be added to links with an %1$s attribute or a screen-reader-text class."
+msgstr "アンカーテキストを、リンクの目的地や目的を明確に説明するように修正してください。例えば、「ここをクリック」の代わりに、「年次報告書をダウンロード」や「私たちについてもっと知る」を使用してください。%1$s属性やscreen-reader-textクラスを使用して、リンクに追加のコンテキストを加えることもできます。"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:37
+msgid "MDN Web Docs: a element – Accessible names"
+msgstr "MDN Web Docs：a要素 - アクセシブルな名前"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:41
+msgid "MDN Web Docs: ARIA: aria-label attribute"
+msgstr "MDN Web Docs：ARIA：aria-label属性"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:45
+msgid "Screen Reader Text Format Plugin (for the block editor)"
+msgstr "Screen Reader Text Formatプラグイン（ブロックエディター用）"
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:27
+msgid "Link Opens New Window or Tab"
+msgstr "リンクが新しいウィンドウまたはタブで開く"
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:31
+msgid "This link is set to open in a new browser tab or window."
+msgstr "このリンクは新しいブラウザタブまたはウィンドウで開くように設定されています。"
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:32
+msgid "These links are set to open in new browser tabs or windows."
+msgstr "これらのリンクは新しいブラウザタブまたはウィンドウで開くように設定されています。"
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:33
+msgid "When a link opens in a new tab or window without warning, it can be disorienting, especially for users with cognitive disabilities, screen reader users, or anyone relying on keyboard navigation. They may not realize a new context has opened or understand how to return."
+msgstr "警告なしで新しいタブやウィンドウでリンクが開くと、特に認知障害のあるユーザー、スクリーンリーダーユーザー、またはキーボードナビゲーションに頼っている人にとって混乱を招く可能性があります。新しいコンテキストが開いたことに気づかなかったり、元の場所に戻る方法が分からなくなったりする可能性があります。"
+
+#. translators: %1$s is <code>target="_blank"</code>.
+#: includes/classes/Rules/Rule/LinkBlankRule.php:36
+#, php-format
+msgid "Avoid using %1$s unless absolutely necessary. If a link must open in a new tab or window, add a visible icon and screen reader text such as \"opens in a new window\" or \"opens in a new tab\" to inform users. To automate this and dismiss the warning sitewide, you can activate the 'Add Label To Links That Open A New Tab/Window' fix in Accessibility Checker settings."
+msgstr "絶対に必要でない限り、%1$sの使用は避けてください。リンクを新しいタブやウィンドウで開く必要がある場合は、目に見えるアイコンとスクリーンリーダー用のテキスト（「新しいウィンドウで開きます」や「新しいタブで開きます」など）を追加して、ユーザーに知らせてください。この警告をサイト全体で自動的に処理して解除するには、Accessibility Checkerの設定で「新しいタブ/ウィンドウで開くリンクにラベルを追加する」修正を有効にできます。"
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:41
+msgid "W3C Technique H83: Using the target attribute to open a new window on user request and indicating this in link text"
+msgstr "W3C技術H83：ユーザーの要求に応じて新しいウィンドウを開くためのtarget属性の使用とリンクテキストでの表示"
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:23
+msgid "Improper Use of Link"
+msgstr "リンクの不適切な使用"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>.
+#: includes/classes/Rules/Rule/LinkImproperRule.php:29
+#, php-format
+msgid "This element is an anchor tag missing a valid %1$s attribute or is linked to %2$s without having %3$s."
+msgstr "この要素は有効な%1$s属性がないアンカータグ、または%3$sを持たずに%2$sにリンクされています。"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>.
+#: includes/classes/Rules/Rule/LinkImproperRule.php:36
+#, php-format
+msgid "These elements are anchor tags missing valid %1$s attributes or are linked to %2$s without having %3$s."
+msgstr "これらの要素は有効な%1$s属性が欠けているアンカータグ、または%3$sがない%2$sにリンクしています。"
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:41
+msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
+msgstr "アンカータグ（別名リンク）は、新しいページや同じページの別の場所へのナビゲーション用です。正しい役割や動作なしにアコーディオンの展開やモーダルの開閉などのアクションを起こすために使用されると、特にスクリーンリーダーやキーボードを使用するユーザーが、リンクがアクションを実行するのではなくナビゲーションすると期待するため、混乱を招きます。また、ボタンに期待されるスペースバーでの操作もできない可能性があります。"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+#: includes/classes/Rules/Rule/LinkImproperRule.php:44
+#, php-format
+msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
+msgstr "要素がアクションを起こすために使用される場合は、アンカータグを%1$sに置き換えてください。置き換えができない場合は、リンクに%2$sを追加し、スペースバーキーでトリガーできるようにするJavaScriptを追加し、トグル状態やその他の機能に適切なARIA属性を使用してください。"
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:50
+msgid "MDN Web Docs: ARIA button role"
+msgstr "MDN Web Docs：ARIAボタンの役割"
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:54
+msgid "W3 Schools: Accessibility Buttons & Links"
+msgstr "W3 schools：アクセシビリティボタンとリンク"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:23
+msgid "Link to MS Office File"
+msgstr "MS Officeファイルへのリンク"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:27
+msgid "This is a link to a Microsoft Office file, such as a Word, Excel, or PowerPoint document. All linked documents must be manually tested for accessibility."
+msgstr "これはWord、Excel、PowerPointなどのMicrosoft Officeファイルへのリンクです。リンクされたすべての文書は、アクセシビリティについて手動でテストする必要があります。"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:28
+msgid "These are links to Microsoft Office files, such as Word, Excel, or PowerPoint documents. All linked documents must be manually tested for accessibility."
+msgstr "これらはWord、Excel、PowerPointなどのMicrosoft Officeファイルへのリンクです。リンクされたすべての文書は、アクセシビリティについて手動でテストする必要があります。"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:29
+msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to all users, especially if they are not tagged correctly or do not follow accessibility best practices. Accessibility laws require that documents posted on web pages also conform to WCAG. Additionally, users should be warned when a link opens a downloadable file instead of a webpage."
+msgstr "Word、Excel、PowerPoint形式の文書は、特に正しくタグ付けされていなかったり、アクセシビリティのベストプラクティスに従っていない場合、すべてのユーザーにとってアクセシブルではない可能性があります。アクセシビリティ法では、ウェブページに掲載される文書もWCAGに準拠することが求められています。さらに、リンクがウェブページではなくダウンロード可能なファイルを開く場合、ユーザーに警告する必要があります。"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:30
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "リンクされたファイルがアクセシビリティについてテストされ、修正されていることを確認してください。アクセシブルであることが分かったら、Accessibility Checkerの「無視」機能を使用してこの警告を却下してください。ユーザーに知らせるため、リンクテキストにファイル拡張子とサイズを含めてください（Accessibility Checker設定で「リンクにファイルサイズと種類を追加」修正を有効にすると、サイト全体でこれを行えます）。文書がプラグインを使用して埋め込まれている場合は、直接ダウンロードするためのリンクも提供してください。文書をアクセシブルにすることが難しい場合は、代わりにウェブページにコンテンツを掲載することを検討してください。"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:33
+msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
+msgstr "Microsoft：Excelスプレッドシートのアクセシビリティベストプラクティス"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:37
+msgid "Microsoft: Make your PowerPoint presentations accessible to people with disabilities"
+msgstr "Microsoft：PowerPointプレゼンテーションを障害のある人々にアクセシブルにする"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:41
+msgid "Microsoft: Make your Word documents accessible to people with disabilities"
+msgstr "Microsoft：Word文書を障害のある人々にアクセシブルにする"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:45
+msgid "Google: Make your document, presentation, sheets & videos more accessible"
+msgstr "Google：文書、プレゼンテーション、シート、動画をよりアクセシブルにする"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:49
+msgid "WebAIM: Creating Accessible Word Documents"
+msgstr "WebAIM：アクセシブルなWord文書の作成"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:53
+msgid "WebAIM: Creating Accessible PowerPoint Presentations"
+msgstr "WebAIM：アクセシブルなPowerPointプレゼンテーションの作成"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:57
+msgid "WebAIM: Creating Accessible Excel Spreadsheets"
+msgstr "WebAIM：アクセシブルなExcelスプレッドシートの作成"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:61
+msgid "Section 508.gov: Create Accessible Documents (Webinar)"
+msgstr "Section 508.gov：アクセシブルな文書の作成（ウェビナー）"
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:23
+msgid "Link to Non-HTML File"
+msgstr "非HTMLファイルへのリンク"
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:27
+msgid "This element is a link to a non-HTML document format with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key"
+msgstr "この要素は、次のファイル拡張子のいずれかを持つ非HTML文書形式へのリンクです：.rtf、.wpd、.ods、.odt、.odp、.sxw、.sxc、.sxd、.sxi、.pages、または.key"
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:28
+msgid "These elements are links to non-HTML document formats with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key"
+msgstr "これらの要素は、次のファイル拡張子のいずれかを持つ非HTML文書形式へのリンクです：.rtf、.wpd、.ods、.odt、.odp、.sxw、.sxc、.sxd、.sxi、.pages、または.key"
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:29
+msgid "Non-HTML document formats may not be fully accessible to assistive technologies unless tested and remediated. Users should be warned when a link opens a downloadable file rather than a standard web page."
+msgstr "非HTML文書形式は、テストおよび修正されない限り、支援技術に完全にアクセシブルではない可能性があります。リンクが標準的なウェブページではなくダウンロード可能なファイルを開く場合、ユーザーに警告する必要があります。"
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:30
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "リンクされた文書がアクセシブルであることを確認してください。アクセシブルであることが分かったら、Accessibility Checkerの「無視」機能を使用してこの警告を却下してください。ユーザーが何を期待すべきか分かるように、表示されるリンクテキストにファイル拡張子を含めてください（例：「会議メモ（ODT）」）。Accessibility Checker設定で「リンクにファイルサイズと種類を追加」修正を有効にすると、サイト全体でこれを行えます。文書が埋め込まれている場合は、直接ダウンロードするためのリンクも提供してください。文書をアクセシブルにすることが難しい場合は、代わりにウェブページにコンテンツを掲載することを検討してください。"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:23
+msgid "Link to PDF"
+msgstr "PDFへのリンク"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:27
+msgid "This is a link to a PDF document. All linked documents must be manually tested for accessibility."
+msgstr "これはPDF文書へのリンクです。リンクされたすべての文書は、アクセシビリティについて手動でテストする必要があります。"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:28
+msgid "These are links to PDF documents. All linked documents must be manually tested for accessibility."
+msgstr "これらはPDFドキュメントへのリンクです。リンクされたすべてのドキュメントは、アクセシビリティについて手動でテストする必要があります。"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:29
+msgid "PDFs may not be accessible to all users, especially if they are not tagged correctly or fail to meet WCAG requirements. Accessibility laws require that documents posted on websites meet the same accessibility standards as HTML content. Additionally, users should be warned when a link opens a downloadable file instead of a web page."
+msgstr "PDFは、特に正しくタグ付けされていない場合やWCAGの要件を満たしていない場合、すべてのユーザーにアクセス可能でない可能性があります。アクセシビリティ法では、ウェブサイトに掲載されるドキュメントがHTML内容と同じアクセシビリティ基準を満たすことが求められています。さらに、リンクがウェブページではなくダウンロード可能なファイルを開く場合、ユーザーに警告する必要があります。"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:30
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "リンクされたPDFがアクセシビリティについてテストされ、修正されていることを確認してください。アクセシブルであることが分かったら、Accessibility Checkerの「無視」機能を使用してこの警告を却下してください。ユーザーに情報を提供するため、リンクテキストにファイル拡張子とサイズを含めてください（Accessibility Checker設定で「リンクにファイルサイズとタイプを追加」修正を有効にすると、サイト全体でこれを行えます）。ドキュメントがプラグインを使用して埋め込まれている場合は、直接ダウンロードするためのリンクも提供してください。PDFをアクセシブルにすることが難しい場合は、代わりにウェブページにコンテンツを掲載することを検討してください。"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:33
+msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
+msgstr "Adobe：PDFアクセシビリティの作成と検証（Acrobat Pro）"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:37
+msgid "WebAIM: PDF Accessibility"
+msgstr "WebAIM：PDFアクセシビリティ"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:41
+msgid "PDF Accessibility on the Web: Tricks and Traps (Webinar)"
+msgstr "ウェブ上のPDFアクセシビリティ：トリックと落とし穴（ウェビナー）"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:45
+msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
+msgstr "InDesignとPDFのアクセシビリティの間違いとその修正方法（ウェビナー）"
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:23
+msgid "Long Description Invalid"
+msgstr "長い説明が無効"
+
+#. translators: %s is <code>longdesc=""</code.
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:29
+#, php-format
+msgid "This element uses the %s attribute with an invalid or unsupported value."
+msgstr "この要素は、無効またはサポートされていない値で%s属性を使用しています。"
+
+#. translators: %s is <code>longdesc=""</code.
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:34
+#, php-format
+msgid "These elements use the %s attribute with invalid or unsupported values."
+msgstr "これらの要素は、無効またはサポートされていない値で%s属性を使用しています。"
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:37
+msgid "The longdesc attribute is intended to provide a URL to a long description of an image for screen reader users. However, it is no longer supported in HTML5 and is not reliably recognized by browsers or assistive technologies. Invalid values or blank longdesc attributes may confuse users or fail to convey important information."
+msgstr "longdesc属性は、スクリーンリーダーユーザーのために画像の長い説明へのURLを提供することを目的としています。しかし、HTML5ではもはやサポートされておらず、ブラウザや支援技術によって確実に認識されません。無効な値や空のlongdesc属性は、ユーザーを混乱させたり、重要な情報を伝えられない可能性があります。"
+
+#. translators: %s is <code>longdesc</code.
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:40
+#, php-format
+msgid "Remove the %s attribute from the image element. If a long description is needed, include it in nearby visible text like a caption, use a link to a separate description page, or use ARIA techniques such as aria-describedby."
+msgstr "画像要素から%s属性を削除してください。長い説明が必要な場合は、キャプションのような近くの可視テキストに含めるか、別の説明ページへのリンクを使用するか、aria-describedbyなどのARIA技術を使用してください。"
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:45
+msgid "W3C: Techniques for WCAG 2.1 – H45: Using longdesc"
+msgstr "W3C：WCAG 2.1のテクニック - H45：longdescの使用"
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:49
+msgid "MDN Web Docs: longdesc – HTML attribute"
+msgstr "MDN Web Docs：longdesc - HTML属性"
+
+#: includes/classes/Rules/Rule/MetaViewportRule.php:24
+msgid "Zooming and Scaling Disabled"
+msgstr "ズームとスケーリングが無効"
+
+#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>.
+#: includes/classes/Rules/Rule/MetaViewportRule.php:30
+#, php-format
+msgid "This page disables zooming by using a viewport meta tag with either %1$s or a %2$s value of less than 2. This prevents users from enlarging content to improve readability."
+msgstr "このページは、%1$sまたは2未満の%2$s値を持つビューポートメタタグを使用してズームを無効にしています。これにより、ユーザーがコンテンツを拡大して読みやすくすることができなくなります。"
+
+#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>.
+#: includes/classes/Rules/Rule/MetaViewportRule.php:36
+#, php-format
+msgid "These pages disable zooming by using viewport meta tags with either %1$s or a %2$s value of less than 2. This prevents users from enlarging content to improve readability."
+msgstr "これらのページは、%1$sまたは2未満の%2$s値を持つビューポートメタタグを使用してズームを無効にしています。これにより、ユーザーがコンテンツを拡大して読みやすくすることができなくなります。"
+
+#: includes/classes/Rules/Rule/MetaViewportRule.php:40
+msgid "Restricting a user's ability to zoom creates barriers for individuals with low vision or other visual impairments. These users may rely on browser zoom features, pinch-zooming on mobile, or magnifiers to access content comfortably."
+msgstr "ユーザーのズーム機能を制限すると、視力の低い人や他の視覚障害のある人にとって障壁を作ります。これらのユーザーは、コンテンツに快適にアクセスするためにブラウザのズーム機能、モバイルでのピンチズーム、または拡大鏡に頼っている可能性があります。"
+
+#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>, %3$s is <head>.
+#: includes/classes/Rules/Rule/MetaViewportRule.php:43
+#, php-format
+msgid "Edit the viewport meta tag in your theme's %3$s section and remove %1$s and any %2$s value less than 2. To fix this site-wide, enable the 'Make Viewport Scalable' fix in Accessibility Checker Settings."
+msgstr "テーマの%3$sセクションにあるビューポートメタタグを編集し、%1$sと2未満の%2$s値を削除してください。サイト全体でこれを修正するには、Accessibility Checker設定で「ビューポートをスケーラブルにする」修正を有効にしてください。"
+
+#: includes/classes/Rules/Rule/MetaViewportRule.php:50
+msgid "MDN Web Docs: <meta name=\"viewport\">"
+msgstr "MDN Web Docs：<meta name=\"viewport\">"
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:27
+msgid "Missing Form Label"
+msgstr "フォームラベルの欠落"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;textarea&gt;</code>, %3$s is <code>&lt;select&gt;</code.
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:33
+#, php-format
+msgid "This element is an %1$s, %2$s, or %3$s form field without an associated label."
+msgstr "この要素は、関連するラベルのない%1$s、%2$s、または%3$sフォームフィールドです。"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;textarea&gt;</code>, %3$s is <code>&lt;select&gt;</code.
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:40
+#, php-format
+msgid "These elements are %1$s, %2$s, or %3$s form fields without associated labels."
+msgstr "これらの要素は、関連するラベルのない%1$s、%2$s、または%3$sフォームフィールドです。"
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:45
+msgid "Form fields must be clearly labeled so that users of screen readers and voice input technologies can understand their purpose. Without labels, users may not know what information to enter or how the form will behave."
+msgstr "フォームフィールドには明確なラベルを付ける必要があります。これにより、スクリーンリーダーや音声入力技術のユーザーがその目的を理解できます。ラベルがないと、ユーザーはどの情報を入力すべきか、またはフォームがどのように動作するかわからない可能性があります。"
+
+#. translators: %1$s is <code>&lt;label&gt;</code>, %2$s is <code>for=""</code.
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:48
+#, php-format
+msgid "Add a visible %1$s element that describes the field. Connect it to the corresponding form element using the %2$s attribute, or use aria-label or aria-labelledby if needed. To fix all unlabelled fields automatically, enable the 'Label Form Fields' fix in Accessibility Checker settings."
+msgstr "フィールドを説明する可視の%1$s要素を追加してください。%2$s属性を使用して対応するフォーム要素に接続するか、必要に応じてaria-labelまたはaria-labelledbyを使用してください。ラベルのないすべてのフィールドを自動的に修正するには、Accessibility Checker設定で「フォームフィールドにラベルを付ける」修正を有効にしてください。"
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:54
+msgid "W3C: Labeling Controls"
+msgstr "W3C：コントロールのラベル付け"
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:58
+msgid "MDN: label element"
+msgstr "MDN：label要素"
+
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:23
+msgid "Missing Subheadings"
+msgstr "小見出しがありません"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>, %3$s is the word count threshold.
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:29
+#, php-format
+msgid "This page does not contain any heading elements between %1$s and %2$s in the main content area and has more than %3$s words."
+msgstr "このページのメインコンテンツエリアには%1$sから%2$sの間の見出し要素が含まれておらず、%3$s語以上の単語があります。"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>, %3$s is '400' or the number defined in the setting.
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:36
+#, php-format
+msgid "These pages do not contain any heading elements between %1$s and %2$s in the main content area and have more than %3$s words."
+msgstr "これらのページのメインコンテンツエリアには%1$sから%2$sの間の見出し要素が含まれておらず、%3$s語以上の単語があります。"
+
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:41
+msgid "Headings provide structure and make content easier for users of all abilities to scan. They also help screen reader users and keyboard-only users navigate the page. Without headings, users must read through content linearly without an easy way to jump between sections."
+msgstr "見出しは構造を提供し、あらゆる能力のユーザーがコンテンツをスキャンしやすくします。また、スクリーンリーダーユーザーやキーボードのみのユーザーがページをナビゲートするのにも役立ちます。見出しがないと、ユーザーはセクション間を簡単に移動する方法がなく、コンテンツを線形に読まなければなりません。"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code.
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:44
+#, php-format
+msgid "Add meaningful heading elements throughout your content to organize it into sections. At a minimum, include one %1$s tag as the main page title, and add subheadings where appropriate to break up content into logical parts."
+msgstr "コンテンツを整理するために、意味のある見出し要素を全体に追加してください。最低でも、メインページタイトルとして1つの%1$sタグを含め、適切な場所にサブ見出しを追加してコンテンツを論理的な部分に分けてください。"
+
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:49
+msgid "W3C Tutorial: Headings"
+msgstr "W3Cチュートリアル：見出し"
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:24
+msgid "Missing Language Declaration"
+msgstr "言語宣言の欠落"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang</code>, %3$s is <code>xml:lang</code>.
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:30
+#, php-format
+msgid "This element is a top-level %1$s tag that is missing a language attribute such as %2$s or %3$s, or has an empty language attribute."
+msgstr "この要素は、%2$sや%3$sなどの言語属性が欠けているか、空の言語属性を持つトップレベルの%1$sタグです。"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang</code>, %3$s is <code>xml:lang</code>.
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:37
+#, php-format
+msgid "These elements are top-level %1$s tags that are missing a language attribute such as %2$s or %3$s, or have an empty language attribute."
+msgstr "これらの要素は、%2$sや%3$sなどの言語属性が欠けているか、空の言語属性を持つトップレベルの%1$sタグです。"
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:42
+msgid "Screen readers and other assistive technologies use the language attribute to determine how to pronounce and interpret the content. Without it, the content may be read incorrectly, which can be confusing or misleading for users."
+msgstr "スクリーンリーダーやその他の支援技術は、言語属性を使用してコンテンツの発音や解釈方法を決定します。これがないと、コンテンツが正しく読み上げられない可能性があり、ユーザーにとって混乱や誤解を招く可能性があります。"
+
+#. translators: %s is an example of a valid lang attribute.
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:45
+#, php-format
+msgid "Edit your theme's header file to ensure the <html> tag includes a valid lang attribute (e.g., %s). If your theme receives updates, make this change in a child theme to prevent it from being overwritten. To fix this automatically site-wide, enable the 'Add \"lang\" & \"dir\" Attributes' fix in Accessibility Checker settings."
+msgstr "テーマのヘッダーファイルを編集して、<html>タグに有効なlang属性（例：%s）が含まれていることを確認してください。テーマが更新される場合は、子テーマでこの変更を行い、上書きされないようにしてください。サイト全体で自動的にこれを修正するには、Accessibility Checkerの設定で「『lang』および『dir』属性を追加する」修正を有効にしてください。"
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:50
+msgid "W3C: Language of Page"
+msgstr "W3C：ページの言語"
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:54
+msgid "MDN: The HTML lang attribute"
+msgstr "MDN：HTMLのlang属性"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:23
+msgid "Missing Table Header"
+msgstr "テーブルヘッダーの欠落"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:27
+msgid "This table contains data cells but does not have the required table header cells."
+msgstr "このテーブルにはデータセルが含まれていますが、必要なテーブルヘッダーセルがありません。"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:28
+msgid "These tables contain data cells but do not have the required table header cells."
+msgstr "これらのテーブルにはデータセルが含まれていますが、必要なテーブルヘッダーセルがありません。"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:29
+msgid "Table headers are used by assistive technologies to help users understand the relationships between cells and navigate the data. Without table headers, screen reader users may not be able to determine what the data represents."
+msgstr "テーブルヘッダーは、支援技術によってセル間の関係を理解し、データをナビゲートするのに役立ちます。テーブルヘッダーがないと、スクリーンリーダーユーザーはデータが何を表しているのか判断できない可能性があります。"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;td&gt;</code>.
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:32
+#, php-format
+msgid "Add one or more %1$s elements that describe the columns or rows of data in your table. Each %2$s cell should be associated with a descriptive header to provide proper context for screen reader users."
+msgstr "テーブルのデータの列や行を説明する1つ以上の%1$s要素を追加してください。各%2$sセルは、スクリーンリーダーユーザーに適切なコンテキストを提供するために、説明的なヘッダーと関連付けられるべきです。"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:38
+msgid "W3C: H51 - Using table markup to present tabular information"
+msgstr "W3C：H51 - 表形式の情報を提示するためのテーブルマークアップの使用"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:46
+msgid "MDN Web Docs: <table> - Headers and accessibility"
+msgstr "MDN Web Docs：<table> - ヘッダーとアクセシビリティ"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:50
+msgid "WordPress: Table block documentation"
+msgstr "WordPress：テーブルブロックのドキュメント"
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:24
+msgid "Missing Title"
+msgstr "タイトルがありません"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/classes/Rules/Rule/MissingTitleRule.php:30
+#, php-format
+msgid "This element is missing a title tag (%1$s or %2$s). This may happen if the post or page title field is empty or if the theme fails to output a title tag in the document head."
+msgstr "この要素にはタイトルタグ（%1$sまたは%2$s）がありません。これは、投稿やページのタイトルフィールドが空の場合、またはテーマがドキュメントヘッドにタイトルタグを出力しない場合に発生する可能性があります。"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/classes/Rules/Rule/MissingTitleRule.php:36
+#, php-format
+msgid "These elements are missing title tags (%1$s or %2$s). This may happen if post or page title fields are empty or if the theme fails to output title tags in the document head."
+msgstr "これらの要素にはタイトルタグ（%1$sまたは%2$s）がありません。これは、投稿やページのタイトルフィールドが空の場合、またはテーマがドキュメントヘッドにタイトルタグを出力しない場合に発生する可能性があります。"
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:40
+msgid "The title element is used by screen readers, search engines, and browser tabs to identify the page. Without a title, users may have difficulty determining the purpose of the page."
+msgstr "タイトル要素は、スクリーンリーダー、検索エンジン、ブラウザタブがページを識別するために使用されます。タイトルがないと、ユーザーはページの目的を判断するのが難しくなる可能性があります。"
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:41
+msgid "Ensure the post or page title field is filled in on the backend. If the title field is not empty and the error persists, check your theme's code to make sure it outputs a valid <title> tag and/or og:title meta tag in the document head. To fix this issue site-wide, enable the 'Add Missing Page Title' fix in Accessibility Checker settings."
+msgstr "バックエンドで投稿またはページのタイトルフィールドが入力されていることを確認してください。タイトルフィールドが空でないのにエラーが続く場合は、テーマのコードをチェックして、ドキュメントヘッドに有効な<title>タグやog:titleメタタグが出力されていることを確認してください。サイト全体でこの問題を修正するには、Accessibility Checkerの設定で「欠落しているページタイトルを追加する」修正を有効にしてください。"
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:44
+msgid "MDN: <title> element"
+msgstr "MDN：<title>要素"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:23
+msgid "Missing Transcript"
+msgstr "トランスクリプトの欠落"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:27
+msgid "This element contains or links to audio or video content that does not have a properly labeled or positioned transcript, or may not have a transcript at all."
+msgstr "この要素には、適切にラベル付けされた、または配置された書き起こしがない、または書き起こしが全くない可能性のある音声またはビデオコンテンツが含まれているか、リンクしています。"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:28
+msgid "These elements contain or link to audio or video content that do not have properly labeled or positioned transcripts, or may not have a transcript at all."
+msgstr "これらの要素には、適切にラベル付けされた、または配置された書き起こしがない、または書き起こしが全くない可能性のある音声またはビデオコンテンツが含まれているか、リンクしています。"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:29
+msgid "Transcripts provide access to audio and video content for individuals who are deaf, hard of hearing, or prefer to read rather than listen. Without a transcript, important information may be missed."
+msgstr "書き起こしは、聴覚障害者、難聴者、または聞くよりも読むことを好む人々に音声やビデオコンテンツへのアクセスを提供します。書き起こしがないと、重要な情報が見逃される可能性があります。"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:30
+msgid "Create a transcript for each flagged audio or video clip. Include the transcript on the same page or link to a file that contains it. The word “transcript” should appear in a heading before the transcript or in the link text, and must be within 25 characters of the audio or video element."
+msgstr "フラグが付けられた各音声またはビデオクリップの書き起こしを作成してください。書き起こしを同じページに含めるか、それを含むファイルへのリンクを提供してください。「書き起こし」という言葉は、書き起こしの前の見出しまたはリンクテキストに表示され、音声またはビデオ要素の25文字以内にある必要があります。"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:33
+msgid "W3C: Transcripts Documentation"
+msgstr "W3C：書き起こしのドキュメント"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:37
+msgid "Practical Advice for Meeting Caption, Transcript, and Sign Language Requirements (Webinar)"
+msgstr "字幕、書き起こし、手話の要件を満たすための実践的なアドバイス（ウェビナー）"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:44
+#: includes/classes/Rules/Rule/VideoPresentRule.php:49
+msgid "Deaf"
+msgstr "聴覚障害者"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:46
+#: includes/classes/Rules/Rule/VideoPresentRule.php:50
+msgid "Hard of hearing"
+msgstr "難聴者"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:48
+#: includes/classes/Rules/Rule/VideoPresentRule.php:48
+#: includes/wcag.php:52
+#: includes/wcag.php:85
+#: includes/wcag.php:118
+#: includes/wcag.php:151
+#: includes/wcag.php:251
+#: includes/wcag.php:269
+#: includes/wcag.php:1661
+#: includes/wcag.php:1695
+#: includes/wcag.php:1728
+#: includes/wcag.php:1748
+#: includes/wcag.php:1767
+#: includes/wcag.php:1786
+msgid "Language learners"
+msgstr "言語学習者"
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:23
+msgid "Possible Heading"
+msgstr "可能性のある見出し"
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:27
+msgid "This text appears visually styled like a heading but is not marked up with a heading tag."
+msgstr "このテキストは視覚的に見出しのようにスタイリングされていますが、見出しタグでマークアップされていません。"
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:28
+msgid "These text elements appear visually styled like headings but are not marked up with heading tags."
+msgstr "これらのテキスト要素は視覚的に見出しのようにスタイリングされていますが、見出しタグでマークアップされていません。"
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:29
+msgid "Screen reader users and other assistive technologies rely on heading tags to understand page structure and navigate efficiently. Text that looks like a heading but is not coded as one can make it difficult for screen reader users to navigate the page."
+msgstr "スクリーンリーダーユーザーや他の支援技術は、ページ構造を理解し効率的にナビゲートするために見出しタグに依存しています。見出しのように見えるけどそのようにコーディングされていないテキストは、スクリーンリーダーユーザーがページをナビゲートするのを難しくする可能性があります。"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:32
+#, php-format
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
+msgstr "フラグが付けられたテキストを確認し、それが見出しであるべきかどうかを判断してね。もしそうなら、要素を適切な%1$s–%2$sタグに変更してください。見出しとして意図されていない場合は、Accessibility Checkerの「無視する」機能を使用してこの警告を却下できます。"
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:38
+msgid "W3C: Using HTML headings to identify headings"
+msgstr "W3C：HTMLの見出しを使用して見出しを識別する"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:23
+msgid "A Slider is Present"
+msgstr "スライダーが存在します"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:27
+msgid "This element is a slider or carousel. Because many accessibility issues with sliders require manual review, this warning appears any time a slider is detected on a post or page."
+msgstr "この要素はスライダーまたはカルーセルです。スライダーのアクセシビリティの問題の多くは手動でのレビューが必要なため、投稿やページでスライダーが検出されるたびにこの警告が表示されます。"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:28
+msgid "These elements are sliders or carousels. Because many accessibility issues with sliders require manual review, this warning appears any time one or more sliders are detected on a post or page."
+msgstr "これらの要素はスライダーまたはカルーセルです。スライダーのアクセシビリティの問題の多くは手動でのレビューが必要なため、投稿やページで1つ以上のスライダーが検出されるたびにこの警告が表示されます。"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:29
+msgid "Sliders are often difficult to use with screen readers and keyboards. Inaccessible sliders can interfere with navigation, trap focus, or move too quickly for users to engage with the content."
+msgstr "スライダーはしばしばスクリーンリーダーやキーボードで使用するのが難しいです。アクセシブルでないスライダーはナビゲーションを妨げたり、フォーカスを捕捉したり、ユーザーがコンテンツと関わるには速すぎる動きをしたりする可能性があります。"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:30
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
+msgstr "ウェブサイトのフロントエンドでスライダーを確認してください。キーボードでアクセス可能で、一時停止可能で、適切なARIAロールとラベルを持ち、スクリーンリーダーでうまく動作することを確認してください。スライダーがアクセシブルであることを確認したり、問題を修正したりした後、Accessibility Checkerの「無視する」機能を使用してこの警告を却下できます。"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:33
+msgid "W3C: Carousels Tutorial"
+msgstr "W3C：カルーセルチュートリアル"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:37
+msgid "W3C ARIA Authoring Practices Guide: Carousel (Slide Show or Image Rotator) Pattern"
+msgstr "W3C ARIAオーサリングプラクティスガイド：カルーセル（スライドショーまたは画像ローテーター）パターン"
+
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:24
+msgid "Tab Order Modified"
+msgstr "タブ順序の変更"
+
+#. translators: %1$s is <code>tabindex="1"</code> and %2$s is <code>tabindex</code>.
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:30
+#, php-format
+msgid "This page contains an element with %1$s or another positive %2$s, which modifies the natural tab order."
+msgstr "このページには%1$sまたは他の正の%2$sを持つ要素が含まれており、自然なタブ順序を変更しています。"
+
+#. translators: %1$s is <code>tabindex="1"</code> and %2$s is <code>tabindex</code>.
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:36
+#, php-format
+msgid "These pages contain elements with %1$s or other positive %2$s, which modify the natural tab order."
+msgstr "これらのページには%1$sまたは他の正の%2$sを持つ要素が含まれており、自然なタブ順序を変更しています。"
+
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:40
+msgid "The natural tab order of a page follows the structure of the HTML. Changing this order using positive tabindex values can cause confusion for keyboard-only users and screen reader users, especially if the focus moves in an unexpected way or skips important content."
+msgstr "ページの自然なタブ順序はHTMLの構造に従います。正のtabindex値を使用してこの順序を変更すると、特にフォーカスが予期せぬ方法で移動したり重要なコンテンツをスキップしたりする場合、キーボードのみのユーザーやスクリーンリーダーユーザーに混乱を引き起こす可能性があります。"
+
+#. translators: %s is <code>tabindex</code>.
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:43
+#, php-format
+msgid "Remove positive %s values (greater than 0) from elements unless there is a very specific, user-tested reason to change the focus order. If needed, use tabindex=\"0\" to include custom elements in the natural tab flow without disrupting order. To fix this and other elements site-wide, enable the 'Remove Tab Index' fix in Accessibility Checker settings."
+msgstr "フォーカス順序を変更する非常に具体的で、ユーザーテスト済みの理由がない限り、要素から正の%s値（0より大きい）を削除してください。必要な場合は、tabindex=「0」を使用して、順序を乱すことなくカスタム要素を自然なタブフローに含めることができます。これとサイト全体の他の要素を修正するには、Accessibility Checker設定で「タブインデックスを削除する」修正を有効にしてください。"
+
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:48
+msgid "ARIA Authoring Practices Guide: Developing a Keyboard Interface"
+msgstr "ARIAオーサリングプラクティスガイド：キーボードインターフェースの開発"
+
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:52
+msgid "W3C: Focus Order and Keyboard Navigation"
+msgstr "W3C：フォーカス順序とキーボードナビゲーション"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:23
+msgid "Blinking or Scrolling Content"
+msgstr "点滅またはスクロールするコンテンツ"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:27
+msgid "This element uses blinking or scrolling effects that may be disruptive for users or cause seizures."
+msgstr "この要素は、ユーザーにとって邪魔になったり発作を引き起こす可能性のある点滅またはスクロール効果を使用しています。"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:28
+msgid "These elements use blinking or scrolling effects that may be disruptive for users or cause seizures."
+msgstr "これらの要素は、ユーザーにとって邪魔になったり発作を引き起こす可能性のある点滅またはスクロール効果を使用しています。"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:29
+msgid "Blinking or scrolling content can be distracting or trigger seizures in some users, especially those with photosensitive epilepsy or cognitive disabilities. These effects are deprecated and can negatively impact readability and focus."
+msgstr "点滅またはスクロールするコンテンツは、特に光過敏性てんかんや認知障害のある人にとって、気が散ったり発作を引き起こしたりする可能性があります。これらの効果は非推奨であり、読みやすさやフォーカスに悪影響を与える可能性があります。"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:32
+#, php-format
+msgid "Remove any HTML or CSS that causes blinking or scrolling effects, such as %1$s, %2$s, or %3$s."
+msgstr "%1$s、%2$s、%3$sなどの点滅やスクロール効果を引き起こすHTMLやCSSを削除してください。"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:39
+msgid "W3C: Techniques for WCAG 2.1 - Avoiding the use of the blink element"
+msgstr "W3C：WCAG 2.1のテクニック - blink要素の使用を避ける"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:43
+msgid "MDN: <marquee> element (obsolete)"
+msgstr "MDN：<marquee>要素（廃止）"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:53
+msgid "ADHD"
+msgstr "ADHD"
+
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:23
+msgid "Text Justified"
+msgstr "テキスト両端揃え"
+
+#. translators: %s is <code>text-align: justify</code.
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:29
+#, php-format
+msgid "This page contains long blocks of text that are styled with %s."
+msgstr "このページには%sでスタイリングされた長いテキストブロックが含まれています。"
+
+#. translators: %s is <code>text-align: justify</code.
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:34
+#, php-format
+msgid "These pages contain long blocks of text that are styled with %s."
+msgstr "これらのページには%sでスタイリングされた長いテキストブロックが含まれています。"
+
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:37
+msgid "Justified text can create uneven spacing between words, forming distracting \"rivers\" of white space that make reading difficult—especially for people with dyslexia, low vision, or cognitive disabilities. Left-aligned text is more predictable and easier to read."
+msgstr "両端揃えのテキストは単語間に不均一な間隔を作り出し、気が散る「白い川」を形成し、読むのを難しくします—特にディスレクシア、弱視、または認知障害のある人にとってそうです。左揃えのテキストはより予測可能で読みやすいです。"
+
+#. translators: %s is <code>text-align: justify</code.
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:40
+#, php-format
+msgid "Remove the %s CSS rule from long blocks of text, especially paragraphs longer than 200 characters. Use left-aligned text instead for better readability and accessibility."
+msgstr "長いテキストブロック、特に200文字以上の段落から%sのCSSルールを削除してください。代わりに左揃えのテキストを使用して、読みやすさとアクセシビリティを向上させてください。"
+
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:45
+msgid "W3C: Making Content Usable for People with Cognitive and Learning Disabilities"
+msgstr "W3C：認知・学習障害のある人々のためのコンテンツを使いやすくする"
+
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:54
+msgid "Dyslexia"
+msgstr "ディスレクシア"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:23
+msgid "Text Too Small"
+msgstr "テキストが小さすぎる"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:27
+msgid "This text is smaller than 10 pixels and may be difficult to read."
+msgstr "このテキストは10ピクセル未満で、読みにくい可能性があります。"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:28
+msgid "These text elements are smaller than 10 pixels and may be difficult to read."
+msgstr "これらのテキスト要素は10ピクセル未満で、読みにくい可能性があります。"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:29
+msgid "Text that is too small can be hard to read, especially for people with low vision. Ensuring a minimum readable size improves overall accessibility and usability, reducing the need for users to zoom."
+msgstr "小さすぎるテキストは読みにくく、特に視力の低い人には困難です。最小の読みやすいサイズを確保することで、全体的なアクセシビリティと使いやすさが向上し、ユーザーがズームする必要性が減ります。"
+
+#. translators: %s is <code>10px</code>.
+#: includes/classes/Rules/Rule/TextSmallRule.php:32
+#, php-format
+msgid "Update your styles so that all text is at least %s in size. Use relative units like em or rem when possible to support user preferences and browser scaling."
+msgstr "すべてのテキストが少なくとも%sのサイズになるようにスタイルを更新してください。可能な限り、emやremなどの相対単位を使用して、ユーザーの設定やブラウザのスケーリングをサポートしてください。"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:37
+msgid "MDN: font-size CSS property"
+msgstr "MDN：font-size CSSプロパティ"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:41
+msgid "How to Add Custom CSS in WordPress"
+msgstr "WordPressにカスタムCSSを追加する方法"
+
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:23
+msgid "Underlined Text"
+msgstr "下線付きテキスト"
+
+#. translators: %1$s is <code>&lt;u&gt;</code>, %2$s is <code>text-decoration: underline;</code.
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:29
+#, php-format
+msgid "This element contains underlined text using the %1$s tag or %2$s CSS styles and does not appear to be a link."
+msgstr "この要素には%1$sタグまたは%2$s CSSスタイルを使用した下線付きテキストが含まれており、リンクではないようです。"
+
+#. translators: %1$s is <code>&lt;u&gt;</code>, %2$s is <code>text-decoration: underline;</code.
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:35
+#, php-format
+msgid "These elements contain underlined text using the %1$s tag or %2$s CSS styles and do not appear to be links."
+msgstr "これらの要素には%1$sタグまたは%2$s CSSスタイルを使用した下線付きテキストが含まれており、リンクではないようです。"
+
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:39
+msgid "Underlined text is commonly associated with links. When non-link text is underlined, it can be confusing for users, especially those with cognitive disabilities or those relying on visual cues to identify links."
+msgstr "下線付きテキストは一般的にリンクと関連付けられています。リンクではないテキストに下線が引かれていると、ユーザー、特に認知障害のある人やリンクを識別するために視覚的な手がかりに頼っている人にとって混乱を招く可能性があります。"
+
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:40
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
+msgstr "テキストから下線タグまたはCSS下線スタイルを削除してください。テキストを強調したい場合は、代わりに太字、斜体、または色のスタイリングを検討してください。このテキストがリンクやボタンなどの機能的な要素の一部である場合は、下線のスタイリングを保持し、Accessibility Checkerの「無視」機能を使用してこの警告を却下してください。"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:23
+msgid "A Video is Present"
+msgstr "ビデオが存在します"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:27
+msgid "This element is a video. Because many accessibility issues with video content require manual review, this warning appears any time a video is detected on a post or page."
+msgstr "この要素は動画です。動画コンテンツの多くのアクセシビリティの問題は手動でのレビューが必要なため、投稿やページで動画が検出されるたびにこの警告が表示されます。"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:28
+msgid "These elements are videos. Because many accessibility issues with video content require manual review, this warning appears any time one or more videos are detected on a post or page."
+msgstr "これらの要素は動画です。動画コンテンツの多くのアクセシビリティの問題は手動でのレビューが必要なため、投稿やページで1つ以上の動画が検出されるたびにこの警告が表示されます。"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:29
+msgid "Videos must include accurate captions, transcripts, and audio descriptions (or enhanced transcripts) to be fully accessible to users who are deaf, hard of hearing, blind, or have cognitive disabilities."
+msgstr "動画は、聴覚障害者、視覚障害者、または認知障害のあるユーザーに完全にアクセス可能にするために、正確なキャプション、トランスクリプト、および音声解説（または拡張トランスクリプト）を含める必要があります。"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:30
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
+msgstr "ウェブサイトのフロントエンドで動画を確認してください。正確な（自動生成ではない）同期キャプション、トランスクリプト、必要に応じて音声解説が含まれていることを確認してください。アクセシビリティを確認したり、必要な更新を行った後、Accessibility Checkerの「無視」機能を使用してこの警告を却下できます。"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:33
+msgid "W3C: Media Alternatives"
+msgstr "W3C：メディアの代替手段"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:37
+msgid "W3C: Understanding Guideline 1.2"
+msgstr "W3C：ガイドライン1.2の理解"
+
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
 #: includes/classes/WPCLI/BootstrapCLI.php:99
 #, php-format
@@ -1252,6 +2819,12 @@ msgstr "&nbsp;"
 #: includes/helper-functions.php:339
 msgid "Attend Free"
 msgstr "無料で参加"
+
+#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+#: includes/helper-functions.php:782
+#, php-format
+msgid "View %s landmark on website, opens a new window"
+msgstr "%sランドマークをウェブサイトで表示（新しいウィンドウで開きます）"
 
 #: includes/options-page.php:42
 msgid "Welcome to Accessibility Checker"
@@ -1424,397 +2997,1205 @@ msgstr "スキャン中にチェックする投稿タイプを選択してくだ
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "プラグインがアンインストールされたときに、すべてのAccessibility Checkerデータを削除します。"
 
-#: includes/rules.php:21
-msgid "Image Missing Alternative Text"
-msgstr "画像に代替テキストがありません"
-
-#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
-#: includes/rules.php:27
-#, php-format
-msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
-msgstr "画像に代替テキストがないエラーは、画像タグ（%1$s）内にalt属性（%2$s）が全くないことを意味します。画像に代替テキストがないエラーを修正するには、画像に適切なテキストでalt属性を追加し、ページ内での画像の目的を説明する必要があります。装飾的な画像の場合、alt属性は空でも構いませんが、HTML %1$sタグは依然として存在する必要があります。"
-
-#: includes/rules.php:34
-msgid "Image Empty Alternative Text"
-msgstr "画像の代替テキストが空です"
-
-#. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:40
-#, php-format
-msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
-msgstr "画像の代替テキストが空の警告は、alt属性 (%s) が空の画像がある場合に表示されます。代替テキストは、画像を見ることができない人々に何が描かれているかを伝え、投稿やページに追加の文脈を提供します。代替テキストが空であるのは、画像が純粋に装飾的な場合（枠線や装飾的なアイコンなど）のみ正しいです。画像の代替テキストが空の警告を修正するには、画像が装飾的かページに意味のあるものを追加しているかを判断する必要があります。装飾的でない場合は、画像の目的を説明する適切な代替テキストを追加する必要があります。画像が装飾的な場合は、代替テキストを空のままにし、警告を「無視」します。"
-
-#: includes/rules.php:46
-msgid "Low-quality Alternative Text"
-msgstr "低品質の代替テキスト"
-
-#: includes/rules.php:50
-msgid "A Low-quality Alternative Text warning appears when the alternative text on an image contains keywords that are unnecessary in alternative text (such as \"image\" or \"graphic\"), a file extension (such as .JPG), that may be describing a decorative image (such as \"spacer\" or \"arrow\"). To fix this warning, you will need to rewrite the alternative text for any images that flagged the Low-Quality Alternative Text warning, ensuring the alternative text is accurate, unique, contextually appropriate, and does not contain redundant or unnecessary descriptors. If the image is purely decorative, it is correct to leave the alternative text blank."
-msgstr "代替テキストの品質が低いという警告は、画像の代替テキストに不必要なキーワード（「image」や「graphic」など）、ファイル拡張子（.JPGなど）、または装飾的な画像を示す可能性のある言葉（「spacer」や「arrow」など）が含まれている場合に表示されます。この警告を修正するには、低品質の代替テキスト警告が表示された画像の代替テキストを書き直す必要があります。代替テキストが正確で、独自で、文脈に適しており、冗長または不必要な説明を含まないようにしてください。画像が純粋に装飾的な場合は、代替テキストを空白のままにするのが正しいです。"
-
-#: includes/rules.php:54
-msgid "Linked Image Missing Alternative Text"
-msgstr "リンクされた画像に代替テキストがありません"
-
-#. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:60
-#, php-format
-msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
-msgstr "リンクされた画像に代替テキストがないエラーは、URLにリンクされている画像のimgタグに alt 属性 (%s) がまったくない場合に表示されます。リンクされた画像には、スクリーンリーダーユーザーがリンク先を知ることができるように、リンク先を説明する正確な代替テキストが必要です。このエラーを解決するには、画像に意味のある代替テキストを追加する必要があります。代替テキストは画像の見た目ではなく、リンクの目的を説明するべきです。"
-
-#: includes/rules.php:66
-msgid "Linked Image Empty Alternative Text"
-msgstr "リンクされた画像の代替テキストが空です"
-
-#. translators: %s is <code>alt=""</code>.
-#: includes/rules.php:72
-#, php-format
-msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
-msgstr "リンクされた画像の代替テキストが空というエラーは、URLにリンクされている画像に alt 属性 (%s) はあるものの、中身が空の場合に表示されます。リンクされた画像には、スクリーンリーダーユーザーがリンク先を知ることができるように、リンク先を説明する正確な代替テキストが必要です。このエラーを解決するには、画像に意味のある代替テキストを追加する必要があります。代替テキストは画像の見た目ではなく、リンクの目的を説明するべきです。"
-
-#: includes/rules.php:78
-msgid "Duplicate Alternative Text"
-msgstr "代替テキストが重複しています"
-
-#: includes/rules.php:82
-msgid "Duplicate Alternative Text warnings appear when the alternative text for an image on your post or page is identical to nearby or adjacent text, including the image’s title or caption. This warning also occurs if two images on the page have the same alternative text. To resolve this warning, you will need to change the text of either one or both elements that flagged the Duplicate Alternative Text warning, ensuring that all images have unique alt text and that you are not repeating your alt text in your image titles and captions."
-msgstr "代替テキストの重複警告は、投稿やページ上の画像の代替テキストが、近くや隣接するテキスト（画像のタイトルやキャプションを含む）と同一の場合に表示されます。また、ページ上の2つの画像が同じ代替テキストを持つ場合にもこの警告が発生します。この警告を解決するには、代替テキストの重複警告が表示された要素の一方または両方のテキストを変更し、すべての画像が固有の代替テキストを持ち、画像のタイトルやキャプションで代替テキストを繰り返していないことを確認する必要があります。"
-
-#: includes/rules.php:86
-msgid "Incorrect Heading Order"
-msgstr "見出しの順序が正しくありません"
-
-#. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
-#: includes/rules.php:92
-#, php-format
-msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
-msgstr "見出しの順序が正しくないエラーは、見出し構造がレベルをスキップしている場合に発生します。例えば、ページ構造で見出しレベル1（%1$s）の下に見出しレベル3（%2$s）がある場合、H1とH3の間に%3$sタグがないため、「見出しの順序が正しくない」エラーが表示されます。見出しの順序が正しくないエラーを修正するには、不適切な見出しレベルを正しいレベルに変更するか、既存の2つのレベルの間に正しい見出しレベルのコンテンツを追加する必要があります。"
-
-#: includes/rules.php:103
-msgid "Empty Paragraph Tag"
-msgstr "空の段落タグ"
-
-#: includes/rules.php:107
-msgid "An Empty Paragraph Tag warning means there is a paragraph tag present that does not contain content. These may be announced by screen readers or create confusion for users. To fix this warning, remove the empty paragraphs from the page. If you need to add spacing between sections, this should be done with padding, margins, or a spacer block."
-msgstr "空の段落タグ警告は、コンテンツを含まない段落タグが存在することを意味します。これらはスクリーンリーダーによって読み上げられたり、ユーザーに混乱を与えたりする可能性があります。この警告を修正するには、ページから空の段落を削除してください。セクション間にスペースを追加する必要がある場合は、パディング、マージン、またはスペーサーブロックを使用して行うべきです。"
-
-#: includes/rules.php:111
-msgid "iframe Missing Title"
-msgstr "iframeにタイトルがありません"
-
-#. translators: %1$s is <code>&lt;iframe&gt;</code>.
-#: includes/rules.php:117
-#, php-format
-msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
-msgstr "Iframeにタイトルがないエラーは、投稿やページ上の1つ以上のiframeにiframeの内容を説明するアクセシブルなタイトルがないことを意味します。iframeタイトルは、支援技術を使用する人々にフレームの内容を説明するために%1$sタグに追加できる属性です。iframeタイトルの欠落を修正するには、%1$sタグにtitle属性またはaria-label属性を追加する必要があります。この属性はiframeの内容を正確に説明するべきです。"
-
-#: includes/rules.php:126
-msgid "Missing Subheadings"
-msgstr "小見出しがありません"
-
-#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
-#: includes/rules.php:132
-#, php-format
-msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
-msgstr "見出しがないという警告は、投稿やページの本文セクションのコンテンツ内に見出し要素（%1$s〜%2$s）が含まれていないことを意味し、スクリーンリーダーユーザーがページ上のコンテンツをナビゲートすることが特に困難になる可能性があります。見出しのないページを修正するには、見出し要素を追加する必要があります。最低でも、すべてのページには1つの%1$sタグが必要で、通常はページタイトルです。コンテンツに応じて適切な小見出しを追加してください。ページに見出しが必要ないと判断した場合は、警告を「無視」することができます。"
-
-#: includes/rules.php:140
-msgid "Text Justified"
-msgstr "テキスト両端揃え"
-
-#: includes/rules.php:144
-msgid "A Text Justified warning appears in Accessibility Checker when text with more than 200 characters on your post or page is styled with justified alignment (text-align:justify). To fix this warning, remove the justified styling from the specified text elements."
-msgstr "テキスト正当化の警告は、投稿やページで200文字以上のテキストが両端揃え（text-align:justify）でスタイリングされている場合にAccessibility Checkerに表示されます。この警告を修正するには、指定されたテキスト要素から両端揃えのスタイリングを削除してください。"
-
-#: includes/rules.php:148
-msgid "Link Opens New Window or Tab"
-msgstr "リンクが新しいウィンドウまたはタブで開く"
-
-#. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
-#: includes/rules.php:154
-#, php-format
-msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
-msgstr "「リンクが新しいウィンドウまたはタブで開く」警告は、ウェブサイト上のリンクがクリック時に新しいタブまたはウィンドウで開くように設定されている場合に表示されます。リンクで新しいタブやウィンドウを開かないことがベストプラクティスとされています。リンクが新しいタブやウィンドウを開く場合、ユーザーがその動作を予期し、リンクをクリックした後に戻る方法を知ることができるよう、視覚的および聴覚的な警告を提供する必要があります。この警告を修正するには、リンクを新しいタブで開かないように変更するか、リンクテキストに「新しいウィンドウで開きます」を含めて警告を「無視」してください。サイト上のすべてのリンクに自動的に通知を追加し、これらの警告をすべて消去するには、無料の%sプラグインをインストールしてください。"
-
-#: includes/rules.php:155
-msgid "Accessibility New Window Warnings"
-msgstr "アクセシビリティの新しいウィンドウ警告"
-
-#: includes/rules.php:167
-msgid "Image Map Missing Alternative Text"
-msgstr "イメージマップに代替テキストがない"
-
-#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
-#: includes/rules.php:173
-#, php-format
-msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
-msgstr "イメージマップに代替テキストがないというエラーは、イメージマップ内の%1$s要素の1つに%2$s属性で代替テキストが追加されていないことを意味します。このエラーを修正するには、代替テキストのない area タグに不足している代替テキストを追加する必要があります。代替テキストは、エリアの見た目ではなく、エリアに含まれるリンクの機能を説明する必要があります。"
-
-#: includes/rules.php:183
-msgid "Tab Order Modified"
-msgstr "タブ順序の変更"
-
-#. translators: %s is <code>tabindex="1"</code>.
-#: includes/rules.php:189
-#, php-format
-msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
-msgstr "タブ順序変更の警告は、ページ上の論理的なタブ順序が、HTML要素（例：%s）に0より大きい値のtabindex属性を追加することで変更された場合に表示されます。これはキーボードのみのユーザーにナビゲーションの問題を引き起こす可能性があります。タブ順序変更の警告を解決するには、タブ順序が変更されたページまたは投稿のウェブサイトのフロントエンドを表示し、その変更が正しいかどうかをテストする必要があります。タブ順序の変更が問題を引き起こさない場合は、警告を「無視」できます。変更されたタブ順序が情報を順不同に表示する場合は、フラグの付いた要素からtabindex属性を削除する必要があります。"
-
-#: includes/rules.php:199
-msgid "Empty Heading Tag"
-msgstr "空の見出しタグ"
-
-#. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
-#: includes/rules.php:205
-#, php-format
-msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
-msgstr "空の見出しタグエラーは、投稿やページにコンテンツを含まない見出しタグが存在することを意味します。コードでは、このエラーは次のように表示されます：%s。空の見出しを修正するには、空の見出しタグエラーをフラグ付けした見出しタグにコンテンツを追加するか、ページに不要な場合は空のタグを削除する必要があります。"
-
-#: includes/rules.php:211
-msgid "Empty Link"
-msgstr "空のリンク"
-
-#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
-#: includes/rules.php:217
-#, php-format
-msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
-msgstr "空のリンクエラーは、Webページ上のリンクの1つが空であるか、クリックした場合にリンク先を説明するテキストが含まれていないことを意味します。これは一般的に、Webフォント、アイコンフォント、SVGを含むリンクや、コンテンツエディタでリンクが誤って作成された場合に発生します。空のリンクエラーを修正するには、フラグが立てられているリンクを見つけ、説明的なテキストを追加する必要があります。以下のいずれかを行う必要があります：空の%1$s要素内にテキストコンテンツを追加するか、リンクにSVGやWebフォントアイコンが含まれている場合は、その要素を%2$sで非表示にし、%1$sタグに%3$s属性を追加するか、スクリーンリーダーテキストを追加します。追加するテキストやラベルは、リンク先を説明的に表し、曖昧でないものにする必要があります。"
-
-#: includes/rules.php:225
-msgid "Empty Button"
-msgstr "空のボタン"
-
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
-#: includes/rules.php:231
-#, php-format
-msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
-msgstr "空のボタンエラーは、Webページ上のボタンの1つが空であるか、ボタンの機能を説明するテキストが含まれていないことを意味します。または、画像ボタンの場合、ボタンに含まれる画像に代替テキストがない場合です。空のボタンエラーを修正するには、フラグが立てられているボタンを見つけ、説明的なテキストを追加する必要があります。以下のいずれかを行う必要があります：空の%1$s要素内にテキストコンテンツを追加する、欠けている%2$sに値属性を追加する、またはボタン画像に代替テキストを追加します。テキストは、ボタンの用途や、ボタンがトリガーするアクションを説明的に表現するべきです。"
-
-#: includes/rules.php:238
-msgid "Image Long Alternative Text"
-msgstr "画像の長い代替テキスト"
-
-#: includes/rules.php:242
-msgid "An Image Long Alternative Text warning appears if there are more than 100 characters in your alternative text. Alternative text is meant to be descriptive of the image but in a succinct manner, without being too wordy. To fix this warning, you need to shorten your alt text for any images that have been flagged to 100 characters or less. If you have determined that your alternative text is good as-is, then \"Ignore\" the warning."
-msgstr "画像の長い代替テキスト警告は、代替テキストに100文字以上ある場合に表示されます。代替テキストは画像を説明的に表現することを目的としていますが、簡潔で冗長にならないようにする必要があります。この警告を修正するには、フラグが立てられた画像の代替テキストを100文字以下に短縮する必要があります。代替テキストが現状のままで適切だと判断した場合は、警告を「無視」してください。"
-
-#: includes/rules.php:246
-msgid "ARIA Hidden"
-msgstr "ARIA Hidden"
-
-#: includes/rules.php:250
-msgid "The ARIA Hidden warning appears when content on your post or page has been hidden using the aria-hidden=\"true\" attribute. When this attribute is added to an HTML element, screen readers will not read it out to users. Sometimes it is correct for the element to be hidden from screen readers (such as with a decorative icon) but other times this is not correct. When you see this warning, you need to determine if the element is supposed to be hidden from people who are blind or visually impaired. If it is correctly hidden, \"Ignore\" the warning. If it is incorrectly hidden and should be visible, remove the aria-hidden=\"true\" attribute to resolve the warning."
-msgstr "ARIA Hidden警告は、投稿やページのコンテンツがaria-hidden=「true」属性を使用して非表示にされている場合に表示されます。この属性がHTML要素に追加されると、スクリーンリーダーはそれを読み上げません。時には要素をスクリーンリーダーから隠すことが正しい場合もありますが（装飾的なアイコンなど）、そうでない場合もあります。この警告が表示された場合、その要素が視覚障害のある人から隠されるべきかどうかを判断する必要があります。正しく隠されている場合は、警告を「無視」してください。不適切に隠されており、表示されるべき場合は、aria-hidden=「true」属性を削除して警告を解決してください。"
-
-#: includes/rules.php:257
-msgid "Empty Table Header"
-msgstr "空のテーブルヘッダー"
-
-#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
-#: includes/rules.php:263
-#, php-format
-msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
-msgstr "空のテーブルヘッダーエラーは、投稿やページのテーブルヘッダーの1つにテキストが含まれていないことを意味します。これは、%1$s要素は存在しているが、開始タグと終了タグの間に何もない状態（%2$sのような）であることを示しています。空のテーブルヘッダーを修正するには、正しいHTML要素(%1$s)を見つけ、適用される行または列を説明するテキストを追加する必要があります。"
-
-#: includes/rules.php:270
-msgid "Link to MS Office File"
-msgstr "MS Officeファイルへのリンク"
-
-#: includes/rules.php:274
-msgid "A Link to MS Office File warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pps or .ppsx. This warning appears when an MS Office file is present as a reminder to manually test your Word documents, PowerPoint presentations, and Excel spreadsheets for accessibility and to confirm that they conform to all relevant WCAG guidelines. To resolve a Link to MS Office File warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your MS Office file for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
-msgstr "MS Officeファイルへのリンク警告は、ページや投稿上のリンクの1つ以上が、次のいずれかのファイル拡張子を持つファイルに誘導していることを意味します：.doc、.docx、.xls、.xlsx、.ppt、.pptx、.pps、または.ppsx。この警告は、MS Officeファイルが存在する場合に、Wordドキュメント、PowerPointプレゼンテーション、Excelスプレッドシートのアクセシビリティを手動でテストし、関連するすべてのWCAGガイドラインに準拠していることを確認するための注意喚起として表示されます。MS Officeファイルへのリンク警告を解決するには、以下の手順が必要です：(1) ページにドキュメントを埋め込むプラグインを使用している場合、ドキュメントを表示またはダウンロードするための直接リンクが存在することを確認する；(2) ドキュメントへのリンクが、リンクアンカーに特定のファイル拡張子を表示することでドキュメントへのリンクであることをユーザーに警告していることを確認する；(3) MS Officeファイルのアクセシビリティエラーをテストし修正する。ファイルが完全にアクセシブルであると判断した後、警告を安全に「無視」できます。"
-
-#: includes/rules.php:278
-msgid "Link to PDF"
-msgstr "PDFへのリンク"
-
-#: includes/rules.php:282
-msgid "A Link to PDF warning means that one or more of the links on your page or post directs to a PDF file. This warning is a reminder to manually test the linked PDF for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to PDF warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
-msgstr "PDFへのリンクの警告は、ページまたは投稿上の1つ以上のリンクがPDFファイルに向かっていることを意味します。この警告は、リンクされたPDFのアクセシビリティを手動でテストし、関連するすべてのWCAGガイドラインに準拠していることを確認するための注意喚起です。PDFへのリンクの警告を解決するには、以下の手順が必要です：(1) プラグインを使用してページに埋め込んでいる場合、ドキュメントを表示またはダウンロードするための直接リンクが存在することを確認する；(2) ドキュメントへのリンクが、リンクアンカーに特定のファイル拡張子を表示することで、ドキュメントへのリンクであることをユーザーに警告していることを確認する；(3) ドキュメントのアクセシビリティエラーをテストし修正する。ファイルが完全にアクセシブルであると判断した後、安全に警告を「無視」できます。"
-
-#: includes/rules.php:286
-msgid "Link to Non-HTML File"
-msgstr "非HTMLファイルへのリンク"
-
-#: includes/rules.php:290
-msgid "A  Link to Non-HTML Document warning means that one or more of the links on your page or post directs to a file with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key. This warning is a reminder to manually test the linked document for accessibility and to confirm that it conforms to all relevant WCAG guidelines. To resolve a Link to Non-HTML Document warning, you need to: (1) ensure a direct link to view or download the document is present if you're using a plugin to embed it on the page; (2) ensure the link to the document warns users it is a link to a document by displaying the specific file extension in the link anchor; and (3) test and remediate your document for accessibility errors. After determining your file is fully accessible, you can safely “Ignore” the warning."
-msgstr "非HTMLドキュメントへのリンクの警告は、ページまたは投稿上の1つ以上のリンクが、次のいずれかのファイル拡張子を持つファイルに向かっていることを意味します：.rtf、.wpd、.ods、.odt、.odp、.sxw、.sxc、.sxd、.sxi、.pages、または.key。この警告は、リンクされたドキュメントのアクセシビリティを手動でテストし、関連するすべてのWCAGガイドラインに準拠していることを確認するための注意喚起です。非HTMLドキュメントへのリンクの警告を解決するには、以下の手順が必要です：(1) プラグインを使用してページに埋め込んでいる場合、ドキュメントを表示またはダウンロードするための直接リンクが存在することを確認する；(2) ドキュメントへのリンクが、リンクアンカーに特定のファイル拡張子を表示することで、ドキュメントへのリンクであることをユーザーに警告していることを確認する；(3) ドキュメントのアクセシビリティエラーをテストし修正する。ファイルが完全にアクセシブルであると判断した後、安全に警告を「無視」できます。"
-
-#: includes/rules.php:294
-msgid "Long Description Invalid"
-msgstr "長い説明が無効"
-
-#. translators: %s is <code>longdesc=""</code>.
-#: includes/rules.php:300
-#, php-format
-msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
-msgstr "長い説明が無効というエラーは、画像の長い説明属性(%s)が適切なURL、ファイル名、またはファイル拡張子を持っていないことを意味します。また、長い説明がURLでない、または空白のままになっている可能性もあります。longdesc属性は、HTML5、ブラウザ、およびすべてのスクリーンリーダーで完全にはサポートされていません。このサポート不足のため、このエラーを修正する最良の方法は、画像タグからlongdescを完全に削除することです。"
-
-#: includes/rules.php:306
-msgid "Missing Form Label"
-msgstr "フォームラベルの欠落"
-
-#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
-#: includes/rules.php:312
-#, php-format
-msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
-msgstr "フォームラベルの欠落エラーは、フォームに%1$s（フォームフィールド）が存在するが、%2$s要素と関連付けられていない場合に発生します。これは、ラベルは存在するが、適用可能なフィールドに接続する%3$s属性が欠落している場合や、ラベルが全く存在せず、%1$sタグのみがある場合があります。フォームラベルの欠落エラーを修正するには、フィールドとフォームがどのように作成されたかを確認し、フィールドラベルを追加するか、フィールドに接続されていない既存のラベルに正しい%3$s属性を追加する必要があります。"
-
-#: includes/rules.php:325
-msgid "Ambiguous Anchor Text"
-msgstr "曖昧なアンカーテキスト"
-
-#: includes/rules.php:329
-msgid "Ambiguous Anchor Text errors appear when there is linked text that has no meaning outside of its surrounding content. Common examples of this include linking phrases like \"click here\" or \"learn more.\" To resolve this error, change the link text to be less generic so that it has meaning if heard on its own."
-msgstr "曖昧なアンカーテキストエラーは、周囲のコンテンツから切り離すと意味を持たないテキストがリンクされている場合に表示されます。一般的な例としては、「ここをクリック」や「詳細を見る」などのフレーズをリンクすることが挙げられます。このエラーを解決するには、リンクテキストをより具体的なものに変更し、単独で聞いても意味が通じるようにします。"
-
-#: includes/rules.php:333
-msgid "Underlined Text"
-msgstr "下線付きテキスト"
-
-#. translators: %s is <code>&lt;u&gt;</code>.
-#: includes/rules.php:339
-#, php-format
-msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
-msgstr "下線付きテキストの警告は、ページ上のテキストがHTML下線タグ(%1$s)で囲まれている場合に表示されます。オンライン環境では、下線付きテキストは一般的にリンクテキストを示すために使用され、強調のみを目的とした下線付きテキストの使用はベストプラクティスとは考えられていません。下線付きテキストを修正するには、テキストから%1$s要素を削除するか、下線を付けているCSSスタイルを削除する必要があります。単語やフレーズを強調したり区別したりするには、イタリック体、色付きテキスト、または太字など、他のスタイリングを試してください。"
-
-#: includes/rules.php:345
-msgid "Broken Skip or Anchor Link"
-msgstr "破損したスキップリンクまたはアンカーリンク"
-
-#: includes/rules.php:349
-msgid "An anchor link, sometimes called a jump link, is a link that, rather than opening a new page or URL when clicked, jumps or scrolls you to a different section on the same page. These links go to an element that starts with a hashtag rather than a full URL. For example, you might scroll someone to the about section of your home page by linking to #about. Broken Skip or Anchor Link errors appear when there is a link that targets another section on the same page but there is not an element present on the page that has the referenced id. This error will also appear if you are linking to just a #. To resolve this error, manually test the link to confirm it works and then either fix it or \"Ignore\" the error as applicable."
-msgstr "アンカーリンク（ジャンプリンクとも呼ばれる）は、クリックされたときに新しいページやURLを開くのではなく、同じページの別のセクションにジャンプまたはスクロールするリンクです。これらのリンクは、完全なURLではなく、ハッシュタグで始まる要素に移動します。例えば、ホームページの「about」セクションに誰かをスクロールさせるために、#about にリンクすることができます。破損したスキップリンクまたはアンカーリンクのエラーは、同じページの別のセクションをターゲットとするリンクがあるにもかかわらず、参照されているIDを持つ要素がページに存在しない場合に表示されます。このエラーは、単に # にリンクしている場合にも表示されます。このエラーを解決するには、リンクを手動でテストして機能することを確認し、必要に応じて修正するか、「無視」してください。"
-
-#: includes/rules.php:353
-msgid "Missing Table Header"
-msgstr "テーブルヘッダーの欠落"
-
-#. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
-#: includes/rules.php:359
-#, php-format
-msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
-msgstr "テーブルヘッダー欠落エラーは、テーブルの一つに対応するヘッダー（(%2$s)タグ）のないデータ（%1$sタグに含まれる情報）が含まれていることを意味します。フォームのHTMLを見ると、行内の%1$s要素の数が、テーブルの%2$s要素の数より多くなっています。テーブルヘッダーの欠落を修正するには、データの行または列の数に対して%2$s要素が少ない部分のコードを見つけ、その行または列のデータを説明するテキストを含む追加の%2$s要素を1つ以上追加する必要があります。"
-
-#: includes/rules.php:366
-msgid "Duplicate Form Label"
-msgstr "重複したフォームラベル"
-
-#: includes/rules.php:370
-msgid "Duplicate Form Label errors appear when there is more than one label associated with a single field on a form. If there are too many form labels present, a screen reader may not be able to successfully read the form fields to help a visually impaired user navigate through and complete the form. To fix duplicate form label errors, you will need to determine how the field and form were created and then ensure that each field has only one label associated with it."
-msgstr "重複したフォームラベルエラーは、フォーム上の1つのフィールドに複数のラベルが関連付けられている場合に表示されます。フォームラベルが多すぎると、スクリーンリーダーが視覚障害のあるユーザーがフォームをナビゲートして完了するのを助けるためにフォームフィールドを正常に読み取れない可能性があります。重複したフォームラベルエラーを修正するには、フィールドとフォームがどのように作成されたかを判断し、各フィールドに関連付けられているラベルが1つだけであることを確認する必要があります。"
-
-#: includes/rules.php:375
-msgid "Text Too Small"
-msgstr "テキストが小さすぎる"
-
-#: includes/rules.php:379
-msgid "A Text Too Small warning occurs when there is text on your website that is less than 10px in size. The warning is an indication that you may want to rethink the font size and make it larger so that it can be more easily read without a user needing zoom in on their browser. To fix text that is too small, you will need to ensure that all text elements on your website are at least 10 points."
-msgstr "テキストが小さすぎる警告は、ウェブサイト上に10px未満のサイズのテキストがある場合に発生します。この警告は、フォントサイズを再考して、ユーザーがブラウザでズームインする必要なく、より簡単に読めるように大きくすることをお勧めするものです。小さすぎるテキストを修正するには、ウェブサイト上のすべてのテキスト要素が少なくとも10ポイント以上であることを確認する必要があります。"
-
-#: includes/rules.php:383
-msgid "Possible Heading"
-msgstr "可能性のある見出し"
-
-#: includes/rules.php:387
-msgid "A Possible Heading warning occurs when there is text on a page that appears to be a heading, but has not been coded with proper heading tags. This warning is appears if there are short phrases or strings of text less than 50 characters in length that are formatted in a way which suggests they might be being used as headers (they are 20 pixels or bigger, or are 16 pixels or bigger and bold and/or italicized). To fix a Possible Heading warning, you will need to determine if the flagged text is indeed intended to be a heading. If so, you need to change it from a paragraph to a heading at the proper level. If it is not supposed to be a heading then you can safely “Ignore” the warning."
-msgstr "可能性のある見出しの警告は、ページ上に見出しのように見えるテキストがあるにもかかわらず、適切な見出しタグでコーディングされていない場合に発生します。この警告は、50文字未満の短い語句やテキストの文字列が見出しとして使用されているように見える形式（20ピクセル以上、または16ピクセル以上で太字やイタリック体）でフォーマットされている場合に表示されます。可能性のある見出しの警告を修正するには、フラグが付けられたテキストが実際に見出しとして意図されているかどうかを判断する必要があります。もしそうであれば、それを段落から適切なレベルの見出しに変更する必要があります。見出しでない場合は、警告を安全に「無視」することができます。"
-
-#: includes/rules.php:391
-msgid "Blinking or Scrolling Content"
-msgstr "点滅またはスクロールするコンテンツ"
-
-#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
-#: includes/rules.php:397
-#, php-format
-msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
-msgstr "点滅またはスクロールするコンテンツのエラーは、ウェブサイト上の要素にCSSまたはHTMLで点滅またはスクロール機能が適用されている場合に表示されます。具体的には、次の要素がこのエラーを引き起こします：%1$sまたは%2$s HTMLタグ、またはCSS %3$s。このエラーを解決するには、コンテンツを点滅させているHTMLタグまたはCSSを削除してください。"
-
-#: includes/rules.php:406
-msgid "Insufficient Color Contrast"
-msgstr "不十分な色のコントラスト"
-
-#: includes/rules.php:410
-msgid "Insufficient Color Contrast errors means that we have identified that one or more of the color combinations on your post or page do not meet the minimum color contrast ratio of 4.5:1. Depending upon how your site is built there may be \"false positives\" for this error as some colors are contained in different HTML layers on the page. To fix an Insufficient Color Contrast error, you will need to ensure that flagged elements meet the minimum required ratio of 4.5:1. To do so, you will need to find the hexadecimal codes of your foreground and background color, and test them in a color contrast checker. If these color codes have a ratio of 4.5:1 or greater you can “Ignore” this error. If the color codes do not have a ratio of at least 4.5:1, you will need to make adjustments to your colors."
-msgstr "色のコントラスト不足エラーとは、投稿やページ上の1つ以上の色の組み合わせが最小コントラスト比4.5:1を満たしていないことを示します。サイトの構築方法によっては、ページ上の異なるHTMLレイヤーに色が含まれているため、この「誤検出」が発生する可能性があります。色のコントラスト不足エラーを修正するには、指摘された要素が最小必要比率4.5:1を満たしていることを確認する必要があります。そのためには、前景色と背景色の16進コードを見つけ、色のコントラストチェッカーでテストします。これらの色コードの比率が4.5:1以上であれば、このエラーを「無視」できます。色コードの比率が4.5:1未満の場合は、色を調整する必要があります。"
-
-#: includes/rules.php:414
-msgid "Missing Transcript"
-msgstr "トランスクリプトの欠落"
-
-#: includes/rules.php:418
-msgid "A missing transcript error means that there is an audio or video clip on your website that does not have a transcript or there is a transcript but it is not labelled as a transcript or is positioned more than 25 characters away from the embedded or linked to media. To fix a missing transcript error, you will need to create a transcript for any of the video or audio clips that have been flagged as missing a transcript. Once you have created the transcript, you can either add the transcript content directly within your post or page or link to the transcript if you’re including it as a downloadable doc or PDF file. You need to explicitly include the word “transcript” within a heading before the transcript on the page or in the link to your file, and it needs to be within 25 characters of the audio or video embed or link."
-msgstr "トランスクリプト欠落エラーとは、ウェブサイト上の音声またはビデオクリップにトランスクリプトがない、またはトランスクリプトはあるが「トランスクリプト」としてラベル付けされていない、あるいは埋め込みまたはリンクされたメディアから25文字以上離れた位置にあることを意味します。トランスクリプト欠落エラーを修正するには、トランスクリプトがないとフラグが立てられたビデオまたは音声クリップのトランスクリプトを作成する必要があります。トランスクリプトを作成したら、投稿やページに直接トランスクリプトの内容を追加するか、ダウンロード可能なドキュメントやPDFファイルとして含める場合はトランスクリプトへのリンクを追加できます。ページ上のトランスクリプトの前の見出し、またはファイルへのリンク内に、明示的に「トランスクリプト」という単語を含める必要があり、それは音声またはビデオの埋め込みまたはリンクから25文字以内に配置する必要があります。"
-
-#: includes/rules.php:422
-msgid "Broken ARIA Reference"
-msgstr "ARIA参照の破損"
-
-#: includes/rules.php:426
-msgid "Broken ARIA Reference errors appear if an aria-labeledby or aria-describedby element is present on the page or post but its reference target does not exist. This means that the element being referred to by the specific ARIA attribute you are using either does not have a proper label or descriptor, or it is not present on the page. To fix a broken ARIA reference, you will need to find the ARIA elements that are being flagged, and ensure that their reference targets are present and properly labeled."
-msgstr "ARIA参照の破損エラーは、aria-labeledbyまたはaria-describedby要素がページまたは投稿に存在するが、その参照先が存在しない場合に表示されます。これは、使用している特定のARIA属性が参照している要素が適切なラベルまたは説明を持っていないか、ページ上に存在しないことを意味します。ARIA参照の破損を修正するには、フラグが立てられているARIA要素を見つけ、その参照先が存在し、適切にラベル付けされていることを確認する必要があります。"
-
-#: includes/rules.php:431
-msgid "Missing Language Declaration"
-msgstr "言語宣言の欠落"
-
-#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
-#: includes/rules.php:437
-#, php-format
-msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
-msgstr "言語宣言は、ページまたは投稿のコンテンツのデフォルト言語を示すHTML属性です。言語宣言はウェブサイトのテーマにコーディングされ、ウェブサイトのheadに自動的に表示されるはずです。言語宣言の欠落エラーは、ページの%1$sタグに%2$s属性または%3$s属性が含まれていない場合、またはこれらの属性のいずれかが存在するが空である場合に表示されます。言語宣言の欠落エラーを修正するには、テーマファイルを編集して、ウェブサイトヘッダーの最上部にあるHTMLタグに欠落している言語属性を追加する必要があります。更新を受け取るテーマを使用している場合は、次回テーマを更新したときに修正が上書きされないように、子テーマで変更を行う必要があります。"
-
-#: includes/rules.php:451
-msgid "Image Animated GIF"
-msgstr "アニメーションGIF画像"
-
-#: includes/rules.php:455
-msgid "Image Animated GIF warnings appear when there is an animated GIF on your post or page. This warning is a reminder to manually review any animated GIFs on your website for their accessibility and/or to reconsider using animated GIFs, replacing them instead with static images or videos. To resolve this warning, you need to review any GIFs that are present to ensure that they meet all applicable guidelines for accessibility and then either “Ignore” the warning or remove the GIF from your page or post if it is not accessible."
-msgstr "アニメーションGIF画像の警告は、投稿やページにアニメーションGIFがある場合に表示されます。この警告は、ウェブサイト上のアニメーションGIFのアクセシビリティを手動で確認するか、アニメーションGIFの使用を再考し、代わりに静止画像やビデオに置き換えることを促すリマインダーです。この警告を解決するには、存在するGIFを確認してアクセシビリティに関する適用可能なすべてのガイドラインを満たしていることを確認し、その後警告を「無視」するか、アクセシブルでない場合はGIFをページまたは投稿から削除する必要があります。"
-
-#: includes/rules.php:460
-msgid "A Video is Present"
-msgstr "ビデオが存在します"
-
-#: includes/rules.php:464
-msgid "Because videos frequently contain accessibility problems, many of which can only be identified by a person, The A Video is Present warning appears anytime a video is detected on a post or page as a reminder that you need to manually test your video for accessibility. To resolve this warning, you need to visit the front end of your website and confirm that the video in the warning is accessible. Once you have fully tested the video for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
-msgstr "動画には多くのアクセシビリティの問題が含まれていることが多く、そのほとんどは人間によってのみ識別できるため、動画が投稿やページで検出されるたびに「動画が存在します」という警告が表示されます。これは、動画のアクセシビリティを手動でテストする必要があることを思い出させるためです。この警告を解決するには、ウェブサイトのフロントエンドにアクセスし、警告にある動画がアクセシブルであることを確認する必要があります。動画のアクセシビリティを完全にテストし、存在する可能性のあるエラーを修正した後、警告を「無視」して完了としてマークすることができます。"
-
-#: includes/rules.php:468
-msgid "A Slider is Present"
-msgstr "スライダーが存在します"
-
-#: includes/rules.php:472
-msgid "Because sliders frequently contain accessibility problems, many of which can only be identified by a person, the A Slider is Present warning appears anytime a slider is detected on a post or page as a reminder that you need to manually test your slider for accessibility. To resolve this warning, you need to visit the front end of your website and confirm all sliders on the page are accessible. Once you have fully tested your sliders for accessibility, you need to fix any errors that may be present and then can “Ignore” the warning to mark it as complete."
-msgstr "スライダーには多くのアクセシビリティの問題が含まれていることが多く、そのほとんどは人間によってのみ識別できるため、スライダーが投稿やページで検出されるたびに「スライダーが存在します」という警告が表示されます。これは、スライダーのアクセシビリティを手動でテストする必要があることを思い出させるためです。この警告を解決するには、ウェブサイトのフロントエンドにアクセスし、ページ上のすべてのスライダーがアクセシブルであることを確認する必要があります。スライダーのアクセシビリティを完全にテストし、存在する可能性のあるエラーを修正した後、警告を「無視」して完了としてマークすることができます。"
-
-#: includes/rules.php:476
-msgid "Missing Title"
-msgstr "タイトルがありません"
-
-#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
-#: includes/rules.php:482
-#, php-format
-msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
-msgstr "「タイトルがありません」エラーは、投稿やページにタイトル要素（%1$sまたは%2$s）が含まれていないことを意味します。これは、テーマがタイトルタグを追加しなかった場合や、WordPressの編集画面で投稿やページのタイトルフィールドが空白のままになっている場合に発生する可能性があります。タイトルのないページを修正するには、タイトル要素を追加する必要があります。まず、エディターでページや投稿のタイトルフィールドを空白のままにしたためにタイトルが欠落しているかどうかを確認してください。その場合は、それを入力してください。バックエンドでタイトルが入力され表示されている場合は、ウェブページの%1$sタグまたは%2$sメタタグを含むようにコードを編集する必要があります。"
-
-#: includes/rules.php:494
-msgid "Improper Use of Link"
-msgstr "リンクの不適切な使用"
-
-#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
-#: includes/rules.php:500
-#, php-format
-msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
-msgstr "「リンクの不適切な使用」エラーは、%1$s属性がないリンクや、単に%2$sにリンクされているだけで%3$sがないリンクがある場合に表示されます。リンクは、サイトの他の部分に人々を誘導するために使用されるべきです。アクションをトリガーする他の機能はボタンであるべきです。このエラーを解決するには、リンクを%4$sタグを使用するようにリコード（推奨）するか、既存の%6$sタグに%5$sを追加する必要があります。要素がトグルボタン（アコーディオンなど）である場合、追加のARIA属性が必要です。"
-
-#: includes/rules.php:511
-msgid "Zooming and Scaling Disabled"
-msgstr "ズームとスケーリングが無効"
-
-#: includes/rules.php:515
-msgid "Zooming is disabled via viewport meta tag that includes `user-scalable=no` or a `maximum-scale` value of less than 2. This limits low-vision users that want to increase text sizes, zoom into the page or who use a magnifier."
-msgstr "ビューポートメタタグに `user-scalable=no` が含まれているか、`maximum-scale` の値が2未満に設定されているため、ズームが無効になっています。これにより、テキストサイズを大きくしたり、ページをズームインしたり、拡大鏡を使用したりしたい弱視ユーザーが制限されます。"
+#: includes/wcag.php:11
+msgid "Non-text Content"
+msgstr "非テキストコンテンツ"
+
+#: includes/wcag.php:12
+msgid "All non-text content must have a text alternative that serves the same purpose, unless it falls into specific exceptions like controls, media, tests, sensory content, CAPTCHA, or decorative elements. Each type must follow specific guidance to ensure accessibility without interfering with the user experience."
+msgstr "すべての非テキストコンテンツには、特定の例外（コントロール、メディア、テスト、感覚的コンテンツ、CAPTCHA、装飾的要素など）を除き、同じ目的を果たすテキストによる代替手段が必要です。各タイプは、ユーザー体験を妨げることなくアクセシビリティを確保するための特定のガイダンスに従う必要があります。"
+
+#: includes/wcag.php:15
+msgid "1.1 Text Alternatives"
+msgstr "1.1 テキストによる代替"
+
+#: includes/wcag.php:16
+#: includes/wcag.php:49
+#: includes/wcag.php:82
+#: includes/wcag.php:115
+#: includes/wcag.php:148
+#: includes/wcag.php:181
+#: includes/wcag.php:213
+#: includes/wcag.php:230
+#: includes/wcag.php:247
+#: includes/wcag.php:266
+#: includes/wcag.php:284
+#: includes/wcag.php:319
+#: includes/wcag.php:353
+#: includes/wcag.php:386
+#: includes/wcag.php:413
+#: includes/wcag.php:441
+#: includes/wcag.php:459
+#: includes/wcag.php:492
+#: includes/wcag.php:520
+#: includes/wcag.php:547
+#: includes/wcag.php:575
+#: includes/wcag.php:604
+#: includes/wcag.php:638
+#: includes/wcag.php:671
+#: includes/wcag.php:703
+#: includes/wcag.php:735
+#: includes/wcag.php:753
+#: includes/wcag.php:770
+#: includes/wcag.php:788
+msgid "Perceivable"
+msgstr "知覚可能"
+
+#: includes/wcag.php:18
+#: includes/wcag.php:288
+#: includes/wcag.php:1533
+#: includes/wcag.php:2200
+#: includes/wcag.php:2234
+msgid "People with dexterity impairments using voice control"
+msgstr "音声制御を使用する運動障害のある人々"
+
+#: includes/wcag.php:19
+#: includes/wcag.php:289
+#: includes/wcag.php:323
+#: includes/wcag.php:444
+#: includes/wcag.php:894
+#: includes/wcag.php:923
+#: includes/wcag.php:957
+#: includes/wcag.php:991
+#: includes/wcag.php:1011
+#: includes/wcag.php:1030
+#: includes/wcag.php:1049
+#: includes/wcag.php:1133
+#: includes/wcag.php:1167
+#: includes/wcag.php:1237
+#: includes/wcag.php:1304
+#: includes/wcag.php:1338
+#: includes/wcag.php:1372
+#: includes/wcag.php:1457
+#: includes/wcag.php:1476
+#: includes/wcag.php:1506
+#: includes/wcag.php:1662
+#: includes/wcag.php:1696
+#: includes/wcag.php:1806
+#: includes/wcag.php:1842
+#: includes/wcag.php:1877
+#: includes/wcag.php:1908
+#: includes/wcag.php:1940
+#: includes/wcag.php:1976
+#: includes/wcag.php:2010
+#: includes/wcag.php:2044
+#: includes/wcag.php:2078
+#: includes/wcag.php:2112
+#: includes/wcag.php:2131
+#: includes/wcag.php:2202
+#: includes/wcag.php:2236
+#: includes/wcag.php:2267
+msgid "Screen reader users (blind/low vision and neurodivergent people)"
+msgstr "スクリーンリーダーユーザー（視覚障害者および神経多様性のある人々）"
+
+#: includes/wcag.php:44
+msgid "Prerecorded Audio-only and Video-only"
+msgstr "収録済みの音声のみおよび映像のみのコンテンツ"
+
+#: includes/wcag.php:45
+msgid "For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text."
+msgstr "収録済みの音声のみおよび映像のみのコンテンツには、同等の情報を提示するテキストによる代替手段を提供する必要があります。これにより、メディアを聞いたり見たりできないユーザーでも、テキストを通じてそのコンテンツにアクセスできるようになります。"
+
+#: includes/wcag.php:48
+#: includes/wcag.php:81
+#: includes/wcag.php:114
+#: includes/wcag.php:147
+#: includes/wcag.php:180
+#: includes/wcag.php:212
+#: includes/wcag.php:229
+#: includes/wcag.php:246
+#: includes/wcag.php:265
+msgid "1.2 Time-based Media"
+msgstr "1.2 時間依存メディア"
+
+#: includes/wcag.php:51
+#: includes/wcag.php:84
+#: includes/wcag.php:117
+#: includes/wcag.php:150
+#: includes/wcag.php:215
+#: includes/wcag.php:249
+#: includes/wcag.php:268
+#: includes/wcag.php:356
+#: includes/wcag.php:607
+#: includes/wcag.php:755
+msgid "Deaf and hard of hearing people"
+msgstr "聴覚障害者および難聴者"
+
+#: includes/wcag.php:77
+msgid "Captions (Prerecorded)"
+msgstr "キャプション（収録済み）"
+
+#: includes/wcag.php:78
+msgid "Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds."
+msgstr "同期メディア（音声と映像が一緒に再生される動画など）のすべての収録済み音声コンテンツには、聴覚障害者や難聴者が話された情報や重要な音を理解できるように、キャプションを提供する必要があります。"
+
+#: includes/wcag.php:110
+msgid "Audio Description or Media Alternative (Prerecorded)"
+msgstr "音声解説またはメディア代替（収録済み）"
+
+#: includes/wcag.php:111
+msgid "For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn't spoken."
+msgstr "音声付きの収録済み動画コンテンツ（同期メディア）には、視覚障害者や弱視者が話されていない重要な視覚情報を理解できるように、音声解説または視覚的な詳細を含む書き起こしを提供する必要があります。"
+
+#: includes/wcag.php:143
+msgid "Captions (Live)"
+msgstr "キャプション（ライブ）"
+
+#: includes/wcag.php:144
+msgid "For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens."
+msgstr "音声を含むすべてのライブ動画コンテンツには、聴覚障害者や難聴者がリアルタイムで話された情報にアクセスできるように、リアルタイムでキャプションを提供する必要があります。"
+
+#: includes/wcag.php:176
+msgid "Audio Description (Prerecorded)"
+msgstr "音声解説（収録済み）"
+
+#: includes/wcag.php:177
+msgid "For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio."
+msgstr "収録済みの音声付き動画では、重要な視覚的内容の音声解説を提供する必要があります。これにより、視覚障害者や弱視の人々が、主音声で説明されていない視覚情報を理解できるようになります。"
+
+#: includes/wcag.php:183
+#: includes/wcag.php:232
+#: includes/wcag.php:355
+#: includes/wcag.php:461
+#: includes/wcag.php:577
+#: includes/wcag.php:606
+#: includes/wcag.php:705
+#: includes/wcag.php:790
+#: includes/wcag.php:807
+#: includes/wcag.php:841
+#: includes/wcag.php:875
+msgid "Blind and low vision people"
+msgstr "視覚障害者と弱視の人々"
+
+#: includes/wcag.php:208
+msgid "Sign Language (Prerecorded)"
+msgstr "手話（収録済み）"
+
+#: includes/wcag.php:209
+msgid "A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content."
+msgstr "同期メディアの全ての収録済み音声コンテンツに対して手話通訳を提供する必要があります。これにより、ろう者で手話を使用するユーザーが話された内容を完全に理解できるようになります。"
+
+#: includes/wcag.php:225
+msgid "Extended Audio Description (Prerecorded)"
+msgstr "拡張音声解説（収録済み）"
+
+#: includes/wcag.php:226
+msgid "For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can't be described during the natural pauses in the audio."
+msgstr "全ての収録済みマルチメディアコンテンツに対して、必要な場合は拡張音声解説を提供する必要があります。つまり、視覚障害者や弱視の人々が、音声の自然な間では説明できない重要な視覚的詳細を理解できるよう、動画を一時停止して追加の説明を挿入します。"
+
+#: includes/wcag.php:242
+msgid "Media Alternative (Prerecorded)"
+msgstr "メディア代替（収録済み）"
+
+#: includes/wcag.php:243
+msgid "For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it."
+msgstr "収録済みの同期メディアに対して、動画と音声トラックの両方の情報を含む完全なテキスト代替（トランスクリプトなど）を提供します。これにより、コンテンツを見たり聞いたりできないユーザーでもアクセスできるようになります。"
+
+#: includes/wcag.php:250
+msgid "Deaf-blind people"
+msgstr "盲ろう者"
+
+#: includes/wcag.php:261
+msgid "Audio-only (Live)"
+msgstr "音声のみ（ライブ）"
+
+#: includes/wcag.php:262
+msgid "For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information."
+msgstr "ライブの音声のみのコンテンツに対して、リアルタイムでテキスト代替を提供します。これにより、音声を聞くことができない人々も情報にアクセスできるようになります。"
+
+#: includes/wcag.php:279
+msgid "Info and Relationships"
+msgstr "情報と関係性"
+
+#: includes/wcag.php:280
+msgid "Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users."
+msgstr "コンテンツの情報、構造、関係性がプログラムで解釈可能か、テキストで利用可能であることで、支援技術がユーザーに提示できるようになります。"
+
+#: includes/wcag.php:283
+#: includes/wcag.php:318
+#: includes/wcag.php:352
+#: includes/wcag.php:385
+#: includes/wcag.php:412
+#: includes/wcag.php:440
+msgid "1.3 Adaptable"
+msgstr "1.3 適応可能"
+
+#: includes/wcag.php:286
+#: includes/wcag.php:321
+#: includes/wcag.php:808
+#: includes/wcag.php:842
+#: includes/wcag.php:876
+#: includes/wcag.php:1184
+#: includes/wcag.php:1201
+#: includes/wcag.php:1218
+#: includes/wcag.php:1269
+#: includes/wcag.php:1404
+#: includes/wcag.php:1474
+#: includes/wcag.php:1504
+#: includes/wcag.php:1624
+#: includes/wcag.php:1804
+#: includes/wcag.php:1839
+#: includes/wcag.php:1937
+msgid "People who rely on keyboard control"
+msgstr "キーボード操作に依存する人々"
+
+#: includes/wcag.php:287
+#: includes/wcag.php:322
+msgid "People with cognitive differences who view interfaces using an adapted layout"
+msgstr "適応されたレイアウトを使用してインターフェースを表示する認知の違いがある人々"
+
+#: includes/wcag.php:314
+msgid "Meaningful Sequence"
+msgstr "意味のある順序"
+
+#: includes/wcag.php:315
+msgid "Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology."
+msgstr "コンテンツは意味のある順序で提示され、支援技術を使用する際に読み取りや操作の順序が混乱しないようになっています。"
+
+#: includes/wcag.php:348
+msgid "Sensory Characteristics"
+msgstr "感覚的特徴"
+
+#: includes/wcag.php:349
+msgid "Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them."
+msgstr "指示は形、色、サイズ、音などの感覚的特徴のみに依存せず、誰もが理解できるようになっています。"
+
+#: includes/wcag.php:381
+msgid "Orientation"
+msgstr "向き"
+
+#: includes/wcag.php:382
+msgid "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential."
+msgstr "特定の向きが不可欠な場合を除き、コンテンツの表示と操作が縦向きや横向きなどの単一の表示向きに制限されていません。"
+
+#: includes/wcag.php:388
+#: includes/wcag.php:1165
+#: includes/wcag.php:1303
+#: includes/wcag.php:1336
+#: includes/wcag.php:1370
+#: includes/wcag.php:1438
+#: includes/wcag.php:1456
+#: includes/wcag.php:1503
+#: includes/wcag.php:1607
+#: includes/wcag.php:1727
+#: includes/wcag.php:1747
+#: includes/wcag.php:1766
+#: includes/wcag.php:1785
+#: includes/wcag.php:1875
+#: includes/wcag.php:1906
+#: includes/wcag.php:1957
+#: includes/wcag.php:1974
+#: includes/wcag.php:2008
+#: includes/wcag.php:2042
+#: includes/wcag.php:2076
+#: includes/wcag.php:2110
+#: includes/wcag.php:2129
+#: includes/wcag.php:2148
+msgid "All people including those who do not identify as disabled"
+msgstr "障害者と自認しない人々を含むすべての人々"
+
+#: includes/wcag.php:408
+msgid "Identify Input Purpose"
+msgstr "入力目的の特定"
+
+#: includes/wcag.php:409
+msgid "The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in."
+msgstr "ユーザーに関する情報を収集する入力フィールドの目的をプログラムで判断できるようにし、ブラウザや支援技術がユーザーの入力を支援できるようにします。"
+
+#: includes/wcag.php:415
+#: includes/wcag.php:443
+#: includes/wcag.php:1166
+#: includes/wcag.php:1235
+#: includes/wcag.php:1371
+#: includes/wcag.php:1439
+#: includes/wcag.php:2166
+#: includes/wcag.php:2183
+msgid "People with cognitive disabilities or limited short-term memory or reading disabilities"
+msgstr "認知障害や短期記憶の制限、読字障害のある人々"
+
+#: includes/wcag.php:416
+#: includes/wcag.php:809
+#: includes/wcag.php:843
+#: includes/wcag.php:877
+#: includes/wcag.php:922
+#: includes/wcag.php:990
+#: includes/wcag.php:1010
+#: includes/wcag.php:1029
+#: includes/wcag.php:1048
+#: includes/wcag.php:1132
+#: includes/wcag.php:1270
+#: includes/wcag.php:1405
+#: includes/wcag.php:1475
+#: includes/wcag.php:1505
+#: includes/wcag.php:1560
+#: includes/wcag.php:1805
+#: includes/wcag.php:1841
+#: includes/wcag.php:1939
+msgid "People with dexterity and mobility impairments"
+msgstr "器用さや運動機能に障害のある人々"
+
+#: includes/wcag.php:436
+msgid "Identify Purpose"
+msgstr "目的の特定"
+
+#: includes/wcag.php:437
+msgid "The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users."
+msgstr "ユーザーインターフェース要素、アイコン、領域の目的をプログラムで判断できるようにし、支援技術がユーザーの体験を適応させられるようにします。"
+
+#: includes/wcag.php:454
+msgid "Use of Color"
+msgstr "色の使用"
+
+#: includes/wcag.php:455
+msgid "Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element."
+msgstr "情報を伝える、行動を示す、反応を促す、または視覚要素を区別するために、色だけを使用しないようにします。"
+
+#: includes/wcag.php:458
+#: includes/wcag.php:491
+#: includes/wcag.php:519
+#: includes/wcag.php:546
+#: includes/wcag.php:574
+#: includes/wcag.php:603
+#: includes/wcag.php:637
+#: includes/wcag.php:670
+#: includes/wcag.php:702
+#: includes/wcag.php:734
+#: includes/wcag.php:752
+#: includes/wcag.php:769
+#: includes/wcag.php:787
+msgid "1.4 Distinguishable"
+msgstr "1.4 識別可能"
+
+#: includes/wcag.php:462
+msgid "Color blind people"
+msgstr "色覚異常の人々"
+
+#: includes/wcag.php:487
+msgid "Reflow"
+msgstr "リフロー"
+
+#: includes/wcag.php:488
+msgid "Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in."
+msgstr "コンテンツは一方向以上のスクロールなしで表示でき、小さな画面や拡大表示時でもユーザーが簡単に読んだり操作したりできるようになっています。"
+
+#: includes/wcag.php:494
+#: includes/wcag.php:1641
+msgid "People on mobile devices"
+msgstr "モバイルデバイスを使用する人々"
+
+#: includes/wcag.php:495
+#: includes/wcag.php:522
+#: includes/wcag.php:550
+#: includes/wcag.php:641
+#: includes/wcag.php:673
+#: includes/wcag.php:738
+#: includes/wcag.php:773
+#: includes/wcag.php:1271
+#: includes/wcag.php:1406
+#: includes/wcag.php:1589
+#: includes/wcag.php:1643
+msgid "People with low vision"
+msgstr "弱視の人々"
+
+#: includes/wcag.php:515
+msgid "Non-text Contrast"
+msgstr "非テキストのコントラスト"
+
+#: includes/wcag.php:516
+msgid "Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors."
+msgstr "ユーザーインターフェース要素やグラフィックオブジェクトを識別するために必要な視覚情報は、隣接する色に対して少なくとも3:1のコントラスト比を持っています。"
+
+#: includes/wcag.php:542
+msgid "Text Spacing"
+msgstr "テキストの間隔"
+
+#: includes/wcag.php:543
+msgid "Users can override text spacing to improve readability without losing content or functionality."
+msgstr "ユーザーはコンテンツや機能を失うことなく、読みやすさを向上させるためにテキストの間隔を上書きできます。"
+
+#: includes/wcag.php:549
+#: includes/wcag.php:772
+#: includes/wcag.php:1729
+#: includes/wcag.php:1749
+#: includes/wcag.php:1768
+#: includes/wcag.php:1787
+#: includes/wcag.php:1840
+#: includes/wcag.php:1876
+#: includes/wcag.php:1907
+#: includes/wcag.php:1938
+#: includes/wcag.php:1975
+#: includes/wcag.php:2009
+#: includes/wcag.php:2043
+#: includes/wcag.php:2077
+#: includes/wcag.php:2111
+#: includes/wcag.php:2130
+msgid "People with cognitive disabilities and reading disabilities"
+msgstr "認知障害や読字障害のある人々"
+
+#: includes/wcag.php:570
+msgid "Content on Hover or Focus"
+msgstr "ホバーやフォーカス時のコンテンツ"
+
+#: includes/wcag.php:571
+msgid "If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved."
+msgstr "ホバーやフォーカス時に追加のコンテンツが表示される場合、ユーザーはそれを閉じたり、その上にポインターを移動したりでき、閉じられるかフォーカスが移動するまで表示されたままになります。"
+
+#: includes/wcag.php:578
+#: includes/wcag.php:956
+#: includes/wcag.php:1337
+msgid "People with cognitive disabilities"
+msgstr "認知障害のある人々"
+
+#: includes/wcag.php:579
+#: includes/wcag.php:1642
+msgid "People with dexterity impairments"
+msgstr "器用さに障害のある人々"
+
+#: includes/wcag.php:599
+msgid "Audio Control"
+msgstr "音声の制御"
+
+#: includes/wcag.php:600
+msgid "If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume."
+msgstr "3秒以上自動的に音声が再生される場合、ユーザーはシステム音量とは独立して一時停止、停止、または音量を制御できる必要があります。"
+
+#: includes/wcag.php:608
+#: includes/wcag.php:955
+#: includes/wcag.php:1009
+msgid "People with ADD or difficulty focusing on content without distraction"
+msgstr "ADDや注意散漫なしにコンテンツに集中することが難しい人々"
+
+#: includes/wcag.php:633
+msgid "Contrast (Minimum)"
+msgstr "コントラスト（最小限）"
+
+#: includes/wcag.php:634
+msgid "Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes."
+msgstr "テキストや画像化されたテキストは、大きなテキスト、付随的なテキスト、ロゴタイプを除いて、少なくとも4.5:1のコントラスト比を持つ必要があります。"
+
+#: includes/wcag.php:640
+#: includes/wcag.php:737
+msgid "People on mobile devices in a sunny environment"
+msgstr "晴れた環境でモバイルデバイスを使用している人々"
+
+#: includes/wcag.php:666
+msgid "Resize text"
+msgstr "テキストのサイズ変更"
+
+#: includes/wcag.php:667
+msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
+msgstr "テキストは機能や内容を損なうことなく200%まで拡大できるので、弱視の人でも読みやすくなります。"
+
+#: includes/wcag.php:698
+msgid "Images of Text"
+msgstr "テキスト画像"
+
+#: includes/wcag.php:699
+msgid "If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes."
+msgstr "テキストだけで同じ視覚的な表現ができる場合、装飾や必要不可欠な目的以外では、テキストの画像を使用しないでください。"
+
+#: includes/wcag.php:730
+msgid "Contrast (Enhanced)"
+msgstr "コントラスト（強化）"
+
+#: includes/wcag.php:731
+msgid "Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes."
+msgstr "テキストとテキスト画像のコントラスト比は、大きなテキスト、付随的なテキスト、ロゴタイプを除いて、少なくとも7:1である必要があります。"
+
+#: includes/wcag.php:748
+msgid "Low or No Background Audio"
+msgstr "低音量または無音の背景"
+
+#: includes/wcag.php:749
+msgid "For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand."
+msgstr "録音済みの音声のみのコンテンツでは、背景音が低音量であるか、オフにできるか、または存在しないので、音声が理解しやすくなります。"
+
+#: includes/wcag.php:765
+msgid "Visual Presentation"
+msgstr "視覚的な表示"
+
+#: includes/wcag.php:766
+msgid "Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier."
+msgstr "ユーザーは、テキストブロックの表示方法（前景色と背景色、幅、行間など）を選択して、読みやすくすることができます。"
+
+#: includes/wcag.php:783
+msgid "Images of Text (No Exception)"
+msgstr "テキスト画像（例外なし）"
+
+#: includes/wcag.php:784
+msgid "Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions."
+msgstr "テキスト画像は、純粋な装飾目的か、特定のテキスト表示が不可欠な場合にのみ使用され、例外はありません。"
+
+#: includes/wcag.php:800
+msgid "Keyboard"
+msgstr "キーボード"
+
+#: includes/wcag.php:801
+msgid "All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content."
+msgstr "すべての機能はキーボードを使用して利用できるので、マウスを使用できないユーザーでもコンテンツを操作できます。"
+
+#: includes/wcag.php:804
+#: includes/wcag.php:838
+#: includes/wcag.php:872
+#: includes/wcag.php:891
+msgid "2.1 Keyboard Accessible"
+msgstr "2.1 キーボードでアクセス可能"
+
+#: includes/wcag.php:805
+#: includes/wcag.php:839
+#: includes/wcag.php:873
+#: includes/wcag.php:892
+#: includes/wcag.php:919
+#: includes/wcag.php:953
+#: includes/wcag.php:987
+#: includes/wcag.php:1006
+#: includes/wcag.php:1026
+#: includes/wcag.php:1045
+#: includes/wcag.php:1064
+#: includes/wcag.php:1096
+#: includes/wcag.php:1113
+#: includes/wcag.php:1130
+#: includes/wcag.php:1163
+#: includes/wcag.php:1182
+#: includes/wcag.php:1199
+#: includes/wcag.php:1216
+#: includes/wcag.php:1233
+#: includes/wcag.php:1267
+#: includes/wcag.php:1301
+#: includes/wcag.php:1334
+#: includes/wcag.php:1368
+#: includes/wcag.php:1402
+#: includes/wcag.php:1436
+#: includes/wcag.php:1454
+#: includes/wcag.php:1472
+#: includes/wcag.php:1501
+#: includes/wcag.php:1531
+#: includes/wcag.php:1558
+#: includes/wcag.php:1585
+#: includes/wcag.php:1605
+#: includes/wcag.php:1622
+#: includes/wcag.php:1639
+msgid "Operable"
+msgstr "操作可能"
+
+#: includes/wcag.php:834
+msgid "No Keyboard Trap"
+msgstr "キーボードトラップなし"
+
+#: includes/wcag.php:835
+msgid "Keyboard users can move to and away from all parts of the content without getting stuck."
+msgstr "キーボードユーザーは、コンテンツのすべての部分に移動したり、そこから離れたりする際に、行き詰まることなく操作できます。"
+
+#: includes/wcag.php:868
+msgid "Keyboard (No Exception)"
+msgstr "キーボード（例外なし）"
+
+#: includes/wcag.php:869
+msgid "All functionality is available from a keyboard interface, with no exceptions."
+msgstr "すべての機能は、例外なくキーボードインターフェースから利用可能です。"
+
+#: includes/wcag.php:887
+msgid "Character Key Shortcuts"
+msgstr "文字キーショートカット"
+
+#: includes/wcag.php:888
+msgid "If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus."
+msgstr "キーボードショートカットが文字、数字、または句読点のみを使用する場合、ユーザーはそれをオフにしたり、変更したりできます。または、要素にフォーカスがある場合にのみ機能します。"
+
+#: includes/wcag.php:914
+msgid "Timing Adjustable"
+msgstr "タイミングの調整"
+
+#: includes/wcag.php:915
+msgid "If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential."
+msgstr "時間制限が設定されている場合、時間制限が不可欠でない限り、ユーザーはそれをオフにしたり、調整したり、延長したりできます。"
+
+#: includes/wcag.php:918
+#: includes/wcag.php:952
+#: includes/wcag.php:986
+#: includes/wcag.php:1005
+#: includes/wcag.php:1025
+#: includes/wcag.php:1044
+msgid "2.2 Enough Time"
+msgstr "2.2 十分な時間"
+
+#: includes/wcag.php:921
+#: includes/wcag.php:989
+#: includes/wcag.php:1008
+#: includes/wcag.php:1028
+#: includes/wcag.php:1047
+msgid "People who need more time to react"
+msgstr "反応に時間がかかる人々"
+
+#: includes/wcag.php:948
+msgid "Pause, Stop, Hide"
+msgstr "一時停止、停止、非表示"
+
+#: includes/wcag.php:949
+msgid "Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds."
+msgstr "ユーザーは、自動的に開始され5秒以上続く動く、点滅する、スクロールする、または自動更新される情報を一時停止、停止、または非表示にできます。"
+
+#: includes/wcag.php:982
+msgid "No Timing"
+msgstr "タイミングなし"
+
+#: includes/wcag.php:983
+msgid "If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential."
+msgstr "要素が特定の時間内に応答を必要とする場合、ユーザーはタイマーをオフにしたり、時間制限を調整したりできます。または、タイミングが不可欠ではありません。"
+
+#: includes/wcag.php:1001
+msgid "Interruptions"
+msgstr "中断"
+
+#: includes/wcag.php:1002
+msgid "Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content."
+msgstr "ユーザーは、コンテンツの予期せぬ変更によって中断されることはなく、自動更新コンテンツなどの中断を制御できます。"
+
+#: includes/wcag.php:1021
+msgid "Re-authenticating"
+msgstr "再認証"
+
+#: includes/wcag.php:1022
+msgid "If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data."
+msgstr "非アクティブによってユーザーがログアウトされる場合、セッションの有効期限が切れる前に通知され、データを失うことなくセッションを継続できます。"
+
+#: includes/wcag.php:1040
+msgid "Timeouts"
+msgstr "タイムアウト"
+
+#: includes/wcag.php:1041
+msgid "Users are warned of impending timeouts and can request more time or save their work before timing out."
+msgstr "ユーザーは、差し迫ったタイムアウトについて警告され、タイムアウトする前に追加の時間を要求したり、作業を保存したりできます。"
+
+#: includes/wcag.php:1059
+msgid "Three Flashes or Below Threshold"
+msgstr "3回以下の点滅または閾値以下"
+
+#: includes/wcag.php:1060
+msgid "Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy."
+msgstr "コンテンツは1秒間に3回以上点滅しないので、光過敏性てんかんの人々の発作リスクを軽減します。"
+
+#: includes/wcag.php:1063
+#: includes/wcag.php:1095
+#: includes/wcag.php:1112
+msgid "2.3 Seizures and Physical Reactions"
+msgstr "2.3 発作と身体的反応"
+
+#: includes/wcag.php:1066
+#: includes/wcag.php:1098
+msgid "People with photosensitive epilepsy and other photosensitive seizure disorders"
+msgstr "光過敏性てんかんおよびその他の光過敏性発作障害のある人々"
+
+#: includes/wcag.php:1091
+msgid "Three Flashes"
+msgstr "3回の点滅"
+
+#: includes/wcag.php:1092
+msgid "No part of the content flashes more than three times per second, with no exceptions."
+msgstr "コンテンツのどの部分も、例外なく1秒間に3回以上点滅しません。"
+
+#: includes/wcag.php:1108
+msgid "Animation from Interactions"
+msgstr "インタラクションによるアニメーション"
+
+#: includes/wcag.php:1109
+msgid "Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion."
+msgstr "ユーザーは、インタラクションによってトリガーされる不要なアニメーションをオフにできます。これは、動きに敏感な人々に役立ちます。"
+
+#: includes/wcag.php:1115
+msgid "People with vestibular (inner ear) disorders where movement can cause dizziness/headaches and nausea"
+msgstr "動きが目まい/頭痛や吐き気を引き起こす可能性がある前庭（内耳）障害のある人々"
+
+#: includes/wcag.php:1125
+msgid "Bypass Blocks"
+msgstr "ブロックのスキップ"
+
+#: includes/wcag.php:1126
+msgid "A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content."
+msgstr "ナビゲーションメニューなどの繰り返しブロックをスキップする方法が利用可能で、ユーザーはメインコンテンツにすぐにアクセスできます。"
+
+#: includes/wcag.php:1129
+#: includes/wcag.php:1162
+#: includes/wcag.php:1181
+#: includes/wcag.php:1198
+#: includes/wcag.php:1215
+#: includes/wcag.php:1232
+#: includes/wcag.php:1266
+#: includes/wcag.php:1300
+#: includes/wcag.php:1333
+#: includes/wcag.php:1367
+#: includes/wcag.php:1401
+#: includes/wcag.php:1435
+#: includes/wcag.php:1453
+msgid "2.4 Navigable"
+msgstr "2.4 ナビゲート可能"
+
+#: includes/wcag.php:1158
+msgid "Section Headings"
+msgstr "セクション見出し"
+
+#: includes/wcag.php:1159
+msgid "Section headings are used to organize content, making it easier to understand and navigate."
+msgstr "セクション見出しを使用してコンテンツを整理し、理解とナビゲーションを容易にします。"
+
+#: includes/wcag.php:1177
+msgid "Focus Not Obscured (Minimum)"
+msgstr "フォーカスが隠れない（最小）"
+
+#: includes/wcag.php:1178
+msgid "When an element receives keyboard focus, it is at least partially visible and not hidden by other content."
+msgstr "要素がキーボードフォーカスを受け取ったとき、少なくとも部分的に表示され、他のコンテンツによって隠されません。"
+
+#: includes/wcag.php:1194
+msgid "Focus Not Obscured (Enhanced)"
+msgstr "フォーカスが隠れない（強化）"
+
+#: includes/wcag.php:1195
+msgid "When an element receives keyboard focus, it is fully visible and not hidden by other content."
+msgstr "要素がキーボードフォーカスを受け取ったとき、完全に表示され、他のコンテンツによって隠されません。"
+
+#: includes/wcag.php:1211
+msgid "Focus Appearance"
+msgstr "フォーカスの外観"
+
+#: includes/wcag.php:1212
+msgid "The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements."
+msgstr "インタラクティブ要素の可視フォーカスインジケーターは明確に見え、最小サイズとコントラストの要件を満たしています。"
+
+#: includes/wcag.php:1228
+msgid "Page Titled"
+msgstr "ページのタイトル"
+
+#: includes/wcag.php:1229
+msgid "Web pages have descriptive titles that help users understand the topic or purpose of the page."
+msgstr "ウェブページには、ユーザーがページのトピックや目的を理解するのに役立つ説明的なタイトルがあるよ。"
+
+#: includes/wcag.php:1236
+#: includes/wcag.php:2149
+msgid "People with severe mobility impairments relying on audio to navigate the web"
+msgstr "重度の運動障害があり、音声でウェブを操作する人たち"
+
+#: includes/wcag.php:1262
+msgid "Focus Order"
+msgstr "フォーカス順序"
+
+#: includes/wcag.php:1263
+msgid "When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability."
+msgstr "キーボードで操作する際、フォーカスは意味と操作性を保つ論理的な順序で移動するんだ。"
+
+#: includes/wcag.php:1296
+msgid "Link Purpose (In Context)"
+msgstr "リンクの目的（文脈内）"
+
+#: includes/wcag.php:1297
+msgid "The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them."
+msgstr "各リンクの目的は、リンクテキストとその表示される文脈から明確で、ユーザーはリンク先がわかるようになっているんだ。"
+
+#: includes/wcag.php:1329
+msgid "Multiple Ways"
+msgstr "複数の方法"
+
+#: includes/wcag.php:1330
+msgid "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query."
+msgstr "ウェブページが検索結果である場合を除き、一連のウェブページ内でウェブページを見つけるための方法が複数用意されているよ。"
+
+#: includes/wcag.php:1363
+msgid "Headings and Labels"
+msgstr "見出しとラベル"
+
+#: includes/wcag.php:1364
+msgid "Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading."
+msgstr "見出しとラベルはコンテンツのトピックや目的を説明していて、曖昧や誤解を招くものではないんだ。"
+
+#: includes/wcag.php:1397
+msgid "Focus Visible"
+msgstr "フォーカスの可視化"
+
+#: includes/wcag.php:1398
+msgid "It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active."
+msgstr "キーボードフォーカスがある要素は視覚的に分かるようになっていて、キーボードで操作するユーザーがどの要素がアクティブかを確認できるんだ。"
+
+#: includes/wcag.php:1431
+msgid "Location"
+msgstr "現在位置"
+
+#: includes/wcag.php:1432
+msgid "Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title."
+msgstr "パンくずナビゲーションや明確なページタイトルなどを通じて、ユーザーは一連のウェブページ内での現在位置を知ることができるよ。"
+
+#: includes/wcag.php:1449
+msgid "Link Purpose (Link Only)"
+msgstr "リンクの目的（リンクのみ）"
+
+#: includes/wcag.php:1450
+msgid "The purpose of each link can be determined by the link text alone, without needing additional context."
+msgstr "各リンクの目的は、追加の文脈なしでリンクテキストだけで判断できるんだ。"
+
+#: includes/wcag.php:1467
+msgid "Pointer Gestures"
+msgstr "ポインタージェスチャー"
+
+#: includes/wcag.php:1468
+msgid "For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command."
+msgstr "ポインタージェスチャーで操作できる機能については、次のうち少なくとも1つが当てはまるよ：ジェスチャーは単純なタップで実行できる、ジェスチャーは1本の指で実行できる、またはジェスチャーは音声コマンドで実行できる。"
+
+#: includes/wcag.php:1471
+#: includes/wcag.php:1500
+#: includes/wcag.php:1530
+#: includes/wcag.php:1557
+#: includes/wcag.php:1584
+#: includes/wcag.php:1604
+#: includes/wcag.php:1621
+#: includes/wcag.php:1638
+msgid "2.5 Input Modalities"
+msgstr "2.5 入力モダリティ"
+
+#: includes/wcag.php:1496
+msgid "Pointer Cancellation"
+msgstr "ポインターのキャンセル"
+
+#: includes/wcag.php:1497
+msgid "For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed."
+msgstr "ポインタージェスチャーを必要とするアクションの場合、ユーザーはアクションが完了する前にポインターを移動させてアクションをキャンセルできるんだ。"
+
+#: includes/wcag.php:1526
+msgid "Label in Name"
+msgstr "名前のラベル"
+
+#: includes/wcag.php:1527
+msgid "The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users."
+msgstr "ユーザーインターフェース要素の名前には、その目的を説明するテキストラベルが含まれていて、支援技術がこの情報をユーザーに伝えられるようになっているよ。"
+
+#: includes/wcag.php:1553
+msgid "Motion Actuation"
+msgstr "動作による起動"
+
+#: includes/wcag.php:1554
+msgid "Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality."
+msgstr "動作ジェスチャーで操作できる機能は、単純なタッチやクリックでも操作できるようになっていて、動作ジェスチャーを実行できないユーザーでもその機能を使用できるんだ。"
+
+#: includes/wcag.php:1580
+msgid "Target Size"
+msgstr "ターゲットサイズ"
+
+#: includes/wcag.php:1581
+msgid "The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity."
+msgstr "ポインタージェスチャーのターゲットサイズは、運動能力が限られたユーザーでも簡単に操作できるように十分大きくなっているよ。"
+
+#: includes/wcag.php:1587
+msgid "People using a mobile device in environments where they are exposed to shaking (such as public transportation)"
+msgstr "揺れのある環境（公共交通機関など）でモバイルデバイスを使用している人たち"
+
+#: includes/wcag.php:1588
+msgid "People with dexterity and mobility impairments including hand tremors"
+msgstr "手の震えを含む、器用さや運動能力に障害のある人たち"
+
+#: includes/wcag.php:1590
+#: includes/wcag.php:1644
+msgid "People with with large fingers or who are operating the device with only a part of their finger or knuckle"
+msgstr "指が大きい人や、指の一部や関節だけでデバイスを操作している人たち"
+
+#: includes/wcag.php:1600
+msgid "Concurrent Input Mechanisms"
+msgstr "同時入力メカニズム"
+
+#: includes/wcag.php:1601
+msgid "If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement."
+msgstr "入力メカニズムが特定の姿勢や動きを必要とする場合、同じ要件を持たない代替の入力メカニズムが利用可能だよ。"
+
+#: includes/wcag.php:1617
+msgid "Dragging Movements"
+msgstr "ドラッグ動作"
+
+#: includes/wcag.php:1618
+msgid "For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality."
+msgstr "ドラッグ動作を必要とする機能については、より単純なアクションでも完了できるようになっていて、運動能力が限られたユーザーでもその機能を使用できるんだ。"
+
+#: includes/wcag.php:1634
+msgid "Target Size (Minimum)"
+msgstr "ターゲットサイズ（最小）"
+
+#: includes/wcag.php:1635
+msgid "The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities."
+msgstr "インタラクティブな要素のターゲットサイズは少なくとも44x44ピクセルあり、様々な能力を持つユーザーが簡単に操作できるようになっているよ。"
+
+#: includes/wcag.php:1654
+msgid "Language of Page"
+msgstr "ページの言語"
+
+#: includes/wcag.php:1655
+msgid "The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings."
+msgstr "各ウェブページのデフォルト言語はプログラムで判断できるようになっていて、支援技術が正しい言語設定を使用できるんだ。"
+
+#: includes/wcag.php:1658
+#: includes/wcag.php:1692
+#: includes/wcag.php:1724
+#: includes/wcag.php:1744
+#: includes/wcag.php:1763
+#: includes/wcag.php:1782
+msgid "3.1 Readable"
+msgstr "3.1 読みやすさ"
+
+#: includes/wcag.php:1659
+#: includes/wcag.php:1693
+#: includes/wcag.php:1725
+#: includes/wcag.php:1745
+#: includes/wcag.php:1764
+#: includes/wcag.php:1783
+#: includes/wcag.php:1802
+#: includes/wcag.php:1837
+#: includes/wcag.php:1873
+#: includes/wcag.php:1904
+#: includes/wcag.php:1935
+#: includes/wcag.php:1955
+#: includes/wcag.php:1972
+#: includes/wcag.php:2006
+#: includes/wcag.php:2040
+#: includes/wcag.php:2074
+#: includes/wcag.php:2108
+#: includes/wcag.php:2127
+#: includes/wcag.php:2146
+#: includes/wcag.php:2164
+#: includes/wcag.php:2181
+msgid "Understandable"
+msgstr "理解しやすさ"
+
+#: includes/wcag.php:1688
+msgid "Language of Parts"
+msgstr "部分的な言語"
+
+#: includes/wcag.php:1689
+msgid "The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support."
+msgstr "コンテンツの各部分の言語はプログラムで判断できるようになっていて、支援技術が適切な言語サポートを提供できるんだ。"
+
+#: includes/wcag.php:1720
+msgid "Unusual Words"
+msgstr "珍しい言葉"
+
+#: includes/wcag.php:1721
+msgid "Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them."
+msgstr "珍しいまたは稀な言葉は定義または説明されていて、認知障害のあるユーザーや言語に馴染みのないユーザーが理解できるようになっているよ。"
+
+#: includes/wcag.php:1740
+msgid "Abbreviations"
+msgstr "略語"
+
+#: includes/wcag.php:1741
+msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
+msgstr "略語や頭字語は初めて使用される際に定義されていて、ユーザーがその意味を理解できるようになっているんだ。"
+
+#: includes/wcag.php:1759
+msgid "Reading Level"
+msgstr "読解レベル"
+
+#: includes/wcag.php:1760
+msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
+msgstr "コンテンツは明確で簡単な言葉で書かれていて、理解するのに専門知識を必要としないよ。"
+
+#: includes/wcag.php:1778
+msgid "Pronunciation"
+msgstr "発音"
+
+#: includes/wcag.php:1779
+msgid "A pronunciation guide is available for unusual or difficult words, so users can understand how to say them."
+msgstr "珍しいまたは難しい言葉には発音ガイドが用意されていて、ユーザーがその言葉の発音方法を理解できるんだ。"
+
+#: includes/wcag.php:1797
+msgid "On Focus"
+msgstr "フォーカス時"
+
+#: includes/wcag.php:1798
+msgid "When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element."
+msgstr "要素がフォーカスを受け取ったとき、ユーザーを混乱させる予期せぬ変更は起こらず、その要素との対話方法が明確になっているよ。"
+
+#: includes/wcag.php:1801
+#: includes/wcag.php:1836
+#: includes/wcag.php:1872
+#: includes/wcag.php:1903
+#: includes/wcag.php:1934
+#: includes/wcag.php:1954
+msgid "3.2 Predictable"
+msgstr "3.2 予測可能性"
+
+#: includes/wcag.php:1832
+msgid "On Input"
+msgstr "入力時"
+
+#: includes/wcag.php:1833
+msgid "When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used."
+msgstr "入力フィールドがデータを受け取ったとき、ユーザーを混乱させるような予期せぬ変更は起こらず、そのデータがどのように使用されるかが明確になっているよ。"
+
+#: includes/wcag.php:1868
+msgid "Consistent Navigation"
+msgstr "一貫したナビゲーション"
+
+#: includes/wcag.php:1869
+msgid "Navigation mechanisms are consistent across the website, so users can predictably move through the site."
+msgstr "ウェブサイト全体でナビゲーション機構が一貫しているので、ユーザーは予測可能にサイト内を移動できるよ。"
+
+#: includes/wcag.php:1899
+msgid "Consistent Identification"
+msgstr "一貫した識別"
+
+#: includes/wcag.php:1900
+msgid "Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily."
+msgstr "一連のウェブページ内で同じ機能を持つコンポーネントは一貫して識別されるので、ユーザーは簡単に認識できるよ。"
+
+#: includes/wcag.php:1930
+msgid "Change on Request"
+msgstr "要求に応じた変更"
+
+#: includes/wcag.php:1931
+msgid "Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes."
+msgstr "ユーザー入力の結果として起こるコンテンツや文脈の変更は、予期せず発生することはなく、変更があればユーザーに通知されるよ。"
+
+#: includes/wcag.php:1950
+msgid "Consistent Help"
+msgstr "一貫したヘルプ"
+
+#: includes/wcag.php:1951
+#: includes/wcag.php:2104
+msgid "Help and documentation are available and are easy to find, so users can get assistance when needed."
+msgstr "ヘルプやドキュメントが利用可能で見つけやすいので、ユーザーが必要なときに支援を得られるよ。"
+
+#: includes/wcag.php:1967
+msgid "Error Identification"
+msgstr "エラーの特定"
+
+#: includes/wcag.php:1968
+#: includes/wcag.php:2036
+msgid "If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user."
+msgstr "入力エラーが検出され、修正の提案が分かっている場合、その提案がユーザーに提供されるよ。"
+
+#: includes/wcag.php:1971
+#: includes/wcag.php:2005
+#: includes/wcag.php:2039
+#: includes/wcag.php:2073
+#: includes/wcag.php:2107
+#: includes/wcag.php:2126
+#: includes/wcag.php:2145
+#: includes/wcag.php:2163
+#: includes/wcag.php:2180
+msgid "3.3 Input Assistance"
+msgstr "3.3 入力支援"
+
+#: includes/wcag.php:2001
+msgid "Labels or Instructions"
+msgstr "ラベルまたは説明"
+
+#: includes/wcag.php:2002
+msgid "Labels or instructions are provided when an input field requires user input, so users know what information is needed."
+msgstr "入力フィールドにユーザー入力が必要な場合、ラベルまたは説明が提供されるので、ユーザーは必要な情報が何かを知ることができるよ。"
+
+#: includes/wcag.php:2035
+msgid "Error Suggestion"
+msgstr "エラーの提案"
+
+#: includes/wcag.php:2069
+msgid "Error Prevention (Legal, Financial, Data)"
+msgstr "エラー防止（法的、金融、データ）"
+
+#: includes/wcag.php:2070
+#: includes/wcag.php:2123
+msgid "For web pages that require user input, users are warned of errors and can correct them before finalizing the submission."
+msgstr "ユーザー入力を必要とするウェブページでは、ユーザーはエラーについて警告を受け、送信を確定する前に修正できるよ。"
+
+#: includes/wcag.php:2103
+msgid "Help"
+msgstr "ヘルプ"
+
+#: includes/wcag.php:2122
+msgid "Error Prevention (All)"
+msgstr "エラー防止（すべて）"
+
+#: includes/wcag.php:2141
+msgid "Redundant Entry"
+msgstr "重複入力"
+
+#: includes/wcag.php:2142
+msgid "Users are not required to enter the same information multiple times, reducing the risk of errors and saving time."
+msgstr "ユーザーは同じ情報を複数回入力する必要がないので、エラーのリスクが減り、時間も節約できるよ。"
+
+#: includes/wcag.php:2159
+msgid "Accessible Authentication (Minimum)"
+msgstr "アクセシブルな認証（最小限）"
+
+#: includes/wcag.php:2160
+msgid "Authentication processes do not rely on cognitive function tests like remembering a password or solving a puzzle, unless an alternative is provided."
+msgstr "認証プロセスは、代替手段が提供されない限り、パスワードを覚えたりパズルを解いたりするような認知機能テストに依存しないよ。"
+
+#: includes/wcag.php:2176
+msgid "Accessible Authentication (Enhanced)"
+msgstr "アクセシブルな認証（拡張）"
+
+#: includes/wcag.php:2177
+msgid "Enhanced authentication methods are provided that do not rely on cognitive function tests, such as remembering passwords, and do not require a test of cognitive function."
+msgstr "パスワードを覚えるなどの認知機能テストに依存せず、認知機能のテストを必要としない拡張認証方法が提供されるよ。"
+
+#: includes/wcag.php:2193
+msgid "Parsing"
+msgstr "解析"
+
+#: includes/wcag.php:2194
+msgid "Content is coded so that assistive technologies can accurately interpret and present it to users."
+msgstr "コンテンツは、支援技術が正確に解釈してユーザーに提示できるようにコード化されているよ。"
+
+#: includes/wcag.php:2197
+#: includes/wcag.php:2231
+#: includes/wcag.php:2264
+msgid "4.1 Compatible"
+msgstr "4.1 互換性"
+
+#: includes/wcag.php:2198
+#: includes/wcag.php:2232
+#: includes/wcag.php:2265
+msgid "Robust"
+msgstr "堅牢性"
+
+#: includes/wcag.php:2201
+#: includes/wcag.php:2235
+msgid "People with low vision using screen magnifiers"
+msgstr "スクリーンマグニファイアを使用する弱視の人々"
+
+#: includes/wcag.php:2227
+msgid "Name, Role, Value"
+msgstr "名前、役割、値"
+
+#: includes/wcag.php:2228
+msgid "User interface components have names, roles, and values that can be programmatically determined, so assistive technologies can communicate them to users."
+msgstr "ユーザーインターフェースコンポーネントには、プログラムで決定できる名前、役割、値があるので、支援技術がユーザーにそれらを伝えることができるよ。"
+
+#: includes/wcag.php:2260
+msgid "Status Messages"
+msgstr "ステータスメッセージ"
+
+#: includes/wcag.php:2261
+msgid "Status messages are programmatically determined so that assistive technologies can notify users of important changes, such as form errors or updates."
+msgstr "ステータスメッセージはプログラムで決定されるので、支援技術はフォームエラーや更新などの重要な変更をユーザーに通知できるよ。"
+
+#: includes/wcag.php:2286
+msgid "Best Practice"
+msgstr "ベストプラクティス"
+
+#: includes/wcag.php:2287
+msgid "A usability improvement or convention that enhances accessibility but is not required for WCAG compliance."
+msgstr "アクセシビリティを向上させるユーザビリティの改善や慣例だけど、WCAGに準拠するために必須ではないものだよ。"
+
+#: includes/wcag.php:2301
+msgid "Non-WCAG Accessibility Issue"
+msgstr "WCAG以外のアクセシビリティの問題"
+
+#: includes/wcag.php:2302
+msgid "A problem that affects users with disabilities but doesn't map directly to a current WCAG success criterion."
+msgstr "障害のあるユーザーに影響を与えるけど、現在のWCAG達成基準に直接マッピングされない問題だよ。"
+
+#: includes/wcag.php:2316
+msgid "Manual Testing Needed (Multiple Success Criteria)"
+msgstr "手動テストが必要（複数の達成基準）"
+
+#: includes/wcag.php:2317
+msgid "Used for documents, media, and other non-scannable content that require manual testing and are likely to fail multiple WCAG success criteria."
+msgstr "手動テストが必要で、複数のWCAG達成基準に失敗する可能性が高い文書、メディア、その他スキャンできないコンテンツに使用されるよ。"
 
 #: partials/admin-page/fixes-page.php:14
 msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
