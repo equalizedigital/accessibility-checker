@@ -43,7 +43,7 @@ class ImgAnimatedGifRule implements RuleInterface {
 				],
 			],
 			'wcag'                  => '2.2.2',
-			'severity'              => 1, // Medium.
+			'severity'              => 2, // High.
 			'affected_disabilities' => [
 				esc_html__( 'Seizure disorders', 'accessibility-checker' ),
 				esc_html__( 'Cognitive', 'accessibility-checker' ),
