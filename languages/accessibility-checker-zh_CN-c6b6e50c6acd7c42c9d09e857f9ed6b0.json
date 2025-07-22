@@ -1,1 +1,33 @@
-{"translation-revision-date":"YEAR-MO-DA HO:MI+ZONE","generator":"WP-CLI\/2.12.0","source":"build\/editorApp.bundle.js","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","lang":"en","plural-forms":"nplurals=2; plural=(n != 1);"},"Clear Issues":["\u6e05\u9664\u95ee\u9898"],"This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?":["\u8fd9\u5c06\u6e05\u9664\u6b64\u6587\u7ae0\u7684\u6240\u6709\u95ee\u9898\u3002\u9700\u8981\u4fdd\u5b58\u4ee5\u89e6\u53d1\u5bf9\u6587\u7ae0\u5185\u5bb9\u7684\u65b0\u626b\u63cf\u3002\u60a8\u8981\u7ee7\u7eed\u5417\uff1f"],"Clearing...":["\u6b63\u5728\u6e05\u9664..."],"Issues cleared successfully.":["\u95ee\u9898\u6e05\u9664\u6210\u529f\u3002"],"Failed to clear issues.":["\u6e05\u9664\u95ee\u9898\u5931\u8d25\u3002"],"An error occurred while clearing issues.":["\u6e05\u9664\u95ee\u9898\u65f6\u53d1\u751f\u9519\u8bef\u3002"]}}}
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/editorApp.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "en",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Clear Issues": [
+                "\u6e05\u9664\u95ee\u9898"
+            ],
+            "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?": [
+                "\u8fd9\u5c06\u6e05\u9664\u6b64\u6587\u7ae0\u7684\u6240\u6709\u95ee\u9898\u3002\u9700\u8981\u4fdd\u5b58\u4ee5\u89e6\u53d1\u5bf9\u6587\u7ae0\u5185\u5bb9\u7684\u65b0\u626b\u63cf\u3002\u60a8\u8981\u7ee7\u7eed\u5417\uff1f"
+            ],
+            "Clearing...": [
+                "\u6b63\u5728\u6e05\u9664..."
+            ],
+            "Issues cleared successfully.": [
+                "\u95ee\u9898\u6e05\u9664\u6210\u529f\u3002"
+            ],
+            "Failed to clear issues.": [
+                "\u6e05\u9664\u95ee\u9898\u5931\u8d25\u3002"
+            ],
+            "An error occurred while clearing issues.": [
+                "\u6e05\u9664\u95ee\u9898\u65f6\u53d1\u751f\u9519\u8bef\u3002"
+            ]
+        }
+    }
+}
