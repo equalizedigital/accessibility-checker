@@ -48,7 +48,7 @@ class EmptyButtonRule implements RuleInterface {
 			),
 			'references'            => [
 				[
-					'text' => __( 'MDN Wed Docs: <button>', 'accessibility-checker' ),
+					'text' => __( 'MDN Web Docs: <button>', 'accessibility-checker' ),
 					'url'  => 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button',
 				],
 				[
