@@ -29,6 +29,8 @@ jobs:
         php-version: '7.4'
         coverage: xdebug
         github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS }}
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest

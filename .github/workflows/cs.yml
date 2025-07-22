@@ -36,6 +36,8 @@ jobs:
           coverage: none
           tools: cs2pr
           github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS }}
 
       # Validate the composer.json file.
       # @link https://getcomposer.org/doc/03-cli.md#validate
