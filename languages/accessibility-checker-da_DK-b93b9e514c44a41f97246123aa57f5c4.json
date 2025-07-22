@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Gemmer..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Indstillinger gemt med succes. Du skal %sbes\u00f8ge redigeringsprogrammet%s og gemme indl\u00e6gget for at genskanne og fjerne rettede problemer fra Accessibility Checker-rapporter."
+                "Indstillinger gemt. Du skal %sbes\u00f8ge editoren%s og gemme indl\u00e6gget for at genscanne og fjerne l\u00f8ste problemer fra Accessibility Checker-rapporter."
             ],
             "Settings saved successfully.": [
                 "Indstillinger gemt med succes."
@@ -33,6 +33,9 @@
             ],
             "Disable Page Styles": [
                 "Deaktiver sidestilarter"
+            ],
+            "An error occurred when loading the issues.": [
+                "Der opstod en fejl under indl\u00e6sning af problemerne."
             ],
             "Show Code": [
                 "Vis kode"
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "registreret."
+            ],
+            "Scanner function not found.": [
+                "Scannerfunktion ikke fundet."
+            ],
+            "Scanning...": [
+                "Scanner..."
+            ],
+            "No violations found, skipping save.": [
+                "Ingen overtr\u00e6delser fundet, springer over gemning."
+            ],
+            "Missing postId or nonce.": [
+                "Manglende postId eller nonce."
+            ],
+            "Accessibility scan error.": [
+                "Fejl i tilg\u00e6ngelighedsscanning."
+            ],
+            "Error saving scan results.": [
+                "Fejl ved gemning af scanningsresultater."
             ]
         }
     }

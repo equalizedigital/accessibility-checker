@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/editorApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "\u05e0\u05d9\u05e7\u05d5\u05d9 \u05d4\u05d1\u05e2\u05d9\u05d5\u05ea \u05e0\u05db\u05e9\u05dc."
+            ],
+            "An error occurred while clearing issues.": [
+                "\u05d0\u05d9\u05e8\u05e2\u05d4 \u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05de\u05d4\u05dc\u05da \u05e0\u05d9\u05e7\u05d5\u05d9 \u05d4\u05d1\u05e2\u05d9\u05d5\u05ea."
             ]
         }
     }

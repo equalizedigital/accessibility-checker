@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Sparar..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Inst\u00e4llningar sparades framg\u00e5ngsrikt. Du m\u00e5ste %sbes\u00f6ka redigeraren%s och spara inl\u00e4gget f\u00f6r att skanna om och ta bort \u00e5tg\u00e4rdade problem fr\u00e5n Accessibility Checker-rapporter."
+                "Inst\u00e4llningarna har sparats. Du m\u00e5ste %sbes\u00f6ka redigeraren%s och spara inl\u00e4gget f\u00f6r att skanna om och ta bort \u00e5tg\u00e4rdade problem fr\u00e5n Accessibility Checker-rapporter."
             ],
             "Settings saved successfully.": [
                 "Inst\u00e4llningar sparades framg\u00e5ngsrikt."
@@ -33,6 +33,9 @@
             ],
             "Disable Page Styles": [
                 "Inaktivera sidans stilar"
+            ],
+            "An error occurred when loading the issues.": [
+                "Ett fel uppstod n\u00e4r problemen skulle laddas."
             ],
             "Show Code": [
                 "Visa kod"
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "uppt\u00e4ckta."
+            ],
+            "Scanner function not found.": [
+                "Skanningsfunktionen hittades inte."
+            ],
+            "Scanning...": [
+                "Skannar..."
+            ],
+            "No violations found, skipping save.": [
+                "Inga \u00f6vertr\u00e4delser hittades, hoppar \u00f6ver sparande."
+            ],
+            "Missing postId or nonce.": [
+                "Saknar postId eller nonce."
+            ],
+            "Accessibility scan error.": [
+                "Fel vid tillg\u00e4nglighetsskanning."
+            ],
+            "Error saving scan results.": [
+                "Fel vid sparande av skanningsresultat."
             ]
         }
     }

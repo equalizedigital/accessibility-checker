@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/admin.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "\uc800\uc7a5 \uc911..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "\uc124\uc815\uc774 \uc131\uacf5\uc801\uc73c\ub85c \uc800\uc7a5\ub418\uc5c8\uc2b5\ub2c8\ub2e4. Accessibility Checker \ubcf4\uace0\uc11c\uc5d0\uc11c \uc218\uc815\ub41c \uc774\uc288\ub97c \uc81c\uac70\ud558\ub824\uba74 %s\ud3b8\uc9d1\uae30\ub97c \ubc29\ubb38%s\ud558\uc5ec \uac8c\uc2dc\ubb3c\uc744 \uc800\uc7a5\ud574\uc57c \ud569\ub2c8\ub2e4."
+                "\uc124\uc815\uc774 \uc131\uacf5\uc801\uc73c\ub85c \uc800\uc7a5\ub418\uc5c8\uc2b5\ub2c8\ub2e4. %s\ud3b8\uc9d1\uae30\ub97c \ubc29\ubb38%s\ud558\uc5ec \uac8c\uc2dc\ubb3c\uc744 \uc800\uc7a5\ud574\uc57c Accessibility Checker \ubcf4\uace0\uc11c\uc5d0\uc11c \uc218\uc815\ub41c \ubb38\uc81c\ub97c \ub2e4\uc2dc \uac80\uc0ac\ud558\uace0 \uc81c\uac70\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4."
             ],
             "Settings saved successfully.": [
                 "\uc124\uc815\uc774 \uc131\uacf5\uc801\uc73c\ub85c \uc800\uc7a5\ub418\uc5c8\uc2b5\ub2c8\ub2e4."

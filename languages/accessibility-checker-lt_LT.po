@@ -9,15 +9,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-24T21:54:49+00:00\n"
+"POT-Creation-Date: 2025-07-08T20:56:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
-#: includes/classes/class-accessibility-statement.php:50
+#: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:43
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
@@ -46,6 +47,7 @@ msgstr "https://equalizedigital.com"
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:90
+#: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr "Taisymai"
 
@@ -65,16 +67,18 @@ msgstr "Gaukite Pro versiją, kad atrakintumėte šią funkciją, atsidaro nauja
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
+#: admin/class-plugin-action-links.php:55
 msgid "Get Pro"
 msgstr "Gauti Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:338
+#: admin/class-ajax.php:354
 msgid "Opens in a new window."
 msgstr "Atsidaro naujame lange."
 
 #. translators: %s: the label of the fix
 #: admin/AdminPage/FixesSettingType/Text.php:54
+#, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Skaityti dokumentaciją apie %s. Atsidaro naujame lange."
 
@@ -94,52 +98,75 @@ msgstr "Nuolatinės pastangos užtikrinti prieinamumą"
 msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
 msgstr "Mes vadovaujamės <a href=\"https://www.w3.org/TR/WCAG21/\">Interneto turinio prieinamumo gairėmis (WCAG) 2.1 versija</a> kaip pagrindiniu principu nustatant prieinamumą. Tai tarptautiniu mastu sutartos normos, apimančios platų rekomendacijų ir geriausios praktikos spektrą, kad turinys būtų naudojamas. Pridėdami naujus puslapius ir funkcionalumą į mūsų svetainę, visi dizaino, kodo ir turinio įvedimo metodai yra tikrinami pagal šiuos standartus."
 
-#: admin/class-accessibility-statement.php:56
-msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
-msgstr "Svetainės prieinamumas yra nuolatinis procesas. Mes nuolat testuojame turinį ir funkcijas, kad užtikrintume WCAG 2.1 AA lygio atitiktį, ir šaliname bet kokius trūkumus, siekdami atitikti arba viršyti standartus. Mūsų svetainės testavimą atlieka mūsų komandos nariai, naudodami pramonės standartus atitinkančius įrankius, tokius kaip <a href=\"https://a11ychecker.com/\">Accessibility Checker WordPress įskiepis</a>, spalvų kontrasto analizatoriai, naršymo tik klaviatūra metodai ir Flesch-Kincaid teksto suprantamumo testai."
+#. translators: 1 - A link opening tag, 2 - link closing tag
+#: admin/class-accessibility-statement.php:58
+#, php-format
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the %1$sAccessibility Checker WordPress Plugin%2$s, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "Svetainių prieinamumas yra nuolatinis procesas. Nuolat tikriname turinio ir funkcijų atitiktį WCAG 2.1 AA lygiui ir šaliname bet kokias problemas, kad užtikrintume standartų laikymąsi arba viršijimą. Mūsų svetainės testavimą atlieka mūsų komandos nariai, naudodamiesi standartinėmis priemonėmis, tokiomis kaip %1$sPrieinamumo patikros \"WordPress\" įskiepis %2$s, spalvų kontrasto analizatoriai, navigacijos tik klaviatūra metodai ir Flesch-Kincaido skaitomumo testai."
 
-#: admin/class-accessibility-statement.php:57
+#: admin/class-accessibility-statement.php:62
 msgid "Accessibility Features On Our Website"
 msgstr "Prieinamumo funkcijos mūsų svetainėje"
 
-#: admin/class-accessibility-statement.php:58
+#: admin/class-accessibility-statement.php:63
 msgid "The following is a list of items we have included in our website to improve its accessibility:"
 msgstr "Štai sąrašas elementų, kuriuos įtraukėme į mūsų svetainę, kad pagerintume jos prieinamumą:"
 
-#: admin/class-accessibility-statement.php:59
+#: admin/class-accessibility-statement.php:64
 msgid "[LIST ACCESSIBILITY FEATURES HERE]"
 msgstr "[IŠVARDINKITE PRIEINAMUMO FUNKCIJAS ČIA]"
 
-#: admin/class-accessibility-statement.php:60
+#: admin/class-accessibility-statement.php:65
 msgid "Where We're Improving"
 msgstr "Kur mes tobulinamės"
 
-#: admin/class-accessibility-statement.php:61
+#: admin/class-accessibility-statement.php:66
 msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
 msgstr "Siekdami patobulinti mūsų svetainę iki standarto, mes orientuojamės į šias sritis:"
 
-#: admin/class-accessibility-statement.php:62
+#: admin/class-accessibility-statement.php:67
 msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
 msgstr "[IŠVARDINKITE ELEMENTUS, KURIUOS RUOŠIATĖS TAISYTI ČIA]"
 
-#: admin/class-accessibility-statement.php:63
+#: admin/class-accessibility-statement.php:68
 msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
 msgstr "[GALI BŪTI NAUDINGA PERŽIŪRĖTI ATVIRŲ PROBLEMŲ SKIRTUKĄ, KAD PAMATYTUMĖTE DAŽNIAUSIAS PROBLEMAS]"
 
-#: admin/class-accessibility-statement.php:64
+#: admin/class-accessibility-statement.php:69
 msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
 msgstr "Tai yra dalis mūsų platesnių pastangų padaryti kiekvieno patirtį [COMPANY NAME] svetinga ir malonią. Atkreipkite dėmesį, kad nors mes dedame visas pastangas, kad informacija būtų prieinama visiems naudotojams, negalime garantuoti trečiųjų šalių svetainių, į kurias galime nukreipti, prieinamumo."
 
-#: admin/class-accessibility-statement.php:65
+#: admin/class-accessibility-statement.php:70
 msgid "Accessibility Support Contact"
 msgstr "Prieinamumo pagalbos kontaktas"
 
-#: admin/class-accessibility-statement.php:66
+#: admin/class-accessibility-statement.php:71
 msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
 msgstr "Mes laukiame komentarų, klausimų ir atsiliepimų apie mūsų svetainę. Jei naudojatės pagalbinėmis technologijomis ir susiduriate su sunkumais naudodamiesi mūsų svetaine, prašome rašyti el. Paštu [JŪSŲ PRIEINAMUMO EL. PAŠTO ADRESAS] arba paskambinti mums telefonu [JŪSŲ TELEFONO NUMERIS]. Mes stengsimės jums padėti ir išspręsti problemas."
 
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:46
+#, php-format
+msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
+msgstr "Ar patinka Accessibility Checker? %1$sPrašome palikti mums ★★★★★ įvertinimą.%2$s Labai vertiname jūsų palaikymą!"
+
+#: admin/class-admin-footer-text.php:47
+msgid "Please leave us a five star rating (opens in new window)"
+msgstr "Prašome palikti mums penkių žvaigždučių įvertinimą (atsidaro naujame lange)"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:55
+#, php-format
+msgid "Want to do more with Accessibility Checker? %1$sUnlock Pro Features%2$s"
+msgstr "Norite daugiau galimybių su Accessibility Checker? %1$sAtrakinkite Pro funkcijas%2$s"
+
+#: admin/class-admin-footer-text.php:56
+msgid "Unlock Pro Features (opens in new window)"
+msgstr "Atrakinkite Pro funkcijas (atsidaro naujame lange)"
+
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
 #: admin/class-admin-notices.php:94
+#, php-format
 msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
 msgstr "Mes patobulinome statistikos skaičiavimus 1.21.0 versijoje. Dėl to kai kurie skaičiai žemiau pateiktuose duomenyse galėjo pasikeisti. Skaitykite daugiau mūsų %1$sversijos pristatymo įraše%2$s."
 
@@ -147,12 +174,12 @@ msgstr "Mes patobulinome statistikos skaičiavimus 1.21.0 versijoje. Dėl to kai
 #: admin/class-admin-notices.php:225
 #: admin/class-admin-notices.php:312
 #: admin/class-admin-notices.php:401
-#: admin/class-admin-notices.php:483
+#: admin/class-admin-notices.php:489
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:196
-#: admin/class-ajax.php:561
-#: admin/class-ajax.php:700
-#: admin/class-ajax.php:780
+#: admin/class-ajax.php:212
+#: admin/class-ajax.php:606
+#: admin/class-ajax.php:744
+#: admin/class-ajax.php:824
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr "Prieiga uždrausta"
@@ -161,7 +188,7 @@ msgstr "Prieiga uždrausta"
 #: admin/class-admin-notices.php:234
 #: admin/class-admin-notices.php:324
 #: admin/class-admin-notices.php:421
-#: admin/class-admin-notices.php:492
+#: admin/class-admin-notices.php:498
 msgid "Update option wasn't successful"
 msgstr "Atnaujinimo parinktis nebuvo sėkminga"
 
@@ -213,6 +240,7 @@ msgstr "Apžvalgos veiksmo reikšmė nebuvo nustatyta"
 
 #. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
 #: admin/class-admin-notices.php:446
+#, php-format
 msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
 msgstr "Oi! Atrodo, kad jūsų svetainė šiuo metu yra apsaugota slaptažodžiu. Nemokama Accessibility Checker versija gali skenuoti tik viešai prieinamas svetaines. Norėdami skenuoti šią svetainę dėl prieinamumo problemų, pašalinkite slaptažodžio apsaugą arba %s. Skenavimo rezultatai gali būti išsaugoti iš ankstesnio skenavimo."
 
@@ -221,14 +249,14 @@ msgid "Upgrade to accessibility checker pro. Opens in a new window."
 msgstr "Atnaujinkite programą \"accessibility checker pro\". Atsidaro naujame lange."
 
 #: admin/class-admin-notices.php:450
-#: includes/options-page.php:448
+#: includes/options-page.php:464
 msgid "upgrade to pro"
 msgstr "atnaujinti į \"pro"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:203
-#: admin/class-ajax.php:568
-#: admin/class-ajax.php:787
+#: admin/class-ajax.php:219
+#: admin/class-ajax.php:613
+#: admin/class-ajax.php:831
 msgid "The post ID was not set"
 msgstr "Įrašo ID nebuvo nustatytas"
 
@@ -250,6 +278,7 @@ msgstr "Šiam turiniui buvo įtraukta supaprastinta santrauka."
 
 #. translators: %s: Number of errors
 #: admin/class-ajax.php:133
+#, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s Klaida"
@@ -257,6 +286,7 @@ msgstr[1] "%s Klaidų"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:139
+#, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Kontrasto klaida"
@@ -264,6 +294,7 @@ msgstr[1] "%s Kontrasto klaidų"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:145
+#, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s Įspėjimas"
@@ -271,71 +302,79 @@ msgstr[1] "%s Įspėjimų"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:151
+#, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s Ignoruojamas elementas"
 msgstr[1] "%s Ignoruojamų elementų"
 
-#: admin/class-ajax.php:173
+#: admin/class-ajax.php:189
 msgid "No summary to return"
 msgstr "Nėra santraukos grąžinimui"
 
-#: admin/class-ajax.php:217
+#: admin/class-ajax.php:233
 msgid "Invalid table name"
 msgstr "Neteisingas lentelės pavadinimas"
 
-#: admin/class-ajax.php:363
+#: admin/class-ajax.php:379
 msgid "These settings enable global fixes across your entire site."
 msgstr "Šie nustatymai įgalina globalius pataisymus visoje jūsų svetainėje."
 
-#: admin/class-ajax.php:364
+#: admin/class-ajax.php:380
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Kad pataisymai atsispindėtų ataskaitose, gali reikėti iš naujo išsaugoti puslapius arba atlikti pilną svetainės skenavimą."
 
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:408
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "Išsaugoti"
 
-#: admin/class-ajax.php:412
+#: admin/class-ajax.php:430
 msgid "Affected Code"
 msgstr "Paveiktas kodas"
 
+#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+#: admin/class-ajax.php:500
+#, php-format
+msgid "View %s landmark on website, opens a new window"
+msgstr "Peržiūrėti %s orientyrą svetainėje, atsidaro naujame lange"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:522
+#, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Peržiūrėti problemą ID %d svetainėje, atsidarys naujas langas"
 
-#: admin/class-ajax.php:478
+#: admin/class-ajax.php:523
 msgid "View on page"
 msgstr "Peržiūrėti puslapyje"
 
-#: admin/class-ajax.php:497
+#: admin/class-ajax.php:542
 msgid "Fix: "
 msgstr "Pataisymas: "
 
-#: admin/class-ajax.php:498
+#: admin/class-ajax.php:543
 msgid "Fix"
 msgstr "Pataisyti"
 
-#: admin/class-ajax.php:521
+#: admin/class-ajax.php:566
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Jūsų naudotojo paskyra neturi leidimo ignoruoti šią problemą."
 
-#: admin/class-ajax.php:539
+#: admin/class-ajax.php:584
 msgid "No details to return"
 msgstr "Nėra detalių grąžinimui"
 
-#: admin/class-ajax.php:679
+#: admin/class-ajax.php:723
 msgid "No readability data to return"
 msgstr "Nėra skaitomumo duomenų grąžinimui"
 
-#: admin/class-ajax.php:736
-#: admin/class-ajax.php:759
+#: admin/class-ajax.php:780
+#: admin/class-ajax.php:803
 msgid "No ignore data to return"
 msgstr "Nėra ignoravimo duomenų grąžinimui"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:838
 msgid "The summary was not set"
 msgstr "Santrauka nebuvo nustatyta"
 
@@ -350,6 +389,53 @@ msgstr "Problemos užklausa negrąžino rezultatų"
 #: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "Objekto užklausa negrąžino rezultatų"
+
+#: admin/class-plugin-action-links.php:48
+#: includes/classes/class-admin-toolbar.php:94
+#: includes/options-page.php:66
+msgid "Settings"
+msgstr "Nustatymai"
+
+#: admin/class-plugin-action-links.php:60
+msgid "Get Accessibility Checker Pro, opens in new window"
+msgstr "Gaukite Accessibility Checker Pro, atsidaro naujame lange"
+
+#: admin/class-plugin-row-meta.php:53
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "Peržiūrėti Accessibility Checker dokumentaciją (atsidaro naujame lange)"
+
+#: admin/class-plugin-row-meta.php:54
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "Dokumentacija"
+
+#: admin/class-plugin-row-meta.php:59
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "Gauti pagalbą dėl Accessibility Checker (atsidaro naujame lange)"
+
+#: admin/class-plugin-row-meta.php:60
+msgid "Support"
+msgstr "Pagalba"
+
+#: admin/class-plugin-row-meta.php:65
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "Įvertinti Accessibility Checker įskiepį (atsidaro naujame lange)"
+
+#: admin/class-plugin-row-meta.php:66
+msgid "Rate plugin"
+msgstr "Įvertinti įskiepį"
+
+#: admin/class-upgrade-promotion.php:57
+msgid "Upgrade to Pro"
+msgstr "Atnaujinti į \"pro"
+
+#: admin/class-upgrade-promotion.php:59
+msgid "Upgrade Sale Now"
+msgstr "Atnaujinimo išpardavimas vyksta dabar"
+
+#: admin/class-upgrade-promotion.php:93
+msgid "Unable to redirect to upgrade page."
+msgstr "Nepavyko nukreipti į atnaujinimo puslapį."
 
 #: admin/class-welcome-page.php:38
 msgid "Most Recent Test Summary"
@@ -372,7 +458,7 @@ msgid "See History"
 msgstr "Žiūrėti istoriją"
 
 #: admin/class-welcome-page.php:70
-#: admin/class-widgets.php:92
+#: admin/class-widgets.php:98
 msgid "Passed Tests"
 msgstr "Išlaikyti testai"
 
@@ -409,12 +495,12 @@ msgid "Average Issue Density"
 msgstr "Vidutinis problemų tankis"
 
 #: admin/class-welcome-page.php:204
-#: admin/class-widgets.php:99
+#: admin/class-widgets.php:105
 msgid "Report Last Updated:"
 msgstr "Ataskaita paskutinį kartą atnaujinta:"
 
 #: admin/class-welcome-page.php:214
-#: includes/options-page.php:392
+#: includes/options-page.php:408
 msgid "Never"
 msgstr "Niekada"
 
@@ -424,6 +510,7 @@ msgstr "Nuskenuoti URL adresai"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
 #: admin/class-welcome-page.php:239
+#, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s iš %2$s"
 
@@ -456,107 +543,103 @@ msgid "Unlock Detailed Accessibility Reports"
 msgstr "Atrakinti išsamias prieinamumo ataskaitas"
 
 #: admin/class-welcome-page.php:302
-#: admin/class-widgets.php:65
+#: admin/class-widgets.php:71
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Pradėkite skenuoti visą savo svetainę ieškodami prieinamumo problemų, gaukite visos svetainės ataskaitas ir greičiau atitikite prieinamumo gaires."
 
 #: admin/class-welcome-page.php:306
-#: admin/class-widgets.php:67
+#: admin/class-widgets.php:73
 msgid "Upgrade Accessibility Checker"
 msgstr "Atnaujinti Accessibility Checker"
 
-#: admin/class-widgets.php:63
+#: admin/class-widgets.php:69
 msgid "close ad"
 msgstr "uždaryti reklamą"
 
-#: admin/class-widgets.php:64
+#: admin/class-widgets.php:70
 msgid "Get Detailed Accessibility Reports"
 msgstr "Gauti išsamias prieinamumo ataskaitas"
 
-#: admin/class-widgets.php:82
+#: admin/class-widgets.php:88
 msgid "Full Site Accessibility Status"
 msgstr "Visos svetainės prieinamumo būsena"
 
-#: admin/class-widgets.php:107
+#: admin/class-widgets.php:113
 msgid "URLs Scanned:"
 msgstr "Nuskenuoti URL adresai:"
 
-#: admin/class-widgets.php:115
+#: admin/class-widgets.php:121
 msgid "Errors:"
 msgstr "Klaidos:"
 
-#: admin/class-widgets.php:119
+#: admin/class-widgets.php:125
 msgid "Color Contrast Errors:"
 msgstr "Spalvų kontrasto klaidos:"
 
-#: admin/class-widgets.php:123
+#: admin/class-widgets.php:129
 msgid "Warnings:"
 msgstr "Įspėjimai:"
 
-#: admin/class-widgets.php:132
+#: admin/class-widgets.php:144
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
 msgstr "Jūsų svetainėje yra prieinamumo problemų, kurias reikėtų kuo greičiau išspręsti, kad būtų užtikrintas atitikimas prieinamumo gairėms."
 
-#: admin/class-widgets.php:135
+#: admin/class-widgets.php:147
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
 msgstr "Puiku! Accessibility Checker nerado jokių prieinamumo problemų testuotame turinyje. Kai kurių problemų automatiniai įrankiai negali aptikti, todėl nepamirškite"
 
-#: admin/class-widgets.php:135
+#: admin/class-widgets.php:147
 msgid "manually test your site"
 msgstr "rankiniu būdu patikrinti savo svetainę"
 
-#: admin/class-widgets.php:150
+#: admin/class-widgets.php:162
 msgid "Issues By Post Type"
 msgstr "Problemos pagal įrašo tipą"
 
-#: admin/class-widgets.php:157
+#: admin/class-widgets.php:169
 msgid "Post Type"
 msgstr "Įrašo tipas"
 
-#: admin/class-widgets.php:160
+#: admin/class-widgets.php:172
 msgid "Errors"
 msgstr "Klaidos"
 
-#: admin/class-widgets.php:163
+#: admin/class-widgets.php:175
 msgid "Contrast"
 msgstr "Kontrastas"
 
-#: admin/class-widgets.php:166
+#: admin/class-widgets.php:178
 msgid "Warnings"
 msgstr "Įspėjimai"
 
-#: admin/class-widgets.php:225
+#: admin/class-widgets.php:247
 msgid "Upgrade to Scan"
 msgstr "Atnaujinkite, kad galėtumėte skenuoti"
 
-#: admin/class-widgets.php:254
+#: admin/class-widgets.php:276
 msgid "See More Reports"
 msgstr "Žiūrėti daugiau ataskaitų"
 
-#: admin/class-widgets.php:264
-#: partials/welcome-page.php:232
+#: admin/class-widgets.php:286
+#: partials/welcome-page.php:235
 msgid "Learn Accessibility"
 msgstr "Mokytis apie prieinamumą"
 
-#: admin/class-widgets.php:273
+#: admin/class-widgets.php:307
 msgid "Additional Resources"
 msgstr "Papildomi ištekliai"
 
-#: admin/class-widgets.php:274
+#: admin/class-widgets.php:308
 msgid "Blog (opens in a new window)"
 msgstr "Tinklaraštis (atsidaro naujame lange)"
 
-#: admin/class-widgets.php:274
+#: admin/class-widgets.php:308
 msgid "Blog"
 msgstr "Tinklaraštis"
 
-#: admin/class-widgets.php:275
+#: admin/class-widgets.php:309
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentacija (atsidaro naujame lange)"
-
-#: admin/class-widgets.php:275
-msgid "Documentation"
-msgstr "Dokumentacija"
 
 #: admin/opt-in/class-email-opt-in.php:115
 msgid "Accessibility Events &amp; News in Your Inbox"
@@ -712,21 +795,33 @@ msgstr "Ignoruojamų DB lentelių skaičius"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:45
+#, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "Svetainės prieinamumui stebėti %1$s naudoja %2$s."
 
-#: includes/classes/class-accessibility-statement.php:49
+#: includes/classes/class-accessibility-statement.php:50
 msgid "Accessibility Checker (opens in a new window)"
 msgstr "Accessibility Checker (atsidaro naujame lange)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
-#: includes/classes/class-accessibility-statement.php:58
+#: includes/classes/class-accessibility-statement.php:59
+#, php-format
 msgid "Read our %s"
 msgstr "Skaitykite mūsų %s"
 
-#: includes/classes/class-accessibility-statement.php:59
+#: includes/classes/class-accessibility-statement.php:60
 msgid "Accessibility Policy"
 msgstr "Prieinamumo politika"
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "Gauti Accessibility Checker Pro"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "Gauti Accessibility Checker Pro (atsidaro naujame lange)"
 
 #: includes/classes/class-simplified-summary.php:73
 msgid "Simplified Summary"
@@ -764,6 +859,7 @@ msgstr "Pridėti etiketes prie nepažymėtų formos laukų, jei galima nustatyti
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Bandyti pridėti etiketes prie formos laukų, kuriems jų trūksta. Pastaba: Jums gali reikėti pridėti pasirinktinių stilių, nukreiptų į %1$s klasę, jei etikečių pridėjimas paveikia jūsų formų išdėstymą."
 
@@ -781,6 +877,7 @@ msgstr "Pridėti trūkstamą puslapio pavadinimą"
 
 #. translators: %1$s: a code tag with a title tag.
 #: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Pridėti %1$s žymą puslapiui, jei jos trūksta arba ji tuščia."
 
@@ -794,6 +891,7 @@ msgstr "Pridėti etiketę prie nuorodų, kurios atsidaro naujame skirtuke/lange"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Pridėti etiketę ir piktogramą prie nuorodų su %1$s, informuojančių vartotojus, kad jos atsidarys naujame skirtuke/lange. %2$sPastaba: Šis nustatymas neturės jokio poveikio, jei įjungtas „Blokuoti nuorodas, atidarančias naujus langus“ taisymas.%3$s"
 
@@ -804,6 +902,7 @@ msgstr "Blokuoti PDF įkėlimus"
 
 #. translators: %1$s: a code tag with the capability name.
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Apriboti PDF failų įkėlimą vartotojams be %1$s teisių (pagal numatytąją nuostatą leidžiama administratoriams)."
 
@@ -906,6 +1005,7 @@ msgstr "Pridėti „lang“ ir „dir“ atributus"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
 #: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Pridėti svetainės kalbos (%1$s) ir teksto krypties (%2$s) atributus prie %3$s elemento."
 
@@ -955,6 +1055,7 @@ msgstr "Blokuoti nuorodų atidarymą naujuose languose"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
 #: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Neleisti nuorodoms atsidaryti naujame lange ar skirtuke pašalinant %1$s."
 
@@ -1008,6 +1109,7 @@ msgstr "Pašalinti title atributus"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Pašalinti %1$s atributus iš elementų, kurie jau turi pageidaujamą prieinamą pavadinimą."
 
@@ -1045,6 +1147,7 @@ msgstr "Nustatykite navigacijos elemento ID atributą. Tai naudinga, jei jūsų 
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 #: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Jei jūsų tema dar neprideda praleidimo nuorodos, leidžiančios klaviatūros naudotojams apeiti navigaciją ir greitai pereiti prie pagrindinio turinio, įjunkite praleidimo nuorodas čia. %1$sSužinokite daugiau apie praleidimo nuorodas.%2$s"
 
@@ -1066,6 +1169,7 @@ msgstr "Pašalinti tab index"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
 #: includes/classes/Fixes/Fix/TabindexFix.php:70
+#, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Pašalinti %1$s atributą iš fokusuojamų elementų."
 
@@ -1079,6 +1183,7 @@ msgstr "Pataisymas nerastas"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
 #: includes/classes/WPCLI/BootstrapCLI.php:99
+#, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Nepavyko užregistruoti komandos %1$s, nes %2$s"
 
@@ -1092,11 +1197,13 @@ msgstr "Nepateiktas įrašo ID."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:92
+#, php-format
 msgid "Post ID %1$s does not exist."
 msgstr "Įrašo ID %1$s neegzistuoja."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/DeleteStats.php:103
+#, php-format
 msgid "Stats of %1$s deleted."
 msgstr "Įrašo %1$s statistika ištrinta."
 
@@ -1110,6 +1217,7 @@ msgstr "Išvalyti podėlį prieš gaunant statistiką (gali būti intensyvu)."
 
 #. translators: 1: a stat key that was requested but not found.
 #: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#, php-format
 msgid "Stat key: %1$s not found in stats."
 msgstr "Statistikos raktas: %1$s nerastas statistikoje."
 
@@ -1119,11 +1227,13 @@ msgstr "Įrašo, kurio statistiką norite gauti, ID."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:126
+#, php-format
 msgid "Post ID %1$d does not exist."
 msgstr "Įrašo ID %1$d neegzistuoja."
 
 #. translators: 1: a post ID.
 #: includes/classes/WPCLI/Command/GetStats.php:142
+#, php-format
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Arba įrašas dar nenuskenuotas, arba visi testai praėjo sėkmingai įrašui su ID %1$d."
 
@@ -1139,7 +1249,7 @@ msgstr "nuolatinė nuoroda į "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:371
+#: includes/helper-functions.php:339
 msgid "Attend Free"
 msgstr "Dalyvauti nemokamai"
 
@@ -1150,10 +1260,6 @@ msgstr "Sveiki atvykę į Accessibility Checker"
 #: includes/options-page.php:65
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker nustatymai"
-
-#: includes/options-page.php:66
-msgid "Settings"
-msgstr "Nustatymai"
 
 #: includes/options-page.php:99
 msgid "General Settings"
@@ -1184,12 +1290,12 @@ msgid "Simplified Summary Position"
 msgstr "Supaprastintos santraukos pozicija"
 
 #: includes/options-page.php:164
-#: includes/options-page.php:517
+#: includes/options-page.php:533
 msgid "Add Footer Accessibility Statement"
 msgstr "Pridėti poraštės prieinamumo pareiškimą"
 
 #: includes/options-page.php:173
-#: includes/options-page.php:540
+#: includes/options-page.php:556
 msgid "Include Link to Accessibility Policy"
 msgstr "Įtraukti nuorodą į prieinamumo politiką"
 
@@ -1207,6 +1313,7 @@ msgstr "Priekinės dalies Accessibility Checker pozicija"
 
 #. translators: %1$s: link to the plugin documentation website.
 #: includes/options-page.php:244
+#, php-format
 msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
 msgstr "Naudokite žemiau esančius nustatymus, kad sukonfigūruotumėte Accessibility Checker. Papildomą informaciją apie kiekvieną nustatymą galite rasti %1$s."
 
@@ -1220,99 +1327,100 @@ msgstr "įskiepio dokumentacijoje"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
 #: includes/options-page.php:251
+#, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Daugiau funkcijų ir pagalba el. paštu teikiama su %1$s."
 
-#: includes/options-page.php:252
+#: includes/options-page.php:259
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (atsidaro naujame lange)"
 
-#: includes/options-page.php:252
+#: includes/options-page.php:259
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:273
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Naudokite toliau pateiktus nustatymus, kad sukonfigūruotumėte prieinamumo tikrintuvą priekinėje sąsajoje."
 
-#: includes/options-page.php:276
+#: includes/options-page.php:283
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Interneto turinio prieinamumo gairės (WCAG) AAA lygyje reikalauja, kad bet koks turinys, kurio skaitymo lygis yra aukštesnis nei 9 klasė, turėtų alternatyvą, kurią būtų lengviau skaityti. Supaprastintas santraukos tekstas pridedamas skaitomumo skirtuke Accessibility Checker meta laukelyje kiekvieno įrašo ar puslapio redagavimo ekrane."
 
-#: includes/options-page.php:277
+#: includes/options-page.php:293
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Sužinokite daugiau apie supaprastintas santraukas ir skaitomumo reikalavimus (atsidaro naujame lange)"
 
-#: includes/options-page.php:277
+#: includes/options-page.php:293
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Sužinokite daugiau apie supaprastintas santraukas ir skaitomumo reikalavimus."
 
-#: includes/options-page.php:286
+#: includes/options-page.php:302
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Ar jūs galvojate „Vau, šis įskiepis yra nuostabus“ ir ar jis padeda jums padaryti jūsų svetainę prieinamesnę? Pasidalinkite savo pastangomis padaryti savo svetainę prieinamesnę su savo klientais ir leiskite jiems žinoti, kad naudojate Accessibility Checker, kad užtikrintumėte, jog visi žmonės galėtų naudotis jūsų svetaine. Pridėkite mažą, tik tekstinę nuorodą ir pareiškimą savo svetainės poraštėje."
 
-#: includes/options-page.php:299
+#: includes/options-page.php:315
 msgid "Before the content"
 msgstr "Prieš turinį"
 
-#: includes/options-page.php:304
+#: includes/options-page.php:320
 msgid "After the content"
 msgstr "Po turinio"
 
-#: includes/options-page.php:309
+#: includes/options-page.php:325
 msgid "Insert manually"
 msgstr "Įterpti rankiniu būdu"
 
-#: includes/options-page.php:313
+#: includes/options-page.php:329
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Naudokite šią funkciją, kad rankiniu būdu pridėtumėte supaprastintą santrauką į savo temą ciklo viduje."
 
-#: includes/options-page.php:315
+#: includes/options-page.php:331
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funkcija pasirinktinai priima įrašo ID kaip parametrą."
 
-#: includes/options-page.php:318
+#: includes/options-page.php:334
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Nustatykite, kur norėtumėte, kad supaprastintos santraukos būtų rodomos santykiu su jūsų turiniu, jei jos užpildytos."
 
-#: includes/options-page.php:333
+#: includes/options-page.php:349
 msgid "Bottom Right Corner (default)"
 msgstr "Apatiniame dešiniajame kampe (numatytasis)"
 
-#: includes/options-page.php:338
+#: includes/options-page.php:354
 msgid "Bottom Left Corner"
 msgstr "Apatiniame kairiajame kampe"
 
-#: includes/options-page.php:342
+#: includes/options-page.php:358
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Nustatykite, kur norėtumėte, kad priekinės sąsajos prieinamumo tikrintuvas būtų rodomas puslapyje."
 
-#: includes/options-page.php:382
+#: includes/options-page.php:398
 msgid "When Required"
 msgstr "Kai reikia"
 
-#: includes/options-page.php:387
+#: includes/options-page.php:403
 msgid "Always"
 msgstr "Visada"
 
-#: includes/options-page.php:395
+#: includes/options-page.php:411
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Ar Accessibility Checker turėtų prašyti supaprastintos santraukos tik tada, kai jūsų įrašo ar puslapio skaitymo lygis yra aukštesnis nei 9 klasė, visada jos prašyti nepriklausomai nuo skaitymo lygio, ar niekada jos neprašyti nepriklausomai nuo skaitymo lygio?"
 
-#: includes/options-page.php:446
+#: includes/options-page.php:462
 msgid "To check content other than posts and pages, please "
 msgstr "Norėdami patikrinti kitą turinį nei įrašus ir puslapius, prašome "
 
-#: includes/options-page.php:449
+#: includes/options-page.php:465
 msgid " (opens in a new window)"
 msgstr " (atsidaro naujame lange)"
 
-#: includes/options-page.php:454
+#: includes/options-page.php:470
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Pasirinkite, kurie įrašų tipai turėtų būti tikrinami nuskaitymo metu. Atkreipkite dėmesį, kad pašalinus anksčiau pasirinktą įrašo tipą, bus pašalinta jo nuskaityta informacija ir bet kokie nustatyti pasirinktiniai ignoruojami įspėjimai."
 
-#: includes/options-page.php:592
+#: includes/options-page.php:608
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Ištrinti visus Accessibility Checker duomenis, kai įskiepis pašalinamas."
 
@@ -1322,6 +1430,7 @@ msgstr "Paveiksle trūksta alternatyvaus teksto"
 
 #. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;a&gt;</code> tag.
 #: includes/rules.php:27
+#, php-format
 msgid "An Image Missing Alternative Text error means that your image does not have an alt attribute (%1$s) contained in the image tag (%2$s) at all. To fix an Image Missing Alternative Text error, you will need to add an alt tag to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s tag still needs to be present."
 msgstr "Klaida \"Image Missing Alternative Text\" reiškia, kad jūsų paveikslėlyje apskritai nėra atributo alt (%1$s), esančio paveikslėlio žyma (%2$s). Norėdami ištaisyti klaidą \"Image Missing Alternative Text\", turite prie paveikslėlio pridėti žymą alt su atitinkamu tekstu, apibūdinančiu paveikslėlio paskirtį puslapyje. Jei paveikslėlis yra dekoratyvinis, atributas alt gali būti tuščias, tačiau HTML žyma %1$s vis tiek turi būti pateikta."
 
@@ -1331,6 +1440,7 @@ msgstr "Paveikslo tuščias alternatyvus tekstas"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:40
+#, php-format
 msgid "An Image Empty Alternative Text warning appears if you have an image with an alt attribute (%s) that is empty. Alternative text tells people who cannot see what the images is and adds additional context to the post or page. It is only correct for alternative text to be empty if the image is purely decorative, like a border or decorative icon. To fix an Image Empty Alternative Text warning, you need to determine if the image is decorative or if adds something meaningful to the page. If it is not decorative, you need to add appropriate alternative text to describe the image's purpose. If the image is decorative, then you would leave the alternative text blank and “Ignore” the warning."
 msgstr "Įspėjimas „Paveikslo tuščias alternatyvus tekstas“ pasirodo, jei turite paveikslą su alt atributu (%s), kuris yra tuščias. Alternatyvus tekstas informuoja žmones, kurie negali matyti, kas yra paveiksle, ir suteikia papildomą kontekstą įrašui ar puslapiui. Alternatyvus tekstas gali būti tuščias tik tuo atveju, jei paveikslas yra grynai dekoratyvinis, pavyzdžiui, rėmelis ar dekoratyvus piktograma. Norėdami ištaisyti įspėjimą „Paveikslo tuščias alternatyvus tekstas“, turite nustatyti, ar paveikslas yra dekoratyvinis, ar jis prideda kažką prasmingo puslapiui. Jei jis nėra dekoratyvinis, turite pridėti tinkamą alternatyvų tekstą, aprašantį paveikslo paskirtį. Jei paveikslas yra dekoratyvinis, tuomet alternatyvų tekstą paliktumėte tuščią ir „Ignoruotumėte“ įspėjimą."
 
@@ -1348,6 +1458,7 @@ msgstr "Susietas paveikslėlis, kuriame trūksta alternatyvaus teksto"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:60
+#, php-format
 msgid "A Linked Image Missing Alternative Text error appears when an image that is linked to a URL does not have an alt attribute (%s) in the image tag at all. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Klaida Susietas paveikslėlis neturi alternatyvaus teksto rodoma, kai paveikslėlyje, kuris susietas su URL adresu, paveikslėlio žyma neturi atributo alt (%s). Susieti paveikslėliai turi turėti tikslų alternatyvųjį tekstą, kuriame būtų aprašyta, kur eina nuoroda, kad ekrano skaitytuvų naudotojai žinotų, kur nukreipia nuoroda. Norėdami išspręsti šią klaidą, turite prie paveikslėlio pridėti prasmingą alt tekstą. Alt tekstas turėtų apibūdinti nuorodos paskirtį, o ne tai, kaip atrodo paveikslėlis."
 
@@ -1357,6 +1468,7 @@ msgstr "Susietas paveikslėlis tuščias alternatyvus tekstas"
 
 #. translators: %s is <code>alt=""</code>.
 #: includes/rules.php:72
+#, php-format
 msgid "A Linked Image Empty Alternative Text error appears when an image that is linked to a URL has an alt attribute (%s) with nothing in it. Linked images must have accurate alternative text that describes where the link goes so that screen reader users know where the link is pointing. To resolve this error you need to add meaningful alt text to the image. Your alt text should describe the link purpose not what the image looks like."
 msgstr "Susietos paveikslo tuščio alternatyvaus teksto klaida atsiranda, kai paveikslėlis, kuris yra susietas su URL, turi alt atributą (%s), kuris yra tuščias. Susieti paveikslėliai privalo turėti tikslų alternatyvų tekstą, aprašantį, kur veda nuoroda, kad ekrano skaitytuvų naudotojai žinotų, į ką nukreipia nuoroda. Norint ištaisyti šią klaidą, reikia pridėti prasmingą alt tekstą paveikslėliui. Jūsų alt tekstas turėtų aprašyti nuorodos paskirtį, o ne tai, kaip atrodo paveikslėlis."
 
@@ -1374,6 +1486,7 @@ msgstr "Neteisingas antraščių eiliškumas"
 
 #. translators: %1$s is <code>&lt;h3&gt;</code>, %2$s is <code>&lt;h1&gt;</code>, %3$s is <code>&lt;h2&gt;</code>.
 #: includes/rules.php:92
+#, php-format
 msgid "An Incorrect Heading Order error means your heading structure has skipped over a level. For example, if your page structure has a level 3 heading (%1$s) under a level 1 heading (%2$s), an \"Incorrect Heading Order\" error will be flagged because there is no %3$s tag between the H1 and H3. To fix incorrect heading order errors, you will need to either change the incorrect heading level to the correct heading level, or add content with the correct heading level in between the two already existing levels."
 msgstr "Neteisingo antraščių eiliškumo klaida reiškia, kad jūsų antraščių struktūra praleido vieną lygį. Pavyzdžiui, jei jūsų puslapio struktūroje yra 3 lygio antraštė (%1$s) po 1 lygio antraštės (%2$s), bus pažymėta „neteisingo antraščių eiliškumo“ klaida, nes nėra %3$s žymos tarp H1 ir H3. Norint ištaisyti neteisingo antraščių eiliškumo klaidas, reikės arba pakeisti neteisingą antraštės lygį į teisingą antraštės lygį, arba pridėti turinio su teisingu antraštės lygiu tarp dviejų jau esančių lygių."
 
@@ -1391,6 +1504,7 @@ msgstr "iframe trūksta pavadinimo"
 
 #. translators: %1$s is <code>&lt;iframe&gt;</code>.
 #: includes/rules.php:117
+#, php-format
 msgid "An iframe Missing title error means that one or more of the iframes on your post or page does not have an accessible title describing the contents of the iframe. An iframe title is an attribute that can be added to the %1$s tag to describe the contents of the frame to people using assistive technology. To fix a missing iframe title, you will need to add a title or an aria-label attribute to the %1$s tag. The attribute should accurately describe the contents of the iframe."
 msgstr "Iframe trūkstamo pavadinimo klaida reiškia, kad vienas ar daugiau iframe elementų jūsų įraše ar puslapyje neturi prieinamo pavadinimo, aprašančio iframe turinį. Iframe pavadinimas yra atributas, kurį galima pridėti prie %1$s žymos, kad būtų aprašytas rėmelio turinys žmonėms, naudojantiems pagalbines technologijas. Norint ištaisyti trūkstamą iframe pavadinimą, reikės pridėti pavadinimo arba aria-label atributą prie %1$s žymos. Atributas turėtų tiksliai aprašyti iframe turinį."
 
@@ -1400,6 +1514,7 @@ msgstr "Trūksta poantraščių"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>.
 #: includes/rules.php:132
+#, php-format
 msgid "A warning about missing headings means that your post or page does not contain any heading elements (%1$s–%2$s) within the content of the post or page body section, which can make it especially difficult for screen reader users to navigate through the content on the page. To fix a page with no headings, you will need to add heading elements. At a minimum, every page should have one %1$s tag, which is typically the page title. Add additional subheadings as appropriate for your content. If you have determined that headings are definitely not needed on the page, then you can “Ignore” the warning."
 msgstr "Įspėjimas apie trūkstamas antraštes reiškia, kad jūsų įraše arba puslapyje nėra jokių antraštės elementų (%1$s-%2$s), esančių įrašo arba puslapio pagrindiniame skyriuje, todėl ekrano skaitytuvų naudotojams gali būti ypač sunku naršyti po puslapio turinį. Norėdami pataisyti puslapį be antraščių, turėsite pridėti antraščių elementų. Kiekviename puslapyje turėtų būti bent viena %1$s žyma, kuri paprastai yra puslapio antraštė. Pridėkite papildomų paantraštinių antraščių, jei tai tinka jūsų turiniui. Jei nustatėte, kad antraštės puslapyje tikrai nereikalingos, galite “Ignoruoti” įspėjimą."
 
@@ -1417,6 +1532,7 @@ msgstr "Nuoroda atidaromas naujas langas arba skirtukas"
 
 #. translators: %s is the link to the plugin, with text "Accessibility New Window Warnings" linked.
 #: includes/rules.php:154
+#, php-format
 msgid "A Link Opens New Window or Tab warning appears when there is a link on your website that has been set to open in a new tab or window when clicked. It is considered best practice to not open new tabs or windows with links. If links do open new tabs or windows, there must be a visual and auditory warning announcing that the link will open a new window or tab so that users will expect that behavior and know how to go back after clicking the link. To fix this warning, either change the link not to open in a new tab or ensure \"opens new window\" is included in the link text then \"Ignore\" the warning. To automatically add notices to all links on your site and dismiss all these warnings, install our free %s plugin."
 msgstr "Įspėjimas \"Nuoroda atidaro naują langą arba skirtuką\" rodomas, kai jūsų svetainėje yra nuoroda, kuri nustatyta taip, kad spustelėjus ją būtų atidaryta naujame skirtuke arba lange. Geriausia praktika yra neatidarinėti naujų skirtukų ar langų su nuorodomis. Jei nuorodos atveria naujus skirtukus ar langus, turi būti vaizdinis ir garsinis įspėjimas, kad nuoroda atidaro naują langą ar skirtuką, kad naudotojai tikėtųsi tokio elgesio ir žinotų, kaip spustelėjus nuorodą grįžti atgal. Norėdami ištaisyti šį įspėjimą, pakeiskite nuorodą taip, kad ji neatsidarytų naujame skirtuke, arba užtikrinkite, kad nuorodos tekste būtų įrašyta \"atidaro naują langą\", tada \"ignoruokite\" įspėjimą. Norėdami automatiškai pridėti pranešimus prie visų savo svetainės nuorodų ir atmesti visus šiuos įspėjimus, įdiekite mūsų nemokamą %s įskiepį."
 
@@ -1430,6 +1546,7 @@ msgstr "Paveikslėlio žemėlapyje trūksta alternatyvaus teksto"
 
 #. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code>.
 #: includes/rules.php:173
+#, php-format
 msgid "The Image Map Missing Alternative Text error means that one of the %1$s elements within your image map does not have alternative text added in an %2$s attribute. To fix this error, you will need to add missing alt text to any area tags that do not have alt text. The alt text needs to describe the function of the link contained in the area, not necessarily describe what the area looks like."
 msgstr "Vaizdų žemėlapio alternatyvaus teksto nebuvimo klaida reiškia, kad prie vieno iš %1$s elementų jūsų vaizdų žemėlapyje nepridėtas alternatyvus tekstas atribute %2$s. Norėdami ištaisyti šią klaidą, turėsite pridėti trūkstamą alternatyvųjį tekstą prie visų sričių žymų, kuriose nėra alternatyviojo teksto. Alt tekstas turi apibūdinti srityje esančios nuorodos funkciją, nebūtinai apibūdinti, kaip sritis atrodo."
 
@@ -1439,6 +1556,7 @@ msgstr "Pakeista skirtuko tvarka"
 
 #. translators: %s is <code>tabindex="1"</code>.
 #: includes/rules.php:189
+#, php-format
 msgid "A Tab Order Modified Warning appears when the logical tab order on the page has been changed by adding an attribute for tabindex that is greater than 0 to an HTML element (for example, %s). This can cause navigation issues for keyboard-only users. To resolve a Tab Order Modified warning you need to view the front end of your website on the page or post where the tab order has been modified and test to see if the modification is correct or not. If the tab order modification does not cause problems, then you can \"Ignore\" the warning. If the modified tab order causes information to be presented out of order, then you need to remove the tabindex attribute from the flagged element."
 msgstr "Įspėjimas apie pakeistą kortelių tvarką atsiranda, kai loginis kortelių eiliškumas puslapyje buvo pakeistas pridedant atributą tabindex, kurio reikšmė didesnė nei 0, prie HTML elemento (pavyzdžiui, %s). Tai gali sukelti naršymo problemų vartotojams, naudojantiems tik klaviatūrą. Norėdami išspręsti įspėjimą dėl pakeistos kortelių tvarkos, turite peržiūrėti savo svetainės priekinę dalį tame puslapyje ar įraše, kuriame buvo pakeista kortelių tvarka, ir patikrinti, ar pakeitimas yra teisingas. Jei kortelių tvarkos pakeitimas nesukelia problemų, galite „Ignoruoti“ įspėjimą. Jei pakeista kortelių tvarka lemia, kad informacija pateikiama netinkama tvarka, turite pašalinti tabindex atributą iš pažymėto elemento."
 
@@ -1448,6 +1566,7 @@ msgstr "Tuščia antraštės žymė"
 
 #. translators: %s is <code>&lt;h1&gt;&lt;/h1&gt;</code>.
 #: includes/rules.php:205
+#, php-format
 msgid "An Empty Heading Tag error means that there is a heading tag present on your post or page that does not contain content. In code, this error would look like this: %s. To fix an empty heading, you will need to add content to the heading tag that has flagged the Empty Heading Tag error or remove the empty tag if it is not needed on your page."
 msgstr "Klaida \"Tuščia antraštės žymė\" reiškia, kad jūsų įraše ar puslapyje yra antraštės žymė, kuri neturi turinio. Kode ši klaida atrodytų taip: %s. Norėdami ištaisyti tuščią antraštę, turėsite pridėti turinio į antraštės žymę, kuri sukėlė klaidą \"Tuščia antraštės žymė\", arba pašalinti tuščią žymę, jei ji nėra reikalinga jūsų puslapyje."
 
@@ -1457,6 +1576,7 @@ msgstr "Tuščia nuoroda"
 
 #. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code>.
 #: includes/rules.php:217
+#, php-format
 msgid "An Empty Link error means that one of the links present on the web page is empty or contains no text describing where the link will go if clicked. This commonly occurs with links that contain webfonts, icon fonts, and SVGs, or when a link has accidentally been created in the content editor. To fix an empty link error, you will need to find the link that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element or, if your link contains an SVG or Webfont icon, hide that element with %2$s and add an %3$s attribute to the %1$s tag or screen reader text. The text or label you add should be descriptive of wherever the link points and not ambiguous."
 msgstr "Tuščios nuorodos klaida reiškia, kad viena iš tinklalapyje esančių nuorodų yra tuščia arba neturi teksto, aprašančio, kur nukreips nuoroda ją paspaudus. Tai dažnai pasitaiko nuorodose, kuriose naudojami tinklo šriftai, piktogramų šriftai ir SVG, arba kai nuoroda netyčia buvo sukurta turinio redaktoriuje. Norėdami ištaisyti tuščios nuorodos klaidą, turite rasti pažymėtą nuorodą ir pridėti prie jos aprašomojo teksto. Jums reikės arba: pridėti teksto turinį tuščiame %1$s elemente, arba, jei jūsų nuorodoje yra SVG ar tinklo šrifto piktograma, paslėpti tą elementą naudojant %2$s ir pridėti %3$s atributą prie %1$s žymos arba ekrano skaitytuvui skirtą tekstą. Pridėtas tekstas ar etiketė turėtų aprašyti, į kur nuoroda veda, ir nebūti dviprasmiška."
 
@@ -1466,6 +1586,7 @@ msgstr "Tuščias mygtukas"
 
 #. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
 #: includes/rules.php:231
+#, php-format
 msgid "An Empty Button error means that one of the buttons present on the web page is empty or contains no text describing the function of the button. Or, if it is an image button, the image contained in the button is missing alternative text. To fix an empty button error, you will need to find the button that is being flagged and add descriptive text to it. You will need to either: add text content within an empty %1$s element, add a value attribute to an %2$s that is missing one, or add alternative text to a button image. The text should be descriptive of whatever your button is being used for or the action that the button triggers."
 msgstr "Tuščio mygtuko klaida reiškia, kad vienas iš tinklalapyje esančių mygtukų yra tuščias arba neturi teksto, aprašančio mygtuko funkciją. Arba, jei tai paveikslėlio mygtukas, paveikslėliui, esančiam mygtuke, trūksta alternatyvaus teksto. Norėdami ištaisyti tuščio mygtuko klaidą, turite rasti pažymėtą mygtuką ir pridėti prie jo aprašomojo teksto. Jums reikės arba: pridėti teksto turinį tuščiame %1$s elemente, pridėti value atributą %2$s elementui, kuriam jo trūksta, arba pridėti alternatyvų tekstą mygtuko paveikslėliui. Tekstas turėtų aprašyti, kam jūsų mygtukas naudojamas arba kokį veiksmą mygtukas inicijuoja."
 
@@ -1491,6 +1612,7 @@ msgstr "Tuščia lentelės antraštė"
 
 #. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;th&gt;&lt;/th&gt;</code>.
 #: includes/rules.php:263
+#, php-format
 msgid "An Empty Table Header error means that one of the table headers on your post or page does not contain any text. This means that the %1$s element is present but looks like this %2$s with nothing between the opening and closing tags. To fix an empty table header, you need to find the correct HTML element (%1$s) and add text to it that describes the row or column that it applies to."
 msgstr "Tuščios lentelės antraštės klaida reiškia, kad viena iš lentelės antraščių jūsų įraše ar puslapyje neturi jokio teksto. Tai reiškia, kad %1$s elementas yra, bet atrodo taip %2$s, be nieko tarp atidarančios ir uždarančios žymų. Norėdami ištaisyti tuščią lentelės antraštę, turite rasti teisingą HTML elementą (%1$s) ir pridėti tekstą, aprašantį eilutę ar stulpelį, kuriam jis taikomas."
 
@@ -1524,6 +1646,7 @@ msgstr "Ilgas aprašymas negalioja"
 
 #. translators: %s is <code>longdesc=""</code>.
 #: includes/rules.php:300
+#, php-format
 msgid "The Long Description Invalid error means that a long description attribute (%s) on an image does not have an appropriate URL, filename, or file extension. It may also mean that the long description is not a URL, or it has been left blank. The longdesc attribute is not fully supported opens a new window by HTML5, browsers, and all screen readers. Due to this lack of support, the best fix for this error is to remove longdesc from your image tag completely."
 msgstr "Klaida \"Ilgas aprašymas negalioja\" reiškia, kad paveikslėlio ilgo aprašymo atributas (%s) neturi tinkamo URL adreso, failo vardo arba failo plėtinio. Ji taip pat gali reikšti, kad ilgasis aprašymas nėra URL arba jis paliktas tuščias. Atributas longdesc nėra visiškai palaikomas HTML5, naršyklės ir visi ekrano skaitytuvai atveria naują langą. Dėl šio palaikymo trūkumo geriausia šios klaidos taisymo priemonė - visiškai pašalinti longdesc iš vaizdo žymės."
 
@@ -1533,6 +1656,7 @@ msgstr "Trūksta formos etiketės"
 
 #. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;label&gt;</code>, %3$s is <code>for=""</code>.
 #: includes/rules.php:312
+#, php-format
 msgid "A Missing Form Label error is triggered when an %1$s (form field) is present in your form and but is not associated with a %2$s element. This could mean the label is present but is missing a %3$s attribute to connect it to the applicable field or there could be no label present at all and only an %1$s tag. To fix missing form label errors, you will need to determine how the field and form were created and then add field labels or a correct %3$s attribute to existing labels that are not connected to a field."
 msgstr "Klaida \"Trūksta formos etiketės\" atsiranda, kai formoje yra %1$s (formos laukas), bet jis nesusijęs su elementu %2$s. Tai gali reikšti, kad etiketė yra, bet trūksta atributo %3$s, kuris ją susietų su atitinkamu lauku, arba etiketės iš viso nėra, o yra tik žyma %1$s. Norėdami ištaisyti trūkstamų formos etikečių klaidas, turėsite nustatyti, kaip buvo sukurtas laukas ir forma, o tada prie esamų etikečių, nesusijusių su lauku, pridėti lauko etiketes arba teisingą atributą %3$s."
 
@@ -1550,6 +1674,7 @@ msgstr "Pabrauktas tekstas"
 
 #. translators: %s is <code>&lt;u&gt;</code>.
 #: includes/rules.php:339
+#, php-format
 msgid "An Underlined Text warning appears if any text on your page is wrapped in an HTML underline tag (%1$s). In an online environment, underlined text is generally used to indicate linked text and it is not considered a best practice to underline text for emphasis only. To fix underlined text, you will need to remove the %1$s element from the text or CSS styles that are making it underlined. Try using other stylization, such as italics, colored text, or bolding to emphasize or differentiate between words or phrases."
 msgstr "Pabraukto teksto įspėjimas atsiranda, jei bet koks tekstas jūsų puslapyje yra apgaubtas HTML pabraukimo žyme (%1$s). Internetinėje aplinkoje pabrauktas tekstas paprastai naudojamas nurodyti susietą tekstą, ir nelaikoma gera praktika pabraukti tekstą tik išryškinimo tikslais. Norėdami ištaisyti pabrauktą tekstą, turėsite pašalinti %1$s elementą iš teksto arba CSS stilius, kurie jį pabraukia. Pabandykite naudoti kitokį stilizavimą, pavyzdžiui, kursyvą, spalvotą tekstą arba paryškinimą, kad pabrėžtumėte ar atskirtumėte žodžius ar frazes."
 
@@ -1567,6 +1692,7 @@ msgstr "Trūksta lentelės antraštės"
 
 #. translators: %1$s is <code>&lt;td&gt;</code>, %2$s is <code>&lt;th&gt;</code>.
 #: includes/rules.php:359
+#, php-format
 msgid "A Missing Table Header error means that one of your tables contains data (information contained in a %1$s tag) that does not have a corresponding header (%2$s) tag. When looking at the HTML for your form, there will be more %1$s elements in a row than %2$s elements in the table. To fix a missing table header, you need to find the section of code that has fewer %2$s elements in it than should be present for the number of rows or columns of data, and add one or more additional %2$s elements containing text that describes the data in that row or column."
 msgstr "Trūkstamos lentelės antraštės klaida reiškia, kad vienoje iš jūsų lentelių yra duomenų (informacija, esanti %1$s žymėje), kurie neturi atitinkamos antraštės (%2$s) žymės. Žiūrint į jūsų formos HTML, vienoje eilutėje bus daugiau %1$s elementų nei %2$s elementų lentelėje. Norėdami ištaisyti trūkstamą lentelės antraštę, turite rasti kodo dalį, kurioje yra mažiau %2$s elementų, nei turėtų būti pagal duomenų eilučių ar stulpelių skaičių, ir pridėti vieną ar daugiau papildomų %2$s elementų su tekstu, aprašančiu duomenis toje eilutėje ar stulpelyje."
 
@@ -1600,6 +1726,7 @@ msgstr "Mirksintis ar slenkantis turinys"
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
 #: includes/rules.php:397
+#, php-format
 msgid "Blinking or Scrolling Content errors appear when elements on your website have a blinking or scrolling function applied to them either via CSS or in the HTML. Specifically, the following will create this error: the %1$s or %2$s HTML tags or CSS %3$s. To resolve this error remove the HTML tags or CSS that is causing content to blink."
 msgstr "Mirksinčio ar slenkančio turinio klaidos atsiranda, kai jūsų svetainės elementams yra pritaikyta mirksėjimo ar slinkimo funkcija, naudojant CSS arba HTML. Konkrečiai, šią klaidą sukuria: %1$s arba %2$s HTML žymės arba CSS %3$s. Norėdami išspręsti šią klaidą, pašalinkite HTML žymes arba CSS, kurie verčia turinį mirksėti."
 
@@ -1633,6 +1760,7 @@ msgstr "Trūksta kalbos deklaracijos"
 
 #. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang=""</code>, %3$s is <code>xml:lang=""</code>.
 #: includes/rules.php:437
+#, php-format
 msgid "A language declaration is an HTML attribute that denotes the default language of the content on a page or post. Language declarations should be coded into your website theme and appear automatically in the head of the website. A Missing Language Declaration error appears if the %1$s tag on the page does not contain a %2$s or %3$s attribute, or one of these attributes is present but is empty. To fix a Missing Language Declaration error, you will need to edit your theme files to add the missing language attribute to the HTML tag at the very top of your website header. If you are using a theme that receives updates, then you will need to make the change in a child theme to ensure the fix does not get overwritten when you next update your theme."
 msgstr "Kalbos deklaracija yra HTML atributas, nurodantis numatytąją puslapio ar įrašo turinio kalbą. Kalbos deklaracijos turėtų būti užkoduotos jūsų svetainės temoje ir automatiškai atsirasti svetainės antraštėje. Trūkstamos kalbos deklaracijos klaida atsiranda, jei %1$s žymoje puslapyje nėra %2$s arba %3$s atributo, arba vienas iš šių atributų yra, bet yra tuščias. Norėdami ištaisyti trūkstamos kalbos deklaracijos klaidą, turėsite redaguoti savo temos failus, kad pridėtumėte trūkstamą kalbos atributą į HTML žymą pačioje svetainės antraštės viršuje. Jei naudojate temą, kuri gauna atnaujinimus, tuosite atlikti pakeitimą antrinėje temoje, kad užtikrintumėte, jog pataisymas nebus perrašytas, kai kitą kartą atnaujinsite savo temą."
 
@@ -1666,6 +1794,7 @@ msgstr "Trūksta pavadinimo"
 
 #. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
 #: includes/rules.php:482
+#, php-format
 msgid "A Missing Title error means that your post or page does not contain a title element (%1$s or %2$s). This could happen if the theme fails to add a title tag, or if the title field of a post or page has been left blank in the WordPress edit screen. To fix a page with no titles, you will need to add title elements. First, determine if the title is missing because you left the page or post title field blank in the editor. If so, fill it in. If a title is filled in and visible on the backend then the code in the of your web page needs to be edited to include a %1$s tag or %2$s meta tag."
 msgstr "Klaida \"Trūksta antraštės\" reiškia, kad jūsų įraše arba puslapyje nėra antraštės elemento (%1$s arba %2$s). Taip gali atsitikti, jei temoje nepavyksta pridėti antraštės žymos arba jei \"WordPress\" redagavimo ekrane įrašo ar puslapio antraštės laukas liko tuščias. Norėdami pataisyti puslapį be pavadinimų, turėsite pridėti pavadinimo elementų. Pirmiausia nustatykite, ar pavadinimo nėra dėl to, kad redaktoriaus ekrane palikote tuščią puslapio arba įrašo pavadinimo lauką. Jei taip, užpildykite jį. Jei antraštė užpildyta ir matoma galinėje versijoje, tuomet reikia redaguoti tinklalapio kodą, kad būtų įtraukta %1$s žyma arba %2$s metažyma."
 
@@ -1675,6 +1804,7 @@ msgstr "Netinkamas nuorodos naudojimas"
 
 #. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>, %4$s is <code>&lt;button&gt;</code>, %5$s is <code>role="button"</code>, %6$s is <code>&lt;a&gt;</code>.
 #: includes/rules.php:500
+#, php-format
 msgid "An Improper Use of Link error appears if you have links that are missing an %1$s attribute or are only linked to a %2$s, and do not have %3$s on them. Links should be used to direct people to other parts of your site. Any other functionality that triggers an action should be a button. To resolve this error you need to recode the link to use a %4$s tag (preferable) or add %5$s to the existing %6$s tag. If the element is a toggle button (such as an accordion), additional ARIA attributes are required."
 msgstr "Netinkamo nuorodos naudojimo klaida atsiranda, kai turite nuorodas, kurioms trūksta %1$s atributo arba jos susietos tik su %2$s ir neturi %3$s. Nuorodos turėtų būti naudojamos nukreipti žmones į kitas jūsų svetainės dalis. Bet kokia kita funkcija, kuri inicijuoja veiksmą, turėtų būti mygtukas. Norėdami išspręsti šią klaidą, turite perkodruoti nuorodą naudodami %4$s žymę (pageidautina) arba pridėti %5$s prie esamos %6$s žymės. Jei elementas yra perjungimo mygtukas (pvz., akordeono tipo), reikalingi papildomi ARIA atributai."
 
@@ -1720,62 +1850,57 @@ msgid "Clear Issues"
 msgstr "Išvalyti problemas"
 
 #: partials/pro-callout.php:13
-#: partials/welcome-page.php:196
+#: partials/welcome-page.php:199
 msgid "Equalize Digital Logo"
 msgstr "Equalize Digital logotipas"
 
 #: partials/pro-callout.php:16
-#: partials/welcome-page.php:197
+#: partials/welcome-page.php:200
 msgid "Upgrade to Accessibility Checker Pro"
 msgstr "Atnaujinkite į Accessibility Checker Pro"
 
 #: partials/pro-callout.php:20
-#: partials/welcome-page.php:200
+#: partials/welcome-page.php:203
 msgid "Scan all post types"
 msgstr "Skenuoti visų tipų įrašus"
 
 #: partials/pro-callout.php:21
-#: partials/welcome-page.php:201
+#: partials/welcome-page.php:204
 msgid "Admin columns to see accessibility status at a glance"
 msgstr "Administravimo stulpeliai, leidžiantys iš karto pamatyti prieinamumo būseną"
 
 #: partials/pro-callout.php:22
-#: partials/welcome-page.php:202
+#: partials/welcome-page.php:205
 msgid "Centralized list of all open issues"
 msgstr "Centralizuotas visų atvirų problemų sąrašas"
 
 #: partials/pro-callout.php:23
-#: partials/welcome-page.php:203
+#: partials/welcome-page.php:206
 msgid "Ignore log"
 msgstr "Ignoravimo žurnalas"
 
 #: partials/pro-callout.php:24
-#: partials/welcome-page.php:204
+#: partials/welcome-page.php:207
 msgid "Rename simplified summary"
 msgstr "Pervadinti supaprastintą santrauką"
 
 #: partials/pro-callout.php:25
-#: partials/welcome-page.php:205
+#: partials/welcome-page.php:208
 msgid "User restrictions on ignoring issues"
 msgstr "Vartotojų apribojimai ignoruojant problemas"
 
 #: partials/pro-callout.php:26
-#: partials/welcome-page.php:206
+#: partials/welcome-page.php:209
 msgid "Email support"
 msgstr "Pagalba el. paštu"
 
 #: partials/pro-callout.php:27
-#: partials/welcome-page.php:207
+#: partials/welcome-page.php:210
 msgid "...and more"
 msgstr "...ir daugiau"
 
-#: partials/pro-callout.php:36
-#: partials/welcome-page.php:212
-msgid "Get Accessibility Checker Pro"
-msgstr "Gauti Accessibility Checker Pro"
-
-#: partials/pro-callout.php:46
-#: partials/welcome-page.php:220
+#: partials/pro-callout.php:57
+#: partials/welcome-page.php:223
 msgid "Or activate your license key here."
 msgstr "Arba aktyvuokite savo licencijos raktą čia."
 
@@ -1801,6 +1926,7 @@ msgstr "Norėdami pradėti tikrinti savo turinį, atlikite šiuos veiksmus:"
 
 #. translators: %s: path to settings page.
 #: partials/welcome-page.php:57
+#, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "<a href=\"%s\">Nustatymų puslapyje</a> pasirinkite, kuriuos įrašų tipus norite nuskenuoti."
 
@@ -1852,7 +1978,7 @@ msgstr "Kodėl sakome, kad 100 % išlaikė testus, o ne 100 % prieinamas?"
 #: partials/welcome-page.php:109
 #: partials/welcome-page.php:114
 #: partials/welcome-page.php:120
-#: partials/welcome-page.php:213
+#: partials/welcome-page.php:216
 msgid "(opens in a new window)"
 msgstr "(atsidaro naujame lange)"
 
@@ -1924,19 +2050,19 @@ msgstr "Atviras klausimų ir atsakymų seansas per Zoom kas antrą savaitę, pad
 msgid "Included in Small Business and Agency plans"
 msgstr "Įtraukta į mažų įmonių ir agentūrų planus"
 
-#: partials/welcome-page.php:165
+#: partials/welcome-page.php:166
 msgid "Register for Office Hours"
 msgstr "Užsiregistruoti darbo valandoms"
 
-#: partials/welcome-page.php:170
+#: partials/welcome-page.php:172
 msgid "Auditing and Remediation"
 msgstr "Auditas ir taisymas"
 
-#: partials/welcome-page.php:172
+#: partials/welcome-page.php:174
 msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
 msgstr "Gaukite pagalbą, kad jūsų svetainė taptų prieinama. Ekspertų atliekamas auditas, vartotojų testavimas ir kūrėjų palaikymas. Galimi atitikties raštai."
 
-#: partials/welcome-page.php:176
+#: partials/welcome-page.php:178
 msgid "Get Remediation Help"
 msgstr "Gauti pagalbą taisymui"
 
@@ -1947,6 +2073,7 @@ msgstr "Įrašoma..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Nustatymai sėkmingai išsaugoti. Jums reikia %sapsilankyti redaktoriuje%s ir išsaugoti įrašą, kad būtų atliktas pakartotinis nuskaitymas ir pašalinti ištaisyti klausimai iš Accessibility Checker ataskaitų."
 
@@ -2019,6 +2146,10 @@ msgid "Disable Page Styles"
 msgstr "Išjungti puslapio stilius"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "An error occurred when loading the issues."
+msgstr "Įvyko klaida įkeliant problemas."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Show Code"
 msgstr "Rodyti kodą"
 
@@ -2071,6 +2202,30 @@ msgstr[1] "ignoruojamų problemų"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
 msgstr "aptikta."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanner function not found."
+msgstr "Skanavimo funkcija nerasta."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanning..."
+msgstr "Skenuojama..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "Pažeidimų nerasta, išsaugojimas praleidžiamas."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Missing postId or nonce."
+msgstr "Trūksta postId arba nonce."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility scan error."
+msgstr "Prieinamumo skenavimo klaida."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error saving scan results."
+msgstr "Klaida išsaugant skenavimo rezultatus."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"

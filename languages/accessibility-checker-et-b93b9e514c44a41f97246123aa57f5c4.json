@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Salvestamine..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Seaded edukalt salvestatud. Peate %sk\u00fclastama redaktorit%s ja salvestama postituse, et uuesti skannida ja eemaldada parandatud probleemid Accessibility Checker aruannetest."
+                "S\u00e4tted salvestati edukalt. Peate %sk\u00fclastama redaktorit%s ja salvestama postituse, et uuesti skaneerida ja eemaldada parandatud probleemid Accessibility Checkeri aruannetest."
             ],
             "Settings saved successfully.": [
                 "Seaded edukalt salvestatud."
@@ -33,6 +33,9 @@
             ],
             "Disable Page Styles": [
                 "Keela lehe stiilid"
+            ],
+            "An error occurred when loading the issues.": [
+                "Probleemide laadimisel ilmnes viga."
             ],
             "Show Code": [
                 "N\u00e4ita koodi"
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "tuvastatud."
+            ],
+            "Scanner function not found.": [
+                "Skanneri funktsiooni ei leitud."
+            ],
+            "Scanning...": [
+                "Skanneerimine..."
+            ],
+            "No violations found, skipping save.": [
+                "Rikkumisi ei leitud, salvestamine j\u00e4etakse vahele."
+            ],
+            "Missing postId or nonce.": [
+                "Puudub postId v\u00f5i nonce."
+            ],
+            "Accessibility scan error.": [
+                "Ligip\u00e4\u00e4setavuse skannimise viga."
+            ],
+            "Error saving scan results.": [
+                "Viga skannimistulemuste salvestamisel."
             ]
         }
     }

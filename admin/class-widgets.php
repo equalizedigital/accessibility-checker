@@ -57,6 +57,12 @@ class Widgets {
 			false === EDAC_KEY_VALID ) &&
 			true !== (bool) get_user_meta( get_current_user_id(), 'edac_dashboard_cta_dismissed', true )
 			) {
+				$pro_modal_link = edac_generate_link_type(
+					[
+						'utm-campaign' => 'dashboard-widget',
+						'utm-content'  => 'upgrade-to-edacp',
+					],
+				);
 				$pro_modal_html = '
 			<div class="edac-modal">
 				<div class="edac-modal-content">
@@ -64,7 +70,7 @@ class Widgets {
 					<h3>' . __( 'Get Detailed Accessibility Reports', 'accessibility-checker' ) . '</h3>
 					<p class="edac-align-center">' . __( 'Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster.', 'accessibility-checker' ) . '</p>
 					<p class="edac-align-center">
-					<a class="button button-primary" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'Upgrade Accessibility Checker', 'accessibility-checker' ) . '</a>
+					<a class="button button-primary" href="' . $pro_modal_link . '">' . __( 'Upgrade Accessibility Checker', 'accessibility-checker' ) . '</a>
 					</p>
 				</div>
 			</div>';
@@ -127,12 +133,18 @@ class Widgets {
 			</div>
 			';
 
-				$html .= '
+				$manually_check_link = edac_link_wrapper(
+					'https://equalizedigital.com/accessibility-checker/how-to-manually-check-your-website-for-accessibility/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget',
+					'dashboard-widget',
+					'how-to-manually-check',
+					false
+				);
+				$html               .= '
 			<div class="edac-summary-notice edac-summary-notice-has-issues edac-hidden">
 				' . __( 'Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines.', 'accessibility-checker' ) . '
 			</div>
 			 <div class="edac-summary-notice edac-summary-notice-no-issues edac-hidden">
-				' . __( 'Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don\'t forget to', 'accessibility-checker' ) . ' <a href="https://equalizedigital.com/accessibility-checker/how-to-manually-check-your-website-for-accessibility/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'manually test your site', 'accessibility-checker' ) . '</a>.
+				' . __( 'Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don\'t forget to', 'accessibility-checker' ) . ' <a href="' . esc_url( $manually_check_link ) . '">' . __( 'manually test your site', 'accessibility-checker' ) . '</a>.
 			</div>';
 
 				$html .= '
@@ -216,12 +228,22 @@ class Widgets {
 
 			} else {
 
-				$html .= '
+				$non_scannable_post_type_pro_link = edac_generate_link_type(
+					[
+						'utm-campaign' => 'dashboard-widget',
+						'utm-content'  => 'upgrade-to-edacp',
+					],
+					'pro',
+					[
+						'post_type' => $post_type,
+					]
+				);
+				$html                            .= '
 						<tr >
 							<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
 							<td colspan="3">
 								<div class="edac-issues-summary-notice-upgrade-to-edacp">
-									<a href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">
+									<a href="' . esc_url( $non_scannable_post_type_pro_link ) . '">
 										' . __( 'Upgrade to Scan', 'accessibility-checker' ) . '
 									</a>
 								</div>
@@ -270,9 +292,21 @@ class Widgets {
 		<hr class="edac-hr" />
 		<div class="edac-widget-footer-link-list">';
 
-		$html .= '<h3 class="screen-reader-text">' . __( 'Additional Resources', 'accessibility-checker' ) . '</h3>';
-		$html .= '<a target="_blank" aria-label="' . __( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="https://equalizedigital.com/resources/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'Blog', 'accessibility-checker' ) . '</a>';
-		$html .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" aria-label="' . __( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="https://equalizedigital.com/accessibility-checker/documentation/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=dashboard-widget">' . __( 'Documentation', 'accessibility-checker' ) . '</a></div></div>';
+		$blog_link = edac_link_wrapper(
+			'https://equalizedigital.com/resources/',
+			'dashboard-widget',
+			'blog',
+			false
+		);
+		$docs_link = edac_link_wrapper(
+			'https://equalizedigital.com/accessibility-checker/documentation/',
+			'dashboard-widget',
+			'docs',
+			false
+		);
+		$html     .= '<h3 class="screen-reader-text">' . __( 'Additional Resources', 'accessibility-checker' ) . '</h3>';
+		$html     .= '<a target="_blank" aria-label="' . __( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="' . esc_url( $blog_link ) . '">' . __( 'Blog', 'accessibility-checker' ) . '</a>';
+		$html     .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" aria-label="' . __( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="' . esc_url( $docs_link ) . '">' . __( 'Documentation', 'accessibility-checker' ) . '</a></div></div>';
 
 		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;

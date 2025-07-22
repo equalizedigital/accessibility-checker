@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "Ukl\u00e1d\u00e1n\u00ed..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Nastaven\u00ed \u00fasp\u011b\u0161n\u011b ulo\u017eeno. Mus\u00edte %snav\u0161t\u00edvit editor%s a ulo\u017eit p\u0159\u00edsp\u011bvek, aby se provedlo nov\u00e9 skenov\u00e1n\u00ed a odstranily se opraven\u00e9 probl\u00e9my ze zpr\u00e1v Accessibility Checker."
+                "Nastaven\u00ed \u00fasp\u011b\u0161n\u011b ulo\u017eena. Mus\u00edte %snav\u0161t\u00edvit editor%s a ulo\u017eit p\u0159\u00edsp\u011bvek, aby se provedlo op\u011btovn\u00e9 skenov\u00e1n\u00ed a odstranily se opraven\u00e9 probl\u00e9my ze zpr\u00e1v Accessibility Checkeru."
             ],
             "Settings saved successfully.": [
                 "Nastaven\u00ed \u00fasp\u011b\u0161n\u011b ulo\u017eeno."
@@ -33,6 +33,9 @@
             ],
             "Disable Page Styles": [
                 "Vypnout styly str\u00e1nky"
+            ],
+            "An error occurred when loading the issues.": [
+                "P\u0159i na\u010d\u00edt\u00e1n\u00ed probl\u00e9m\u016f do\u0161lo k chyb\u011b."
             ],
             "Show Code": [
                 "Zobrazit k\u00f3d"
@@ -72,6 +75,24 @@
             ],
             "detected.": [
                 "zji\u0161t\u011bno."
+            ],
+            "Scanner function not found.": [
+                "Funkce skeneru nebyla nalezena."
+            ],
+            "Scanning...": [
+                "Skenov\u00e1n\u00ed..."
+            ],
+            "No violations found, skipping save.": [
+                "Nebyly nalezeny \u017e\u00e1dn\u00e9 chyby, p\u0159eskakuji ukl\u00e1d\u00e1n\u00ed."
+            ],
+            "Missing postId or nonce.": [
+                "Chyb\u00ed postId nebo nonce."
+            ],
+            "Accessibility scan error.": [
+                "Chyba p\u0159i skenov\u00e1n\u00ed p\u0159\u00edstupnosti."
+            ],
+            "Error saving scan results.": [
+                "Chyba p\u0159i ukl\u00e1d\u00e1n\u00ed v\u00fdsledk\u016f skenov\u00e1n\u00ed."
             ]
         }
     }
