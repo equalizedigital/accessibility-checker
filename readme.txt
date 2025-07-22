@@ -211,6 +211,11 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+= 1.28.0 =
+* Added: Better descriptions and help text for each of the rules.
+* Added: Improved landmark location feature to show the location of the landmark in the DOM.
+* Fixed: Avoid possible error with removal of an index on an ID column.
+
 = 1.27.1 =
 * Fixed: Don't alter a UNIQUE index before swapping to PRIMARY key index.
 
