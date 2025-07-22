@@ -484,25 +484,10 @@ class Ajax {
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-landmark">';
 
-						$landmark          = isset( $row['landmark'] ) ? esc_html( $row['landmark'] ) : '';
+						$landmark          = isset( $row['landmark'] ) ? $row['landmark'] : '';
 						$landmark_selector = isset( $row['landmark_selector'] ) ? $row['landmark_selector'] : '';
 						
-						if ( $landmark && $landmark_selector ) {
-							$landmark_url = add_query_arg(
-								[
-									'edac_landmark' => base64_encode( $landmark_selector ),
-									'edac_nonce'    => wp_create_nonce( 'edac_highlight' ),
-								],
-								get_the_permalink( $postid )
-							);
-							
-							// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-							$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), ucwords( $landmark ) );
-							// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-							$html .= '<a href="' . $landmark_url . '" class="edac-details-rule-records-record-landmark-link" target="_blank" aria-label="' . esc_attr( $landmark_aria_label ) . '">' . ucwords( $landmark ) . '</a>';
-						} elseif ( $landmark ) {
-							$html .= ucwords( $landmark );
-						}
+						$html .= edac_generate_landmark_link( $landmark, $landmark_selector, $postid );
 
 						$html .= '</div>';
 
