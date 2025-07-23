@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\MetaViewportScalableFix;
 
 /**
@@ -54,7 +55,7 @@ class MetaViewportRule implements RuleInterface {
 			'wcag'                  => '1.4.4',
 			'severity'              => 1, // Critical.
 			'affected_disabilities' => [
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
+				AffectedDisabilities::LOW_VISION,
 			],
 			'ruleset'               => 'js',
 			'combines'              => [ 'meta-viewport' ],

@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * TextJustified Rule class.
@@ -50,9 +51,9 @@ class TextJustifiedRule implements RuleInterface {
 			'wcag'                  => '1.4.8',
 			'severity'              => 4, // Low.
 			'affected_disabilities' => [
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
-				esc_html__( 'Dyslexia', 'accessibility-checker' ),
-				esc_html__( 'Cognitive', 'accessibility-checker' ),
+				AffectedDisabilities::LOW_VISION,
+				AffectedDisabilities::DYSLEXIA,
+				AffectedDisabilities::COGNITIVE,
 			],
 		];
 	}

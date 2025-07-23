@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * MissingTranscript Rule class.
@@ -41,11 +42,11 @@ class MissingTranscriptRule implements RuleInterface {
 			'wcag'                  => '1.2.1',
 			'severity'              => 2, // High.
 			'affected_disabilities' => [
-				esc_html__( 'Deaf', 'accessibility-checker' ),
-				esc_html__( 'Deafblind', 'accessibility-checker' ),
-				esc_html__( 'Hard of hearing', 'accessibility-checker' ),
-				esc_html__( 'Cognitive', 'accessibility-checker' ),
-				esc_html__( 'Language learners', 'accessibility-checker' ),
+				AffectedDisabilities::DEAF,
+				AffectedDisabilities::DEAFBLIND,
+				AffectedDisabilities::HARD_OF_HEARING,
+				AffectedDisabilities::COGNITIVE,
+				AffectedDisabilities::LANGUAGE_LEARNERS,
 			],
 			'ruleset'               => 'js',
 		];

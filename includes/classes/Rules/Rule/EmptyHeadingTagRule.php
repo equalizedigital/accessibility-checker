@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * EmptyHeadingTag Rule class.
@@ -50,9 +51,9 @@ class EmptyHeadingTagRule implements RuleInterface {
 			'wcag'                  => '1.3.1',
 			'severity'              => 3, // Medium.
 			'affected_disabilities' => [
-				esc_html__( 'Blind', 'accessibility-checker' ),
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
-				esc_html__( 'Deafblind', 'accessibility-checker' ),
+				AffectedDisabilities::BLIND,
+				AffectedDisabilities::LOW_VISION,
+				AffectedDisabilities::DEAFBLIND,
 			],
 		];
 	}

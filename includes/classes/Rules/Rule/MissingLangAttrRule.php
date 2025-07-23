@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 
 /**
@@ -58,8 +59,8 @@ class MissingLangAttrRule implements RuleInterface {
 			'wcag'                  => '3.1.1',
 			'severity'              => 2, // High.
 			'affected_disabilities' => [
-				esc_html__( 'Blind', 'accessibility-checker' ),
-				esc_html__( 'Deafblind', 'accessibility-checker' ),
+				AffectedDisabilities::BLIND,
+				AffectedDisabilities::DEAFBLIND,
 			],
 			'combines'              => [ 'html-lang-valid', 'html-has-lang' ],
 			'ruleset'               => 'js',
