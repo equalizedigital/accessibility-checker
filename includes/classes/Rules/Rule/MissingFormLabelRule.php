@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\{
 	AddLabelToUnlabelledFormFieldsFix,
 	CommentSearchLabelFix
@@ -63,11 +64,11 @@ class MissingFormLabelRule implements RuleInterface {
 			'wcag'                  => '1.3.1',
 			'severity'              => 1, // Critical.
 			'affected_disabilities' => [
-				esc_html__( 'Blind', 'accessibility-checker' ),
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
-				esc_html__( 'Deafblind', 'accessibility-checker' ),
-				esc_html__( 'Cognitive', 'accessibility-checker' ),
-				esc_html__( 'Mobility', 'accessibility-checker' ),
+				AffectedDisabilities::BLIND,
+				AffectedDisabilities::LOW_VISION,
+				AffectedDisabilities::DEAFBLIND,
+				AffectedDisabilities::COGNITIVE,
+				AffectedDisabilities::MOBILITY,
 			],
 			'combines'              => [ 'label' ],
 			'fixes'                 => [

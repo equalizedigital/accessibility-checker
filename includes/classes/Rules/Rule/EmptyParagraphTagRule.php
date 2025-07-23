@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * EmptyParagraphTag Rule class.
@@ -50,10 +51,10 @@ class EmptyParagraphTagRule implements RuleInterface {
 			'wcag'                  => '0.1',
 			'severity'              => 4, // Low.
 			'affected_disabilities' => [
-				esc_html__( 'Blind', 'accessibility-checker' ),
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
-				esc_html__( 'Deafblind', 'accessibility-checker' ),
-				esc_html__( 'Cognitive', 'accessibility-checker' ),
+				AffectedDisabilities::BLIND,
+				AffectedDisabilities::LOW_VISION,
+				AffectedDisabilities::DEAFBLIND,
+				AffectedDisabilities::COGNITIVE,
 			],
 		];
 	}

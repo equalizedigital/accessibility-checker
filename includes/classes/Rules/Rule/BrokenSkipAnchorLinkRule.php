@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * BrokenSkipAnchorLink Rule class.
@@ -42,10 +43,10 @@ class BrokenSkipAnchorLinkRule implements RuleInterface {
 			'wcag'                  => '2.4.1',
 			'severity'              => 2, // High.
 			'affected_disabilities' => [
-				esc_html__( 'Blind', 'accessibility-checker' ),
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
-				esc_html__( 'Deafblind', 'accessibility-checker' ),
-				esc_html__( 'Mobility', 'accessibility-checker' ),
+				AffectedDisabilities::BLIND,
+				AffectedDisabilities::LOW_VISION,
+				AffectedDisabilities::DEAFBLIND,
+				AffectedDisabilities::MOBILITY,
 			],
 		];
 	}

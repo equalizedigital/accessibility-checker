@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * IncorrectHeadingOrder Rule class.
@@ -55,11 +56,11 @@ class IncorrectHeadingOrderRule implements RuleInterface {
 			'wcag'                  => '1.3.1',
 			'severity'              => 2, // High.
 			'affected_disabilities' => [
-				esc_html__( 'Blind', 'accessibility-checker' ),
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
-				esc_html__( 'Deafblind', 'accessibility-checker' ),
-				esc_html__( 'Cognitive', 'accessibility-checker' ),
-				esc_html__( 'Mobility', 'accessibility-checker' ),
+				AffectedDisabilities::BLIND,
+				AffectedDisabilities::LOW_VISION,
+				AffectedDisabilities::DEAFBLIND,
+				AffectedDisabilities::COGNITIVE,
+				AffectedDisabilities::MOBILITY,
 			],
 			'combines'              => [
 				'heading-order',

@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\{
 	PreventLinksOpeningNewWindowFix,
 	AddNewWindowWarningFix
@@ -46,11 +47,11 @@ class LinkBlankRule implements RuleInterface {
 			'wcag'                  => '3.2.2',
 			'severity'              => 3, // Medium.
 			'affected_disabilities' => [
-				esc_html__( 'Blind', 'accessibility-checker' ),
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
-				esc_html__( 'Deafblind', 'accessibility-checker' ),
-				esc_html__( 'Cognitive', 'accessibility-checker' ),
-				esc_html__( 'Mobility', 'accessibility-checker' ),
+				AffectedDisabilities::BLIND,
+				AffectedDisabilities::LOW_VISION,
+				AffectedDisabilities::DEAFBLIND,
+				AffectedDisabilities::COGNITIVE,
+				AffectedDisabilities::MOBILITY,
 			],
 			'combines'              => [
 				'link_blank',
