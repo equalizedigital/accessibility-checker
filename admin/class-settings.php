@@ -18,6 +18,11 @@ class Settings {
 	 * @var array
 	 */
 	public static function get_scannable_post_statuses() {
+		/**
+		 * Filter the list of post statuses that are scannable.
+		 *
+		 * @since 1.29.0
+		 */
 		return apply_filters(
 			'edac_scannable_post_statuses',
 			[ 'publish', 'future', 'draft', 'pending', 'private' ]
