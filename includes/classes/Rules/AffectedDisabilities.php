@@ -2,15 +2,28 @@
 /**
  * Enumeration of disabilities affected by accessibility issues.
  *
+ * Defines constants for affected disabilities and provides translated labels.
+ * This class is a static utility and should not be extended or instantiated.
+ *
  * @package EqualizeDigital\AccessibilityChecker
  */
 
 namespace EqualizeDigital\AccessibilityChecker\Rules;
 
 /**
+ * Enumeration of disabilities affected by accessibility issues.
+ *
  * Defines constants for affected disabilities and provides translated labels.
+ * This class is a static utility and should not be extended or instantiated.
+ *
+ * @package EqualizeDigital\AccessibilityChecker
  */
-class AffectedDisabilities {
+final class AffectedDisabilities {
+	/**
+	 * Prevent instantiation.
+	 */
+	private function __construct() {}
+
 	public const BLIND             = 'blind';
 	public const LOW_VISION        = 'low_vision';
 	public const DEAFBLIND         = 'deafblind';
