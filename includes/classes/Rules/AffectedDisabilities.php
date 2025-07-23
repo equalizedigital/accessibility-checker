@@ -39,57 +39,41 @@ final class AffectedDisabilities {
 	public const DYSLEXIA          = 'dyslexia';
 
 	/**
-	 * Map of disability constants to English labels.
-	 *
-	 * @var array<string,string>
-	 */
-	private static $labels = [
-		self::ADHD              => 'ADHD',
-		self::BLIND             => 'Blind',
-		self::COGNITIVE         => 'Cognitive',
-		self::COLORBLIND        => 'Colorblind',
-		self::DEAF              => 'Deaf',
-		self::DEAFBLIND         => 'Deafblind',
-		self::DYSLEXIA          => 'Dyslexia',
-		self::HARD_OF_HEARING   => 'Hard of hearing',
-		self::LANGUAGE_LEARNERS => 'Language learners',
-		self::LOW_VISION        => 'Low-vision',
-		self::MOBILITY          => 'Mobility',
-		self::SEIZURE           => 'Seizure disorders',
-		self::VESTIBULAR        => 'Vestibular disorders',
-	];
-
-	/**
-	 * Cached translated labels.
-	 *
-	 * @var array<string,string>|null
-	 */
-	private static $translated_labels = null;
-
-	/**
 	 * Get translated label for a disability key.
 	 *
 	 * @param string $key Disability key constant.
 	 * @return string Translated label.
 	 */
 	public static function get_label( string $key ): string {
-		$labels = self::get_all_labels();
-		return $labels[ $key ] ?? '';
-	}
-
-	/**
-	 * Get all disability labels translated.
-	 *
-	 * @return array<string,string> Array of key => label pairs.
-	 */
-	public static function get_all_labels(): array {
-		if ( null === self::$translated_labels ) {
-			self::$translated_labels = [];
-			foreach ( self::$labels as $key => $label ) {
-				// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
-				self::$translated_labels[ $key ] = esc_html__( $label, 'accessibility-checker' );
-			}
+		switch ( $key ) {
+			case self::BLIND:
+				return esc_html__( 'Blind', 'accessibility-checker' );
+			case self::LOW_VISION:
+				return esc_html__( 'Low-vision', 'accessibility-checker' );
+			case self::DEAFBLIND:
+				return esc_html__( 'Deafblind', 'accessibility-checker' );
+			case self::MOBILITY:
+				return esc_html__( 'Mobility', 'accessibility-checker' );
+			case self::COLORBLIND:
+				return esc_html__( 'Colorblind', 'accessibility-checker' );
+			case self::COGNITIVE:
+				return esc_html__( 'Cognitive', 'accessibility-checker' );
+			case self::SEIZURE:
+				return esc_html__( 'Seizure disorders', 'accessibility-checker' );
+			case self::VESTIBULAR:
+				return esc_html__( 'Vestibular disorders', 'accessibility-checker' );
+			case self::DEAF:
+				return esc_html__( 'Deaf', 'accessibility-checker' );
+			case self::HARD_OF_HEARING:
+				return esc_html__( 'Hard of hearing', 'accessibility-checker' );
+			case self::LANGUAGE_LEARNERS:
+				return esc_html__( 'Language learners', 'accessibility-checker' );
+			case self::ADHD:
+				return esc_html__( 'ADHD', 'accessibility-checker' );
+			case self::DYSLEXIA:
+				return esc_html__( 'Dyslexia', 'accessibility-checker' );
+			default:
+				return '';
 		}
-		return self::$translated_labels;
 	}
 }
