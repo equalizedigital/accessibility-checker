@@ -18,7 +18,10 @@ class Settings {
 	 * @var array
 	 */
 	public static function get_scannable_post_statuses() {
-		return [ 'publish', 'future', 'draft', 'pending', 'private' ];
+		return apply_filters(
+			'edac_scannable_post_statuses',
+			[ 'publish', 'future', 'draft', 'pending', 'private' ]
+		);
 	}
 
 
