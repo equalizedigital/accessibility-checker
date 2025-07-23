@@ -58,14 +58,6 @@ class Pro {
 					'label' => __( 'License Status', 'accessibility-checker' ),
 					'value' => esc_html( get_option( 'edacp_license_status' ) ),
 				],
-				'authorization_username' => [
-					'label' => __( 'Authorization Username', 'accessibility-checker' ),
-					'value' => esc_html( get_option( 'edacp_authorization_username' ) ? get_option( 'edacp_authorization_username' ) : __( 'Unset', 'accessibility-checker' ) ),
-				],
-				'authorization_password' => [
-					'label' => __( 'Authorization Password', 'accessibility-checker' ),
-					'value' => esc_html( get_option( 'edacp_authorization_password' ) ? get_option( 'edacp_authorization_password' ) : __( 'Unset', 'accessibility-checker' ) ),
-				],
 				'scan_id'                => [
 					'label' => __( 'Scan ID', 'accessibility-checker' ),
 					'value' => esc_html( get_transient( 'edacp_scan_id' ) ),

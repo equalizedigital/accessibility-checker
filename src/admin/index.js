@@ -499,31 +499,6 @@ const edacScriptVars = edac_script_vars;
 			} );
 		}
 
-		/**
-		 * Password Protected Notice Ajax
-		 */
-		if ( jQuery( '.edac_password_protected_notice' ).length ) {
-			jQuery( '.edac_password_protected_notice' ).on( 'click', function() {
-				edacPasswordProtectedNoticeAjax();
-			} );
-		}
-
-		function edacPasswordProtectedNoticeAjax() {
-			jQuery.ajax( {
-				url: ajaxurl,
-				method: 'GET',
-				data: {
-					action: 'edac_password_protected_notice_ajax',
-					nonce: edacScriptVars.nonce,
-				},
-			} ).done( function( response ) {
-				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
-				} else {
-					//console.log(response);
-				}
-			} );
-		}
 
 		/**
 		 * GAAD Notice Ajax
