@@ -1,5 +1,8 @@
 Newer versions can be found in readme.txt.
 
+= 1.28.1 =
+* Set tested up to to: 6.8, props @stevejonesdev, @alh0319 #1101
+
 = 1.20.0 =
 * Enhancement: Process dynamic blocks and oEmbeds more reliably in scans.
 * Enhancement: Improve detection for missing_transcripts if there are several oEmbed videos from same provider on page.
