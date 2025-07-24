@@ -385,7 +385,7 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
                                         <div>
-                                                <button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'text-domain' ) }</button>
+                                                <button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
                                                 <button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>
                                         </div>
 				</div>
