@@ -30,8 +30,5 @@ function edac_activation() {
 		return;
 	}
 
-       Accessibility_Statement::add_page();
-
-       // Schedule cleanup of orphaned issues.
-       Orphaned_Issues_Cleanup::schedule_event();
+	Accessibility_Statement::add_page();
 }
