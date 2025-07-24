@@ -126,6 +126,7 @@ class Checks {
 			'status'      => 'good',
 			'label'       => __( 'Content is being checked', 'accessibility-checker' ),
 			'description' => sprintf(
+				// translators: %d is the number of posts scanned.
 				_n( 'Accessibility Checker has scanned %d post.', 'Accessibility Checker has scanned %d posts.', $scanned, 'accessibility-checker' ),
 				$scanned
 			),
