@@ -33,8 +33,9 @@ class Ajax {
 		add_action( 'wp_ajax_edac_details_ajax', [ $this, 'details' ] );
 		add_action( 'wp_ajax_edac_readability_ajax', [ $this, 'readability' ] );
 		add_action( 'wp_ajax_edac_insert_ignore_data', [ $this, 'add_ignore' ] );
-		add_action( 'wp_ajax_edac_update_simplified_summary', [ $this, 'simplified_summary' ] );
-		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', [ $this, 'dismiss_welcome_cta' ] );
+                add_action( 'wp_ajax_edac_update_simplified_summary', [ $this, 'simplified_summary' ] );
+                add_action( 'wp_ajax_edac_ai_generate_summary', [ $this, 'ai_generate_summary' ] );
+                add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', [ $this, 'dismiss_welcome_cta' ] );
 		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', [ $this, 'dismiss_dashboard_cta' ] );
 		( new Email_Opt_In() )->register_ajax_handlers();
 	}
@@ -696,8 +697,9 @@ class Ajax {
 				'</form>
 			<form action="/" class="edac-readability-simplified-summary">
 				<label for="edac-readability-text">Simplified Summary</label>
-				<textarea name="" id="edac-readability-text" cols="30" rows="10">' . $simplified_summary . '</textarea>
-				<input type="submit" value="Submit">
+                                <textarea name="" id="edac-readability-text" cols="30" rows="10">' . $simplified_summary . '</textarea>
+                                <button type="button" id="edac-ai-generate-summary" class="button">AI Generate Summary</button>
+                                <input type="submit" value="Submit">
 			</form>';
 		}
 
@@ -801,7 +803,7 @@ class Ajax {
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that the summary was not specified
 	 */
-	public function simplified_summary() {
+        public function simplified_summary() {
 
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
@@ -835,8 +837,72 @@ class Ajax {
 		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
 		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
 
-		wp_send_json_success( wp_json_encode( $simplified_summary ) );
-	}
+                wp_send_json_success( wp_json_encode( $simplified_summary ) );
+        }
+
+       /**
+        * Generate simplified summary using the AI Services plugin.
+        *
+        * @return void
+        */
+       public function ai_generate_summary() {
+
+               if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
+                       $error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
+                       wp_send_json_error( $error );
+               }
+
+               if ( ! isset( $_REQUEST['post_id'] ) ) {
+                       $error = new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) );
+                       wp_send_json_error( $error );
+               }
+
+               $post_id = (int) $_REQUEST['post_id'];
+               $post     = get_post( $post_id );
+               if ( ! $post ) {
+                       $error = new \WP_Error( '-3', __( 'Invalid post ID', 'accessibility-checker' ) );
+                       wp_send_json_error( $error );
+               }
+
+               $content = apply_filters( 'the_content', $post->post_content );
+
+               if ( ! function_exists( 'ai_services' ) ) {
+                       $error = new \WP_Error( '-4', __( 'AI Services plugin not active', 'accessibility-checker' ) );
+                       wp_send_json_error( $error );
+               }
+
+               $summary = '';
+
+               try {
+                       if ( ai_services()->is_service_available( 'openai' ) ) {
+                               $service = ai_services()->get_available_service( 'openai' );
+                       } elseif ( ai_services()->is_service_available( 'google' ) ) {
+                               $service = ai_services()->get_available_service( 'google' );
+                       } else {
+                               $error = new \WP_Error( '-5', __( 'No AI service available', 'accessibility-checker' ) );
+                               wp_send_json_error( $error );
+                       }
+
+                       $candidates = $service
+                               ->get_model(
+                                       [
+                                               'feature'      => 'edac-simplified-summary',
+                                               'capabilities' => [ \Felix_Arntz\AI_Services\Services\API\Enums\AI_Capability::TEXT_GENERATION ],
+                                       ]
+                               )
+                               ->generate_text( wp_strip_all_tags( $content ) );
+
+                       if ( is_array( $candidates ) && ! empty( $candidates[0]->text ) ) {
+                               $summary = $candidates[0]->text;
+                       } elseif ( is_string( $candidates ) ) {
+                               $summary = $candidates;
+                       }
+               } catch ( Exception $e ) {
+                       wp_send_json_error( new \WP_Error( '-6', $e->getMessage() ) );
+               }
+
+               wp_send_json_success( wp_json_encode( $summary ) );
+       }
 
 	/**
 	 * Handle AJAX request to dismiss Welcome CTA

@@ -236,37 +236,56 @@ const edacScriptVars = edac_script_vars;
 
 					jQuery( '#edac-readability-panel' ).html( responseJSON );
 
-					// Simplified Summary on click
-					jQuery( '.edac-readability-simplified-summary' ).submit(
-						function( event ) {
-							event.preventDefault();
+                                        // Simplified Summary on click
+                                        jQuery( '.edac-readability-simplified-summary' ).submit(
+                                                function ( event ) {
+                                                        event.preventDefault();
 
-							// var postID = wp.data.select("core/editor").getCurrentPostId();
-							const summary = jQuery( '#edac-readability-text' ).val();
+                                                        const summary = jQuery( '#edac-readability-text' ).val();
 
-							jQuery.ajax( {
-								url: ajaxurl,
-								method: 'GET',
-								data: {
-									action: 'edac_update_simplified_summary',
-									post_id: postID,
-									summary,
-									nonce: edacScriptVars.nonce,
-								},
-							} ).done( function( doneResponse ) {
-								if ( true === doneResponse.success ) {
-									const doneResponseJSON = jQuery.parseJSON(
-										doneResponse.data
-									);
+                                                        jQuery.ajax( {
+                                                                url: ajaxurl,
+                                                                method: 'GET',
+                                                                data: {
+                                                                        action: 'edac_update_simplified_summary',
+                                                                        post_id: postID,
+                                                                        summary,
+                                                                        nonce: edacScriptVars.nonce,
+                                                                },
+                                                        } ).done( function ( doneResponse ) {
+                                                                if ( true === doneResponse.success ) {
+                                                                        const doneResponseJSON = jQuery.parseJSON( doneResponse.data );
 
-									refreshSummaryAndReadability();
-								} else {
-									// eslint-disable-next-line no-console
-									console.log( doneResponse );
-								}
-							} );
-						}
-					);
+                                                                        refreshSummaryAndReadability();
+                                                                } else {
+                                                                        // eslint-disable-next-line no-console
+                                                                        console.log( doneResponse );
+                                                                }
+                                                        } );
+                                                }
+                                        );
+
+                                        jQuery( document ).on( 'click', '#edac-ai-generate-summary', function ( event ) {
+                                                event.preventDefault();
+
+                                                jQuery.ajax( {
+                                                        url: ajaxurl,
+                                                        method: 'GET',
+                                                        data: {
+                                                                action: 'edac_ai_generate_summary',
+                                                                post_id: postID,
+                                                                nonce: edacScriptVars.nonce,
+                                                        },
+                                                } ).done( function ( aiResponse ) {
+                                                        if ( true === aiResponse.success ) {
+                                                                const aiText = jQuery.parseJSON( aiResponse.data );
+                                                                jQuery( '#edac-readability-text' ).val( aiText );
+                                                        } else {
+                                                                // eslint-disable-next-line no-console
+                                                                console.log( aiResponse );
+                                                        }
+                                                } );
+                                        } );
 				} else {
 					// eslint-disable-next-line no-console
 					console.log( response );
