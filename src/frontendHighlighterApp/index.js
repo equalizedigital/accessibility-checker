@@ -20,6 +20,7 @@ class AccessibilityCheckerHighlight {
 
 		this.settings = { ...defaultSettings, ...settings };
 		this._scanAttempted = false;
+		this._isRescanning = false;
 
 		this.highlightPanel = this.addHighlightPanel();
 		this.nextButton = document.querySelector( '#edac-highlight-next' );
@@ -385,8 +386,8 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
 					<div>
-						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
 						<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>
+						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
 					</div>
 				</div>
 			</div>
@@ -1218,11 +1219,16 @@ class AccessibilityCheckerHighlight {
 	 * Trigger a full rescan of the current page and reload issues.
 	 */
 	rescanPage() {
+		// Prevent multiple concurrent rescans
+		if ( this._isRescanning ) {
+			return;
+		}
+		this._isRescanning = true;
+
 		this.removeHighlightButtons();
-		this._scanAttempted = true;
 		this.kickoffScan();
 		setTimeout( () => {
-			this._scanAttempted = false;
+			this._isRescanning = false;
 			this.panelOpen();
 		}, 5000 );
 	}
