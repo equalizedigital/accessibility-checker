@@ -32,8 +32,6 @@ if ( true === (bool) $delete_data ) {
 		'edac_frontend_highlighter_position',
 		'edac_delete_data',
 		'edac_review_notice',
-		'edac_authorization_password',
-		'edac_authorization_username',
 		'edac_gaad_notice_dismiss',
 		'edac_black_friday_2023_notice_dismiss',
 	];
