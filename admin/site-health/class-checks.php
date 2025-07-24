@@ -16,6 +16,12 @@ use EDAC\Admin\Scans_Stats;
  * @since 1.29.0
  */
 class Checks {
+	/**
+	 * Cached scan stats for this request.
+	 *
+	 * @var array|null
+	 */
+	private ?array $stats = null;
 
 	/**
 	 * Init hooks.
@@ -60,12 +66,24 @@ class Checks {
 	}
 
 	/**
+	 * Get scan stats, caching for this request.
+	 *
+	 * @return array
+	 */
+	private function get_stats(): array {
+		if ( null === $this->stats ) {
+			$this->stats = ( new Scans_Stats() )->summary();
+		}
+		return $this->stats;
+	}
+
+	/**
 	 * Test if there are accessibility issues on the site.
 	 *
 	 * @return array
 	 */
 	public function test_for_issues(): array {
-		$stats    = ( new Scans_Stats( 60 * 5 ) )->summary();
+		$stats    = $this->get_stats();
 		$errors   = absint( $stats['errors'] ?? 0 );
 		$warnings = absint( $stats['warnings'] ?? 0 );
 
@@ -104,7 +122,7 @@ class Checks {
 	 * @return array
 	 */
 	public function test_content_scanned(): array {
-		$stats   = ( new Scans_Stats( 60 * 5 ) )->summary();
+		$stats   = $this->get_stats();
 		$scanned = absint( $stats['posts_scanned'] ?? 0 );
 
 		if ( 0 === $scanned ) {
