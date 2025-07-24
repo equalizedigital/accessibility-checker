@@ -68,13 +68,6 @@ class Ajax {
 		$html            = [];
 		$html['content'] = '';
 
-		// password check.
-		if ( (bool) get_option( 'edac_password_protected' ) === true ) {
-			$admin_notices              = new \EDAC\Admin\Admin_Notices();
-			$notice_text                = $admin_notices->edac_password_protected_notice_text();
-			$html['password_protected'] = $notice_text;
-			$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
-		}
 
 		$post_id                   = (int) $_REQUEST['post_id'];
 		$summary                   = ( new Summary_Generator( $post_id ) )->generate_summary();
