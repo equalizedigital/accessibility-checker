@@ -20,6 +20,7 @@ class AccessibilityCheckerHighlight {
 
 		this.settings = { ...defaultSettings, ...settings };
 		this._scanAttempted = false;
+		this._isRescanning = false;
 
 		this.highlightPanel = this.addHighlightPanel();
 		this.nextButton = document.querySelector( '#edac-highlight-next' );
@@ -51,6 +52,7 @@ class AccessibilityCheckerHighlight {
 		} );
 
 		this.disableStylesButton = document.querySelector( '#edac-highlight-disable-styles' );
+		this.rescanButton = document.querySelector( '#edac-highlight-rescan' );
 		this.stylesDisabled = false;
 		this.originalCss = [];
 
@@ -95,6 +97,12 @@ class AccessibilityCheckerHighlight {
 				this.disableStyles();
 			}
 		} );
+
+		if ( this.rescanButton ) {
+			this.rescanButton.addEventListener( 'click', () => {
+				this.rescanPage();
+			} );
+		}
 
 		// Open panel if a URL parameter exists
 		if ( this.urlParameter ) {
@@ -361,14 +369,14 @@ class AccessibilityCheckerHighlight {
 
 		const newElement = `
 			<div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
-			<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
-			<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
-			<button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
-				<div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
-				<div class="edac-highlight-panel-description-content"></div>
-				<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
-			</div>
-			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
+				<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
+				<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
+				<button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
+					<div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
+					<div class="edac-highlight-panel-description-content"></div>
+					<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
+				</div>
+				<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
 				<div class="edac-highlight-panel-controls-summary">Loading...</div>
@@ -378,10 +386,10 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
 					<div>
-						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'text-domain' ) }</button>
+						<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>
+						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
 					</div>
 				</div>
-
 			</div>
 			</div>
 		`;
@@ -1205,6 +1213,24 @@ class AccessibilityCheckerHighlight {
 				self.showWait( false );
 				self.showScanError( __( 'Error saving scan results.', 'accessibility-checker' ) );
 			} );
+	}
+
+	/**
+	 * Trigger a full rescan of the current page and reload issues.
+	 */
+	rescanPage() {
+		// Prevent multiple concurrent rescans
+		if ( this._isRescanning ) {
+			return;
+		}
+		this._isRescanning = true;
+
+		this.removeHighlightButtons();
+		this.kickoffScan();
+		setTimeout( () => {
+			this._isRescanning = false;
+			this.panelOpen();
+		}, 5000 );
 	}
 
 	/**
