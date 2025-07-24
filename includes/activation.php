@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Accessibility_Statement;
+use EDAC\Admin\Orphaned_Issues_Cleanup;
 
 /**
  * Activation
@@ -29,5 +30,8 @@ function edac_activation() {
 		return;
 	}
 
-	Accessibility_Statement::add_page();
+       Accessibility_Statement::add_page();
+
+       // Schedule cleanup of orphaned issues.
+       Orphaned_Issues_Cleanup::schedule_event();
 }
