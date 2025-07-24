@@ -8,6 +8,7 @@
 namespace EDAC\Admin;
 
 use EDAC\Admin\OptIn\Email_Opt_In;
+use EDAC\Admin\Helpers;
 use EDAC\Inc\Summary_Generator;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
@@ -442,20 +443,20 @@ class Ajax {
 
 					foreach ( $results as $row ) {
 
-						$id                      = (int) $row['id'];
-						$ignore                  = (int) $row['ignre'];
-						$ignore_class            = $ignore ? ' active' : '';
-						$ignore_label            = $ignore ? 'Ignored' : 'Ignore';
-						$ignore_user             = (int) $row['ignre_user'];
-						$ignore_user_info        = get_userdata( $ignore_user );
-						$ignore_username         = is_object( $ignore_user_info ) ? '<strong>Username:</strong> ' . $ignore_user_info->user_login : '';
-						$ignore_date             = ( $row['ignre_date'] && '0000-00-00 00:00:00' !== $row['ignre_date'] ) ? '<strong>Date:</strong> ' . gmdate( 'F j, Y g:i a', strtotime( esc_html( $row['ignre_date'] ) ) ) : '';
-						$ignore_comment          = esc_html( $row['ignre_comment'] );
-						$ignore_action           = $ignore ? 'disable' : 'enable';
-						$ignore_type             = $rule['rule_type'];
-						$ignore_submit_label     = $ignore ? 'Stop Ignoring' : 'Ignore This ' . $ignore_type;
-						$ignore_comment_disabled = $ignore ? 'disabled' : '';
-						$ignore_global           = (int) $row['ignre_global'];
+						$id                                  = (int) $row['id'];
+						$ignore                              = (int) $row['ignre'];
+						$ignore_class                        = $ignore ? ' active' : '';
+						$ignore_label                        = $ignore ? 'Ignored' : 'Ignore';
+						$ignore_user                         = (int) $row['ignre_user'];
+						$ignore_user_info                    = get_userdata( $ignore_user );
+						$ignore_username                     = is_object( $ignore_user_info ) ? '<strong>Username:</strong> ' . $ignore_user_info->user_login : '';
+												$ignore_date = ( $row['ignre_date'] && '0000-00-00 00:00:00' !== $row['ignre_date'] ) ? '<strong>Date:</strong> ' . Helpers::format_date( esc_html( $row['ignre_date'] ), true ) : '';
+						$ignore_comment                      = esc_html( $row['ignre_comment'] );
+						$ignore_action                       = $ignore ? 'disable' : 'enable';
+						$ignore_type                         = $rule['rule_type'];
+						$ignore_submit_label                 = $ignore ? 'Stop Ignoring' : 'Ignore This ' . $ignore_type;
+						$ignore_comment_disabled             = $ignore ? 'disabled' : '';
+						$ignore_global                       = (int) $row['ignre_global'];
 
 						// check for images and svgs in object code.
 						$media      = edac_parse_html_for_media( $row['object'] );
@@ -732,25 +733,25 @@ class Ajax {
 		}
 
 		global $wpdb;
-		$table_name           = $wpdb->prefix . 'accessibility_checker';
-		$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
-		$ids                  = array_map(
+		$table_name               = $wpdb->prefix . 'accessibility_checker';
+		$raw_ids                  = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
+		$ids                      = array_map(
 			function ( $value ) {
 				return (int) $value;
 			},
 			$raw_ids
 		); // Sanitizing array elements to integers.
-		$action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( $_REQUEST['ignore_action'] ) : '';
-		$type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( $_REQUEST['ignore_type'] ) : '';
-		$siteid               = get_current_blog_id();
-		$ignre                = ( 'enable' === $action ) ? 1 : 0;
-		$ignre_user           = ( 'enable' === $action ) ? get_current_user_id() : null;
-		$ignre_user_info      = ( 'enable' === $action ) ? get_userdata( $ignre_user ) : '';
-		$ignre_username       = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
-		$ignre_date           = ( 'enable' === $action ) ? gmdate( 'Y-m-d H:i:s' ) : null;
-		$ignre_date_formatted = ( 'enable' === $action ) ? gmdate( 'F j, Y g:i a', strtotime( $ignre_date ) ) : '';
-		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( $_REQUEST['comment'] ) : null;
-		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( $_REQUEST['ignore_global'] ) : 0;
+		$action                   = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( $_REQUEST['ignore_action'] ) : '';
+		$type                     = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( $_REQUEST['ignore_type'] ) : '';
+		$siteid                   = get_current_blog_id();
+		$ignre                    = ( 'enable' === $action ) ? 1 : 0;
+		$ignre_user               = ( 'enable' === $action ) ? get_current_user_id() : null;
+		$ignre_user_info          = ( 'enable' === $action ) ? get_userdata( $ignre_user ) : '';
+		$ignre_username           = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
+			$ignre_date           = ( 'enable' === $action ) ? current_time( 'mysql' ) : null;
+			$ignre_date_formatted = ( 'enable' === $action ) ? Helpers::format_date( $ignre_date, true ) : '';
+		$ignre_comment            = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( $_REQUEST['comment'] ) : null;
+		$ignore_global            = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( $_REQUEST['ignore_global'] ) : 0;
 
 		// If largeBatch is set and 'true', we need to perform an update using the 'object'
 		// instead of IDs. It is a much less efficient query than by IDs - but many IDs run
