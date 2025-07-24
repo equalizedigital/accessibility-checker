@@ -19,9 +19,11 @@ class Settings {
 	 */
 	public static function get_scannable_post_statuses() {
 		/**
-		 * Filter the list of post statuses that are scannable.
+		 * Filters the list of post statuses that are scannable.
 		 *
 		 * @since 1.29.0
+		 *
+		 * @param array $scannable_post_statuses List of scannable post statuses.
 		 */
 		return apply_filters(
 			'edac_scannable_post_statuses',
