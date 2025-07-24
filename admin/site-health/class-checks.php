@@ -49,13 +49,12 @@ class Checks {
 	/**
 	 * Returns the badge for Accessibility Checker site health tests.
 	 *
-	 * @param string $type The type of improvement (e.g., 'Accessibility', 'Performance', 'Security').
 	 * @param string $color The color for the badge (e.g., 'blue', 'orange', 'red', 'green').
 	 * @return array
 	 */
-	protected function get_badge( string $type = 'Accessibility', string $color = 'blue' ): array {
+	protected function get_accessibility_badge( string $color = 'blue' ): array {
 		return [
-			'label' => __( $type, 'accessibility-checker' ),
+			'label' => __( 'Accessibility', 'accessibility-checker' ),
 			'color' => $color,
 		];
 	}
@@ -86,7 +85,7 @@ class Checks {
 					esc_html__( 'View issues', 'accessibility-checker' )
 				),
 				'test'        => 'edac_issues',
-				'badge'       => $this->get_badge(),
+				'badge'       => $this->get_accessibility_badge(),
 			];
 		}
 
@@ -95,7 +94,7 @@ class Checks {
 			'label'       => __( 'No accessibility issues detected', 'accessibility-checker' ),
 			'description' => __( 'Accessibility Checker has not found any issues in scanned content.', 'accessibility-checker' ),
 			'test'        => 'edac_issues',
-			'badge'       => $this->get_badge(),
+			'badge'       => $this->get_accessibility_badge(),
 		];
 	}
 
@@ -119,7 +118,7 @@ class Checks {
 					esc_html__( 'Start full site scan', 'accessibility-checker' )
 				),
 				'test'        => 'edac_scanned',
-				'badge'       => $this->get_badge(),
+				'badge'       => $this->get_accessibility_badge(),
 			];
 		}
 
@@ -131,7 +130,7 @@ class Checks {
 				$scanned
 			),
 			'test'        => 'edac_scanned',
-			'badge'       => $this->get_badge(),
+			'badge'       => $this->get_accessibility_badge(),
 		];
 	}
 }
