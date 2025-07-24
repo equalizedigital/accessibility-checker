@@ -51,6 +51,7 @@ class AccessibilityCheckerHighlight {
 		} );
 
 		this.disableStylesButton = document.querySelector( '#edac-highlight-disable-styles' );
+		this.rescanButton = document.querySelector( '#edac-highlight-rescan' );
 		this.stylesDisabled = false;
 		this.originalCss = [];
 
@@ -95,6 +96,12 @@ class AccessibilityCheckerHighlight {
 				this.disableStyles();
 			}
 		} );
+
+		if ( this.rescanButton ) {
+			this.rescanButton.addEventListener( 'click', () => {
+				this.rescanPage();
+			} );
+		}
 
 		// Open panel if a URL parameter exists
 		if ( this.urlParameter ) {
@@ -377,9 +384,10 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>Previous</button>
 						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
-					<div>
-						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'text-domain' ) }</button>
-					</div>
+                                        <div>
+                                                <button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'text-domain' ) }</button>
+                                                <button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>
+                                        </div>
 				</div>
 
 			</div>
@@ -1205,6 +1213,19 @@ class AccessibilityCheckerHighlight {
 				self.showWait( false );
 				self.showScanError( __( 'Error saving scan results.', 'accessibility-checker' ) );
 			} );
+	}
+
+	/**
+	 * Trigger a full rescan of the current page and reload issues.
+	 */
+	rescanPage() {
+		this.removeHighlightButtons();
+		this._scanAttempted = true;
+		this.kickoffScan();
+		setTimeout( () => {
+			this._scanAttempted = false;
+			this.panelOpen();
+		}, 5000 );
 	}
 
 	/**
