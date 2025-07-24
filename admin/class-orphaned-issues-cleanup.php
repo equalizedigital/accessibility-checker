@@ -86,6 +86,9 @@ class Orphaned_Issues_Cleanup {
 				self::BATCH_LIMIT
 			)
 		);
+		if ( empty( $post_ids ) ) {
+			return;
+		}
 
 		foreach ( $post_ids as $post_id ) {
 			Purge_Post_Data::delete_post( (int) $post_id );
