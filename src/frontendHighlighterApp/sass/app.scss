@@ -2,6 +2,10 @@
 @use "../../common/sass/variables";
 @use "../../common/sass/helpers";
 
+.edac-hidden {
+       display: none !important;
+}
+
 body {
 	&.edac-app-disable-styles {
 		//   padding: .5rem (46px + 46px ) !important; //make sure button is visible
@@ -59,10 +63,15 @@ body {
 		position: absolute !important;
 		z-index: 2147483646 !important;
 
-		&-error {
-			background: transparent url("../images/highlight-icon-error.svg") center center no-repeat !important;
-			background-size: 40px 40px !important;
-		}
+                &-error {
+                        background: transparent url("../images/highlight-icon-error.svg") center center no-repeat !important;
+                        background-size: 40px 40px !important;
+                }
+
+                &-contrast {
+                        background: transparent url("../images/highlight-icon-error.svg") center center no-repeat !important;
+                        background-size: 40px 40px !important;
+                }
 
 		&-warning {
 			background: transparent url("../images/highlight-icon-warning.svg") center center no-repeat !important;
@@ -104,19 +113,30 @@ body {
 
 		}
 
-		@media screen and (max-width: calc(variables.$extra-small-screen-width)) {
+                @media screen and (max-width: calc(variables.$extra-small-screen-width)) {
 
-			.edac-highlight-panel-controls-buttons {
-				display: flex !important;
-				justify-content: space-around;
+                        .edac-highlight-panel-controls-buttons {
+                                display: flex !important;
+                                justify-content: space-around;
 
 				button {
 					padding: 4px 7px !important;
 					margin-right: 0px !important;
 				}
-			}
+                        }
 
-		}
+                }
+
+                .edac-highlight-panel-filters {
+                        margin: 10px 0 !important;
+
+                        label {
+                                margin-right: 10px !important;
+                                font-size: 12px !important;
+                                display: inline-block !important;
+                        }
+                }
+
 
 		* {
 			all: unset;

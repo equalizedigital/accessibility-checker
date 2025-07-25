@@ -29,6 +29,12 @@ class AccessibilityCheckerHighlight {
 		this.panelDescription = document.querySelector( '#edac-highlight-panel-description' );
 		this.panelControls = document.querySelector( '#edac-highlight-panel-controls' );
 		this.descriptionCloseButton = document.querySelector( '.edac-highlight-panel-description-close' );
+		this.filterControls = {
+			error: document.querySelector( '#edac-filter-errors' ),
+			contrast: document.querySelector( '#edac-filter-contrast' ),
+			warning: document.querySelector( '#edac-filter-warnings' ),
+		};
+		this.filters = { error: true, contrast: true, warning: true };
 		this.issues = null;
 		this.fixes = null;
 		this.currentButtonIndex = null;
@@ -93,6 +99,17 @@ class AccessibilityCheckerHighlight {
 				this.enableStyles();
 			} else {
 				this.disableStyles();
+			}
+		} );
+
+		// Filter checkboxes
+		Object.keys( this.filterControls ).forEach( ( key ) => {
+			const control = this.filterControls[ key ];
+			if ( control ) {
+				control.addEventListener( 'change', () => {
+					this.filters[ key ] = control.checked;
+					this.updateFilteredIssues();
+				} );
 			}
 		} );
 
@@ -269,13 +286,14 @@ class AccessibilityCheckerHighlight {
 	addTooltip( element, value, index, totalItems ) {
 		// Create the tooltip.
 		const tooltip = document.createElement( 'button' );
-		tooltip.classList = 'edac-highlight-btn edac-highlight-btn-' + value.rule_type;
+		tooltip.classList = 'edac-highlight-btn edac-highlight-btn-' + value.category;
 		tooltip.setAttribute( 'aria-label', `Open details for ${ value.rule_title }, ${ index + 1 } of ${ totalItems }` );
 		tooltip.setAttribute( 'aria-expanded', 'false' );
 		tooltip.setAttribute( 'aria-haspopup', 'dialog' );
 
 		//add data-id to the tooltip/button so we can find it later.
 		tooltip.dataset.id = value.id;
+		tooltip.dataset.category = value.category;
 
 		const onClick = ( e ) => {
 			const id = e.currentTarget.dataset.id;
@@ -371,8 +389,13 @@ class AccessibilityCheckerHighlight {
 			<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
 				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
 				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
-				<div class="edac-highlight-panel-controls-summary">Loading...</div>
-				<div class="edac-highlight-panel-controls-buttons">
+                                <div class="edac-highlight-panel-controls-summary">Loading...</div>
+                                <div class="edac-highlight-panel-filters">
+                                        <label><input type="checkbox" id="edac-filter-errors" checked="checked" /> ${ __( 'Errors', 'accessibility-checker' ) }</label>
+                                        <label><input type="checkbox" id="edac-filter-contrast" checked="checked" /> ${ __( 'Contrast Errors', 'accessibility-checker' ) }</label>
+                                        <label><input type="checkbox" id="edac-filter-warnings" checked="checked" /> ${ __( 'Warnings', 'accessibility-checker' ) }</label>
+                                </div>
+                                <div class="edac-highlight-panel-controls-buttons">
 					<div>
 						<button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>Previous</button>
 						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
@@ -394,12 +417,16 @@ class AccessibilityCheckerHighlight {
 	 * This function highlights the next element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
 	 */
 	highlightFocusNext = () => {
+		const list = this.filteredIssues && this.filteredIssues.length ? this.filteredIssues : this.issues;
+		if ( ! list || ! list.length ) {
+			return;
+		}
 		if ( this.currentButtonIndex === null ) {
 			this.currentButtonIndex = 0;
 		} else {
-			this.currentButtonIndex = ( this.currentButtonIndex + 1 ) % this.issues.length;
+			this.currentButtonIndex = ( this.currentButtonIndex + 1 ) % list.length;
 		}
-		const id = this.issues[ this.currentButtonIndex ].id;
+		const id = list[ this.currentButtonIndex ].id;
 		this.showIssue( id );
 	};
 
@@ -407,12 +434,16 @@ class AccessibilityCheckerHighlight {
 	 * This function highlights the previous element on the page. It uses the 'currentButtonIndex' property to keep track of the current element.
 	 */
 	highlightFocusPrevious = () => {
-		if ( this.currentButtonIndex === null ) {
-			this.currentButtonIndex = this.issues.length - 1;
-		} else {
-			this.currentButtonIndex = ( this.currentButtonIndex - 1 + this.issues.length ) % this.issues.length;
+		const list = this.filteredIssues && this.filteredIssues.length ? this.filteredIssues : this.issues;
+		if ( ! list || ! list.length ) {
+			return;
 		}
-		const id = this.issues[ this.currentButtonIndex ].id;
+		if ( this.currentButtonIndex === null ) {
+			this.currentButtonIndex = list.length - 1;
+		} else {
+			this.currentButtonIndex = ( this.currentButtonIndex - 1 + list.length ) % list.length;
+		}
+		const id = list[ this.currentButtonIndex ].id;
 		this.showIssue( id );
 	};
 
@@ -530,17 +561,20 @@ class AccessibilityCheckerHighlight {
 		this.highlightAjax().then(
 			( json ) => {
 
-				this.issues = json.issues;
+				this.issues = json.issues.map( ( item ) => {
+					const category = item.slug === 'color_contrast_failure' ? 'contrast' : item.rule_type;
+					return { ...item, category };
+				} );
 				this.fixes = json.fixes;
 
-				json.issues.forEach( function( value, index ) {
+				this.issues.forEach( function( value, index ) {
 					const element = this.findElement( value, index );
 					if ( element !== null ) {
 						this.issues[ index ].element = element;
 					}
 				}.bind( this ) );
 
-				this.showIssueCount();
+				this.updateFilteredIssues();
 
 				if ( id !== undefined ) {
 					this.showIssue( id );
@@ -673,7 +707,7 @@ class AccessibilityCheckerHighlight {
 			content += `<button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Code', 'accessibility-checker' ) }</button>`;
 
 			// title and content
-			descriptionTitle.innerHTML = matchingObj.rule_title + ' <span class="edac-highlight-panel-description-type edac-highlight-panel-description-type-' + matchingObj.rule_type + '" aria-label="' + __( 'Issue type:', 'accessibility-checker' ) + ' ' + matchingObj.rule_type + '"> ' + matchingObj.rule_type + '</span>';
+			descriptionTitle.innerHTML = matchingObj.rule_title + ' <span class="edac-highlight-panel-description-type edac-highlight-panel-description-type-' + matchingObj.category + '" aria-label="' + __( 'Issue type:', 'accessibility-checker' ) + ' ' + matchingObj.category + '"> ' + matchingObj.category + '</span>';
 
 			// content
 			descriptionContent.innerHTML = content;
@@ -864,8 +898,9 @@ class AccessibilityCheckerHighlight {
 	 */
 	countIssues( ruleType ) {
 		let count = 0;
-		for ( const issue of this.issues ) {
-			if ( issue.rule_type === ruleType ) {
+		const list = this.filteredIssues || this.issues || [];
+		for ( const issue of list ) {
+			if ( issue.category === ruleType ) {
 				count++;
 			}
 		}
@@ -879,7 +914,8 @@ class AccessibilityCheckerHighlight {
 	 */
 	countIgnored() {
 		let count = 0;
-		for ( const issue of this.issues ) {
+		const list = this.filteredIssues || this.issues || [];
+		for ( const issue of list ) {
 			if ( issue.ignored === 1 ) {
 				count++;
 			}
@@ -892,12 +928,13 @@ class AccessibilityCheckerHighlight {
 	 */
 	showIssueCount() {
 		const errorCount = this.countIssues( 'error' );
+		const contrastCount = this.countIssues( 'contrast' );
 		const warningCount = this.countIssues( 'warning' );
 		const ignoredCount = this.countIgnored();
 		const div = document.querySelector( '.edac-highlight-panel-controls-summary' );
 
 		let textContent = __( 'No issues detected.', 'accessibility-checker' );
-		if ( errorCount > 0 || warningCount > 0 || ignoredCount > 0 ) {
+		if ( errorCount > 0 || contrastCount > 0 || warningCount > 0 || ignoredCount > 0 ) {
 			textContent = '';
 			// show buttons since we have issues.
 			this.nextButton.disabled = false;
@@ -905,6 +942,9 @@ class AccessibilityCheckerHighlight {
 
 			if ( errorCount >= 0 ) {
 				textContent += errorCount + ' ' + _n( 'error', 'errors', errorCount, 'accessibility-checker' ) + ', ';
+			}
+			if ( contrastCount >= 0 ) {
+				textContent += contrastCount + ' ' + _n( 'contrast error', 'contrast errors', contrastCount, 'accessibility-checker' ) + ', ';
 			}
 			if ( warningCount >= 0 ) {
 				textContent += warningCount + ' ' + _n( 'warning', 'warnings', warningCount, 'accessibility-checker' ) + ', ';
@@ -918,6 +958,22 @@ class AccessibilityCheckerHighlight {
 		}
 
 		div.textContent = textContent;
+	}
+
+	updateFilteredIssues() {
+		if ( ! this.issues ) {
+			return;
+		}
+		this.filteredIssues = this.issues.filter( ( issue ) => this.filters[ issue.category ] );
+		this.tooltips.forEach( ( item ) => {
+			const issue = this.issues.find( ( i ) => i.tooltip === item.tooltip );
+			if ( issue ) {
+				item.tooltip.classList.toggle( 'edac-hidden', ! this.filters[ issue.category ] );
+			}
+		} );
+		this.removeSelectedClasses();
+		this.currentButtonIndex = null;
+		this.showIssueCount();
 	}
 
 	/**
