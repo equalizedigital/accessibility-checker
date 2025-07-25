@@ -7,6 +7,7 @@ import { isFocusable } from 'tabbable';
 import { __, _n } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
+import { showNotice } from '../common/helpers';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -53,6 +54,7 @@ class AccessibilityCheckerHighlight {
 
 		this.disableStylesButton = document.querySelector( '#edac-highlight-disable-styles' );
 		this.rescanButton = document.querySelector( '#edac-highlight-rescan' );
+		this.clearIssuesButton = document.querySelector( '#edac-highlight-clear-issues' );
 		this.stylesDisabled = false;
 		this.originalCss = [];
 
@@ -101,6 +103,12 @@ class AccessibilityCheckerHighlight {
 		if ( this.rescanButton ) {
 			this.rescanButton.addEventListener( 'click', () => {
 				this.rescanPage();
+			} );
+		}
+
+		if ( this.clearIssuesButton ) {
+			this.clearIssuesButton.addEventListener( 'click', () => {
+				this.clearIssues();
 			} );
 		}
 
@@ -386,10 +394,11 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
 					<div>
-						<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>
-						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
-					</div>
-				</div>
+                                                <button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>
+                                                <button id="edac-highlight-clear-issues" class="edac-highlight-clear-issues">${ __( 'Clear Issues', 'accessibility-checker' ) }</button>
+                                                <button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
+                                        </div>
+                                </div>
 			</div>
 			</div>
 		`;
@@ -1231,6 +1240,49 @@ class AccessibilityCheckerHighlight {
 			this._isRescanning = false;
 			this.panelOpen();
 		}, 5000 );
+	}
+
+	/**
+	 * Clear all saved issues for the current post.
+	 */
+	clearIssues() {
+		// eslint-disable-next-line no-alert -- Using an alert here is the best way to inform the user of the action.
+		if ( ! confirm( __( 'This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?', 'accessibility-checker' ) ) ) {
+			return;
+		}
+
+		if ( ! this.clearIssuesButton ) {
+			return;
+		}
+
+		this.clearIssuesButton.disabled = true;
+		this.clearIssuesButton.textContent = __( 'Clearing...', 'accessibility-checker' );
+
+		fetch( `${ edacFrontendHighlighterApp.edacUrl }/wp-json/accessibility-checker/v1/clear-issues/${ edacFrontendHighlighterApp.postID }`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-WP-Nonce': edacFrontendHighlighterApp.restNonce,
+			},
+			body: JSON.stringify( {
+				id: edacFrontendHighlighterApp.postID,
+				flush: true,
+			} ),
+		} ).then( ( response ) => {
+			if ( response.ok ) {
+				this.removeHighlightButtons();
+				this.issues = [];
+				this.showIssueCount();
+				showNotice( { msg: __( 'Issues cleared successfully.', 'accessibility-checker' ), type: 'success' } );
+			} else {
+				showNotice( { msg: __( 'Failed to clear issues.', 'accessibility-checker' ), type: 'error' } );
+			}
+		} ).catch( () => {
+			showNotice( { msg: __( 'An error occurred while clearing issues.', 'accessibility-checker' ), type: 'error' } );
+		} ).finally( () => {
+			this.clearIssuesButton.disabled = false;
+			this.clearIssuesButton.textContent = __( 'Clear Issues', 'accessibility-checker' );
+		} );
 	}
 
 	/**
