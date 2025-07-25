@@ -10,6 +10,7 @@ namespace EDAC\Admin;
 use EDAC\Admin\SiteHealth\Information;
 use EDAC\Admin\Purge_Post_Data;
 use EDAC\Admin\Post_Save;
+use EDAC\Admin\Dashboard_Glance;
 use EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion;
 use EqualizeDigital\AccessibilityChecker\Admin\Admin_Footer_Text;
 
@@ -58,6 +59,9 @@ class Admin {
 
 		$widgets = new Widgets();
 		$widgets->init_hooks();
+		
+		$dashboard_glance = new Dashboard_Glance();
+		$dashboard_glance->init_hooks();
 
 		$site_health_info = new Information();
 		$site_health_info->init_hooks();
