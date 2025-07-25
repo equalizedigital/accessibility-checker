@@ -484,7 +484,8 @@ class AccessibilityCheckerHighlight {
 		}
 
 		const issue = this.issues.find( ( i ) => i.id === id );
-		this.currentButtonIndex = this.issues.findIndex( ( i ) => i.id === id );
+		const listForIndex = this.filteredIssues && this.filteredIssues.length ? this.filteredIssues : this.issues;
+		this.currentButtonIndex = listForIndex.findIndex( ( i ) => i.id === id );
 
 		const tooltip = issue.tooltip;
 		const element = issue.element;
@@ -955,6 +956,9 @@ class AccessibilityCheckerHighlight {
 				// Remove the trailing comma and add "detected."
 				textContent = textContent.slice( 0, -2 ) + ' ' + __( 'detected.', 'accessibility-checker' );
 			}
+		} else {
+			this.nextButton.disabled = true;
+			this.previousButton.disabled = true;
 		}
 
 		div.textContent = textContent;
