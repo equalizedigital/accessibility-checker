@@ -2,7 +2,7 @@
 /**
  * WP-CLI command to run orphaned issues cleanup.
  *
- * @since 1.15.0
+ * @since 1.29.0
  * @package Accessibility_Checker
  */
 
@@ -13,6 +13,8 @@ use WP_CLI;
 
 /**
  * Runs the orphaned issues cleanup process.
+ *
+ * @since 1.29.0
  */
 class CleanupOrphanedIssues implements CLICommandInterface {
 	/**
@@ -25,41 +27,47 @@ class CleanupOrphanedIssues implements CLICommandInterface {
 	/**
 	 * Constructor.
 	 *
+	 * @since 1.29.0
+	 *
 	 * @param mixed|WP_CLI $wp_cli The WP-CLI instance.
 	 */
 	public function __construct( $wp_cli = null ) {
-		$this->wp_cli = $wp_cli ?? new WP_CLI();
+			$this->wp_cli = $wp_cli ?? new WP_CLI();
 	}
 
 	/**
 	 * Get the name of the command.
 	 *
+	 * @since 1.29.0
+	 *
 	 * @return string
 	 */
 	public static function get_name(): string {
-		return 'accessibility-checker cleanup-orphaned-issues';
+			return 'accessibility-checker cleanup-orphaned-issues';
 	}
 
 	/**
 	 * Get the arguments for the command.
 	 *
+	 * @since 1.29.0
+	 *
 	 * @return array
 	 */
 	public static function get_args(): array {
-		return [
-			'batch' => [
-				'type'        => 'assoc',
-				'description' => 'Number of orphaned posts to process in one batch.',
-				'optional'    => true,
-				'default'     => null,
-			],
-			'sleep' => [
-				'type'        => 'assoc',
-				'description' => 'Seconds to sleep between deletions (default: 0).',
-				'optional'    => true,
-				'default'     => 0,
-			],
-		];
+			return [
+				'batch' => [
+					'type'        => 'assoc',
+					'description' => 'Number of orphaned posts to process in one batch.',
+					'optional'    => true,
+					'default'     => null,
+				],
+				'sleep' => [
+					'type'        => 'assoc',
+					'description' => 'Seconds to sleep between deletions (default: 0).',
+					'optional'    => true,
+					'default'     => 0,
+				],
+			];
 	}
 
 	/**
@@ -68,6 +76,8 @@ class CleanupOrphanedIssues implements CLICommandInterface {
 	 * ## EXAMPLES
 	 *
 	 *     wp accessibility-checker cleanup-orphaned-issues
+	 *
+	 * @since 1.29.0
 	 *
 	 * @param array $options    Positional args passed to the command.
 	 * @param array $arguments  Associative args passed to the command.

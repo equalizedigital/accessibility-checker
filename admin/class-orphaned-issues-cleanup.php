@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class Orphaned_Issues_Cleanup
+ *
+ * @since 1.29.0
  */
 class Orphaned_Issues_Cleanup {
 
@@ -40,6 +42,8 @@ class Orphaned_Issues_Cleanup {
 	/**
 	 * Register hooks.
 	 *
+	 * @since 1.29.0
+	 *
 	 * @return void
 	 */
 	public function init_hooks() {
@@ -49,6 +53,8 @@ class Orphaned_Issues_Cleanup {
 
 	/**
 	 * Schedule the cleanup event.
+	 *
+	 * @since 1.29.0
 	 *
 	 * @return void
 	 */
@@ -61,23 +67,27 @@ class Orphaned_Issues_Cleanup {
 	/**
 	 * Unschedule the cleanup event.
 	 *
+	 * @since 1.29.0
+	 *
 	 * @return void
 	 */
 	public static function unschedule_event() {
-		$timestamp = wp_next_scheduled( self::EVENT );
+			$timestamp = wp_next_scheduled( self::EVENT );
 		if ( $timestamp ) {
-			wp_unschedule_event( $timestamp, self::EVENT );
+				wp_unschedule_event( $timestamp, self::EVENT );
 		}
 	}
 
 	/**
 	 * Set a custom batch size for this cleanup instance.
 	 *
+	 * @since 1.29.0
+	 *
 	 * @param int $batch_size A custom size of batch to process.
 	 * @return void
 	 */
 	public function set_batch_size( int $batch_size ): void {
-		$this->batch_size = $batch_size;
+			$this->batch_size = $batch_size;
 	}
 
 	/**
@@ -91,6 +101,8 @@ class Orphaned_Issues_Cleanup {
 
 	/**
 	 * Get orphaned post IDs (posts in issues table but not in posts table).
+	 *
+	 * @since 1.29.0
 	 *
 	 * @return int[] Array of orphaned post IDs.
 	 */
@@ -114,14 +126,18 @@ class Orphaned_Issues_Cleanup {
 	/**
 	 * Delete all issues for a given orphaned post ID.
 	 *
+	 * @since 1.29.0
+	 *
 	 * @param int $post_id The orphaned post ID.
 	 */
 	public function delete_orphaned_post( int $post_id ) {
-		Purge_Post_Data::delete_post( $post_id );
+			Purge_Post_Data::delete_post( $post_id );
 	}
 
 	/**
 	 * Cleanup orphaned issues (batch process).
+	 *
+	 * @since 1.29.0
 	 *
 	 * @return int[] Array of deleted orphaned post IDs.
 	 */
