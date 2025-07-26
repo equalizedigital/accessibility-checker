@@ -72,9 +72,9 @@ class Orphaned_Issues_Cleanup {
 	 * @return void
 	 */
 	public static function unschedule_event() {
-			$timestamp = wp_next_scheduled( self::EVENT );
+		$timestamp = wp_next_scheduled( self::EVENT );
 		if ( $timestamp ) {
-				wp_unschedule_event( $timestamp, self::EVENT );
+			wp_unschedule_event( $timestamp, self::EVENT );
 		}
 	}
 
@@ -87,7 +87,7 @@ class Orphaned_Issues_Cleanup {
 	 * @return void
 	 */
 	public function set_batch_size( int $batch_size ): void {
-			$this->batch_size = $batch_size;
+		$this->batch_size = $batch_size;
 	}
 
 	/**
@@ -155,7 +155,7 @@ class Orphaned_Issues_Cleanup {
 	 * @param int $post_id The orphaned post ID.
 	 */
 	public function delete_orphaned_post( int $post_id ) {
-			Purge_Post_Data::delete_post( $post_id );
+		Purge_Post_Data::delete_post( $post_id );
 	}
 
 	/**
