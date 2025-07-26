@@ -13,6 +13,7 @@ use EqualizeDigital\AccessibilityChecker\WPCLI\Command\CLICommandInterface;
 use EqualizeDigital\AccessibilityChecker\WPCLI\Command\DeleteStats;
 use EqualizeDigital\AccessibilityChecker\WPCLI\Command\GetSiteStats;
 use EqualizeDigital\AccessibilityChecker\WPCLI\Command\GetStats;
+use EqualizeDigital\AccessibilityChecker\WPCLI\Command\CleanupOrphanedIssues;
 use Exception;
 use WP_CLI;
 
@@ -45,6 +46,7 @@ class BootstrapCLI {
 		DeleteStats::class,
 		GetSiteStats::class,
 		GetStats::class,
+		CleanupOrphanedIssues::class,
 	];
 
 	/**
