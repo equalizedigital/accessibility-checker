@@ -112,12 +112,37 @@ class Orphaned_Issues_Cleanup {
 		if ( ! $table_name ) {
 			return [];
 		}
+		
+		$scannable_post_types = Settings::get_scannable_post_types();
+		if ( empty( $scannable_post_types ) ) {
+			// No scannable post types: treat all issues as orphaned for this site.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			return $wpdb->get_col(
+				$wpdb->prepare(
+					'SELECT DISTINCT postid FROM %i WHERE siteid = %d LIMIT %d',
+					$table_name,
+					get_current_blog_id(),
+					$this->get_batch_size()
+				)
+			);
+		}
+
+		// Prepare a comma-separated, SQL-safe list of post types.
+		$safe_post_types = array_map( 'esc_sql', $scannable_post_types );
+		$post_types_list = "'" . implode( "','", $safe_post_types ) . "'";
+
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		return $wpdb->get_col(
 			$wpdb->prepare(
-				"SELECT DISTINCT t.postid FROM %i AS t LEFT JOIN {$wpdb->posts} AS p ON t.postid = p.ID WHERE t.siteid = %d AND p.ID IS NULL LIMIT %d",
+				"SELECT DISTINCT t.postid
+						FROM %i AS t
+						LEFT JOIN {$wpdb->posts} AS p ON t.postid = p.ID
+						WHERE t.siteid = %d
+								AND (p.ID IS NULL OR p.post_type NOT IN (%s))
+						LIMIT %d",
 				$table_name,
 				get_current_blog_id(),
+				$post_types_list,
 				$this->get_batch_size()
 			)
 		);
