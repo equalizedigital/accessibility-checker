@@ -127,25 +127,24 @@ class Orphaned_Issues_Cleanup {
 			);
 		}
 
-		// Prepare a comma-separated, SQL-safe list of post types.
-		$safe_post_types = array_map( 'esc_sql', $scannable_post_types );
-		$post_types_list = "'" . implode( "','", $safe_post_types ) . "'";
+		// Build placeholders for each post type.
+		$placeholders = implode( ',', array_fill( 0, count( $scannable_post_types ), '%s' ) );
+		$sql          = "SELECT DISTINCT t.postid
+				FROM %i AS t
+				LEFT JOIN {$wpdb->posts} AS p ON t.postid = p.ID
+				WHERE t.siteid = %d
+				AND (p.ID IS NULL OR p.post_type NOT IN ($placeholders))
+				LIMIT %d";
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		return $wpdb->get_col(
-			$wpdb->prepare(
-				"SELECT DISTINCT t.postid
-						FROM %i AS t
-						LEFT JOIN {$wpdb->posts} AS p ON t.postid = p.ID
-						WHERE t.siteid = %d
-								AND (p.ID IS NULL OR p.post_type NOT IN (%s))
-						LIMIT %d",
-				$table_name,
-				get_current_blog_id(),
-				$post_types_list,
-				$this->get_batch_size()
-			)
+		// Build arguments for prepare: table name, site id, ...post types, batch size.
+		$args = array_merge(
+			[ $sql, $table_name, get_current_blog_id() ],
+			$scannable_post_types,
+			[ $this->get_batch_size() ]
 		);
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching -- Dynamic placeholders for IN() are required for security and cannot be avoided in this context.
+		return $wpdb->get_col( call_user_func_array( [ $wpdb, 'prepare' ], $args ) );
 	}
 
 	/**
