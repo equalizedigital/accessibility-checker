@@ -6,7 +6,6 @@
  */
 
 use EDAC\Admin\Accessibility_Statement;
-use EDAC\Admin\Orphaned_Issues_Cleanup;
 
 /**
  * Activation
