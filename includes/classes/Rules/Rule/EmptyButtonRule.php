@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * EmptyButton Rule class.
@@ -64,10 +65,10 @@ class EmptyButtonRule implements RuleInterface {
 			'wcag'                  => '4.1.2',
 			'severity'              => 1, // Critical.
 			'affected_disabilities' => [
-				esc_html__( 'Blind', 'accessibility-checker' ),
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
-				esc_html__( 'Deafblind', 'accessibility-checker' ),
-				esc_html__( 'Cognitive', 'accessibility-checker' ),
+				AffectedDisabilities::BLIND,
+				AffectedDisabilities::LOW_VISION,
+				AffectedDisabilities::DEAFBLIND,
+				AffectedDisabilities::COGNITIVE,
 			],
 		];
 	}

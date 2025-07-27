@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * ImageMapMissingAltText Rule class.
@@ -55,9 +56,9 @@ class ImageMapMissingAltTextRule implements RuleInterface {
 			'wcag'                  => '1.1.1',
 			'severity'              => 1, // Critical..
 			'affected_disabilities' => [
-				esc_html__( 'Blind', 'accessibility-checker' ),
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
-				esc_html__( 'Deafblind', 'accessibility-checker' ),
+				AffectedDisabilities::BLIND,
+				AffectedDisabilities::LOW_VISION,
+				AffectedDisabilities::DEAFBLIND,
 			],
 			'combines'              => [
 				'area-alt',

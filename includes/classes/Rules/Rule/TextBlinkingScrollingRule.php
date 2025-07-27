@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * TextBlinkingScrolling Rule class.
@@ -48,9 +49,9 @@ class TextBlinkingScrollingRule implements RuleInterface {
 			'wcag'                  => '2.2.2',
 			'severity'              => 1, // Critical..
 			'affected_disabilities' => [
-				esc_html__( 'Seizure disorders', 'accessibility-checker' ),
-				esc_html__( 'Cognitive', 'accessibility-checker' ),
-				esc_html__( 'ADHD', 'accessibility-checker' ),
+				AffectedDisabilities::SEIZURE,
+				AffectedDisabilities::COGNITIVE,
+				AffectedDisabilities::ADHD,
 			],
 			'combines'              => [ 'blink', 'marquee' ],
 		];
