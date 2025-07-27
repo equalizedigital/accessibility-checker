@@ -499,7 +499,6 @@ const edacScriptVars = edac_script_vars;
 			} );
 		}
 
-
 		/**
 		 * GAAD Notice Ajax
 		 */

@@ -79,5 +79,4 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'https://equalizedigital.com/contact/', $message );
 		$this->assertStringContainsString( 'https://equalizedigital.com/accessibility-checker/pricing/', $message );
 	}
-
 }
