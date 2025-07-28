@@ -296,13 +296,22 @@ class AccessibilityCheckerHighlight {
 		// Add the tooltip to the page.
 		document.body.append( tooltip );
 
+		tooltip.dataset.targetElement = hashString( element.outerHTML );
+
+		// Add creation timestamp to track order of tooltip creation
+		tooltip.dataset.creationOrder = Date.now() + Math.random(); // Ensure uniqueness
+
 		const updatePosition = function() {
-			// Find existing tooltips for the same element to calculate inline positioning
+			// Find existing tooltips for the same element that were created BEFORE this one
+			const currentElementHash = tooltip.dataset.targetElement;
+			const currentCreationOrder = parseFloat( tooltip.dataset.creationOrder );
+
 			const existingTooltips = Array.from( document.querySelectorAll( '.edac-highlight-btn' ) ).filter( ( btn ) => {
-				// Check if this tooltip targets the same element by comparing their positioning reference
-				return btn !== tooltip && btn.dataset.targetElement === element.dataset.edacId;
+				// Check if this tooltip targets the same element and was created before this one
+				return btn !== tooltip && btn.dataset.targetElement === currentElementHash && parseFloat( btn.dataset.creationOrder ) < currentCreationOrder;
 			} );
 
+			// The offset should be the count of existing tooltips created before this one
 			const tooltipOffset = existingTooltips.length;
 			const TOOLTIP_GAP = 5; // Gap between tooltip buttons in pixels
 
@@ -346,8 +355,6 @@ class AccessibilityCheckerHighlight {
 			} );
 		};
 
-		// Store reference to target element for positioning calculations
-		tooltip.dataset.targetElement = hashString( element.outerHTML );
 
 		// Place the tooltip at the element's position on the page.
 		// See: https://floating-ui.com/docs/autoUpdate
