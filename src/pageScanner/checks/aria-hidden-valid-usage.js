@@ -61,10 +61,25 @@ export default {
 
 			// Check for visible text (excluding the aria-hidden element)
 			for ( const child of parentNode.childNodes ) {
-				if ( child !== node &&
-					child.nodeType === Node.TEXT_NODE &&
-					child.textContent.trim() ) {
+				if ( child === node ) {
+					continue;
+				}
+
+				// Direct text node
+				if ( child.nodeType === Node.TEXT_NODE &&
+                                        child.textContent.trim() ) {
 					return true;
+				}
+
+				// Text within an element node
+				if ( child.nodeType === Node.ELEMENT_NODE &&
+                                        ! child.hasAttribute( 'aria-hidden' ) ) {
+					const style = window.getComputedStyle( child );
+					if ( style.display !== 'none' &&
+                                                style.visibility !== 'hidden' &&
+                                                child.textContent.trim() ) {
+						return true;
+					}
 				}
 			}
 		}
