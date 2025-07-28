@@ -18,6 +18,7 @@ class InsertRuleDataTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function setUp(): void {
+		parent::setUp();
 		global $wpdb;
 		$this->table_name = $wpdb->prefix . 'accessibility_checker';
 
@@ -35,6 +36,7 @@ class InsertRuleDataTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		global $wpdb;
 		$wpdb->query( "DROP TABLE IF EXISTS $this->table_name" ); // phpcs:ignore WordPress.DB -- Table name is safe and not caching in a test.
+		parent::tearDown();
 	}
 
 	/**
