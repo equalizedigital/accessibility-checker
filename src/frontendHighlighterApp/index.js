@@ -346,7 +346,7 @@ class AccessibilityCheckerHighlight {
 		};
 
 		// Store reference to target element for positioning calculations
-		tooltip.dataset.targetElement = element.outerHTML.replace( /\W/g, '' );
+		tooltip.dataset.targetElement = hashString(element.outerHTML);
 
 		// Place the tooltip at the element's position on the page.
 		// See: https://floating-ui.com/docs/autoUpdate
