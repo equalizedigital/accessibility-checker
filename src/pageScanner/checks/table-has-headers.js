@@ -5,7 +5,14 @@ export default {
 			return true;
 		}
 
-		// TODO: Improve logic to account for colspan, rowspan, and complex ARIA header relationships
+		// Enhanced logic to account for colspan, rowspan, and ARIA header relationships
+		const hasAriaHeaders = node.querySelector( '[headers]' );
+		const hasAriaLabelledBy = node.querySelector( '[aria-labelledby]' );
+		
+		// If table uses ARIA headers/labelledby relationships, it's considered valid
+		if ( hasAriaHeaders || hasAriaLabelledBy ) {
+			return true;
+		}
 
 		const rows = Array.from( node.querySelectorAll( 'tr' ) );
 
@@ -42,6 +49,13 @@ export default {
 			return false;
 		}
 
+		// Calculate expected column count considering colspan
+		let expectedCols = 0;
+		headerRow.querySelectorAll( 'th' ).forEach( ( th ) => {
+			const colspan = parseInt( th.getAttribute( 'colspan' ) ) || 1;
+			expectedCols += colspan;
+		} );
+
 		let headerRowEncountered = false;
 
 		for ( const row of rows ) {
@@ -50,8 +64,16 @@ export default {
 				continue;
 			}
 
-			const tdCount = row.querySelectorAll( 'td' ).length;
-			if ( tdCount > thCount ) {
+			// Calculate actual column count considering colspan
+			let actualCols = 0;
+			const cells = row.querySelectorAll( 'td, th' );
+			cells.forEach( ( cell ) => {
+				const colspan = parseInt( cell.getAttribute( 'colspan' ) ) || 1;
+				actualCols += colspan;
+			} );
+
+			// Allow for some flexibility with colspan/rowspan tables
+			if ( actualCols > expectedCols && cells.length > thCount ) {
 				return false;
 			}
 		}

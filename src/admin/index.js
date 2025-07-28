@@ -842,7 +842,14 @@ const fillDashboardWidget = () => {
 			}
 		} )
 		.catch( ( e ) => {
-			//TODO:
+			console.error( 'EDAC: Failed to load scan statistics:', e );
+			// Hide the dashboard widget on error
+			const wrapper = document.querySelector(
+				'.edac-summary.edac-modal-container'
+			);
+			if ( wrapper ) {
+				wrapper.style.display = 'none';
+			}
 		} );
 
 	getData( edacScriptVars.edacApiUrl + '/scans-stats-by-post-types' )
