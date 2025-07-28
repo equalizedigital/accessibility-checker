@@ -43,7 +43,7 @@ As long as you follow the _Getting Started_ steps above, the plugin will run in 
 
 ### Running tests
 
-This plugin includes unit tests for the PHP code and Jest tests for the JavaScript code. The Jest tests have no pre-requisites, but the PHP tests require a local WordPress installation.
+This plugin includes unit tests for the PHP code and Jest tests for the JavaScript code. The Jest tests have no prerequisites, but the PHP tests require a local WordPress installation.
 
 #### Jest tests
 
@@ -55,10 +55,13 @@ npm run test:jest
 
 #### PHP unit tests
 
-The PHP tests are a little more involved because they **require** a local WordPress installation. A Docker-based setup is included to make running this strait forward.
+The PHP tests are a little more involved because they **require** a local WordPress installation. A Docker-based setup is included to make running them straightforward.
 
-This should be started to run the tests and stopped when you are finished development.
-To run the commands (will start the containers if not already running):
+Docker and Docker Compose must be installed and running.
+
+Start the containers to run the tests and stop them when you are finished development.
+
+To run the tests (will start the containers if not already running) run:
 
 ```shell
 npm run test:php
