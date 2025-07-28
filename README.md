@@ -71,23 +71,23 @@ npm run test:php:stop
 ```
 
 ### Package scripts
-- `npm run build` - builds JavaScript & CSS
-- `npm run dev` - watches and automatically builds JavaScript & CSS
-- `npm run dist` - builds a distributable .zip for the plugin into ./dist
-- `npm run dist:dotorg` - builds a distributable .zip for dotorg, keeps build folder
-- `npm run lint` - lints the plugin's PHP and JavaScript
-- `npm run lint-staged-precommit` - runs lint-staged and JS lint for precommit
-- `npm run lint:php` - lints the plugin's PHP
-- `npm run lint:php:fix` - fixes linting issues in the plugin's PHP
-- `npm run lint:js` - lints the plugin's JavaScript
-- `npm run lint:js:fix` - fixes linting issues in the plugin's JavaScript
-- `npm run test:php` - sets up PHP unit test
-- `npm run test:php:run` - runs the plugin's PHP unit test
-- `npm run test:php:coverage` - runs PHP unit test with coverage report
-- `npm run test:php:stop` - stops the PHP unit test container
-- `npm run test:jest` - runs Jest tests
-- `npm run prepare` - runs husky
-- `npm run phpstan` - runs PHPStan static analysis
+* `npm run build` - builds JavaScript & CSS
+* `npm run dev` - watches and automatically builds JavaScript & CSS
+* `npm run dist` - builds a distributable .zip for the plugin into ./dist
+* `npm run dist:dotorg` - builds a distributable .zip for dotorg, keeps build folder
+* `npm run lint` - lints the plugin's PHP and JavaScript
+* `npm run lint-staged-precommit` - runs lint-staged and JS lint for precommit
+* `npm run lint:php` - lints the plugin's PHP
+* `npm run lint:php:fix` - fixes linting issues in the plugin's PHP
+* `npm run lint:js` - lints the plugin's JavaScript
+* `npm run lint:js:fix` - fixes linting issues in the plugin's JavaScript
+* `npm run test:php` - sets up PHP unit test
+* `npm run test:php:run` - runs the plugin's PHP unit test
+* `npm run test:php:coverage` - runs PHP unit test with coverage report
+* `npm run test:php:stop` - stops the PHP unit test container
+* `npm run test:jest` - runs Jest tests
+* `npm run prepare` - runs husky
+* `npm run phpstan` - runs PHPStan static analysis
 
 ## Support
 
