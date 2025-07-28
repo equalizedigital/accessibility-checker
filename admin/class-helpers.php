@@ -97,17 +97,18 @@ class Helpers {
 	 */
 	public static function format_date( $date, $include_time = false ) {
 
-		$timestamp = $date;
-		if ( ! is_numeric( $date ) ) { // date as string.
-			$timestamp = strtotime( $date );
-			if ( ! $timestamp ) { // The passed string is not a valid date.
+		// If $date is numeric, treat as timestamp. If string, treat as MySQL datetime in site timezone.
+		if ( is_numeric( $date ) ) {
+			$datetime = new \DateTime( "@{$date}" );
+			$datetime->setTimezone( wp_timezone() );
+		} else {
+			// Assume MySQL datetime string in site timezone.
+			try {
+				$datetime = new \DateTime( $date, wp_timezone() );
+			} catch ( \Exception $e ) {
 				return $date;
 			}
 		}
-
-		$datetime = new \DateTime();
-		$datetime->setTimestamp( $timestamp );
-		$datetime->setTimezone( wp_timezone() );
 
 		$format = ( ! $include_time )
 			? get_option( 'date_format' )
