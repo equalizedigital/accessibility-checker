@@ -303,6 +303,7 @@ class AccessibilityCheckerHighlight {
 			} );
 
 			const tooltipOffset = existingTooltips.length;
+			const TOOLTIP_GAP = 5; // Gap between tooltip buttons in pixels
 
 			computePosition( element, tooltip, {
 				placement: 'top-start',
@@ -315,7 +316,7 @@ class AccessibilityCheckerHighlight {
 				const tooltipWidth = tooltip.offsetWidth === undefined ? 0 : tooltip.offsetWidth;
 
 				let top = 0;
-				const left = tooltipOffset * ( tooltipWidth + 5 ); // 5px gap between buttons
+				const left = tooltipOffset * ( tooltipWidth + TOOLTIP_GAP );
 
 				if ( tooltipHeight <= ( elHeight * .8 ) ) {
 					top = tooltipHeight;
