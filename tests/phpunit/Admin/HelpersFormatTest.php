@@ -22,6 +22,11 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	 * @param mixed $expected   The expected result.
 	 */
 	public function test_format_number( $number, $precision, $expected ) {
+		// Skip this test if WordPress functions aren't available.
+		if ( ! function_exists( 'get_locale' ) ) {
+			$this->markTestSkipped( 'WordPress get_locale function not available in test environment.' );
+		}
+
 		$result = Helpers::format_number( $number, $precision );
 
 		// For numeric results, we check if NumberFormatter is available.
@@ -86,6 +91,11 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	 * @param mixed $expected   The expected result type or pattern.
 	 */
 	public function test_format_percentage( $number, $precision, $expected ) {
+		// Skip this test if WordPress functions aren't available.
+		if ( ! function_exists( 'get_locale' ) ) {
+			$this->markTestSkipped( 'WordPress get_locale function not available in test environment.' );
+		}
+
 		$result = Helpers::format_percentage( $number, $precision );
 
 		if ( is_numeric( $number ) ) {
@@ -151,6 +161,11 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	 * @param array  $expected     The expected result.
 	 */
 	public function test_get_option_as_array( $option_name, $option_value, $expected ) {
+		// Skip this test if WordPress functions aren't available.
+		if ( ! function_exists( 'update_option' ) || ! function_exists( 'delete_option' ) ) {
+			$this->markTestSkipped( 'WordPress option functions not available in test environment.' );
+		}
+
 		// Set up the option value.
 		update_option( $option_name, $option_value );
 
@@ -203,6 +218,11 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	 * Test the format_date method with basic functionality.
 	 */
 	public function test_format_date_basic() {
+		// Skip this test if WordPress functions aren't available.
+		if ( ! function_exists( 'get_locale' ) ) {
+			$this->markTestSkipped( 'WordPress get_locale function not available in test environment.' );
+		}
+
 		// Test with a standard date string.
 		$date_string = '2023-12-25 14:30:00';
 		$result = Helpers::format_date( $date_string );
@@ -216,6 +236,11 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	 * Test the format_date method with time inclusion.
 	 */
 	public function test_format_date_with_time() {
+		// Skip this test if WordPress functions aren't available.
+		if ( ! function_exists( 'get_locale' ) ) {
+			$this->markTestSkipped( 'WordPress get_locale function not available in test environment.' );
+		}
+
 		$date_string = '2023-12-25 14:30:00';
 		$result_without_time = Helpers::format_date( $date_string, false );
 		$result_with_time = Helpers::format_date( $date_string, true );

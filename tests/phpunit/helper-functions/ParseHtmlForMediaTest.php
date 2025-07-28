@@ -59,24 +59,33 @@ class ParseHtmlForMediaTest extends WP_UnitTestCase {
 				],
 			],
 			'img tag with additional attributes' => [
-				'html'     => '<img width="300" height="200" src="/assets/photo.jpg" alt="Photo" loading="lazy">',
+				'html'     => '<img width="300" height="200" src="/assets/photo.jpg" alt="Photo" ' .
+					'loading="lazy">',
 				'expected' => [
 					'img' => '/assets/photo.jpg',
 					'svg' => null,
 				],
 			],
 			'simple svg tag' => [
-				'html'     => '<svg width="100" height="100"><circle cx="50" cy="50" r="40" stroke="black" fill="red" /></svg>',
+				'html'     => '<svg width="100" height="100"><circle cx="50" cy="50" r="40" ' .
+					'stroke="black" fill="red" /></svg>',
 				'expected' => [
 					'img' => null,
-					'svg' => '<svg width="100" height="100"><circle cx="50" cy="50" r="40" stroke="black" fill="red" /></svg>',
+					'svg' => '<svg width="100" height="100"><circle cx="50" cy="50" r="40" ' .
+						'stroke="black" fill="red" /></svg>',
 				],
 			],
 			'complex svg with multiple elements' => [
-				'html'     => '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/><rect x="60" y="10" rx="10" ry="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/></svg>',
+				'html'     => '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">' .
+					'<rect x="10" y="10" width="30" height="30" stroke="black" ' .
+					'fill="transparent" stroke-width="5"/><rect x="60" y="10" rx="10" ry="10" ' .
+					'width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/></svg>',
 				'expected' => [
 					'img' => null,
-					'svg' => '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/><rect x="60" y="10" rx="10" ry="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/></svg>',
+					'svg' => '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">' .
+						'<rect x="10" y="10" width="30" height="30" stroke="black" ' .
+						'fill="transparent" stroke-width="5"/><rect x="60" y="10" rx="10" ry="10" ' .
+						'width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/></svg>',
 				],
 			],
 			'html with no media tags' => [
