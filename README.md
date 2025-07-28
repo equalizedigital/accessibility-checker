@@ -37,9 +37,9 @@ npm run build
 
 ### Dev environment setup
 
-There are no real special requirements for the dev environment, use what ever local environment you prefer. Some suggestions are Local by Flywheel, DesktopServer, or LocalWP.
+There are no special requirements for the dev environment - use whatever local stack you prefer (e.g. Local by Flywheel, DesktopServer, LocalWP).
 
-So long as you follow the getting started instructions above, you should be able to run the plugin in your local environment.
+As long as you follow the _Getting Started_ steps above, the plugin will run in your local environment.
 
 ### Running tests
 
@@ -55,7 +55,7 @@ npm run test:jest
 
 #### PHP unit tests
 
-The PHP tests are a little more involved, as they requre a local WordPress installation. A docker container setup is provided in the plugin to run this.
+The PHP tests are a little more involved because they **require** a local WordPress installation. A Docker-based setup is included to make running this strait forward.
 
 This should be started to run the tests and stopped when you are finished development.
 To run the commands (will start the containers if not already running):
