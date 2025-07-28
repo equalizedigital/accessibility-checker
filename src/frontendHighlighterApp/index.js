@@ -296,6 +296,14 @@ class AccessibilityCheckerHighlight {
 		document.body.append( tooltip );
 
 		const updatePosition = function() {
+			// Find existing tooltips for the same element to calculate inline positioning
+			const existingTooltips = Array.from( document.querySelectorAll( '.edac-highlight-btn' ) ).filter( ( btn ) => {
+				// Check if this tooltip targets the same element by comparing their positioning reference
+				return btn !== tooltip && btn.dataset.targetElement === element.outerHTML.replace( /\W/g, '' );
+			} );
+
+			const tooltipOffset = existingTooltips.length;
+
 			computePosition( element, tooltip, {
 				placement: 'top-start',
 				middleware: [],
@@ -307,7 +315,7 @@ class AccessibilityCheckerHighlight {
 				const tooltipWidth = tooltip.offsetWidth === undefined ? 0 : tooltip.offsetWidth;
 
 				let top = 0;
-				const left = 0;
+				const left = tooltipOffset * ( tooltipWidth + 5 ); // 5px gap between buttons
 
 				if ( tooltipHeight <= ( elHeight * .8 ) ) {
 					top = tooltipHeight;
@@ -335,6 +343,9 @@ class AccessibilityCheckerHighlight {
 				} );
 			} );
 		};
+
+		// Store reference to target element for positioning calculations
+		tooltip.dataset.targetElement = element.outerHTML.replace( /\W/g, '' );
 
 		// Place the tooltip at the element's position on the page.
 		// See: https://floating-ui.com/docs/autoUpdate
