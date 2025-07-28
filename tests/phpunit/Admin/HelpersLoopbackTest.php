@@ -22,7 +22,7 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 	 */
 	public function test_is_domain_loopback( $domain, $expected ) {
 		$result = Helpers::is_domain_loopback( $domain );
-		
+
 		// The result should always be a boolean.
 		$this->assertIsBool( $result );
 		$this->assertSame( $expected, $result );
@@ -82,10 +82,10 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 	public function test_ipv4_loopback_boundaries() {
 		// Test the exact start of loopback range.
 		$this->assertTrue( Helpers::is_domain_loopback( '127.0.0.0' ) );
-		
+
 		// Test just before loopback range.
 		$this->assertFalse( Helpers::is_domain_loopback( '126.255.255.255' ) );
-		
+
 		// Test just after loopback range.
 		$this->assertFalse( Helpers::is_domain_loopback( '128.0.0.0' ) );
 	}
@@ -98,16 +98,16 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 		$result = Helpers::is_domain_loopback( '' );
 		$this->assertIsBool( $result );
 		$this->assertFalse( $result );
-		
+
 		// Invalid domain format.
 		$result = Helpers::is_domain_loopback( 'not-a-domain' );
 		$this->assertIsBool( $result );
-		
+
 		// Malformed IP.
 		$result = Helpers::is_domain_loopback( '999.999.999.999' );
 		$this->assertIsBool( $result );
 		$this->assertFalse( $result );
-		
+
 		// Domain with protocol.
 		$result = Helpers::is_domain_loopback( 'http://localhost' );
 		$this->assertIsBool( $result );
@@ -119,11 +119,11 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 	public function test_localhost_variations() {
 		// Standard localhost should resolve to loopback.
 		$this->assertTrue( Helpers::is_domain_loopback( 'localhost' ) );
-		
+
 		// Test case sensitivity (if applicable).
 		$result = Helpers::is_domain_loopback( 'LOCALHOST' );
 		$this->assertIsBool( $result );
-		
+
 		// Test with port (should still work since we're testing the domain part).
 		$result = Helpers::is_domain_loopback( 'localhost:8080' );
 		$this->assertIsBool( $result );
@@ -136,7 +136,7 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 		// Test with a clearly non-existent domain.
 		$fake_domain = 'definitely-not-a-real-domain-' . uniqid() . '.invalid';
 		$result = Helpers::is_domain_loopback( $fake_domain );
-		
+
 		// Should return a boolean and not throw an exception.
 		$this->assertIsBool( $result );
 		$this->assertFalse( $result );
@@ -148,11 +148,11 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 	public function test_ipv6_loopback_detection() {
 		// The method checks for IPv6 AAAA records.
 		// This test may be limited by the test environment's DNS capabilities.
-		
+
 		// Test direct IPv6 loopback address (may not work in all environments).
 		$result = Helpers::is_domain_loopback( '::1' );
 		$this->assertIsBool( $result );
-		
+
 		// If IPv6 is supported, ::1 should be detected as loopback.
 		// However, we can't guarantee this in all test environments.
 	}
@@ -167,12 +167,12 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 			'127.1.2.3',
 			'127.254.255.254',
 		];
-		
+
 		foreach ( $valid_loopback_ips as $ip ) {
 			$result = Helpers::is_domain_loopback( $ip );
 			$this->assertTrue( $result, "Failed to detect loopback for IP: $ip" );
 		}
-		
+
 		// Valid IPv4 addresses outside loopback range.
 		$non_loopback_ips = [
 			'1.1.1.1',
@@ -181,7 +181,7 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 			'172.16.0.1',
 			'203.0.113.1',
 		];
-		
+
 		foreach ( $non_loopback_ips as $ip ) {
 			$result = Helpers::is_domain_loopback( $ip );
 			$this->assertFalse( $result, "Incorrectly detected loopback for IP: $ip" );
@@ -194,7 +194,7 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 	public function test_multiple_a_records() {
 		// Some domains may have multiple A records.
 		// The method should handle this correctly by checking the resolved IP.
-		
+
 		// Test a well-known domain that should resolve to non-loopback.
 		$result = Helpers::is_domain_loopback( 'github.com' );
 		$this->assertIsBool( $result );
@@ -207,10 +207,10 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 	public function test_gethostbyname_behavior() {
 		// gethostbyname returns the hostname unchanged if resolution fails.
 		// The method should handle this case.
-		
+
 		$non_resolvable = 'non-resolvable-domain-' . uniqid() . '.invalid';
 		$result = Helpers::is_domain_loopback( $non_resolvable );
-		
+
 		// Should return false for non-resolvable domains.
 		$this->assertIsBool( $result );
 		$this->assertFalse( $result );
@@ -228,17 +228,17 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 			'example.com',
 			'127.0.0.2',
 		];
-		
+
 		$start_time = microtime( true );
-		
+
 		foreach ( $domains as $domain ) {
 			$result = Helpers::is_domain_loopback( $domain );
 			$this->assertIsBool( $result );
 		}
-		
+
 		$end_time = microtime( true );
 		$execution_time = $end_time - $start_time;
-		
+
 		// Should complete within a reasonable time (5 seconds).
 		$this->assertLessThan( 5.0, $execution_time, 'Method took too long to execute multiple calls' );
 	}

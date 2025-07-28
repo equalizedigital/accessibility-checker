@@ -22,10 +22,10 @@ class HelpersArrayToSqlTest extends WP_UnitTestCase {
 	 */
 	public function test_array_to_sql_safe_list( $items, $expected ) {
 		$result = Helpers::array_to_sql_safe_list( $items );
-		
+
 		// The result should be a string.
 		$this->assertIsString( $result );
-		
+
 		// Check specific patterns based on expected type.
 		switch ( $expected ) {
 			case 'empty':
@@ -93,14 +93,14 @@ class HelpersArrayToSqlTest extends WP_UnitTestCase {
 
 		// The result should be a string.
 		$this->assertIsString( $result );
-		
+
 		// Should contain quoted items separated by commas.
 		$this->assertStringContainsString( ',', $result );
-		
+
 		// Should not contain unescaped dangerous SQL.
 		$this->assertStringNotContainsString( 'DROP TABLE', $result );
 		$this->assertStringNotContainsString( 'DELETE FROM', $result );
-		
+
 		// All items should be properly quoted.
 		$parts = explode( ',', $result );
 		foreach ( $parts as $part ) {
@@ -119,11 +119,11 @@ class HelpersArrayToSqlTest extends WP_UnitTestCase {
 
 		// Should have exactly 3 commas for 4 items.
 		$this->assertEquals( 3, substr_count( $result, ',' ) );
-		
+
 		// Split by comma and verify we get 4 parts.
 		$parts = explode( ',', $result );
 		$this->assertCount( 4, $parts );
-		
+
 		// Each part should be quoted.
 		foreach ( $parts as $part ) {
 			$trimmed = trim( $part );
@@ -142,14 +142,14 @@ class HelpersArrayToSqlTest extends WP_UnitTestCase {
 		// Should be a string with commas.
 		$this->assertIsString( $result );
 		$this->assertStringContainsString( ',', $result );
-		
+
 		// Should have 3 commas for 4 items.
 		$this->assertEquals( 3, substr_count( $result, ',' ) );
-		
+
 		// All parts should be quoted.
 		$parts = explode( ',', $result );
 		$this->assertCount( 4, $parts );
-		
+
 		foreach ( $parts as $part ) {
 			$trimmed = trim( $part );
 			$this->assertStringStartsWith( "'", $trimmed );

@@ -23,7 +23,7 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	 */
 	public function test_format_number( $number, $precision, $expected ) {
 		$result = Helpers::format_number( $number, $precision );
-		
+
 		// For numeric results, we check if NumberFormatter is available.
 		if ( is_numeric( $expected ) && class_exists( 'NumberFormatter' ) ) {
 			// When NumberFormatter is available, we expect a formatted string.
@@ -87,7 +87,7 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	 */
 	public function test_format_percentage( $number, $precision, $expected ) {
 		$result = Helpers::format_percentage( $number, $precision );
-		
+
 		if ( is_numeric( $number ) ) {
 			// For numeric inputs, expect a string result with % symbol.
 			$this->assertIsString( $result );
@@ -153,10 +153,10 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	public function test_get_option_as_array( $option_name, $option_value, $expected ) {
 		// Set up the option value.
 		update_option( $option_name, $option_value );
-		
+
 		$result = Helpers::get_option_as_array( $option_name );
 		$this->assertSame( $expected, $result );
-		
+
 		// Clean up.
 		delete_option( $option_name );
 	}
@@ -206,7 +206,7 @@ class HelpersFormatTest extends WP_UnitTestCase {
 		// Test with a standard date string.
 		$date_string = '2023-12-25 14:30:00';
 		$result = Helpers::format_date( $date_string );
-		
+
 		// Should return a formatted string.
 		$this->assertIsString( $result );
 		$this->assertNotEmpty( $result );
@@ -219,11 +219,11 @@ class HelpersFormatTest extends WP_UnitTestCase {
 		$date_string = '2023-12-25 14:30:00';
 		$result_without_time = Helpers::format_date( $date_string, false );
 		$result_with_time = Helpers::format_date( $date_string, true );
-		
+
 		// Both should be strings.
 		$this->assertIsString( $result_without_time );
 		$this->assertIsString( $result_with_time );
-		
+
 		// Results should be different when including/excluding time.
 		$this->assertNotEquals( $result_without_time, $result_with_time );
 	}

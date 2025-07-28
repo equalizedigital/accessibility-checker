@@ -15,7 +15,7 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	 */
 	public function setUp(): void {
 		parent::setUp();
-		
+
 		// Create a test post for linking.
 		$this->test_post_id = $this->factory()->post->create([
 			'post_title'   => 'Test Post',
@@ -35,7 +35,13 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	 * @param bool   $target_blank      Whether to open in new window.
 	 * @param string $expected_pattern  Pattern to match in result.
 	 */
-	public function test_edac_generate_landmark_link( $landmark, $landmark_selector, $css_class, $target_blank, $expected_pattern ) {
+	public function test_edac_generate_landmark_link(
+		$landmark,
+		$landmark_selector,
+		$css_class,
+		$target_blank,
+		$expected_pattern
+	) {
 		$result = edac_generate_landmark_link( 
 			$landmark, 
 			$landmark_selector, 
@@ -122,28 +128,28 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	public function test_landmark_link_url_structure() {
 		$landmark = 'navigation';
 		$selector = 'nav.main-nav';
-		
+
 		$result = edac_generate_landmark_link( $landmark, $selector, $this->test_post_id );
-		
+
 		// Should contain a proper URL structure.
 		$this->assertStringContainsString( '<a href=', $result );
-		
+
 		// Extract the URL from the result.
 		preg_match( '/href="([^"]*)"/', $result, $matches );
 		$this->assertNotEmpty( $matches[1] );
-		
+
 		$url = $matches[1];
-		
+
 		// Parse the URL to check query parameters.
 		$parsed_url = wp_parse_url( $url );
 		$this->assertNotEmpty( $parsed_url['query'] );
-		
+
 		parse_str( $parsed_url['query'], $query_params );
-		
+
 		// Should have the landmark parameter.
 		$this->assertArrayHasKey( 'edac_landmark', $query_params );
 		$this->assertEquals( base64_encode( $selector ), $query_params['edac_landmark'] );
-		
+
 		// Should have a nonce parameter.
 		$this->assertArrayHasKey( 'edac_nonce', $query_params );
 		$this->assertNotEmpty( $query_params['edac_nonce'] );
@@ -156,11 +162,11 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 		// Test lowercase input.
 		$result = edac_generate_landmark_link( 'navigation', '', $this->test_post_id );
 		$this->assertStringContainsString( 'Navigation', $result );
-		
+
 		// Test mixed case input.
 		$result = edac_generate_landmark_link( 'mainContent', '', $this->test_post_id );
 		$this->assertStringContainsString( 'Maincontent', $result ); // ucwords behavior.
-		
+
 		// Test all caps input.
 		$result = edac_generate_landmark_link( 'HEADER', '', $this->test_post_id );
 		$this->assertStringContainsString( 'HEADER', $result );
@@ -172,18 +178,18 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	public function test_aria_label_generation() {
 		$landmark = 'header';
 		$selector = 'header.site-header';
-		
+
 		$result = edac_generate_landmark_link( $landmark, $selector, $this->test_post_id );
-		
+
 		// Should contain aria-label attribute.
 		$this->assertStringContainsString( 'aria-label=', $result );
-		
+
 		// Extract the aria-label value.
 		preg_match( '/aria-label="([^"]*)"/', $result, $matches );
 		$this->assertNotEmpty( $matches[1] );
-		
+
 		$aria_label = $matches[1];
-		
+
 		// Should contain the landmark name and descriptive text.
 		$this->assertStringContainsString( 'Header', $aria_label );
 		$this->assertStringContainsString( 'landmark', $aria_label );
@@ -198,18 +204,18 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 		$malicious_landmark = '<script>alert("xss")</script>';
 		$malicious_selector = 'header"><script>alert("xss")</script>';
 		$malicious_class = 'class"><script>alert("xss")</script>';
-		
+
 		$result = edac_generate_landmark_link( 
 			$malicious_landmark, 
 			$malicious_selector, 
 			$this->test_post_id,
 			$malicious_class
 		);
-		
+
 		// Should not contain unescaped script tags.
 		$this->assertStringNotContainsString( '<script>', $result );
 		$this->assertStringNotContainsString( 'alert("xss")', $result );
-		
+
 		// Should properly escape HTML entities.
 		$this->assertStringContainsString( '&lt;', $result );
 		$this->assertStringContainsString( '&gt;', $result );
@@ -220,9 +226,12 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	 */
 	public function test_default_css_class() {
 		$result = edac_generate_landmark_link( 'main', 'main#content', $this->test_post_id );
-		
+
 		// Should contain the default CSS class.
-		$this->assertStringContainsString( 'class="edac-details-rule-records-record-landmark-link"', $result );
+		$this->assertStringContainsString(
+			'class="edac-details-rule-records-record-landmark-link"',
+			$result
+		);
 	}
 
 	/**

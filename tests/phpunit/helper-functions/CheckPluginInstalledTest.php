@@ -117,7 +117,7 @@ class CheckPluginInstalledTest extends WP_UnitTestCase {
 
 		// Should find by exact match.
 		$this->assertTrue( edac_check_plugin_installed( 'woocommerce/woocommerce.php' ) );
-		
+
 		// Should not find by partial match.
 		$this->assertFalse( edac_check_plugin_installed( 'woocommerce' ) );
 
