@@ -37,7 +37,7 @@ npm run build
 
 ### Dev environment setup
 
-There are no special requirements for the dev environment - use whatever local stack you prefer (e.g. Local by Flywheel, DesktopServer, LocalWP).
+There are no special requirements for the dev environment aside from the standard WordPress/PHP runtime used by the plugin—use whatever local stack you prefer (e.g. Local by Flywheel, DesktopServer, LocalWP).
 
 As long as you follow the _Getting Started_ steps above, the plugin will run in your local environment.
 
@@ -57,7 +57,7 @@ npm run test:jest
 
 The PHP tests are a little more involved because they **require** a local WordPress installation. A Docker-based setup is included to make running them straightforward.
 
-Docker and Docker Compose must be installed and running.
+Docker and Docker Compose must be installed and running. The build script uses Docker Compose v2 style commands (eg docker compose vs docker-compose).
 
 Start the containers to run the tests and stop them when you are finished development.
 
@@ -84,8 +84,8 @@ npm run test:php:stop
 * `npm run lint:php:fix` - fixes linting issues in the plugin's PHP
 * `npm run lint:js` - lints the plugin's JavaScript
 * `npm run lint:js:fix` - fixes linting issues in the plugin's JavaScript
-* `npm run test:php` - sets up PHP unit test
-* `npm run test:php:run` - runs the plugin's PHP unit test
+* `npm run test:php` - sets up PHP unit test environment and runs the plugin's PHP unit tests
+* `npm run test:php:run` - runs PHP unit tests in the already active container (does not wipe the database first)
 * `npm run test:php:coverage` - runs PHP unit test with coverage report
 * `npm run test:php:stop` - stops the PHP unit test container
 * `npm run test:jest` - runs Jest tests
