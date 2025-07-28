@@ -626,7 +626,17 @@ class AccessibilityCheckerHighlight {
 			}
 
 			// Get the summary of the issue
-			content += matchingObj.summary;
+			if ( matchingObj.summary ) {
+				content += `<p class="edac-highlight-panel-description-summary">${ matchingObj.summary }</p>`;
+			}
+
+			// Get the how to fix information
+			if ( matchingObj.how_to_fix ) {
+				content += `<div class="edac-highlight-panel-description-how-to-fix">
+					<div class="edac-highlight-panel-description-how-to-fix-title">How to fix it:</div>
+					<p class="edac-highlight-panel-description-how-to-fix-content">${ matchingObj.how_to_fix }</p>
+				</div>`;
+			}
 
 			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
 				// this is the markup to put in the modal.

@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
-Tested up to: 6.8.0
-Stable tag: 1.27.0
+Tested up to: 6.8
+Stable tag: 1.28.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,6 +210,14 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
+
+= 1.28.0 =
+* Added: Better descriptions and help text for each of the rules.
+* Added: Improved landmark location feature to show the location of the landmark in the DOM.
+* Fixed: Avoid possible error with removal of an index on an ID column.
+
+= 1.27.1 =
+* Fixed: Don't alter a UNIQUE index before swapping to PRIMARY key index.
 
 = 1.27.0 =
 * Added: Landmark Location feature.

@@ -31,6 +31,7 @@ class Upgrade_Promotion {
 	public function init(): void {
 		add_action( 'admin_menu', [ $this, 'add_menu_item' ], 999 );
 		add_action( 'admin_head', [ $this, 'add_menu_styling' ] );
+		add_action( 'admin_init', [ $this, 'maybe_handle_redirect' ] );
 	}
 
 	/**
@@ -65,18 +66,42 @@ class Upgrade_Promotion {
 			$menu_label,
 			$required_capability,
 			'accessibility_checker_upgrade',
-			[ $this, 'handle_redirect' ]
+			[ $this, 'dummy_page_callback' ]
 		);
 	}
 
 	/**
-	 * Handle upgrade menu click by redirecting to pricing page.
+	 * Dummy page callback (redirect happens in admin_init).
 	 *
 	 * @since 1.27.0
 	 *
 	 * @return void
 	 */
-	public function handle_redirect(): void {
+	public function dummy_page_callback(): void {
+		// This should never be reached due to redirect in admin_init.
+		wp_die( esc_html__( 'Unable to redirect to upgrade page.', 'accessibility-checker' ) );
+	}
+
+	/**
+	 * Check if we should handle redirect and do it early.
+	 *
+	 * @since 1.27.0
+	 *
+	 * @return void
+	 */
+	public function maybe_handle_redirect(): void {
+		// Check if we're on the upgrade page.
+		if ( ! isset( $_GET['page'] ) || 'accessibility_checker_upgrade' !== $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is a simple page check for redirect, no form processing.
+			return;
+		}
+
+		$required_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
+		
+		// Only redirect if user has capability and pro is not active.
+		if ( ! current_user_can( $required_capability ) || $this->is_pro_active() ) {
+			return;
+		}
+
 		$upgrade_url = edac_link_wrapper( 
 			self::UPGRADE_URL,
 			'admin-menu-promotion',
@@ -89,10 +114,8 @@ class Upgrade_Promotion {
 		if ( wp_safe_redirect( $upgrade_url ) ) {
 			exit;
 		}
-		// Fallback if redirect fails.
-		wp_die( esc_html__( 'Unable to redirect to upgrade page.', 'accessibility-checker' ) );
 	}
-	
+
 	/**
 	 * Allow redirects to the Equalize Digital domain.
 	 *
@@ -116,7 +139,7 @@ class Upgrade_Promotion {
 	public function add_menu_styling(): void {
 		// Only add styling on accessibility checker admin pages.
 		$screen = get_current_screen();
-		if ( ! $screen || strpos( $screen->id, 'accessibility_checker' ) === false ) {
+		if ( ! $screen || false === strpos( $screen->id, 'accessibility_checker' ) ) {
 			return;
 		}
 
@@ -135,14 +158,14 @@ class Upgrade_Promotion {
 		<style type="text/css">
 			/* Style the upgrade promotion menu item - WCAG AAA compliant colors */
 			#adminmenu .wp-submenu a[href$="accessibility_checker_upgrade"] {
-				color: #00ff80 !important; /* Bright green - 7.8:1 contrast ratio on #2c3338 */
+				color: #f3cd1e !important;
 				font-weight: 600 !important;
 			}
 			
 			#adminmenu .wp-submenu a[href$="accessibility_checker_upgrade"]:hover,
 			#adminmenu .wp-submenu a[href$="accessibility_checker_upgrade"]:focus {
-				color: #00ff80 !important; /* Same bright green - 7.8:1 contrast ratio */
-				background-color: rgba(0, 255, 128, 0.15) !important;
+				color: #f3cd1e !important;
+				background-color: rgba(243, 205, 30, 0.15) !important;
 			}
 		</style>
 		<?php

@@ -1,11 +1,12 @@
 {
   "name": "accessibility-checker",
-  "version": "1.27.0",
+  "version": "1.28.0",
   "description": "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.",
   "author": "Equalize Digital",
   "license": "GPL-2.0+",
   "main": "index.js",
   "scripts": {
+    "postinstall": "patch-package && ./scripts/prepare.sh",
     "build": "npx webpack",
     "dev": "npx webpack --watch --mode development",
     "dist": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh && composer install",
@@ -46,7 +47,6 @@
     "@babel/preset-env": "^7.22.4",
     "@babel/preset-react": "^7.22.3",
     "@floating-ui/dom": "^1.2.9",
-    "@wordpress/env": "*",
     "@wordpress/eslint-plugin": "^17.5.0",
     "@wordpress/scripts": "^26.5.0",
     "axe-core": "^4.8.2",

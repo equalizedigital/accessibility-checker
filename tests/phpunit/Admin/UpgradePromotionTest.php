@@ -57,11 +57,13 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	public function test_init_adds_admin_menu_action() {
 		// Remove any existing actions first.
 		remove_all_actions( 'admin_menu' );
+		remove_all_actions( 'admin_head' );
+		remove_all_actions( 'admin_init' );
 		
 		// Call init.
 		$this->upgrade_promotion->init();
 		
-		// Check that the action was added and get the priority.
+		// Check that the admin_menu action was added and get the priority.
 		$priority = has_action( 'admin_menu', [ $this->upgrade_promotion, 'add_menu_item' ] );
 		
 		// has_action returns false if not found, or the priority (integer) if found.
@@ -74,6 +76,14 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 			$priority,
 			'admin_menu action priority is not 999'
 		);
+
+		// Check that admin_head action was added.
+		$head_priority = has_action( 'admin_head', [ $this->upgrade_promotion, 'add_menu_styling' ] );
+		$this->assertNotFalse( $head_priority, 'admin_head action was not added' );
+
+		// Check that admin_init action was added.
+		$init_priority = has_action( 'admin_init', [ $this->upgrade_promotion, 'maybe_handle_redirect' ] );
+		$this->assertNotFalse( $init_priority, 'admin_init action was not added' );
 	}
 
 	/**
@@ -87,12 +97,22 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that handle_redirect method exists.
+	 * Test that maybe_handle_redirect method exists.
 	 */
-	public function test_handle_redirect_method_exists() {
+	public function test_maybe_handle_redirect_method_exists() {
 		$this->assertTrue(
-			method_exists( $this->upgrade_promotion, 'handle_redirect' ),
-			'Class does not have method handle_redirect'
+			method_exists( $this->upgrade_promotion, 'maybe_handle_redirect' ),
+			'Class does not have method maybe_handle_redirect'
+		);
+	}
+
+	/**
+	 * Test that dummy_page_callback method exists.
+	 */
+	public function test_dummy_page_callback_method_exists() {
+		$this->assertTrue(
+			method_exists( $this->upgrade_promotion, 'dummy_page_callback' ),
+			'Class does not have method dummy_page_callback'
 		);
 	}
 
@@ -298,7 +318,7 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		$this->assertNotEmpty( $output, 'Styling should be added on plugin pages' );
 		$this->assertStringContainsString( '<style', $output, 'Output should contain CSS styles' );
 		$this->assertStringContainsString( 'accessibility_checker_upgrade', $output, 'CSS should target upgrade menu item' );
-		$this->assertStringContainsString( '#00ff80', $output, 'CSS should contain the expected green color' );
+		$this->assertStringContainsString( '#f3cd1e', $output, 'CSS should contain the expected yellow color' );
 	}
 
 	/**
@@ -336,7 +356,7 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		);
 		
 		// Test that all expected methods are public/private as intended.
-		$public_methods  = [ 'init', 'add_menu_item', 'handle_redirect', 'add_menu_styling', 'allow_redirect_host' ];
+		$public_methods  = [ 'init', 'add_menu_item', 'add_menu_styling', 'allow_redirect_host', 'maybe_handle_redirect', 'dummy_page_callback' ];
 		$private_methods = [ 'is_pro_active', 'is_sale_time' ];
 		
 		foreach ( $public_methods as $method_name ) {

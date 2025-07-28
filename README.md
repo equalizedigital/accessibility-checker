@@ -64,8 +64,6 @@ To run the commands (will start the containers if not already running):
 npm run test:php
 ```
 
-
-
 To stop the PHP unit test container, run:
 
 ```shell

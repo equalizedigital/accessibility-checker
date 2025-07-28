@@ -17,8 +17,6 @@ dist
 
 #accessibility-checker-wp-env
 .auth
-.wp-env.json
-.wp-env
 
 
 .phpunit.result.cache
