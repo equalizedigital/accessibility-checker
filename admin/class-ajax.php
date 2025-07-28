@@ -733,25 +733,25 @@ class Ajax {
 		}
 
 		global $wpdb;
-		$table_name               = $wpdb->prefix . 'accessibility_checker';
-		$raw_ids                  = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
-		$ids                      = array_map(
+		$table_name           = $wpdb->prefix . 'accessibility_checker';
+		$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
+		$ids                  = array_map(
 			function ( $value ) {
 				return (int) $value;
 			},
 			$raw_ids
 		); // Sanitizing array elements to integers.
-		$action                   = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( $_REQUEST['ignore_action'] ) : '';
-		$type                     = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( $_REQUEST['ignore_type'] ) : '';
-		$siteid                   = get_current_blog_id();
-		$ignre                    = ( 'enable' === $action ) ? 1 : 0;
-		$ignre_user               = ( 'enable' === $action ) ? get_current_user_id() : null;
-		$ignre_user_info          = ( 'enable' === $action ) ? get_userdata( $ignre_user ) : '';
-		$ignre_username           = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
-			$ignre_date           = ( 'enable' === $action ) ? current_time( 'mysql' ) : null;
-			$ignre_date_formatted = ( 'enable' === $action ) ? Helpers::format_date( $ignre_date, true ) : '';
-		$ignre_comment            = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( $_REQUEST['comment'] ) : null;
-		$ignore_global            = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( $_REQUEST['ignore_global'] ) : 0;
+		$action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( $_REQUEST['ignore_action'] ) : '';
+		$type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( $_REQUEST['ignore_type'] ) : '';
+		$siteid               = get_current_blog_id();
+		$ignre                = ( 'enable' === $action ) ? 1 : 0;
+		$ignre_user           = ( 'enable' === $action ) ? get_current_user_id() : null;
+		$ignre_user_info      = ( 'enable' === $action ) ? get_userdata( $ignre_user ) : '';
+		$ignre_username       = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
+		$ignre_date           = ( 'enable' === $action ) ? current_time( 'mysql' ) : null;
+		$ignre_date_formatted = ( 'enable' === $action ) ? Helpers::format_date( $ignre_date, true ) : '';
+		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( $_REQUEST['comment'] ) : null;
+		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( $_REQUEST['ignore_global'] ) : 0;
 
 		// If largeBatch is set and 'true', we need to perform an update using the 'object'
 		// instead of IDs. It is a much less efficient query than by IDs - but many IDs run
