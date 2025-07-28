@@ -7,6 +7,7 @@ import { isFocusable } from 'tabbable';
 import { __, _n } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
+import { hashString } from '../common/helpers';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -346,7 +347,7 @@ class AccessibilityCheckerHighlight {
 		};
 
 		// Store reference to target element for positioning calculations
-		tooltip.dataset.targetElement = hashString(element.outerHTML);
+		tooltip.dataset.targetElement = hashString( element.outerHTML );
 
 		// Place the tooltip at the element's position on the page.
 		// See: https://floating-ui.com/docs/autoUpdate
