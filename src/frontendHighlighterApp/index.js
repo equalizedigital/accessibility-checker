@@ -299,7 +299,7 @@ class AccessibilityCheckerHighlight {
 			// Find existing tooltips for the same element to calculate inline positioning
 			const existingTooltips = Array.from( document.querySelectorAll( '.edac-highlight-btn' ) ).filter( ( btn ) => {
 				// Check if this tooltip targets the same element by comparing their positioning reference
-				return btn !== tooltip && btn.dataset.targetElement === element.outerHTML.replace( /\W/g, '' );
+				return btn !== tooltip && btn.dataset.targetElement === element.dataset.edacId;
 			} );
 
 			const tooltipOffset = existingTooltips.length;
