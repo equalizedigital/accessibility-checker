@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Zamknij modal poprawek"
             ],
+            "Rescan This Page": [
+                "Przeskanuj ponownie t\u0119 stron\u0119"
+            ],
             "Disable Page Styles": [
                 "Wy\u0142\u0105cz style strony"
+            ],
+            "Disable Styles": [
+                "Wy\u0142\u0105cz style"
             ],
             "An error occurred when loading the issues.": [
                 "Wyst\u0105pi\u0142 b\u0142\u0105d podczas \u0142adowania problem\u00f3w."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "W\u0142\u0105cz style"
-            ],
-            "Disable Styles": [
-                "Wy\u0142\u0105cz style"
             ],
             "There are no settings to display.": [
                 "Brak ustawie\u0144 do wy\u015bwietlenia."
