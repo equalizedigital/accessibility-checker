@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "\uc218\uc815 \ubaa8\ub2ec \ub2eb\uae30"
             ],
+            "Rescan This Page": [
+                "\uc774 \ud398\uc774\uc9c0 \ub2e4\uc2dc \uc2a4\uce94"
+            ],
             "Disable Page Styles": [
                 "\ud398\uc774\uc9c0 \uc2a4\ud0c0\uc77c \ube44\ud65c\uc131\ud654"
+            ],
+            "Disable Styles": [
+                "\uc2a4\ud0c0\uc77c \ube44\ud65c\uc131\ud654"
             ],
             "An error occurred when loading the issues.": [
                 "\ubb38\uc81c\ub97c \ubd88\ub7ec\uc624\ub294 \uc911 \uc624\ub958\uac00 \ubc1c\uc0dd\ud588\uc2b5\ub2c8\ub2e4."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "\uc2a4\ud0c0\uc77c \ud65c\uc131\ud654"
-            ],
-            "Disable Styles": [
-                "\uc2a4\ud0c0\uc77c \ube44\ud65c\uc131\ud654"
             ],
             "There are no settings to display.": [
                 "\ud45c\uc2dc\ud560 \uc124\uc815\uc774 \uc5c6\uc2b5\ub2c8\ub2e4."

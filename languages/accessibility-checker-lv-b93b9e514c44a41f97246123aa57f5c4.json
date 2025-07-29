@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Aizv\u0113rt labojumu mod\u0101lo logu"
             ],
+            "Rescan This Page": [
+                "P\u0101rsken\u0113t \u0161o lapu"
+            ],
             "Disable Page Styles": [
                 "Atsp\u0113jot lapas stilus"
+            ],
+            "Disable Styles": [
+                "Atsp\u0113jot stilus"
             ],
             "An error occurred when loading the issues.": [
                 "Rad\u0101s k\u013c\u016bda, iel\u0101d\u0113jot probl\u0113mas."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Iesp\u0113jot stilus"
-            ],
-            "Disable Styles": [
-                "Atsp\u0113jot stilus"
             ],
             "There are no settings to display.": [
                 "Nav r\u0101d\u0101mu iestat\u012bjumu."
