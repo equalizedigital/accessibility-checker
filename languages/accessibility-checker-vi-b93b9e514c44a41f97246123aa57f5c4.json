@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "\u0110\u00f3ng c\u1eeda s\u1ed5 s\u1eeda l\u1ed7i"
             ],
+            "Rescan This Page": [
+                "Qu\u00e9t l\u1ea1i trang n\u00e0y"
+            ],
             "Disable Page Styles": [
                 "T\u1eaft ki\u1ec3u trang"
+            ],
+            "Disable Styles": [
+                "T\u1eaft ki\u1ec3u"
             ],
             "An error occurred when loading the issues.": [
                 "\u0110\u00e3 x\u1ea3y ra l\u1ed7i khi t\u1ea3i c\u00e1c v\u1ea5n \u0111\u1ec1."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "B\u1eadt ki\u1ec3u"
-            ],
-            "Disable Styles": [
-                "T\u1eaft ki\u1ec3u"
             ],
             "There are no settings to display.": [
                 "Kh\u00f4ng c\u00f3 c\u00e0i \u0111\u1eb7t n\u00e0o \u0111\u1ec3 hi\u1ec3n th\u1ecb."

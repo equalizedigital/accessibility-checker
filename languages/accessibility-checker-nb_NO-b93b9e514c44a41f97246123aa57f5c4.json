@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Lukk fiksemodal"
             ],
+            "Rescan This Page": [
+                "Skann denne siden p\u00e5 nytt"
+            ],
             "Disable Page Styles": [
                 "Deaktiver sidestiler"
+            ],
+            "Disable Styles": [
+                "Deaktiver stiler"
             ],
             "An error occurred when loading the issues.": [
                 "Det oppstod en feil under lasting av problemer."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Aktiver stiler"
-            ],
-            "Disable Styles": [
-                "Deaktiver stiler"
             ],
             "There are no settings to display.": [
                 "Det er ingen innstillinger \u00e5 vise."
