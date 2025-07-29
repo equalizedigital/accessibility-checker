@@ -31,6 +31,10 @@ module.exports = {
 		frontendFixes: [
 			'./src/frontendFixes/index.js',
 		],
+		'blocks/simplified-summary': [
+			'./src/blocks/simplified-summary/index.js',
+			'./src/blocks/simplified-summary/style.css',
+		],
 
 	},
 	optimization: {
@@ -102,5 +106,8 @@ module.exports = {
 	externals: {
 		// Exclude WordPress core scripts and styles from the build.
 		'@wordpress/i18n': [ 'wp', 'i18n' ],
+		'@wordpress/blocks': [ 'wp', 'blocks' ],
+		'@wordpress/data': [ 'wp', 'data' ],
+		'@wordpress/element': [ 'wp', 'element' ],
 	},
 };

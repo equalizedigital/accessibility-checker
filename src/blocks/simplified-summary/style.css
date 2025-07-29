@@ -1,0 +1,26 @@
+/* Block editor styles */
+.edac-block-notice {
+	padding: 12px;
+	border: 1px solid #ddd;
+	background: #f9f9f9;
+	border-radius: 4px;
+	color: #666;
+}
+
+.edac-block-notice p {
+	margin: 0;
+	font-style: italic;
+}
+
+/* Frontend styles - matches the existing simplified summary styles */
+.edac-simplified-summary {
+	margin: 1em 0;
+}
+
+.edac-simplified-summary h2 {
+	margin-bottom: 0.5em;
+}
+
+.edac-simplified-summary p {
+	margin: 0;
+}

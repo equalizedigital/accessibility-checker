@@ -65,6 +65,9 @@ class Plugin {
 		$simplified_summary = new Simplified_Summary();
 		$simplified_summary->init_hooks();
 
+		$simplified_summary_block = new Simplified_Summary_Block();
+		$simplified_summary_block->init_hooks();
+
 		$lazyload_filter = new Lazyload_Filter();
 		$lazyload_filter->init_hooks();
 	}

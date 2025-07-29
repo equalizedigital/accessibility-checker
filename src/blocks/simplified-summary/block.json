@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "accessibility-checker/simplified-summary",
+	"version": "1.0.0",
+	"title": "Simplified Summary",
+	"category": "text",
+	"icon": "list-view",
+	"description": "Display the simplified summary for the current post if one exists.",
+	"keywords": ["accessibility", "summary", "simplified"],
+	"textdomain": "accessibility-checker",
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"usesContext": ["postId"],
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css"
+}
