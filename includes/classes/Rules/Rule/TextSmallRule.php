@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * TextSmall Rule class.
@@ -46,7 +47,7 @@ class TextSmallRule implements RuleInterface {
 			'wcag'                  => '1.4.4',
 			'severity'              => 3, // Medium.
 			'affected_disabilities' => [
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
+				AffectedDisabilities::LOW_VISION,
 			],
 		];
 	}

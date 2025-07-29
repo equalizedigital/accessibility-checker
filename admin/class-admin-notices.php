@@ -33,7 +33,6 @@ class Admin_Notices {
 		add_action( 'wp_ajax_edac_black_friday_notice_ajax', [ $this, 'edac_black_friday_notice_ajax' ] );
 		add_action( 'wp_ajax_edac_gaad_notice_ajax', [ $this, 'edac_gaad_notice_ajax' ] );
 		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
-		add_action( 'wp_ajax_edac_password_protected_notice_ajax', [ $this, 'edac_password_protected_notice_ajax' ] );
 		add_action( 'wp_ajax_edac_welcome_page_post_count_change_notice_dismiss_ajax', [ $this, 'welcome_page_post_count_change_notice_ajax' ] );
 		// Save fixes transient on save.
 		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
@@ -54,7 +53,6 @@ class Admin_Notices {
 		add_action( 'admin_notices', [ $this, 'edac_black_friday_notice' ] );
 		add_action( 'admin_notices', [ $this, 'edac_gaad_notice' ] );
 		add_action( 'admin_notices', [ $this, 'edac_review_notice' ] );
-		add_action( 'admin_notices', [ $this, 'edac_password_protected_notice' ] );
 		add_action( 'admin_notices', [ $this, 'welcome_page_post_count_change_notice' ] );
 	}
 
@@ -426,82 +424,6 @@ class Admin_Notices {
 		wp_send_json_success( wp_json_encode( $results ) );
 	}
 
-	/**
-	 * Password Protected Notice Text
-	 *
-	 * @return string
-	 */
-	public function edac_password_protected_notice_text() {
-		/**
-		 * Filter the password protected notice text.
-		 *
-		 * @since 1.4.0
-		 *
-		 * @param string $text The password protected notice text.
-		 */
-		return apply_filters(
-			'edac_filter_password_protected_notice_text',
-			sprintf(
-				// translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-				esc_html__( 'Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan.', 'accessibility-checker' ),
-				sprintf(
-					'<a href="%3$s" target="_blank" aria-label="%1$s">%2$s</a>',
-					esc_attr__( 'Upgrade to accessibility checker pro. Opens in a new window.', 'accessibility-checker' ),
-					esc_html__( 'upgrade to pro', 'accessibility-checker' ),
-					edac_generate_link_type(
-						[
-							'utm-campaign' => 'password-protected-notice',
-							'utm-content'  => 'upgrade-to-pro',
-						]
-					)
-				)
-			)
-		);
-	}
-
-	/**
-	 * Password Protected Notice
-	 *
-	 * @return string
-	 */
-	public function edac_password_protected_notice() {
-		if ( (bool) get_option( 'edac_password_protected' )
-			&& ! (bool) get_option( 'edac_password_protected_notice_dismiss' )
-		) {
-			echo wp_kses( '<div class="edac_password_protected_notice notice notice-error is-dismissible"><p>' . $this->edac_password_protected_notice_text() . '</p></div>', 'post' );
-			return;
-		}
-	}
-
-	/**
-	 * Password Protected Admin Notice Ajax
-	 *
-	 * @return void
-	 *
-	 *  - '-1' means that nonce could not be varified
-	 *  - '-2' means that update option wasn't successful
-	 */
-	public function edac_password_protected_notice_ajax() {
-
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
-		}
-
-		$results = update_option( 'edac_password_protected_notice_dismiss', true );
-
-		if ( ! $results ) {
-
-			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
-		}
-
-		wp_send_json_success( wp_json_encode( $results ) );
-	}
 
 	/**
 	 * Save a transient to indicate that the fixes settings have been updated.

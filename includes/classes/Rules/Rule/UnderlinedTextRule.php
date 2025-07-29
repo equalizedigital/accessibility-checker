@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * UnderlinedText Rule class.
@@ -43,8 +44,8 @@ class UnderlinedTextRule implements RuleInterface {
 			'wcag'                  => '1.3.1',
 			'severity'              => 4, // Low.
 			'affected_disabilities' => [
-				esc_html__( 'Low-vision', 'accessibility-checker' ),
-				esc_html__( 'Cognitive', 'accessibility-checker' ),
+				AffectedDisabilities::LOW_VISION,
+				AffectedDisabilities::COGNITIVE,
 			],
 		];
 	}

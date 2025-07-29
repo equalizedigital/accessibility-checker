@@ -9,6 +9,7 @@ namespace EDAC\Inc;
 
 use EDAC\Admin\Admin;
 use EDAC\Admin\Meta_Boxes;
+use EDAC\Admin\Orphaned_Issues_Cleanup;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
@@ -36,6 +37,9 @@ class Plugin {
 		// Initialize the admin toolbar.
 		$admin_toolbar = new Admin_Toolbar();
 		$admin_toolbar->init();
+
+		$cleanup = new Orphaned_Issues_Cleanup();
+		$cleanup->init_hooks();
 
 		$this->register_fixes_manager();
 

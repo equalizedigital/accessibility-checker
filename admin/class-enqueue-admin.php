@@ -128,7 +128,6 @@ class Enqueue_Admin {
 						'baseurl'      => plugin_dir_url( __DIR__ ),
 						'active'       => $active,
 						'pro'          => $pro,
-						'authOk'       => false === (bool) get_option( 'edac_password_protected', false ),
 						'debug'        => $debug,
 						'scanUrl'      => $scan_url,
 						'maxAltLength' => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),

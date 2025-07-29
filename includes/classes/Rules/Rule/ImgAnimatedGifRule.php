@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
+use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
  * ImgAnimatedGif Rule class.
@@ -45,9 +46,9 @@ class ImgAnimatedGifRule implements RuleInterface {
 			'wcag'                  => '2.2.2',
 			'severity'              => 2, // High.
 			'affected_disabilities' => [
-				esc_html__( 'Seizure disorders', 'accessibility-checker' ),
-				esc_html__( 'Cognitive', 'accessibility-checker' ),
-				esc_html__( 'Vestibular disorders', 'accessibility-checker' ),
+				AffectedDisabilities::SEIZURE,
+				AffectedDisabilities::COGNITIVE,
+				AffectedDisabilities::VESTIBULAR,
 			],
 			'ruleset'               => 'js',
 			'combines'              => [ 'img_animated' ],

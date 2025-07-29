@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Zapri modal s popravki"
             ],
+            "Rescan This Page": [
+                "Ponovno preglej to stran"
+            ],
             "Disable Page Styles": [
                 "Onemogo\u010di sloge strani"
+            ],
+            "Disable Styles": [
+                "Onemogo\u010di sloge"
             ],
             "An error occurred when loading the issues.": [
                 "Pri nalaganju te\u017eav je pri\u0161lo do napake."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Omogo\u010di sloge"
-            ],
-            "Disable Styles": [
-                "Onemogo\u010di sloge"
             ],
             "There are no settings to display.": [
                 "Ni nastavitev za prikaz."

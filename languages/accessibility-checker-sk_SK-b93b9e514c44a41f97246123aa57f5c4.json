@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Zatvori\u0165 mod\u00e1lne okno s opravami"
             ],
+            "Rescan This Page": [
+                "Preskenova\u0165 t\u00fato str\u00e1nku"
+            ],
             "Disable Page Styles": [
                 "Vypn\u00fa\u0165 \u0161t\u00fdly str\u00e1nky"
+            ],
+            "Disable Styles": [
+                "Vypn\u00fa\u0165 \u0161t\u00fdly"
             ],
             "An error occurred when loading the issues.": [
                 "Pri na\u010d\u00edtavan\u00ed probl\u00e9mov sa vyskytla chyba."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Zapn\u00fa\u0165 \u0161t\u00fdly"
-            ],
-            "Disable Styles": [
-                "Vypn\u00fa\u0165 \u0161t\u00fdly"
             ],
             "There are no settings to display.": [
                 "Nie s\u00fa k dispoz\u00edcii \u017eiadne nastavenia na zobrazenie."
