@@ -10,9 +10,7 @@ services:
       - db_data:/var/lib/mysql
 
   phpunit:
-    build:
-      context: .
-      dockerfile: Dockerfile.phpunit
+    image: pattonwebz/phpunit-wordpress:1.0.0
     depends_on:
       - db-phpunit
     environment:
@@ -28,4 +26,3 @@ services:
 
 volumes:
   db_data:
-
