@@ -29,6 +29,12 @@ class Simplified_Summary_Block {
 	 * Register the simplified summary block.
 	 */
 	public function register_block() {
+		// Only register the block if manual placement is enabled
+		$simplified_summary_position = get_option( 'edac_simplified_summary_position', 'after' );
+		if ( 'none' !== $simplified_summary_position ) {
+			return;
+		}
+
 		register_block_type(
 			EDAC_PLUGIN_DIR . 'src/blocks/simplified-summary/block.json',
 			[
@@ -53,7 +59,7 @@ class Simplified_Summary_Block {
 			return '';
 		}
 
-		// Check if manual placement is enabled
+		// Double-check that manual placement is enabled (defensive programming)
 		$simplified_summary_position = get_option( 'edac_simplified_summary_position', 'after' );
 		if ( 'none' !== $simplified_summary_position ) {
 			return '';
