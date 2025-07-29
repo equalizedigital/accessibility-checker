@@ -53,61 +53,116 @@ echo
 echo "Updating WordPress version requirements"
 echo
 
-# Function to calculate WordPress version three versions back
-calculate_wp_requires_version() {
+# Function to fetch WordPress versions and calculate required version
+update_wp_requires_version() {
+    echo "Fetching WordPress version list..."
+    
+    # Get current "Tested up to" version from readme.txt
     local tested_up_to=$(grep "Tested up to:" "${README_PATH}" | sed -E 's/Tested up to: ([0-9]+\.[0-9]+).*/\1/')
     
     if [[ -z "${tested_up_to}" ]]; then
-        echo "Could not extract 'Tested up to' version from readme.txt" >&2
+        echo "Error: Could not extract 'Tested up to' version from readme.txt" >&2
         return 1
     fi
     
-    echo "Current 'Tested up to': ${tested_up_to}" >&2
+    echo "Current 'Tested up to': ${tested_up_to}"
     
-    # Extract major and minor version numbers
-    local major=$(echo "${tested_up_to}" | cut -d. -f1)
-    local minor=$(echo "${tested_up_to}" | cut -d. -f2)
+    # Try to fetch WordPress versions from the API first
+    local wp_versions_json=$(curl -s --max-time 10 "https://api.wordpress.org/core/version-check/1.7/" 2>/dev/null || echo "")
     
-    # Calculate three versions back
-    local target_minor=$((minor - 3))
-    local target_major=${major}
-    
-    # Handle cases where we need to go back to previous major version
-    if [[ ${target_minor} -lt 0 ]]; then
-        target_major=$((major - 1))
-        # WordPress typically has 10+ minor versions per major release
-        # If we go negative, we'll use a reasonable estimate
-        case ${major} in
-            6)
-                # WordPress 6.x series - estimate based on known releases
-                target_minor=$((10 + target_minor))
-                ;;
-            *)
-                # For other versions, use a conservative approach
-                target_minor=$((9 + target_minor))
-                ;;
-        esac
+    if [[ -n "${wp_versions_json}" ]]; then
+        echo "Using WordPress API for version data..."
+        # Parse JSON response to get version list in reverse chronological order
+        local versions_list=$(echo "${wp_versions_json}" | \
+            grep -o '"version":"[0-9]*\.[0-9]*"' | \
+            sed 's/"version":"\([0-9]*\.[0-9]*\)"/\1/' | \
+            sort -rV | \
+            uniq)
+    else
+        echo "API unavailable, trying to parse releases page..."
+        # Fallback: try to parse the releases page
+        local releases_html=$(curl -s --max-time 15 "https://wordpress.org/download/releases/" 2>/dev/null || echo "")
         
-        # Don't go below WordPress 5.0 (reasonable minimum)
-        if [[ ${target_major} -lt 5 ]]; then
-            target_major=5
-            target_minor=0
+        if [[ -n "${releases_html}" ]]; then
+            # Extract version numbers from the releases page
+            # Look for patterns like "WordPress 6.8" or "wordpress-6.7.zip"
+            local versions_list=$(echo "${releases_html}" | \
+                grep -oE '(WordPress [0-9]+\.[0-9]+|wordpress-[0-9]+\.[0-9]+)' | \
+                sed -E 's/(WordPress |wordpress-)([0-9]+\.[0-9]+)/\2/' | \
+                sort -rV | \
+                uniq)
+        else
+            echo "Error: Could not fetch WordPress version data from any source" >&2
+            return 1
         fi
     fi
     
-    echo "${target_major}.${target_minor}"
+    if [[ -z "${versions_list}" ]]; then
+        echo "Error: No WordPress versions found in response" >&2
+        return 1
+    fi
+    
+    echo "Found WordPress versions (latest first):"
+    echo "${versions_list}" | head -10
+    
+    # Find the current tested version in the list and go back 3 versions
+    local found_current=false
+    local version_count=0
+    local target_version=""
+    
+    while IFS= read -r version; do
+        if [[ "${found_current}" == true ]]; then
+            version_count=$((version_count + 1))
+            if [[ ${version_count} -eq 3 ]]; then
+                target_version="${version}"
+                break
+            fi
+        elif [[ "${version}" == "${tested_up_to}" ]]; then
+            found_current=true
+            echo "Found current tested version ${tested_up_to} in version list"
+        fi
+    done <<< "${versions_list}"
+    
+    if [[ "${found_current}" == false ]]; then
+        echo "Warning: Current 'Tested up to' version ${tested_up_to} not found in WordPress version list" >&2
+        echo "Available versions: $(echo "${versions_list}" | tr '\n' ' ')" >&2
+        return 1
+    fi
+    
+    if [[ -z "${target_version}" ]]; then
+        echo "Warning: Could not find version 3 releases back from ${tested_up_to}" >&2
+        # Try to use the oldest version we found if we don't have enough history
+        target_version=$(echo "${versions_list}" | tail -1)
+        if [[ -n "${target_version}" ]]; then
+            echo "Using oldest available version: ${target_version}"
+        else
+            return 1
+        fi
+    fi
+    
+    # Ensure we don't go below WordPress 5.0 (reasonable minimum)
+    local min_major=$(echo "${target_version}" | cut -d. -f1)
+    if [[ ${min_major} -lt 5 ]]; then
+        target_version="5.0"
+        echo "Adjusted to minimum supported version: ${target_version}"
+    fi
+    
+    echo "Setting 'Requires at least' to: ${target_version} (3 versions back from ${tested_up_to})"
+    
+    # Update the readme.txt file
+    sed -i.bak -E "s/(Requires at least: )[0-9]+\.[0-9]+/\1${target_version}/" "${README_PATH}"
+    
+    return 0
 }
 
-# Calculate the new requires version
-NEW_WP_REQUIRES=$(calculate_wp_requires_version)
-if [[ $? -eq 0 && -n "${NEW_WP_REQUIRES}" ]]; then
-    echo "Setting 'Requires at least' to: ${NEW_WP_REQUIRES}"
-    sed -i.bak -E "s/(Requires at least: )[0-9]+\.[0-9]+/\1${NEW_WP_REQUIRES}/" readme.txt
-    rm  "${MAIN_FILE_PATH}.bak" "${PACKAGE_JSON_PATH}.bak" "${README_PATH}.bak"
+# Update WordPress version requirements
+if update_wp_requires_version; then
+    echo "Successfully updated WordPress version requirements"
 else
-    echo "Warning: Could not calculate WordPress requires version, keeping current value"
-    rm  "${MAIN_FILE_PATH}.bak" "${PACKAGE_JSON_PATH}.bak" "${README_PATH}.bak"
+    echo "Warning: Could not update WordPress version requirements, keeping current values"
 fi
+
+rm  "${MAIN_FILE_PATH}.bak" "${PACKAGE_JSON_PATH}.bak" "${README_PATH}.bak"
 
 echo
 echo "Committing version bump"
