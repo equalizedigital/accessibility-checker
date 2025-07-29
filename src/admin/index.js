@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 
+import { __ } from '@wordpress/i18n';
 import {
 	clearAllTabsAndPanelState, initFixButtonEventHandlers,
 	initSummaryTabKeyboardAndClickHandlers,
@@ -842,7 +843,8 @@ const fillDashboardWidget = () => {
 			}
 		} )
 		.catch( ( e ) => {
-			console.error( 'EDAC: Failed to load scan statistics:', e );
+			// eslint-disable-next-line no-console
+			console.error( __( 'EDAC: Failed to load scan statistics:', 'accessibility-checker' ), e );
 			// Hide the dashboard widget on error
 			const wrapper = document.querySelector(
 				'.edac-summary.edac-modal-container'

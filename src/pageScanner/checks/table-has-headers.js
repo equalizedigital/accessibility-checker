@@ -8,7 +8,7 @@ export default {
 		// Enhanced logic to account for colspan, rowspan, and ARIA header relationships
 		const hasAriaHeaders = node.querySelector( '[headers]' );
 		const hasAriaLabelledBy = node.querySelector( '[aria-labelledby]' );
-		
+
 		// If table uses ARIA headers/labelledby relationships, it's considered valid
 		if ( hasAriaHeaders || hasAriaLabelledBy ) {
 			return true;

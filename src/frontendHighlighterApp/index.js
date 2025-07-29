@@ -485,23 +485,26 @@ class AccessibilityCheckerHighlight {
 				//issueElement.focus();
 
 				if ( ! this.checkVisibility( tooltip ) || ! this.checkVisibility( element ) ) {
-					this.currentIssueStatus = 'The element is not visible. Try disabling styles.';
+					this.currentIssueStatus = __( 'The element is not visible. Try disabling styles.', 'accessibility-checker' );
 					if ( window.edacDebug ) {
-						console.log( `EDAC: Element with id ${id} is not visible!` );
+						// eslint-disable-next-line no-console
+						console.log( __( 'EDAC: Element with id %s is not visible!', 'accessibility-checker' ).replace( '%s', `${ id }` ) );
 					}
 				} else {
 					this.currentIssueStatus = null;
 				}
 			} else {
-				this.currentIssueStatus = 'The element is not focusable. Try disabling styles.';
+				this.currentIssueStatus = __( 'The element is not focusable. Try disabling styles.', 'accessibility-checker' );
 				if ( window.edacDebug ) {
-					console.log( `EDAC: Element with id ${id} is not focusable!` );
+					// eslint-disable-next-line no-console
+					console.log( __( 'EDAC: Element with id %s is not focusable!', 'accessibility-checker' ).replace( '%s', `${ id }` ) );
 				}
 			}
 		} else {
-			this.currentIssueStatus = 'The element was not found on the page.';
+			this.currentIssueStatus = __( 'The element was not found on the page.', 'accessibility-checker' );
 			if ( window.edacDebug ) {
-				console.log( `EDAC: Element with id ${id} not found in the document!` );
+				// eslint-disable-next-line no-console
+				console.log( __( 'EDAC: Element with id %s not found in the document!', 'accessibility-checker' ).replace( '%s', `${ id }` ) );
 			}
 		}
 
