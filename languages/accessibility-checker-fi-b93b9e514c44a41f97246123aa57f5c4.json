@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Sulje korjausikkuna"
             ],
+            "Rescan This Page": [
+                "Skannaa t\u00e4m\u00e4 sivu uudelleen"
+            ],
             "Disable Page Styles": [
                 "Poista sivun tyylit k\u00e4yt\u00f6st\u00e4"
+            ],
+            "Disable Styles": [
+                "Poista tyylit k\u00e4yt\u00f6st\u00e4"
             ],
             "An error occurred when loading the issues.": [
                 "Virhe ongelmien lataamisessa."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Ota tyylit k\u00e4ytt\u00f6\u00f6n"
-            ],
-            "Disable Styles": [
-                "Poista tyylit k\u00e4yt\u00f6st\u00e4"
             ],
             "There are no settings to display.": [
                 "Ei n\u00e4ytett\u00e4vi\u00e4 asetuksia."
