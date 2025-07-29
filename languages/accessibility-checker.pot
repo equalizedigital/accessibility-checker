@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.27.1\n"
+"Project-Id-Version: Accessibility Checker 1.28.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-22T18:47:51+00:00\n"
+"POT-Creation-Date: 2025-07-29T12:20:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -46,7 +46,7 @@ msgstr ""
 
 #: admin/AdminPage/FixesPage.php:71
 #: admin/site-health/class-free.php:105
-#: admin/site-health/class-pro.php:90
+#: admin/site-health/class-pro.php:82
 #: includes/classes/class-admin-toolbar.php:102
 msgid "Fixes"
 msgstr ""
@@ -72,7 +72,7 @@ msgid "Get Pro"
 msgstr ""
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:354
+#: admin/class-ajax.php:347
 msgid "Opens in a new window."
 msgstr ""
 
@@ -165,119 +165,102 @@ msgid "Unlock Pro Features (opens in new window)"
 msgstr ""
 
 #. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:94
+#: admin/class-admin-notices.php:92
 #, php-format
 msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
 msgstr ""
 
-#: admin/class-admin-notices.php:114
-#: admin/class-admin-notices.php:225
-#: admin/class-admin-notices.php:312
-#: admin/class-admin-notices.php:401
-#: admin/class-admin-notices.php:489
+#: admin/class-admin-notices.php:112
+#: admin/class-admin-notices.php:223
+#: admin/class-admin-notices.php:310
+#: admin/class-admin-notices.php:399
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:212
-#: admin/class-ajax.php:591
-#: admin/class-ajax.php:729
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:205
+#: admin/class-ajax.php:584
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:802
 #: admin/class-frontend-highlight.php:79
 msgid "Permission Denied"
 msgstr ""
 
-#: admin/class-admin-notices.php:123
-#: admin/class-admin-notices.php:234
-#: admin/class-admin-notices.php:324
-#: admin/class-admin-notices.php:421
-#: admin/class-admin-notices.php:498
+#: admin/class-admin-notices.php:121
+#: admin/class-admin-notices.php:232
+#: admin/class-admin-notices.php:322
+#: admin/class-admin-notices.php:419
 msgid "Update option wasn't successful"
 msgstr ""
 
-#: admin/class-admin-notices.php:203
+#: admin/class-admin-notices.php:201
 msgid "🎉 Black Friday special! 🎉"
 msgstr ""
 
-#: admin/class-admin-notices.php:204
+#: admin/class-admin-notices.php:202
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr ""
 
-#: admin/class-admin-notices.php:205
-#: admin/class-admin-notices.php:292
+#: admin/class-admin-notices.php:203
+#: admin/class-admin-notices.php:290
 msgid "Ask a Pre-Sale Question"
 msgstr ""
 
-#: admin/class-admin-notices.php:206
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:204
+#: admin/class-admin-notices.php:291
 msgid "Upgrade Now"
 msgstr ""
 
-#: admin/class-admin-notices.php:290
+#: admin/class-admin-notices.php:288
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr ""
 
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:289
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr ""
 
-#: admin/class-admin-notices.php:376
+#: admin/class-admin-notices.php:374
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr ""
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:377
 msgid "Write A Review"
 msgstr ""
 
-#: admin/class-admin-notices.php:380
+#: admin/class-admin-notices.php:378
 msgid "Remind Me In Two Weeks"
 msgstr ""
 
-#: admin/class-admin-notices.php:381
+#: admin/class-admin-notices.php:379
 msgid "Never Ask Again"
 msgstr ""
 
-#: admin/class-admin-notices.php:408
+#: admin/class-admin-notices.php:406
 msgid "The review action value was not set"
 msgstr ""
 
-#. translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-#: admin/class-admin-notices.php:446
-#, php-format
-msgid "Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan."
-msgstr ""
-
-#: admin/class-admin-notices.php:449
-msgid "Upgrade to accessibility checker pro. Opens in a new window."
-msgstr ""
-
-#: admin/class-admin-notices.php:450
-#: includes/options-page.php:464
-msgid "upgrade to pro"
-msgstr ""
-
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:219
-#: admin/class-ajax.php:598
-#: admin/class-ajax.php:816
+#: admin/class-ajax.php:212
+#: admin/class-ajax.php:591
+#: admin/class-ajax.php:809
 msgid "The post ID was not set"
 msgstr ""
 
-#: admin/class-ajax.php:92
+#: admin/class-ajax.php:85
 msgid "A Simplified summary has not been included for this content."
 msgstr ""
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:88
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr ""
 
-#: admin/class-ajax.php:98
+#: admin/class-ajax.php:91
 msgid "The reading level of the simplified summary is too high."
 msgstr ""
 
-#: admin/class-ajax.php:100
+#: admin/class-ajax.php:93
 msgid "A simplified summary has been included for this content."
 msgstr ""
 
 #. translators: %s: Number of errors
-#: admin/class-ajax.php:133
+#: admin/class-ajax.php:126
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
@@ -285,7 +268,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: Number of contrast errors
-#: admin/class-ajax.php:139
+#: admin/class-ajax.php:132
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
@@ -293,7 +276,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: Number of warnings
-#: admin/class-ajax.php:145
+#: admin/class-ajax.php:138
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
@@ -301,74 +284,74 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: Number of ignored items
-#: admin/class-ajax.php:151
+#: admin/class-ajax.php:144
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/class-ajax.php:189
+#: admin/class-ajax.php:182
 msgid "No summary to return"
 msgstr ""
 
-#: admin/class-ajax.php:233
+#: admin/class-ajax.php:226
 msgid "Invalid table name"
 msgstr ""
 
-#: admin/class-ajax.php:379
+#: admin/class-ajax.php:372
 msgid "These settings enable global fixes across your entire site."
 msgstr ""
 
-#: admin/class-ajax.php:380
+#: admin/class-ajax.php:373
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr ""
 
-#: admin/class-ajax.php:408
+#: admin/class-ajax.php:401
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr ""
 
-#: admin/class-ajax.php:430
+#: admin/class-ajax.php:423
 msgid "Affected Code"
 msgstr ""
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:507
+#: admin/class-ajax.php:500
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr ""
 
-#: admin/class-ajax.php:508
+#: admin/class-ajax.php:501
 msgid "View on page"
 msgstr ""
 
-#: admin/class-ajax.php:527
+#: admin/class-ajax.php:520
 msgid "Fix: "
 msgstr ""
 
-#: admin/class-ajax.php:528
+#: admin/class-ajax.php:521
 msgid "Fix"
 msgstr ""
 
-#: admin/class-ajax.php:551
+#: admin/class-ajax.php:544
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr ""
 
-#: admin/class-ajax.php:569
+#: admin/class-ajax.php:562
 msgid "No details to return"
 msgstr ""
 
-#: admin/class-ajax.php:708
+#: admin/class-ajax.php:701
 msgid "No readability data to return"
 msgstr ""
 
-#: admin/class-ajax.php:765
-#: admin/class-ajax.php:788
+#: admin/class-ajax.php:758
+#: admin/class-ajax.php:781
 msgid "No ignore data to return"
 msgstr ""
 
-#: admin/class-ajax.php:823
+#: admin/class-ajax.php:816
 msgid "The summary was not set"
 msgstr ""
 
@@ -685,8 +668,6 @@ msgstr ""
 #: admin/site-health/class-free.php:78
 #: admin/site-health/class-pro.php:51
 #: admin/site-health/class-pro.php:55
-#: admin/site-health/class-pro.php:63
-#: admin/site-health/class-pro.php:67
 msgid "Unset"
 msgstr ""
 
@@ -756,34 +737,26 @@ msgid "License Status"
 msgstr ""
 
 #: admin/site-health/class-pro.php:62
-msgid "Authorization Username"
-msgstr ""
-
-#: admin/site-health/class-pro.php:66
-msgid "Authorization Password"
-msgstr ""
-
-#: admin/site-health/class-pro.php:70
 msgid "Scan ID"
 msgstr ""
 
-#: admin/site-health/class-pro.php:74
+#: admin/site-health/class-pro.php:66
 msgid "Scan Total"
 msgstr ""
 
-#: admin/site-health/class-pro.php:78
+#: admin/site-health/class-pro.php:70
 msgid "Simplified Sum Heading"
 msgstr ""
 
-#: admin/site-health/class-pro.php:82
+#: admin/site-health/class-pro.php:74
 msgid "Ignore Permissions"
 msgstr ""
 
-#: admin/site-health/class-pro.php:83
+#: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr ""
 
-#: admin/site-health/class-pro.php:86
+#: admin/site-health/class-pro.php:78
 msgid "Ignores DB Table Count"
 msgstr ""
 
@@ -1175,1326 +1148,47 @@ msgstr ""
 msgid "Fix not found"
 msgstr ""
 
-#: includes/classes/Rules/Rule/AriaHiddenRule.php:23
-msgid "ARIA Hidden"
-msgstr ""
-
-#. translators: %s is <code>aria-hidden="true"</code.
-#: includes/classes/Rules/Rule/AriaHiddenRule.php:29
-#, php-format
-msgid "This element uses %s, which hides it from screen readers."
-msgstr ""
-
-#. translators: %s is <code>aria-hidden="true"</code.
-#: includes/classes/Rules/Rule/AriaHiddenRule.php:34
-#, php-format
-msgid "These elements use %s, which hides them from screen readers."
-msgstr ""
-
-#: includes/classes/Rules/Rule/AriaHiddenRule.php:37
-msgid "The aria-hidden attribute is used to hide content from assistive technologies. While this is useful for decorative or redundant elements, it can cause accessibility issues if applied to important content that screen reader users need to access."
-msgstr ""
-
-#. translators: %s is <code>aria-hidden="true"</code.
-#: includes/classes/Rules/Rule/AriaHiddenRule.php:40
-#, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr ""
-
-#: includes/classes/Rules/Rule/AriaHiddenRule.php:45
-msgid "W3C: ARIA Authoring Practices - aria-hidden"
-msgstr ""
-
-#: includes/classes/Rules/Rule/AriaHiddenRule.php:49
-msgid "MDN Web Docs: aria-hidden - Accessibility Attribute"
-msgstr ""
-
-#: includes/classes/Rules/Rule/AriaHiddenRule.php:57
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:48
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:45
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:50
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:67
-#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:53
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:55
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:53
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:57
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:57
-#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:58
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:54
-#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:41
-#: includes/classes/Rules/Rule/ImgAltLongRule.php:53
-#: includes/classes/Rules/Rule/ImgAltMissingRule.php:59
-#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:41
-#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:41
-#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:45
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:58
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:53
-#: includes/classes/Rules/Rule/LinkBlankRule.php:49
-#: includes/classes/Rules/Rule/LinkImproperRule.php:61
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:69
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:36
-#: includes/classes/Rules/Rule/LinkPdfRule.php:53
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:61
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:66
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:58
-#: includes/classes/Rules/Rule/MissingLangAttrRule.php:61
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:58
-#: includes/classes/Rules/Rule/MissingTitleRule.php:51
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:50
-#: includes/classes/Rules/Rule/SliderPresentRule.php:44
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:60
-#: includes/classes/Rules/Rule/VideoPresentRule.php:44
+#: includes/classes/Rules/AffectedDisabilities.php:50
 msgid "Blind"
 msgstr ""
 
-#: includes/classes/Rules/Rule/AriaHiddenRule.php:58
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:49
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:46
-#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:49
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:51
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:68
-#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:54
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:56
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:54
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:58
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:58
-#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:59
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:55
-#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:42
-#: includes/classes/Rules/Rule/ImgAltLongRule.php:54
-#: includes/classes/Rules/Rule/ImgAltMissingRule.php:60
-#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:42
-#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:42
-#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:46
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:59
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:54
-#: includes/classes/Rules/Rule/LinkBlankRule.php:50
-#: includes/classes/Rules/Rule/LinkImproperRule.php:62
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:70
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:37
-#: includes/classes/Rules/Rule/LinkPdfRule.php:54
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:62
-#: includes/classes/Rules/Rule/MetaViewportRule.php:57
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:67
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:59
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:59
-#: includes/classes/Rules/Rule/MissingTitleRule.php:52
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:51
-#: includes/classes/Rules/Rule/SliderPresentRule.php:45
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:61
-#: includes/classes/Rules/Rule/TextJustifiedRule.php:53
-#: includes/classes/Rules/Rule/TextSmallRule.php:49
-#: includes/classes/Rules/Rule/UnderlinedTextRule.php:46
-#: includes/classes/Rules/Rule/VideoPresentRule.php:45
+#: includes/classes/Rules/AffectedDisabilities.php:52
 msgid "Low-vision"
 msgstr ""
 
-#: includes/classes/Rules/Rule/AriaHiddenRule.php:59
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:50
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:47
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:52
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:69
-#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:55
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:57
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:55
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:59
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:59
-#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:60
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:56
-#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:43
-#: includes/classes/Rules/Rule/ImgAltLongRule.php:55
-#: includes/classes/Rules/Rule/ImgAltMissingRule.php:61
-#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:43
-#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:43
-#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:47
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:60
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:55
-#: includes/classes/Rules/Rule/LinkBlankRule.php:51
-#: includes/classes/Rules/Rule/LinkImproperRule.php:63
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:71
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:38
-#: includes/classes/Rules/Rule/LinkPdfRule.php:55
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:63
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:68
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:60
-#: includes/classes/Rules/Rule/MissingLangAttrRule.php:62
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:60
-#: includes/classes/Rules/Rule/MissingTitleRule.php:53
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:45
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:52
-#: includes/classes/Rules/Rule/SliderPresentRule.php:46
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:62
-#: includes/classes/Rules/Rule/VideoPresentRule.php:46
+#: includes/classes/Rules/AffectedDisabilities.php:54
 msgid "Deafblind"
 msgstr ""
 
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:23
-msgid "Broken ARIA Reference"
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:27
-msgid "This element uses an ARIA attribute that references another element which does not exist or is not properly labeled."
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:28
-msgid "These elements use ARIA attributes that reference other elements which do not exist or are not properly labeled."
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:29
-msgid "ARIA attributes like aria-labelledby and aria-describedby are used to improve accessibility by connecting elements to their labels or descriptions. If the reference target does not exist, users of assistive technology will miss important context or instructions."
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:30
-msgid "Inspect the ARIA attributes (such as aria-labelledby or aria-describedby) on the flagged elements and ensure that each one points to a valid, correctly labeled ID that exists in the document."
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:33
-msgid "MDN Web Docs: ARIA: aria-labelledby attribute"
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:37
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:53
-msgid "MDN Web Docs: ARIA: aria-describedby attribute"
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:41
-msgid "ARIA for Beginners (Webinar)"
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:51
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:48
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:60
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:62
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:57
-#: includes/classes/Rules/Rule/LinkBlankRule.php:53
-#: includes/classes/Rules/Rule/LinkImproperRule.php:64
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:73
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:40
-#: includes/classes/Rules/Rule/LinkPdfRule.php:57
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:70
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:62
-#: includes/classes/Rules/Rule/MissingTitleRule.php:54
-#: includes/classes/Rules/Rule/SliderPresentRule.php:48
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:64
+#: includes/classes/Rules/AffectedDisabilities.php:56
 msgid "Mobility"
 msgstr ""
 
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:23
-msgid "Broken Skip or Anchor Link"
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:27
-msgid "This link points to an anchor target on the same page, but no element with the referenced ID exists."
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:28
-msgid "These links point to anchor targets on the same page, but no elements with the referenced IDs exist."
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:29
-msgid "Skip and anchor links are important for efficient keyboard and screen reader navigation. When these links are broken, users may be confused or lose their place on the page, leading to a frustrating experience—especially for people who rely on keyboard shortcuts or assistive technology."
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:30
-msgid "Confirm that the link is pointing to a valid ID on the page. If the target element exists, make sure it has a matching id attribute. To automatically fix broken skip links throughout your site, enable the 'Enable Skip Link' fix in Accessibility Checker settings."
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:33
-msgid "How to Make Your WordPress Site More Accessible With Skip Links"
-msgstr ""
-
-#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:37
-msgid "How to Fix Broken Skip Links in Elementor"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:23
-msgid "Insufficient Color Contrast"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:27
-msgid "This element has foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:28
-msgid "These elements have foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:29
-msgid "Insufficient color contrast makes text and interactive elements difficult or impossible to read for users with low vision or color blindness. Ensuring adequate contrast helps all users access your content clearly."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:30
-msgid "Adjust the foreground and background colors of the flagged elements to ensure a contrast ratio of at least 4.5:1 for normal text. Use a contrast checker to confirm that your color combinations meet this requirement."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:33
-msgid "Brand Color Contrast Grid"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:37
-msgid "WebAIM Contrast Checker"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:41
-msgid "TPGI Colour Contrast Analyser"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:50
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:74
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:41
-#: includes/classes/Rules/Rule/LinkPdfRule.php:58
+#: includes/classes/Rules/AffectedDisabilities.php:58
 msgid "Colorblind"
 msgstr ""
 
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:23
-msgid "Duplicate Form Label"
-msgstr ""
-
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:27
-msgid "This form field has more than one label associated with it."
-msgstr ""
-
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:28
-msgid "These form fields have more than one label associated with them."
-msgstr ""
-
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:29
-msgid "Assistive technologies rely on a one-to-one relationship between form fields and labels to provide accurate guidance to users. When multiple labels are associated with the same field, it can confuse screen reader users and make form completion difficult as the screen reader may read the incorrect label for a field."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;label&gt;</code>, %2$s is <code>for=""</code>.
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:32
-#, php-format
-msgid "Ensure each form field has only one %1$s element associated with it. If multiple labels are present, remove extras or consolidate them into a single %1$s with a clear description. Make sure each %1$s element correctly references its form field using the %2$s attribute and that all elements on the page have unique IDs. This error happens when you have the same form embedded on a page twice and can be resolved by creating unique forms for different parts of a page rather than repeating the same form throughout."
-msgstr ""
-
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:38
-msgid "MDN: <label> – The HTML Label element"
-msgstr ""
-
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:42
-msgid "W3C: H44 – Using label elements to associate text labels with form controls"
-msgstr ""
-
-#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:53
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:70
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:58
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:56
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:60
-#: includes/classes/Rules/Rule/ImgAltLongRule.php:56
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:49
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:61
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:56
-#: includes/classes/Rules/Rule/LinkBlankRule.php:52
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:72
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:39
-#: includes/classes/Rules/Rule/LinkPdfRule.php:56
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:69
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:61
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:61
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:47
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:53
-#: includes/classes/Rules/Rule/SliderPresentRule.php:47
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:63
-#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:52
-#: includes/classes/Rules/Rule/TextJustifiedRule.php:55
-#: includes/classes/Rules/Rule/UnderlinedTextRule.php:47
-#: includes/classes/Rules/Rule/VideoPresentRule.php:47
+#: includes/classes/Rules/AffectedDisabilities.php:60
 msgid "Cognitive"
 msgstr ""
 
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:23
-msgid "Empty Button"
-msgstr ""
-
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:29
-#, php-format
-msgid "This element is a %1$s or %2$s with no accessible label or text."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:35
-#, php-format
-msgid "These elements are %1$s or %2$s with no accessible label or text."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:39
-msgid "Buttons must clearly describe the action they perform. An empty button provides no information to screen readers or keyboard users, making it impossible to understand what clicking the button will do. This creates a barrier for people relying on assistive technologies."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>value</code>, %3$s is <code>alt</code>, %4$s is <code>aria-hidden="true"</code>, %5$s is <code>aria-label</code>.
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:42
-#, php-format
-msgid "Add visible text inside the %1$s element, set a %2$s attribute on an input button, or include an %3$s attribute on a button image. If the button uses only an icon (e.g., SVG or webfont), hide the icon with %4$s and add a descriptive %5$s to the button or include screen reader-only text.  Each button must have a label that clearly describes its purpose or action."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:51
-msgid "MDN Wed Docs: <button>"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:55
-msgid "W3C Technique H44: Using the button element"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyButtonRule.php:59
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:47
-msgid "WordPress: The CSS class screen-reader-text"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:23
-msgid "Empty Heading Tag"
-msgstr ""
-
-#. translators: %s represents any heading element like <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;h2&gt;&lt;/h2&gt;</code>, etc.
-#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:29
-#, php-format
-msgid "This is an empty %s heading that doesn't contain any content."
-msgstr ""
-
-#. translators: %s represents any heading element like <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;h2&gt;&lt;/h2&gt;</code>, etc.
-#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:34
-#, php-format
-msgid "These are empty %s headings that don't contain any content."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:37
-msgid "Headings help structure content and provide important navigation points for screen reader users. An empty heading communicates no useful information and may cause confusion or disorientation when navigating by headings."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:38
-msgid "Add meaningful content inside the heading tag to describe the section that follows. If the heading is not needed, remove it entirely to avoid misleading assistive technologies."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:41
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:42
-msgid "MDN: HTML heading elements"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:45
-msgid "W3C: Techniques for WCAG 2.1 – H42: Using h1–h6 to identify headings"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:23
-msgid "Empty Link"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:27
-msgid "This is an empty link that does not contain any meaningful content for assistive technologies."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:28
-msgid "These are empty links that do not contain any meaningful content for assistive technologies."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:29
-msgid "Screen reader users rely on link text to understand the purpose or destination of a link. An empty link provides no information, making it difficult or impossible for users to decide whether or not to follow it."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code.
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:32
-#, php-format
-msgid "Add descriptive text inside the %1$s element. If the link uses only an icon (e.g., SVG or webfont), hide the icon with %2$s and add a descriptive %3$s to the link or include screen reader-only text to explain where the link goes."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:39
-msgid "W3C Technique H30: Providing link text that describes the purpose of a link"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyLinkRule.php:43
-msgid "WebAIM: Links and Hypertext"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:23
-msgid "Empty Paragraph Tag"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:27
-msgid "This page contains a <p> tag with no content inside."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:28
-msgid "These pages contain <p> tags with no content inside."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:29
-msgid "Empty paragraph tags can be announced by screen readers as blank lines or pauses, which may confuse users or disrupt reading flow. They can also interfere with visual layout or spacing, especially in assistive technology or mobile contexts."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:30
-msgid "Remove the empty <p> tags from your content. If spacing is needed between sections, use margin, padding, or a visual spacer block instead of inserting blank paragraphs."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:33
-msgid "MDN Web Docs: The Paragraph Element - Accessibility"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:37
-msgid "WordPress Spacer Block"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:41
-msgid "MDN Web Docs: CSS Padding"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:45
-msgid "MDN Web Docs: CSS Margin"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:23
-msgid "Empty Table Header"
-msgstr ""
-
-#. translators: %s is <code>&lt;th&gt;</code>.
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:29
-#, php-format
-msgid "This element is a table header cell (%s) with no text content."
-msgstr ""
-
-#. translators: %s is <code>&lt;th&gt;</code>.
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:34
-#, php-format
-msgid "These elements are table header cells (%s) with no text content."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:37
-msgid "Table headers provide context for the data in rows and columns. When a table header is empty, screen readers and other assistive technologies cannot convey the meaning of the associated data, making the table difficult or impossible to interpret."
-msgstr ""
-
-#. translators: %s is <code>&lt;th&gt;</code>.
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:40
-#, php-format
-msgid "Add descriptive text inside each %s element that explains the purpose of the row or column. Avoid using empty header cells or placeholder text that lacks meaning. If necessary, you can visually hide text in a table header cell with a screen-reader-text class."
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:45
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:42
-msgid "W3C: Tables Tutorial"
-msgstr ""
-
-#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:49
-msgid "MDN Web Docs: <th>"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ExampleNewRule.php:27
-msgid "Example New Rule"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ExampleNewRule.php:31
-msgid "This is an example of a new rule added to the system."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ExampleNewRule.php:32
-msgid "These are examples of new rules added to the system."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ExampleNewRule.php:33
-msgid "This example demonstrates how easy it is to add new accessibility rules to the checker using the class-based system."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ExampleNewRule.php:34
-msgid "To implement this rule, you would add the actual accessibility checking logic and provide specific remediation steps."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ExampleNewRule.php:37
-msgid "WCAG Guidelines"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ExampleNewRule.php:45
-msgid "Example disability impact"
-msgstr ""
-
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:23
-msgid "iframe Missing Title"
-msgstr ""
-
-#. translators: %1$s is <code>&lt;iframe&gt;</code.
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:29
-#, php-format
-msgid "This %1$s does not have a descriptive title attribute."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;iframe&gt;</code.
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:34
-#, php-format
-msgid "These %1$s do not have descriptive title attributes."
-msgstr ""
-
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:37
-msgid "Screen readers rely on the title attribute of an iframe to describe its purpose or content. Without a title, users may not understand what the embedded content is, making the page harder to navigate and use."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;iframe&gt;</code.
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:40
-#, php-format
-msgid "Add a title attribute to the %1$s tag that accurately describes the content or function of the embedded frame. If the iframe is added by a plugin and the title cannot be edited directly, check the plugin settings for an accessibility option, or contact the developer for support. Consider switching to a WordPress core embed instead."
-msgstr ""
-
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:45
-msgid "W3C: Techniques for WCAG 2.1 - H64: Using the title attribute of the iframe element"
-msgstr ""
-
-#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:49
-msgid "MDN Web Docs: <iframe>"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:23
-msgid "Image Map Missing Alternative Text"
-msgstr ""
-
-#. translators: %1$s is <code>&lt;area&gt;</code.
-#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:29
-#, php-format
-msgid "One or more %1$s elements in an image map are missing alternative text."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;area&gt;</code.
-#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:34
-#, php-format
-msgid "One or more %1$s elements in image maps are missing alternative text."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:37
-msgid "Image maps use area elements to define interactive regions. Without alternative text, screen reader users won't know what each clickable area does, making it impossible to understand or interact with the map."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code.
-#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:40
-#, php-format
-msgid "Add a descriptive %2$s attribute to each %1$s element in your image map. The text should explain the function or destination of the link, not what the area looks like."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:46
-msgid "W3C: HTML Image Maps"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:50
-msgid "MDN Web Docs: <area>"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:23
-msgid "Image Empty Alternative Text"
-msgstr ""
-
-#. translators: %s is <code>alt=""</code>.
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:29
-#, php-format
-msgid "This image has an empty alt attribute (%s)."
-msgstr ""
-
-#. translators: %s is <code>alt=""</code>.
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:34
-#, php-format
-msgid "These images have empty alt attributes (%s)."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:37
-msgid "Screen readers rely on alternative text to describe images to users who cannot see them. If the alt attribute is empty, it signals that the image is decorative and should be skipped. However, if a meaningful image has an empty alt attribute, users with visual impairments will miss important information. Proper use of alternative text improves accessibility and ensures all users can understand the content."
-msgstr ""
-
-#. translators: %1$s is <code>alt=""</code> and %2$s is <code>role="presentation"</code>.
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:40
-#, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:46
-msgid "W3C Tutorial on Images: Decorative Images"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:23
-msgid "Low-quality Alternative Text"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:27
-msgid "This image has alternative text that may be vague, redundant, or include unnecessary words or file names."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:28
-msgid "These images have alternative text that may be vague, redundant, or include unnecessary words or file names."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:29
-msgid "Alternative text helps people using screen readers understand the purpose of an image. When alt text includes words like “image,” “graphic,” or a file extension, it adds no useful information and can create confusion or distraction. Clear and relevant alt text improves comprehension and user experience."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:30
-msgid "Rewrite the alternative text to accurately and concisely describe the purpose of the image in context. Avoid including words like “image,” “graphic,” file names or extensions (e.g., .jpg, .png), or placeholder terms like “spacer” or “arrow.” If the image is decorative, leave the alt attribute empty."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:33
-#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:33
-msgid "W3C Tutorial on Images: Informative Images"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltLongRule.php:23
-msgid "Image Long Alternative Text"
-msgstr ""
-
-#. translators: %s is the maximum character count for alt text.
-#: includes/classes/Rules/Rule/ImgAltLongRule.php:29
-#, php-format
-msgid "This image has alternative text longer than %s characters."
-msgstr ""
-
-#. translators: %s is the maximum character count for alt text.
-#: includes/classes/Rules/Rule/ImgAltLongRule.php:34
-#, php-format
-msgid "These images have alternative text longer than %s characters."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltLongRule.php:37
-msgid "Alternative text should be concise and focused on describing the purpose or meaning of the image. Overly long alt text may overwhelm screen reader users, reduce readability, and distract from other content on the page."
-msgstr ""
-
-#. translators: %s is the maximum character count for alt text.
-#: includes/classes/Rules/Rule/ImgAltLongRule.php:40
-#, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltLongRule.php:45
-msgid "W3C Tutorial: Informative Images"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltMissingRule.php:23
-msgid "Image Missing Alternative Text"
-msgstr ""
-
-#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;img&gt;</code> tag.
-#: includes/classes/Rules/Rule/ImgAltMissingRule.php:29
-#, php-format
-msgid "This image does not have an alt attribute (%1$s) contained in the image tag (%2$s)."
-msgstr ""
-
-#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;img&gt;</code> tag.
-#: includes/classes/Rules/Rule/ImgAltMissingRule.php:35
-#, php-format
-msgid "These images do not have an alt attribute (%1$s) contained in their image tags (%2$s)."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltMissingRule.php:39
-msgid "Alternative text is used by screen readers to describe images to people who cannot see them. If the alt attribute is missing, the screen reader will only say 'Image' or may read out the file URL. Alternative text is also used by search engines to understand the content of the image. If an image does not have alternative text, it can create a poor user experience for people with visual impairments and can negatively impact your site's SEO."
-msgstr ""
-
-#. translators: %1$s is <code>alt=""</code.
-#: includes/classes/Rules/Rule/ImgAltMissingRule.php:42
-#, php-format
-msgid "Add an alt attribute to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s attribute still needs to be present."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltMissingRule.php:47
-msgid "HTML Standard: The img element"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltMissingRule.php:51
-msgid "Alt Decision Tree"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:23
-msgid "Duplicate Alternative Text"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:27
-msgid "This image has alternative text that is identical to nearby content or to another image on the page."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:28
-msgid "These images have alternative text that is identical to nearby content or to other images on the page."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:29
-msgid "When alternative text repeats nearby text or appears identically across multiple images, it creates confusion for screen reader users. Repetition provides no additional context and makes it difficult to distinguish between different elements or understand their purpose."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:30
-msgid "If the alt text duplicates a nearby caption, heading, or visible text, remove the redundancy by shortening or omitting the alt text—especially if the surrounding text already provides the same information. If multiple images have the same alt text, revise each one to be unique and describe the purpose of that specific image in its context."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:23
-msgid "Image Animated GIF"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:27
-msgid "This element is an animated image file (e.g., GIF or animated WebP)."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:28
-msgid "These elements are animated image files (e.g., GIFs or animated WebPs)."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:29
-msgid "Animated images can be distracting, induce seizures in some individuals, or create cognitive load. WCAG guidelines require that animations that flash or loop continuously provide a mechanism to pause, stop, or hide them."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:30
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:33
-msgid "Should you use animated GIFs?"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:37
-msgid "W3C: G152: Setting animated gif images to stop blinking after n cycles (within 5 seconds)"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:41
-msgid "Pause Animated GIFs Plugin"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:48
-#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:51
+#: includes/classes/Rules/AffectedDisabilities.php:62
 msgid "Seizure disorders"
 msgstr ""
 
-#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:50
+#: includes/classes/Rules/AffectedDisabilities.php:64
 msgid "Vestibular disorders"
 msgstr ""
 
-#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:23
-msgid "Linked Image Empty Alternative Text"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:27
-msgid "This image is inside a link and has an empty alt attribute and there is no other text within the link."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:28
-msgid "These images are inside links and have empty alt attributes and there is no other text within the links."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:29
-msgid "An empty alt attribute on a linked image causes screen reader users to hear just \"link\" with no context. This makes navigation confusing and may cause them to skip important content."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:30
-msgid "Replace the empty alt attribute with meaningful alternative text that clearly describes the link’s destination or purpose."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:33
-#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:37
-msgid "W3C Tutorial on Images: Functional Images"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:23
-msgid "Linked Image Missing Alternative Text"
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:27
-msgid "This image is inside a link but does not have an alt attribute and there is no other text within the link."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:28
-msgid "These images are inside links but do not have alt attributes and there is no other text within the links."
-msgstr ""
-
-#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:29
-msgid "Screen reader users rely on alternative text to understand the purpose of linked images. Without it, they cannot determine where the link leads, making navigation difficult or impossible."
-msgstr ""
-
-#. translators: %s is <code>aria-label</code>.
-#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:32
-#, php-format
-msgid "Add an alt attribute that describes the purpose of the link. Focus on where the link goes, not what the image looks like. Alternatively, add an %s to the link."
-msgstr ""
-
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:23
-msgid "Incorrect Heading Order"
-msgstr ""
-
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:29
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:35
-#, php-format
-msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
-msgstr ""
-
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:40
-msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:43
-#, php-format
-msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
-msgstr ""
-
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:50
-msgid "W3C Page Structure Tutorial: Headings"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:23
-msgid "Ambiguous Anchor Text"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:27
-msgid "This link uses generic or vague anchor text that does not describe its purpose."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:28
-msgid "These links use generic or vague anchor text that does not describe their purpose."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:29
-msgid "Screen reader users often browse a list of links out of context. If links use ambiguous phrases like \"click here\" or \"learn more,\" users will not understand where the link goes or what it does. This can lead to confusion and reduce the usability of your website."
-msgstr ""
-
-#. translators: %1$s is <code>aria-label</code>.
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:32
-#, php-format
-msgid "Revise the anchor text to clearly describe the destination or purpose of the link. For example, instead of \"click here,\" use \"download the annual report\" or \"learn more about us.\" Additional context can be added to links with an %1$s attribute or a screen-reader-text class."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:37
-msgid "MDN Web Docs: a element – Accessible names"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:41
-msgid "MDN Web Docs: ARIA: aria-label attribute"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:45
-msgid "Screen Reader Text Format Plugin (for the block editor)"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkBlankRule.php:27
-msgid "Link Opens New Window or Tab"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkBlankRule.php:31
-msgid "This link is set to open in a new browser tab or window."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkBlankRule.php:32
-msgid "These links are set to open in new browser tabs or windows."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkBlankRule.php:33
-msgid "When a link opens in a new tab or window without warning, it can be disorienting, especially for users with cognitive disabilities, screen reader users, or anyone relying on keyboard navigation. They may not realize a new context has opened or understand how to return."
-msgstr ""
-
-#. translators: %1$s is <code>target="_blank"</code>.
-#: includes/classes/Rules/Rule/LinkBlankRule.php:36
-#, php-format
-msgid "Avoid using %1$s unless absolutely necessary. If a link must open in a new tab or window, add a visible icon and screen reader text such as \"opens in a new window\" or \"opens in a new tab\" to inform users. To automate this and dismiss the warning sitewide, you can activate the 'Add Label To Links That Open A New Tab/Window' fix in Accessibility Checker settings."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkBlankRule.php:41
-msgid "W3C Technique H83: Using the target attribute to open a new window on user request and indicating this in link text"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkImproperRule.php:23
-msgid "Improper Use of Link"
-msgstr ""
-
-#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>.
-#: includes/classes/Rules/Rule/LinkImproperRule.php:29
-#, php-format
-msgid "This element is an anchor tag missing a valid %1$s attribute or is linked to %2$s without having %3$s."
-msgstr ""
-
-#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>.
-#: includes/classes/Rules/Rule/LinkImproperRule.php:36
-#, php-format
-msgid "These elements are anchor tags missing valid %1$s attributes or are linked to %2$s without having %3$s."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkImproperRule.php:41
-msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
-#: includes/classes/Rules/Rule/LinkImproperRule.php:44
-#, php-format
-msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkImproperRule.php:50
-msgid "MDN Web Docs: ARIA button role"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkImproperRule.php:54
-msgid "W3 Schools: Accessibility Buttons & Links"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:23
-msgid "Link to MS Office File"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:27
-msgid "This is a link to a Microsoft Office file, such as a Word, Excel, or PowerPoint document. All linked documents must be manually tested for accessibility."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:28
-msgid "These are links to Microsoft Office files, such as Word, Excel, or PowerPoint documents. All linked documents must be manually tested for accessibility."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:29
-msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to all users, especially if they are not tagged correctly or do not follow accessibility best practices. Accessibility laws require that documents posted on web pages also conform to WCAG. Additionally, users should be warned when a link opens a downloadable file instead of a webpage."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:30
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:33
-msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:37
-msgid "Microsoft: Make your PowerPoint presentations accessible to people with disabilities"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:41
-msgid "Microsoft: Make your Word documents accessible to people with disabilities"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:45
-msgid "Google: Make your document, presentation, sheets & videos more accessible"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:49
-msgid "WebAIM: Creating Accessible Word Documents"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:53
-msgid "WebAIM: Creating Accessible PowerPoint Presentations"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:57
-msgid "WebAIM: Creating Accessible Excel Spreadsheets"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:61
-msgid "Section 508.gov: Create Accessible Documents (Webinar)"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:23
-msgid "Link to Non-HTML File"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:27
-msgid "This element is a link to a non-HTML document format with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:28
-msgid "These elements are links to non-HTML document formats with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:29
-msgid "Non-HTML document formats may not be fully accessible to assistive technologies unless tested and remediated. Users should be warned when a link opens a downloadable file rather than a standard web page."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:30
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkPdfRule.php:23
-msgid "Link to PDF"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkPdfRule.php:27
-msgid "This is a link to a PDF document. All linked documents must be manually tested for accessibility."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkPdfRule.php:28
-msgid "These are links to PDF documents. All linked documents must be manually tested for accessibility."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkPdfRule.php:29
-msgid "PDFs may not be accessible to all users, especially if they are not tagged correctly or fail to meet WCAG requirements. Accessibility laws require that documents posted on websites meet the same accessibility standards as HTML content. Additionally, users should be warned when a link opens a downloadable file instead of a web page."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkPdfRule.php:30
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkPdfRule.php:33
-msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkPdfRule.php:37
-msgid "WebAIM: PDF Accessibility"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkPdfRule.php:41
-msgid "PDF Accessibility on the Web: Tricks and Traps (Webinar)"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LinkPdfRule.php:45
-msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:23
-msgid "Long Description Invalid"
-msgstr ""
-
-#. translators: %s is <code>longdesc=""</code.
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:29
-#, php-format
-msgid "This element uses the %s attribute with an invalid or unsupported value."
-msgstr ""
-
-#. translators: %s is <code>longdesc=""</code.
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:34
-#, php-format
-msgid "These elements use the %s attribute with invalid or unsupported values."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:37
-msgid "The longdesc attribute is intended to provide a URL to a long description of an image for screen reader users. However, it is no longer supported in HTML5 and is not reliably recognized by browsers or assistive technologies. Invalid values or blank longdesc attributes may confuse users or fail to convey important information."
-msgstr ""
-
-#. translators: %s is <code>longdesc</code.
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:40
-#, php-format
-msgid "Remove the %s attribute from the image element. If a long description is needed, include it in nearby visible text like a caption, use a link to a separate description page, or use ARIA techniques such as aria-describedby."
-msgstr ""
-
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:45
-msgid "W3C: Techniques for WCAG 2.1 – H45: Using longdesc"
-msgstr ""
-
-#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:49
-msgid "MDN Web Docs: longdesc – HTML attribute"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MetaViewportRule.php:24
-msgid "Zooming and Scaling Disabled"
-msgstr ""
-
-#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>.
-#: includes/classes/Rules/Rule/MetaViewportRule.php:30
-#, php-format
-msgid "This page disables zooming by using a viewport meta tag with either %1$s or a %2$s value of less than 2. This prevents users from enlarging content to improve readability."
-msgstr ""
-
-#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>.
-#: includes/classes/Rules/Rule/MetaViewportRule.php:36
-#, php-format
-msgid "These pages disable zooming by using viewport meta tags with either %1$s or a %2$s value of less than 2. This prevents users from enlarging content to improve readability."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MetaViewportRule.php:40
-msgid "Restricting a user's ability to zoom creates barriers for individuals with low vision or other visual impairments. These users may rely on browser zoom features, pinch-zooming on mobile, or magnifiers to access content comfortably."
-msgstr ""
-
-#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>, %3$s is <head>.
-#: includes/classes/Rules/Rule/MetaViewportRule.php:43
-#, php-format
-msgid "Edit the viewport meta tag in your theme's %3$s section and remove %1$s and any %2$s value less than 2. To fix this site-wide, enable the 'Make Viewport Scalable' fix in Accessibility Checker Settings."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MetaViewportRule.php:50
-msgid "MDN Web Docs: <meta name=\"viewport\">"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:27
-msgid "Missing Form Label"
-msgstr ""
-
-#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;textarea&gt;</code>, %3$s is <code>&lt;select&gt;</code.
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:33
-#, php-format
-msgid "This element is an %1$s, %2$s, or %3$s form field without an associated label."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;textarea&gt;</code>, %3$s is <code>&lt;select&gt;</code.
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:40
-#, php-format
-msgid "These elements are %1$s, %2$s, or %3$s form fields without associated labels."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:45
-msgid "Form fields must be clearly labeled so that users of screen readers and voice input technologies can understand their purpose. Without labels, users may not know what information to enter or how the form will behave."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;label&gt;</code>, %2$s is <code>for=""</code.
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:48
-#, php-format
-msgid "Add a visible %1$s element that describes the field. Connect it to the corresponding form element using the %2$s attribute, or use aria-label or aria-labelledby if needed. To fix all unlabelled fields automatically, enable the 'Label Form Fields' fix in Accessibility Checker settings."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:54
-msgid "W3C: Labeling Controls"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingFormLabelRule.php:58
-msgid "MDN: label element"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:23
-msgid "Missing Subheadings"
-msgstr ""
-
-#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>, %3$s is the word count threshold.
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:29
-#, php-format
-msgid "This page does not contain any heading elements between %1$s and %2$s in the main content area and has more than %3$s words."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>, %3$s is '400' or the number defined in the setting.
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:36
-#, php-format
-msgid "These pages do not contain any heading elements between %1$s and %2$s in the main content area and have more than %3$s words."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:41
-msgid "Headings provide structure and make content easier for users of all abilities to scan. They also help screen reader users and keyboard-only users navigate the page. Without headings, users must read through content linearly without an easy way to jump between sections."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;h1&gt;</code.
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:44
-#, php-format
-msgid "Add meaningful heading elements throughout your content to organize it into sections. At a minimum, include one %1$s tag as the main page title, and add subheadings where appropriate to break up content into logical parts."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingHeadingsRule.php:49
-msgid "W3C Tutorial: Headings"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingLangAttrRule.php:24
-msgid "Missing Language Declaration"
-msgstr ""
-
-#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang</code>, %3$s is <code>xml:lang</code>.
-#: includes/classes/Rules/Rule/MissingLangAttrRule.php:30
-#, php-format
-msgid "This element is a top-level %1$s tag that is missing a language attribute such as %2$s or %3$s, or has an empty language attribute."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang</code>, %3$s is <code>xml:lang</code>.
-#: includes/classes/Rules/Rule/MissingLangAttrRule.php:37
-#, php-format
-msgid "These elements are top-level %1$s tags that are missing a language attribute such as %2$s or %3$s, or have an empty language attribute."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingLangAttrRule.php:42
-msgid "Screen readers and other assistive technologies use the language attribute to determine how to pronounce and interpret the content. Without it, the content may be read incorrectly, which can be confusing or misleading for users."
-msgstr ""
-
-#. translators: %s is an example of a valid lang attribute.
-#: includes/classes/Rules/Rule/MissingLangAttrRule.php:45
-#, php-format
-msgid "Edit your theme's header file to ensure the <html> tag includes a valid lang attribute (e.g., %s). If your theme receives updates, make this change in a child theme to prevent it from being overwritten. To fix this automatically site-wide, enable the 'Add \"lang\" & \"dir\" Attributes' fix in Accessibility Checker settings."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingLangAttrRule.php:50
-msgid "W3C: Language of Page"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingLangAttrRule.php:54
-msgid "MDN: The HTML lang attribute"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:23
-msgid "Missing Table Header"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:27
-msgid "This table contains data cells but does not have the required table header cells."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:28
-msgid "These tables contain data cells but do not have the required table header cells."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:29
-msgid "Table headers are used by assistive technologies to help users understand the relationships between cells and navigate the data. Without table headers, screen reader users may not be able to determine what the data represents."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;td&gt;</code>.
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:32
-#, php-format
-msgid "Add one or more %1$s elements that describe the columns or rows of data in your table. Each %2$s cell should be associated with a descriptive header to provide proper context for screen reader users."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:38
-msgid "W3C: H51 - Using table markup to present tabular information"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:46
-msgid "MDN Web Docs: <table> - Headers and accessibility"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:50
-msgid "WordPress: Table block documentation"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTitleRule.php:24
-msgid "Missing Title"
-msgstr ""
-
-#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
-#: includes/classes/Rules/Rule/MissingTitleRule.php:30
-#, php-format
-msgid "This element is missing a title tag (%1$s or %2$s). This may happen if the post or page title field is empty or if the theme fails to output a title tag in the document head."
-msgstr ""
-
-#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
-#: includes/classes/Rules/Rule/MissingTitleRule.php:36
-#, php-format
-msgid "These elements are missing title tags (%1$s or %2$s). This may happen if post or page title fields are empty or if the theme fails to output title tags in the document head."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTitleRule.php:40
-msgid "The title element is used by screen readers, search engines, and browser tabs to identify the page. Without a title, users may have difficulty determining the purpose of the page."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTitleRule.php:41
-msgid "Ensure the post or page title field is filled in on the backend. If the title field is not empty and the error persists, check your theme's code to make sure it outputs a valid <title> tag and/or og:title meta tag in the document head. To fix this issue site-wide, enable the 'Add Missing Page Title' fix in Accessibility Checker settings."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTitleRule.php:44
-msgid "MDN: <title> element"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:23
-msgid "Missing Transcript"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:27
-msgid "This element contains or links to audio or video content that does not have a properly labeled or positioned transcript, or may not have a transcript at all."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:28
-msgid "These elements contain or link to audio or video content that do not have properly labeled or positioned transcripts, or may not have a transcript at all."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:29
-msgid "Transcripts provide access to audio and video content for individuals who are deaf, hard of hearing, or prefer to read rather than listen. Without a transcript, important information may be missed."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:30
-msgid "Create a transcript for each flagged audio or video clip. Include the transcript on the same page or link to a file that contains it. The word “transcript” should appear in a heading before the transcript or in the link text, and must be within 25 characters of the audio or video element."
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:33
-msgid "W3C: Transcripts Documentation"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:37
-msgid "Practical Advice for Meeting Caption, Transcript, and Sign Language Requirements (Webinar)"
-msgstr ""
-
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:44
-#: includes/classes/Rules/Rule/VideoPresentRule.php:49
+#: includes/classes/Rules/AffectedDisabilities.php:66
 msgid "Deaf"
 msgstr ""
 
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:46
-#: includes/classes/Rules/Rule/VideoPresentRule.php:50
+#: includes/classes/Rules/AffectedDisabilities.php:68
 msgid "Hard of hearing"
 msgstr ""
 
-#: includes/classes/Rules/Rule/MissingTranscriptRule.php:48
-#: includes/classes/Rules/Rule/VideoPresentRule.php:48
+#: includes/classes/Rules/AffectedDisabilities.php:70
 #: includes/wcag.php:52
 #: includes/wcag.php:85
 #: includes/wcag.php:118
@@ -2510,246 +1204,1346 @@ msgstr ""
 msgid "Language learners"
 msgstr ""
 
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:23
+#: includes/classes/Rules/AffectedDisabilities.php:72
+msgid "ADHD"
+msgstr ""
+
+#: includes/classes/Rules/AffectedDisabilities.php:74
+msgid "Dyslexia"
+msgstr ""
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:24
+msgid "ARIA Hidden"
+msgstr ""
+
+#. translators: %s is <code>aria-hidden="true"</code.
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:30
+#, php-format
+msgid "This element uses %s, which hides it from screen readers."
+msgstr ""
+
+#. translators: %s is <code>aria-hidden="true"</code.
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:35
+#, php-format
+msgid "These elements use %s, which hides them from screen readers."
+msgstr ""
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:38
+msgid "The aria-hidden attribute is used to hide content from assistive technologies. While this is useful for decorative or redundant elements, it can cause accessibility issues if applied to important content that screen reader users need to access."
+msgstr ""
+
+#. translators: %s is <code>aria-hidden="true"</code.
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:41
+#, php-format
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
+msgstr ""
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:46
+msgid "W3C: ARIA Authoring Practices - aria-hidden"
+msgstr ""
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:50
+msgid "MDN Web Docs: aria-hidden - Accessibility Attribute"
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:24
+msgid "Broken ARIA Reference"
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:28
+msgid "This element uses an ARIA attribute that references another element which does not exist or is not properly labeled."
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:29
+msgid "These elements use ARIA attributes that reference other elements which do not exist or are not properly labeled."
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:30
+msgid "ARIA attributes like aria-labelledby and aria-describedby are used to improve accessibility by connecting elements to their labels or descriptions. If the reference target does not exist, users of assistive technology will miss important context or instructions."
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:31
+msgid "Inspect the ARIA attributes (such as aria-labelledby or aria-describedby) on the flagged elements and ensure that each one points to a valid, correctly labeled ID that exists in the document."
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:34
+msgid "MDN Web Docs: ARIA: aria-labelledby attribute"
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:38
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:54
+msgid "MDN Web Docs: ARIA: aria-describedby attribute"
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:42
+msgid "ARIA for Beginners (Webinar)"
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:24
+msgid "Broken Skip or Anchor Link"
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:28
+msgid "This link points to an anchor target on the same page, but no element with the referenced ID exists."
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:29
+msgid "These links point to anchor targets on the same page, but no elements with the referenced IDs exist."
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:30
+msgid "Skip and anchor links are important for efficient keyboard and screen reader navigation. When these links are broken, users may be confused or lose their place on the page, leading to a frustrating experience—especially for people who rely on keyboard shortcuts or assistive technology."
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:31
+msgid "Confirm that the link is pointing to a valid ID on the page. If the target element exists, make sure it has a matching id attribute. To automatically fix broken skip links throughout your site, enable the 'Enable Skip Link' fix in Accessibility Checker settings."
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:34
+msgid "How to Make Your WordPress Site More Accessible With Skip Links"
+msgstr ""
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:38
+msgid "How to Fix Broken Skip Links in Elementor"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:24
+msgid "Insufficient Color Contrast"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:28
+msgid "This element has foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:29
+msgid "These elements have foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:30
+msgid "Insufficient color contrast makes text and interactive elements difficult or impossible to read for users with low vision or color blindness. Ensuring adequate contrast helps all users access your content clearly."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:31
+msgid "Adjust the foreground and background colors of the flagged elements to ensure a contrast ratio of at least 4.5:1 for normal text. Use a contrast checker to confirm that your color combinations meet this requirement."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:34
+msgid "Brand Color Contrast Grid"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:38
+msgid "WebAIM Contrast Checker"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:42
+msgid "TPGI Colour Contrast Analyser"
+msgstr ""
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:24
+msgid "Duplicate Form Label"
+msgstr ""
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:28
+msgid "This form field has more than one label associated with it."
+msgstr ""
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:29
+msgid "These form fields have more than one label associated with them."
+msgstr ""
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:30
+msgid "Assistive technologies rely on a one-to-one relationship between form fields and labels to provide accurate guidance to users. When multiple labels are associated with the same field, it can confuse screen reader users and make form completion difficult as the screen reader may read the incorrect label for a field."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;label&gt;</code>, %2$s is <code>for=""</code>.
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:33
+#, php-format
+msgid "Ensure each form field has only one %1$s element associated with it. If multiple labels are present, remove extras or consolidate them into a single %1$s with a clear description. Make sure each %1$s element correctly references its form field using the %2$s attribute and that all elements on the page have unique IDs. This error happens when you have the same form embedded on a page twice and can be resolved by creating unique forms for different parts of a page rather than repeating the same form throughout."
+msgstr ""
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:39
+msgid "MDN: <label> – The HTML Label element"
+msgstr ""
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:43
+msgid "W3C: H44 – Using label elements to associate text labels with form controls"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:24
+msgid "Empty Button"
+msgstr ""
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:30
+#, php-format
+msgid "This element is a %1$s or %2$s with no accessible label or text."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:36
+#, php-format
+msgid "These elements are %1$s or %2$s with no accessible label or text."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:40
+msgid "Buttons must clearly describe the action they perform. An empty button provides no information to screen readers or keyboard users, making it impossible to understand what clicking the button will do. This creates a barrier for people relying on assistive technologies."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>value</code>, %3$s is <code>alt</code>, %4$s is <code>aria-hidden="true"</code>, %5$s is <code>aria-label</code>.
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:43
+#, php-format
+msgid "Add visible text inside the %1$s element, set a %2$s attribute on an input button, or include an %3$s attribute on a button image. If the button uses only an icon (e.g., SVG or webfont), hide the icon with %4$s and add a descriptive %5$s to the button or include screen reader-only text.  Each button must have a label that clearly describes its purpose or action."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:52
+msgid "MDN Web Docs: <button>"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:56
+msgid "W3C Technique H44: Using the button element"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:60
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:48
+msgid "WordPress: The CSS class screen-reader-text"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:24
+msgid "Empty Heading Tag"
+msgstr ""
+
+#. translators: %s represents any heading element like <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;h2&gt;&lt;/h2&gt;</code>, etc.
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:30
+#, php-format
+msgid "This is an empty %s heading that doesn't contain any content."
+msgstr ""
+
+#. translators: %s represents any heading element like <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;h2&gt;&lt;/h2&gt;</code>, etc.
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:35
+#, php-format
+msgid "These are empty %s headings that don't contain any content."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:38
+msgid "Headings help structure content and provide important navigation points for screen reader users. An empty heading communicates no useful information and may cause confusion or disorientation when navigating by headings."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:39
+msgid "Add meaningful content inside the heading tag to describe the section that follows. If the heading is not needed, remove it entirely to avoid misleading assistive technologies."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:42
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:43
+msgid "MDN: HTML heading elements"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:46
+msgid "W3C: Techniques for WCAG 2.1 – H42: Using h1–h6 to identify headings"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:24
+msgid "Empty Link"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:28
+msgid "This is an empty link that does not contain any meaningful content for assistive technologies."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:29
+msgid "These are empty links that do not contain any meaningful content for assistive technologies."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:30
+msgid "Screen reader users rely on link text to understand the purpose or destination of a link. An empty link provides no information, making it difficult or impossible for users to decide whether or not to follow it."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code.
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:33
+#, php-format
+msgid "Add descriptive text inside the %1$s element. If the link uses only an icon (e.g., SVG or webfont), hide the icon with %2$s and add a descriptive %3$s to the link or include screen reader-only text to explain where the link goes."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:40
+msgid "W3C Technique H30: Providing link text that describes the purpose of a link"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:44
+msgid "WebAIM: Links and Hypertext"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:24
+msgid "Empty Paragraph Tag"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:28
+msgid "This page contains a <p> tag with no content inside."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:29
+msgid "These pages contain <p> tags with no content inside."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:30
+msgid "Empty paragraph tags can be announced by screen readers as blank lines or pauses, which may confuse users or disrupt reading flow. They can also interfere with visual layout or spacing, especially in assistive technology or mobile contexts."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:31
+msgid "Remove the empty <p> tags from your content. If spacing is needed between sections, use margin, padding, or a visual spacer block instead of inserting blank paragraphs."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:34
+msgid "MDN Web Docs: The Paragraph Element - Accessibility"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:38
+msgid "WordPress Spacer Block"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:42
+msgid "MDN Web Docs: CSS Padding"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:46
+msgid "MDN Web Docs: CSS Margin"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:24
+msgid "Empty Table Header"
+msgstr ""
+
+#. translators: %s is <code>&lt;th&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:30
+#, php-format
+msgid "This element is a table header cell (%s) with no text content."
+msgstr ""
+
+#. translators: %s is <code>&lt;th&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:35
+#, php-format
+msgid "These elements are table header cells (%s) with no text content."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:38
+msgid "Table headers provide context for the data in rows and columns. When a table header is empty, screen readers and other assistive technologies cannot convey the meaning of the associated data, making the table difficult or impossible to interpret."
+msgstr ""
+
+#. translators: %s is <code>&lt;th&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:41
+#, php-format
+msgid "Add descriptive text inside each %s element that explains the purpose of the row or column. Avoid using empty header cells or placeholder text that lacks meaning. If necessary, you can visually hide text in a table header cell with a screen-reader-text class."
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:46
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:43
+msgid "W3C: Tables Tutorial"
+msgstr ""
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:50
+msgid "MDN Web Docs: <th>"
+msgstr ""
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:24
+msgid "iframe Missing Title"
+msgstr ""
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code.
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:30
+#, php-format
+msgid "This %1$s does not have a descriptive title attribute."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code.
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:35
+#, php-format
+msgid "These %1$s do not have descriptive title attributes."
+msgstr ""
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:38
+msgid "Screen readers rely on the title attribute of an iframe to describe its purpose or content. Without a title, users may not understand what the embedded content is, making the page harder to navigate and use."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code.
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:41
+#, php-format
+msgid "Add a title attribute to the %1$s tag that accurately describes the content or function of the embedded frame. If the iframe is added by a plugin and the title cannot be edited directly, check the plugin settings for an accessibility option, or contact the developer for support. Consider switching to a WordPress core embed instead."
+msgstr ""
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:46
+msgid "W3C: Techniques for WCAG 2.1 - H64: Using the title attribute of the iframe element"
+msgstr ""
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:50
+msgid "MDN Web Docs: <iframe>"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:24
+msgid "Image Map Missing Alternative Text"
+msgstr ""
+
+#. translators: %1$s is <code>&lt;area&gt;</code.
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:30
+#, php-format
+msgid "One or more %1$s elements in an image map are missing alternative text."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;area&gt;</code.
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:35
+#, php-format
+msgid "One or more %1$s elements in image maps are missing alternative text."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:38
+msgid "Image maps use area elements to define interactive regions. Without alternative text, screen reader users won't know what each clickable area does, making it impossible to understand or interact with the map."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code.
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:41
+#, php-format
+msgid "Add a descriptive %2$s attribute to each %1$s element in your image map. The text should explain the function or destination of the link, not what the area looks like."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:47
+msgid "W3C: HTML Image Maps"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:51
+msgid "MDN Web Docs: <area>"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:24
+msgid "Image Empty Alternative Text"
+msgstr ""
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:30
+#, php-format
+msgid "This image has an empty alt attribute (%s)."
+msgstr ""
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:35
+#, php-format
+msgid "These images have empty alt attributes (%s)."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:38
+msgid "Screen readers rely on alternative text to describe images to users who cannot see them. If the alt attribute is empty, it signals that the image is decorative and should be skipped. However, if a meaningful image has an empty alt attribute, users with visual impairments will miss important information. Proper use of alternative text improves accessibility and ensures all users can understand the content."
+msgstr ""
+
+#. translators: %1$s is <code>alt=""</code> and %2$s is <code>role="presentation"</code>.
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
+#, php-format
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:47
+msgid "W3C Tutorial on Images: Decorative Images"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:24
+msgid "Low-quality Alternative Text"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:28
+msgid "This image has alternative text that may be vague, redundant, or include unnecessary words or file names."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:29
+msgid "These images have alternative text that may be vague, redundant, or include unnecessary words or file names."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:30
+msgid "Alternative text helps people using screen readers understand the purpose of an image. When alt text includes words like “image,” “graphic,” or a file extension, it adds no useful information and can create confusion or distraction. Clear and relevant alt text improves comprehension and user experience."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:31
+msgid "Rewrite the alternative text to accurately and concisely describe the purpose of the image in context. Avoid including words like “image,” “graphic,” file names or extensions (e.g., .jpg, .png), or placeholder terms like “spacer” or “arrow.” If the image is decorative, leave the alt attribute empty."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:34
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:34
+msgid "W3C Tutorial on Images: Informative Images"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:24
+msgid "Image Long Alternative Text"
+msgstr ""
+
+#. translators: %s is the maximum character count for alt text.
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:30
+#, php-format
+msgid "This image has alternative text longer than %s characters."
+msgstr ""
+
+#. translators: %s is the maximum character count for alt text.
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:35
+#, php-format
+msgid "These images have alternative text longer than %s characters."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:38
+msgid "Alternative text should be concise and focused on describing the purpose or meaning of the image. Overly long alt text may overwhelm screen reader users, reduce readability, and distract from other content on the page."
+msgstr ""
+
+#. translators: %s is the maximum character count for alt text.
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:41
+#, php-format
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:46
+msgid "W3C Tutorial: Informative Images"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:24
+msgid "Image Missing Alternative Text"
+msgstr ""
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;img&gt;</code> tag.
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:30
+#, php-format
+msgid "This image does not have an alt attribute (%1$s) contained in the image tag (%2$s)."
+msgstr ""
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;img&gt;</code> tag.
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:36
+#, php-format
+msgid "These images do not have an alt attribute (%1$s) contained in their image tags (%2$s)."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:40
+msgid "Alternative text is used by screen readers to describe images to people who cannot see them. If the alt attribute is missing, the screen reader will only say 'Image' or may read out the file URL. Alternative text is also used by search engines to understand the content of the image. If an image does not have alternative text, it can create a poor user experience for people with visual impairments and can negatively impact your site's SEO."
+msgstr ""
+
+#. translators: %1$s is <code>alt=""</code.
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:43
+#, php-format
+msgid "Add an alt attribute to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s attribute still needs to be present."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:48
+msgid "HTML Standard: The img element"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:52
+msgid "Alt Decision Tree"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:24
+msgid "Duplicate Alternative Text"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:28
+msgid "This image has alternative text that is identical to nearby content or to another image on the page."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:29
+msgid "These images have alternative text that is identical to nearby content or to other images on the page."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:30
+msgid "When alternative text repeats nearby text or appears identically across multiple images, it creates confusion for screen reader users. Repetition provides no additional context and makes it difficult to distinguish between different elements or understand their purpose."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:31
+msgid "If the alt text duplicates a nearby caption, heading, or visible text, remove the redundancy by shortening or omitting the alt text—especially if the surrounding text already provides the same information. If multiple images have the same alt text, revise each one to be unique and describe the purpose of that specific image in its context."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:24
+msgid "Image Animated GIF"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:28
+msgid "This element is an animated image file (e.g., GIF or animated WebP)."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:29
+msgid "These elements are animated image files (e.g., GIFs or animated WebPs)."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:30
+msgid "Animated images can be distracting, induce seizures in some individuals, or create cognitive load. WCAG guidelines require that animations that flash or loop continuously provide a mechanism to pause, stop, or hide them."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
+msgid "Should you use animated GIFs?"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:38
+msgid "W3C: G152: Setting animated gif images to stop blinking after n cycles (within 5 seconds)"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:42
+msgid "Pause Animated GIFs Plugin"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:24
+msgid "Linked Image Empty Alternative Text"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:28
+msgid "This image is inside a link and has an empty alt attribute and there is no other text within the link."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:29
+msgid "These images are inside links and have empty alt attributes and there is no other text within the links."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:30
+msgid "An empty alt attribute on a linked image causes screen reader users to hear just \"link\" with no context. This makes navigation confusing and may cause them to skip important content."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:31
+msgid "Replace the empty alt attribute with meaningful alternative text that clearly describes the link’s destination or purpose."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:34
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:38
+msgid "W3C Tutorial on Images: Functional Images"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:24
+msgid "Linked Image Missing Alternative Text"
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:28
+msgid "This image is inside a link but does not have an alt attribute and there is no other text within the link."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:29
+msgid "These images are inside links but do not have alt attributes and there is no other text within the links."
+msgstr ""
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:30
+msgid "Screen reader users rely on alternative text to understand the purpose of linked images. Without it, they cannot determine where the link leads, making navigation difficult or impossible."
+msgstr ""
+
+#. translators: %s is <code>aria-label</code>.
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:33
+#, php-format
+msgid "Add an alt attribute that describes the purpose of the link. Focus on where the link goes, not what the image looks like. Alternatively, add an %s to the link."
+msgstr ""
+
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:24
+msgid "Incorrect Heading Order"
+msgstr ""
+
+#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
+#, php-format
+msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#, php-format
+msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
+msgstr ""
+
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#, php-format
+msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
+msgstr ""
+
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+msgid "W3C Page Structure Tutorial: Headings"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:24
+msgid "Ambiguous Anchor Text"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:28
+msgid "This link uses generic or vague anchor text that does not describe its purpose."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:29
+msgid "These links use generic or vague anchor text that does not describe their purpose."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:30
+msgid "Screen reader users often browse a list of links out of context. If links use ambiguous phrases like \"click here\" or \"learn more,\" users will not understand where the link goes or what it does. This can lead to confusion and reduce the usability of your website."
+msgstr ""
+
+#. translators: %1$s is <code>aria-label</code>.
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:33
+#, php-format
+msgid "Revise the anchor text to clearly describe the destination or purpose of the link. For example, instead of \"click here,\" use \"download the annual report\" or \"learn more about us.\" Additional context can be added to links with an %1$s attribute or a screen-reader-text class."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:38
+msgid "MDN Web Docs: a element – Accessible names"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:42
+msgid "MDN Web Docs: ARIA: aria-label attribute"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:46
+msgid "Screen Reader Text Format Plugin (for the block editor)"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:28
+msgid "Link Opens New Window or Tab"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:32
+msgid "This link is set to open in a new browser tab or window."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:33
+msgid "These links are set to open in new browser tabs or windows."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:34
+msgid "When a link opens in a new tab or window without warning, it can be disorienting, especially for users with cognitive disabilities, screen reader users, or anyone relying on keyboard navigation. They may not realize a new context has opened or understand how to return."
+msgstr ""
+
+#. translators: %1$s is <code>target="_blank"</code>.
+#: includes/classes/Rules/Rule/LinkBlankRule.php:37
+#, php-format
+msgid "Avoid using %1$s unless absolutely necessary. If a link must open in a new tab or window, add a visible icon and screen reader text such as \"opens in a new window\" or \"opens in a new tab\" to inform users. To automate this and dismiss the warning sitewide, you can activate the 'Add Label To Links That Open A New Tab/Window' fix in Accessibility Checker settings."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:42
+msgid "W3C Technique H83: Using the target attribute to open a new window on user request and indicating this in link text"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:24
+msgid "Improper Use of Link"
+msgstr ""
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>.
+#: includes/classes/Rules/Rule/LinkImproperRule.php:30
+#, php-format
+msgid "This element is an anchor tag missing a valid %1$s attribute or is linked to %2$s without having %3$s."
+msgstr ""
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>.
+#: includes/classes/Rules/Rule/LinkImproperRule.php:37
+#, php-format
+msgid "These elements are anchor tags missing valid %1$s attributes or are linked to %2$s without having %3$s."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:42
+msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+#: includes/classes/Rules/Rule/LinkImproperRule.php:45
+#, php-format
+msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:51
+msgid "MDN Web Docs: ARIA button role"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:55
+msgid "W3 Schools: Accessibility Buttons & Links"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:24
+msgid "Link to MS Office File"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:28
+msgid "This is a link to a Microsoft Office file, such as a Word, Excel, or PowerPoint document. All linked documents must be manually tested for accessibility."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:29
+msgid "These are links to Microsoft Office files, such as Word, Excel, or PowerPoint documents. All linked documents must be manually tested for accessibility."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:30
+msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to all users, especially if they are not tagged correctly or do not follow accessibility best practices. Accessibility laws require that documents posted on web pages also conform to WCAG. Additionally, users should be warned when a link opens a downloadable file instead of a webpage."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
+msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:38
+msgid "Microsoft: Make your PowerPoint presentations accessible to people with disabilities"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:42
+msgid "Microsoft: Make your Word documents accessible to people with disabilities"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:46
+msgid "Google: Make your document, presentation, sheets & videos more accessible"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:50
+msgid "WebAIM: Creating Accessible Word Documents"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:54
+msgid "WebAIM: Creating Accessible PowerPoint Presentations"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:58
+msgid "WebAIM: Creating Accessible Excel Spreadsheets"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:62
+msgid "Section 508.gov: Create Accessible Documents (Webinar)"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:24
+msgid "Link to Non-HTML File"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:28
+msgid "This element is a link to a non-HTML document format with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:29
+msgid "These elements are links to non-HTML document formats with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:30
+msgid "Non-HTML document formats may not be fully accessible to assistive technologies unless tested and remediated. Users should be warned when a link opens a downloadable file rather than a standard web page."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:24
+msgid "Link to PDF"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:28
+msgid "This is a link to a PDF document. All linked documents must be manually tested for accessibility."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:29
+msgid "These are links to PDF documents. All linked documents must be manually tested for accessibility."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:30
+msgid "PDFs may not be accessible to all users, especially if they are not tagged correctly or fail to meet WCAG requirements. Accessibility laws require that documents posted on websites meet the same accessibility standards as HTML content. Additionally, users should be warned when a link opens a downloadable file instead of a web page."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:31
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:34
+msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:38
+msgid "WebAIM: PDF Accessibility"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:42
+msgid "PDF Accessibility on the Web: Tricks and Traps (Webinar)"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:46
+msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
+msgid "Long Description Invalid"
+msgstr ""
+
+#. translators: %s is <code>longdesc=""</code.
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:30
+#, php-format
+msgid "This element uses the %s attribute with an invalid or unsupported value."
+msgstr ""
+
+#. translators: %s is <code>longdesc=""</code.
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:35
+#, php-format
+msgid "These elements use the %s attribute with invalid or unsupported values."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:38
+msgid "The longdesc attribute is intended to provide a URL to a long description of an image for screen reader users. However, it is no longer supported in HTML5 and is not reliably recognized by browsers or assistive technologies. Invalid values or blank longdesc attributes may confuse users or fail to convey important information."
+msgstr ""
+
+#. translators: %s is <code>longdesc</code.
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:41
+#, php-format
+msgid "Remove the %s attribute from the image element. If a long description is needed, include it in nearby visible text like a caption, use a link to a separate description page, or use ARIA techniques such as aria-describedby."
+msgstr ""
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:46
+msgid "W3C: Techniques for WCAG 2.1 – H45: Using longdesc"
+msgstr ""
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:50
+msgid "MDN Web Docs: longdesc – HTML attribute"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MetaViewportRule.php:25
+msgid "Zooming and Scaling Disabled"
+msgstr ""
+
+#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>.
+#: includes/classes/Rules/Rule/MetaViewportRule.php:31
+#, php-format
+msgid "This page disables zooming by using a viewport meta tag with either %1$s or a %2$s value of less than 2. This prevents users from enlarging content to improve readability."
+msgstr ""
+
+#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>.
+#: includes/classes/Rules/Rule/MetaViewportRule.php:37
+#, php-format
+msgid "These pages disable zooming by using viewport meta tags with either %1$s or a %2$s value of less than 2. This prevents users from enlarging content to improve readability."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MetaViewportRule.php:41
+msgid "Restricting a user's ability to zoom creates barriers for individuals with low vision or other visual impairments. These users may rely on browser zoom features, pinch-zooming on mobile, or magnifiers to access content comfortably."
+msgstr ""
+
+#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>, %3$s is <head>.
+#: includes/classes/Rules/Rule/MetaViewportRule.php:44
+#, php-format
+msgid "Edit the viewport meta tag in your theme's %3$s section and remove %1$s and any %2$s value less than 2. To fix this site-wide, enable the 'Make Viewport Scalable' fix in Accessibility Checker Settings."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MetaViewportRule.php:51
+msgid "MDN Web Docs: <meta name=\"viewport\">"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:28
+msgid "Missing Form Label"
+msgstr ""
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;textarea&gt;</code>, %3$s is <code>&lt;select&gt;</code.
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:34
+#, php-format
+msgid "This element is an %1$s, %2$s, or %3$s form field without an associated label."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;textarea&gt;</code>, %3$s is <code>&lt;select&gt;</code.
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:41
+#, php-format
+msgid "These elements are %1$s, %2$s, or %3$s form fields without associated labels."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:46
+msgid "Form fields must be clearly labeled so that users of screen readers and voice input technologies can understand their purpose. Without labels, users may not know what information to enter or how the form will behave."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;label&gt;</code>, %2$s is <code>for=""</code.
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:49
+#, php-format
+msgid "Add a visible %1$s element that describes the field. Connect it to the corresponding form element using the %2$s attribute, or use aria-label or aria-labelledby if needed. To fix all unlabelled fields automatically, enable the 'Label Form Fields' fix in Accessibility Checker settings."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:55
+msgid "W3C: Labeling Controls"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:59
+msgid "MDN: label element"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:24
+msgid "Missing Subheadings"
+msgstr ""
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>, %3$s is the word count threshold.
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:30
+#, php-format
+msgid "This page does not contain any heading elements between %1$s and %2$s in the main content area and has more than %3$s words."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>, %3$s is '400' or the number defined in the setting.
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:37
+#, php-format
+msgid "These pages do not contain any heading elements between %1$s and %2$s in the main content area and have more than %3$s words."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:42
+msgid "Headings provide structure and make content easier for users of all abilities to scan. They also help screen reader users and keyboard-only users navigate the page. Without headings, users must read through content linearly without an easy way to jump between sections."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;h1&gt;</code.
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:45
+#, php-format
+msgid "Add meaningful heading elements throughout your content to organize it into sections. At a minimum, include one %1$s tag as the main page title, and add subheadings where appropriate to break up content into logical parts."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:50
+msgid "W3C Tutorial: Headings"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:25
+msgid "Missing Language Declaration"
+msgstr ""
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang</code>, %3$s is <code>xml:lang</code>.
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:31
+#, php-format
+msgid "This element is a top-level %1$s tag that is missing a language attribute such as %2$s or %3$s, or has an empty language attribute."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang</code>, %3$s is <code>xml:lang</code>.
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:38
+#, php-format
+msgid "These elements are top-level %1$s tags that are missing a language attribute such as %2$s or %3$s, or have an empty language attribute."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:43
+msgid "Screen readers and other assistive technologies use the language attribute to determine how to pronounce and interpret the content. Without it, the content may be read incorrectly, which can be confusing or misleading for users."
+msgstr ""
+
+#. translators: %s is an example of a valid lang attribute.
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:46
+#, php-format
+msgid "Edit your theme's header file to ensure the <html> tag includes a valid lang attribute (e.g., %s). If your theme receives updates, make this change in a child theme to prevent it from being overwritten. To fix this automatically site-wide, enable the 'Add \"lang\" & \"dir\" Attributes' fix in Accessibility Checker settings."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:51
+msgid "W3C: Language of Page"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:55
+msgid "MDN: The HTML lang attribute"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:24
+msgid "Missing Table Header"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:28
+msgid "This table contains data cells but does not have the required table header cells."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:29
+msgid "These tables contain data cells but do not have the required table header cells."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:30
+msgid "Table headers are used by assistive technologies to help users understand the relationships between cells and navigate the data. Without table headers, screen reader users may not be able to determine what the data represents."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;td&gt;</code>.
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:33
+#, php-format
+msgid "Add one or more %1$s elements that describe the columns or rows of data in your table. Each %2$s cell should be associated with a descriptive header to provide proper context for screen reader users."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:39
+msgid "W3C: H51 - Using table markup to present tabular information"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:47
+msgid "MDN Web Docs: <table> - Headers and accessibility"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:51
+msgid "WordPress: Table block documentation"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:25
+msgid "Missing Title"
+msgstr ""
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/classes/Rules/Rule/MissingTitleRule.php:31
+#, php-format
+msgid "This element is missing a title tag (%1$s or %2$s). This may happen if the post or page title field is empty or if the theme fails to output a title tag in the document head."
+msgstr ""
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/classes/Rules/Rule/MissingTitleRule.php:37
+#, php-format
+msgid "These elements are missing title tags (%1$s or %2$s). This may happen if post or page title fields are empty or if the theme fails to output title tags in the document head."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:41
+msgid "The title element is used by screen readers, search engines, and browser tabs to identify the page. Without a title, users may have difficulty determining the purpose of the page."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:42
+msgid "Ensure the post or page title field is filled in on the backend. If the title field is not empty and the error persists, check your theme's code to make sure it outputs a valid <title> tag and/or og:title meta tag in the document head. To fix this issue site-wide, enable the 'Add Missing Page Title' fix in Accessibility Checker settings."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:45
+msgid "MDN: <title> element"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:24
+msgid "Missing Transcript"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:28
+msgid "This element contains or links to audio or video content that does not have a properly labeled or positioned transcript, or may not have a transcript at all."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:29
+msgid "These elements contain or link to audio or video content that do not have properly labeled or positioned transcripts, or may not have a transcript at all."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:30
+msgid "Transcripts provide access to audio and video content for individuals who are deaf, hard of hearing, or prefer to read rather than listen. Without a transcript, important information may be missed."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:31
+msgid "Create a transcript for each flagged audio or video clip. Include the transcript on the same page or link to a file that contains it. The word “transcript” should appear in a heading before the transcript or in the link text, and must be within 25 characters of the audio or video element."
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:34
+msgid "W3C: Transcripts Documentation"
+msgstr ""
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:38
+msgid "Practical Advice for Meeting Caption, Transcript, and Sign Language Requirements (Webinar)"
+msgstr ""
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:24
 msgid "Possible Heading"
 msgstr ""
 
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:27
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:28
 msgid "This text appears visually styled like a heading but is not marked up with a heading tag."
 msgstr ""
 
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:28
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:29
 msgid "These text elements appear visually styled like headings but are not marked up with heading tags."
 msgstr ""
 
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:29
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:30
 msgid "Screen reader users and other assistive technologies rely on heading tags to understand page structure and navigate efficiently. Text that looks like a heading but is not coded as one can make it difficult for screen reader users to navigate the page."
 msgstr ""
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:32
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
 msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
 msgstr ""
 
-#: includes/classes/Rules/Rule/PossibleHeadingRule.php:38
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
 msgstr ""
 
-#: includes/classes/Rules/Rule/SliderPresentRule.php:23
+#: includes/classes/Rules/Rule/SliderPresentRule.php:24
 msgid "A Slider is Present"
 msgstr ""
 
-#: includes/classes/Rules/Rule/SliderPresentRule.php:27
+#: includes/classes/Rules/Rule/SliderPresentRule.php:28
 msgid "This element is a slider or carousel. Because many accessibility issues with sliders require manual review, this warning appears any time a slider is detected on a post or page."
 msgstr ""
 
-#: includes/classes/Rules/Rule/SliderPresentRule.php:28
+#: includes/classes/Rules/Rule/SliderPresentRule.php:29
 msgid "These elements are sliders or carousels. Because many accessibility issues with sliders require manual review, this warning appears any time one or more sliders are detected on a post or page."
 msgstr ""
 
-#: includes/classes/Rules/Rule/SliderPresentRule.php:29
+#: includes/classes/Rules/Rule/SliderPresentRule.php:30
 msgid "Sliders are often difficult to use with screen readers and keyboards. Inaccessible sliders can interfere with navigation, trap focus, or move too quickly for users to engage with the content."
 msgstr ""
 
-#: includes/classes/Rules/Rule/SliderPresentRule.php:30
+#: includes/classes/Rules/Rule/SliderPresentRule.php:31
 msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
 msgstr ""
 
-#: includes/classes/Rules/Rule/SliderPresentRule.php:33
+#: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
 msgstr ""
 
-#: includes/classes/Rules/Rule/SliderPresentRule.php:37
+#: includes/classes/Rules/Rule/SliderPresentRule.php:38
 msgid "W3C ARIA Authoring Practices Guide: Carousel (Slide Show or Image Rotator) Pattern"
 msgstr ""
 
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:24
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:25
 msgid "Tab Order Modified"
 msgstr ""
 
 #. translators: %1$s is <code>tabindex="1"</code> and %2$s is <code>tabindex</code>.
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:30
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:31
 #, php-format
 msgid "This page contains an element with %1$s or another positive %2$s, which modifies the natural tab order."
 msgstr ""
 
 #. translators: %1$s is <code>tabindex="1"</code> and %2$s is <code>tabindex</code>.
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:36
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:37
 #, php-format
 msgid "These pages contain elements with %1$s or other positive %2$s, which modify the natural tab order."
 msgstr ""
 
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:40
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:41
 msgid "The natural tab order of a page follows the structure of the HTML. Changing this order using positive tabindex values can cause confusion for keyboard-only users and screen reader users, especially if the focus moves in an unexpected way or skips important content."
 msgstr ""
 
 #. translators: %s is <code>tabindex</code>.
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:43
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:44
 #, php-format
 msgid "Remove positive %s values (greater than 0) from elements unless there is a very specific, user-tested reason to change the focus order. If needed, use tabindex=\"0\" to include custom elements in the natural tab flow without disrupting order. To fix this and other elements site-wide, enable the 'Remove Tab Index' fix in Accessibility Checker settings."
 msgstr ""
 
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:48
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:49
 msgid "ARIA Authoring Practices Guide: Developing a Keyboard Interface"
 msgstr ""
 
-#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:52
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:53
 msgid "W3C: Focus Order and Keyboard Navigation"
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:23
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:24
 msgid "Blinking or Scrolling Content"
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:27
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:28
 msgid "This element uses blinking or scrolling effects that may be disruptive for users or cause seizures."
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:28
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:29
 msgid "These elements use blinking or scrolling effects that may be disruptive for users or cause seizures."
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:29
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:30
 msgid "Blinking or scrolling content can be distracting or trigger seizures in some users, especially those with photosensitive epilepsy or cognitive disabilities. These effects are deprecated and can negatively impact readability and focus."
 msgstr ""
 
 #. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
-#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:32
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:33
 #, php-format
 msgid "Remove any HTML or CSS that causes blinking or scrolling effects, such as %1$s, %2$s, or %3$s."
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:39
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:40
 msgid "W3C: Techniques for WCAG 2.1 - Avoiding the use of the blink element"
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:43
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:44
 msgid "MDN: <marquee> element (obsolete)"
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:53
-msgid "ADHD"
-msgstr ""
-
-#: includes/classes/Rules/Rule/TextJustifiedRule.php:23
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:24
 msgid "Text Justified"
 msgstr ""
 
 #. translators: %s is <code>text-align: justify</code.
-#: includes/classes/Rules/Rule/TextJustifiedRule.php:29
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:30
 #, php-format
 msgid "This page contains long blocks of text that are styled with %s."
 msgstr ""
 
 #. translators: %s is <code>text-align: justify</code.
-#: includes/classes/Rules/Rule/TextJustifiedRule.php:34
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:35
 #, php-format
 msgid "These pages contain long blocks of text that are styled with %s."
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextJustifiedRule.php:37
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:38
 msgid "Justified text can create uneven spacing between words, forming distracting \"rivers\" of white space that make reading difficult—especially for people with dyslexia, low vision, or cognitive disabilities. Left-aligned text is more predictable and easier to read."
 msgstr ""
 
 #. translators: %s is <code>text-align: justify</code.
-#: includes/classes/Rules/Rule/TextJustifiedRule.php:40
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:41
 #, php-format
 msgid "Remove the %s CSS rule from long blocks of text, especially paragraphs longer than 200 characters. Use left-aligned text instead for better readability and accessibility."
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextJustifiedRule.php:45
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:46
 msgid "W3C: Making Content Usable for People with Cognitive and Learning Disabilities"
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextJustifiedRule.php:54
-msgid "Dyslexia"
-msgstr ""
-
-#: includes/classes/Rules/Rule/TextSmallRule.php:23
+#: includes/classes/Rules/Rule/TextSmallRule.php:24
 msgid "Text Too Small"
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextSmallRule.php:27
+#: includes/classes/Rules/Rule/TextSmallRule.php:28
 msgid "This text is smaller than 10 pixels and may be difficult to read."
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextSmallRule.php:28
+#: includes/classes/Rules/Rule/TextSmallRule.php:29
 msgid "These text elements are smaller than 10 pixels and may be difficult to read."
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextSmallRule.php:29
+#: includes/classes/Rules/Rule/TextSmallRule.php:30
 msgid "Text that is too small can be hard to read, especially for people with low vision. Ensuring a minimum readable size improves overall accessibility and usability, reducing the need for users to zoom."
 msgstr ""
 
 #. translators: %s is <code>10px</code>.
-#: includes/classes/Rules/Rule/TextSmallRule.php:32
+#: includes/classes/Rules/Rule/TextSmallRule.php:33
 #, php-format
 msgid "Update your styles so that all text is at least %s in size. Use relative units like em or rem when possible to support user preferences and browser scaling."
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextSmallRule.php:37
+#: includes/classes/Rules/Rule/TextSmallRule.php:38
 msgid "MDN: font-size CSS property"
 msgstr ""
 
-#: includes/classes/Rules/Rule/TextSmallRule.php:41
+#: includes/classes/Rules/Rule/TextSmallRule.php:42
 msgid "How to Add Custom CSS in WordPress"
 msgstr ""
 
-#: includes/classes/Rules/Rule/UnderlinedTextRule.php:23
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:24
 msgid "Underlined Text"
 msgstr ""
 
 #. translators: %1$s is <code>&lt;u&gt;</code>, %2$s is <code>text-decoration: underline;</code.
-#: includes/classes/Rules/Rule/UnderlinedTextRule.php:29
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:30
 #, php-format
 msgid "This element contains underlined text using the %1$s tag or %2$s CSS styles and does not appear to be a link."
 msgstr ""
 
 #. translators: %1$s is <code>&lt;u&gt;</code>, %2$s is <code>text-decoration: underline;</code.
-#: includes/classes/Rules/Rule/UnderlinedTextRule.php:35
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:36
 #, php-format
 msgid "These elements contain underlined text using the %1$s tag or %2$s CSS styles and do not appear to be links."
 msgstr ""
 
-#: includes/classes/Rules/Rule/UnderlinedTextRule.php:39
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:40
 msgid "Underlined text is commonly associated with links. When non-link text is underlined, it can be confusing for users, especially those with cognitive disabilities or those relying on visual cues to identify links."
 msgstr ""
 
-#: includes/classes/Rules/Rule/UnderlinedTextRule.php:40
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
 msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
 msgstr ""
 
-#: includes/classes/Rules/Rule/VideoPresentRule.php:23
+#: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
 msgstr ""
 
-#: includes/classes/Rules/Rule/VideoPresentRule.php:27
+#: includes/classes/Rules/Rule/VideoPresentRule.php:28
 msgid "This element is a video. Because many accessibility issues with video content require manual review, this warning appears any time a video is detected on a post or page."
 msgstr ""
 
-#: includes/classes/Rules/Rule/VideoPresentRule.php:28
+#: includes/classes/Rules/Rule/VideoPresentRule.php:29
 msgid "These elements are videos. Because many accessibility issues with video content require manual review, this warning appears any time one or more videos are detected on a post or page."
 msgstr ""
 
-#: includes/classes/Rules/Rule/VideoPresentRule.php:29
+#: includes/classes/Rules/Rule/VideoPresentRule.php:30
 msgid "Videos must include accurate captions, transcripts, and audio descriptions (or enhanced transcripts) to be fully accessible to users who are deaf, hard of hearing, blind, or have cognitive disabilities."
 msgstr ""
 
-#: includes/classes/Rules/Rule/VideoPresentRule.php:30
+#: includes/classes/Rules/Rule/VideoPresentRule.php:31
 msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
 msgstr ""
 
-#: includes/classes/Rules/Rule/VideoPresentRule.php:33
+#: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
 msgstr ""
 
-#: includes/classes/Rules/Rule/VideoPresentRule.php:37
+#: includes/classes/Rules/Rule/VideoPresentRule.php:38
 msgid "W3C: Understanding Guideline 1.2"
 msgstr ""
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
-#: includes/classes/WPCLI/BootstrapCLI.php:99
+#: includes/classes/WPCLI/BootstrapCLI.php:101
 #, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr ""
@@ -2983,6 +2777,10 @@ msgstr ""
 
 #: includes/options-page.php:462
 msgid "To check content other than posts and pages, please "
+msgstr ""
+
+#: includes/options-page.php:464
+msgid "upgrade to pro"
 msgstr ""
 
 #: includes/options-page.php:465
@@ -4523,7 +4321,15 @@ msgid "Close fixes modal"
 msgstr ""
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan This Page"
+msgstr ""
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Disable Page Styles"
+msgstr ""
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
 msgstr ""
 
 #: build/frontendHighlighterApp.bundle.js:2
@@ -4540,10 +4346,6 @@ msgstr ""
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Enable Styles"
-msgstr ""
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Styles"
 msgstr ""
 
 #: build/frontendHighlighterApp.bundle.js:2
