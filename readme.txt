@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.2
 Tested up to: 6.8
-Stable tag: 1.28.0
+Stable tag: 1.29.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,6 +210,14 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
+
+= 1.29.0 =
+* Added: Rescan button in the frontend highlighter to rescan the current page.
+* Added: Cleanup routine to clear out orphaned issues from the database.
+* Added: Filter to allow tweaking the post statuses which get scanned.
+* Enhanced: Updated the aria-hidden check to understand more sibling relationships.
+* Enhanced: Updated the redundant alt check to understand that repeated images with same source and alt is not redundant.
+* Fixed: Remove the password protected notice, and it's related features - scans can throw this error now.
 
 = 1.28.0 =
 * Added: Better descriptions and help text for each of the rules.
