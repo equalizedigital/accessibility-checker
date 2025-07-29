@@ -48,7 +48,66 @@ sed -i.bak -E "s/( \* Version:[[:space:]]*)[0-9]+\.[0-9]+\.[0-9]+/\1${BUMPED_VER
 sed -i.bak -E "s/(define\( 'EDAC_VERSION', ')[0-9]+\.[0-9]+\.[0-9]+/\1${BUMPED_VERSION}/" "${MAIN_FILE_PATH}"
 sed -i.bak -E "s/(\"version\": \")[0-9]+\.[0-9]+\.[0-9]+/\1${BUMPED_VERSION}/" package.json
 sed -i.bak -E "s/(Stable tag: )[0-9]+\.[0-9]+\.[0-9]+/\1${BUMPED_VERSION}/" readme.txt
-rm  "${MAIN_FILE_PATH}.bak" "${PACKAGE_JSON_PATH}.bak" "${README_PATH}.bak"
+
+echo
+echo "Updating WordPress version requirements"
+echo
+
+# Function to calculate WordPress version three versions back
+calculate_wp_requires_version() {
+    local tested_up_to=$(grep "Tested up to:" "${README_PATH}" | sed -E 's/Tested up to: ([0-9]+\.[0-9]+).*/\1/')
+    
+    if [[ -z "${tested_up_to}" ]]; then
+        echo "Could not extract 'Tested up to' version from readme.txt" >&2
+        return 1
+    fi
+    
+    echo "Current 'Tested up to': ${tested_up_to}" >&2
+    
+    # Extract major and minor version numbers
+    local major=$(echo "${tested_up_to}" | cut -d. -f1)
+    local minor=$(echo "${tested_up_to}" | cut -d. -f2)
+    
+    # Calculate three versions back
+    local target_minor=$((minor - 3))
+    local target_major=${major}
+    
+    # Handle cases where we need to go back to previous major version
+    if [[ ${target_minor} -lt 0 ]]; then
+        target_major=$((major - 1))
+        # WordPress typically has 10+ minor versions per major release
+        # If we go negative, we'll use a reasonable estimate
+        case ${major} in
+            6)
+                # WordPress 6.x series - estimate based on known releases
+                target_minor=$((10 + target_minor))
+                ;;
+            *)
+                # For other versions, use a conservative approach
+                target_minor=$((9 + target_minor))
+                ;;
+        esac
+        
+        # Don't go below WordPress 5.0 (reasonable minimum)
+        if [[ ${target_major} -lt 5 ]]; then
+            target_major=5
+            target_minor=0
+        fi
+    fi
+    
+    echo "${target_major}.${target_minor}"
+}
+
+# Calculate the new requires version
+NEW_WP_REQUIRES=$(calculate_wp_requires_version)
+if [[ $? -eq 0 && -n "${NEW_WP_REQUIRES}" ]]; then
+    echo "Setting 'Requires at least' to: ${NEW_WP_REQUIRES}"
+    sed -i.bak -E "s/(Requires at least: )[0-9]+\.[0-9]+/\1${NEW_WP_REQUIRES}/" readme.txt
+    rm  "${MAIN_FILE_PATH}.bak" "${PACKAGE_JSON_PATH}.bak" "${README_PATH}.bak"
+else
+    echo "Warning: Could not calculate WordPress requires version, keeping current value"
+    rm  "${MAIN_FILE_PATH}.bak" "${PACKAGE_JSON_PATH}.bak" "${README_PATH}.bak"
+fi
 
 echo
 echo "Committing version bump"
