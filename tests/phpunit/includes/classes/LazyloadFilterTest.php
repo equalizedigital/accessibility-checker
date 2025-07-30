@@ -43,16 +43,16 @@ class LazyloadFilterTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_init_hooks_adds_perfmatters_filter() {
-		// Remove any existing filter first
+		// Remove any existing filter first.
 		remove_filter( 'perfmatters_lazyload', [ $this->lazyload_filter, 'perfmatters' ] );
 		
-		// Verify filter is not set initially
+		// Verify filter is not set initially.
 		$this->assertFalse( has_filter( 'perfmatters_lazyload', [ $this->lazyload_filter, 'perfmatters' ] ) );
 		
-		// Call init_hooks
+		// Call init_hooks.
 		$this->lazyload_filter->init_hooks();
 		
-		// Verify filter is now added
+		// Verify filter is now added.
 		$this->assertNotFalse( has_filter( 'perfmatters_lazyload', [ $this->lazyload_filter, 'perfmatters' ] ) );
 	}
 
@@ -65,7 +65,7 @@ class LazyloadFilterTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_perfmatters_returns_original_value_when_no_params() {
-		// Clear any existing GET parameters
+		// Clear any existing GET parameters.
 		unset( $_GET['edac_nonce'] );
 		unset( $_GET['edac'] );
 		
@@ -118,9 +118,9 @@ class LazyloadFilterTest extends WP_UnitTestCase {
 	 */
 	public function test_perfmatters_returns_false_when_valid_nonce_and_edac() {
 		$_GET['edac_nonce'] = wp_create_nonce( 'edac_highlight' );
-		$_GET['edac'] = '1';
+		$_GET['edac']       = '1';
 		
-		// Should return false regardless of the input value
+		// Should return false regardless of the input value.
 		$this->assertFalse( $this->lazyload_filter->perfmatters( true ) );
 		$this->assertFalse( $this->lazyload_filter->perfmatters( false ) );
 		
@@ -156,7 +156,7 @@ class LazyloadFilterTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function tearDown(): void {
-		// Clean up any GET parameters that might have been set
+		// Clean up any GET parameters that might have been set.
 		unset( $_GET['edac_nonce'] );
 		unset( $_GET['edac'] );
 		
