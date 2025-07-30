@@ -1,0 +1,12 @@
+{
+  "apiVersion": 2,
+  "name": "accessibility-checker/simplified-summary",
+  "title": "Simplified Summary",
+  "category": "widgets",
+  "icon": "excerpt-view",
+  "description": "Displays the Simplified Summary for the post.",
+  "editorScript": "file:../../build/simplifiedSummaryBlock.bundle.js",
+  "supports": {
+    "html": false
+  }
+}

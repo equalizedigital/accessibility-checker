@@ -12,6 +12,7 @@ use EDAC\Admin\Meta_Boxes;
 use EDAC\Admin\Orphaned_Issues_Cleanup;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
+use EDAC\Inc\Simplified_Summary_Block;
 
 /**
  * Main plugin functionality class.
@@ -62,8 +63,11 @@ class Plugin {
 		$accessibility_statement = new Accessibility_Statement();
 		$accessibility_statement->init_hooks();
 
-		$simplified_summary = new Simplified_Summary();
-		$simplified_summary->init_hooks();
+				$simplified_summary = new Simplified_Summary();
+				$simplified_summary->init_hooks();
+
+				$simplified_summary_block = new Simplified_Summary_Block();
+				$simplified_summary_block->init_hooks();
 
 		$lazyload_filter = new Lazyload_Filter();
 		$lazyload_filter->init_hooks();

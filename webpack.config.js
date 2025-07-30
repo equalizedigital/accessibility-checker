@@ -28,6 +28,9 @@ module.exports = {
 			'./src/emailOptIn/index.js',
 			'./src/emailOptIn/sass/email-opt-in.scss',
 		],
+		simplifiedSummaryBlock: [
+			'./src/blocks/simplified-summary/index.js',
+		],
 		frontendFixes: [
 			'./src/frontendFixes/index.js',
 		],
@@ -102,5 +105,7 @@ module.exports = {
 	externals: {
 		// Exclude WordPress core scripts and styles from the build.
 		'@wordpress/i18n': [ 'wp', 'i18n' ],
+		'@wordpress/blocks': [ 'wp', 'blocks' ],
+		'@wordpress/element': [ 'wp', 'element' ],
 	},
 };
