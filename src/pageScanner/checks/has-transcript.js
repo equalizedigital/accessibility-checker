@@ -84,6 +84,18 @@ function getSurroundingText( node, radius = 250 ) {
 	// Walk limited DOM subtree (media-wrapper, section, article, etc.)
 	const parent = node.closest( '.media-wrapper, figure, section, article' );
 	if ( parent ) {
+		// Also check parent's siblings for transcript text
+		let parentSibling = parent.nextElementSibling;
+		let parentSiblingCount = 0;
+		while ( parentSibling && parentSiblingCount < 3 ) {
+			const siblingText = parentSibling.textContent?.trim();
+			if ( siblingText ) {
+				text += siblingText + ' ';
+			}
+			parentSibling = parentSibling.nextElementSibling;
+			parentSiblingCount++;
+		}
+
 		const nodeFilter = {
 			acceptNode( textNode ) {
 				const style = window.getComputedStyle( textNode.parentElement );
