@@ -233,4 +233,95 @@ class CleanupOrphanedIssuesTest extends WP_UnitTestCase {
 		// Should still complete successfully (invalid sleep defaults to 0).
 		$this->assertStringContainsString( 'Success: No orphaned issues found.', $output );
 	}
+
+	/**
+	 * Test the cleanup command only removes orphaned issues and preserves valid issues.
+	 */
+	public function test_cleanup_command_preserves_valid_issues_and_removes_orphaned_issues() {
+		// Set up scannable post types to include 'post' so valid posts aren't considered orphaned.
+		update_option( 'edac_post_types', [ 'post', 'page' ] );
+
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+
+		// Create a real post.
+		$real_post_id = wp_insert_post( [
+			'post_title'   => 'Test Post',
+			'post_content' => 'Test content',
+			'post_status'  => 'publish',
+			'post_type'    => 'post',
+		] );
+
+		// Create an issue for the real post (should NOT be deleted).
+		$wpdb->insert( // phpcs:ignore WordPress.DB -- using direct query for testing.
+			$table_name,
+			[
+				'postid'        => $real_post_id,
+				'siteid'        => get_current_blog_id(),
+				'type'          => 'post',
+				'rule'          => 'empty_paragraph_tag',
+				'ruletype'      => 'warning',
+				'object'        => '<p></p>',
+				'recordcheck'   => 1,
+				'user'          => get_current_user_id(),
+				'ignre'         => 0,
+				'ignre_user'    => null,
+				'ignre_date'    => null,
+				'ignre_comment' => null,
+				'ignre_global'  => 0,
+			]
+		);
+
+		// Create an issue for a non-existent post ID (should be deleted).
+		$orphaned_post_id = 999999;
+		$wpdb->insert( // phpcs:ignore WordPress.DB -- using direct query for testing.
+			$table_name,
+			[
+				'postid'        => $orphaned_post_id,
+				'siteid'        => get_current_blog_id(),
+				'type'          => 'post',
+				'rule'          => 'empty_paragraph_tag',
+				'ruletype'      => 'warning',
+				'object'        => '<p></p>',
+				'recordcheck'   => 1,
+				'user'          => get_current_user_id(),
+				'ignre'         => 0,
+				'ignre_user'    => null,
+				'ignre_date'    => null,
+				'ignre_comment' => null,
+				'ignre_global'  => 0,
+			]
+		);
+
+		// Verify the table has 2 items to start.
+		$total_issues_before = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name" ); // phpcs:ignore WordPress.DB -- Querying for testing purposes.
+		$this->assertEquals( 2, (int) $total_issues_before );
+
+		// Run the cleanup command.
+		ob_start();
+		$this->cleanup_orphaned_issues->__invoke( [], [] );
+		$output = ob_get_clean();
+
+		// Verify that it finds one orphaned issue.
+		$this->assertStringContainsString( 'Log: Found 1 orphaned post IDs', $output );
+		$this->assertStringContainsString( "Log:  - Deleting issues for post ID: $orphaned_post_id", $output );
+		$this->assertStringContainsString( 'Success: Orphaned issues cleanup complete. 1 post(s) processed.', $output );
+
+		// Verify that there is still 1 item left in the table (the valid one).
+		$total_issues_after = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name" ); // phpcs:ignore WordPress.DB -- Querying for testing purposes.
+		$this->assertEquals( 1, (int) $total_issues_after );
+
+		// Verify the remaining issue is for the real post.
+		$remaining_issue = $wpdb->get_row( "SELECT * FROM $table_name WHERE postid = $real_post_id" ); // phpcs:ignore WordPress.DB -- Querying for testing purposes.
+		$this->assertNotNull( $remaining_issue );
+		$this->assertEquals( $real_post_id, (int) $remaining_issue->postid );
+
+		// Verify the orphaned issue was deleted.
+		$orphaned_issue = $wpdb->get_row( "SELECT * FROM $table_name WHERE postid = $orphaned_post_id" ); // phpcs:ignore WordPress.DB -- Querying for testing purposes.
+		$this->assertNull( $orphaned_issue );
+
+		// Clean up the test post and option.
+		wp_delete_post( $real_post_id, true );
+		delete_option( 'edac_post_types' );
+	}
 }
