@@ -85,7 +85,7 @@ jobs:
           
           # Pull Docker images used for PHP testing (these can be large)
           echo "Pulling Docker images for PHP tests..."
-          docker compose pull
+          docker compose pull --ignore-pull-failures
 
       - name: Run Jest tests
         run: |
