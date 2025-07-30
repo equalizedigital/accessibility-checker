@@ -49,6 +49,29 @@ export default {
 	},
 };
 
+/**
+ * Helper function to collect text content from a series of sibling elements
+ * @param {Element} startSibling - The first sibling element to start from
+ * @param {number}  maxCount     - Maximum number of siblings to check
+ * @return {string} - Concatenated text content from siblings
+ */
+function collectSiblingText( startSibling, maxCount ) {
+	let text = '';
+	let currentSibling = startSibling;
+	let siblingCount = 0;
+
+	while ( currentSibling && siblingCount < maxCount ) {
+		const siblingText = currentSibling.textContent?.trim();
+		if ( siblingText ) {
+			text += siblingText + ' ';
+		}
+		currentSibling = currentSibling.nextElementSibling;
+		siblingCount++;
+	}
+
+	return text;
+}
+
 function getSurroundingText( node, radius = 250 ) {
 	let text = '';
 
@@ -69,32 +92,14 @@ function getSurroundingText( node, radius = 250 ) {
 		}
 
 		// Check siblings of the figure element for transcript links
-		let currentSibling = figure.nextElementSibling;
-		let siblingCount = 0;
-		while ( currentSibling && siblingCount < 5 ) {
-			const siblingText = currentSibling.textContent?.trim();
-			if ( siblingText ) {
-				text += siblingText + ' ';
-			}
-			currentSibling = currentSibling.nextElementSibling;
-			siblingCount++;
-		}
+		text += collectSiblingText( figure.nextElementSibling, 5 );
 	}
 
 	// Walk limited DOM subtree (media-wrapper, section, article, etc.)
 	const parent = node.closest( '.media-wrapper, figure, section, article' );
 	if ( parent ) {
 		// Also check parent's siblings for transcript text
-		let parentSibling = parent.nextElementSibling;
-		let parentSiblingCount = 0;
-		while ( parentSibling && parentSiblingCount < 3 ) {
-			const siblingText = parentSibling.textContent?.trim();
-			if ( siblingText ) {
-				text += siblingText + ' ';
-			}
-			parentSibling = parentSibling.nextElementSibling;
-			parentSiblingCount++;
-		}
+		text += collectSiblingText( parent.nextElementSibling, 3 );
 
 		const nodeFilter = {
 			acceptNode( textNode ) {
