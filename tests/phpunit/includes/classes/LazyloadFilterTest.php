@@ -35,6 +35,19 @@ class LazyloadFilterTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Clean up after each test.
+	 *
+	 * @return void
+	 */
+	public function tearDown(): void {
+		// Clean up any GET parameters that might have been set.
+		unset( $_GET['edac_nonce'] );
+		unset( $_GET['edac'] );
+		
+		parent::tearDown();
+	}
+
+	/**
 	 * Test that init_hooks adds the expected filter.
 	 *
 	 * Verifies that the perfmatters_lazyload filter is added
@@ -148,18 +161,5 @@ class LazyloadFilterTest extends WP_UnitTestCase {
 		
 		unset( $_GET['edac_nonce'] );
 		unset( $_GET['edac'] );
-	}
-
-	/**
-	 * Clean up after each test.
-	 *
-	 * @return void
-	 */
-	public function tearDown(): void {
-		// Clean up any GET parameters that might have been set.
-		unset( $_GET['edac_nonce'] );
-		unset( $_GET['edac'] );
-		
-		parent::tearDown();
 	}
 }
