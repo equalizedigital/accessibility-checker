@@ -67,6 +67,18 @@ function getSurroundingText( node, radius = 250 ) {
 		if ( figcaption ) {
 			text += figcaption.textContent.trim() + ' ';
 		}
+
+		// Check siblings of the figure element for transcript links
+		let currentSibling = figure.nextElementSibling;
+		let siblingCount = 0;
+		while ( currentSibling && siblingCount < 5 ) {
+			const siblingText = currentSibling.textContent?.trim();
+			if ( siblingText ) {
+				text += siblingText + ' ';
+			}
+			currentSibling = currentSibling.nextElementSibling;
+			siblingCount++;
+		}
 	}
 
 	// Walk limited DOM subtree (media-wrapper, section, article, etc.)
