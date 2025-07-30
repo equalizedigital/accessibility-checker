@@ -8,6 +8,9 @@
 const videoEmbedKeywords = [ 'youtube.com', 'youtu.be', 'vimeo.com' ];
 const mediaExtensions = /\.(3gp|asf|asx|avi|flv|m4a|m4p|mov|mp3|mp4|mpeg|mpeg2|mpg|mpv|ogg|oga|ogv|qtl|smi|smil|wav|wax|webm|wmv|wmp|wmx)(\?.*)?$/i;
 
+const MAX_SIBLINGS_TO_CHECK = 5;
+const PARENT_SIBLING_LIMIT = 3;
+
 export default {
 	id: 'has_transcript',
 	evaluate: ( node ) => {
@@ -92,14 +95,14 @@ function getSurroundingText( node, radius = 250 ) {
 		}
 
 		// Check siblings of the figure element for transcript links
-		text += collectSiblingText( figure.nextElementSibling, 5 );
+		text += collectSiblingText( figure.nextElementSibling, MAX_SIBLINGS_TO_CHECK );
 	}
 
 	// Walk limited DOM subtree (media-wrapper, section, article, etc.)
 	const parent = node.closest( '.media-wrapper, figure, section, article' );
 	if ( parent ) {
 		// Also check parent's siblings for transcript text
-		text += collectSiblingText( parent.nextElementSibling, 3 );
+		text += collectSiblingText( parent.nextElementSibling, PARENT_SIBLING_LIMIT );
 
 		const nodeFilter = {
 			acceptNode( textNode ) {
