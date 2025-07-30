@@ -1,13 +1,20 @@
-name: Copilot Agent Environment Setup
+name: Copilot Setup Steps
 
 on:
   workflow_dispatch:
-  # Allow manual triggering for Copilot agent environments
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
 
 jobs:
-  setup-environment:
+  copilot-setup-steps:
     name: Setup Development Environment
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
@@ -120,7 +127,7 @@ jobs:
           echo "📦 Installation Summary:"
           echo "✅ Node.js $(node --version) and npm dependencies installed"
           echo "✅ PHP $(php --version | head -n1) and Composer dependencies installed" 
-          echo "✅ Jest tests passed (28 test suites, 484 tests)"
+          echo "✅ Jest tests were run"
           echo "✅ Docker containers ready for PHP testing"
           echo "✅ Build system operational (webpack)"
           echo ""

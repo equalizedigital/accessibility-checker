@@ -2,7 +2,7 @@
 
 This repository includes a GitHub Actions workflow specifically designed for GitHub Copilot Agent environments, providing a pre-configured development setup with all dependencies and testing tools ready to use.
 
-## Workflow: `.github/workflows/copilot-agent.yml`
+## Workflow: `.github/workflows/copilot-setup-steps.yml`
 
 ### What it does:
 
