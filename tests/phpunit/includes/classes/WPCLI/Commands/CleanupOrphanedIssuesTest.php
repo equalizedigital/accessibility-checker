@@ -245,12 +245,14 @@ class CleanupOrphanedIssuesTest extends WP_UnitTestCase {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 
 		// Create a real post.
-		$real_post_id = wp_insert_post( [
-			'post_title'   => 'Test Post',
-			'post_content' => 'Test content',
-			'post_status'  => 'publish',
-			'post_type'    => 'post',
-		] );
+		$real_post_id = wp_insert_post(
+			[
+				'post_title'   => 'Test Post',
+				'post_content' => 'Test content',
+				'post_status'  => 'publish',
+				'post_type'    => 'post',
+			] 
+		);
 
 		// Create an issue for the real post (should NOT be deleted).
 		$wpdb->insert( // phpcs:ignore WordPress.DB -- using direct query for testing.
