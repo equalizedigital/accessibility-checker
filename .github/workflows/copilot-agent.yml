@@ -67,8 +67,8 @@ jobs:
         run: |
           # Remove PHP platform requirement and install with timeout handling
           composer config --unset platform.php || true
-          composer config --global --unset github-oauth.github.com 2>/dev/null || true
-          timeout 300 composer install --no-interaction --prefer-dist --optimize-autoloader --no-progress 2>/dev/null || {
+          composer config --global --unset github-oauth.github.com 2>&1 || true
+          timeout 300 composer install --no-interaction --prefer-dist --optimize-autoloader --no-progress 2>&1 || {
             echo "⚠️  Composer install encountered network timeouts, but core dependencies may be available"
             echo "✅ Checking for key dependencies..."
             [ -d "vendor/phpunit" ] && echo "✅ PHPUnit found" || echo "❌ PHPUnit missing"
