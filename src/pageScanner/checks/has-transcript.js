@@ -52,11 +52,11 @@ export default {
 function getSurroundingText( node, radius = 250 ) {
 	let text = '';
 
-	// Include immediate next and previous siblings
-	if ( node.previousElementSibling ) {
+	// Include immediate next and previous siblings (but skip noscript elements)
+	if ( node.previousElementSibling && node.previousElementSibling.nodeName.toLowerCase() !== 'noscript' ) {
 		text += node.previousElementSibling.textContent.trim() + ' ';
 	}
-	if ( node.nextElementSibling ) {
+	if ( node.nextElementSibling && node.nextElementSibling.nodeName.toLowerCase() !== 'noscript' ) {
 		text += node.nextElementSibling.textContent.trim() + ' ';
 	}
 
