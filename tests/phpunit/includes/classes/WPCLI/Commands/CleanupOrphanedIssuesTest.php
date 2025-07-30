@@ -124,7 +124,7 @@ class CleanupOrphanedIssuesTest extends WP_UnitTestCase {
 		$output = ob_get_clean();
 
 		$this->assertStringContainsString( 'Log: Found 1 orphaned post IDs', $output );
-		$this->assertStringContainsString( "Log: - Deleting issues for post ID: $non_existent_id", $output );
+		$this->assertStringContainsString( "Log:  - Deleting issues for post ID: $non_existent_id", $output );
 		$this->assertStringContainsString( 'Success: Orphaned issues cleanup complete. 1 post(s) processed.', $output );
 
 		// Verify the issue was deleted after cleanup.
@@ -206,7 +206,7 @@ class CleanupOrphanedIssuesTest extends WP_UnitTestCase {
 		$output = ob_get_clean();
 
 		$this->assertStringContainsString( 'Log: Found 1 orphaned post IDs', $output );
-		$this->assertStringContainsString( "Log: - Deleting issues for post ID: $non_existent_id", $output );
+		$this->assertStringContainsString( "Log:  - Deleting issues for post ID: $non_existent_id", $output );
 		$this->assertStringContainsString( 'Success: Orphaned issues cleanup complete. 1 post(s) processed.', $output );
 	}
 
