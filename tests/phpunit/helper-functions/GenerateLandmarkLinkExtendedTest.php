@@ -11,6 +11,13 @@
 class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 
 	/**
+	 * Test post ID for testing.
+	 *
+	 * @var int
+	 */
+	private $test_post_id;
+
+	/**
 	 * Set up test environment.
 	 */
 	public function setUp(): void {
@@ -140,6 +147,11 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	 * Test landmark link with proper URL structure.
 	 */
 	public function test_landmark_link_url_structure() {
+		// Skip test if WordPress functions not available.
+		if ( ! function_exists( 'wp_create_nonce' ) || ! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) || ! function_exists( 'wp_parse_url' ) ) {
+			$this->markTestSkipped( 'WordPress functions not available in test environment.' );
+		}
+
 		$landmark = 'navigation';
 		$selector = 'nav.main-nav';
 
@@ -153,6 +165,9 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 		$this->assertNotEmpty( $matches[1] );
 
 		$url = $matches[1];
+		
+		// Decode HTML entities in URL for proper parsing.
+		$url = html_entity_decode( $url, ENT_QUOTES | ENT_HTML5 );
 
 		// Parse the URL to check query parameters.
 		$parsed_url = wp_parse_url( $url );
@@ -179,7 +194,7 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 
 		// Test mixed case input.
 		$result = edac_generate_landmark_link( 'mainContent', '', $this->test_post_id );
-		$this->assertStringContainsString( 'Maincontent', $result ); // ucwords behavior.
+		$this->assertStringContainsString( 'MainContent', $result ); // ucwords behavior.
 
 		// Test all caps input.
 		$result = edac_generate_landmark_link( 'HEADER', '', $this->test_post_id );

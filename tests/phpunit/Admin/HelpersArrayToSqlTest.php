@@ -97,9 +97,14 @@ class HelpersArrayToSqlTest extends WP_UnitTestCase {
 		// Should contain quoted items separated by commas.
 		$this->assertStringContainsString( ',', $result );
 
-		// Should not contain unescaped dangerous SQL.
-		$this->assertStringNotContainsString( 'DROP TABLE', $result );
-		$this->assertStringNotContainsString( 'DELETE FROM', $result );
+		// Should not contain unescaped dangerous SQL sequences that could break out of quotes.
+		// The dangerous content should be safely contained within single quotes.
+		$this->assertStringNotContainsString( "' OR '1'='1", $result );
+		
+		// But the escaped content should still be present (safely quoted).
+		$this->assertStringContainsString( "\\'; DROP", $result ); // Should be escaped.
+		$this->assertStringContainsString( "\\'; DELETE", $result ); // Should be escaped.
+		$this->assertStringContainsString( "\\' OR \\'", $result ); // Should be escaped.
 
 		// All items should be properly quoted.
 		$parts = explode( ',', $result );
