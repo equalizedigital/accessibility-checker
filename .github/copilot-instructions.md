@@ -231,7 +231,7 @@ When adding new functionality:
 ```php
 namespace EqualizeDigital\AccessibilityChecker;
 
-class Example_Class {
+class ExampleClass {
     public function __construct() {
         // never add actions right in the constructor
     }
