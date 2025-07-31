@@ -8,6 +8,7 @@
 namespace EDAC\Admin;
 
 use EDAC\Admin\OptIn\Email_Opt_In;
+use EDAC\Admin\Settings;
 
 /**
  * Class that initializes and handles enqueueing styles and scripts for the admin.
@@ -122,17 +123,19 @@ class Enqueue_Admin {
 					'edac-editor-app',
 					'edac_editor_app',
 					[
-						'postID'       => $post_id,
-						'edacUrl'      => esc_url_raw( get_site_url() ),
-						'edacApiUrl'   => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-						'baseurl'      => plugin_dir_url( __DIR__ ),
-						'active'       => $active,
-						'pro'          => $pro,
-						'debug'        => $debug,
-						'scanUrl'      => $scan_url,
-						'maxAltLength' => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),
-						'version'      => EDAC_VERSION,
-						'restNonce'    => wp_create_nonce( 'wp_rest' ),
+						'postID'                => $post_id,
+						'postStatus'            => is_object( $post ) ? $post->post_status : '',
+						'scannablePostStatuses' => Settings::get_scannable_post_statuses(),
+						'edacUrl'               => esc_url_raw( get_site_url() ),
+						'edacApiUrl'            => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+						'baseurl'               => plugin_dir_url( __DIR__ ),
+						'active'                => $active,
+						'pro'                   => $pro,
+						'debug'                 => $debug,
+						'scanUrl'               => $scan_url,
+						'maxAltLength'          => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),
+						'version'               => EDAC_VERSION,
+						'restNonce'             => wp_create_nonce( 'wp_rest' ),
 					]
 				);
 

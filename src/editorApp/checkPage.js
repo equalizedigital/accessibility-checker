@@ -105,6 +105,21 @@ const injectIframe = ( previewUrl, postID ) => {
 		}
 	} );
 };
+/**
+ * Check if the current post is scannable based on its status.
+ *
+ * @return {boolean} True if the post can be scanned, false otherwise.
+ */
+const isPostScannable = () => {
+	// eslint-disable-next-line camelcase
+	if ( ! edac_editor_app.postStatus || ! edac_editor_app.scannablePostStatuses ) {
+		return false;
+	}
+
+	// eslint-disable-next-line camelcase
+	return edac_editor_app.scannablePostStatuses.includes( edac_editor_app.postStatus );
+};
+
 top.edacScanCompleteListenerAdded = false;
 export const init = () => {
 	// Listen for completed scans.
@@ -149,8 +164,16 @@ export const init = () => {
 				saving = false;
 
 				if ( ! autosaving ) {
+					// Check current post status after save
+					const currentStatus = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'status' );
 					// eslint-disable-next-line camelcase
-					injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
+					const scannableStatuses = edac_editor_app.scannablePostStatuses || [];
+
+					// Only scan if the post now has a scannable status
+					if ( scannableStatuses.includes( currentStatus ) ) {
+						// eslint-disable-next-line camelcase
+						injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
+					}
 				} else {
 					autosaving = false;
 				}
@@ -160,7 +183,10 @@ export const init = () => {
 		debug( 'Gutenberg is not enabled.' );
 	}
 
-	// eslint-disable-next-line camelcase
-	injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
+	// Only scan immediately if the post has a scannable status
+	if ( isPostScannable() ) {
+		// eslint-disable-next-line camelcase
+		injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
+	}
 };
 
