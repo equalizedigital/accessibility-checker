@@ -46,7 +46,7 @@ This is a WordPress plugin called "Accessibility Checker" developed by Equalize 
 
 ## Development Workflow
 
-Code should always be linted by phpcs and eslint before commiting. Tests should be added for new functionality. Tests should also be added for any bug fixes. Use the following commands to run tests and linting:
+Code should always be linted by phpcs and eslint before committing. Tests should be added for new functionality. Tests should also be added for any bug fixes. Use the following commands to run tests and linting:
 
 ```bash
 npm run lint:php
