@@ -30,35 +30,35 @@ class ParseHtmlForMediaTest extends WP_UnitTestCase {
 	 */
 	public function parse_html_for_media_data() {
 		return [
-			'empty string' => [
+			'empty string'                             => [
 				'html'     => '',
 				'expected' => [
 					'img' => null,
 					'svg' => null,
 				],
 			],
-			'simple img tag with src' => [
+			'simple img tag with src'                  => [
 				'html'     => '<img src="image.jpg" alt="Test image">',
 				'expected' => [
 					'img' => 'image.jpg',
 					'svg' => null,
 				],
 			],
-			'img tag with double quotes' => [
+			'img tag with double quotes'               => [
 				'html'     => '<img src="https://example.com/image.png" alt="Example" class="responsive">',
 				'expected' => [
 					'img' => 'https://example.com/image.png',
 					'svg' => null,
 				],
 			],
-			'img tag with single quotes' => [
+			'img tag with single quotes'               => [
 				'html'     => "<img src='image.gif' alt='Animated image'>",
 				'expected' => [
 					'img' => 'image.gif',
 					'svg' => null,
 				],
 			],
-			'img tag with additional attributes' => [
+			'img tag with additional attributes'       => [
 				'html'     => '<img width="300" height="200" src="/assets/photo.jpg" alt="Photo" ' .
 					'loading="lazy">',
 				'expected' => [
@@ -66,7 +66,7 @@ class ParseHtmlForMediaTest extends WP_UnitTestCase {
 					'svg' => null,
 				],
 			],
-			'simple svg tag' => [
+			'simple svg tag'                           => [
 				'html'     => '<svg width="100" height="100"><circle cx="50" cy="50" r="40" ' .
 					'stroke="black" fill="red" /></svg>',
 				'expected' => [
@@ -75,7 +75,7 @@ class ParseHtmlForMediaTest extends WP_UnitTestCase {
 						'stroke="black" fill="red" /></svg>',
 				],
 			],
-			'complex svg with multiple elements' => [
+			'complex svg with multiple elements'       => [
 				'html'     => '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">' .
 					'<rect x="10" y="10" width="30" height="30" stroke="black" ' .
 					'fill="transparent" stroke-width="5"/><rect x="60" y="10" rx="10" ry="10" ' .
@@ -88,14 +88,14 @@ class ParseHtmlForMediaTest extends WP_UnitTestCase {
 						'width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/></svg>',
 				],
 			],
-			'html with no media tags' => [
+			'html with no media tags'                  => [
 				'html'     => '<p>This is just text with <strong>bold</strong> and <em>italic</em> content.</p>',
 				'expected' => [
 					'img' => null,
 					'svg' => null,
 				],
 			],
-			'html with encoded entities in img src' => [
+			'html with encoded entities in img src'    => [
 				'html'     => '<img src="image.jpg?param=value&amp;other=test" alt="Image with encoded URL">',
 				'expected' => [
 					'img' => 'image.jpg?param=value&other=test',
@@ -109,21 +109,21 @@ class ParseHtmlForMediaTest extends WP_UnitTestCase {
 					'svg' => null,
 				],
 			],
-			'malformed img tag without src' => [
+			'malformed img tag without src'            => [
 				'html'     => '<img alt="Image without src" class="test">',
 				'expected' => [
 					'img' => null,
 					'svg' => null,
 				],
 			],
-			'img tag with empty src' => [
+			'img tag with empty src'                   => [
 				'html'     => '<img src="" alt="Empty src">',
 				'expected' => [
 					'img' => '',
 					'svg' => null,
 				],
 			],
-			'multiline svg' => [
+			'multiline svg'                            => [
 				'html'     => "<svg width='100' height='100'>\n  <circle cx='50' cy='50' r='40'/>\n</svg>",
 				'expected' => [
 					'img' => null,
@@ -137,14 +137,14 @@ class ParseHtmlForMediaTest extends WP_UnitTestCase {
 					'svg' => null,
 				],
 			],
-			'case insensitive matching' => [
+			'case insensitive matching'                => [
 				'html'     => '<IMG SRC="uppercase.jpg" ALT="Uppercase tag">',
 				'expected' => [
 					'img' => 'uppercase.jpg',
 					'svg' => null,
 				],
 			],
-			'svg with case variations' => [
+			'svg with case variations'                 => [
 				'html'     => '<SVG width="100"><CIRCLE cx="50" cy="50" r="40"/></SVG>',
 				'expected' => [
 					'img' => null,

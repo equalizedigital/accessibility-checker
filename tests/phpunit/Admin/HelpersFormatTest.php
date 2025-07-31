@@ -43,17 +43,17 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	 */
 	public function format_number_data() {
 		return [
-			'integer number' => [
+			'integer number'                              => [
 				'number'    => 1234,
 				'precision' => 0,
 				'expected'  => 1234, // Will be formatted if NumberFormatter available.
 			],
-			'float number with precision' => [
+			'float number with precision'                 => [
 				'number'    => 1234.567,
 				'precision' => 2,
 				'expected'  => 1234.567,
 			],
-			'large number' => [
+			'large number'                                => [
 				'number'    => 1234567,
 				'precision' => 0,
 				'expected'  => 1234567,
@@ -63,17 +63,17 @@ class HelpersFormatTest extends WP_UnitTestCase {
 				'precision' => 0,
 				'expected'  => 'not a number',
 			],
-			'empty string should be returned as-is' => [
+			'empty string should be returned as-is'       => [
 				'number'    => '',
 				'precision' => 0,
 				'expected'  => '',
 			],
-			'zero value' => [
+			'zero value'                                  => [
 				'number'    => 0,
 				'precision' => 0,
 				'expected'  => 0,
 			],
-			'negative number' => [
+			'negative number'                             => [
 				'number'    => -1234,
 				'precision' => 0,
 				'expected'  => -1234,
@@ -113,27 +113,27 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	 */
 	public function format_percentage_data() {
 		return [
-			'decimal percentage (0.5 = 50%)' => [
+			'decimal percentage (0.5 = 50%)'              => [
 				'number'    => 0.5,
 				'precision' => 2,
 				'expected'  => 'percentage_string',
 			],
-			'whole number percentage (50 = 50%)' => [
+			'whole number percentage (50 = 50%)'          => [
 				'number'    => 50,
 				'precision' => 2,
 				'expected'  => 'percentage_string',
 			],
-			'large percentage over 100' => [
+			'large percentage over 100'                   => [
 				'number'    => 150,
 				'precision' => 1,
 				'expected'  => 'percentage_string',
 			],
-			'zero percentage' => [
+			'zero percentage'                             => [
 				'number'    => 0,
 				'precision' => 2,
 				'expected'  => 'percentage_string',
 			],
-			'negative percentage' => [
+			'negative percentage'                         => [
 				'number'    => -0.25,
 				'precision' => 2,
 				'expected'  => 'percentage_string',
@@ -143,7 +143,7 @@ class HelpersFormatTest extends WP_UnitTestCase {
 				'precision' => 2,
 				'expected'  => 'not a number',
 			],
-			'empty string should be returned as-is' => [
+			'empty string should be returned as-is'       => [
 				'number'    => '',
 				'precision' => 2,
 				'expected'  => '',
@@ -181,17 +181,23 @@ class HelpersFormatTest extends WP_UnitTestCase {
 	 */
 	public function get_option_as_array_data() {
 		return [
-			'valid array option' => [
+			'valid array option'                       => [
 				'option_name'  => 'test_array_option',
-				'option_value' => [ 'key1' => 'value1', 'key2' => 'value2' ],
-				'expected'     => [ 'key1' => 'value1', 'key2' => 'value2' ],
+				'option_value' => [
+					'key1' => 'value1',
+					'key2' => 'value2',
+				],
+				'expected'     => [
+					'key1' => 'value1',
+					'key2' => 'value2',
+				],
 			],
-			'empty array option' => [
+			'empty array option'                       => [
 				'option_name'  => 'test_empty_array',
 				'option_value' => [],
 				'expected'     => [],
 			],
-			'string option should return empty array' => [
+			'string option should return empty array'  => [
 				'option_name'  => 'test_string_option',
 				'option_value' => 'string value',
 				'expected'     => [],
@@ -201,7 +207,7 @@ class HelpersFormatTest extends WP_UnitTestCase {
 				'option_value' => 123,
 				'expected'     => [],
 			],
-			'null option should return empty array' => [
+			'null option should return empty array'    => [
 				'option_name'  => 'test_null_option',
 				'option_value' => null,
 				'expected'     => [],
@@ -225,7 +231,7 @@ class HelpersFormatTest extends WP_UnitTestCase {
 
 		// Test with a standard date string.
 		$date_string = '2023-12-25 14:30:00';
-		$result = Helpers::format_date( $date_string );
+		$result      = Helpers::format_date( $date_string );
 
 		// Should return a formatted string.
 		$this->assertIsString( $result );
@@ -241,9 +247,9 @@ class HelpersFormatTest extends WP_UnitTestCase {
 			$this->markTestSkipped( 'WordPress get_locale function not available in test environment.' );
 		}
 
-		$date_string = '2023-12-25 14:30:00';
+		$date_string         = '2023-12-25 14:30:00';
 		$result_without_time = Helpers::format_date( $date_string, false );
-		$result_with_time = Helpers::format_date( $date_string, true );
+		$result_with_time    = Helpers::format_date( $date_string, true );
 
 		// Both should be strings.
 		$this->assertIsString( $result_without_time );

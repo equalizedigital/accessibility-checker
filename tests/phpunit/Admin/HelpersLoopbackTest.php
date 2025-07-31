@@ -33,31 +33,31 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 	 */
 	public function domain_loopback_data() {
 		return [
-			'localhost' => [
+			'localhost'                             => [
 				'domain'   => 'localhost',
 				'expected' => true,
 			],
-			'127.0.0.1 direct IP' => [
+			'127.0.0.1 direct IP'                   => [
 				'domain'   => '127.0.0.1',
 				'expected' => true,
 			],
-			'127.0.0.2 loopback range' => [
+			'127.0.0.2 loopback range'              => [
 				'domain'   => '127.0.0.2',
 				'expected' => true,
 			],
-			'127.255.255.255 loopback range end' => [
+			'127.255.255.255 loopback range end'    => [
 				'domain'   => '127.255.255.255',
 				'expected' => true,
 			],
-			'127.100.50.25 mid loopback range' => [
+			'127.100.50.25 mid loopback range'      => [
 				'domain'   => '127.100.50.25',
 				'expected' => true,
 			],
-			'google.com external domain' => [
+			'google.com external domain'            => [
 				'domain'   => 'google.com',
 				'expected' => false,
 			],
-			'example.com external domain' => [
+			'example.com external domain'           => [
 				'domain'   => 'example.com',
 				'expected' => false,
 			],
@@ -65,11 +65,11 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 				'domain'   => '192.168.1.1',
 				'expected' => false,
 			],
-			'10.0.0.1 private IP (not loopback)' => [
+			'10.0.0.1 private IP (not loopback)'    => [
 				'domain'   => '10.0.0.1',
 				'expected' => false,
 			],
-			'8.8.8.8 public IP' => [
+			'8.8.8.8 public IP'                     => [
 				'domain'   => '8.8.8.8',
 				'expected' => false,
 			],
@@ -135,7 +135,7 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 	public function test_dns_resolution_error_handling() {
 		// Test with a clearly non-existent domain.
 		$fake_domain = 'definitely-not-a-real-domain-' . uniqid() . '.invalid';
-		$result = Helpers::is_domain_loopback( $fake_domain );
+		$result      = Helpers::is_domain_loopback( $fake_domain );
 
 		// Should return a boolean and not throw an exception.
 		$this->assertIsBool( $result );
@@ -209,7 +209,7 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 		// The method should handle this case.
 
 		$non_resolvable = 'non-resolvable-domain-' . uniqid() . '.invalid';
-		$result = Helpers::is_domain_loopback( $non_resolvable );
+		$result         = Helpers::is_domain_loopback( $non_resolvable );
 
 		// Should return false for non-resolvable domains.
 		$this->assertIsBool( $result );
@@ -236,7 +236,7 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 			$this->assertIsBool( $result );
 		}
 
-		$end_time = microtime( true );
+		$end_time       = microtime( true );
 		$execution_time = $end_time - $start_time;
 
 		// Should complete within a reasonable time (5 seconds).

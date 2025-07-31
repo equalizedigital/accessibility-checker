@@ -204,7 +204,7 @@ class DaysActiveTest extends WP_UnitTestCase {
 				'date_string' => gmdate( 'Y-m-d H:i:s', $one_day_ago ),
 				'description' => 'MySQL datetime format',
 			],
-			'ISO 8601 format' => [
+			'ISO 8601 format'       => [
 				'date_string' => gmdate( 'c', $one_day_ago ),
 				'description' => 'ISO 8601 format',
 			],
@@ -212,7 +212,7 @@ class DaysActiveTest extends WP_UnitTestCase {
 				'date_string' => (string) $one_day_ago,
 				'description' => 'Unix timestamp string',
 			],
-			'Date only format' => [
+			'Date only format'      => [
 				'date_string' => gmdate( 'Y-m-d', $one_day_ago ),
 				'description' => 'Date only format',
 			],

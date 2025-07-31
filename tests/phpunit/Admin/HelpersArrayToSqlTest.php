@@ -52,15 +52,15 @@ class HelpersArrayToSqlTest extends WP_UnitTestCase {
 	 */
 	public function array_to_sql_safe_list_data() {
 		return [
-			'empty array' => [
+			'empty array'                   => [
 				'items'    => [],
 				'expected' => 'empty',
 			],
-			'single string item' => [
+			'single string item'            => [
 				'items'    => [ 'test' ],
 				'expected' => 'single_quoted',
 			],
-			'multiple string items' => [
+			'multiple string items'         => [
 				'items'    => [ 'item1', 'item2', 'item3' ],
 				'expected' => 'multiple_quoted',
 			],
@@ -72,7 +72,7 @@ class HelpersArrayToSqlTest extends WP_UnitTestCase {
 				'items'    => [ "item'with'quotes", 'item"with"doublequotes', 'item;with;semicolon' ],
 				'expected' => 'multiple_quoted',
 			],
-			'numeric items' => [
+			'numeric items'                 => [
 				'items'    => [ 1, 2, 3 ],
 				'expected' => 'quoted_with_numbers',
 			],
@@ -114,7 +114,7 @@ class HelpersArrayToSqlTest extends WP_UnitTestCase {
 	 * Test the array_to_sql_safe_list method ensures proper comma separation.
 	 */
 	public function test_array_to_sql_safe_list_comma_separation() {
-		$items = [ 'a', 'b', 'c', 'd' ];
+		$items  = [ 'a', 'b', 'c', 'd' ];
 		$result = Helpers::array_to_sql_safe_list( $items );
 
 		// Should have exactly 3 commas for 4 items.
@@ -136,7 +136,7 @@ class HelpersArrayToSqlTest extends WP_UnitTestCase {
 	 * Test the array_to_sql_safe_list method with empty strings and null values.
 	 */
 	public function test_array_to_sql_safe_list_edge_cases() {
-		$items = [ '', null, 'valid', 0 ];
+		$items  = [ '', null, 'valid', 0 ];
 		$result = Helpers::array_to_sql_safe_list( $items );
 
 		// Should be a string with commas.

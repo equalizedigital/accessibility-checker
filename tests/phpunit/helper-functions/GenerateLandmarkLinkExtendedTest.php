@@ -19,11 +19,13 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 		// Create a test post for linking.
 		// Use a basic post ID if WordPress factory is not available.
 		if ( method_exists( $this, 'factory' ) && $this->factory() ) {
-			$this->test_post_id = $this->factory()->post->create([
-				'post_title'   => 'Test Post',
-				'post_content' => 'Test content',
-				'post_status'  => 'publish',
-			]);
+			$this->test_post_id = $this->factory()->post->create(
+				[
+					'post_title'   => 'Test Post',
+					'post_content' => 'Test content',
+					'post_status'  => 'publish',
+				]
+			);
 		} else {
 			// Use a default test post ID when factory is not available.
 			$this->test_post_id = 1;
@@ -50,7 +52,7 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	) {
 		// Skip this test if WordPress functions aren't available.
 		if ( ! function_exists( 'esc_html' ) || ! function_exists( 'wp_create_nonce' ) ||
-			 ! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) ) {
+			! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) ) {
 			$this->markTestSkipped( 'WordPress functions not available in test environment.' );
 		}
 
@@ -96,21 +98,21 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	 */
 	public function generate_landmark_link_data() {
 		return [
-			'empty landmark' => [
+			'empty landmark'                              => [
 				'landmark'          => '',
 				'landmark_selector' => 'header',
 				'css_class'         => 'test-class',
 				'target_blank'      => true,
 				'expected_pattern'  => 'empty',
 			],
-			'landmark without selector (text only)' => [
+			'landmark without selector (text only)'       => [
 				'landmark'          => 'navigation',
 				'landmark_selector' => '',
 				'css_class'         => 'test-class',
 				'target_blank'      => true,
 				'expected_pattern'  => 'text_only',
 			],
-			'landmark with selector and target blank' => [
+			'landmark with selector and target blank'     => [
 				'landmark'          => 'header',
 				'landmark_selector' => 'header.main-header',
 				'css_class'         => 'landmark-link',
@@ -124,7 +126,7 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 				'target_blank'      => false,
 				'expected_pattern'  => 'link_without_target',
 			],
-			'landmark with custom CSS class' => [
+			'landmark with custom CSS class'              => [
 				'landmark'          => 'footer',
 				'landmark_selector' => 'footer.site-footer',
 				'css_class'         => 'custom-landmark-class',
@@ -190,7 +192,7 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	public function test_aria_label_generation() {
 		// Skip this test if WordPress functions aren't available.
 		if ( ! function_exists( 'esc_html' ) || ! function_exists( 'wp_create_nonce' ) ||
-			 ! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) ) {
+			! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) ) {
 			$this->markTestSkipped( 'WordPress functions not available in test environment.' );
 		}
 
@@ -221,13 +223,13 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	public function test_html_escaping_security() {
 		// Skip this test if WordPress functions aren't available.
 		if ( ! function_exists( 'esc_html' ) || ! function_exists( 'wp_create_nonce' ) ||
-			 ! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) ) {
+			! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) ) {
 			$this->markTestSkipped( 'WordPress functions not available in test environment.' );
 		}
 
 		$malicious_landmark = '<script>alert("xss")</script>';
 		$malicious_selector = 'header"><script>alert("xss")</script>';
-		$malicious_class = 'class"><script>alert("xss")</script>';
+		$malicious_class    = 'class"><script>alert("xss")</script>';
 
 		$result = edac_generate_landmark_link(
 			$malicious_landmark,

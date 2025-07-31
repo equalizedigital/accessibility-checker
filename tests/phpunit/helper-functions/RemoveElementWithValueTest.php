@@ -32,52 +32,97 @@ class RemoveElementWithValueTest extends WP_UnitTestCase {
 	 */
 	public function remove_element_with_value_data() {
 		return [
-			'remove single matching element' => [
+			'remove single matching element'    => [
 				'items'    => [
-					[ 'id' => 1, 'name' => 'John' ],
-					[ 'id' => 2, 'name' => 'Jane' ],
-					[ 'id' => 3, 'name' => 'Bob' ],
+					[
+						'id'   => 1,
+						'name' => 'John',
+					],
+					[
+						'id'   => 2,
+						'name' => 'Jane',
+					],
+					[
+						'id'   => 3,
+						'name' => 'Bob',
+					],
 				],
 				'key'      => 'id',
 				'value'    => 2,
 				'expected' => [
-					0 => [ 'id' => 1, 'name' => 'John' ],
-					2 => [ 'id' => 3, 'name' => 'Bob' ],
+					0 => [
+						'id'   => 1,
+						'name' => 'John',
+					],
+					2 => [
+						'id'   => 3,
+						'name' => 'Bob',
+					],
 				],
 			],
 			'remove multiple matching elements' => [
 				'items'    => [
-					[ 'status' => 'active', 'name' => 'User1' ],
-					[ 'status' => 'inactive', 'name' => 'User2' ],
-					[ 'status' => 'active', 'name' => 'User3' ],
-					[ 'status' => 'inactive', 'name' => 'User4' ],
+					[
+						'status' => 'active',
+						'name'   => 'User1',
+					],
+					[
+						'status' => 'inactive',
+						'name'   => 'User2',
+					],
+					[
+						'status' => 'active',
+						'name'   => 'User3',
+					],
+					[
+						'status' => 'inactive',
+						'name'   => 'User4',
+					],
 				],
 				'key'      => 'status',
 				'value'    => 'inactive',
 				'expected' => [
-					0 => [ 'status' => 'active', 'name' => 'User1' ],
-					2 => [ 'status' => 'active', 'name' => 'User3' ],
+					0 => [
+						'status' => 'active',
+						'name'   => 'User1',
+					],
+					2 => [
+						'status' => 'active',
+						'name'   => 'User3',
+					],
 				],
 			],
-			'no matching elements' => [
+			'no matching elements'              => [
 				'items'    => [
-					[ 'type' => 'post', 'title' => 'Post 1' ],
-					[ 'type' => 'page', 'title' => 'Page 1' ],
+					[
+						'type'  => 'post',
+						'title' => 'Post 1',
+					],
+					[
+						'type'  => 'page',
+						'title' => 'Page 1',
+					],
 				],
 				'key'      => 'type',
 				'value'    => 'media',
 				'expected' => [
-					[ 'type' => 'post', 'title' => 'Post 1' ],
-					[ 'type' => 'page', 'title' => 'Page 1' ],
+					[
+						'type'  => 'post',
+						'title' => 'Post 1',
+					],
+					[
+						'type'  => 'page',
+						'title' => 'Page 1',
+					],
 				],
 			],
-			'empty array' => [
+			'empty array'                       => [
 				'items'    => [],
 				'key'      => 'id',
 				'value'    => 1,
 				'expected' => [],
 			],
-			'remove all elements' => [
+			'remove all elements'               => [
 				'items'    => [
 					[ 'category' => 'test' ],
 					[ 'category' => 'test' ],
@@ -87,16 +132,28 @@ class RemoveElementWithValueTest extends WP_UnitTestCase {
 				'value'    => 'test',
 				'expected' => [],
 			],
-			'string value matching' => [
+			'string value matching'             => [
 				'items'    => [
-					[ 'role' => 'admin', 'user' => 'user1' ],
-					[ 'role' => 'editor', 'user' => 'user2' ],
-					[ 'role' => 'admin', 'user' => 'user3' ],
+					[
+						'role' => 'admin',
+						'user' => 'user1',
+					],
+					[
+						'role' => 'editor',
+						'user' => 'user2',
+					],
+					[
+						'role' => 'admin',
+						'user' => 'user3',
+					],
 				],
 				'key'      => 'role',
 				'value'    => 'admin',
 				'expected' => [
-					1 => [ 'role' => 'editor', 'user' => 'user2' ],
+					1 => [
+						'role' => 'editor',
+						'user' => 'user2',
+					],
 				],
 			],
 		];
