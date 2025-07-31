@@ -67,9 +67,33 @@ export default {
 		// Make sure the alt text map is available and filled.
 		initializeAltTextMap();
 
-		// Check if current alt text appears in multiple images
-		if ( altTextMap.has( alt ) && altTextMap.get( alt ).length > 1 ) {
-			return false;
+		// Check if current alt text appears in multiple images.
+		// If duplicates exist, only flag when those images use a different
+		// source and link destination. Repeated use of the exact same
+		// image or link should not be considered redundant.
+		if ( altTextMap.has( alt ) ) {
+			const matches = altTextMap
+				.get( alt )
+				.filter( ( img ) => img !== node );
+
+			if ( matches.length > 0 ) {
+				const nodeSrc = node.getAttribute( 'src' );
+				const nodeHref = node.closest( 'a' )?.getAttribute( 'href' );
+
+				const problematic = matches.filter( ( img ) => {
+					const src = img.getAttribute( 'src' );
+					const href = img.closest( 'a' )?.getAttribute( 'href' );
+
+					const sameSrc = src === nodeSrc;
+					const sameHref = nodeHref && href && href === nodeHref;
+
+					return ! sameSrc && ! sameHref;
+				} );
+
+				if ( problematic.length > 0 ) {
+					return false;
+				}
+			}
 		}
 
 		// If no redundant text found, pass.

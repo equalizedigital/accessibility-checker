@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Sulge paranduste modaalaken"
             ],
+            "Rescan This Page": [
+                "Skanni see leht uuesti"
+            ],
             "Disable Page Styles": [
                 "Keela lehe stiilid"
+            ],
+            "Disable Styles": [
+                "Keela stiilid"
             ],
             "An error occurred when loading the issues.": [
                 "Probleemide laadimisel ilmnes viga."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Luba stiilid"
-            ],
-            "Disable Styles": [
-                "Keela stiilid"
             ],
             "There are no settings to display.": [
                 "Seadeid kuvamiseks pole."
