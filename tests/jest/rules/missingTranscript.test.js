@@ -85,6 +85,21 @@ describe( 'Missing Transcript Rule', () => {
 			`,
 			shouldPass: true,
 		},
+		{
+			name: 'passes YouTube iframe with transcript link nearby',
+			html: `
+			<figure>
+				<div class="wp-block-embed__wrapper">
+					<iframe src="https://www.youtube.com/embed/ABC123?feature=oembed&amp;enablejsapi=1&amp;origin=https://example.com" title="Sample Video Title" width="980" height="551" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" class="_iub_cs_activate perfmatters-lazy entered pmloaded _iub_cs_activate-activated" data-iub-purposes="3" data-src="//cdn.iubenda.com/cookie_solution/empty.html" data-ll-status="loaded" data-cmp-ab="2" data-cmp-info="8" async="false"></iframe>
+					<noscript>
+						<iframe title="Sample Video Title" width="980" height="551" src="//cdn.iubenda.com/cookie_solution/empty.html" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen suppressedsrc="https://www.youtube.com/embed/ABC123?feature=oembed&amp;enablejsapi=1&amp;origin=https://example.com" class=" _iub_cs_activate" data-iub-purposes="3"></iframe>
+					</noscript>
+				</div>
+			</figure>
+			<h3 class="wp-block-heading"><a href="https://example.com/transcript-sample-video/">(Access a full transcript of the above video.)</a></h3>
+			`,
+			shouldPass: true,
+		},
 
 		// ✅ Negative (non-relevant) elements — no violation
 		{
