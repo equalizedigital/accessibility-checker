@@ -65,7 +65,7 @@ npm run lint:js:fix
 ### Complete Command Reference
 
 #### Testing
-- `npm run test:jest` - Run JavaScript tests (28 test suites, 484 tests)
+- `npm run test:jest` - Run JavaScript tests
 - `npm run test:php` - Setup and run PHP tests with Docker
 - `npm run test:php:run` - Run PHP tests in existing container
 - `npm run test:php:coverage` - PHP unit tests with coverage report
