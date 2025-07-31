@@ -175,7 +175,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		global $post, $pagenow, $wp_scripts;
 
 		// Create a post with draft status.
-		$post = $this->factory()->post->create_and_get( [ 'post_status' => 'draft' ] );
+		$post    = $this->factory()->post->create_and_get( [ 'post_status' => 'draft' ] );
 		$pagenow = 'post.php';
 
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
@@ -203,7 +203,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		global $post, $pagenow, $wp_scripts;
 
 		// Create a post with auto-draft status (simulating new unsaved post).
-		$post = $this->factory()->post->create_and_get( [ 'post_status' => 'auto-draft' ] );
+		$post    = $this->factory()->post->create_and_get( [ 'post_status' => 'auto-draft' ] );
 		$pagenow = 'post-new.php';
 
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
