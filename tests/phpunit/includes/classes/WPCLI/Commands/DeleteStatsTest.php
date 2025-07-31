@@ -15,6 +15,13 @@ use EqualizeDigital\AccessibilityChecker\WPCLI\Command\DeleteStats;
 class DeleteStatsTest extends WP_UnitTestCase {
 
 	/**
+	 * The class under test.
+	 *
+	 * @var DeleteStats
+	 */
+	protected $delete_stats;
+
+	/**
 	 * Set up the class under test and the database.
 	 */
 	protected function setUp(): void {
