@@ -112,12 +112,16 @@ const injectIframe = ( previewUrl, postID ) => {
  */
 const isPostScannable = () => {
 	// eslint-disable-next-line camelcase
-	if ( ! edac_editor_app.postStatus || ! edac_editor_app.scannablePostStatuses ) {
+	if ( ! edac_editor_app.postStatus ) {
 		return false;
 	}
 
 	// eslint-disable-next-line camelcase
-	return edac_editor_app.scannablePostStatuses.includes( edac_editor_app.postStatus );
+	const nonScannableStatuses = edac_editor_app.nonScannablePostStatuses || [];
+
+	// Check if the current post status is NOT in the deny list
+	// eslint-disable-next-line camelcase
+	return ! nonScannableStatuses.includes( edac_editor_app.postStatus );
 };
 
 top.edacScanCompleteListenerAdded = false;
@@ -167,10 +171,10 @@ export const init = () => {
 					// Check current post status after save
 					const currentStatus = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'status' );
 					// eslint-disable-next-line camelcase
-					const scannableStatuses = edac_editor_app.scannablePostStatuses || [];
+					const nonScannableStatuses = edac_editor_app.nonScannablePostStatuses || [];
 
-					// Only scan if the post now has a scannable status
-					if ( scannableStatuses.includes( currentStatus ) ) {
+					// Only scan if the post status is NOT in the deny list
+					if ( ! nonScannableStatuses.includes( currentStatus ) ) {
 						// eslint-disable-next-line camelcase
 						injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
 					}

@@ -167,11 +167,11 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that postStatus and scannablePostStatuses are included in localized script data.
+	 * Test that postStatus and nonScannablePostStatuses are included in localized script data.
 	 *
 	 * @return void
 	 */
-	public function testPostStatusAndScannableStatusesInLocalizedData() {
+	public function testPostStatusAndNonScannableStatusesInLocalizedData() {
 		global $post, $pagenow, $wp_scripts;
 
 		// Create a post with draft status.
@@ -185,13 +185,9 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		// Check that postStatus is included.
 		$this->assertStringContainsString( '"postStatus":"draft"', $localized_data );
 		
-		// Check that scannablePostStatuses array is included.
-		$this->assertStringContainsString( 'scannablePostStatuses', $localized_data );
-		$this->assertStringContainsString( 'publish', $localized_data );
-		$this->assertStringContainsString( 'draft', $localized_data );
-		$this->assertStringContainsString( 'pending', $localized_data );
-		$this->assertStringContainsString( 'private', $localized_data );
-		$this->assertStringContainsString( 'future', $localized_data );
+		// Check that nonScannablePostStatuses array is included.
+		$this->assertStringContainsString( 'nonScannablePostStatuses', $localized_data );
+		$this->assertStringContainsString( 'auto-draft', $localized_data );
 	}
 
 	/**
@@ -213,10 +209,10 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		// Check that postStatus is auto-draft.
 		$this->assertStringContainsString( '"postStatus":"auto-draft"', $localized_data );
 		
-		// Check that scannablePostStatuses array is included.
-		$this->assertStringContainsString( 'scannablePostStatuses', $localized_data );
+		// Check that nonScannablePostStatuses array is included.
+		$this->assertStringContainsString( 'nonScannablePostStatuses', $localized_data );
 		
-		// Check that scannablePostStatuses contains the expected statuses.
-		$this->assertStringContainsString( '["publish","future","draft","pending","private"]', $localized_data );
+		// Check that nonScannablePostStatuses contains auto-draft.
+		$this->assertStringContainsString( '["auto-draft"]', $localized_data );
 	}
 }

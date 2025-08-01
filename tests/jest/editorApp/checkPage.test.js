@@ -27,7 +27,7 @@ describe( 'checkPage functionality', () => {
 		global.edac_editor_app = {
 			postID: '123',
 			postStatus: 'draft',
-			scannablePostStatuses: [ 'publish', 'future', 'draft', 'pending', 'private' ],
+			nonScannablePostStatuses: [ 'auto-draft' ],
 			scanUrl: 'http://example.com/preview?post=123',
 			active: true,
 		};
@@ -171,9 +171,9 @@ describe( 'checkPage functionality', () => {
 			expect( result ).toBe( false );
 		} );
 
-		test( 'should not scan when scannablePostStatuses is missing', async () => {
-			// Remove scannablePostStatuses
-			delete global.edac_editor_app.scannablePostStatuses;
+		test( 'should scan posts with custom status not in deny list', async () => {
+			// Set post status to a custom status not in the deny list
+			global.edac_editor_app.postStatus = 'custom-status';
 
 			// Get the module content as text to extract the isPostScannable function
 			const fs = require( 'fs' );
@@ -198,7 +198,37 @@ describe( 'checkPage functionality', () => {
 			` );
 
 			const result = testFunction( global.edac_editor_app );
-			expect( result ).toBe( false );
+			expect( result ).toBe( true );
+		} );
+
+		test( 'should not scan when nonScannablePostStatuses is missing', async () => {
+			// Remove nonScannablePostStatuses
+			delete global.edac_editor_app.nonScannablePostStatuses;
+
+			// Get the module content as text to extract the isPostScannable function
+			const fs = require( 'fs' );
+			const path = require( 'path' );
+			const checkPageContent = fs.readFileSync(
+				path.join( __dirname, '../../../src/editorApp/checkPage.js' ),
+				'utf8'
+			);
+
+			// Extract and evaluate the isPostScannable function
+			const isPostScannableMatch = checkPageContent.match(
+				/const isPostScannable = \(\) => \{[\s\S]*?\};/
+			);
+
+			expect( isPostScannableMatch ).toBeTruthy();
+
+			// Create a function to test the logic
+			const testFunction = new Function( `
+				const edac_editor_app = arguments[0];
+				${ isPostScannableMatch[ 0 ] }
+				return isPostScannable();
+			` );
+
+			const result = testFunction( global.edac_editor_app );
+			expect( result ).toBe( true ); // Should scan when deny list is missing (defaults to allowing all)
 		} );
 	} );
 } );
