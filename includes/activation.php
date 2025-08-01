@@ -15,8 +15,9 @@ use EDAC\Admin\Accessibility_Statement;
 function edac_activation() {
 	// set options.
 	update_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s' ) );
-	update_option( 'edac_post_types', [ 'post', 'page' ] );
-	update_option( 'edac_simplified_summary_position', 'after' );
+       update_option( 'edac_post_types', [ 'post', 'page' ] );
+       update_option( 'edac_simplified_summary_position', 'after' );
+       update_option( 'edac_redirect_onboarding', true );
 
 	// Sanitize the input.
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce is not required.
