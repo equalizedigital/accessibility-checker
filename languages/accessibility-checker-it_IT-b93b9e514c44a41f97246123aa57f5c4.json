@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Chiudi la finestra modale delle correzioni"
             ],
+            "Rescan This Page": [
+                "Riscansiona questa pagina"
+            ],
             "Disable Page Styles": [
                 "Disattiva gli stili della pagina"
+            ],
+            "Disable Styles": [
+                "Disattiva stili"
             ],
             "An error occurred when loading the issues.": [
                 "Si \u00e8 verificato un errore durante il caricamento dei problemi."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Attiva stili"
-            ],
-            "Disable Styles": [
-                "Disattiva stili"
             ],
             "There are no settings to display.": [
                 "Non ci sono impostazioni da visualizzare."

@@ -79,31 +79,4 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'https://equalizedigital.com/contact/', $message );
 		$this->assertStringContainsString( 'https://equalizedigital.com/accessibility-checker/pricing/', $message );
 	}
-
-	/**
-	 * Test that the edac_password_protected_notice_text function exists.
-	 */
-	public function test_edac_password_protected_notice_text_exists() {
-		$this->assertTrue(
-			method_exists( $this->admin_notices, 'edac_password_protected_notice_text' ),
-			'Class does not have method edac_password_protected_notice_text'
-		);
-	}
-
-	/**
-	 * Test that the edac_password_protected_notice_text function returns a string.
-	 */
-	public function test_edac_password_protected_notice_text_returns_string() {
-		$this->assertIsString( $this->admin_notices->edac_password_protected_notice_text() );
-	}
-
-	/**
-	 * Test that the edac_password_protected_notice_text function contains the expected notice message.
-	 */
-	public function test_edac_password_protected_notice_text_contains_notice_message() {
-		$message = $this->admin_notices->edac_password_protected_notice_text();
-		$this->assertStringContainsString( 'Whoops! It looks like your website is currently password protected.', $message );
-		$this->assertStringContainsString( 'The free version of Accessibility Checker can only scan live websites.', $message );
-		$this->assertStringContainsString( 'Scan results may be stored from a previous scan.', $message );
-	}
 }

@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "St\u00e4ng \u00e5tg\u00e4rdsmodal"
             ],
+            "Rescan This Page": [
+                "Skanna om den h\u00e4r sidan"
+            ],
             "Disable Page Styles": [
                 "Inaktivera sidans stilar"
+            ],
+            "Disable Styles": [
+                "Inaktivera stilar"
             ],
             "An error occurred when loading the issues.": [
                 "Ett fel uppstod n\u00e4r problemen skulle laddas."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Aktivera stilar"
-            ],
-            "Disable Styles": [
-                "Inaktivera stilar"
             ],
             "There are no settings to display.": [
                 "Det finns inga inst\u00e4llningar att visa."

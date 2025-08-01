@@ -13,7 +13,7 @@ Audit and check your website for accessibility before you hit publish. In-post a
 * [Plugin Website](https://equalizedigital.com/accessibility-checker/)
 * [Documentation](https://equalizedigital.com/accessibility-checker/documentation/)
 * [Compare Free to Pro](https://equalizedigital.com/accessibility-checker/features/#comparison)
-* [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/) 
+* [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/)
 * [WP Accessibility Meetup](https://equalizedigital.com/wordpress-accessibility-meetup/)
 * [WP Accessibility Facebook Group](https://www.facebook.com/groups/wordpress.accessibility)
 
@@ -37,21 +37,60 @@ npm run build
 
 ### Dev environment setup
 
-To install:
-1. Install docker, node, npm, and composer
-2. If using the Pro plugin add the license key to env.txt and rename as .env
-3. run `npm install`
+There are no special requirements for the dev environment aside from the standard WordPress/PHP runtime used by the plugin—use whatever local stack you prefer (e.g. Local by Flywheel, DesktopServer, LocalWP).
+
+As long as you follow the _Getting Started_ steps above, the plugin will run in your local environment.
+
+### Running tests
+
+This plugin includes unit tests for the PHP code and Jest tests for the JavaScript code. The Jest tests have no prerequisites, but the PHP tests require a local WordPress installation.
+
+#### Jest tests
+
+To run the Jest tests, you can use the following command:
+
+```shell
+npm run test:jest
+```
+
+#### PHP unit tests
+
+The PHP tests are a little more involved because they **require** a local WordPress installation. A Docker-based setup is included to make running them straightforward.
+
+Docker and Docker Compose must be installed and running. The build script uses Docker Compose v2 style commands (eg docker compose vs docker-compose).
+
+Start the containers to run the tests and stop them when you are finished development.
+
+To run the tests (will start the containers if not already running) run:
+
+```shell
+npm run test:php
+```
+
+To stop the PHP unit test container, run:
+
+```shell
+npm run test:php:stop
+```
 
 ### Package scripts
-- `npm run build` - builds JavaScript & CSS
-- `npm run dev` - watches and automatically builds JavaScript & CSS
-- `npm run lint` - lints the plugin's PHP and JavaScript
-- `npm run lint:php` - lints the plugin's PHP
-- `npm run lint:php:fix` - fixes linting issues in the plugin's PHP
-- `npm run lint:js` - lints the plugin's JavaScript
-- `npm run lint:js:fix` - fixes linting issues in the plugin's JavaScript
-- `npm run dist` - builds a distributable .zip for the plugin into ./dist
-- `test:e2e` - runs the plugin's End-to-End test
+* `npm run build` - builds JavaScript & CSS
+* `npm run dev` - watches and automatically builds JavaScript & CSS
+* `npm run dist` - builds a distributable .zip for the plugin into ./dist
+* `npm run dist:dotorg` - builds a distributable .zip for dotorg, keeps build folder
+* `npm run lint` - lints the plugin's PHP and JavaScript
+* `npm run lint-staged-precommit` - runs lint-staged and JS lint for precommit
+* `npm run lint:php` - lints the plugin's PHP
+* `npm run lint:php:fix` - fixes linting issues in the plugin's PHP
+* `npm run lint:js` - lints the plugin's JavaScript
+* `npm run lint:js:fix` - fixes linting issues in the plugin's JavaScript
+* `npm run test:php` - sets up PHP unit test environment and runs the plugin's PHP unit tests
+* `npm run test:php:run` - runs PHP unit tests in the already active container (does not wipe the database first)
+* `npm run test:php:coverage` - runs PHP unit test with coverage report
+* `npm run test:php:stop` - stops the PHP unit test container
+* `npm run test:jest` - runs Jest tests
+* `npm run prepare` - runs husky
+* `npm run phpstan` - runs PHPStan static analysis
 
 ## Support
 

@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Tutup modal perbaikan"
             ],
+            "Rescan This Page": [
+                "Pindai ulang halaman ini"
+            ],
             "Disable Page Styles": [
                 "Nonaktifkan gaya halaman"
+            ],
+            "Disable Styles": [
+                "Nonaktifkan gaya"
             ],
             "An error occurred when loading the issues.": [
                 "Terjadi kesalahan saat memuat masalah."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Aktifkan gaya"
-            ],
-            "Disable Styles": [
-                "Nonaktifkan gaya"
             ],
             "There are no settings to display.": [
                 "Tidak ada pengaturan yang ditampilkan."

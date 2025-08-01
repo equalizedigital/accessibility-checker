@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Schlie\u00dft das Fehlerbehebungs-Modal"
             ],
+            "Rescan This Page": [
+                "Diese Seite erneut scannen"
+            ],
             "Disable Page Styles": [
                 "Seitenstile deaktivieren"
+            ],
+            "Disable Styles": [
+                "Stile deaktivieren"
             ],
             "An error occurred when loading the issues.": [
                 "Beim Laden der Probleme ist ein Fehler aufgetreten."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Stile aktivieren"
-            ],
-            "Disable Styles": [
-                "Stile deaktivieren"
             ],
             "There are no settings to display.": [
                 "Es gibt keine Einstellungen zum Anzeigen."

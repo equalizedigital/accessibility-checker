@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Sluit reparaties-modal"
             ],
+            "Rescan This Page": [
+                "Deze pagina opnieuw scannen"
+            ],
             "Disable Page Styles": [
                 "Paginastijlen uitschakelen"
+            ],
+            "Disable Styles": [
+                "Stijlen uitschakelen"
             ],
             "An error occurred when loading the issues.": [
                 "Er is een fout opgetreden bij het laden van de problemen."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Stijlen inschakelen"
-            ],
-            "Disable Styles": [
-                "Stijlen uitschakelen"
             ],
             "There are no settings to display.": [
                 "Er zijn geen instellingen om weer te geven."
