@@ -12,6 +12,7 @@ use EDAC\Admin\Purge_Post_Data;
 use EDAC\Admin\Post_Save;
 use EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion;
 use EqualizeDigital\AccessibilityChecker\Admin\Admin_Footer_Text;
+use EDAC\Admin\Onboarding_Wizard;
 
 /**
  * Admin handling class.
@@ -68,8 +69,11 @@ class Admin {
 		$plugin_row_meta = new Plugin_Row_Meta();
 		$plugin_row_meta->init_hooks();
 		
-		$admin_footer_text = new Admin_Footer_Text();
-		$admin_footer_text->init();
+                $admin_footer_text = new Admin_Footer_Text();
+                $admin_footer_text->init();
+
+               $onboarding = new Onboarding_Wizard();
+               $onboarding->init_hooks();
 
 		$this->init_ajax();
 

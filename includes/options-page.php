@@ -38,14 +38,23 @@ function edac_add_options_page() {
 		return;
 	}
 
-	add_menu_page(
-		__( 'Welcome to Accessibility Checker', 'accessibility-checker' ),
-		__( 'Accessibility Checker', 'accessibility-checker' ),
-		'read',
-		'accessibility_checker',
-		'edac_display_welcome_page',
-		'dashicons-universal-access-alt'
-	);
+        add_menu_page(
+                __( 'Welcome to Accessibility Checker', 'accessibility-checker' ),
+                __( 'Accessibility Checker', 'accessibility-checker' ),
+                'read',
+                'accessibility_checker',
+                'edac_display_welcome_page',
+                'dashicons-universal-access-alt'
+        );
+
+       add_submenu_page(
+               'accessibility_checker',
+               __( 'Onboarding Wizard', 'accessibility-checker' ),
+               __( 'Onboarding Wizard', 'accessibility-checker' ),
+               'read',
+               'accessibility_checker_onboarding',
+               'edac_display_onboarding_wizard'
+       );
 
 	if ( ! edac_user_can_ignore() ) {
 		return;
@@ -85,7 +94,14 @@ function edac_display_welcome_page() {
  * Render the options page for plugin
  */
 function edac_display_options_page() {
-	include_once plugin_dir_path( __DIR__ ) . 'partials/settings-page.php';
+        include_once plugin_dir_path( __DIR__ ) . 'partials/settings-page.php';
+}
+
+/**
+ * Render the onboarding wizard page.
+ */
+function edac_display_onboarding_wizard() {
+       include_once plugin_dir_path( __DIR__ ) . 'partials/onboarding-wizard.php';
 }
 
 /**

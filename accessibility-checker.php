@@ -100,6 +100,17 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 
+// Redirect to onboarding wizard on first activation.
+add_action( 'admin_init', function () {
+       if ( get_option( 'edac_redirect_onboarding' ) ) {
+               delete_option( 'edac_redirect_onboarding' );
+               if ( ! isset( $_GET['activate-multi'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- simple redirect.
+                       wp_safe_redirect( admin_url( 'admin.php?page=accessibility_checker_onboarding' ) );
+                       exit;
+               }
+       }
+} );
+
 /**
  * Filters and Actions
  */
