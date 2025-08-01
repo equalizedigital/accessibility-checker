@@ -164,3 +164,221 @@ describe( 'Table Header Detection Rule', () => {
 		} );
 	} );
 } );
+
+describe( 'Table Header Detection Rule - Complex Scenarios', () => {
+	const complexTestCases = [
+		// ✅ Passing cases with colspan/rowspan
+		{
+			name: 'Table with colspan headers',
+			html: `
+				<table>
+					<tr>
+						<th colspan="2">Name</th>
+						<th colspan="2">Contact</th>
+					</tr>
+					<tr>
+						<th>First</th>
+						<th>Last</th>
+						<th>Email</th>
+						<th>Phone</th>
+					</tr>
+					<tr>
+						<td>John</td>
+						<td>Doe</td>
+						<td>john@example.com</td>
+						<td>123-456-7890</td>
+					</tr>
+				</table>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'Table with rowspan headers',
+			html: `
+				<table>
+					<tr>
+						<th rowspan="2">Person</th>
+						<th>Email</th>
+					</tr>
+					<tr>
+						<th>Phone</th>
+					</tr>
+					<tr>
+						<td>John Doe</td>
+						<td>john@example.com</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>123-456-7890</td>
+					</tr>
+				</table>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'Table with ARIA headers attribute',
+			html: `
+				<table>
+					<tr>
+						<th id="name">Name</th>
+						<th id="email">Email</th>
+					</tr>
+					<tr>
+						<td headers="name">John Doe</td>
+						<td headers="email">john@example.com</td>
+					</tr>
+				</table>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'Table with complex headers and scope',
+			html: `
+				<table>
+					<tr>
+						<th scope="col">Student</th>
+						<th scope="colgroup" colspan="2">Scores</th>
+					</tr>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Math</th>
+						<th scope="col">Science</th>
+					</tr>
+					<tr>
+						<td>John</td>
+						<td>85</td>
+						<td>92</td>
+					</tr>
+				</table>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'Table with both row and column headers',
+			html: `
+				<table>
+					<tr>
+						<th scope="col">Quarter</th>
+						<th scope="col">Q1</th>
+						<th scope="col">Q2</th>
+						<th scope="col">Q3</th>
+						<th scope="col">Q4</th>
+					</tr>
+					<tr>
+						<th scope="row">Sales</th>
+						<td>$100k</td>
+						<td>$120k</td>
+						<td>$110k</td>
+						<td>$130k</td>
+					</tr>
+					<tr>
+						<th scope="row">Profit</th>
+						<td>$20k</td>
+						<td>$25k</td>
+						<td>$22k</td>
+						<td>$28k</td>
+					</tr>
+				</table>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'Table with irregular structure but proper headers',
+			html: `
+				<table>
+					<tr>
+						<th colspan="3">Monthly Report</th>
+					</tr>
+					<tr>
+						<th rowspan="2">Region</th>
+						<th colspan="2">Sales</th>
+					</tr>
+					<tr>
+						<th>Jan</th>
+						<th>Feb</th>
+					</tr>
+					<tr>
+						<td>North</td>
+						<td>$50k</td>
+						<td>$55k</td>
+					</tr>
+					<tr>
+						<td>South</td>
+						<td>$45k</td>
+						<td>$48k</td>
+					</tr>
+				</table>
+			`,
+			shouldPass: true,
+		},
+
+		// ❌ Failing cases with complex structures
+		{
+			name: 'Table with colspan but insufficient headers',
+			html: `
+				<table>
+					<tr>
+						<th colspan="2">Contact Info</th>
+					</tr>
+					<tr>
+						<td>John Doe</td>
+						<td>john@example.com</td>
+						<td>123-456-7890</td>
+					</tr>
+				</table>
+			`,
+			shouldPass: false,
+		},
+		{
+			name: 'Table with mismatched ARIA headers',
+			html: `
+				<table>
+					<tr>
+						<th id="name">Name</th>
+						<th id="email">Email</th>
+					</tr>
+					<tr>
+						<td headers="nonexistent">John Doe</td>
+						<td>john@example.com</td>
+					</tr>
+				</table>
+			`,
+			shouldPass: false,
+		},
+		{
+			name: 'Complex table without proper headers',
+			html: `
+				<table>
+					<tr>
+						<td colspan="2"><strong>Contact Information</strong></td>
+					</tr>
+					<tr>
+						<td>Name</td>
+						<td>Email</td>
+					</tr>
+					<tr>
+						<td>John Doe</td>
+						<td>john@example.com</td>
+					</tr>
+				</table>
+			`,
+			shouldPass: false,
+		},
+	];
+
+	complexTestCases.forEach( ( { name, html, shouldPass } ) => {
+		test( name, async () => {
+			document.body.innerHTML = html;
+
+			const results = await axe.run( document.body, {
+				runOnly: [ 'missing_table_header' ],
+			} );
+
+			if ( shouldPass ) {
+				expect( results.violations.length ).toBe( 0 );
+			} else {
+				expect( results.violations.length ).toBeGreaterThan( 0 );
+			}
+		} );
+	} );
+} );
