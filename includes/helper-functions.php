@@ -232,7 +232,7 @@ function edac_get_valid_table_name( $table_name ) {
  *
  * @param string  $meetup meetup name.
  * @param integer $count number of meetups to return.
- * @return json
+ * @return array|null
  */
 function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
@@ -323,7 +323,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
  * @param  string  $meetup meetup name.
  * @param  integer $count number of meetups to return.
  * @param  string  $heading heading level.
- * @return json
+ * @return string|null
  */
 function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
 

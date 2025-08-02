@@ -88,6 +88,6 @@ trait Checkbox {
 		if ( ! is_bool( $input ) && ! is_int( $input ) ) {
 			$input = ( '1' === $input || 'true' === strtolower( $input ) ) ? 1 : 0;
 		}
-		return isset( $input ) && $input ? 1 : 0;
+		return $input ? 1 : 0;
 	}
 }
