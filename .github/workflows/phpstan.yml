@@ -1,0 +1,88 @@
+name: PHPStan
+
+on:
+  # Run on all pull requests.
+  pull_request:
+    branches:
+      - '*'
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+    inputs:
+      fail_on_error:
+        description: 'Fail the workflow when PHPStan finds issues'
+        required: false
+        default: 'false'
+        type: boolean
+
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  phpstan:
+    name: 'PHPStan Static Analysis'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+          github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS }}
+
+      # Validate the composer.json file.
+      # @link https://getcomposer.org/doc/03-cli.md#validate
+      - name: Validate Composer installation
+        run: composer validate --no-check-all
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2
+        with:
+          # Bust the cache at least once a month - output format: YYYY-MM-DD.
+          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+
+      # Run PHPStan analysis
+      - name: Run PHPStan
+        id: phpstan
+        run: |
+          set +e  # Don't exit on error
+          npm run phpstan
+          phpstan_exit_code=$?
+          echo "exit_code=$phpstan_exit_code" >> $GITHUB_OUTPUT
+          
+          # Always exit successfully for now unless explicitly configured to fail
+          fail_on_error="${{ github.event.inputs.fail_on_error || 'false' }}"
+          if [ "$fail_on_error" = "true" ]; then
+            exit $phpstan_exit_code
+          else
+            echo "PHPStan completed with exit code $phpstan_exit_code, but workflow configured to pass regardless"
+            exit 0
+          fi
+
+      # Display results summary
+      - name: PHPStan Results Summary
+        if: always()
+        run: |
+          exit_code="${{ steps.phpstan.outputs.exit_code }}"
+          fail_on_error="${{ github.event.inputs.fail_on_error || 'false' }}"
+          
+          if [ "$exit_code" = "0" ]; then
+            echo "✅ PHPStan analysis completed successfully with no errors"
+          else
+            echo "⚠️ PHPStan analysis found issues (exit code: $exit_code)"
+            if [ "$fail_on_error" = "true" ]; then
+              echo "🔴 Workflow configured to fail on PHPStan errors"
+            else
+              echo "🟡 Workflow configured to pass regardless of PHPStan errors"
+            fi
+          fi
