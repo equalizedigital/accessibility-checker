@@ -130,7 +130,8 @@ class SkipLinkFix implements FixInterface {
 		}
 
 		$targets_list = explode( ',', $targets_string );
-
+		
+		$targets = [];
 		foreach ( $targets_list as $target ) {
 			// trim whitespace and any leading '#'.
 			$trimmed = ltrim( trim( $target ), '#' );

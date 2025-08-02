@@ -4,6 +4,7 @@
  * Passes deprecated calls to \EDAC\Scans_Stats to \EDAC\Admin\Scans_Stats.
  *
  * @package Accessibility_Checker
+ * @phpstan-ignore-file
  */
 
 namespace EDAC;
@@ -19,7 +20,7 @@ class Scans_Stats {
 	 * @var boolean
 	 */
 	const FORCE_DEPRECATION = false;
-	
+
 	/**
 	 * Instance of the new class.
 	 *
@@ -39,7 +40,7 @@ class Scans_Stats {
 		}
 		$this->instance = new Admin\Scans_Stats( $cache_time );
 	}
-	
+
 	/**
 	 * Magic method for forwarding non-static method calls
 	 *
@@ -54,7 +55,7 @@ class Scans_Stats {
 		}
 		return call_user_func_array( [ $this->instance, $method ], $arguments );
 	}
-	
+
 	/**
 	 * Magic method for forwarding static method calls
 	 *
@@ -69,7 +70,7 @@ class Scans_Stats {
 		}
 		return call_user_func_array( [ self::$instance, $method ], $arguments );
 	}
-	
+
 	/**
 	 * Magic method for forwarding property calls
 	 *
@@ -83,7 +84,7 @@ class Scans_Stats {
 		}
 		return $this->instance->$property;
 	}
-	
+
 	/**
 	 * Magic method for forwarding property calls
 	 *
