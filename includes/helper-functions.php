@@ -661,7 +661,7 @@ function edac_is_woocommerce_enabled() {
  * @return bool
  */
 function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
-	if ( ! edac_is_woocommerce_enabled() ) {
+	if ( ! edac_is_woocommerce_enabled() || ! function_exists( 'wc_get_page_id' ) ) {
 		return false;
 	}
 
@@ -767,7 +767,7 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 	}
 	$landmark = ucwords( $landmark );
 	$landmark = esc_html( $landmark );
-	
+
 	// If we have both landmark and selector, create a link.
 	if ( ! empty( $landmark_selector ) ) {
 		$landmark_url = add_query_arg(
@@ -777,12 +777,12 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 			],
 			get_the_permalink( $post_id )
 		);
-		
+
 		// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
 		$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), $landmark );
-		
+
 		$target_attr = $target_blank ? ' target="_blank"' : '';
-		
+
 		return sprintf(
 			'<a href="%s" class="%s"%s aria-label="%s">%s</a>',
 			esc_url( $landmark_url ),
@@ -792,7 +792,7 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 			$landmark
 		);
 	}
-	
+
 	// If we only have landmark text, return it formatted.
 	return $landmark;
 }
