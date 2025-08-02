@@ -4,6 +4,8 @@ parameters:
         - .
     scanDirectories:
         - %currentWorkingDirectory%/vendor
+    bootstrapFiles:
+        - %currentWorkingDirectory%/phpstan-bootstrap.php
     excludePaths:
         analyse:
             - %currentWorkingDirectory%/vendor/*

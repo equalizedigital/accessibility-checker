@@ -304,6 +304,6 @@ class FixesManager {
 			}
 		}
 
-		return rest_ensure_response( [ 'enabled' => $enabled ] );
+		return rest_ensure_response( [ 'success' => true ] );
 	}
 }
