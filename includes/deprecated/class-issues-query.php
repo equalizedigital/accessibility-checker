@@ -4,6 +4,7 @@
  * Passes deprecated calls to \EDAC\Issues_Query to \EDAC\Admin\Issues_Query.
  *
  * @package Accessibility_Checker
+ * @phpstan-ignore-file
  */
 
 namespace EDAC;
@@ -16,7 +17,7 @@ class Issues_Query {
 	const FLAG_EXCLUDE_IGNORED        = Admin\Issues_Query::FLAG_EXCLUDE_IGNORED;
 	const FLAG_INCLUDE_IGNORED        = Admin\Issues_Query::FLAG_INCLUDE_IGNORED;
 	const FLAG_ONLY_IGNORED           = Admin\Issues_Query::FLAG_ONLY_IGNORED;
-	const FLAG_INCLUDE_ALL_POST_TYPES = Admin\Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES; 
+	const FLAG_INCLUDE_ALL_POST_TYPES = Admin\Issues_Query::FLAG_INCLUDE_ALL_POST_TYPES;
 
 	const RULETYPE_WARNING        = Admin\Issues_Query::RULETYPE_WARNING;
 	const RULETYPE_ERROR          = Admin\Issues_Query::RULETYPE_ERROR;
@@ -28,7 +29,7 @@ class Issues_Query {
 	 * @var boolean
 	 */
 	const FORCE_DEPRECATION = false;
-	
+
 	/**
 	 * Instance of the new class.
 	 *
@@ -50,7 +51,7 @@ class Issues_Query {
 		}
 		$this->instance = new Admin\Issues_Query( $filter, $record_limit, $flags );
 	}
-	
+
 	/**
 	 * Magic method for forwarding non-static method calls
 	 *
@@ -65,7 +66,7 @@ class Issues_Query {
 		}
 		return call_user_func_array( [ $this->instance, $method ], $arguments );
 	}
-	
+
 	/**
 	 * Magic method for forwarding static method calls
 	 *
@@ -80,7 +81,7 @@ class Issues_Query {
 		}
 		return call_user_func_array( [ self::$instance, $method ], $arguments );
 	}
-	
+
 	/**
 	 * Magic method for forwarding property calls
 	 *
@@ -94,7 +95,7 @@ class Issues_Query {
 		}
 		return $this->instance->$property;
 	}
-	
+
 	/**
 	 * Magic method for forwarding property calls
 	 *
