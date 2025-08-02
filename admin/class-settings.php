@@ -67,8 +67,8 @@ class Settings {
 		}
 
 		return $new_settings_class_exists
-			? \EqualizeDigital\AccessibilityCheckerPro\Admin\Settings::get_scannable_post_types()
-			: \EDACP\Settings::get_scannable_post_types();
+			? \EqualizeDigital\AccessibilityCheckerPro\Admin\Settings::get_scannable_post_types() // @phpstan-ignore-line
+			: \EDACP\Settings::get_scannable_post_types(); // @phpstan-ignore-line
 	}
 
 
