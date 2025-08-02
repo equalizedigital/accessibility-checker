@@ -1,0 +1,353 @@
+Note: Using configuration file /home/runner/work/accessibility-checker/accessibility-checker/phpstan.neon.
+::error file=admin/AdminPage/FixesPage.php,line=87,col=0::Constant EDAC_PLUGIN_DIR not found.
+::error file=admin/AdminPage/FixesPage.php,line=117,col=0::Constant EDAC_PLUGIN_DIR not found.
+::error file=admin/class-ajax.php,line=150,col=0::Constant EDAC_PLUGIN_URL not found.
+::error file=admin/class-ajax.php,line=277,col=0::Variable $error_rules might not be defined.
+::error file=admin/class-ajax.php,line=286,col=0::Variable $warning_rules might not be defined.
+::error file=admin/class-ajax.php,line=295,col=0::Variable $passed_rules might not be defined.
+::error file=admin/class-ajax.php,line=505,col=0::Constant EDAC_SVG_IGNORE_ICON not found.
+::error file=admin/class-ajax.php,line=519,col=0::Variable $controls_id might not be defined.
+::error file=admin/class-ajax.php,line=541,col=0::Constant EDAC_SVG_IGNORE_ICON not found.
+::error file=admin/class-enqueue-admin.php,line=40,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=admin/class-enqueue-admin.php,line=78,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=admin/class-enqueue-admin.php,line=79,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=admin/class-enqueue-admin.php,line=100,col=0::Constant EDAC_KEY_VALID not found.
+::error file=admin/class-enqueue-admin.php,line=108,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=admin/class-enqueue-admin.php,line=109,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=admin/class-plugin-action-links.php,line=54,col=0::Constant EDAC_KEY_VALID not found.
+::error file=admin/class-plugin-row-meta.php,line=48,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=admin/class-settings.php,line=70,col=0::Call to static method get_scannable_post_types() on an unknown class EqualizeDigital\AccessibilityCheckerPro\Admin\Settings.
+::error file=admin/class-settings.php,line=71,col=0::Call to static method get_scannable_post_types() on an unknown class EDACP\Settings.
+::error file=admin/class-welcome-page.php,line=33,col=0::Constant EDAC_KEY_VALID not found.
+::error file=admin/class-widgets.php,line=57,col=0::Constant EDAC_KEY_VALID not found.
+::error file=admin/class-widgets.php,line=79,col=0::Constant EDAC_KEY_VALID not found.
+::error file=admin/class-widgets.php,line=219,col=0::Constant EDAC_KEY_VALID not found.
+::error file=admin/class-widgets.php,line=274,col=0::Constant EDAC_KEY_VALID not found.
+::error file=admin/opt-in/class-email-opt-in.php,line=56,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=admin/opt-in/class-email-opt-in.php,line=57,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=admin/opt-in/class-email-opt-in.php,line=58,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=admin/site-health/class-audit-history.php,line=36,col=0::Constant EDACAH_VERSION not found.
+::error file=includes/classes/Fixes/Fix/AddNewWindowWarningFix.php,line=124,col=0::Constant EDAC_PLUGIN_URL not found.
+::error file=includes/classes/Fixes/Fix/SkipLinkFix.php,line=144,col=0::Variable $targets might not be defined.
+::error file=includes/classes/Fixes/FixesManager.php,line=109,col=0::Constant EDAC_PLUGIN_URL not found.
+::error file=includes/classes/Fixes/FixesManager.php,line=110,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=includes/classes/Fixes/FixesManager.php,line=307,col=0::Undefined variable: $enabled
+::error file=includes/classes/WPCLI/BootstrapCLI.php,line=36,col=0::Property EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI::$wp_cli has unknown class WP_CLI as its type.
+::error file=includes/classes/WPCLI/BootstrapCLI.php,line=59,col=0::Parameter $wp_cli of method EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI::__construct() has invalid type WP_CLI.
+::error file=includes/classes/WPCLI/BootstrapCLI.php,line=60,col=0::Instantiated class WP_CLI not found.
+::error file=includes/classes/WPCLI/Command/CleanupOrphanedIssues.php,line=35,col=0::Instantiated class WP_CLI not found.
+::error file=includes/classes/WPCLI/Command/DeleteStats.php,line=38,col=0::Instantiated class WP_CLI not found.
+::error file=includes/classes/WPCLI/Command/DeleteStats.php,line=79,col=0::PHPDoc tag @throws with type WP_CLI\ExitException is not subtype of Throwable
+::error file=includes/classes/WPCLI/Command/GetSiteStats.php,line=40,col=0::Instantiated class WP_CLI not found.
+::error file=includes/classes/WPCLI/Command/GetSiteStats.php,line=94,col=0::PHPDoc tag @throws with type WP_CLI\ExitException is not subtype of Throwable
+::error file=includes/classes/WPCLI/Command/GetStats.php,line=58,col=0::Instantiated class WP_CLI not found.
+::error file=includes/classes/WPCLI/Command/GetStats.php,line=117,col=0::PHPDoc tag @throws with type WP_CLI\ExitException is not subtype of Throwable
+::error file=includes/classes/class-admin-toolbar.php,line=107,col=0::Constant EDAC_KEY_VALID not found.
+::error file=includes/classes/class-enqueue-frontend.php,line=93,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=includes/classes/class-enqueue-frontend.php,line=94,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=includes/classes/class-enqueue-frontend.php,line=107,col=0::Constant EDAC_PLUGIN_URL not found.
+::error file=includes/classes/class-enqueue-frontend.php,line=110,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=includes/classes/class-enqueue-frontend.php,line=114,col=0::Constant EDAC_PLUGIN_FILE not found.
+::error file=includes/classes/class-rest-api.php,line=213,col=0::Parameter $request of method EDAC\Inc\REST_Api::clear_issues_for_post() has invalid type EDAC\Inc\WP_REST_Request.
+::error file=includes/classes/class-rest-api.php,line=219,col=0::Call to method get_json_params() on an unknown class EDAC\Inc\WP_REST_Request.
+::error file=includes/classes/class-rest-api.php,line=286,col=0::Parameter $request of method EDAC\Inc\REST_Api::set_post_scan_results() has invalid type EDAC\Inc\WP_REST_Request.
+::error file=includes/classes/class-rest-api.php,line=549,col=0::Parameter $request of method EDAC\Inc\REST_Api::get_scans_stats_by_post_type() has invalid type EDAC\Inc\WP_REST_Request.
+::error file=includes/classes/class-rest-api.php,line=590,col=0::Parameter $request of method EDAC\Inc\REST_Api::get_scans_stats_by_post_types() has invalid type EDAC\Inc\WP_REST_Request.
+::error file=includes/deprecated/class-issues-query.php,line=37,col=0::Property EDAC\Issues_Query::$instance has unknown class EDAC\class as its type.
+::error file=includes/deprecated/class-issues-query.php,line=62,col=0::Method EDAC\Issues_Query::__call() has invalid return type EDAC\function.
+::error file=includes/deprecated/class-issues-query.php,line=77,col=0::Method EDAC\Issues_Query::__callStatic() has invalid return type EDAC\function.
+::error file=includes/deprecated/class-issues-query.php,line=81,col=0::Static access to instance property EDAC\Issues_Query::$instance.
+::error file=includes/deprecated/class-issues-query.php,line=91,col=0::Method EDAC\Issues_Query::__get() has invalid return type EDAC\function.
+::error file=includes/deprecated/class-scans-stats.php,line=28,col=0::Property EDAC\Scans_Stats::$instance has unknown class EDAC\class as its type.
+::error file=includes/deprecated/class-scans-stats.php,line=51,col=0::Method EDAC\Scans_Stats::__call() has invalid return type EDAC\function.
+::error file=includes/deprecated/class-scans-stats.php,line=66,col=0::Method EDAC\Scans_Stats::__callStatic() has invalid return type EDAC\function.
+::error file=includes/deprecated/class-scans-stats.php,line=70,col=0::Static access to instance property EDAC\Scans_Stats::$instance.
+::error file=includes/deprecated/class-scans-stats.php,line=80,col=0::Method EDAC\Scans_Stats::__get() has invalid return type EDAC\function.
+::error file=includes/helper-functions.php,line=668,col=0::Function wc_get_page_id not found.
+::error file=includes/options-page.php,line=248,col=0::Constant EDAC_KEY_VALID not found.
+::error file=includes/options-page.php,line=461,col=0::Constant EDAC_KEY_VALID not found.
+::error file=partials/admin-page/fixes-page.php,line=11,col=0::Constant EDAC_KEY_VALID not found.
+::error file=partials/admin-page/fixes-page.php,line=34,col=0::Constant EDAC_PLUGIN_DIR not found.
+::error file=partials/settings-page.php,line=48,col=0::Constant EDAC_KEY_VALID not found.
+::error file=partials/welcome-page.php,line=20,col=0::Constant EDAC_KEY_VALID not found.
+::error file=partials/welcome-page.php,line=130,col=0::Constant EDAC_KEY_VALID not found.
+::error file=partials/welcome-page.php,line=188,col=0::Constant EDAC_KEY_VALID not found.
+::error file=partials/welcome-page.php,line=196,col=0::Constant EDAC_KEY_VALID not found.
+::error file=partials/welcome-page.php,line=199,col=0::Constant EDAC_PLUGIN_URL not found.
+ ------ --------------------------------------------------------------------- 
+  Line   admin/AdminPage/FixesPage.php                                        
+ ------ --------------------------------------------------------------------- 
+  87     Constant EDAC_PLUGIN_DIR not found.                                  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  117    Constant EDAC_PLUGIN_DIR not found.                                  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   admin/class-ajax.php                                                 
+ ------ --------------------------------------------------------------------- 
+  150    Constant EDAC_PLUGIN_URL not found.                                  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  277    Variable $error_rules might not be defined.                          
+  286    Variable $warning_rules might not be defined.                        
+  295    Variable $passed_rules might not be defined.                         
+  505    Constant EDAC_SVG_IGNORE_ICON not found.                             
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  519    Variable $controls_id might not be defined.                          
+  541    Constant EDAC_SVG_IGNORE_ICON not found.                             
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   admin/class-enqueue-admin.php                                        
+ ------ --------------------------------------------------------------------- 
+  40     Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  78     Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  79     Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  100    Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  108    Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  109    Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   admin/class-plugin-action-links.php                                  
+ ------ --------------------------------------------------------------------- 
+  54     Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   admin/class-plugin-row-meta.php                                      
+ ------ --------------------------------------------------------------------- 
+  48     Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------- 
+  Line   admin/class-settings.php                                                              
+ ------ -------------------------------------------------------------------------------------- 
+  70     Call to static method get_scannable_post_types() on an unknown class                  
+         EqualizeDigital\AccessibilityCheckerPro\Admin\Settings.                               
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols                   
+  71     Call to static method get_scannable_post_types() on an unknown class EDACP\Settings.  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols                   
+ ------ -------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   admin/class-welcome-page.php                                         
+ ------ --------------------------------------------------------------------- 
+  33     Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   admin/class-widgets.php                                              
+ ------ --------------------------------------------------------------------- 
+  57     Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  79     Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  219    Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  274    Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   admin/opt-in/class-email-opt-in.php                                  
+ ------ --------------------------------------------------------------------- 
+  56     Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  57     Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  58     Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   admin/site-health/class-audit-history.php                            
+ ------ --------------------------------------------------------------------- 
+  36     Constant EDACAH_VERSION not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   includes/classes/Fixes/Fix/AddNewWindowWarningFix.php                
+ ------ --------------------------------------------------------------------- 
+  124    Constant EDAC_PLUGIN_URL not found.                                  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ -------------------------------------------- 
+  Line   includes/classes/Fixes/Fix/SkipLinkFix.php  
+ ------ -------------------------------------------- 
+  144    Variable $targets might not be defined.     
+ ------ -------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   includes/classes/Fixes/FixesManager.php                              
+ ------ --------------------------------------------------------------------- 
+  109    Constant EDAC_PLUGIN_URL not found.                                  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  110    Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  307    Undefined variable: $enabled                                         
+ ------ --------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------- 
+  Line   includes/classes/WPCLI/BootstrapCLI.php                                                                    
+ ------ ----------------------------------------------------------------------------------------------------------- 
+  36     Property EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI::$wp_cli has unknown class WP_CLI as its  
+         type.                                                                                                      
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols                                        
+  59     Parameter $wp_cli of method EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI::__construct() has     
+         invalid type WP_CLI.                                                                                       
+  60     Instantiated class WP_CLI not found.                                                                       
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols                                        
+ ------ ----------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   includes/classes/WPCLI/Command/CleanupOrphanedIssues.php             
+ ------ --------------------------------------------------------------------- 
+  35     Instantiated class WP_CLI not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------- 
+  Line   includes/classes/WPCLI/Command/DeleteStats.php                                 
+ ------ ------------------------------------------------------------------------------- 
+  38     Instantiated class WP_CLI not found.                                           
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols            
+  79     PHPDoc tag @throws with type WP_CLI\ExitException is not subtype of Throwable  
+ ------ ------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------- 
+  Line   includes/classes/WPCLI/Command/GetSiteStats.php                                
+ ------ ------------------------------------------------------------------------------- 
+  40     Instantiated class WP_CLI not found.                                           
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols            
+  94     PHPDoc tag @throws with type WP_CLI\ExitException is not subtype of Throwable  
+ ------ ------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------- 
+  Line   includes/classes/WPCLI/Command/GetStats.php                                    
+ ------ ------------------------------------------------------------------------------- 
+  58     Instantiated class WP_CLI not found.                                           
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols            
+  117    PHPDoc tag @throws with type WP_CLI\ExitException is not subtype of Throwable  
+ ------ ------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   includes/classes/class-admin-toolbar.php                             
+ ------ --------------------------------------------------------------------- 
+  107    Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   includes/classes/class-enqueue-frontend.php                          
+ ------ --------------------------------------------------------------------- 
+  93     Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  94     Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  107    Constant EDAC_PLUGIN_URL not found.                                  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  110    Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  114    Constant EDAC_PLUGIN_FILE not found.                                 
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------- 
+  Line   includes/classes/class-rest-api.php                                                               
+ ------ -------------------------------------------------------------------------------------------------- 
+  213    Parameter $request of method EDAC\Inc\REST_Api::clear_issues_for_post() has invalid type          
+         EDAC\Inc\WP_REST_Request.                                                                         
+  219    Call to method get_json_params() on an unknown class EDAC\Inc\WP_REST_Request.                    
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols                               
+  286    Parameter $request of method EDAC\Inc\REST_Api::set_post_scan_results() has invalid type          
+         EDAC\Inc\WP_REST_Request.                                                                         
+  549    Parameter $request of method EDAC\Inc\REST_Api::get_scans_stats_by_post_type() has invalid type   
+         EDAC\Inc\WP_REST_Request.                                                                         
+  590    Parameter $request of method EDAC\Inc\REST_Api::get_scans_stats_by_post_types() has invalid type  
+         EDAC\Inc\WP_REST_Request.                                                                         
+ ------ -------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   includes/deprecated/class-issues-query.php                                       
+ ------ --------------------------------------------------------------------------------- 
+  37     Property EDAC\Issues_Query::$instance has unknown class EDAC\class as its type.  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols              
+  62     Method EDAC\Issues_Query::__call() has invalid return type EDAC\function.        
+  77     Method EDAC\Issues_Query::__callStatic() has invalid return type EDAC\function.  
+  81     Static access to instance property EDAC\Issues_Query::$instance.                 
+  91     Method EDAC\Issues_Query::__get() has invalid return type EDAC\function.         
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------- 
+  Line   includes/deprecated/class-scans-stats.php                                       
+ ------ -------------------------------------------------------------------------------- 
+  28     Property EDAC\Scans_Stats::$instance has unknown class EDAC\class as its type.  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  51     Method EDAC\Scans_Stats::__call() has invalid return type EDAC\function.        
+  66     Method EDAC\Scans_Stats::__callStatic() has invalid return type EDAC\function.  
+  70     Static access to instance property EDAC\Scans_Stats::$instance.                 
+  80     Method EDAC\Scans_Stats::__get() has invalid return type EDAC\function.         
+ ------ -------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   includes/helper-functions.php                                        
+ ------ --------------------------------------------------------------------- 
+  668    Function wc_get_page_id not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   includes/options-page.php                                            
+ ------ --------------------------------------------------------------------- 
+  248    Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  461    Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   partials/admin-page/fixes-page.php                                   
+ ------ --------------------------------------------------------------------- 
+  11     Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  34     Constant EDAC_PLUGIN_DIR not found.                                  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   partials/settings-page.php                                           
+ ------ --------------------------------------------------------------------- 
+  48     Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------- 
+  Line   partials/welcome-page.php                                            
+ ------ --------------------------------------------------------------------- 
+  20     Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  130    Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  188    Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  196    Constant EDAC_KEY_VALID not found.                                   
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+  199    Constant EDAC_PLUGIN_URL not found.                                  
+         💡 Learn more at https://phpstan.org/user-guide/discovering-symbols  
+ ------ --------------------------------------------------------------------- 
+
+ [ERROR] Found 75 errors                                                                                                
+
