@@ -370,7 +370,7 @@ function edac_sanitize_simplified_summary_position( $position ) {
 	if ( in_array( $position, [ 'before', 'after', 'none' ], true ) ) {
 		return $position;
 	}
-	return 'before'; // Default value
+	return 'before'; // Default value.
 }
 
 /**
@@ -424,7 +424,7 @@ function edac_sanitize_simplified_summary_prompt( $prompt ) {
 	if ( in_array( $prompt, [ 'when required', 'always', 'none' ], true ) ) {
 		return $prompt;
 	}
-	return 'when required'; // Default value
+	return 'when required'; // Default value.
 }
 
 /**
@@ -585,7 +585,7 @@ function edac_sanitize_accessibility_policy_page( $page ) {
 	if ( $page ) {
 		return esc_url( $page );
 	}
-	return ''; // Default empty string
+	return ''; // Default empty string.
 }
 
 /**

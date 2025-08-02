@@ -230,7 +230,7 @@ class Ajax {
 
 		$rules = edac_register_rules();
 		
-		// Initialize arrays to prevent undefined variable warnings
+		// Initialize arrays to prevent undefined variable warnings.
 		$passed_rules  = [];
 		$error_rules   = [];
 		$warning_rules = [];
@@ -359,7 +359,7 @@ class Ajax {
 					$html .= '<div id="edac-details-rule-records-' . $rule['slug'] . '" class="edac-details-rule-records">';
 
 					$fixes_for_item = [];
-					$controls_id = '';
+					$controls_id    = '';
 					if ( isset( $rule['fixes'] ) && current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ) ) {
 						foreach ( $rule['fixes'] as $fix_slug ) {
 							$fixes_for_item[] = FixesManager::get_instance()->get_fix( $fix_slug );
