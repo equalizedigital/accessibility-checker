@@ -206,7 +206,7 @@ class REST_Api {
 	/**
 	 * REST handler to clear issues results for a given post ID.
 	 *
-	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 * @param \WP_REST_Request $request  The request passed from the REST call.
 	 *
 	 * @return \WP_REST_Response
 	 */
@@ -279,7 +279,7 @@ class REST_Api {
 	/**
 	 * REST handler that saves to the DB a list of js rule violations for a post.
 	 *
-	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 * @param \WP_REST_Request $request  The request passed from the REST call.
 	 *
 	 * @return \WP_REST_Response
 	 */
@@ -448,7 +448,7 @@ class REST_Api {
 			 *
 			 * @param int             $post_id The post ID.
 			 * @param string          $type    The type of validation which is always 'js' in this path.
-			 * @param WP_REST_Request $request The request passed from the REST call.
+			 * @param \WP_REST_Request $request The request passed from the REST call.
 			 */
 			do_action( 'edac_validate_before_sending_rest_response', $post_id, 'js', $request );
 
@@ -542,7 +542,7 @@ class REST_Api {
 	/**
 	 * REST handler that gets stats about the scans by post type
 	 *
-	 * @param WP_REST_Request $request The request passed from the REST call.
+	 * @param \WP_REST_Request $request The request passed from the REST call.
 	 *
 	 * @return \WP_REST_Response
 	 */
@@ -583,7 +583,7 @@ class REST_Api {
 	/**
 	 * REST handler that gets stats about the scans by post types
 	 *
-	 * @param WP_REST_Request $request The request passed from the REST call.
+	 * @param \WP_REST_Request $request The request passed from the REST call.
 	 *
 	 * @return \WP_REST_Response
 	 */
