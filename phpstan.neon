@@ -11,5 +11,6 @@ parameters:
             - %currentWorkingDirectory%/vendor/*
             - %currentWorkingDirectory%/node_modules/*
             - %currentWorkingDirectory%/tests/*
+            - %currentWorkingDirectory%/includes/deprecated/*
     fileExtensions:
         - php
