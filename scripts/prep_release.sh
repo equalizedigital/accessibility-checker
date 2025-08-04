@@ -73,9 +73,10 @@ update_wp_requires_version() {
     if [[ -n "${wp_versions_json}" ]]; then
         echo "Using WordPress API for version data..."
         # Parse JSON response to get version list in reverse chronological order
+        # Extract major.minor versions from major.minor.patch format
         local versions_list=$(echo "${wp_versions_json}" | \
-            grep -o '"version":"[0-9]*\.[0-9]*"' | \
-            sed 's/"version":"\([0-9]*\.[0-9]*\)"/\1/' | \
+            grep -o '"version":"[0-9]*\.[0-9]*\.[0-9]*"' | \
+            sed 's/"version":"\([0-9]*\.[0-9]*\)\.[0-9]*"/\1/' | \
             sort -rV | \
             uniq)
     else
@@ -105,7 +106,7 @@ update_wp_requires_version() {
     echo "Found WordPress versions (latest first):"
     echo "${versions_list}" | head -10
     
-    # Find the current tested version in the list and go back 3 versions
+    # Find the current tested version in the list and go back 2 versions (to support last 3 versions)
     local found_current=false
     local version_count=0
     local target_version=""
@@ -113,7 +114,7 @@ update_wp_requires_version() {
     while IFS= read -r version; do
         if [[ "${found_current}" == true ]]; then
             version_count=$((version_count + 1))
-            if [[ ${version_count} -eq 3 ]]; then
+            if [[ ${version_count} -eq 2 ]]; then
                 target_version="${version}"
                 break
             fi
@@ -130,7 +131,7 @@ update_wp_requires_version() {
     fi
     
     if [[ -z "${target_version}" ]]; then
-        echo "Warning: Could not find version 3 releases back from ${tested_up_to}" >&2
+        echo "Warning: Could not find version 2 releases back from ${tested_up_to}" >&2
         # Try to use the oldest version we found if we don't have enough history
         target_version=$(echo "${versions_list}" | tail -1)
         if [[ -n "${target_version}" ]]; then
@@ -147,7 +148,7 @@ update_wp_requires_version() {
         echo "Adjusted to minimum supported version: ${target_version}"
     fi
     
-    echo "Setting 'Requires at least' to: ${target_version} (3 versions back from ${tested_up_to})"
+    echo "Setting 'Requires at least' to: ${target_version} (2 versions back from ${tested_up_to} to support last 3 versions)"
     
     # Update the readme.txt file
     sed -i.bak -E "s/(Requires at least: )[0-9]+\.[0-9]+/\1${target_version}/" "${README_PATH}"
