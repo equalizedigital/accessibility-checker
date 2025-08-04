@@ -367,6 +367,10 @@ class AccessibilityCheckerHighlight {
 	addHighlightPanel() {
 		const widgetPosition = edacFrontendHighlighterApp.widgetPosition || 'right';
 
+		const rescanButton = edacFrontendHighlighterApp.loggedIn
+			? `<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>`
+			: '';
+
 		const newElement = `
 			<div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
 				<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
@@ -386,7 +390,7 @@ class AccessibilityCheckerHighlight {
 						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
 					</div>
 					<div>
-						<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>
+						${ rescanButton }
 						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
 					</div>
 				</div>
