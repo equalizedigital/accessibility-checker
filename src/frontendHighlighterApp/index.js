@@ -1258,6 +1258,16 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
+		// Validate required parameters
+		if ( ! edacFrontendHighlighterApp?.edacUrl || ! edacFrontendHighlighterApp?.postID ) {
+			const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+			if ( summary ) {
+				summary.textContent = __( 'Error: Missing required parameters.', 'accessibility-checker' );
+				summary.classList.add( 'edac-error' );
+			}
+			return;
+		}
+
 		this.clearIssuesButton.disabled = true;
 		this.clearIssuesButton.textContent = __( 'Clearing...', 'accessibility-checker' );
 		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
