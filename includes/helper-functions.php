@@ -143,7 +143,7 @@ function edac_days_active() {
 	$activation_date = get_option( 'edac_activation_date' );
 	if ( $activation_date ) {
 		$diff = strtotime( $activation_date ) - strtotime( gmdate( 'Y-m-d H:i:s' ) );
-		return (int) abs( round( $diff / 86400 ) );
+		return abs( round( $diff / 86400 ) );
 	}
 	return 0;
 }
@@ -693,8 +693,8 @@ function edac_parse_html_for_media( $html ) {
 		];
 	}
 
-	// More specific img tag regex pattern - only match 'src' attribute, not 'data-src'.
-	if ( preg_match( '/<img[^>]*(?:^|[\s>])src=([\'"])(.*?)\1[^>]*>/i', $decoded_html, $matches ) ) {
+	// More specific img tag regex pattern.
+	if ( preg_match( '/<img[^>]+src=([\'"])(.*?)\1[^>]*>/i', $decoded_html, $matches ) ) {
 		return [
 			'img' => $matches[2] ?? null,
 			'svg' => null,

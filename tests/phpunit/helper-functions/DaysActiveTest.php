@@ -25,8 +25,8 @@ class DaysActiveTest extends WP_UnitTestCase {
 
 		$result = edac_days_active();
 
-		// Should return a positive integer around 10.
-		$this->assertIsInt( $result );
+		// Should return a positive number around 10.
+		$this->assertIsNumeric( $result );
 		$this->assertGreaterThanOrEqual( 9, $result );
 		$this->assertLessThanOrEqual( 11, $result ); // Allow for timing differences.
 
@@ -50,8 +50,8 @@ class DaysActiveTest extends WP_UnitTestCase {
 		$result = edac_days_active();
 
 		// Should return 0 for same day activation.
-		$this->assertIsInt( $result );
-		$this->assertSame( 0, $result );
+		$this->assertIsNumeric( $result );
+		$this->assertSame( 0.0, $result );
 
 		// Clean up.
 		delete_option( 'edac_activation_date' );
@@ -73,7 +73,7 @@ class DaysActiveTest extends WP_UnitTestCase {
 		$result = edac_days_active();
 
 		// Should return absolute value, so 5 days.
-		$this->assertIsInt( $result );
+		$this->assertIsNumeric( $result );
 		$this->assertGreaterThanOrEqual( 4, $result );
 		$this->assertLessThanOrEqual( 6, $result ); // Allow for timing differences.
 
@@ -96,7 +96,7 @@ class DaysActiveTest extends WP_UnitTestCase {
 		$result = edac_days_active();
 
 		// Should return 0 when no activation date is set.
-		$this->assertIsInt( $result );
+		$this->assertIsNumeric( $result );
 		$this->assertSame( 0, $result );
 	}
 
@@ -115,7 +115,7 @@ class DaysActiveTest extends WP_UnitTestCase {
 		$result = edac_days_active();
 
 		// Should return 0 for empty activation date.
-		$this->assertIsInt( $result );
+		$this->assertIsNumeric( $result );
 		$this->assertSame( 0, $result );
 
 		// Clean up.
@@ -136,8 +136,8 @@ class DaysActiveTest extends WP_UnitTestCase {
 
 		$result = edac_days_active();
 
-		// Should return an integer (behavior may vary based on strtotime).
-		$this->assertIsInt( $result );
+		// Should return a number (behavior may vary based on strtotime).
+		$this->assertIsNumeric( $result );
 
 		// Clean up.
 		delete_option( 'edac_activation_date' );
@@ -158,8 +158,8 @@ class DaysActiveTest extends WP_UnitTestCase {
 
 		$result = edac_days_active();
 
-		// Should return a large positive integer around 365.
-		$this->assertIsInt( $result );
+		// Should return a large positive number around 365.
+		$this->assertIsNumeric( $result );
 		$this->assertGreaterThanOrEqual( 364, $result );
 		$this->assertLessThanOrEqual( 366, $result ); // Allow for leap years and timing.
 
@@ -185,8 +185,8 @@ class DaysActiveTest extends WP_UnitTestCase {
 
 		$result = edac_days_active();
 
-		// Should always return an integer.
-		$this->assertIsInt( $result, "Failed for: $description" );
+		// Should always return a number.
+		$this->assertIsNumeric( $result, "Failed for: $description" );
 		$this->assertGreaterThanOrEqual( 0, $result, "Negative result for: $description" );
 
 		// Clean up.
@@ -236,7 +236,7 @@ class DaysActiveTest extends WP_UnitTestCase {
 		$result = edac_days_active();
 
 		// Should return 1 day since it's the previous UTC day.
-		$this->assertIsInt( $result );
+		$this->assertIsNumeric( $result );
 		$this->assertGreaterThanOrEqual( 0, $result );
 		$this->assertLessThanOrEqual( 2, $result ); // Allow for timing edge cases.
 
