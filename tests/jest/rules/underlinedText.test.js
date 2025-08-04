@@ -195,7 +195,7 @@ describe( 'Underlined Text Validation', () => {
 				runOnly: [ 'underlined_text' ],
 			} );
 
-			// Should have 2 violations: the underlined span and the u tag outside link
+			// Should find 1 violation with 2 nodes: the underlined span and the u tag outside link
 			expect( results.violations.length ).toBe( 1 );
 			expect( results.violations[ 0 ].nodes.length ).toBe( 2 );
 		} );
