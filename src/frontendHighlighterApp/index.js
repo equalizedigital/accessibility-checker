@@ -53,6 +53,7 @@ class AccessibilityCheckerHighlight {
 
 		this.disableStylesButton = document.querySelector( '#edac-highlight-disable-styles' );
 		this.rescanButton = document.querySelector( '#edac-highlight-rescan' );
+		this.clearIssuesButton = document.querySelector( '#edac-highlight-clear-issues' );
 		this.stylesDisabled = false;
 		this.originalCss = [];
 
@@ -101,6 +102,12 @@ class AccessibilityCheckerHighlight {
 		if ( this.rescanButton ) {
 			this.rescanButton.addEventListener( 'click', () => {
 				this.rescanPage();
+			} );
+		}
+
+		if ( this.clearIssuesButton ) {
+			this.clearIssuesButton.addEventListener( 'click', () => {
+				this.clearIssues();
 			} );
 		}
 
@@ -366,33 +373,37 @@ class AccessibilityCheckerHighlight {
 	 */
 	addHighlightPanel() {
 		const widgetPosition = edacFrontendHighlighterApp.widgetPosition || 'right';
+		const clearButtonMarkup = edacFrontendHighlighterApp.loggedIn
+			? `<button id="edac-highlight-clear-issues" class="edac-highlight-clear-issues">${ __( 'Clear Issues', 'accessibility-checker' ) }</button>`
+			: '';
 
 		const newElement = `
-			<div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
-				<button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
-				<div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
-				<button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
-					<div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
-					<div class="edac-highlight-panel-description-content"></div>
-					<div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
-				</div>
-				<div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
-				<button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
-				<div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
-				<div class="edac-highlight-panel-controls-summary">Loading...</div>
-				<div class="edac-highlight-panel-controls-buttons">
-					<div>
-						<button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>Previous</button>
-						<button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
-					</div>
-					<div>
-						<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>
-						<button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
-					</div>
-				</div>
-			</div>
-			</div>
-		`;
+                        <div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
+                                <button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
+                                <div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
+                                <button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
+                                        <div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
+                                        <div class="edac-highlight-panel-description-content"></div>
+                                        <div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
+                                </div>
+                                <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
+                                <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
+                                <div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
+                                <div class="edac-highlight-panel-controls-summary">Loading...</div>
+                                <div class="edac-highlight-panel-controls-buttons">
+                                        <div>
+                                                <button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>Previous</button>
+                                                <button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
+                                        </div>
+                                        <div>
+                                                <button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>
+                                                ${ clearButtonMarkup }
+                                                <button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
+                                        </div>
+                                </div>
+                        </div>
+                        </div>
+                `;
 
 		document.body.insertAdjacentHTML( 'afterbegin', newElement );
 		return document.getElementById( 'edac-highlight-panel' );
@@ -558,6 +569,7 @@ class AccessibilityCheckerHighlight {
 		).catch( ( err ) => {
 			// Output a message that says that there are no issues or that the issues could not be loaded.
 			const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+			// Output result messaging in the panel instead of a popup notice.
 			if ( summary ) {
 				summary.textContent = __( 'An error occurred when loading the issues.', 'accessibility-checker' );
 			}
@@ -1231,6 +1243,67 @@ class AccessibilityCheckerHighlight {
 			this._isRescanning = false;
 			this.panelOpen();
 		}, 5000 );
+	}
+
+	/**
+	 * Clear all saved issues for the current post.
+	 */
+	clearIssues() {
+		// eslint-disable-next-line no-alert -- Using an alert here is the best way to inform the user of the action.
+		if ( ! confirm( __( 'This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?', 'accessibility-checker' ) ) ) {
+			return;
+		}
+
+		if ( ! this.clearIssuesButton ) {
+			return;
+		}
+
+		// Validate required parameters
+		if ( ! edacFrontendHighlighterApp?.edacUrl || ! edacFrontendHighlighterApp?.postID ) {
+			const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+			if ( summary ) {
+				summary.textContent = __( 'Error: Missing required parameters.', 'accessibility-checker' );
+				summary.classList.add( 'edac-error' );
+			}
+			return;
+		}
+
+		this.clearIssuesButton.disabled = true;
+		this.clearIssuesButton.textContent = __( 'Clearing...', 'accessibility-checker' );
+		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+
+		fetch( `${ edacFrontendHighlighterApp.edacUrl }/wp-json/accessibility-checker/v1/clear-issues/${ edacFrontendHighlighterApp.postID }`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-WP-Nonce': edacFrontendHighlighterApp.restNonce,
+			},
+			body: JSON.stringify( {
+				id: edacFrontendHighlighterApp.postID,
+				flush: true,
+			} ),
+		} ).then( ( response ) => {
+			if ( response.ok ) {
+				this.removeHighlightButtons();
+				this.issues = [];
+				this.showIssueCount();
+				if ( summary ) {
+					summary.textContent = __( 'Issues cleared successfully.', 'accessibility-checker' );
+					summary.classList.remove( 'edac-error' );
+				}
+			} else if ( summary ) {
+				summary.textContent = __( 'Failed to clear issues.', 'accessibility-checker' );
+				summary.classList.add( 'edac-error' );
+			}
+		} ).catch( () => {
+			if ( summary ) {
+				summary.textContent = __( 'An error occurred while clearing issues.', 'accessibility-checker' );
+				summary.classList.add( 'edac-error' );
+			}
+		} ).finally( () => {
+			this.clearIssuesButton.disabled = false;
+			this.clearIssuesButton.textContent = __( 'Clear Issues', 'accessibility-checker' );
+		} );
 	}
 
 	/**
