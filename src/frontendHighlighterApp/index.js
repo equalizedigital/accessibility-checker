@@ -365,9 +365,9 @@ class AccessibilityCheckerHighlight {
 	 * This function adds a new div element to the DOM, which contains the accessibility checker panel.
 	 */
 	addHighlightPanel() {
-		const widgetPosition = edacFrontendHighlighterApp.widgetPosition || 'right';
+		const widgetPosition = edacFrontendHighlighterApp?.widgetPosition || 'right';
 
-		const rescanButton = edacFrontendHighlighterApp.loggedIn
+		const rescanButton = edacFrontendHighlighterApp?.loggedIn
 			? `<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>`
 			: '';
 
