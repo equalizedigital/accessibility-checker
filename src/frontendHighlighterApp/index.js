@@ -367,7 +367,7 @@ class AccessibilityCheckerHighlight {
 	addHighlightPanel() {
 		const widgetPosition = edacFrontendHighlighterApp?.widgetPosition || 'right';
 
-		const rescanButton = edacFrontendHighlighterApp?.loggedIn
+		const rescanButton = edacFrontendHighlighterApp && ( edacFrontendHighlighterApp.loggedIn === true || edacFrontendHighlighterApp.loggedIn === 'true' )
 			? `<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>`
 			: '';
 
