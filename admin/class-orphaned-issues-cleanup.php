@@ -163,16 +163,15 @@ class Orphaned_Issues_Cleanup {
 	 *
 	 * @since 1.29.0
 	 *
-	 * @return int[] Array of deleted orphaned post IDs.
+	 * @return void
 	 */
-	public function run_cleanup(): array {
+	public function run_cleanup(): void {
 		$orphaned = $this->get_orphaned_post_ids();
 		if ( empty( $orphaned ) ) {
-			return [];
+			return;
 		}
 		foreach ( $orphaned as $post_id ) {
 			$this->delete_orphaned_post( (int) $post_id );
 		}
-		return $orphaned;
 	}
 }

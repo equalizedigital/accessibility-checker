@@ -370,6 +370,7 @@ function edac_sanitize_simplified_summary_position( $position ) {
 	if ( in_array( $position, [ 'before', 'after', 'none' ], true ) ) {
 		return $position;
 	}
+	return 'before'; // Default value.
 }
 
 /**
@@ -423,6 +424,7 @@ function edac_sanitize_simplified_summary_prompt( $prompt ) {
 	if ( in_array( $prompt, [ 'when required', 'always', 'none' ], true ) ) {
 		return $prompt;
 	}
+	return 'when required'; // Default value.
 }
 
 /**
@@ -583,6 +585,7 @@ function edac_sanitize_accessibility_policy_page( $page ) {
 	if ( $page ) {
 		return esc_url( $page );
 	}
+	return ''; // Default empty string.
 }
 
 /**
@@ -622,5 +625,5 @@ function edac_delete_data_cb() {
  * @return int either 1 for checked or 0 for unchecked
  */
 function edac_sanitize_checkbox( $input ) {
-	return ( isset( $input ) && '1' === $input ) ? 1 : 0;
+	return ( '1' === $input ) ? 1 : 0;
 }

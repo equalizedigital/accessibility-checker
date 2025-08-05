@@ -62,7 +62,7 @@ class Helpers {
 	/**
 	 * Localizes the format of a percentage.
 	 *
-	 * @param init    $number number to format.
+	 * @param int     $number number to format.
 	 * @param integer $precision number of decimals.
 	 * @return integer
 	 */

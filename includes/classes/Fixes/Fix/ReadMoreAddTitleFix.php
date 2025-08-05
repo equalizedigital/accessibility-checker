@@ -120,7 +120,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 			return;
 		}
 
-		add_action( 'the_content_more_link', [ $this, 'add_title_to_read_more' ], 100, 2 );
+		add_filter( 'the_content_more_link', [ $this, 'add_title_to_read_more' ], 100, 2 );
 		add_filter( 'get_the_excerpt', [ $this, 'add_title_link_to_excerpts' ], 100 );
 		add_filter( 'excerpt_more', [ $this, 'add_title_to_excerpt_more' ], 100 );
 
