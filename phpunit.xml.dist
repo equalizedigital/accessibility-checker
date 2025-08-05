@@ -22,6 +22,7 @@
 			<directory>./vendor/</directory>
 			<directory>./node_modules/</directory>
 			<directory>./dist/</directory>
+			<file>./includes/wcag.php</file>
 		</exclude>
 	</coverage>
 </phpunit>
