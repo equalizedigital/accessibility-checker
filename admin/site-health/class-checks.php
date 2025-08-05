@@ -78,6 +78,27 @@ class Checks {
 	}
 
 	/**
+	 * Get the appropriate URL for viewing issues based on available features.
+	 *
+	 * @return array Array with 'url' and 'text' keys.
+	 */
+	private function get_issues_link(): array {
+		// Check if Pro version is available and has the issues page.
+		if ( defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID ) {
+			return [
+				'url'  => admin_url( 'admin.php?page=accessibility_checker_issues' ),
+				'text' => __( 'View Issues', 'accessibility-checker' ),
+			];
+		}
+
+		// Fallback to the main welcome page for free version.
+		return [
+			'url'  => admin_url( 'admin.php?page=accessibility_checker' ),
+			'text' => __( 'View Accessibility Checker', 'accessibility-checker' ),
+		];
+	}
+
+	/**
 	 * Test if there are accessibility issues on the site.
 	 *
 	 * @return array
@@ -88,19 +109,21 @@ class Checks {
 		$warnings = absint( $stats['warnings'] ?? 0 );
 
 		if ( $errors > 0 || $warnings > 0 ) {
+			$issues_link = $this->get_issues_link();
+			
 			return [
 				'status'      => 'recommended',
 				'label'       => __( 'Accessibility issues detected', 'accessibility-checker' ),
 				'description' => sprintf(
 				// translators: 1: error count, 2: warning count.
-					__( 'Accessibility Checker has detected %1$d errors and %2$d warnings.', 'accessibility-checker' ),
-					$errors,
-					$warnings
+					__( 'Accessibility Checker has detected %1$s errors and %2$s warnings.', 'accessibility-checker' ),
+					number_format_i18n( $errors ),
+					number_format_i18n( $warnings )
 				),
 				'actions'     => sprintf(
 					'<p><a href="%1$s" class="button button-primary">%2$s</a></p>',
-					esc_url( admin_url( 'admin.php?page=accessibility_checker_issues' ) ),
-					esc_html__( 'View issues', 'accessibility-checker' )
+					esc_url( $issues_link['url'] ),
+					esc_html( $issues_link['text'] )
 				),
 				'test'        => 'edac_issues',
 				'badge'       => $this->get_accessibility_badge(),
@@ -144,9 +167,9 @@ class Checks {
 			'status'      => 'good',
 			'label'       => __( 'Content is being checked', 'accessibility-checker' ),
 			'description' => sprintf(
-				// translators: %d is the number of posts scanned.
-				_n( 'Accessibility Checker has scanned %d post.', 'Accessibility Checker has scanned %d posts.', $scanned, 'accessibility-checker' ),
-				$scanned
+				// translators: %s is the number of posts scanned.
+				_n( 'Accessibility Checker has scanned %s post.', 'Accessibility Checker has scanned %s posts.', $scanned, 'accessibility-checker' ),
+				number_format_i18n( $scanned )
 			),
 			'test'        => 'edac_scanned',
 			'badge'       => $this->get_accessibility_badge(),
