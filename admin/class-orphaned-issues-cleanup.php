@@ -7,6 +7,9 @@
 
 namespace EDAC\Admin;
 
+use EDAC\Admin\Settings;
+use EDAC\Admin\Purge_Post_Data;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
