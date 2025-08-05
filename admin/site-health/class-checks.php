@@ -9,6 +9,7 @@
 namespace EDAC\Admin\SiteHealth;
 
 use EDAC\Admin\Scans_Stats;
+use EDAC\Admin\Settings;
 
 /**
  * Adds Site Health tests for Accessibility Checker.
@@ -47,6 +48,11 @@ class Checks {
 		$tests['direct']['edac_scanned'] = [
 			'label' => __( 'Content checked for accessibility', 'accessibility-checker' ),
 			'test'  => [ $this, 'test_content_scanned' ],
+		];
+
+		$tests['direct']['edac_post_types'] = [
+			'label' => __( 'Post types configured for accessibility checks', 'accessibility-checker' ),
+			'test'  => [ $this, 'test_post_types_configured' ],
 		];
 
 		return $tests;
@@ -165,13 +171,53 @@ class Checks {
 
 		return [
 			'status'      => 'good',
-			'label'       => __( 'Content is being checked', 'accessibility-checker' ),
+			'label'       => __( 'Content is being checked for accessibility', 'accessibility-checker' ),
 			'description' => sprintf(
 				// translators: %s is the number of posts scanned.
-				_n( 'Accessibility Checker has scanned %s post.', 'Accessibility Checker has scanned %s posts.', $scanned, 'accessibility-checker' ),
+				_n( 'Accessibility Checker has scanned %s post for accessibility issues.', 'Accessibility Checker has scanned %s posts for accessibility issues.', $scanned, 'accessibility-checker' ),
 				number_format_i18n( $scanned )
 			),
 			'test'        => 'edac_scanned',
+			'badge'       => $this->get_accessibility_badge(),
+		];
+	}
+
+	/**
+	 * Test if post types are configured for scanning.
+	 *
+	 * @return array
+	 */
+	public function test_post_types_configured(): array {
+		$scannable_post_types = Settings::get_scannable_post_types();
+
+		if ( empty( $scannable_post_types ) ) {
+			return [
+				'status'      => 'critical',
+				'label'       => __( 'No post types selected for accessibility checking', 'accessibility-checker' ),
+				'description' => __( 'Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected.', 'accessibility-checker' ),
+				'actions'     => sprintf(
+					'<p><a href="%1$s" class="button button-primary">%2$s</a></p>',
+					esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ),
+					esc_html__( 'Configure post types', 'accessibility-checker' )
+				),
+				'test'        => 'edac_post_types',
+				'badge'       => $this->get_accessibility_badge( 'red' ),
+			];
+		}
+
+		$post_type_count = count( $scannable_post_types );
+		$post_type_names = implode( ', ', $scannable_post_types );
+
+		return [
+			'status'      => 'good',
+			'label'       => __( 'Post types are configured for accessibility checking', 'accessibility-checker' ),
+			'description' => sprintf(
+				// translators: 1: number of post types, 2: comma-separated list of post type names.
+				_n( 'Accessibility Checker is configured to scan %1$s post type: %2$s.', 'Accessibility Checker is configured to scan %1$s post types: %2$s.', $post_type_count, 'accessibility-checker' ),
+				number_format_i18n( $post_type_count ),
+				$post_type_names
+			),
+			'test'        => 'edac_post_types',
 			'badge'       => $this->get_accessibility_badge(),
 		];
 	}
