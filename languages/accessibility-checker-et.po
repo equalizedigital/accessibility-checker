@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-04T19:42:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "Kas soovid Accessibility Checkeriga rohkem teha? %1$sAva Pro funktsiooni
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Ava Pro funktsioonid (avaneb uues aknas)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "Oleme parandanud statistika arvutusi versioonis 1.21.0. Selle tulemusena võivad mõned numbrid allolevas andmestikus olla muutunud. Loe rohkem meie %1$sväljalasketeate postitusest%2$s."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Musta reede eripakkumine! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Uuendage 25. Novembrist kuni 3. detsembrini Accessibility Checker'i tasulisele versioonile ja saate 30% allahindlust! Täielik saidi skaneerimine, kogu saidi hõlmav aruanne avatud probleemidest, ignoreerimisprotokollid ja palju muud."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "Esita müügieelne küsimus"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "Uuenda kohe"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "Oleme parandanud statistika arvutusi versioonis 1.21.0. Selle tulemusena
 msgid "Permission Denied"
 msgstr "Juurdepääs keelatud"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "Valiku uuendamine ei õnnestunud"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 Musta reede eripakkumine! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Uuendage 25. Novembrist kuni 3. detsembrini Accessibility Checker'i tasulisele versioonile ja saate 30% allahindlust! Täielik saidi skaneerimine, kogu saidi hõlmav aruanne avatud probleemidest, ignoreerimisprotokollid ja palju muud."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "Esita müügieelne küsimus"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "Uuenda kohe"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Saa 25% allahindlust Accessibility Checker Pro'lt ülemaailmse ligipääsetavuse päeva auks! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Kasuta kupongikoodi GAAD25 13. Maist kuni 21. maini, et saada juurdepääs kogu saidi skaneerimisele ja teistele pro-funktsioonidele eripakkumisega. Pole kindel, kas uuendamine on teile õige?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Tere! Täname teid, et kasutate Accessibility Checker'i kui osa oma ligipääsetavuse tööriistakomplektist. Kuna te olete seda juba mõnda aega kasutanud, siis kirjutage palun 5-tärni arvustus Accessibility Checker'ile WordPressi pluginate kataloogis. See aitab suurendada meie nähtavust, et rohkem inimesi saaks teada veebi juurdepääsetavuse olulisusest. Suur tänu!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Kirjuta arvustus"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Tuleta mulle kahe nädala pärast meelde"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "Ära enam kunagi küsi"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "Arvustuse tegevuse väärtust ei määratud"
 
