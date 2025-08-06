@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Luk rettelsesvindue"
             ],
+            "Rescan This Page": [
+                "Genindl\u00e6s denne side"
+            ],
             "Disable Page Styles": [
                 "Deaktiver sidestilarter"
+            ],
+            "Disable Styles": [
+                "Deaktiv\u00e9r stilarter"
             ],
             "An error occurred when loading the issues.": [
                 "Der opstod en fejl under indl\u00e6sning af problemerne."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Aktiv\u00e9r stilarter"
-            ],
-            "Disable Styles": [
-                "Deaktiv\u00e9r stilarter"
             ],
             "There are no settings to display.": [
                 "Der er ingen indstillinger at vise."

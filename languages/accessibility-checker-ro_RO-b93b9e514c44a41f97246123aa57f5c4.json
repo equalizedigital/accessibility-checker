@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "\u00cenchide modalul de remedieri"
             ],
+            "Rescan This Page": [
+                "Rescaneaz\u0103 aceast\u0103 pagin\u0103"
+            ],
             "Disable Page Styles": [
                 "Dezactiveaz\u0103 stilurile paginii"
+            ],
+            "Disable Styles": [
+                "Dezactiveaz\u0103 stilurile"
             ],
             "An error occurred when loading the issues.": [
                 "A ap\u0103rut o eroare la \u00eenc\u0103rcarea problemelor."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Activeaz\u0103 stilurile"
-            ],
-            "Disable Styles": [
-                "Dezactiveaz\u0103 stilurile"
             ],
             "There are no settings to display.": [
                 "Nu exist\u0103 set\u0103ri de afi\u0219at."

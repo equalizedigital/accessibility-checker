@@ -15,6 +15,13 @@ use EqualizeDigital\AccessibilityChecker\WPCLI\Command\GetSiteStats;
 class GetSiteStatsTest extends WP_UnitTestCase {
 
 	/**
+	 * The class under test.
+	 *
+	 * @var GetSiteStats
+	 */
+	protected $get_site_stats;
+
+	/**
 	 * Set the WP_CLI constant, create property of the class under test
 	 * and create the database.
 	 */

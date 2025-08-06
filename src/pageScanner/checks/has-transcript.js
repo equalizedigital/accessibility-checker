@@ -8,6 +8,9 @@
 const videoEmbedKeywords = [ 'youtube.com', 'youtu.be', 'vimeo.com' ];
 const mediaExtensions = /\.(3gp|asf|asx|avi|flv|m4a|m4p|mov|mp3|mp4|mpeg|mpeg2|mpg|mpv|ogg|oga|ogv|qtl|smi|smil|wav|wax|webm|wmv|wmp|wmx)(\?.*)?$/i;
 
+const MAX_SIBLINGS_TO_CHECK = 5;
+const PARENT_SIBLING_LIMIT = 3;
+
 export default {
 	id: 'has_transcript',
 	evaluate: ( node ) => {
@@ -49,14 +52,37 @@ export default {
 	},
 };
 
+/**
+ * Helper function to collect text content from a series of sibling elements
+ * @param {Element} startSibling - The first sibling element to start from
+ * @param {number}  maxCount     - Maximum number of siblings to check
+ * @return {string} - Concatenated text content from siblings
+ */
+function collectSiblingText( startSibling, maxCount ) {
+	let text = '';
+	let currentSibling = startSibling;
+	let siblingCount = 0;
+
+	while ( currentSibling && siblingCount < maxCount ) {
+		const siblingText = currentSibling.textContent?.trim();
+		if ( siblingText ) {
+			text += siblingText + ' ';
+		}
+		currentSibling = currentSibling.nextElementSibling;
+		siblingCount++;
+	}
+
+	return text;
+}
+
 function getSurroundingText( node, radius = 250 ) {
 	let text = '';
 
-	// Include immediate next and previous siblings
-	if ( node.previousElementSibling ) {
+	// Include immediate next and previous siblings (but skip noscript elements)
+	if ( node.previousElementSibling && node.previousElementSibling.nodeName.toLowerCase() !== 'noscript' ) {
 		text += node.previousElementSibling.textContent.trim() + ' ';
 	}
-	if ( node.nextElementSibling ) {
+	if ( node.nextElementSibling && node.nextElementSibling.nodeName.toLowerCase() !== 'noscript' ) {
 		text += node.nextElementSibling.textContent.trim() + ' ';
 	}
 
@@ -67,11 +93,17 @@ function getSurroundingText( node, radius = 250 ) {
 		if ( figcaption ) {
 			text += figcaption.textContent.trim() + ' ';
 		}
+
+		// Check siblings of the figure element for transcript links
+		text += collectSiblingText( figure.nextElementSibling, MAX_SIBLINGS_TO_CHECK );
 	}
 
 	// Walk limited DOM subtree (media-wrapper, section, article, etc.)
 	const parent = node.closest( '.media-wrapper, figure, section, article' );
 	if ( parent ) {
+		// Also check parent's siblings for transcript text
+		text += collectSiblingText( parent.nextElementSibling, PARENT_SIBLING_LIMIT );
+
 		const nodeFilter = {
 			acceptNode( textNode ) {
 				const style = window.getComputedStyle( textNode.parentElement );

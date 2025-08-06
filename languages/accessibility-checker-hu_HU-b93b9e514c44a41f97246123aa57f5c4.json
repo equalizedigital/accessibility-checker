@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "Jav\u00edt\u00e1sok mod\u00e1lis bez\u00e1r\u00e1sa"
             ],
+            "Rescan This Page": [
+                "Olvasd be \u00fajra ezt az oldalt"
+            ],
             "Disable Page Styles": [
                 "Oldal st\u00edlusainak kikapcsol\u00e1sa"
+            ],
+            "Disable Styles": [
+                "St\u00edlusok kikapcsol\u00e1sa"
             ],
             "An error occurred when loading the issues.": [
                 "Hiba t\u00f6rt\u00e9nt a probl\u00e9m\u00e1k bet\u00f6lt\u00e9sekor."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "St\u00edlusok enged\u00e9lyez\u00e9se"
-            ],
-            "Disable Styles": [
-                "St\u00edlusok kikapcsol\u00e1sa"
             ],
             "There are no settings to display.": [
                 "Nincsenek megjelen\u00edthet\u0151 be\u00e1ll\u00edt\u00e1sok."

@@ -29,6 +29,21 @@ describe( 'Image Alt Redundant Validation', () => {
 			shouldPass: false,
 		},
 		{
+			name: 'should pass when identical images share the same alt text',
+			html: '<img src="logo.svg" alt="logo"><img src="logo.svg" alt="logo">',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass when images link to the same URL with duplicate alt text',
+			html: '<a href="/home"><img src="logo1.svg" alt="Home"></a><a href="/home"><img src="logo2.svg" alt="Home"></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'should fail when images with duplicate alt text link to different URLs',
+			html: '<a href="/page1"><img src="logo1.svg" alt="Home"></a><a href="/page2"><img src="logo2.svg" alt="Home"></a>',
+			shouldPass: false,
+		},
+		{
 			name: 'should fail when image alt and title are identical',
 			html: '<img src="image.jpg" alt="sample" title="sample">',
 			shouldPass: false,

@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "U\u017edaryti taisym\u0173 modalin\u012f lang\u0105"
             ],
+            "Rescan This Page": [
+                "I\u0161 naujo nuskenuoti \u0161\u012f puslap\u012f"
+            ],
             "Disable Page Styles": [
                 "I\u0161jungti puslapio stilius"
+            ],
+            "Disable Styles": [
+                "I\u0161jungti stilius"
             ],
             "An error occurred when loading the issues.": [
                 "\u012evyko klaida \u012fkeliant problemas."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "\u012ejungti stilius"
-            ],
-            "Disable Styles": [
-                "I\u0161jungti stilius"
             ],
             "There are no settings to display.": [
                 "N\u0117ra rodom\u0173 nustatym\u0173."

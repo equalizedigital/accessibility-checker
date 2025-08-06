@@ -31,8 +31,14 @@
             "Close fixes modal": [
                 "D\u00fczeltmeler modal\u0131n\u0131 kapat"
             ],
+            "Rescan This Page": [
+                "Bu sayfay\u0131 yeniden tara"
+            ],
             "Disable Page Styles": [
                 "Sayfa stillerini devre d\u0131\u015f\u0131 b\u0131rak"
+            ],
+            "Disable Styles": [
+                "Stilleri devre d\u0131\u015f\u0131 b\u0131rak"
             ],
             "An error occurred when loading the issues.": [
                 "Sorunlar y\u00fcklenirken bir hata olu\u015ftu."
@@ -45,9 +51,6 @@
             ],
             "Enable Styles": [
                 "Stilleri etkinle\u015ftir"
-            ],
-            "Disable Styles": [
-                "Stilleri devre d\u0131\u015f\u0131 b\u0131rak"
             ],
             "There are no settings to display.": [
                 "G\u00f6r\u00fcnt\u00fclenecek ayar yok."
