@@ -65,6 +65,15 @@ class TabindexFixTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * TabindexFix uses 'tabindex' key instead of slug for frontend data.
+	 * 
+	 * @return bool
+	 */
+	protected function skip_frontend_data_filter_test(): bool {
+		return true;
+	}
+
+	/**
 	 * Test that the frontend data uses correct key.
 	 * Note: This fix uses 'tabindex' instead of the slug 'remove_tabindex'.
 	 *

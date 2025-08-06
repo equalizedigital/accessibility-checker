@@ -167,7 +167,7 @@ class BlockPDFUploadsFixTest extends WP_UnitTestCase {
 	public function test_upsell_disabled_when_pro() {
 		$fix = new BlockPDFUploadsFix();
 		
-		// Set is_pro property dynamically.
+		// Dynamically add the is_pro property for testing.
 		$fix->is_pro = true;
 		
 		$fields = $fix->get_fields_array();

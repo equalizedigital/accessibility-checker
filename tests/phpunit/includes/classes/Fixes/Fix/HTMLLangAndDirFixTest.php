@@ -65,12 +65,21 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Get the fix option names.
+	 *
+	 * @return array
+	 */
+	protected function get_fix_option_names(): array {
+		return [ 'edac_fix_add_lang_and_dir' ];
+	}
+
+	/**
 	 * Test HTML language and direction modification.
 	 *
 	 * @return void
 	 */
 	public function test_html_lang_dir_modification() {
-		update_option( 'edac_fix_lang_and_dir', true );
+		update_option( 'edac_fix_add_lang_and_dir', true );
 		$this->fix->run();
 		
 		// Test frontend data filter.

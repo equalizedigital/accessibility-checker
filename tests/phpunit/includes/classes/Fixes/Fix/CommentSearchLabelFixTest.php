@@ -74,6 +74,15 @@ class CommentSearchLabelFixTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * CommentSearchLabelFix doesn't use frontend data filter.
+	 *
+	 * @return bool
+	 */
+	protected function skip_frontend_data_filter_test(): bool {
+		return true;
+	}
+
+	/**
 	 * Test that register adds settings sections.
 	 *
 	 * @return void

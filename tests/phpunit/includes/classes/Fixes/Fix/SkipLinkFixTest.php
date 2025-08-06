@@ -68,6 +68,25 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Get the fix option names.
+	 *
+	 * @return array
+	 */
+	protected function get_fix_option_names(): array {
+		return [ 'edac_fix_add_skip_link' ];
+	}
+
+	/**
+	 * SkipLinkFix needs target ID to add frontend data.
+	 * Skip the trait test and use custom one.
+	 *
+	 * @return bool
+	 */
+	protected function skip_frontend_data_filter_test(): bool {
+		return true;
+	}
+
+	/**
 	 * Test skip link has additional configuration fields.
 	 *
 	 * @return void
@@ -75,26 +94,27 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	public function test_skip_link_has_configuration_fields() {
 		$fields = $this->fix->get_fields_array();
 		
-		$this->assertArrayHasKey( 'edac_fix_skip_link_text', $fields );
-		$this->assertArrayHasKey( 'edac_fix_skip_link_element', $fields );
+		$this->assertArrayHasKey( 'edac_fix_add_skip_link_target_id', $fields );
+		$this->assertArrayHasKey( 'edac_fix_add_skip_link_nav_target_id', $fields );
 	}
 
 	/**
-	 * Test frontend data includes custom settings.
+	 * Test frontend data includes settings when enabled with target.
 	 *
 	 * @return void
 	 */
 	public function test_frontend_data_includes_settings() {
-		update_option( 'edac_fix_skip_link', true );
-		update_option( 'edac_fix_skip_link_text', 'Custom Skip Text' );
-		update_option( 'edac_fix_skip_link_element', '#custom-main' );
+		update_option( 'edac_fix_add_skip_link', true );
+		update_option( 'edac_fix_add_skip_link_target_id', 'main,content' );
 		
 		$this->fix->run();
 		
 		$data      = apply_filters( 'edac_filter_frontend_fixes_data', [] );
 		$skip_data = $data['skip_link'];
 		
-		$this->assertEquals( 'Custom Skip Text', $skip_data['text'] );
-		$this->assertEquals( '#custom-main', $skip_data['element'] );
+		$this->assertTrue( $skip_data['enabled'] );
+		$this->assertArrayHasKey( 'targets', $skip_data );
+		$this->assertContains( '#main', $skip_data['targets'] );
+		$this->assertContains( '#content', $skip_data['targets'] );
 	}
 }

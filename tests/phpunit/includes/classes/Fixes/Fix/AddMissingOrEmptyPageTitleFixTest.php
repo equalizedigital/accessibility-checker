@@ -65,6 +65,29 @@ class AddMissingOrEmptyPageTitleFixTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * This fix doesn't use frontend data filter.
+	 *
+	 * @return bool
+	 */
+	protected function skip_frontend_data_filter_test(): bool {
+		return true;
+	}
+
+	/**
+	 * Override test since this fix is pro-only and doesn't run.
+	 *
+	 * @return void
+	 */
+	public function test_run_when_option_enabled() {
+		// Set first option to true.
+		update_option( 'edac_fix_add_missing_or_empty_page_title', true );
+		
+		// Pro-only fix doesn't do anything in run method.
+		$result = $this->fix->run();
+		$this->assertNull( $result );
+	}
+
+	/**
 	 * Test that run method does nothing.
 	 * This fix is pro-only and doesn't implement actual functionality.
 	 *

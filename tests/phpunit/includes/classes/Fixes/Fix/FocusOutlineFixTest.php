@@ -65,6 +65,15 @@ class FocusOutlineFixTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * FocusOutlineFix doesn't use frontend data filter.
+	 *
+	 * @return bool
+	 */
+	protected function skip_frontend_data_filter_test(): bool {
+		return true;
+	}
+
+	/**
 	 * Test that CSS is injected when enabled.
 	 *
 	 * @return void
@@ -74,6 +83,6 @@ class FocusOutlineFixTest extends WP_UnitTestCase {
 		
 		$this->fix->run();
 		
-		$this->assertTrue( has_action( 'wp_head', [ $this->fix, 'add_focus_outline_styles' ] ) !== false );
+		$this->assertTrue( has_action( 'wp_head', [ $this->fix, 'css' ] ) !== false );
 	}
 }
