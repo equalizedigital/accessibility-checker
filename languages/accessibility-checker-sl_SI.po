@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-06T16:25:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "Želiš narediti več z Accessibility Checkerjem? %1$sOdkleni funkcije P
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Odkleni funkcije Pro (odpre se v novem oknu)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "V različici 1.21.0 smo izboljšali izračune statistik. Zaradi tega so se nekatere številke v spodnjih podatkih morda spremenile. Preberite več v našem %1$sobjavljenem sporočilu ob izdaji%2$s."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Posebna ponudba za črni petek! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Nadgradi na plačljivo različico Accessibility Checkerja od 25. Novembra do 3. decembra in prihrani 30 %! Celovito skeniranje spletnega mesta, poročilo o odprtih težavah na celotnem spletnem mestu, dnevniki prezrtih težav in še več."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "Postavite predprodajno vprašanje"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "Nadgradite zdaj"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "V različici 1.21.0 smo izboljšali izračune statistik. Zaradi tega so 
 msgid "Permission Denied"
 msgstr "Dovoljenje zavrnjeno"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "Posodobitev možnosti ni bila uspešna"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 Posebna ponudba za črni petek! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Nadgradi na plačljivo različico Accessibility Checkerja od 25. Novembra do 3. decembra in prihrani 30 %! Celovito skeniranje spletnega mesta, poročilo o odprtih težavah na celotnem spletnem mestu, dnevniki prezrtih težav in še več."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "Postavite predprodajno vprašanje"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "Nadgradite zdaj"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Prihrani 25 % pri Accessibility Checker Pro ob počastitvi Svetovnega dne ozaveščanja o dostopnosti! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Uporabite kupon GAAD25 od 13. Do 21. maja za dostop do celotnega skeniranja strani in drugih profesionalnih funkcij s posebnim popustom. Niste prepričani, ali je nadgradnja prava za vas?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Živjo! Hvala, ker uporabljaš Accessibility Checker kot del svojega nabora orodij za dostopnost. Ker ga uporabljaš že nekaj časa, bi te prosili, da napišeš 5-zvezdično oceno za Accessibility Checker v imeniku vtičnikov za WordPress? To bo pomagalo povečati našo prepoznavnost, da bo več ljudi lahko izvedelo o pomembnosti spletne dostopnosti. Najlepša hvala!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Napišite oceno"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Opomni me čez dva tedna"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "Nikoli več ne vprašaj"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "Vrednost dejanja za oceno ni bila nastavljena"
 
@@ -645,6 +637,96 @@ msgstr "Vnesite svoje ime"
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Zgodovina pregledov"
+
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "Težave z dostopnostjo"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "Vsebina preverjena za dostopnost"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "Vrste objav konfigurirane za preverjanje dostopnosti"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "Dostopnost"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "Prikaži težave"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "Prikaži Accessibility Checker"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "Zaznane težave z dostopnostjo"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checker je zaznal %1$s napak in %2$s opozoril."
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "Ni zaznanih težav z dostopnostjo"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checker ni našel nobenih težav v pregledani vsebini."
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "Vsebina ni bila preverjena"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "Nobena objava še ni bila pregledana. Zaženite pregled celotnega spletnega mesta, da začnete preverjati težave z dostopnostjo v vaši vsebini."
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "Začni pregled celotnega spletnega mesta"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "Vsebina se preverja za dostopnost"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker je pregledal %s objavo za težave z dostopnostjo."
+msgstr[1] "Accessibility Checker je pregledal %s objav za težave z dostopnostjo."
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "Ni izbranih vrst objav za preverjanje dostopnosti"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "Accessibility Checker ne more pregledati nobene vsebine, ker ni izbranih vrst objav. Brez konfiguriranih vrst objav ne bo mogoče zaznati težav z dostopnostjo."
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "Konfiguriraj vrste objav"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "Vrste objav so konfigurirane za preverjanje dostopnosti"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker je konfiguriran za pregled %1$s vrste objave: %2$s."
+msgstr[1] "Accessibility Checker je konfiguriran za pregled %1$s vrst objav: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4025,6 +4107,7 @@ msgstr "Izbriši vse trenutno najdene težave"
 
 #: partials/custom-meta-box.php:52
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "Počisti težave"
 
@@ -4272,22 +4355,27 @@ msgid "Fix Settings"
 msgstr "Popravi nastavitve"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "To bo izbrisalo vse težave za to objavo. Za sprožitev novega pregleda vsebine objave bo potrebno shranjevanje. Ali želite nadaljevati?"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "Čiščenje..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "Težave so uspešno izbrisane."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Brisanje težav ni uspelo."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "Pri brisanju težav je prišlo do napake."
 
@@ -4409,6 +4497,10 @@ msgstr "Napaka pri pregledu dostopnosti."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "Napaka pri shranjevanju rezultatov pregleda."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "Napaka: Manjkajo zahtevani parametri."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
