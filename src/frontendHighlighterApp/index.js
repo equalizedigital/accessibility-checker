@@ -396,7 +396,7 @@ class AccessibilityCheckerHighlight {
                                 <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
                                 <div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
                                 <div class="edac-highlight-panel-controls-summary">Loading...</div>
-                                <div class="edac-highlight-panel-controls-buttons">
+                                <div class="edac-highlight-panel-controls-buttons ${ ! isLoggedInUser ? ' single_button' : '' }">
                                         <div>
                                                 <button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>Previous</button>
                                                 <button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
