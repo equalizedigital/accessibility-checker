@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-06T16:25:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "Többet szeretne tenni az Accessibility Checkerrel? %1$sPro funkciók fe
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Pro funkciók feloldása (új ablakban nyílik meg)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "Az 1.21.0-s verzióban javítottuk a statisztikai számítások pontosságát. Ennek eredményeként az alábbi adatok néhány száma megváltozhatott. Olvasson többet erről a %1$skiadási közleményünkben%2$s."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Black Friday akció! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Frissítsen az Accessibility Checker fizetős verziójára november 25. És december 3. között, és kapjon 30% kedvezményt! Teljes webhely-szkennelés, webhelyszintű nyitott problémák jelentése, figyelmen kívül hagyási naplók és még sok más."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "Tegyen fel kérdést vásárlás előtt"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "Frissítés most"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "Az 1.21.0-s verzióban javítottuk a statisztikai számítások pontoss�
 msgid "Permission Denied"
 msgstr "Hozzáférés megtagadva"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "A frissítési opció nem volt sikeres"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 Black Friday akció! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Frissítsen az Accessibility Checker fizetős verziójára november 25. És december 3. között, és kapjon 30% kedvezményt! Teljes webhely-szkennelés, webhelyszintű nyitott problémák jelentése, figyelmen kívül hagyási naplók és még sok más."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "Tegyen fel kérdést vásárlás előtt"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "Frissítés most"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 25% kedvezmény az Accessibility Checker Pro-ra a Globális Akadálymentesítési Tudatosság Napja alkalmából! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Használja a GAAD25 kuponkódot május 13. És május 21. között, hogy hozzáférjen a teljes webhelyellenőrzéshez és más pro funkciókhoz speciális kedvezménnyel. Nem biztos benne, hogy érdemes frissítenie?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Üdvözöljük! Köszönjük, hogy az Accessibility Checkert használja az akadálymentesítési eszköztára részeként. Mivel már egy ideje használja, megírná az Accessibility Checker 5 csillagos értékelését a WordPress bővítmény könyvtárban? Ez segítene növelni a láthatóságunkat, hogy több ember megismerhesse a webes akadálymentesség fontosságát. Nagyon köszönjük!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Értékelés írása"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Emlékeztessen két hét múlva"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "Ne kérdezzen többé"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "Az értékelési művelet értéke nem lett beállítva"
 
@@ -645,6 +637,96 @@ msgstr "Írja be a keresztnevét"
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Ellenőrzési előzmények"
+
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "Akadálymentesítési problémák"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "Tartalom ellenőrizve akadálymentesítés szempontjából"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "Bejegyzéstípusok beállítva akadálymentesítési ellenőrzésekhez"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "Akadálymentesítés"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "Problémák megtekintése"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "Accessibility Checker megtekintése"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "Akadálymentesítési problémák észlelve"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Az Accessibility Checker %1$s hibát és %2$s figyelmeztetést észlelt."
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "Nem észlelhetők akadálymentesítési problémák"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Az Accessibility Checker nem talált problémákat az átvizsgált tartalomban."
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "A tartalom nem lett ellenőrizve"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "Még egyetlen bejegyzés sem lett átvizsgálva. Futtass teljes webhely-ellenőrzést, hogy megkezdhesd a tartalmad vizsgálatát akadálymentesítési problémák szempontjából."
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "Teljes webhely-ellenőrzés indítása"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "A tartalom akadálymentesítés szempontjából ellenőrzés alatt áll"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Az Accessibility Checker %s bejegyzést vizsgált át akadálymentesítési problémák szempontjából."
+msgstr[1] "Az Accessibility Checker %s bejegyzést vizsgált át akadálymentesítési problémák szempontjából."
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "Nincs kiválasztva bejegyzéstípus az akadálymentesítési ellenőrzéshez"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "Az Accessibility Checker nem tud tartalmat vizsgálni, mert nincs kiválasztva bejegyzéstípus. Beállított bejegyzéstípusok nélkül nem észlelhetők akadálymentesítési problémák."
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "Bejegyzéstípusok beállítása"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "A bejegyzéstípusok be vannak állítva az akadálymentesítési ellenőrzéshez"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Az Accessibility Checker %1$s bejegyzéstípus vizsgálatára van beállítva: %2$s."
+msgstr[1] "Az Accessibility Checker %1$s bejegyzéstípus vizsgálatára van beállítva: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4025,6 +4107,7 @@ msgstr "Az összes jelenleg talált probléma törlése"
 
 #: partials/custom-meta-box.php:52
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "Problémák törlése"
 
@@ -4272,22 +4355,27 @@ msgid "Fix Settings"
 msgstr "Javítási beállítások"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Ez törli az összes problémát ennél a bejegyzésnél. Mentésre lesz szükség egy új ellenőrzés indításához a bejegyzés tartalmára vonatkozóan. Folytatni szeretné?"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "Törlés..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "Problémák sikeresen törölve."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Nem sikerült törölni a problémákat."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "Hiba történt a problémák törlése közben."
 
@@ -4409,6 +4497,10 @@ msgstr "Akadálymentességi vizsgálati hiba."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "Hiba történt a vizsgálati eredmények mentésekor."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "Hiba: Hiányzó kötelező paraméterek."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
