@@ -11,24 +11,48 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 use WP_UnitTestCase;
 
+require_once __DIR__ . '/FixTestTrait.php';
+
 /**
  * CommentSearchLabelFix test case
  */
 class CommentSearchLabelFixTest extends WP_UnitTestCase {
 
-	/**
-	 * Test fix instance
-	 *
-	 * @var CommentSearchLabelFix
-	 */
-	private $fix;
+	use \FixTestTrait;
 
 	/**
 	 * Set up test fixtures
 	 */
-	public function setUp(): void {
-		parent::setUp();
+	public function set_up(): void {
+		parent::set_up();
 		$this->fix = new CommentSearchLabelFix();
+	}
+
+	/**
+	 * Get the expected slug for this fix.
+	 *
+	 * @return string
+	 */
+	protected function get_expected_slug(): string {
+		return 'comment-search-label';
+	}
+
+	/**
+	 * Get the expected type for this fix.
+	 *
+	 * @return string
+	 */
+	protected function get_expected_type(): string {
+		return 'frontend';
+	}
+
+	/**
+	 * Get the fix class name.
+	 *
+	 * @return string
+	 */
+	protected function get_fix_class_name(): string {
+		return CommentSearchLabelFix::class;
 	}
 
 	/**
@@ -40,41 +64,6 @@ class CommentSearchLabelFixTest extends WP_UnitTestCase {
 		delete_option( 'edac_fix_search_label' );
 		
 		parent::tearDown();
-	}
-
-	/**
-	 * Test that the fix implements FixInterface
-	 */
-	public function test_implements_fix_interface() {
-		$this->assertInstanceOf( FixInterface::class, $this->fix );
-	}
-
-	/**
-	 * Test get_slug method
-	 */
-	public function test_get_slug() {
-		$this->assertEquals( 'comment-search-label', CommentSearchLabelFix::get_slug() );
-	}
-
-	/**
-	 * Test get_nicename method
-	 */
-	public function test_get_nicename() {
-		$this->assertEquals( 'Add Labels to Comment and Search Forms', CommentSearchLabelFix::get_nicename() );
-	}
-
-	/**
-	 * Test get_fancyname method
-	 */
-	public function test_get_fancyname() {
-		$this->assertEquals( 'Label Comment/Search Fields', CommentSearchLabelFix::get_fancyname() );
-	}
-
-	/**
-	 * Test get_type method
-	 */
-	public function test_get_type() {
-		$this->assertEquals( 'frontend', CommentSearchLabelFix::get_type() );
 	}
 
 	/**

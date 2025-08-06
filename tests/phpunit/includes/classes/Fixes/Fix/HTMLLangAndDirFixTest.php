@@ -9,61 +9,50 @@ use PHPUnit\Framework\TestCase;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+require_once __DIR__ . '/FixTestTrait.php';
+
 /**
  * Unit tests for the HTMLLangAndDirFix class.
  */
 class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 
+	use FixTestTrait;
+
 	/**
-	 * Test that HTMLLangAndDirFix implements FixInterface.
+	 * Set up the test.
 	 *
 	 * @return void
 	 */
-	public function test_implements_fix_interface() {
-		$fix = new HTMLLangAndDirFix();
-		$this->assertInstanceOf( FixInterface::class, $fix );
+	public function set_up() {
+		parent::set_up();
+		$this->fix = new HTMLLangAndDirFix();
 	}
 
 	/**
-	 * Test get_slug returns correct slug.
+	 * Get the expected slug for this fix.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_slug() {
-		$this->assertEquals( 'lang_and_dir', HTMLLangAndDirFix::get_slug() );
+	protected function get_expected_slug(): string {
+		return 'lang_and_dir';
 	}
 
 	/**
-	 * Test get_nicename returns translated string.
+	 * Get the expected type for this fix.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_nicename() {
-		$nicename = HTMLLangAndDirFix::get_nicename();
-		$this->assertIsString( $nicename );
-		$this->assertNotEmpty( $nicename );
-		$this->assertEquals( 'Add lang & dir Attributes', $nicename );
+	protected function get_expected_type(): string {
+		return 'frontend';
 	}
 
 	/**
-	 * Test get_fancyname returns translated string.
+	 * Get the fix class name.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_fancyname() {
-		$fancyname = HTMLLangAndDirFix::get_fancyname();
-		$this->assertIsString( $fancyname );
-		$this->assertNotEmpty( $fancyname );
-		$this->assertEquals( 'Set Page Language', $fancyname );
-	}
-
-	/**
-	 * Test get_type returns frontend.
-	 *
-	 * @return void
-	 */
-	public function test_get_type() {
-		$this->assertEquals( 'frontend', HTMLLangAndDirFix::get_type() );
+	protected function get_fix_class_name(): string {
+		return HTMLLangAndDirFix::class;
 	}
 
 	/**
@@ -72,10 +61,8 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_get_fields_array() {
-		$fix    = new HTMLLangAndDirFix();
-		$fields = $fix->get_fields_array();
+		$fields = $this->fix->get_fields_array();
 
-		$this->assertIsArray( $fields );
 		$this->assertArrayHasKey( 'edac_fix_add_lang_and_dir', $fields );
 
 		$field = $fields['edac_fix_add_lang_and_dir'];
@@ -91,31 +78,15 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test get_fields_array preserves existing fields.
-	 *
-	 * @return void
-	 */
-	public function test_get_fields_array_preserves_existing_fields() {
-		$fix             = new HTMLLangAndDirFix();
-		$existing_fields = [ 'existing_field' => [ 'type' => 'text' ] ];
-		$fields          = $fix->get_fields_array( $existing_fields );
-
-		$this->assertArrayHasKey( 'existing_field', $fields );
-		$this->assertArrayHasKey( 'edac_fix_add_lang_and_dir', $fields );
-	}
-
-	/**
 	 * Test register method adds filter.
 	 *
 	 * @return void
 	 */
 	public function test_register_adds_filter() {
-		$fix = new HTMLLangAndDirFix();
-
-		$fix->register();
+		$this->fix->register();
 
 		// Verify that the filter was added.
-		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields', [ $fix, 'get_fields_array' ] ) !== false );
+		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields', [ $this->fix, 'get_fields_array' ] ) !== false );
 	}
 
 	/**
@@ -124,15 +95,13 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_run_when_disabled() {
-		$fix = new HTMLLangAndDirFix();
-
 		// Ensure option is disabled.
 		update_option( 'edac_fix_add_lang_and_dir', false );
 
-		$fix->run();
+		$this->fix->run();
 
 		// Check that no filters were added.
-		$this->assertFalse( has_filter( 'language_attributes', [ $fix, 'maybe_add_lang_and_dir' ] ) );
+		$this->assertFalse( has_filter( 'language_attributes', [ $this->fix, 'maybe_add_lang_and_dir' ] ) );
 		$this->assertFalse( has_filter( 'edac_filter_frontend_fixes_data' ) );
 	}
 
@@ -142,15 +111,13 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_run_when_enabled() {
-		$fix = new HTMLLangAndDirFix();
-
 		// Enable the option.
 		update_option( 'edac_fix_add_lang_and_dir', true );
 
-		$fix->run();
+		$this->fix->run();
 
 		// Check that filters were added.
-		$this->assertTrue( has_filter( 'language_attributes', [ $fix, 'maybe_add_lang_and_dir' ] ) !== false );
+		$this->assertTrue( has_filter( 'language_attributes', [ $this->fix, 'maybe_add_lang_and_dir' ] ) !== false );
 		$this->assertTrue( has_filter( 'edac_filter_frontend_fixes_data' ) !== false );
 	}
 
@@ -160,12 +127,10 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_frontend_data_filter() {
-		$fix = new HTMLLangAndDirFix();
-
 		// Enable the option.
 		update_option( 'edac_fix_add_lang_and_dir', true );
 
-		$fix->run();
+		$this->fix->run();
 
 		// Test the filter output.
 		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
@@ -185,10 +150,8 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_maybe_add_lang_and_dir_missing_attributes() {
-		$fix = new HTMLLangAndDirFix();
-
 		// Test with empty output (no existing attributes).
-		$output = $fix->maybe_add_lang_and_dir( '' );
+		$output = $this->fix->maybe_add_lang_and_dir( '' );
 
 		$this->assertStringContainsString( 'lang=', $output );
 		$this->assertStringContainsString( 'dir=', $output );
@@ -200,11 +163,9 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_maybe_add_lang_and_dir_existing_lang() {
-		$fix = new HTMLLangAndDirFix();
-
 		// Test with existing lang attribute.
 		$input  = 'lang="en-US"';
-		$output = $fix->maybe_add_lang_and_dir( $input );
+		$output = $this->fix->maybe_add_lang_and_dir( $input );
 
 		$this->assertStringContainsString( 'lang="en-US"', $output );
 		$this->assertStringContainsString( 'dir=', $output );
@@ -218,11 +179,9 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_maybe_add_lang_and_dir_existing_dir() {
-		$fix = new HTMLLangAndDirFix();
-
 		// Test with existing dir attribute.
 		$input  = 'dir="ltr"';
-		$output = $fix->maybe_add_lang_and_dir( $input );
+		$output = $this->fix->maybe_add_lang_and_dir( $input );
 
 		$this->assertStringContainsString( 'dir="ltr"', $output );
 		$this->assertStringContainsString( 'lang=', $output );
@@ -236,11 +195,9 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_maybe_add_lang_and_dir_both_exist() {
-		$fix = new HTMLLangAndDirFix();
-
 		// Test with both attributes existing.
 		$input  = 'lang="en-US" dir="ltr"';
-		$output = $fix->maybe_add_lang_and_dir( $input );
+		$output = $this->fix->maybe_add_lang_and_dir( $input );
 
 		// Should return unchanged.
 		$this->assertEquals( $input, $output );
@@ -252,9 +209,7 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_attribute_escaping() {
-		$fix = new HTMLLangAndDirFix();
-
-		$output = $fix->maybe_add_lang_and_dir( '' );
+		$output = $this->fix->maybe_add_lang_and_dir( '' );
 
 		// Check that quotes are properly escaped in attributes.
 		$this->assertStringContainsString( 'lang="', $output );
@@ -269,9 +224,7 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_direction_detection() {
-		$fix = new HTMLLangAndDirFix();
-
-		$output = $fix->maybe_add_lang_and_dir( '' );
+		$output = $this->fix->maybe_add_lang_and_dir( '' );
 
 		// Since we're running in a default WordPress installation, dir should be 'ltr'.
 		$this->assertStringContainsString( 'dir="ltr"', $output );
