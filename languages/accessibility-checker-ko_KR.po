@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-06T16:25:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "Accessibility Checker로 더 많은 것을 하고 싶으신가요? %1$s�
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "프로 기능 잠금 해제 (새 창에서 열림)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "버전 1.21.0에서 통계 계산을 개선했습니다. 그 결과 아래 데이터의 일부 숫자가 변경되었을 수 있습니다. 자세한 내용은 %1$s릴리스 공지 게시물%2$s을 참조하세요."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 블랙 프라이데이 특별 혜택! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "11월 25일부터 12월 3일까지 Accessibility Checker의 유료 버전으로 업그레이드하면 30% 할인을 받으세요! 전체 사이트 스캔, 사이트 전체 공개 문제 보고서, 무시 로그 등을 이용할 수 있습니다."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "사전 판매 질문하기"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "지금 업그레이드하기"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "버전 1.21.0에서 통계 계산을 개선했습니다. 그 결과 아�
 msgid "Permission Denied"
 msgstr "권한이 거부되었습니다"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "옵션 업데이트가 실패했습니다"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 블랙 프라이데이 특별 혜택! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "11월 25일부터 12월 3일까지 Accessibility Checker의 유료 버전으로 업그레이드하면 30% 할인을 받으세요! 전체 사이트 스캔, 사이트 전체 공개 문제 보고서, 무시 로그 등을 이용할 수 있습니다."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "사전 판매 질문하기"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "지금 업그레이드하기"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 세계 접근성 인식의 날을 기념하여 Accessibility Checker Pro 25% 할인! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "5월 13일부터 5월 21일까지 쿠폰 코드 GAAD25를 사용하여 전체 사이트 스캔 및 기타 프로 기능을 특별 할인된 가격으로 이용하세요. 업그레이드가 적합한지 확실하지 않으신가요?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "안녕하세요! Accessibility Checker를 접근성 도구로 사용해 주셔서 감사합니다. 이 도구를 한동안 사용하셨으니, WordPress 플러그인 디렉토리에 Accessibility Checker에 대한 5점 리뷰를 작성해 주시겠습니까? 이를 통해 더 많은 사람들이 웹 접근성의 중요성을 알 수 있도록 저희의 가시성을 높이는 데 도움이 될 것입니다. 대단히 감사합니다!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "리뷰 작성하기"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "2주 후에 다시 알림"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "다시 묻지 않기"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "리뷰 작업 값이 설정되지 않았습니다"
 
@@ -645,6 +637,96 @@ msgstr "이름을 입력하세요"
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; 감사 이력"
+
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "접근성 문제"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "접근성 검사가 완료된 콘텐츠"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "접근성 검사를 위해 구성된 포스트 유형"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "접근성"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "문제 보기"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "Accessibility Checker 보기"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "접근성 문제 감지됨"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checker가 %1$s개의 오류와 %2$s개의 경고를 감지했어."
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "접근성 문제가 발견되지 않음"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checker가 스캔된 콘텐츠에서 문제를 발견하지 못했어."
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "콘텐츠가 아직 검사되지 않음"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "아직 스캔된 포스트가 없어. 전체 사이트 스캔을 실행해서 콘텐츠의 접근성 문제 확인을 시작해봐."
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "전체 사이트 스캔 시작"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "콘텐츠의 접근성 검사 중"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker가 접근성 문제에 대해 %s개의 포스트를 스캔했어."
+msgstr[1] "Accessibility Checker가 접근성 문제에 대해 %s개의 포스트를 스캔했어."
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "접근성 검사를 위해 선택된 포스트 유형 없음"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "포스트 유형이 선택되지 않아서 Accessibility Checker가 콘텐츠를 스캔할 수 없어. 구성된 포스트 유형이 없으면 접근성 문제가 감지되지 않을 거야."
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "포스트 유형 구성하기"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "접근성 검사를 위해 포스트 유형이 구성됨"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker는 %1$s개의 포스트 유형을 스캔하도록 구성되어 있어: %2$s."
+msgstr[1] "Accessibility Checker는 %1$s개의 포스트 유형을 스캔하도록 구성되어 있어: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4025,6 +4107,7 @@ msgstr "현재 발견된 모든 이슈 삭제"
 
 #: partials/custom-meta-box.php:52
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "이슈 지우기"
 
@@ -4272,22 +4355,27 @@ msgid "Fix Settings"
 msgstr "설정 수정"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "이 작업은 이 게시물의 모든 이슈를 지웁니다. 게시물 내용의 새로운 스캔을 트리거하려면 저장이 필요합니다. 계속하시겠습니까?"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "지우는 중..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "이슈가 성공적으로 지워졌습니다."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "이슈 지우기에 실패했습니다."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "문제 해결 중 오류가 발생했습니다."
 
@@ -4409,6 +4497,10 @@ msgstr "접근성 스캔 오류."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "스캔 결과 저장 중 오류 발생."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "오류: 필수 매개변수가 누락되었어."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
