@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-04T19:42:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "¿Quieres hacer más con Accessibility Checker? %1$sDesbloquea las funci
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Desbloquea las funciones Pro (se abre en una nueva ventana)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "Hemos mejorado los cálculos estadísticos en la versión 1.21.0. Como resultado, algunos números en los datos a continuación pueden haber cambiado. Lee más en nuestra %1$spublicación de anuncio de lanzamiento%2$s."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 ¡Oferta especial de Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Actualiza a la versión de pago de Accessibility Checker del 25 de noviembre al 3 de diciembre y obtén un 30 % de descuento. Escaneo completo del sitio, informe de problemas abiertos en todo el sitio, registros de ignorados y más."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "Hacer una pregunta previa a la venta"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "Actualizar ahora"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "Hemos mejorado los cálculos estadísticos en la versión 1.21.0. Como r
 msgid "Permission Denied"
 msgstr "Permiso denegado"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "La actualización de la opción no tuvo éxito"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 ¡Oferta especial de Black Friday! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Actualiza a la versión de pago de Accessibility Checker del 25 de noviembre al 3 de diciembre y obtén un 30 % de descuento. Escaneo completo del sitio, informe de problemas abiertos en todo el sitio, registros de ignorados y más."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "Hacer una pregunta previa a la venta"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "Actualizar ahora"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 ¡Obtén un 25 % de descuento en Accessibility Checker Pro en honor al Día Mundial de Concienciación sobre la Accesibilidad! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Usa el código de cupón GAAD25 del 13 al 21 de mayo para obtener acceso al escaneo completo del sitio y otras funciones pro con un descuento especial. ¿No estás seguro si la actualización es adecuada para ti?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "¡Hola! Gracias por utilizar Accessibility Checker como parte de tus herramientas de accesibilidad. Ya que lo has estado usando durante un tiempo, ¿podrías escribir una reseña de 5 estrellas de Accessibility Checker en el directorio de plugins de WordPress? Esto nos ayudará a aumentar nuestra visibilidad para que más personas puedan conocer la importancia de la accesibilidad web. ¡Muchas gracias!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Escribir una reseña"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Recordármelo en dos semanas"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "No volver a preguntar"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "El valor de acción de la reseña no se estableció"
 
