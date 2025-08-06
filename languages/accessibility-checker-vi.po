@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-04T19:42:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "Muốn làm được nhiều hơn với Accessibility Checker? %1$sMở 
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Mở khóa tính năng Pro (mở trong cửa sổ mới)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "Chúng tôi đã cải thiện các tính toán thống kê trong phiên bản 1.21.0. Do đó, một số con số trong dữ liệu dưới đây có thể đã thay đổi. Đọc thêm trong %1$sbài đăng thông báo phát hành%2$s của chúng tôi."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Ưu đãi đặc biệt Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Nâng cấp lên phiên bản trả phí của Accessibility Checker từ ngày 25 tháng 11 đến ngày 3 tháng 12 và được giảm giá 30%! Quét toàn bộ trang web, báo cáo vấn đề mở toàn trang, nhật ký bỏ qua và nhiều tính năng khác."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "Đặt câu hỏi trước khi mua"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "Nâng cấp ngay"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "Chúng tôi đã cải thiện các tính toán thống kê trong phiên
 msgid "Permission Denied"
 msgstr "Quyền truy cập bị từ chối"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "Cập nhật tùy chọn không thành công"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 Ưu đãi đặc biệt Black Friday! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Nâng cấp lên phiên bản trả phí của Accessibility Checker từ ngày 25 tháng 11 đến ngày 3 tháng 12 và được giảm giá 30%! Quét toàn bộ trang web, báo cáo vấn đề mở toàn trang, nhật ký bỏ qua và nhiều tính năng khác."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "Đặt câu hỏi trước khi mua"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "Nâng cấp ngay"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Giảm giá 25% cho Accessibility Checker Pro nhân Ngày Nhận thức Khả năng Tiếp cận Toàn cầu! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Sử dụng mã giảm giá GAAD25 từ ngày 13 tháng 5 đến ngày 21 tháng 5 để được truy cập vào tính năng quét toàn bộ trang web và các tính năng Pro khác với mức giảm giá đặc biệt. Không chắc liệu nâng cấp có phù hợp với bạn không?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Xin chào! Cảm ơn bạn đã sử dụng Accessibility Checker như một phần trong bộ công cụ kiểm tra khả năng tiếp cận của bạn. Vì bạn đã sử dụng nó một thời gian, bạn có thể viết đánh giá 5 sao cho Accessibility Checker trên thư mục plugin WordPress được không? Điều này sẽ giúp tăng khả năng hiển thị của chúng tôi để nhiều người có thể biết về tầm quan trọng của khả năng tiếp cận web. Cảm ơn bạn rất nhiều!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Viết đánh giá"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Nhắc tôi sau hai tuần"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "Không bao giờ hỏi lại"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "Giá trị hành động đánh giá không được thiết lập"
 
