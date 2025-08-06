@@ -373,11 +373,13 @@ class AccessibilityCheckerHighlight {
 	 */
 	addHighlightPanel() {
 		const widgetPosition = edacFrontendHighlighterApp?.widgetPosition || 'right';
-		const clearButtonMarkup = edacFrontendHighlighterApp && ( edacFrontendHighlighterApp.loggedIn === true || edacFrontendHighlighterApp.loggedIn === 'true' )
+
+		const isLoggedInUser = edacFrontendHighlighterApp && edacFrontendHighlighterApp?.loggedIn;
+		const clearButtonMarkup = isLoggedInUser
 			? `<button id="edac-highlight-clear-issues" class="edac-highlight-clear-issues">${ __( 'Clear Issues', 'accessibility-checker' ) }</button>`
 			: '';
 
-		const rescanButton = edacFrontendHighlighterApp && ( edacFrontendHighlighterApp.loggedIn === true || edacFrontendHighlighterApp.loggedIn === 'true' )
+		const rescanButton = isLoggedInUser
 			? `<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>`
 			: '';
 
