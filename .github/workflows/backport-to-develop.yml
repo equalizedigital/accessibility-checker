@@ -86,7 +86,14 @@ jobs:
               // Check if it's a conflict or other specific error
               if (error.message.includes('No commits between')) {
                 console.log('ℹ️ The branch is already up to date with develop - no backport needed');
-              } else if (error.message.includes('A pull request already exists')) {
+              } else if (
+                error.status === 422 &&
+                error.response &&
+                Array.isArray(error.response.data?.errors) &&
+                error.response.data.errors.some(e =>
+                  e.message && e.message.includes('A pull request already exists')
+                )
+              ) {
                 console.log('ℹ️ A pull request already exists for this branch to develop');
               } else {
                 // Re-throw for other errors to fail the workflow
