@@ -5,14 +5,16 @@
  * @package accessibility-checker
  */
 
-use PHPUnit\Framework\TestCase;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\PreventLinksOpeningNewWindowFix;
-use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
+
+require_once __DIR__ . '/FixTestTrait.php';
 
 /**
  * Unit tests for the PreventLinksOpeningNewWindowFix class.
  */
 class PreventLinksOpeningNewWindowFixTest extends WP_UnitTestCase {
+
+	use FixTestTrait;
 
 	/**
 	 * Set up test environment.
@@ -21,8 +23,8 @@ class PreventLinksOpeningNewWindowFixTest extends WP_UnitTestCase {
 	 */
 	public function set_up() {
 		parent::set_up();
-		// Clean up any options that might interfere with tests.
-		delete_option( 'edac_fix_prevent_links_opening_new_windows' );
+		$this->fix = new PreventLinksOpeningNewWindowFix();
+		$this->common_setup();
 	}
 
 	/**
@@ -30,24 +32,53 @@ class PreventLinksOpeningNewWindowFixTest extends WP_UnitTestCase {
 	 *
 	 * @return void
 	 */
-	public function tear_down() {
-		// Clean up options after each test.
-		delete_option( 'edac_fix_prevent_links_opening_new_windows' );
-		// Remove all filters to clean up.
-		remove_all_filters( 'edac_filter_fixes_settings_fields' );
-		remove_all_filters( 'edac_filter_frontend_fixes_data' );
-		parent::tear_down();
+	public function tearDown(): void {
+		$this->common_teardown();
+		parent::tearDown();
 	}
 
 	/**
-	 * Test that PreventLinksOpeningNewWindowFix implements FixInterface.
+	 * Get the expected slug for this fix.
+	 *
+	 * @return string
+	 */
+	protected function get_expected_slug(): string {
+		return 'prevent_links_opening_new_windows';
+	}
+
+	/**
+	 * Get the expected type for this fix.
+	 *
+	 * @return string
+	 */
+	protected function get_expected_type(): string {
+		return 'frontend';
+	}
+
+	/**
+	 * Get the fix class name.
+	 *
+	 * @return string
+	 */
+	protected function get_fix_class_name(): string {
+		return PreventLinksOpeningNewWindowFix::class;
+	}
+
+	/**
+	 * Test link modification functionality.
 	 *
 	 * @return void
 	 */
-	public function test_implements_fix_interface() {
-		$fix = new PreventLinksOpeningNewWindowFix();
-		$this->assertInstanceOf( FixInterface::class, $fix );
+	public function test_link_target_modification() {
+		update_option( 'edac_fix_prevent_links_opening_new_windows', true );
+		$this->fix->run();
+		
+		// Test frontend data filter
+		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
+		$this->assertArrayHasKey( 'prevent_links_opening_new_windows', $data );
+		$this->assertTrue( $data['prevent_links_opening_new_windows']['enabled'] );
 	}
+}
 
 	/**
 	 * Test get_slug returns correct slug.

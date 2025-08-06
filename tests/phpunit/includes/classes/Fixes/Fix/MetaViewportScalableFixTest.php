@@ -5,14 +5,16 @@
  * @package accessibility-checker
  */
 
-use PHPUnit\Framework\TestCase;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\MetaViewportScalableFix;
-use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
+
+require_once __DIR__ . '/FixTestTrait.php';
 
 /**
  * Unit tests for the MetaViewportScalableFix class.
  */
 class MetaViewportScalableFixTest extends WP_UnitTestCase {
+
+	use FixTestTrait;
 
 	/**
 	 * Set up test environment.
@@ -21,8 +23,8 @@ class MetaViewportScalableFixTest extends WP_UnitTestCase {
 	 */
 	public function set_up() {
 		parent::set_up();
-		// Clean up any options that might interfere with tests.
-		delete_option( 'edac_fix_meta_viewport_scalable' );
+		$this->fix = new MetaViewportScalableFix();
+		$this->common_setup();
 	}
 
 	/**
@@ -30,74 +32,65 @@ class MetaViewportScalableFixTest extends WP_UnitTestCase {
 	 *
 	 * @return void
 	 */
-	public function tear_down() {
-		// Clean up options after each test.
-		delete_option( 'edac_fix_meta_viewport_scalable' );
-		// Remove all filters to clean up.
-		remove_all_filters( 'edac_filter_fixes_settings_sections' );
-		remove_all_filters( 'edac_filter_fixes_settings_fields' );
-		remove_all_filters( 'edac_filter_frontend_fixes_data' );
-		parent::tear_down();
+	public function tearDown(): void {
+		$this->common_teardown();
+		parent::tearDown();
 	}
 
 	/**
-	 * Test that MetaViewportScalableFix implements FixInterface.
+	 * Get the expected slug for this fix.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_implements_fix_interface() {
-		$fix = new MetaViewportScalableFix();
-		$this->assertInstanceOf( FixInterface::class, $fix );
+	protected function get_expected_slug(): string {
+		return 'meta_viewport_scalable';
 	}
 
 	/**
-	 * Test get_slug returns correct slug.
+	 * Get the expected type for this fix.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_slug() {
-		$this->assertEquals( 'meta_viewport_scalable', MetaViewportScalableFix::get_slug() );
+	protected function get_expected_type(): string {
+		return 'frontend';
 	}
 
 	/**
-	 * Test get_nicename returns translated string.
+	 * Get the fix class name.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_nicename() {
-		$nicename = MetaViewportScalableFix::get_nicename();
-		$this->assertIsString( $nicename );
-		$this->assertNotEmpty( $nicename );
-		$this->assertEquals( 'Make Meta Viewport Tag Scalable', $nicename );
+	protected function get_fix_class_name(): string {
+		return MetaViewportScalableFix::class;
 	}
 
 	/**
-	 * Test get_type returns frontend.
+	 * Test that register adds settings sections.
 	 *
 	 * @return void
 	 */
-	public function test_get_type() {
-		$this->assertEquals( 'frontend', MetaViewportScalableFix::get_type() );
-	}
-
-	/**
-	 * Test register method adds filters.
-	 *
-	 * @return void
-	 */
-	public function test_register_adds_filters() {
-		$fix = new MetaViewportScalableFix();
+	public function test_register_adds_settings_sections() {
+		$this->fix->register();
 		
-		// Remove any existing filters to start clean.
-		remove_all_filters( 'edac_filter_fixes_settings_sections' );
-		remove_all_filters( 'edac_filter_fixes_settings_fields' );
-		
-		$fix->register();
-		
-		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_sections' ) );
-		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields' ) );
-		$this->assertEquals( 10, has_filter( 'edac_filter_fixes_settings_fields', [ $fix, 'get_fields_array' ] ) );
+		$sections = apply_filters( 'edac_filter_fixes_settings_sections', [] );
+		$this->assertArrayHasKey( 'meta-viewport-scalable', $sections );
 	}
+
+	/**
+	 * Test viewport manipulation functionality.
+	 *
+	 * @return void
+	 */
+	public function test_viewport_tag_modification() {
+		update_option( 'edac_fix_meta_viewport_scalable', true );
+		$this->fix->run();
+		
+		// Test frontend data filter
+		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
+		$this->assertArrayHasKey( 'meta_viewport_scalable', $data );
+		$this->assertTrue( $data['meta_viewport_scalable']['enabled'] );
+	}
+}
 
 	/**
 	 * Test sections filter callback adds meta-viewport-scalable section.

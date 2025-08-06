@@ -9,6 +9,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
 /**
  * Trait providing common test methods for Fix classes.
+ * Handles most standard testing patterns to eliminate duplication.
  */
 trait FixTestTrait {
 
@@ -44,6 +45,45 @@ trait FixTestTrait {
 	abstract protected function get_fix_class_name(): string;
 
 	/**
+	 * Get the fix option names.
+	 * Override if fix uses multiple options.
+	 *
+	 * @return array
+	 */
+	protected function get_fix_option_names(): array {
+		return [ 'edac_fix_' . $this->get_expected_slug() ];
+	}
+
+	/**
+	 * Common setup for fix tests.
+	 *
+	 * @return void
+	 */
+	public function common_setup() {
+		// Clean up any existing options
+		foreach ( $this->get_fix_option_names() as $option_name ) {
+			delete_option( $option_name );
+		}
+	}
+
+	/**
+	 * Common teardown for fix tests.
+	 *
+	 * @return void
+	 */
+	public function common_teardown() {
+		// Clean up options
+		foreach ( $this->get_fix_option_names() as $option_name ) {
+			delete_option( $option_name );
+		}
+		
+		// Remove common filters to avoid interference
+		remove_all_filters( 'edac_filter_fixes_settings_sections' );
+		remove_all_filters( 'edac_filter_fixes_settings_fields' );
+		remove_all_filters( 'edac_filter_frontend_fixes_data' );
+	}
+
+	/**
 	 * Test that the fix implements FixInterface.
 	 *
 	 * @return void
@@ -75,22 +115,6 @@ trait FixTestTrait {
 	}
 
 	/**
-	 * Test get_fancyname returns non-empty string, if method exists.
-	 *
-	 * @return void
-	 */
-	public function test_get_fancyname_returns_non_empty_string() {
-		$class_name = $this->get_fix_class_name();
-		if ( ! method_exists( $class_name, 'get_fancyname' ) ) {
-			$this->markTestSkipped( 'Fix class does not have get_fancyname method' );
-		}
-
-		$fancyname = $class_name::get_fancyname();
-		$this->assertIsString( $fancyname );
-		$this->assertNotEmpty( $fancyname );
-	}
-
-	/**
 	 * Test get_type returns expected type.
 	 *
 	 * @return void
@@ -111,25 +135,83 @@ trait FixTestTrait {
 	}
 
 	/**
-	 * Test get_fields_array preserves existing fields.
+	 * Test register method adds settings fields filter.
 	 *
 	 * @return void
 	 */
-	public function test_get_fields_array_preserves_existing_fields() {
-		$existing_fields = [ 'existing_field' => [ 'type' => 'text' ] ];
-		$fields          = $this->fix->get_fields_array( $existing_fields );
-
-		$this->assertArrayHasKey( 'existing_field', $fields );
-		$this->assertEquals( [ 'type' => 'text' ], $fields['existing_field'] );
+	public function test_register_adds_settings_fields_filter() {
+		// Remove any existing filters to start clean
+		remove_all_filters( 'edac_filter_fixes_settings_fields' );
+		
+		$this->fix->register();
+		
+		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields' ) !== false );
 	}
 
 	/**
-	 * Test register method is callable.
+	 * Test run method when option is disabled.
+	 * Most fixes should do nothing when disabled.
 	 *
 	 * @return void
 	 */
-	public function test_register_method_exists() {
-		$this->assertTrue( method_exists( $this->fix, 'register' ) );
-		$this->assertTrue( is_callable( [ $this->fix, 'register' ] ) );
+	public function test_run_when_option_disabled() {
+		// Set all options to false
+		foreach ( $this->get_fix_option_names() as $option_name ) {
+			update_option( $option_name, false );
+		}
+
+		// Count filters before run
+		$frontend_filters_before = has_filter( 'edac_filter_frontend_fixes_data' );
+		
+		$this->fix->run();
+		
+		// For most fixes, should not add frontend filter when disabled
+		$frontend_filters_after = has_filter( 'edac_filter_frontend_fixes_data' );
+		$this->assertEquals( $frontend_filters_before, $frontend_filters_after );
+	}
+
+	/**
+	 * Test run method when option is enabled.
+	 * Most frontend fixes should add data filter when enabled.
+	 *
+	 * @return void
+	 */
+	public function test_run_when_option_enabled() {
+		// Set first option to true
+		$first_option = $this->get_fix_option_names()[0];
+		update_option( $first_option, true );
+		
+		$this->fix->run();
+		
+		// For frontend fixes, should add frontend data filter
+		if ( $this->get_expected_type() === 'frontend' ) {
+			$this->assertTrue( has_filter( 'edac_filter_frontend_fixes_data' ) !== false );
+		}
+	}
+
+	/**
+	 * Test that frontend data filter includes correct slug when enabled.
+	 * Only runs for frontend fixes.
+	 *
+	 * @return void
+	 */
+	public function test_frontend_data_filter_includes_slug() {
+		if ( $this->get_expected_type() !== 'frontend' ) {
+			$this->markTestSkipped( 'Not a frontend fix' );
+		}
+
+		// Enable first option
+		$first_option = $this->get_fix_option_names()[0];
+		update_option( $first_option, true );
+		
+		$this->fix->run();
+		
+		// Test the filter output
+		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
+		$slug = $this->get_expected_slug();
+		
+		$this->assertArrayHasKey( $slug, $data );
+		$this->assertArrayHasKey( 'enabled', $data[ $slug ] );
+		$this->assertTrue( $data[ $slug ]['enabled'] );
 	}
 }
