@@ -73,7 +73,7 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 		update_option( 'edac_fix_lang_and_dir', true );
 		$this->fix->run();
 		
-		// Test frontend data filter
+		// Test frontend data filter.
 		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
 		$this->assertArrayHasKey( 'lang_and_dir', $data );
 		$this->assertTrue( $data['lang_and_dir']['enabled'] );

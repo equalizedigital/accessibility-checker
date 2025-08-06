@@ -60,7 +60,7 @@ trait FixTestTrait {
 	 * @return void
 	 */
 	public function common_setup() {
-		// Clean up any existing options
+		// Clean up any existing options.
 		foreach ( $this->get_fix_option_names() as $option_name ) {
 			delete_option( $option_name );
 		}
@@ -72,12 +72,12 @@ trait FixTestTrait {
 	 * @return void
 	 */
 	public function common_teardown() {
-		// Clean up options
+		// Clean up options.
 		foreach ( $this->get_fix_option_names() as $option_name ) {
 			delete_option( $option_name );
 		}
 		
-		// Remove common filters to avoid interference
+		// Remove common filters to avoid interference.
 		remove_all_filters( 'edac_filter_fixes_settings_sections' );
 		remove_all_filters( 'edac_filter_fixes_settings_fields' );
 		remove_all_filters( 'edac_filter_frontend_fixes_data' );
@@ -140,7 +140,7 @@ trait FixTestTrait {
 	 * @return void
 	 */
 	public function test_register_adds_settings_fields_filter() {
-		// Remove any existing filters to start clean
+		// Remove any existing filters to start clean.
 		remove_all_filters( 'edac_filter_fixes_settings_fields' );
 		
 		$this->fix->register();
@@ -155,17 +155,17 @@ trait FixTestTrait {
 	 * @return void
 	 */
 	public function test_run_when_option_disabled() {
-		// Set all options to false
+		// Set all options to false.
 		foreach ( $this->get_fix_option_names() as $option_name ) {
 			update_option( $option_name, false );
 		}
 
-		// Count filters before run
+		// Count filters before run.
 		$frontend_filters_before = has_filter( 'edac_filter_frontend_fixes_data' );
 		
 		$this->fix->run();
 		
-		// For most fixes, should not add frontend filter when disabled
+		// For most fixes, should not add frontend filter when disabled.
 		$frontend_filters_after = has_filter( 'edac_filter_frontend_fixes_data' );
 		$this->assertEquals( $frontend_filters_before, $frontend_filters_after );
 	}
@@ -177,13 +177,13 @@ trait FixTestTrait {
 	 * @return void
 	 */
 	public function test_run_when_option_enabled() {
-		// Set first option to true
+		// Set first option to true.
 		$first_option = $this->get_fix_option_names()[0];
 		update_option( $first_option, true );
 		
 		$this->fix->run();
 		
-		// For frontend fixes, should add frontend data filter
+		// For frontend fixes, should add frontend data filter.
 		if ( $this->get_expected_type() === 'frontend' ) {
 			$this->assertTrue( has_filter( 'edac_filter_frontend_fixes_data' ) !== false );
 		}
@@ -200,13 +200,13 @@ trait FixTestTrait {
 			$this->markTestSkipped( 'Not a frontend fix' );
 		}
 
-		// Enable first option
+		// Enable first option.
 		$first_option = $this->get_fix_option_names()[0];
 		update_option( $first_option, true );
 		
 		$this->fix->run();
 		
-		// Test the filter output
+		// Test the filter output.
 		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
 		$slug = $this->get_expected_slug();
 		

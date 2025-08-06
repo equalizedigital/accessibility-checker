@@ -34,7 +34,7 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	 */
 	public function tearDown(): void {
 		$this->common_teardown();
-		// Clean up additional options for skip link
+		// Clean up additional options for skip link.
 		delete_option( 'edac_fix_skip_link_text' );
 		delete_option( 'edac_fix_skip_link_element' );
 		parent::tearDown();
@@ -91,7 +91,7 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 		
 		$this->fix->run();
 		
-		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
+		$data      = apply_filters( 'edac_filter_frontend_fixes_data', [] );
 		$skip_data = $data['skip_link'];
 		
 		$this->assertEquals( 'Custom Skip Text', $skip_data['text'] );

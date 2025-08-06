@@ -126,6 +126,11 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	public function test_get_fields_array_pro_version() {
 		// Create anonymous class extending the fix to simulate pro version.
 		$pro_fix = new class() extends AddLabelToUnlabelledFormFieldsFix {
+			/**
+			 * Pro version flag.
+			 *
+			 * @var bool
+			 */
 			public $is_pro = true;
 		};
 		

@@ -56,7 +56,7 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		delete_option( 'edac_fix_add_read_more_title_screen_reader_only' );
 		
 		// Clean up global variables.
-		unset( $GLOBALS['id'] );
+		wp_reset_postdata();
 		
 		parent::tearDown();
 	}
@@ -187,7 +187,10 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 	 * Test add_title_to_read_more method adds post title
 	 */
 	public function test_add_title_to_read_more_adds_title() {
-		$GLOBALS['id'] = $this->post_id;
+		// Set up global post.
+		global $post;
+		$post = get_post( $this->post_id );
+		setup_postdata( $post );
 		
 		$link = '<a href="http://example.com/test-post">Read More</a>';
 		$text = 'Read More';
@@ -196,13 +199,18 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		
 		$this->assertStringContainsString( 'Test Post Title', $result );
 		$this->assertStringContainsString( 'edac-content-more-title', $result );
+		
+		wp_reset_postdata();
 	}
 
 	/**
 	 * Test add_title_to_read_more preserves existing title
 	 */
 	public function test_add_title_to_read_more_preserves_existing_title() {
-		$GLOBALS['id'] = $this->post_id;
+		// Set up global post.
+		global $post;
+		$post = get_post( $this->post_id );
+		setup_postdata( $post );
 		
 		$link = '<a href="http://example.com/test-post">Read More about Test Post Title</a>';
 		$text = 'Read More about Test Post Title';
@@ -211,13 +219,18 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		
 		// Should not add duplicate title.
 		$this->assertEquals( $link, $result );
+		
+		wp_reset_postdata();
 	}
 
 	/**
 	 * Test add_title_link_to_excerpts method when has_excerpt is true
 	 */
 	public function test_add_title_link_to_excerpts_adds_link_when_has_excerpt() {
-		$GLOBALS['id'] = $this->post_id; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		// Set up global post.
+		global $post;
+		$post = get_post( $this->post_id );
+		setup_postdata( $post );
 		
 		// Set post to have an excerpt.
 		wp_update_post(
@@ -241,13 +254,17 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		
 		// Restore original post.
 		$post = $original_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		wp_reset_postdata();
 	}
 
 	/**
 	 * Test add_title_link_to_excerpts preserves excerpt when title already present
 	 */
 	public function test_add_title_link_to_excerpts_preserves_when_title_present() {
-		$GLOBALS['id'] = $this->post_id;
+		// Set up global post.
+		global $post;
+		$post = get_post( $this->post_id );
+		setup_postdata( $post );
 		
 		// Set post to have an excerpt with title already present.
 		wp_update_post(
@@ -271,13 +288,17 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		
 		// Restore original post.
 		$post = $original_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		wp_reset_postdata();
 	}
 
 	/**
 	 * Test add_title_to_excerpt_more method
 	 */
 	public function test_add_title_to_excerpt_more() {
-		$GLOBALS['id'] = $this->post_id;
+		// Set up global post.
+		global $post;
+		$post = get_post( $this->post_id );
+		setup_postdata( $post );
 		
 		// Mock get_the_permalink.
 		add_filter(
@@ -299,6 +320,7 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'edac-content-more-title', $result );
 		
 		remove_all_filters( 'post_link' );
+		wp_reset_postdata();
 	}
 
 	/**
