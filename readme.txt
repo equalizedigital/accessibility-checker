@@ -225,4 +225,25 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 * Enhanced: Updated the redundant alt check to understand that repeated images with same source and alt is not redundant.
 * Fixed: Remove the password protected notice, and it's related features - scans can throw this error now.
 
+= 1.28.0 =
+* Added: Better descriptions and help text for each of the rules.
+* Added: Improved landmark location feature to show the location of the landmark in the DOM.
+* Fixed: Avoid possible error with removal of an index on an ID column.
+
+= 1.27.1 =
+* Fixed: Don't alter a UNIQUE index before swapping to PRIMARY key index.
+
+= 1.27.0 =
+* Added: Landmark Location feature.
+* Added: Plugin action links.
+* Fixed: Allow frontend highlighter to kickoff scan if there are no issues for the page.
+* Fixed: Average issues per post calculation to handle zero issues.
+* Added: Documentation, support, and rate plugin links to plugin row meta.
+* Added: Admin toolbar with quick links.
+* Updated: UNIQUE KEY to PRIMARY KEY for id column, bumped DB version to 1.0.4.
+* Updated: link_improper now lets links with role of tab pass.
+
+= 1.26.0 =
+* Enhanced: Better translation handling across the plugin.
+
 Older versions can be found in the plugins `changelog.txt`.
