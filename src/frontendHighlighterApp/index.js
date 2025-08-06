@@ -392,9 +392,15 @@ class AccessibilityCheckerHighlight {
 	 * This function adds a new div element to the DOM, which contains the accessibility checker panel.
 	 */
 	addHighlightPanel() {
-		const widgetPosition = edacFrontendHighlighterApp.widgetPosition || 'right';
-		const clearButtonMarkup = edacFrontendHighlighterApp.loggedIn
+		const widgetPosition = edacFrontendHighlighterApp?.widgetPosition || 'right';
+
+		const isLoggedInUser = edacFrontendHighlighterApp && edacFrontendHighlighterApp?.loggedIn;
+		const clearButtonMarkup = isLoggedInUser
 			? `<button id="edac-highlight-clear-issues" class="edac-highlight-clear-issues">${ __( 'Clear Issues', 'accessibility-checker' ) }</button>`
+			: '';
+
+		const rescanButton = isLoggedInUser
+			? `<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>`
 			: '';
 
 		const newElement = `
@@ -410,13 +416,13 @@ class AccessibilityCheckerHighlight {
                                 <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
                                 <div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
                                 <div class="edac-highlight-panel-controls-summary">Loading...</div>
-                                <div class="edac-highlight-panel-controls-buttons">
+                                <div class="edac-highlight-panel-controls-buttons ${ ! isLoggedInUser ? ' single_button' : '' }">
                                         <div>
                                                 <button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>Previous</button>
                                                 <button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
                                         </div>
                                         <div>
-                                                <button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>
+                                                ${ rescanButton }
                                                 ${ clearButtonMarkup }
                                                 <button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
                                         </div>
