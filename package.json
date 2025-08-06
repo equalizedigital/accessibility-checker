@@ -1,6 +1,6 @@
 {
   "name": "accessibility-checker",
-  "version": "1.29.0",
+  "version": "1.30.0",
   "description": "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.",
   "author": "Equalize Digital",
   "license": "GPL-2.0+",
@@ -17,7 +17,10 @@
     "lint:php:fix": "./vendor/bin/phpcbf",
     "lint:js": "wp-scripts lint-js",
     "lint:js:fix": "wp-scripts lint-js --fix",
-    "test:e2e": "npx playwright test ./e2e/specs",
+	"test:php": "./scripts/setup-phpunit.sh",
+    "test:php:run": "docker compose exec phpunit vendor/bin/phpunit",
+    "test:php:coverage": "docker compose exec phpunit vendor/bin/phpunit  --coverage-clover=./coverage/clover.xml --coverage-html=./coverage/html",
+    "test:php:stop": "docker compose stop",
     "test:jest": "jest --config=./tests/jest/jest.config.js --passWithNoTests",
     "prepare": "husky",
     "phpstan": "./vendor/bin/phpstan"

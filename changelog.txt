@@ -1,5 +1,71 @@
 Newer versions can be found in readme.txt.
 
+= 1.25.0 =
+* Added: Ability to scan the main posts archive (blog page).
+* Enhanced: Improved the Anchor Exists rule to handle more situations.
+* Fixed: Avoid console error for clear button on CPTs that are not scannable.
+
+= 1.24.0 =
+* Added: Translations for 33 languages.
+* Enhanced: Handle Elementor buttons better in the new warnings fix.
+* Fixed: Several typo and grammar issues corrected in the plugin.
+* Fixed: Signup modal now works in Firefox under more conditions.
+* Fixed: Make sure that translations in JS files can be detected.
+
+= 1.23.1 =
+* Changed: Remove the str_get_html fallback shim.
+
+= 1.23.0 =
+* Added: Jest testing framework for accessibility rules with test case generation.
+* Changed: Added fallback for str_get_html() with deprecation notice.
+* Changed: Added density calculation capability in JS scanner.
+* Removed: Legacy PHP scan code.
+* Removed: PHP Simple HTML DOM Parser.
+* Converted: video_present rule to JS.
+* Converted: slider_present rule to JS.
+* Converted: missing_transcript rule to JS.
+* Converted: missing_subheadings rule to JS.
+* Converted: link_improper rule to JS.
+* Converted: link_non_html_file rule to JS.
+* Converted: longdesc_invalid rule to JS.
+* Converted: missing_table_header rule to JS.
+* Converted: incorrect_heading_order rule to JS.
+* Converted: img_alt_empty rule to JS.
+* Converted: img_alt_long rule to JS.
+* Converted: img_map_missing_alt rule to JS.
+* Converted: link_empty rule to JS.
+* Converted: linked_image_missing_alt rule to JS.
+* Converted: linked_image_empty rules to JS.
+* Converted: aria_hidden rule to JS.
+* Converted: empty_button rule to JS.
+* Converted: duplicate_form_label rule to axe-core compatible JS rule with conditional support for incomplete items.
+* Converted: empty_heading_tag rule to JS.
+* Converted: empty_table_header rule to JS.
+* Converted: iframe_missing_title rule to JS.
+* Converted: img_alt_redundant rule to JS.
+* Converted: img_alt_invalid rule to JS.
+* Converted: img_alt_missing rule to JS.
+* Converted: animated_gif rule to JS.
+* Converted: broken_aria_reference rule to JS.
+
+= 1.22.2 =
+* Enhancement: Announce Global Accessibility Awareness Day in the admin during that week.
+
+= 1.22.1 =
+* Enhancement: Make the skip-link fix handle sites with forced smooth scroll.
+* Enhancement: Make the zooming and scaling handle additional ways the tag can block scaling.
+* Fix: Swap to graphql for getting meetup data for display in the admin.
+
+= 1.22.0 =
+* Enhancement: Improve the new window warning migration to handle more edge cases.
+* Fix: Avoid checking theme Tags when theme sandbox recovery is in play.
+* Fix: When parsing block content for scanning avoid stomping on post_content of a global.
+
+= 1.21.0 =
+* Enhancement: Improve how density statistics are counted. You will see a notice about this change on the welcome page.
+* Fix: Ensure that the scanned posts counts are accurate to all posts scanned, not just ones that have issues.
+* Fix: Properly count posts that are scanned but have no issues to remediate.
+
 = 1.20.0 =
 * Enhancement: Process dynamic blocks and oEmbeds more reliably in scans.
 * Enhancement: Improve detection for missing_transcripts if there are several oEmbed videos from same provider on page.

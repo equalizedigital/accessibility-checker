@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.28.0\n"
+"Project-Id-Version: Accessibility Checker 1.29.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-29T12:20:20+00:00\n"
+"POT-Creation-Date: 2025-08-06T16:25:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "ต้องการใช้งาน Accessibility Checker ให้�
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "ปลดล็อกคุณสมบัติ Pro (เปิดในหน้าต่างใหม่)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "เราได้ปรับปรุงการคำนวณสถิติในเวอร์ชัน 1.21.0 ทำให้ตัวเลขบางส่วนในข้อมูลด้านล่างอาจเปลี่ยนแปลงไป อ่านเพิ่มเติมได้ใน%1$sโพสต์ประกาศการเปิดตัว%2$sของเรา."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 โปรโมชั่นพิเศษ Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "อัปเกรดเป็นเวอร์ชันชำระเงินของ Accessibility Checker ตั้งแต่วันที่ 25 พฤศจิกายนถึง 3 ธันวาคม และรับส่วนลด 30%! สแกนเว็บไซต์ทั้งหมด รายงานปัญหาที่เปิดทั้งเว็บไซต์ บันทึกการละเว้น และอื่นๆ อีกมากมาย."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "ถามคำถามก่อนการขาย"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "อัปเกรดทันที"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "เราได้ปรับปรุงการคำนวณสถ
 msgid "Permission Denied"
 msgstr "การอนุญาตถูกปฏิเสธ"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "การอัปเดตตัวเลือกไม่สำเร็จ"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 โปรโมชั่นพิเศษ Black Friday! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "อัปเกรดเป็นเวอร์ชันชำระเงินของ Accessibility Checker ตั้งแต่วันที่ 25 พฤศจิกายนถึง 3 ธันวาคม และรับส่วนลด 30%! สแกนเว็บไซต์ทั้งหมด รายงานปัญหาที่เปิดทั้งเว็บไซต์ บันทึกการละเว้น และอื่นๆ อีกมากมาย."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "ถามคำถามก่อนการขาย"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "อัปเกรดทันที"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 รับส่วนลด 25% สำหรับ Accessibility Checker Pro เพื่อเป็นเกียรติแก่วันสร้างความตระหนักด้านการเข้าถึงทั่วโลก! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "ใช้รหัสคูปอน GAAD25 ตั้งแต่วันที่ 13 พฤษภาคมถึง 21 พฤษภาคม เพื่อรับสิทธิ์เข้าถึงการสแกนเว็บไซต์เต็มรูปแบบและฟีเจอร์ระดับ Pro อื่นๆ ในราคาพิเศษ ไม่แน่ใจว่าการอัปเกรดเหมาะกับคุณหรือไม่?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "สวัสดีครับ! ขอบคุณที่ใช้ Accessibility Checker เป็นส่วนหนึ่งในชุดเครื่องมือเพื่อการเข้าถึงของคุณ เนื่องจากคุณได้ใช้งานมาสักระยะแล้ว คุณช่วยเขียนรีวิว 5 ดาวให้กับ Accessibility Checker ในไดเรกทอรีปลั๊กอิน WordPress ได้ไหมครับ? การทำเช่นนี้จะช่วยเพิ่มการมองเห็นของเรา เพื่อให้ผู้คนมากขึ้นได้เรียนรู้เกี่ยวกับความสำคัญของการเข้าถึงเว็บ ขอบคุณมากครับ!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "เขียนรีวิว"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "เตือนฉันในอีกสองสัปดาห์"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "ไม่ต้องถามอีก"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "ค่าการดำเนินการรีวิวไม่ได้ถูกตั้งค่า"
 
@@ -645,6 +637,96 @@ msgstr "พิมพ์ชื่อของคุณ"
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; ประวัติการตรวจสอบ"
+
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "ปัญหาด้านการเข้าถึง"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "เนื้อหาได้รับการตรวจสอบด้านการเข้าถึง"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "ประเภทโพสต์ที่กำหนดค่าสำหรับการตรวจสอบการเข้าถึง"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "การเข้าถึง"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "ดูปัญหา"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "ดู Accessibility Checker"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "ตรวจพบปัญหาด้านการเข้าถึง"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checker ตรวจพบข้อผิดพลาด %1$s รายการและคำเตือน %2$s รายการ"
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "ไม่พบปัญหาด้านการเข้าถึง"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checker ไม่พบปัญหาใดๆ ในเนื้อหาที่สแกน"
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "เนื้อหายังไม่ได้รับการตรวจสอบ"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "ยังไม่มีโพสต์ใดได้รับการสแกน เริ่มสแกนทั้งเว็บไซต์เพื่อเริ่มตรวจสอบเนื้อหาของคุณสำหรับปัญหาด้านการเข้าถึง"
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "เริ่มสแกนทั้งเว็บไซต์"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "กำลังตรวจสอบเนื้อหาสำหรับการเข้าถึง"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker ได้สแกนโพสต์ %s รายการเพื่อตรวจหาปัญหาด้านการเข้าถึง"
+msgstr[1] "Accessibility Checker ได้สแกนโพสต์ %s รายการเพื่อตรวจหาปัญหาด้านการเข้าถึง"
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "ไม่มีประเภทโพสต์ที่เลือกสำหรับการตรวจสอบการเข้าถึง"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "Accessibility Checker ไม่สามารถสแกนเนื้อหาใดๆ ได้เนื่องจากไม่มีประเภทโพสต์ที่ถูกเลือก หากไม่มีการกำหนดค่าประเภทโพสต์ จะไม่มีการตรวจพบปัญหาด้านการเข้าถึง"
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "กำหนดค่าประเภทโพสต์"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "ประเภทโพสต์ได้รับการกำหนดค่าสำหรับการตรวจสอบการเข้าถึง"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker ถูกกำหนดค่าให้สแกนประเภทโพสต์ %1$s ประเภท: %2$s"
+msgstr[1] "Accessibility Checker ถูกกำหนดค่าให้สแกนประเภทโพสต์ %1$s ประเภท: %2$s"
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4025,6 +4107,7 @@ msgstr "ลบปัญหาทั้งหมดที่พบในปัจ
 
 #: partials/custom-meta-box.php:52
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "ล้างปัญหา"
 
@@ -4272,22 +4355,27 @@ msgid "Fix Settings"
 msgstr "ตั้งค่าการแก้ไข"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "การดำเนินการนี้จะล้างปัญหาทั้งหมดสำหรับเนื้อหานี้ จำเป็นต้องบันทึกเพื่อเริ่มการสแกนเนื้อหาใหม่ คุณต้องการดำเนินการต่อหรือไม่?"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "กำลังล้าง..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "ล้างปัญหาเรียบร้อยแล้ว."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "ไม่สามารถล้างปัญหาได้."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "เกิดข้อผิดพลาดขณะล้างปัญหา."
 
@@ -4409,6 +4497,10 @@ msgstr "ข้อผิดพลาดในการสแกนการเข
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "เกิดข้อผิดพลาดในการบันทึกผลการสแกน."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "ข้อผิดพลาด: ขาดพารามิเตอร์ที่จำเป็น"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
