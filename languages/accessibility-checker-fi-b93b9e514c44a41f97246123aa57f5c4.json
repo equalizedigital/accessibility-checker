@@ -13,6 +13,9 @@
             "Save": [
                 "Tallenna"
             ],
+            "Clear Issues": [
+                "Tyhjenn\u00e4 ongelmat"
+            ],
             "Saving...": [
                 "Tallennetaan..."
             ],
@@ -27,6 +30,21 @@
             ],
             "Fix Settings": [
                 "Korjaa asetukset"
+            ],
+            "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?": [
+                "T\u00e4m\u00e4 poistaa kaikki ongelmat t\u00e4st\u00e4 artikkelista. Tallennus vaaditaan k\u00e4ynnist\u00e4m\u00e4\u00e4n uusi skannaus artikkelin sis\u00e4ll\u00f6st\u00e4. Haluatko jatkaa?"
+            ],
+            "Clearing...": [
+                "Tyhjennet\u00e4\u00e4n..."
+            ],
+            "Issues cleared successfully.": [
+                "Ongelmat tyhjennetty onnistuneesti."
+            ],
+            "Failed to clear issues.": [
+                "Ongelmien tyhjennys ep\u00e4onnistui."
+            ],
+            "An error occurred while clearing issues.": [
+                "Virhe tapahtui ongelmia tyhjennett\u00e4ess\u00e4."
             ],
             "Close fixes modal": [
                 "Sulje korjausikkuna"
@@ -96,6 +114,9 @@
             ],
             "Error saving scan results.": [
                 "Virhe skannaustulosten tallentamisessa."
+            ],
+            "Error: Missing required parameters.": [
+                "Virhe: Pakolliset parametrit puuttuvat."
             ]
         }
     }
