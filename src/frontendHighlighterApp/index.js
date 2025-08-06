@@ -7,6 +7,7 @@ import { isFocusable } from 'tabbable';
 import { __, _n } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
+import { hashString } from '../common/helpers';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -302,7 +303,25 @@ class AccessibilityCheckerHighlight {
 		// Add the tooltip to the page.
 		document.body.append( tooltip );
 
+		tooltip.dataset.targetElement = hashString( element.outerHTML );
+
+		// Add creation timestamp to track order of tooltip creation
+		tooltip.dataset.creationOrder = Date.now() + Math.random(); // Ensure uniqueness
+
 		const updatePosition = function() {
+			// Find existing tooltips for the same element that were created BEFORE this one
+			const currentElementHash = tooltip.dataset.targetElement;
+			const currentCreationOrder = parseFloat( tooltip.dataset.creationOrder );
+
+			const existingTooltips = Array.from( document.querySelectorAll( '.edac-highlight-btn' ) ).filter( ( btn ) => {
+				// Check if this tooltip targets the same element and was created before this one
+				return btn !== tooltip && btn.dataset.targetElement === currentElementHash && parseFloat( btn.dataset.creationOrder ) < currentCreationOrder;
+			} );
+
+			// The offset should be the count of existing tooltips created before this one
+			const tooltipOffset = existingTooltips.length;
+			const TOOLTIP_GAP = 5; // Gap between tooltip buttons in pixels
+
 			computePosition( element, tooltip, {
 				placement: 'top-start',
 				middleware: [],
@@ -314,7 +333,7 @@ class AccessibilityCheckerHighlight {
 				const tooltipWidth = tooltip.offsetWidth === undefined ? 0 : tooltip.offsetWidth;
 
 				let top = 0;
-				const left = 0;
+				const left = tooltipOffset * ( tooltipWidth + TOOLTIP_GAP );
 
 				if ( tooltipHeight <= ( elHeight * .8 ) ) {
 					top = tooltipHeight;
@@ -342,6 +361,7 @@ class AccessibilityCheckerHighlight {
 				} );
 			} );
 		};
+
 
 		// Place the tooltip at the element's position on the page.
 		// See: https://floating-ui.com/docs/autoUpdate
