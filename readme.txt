@@ -211,6 +211,12 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+= 1.30.0 =
+* Added: Ability to clear issues on a post or page from the frontend highlighter.
+* Added: More accessibility checker details in the site health check.
+* Fixed: Icons stack in frontend highlighter when there multiple issues on the same element.
+* Improved: Missing Transcript can better detect transcripts for videos in the content.
+
 = 1.29.0 =
 * Added: Rescan button in the frontend highlighter to rescan the current page.
 * Added: Cleanup routine to clear out orphaned issues from the database.
