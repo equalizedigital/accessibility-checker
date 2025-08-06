@@ -9,49 +9,50 @@ use PHPUnit\Framework\TestCase;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+require_once __DIR__ . '/FixTestTrait.php';
+
 /**
  * Unit tests for the SkipLinkFix class.
  */
 class SkipLinkFixTest extends WP_UnitTestCase {
 
+	use FixTestTrait;
+
 	/**
-	 * Test that SkipLinkFix implements FixInterface.
+	 * Set up the test.
 	 *
 	 * @return void
 	 */
-	public function test_implements_fix_interface() {
-		$fix = new SkipLinkFix();
-		$this->assertInstanceOf( FixInterface::class, $fix );
+	public function set_up() {
+		parent::set_up();
+		$this->fix = new SkipLinkFix();
 	}
 
 	/**
-	 * Test get_slug returns correct slug.
+	 * Get the expected slug for this fix.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_slug() {
-		$this->assertEquals( 'skip_link', SkipLinkFix::get_slug() );
+	protected function get_expected_slug(): string {
+		return 'skip_link';
 	}
 
 	/**
-	 * Test get_nicename returns translated string.
+	 * Get the expected type for this fix.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_nicename() {
-		$nicename = SkipLinkFix::get_nicename();
-		$this->assertIsString( $nicename );
-		$this->assertNotEmpty( $nicename );
-		$this->assertEquals( 'Add Skip Links', $nicename );
+	protected function get_expected_type(): string {
+		return 'frontend';
 	}
 
 	/**
-	 * Test get_type returns frontend.
+	 * Get the fix class name.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_type() {
-		$this->assertEquals( 'frontend', SkipLinkFix::get_type() );
+	protected function get_fix_class_name(): string {
+		return SkipLinkFix::class;
 	}
 
 	/**
@@ -60,10 +61,7 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_get_fields_array() {
-		$fix    = new SkipLinkFix();
-		$fields = $fix->get_fields_array();
-
-		$this->assertIsArray( $fields );
+		$fields = $this->fix->get_fields_array();
 		
 		// Test main skip link field.
 		$this->assertArrayHasKey( 'edac_fix_add_skip_link', $fields );
@@ -99,32 +97,16 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test get_fields_array preserves existing fields.
-	 *
-	 * @return void
-	 */
-	public function test_get_fields_array_preserves_existing_fields() {
-		$fix             = new SkipLinkFix();
-		$existing_fields = [ 'existing_field' => [ 'type' => 'text' ] ];
-		$fields          = $fix->get_fields_array( $existing_fields );
-
-		$this->assertArrayHasKey( 'existing_field', $fields );
-		$this->assertArrayHasKey( 'edac_fix_add_skip_link', $fields );
-	}
-
-	/**
 	 * Test register method adds filters.
 	 *
 	 * @return void
 	 */
 	public function test_register_adds_filters() {
-		$fix = new SkipLinkFix();
-
-		$fix->register();
+		$this->fix->register();
 
 		// Verify that the filters were added.
 		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_sections' ) !== false );
-		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields', [ $fix, 'get_fields_array' ] ) !== false );
+		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields', [ $this->fix, 'get_fields_array' ] ) !== false );
 	}
 
 	/**
@@ -133,15 +115,13 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_run_when_disabled() {
-		$fix = new SkipLinkFix();
-
 		// Ensure option is disabled.
 		update_option( 'edac_fix_add_skip_link', false );
 
-		$fix->run();
+		$this->fix->run();
 
 		// Check that no action was added.
-		$this->assertFalse( has_action( 'wp_body_open', [ $fix, 'add_skip_link' ] ) );
+		$this->assertFalse( has_action( 'wp_body_open', [ $this->fix, 'add_skip_link' ] ) );
 	}
 
 	/**
@@ -150,16 +130,14 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_run_when_enabled_no_targets() {
-		$fix = new SkipLinkFix();
-
 		// Enable option but don't set targets.
 		update_option( 'edac_fix_add_skip_link', true );
 		update_option( 'edac_fix_add_skip_link_target_id', '' );
 
-		$fix->run();
+		$this->fix->run();
 
 		// Action should be added for the skip link.
-		$this->assertTrue( has_action( 'wp_body_open', [ $fix, 'add_skip_link' ] ) !== false );
+		$this->assertTrue( has_action( 'wp_body_open', [ $this->fix, 'add_skip_link' ] ) !== false );
 		
 		// But no frontend data filter should be added.
 		$this->assertFalse( has_filter( 'edac_filter_frontend_fixes_data' ) );
@@ -171,16 +149,14 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_run_when_enabled_with_targets() {
-		$fix = new SkipLinkFix();
-
 		// Enable option and set targets.
 		update_option( 'edac_fix_add_skip_link', true );
 		update_option( 'edac_fix_add_skip_link_target_id', 'main, #content, article' );
 
-		$fix->run();
+		$this->fix->run();
 
 		// Action should be added for the skip link.
-		$this->assertTrue( has_action( 'wp_body_open', [ $fix, 'add_skip_link' ] ) !== false );
+		$this->assertTrue( has_action( 'wp_body_open', [ $this->fix, 'add_skip_link' ] ) !== false );
 		
 		// Frontend data filter should be added.
 		$this->assertTrue( has_filter( 'edac_filter_frontend_fixes_data' ) !== false );

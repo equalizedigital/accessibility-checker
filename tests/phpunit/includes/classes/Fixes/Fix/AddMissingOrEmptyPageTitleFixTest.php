@@ -9,61 +9,50 @@ use PHPUnit\Framework\TestCase;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddMissingOrEmptyPageTitleFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+require_once __DIR__ . '/FixTestTrait.php';
+
 /**
  * Unit tests for the AddMissingOrEmptyPageTitleFix class.
  */
 class AddMissingOrEmptyPageTitleFixTest extends WP_UnitTestCase {
 
+	use FixTestTrait;
+
 	/**
-	 * Test that AddMissingOrEmptyPageTitleFix implements FixInterface.
+	 * Set up the test.
 	 *
 	 * @return void
 	 */
-	public function test_implements_fix_interface() {
-		$fix = new AddMissingOrEmptyPageTitleFix();
-		$this->assertInstanceOf( FixInterface::class, $fix );
+	public function set_up() {
+		parent::set_up();
+		$this->fix = new AddMissingOrEmptyPageTitleFix();
 	}
 
 	/**
-	 * Test get_slug returns correct slug.
+	 * Get the expected slug for this fix.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_slug() {
-		$this->assertEquals( 'missing_or_empty_page_title', AddMissingOrEmptyPageTitleFix::get_slug() );
+	protected function get_expected_slug(): string {
+		return 'missing_or_empty_page_title';
 	}
 
 	/**
-	 * Test get_nicename returns translated string.
+	 * Get the expected type for this fix.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_nicename() {
-		$nicename = AddMissingOrEmptyPageTitleFix::get_nicename();
-		$this->assertIsString( $nicename );
-		$this->assertNotEmpty( $nicename );
-		$this->assertEquals( 'Add Missing or Empty Page Titles', $nicename );
+	protected function get_expected_type(): string {
+		return 'none';
 	}
 
 	/**
-	 * Test get_fancyname returns translated string.
+	 * Get the fix class name.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_fancyname() {
-		$fancyname = AddMissingOrEmptyPageTitleFix::get_fancyname();
-		$this->assertIsString( $fancyname );
-		$this->assertNotEmpty( $fancyname );
-		$this->assertEquals( 'Set Page HTML Titles', $fancyname );
-	}
-
-	/**
-	 * Test get_type returns none.
-	 *
-	 * @return void
-	 */
-	public function test_get_type() {
-		$this->assertEquals( 'none', AddMissingOrEmptyPageTitleFix::get_type() );
+	protected function get_fix_class_name(): string {
+		return AddMissingOrEmptyPageTitleFix::class;
 	}
 
 	/**
@@ -72,10 +61,8 @@ class AddMissingOrEmptyPageTitleFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_get_fields_array() {
-		$fix    = new AddMissingOrEmptyPageTitleFix();
-		$fields = $fix->get_fields_array();
+		$fields = $this->fix->get_fields_array();
 
-		$this->assertIsArray( $fields );
 		$this->assertArrayHasKey( 'edac_fix_add_missing_or_empty_page_title', $fields );
 
 		$field = $fields['edac_fix_add_missing_or_empty_page_title'];
@@ -94,10 +81,8 @@ class AddMissingOrEmptyPageTitleFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_get_fields_array_pro_upsell() {
-		$fix = new AddMissingOrEmptyPageTitleFix();
-		
 		// Test without is_pro property (should show upsell).
-		$fields = $fix->get_fields_array();
+		$fields = $this->fix->get_fields_array();
 		$field  = $fields['edac_fix_add_missing_or_empty_page_title'];
 		$this->assertTrue( $field['upsell'] );
 	}
@@ -124,31 +109,15 @@ class AddMissingOrEmptyPageTitleFixTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test get_fields_array preserves existing fields.
-	 *
-	 * @return void
-	 */
-	public function test_get_fields_array_preserves_existing_fields() {
-		$fix             = new AddMissingOrEmptyPageTitleFix();
-		$existing_fields = [ 'existing_field' => [ 'type' => 'text' ] ];
-		$fields          = $fix->get_fields_array( $existing_fields );
-
-		$this->assertArrayHasKey( 'existing_field', $fields );
-		$this->assertArrayHasKey( 'edac_fix_add_missing_or_empty_page_title', $fields );
-	}
-
-	/**
 	 * Test register method adds filter.
 	 *
 	 * @return void
 	 */
 	public function test_register_adds_filter() {
-		$fix = new AddMissingOrEmptyPageTitleFix();
-
-		$fix->register();
+		$this->fix->register();
 
 		// Verify that the filter was added by checking if it has the expected callback.
-		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields', [ $fix, 'get_fields_array' ] ) !== false );
+		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields', [ $this->fix, 'get_fields_array' ] ) !== false );
 	}
 
 	/**
@@ -157,10 +126,8 @@ class AddMissingOrEmptyPageTitleFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_run_does_nothing() {
-		$fix = new AddMissingOrEmptyPageTitleFix();
-
 		// Since run() is intentionally empty, just ensure it doesn't throw errors.
-		$this->assertNull( $fix->run() );
+		$this->assertNull( $this->fix->run() );
 	}
 
 	/**
@@ -169,8 +136,7 @@ class AddMissingOrEmptyPageTitleFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_field_array_structure() {
-		$fix    = new AddMissingOrEmptyPageTitleFix();
-		$fields = $fix->get_fields_array();
+		$fields = $this->fix->get_fields_array();
 		$field  = $fields['edac_fix_add_missing_or_empty_page_title'];
 
 		// Required field properties.

@@ -9,49 +9,50 @@ use PHPUnit\Framework\TestCase;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+require_once __DIR__ . '/FixTestTrait.php';
+
 /**
  * Unit tests for the TabindexFix class.
  */
 class TabindexFixTest extends WP_UnitTestCase {
 
+	use FixTestTrait;
+
 	/**
-	 * Test that TabindexFix implements FixInterface.
+	 * Set up the test.
 	 *
 	 * @return void
 	 */
-	public function test_implements_fix_interface() {
-		$fix = new TabindexFix();
-		$this->assertInstanceOf( FixInterface::class, $fix );
+	public function set_up() {
+		parent::set_up();
+		$this->fix = new TabindexFix();
 	}
 
 	/**
-	 * Test get_slug returns correct slug.
+	 * Get the expected slug for this fix.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_slug() {
-		$this->assertEquals( 'remove_tabindex', TabindexFix::get_slug() );
+	protected function get_expected_slug(): string {
+		return 'remove_tabindex';
 	}
 
 	/**
-	 * Test get_nicename returns translated string.
+	 * Get the expected type for this fix.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_nicename() {
-		$nicename = TabindexFix::get_nicename();
-		$this->assertIsString( $nicename );
-		$this->assertNotEmpty( $nicename );
-		$this->assertEquals( 'Remove Tabindex from Focusable Elements', $nicename );
+	protected function get_expected_type(): string {
+		return 'frontend';
 	}
 
 	/**
-	 * Test get_type returns frontend.
+	 * Get the fix class name.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_get_type() {
-		$this->assertEquals( 'frontend', TabindexFix::get_type() );
+	protected function get_fix_class_name(): string {
+		return TabindexFix::class;
 	}
 
 	/**
@@ -60,10 +61,8 @@ class TabindexFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_get_fields_array() {
-		$fix    = new TabindexFix();
-		$fields = $fix->get_fields_array();
+		$fields = $this->fix->get_fields_array();
 
-		$this->assertIsArray( $fields );
 		$this->assertArrayHasKey( 'edac_fix_remove_tabindex', $fields );
 
 		$field = $fields['edac_fix_remove_tabindex'];
@@ -77,31 +76,15 @@ class TabindexFixTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test get_fields_array preserves existing fields.
-	 *
-	 * @return void
-	 */
-	public function test_get_fields_array_preserves_existing_fields() {
-		$fix             = new TabindexFix();
-		$existing_fields = [ 'existing_field' => [ 'type' => 'text' ] ];
-		$fields          = $fix->get_fields_array( $existing_fields );
-
-		$this->assertArrayHasKey( 'existing_field', $fields );
-		$this->assertArrayHasKey( 'edac_fix_remove_tabindex', $fields );
-	}
-
-	/**
 	 * Test register method adds filter.
 	 *
 	 * @return void
 	 */
 	public function test_register_adds_filter() {
-		$fix = new TabindexFix();
-
-		$fix->register();
+		$this->fix->register();
 
 		// Verify that the filter was added by checking if it has the expected callback.
-		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields', [ $fix, 'get_fields_array' ] ) !== false );
+		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields', [ $this->fix, 'get_fields_array' ] ) !== false );
 	}
 
 	/**
@@ -110,15 +93,13 @@ class TabindexFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_run_when_disabled() {
-		$fix = new TabindexFix();
-
 		// Ensure option is disabled.
 		update_option( 'edac_fix_remove_tabindex', false );
 
 		// Count filters before run.
 		$filters_before = has_filter( 'edac_filter_frontend_fixes_data' );
 
-		$fix->run();
+		$this->fix->run();
 
 		// Count filters after run - should be the same.
 		$filters_after = has_filter( 'edac_filter_frontend_fixes_data' );
@@ -132,12 +113,10 @@ class TabindexFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_run_when_enabled() {
-		$fix = new TabindexFix();
-
 		// Enable the option.
 		update_option( 'edac_fix_remove_tabindex', true );
 
-		$fix->run();
+		$this->fix->run();
 
 		// Check that the filter was added.
 		$this->assertTrue( has_filter( 'edac_filter_frontend_fixes_data' ) !== false );
@@ -149,12 +128,10 @@ class TabindexFixTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_frontend_data_filter() {
-		$fix = new TabindexFix();
-
 		// Enable the option.
 		update_option( 'edac_fix_remove_tabindex', true );
 
-		$fix->run();
+		$this->fix->run();
 
 		// Test the filter output.
 		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
