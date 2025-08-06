@@ -187,10 +187,11 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 	 * Test add_title_to_read_more method adds post title
 	 */
 	public function test_add_title_to_read_more_adds_title() {
-		// Set up global post.
-		global $post;
-		$post = get_post( $this->post_id );
-		setup_postdata( $post );
+		// Set the current post in the global query.
+		$this->go_to( get_permalink( $this->post_id ) );
+		global $wp_query;
+		$wp_query->queried_object    = get_post( $this->post_id );
+		$wp_query->queried_object_id = $this->post_id;
 		
 		$link = '<a href="http://example.com/test-post">Read More</a>';
 		$text = 'Read More';
@@ -199,18 +200,17 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		
 		$this->assertStringContainsString( 'Test Post Title', $result );
 		$this->assertStringContainsString( 'edac-content-more-title', $result );
-		
-		wp_reset_postdata();
 	}
 
 	/**
 	 * Test add_title_to_read_more preserves existing title
 	 */
 	public function test_add_title_to_read_more_preserves_existing_title() {
-		// Set up global post.
-		global $post;
-		$post = get_post( $this->post_id );
-		setup_postdata( $post );
+		// Set the current post in the global query.
+		$this->go_to( get_permalink( $this->post_id ) );
+		global $wp_query;
+		$wp_query->queried_object    = get_post( $this->post_id );
+		$wp_query->queried_object_id = $this->post_id;
 		
 		$link = '<a href="http://example.com/test-post">Read More about Test Post Title</a>';
 		$text = 'Read More about Test Post Title';
@@ -219,19 +219,12 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		
 		// Should not add duplicate title.
 		$this->assertEquals( $link, $result );
-		
-		wp_reset_postdata();
 	}
 
 	/**
 	 * Test add_title_link_to_excerpts method when has_excerpt is true
 	 */
 	public function test_add_title_link_to_excerpts_adds_link_when_has_excerpt() {
-		// Set up global post.
-		global $post;
-		$post = get_post( $this->post_id );
-		setup_postdata( $post );
-		
 		// Set post to have an excerpt.
 		wp_update_post(
 			[
@@ -240,10 +233,11 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 			] 
 		);
 		
-		// Mock has_excerpt function.
-		global $post;
-		$original_post = $post;
-		$post          = get_post( $this->post_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		// Set the current post in the global query.
+		$this->go_to( get_permalink( $this->post_id ) );
+		global $wp_query;
+		$wp_query->queried_object    = get_post( $this->post_id );
+		$wp_query->queried_object_id = $this->post_id;
 		
 		$excerpt = 'This is a test excerpt.';
 		
@@ -251,21 +245,12 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		
 		$this->assertStringContainsString( 'Test Post Title', $result );
 		$this->assertStringContainsString( 'edac-content-more-title', $result );
-		
-		// Restore original post.
-		$post = $original_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-		wp_reset_postdata();
 	}
 
 	/**
 	 * Test add_title_link_to_excerpts preserves excerpt when title already present
 	 */
 	public function test_add_title_link_to_excerpts_preserves_when_title_present() {
-		// Set up global post.
-		global $post;
-		$post = get_post( $this->post_id );
-		setup_postdata( $post );
-		
 		// Set post to have an excerpt with title already present.
 		wp_update_post(
 			[
@@ -274,10 +259,11 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 			] 
 		);
 		
-		// Mock has_excerpt function.
-		global $post;
-		$original_post = $post;
-		$post          = get_post( $this->post_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		// Set the current post in the global query.
+		$this->go_to( get_permalink( $this->post_id ) );
+		global $wp_query;
+		$wp_query->queried_object    = get_post( $this->post_id );
+		$wp_query->queried_object_id = $this->post_id;
 		
 		$excerpt = 'This excerpt already contains Test Post Title.';
 		
@@ -285,20 +271,17 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		
 		// Should not modify excerpt when title already present.
 		$this->assertEquals( $excerpt, $result );
-		
-		// Restore original post.
-		$post = $original_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-		wp_reset_postdata();
 	}
 
 	/**
 	 * Test add_title_to_excerpt_more method
 	 */
 	public function test_add_title_to_excerpt_more() {
-		// Set up global post.
-		global $post;
-		$post = get_post( $this->post_id );
-		setup_postdata( $post );
+		// Set the current post in the global query.
+		$this->go_to( get_permalink( $this->post_id ) );
+		global $wp_query;
+		$wp_query->queried_object    = get_post( $this->post_id );
+		$wp_query->queried_object_id = $this->post_id;
 		
 		// Mock get_the_permalink.
 		add_filter(
@@ -320,7 +303,6 @@ class ReadMoreAddTitleFixTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'edac-content-more-title', $result );
 		
 		remove_all_filters( 'post_link' );
-		wp_reset_postdata();
 	}
 
 	/**
