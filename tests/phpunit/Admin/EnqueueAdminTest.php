@@ -165,4 +165,30 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
 		$this->assertStringContainsString( 'preview=true', $localized_data );
 	}
+
+	/**
+	 * Test that page scanner script is enqueued on scan page.
+	 *
+	 * @return void
+	 */
+	public function testPageScannerScriptEnqueuedOnScanPage() {
+		$_GET['page'] = 'accessibility_checker_scan_page';
+
+		$this->enqueue_admin::maybe_enqueue_page_scanner_script();
+
+		$this->assertTrue( wp_script_is( 'edac-page-scanner', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that page scanner script is not enqueued on other pages.
+	 *
+	 * @return void
+	 */
+	public function testPageScannerScriptNotEnqueuedOnOtherPages() {
+		$_GET['page'] = 'some_other_page';
+
+		$this->enqueue_admin::maybe_enqueue_page_scanner_script();
+
+		$this->assertFalse( wp_script_is( 'edac-page-scanner', 'enqueued' ) );
+	}
 }
