@@ -31,7 +31,7 @@ class Meta_Boxes {
 	 * @return void
 	 */
 	public function register_meta_boxes(): void {
-		$post_types = get_option( 'edac_post_types' );
+		$post_types = apply_filters( 'edacp_fill_site_scan_scannable_post_types', get_option( 'edac_post_types' ) );
 		if ( $post_types ) {
 			foreach ( $post_types as $post_type ) {
 				add_meta_box(

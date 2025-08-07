@@ -488,12 +488,17 @@ class Ajax {
 
 						if ( ! isset( $rule['viewable'] ) || $rule['viewable'] ) {
 
+							$post_view_link = apply_filters(
+								'edac_details_post_view_link',
+								$postid
+							);
+
 							$url = add_query_arg(
 								[
 									'edac'       => $id,
 									'edac_nonce' => wp_create_nonce( 'edac_highlight' ),
 								],
-								get_the_permalink( $postid )
+								is_string( $post_view_link ) ? $post_view_link : get_the_permalink( $postid )
 							);
 
 							// Translators: %d is the issue ID.
