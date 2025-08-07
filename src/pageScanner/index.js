@@ -7,6 +7,16 @@ import { exclusionsArray } from './config/exclusions';
 import imgAnimated from './rules/img-animated';
 import { preScanAnimatedImages } from './checks/img-animated-check';
 import { getPageDensity } from './helpers/density';
+import {
+	addRulesFilter,
+	addChecksFilter,
+	addRunOptionsFilter,
+	addConfigOptionsFilter,
+	applyRulesFilters,
+	applyChecksFilters,
+	applyRunOptionsFilters,
+	applyConfigOptionsFilters,
+} from './utils/callbacks';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
@@ -200,11 +210,15 @@ const scan = async (
 ) => {
 	const context = { exclude: exclusionsArray };
 
+	// Apply callback filters to rules and checks before setting defaults
+	const filteredRules = applyRulesFilters( rulesArray );
+	const filteredChecks = applyChecksFilters( checksArray );
+
 	const defaults = {
 		configOptions: {
 			reporter: 'raw',
-			rules: rulesArray,
-			checks: checksArray,
+			rules: filteredRules,
+			checks: filteredChecks,
 			iframes: false,
 		},
 		resultTypes: [ 'violations', 'incomplete' ],
@@ -216,10 +230,13 @@ const scan = async (
 		},
 	};
 
-	const configOptions = Object.assign( defaults.configOptions, options.configOptions );
+	// Apply callback filters to options
+	const baseConfigOptions = Object.assign( defaults.configOptions, options.configOptions );
+	const configOptions = applyConfigOptionsFilters( baseConfigOptions );
 	axe.configure( configOptions );
 
-	const runOptions = Object.assign( defaults.runOptions, options.runOptions );
+	const baseRunOptions = Object.assign( defaults.runOptions, options.runOptions );
+	const runOptions = applyRunOptionsFilters( baseRunOptions );
 
 	// Axe core checks can't run async and to find animated gifs we need to use fetch. So this
 	// function will do that fetching and cache the results so they are available when the
@@ -359,6 +376,45 @@ window.runAccessibilityScan = async function( options = {} ) {
 			throw err;
 		} );
 };
+
+// Expose callback registration functions globally
+window.addPageScannerRulesFilter = addRulesFilter;
+window.addPageScannerChecksFilter = addChecksFilter;
+window.addPageScannerRunOptionsFilter = addRunOptionsFilter;
+window.addPageScannerConfigOptionsFilter = addConfigOptionsFilter;
+
+/**
+ * Usage Examples:
+ *
+ * // Filter out specific rules before scanning
+ * window.addPageScannerRulesFilter((rules) => {
+ *   return rules.filter(rule => rule.id !== 'color-contrast-failure');
+ * });
+ *
+ * // Add custom checks
+ * window.addPageScannerChecksFilter((checks) => {
+ *   return [...checks, myCustomCheck];
+ * });
+ *
+ * // Modify run options (e.g., only run specific rules)
+ * window.addPageScannerRunOptionsFilter((options) => {
+ *   return {
+ *     ...options,
+ *     runOnly: {
+ *       type: 'rule',
+ *       values: ['meta-viewport', 'document-title']
+ *     }
+ *   };
+ * });
+ *
+ * // Modify config options
+ * window.addPageScannerConfigOptionsFilter((options) => {
+ *   return {
+ *     ...options,
+ *     iframes: true
+ *   };
+ * });
+ */
 
 // Auto-run scan and dispatch event to parent frame if in iframe context
 if ( isIframeContext() ) {
