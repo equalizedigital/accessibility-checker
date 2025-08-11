@@ -50,7 +50,7 @@ class Enqueue_Frontend {
 
 		// Don't load on the frontend if we don't have a post to work with.
 		global $post;
-		$post_id = is_object( $post ) ? $post->ID : null;
+		$post_id = apply_filters( 'edac_filter_frontend_highlight_post_id', is_object( $post ) ? $post->ID : null );
 
 		if ( null === $post_id ) {
 			return;
