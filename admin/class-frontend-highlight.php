@@ -11,7 +11,7 @@ use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 /**
- * Class EDAC_Frontend_Highlight
+ * Class Frontend_Highlight
  *
  * A class that handles AJAX requests for frontend highlighting of accessibility issues.
  */
