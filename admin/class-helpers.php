@@ -91,23 +91,30 @@ class Helpers {
 	/**
 	 * Localizes the format of a date.
 	 *
-	 * @param string  $date date to format.
-	 * @param boolean $include_time whether to include time in the formatted date.
-	 * @return integer
+	 * @param string|int $date Date to format.
+	 *   - Unix timestamp (int, seconds since 1970-01-01, reasonable range: 1970-2100).
+	 *   - MySQL datetime string (YYYY-MM-DD HH:MM:SS) in site timezone.
+	 * @param boolean    $include_time Whether to include time in the formatted date.
+	 * @return string Formatted date string, or original input if invalid.
 	 */
 	public static function format_date( $date, $include_time = false ) {
 
-		$timestamp = $date;
-		if ( ! is_numeric( $date ) ) { // date as string.
-			$timestamp = strtotime( $date );
-			if ( ! $timestamp ) { // The passed string is not a valid date.
+		// If $date is numeric, treat as timestamp. Validate reasonable bounds (1970-2100).
+		if ( is_numeric( $date ) ) {
+			$timestamp = (int) $date;
+			if ( $timestamp < 0 || $timestamp > 4102444800 ) { // 2100-01-01
+				return $date;
+			}
+			$datetime = new \DateTime( "@{$timestamp}" );
+			$datetime->setTimezone( wp_timezone() );
+		} else {
+			// Handle MySQL datetime string (YYYY-MM-DD HH:MM:SS) in site timezone.
+			try {
+				$datetime = new \DateTime( $date, wp_timezone() );
+			} catch ( \Exception $e ) {
 				return $date;
 			}
 		}
-
-		$datetime = new \DateTime();
-		$datetime->setTimestamp( $timestamp );
-		$datetime->setTimezone( wp_timezone() );
 
 		$format = ( ! $include_time )
 			? get_option( 'date_format' )
