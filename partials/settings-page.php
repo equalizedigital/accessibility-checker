@@ -40,13 +40,16 @@ if ( is_array( $settings_tab_items ) ) {
 }
 
 // Get the active tab from the $_GET param.
-$default_tab  = null;
-$settings_tab = $default_tab;
+$default_tab = null;
+
 // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Nonce verification not required for tab display.
 if ( isset( $_GET['tab'] ) ) {
 	$settings_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) );
+} else {
+	$settings_tab = $default_tab;
 }
 // phpcs:enable WordPress.Security.NonceVerification.Recommended
+
 $settings_tab = ( array_search( $settings_tab, array_column( $settings_tab_items, 'slug' ), true ) !== false ) ? $settings_tab : $default_tab;
 ?>
 
