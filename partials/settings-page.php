@@ -39,7 +39,7 @@ if ( is_array( $settings_tab_items ) ) {
 	);
 }
 
-// Get the active tab from the $_GET param.
+// Null represents the default tab (empty slug) in the navigation logic.
 $default_tab = null;
 
 // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Nonce verification not required for tab display.
