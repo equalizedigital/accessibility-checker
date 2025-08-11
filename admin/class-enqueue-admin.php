@@ -50,7 +50,7 @@ class Enqueue_Admin {
 		global $pagenow;
 		$post_types        = get_option( 'edac_post_types' );
 		$current_post_type = get_post_type();
-		$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+		$page              = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
 		$enabled_pages     = apply_filters(
 			'edac_filter_admin_scripts_slugs',
 			[
@@ -147,7 +147,7 @@ class Enqueue_Admin {
 	 */
 	public static function maybe_enqueue_email_opt_in_script() {
 
-		$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
 		if ( 'accessibility_checker' !== $page ) {
 			return;
 		}
