@@ -51,7 +51,7 @@ class Ajax {
 	public function summary() {
 
 		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
+               if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
 
 			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
@@ -200,7 +200,7 @@ class Ajax {
 	public function details() {
 
 		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
+               if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
 
 			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
@@ -579,7 +579,7 @@ class Ajax {
 	public function readability() {
 
 		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
+               if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
 
 			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
@@ -717,7 +717,7 @@ class Ajax {
 	public function add_ignore() {
 
 		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
+               if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
 
 			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
@@ -726,15 +726,15 @@ class Ajax {
 
 		global $wpdb;
 		$table_name           = $wpdb->prefix . 'accessibility_checker';
-		$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
+               $raw_ids              = isset( $_REQUEST['ids'] ) ? (array) wp_unslash( $_REQUEST['ids'] ) : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
 		$ids                  = array_map(
 			function ( $value ) {
 				return (int) $value;
 			},
 			$raw_ids
 		); // Sanitizing array elements to integers.
-		$action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( $_REQUEST['ignore_action'] ) : '';
-		$type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( $_REQUEST['ignore_type'] ) : '';
+               $action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_action'] ) ) : '';
+               $type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_type'] ) ) : '';
 		$siteid               = get_current_blog_id();
 		$ignre                = ( 'enable' === $action ) ? 1 : 0;
 		$ignre_user           = ( 'enable' === $action ) ? get_current_user_id() : null;
@@ -742,8 +742,8 @@ class Ajax {
 		$ignre_username       = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
 		$ignre_date           = ( 'enable' === $action ) ? gmdate( 'Y-m-d H:i:s' ) : null;
 		$ignre_date_formatted = ( 'enable' === $action ) ? gmdate( 'F j, Y g:i a', strtotime( $ignre_date ) ) : '';
-		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( $_REQUEST['comment'] ) : null;
-		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( $_REQUEST['ignore_global'] ) : 0;
+               $ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['comment'] ) ) : null;
+               $ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['ignore_global'] ) ) : 0;
 
 		// If largeBatch is set and 'true', we need to perform an update using the 'object'
 		// instead of IDs. It is a much less efficient query than by IDs - but many IDs run
@@ -794,10 +794,10 @@ class Ajax {
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that the summary was not specified
 	 */
-	public function simplified_summary() {
+       public function simplified_summary() {
 
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
+               // nonce security.
+               if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
 
 			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
@@ -819,11 +819,11 @@ class Ajax {
 		}
 
 		$post_id = (int) $_REQUEST['post_id'];
-		update_post_meta(
-			$post_id,
-			'_edac_simplified_summary',
-			sanitize_text_field( $_REQUEST['summary'] )
-		);
+               update_post_meta(
+                       $post_id,
+                       '_edac_simplified_summary',
+                       sanitize_text_field( wp_unslash( $_REQUEST['summary'] ) )
+               );
 
 		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
 		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
