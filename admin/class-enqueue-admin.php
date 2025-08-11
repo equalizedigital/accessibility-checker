@@ -29,6 +29,7 @@ class Enqueue_Admin {
 		self::enqueue_styles();
 		self::maybe_enqueue_admin_and_editor_app_scripts();
 		self::maybe_enqueue_email_opt_in_script();
+		self::maybe_enqueue_page_scanner_script();
 	}
 
 	/**
@@ -159,5 +160,26 @@ class Enqueue_Admin {
 
 		$email_opt_in = new Email_Opt_In();
 		$email_opt_in->enqueue_scripts();
+	}
+
+	/**
+	 * Enqueue the page scanner script on the scan page.
+	 *
+	 * @return void
+	 */
+	public static function maybe_enqueue_page_scanner_script() {
+
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+		if ( 'accessibility_checker_scan_page' !== $page ) {
+			return;
+		}
+
+		wp_enqueue_script( 
+			'edac-page-scanner', 
+			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js', 
+			[], 
+			EDAC_VERSION, 
+			false 
+		);
 	}
 }

@@ -72,6 +72,16 @@ function edac_add_options_page() {
 
 	$fixes_page = new FixesPage( $settings_capability );
 	$fixes_page->add_page();
+
+	// Add scan this page submenu item.
+	add_submenu_page(
+		'accessibility_checker',
+		__( 'Scan This Page', 'accessibility-checker' ),
+		__( 'Scan This Page', 'accessibility-checker' ),
+		'read',
+		'accessibility_checker_scan_page',
+		'edac_display_scan_page'
+	);
 }
 
 /**
@@ -86,6 +96,13 @@ function edac_display_welcome_page() {
  */
 function edac_display_options_page() {
 	include_once plugin_dir_path( __DIR__ ) . 'partials/settings-page.php';
+}
+
+/**
+ * Render the scan page for plugin
+ */
+function edac_display_scan_page() {
+	include_once plugin_dir_path( __DIR__ ) . 'partials/scan-page.php';
 }
 
 /**
