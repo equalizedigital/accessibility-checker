@@ -74,8 +74,7 @@ class Frontend_Highlight {
 	 */
 	public function ajax() {
 
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
+		if ( ! check_ajax_referer( 'ajax-nonce', 'nonce', false ) ) {
 			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 		}
