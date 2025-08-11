@@ -44,7 +44,7 @@ $default_tab = null;
 
 // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Nonce verification not required for tab display.
 if ( isset( $_GET['tab'] ) ) {
-	$settings_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) );
+	$settings_tab = sanitize_key( wp_unslash( $_GET['tab'] ) );
 } else {
 	$settings_tab = $default_tab;
 }
