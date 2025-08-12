@@ -118,6 +118,9 @@ class Ajax {
 
 			$html['content'] .= '</li>';
 
+			// if this is a virtual page, we don't show the readability section.
+			$is_virtual_page = ( 'edac_virtual_page' === get_post_type( $post_id ) );
+
 			$html['content'] .= '
 				' . edac_generate_summary_stat(
 				'edac-summary-errors',
@@ -145,7 +148,7 @@ class Ajax {
 			) . '
 
 		</ul>
-		<div class="edac-summary-readability">
+		<div class="edac-summary-readability" ' . ( $is_virtual_page ? 'style="display: none;"' : '' ) . '>
 			<div class="edac-summary-readability-level">
 				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability-icon-navy.png" alt="" width="54"></div>
 				<div class="edac-panel-number' . ( ( (int) $summary['content_grade'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
@@ -479,7 +482,7 @@ class Ajax {
 
 						$landmark          = isset( $row['landmark'] ) ? $row['landmark'] : '';
 						$landmark_selector = isset( $row['landmark_selector'] ) ? $row['landmark_selector'] : '';
-						
+
 						$html .= edac_generate_landmark_link( $landmark, $landmark_selector, $postid );
 
 						$html .= '</div>';
