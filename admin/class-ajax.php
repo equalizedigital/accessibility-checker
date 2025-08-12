@@ -489,7 +489,7 @@ class Ajax {
 						if ( ! isset( $rule['viewable'] ) || $rule['viewable'] ) {
 
 							$post_view_link = apply_filters(
-								'edac_details_post_view_link',
+								'edac_get_origin_url_for_virtual_page',
 								$postid
 							);
 

@@ -770,12 +770,17 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 	
 	// If we have both landmark and selector, create a link.
 	if ( ! empty( $landmark_selector ) ) {
+		$link = apply_filters(
+			'edac_get_origin_url_for_virtual_page',
+			$post_id
+		);
+
 		$landmark_url = add_query_arg(
 			[
 				'edac_landmark' => base64_encode( $landmark_selector ),
 				'edac_nonce'    => wp_create_nonce( 'edac_highlight' ),
 			],
-			get_the_permalink( $post_id )
+			is_string( $link ) ? $link : get_the_permalink( $post_id )
 		);
 		
 		// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
