@@ -336,7 +336,7 @@ class Admin_Notices {
 
 		}
 
-		$results = update_option( 'edac_review_notice', sanitize_text_field( $_REQUEST['review_action'] ) );
+		$results = update_option( 'edac_review_notice', sanitize_text_field( wp_unslash( $_REQUEST['review_action'] ) ) );
 
 		if ( 'pause' === $_REQUEST['review_action'] ) {
 			set_transient( 'edac_review_notice_reminder', true, 14 * DAY_IN_SECONDS );
