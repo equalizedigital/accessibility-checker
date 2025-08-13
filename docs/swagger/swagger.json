@@ -1,0 +1,766 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Accessibility Checker Issues API",
+    "description": "REST API for managing accessibility issues detected by the Accessibility Checker plugin",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Equalize Digital",
+      "url": "https://equalizedigital.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "/wp-json/accessibility-checker/v1",
+      "description": "Accessibility Checker API Server"
+    }
+  ],
+  "security": [
+    {
+      "wpNonce": []
+    },
+    {
+      "edacToken": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "wpNonce": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-WP-Nonce",
+        "description": "WordPress nonce for authentication"
+      },
+      "edacToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-EDAD-Token",
+        "description": "EDAC API token for authentication"
+      }
+    },
+    "schemas": {
+      "Issue": {
+        "type": "object",
+        "required": ["id", "postid", "siteid", "type", "rule", "ruletype", "object", "recordcheck", "created", "user"],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the issue"
+          },
+          "postid": {
+            "type": "integer",
+            "description": "WordPress post ID associated with the issue"
+          },
+          "siteid": {
+            "type": "integer",
+            "description": "WordPress site ID"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of issue (error, warning, etc.)"
+          },
+          "rule": {
+            "type": "string",
+            "description": "The accessibility rule that was violated"
+          },
+          "ruletype": {
+            "type": "string",
+            "description": "Type of rule (WCAG2AA, EDAC, etc.)"
+          },
+          "object": {
+            "type": "string",
+            "description": "HTML object or element that caused the issue"
+          },
+          "recordcheck": {
+            "type": "boolean",
+            "description": "Whether the record was checked"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the issue was created"
+          },
+          "user": {
+            "type": "integer",
+            "description": "User ID who discovered the issue"
+          },
+          "ignre": {
+            "type": "boolean",
+            "description": "Whether the issue is ignored"
+          },
+          "ignre_global": {
+            "type": "boolean",
+            "description": "Whether the issue is ignored globally"
+          },
+          "ignre_user": {
+            "type": "integer",
+            "nullable": true,
+            "description": "User ID who ignored the issue"
+          },
+          "ignre_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "When the issue was ignored"
+          },
+          "ignre_comment": {
+            "type": "string",
+            "nullable": true,
+            "description": "Comment when ignoring the issue"
+          },
+          "post_title": {
+            "type": "string",
+            "description": "Title of the associated post"
+          },
+          "post_permalink": {
+            "type": "string",
+            "description": "Permalink of the associated post"
+          },
+          "discoverer_username": {
+            "type": "string",
+            "description": "Display name of user who discovered the issue"
+          },
+          "ignre_username": {
+            "type": "string",
+            "nullable": true,
+            "description": "Display name of user who ignored the issue"
+          },
+          "context": {
+            "type": "string",
+            "description": "Context for the response"
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "description": "Link to this issue"
+                  },
+                  "collection": {
+                    "type": "string",
+                    "description": "Link to issues collection"
+                  }
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer",
+                    "description": "Current page"
+                  },
+                  "per_page": {
+                    "type": "integer",
+                    "description": "Items per page"
+                  },
+                  "total_pages": {
+                    "type": "integer",
+                    "description": "Total pages"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            }
+          }
+        }
+      },
+      "CreateIssueRequest": {
+        "type": "object",
+        "required": ["postid", "rule", "ruletype", "object", "user"],
+        "properties": {
+          "postid": {
+            "type": "integer",
+            "description": "WordPress post ID"
+          },
+          "rule": {
+            "type": "string",
+            "description": "Accessibility rule violated"
+          },
+          "ruletype": {
+            "type": "string",
+            "description": "Type of rule"
+          },
+          "object": {
+            "type": "string",
+            "description": "HTML element causing the issue"
+          },
+          "user": {
+            "type": "integer",
+            "description": "User ID creating the issue"
+          }
+        }
+      },
+      "UpdateIssueRequest": {
+        "type": "object",
+        "properties": {
+          "postid": {
+            "type": "integer",
+            "description": "WordPress post ID"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of issue"
+          },
+          "rule": {
+            "type": "string",
+            "description": "Accessibility rule"
+          },
+          "ruletype": {
+            "type": "string",
+            "description": "Type of rule"
+          },
+          "object": {
+            "type": "string",
+            "description": "HTML element"
+          },
+          "recordcheck": {
+            "type": "boolean",
+            "description": "Record checked flag"
+          },
+          "user": {
+            "type": "integer",
+            "description": "User ID"
+          },
+          "ignre": {
+            "type": "boolean",
+            "description": "Ignore flag"
+          },
+          "ignre_global": {
+            "type": "boolean",
+            "description": "Global ignore flag"
+          },
+          "ignre_user": {
+            "type": "integer",
+            "description": "User who ignored"
+          },
+          "ignre_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When ignored"
+          },
+          "ignre_comment": {
+            "type": "string",
+            "description": "Ignore comment"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Issues",
+      "description": "Accessibility issues management"
+    }
+  ],
+  "paths": {
+    "/issues": {
+      "get": {
+        "tags": ["Issues"],
+        "summary": "Get collection of issues",
+        "description": "Retrieve a paginated list of accessibility issues",
+        "security": [
+          {
+            "wpNonce": []
+          },
+          {
+            "edacToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Current page of the collection",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Maximum number of items to be returned in result set",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 500
+            }
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Comma-separated list of issue IDs to retrieve",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "name": "context",
+            "in": "query",
+            "description": "Scope under which the request is made",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "view",
+              "enum": ["view", "edit"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "headers": {
+              "X-WP-Total": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Total number of issues"
+              },
+              "X-WP-TotalPages": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Total number of pages"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Issue"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Issues"],
+        "summary": "Create a new issue",
+        "description": "Create a new accessibility issue",
+        "security": [
+          {
+            "wpNonce": []
+          },
+          {
+            "edacToken": []
+          }
+        ],
+        "requestBody": {
+          "description": "Issue data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIssueRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Issue created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "ID of the created issue"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - missing required fields or invalid post ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/issues/{id}": {
+      "get": {
+        "tags": ["Issues"],
+        "summary": "Get a single issue",
+        "description": "Retrieve a specific accessibility issue by ID",
+        "security": [
+          {
+            "wpNonce": []
+          },
+          {
+            "edacToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Issue ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "context",
+            "in": "query",
+            "description": "Scope under which the request is made",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "view",
+              "enum": ["view", "edit"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Issue"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Issue not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Issues"],
+        "summary": "Update an issue",
+        "description": "Update an existing accessibility issue",
+        "security": [
+          {
+            "wpNonce": []
+          },
+          {
+            "edacToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Issue ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Issue data to update",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateIssueRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Issue updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Issue"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - no fields to update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Issue not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Update failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Issues"],
+        "summary": "Delete an issue",
+        "description": "Delete a specific accessibility issue",
+        "security": [
+          {
+            "wpNonce": []
+          },
+          {
+            "edacToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Issue ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Issue deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Issue not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Delete failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/issues/access-check": {
+      "get": {
+        "tags": ["Issues"],
+        "summary": "Check API access",
+        "description": "Verify that the client has access to the Issues API",
+        "security": [
+          {
+            "wpNonce": []
+          },
+          {
+            "edacToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Access granted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/issues/count": {
+      "get": {
+        "tags": ["Issues"],
+        "summary": "Get issues count",
+        "description": "Get the total count of accessibility issues",
+        "security": [
+          {
+            "wpNonce": []
+          },
+          {
+            "edacToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Comma-separated list of issue IDs to count",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Count retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of issues"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

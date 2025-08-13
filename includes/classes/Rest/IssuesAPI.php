@@ -13,6 +13,9 @@ use EDAC\Inc\REST_Api;
 
 /**
  * Issues API class.
+ * 
+ * Provides REST endpoints for managing accessibility issues.
+ * OpenAPI documentation is available at /wp-json/accessibility-checker/v1/docs
  */
 class Issues_API extends \WP_REST_Controller {
 
@@ -502,7 +505,7 @@ class Issues_API extends \WP_REST_Controller {
 		}
 		$set_sql = implode( ', ', $set_clauses );
 
-		$query_values = array_values( $update_data );
+		$query_values   = array_values( $update_data );
 		$query_values[] = $id; // For the WHERE clause.
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared -- Using $wpdb->prepare correctly
