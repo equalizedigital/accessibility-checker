@@ -8,6 +8,22 @@
 
 use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Purge_Post_Data;
+use EDAC\Admin\Post_Save;
+
+// Deprecated constants.
+if ( ! defined( 'EDAC_ANWW_ACTIVE' ) ) {
+	/**
+	 * Indicates whether the Accessibility New Window Warnings (ANWW) plugin is active.
+	 *
+	 * This constant is provided for backward compatibility, as it might have been
+	 * expected by other plugins or older versions for checking ANWW plugin activity.
+	 * It evaluates to `true` if `ANWW_VERSION` is defined, and `false` otherwise.
+	 *
+	 * @since 1.24.0 Introduced for backward compatibility and immediately deprecated.
+	 * @deprecated 1.24.0 Please use `defined( 'ANWW_VERSION' )` directly to check ANWW plugin status.
+	 */
+	define( 'EDAC_ANWW_ACTIVE', defined( 'ANWW_VERSION' ) );
+}
 
 /**
  * Alias of the is_plugin_active() function.
@@ -113,4 +129,34 @@ function edac_custom_meta_box_cb() {
 function edac_insert_rule_data( $post, $rule, $ruletype, $rule_obj ) {
 	_deprecated_function( __FUNCTION__, '1.10.0', 'EDAC\Admin\Insert_Rule_Data' );
 	return ( new Insert_Rule_Data() )->insert( $post, $rule, $ruletype, $rule_obj );
+}
+
+/**
+ * Post save handler
+ *
+ * @deprecated 1.23.0
+ *
+ * @param int    $post_ID The ID of the post being saved.
+ * @param object $post    The post object being saved.
+ * @param bool   $update  Whether this is an existing post being updated.
+ * @return int   The post ID.
+ */
+function edac_save_post( $post_ID, $post, $update ) {
+	_deprecated_function( __FUNCTION__, '1.23.0', 'EDAC\Admin\Post_Save::save_post' );
+	Post_Save::delete_issue_data_on_post_trashing( $post_ID, $post, $update );
+	return $post_ID;
+}
+
+/**
+ * Validate post content
+ *
+ * @deprecated 1.23.0 This functionality has been removed without replacement
+ *
+ * @param int    $post_ID The ID of the post.
+ * @param object $post    The post object.
+ * @param string $action  The action being performed.
+ * @return void
+ */
+function edac_validate( $post_ID, $post, $action ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Parameters kept for backwards compatibility
+	_deprecated_function( __FUNCTION__, '1.23.0', 'This functionality has been removed' );
 }

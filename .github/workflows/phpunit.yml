@@ -60,6 +60,9 @@ jobs:
           php-version: ${{ matrix.php_version }}
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
           coverage: none
+          github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS }}
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
@@ -81,7 +84,7 @@ jobs:
         run: |
           if ! command -v svn &> /dev/null; then
             echo "Installing SVN..."
-            sudo apt-get update || { echo "Failed to update package lists"; exit 1; }
+            sudo apt-get update --allow-releaseinfo-change || { echo "Failed to update package lists"; exit 1; }
             sudo apt-get install -y subversion || { echo "Failed to install SVN"; exit 1; }
           else
             echo "SVN is already installed"

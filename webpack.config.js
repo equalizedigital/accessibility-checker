@@ -1,9 +1,10 @@
-/* global require, __dirname, module */
+/* global __dirname, module */
 const webpack = require( 'webpack' ); // to access built-in plugins
 const path = require( 'path' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
+const TerserPlugin = require( 'terser-webpack-plugin' );
 
 module.exports = {
 	mode: 'production', //development | production
@@ -42,6 +43,18 @@ module.exports = {
 				},
 			},
 		},
+		minimizer: [
+			new TerserPlugin( {
+				parallel: true,
+				terserOptions: {
+					mangle: {
+						reserved: [ '__', '_n', '_x', '_nx' ], // Prevent webpack from using these translation function names and mangling them in the source.
+					},
+					keep_fnames: /(__|_n|_x|_nx)$/,
+				},
+			} ),
+			new CssMinimizerPlugin(),
+		],
 	},
 	output: {
 		filename: '[name].bundle.js',
@@ -85,6 +98,9 @@ module.exports = {
 		new MiniCssExtractPlugin( {
 			filename: './css/[name].css',
 		} ),
-		new CssMinimizerPlugin(),
 	],
+	externals: {
+		// Exclude WordPress core scripts and styles from the build.
+		'@wordpress/i18n': [ 'wp', 'i18n' ],
+	},
 };

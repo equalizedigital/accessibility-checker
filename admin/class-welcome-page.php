@@ -30,7 +30,7 @@ class Welcome_Page {
 
 		<div id="edac_welcome_page_summary">
 
-			<?php if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID ) : ?>
+			<?php if ( defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID ) : ?>
 				<section>
 					<div class="edac-cols edac-cols-header">
 						<div class="edac-cols-left">
@@ -302,7 +302,7 @@ class Welcome_Page {
 									<?php esc_html_e( 'Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster.', 'accessibility-checker' ); ?>
 								</p>
 								<p class="edac-align-center">
-									<a class="button button-primary" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page">
+									<a class="button button-primary" href="<?php edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'welcome-page', 'upgrade' ); ?>" target="_blank" rel="noopener noreferrer">
 										<?php esc_html_e( 'Upgrade Accessibility Checker', 'accessibility-checker' ); ?>
 									</a>
 								</p>

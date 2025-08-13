@@ -49,7 +49,10 @@ export const showNotice = ( options ) => {
 		let msg = settings.msg;
 
 		if ( settings.url ) {
-			msg = msg.replace( '{link}', '<a href="' + settings.url + '" target="_blank" arial-label="' + settings.label + '">' + settings.label + '</a>' );
+			msg = msg.replace(
+				'{link}',
+				`<a href="${ encodeURI( settings.url ) }" target="_blank" aria-label="${ settings.label }">${ settings.label }</a>`
+			);
 		} else {
 			msg = msg.replace( '{link}', '' );
 		}
@@ -115,3 +118,15 @@ export const isValidDateFormat = ( inputString ) => {
 	return regexPattern.test( inputString );
 };
 
+export const hashString = ( str ) => {
+	let hash = 0;
+	if ( str.length === 0 ) {
+		return hash;
+	}
+	for ( let i = 0; i < str.length; i++ ) {
+		const char = str.charCodeAt( i );
+		hash = ( ( hash * 32 ) - hash ) + char;
+		hash = Math.floor( hash );
+	}
+	return Math.abs( hash );
+};

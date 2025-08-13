@@ -50,7 +50,7 @@ class Enqueue_Admin {
 		global $pagenow;
 		$post_types        = get_option( 'edac_post_types' );
 		$current_post_type = get_post_type();
-		$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+		$page              = self::get_current_page_slug();
 		$enabled_pages     = apply_filters(
 			'edac_filter_admin_scripts_slugs',
 			[
@@ -76,6 +76,7 @@ class Enqueue_Admin {
 			global $post;
 			$post_id = is_object( $post ) ? $post->ID : null;
 			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery' ], EDAC_VERSION, false );
+			wp_set_script_translations( 'edac', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
 			wp_localize_script(
 				'edac',
@@ -85,7 +86,7 @@ class Enqueue_Admin {
 					'nonce'       => wp_create_nonce( 'ajax-nonce' ),
 					'edacApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
 					'restNonce'   => wp_create_nonce( 'wp_rest' ),
-					'fixesProUrl' => esc_url_raw( edac_generate_link_type( [ 'utm-term', '__fix__' ] ) ),
+					'fixesProUrl' => esc_url_raw( edac_generate_link_type( [ 'utm-content', '__fix__' ] ) ),
 				]
 			);
 
@@ -96,7 +97,7 @@ class Enqueue_Admin {
 				$current_post_type = get_post_type();
 				$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 
-				$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) && EDAC_KEY_VALID;
+				$pro = defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID;
 
 				if ( EDAC_DEBUG || strpos( EDAC_VERSION, '-beta' ) !== false ) {
 					$debug = true; // @codeCoverageIgnore
@@ -105,25 +106,33 @@ class Enqueue_Admin {
 				}
 
 				wp_enqueue_script( 'edac-editor-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
+				wp_set_script_translations( 'edac-editor-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+
+				// If this is the frontpage or homepage, preview URLs won't work. Use the live URL.
+				if ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
+					$scan_url = add_query_arg( 'edac_pageScanner', 1, get_permalink( $post_id ) );
+				} else {
+					$scan_url = get_preview_post_link(
+						$post_id,
+						[ 'edac_pageScanner' => 1 ]
+					);
+				}
 
 				wp_localize_script(
 					'edac-editor-app',
 					'edac_editor_app',
 					[
-						'postID'     => $post_id,
-						'edacUrl'    => esc_url_raw( get_site_url() ),
-						'edacApiUrl' => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-						'baseurl'    => plugin_dir_url( __DIR__ ),
-						'active'     => $active,
-						'pro'        => $pro,
-						'authOk'     => false === (bool) get_option( 'edac_password_protected', false ),
-						'debug'      => $debug,
-						'scanUrl'    => get_preview_post_link(
-							$post_id,
-							[ 'edac_pageScanner' => 1 ]
-						),
-						'version'    => EDAC_VERSION,
-						'restNonce'  => wp_create_nonce( 'wp_rest' ),
+						'postID'       => $post_id,
+						'edacUrl'      => esc_url_raw( get_site_url() ),
+						'edacApiUrl'   => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+						'baseurl'      => plugin_dir_url( __DIR__ ),
+						'active'       => $active,
+						'pro'          => $pro,
+						'debug'        => $debug,
+						'scanUrl'      => $scan_url,
+						'maxAltLength' => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),
+						'version'      => EDAC_VERSION,
+						'restNonce'    => wp_create_nonce( 'wp_rest' ),
 					]
 				);
 
@@ -138,7 +147,7 @@ class Enqueue_Admin {
 	 */
 	public static function maybe_enqueue_email_opt_in_script() {
 
-		$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+		$page = self::get_current_page_slug();
 		if ( 'accessibility_checker' !== $page ) {
 			return;
 		}
@@ -150,5 +159,15 @@ class Enqueue_Admin {
 
 		$email_opt_in = new Email_Opt_In();
 		$email_opt_in->enqueue_scripts();
+	}
+
+	/**
+	 * Gets the current admin page slug.
+	 *
+	 * @since 1.31.0
+	 * @return string|null The current page slug or null if not set.
+	 */
+	private static function get_current_page_slug(): ?string {
+		return isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
 	}
 }

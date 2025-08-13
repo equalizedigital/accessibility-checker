@@ -33,8 +33,6 @@ class Admin_Notices {
 		add_action( 'wp_ajax_edac_black_friday_notice_ajax', [ $this, 'edac_black_friday_notice_ajax' ] );
 		add_action( 'wp_ajax_edac_gaad_notice_ajax', [ $this, 'edac_gaad_notice_ajax' ] );
 		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
-		add_action( 'wp_ajax_edac_password_protected_notice_ajax', [ $this, 'edac_password_protected_notice_ajax' ] );
-		add_action( 'wp_ajax_edac_welcome_page_post_count_change_notice_dismiss_ajax', [ $this, 'welcome_page_post_count_change_notice_ajax' ] );
 		// Save fixes transient on save.
 		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
 	}
@@ -54,78 +52,6 @@ class Admin_Notices {
 		add_action( 'admin_notices', [ $this, 'edac_black_friday_notice' ] );
 		add_action( 'admin_notices', [ $this, 'edac_gaad_notice' ] );
 		add_action( 'admin_notices', [ $this, 'edac_review_notice' ] );
-		add_action( 'admin_notices', [ $this, 'edac_password_protected_notice' ] );
-		add_action( 'admin_notices', [ $this, 'welcome_page_post_count_change_notice' ] );
-	}
-
-	/**
-	 * Notify users of the improvements to stats calculations.
-	 *
-	 * In version 1.21.0 we changed how posts_scanned was counted along with how other values like averages
-	 * were calculated.
-	 *
-	 * @since 1.21.0
-	 *
-	 * @return void
-	 */
-	public function welcome_page_post_count_change_notice() {
-		// Only show this notice if the version number is below 1.22.0.
-		if ( version_compare( EDAC_VERSION, '1.22.0', '>=' ) ) {
-			return;
-		}
-
-		// Only output this message on the welcome page.
-		if ( 'toplevel_page_accessibility_checker' !== get_current_screen()->id ) {
-			return;
-		}
-
-		// Check if the notice has been dismissed.
-		if ( absint( get_option( 'edac_welcome_page_post_count_change_notice_dismiss', 0 ) ) ) {
-			return;
-		}
-
-		?>
-		<div class="notice notice-info is-dismissible edac-stats-improvement-notice">
-			<p>
-				<?php
-					$release_post_link = edac_generate_link_type( [], 'custom', [ 'base_link' => 'https://equalizedigital.com/corrected-calculations-in-accessibility-checker-pro-and-audit-history/' ] );
-					printf(
-						// translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-						esc_html__( 'We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s.', 'accessibility-checker' ),
-						'<a href="' . esc_url( $release_post_link ) . '" target="_blank">',
-						'</a>'
-					);
-				?>
-			</p>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Store a option to remember when user has dismissed this notice.
-	 *
-	 * @return void
-	 */
-	public function welcome_page_post_count_change_notice_ajax() {
-
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', 'Permission Denied' );
-			wp_send_json_error( $error );
-
-		}
-
-		$results = update_option( 'edac_welcome_page_post_count_change_notice_dismiss', true );
-
-		if ( ! $results ) {
-
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
-			wp_send_json_error( $error );
-
-		}
-
-		wp_send_json_success( wp_json_encode( $results ) );
 	}
 
 	/**
@@ -165,8 +91,8 @@ class Admin_Notices {
 	 */
 	public function edac_black_friday_notice() {
 
-		// check if accessibility checker pro is active.
-		if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) {
+		// Check if Accessibility Checker Pro is active.
+		if ( defined( 'EDACP_VERSION' ) ) {
 			return;
 		}
 
@@ -202,8 +128,8 @@ class Admin_Notices {
 		$message  = '<div class="edac_black_friday_notice notice notice-info is-dismissible">';
 		$message .= '<p><strong>' . esc_html__( '🎉 Black Friday special! 🎉', 'accessibility-checker' ) . '</strong><br />';
 		$message .= esc_html__( 'Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more.', 'accessibility-checker' ) . '<br />';
-		$message .= '<a class="button button-primary" href="' . esc_url( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=BlackFriday' ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
-		$message .= '<a class="button button-primary" href="' . esc_url( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=WPadmin&utm_medium=banner&utm_campaign=BlackFriday' ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
+		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/support/pre-sale-questions/', 'admin-notice', 'BF2025-presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
+		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'BF2025-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		$message .= '</div>';
 
 		return $message;
@@ -222,7 +148,7 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -231,7 +157,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -242,22 +168,21 @@ class Admin_Notices {
 	/**
 	 * GAAD Notice
 	 *
-	 * @return string
+	 * @return void
 	 */
 	public function edac_gaad_notice() {
 
 		// Define constants for start and end dates.
-		define( 'EDAC_GAAD_NOTICE_START_DATE', '2024-05-16' );
-		define( 'EDAC_GAAD_NOTICE_END_DATE', '2024-05-23' );
+		define( 'EDAC_GAAD_NOTICE_START_DATE', '2025-05-13' );
+		define( 'EDAC_GAAD_NOTICE_END_DATE', '2025-05-21' );
 
 		// Check if Accessibility Checker Pro is active.
-		$pro = is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' );
-		if ( $pro ) {
+		if ( defined( 'EDACP_VERSION' ) ) {
 			return;
 		}
 
 		// Get the value of the 'edac_gaad_notice_dismiss' option and sanitize it.
-		$dismissed = absint( get_option( 'edac_gaad_notice_dismiss_2024', 0 ) );
+		$dismissed = absint( get_option( 'edac_gaad_notice_dismiss_2025', 0 ) );
 
 		// Check if the notice has been dismissed.
 		if ( $dismissed ) {
@@ -289,9 +214,9 @@ class Admin_Notices {
 		// Construct the promotional message.
 		$message  = '<div class="edac_gaad_notice notice notice-info is-dismissible">';
 		$message .= '<p><strong>' . esc_html__( '🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', 'accessibility-checker' ) . '</strong><br />';
-		$message .= esc_html__( 'Use coupon code GAAD24 from May 16th-May 23rd to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?', 'accessibility-checker' ) . '<br />';
-		$message .= '<a class="button button-primary" href="' . esc_url( 'https://my.equalizedigital.com/support/pre-sale-questions/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD24' ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
-		$message .= '<a class="button button-primary" href="' . esc_url( 'https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=GAAD24' ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
+		$message .= esc_html__( 'Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?', 'accessibility-checker' ) . '<br />';
+		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/contact/', 'admin-notice', 'GAAD25-presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
+		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'GAAD25-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		$message .= '</div>';
 
 		return $message;
@@ -310,18 +235,19 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
 
-		$results = update_option( 'edac_gaad_notice_dismiss_2024', true );
-		// delete old meta key.
+		$results = update_option( 'edac_gaad_notice_dismiss_2025', true );
+		// Delete old meta keys if they exist.
+		delete_option( 'edac_gaad_notice_dismiss_2024' );
 		delete_option( 'edac_gaad_notice_dismiss' );
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -398,14 +324,14 @@ class Admin_Notices {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
 
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
 
 		if ( ! isset( $_REQUEST['review_action'] ) ) {
 
-			$error = new \WP_Error( '-2', 'The review action value was not set' );
+			$error = new \WP_Error( '-2', __( 'The review action value was not set', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -418,7 +344,7 @@ class Admin_Notices {
 
 		if ( ! $results ) {
 
-			$error = new \WP_Error( '-3', 'Update option wasn\'t successful' );
+			$error = new \WP_Error( '-3', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -426,76 +352,6 @@ class Admin_Notices {
 		wp_send_json_success( wp_json_encode( $results ) );
 	}
 
-	/**
-	 * Password Protected Notice Text
-	 *
-	 * @return string
-	 */
-	public function edac_password_protected_notice_text() {
-		/**
-		 * Filter the password protected notice text.
-		 *
-		 * @since 1.4.0
-		 *
-		 * @param string $text The password protected notice text.
-		 */
-		return apply_filters(
-			'edac_filter_password_protected_notice_text',
-			sprintf(
-				// translators: %s is the link to upgrade to pro, with "upgrade to pro" as the anchor text.
-				esc_html__( 'Whoops! It looks like your website is currently password protected. The free version of Accessibility Checker can only scan live websites. To scan this website for accessibility problems either remove the password protection or %s. Scan results may be stored from a previous scan.', 'accessibility-checker' ),
-				sprintf(
-					'<a href="https://equalizedigital.com/accessibility-checker/pricing/" target="_blank" aria-label="%1$s">%2$s</a>',
-					esc_attr__( 'Upgrade to accessibility checker pro. Opens in a new window.', 'accessibility-checker' ),
-					esc_html__( 'upgrade to pro', 'accessibility-checker' )
-				)
-			)
-		);
-	}
-
-	/**
-	 * Password Protected Notice
-	 *
-	 * @return string
-	 */
-	public function edac_password_protected_notice() {
-		if ( (bool) get_option( 'edac_password_protected' )
-			&& ! (bool) get_option( 'edac_password_protected_notice_dismiss' )
-		) {
-			echo wp_kses( '<div class="edac_password_protected_notice notice notice-error is-dismissible"><p>' . $this->edac_password_protected_notice_text() . '</p></div>', 'post' );
-			return;
-		}
-	}
-
-	/**
-	 * Password Protected Admin Notice Ajax
-	 *
-	 * @return void
-	 *
-	 *  - '-1' means that nonce could not be varified
-	 *  - '-2' means that update option wasn't successful
-	 */
-	public function edac_password_protected_notice_ajax() {
-
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', 'Permission Denied' );
-			wp_send_json_error( $error );
-
-		}
-
-		$results = update_option( 'edac_password_protected_notice_dismiss', true );
-
-		if ( ! $results ) {
-
-			$error = new \WP_Error( '-2', 'Update option wasn\'t successful' );
-			wp_send_json_error( $error );
-
-		}
-
-		wp_send_json_success( wp_json_encode( $results ) );
-	}
 
 	/**
 	 * Save a transient to indicate that the fixes settings have been updated.

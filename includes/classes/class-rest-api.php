@@ -62,7 +62,7 @@ class REST_Api {
 							return new \WP_REST_Response( [ 'messages' => $messages ], 200 );
 						},
 						'permission_callback' => function () {
-							return true;
+							return current_user_can( 'edit_posts' );
 						},
 					]
 				);
@@ -295,8 +295,7 @@ class REST_Api {
 	 */
 	public function set_post_scan_results( $request ) {
 
-		if ( ! isset( $request['violations'] )
-		) {
+		if ( ! isset( $request['violations'] ) ) {
 			return new \WP_REST_Response( [ 'message' => 'A required parameter is missing.' ], 400 );
 		}
 
@@ -391,7 +390,15 @@ class REST_Api {
 						 */
 						do_action( 'edac_before_rule', $post_id, $actual_rule_id, 'js' );
 
-						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html );
+						$landmark          = $violation['landmark'] ?? null;
+						$landmark_selector = $violation['landmarkSelector'] ?? null;
+
+						$selectors = [
+							'selector' => $violation['selector'] ?? [],
+							'ancestry' => $violation['ancestry'] ?? [],
+							'xpath'    => $violation['xpath'] ?? [],
+						];
+						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html, $landmark, $landmark_selector, $selectors );
 
 						/**
 						 * Fires after a rule is run against the content.
@@ -424,6 +431,19 @@ class REST_Api {
 
 			// remove corrected records.
 			edac_remove_corrected_posts( $post_id, $post->post_type, $pre = 2, 'js' );
+
+			// Save the density metrics before the summary is generated.
+			$metrics = $request['densityMetrics'] ?? [ 0, 0 ];
+			if ( is_array( $metrics ) && count( $metrics ) > 0 ) {
+				update_post_meta(
+					$post_id,
+					'_edac_density_data',
+					[
+						$metrics['elementCount'] ?? 0,
+						$metrics['contentLength'] ?? 0,
+					]
+				);
+			}
 
 			// Update the summary info that is stored in meta this post.
 			( new Summary_Generator( $post_id ) )->generate_summary();

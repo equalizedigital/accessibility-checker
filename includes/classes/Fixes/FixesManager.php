@@ -107,6 +107,7 @@ class FixesManager {
 			'wp_enqueue_scripts',
 			function () {
 				wp_enqueue_script( 'edac-frontend-fixes', EDAC_PLUGIN_URL . 'build/frontendFixes.bundle.js', [], EDAC_VERSION, true );
+				wp_set_script_translations( 'edac-frontend-fixes', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 				wp_localize_script(
 					'edac-frontend-fixes',
 					'edac_frontend_fixes',
@@ -226,7 +227,7 @@ class FixesManager {
 		$theme = wp_get_theme();
 		$tags  = $theme->get( 'Tags' );
 
-		self::$theme_is_accessibility_ready = in_array( 'accessibility-ready', $tags, true );
+		self::$theme_is_accessibility_ready = is_array( $tags ) && in_array( 'accessibility-ready', $tags, true );
 		return self::$theme_is_accessibility_ready;
 	}
 

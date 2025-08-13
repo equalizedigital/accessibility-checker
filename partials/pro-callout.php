@@ -1,6 +1,6 @@
 <?php
 /**
- * Accessibility Checker pluign file.
+ * Accessibility Checker plugin file.
  *
  * @package Accessibility_Checker
  */
@@ -30,14 +30,25 @@
 	<div class="edac-pro-callout-button--wrapper">
 		<a
 			class="edac-pro-callout-button"
-			href="https://equalizedigital.com/accessibility-checker/pricing/"
+			href="
+			<?php
+			echo esc_url(
+				edac_generate_link_type(
+					[
+						'utm-campaign' => 'pro-callout',
+						'utm-content'  => 'get-pro',
+					]
+				)
+			);
+			?>
+			"
 			target="_blank"
 		>
 			<?php esc_html_e( 'Get Accessibility Checker Pro', 'accessibility-checker' ); ?>
 		</a>
 	</div>
 
-	<?php if ( is_plugin_active( 'accessibility-checker-pro/accessibility-checker-pro.php' ) ) : ?>
+	<?php if ( defined( 'EDACP_VERSION' ) ) : ?>
 		<br />
 		<a
 			class="edac-pro-callout-activate"

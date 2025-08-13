@@ -362,7 +362,7 @@
       &-errors {
         color: variables.$color-white;
         background-color: variables.$color-green;
-        background-image: url("../images/error icon white.png");
+        background-image: url("../images/error-icon-white.png");
 
         &.has-errors {
           background-color: variables.$color-red;
@@ -372,7 +372,7 @@
       &-contrast {
         color: variables.$color-white;
         background-color: variables.$color-green;
-        background-image: url("../images/contrast icon white.png");
+        background-image: url("../images/contrast-icon-white.png");
 
         &.has-errors {
           background-color: variables.$color-red;
@@ -382,19 +382,19 @@
       &-warnings {
         color: variables.$color-white;
         background-color: variables.$color-green;
-        background-image: url("../images/warning icon white.png");
+        background-image: url("../images/warning-icon-white.png");
 
         &.has-errors {
           color: variables.$color-blue-dark;
           background-color: variables.$color-yellow;
-          background-image: url("../images/warning icon navy.png");
+          background-image: url("../images/warning-icon-navy.png");
         }
       }
 
       &-ignored {
         color: variables.$color-white;
         background-color: variables.$color-blue-dark;
-        background-image: url("../images/ignore icon white.png");
+        background-image: url("../images/ignore-icon-white.png");
       }
 
       &-readability {
@@ -489,11 +489,11 @@
             width: 33px;
             height: 33px;
             display: block;
-            background: url("../images/error icon red.png") no-repeat center center;
+            background: url("../images/error-icon-red.png") no-repeat center center;
             background-size: contain;
 
             &.active {
-              background-image: url("../images/checkmark icon green.png");
+              background-image: url("../images/checkmark-icon-green.png");
             }
           }
 
@@ -621,7 +621,7 @@
             color: variables.$color-white;
             background-color: variables.$color-dark-gray;
             display: grid;
-            grid-template-columns: auto 125px 125px;
+            grid-template-columns: auto 125px 125px 125px;
 
             &-label {
               padding: 3px;
@@ -631,7 +631,7 @@
 
           &-record {
             display: grid;
-            grid-template-columns: auto 125px 125px;
+            grid-template-columns: auto 125px 125px 125px;
 
             &-cell {
               padding: 10px;
@@ -1016,7 +1016,7 @@
   &-list {
     display: inline-block;
     margin-left: 35px;
-    margin-bottom: 60px;
+    margin-bottom: 25px;
     text-align: left;
 
     li {
@@ -1054,6 +1054,7 @@
     border: 3px solid #072446;
     border-radius: 0;
     position: relative;
+    display: inline-block;
     @include helpers.transition(background .3s, color .3s);
 
     // firefox sizing fix to prevent wrapping due to differences in
@@ -1088,7 +1089,7 @@
   }
 
   &-activate {
-    margin-top: 30px;
+    margin-top: 10px;
     display: block;
   }
 }
@@ -1420,7 +1421,7 @@
           color: #ffffff;
 
           &-error {
-            background: variables.$color-green url('.././images/error%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
+            background: variables.$color-green url('../images/error-icon-white.png') no-repeat calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
 
             &.has-errors {
@@ -1430,7 +1431,7 @@
           }
 
           &-contrast {
-            background: variables.$color-green url('.././images/contrast%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
+            background: variables.$color-green url('.././images/contrast-icon-white.png') no-repeat calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
 
             &.has-errors {
@@ -1440,11 +1441,11 @@
           }
 
           &-warning {
-            background: variables.$color-green url('.././images/warning%20icon%20white.png') no-repeat calc(0% + 5px) 50%;
+            background: variables.$color-green url('.././images/warning-icon-white.png') no-repeat calc(0% + 5px) 50%;
             background-size: 1rem 1rem;
 
             &.has-warning {
-                background: variables.$color-yellow url('.././images/warning%20icon%20navy.png') no-repeat calc(0% + 5px) 50%;
+                background: variables.$color-yellow url('.././images/warning-icon-navy.png') no-repeat calc(0% + 5px) 50%;
                 background-size: 1rem 1rem;
                 color: variables.$color-blue-dark;
             }
@@ -1811,7 +1812,7 @@
     .has-errors {
       color: variables.$color-white;
       background-color: variables.$color-red;
-      background-image: url("../images/error icon white.png");
+      background-image: url("../images/error-icon-white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
       background-repeat: no-repeat;
@@ -1820,7 +1821,7 @@
     .has-no-errors {
       color: variables.$color-white;
       background-color: variables.$color-green;
-      background-image: url("../images/error icon white.png");
+      background-image: url("../images/error-icon-white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
       background-repeat: no-repeat;
@@ -1829,7 +1830,7 @@
     .has-contrast-errors {
       color: variables.$color-white;
       background-color: variables.$color-red;
-      background-image: url("../images/contrast icon white.png");
+      background-image: url("../images/contrast-icon-white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
       background-repeat: no-repeat;
@@ -1838,7 +1839,7 @@
     .has-no-contrast-errors {
       color: variables.$color-white;
       background-color: variables.$color-green;
-      background-image: url("../images/contrast icon white.png");
+      background-image: url("../images/contrast-icon-white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
       background-repeat: no-repeat;
@@ -1848,7 +1849,7 @@
     .has-warning {
       color: variables.$color-blue-dark;
       background-color: variables.$color-yellow;
-      background-image: url("../images/warning icon navy.png");
+      background-image: url("../images/warning-icon-navy.png");
       background-size: 25px auto;
       background-position: 5px 10px;
       background-repeat: no-repeat;
@@ -1858,7 +1859,7 @@
     .has-no-warning {
       color: variables.$color-white;
       background-color: variables.$color-green;
-      background-image: url("../images/warning icon white.png");
+      background-image: url("../images/warning-icon-white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
       background-repeat: no-repeat;
@@ -1867,7 +1868,7 @@
     .has-ignored {
       color: variables.$color-white;
       background-color: variables.$color-blue-dark;
-      background-image: url("../images/ignore icon white.png");
+      background-image: url("../images/ignore-icon-white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
       background-repeat: no-repeat;
@@ -1876,7 +1877,7 @@
     .has-no-ignored {
       color: variables.$color-white;
       background-color: variables.$color-blue-dark;
-      background-image: url("../images/ignore icon white.png");
+      background-image: url("../images/ignore-icon-white.png");
       background-size: 25px auto;
       background-position: 5px 10px;
       background-repeat: no-repeat;
@@ -2001,4 +2002,16 @@
 .edac-dashicon-muted {
 	color: variables.$color-gray;
 	text-decoration: none;
+}
+
+.edac-plugin-action-links {
+  &__go-pro {
+    color: variables.$color-red;
+    font-weight: bold;
+    &:hover,
+    &:focus {
+      color: variables.$color-red;
+      text-decoration: underline;
+    }
+  }
 }

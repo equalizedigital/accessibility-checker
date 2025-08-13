@@ -1,6 +1,6 @@
 <?php
 /**
- * Accessibility Checker pluign file.
+ * Accessibility Checker plugin file.
  *
  * @package Accessibility_Checker
  */
@@ -11,7 +11,7 @@ use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 /**
- * Class EDAC_Frontend_Highlight
+ * Class Frontend_Highlight
  *
  * A class that handles AJAX requests for frontend highlighting of accessibility issues.
  */
@@ -74,14 +74,13 @@ class Frontend_Highlight {
 	 */
 	public function ajax() {
 
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-			$error = new \WP_Error( '-1', 'Permission Denied' );
+		if ( ! check_ajax_referer( 'ajax-nonce', 'nonce', false ) ) {
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
-			$error = new \WP_Error( '-2', 'The id value was not set' );
+			$error = new \WP_Error( '-2', __( 'The id value was not set', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 		}
 
@@ -89,7 +88,7 @@ class Frontend_Highlight {
 		$results = $this->get_issues( $post_id );
 
 		if ( ! $results ) {
-			$error = new \WP_Error( '-3', 'Issue query returned no results' );
+			$error = new \WP_Error( '-3', __( 'Issue query returned no results', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 		}
 
@@ -113,8 +112,9 @@ class Frontend_Highlight {
 			$array['slug']       = $rule[0]['slug'];
 			$array['rule_title'] = $rule[0]['title'];
 			$array['summary']    = $rule[0]['summary'];
-			$array['link']       = edac_documentation_link( $rule[0] );
-			$array['object']     = html_entity_decode( esc_html( $result['object'] ) );
+			$array['how_to_fix'] = wp_kses_post( $rule[0]['how_to_fix'] ?? '' );
+			$array['link']       = edac_link_wrapper( $rule[0]['info_url'], 'frontend-highlighter', $rule[0]['slug'], false );
+			$array['object']     = html_entity_decode( $result['object'], ENT_QUOTES | ENT_HTML5 );
 			$array['id']         = $result['id'];
 			$array['ignored']    = $result['ignre'];
 
@@ -134,7 +134,7 @@ class Frontend_Highlight {
 
 		if ( ! $issues ) {
 
-			$error = new \WP_Error( '-5', 'Object query returned no results' );
+			$error = new \WP_Error( '-5', __( 'Object query returned no results', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 
 		}
@@ -143,8 +143,9 @@ class Frontend_Highlight {
 		if ( ! empty( $fixes ) ) {
 			foreach ( $fixes as $key => $fix ) {
 				// count the number of fields in the fix.
-				$fields_count = count( $fix );
-				$itteration   = 0;
+				$fields_count      = count( $fix );
+				$itteration        = 0;
+				$fix_fields_markup = '';
 				foreach ( $fix as $index => $field ) {
 					++$itteration;
 					$field_type = $field['type'] ?? 'checkbox';

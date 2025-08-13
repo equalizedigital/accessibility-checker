@@ -34,6 +34,9 @@ body {
 		outline: dashed 4px transparent !important;
 		outline-offset: 5px !important;
 		outline-color: magenta !important;
+		max-width: calc(100vw - 30px) !important;
+		margin-left: 15px !important;
+		box-sizing: border-box !important;
 
 		&-min-width {
 			min-width: 25px !important;
@@ -286,6 +289,22 @@ body {
 					background-color: variables.$color-white !important;
 				}
 			}
+
+			&-summary {
+				display: block;
+			}
+
+			&-how-to-fix {
+				display: inline-block;
+				margin-bottom: 0 !important;
+
+				&-title {
+					display: block;
+					font-weight: bold !important;
+					margin-top: 10px !important;
+					margin-bottom: 5px !important;
+				}
+			}
 		}
 
 		&-controls {
@@ -338,8 +357,11 @@ body {
 			}
 
 			&-buttons {
-				display: grid !important;
-				grid-template-columns: repeat(2, 1fr) !important;
+
+				&.single_button {
+					display: grid !important;
+					grid-template-columns: repeat(2, 1fr) !important;
+				}
 
 				button {
 					all: unset;
