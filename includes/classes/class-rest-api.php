@@ -203,7 +203,6 @@ class REST_Api {
 			}
 		);
 		add_action( 'rest_api_init', [ $this, 'register_issues_api' ] );
-		add_action( 'rest_api_init', [ $this, 'register_swagger_endpoints' ] );
 	}
 
 	/**
@@ -212,36 +211,6 @@ class REST_Api {
 	public function register_issues_api() {
 		$issues = new Issues_API();
 		$issues->register_routes();
-	}
-
-	/**
-	 * Register Swagger documentation endpoints.
-	 */
-	public function register_swagger_endpoints() {
-		$ns      = 'accessibility-checker/';
-		$version = 'v1';
-
-		// Swagger JSON endpoint
-		register_rest_route(
-			$ns . $version,
-			'/swagger.json',
-			[
-				'methods'             => 'GET',
-				'callback'            => [ $this, 'get_swagger_json' ],
-				'permission_callback' => '__return_true', // Public endpoint
-			]
-		);
-
-		// Swagger documentation page endpoint
-		register_rest_route(
-			$ns . $version,
-			'/docs',
-			[
-				'methods'             => 'GET',
-				'callback'            => [ $this, 'get_swagger_docs' ],
-				'permission_callback' => '__return_true', // Public endpoint
-			]
-		);
 	}
 
 	/**
@@ -729,108 +698,5 @@ class REST_Api {
 		}
 		// If we reach this point either token or nonce and permissions are valid.
 		return true;
-	}
-
-	/**
-	 * Get the Swagger JSON specification.
-	 *
-	 * @return \WP_REST_Response
-	 */
-	public function get_swagger_json() {
-		$swagger_file = plugin_dir_path( __DIR__ ) . '../docs/swagger/swagger.json';
-		
-		if ( ! file_exists( $swagger_file ) ) {
-			return new \WP_Error( 
-				'swagger_not_found', 
-				__( 'Swagger specification not found.', 'accessibility-checker' ), 
-				[ 'status' => 404 ] 
-			);
-		}
-
-		$swagger_content = file_get_contents( $swagger_file );
-		$swagger_data    = json_decode( $swagger_content, true );
-
-		if ( json_last_error() !== JSON_ERROR_NONE ) {
-			return new \WP_Error( 
-				'swagger_invalid', 
-				__( 'Invalid Swagger specification.', 'accessibility-checker' ), 
-				[ 'status' => 500 ] 
-			);
-		}
-
-		// Update the server URL to match the current site.
-		$swagger_data['servers'][0]['url'] = rest_url( 'accessibility-checker/v1' );
-
-		$response = new \WP_REST_Response( $swagger_data, 200 );
-		$response->header( 'Content-Type', 'application/json' );
-		return $response;
-	}
-
-	/**
-	 * Get the Swagger documentation page.
-	 *
-	 * @return \WP_REST_Response
-	 */
-	public function get_swagger_docs() {
-		$swagger_url = rest_url( 'accessibility-checker/v1/swagger.json' );
-		
-		$html = '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessibility Checker Issues API Documentation</title>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui.css" />
-    <style>
-        html {
-            box-sizing: border-box;
-            overflow: -moz-scrollbars-vertical;
-            overflow-y: scroll;
-        }
-        *, *:before, *:after {
-            box-sizing: inherit;
-        }
-        body {
-            margin:0;
-            background: #fafafa;
-        }
-        .swagger-ui .topbar {
-            background-color: #1e3a8a;
-        }
-        .swagger-ui .topbar .download-url-wrapper .select-label {
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <div id="swagger-ui"></div>
-    
-    <script src="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui-bundle.js"></script>
-    <script src="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui-standalone-preset.js"></script>
-    <script>
-        window.onload = function() {
-            const ui = SwaggerUIBundle({
-                url: "' . esc_url( $swagger_url ) . '",
-                dom_id: "#swagger-ui",
-                deepLinking: true,
-                presets: [
-                    SwaggerUIBundle.presets.apis,
-                    SwaggerUIStandalonePreset
-                ],
-                plugins: [
-                    SwaggerUIBundle.plugins.DownloadUrl
-                ],
-                layout: "StandaloneLayout"
-            });
-        };
-    </script>
-</body>
-</html>';
-
-		$response = new \WP_REST_Response();
-		$response->set_status( 200 );
-		$response->header( 'Content-Type', 'text/html; charset=utf-8' );
-		$response->set_data( $html );
-		return $response;
 	}
 }

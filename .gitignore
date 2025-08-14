@@ -15,6 +15,9 @@ build
 dist
 .env
 
+# Generated documentation
+docs/swagger/
+
 #accessibility-checker-wp-env
 .auth
 .wp-env.json
