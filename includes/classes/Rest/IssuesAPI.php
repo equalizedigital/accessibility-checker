@@ -15,7 +15,100 @@ use EDAC\Inc\REST_Api;
  * Issues API class.
  * 
  * Provides REST endpoints for managing accessibility issues.
- * OpenAPI documentation is available at /wp-json/accessibility-checker/v1/docs
+ * 
+ * @OA\Info(
+ *     title="Accessibility Checker Issues API",
+ *     description="REST API for managing accessibility issues detected by the Accessibility Checker plugin",
+ *     version="1.0.0",
+ *     @OA\Contact(
+ *         name="Equalize Digital",
+ *         url="https://equalizedigital.com"
+ *     )
+ * )
+ * 
+ * @OA\Server(
+ *     url="/wp-json/accessibility-checker/v1",
+ *     description="Accessibility Checker API Server"
+ * )
+ * 
+ * @OA\SecurityScheme(
+ *     securityScheme="wpNonce",
+ *     type="apiKey",
+ *     in="header",
+ *     name="X-WP-Nonce",
+ *     description="WordPress nonce for authentication"
+ * )
+ * 
+ * @OA\SecurityScheme(
+ *     securityScheme="edacToken",
+ *     type="apiKey",
+ *     in="header", 
+ *     name="X-EDAD-Token",
+ *     description="EDAC API token for authentication"
+ * )
+ * 
+ * @OA\Schema(
+ *     schema="Issue",
+ *     type="object",
+ *     required={"id", "postid", "siteid", "type", "rule", "ruletype", "object", "recordcheck", "created", "user"},
+ *     @OA\Property(property="id", type="integer", description="Unique identifier for the issue"),
+ *     @OA\Property(property="postid", type="integer", description="ID of the post containing the issue"),
+ *     @OA\Property(property="siteid", type="integer", description="Site ID in multisite installations"),
+ *     @OA\Property(property="type", type="string", description="Post type (post, page, etc.)"),
+ *     @OA\Property(property="rule", type="string", description="Accessibility rule that was violated"),
+ *     @OA\Property(property="ruletype", type="string", enum={"error", "warning", "contrast"}, description="Severity level of the issue"),
+ *     @OA\Property(property="object", type="string", description="HTML element or content that caused the issue"),
+ *     @OA\Property(property="recordcheck", type="boolean", description="Check status (false = current, true = needs review)"),
+ *     @OA\Property(property="created", type="string", format="date-time", description="When the issue was first detected"),
+ *     @OA\Property(property="user", type="integer", description="User ID who reported or owns the issue"),
+ *     @OA\Property(property="ignre", type="boolean", description="Whether the issue is ignored"),
+ *     @OA\Property(property="ignre_global", type="boolean", description="Whether the issue is ignored globally"),
+ *     @OA\Property(property="ignre_user", type="integer", description="User ID who ignored the issue", nullable=true),
+ *     @OA\Property(property="ignre_date", type="string", format="date-time", description="When the issue was ignored", nullable=true),
+ *     @OA\Property(property="ignre_comment", type="string", description="Comment provided when ignoring", nullable=true)
+ * )
+ * 
+ * @OA\Schema(
+ *     schema="IssueInput",
+ *     type="object", 
+ *     required={"postid", "type", "rule", "ruletype", "object"},
+ *     @OA\Property(property="postid", type="integer", description="ID of the post containing the issue"),
+ *     @OA\Property(property="type", type="string", description="Post type (post, page, etc.)"),
+ *     @OA\Property(property="rule", type="string", description="Accessibility rule that was violated"),
+ *     @OA\Property(property="ruletype", type="string", enum={"error", "warning", "contrast"}, description="Severity level of the issue"),
+ *     @OA\Property(property="object", type="string", description="HTML element or content that caused the issue"),
+ *     @OA\Property(property="user", type="integer", description="User ID who reported the issue")
+ * )
+ * 
+ * @OA\Schema(
+ *     schema="Error",
+ *     type="object",
+ *     @OA\Property(property="code", type="string", description="Error code"),
+ *     @OA\Property(property="message", type="string", description="Error message"),
+ *     @OA\Property(property="data", type="object",
+ *         @OA\Property(property="status", type="integer", description="HTTP status code")
+ *     )
+ * )
+ * 
+ * @OA\Schema(
+ *     schema="SuccessResponse",
+ *     type="object",
+ *     @OA\Property(property="success", type="boolean", description="Whether the operation was successful"),
+ *     @OA\Property(property="message", type="string", description="Success message")
+ * )
+ * 
+ * @OA\Schema(
+ *     schema="CountResponse", 
+ *     type="object",
+ *     @OA\Property(property="count", type="integer", description="Total number of issues")
+ * )
+ * 
+ * @OA\Schema(
+ *     schema="AccessCheckResponse",
+ *     type="object",
+ *     @OA\Property(property="success", type="boolean", description="Whether user has access to the API"),
+ *     @OA\Property(property="message", type="string", description="Access status message", nullable=true)
+ * )
  */
 class Issues_API extends \WP_REST_Controller {
 
@@ -116,14 +209,7 @@ class Issues_API extends \WP_REST_Controller {
 			'/' . $this->rest_base . '/access-check',
 			[
 				'methods'             => \WP_REST_Server::READABLE,
-				'callback'            => function () {
-					return new \WP_REST_Response(
-						[
-							'success' => true,
-						],
-						200
-					);
-				},
+				'callback'            => [ $this, 'check_access' ],
 				'permission_callback' => function ( $request ) {
 					return REST_Api::check_token_or_nonce_and_capability_permissions_check( $request, 'manage_options' );
 				},
@@ -145,6 +231,60 @@ class Issues_API extends \WP_REST_Controller {
 	/**
 	 * Get a collection of issues.
 	 *
+	 * @OA\Get(
+	 *     path="/issues",
+	 *     summary="Retrieve accessibility issues",
+	 *     description="Get a paginated list of accessibility issues with optional filtering",
+	 *     tags={"Issues"},
+	 *     security={{"wpNonce": {}}, {"edacToken": {}}},
+	 *     @OA\Parameter(
+	 *         name="per_page",
+	 *         in="query",
+	 *         description="Number of issues to return per page",
+	 *         @OA\Schema(type="integer", minimum=1, maximum=100, default=10)
+	 *     ),
+	 *     @OA\Parameter(
+	 *         name="page", 
+	 *         in="query",
+	 *         description="Page number for pagination",
+	 *         @OA\Schema(type="integer", minimum=1, default=1)
+	 *     ),
+	 *     @OA\Parameter(
+	 *         name="ids",
+	 *         in="query",
+	 *         description="Optional list of issue IDs to get",
+	 *         @OA\Schema(type="array", @OA\Items(type="integer"))
+	 *     ),
+	 *     @OA\Response(
+	 *         response=200,
+	 *         description="Successful response",
+	 *         @OA\JsonContent(
+	 *             type="array",
+	 *             @OA\Items(ref="#/components/schemas/Issue")
+	 *         ),
+	 *         @OA\Header(
+	 *             header="X-WP-Total",
+	 *             description="Total number of issues",
+	 *             @OA\Schema(type="integer")
+	 *         ),
+	 *         @OA\Header(
+	 *             header="X-WP-TotalPages", 
+	 *             description="Total number of pages",
+	 *             @OA\Schema(type="integer")
+	 *         )
+	 *     ),
+	 *     @OA\Response(
+	 *         response=401,
+	 *         description="Unauthorized",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=500,
+	 *         description="Internal server error",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     )
+	 * )
+	 * 
 	 * @param \WP_REST_Request $request Full data about the request.
 	 * @return \WP_REST_Response
 	 */
@@ -306,6 +446,36 @@ class Issues_API extends \WP_REST_Controller {
 	/**
 	 * Get a single issue.
 	 *
+	 * @OA\Get(
+	 *     path="/issues/{id}",
+	 *     summary="Get a specific issue",
+	 *     description="Retrieve details of a single accessibility issue by ID",
+	 *     tags={"Issues"},
+	 *     security={{"wpNonce": {}}, {"edacToken": {}}},
+	 *     @OA\Parameter(
+	 *         name="id",
+	 *         in="path", 
+	 *         required=true,
+	 *         description="Issue ID",
+	 *         @OA\Schema(type="integer")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=200,
+	 *         description="Successful response",
+	 *         @OA\JsonContent(ref="#/components/schemas/Issue")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=404,
+	 *         description="Issue not found",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=401,
+	 *         description="Unauthorized",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     )
+	 * )
+	 * 
 	 * @param \WP_REST_Request $request Full data about the request.
 	 * @return \WP_REST_Response
 	 */
@@ -323,6 +493,36 @@ class Issues_API extends \WP_REST_Controller {
 	/**
 	 * Delete a issue.
 	 *
+	 * @OA\Delete(
+	 *     path="/issues/{id}",
+	 *     summary="Delete an issue",
+	 *     description="Remove an accessibility issue from the database",
+	 *     tags={"Issues"},
+	 *     security={{"wpNonce": {}}, {"edacToken": {}}},
+	 *     @OA\Parameter(
+	 *         name="id",
+	 *         in="path",
+	 *         required=true,
+	 *         description="Issue ID", 
+	 *         @OA\Schema(type="integer")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=200,
+	 *         description="Issue deleted successfully",
+	 *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=404,
+	 *         description="Issue not found",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=401,
+	 *         description="Unauthorized",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     )
+	 * )
+	 * 
 	 * @param \WP_REST_Request $request Full data about the request.
 	 * @return \WP_REST_Response
 	 */
@@ -350,6 +550,33 @@ class Issues_API extends \WP_REST_Controller {
 	/**
 	 * Create an issue.
 	 *
+	 * @OA\Post(
+	 *     path="/issues",
+	 *     summary="Create a new accessibility issue",
+	 *     description="Add a new accessibility issue to the database",
+	 *     tags={"Issues"},
+	 *     security={{"wpNonce": {}}, {"edacToken": {}}},
+	 *     @OA\RequestBody(
+	 *         required=true,
+	 *         @OA\JsonContent(ref="#/components/schemas/IssueInput")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=201,
+	 *         description="Issue created successfully",
+	 *         @OA\JsonContent(ref="#/components/schemas/Issue")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=400,
+	 *         description="Bad request",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=401,
+	 *         description="Unauthorized",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     )
+	 * )
+	 * 
 	 * @param \WP_REST_Request $request Full data about the request.
 	 * @return \WP_REST_Response
 	 */
@@ -420,8 +647,59 @@ class Issues_API extends \WP_REST_Controller {
 	}
 
 	/**
+	 * Check API access permissions.
+	 *
+	 * @OA\Get(
+	 *     path="/issues/access-check",
+	 *     summary="Check API access permissions",
+	 *     description="Verify if the current user has access to the Issues API",
+	 *     tags={"Issues"},
+	 *     security={{"wpNonce": {}}, {"edacToken": {}}},
+	 *     @OA\Response(
+	 *         response=200,
+	 *         description="Access check response",
+	 *         @OA\JsonContent(ref="#/components/schemas/AccessCheckResponse")
+	 *     )
+	 * )
+	 * 
+	 * @return \WP_REST_Response
+	 */
+	public function check_access() {
+		return new \WP_REST_Response(
+			[
+				'success' => true,
+			],
+			200
+		);
+	}
+
+	/**
 	 * Callback to get the count of issues.
 	 *
+	 * @OA\Get(
+	 *     path="/issues/count",
+	 *     summary="Get total issue count",
+	 *     description="Get the total number of accessibility issues",
+	 *     tags={"Issues"},
+	 *     security={{"wpNonce": {}}, {"edacToken": {}}},
+	 *     @OA\Parameter(
+	 *         name="ids",
+	 *         in="query",
+	 *         description="Optional list of issue IDs to count",
+	 *         @OA\Schema(type="array", @OA\Items(type="integer"))
+	 *     ),
+	 *     @OA\Response(
+	 *         response=200,
+	 *         description="Successful response",
+	 *         @OA\JsonContent(ref="#/components/schemas/CountResponse")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=401,
+	 *         description="Unauthorized",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     )
+	 * )
+	 * 
 	 * @param \WP_REST_Request $request The request object.
 	 * @return \WP_REST_Response
 	 */
@@ -454,6 +732,40 @@ class Issues_API extends \WP_REST_Controller {
 	/**
 	 * Update an existing issue.
 	 *
+	 * @OA\Put(
+	 *     path="/issues/{id}",
+	 *     summary="Update an issue",
+	 *     description="Update an existing accessibility issue",
+	 *     tags={"Issues"},
+	 *     security={{"wpNonce": {}}, {"edacToken": {}}},
+	 *     @OA\Parameter(
+	 *         name="id",
+	 *         in="path",
+	 *         required=true,
+	 *         description="Issue ID",
+	 *         @OA\Schema(type="integer")
+	 *     ),
+	 *     @OA\RequestBody(
+	 *         required=true,
+	 *         @OA\JsonContent(ref="#/components/schemas/IssueInput")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=200,
+	 *         description="Issue updated successfully",
+	 *         @OA\JsonContent(ref="#/components/schemas/Issue")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=404,
+	 *         description="Issue not found",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     ),
+	 *     @OA\Response(
+	 *         response=401,
+	 *         description="Unauthorized",
+	 *         @OA\JsonContent(ref="#/components/schemas/Error")
+	 *     )
+	 * )
+	 * 
 	 * @param \WP_REST_Request $request Full data about the request.
 	 * @return \WP_REST_Response|\WP_Error
 	 */
