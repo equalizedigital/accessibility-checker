@@ -160,13 +160,17 @@ class Scans_Stats {
 		// This will give us the total number of posts that have been scanned.
 		$data['posts_scanned'] = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 			$wpdb->prepare(
-				'SELECT COUNT(DISTINCT %i) FROM %i WHERE meta_key = %s',
-				'post_id',
-				$wpdb->postmeta,
-				'_edac_issue_density'
+				'SELECT COUNT(DISTINCT pm.post_id)
+				FROM %i pm
+				JOIN %i p ON pm.post_id = p.ID
+				WHERE pm.meta_key = %s
+				AND p.post_type IN (' . implode( ', ', array_fill( 0, count( Settings::get_scannable_post_types() ), '%s' ) ) . ')',
+				array_merge(
+					[ $wpdb->postmeta, $wpdb->posts, '_edac_issue_density' ],
+					Settings::get_scannable_post_types()
+				)
 			)
 		);
-
 
 		$data['is_truncated']      = $issues_query->has_truncated_results();
 		$data['posts_with_issues'] = (int) $issues_query->distinct_posts_count();
