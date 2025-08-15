@@ -3,7 +3,8 @@ name: Run Jest on JS File Changes
 on:
   pull_request:
     paths:
-      - '**/*.js'
+      - 'src/**/*.js'
+      - 'tests/**/*.js'
 
 jobs:
   jest:
