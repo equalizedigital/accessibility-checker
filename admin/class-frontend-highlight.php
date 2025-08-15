@@ -61,7 +61,7 @@ class Frontend_Highlight {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$post_id    = (int) $post_id;
 		$siteid     = get_current_blog_id();
-		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
+		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, ignre_global, object, ruletype FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
 		if ( ! $results ) {
 			return null;
 		}
@@ -106,7 +106,7 @@ class Frontend_Highlight {
 				continue;
 			}
 
-			$rule_type = ( true === (bool) $result['ignre'] ) ? 'ignored' : $rule[0]['rule_type'];
+			$rule_type = ( true === (bool) $result['ignre'] || true === (bool) $result['ignre_global'] ) ? 'ignored' : $rule[0]['rule_type'];
 
 			$array['rule_type']  = $rule_type;
 			$array['slug']       = $rule[0]['slug'];
@@ -116,7 +116,7 @@ class Frontend_Highlight {
 			$array['link']       = edac_link_wrapper( $rule[0]['info_url'], 'frontend-highlighter', $rule[0]['slug'], false );
 			$array['object']     = html_entity_decode( $result['object'], ENT_QUOTES | ENT_HTML5 );
 			$array['id']         = $result['id'];
-			$array['ignored']    = $result['ignre'];
+			$array['ignored']    = (int) $result['ignre'] || (int) $result['ignre_global'];
 
 			$issues[] = $array;
 
