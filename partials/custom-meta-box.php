@@ -6,7 +6,7 @@
  */
 
 // get the post type of the current editor page.
-$is_virtual_page = ( get_post_type( get_the_ID() ) === 'edac_virtual_page' );
+$is_virtual_page = edac_is_virtual_page( get_the_ID() );
 
 ?>
 <div id="edac-tabs">
