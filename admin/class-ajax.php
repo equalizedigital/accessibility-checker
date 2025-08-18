@@ -119,7 +119,7 @@ class Ajax {
 			$html['content'] .= '</li>';
 
 			// if this is a virtual page, we don't show the readability section.
-			$is_virtual_page = ( 'edac_virtual_page' === get_post_type( $post_id ) );
+			$is_virtual_page = edac_is_virtual_page( $post_id );
 
 			$html['content'] .= '
 				' . edac_generate_summary_stat(
