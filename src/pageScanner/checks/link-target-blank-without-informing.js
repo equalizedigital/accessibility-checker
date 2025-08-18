@@ -7,6 +7,7 @@ import { __ } from '@wordpress/i18n';
 const allowedPhrases = [
 	__( 'new window', 'accessibility-checker' ),
 	__( 'new tab', 'accessibility-checker' ),
+	__( 'new document', 'accessibility-checker' ),
 ];
 
 /**
