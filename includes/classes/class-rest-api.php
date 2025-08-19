@@ -84,8 +84,8 @@ class REST_Api {
 								},
 							],
 						],
-						'permission_callback' => function () {
-							return current_user_can( 'edit_posts' );
+						'permission_callback' => function ( $request ) {
+							return $this->user_can_edit_passed_post_id( $request );
 						},
 					]
 				);
@@ -176,8 +176,8 @@ class REST_Api {
 								},
 							],
 						],
-						'permission_callback' => function () {
-							return current_user_can( 'edit_posts' );
+						'permission_callback' => function ( $request ) {
+							return $this->user_can_edit_passed_post_id( $request );
 						},
 					]
 				);
