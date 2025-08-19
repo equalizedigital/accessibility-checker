@@ -215,4 +215,107 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'success', $data2 );
 		$this->assertTrue( $data2['success'] );
 	}
+    // Note: This project uses PHPUnit with the WordPress core test suite (WP_UnitTestCase).
+    /**
+     * Ensure unauthenticated users cannot submit scan results.
+     */
+    public function test_rest_post_scan_results_requires_authentication() {
+        $this->assertNotNull( $this->server );
+        wp_set_current_user( 0 );
+        $violations = [
+            [
+                "ruleId" => "image-alt",
+                "html"   => "<img src=\"/wp-includes/images/media/default.png\">",
+                "impact" => "error",
+                "landmark" => null,
+            ],
+        ];
+        $request = new WP_REST_Request( "POST", "/accessibility-checker/v1/post-scan-results/" . self::$post_id );
+        $request->set_param( "id", self::$post_id );
+        $request->set_param( "violations", $violations );
+        $response = $this->server->dispatch( $request );
+        $this->assertSame( 401, $response->get_status(), "Unauthenticated users should not be able to save scan results." );
+    }
+    /**
+     * Ensure unauthenticated users cannot clear issues.
+     */
+    public function test_rest_clear_issues_requires_authentication() {
+        $this->assertNotNull( $this->server );
+        wp_set_current_user( 0 );
+        $request = new WP_REST_Request( "POST", "/accessibility-checker/v1/clear-issues/" . self::$post_id );
+        $request->set_param( "id", self::$post_id );
+        $request->set_body( wp_json_encode( [ "flush" => true ] ) );
+        $request->set_header( "Content-Type", "application/json" );
+        $response = $this->server->dispatch( $request );
+        $this->assertSame( 401, $response->get_status(), "Unauthenticated users should not be able to clear issues." );
+    }
+    /**
+     * Validate that non-array violations are rejected.
+     */
+    public function test_rest_post_scan_results_rejects_non_array_violations() {
+        wp_set_current_user( self::$admin_id );
+        $request = new WP_REST_Request( "POST", "/accessibility-checker/v1/post-scan-results/" . self::$post_id );
+        $request->set_param( "id", self::$post_id );
+        $request->set_param( "violations", "this-is-not-an-array" );
+        $response = $this->server->dispatch( $request );
+        $this->assertSame( 400, $response->get_status(), "Invalid \"violations\" type should produce 400." );
+    }
+    /**
+     * Validate that various violation payload shapes are accepted.
+     */
+    public function test_rest_post_scan_results_accepts_varied_violation_payloads() {
+        wp_set_current_user( self::$admin_id );
+        $violations = [
+            [
+                "ruleId"   => "image-alt",
+                "html"     => "<img src=\"/wp-includes/images/media/default.png\">",
+                "impact"   => "warning",
+                "landmark" => "main",
+                "extra"    => "ignored-field",
+            ],
+            [
+                "ruleId"   => "color-contrast",
+                "html"     => "<div style=\"color:#777;background:#777\">Text</div>",
+                "impact"   => "critical",
+                "landmark" => "",
+            ],
+            [
+                "ruleId"   => "label",
+                "html"     => "<input type=\"text\">",
+                "impact"   => "minor",
+                "landmark" => null,
+            ],
+        ];
+        $request = new WP_REST_Request( "POST", "/accessibility-checker/v1/post-scan-results/" . self::$post_id );
+        $request->set_param( "id", self::$post_id );
+        $request->set_param( "violations", $violations );
+        $response = $this->server->dispatch( $request );
+        $this->assertSame( 200, $response->get_status(), "Admin should be allowed to save varied scan results." );
+        $data = $response->get_data();
+        $this->assertIsArray( $data );
+        $this->assertArrayHasKey( "success", $data );
+        $this->assertTrue( $data["success"] );
+        $this->assertArrayHasKey( "id", $data );
+        $this->assertSame( self::$post_id, $data["id"] );
+    }
+    /**
+     * Validate flush=false behavior when clearing issues.
+     */
+    public function test_rest_clear_issues_flush_false_indicates_not_flushed() {
+        wp_set_current_user( self::$admin_id );
+        $request = new WP_REST_Request( "POST", "/accessibility-checker/v1/clear-issues/" . self::$post_id );
+        $request->set_param( "id", self::$post_id );
+        $request->set_body( wp_json_encode( [ "flush" => false ] ) );
+        $request->set_header( "Content-Type", "application/json" );
+        $response = $this->server->dispatch( $request );
+        $this->assertSame( 200, $response->get_status(), "Admin should be allowed to clear issues with flush=false." );
+        $data = $response->get_data();
+        $this->assertIsArray( $data );
+        $this->assertArrayHasKey( "success", $data );
+        $this->assertTrue( $data["success"] );
+        $this->assertArrayHasKey( "id", $data );
+        $this->assertSame( self::$post_id, $data["id"] );
+        $this->assertArrayHasKey( "flushed", $data );
+        $this->assertFalse( $data["flushed"], "When flush=false, \"flushed\" should be false." );
+    }
 }
