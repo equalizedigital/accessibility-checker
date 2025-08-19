@@ -79,9 +79,10 @@ class REST_Api {
 						'callback'            => [ $this, 'set_post_scan_results' ],
 						'args'                => [
 							'id' => [
+								'required'          => true,
 								'validate_callback' => function ( $param ) {
-									return is_numeric( $param );
-								},
+									return is_numeric( $param ); },
+								'sanitize_callback' => 'absint',
 							],
 						],
 						'permission_callback' => function ( $request ) {
@@ -171,9 +172,10 @@ class REST_Api {
 						'callback'            => [ $this, 'clear_issues_for_post' ],
 						'args'                => [
 							'id' => [
+								'required'          => true,
 								'validate_callback' => function ( $param ) {
-									return is_numeric( $param );
-								},
+									return is_numeric( $param ); },
+								'sanitize_callback' => 'absint',
 							],
 						],
 						'permission_callback' => function ( $request ) {
