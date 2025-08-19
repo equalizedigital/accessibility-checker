@@ -173,7 +173,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 				'post_type'   => 'post',
 				'post_status' => 'draft',
 				'post_author' => self::$limited_id,
-			] 
+			]
 		);
 
 		// Save scan results.
@@ -186,7 +186,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 					'ruleId' => 'image-alt',
 					'html'   => '<img>',
 				],
-			] 
+			]
 		);
 		$resp1 = $this->server->dispatch( $req1 );
 		$this->assertSame( 200, $resp1->get_status() );
