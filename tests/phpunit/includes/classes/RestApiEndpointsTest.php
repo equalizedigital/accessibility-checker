@@ -160,4 +160,43 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$resp2 = $this->server->dispatch( $r2 );
 		$this->assertSame( 403, $resp2->get_status(), 'Limited user must not be allowed to clear issues.' );
 	}
+
+	/**
+	 * Verify that a limited user can manage their own post.
+	 *
+	 * @return void
+	 */
+	public function test_limited_user_can_manage_own_post() {
+		wp_set_current_user( self::$limited_id );
+		$own_post_id = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'draft',
+				'post_author' => self::$limited_id,
+			] 
+		);
+
+		// Save scan results.
+		$req1 = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $own_post_id );
+		$req1->set_param( 'id', $own_post_id );
+		$req1->set_param(
+			'violations',
+			[
+				[
+					'ruleId' => 'image-alt',
+					'html'   => '<img>',
+				],
+			] 
+		);
+		$resp1 = $this->server->dispatch( $req1 );
+		$this->assertSame( 200, $resp1->get_status() );
+
+		// Clear issues.
+		$req2 = new WP_REST_Request( 'POST', '/accessibility-checker/v1/clear-issues/' . $own_post_id );
+		$req2->set_param( 'id', $own_post_id );
+		$req2->set_body( wp_json_encode( [ 'flush' => true ] ) );
+		$req2->set_header( 'Content-Type', 'application/json' );
+		$resp2 = $this->server->dispatch( $req2 );
+		$this->assertSame( 200, $resp2->get_status() );
+	}
 }
