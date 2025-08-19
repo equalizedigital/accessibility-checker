@@ -138,7 +138,7 @@ class REST_Api {
 						'methods'             => 'GET',
 						'callback'            => [ $this, 'get_scans_stats_by_post_type' ],
 						'permission_callback' => function () {
-							return current_user_can( 'read' ); // able to access the admin dashboard.
+							return current_user_can( 'edit_posts' );
 						},
 					]
 				);
@@ -155,7 +155,7 @@ class REST_Api {
 						'methods'             => 'GET',
 						'callback'            => [ $this, 'get_scans_stats_by_post_types' ],
 						'permission_callback' => function () {
-							return current_user_can( 'read' ); // able to access the admin dashboard.
+							return current_user_can( 'edit_posts' );
 						},
 					]
 				);
