@@ -120,6 +120,10 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertSame( 200, $response->get_status(), 'Admin should be allowed to save scan results.' );
 		$data = $response->get_data();
 		$this->assertIsArray( $data );
+		$this->assertArrayHasKey( 'success', $data );
+		$this->assertTrue( $data['success'] );
+		$this->assertArrayHasKey( 'id', $data );
+		$this->assertSame( self::$post_id, $data['id'] );
 
 		// Limited user cannot POST results for the admin-owned post.
 		wp_set_current_user( self::$limited_id );
@@ -150,6 +154,10 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertIsArray( $body1 );
 		$this->assertArrayHasKey( 'success', $body1 );
 		$this->assertTrue( $body1['success'] );
+		$this->assertArrayHasKey( 'id', $body1 );
+		$this->assertSame( self::$post_id, $body1['id'] );
+		$this->assertArrayHasKey( 'flushed', $body1 );
+		$this->assertTrue( $body1['flushed'] );
 
 		// Limited user cannot clear issues for a post they cannot edit.
 		wp_set_current_user( self::$limited_id );
@@ -190,6 +198,10 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		);
 		$resp1 = $this->server->dispatch( $req1 );
 		$this->assertSame( 200, $resp1->get_status() );
+		$data1 = $resp1->get_data();
+		$this->assertIsArray( $data1 );
+		$this->assertArrayHasKey( 'success', $data1 );
+		$this->assertTrue( $data1['success'] );
 
 		// Clear issues.
 		$req2 = new WP_REST_Request( 'POST', '/accessibility-checker/v1/clear-issues/' . $own_post_id );
@@ -198,5 +210,9 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$req2->set_header( 'Content-Type', 'application/json' );
 		$resp2 = $this->server->dispatch( $req2 );
 		$this->assertSame( 200, $resp2->get_status() );
+		$data2 = $resp2->get_data();
+		$this->assertIsArray( $data2 );
+		$this->assertArrayHasKey( 'success', $data2 );
+		$this->assertTrue( $data2['success'] );
 	}
 }
