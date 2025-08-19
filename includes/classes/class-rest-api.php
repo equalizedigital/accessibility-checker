@@ -212,7 +212,7 @@ class REST_Api {
 	 *
 	 * This is a permission callback to replace several places where we check if the user can edit a post.
 	 *
-	 * @since 1.31.0
+	 * @since 1.30.1
 	 *
 	 * @param \WP_REST_Request $request The request object passed from the REST call. This should contain the 'id' of the post to check permissions for.
 	 *
