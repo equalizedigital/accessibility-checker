@@ -81,7 +81,8 @@ class REST_Api {
 							'id' => [
 								'required'          => true,
 								'validate_callback' => function ( $param ) {
-									return is_numeric( $param ); },
+									return is_numeric( $param );
+								},
 								'sanitize_callback' => 'absint',
 							],
 						],
@@ -174,7 +175,8 @@ class REST_Api {
 							'id' => [
 								'required'          => true,
 								'validate_callback' => function ( $param ) {
-									return is_numeric( $param ); },
+									return is_numeric( $param );
+								},
 								'sanitize_callback' => 'absint',
 							],
 						],
