@@ -225,7 +225,7 @@ class REST_Api {
 			}
 
 			$post_type  = get_post_type( $post );
-			$post_types = apply_filters( 'edacp_fill_site_scan_scannable_post_types', Helpers::get_option_as_array( 'edac_post_types' ) );
+			$post_types = apply_filters( 'edacp_full_site_scan_scannable_post_types', Helpers::get_option_as_array( 'edac_post_types' ) );
 			if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 				return new \WP_REST_Response( [ 'message' => 'The post type is not set to be scanned.' ], 400 );
 			}
@@ -297,7 +297,7 @@ class REST_Api {
 		}
 
 		$post_type  = get_post_type( $post );
-		$post_types = apply_filters( 'edacp_fill_site_scan_scannable_post_types', Helpers::get_option_as_array( 'edac_post_types' ) );
+		$post_types = apply_filters( 'edacp_full_site_scan_scannable_post_types', Helpers::get_option_as_array( 'edac_post_types' ) );
 		if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 
 			return new \WP_REST_Response( [ 'message' => 'The post type is not set to be scanned.' ], 400 );
