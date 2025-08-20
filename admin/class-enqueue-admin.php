@@ -48,7 +48,7 @@ class Enqueue_Admin {
 	public static function maybe_enqueue_admin_and_editor_app_scripts() {
 
 		global $pagenow;
-		$post_types        = get_option( 'edac_post_types' );
+		$post_types        = apply_filters( 'edacp_full_site_scan_scannable_post_types', get_option( 'edac_post_types' ) );
 		$current_post_type = get_post_type();
 		$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
 		$enabled_pages     = apply_filters(
@@ -93,7 +93,7 @@ class Enqueue_Admin {
 			if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 
 				// Is this posttype setup to be checked?
-				$post_types        = get_option( 'edac_post_types' );
+				$post_types        = apply_filters( 'edacp_full_site_scan_scannable_post_types', get_option( 'edac_post_types' ) );
 				$current_post_type = get_post_type();
 				$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 
@@ -112,9 +112,16 @@ class Enqueue_Admin {
 				if ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
 					$scan_url = add_query_arg( 'edac_pageScanner', 1, get_permalink( $post_id ) );
 				} else {
-					$scan_url = get_preview_post_link(
-						$post_id,
-						[ 'edac_pageScanner' => 1 ]
+					$post_view_link = apply_filters(
+						'edac_get_origin_url_for_virtual_page',
+						$post_id
+					);
+
+					$scan_url = add_query_arg(
+						[
+							'edac_pageScanner' => 1,
+						],
+						is_string( $post_view_link ) ? $post_view_link : get_preview_post_link( $post_id )
 					);
 				}
 
