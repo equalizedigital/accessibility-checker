@@ -50,7 +50,7 @@ class Enqueue_Admin {
 		global $pagenow;
 		$post_types        = Settings::get_scannable_post_types();
 		$current_post_type = get_post_type();
-		$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+		$page              = self::get_current_page_slug();
 		$enabled_pages     = apply_filters(
 			'edac_filter_admin_scripts_slugs',
 			[
@@ -154,7 +154,7 @@ class Enqueue_Admin {
 	 */
 	public static function maybe_enqueue_email_opt_in_script() {
 
-		$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+		$page = self::get_current_page_slug();
 		if ( 'accessibility_checker' !== $page ) {
 			return;
 		}
@@ -166,5 +166,15 @@ class Enqueue_Admin {
 
 		$email_opt_in = new Email_Opt_In();
 		$email_opt_in->enqueue_scripts();
+	}
+
+	/**
+	 * Gets the current admin page slug.
+	 *
+	 * @since 1.31.0
+	 * @return string|null The current page slug or null if not set.
+	 */
+	private static function get_current_page_slug(): ?string {
+		return isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
 	}
 }

@@ -1,10 +1,10 @@
-name: Run Jest on Rule Changes
+name: Run Jest on JS File Changes
 
 on:
   pull_request:
     paths:
-      - 'src/pageScanner/rules/**/*'
-      - 'src/pageScanner/checks/**/*'
+      - 'src/**/*.js'
+      - 'tests/**/*.js'
 
 jobs:
   jest:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22' # Or your preferred Node.js version
+          node-version: '22'
 
       - name: Cache dependencies
         uses: actions/cache@v4

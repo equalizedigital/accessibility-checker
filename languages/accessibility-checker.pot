@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-04T19:42:20+00:00\n"
+"POT-Creation-Date: 2025-08-06T16:25:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -637,6 +637,96 @@ msgstr ""
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr ""
+
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr ""
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr ""
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr ""
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr ""
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr ""
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr ""
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr ""
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr ""
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr ""
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr ""
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr ""
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr ""
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr ""
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr ""
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr ""
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr ""
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr ""
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr ""
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] ""
+msgstr[1] ""
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4017,6 +4107,7 @@ msgstr ""
 
 #: partials/custom-meta-box.php:52
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr ""
 
@@ -4264,22 +4355,27 @@ msgid "Fix Settings"
 msgstr ""
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr ""
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr ""
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr ""
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr ""
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr ""
 
@@ -4400,6 +4496,10 @@ msgstr ""
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
+msgstr ""
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
 msgstr ""
 
 #: build/pageScanner.bundle.js:2
