@@ -164,10 +164,7 @@ function edac_custom_post_types() {
 	$output   = 'names'; // names or objects, note names is the default.
 	$operator = 'and'; // Options 'and' or 'or'.
 
-	return array_merge(
-		get_post_types( $args, $output, $operator ),
-		[ 'edac_virtual_page' => 'Archives' ]
-	);
+	return get_post_types( $args, $output, $operator );
 }
 
 /**
