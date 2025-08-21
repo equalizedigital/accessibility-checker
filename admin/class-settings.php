@@ -35,16 +35,17 @@ class Settings {
 	/**
 	 * Gets a list of post types that are scannable.
 	 *
+	 * @param bool $skip_filtering Whether to skip filtering when passing through alternative settings class.
+	 *
 	 * @return array
 	 */
-	public static function get_scannable_post_types() {
-
+	public static function get_scannable_post_types( $skip_filtering = false ) {
 
 		if (
 			class_exists( 'EqualizeDigital\AccessibilityCheckerPro\Admin\Settings' ) &&
 			method_exists( 'EqualizeDigital\AccessibilityCheckerPro\Admin\Settings', 'get_scannable_post_types' )
 		) {
-			return \EqualizeDigital\AccessibilityCheckerPro\Admin\Settings::get_scannable_post_types();
+			return \EqualizeDigital\AccessibilityCheckerPro\Admin\Settings::get_scannable_post_types( $skip_filtering );
 		}
 
 		$post_types = Helpers::get_option_as_array( 'edac_post_types' );
