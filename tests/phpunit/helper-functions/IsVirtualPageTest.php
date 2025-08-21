@@ -39,7 +39,7 @@ class IsVirtualPageTest extends WP_UnitTestCase {
 				[
 					'public'   => false,
 					'supports' => [ 'title' ],
-				] 
+				]
 			);
 		}
 
@@ -87,7 +87,7 @@ class IsVirtualPageTest extends WP_UnitTestCase {
 	 * Helper method to create mock pro plugin class.
 	 */
 	private function create_mock_pro_class() {
-		if ( ! class_exists( '\EqualizeDigital\AccessibilityCheckerPro\VirtualContent\VirtualPageType' ) ) {
+		if ( ! class_exists( '\EqualizeDigital\AccessibilityCheckerPro\VirtualContent\VirtualItemType' ) ) {
             // phpcs:ignore Squiz.PHP.Eval.Discouraged
 			eval(
 				'
@@ -95,7 +95,7 @@ class IsVirtualPageTest extends WP_UnitTestCase {
 				class VirtualPageType {
 					const POST_TYPE = "edac_virtual_item";
 				}
-			' 
+			'
 			);
 		}
 	}
