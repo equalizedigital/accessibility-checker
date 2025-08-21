@@ -48,7 +48,7 @@ class Enqueue_Admin {
 	public static function maybe_enqueue_admin_and_editor_app_scripts() {
 
 		global $pagenow;
-		$post_types        = apply_filters( 'edacp_full_site_scan_scannable_post_types', get_option( 'edac_post_types' ) );
+		$post_types        = Settings::get_scannable_post_types();
 		$current_post_type = get_post_type();
 		$page              = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
 		$enabled_pages     = apply_filters(
@@ -93,7 +93,7 @@ class Enqueue_Admin {
 			if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 
 				// Is this posttype setup to be checked?
-				$post_types        = apply_filters( 'edacp_full_site_scan_scannable_post_types', get_option( 'edac_post_types' ) );
+				$post_types        = Settings::get_scannable_post_types();
 				$current_post_type = get_post_type();
 				$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 

@@ -5,6 +5,8 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin\Settings;
+
 /**
  * Compare strings
  *
@@ -411,7 +413,7 @@ function edac_get_posts_count() {
 
 	$output = [];
 
-	$post_types = get_option( 'edac_post_types' );
+	$post_types = Settings::get_scannable_post_types();
 	if ( $post_types ) {
 		foreach ( $post_types as $post_type ) {
 
@@ -770,7 +772,7 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 	}
 	$landmark = ucwords( $landmark );
 	$landmark = esc_html( $landmark );
-	
+
 	// If we have both landmark and selector, create a link.
 	if ( ! empty( $landmark_selector ) ) {
 		$link = apply_filters(
@@ -785,12 +787,12 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 			],
 			is_string( $link ) ? $link : get_the_permalink( $post_id )
 		);
-		
+
 		// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
 		$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), $landmark );
-		
+
 		$target_attr = $target_blank ? ' target="_blank"' : '';
-		
+
 		return sprintf(
 			'<a href="%s" class="%s"%s aria-label="%s">%s</a>',
 			esc_url( $landmark_url ),
@@ -800,7 +802,7 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 			$landmark
 		);
 	}
-	
+
 	// If we only have landmark text, return it formatted.
 	return $landmark;
 }
@@ -820,6 +822,6 @@ function edac_is_virtual_page( $post_id ) {
 		$pro_post_type = \EqualizeDigital\AccessibilityCheckerPro\VirtualContent\VirtualPageType::POST_TYPE;
 		return $pro_post_type === $post_type;
 	}
-	
+
 	return false;
 }

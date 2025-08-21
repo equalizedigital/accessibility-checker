@@ -35,7 +35,7 @@ class Post_Save {
 	 */
 	public static function delete_issue_data_on_post_trashing( $post_ID, $post, $update ) {
 		// check post type.
-		$post_types = get_option( 'edac_post_types' );
+		$post_types = Settings::get_scannable_post_types();
 		if ( is_array( $post_types ) && ! in_array( $post->post_type, $post_types, true ) ) {
 			return;
 		}
