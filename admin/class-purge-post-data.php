@@ -81,16 +81,64 @@ class Purge_Post_Data {
 		}
 
 		global $wpdb;
+		$ac_table        = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+		$postmeta_table  = $wpdb->postmeta;
+		$site_id         = get_current_blog_id();
+		$meta_key_like   = '_edac%';
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-		return $wpdb->query(
-			$wpdb->prepare(
-				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON T1.post_id = T2.postid WHERE T1.meta_key like %s and T2.siteid=%d and T2.type=%s",
-				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
-				'_edac%',
-				get_current_blog_id(),
-				$post_type
-			)
+		if ( ! $ac_table ) {
+			return false;
+		}
+
+		// Step 1: Find all post IDs of the given post_type that have associated records in the ac_table
+		// and also have the specific meta_key in postmeta.
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$sql_select_post_ids = $wpdb->prepare(
+			'SELECT DISTINCT T2.postid
+			FROM %i AS T1
+			JOIN %i AS T2 ON T1.post_id = T2.postid
+			WHERE T1.meta_key LIKE %s
+			AND T2.siteid = %d
+			AND T2.type = %s',
+			$postmeta_table, // T1.
+			$ac_table,       // T2.
+			$meta_key_like,
+			$site_id,
+			$post_type
 		);
+
+		$post_ids_to_affect = $wpdb->get_col( $sql_select_post_ids );
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		if ( empty( $post_ids_to_affect ) ) {
+			return true; // No records match the criteria.
+		}
+
+		// Sanitize all post IDs to ensure they are integers.
+		$post_ids_to_affect = array_map( 'absint', $post_ids_to_affect );
+
+		$post_ids_placeholders = implode( ', ', array_fill( 0, count( $post_ids_to_affect ), '%d' ) );
+
+		// Step 2: Delete from postmeta table.
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$query_args_postmeta = array_merge( [ $meta_key_like ], $post_ids_to_affect );
+		$sql_delete_postmeta = $wpdb->prepare(
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			"DELETE FROM {$postmeta_table} WHERE meta_key LIKE %s AND post_id IN ( {$post_ids_placeholders} )",
+			$query_args_postmeta
+		);
+		$wpdb->query( $sql_delete_postmeta );
+
+		// Step 3: Delete from accessibility_checker table.
+		$query_args_ac = array_merge( [ $site_id, $post_type ], $post_ids_to_affect );
+		$sql_delete_ac_data = $wpdb->prepare(
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			"DELETE FROM {$ac_table} WHERE siteid = %d AND type = %s AND postid IN ( {$post_ids_placeholders} )",
+			$query_args_ac
+		);
+		$wpdb->query( $sql_delete_ac_data );
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		return true;
 	}
 }
