@@ -295,11 +295,11 @@ function edac_register_setting() {
 	register_setting( 'edac_settings', 'edac_frontend_highlighter_position', 'edac_sanitize_frontend_highlighter_position' );
 
 	// Upsell settings - these are using edacp prefix for backwards compatibility.
-	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', 'edac_sanitize_scan_speed' );
-	register_setting( 'edac_settings', 'edacp_enable_archive_scanning', 'edac_sanitize_checkbox' );
-	register_setting( 'edac_settings', 'edacp_scan_all_taxonomy_terms', 'edac_sanitize_checkbox' );
-	register_setting( 'edac_settings', 'edacp_ignore_user_roles', 'edac_sanitize_ignore_user_roles' );
-	register_setting( 'edac_settings', 'edacp_simplified_summary_heading', 'sanitize_text_field' );
+	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', 'edac_sanitize_pro_scan_speed' );
+	register_setting( 'edac_settings', 'edacp_enable_archive_scanning', 'edac_sanitize_pro_archive_scanning' );
+	register_setting( 'edac_settings', 'edacp_scan_all_taxonomy_terms', 'edac_sanitize_pro_taxonomy_terms' );
+	register_setting( 'edac_settings', 'edacp_ignore_user_roles', 'edac_sanitize_pro_ignore_roles' );
+	register_setting( 'edac_settings', 'edacp_simplified_summary_heading', 'edac_sanitize_pro_summary_heading' );
 }
 
 /**
@@ -794,6 +794,97 @@ function edac_delete_data_cb() {
 		</label>
 	</fieldset>
 	<?php
+}
+
+/**
+ * Sanitize pro settings when running free version - just return existing value
+ *
+ * @param mixed  $input The input value.
+ * @param string $option_name The option name being sanitized.
+ * @return mixed The existing option value
+ */
+function edac_sanitize_pro_setting( $input, $option_name ) {
+	// If pro is active, let the input through for processing by other sanitizers.
+	if ( edac_is_pro() ) {
+		return $input;
+	}
+
+	// If pro is not active, just return the existing value to prevent changes.
+	return get_option( $option_name, $input );
+}
+
+/**
+ * Wrapper sanitizers for pro settings that preserve existing values when pro is disabled
+ *
+ * @param mixed $input The input value.
+ * @return mixed The existing option value
+ */
+function edac_sanitize_pro_scan_speed( $input ) {
+	if ( edac_is_pro() ) {
+		return edac_sanitize_scan_speed( $input );
+	}
+	return get_option( 'edacp_full_site_scan_speed', $input );
+}
+
+/**
+ * Wrapper for sanitizing pro checkbox settings
+ *
+ * @param mixed  $input The input value.
+ * @param string $option_name The option name being sanitized.
+ * @return mixed The existing option value
+ */
+function edac_sanitize_pro_checkbox( $input, $option_name ) {
+	if ( edac_is_pro() ) {
+		return edac_sanitize_checkbox( $input );
+	}
+	return get_option( $option_name, $input );
+}
+
+/**
+ * Wrapper sanitizers for pro checkbox settings that preserve existing values when pro is disabled
+ *
+ * @param mixed $input The input value.
+ * @return mixed The existing option value
+ */
+function edac_sanitize_pro_archive_scanning( $input ) {
+	return edac_sanitize_pro_checkbox( $input, 'edacp_enable_archive_scanning' );
+}
+
+/**
+ * Wrapper sanitizers for pro checkbox settings that preserve existing values when pro is disabled
+ *
+ * @param mixed $input The input value.
+ * @return mixed The existing option value
+ */
+function edac_sanitize_pro_taxonomy_terms( $input ) {
+	return edac_sanitize_pro_checkbox( $input, 'edacp_scan_all_taxonomy_terms' );
+}
+
+/**
+ * Wrapper sanitizers for pro ignore roles setting that preserve existing values when pro is disabled
+ *
+ * @param array $input The input value.
+ * @return array The existing option value
+ */
+function edac_sanitize_pro_ignore_roles( $input ) {
+	if ( edac_is_pro() ) {
+		return edac_sanitize_ignore_user_roles( $input );
+	}
+
+	return get_option( 'edacp_ignore_user_roles', $input );
+}
+
+/**
+ * Wrapper sanitizers for pro summary heading setting that preserve existing values when pro is disabled
+ *
+ * @param string $input The input value.
+ * @return string The existing option value
+ */
+function edac_sanitize_pro_summary_heading( $input ) {
+	if ( edac_is_pro() ) {
+		return sanitize_text_field( $input );
+	}
+	return get_option( 'edacp_simplified_summary_heading', $input );
 }
 
 /**
