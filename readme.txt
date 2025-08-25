@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.6
 Tested up to: 6.8
-Stable tag: 1.30.0
+Stable tag: 1.30.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,6 +210,10 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
+
+= 1.30.1 =
+* Improved: The rescan and clear buttons in the frontend highlighter are now only shown when they can be used.
+* Improved: Issue saving and clearing now has more robust capability checking.
 
 = 1.30.0 =
 * Added: Ability to clear issues on a post or page from the frontend highlighter.

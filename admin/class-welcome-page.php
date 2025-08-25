@@ -40,9 +40,11 @@ class Welcome_Page {
 						</div>
 
 						<p class="edac-cols-right">
-							<button class="button" id="edac_clear_cached_stats">
-								<?php esc_html_e( 'Update Counts', 'accessibility-checker' ); ?>
-							</button>
+							<?php if ( current_user_can( 'publish_posts' ) ) : ?>
+								<button class="button" id="edac_clear_cached_stats">
+									<?php esc_html_e( 'Update Counts', 'accessibility-checker' ); ?>
+								</button>
+							<?php endif; ?>
 
 							<a class="edac-ml-1 button" href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_full_site_scan' ) ); ?>">
 								<?php esc_html_e( 'Start New Scan', 'accessibility-checker' ); ?>
