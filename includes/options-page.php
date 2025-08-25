@@ -96,7 +96,7 @@ function edac_register_setting() {
 	// Add sections.
 	add_settings_section(
 		'edac_general',
-		__( 'General Settings', 'accessibility-checker' ),
+		__( 'Scan Settings', 'accessibility-checker' ),
 		'edac_general_cb',
 		'edac_settings'
 	);
