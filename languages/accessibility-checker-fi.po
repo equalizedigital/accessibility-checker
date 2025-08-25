@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-06T16:25:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "Haluatko tehdä enemmän Accessibility Checkerillä? %1$sAvaa Pro-ominai
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Avaa Pro-ominaisuudet (avautuu uudessa ikkunassa)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "Olemme parantaneet tilastojen laskentaa versiossa 1.21.0. Tämän seurauksena jotkin alla olevista luvuista ovat saattaneet muuttua. Lue lisää %1$sjulkaisuilmoituksestamme%2$s."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Black Friday -tarjous! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Päivitä maksulliseen Accessibility Checker -versioon 25.11.-3.12. Välisenä aikana ja saat 30 % alennuksen! Koko sivuston skannaus, sivustonlaajuinen avointen ongelmien raportti, ohitusloki ja paljon muuta."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "Kysy myyntiä edeltävä kysymys"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "Päivitä nyt"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "Olemme parantaneet tilastojen laskentaa versiossa 1.21.0. Tämän seurau
 msgid "Permission Denied"
 msgstr "Käyttöoikeus evätty"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "Vaihtoehdon päivitys ei onnistunut"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 Black Friday -tarjous! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Päivitä maksulliseen Accessibility Checker -versioon 25.11.-3.12. Välisenä aikana ja saat 30 % alennuksen! Koko sivuston skannaus, sivustonlaajuinen avointen ongelmien raportti, ohitusloki ja paljon muuta."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "Kysy myyntiä edeltävä kysymys"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "Päivitä nyt"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Saat 25 % alennuksen Accessibility Checker Pro:sta kansainvälisen saavutettavuustietoisuuden päivän kunniaksi! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Käytä kuponkikoodia GAAD25 13.5.-21.5. Välisenä aikana saadaksesi pääsyn koko sivuston skannaukseen ja muihin pro-ominaisuuksiin erikoishintaan. Etkö ole varma, onko päivittäminen sinulle sopiva vaihtoehto?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Hei! Kiitos, että käytät Accessibility Checkeriä osana saavutettavuustyökaluvalikoimaasi. Koska olet käyttänyt sitä jo jonkin aikaa, voisitko ystävällisesti kirjoittaa 5 tähden arvostelun Accessibility Checkeristä WordPress-lisäosahakemistoon? Tämä auttaa lisäämään näkyvyyttämme, jotta useammat ihmiset voivat oppia verkkosivujen saavutettavuuden tärkeydestä. Kiitos paljon!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Kirjoita arvostelu"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Muistuta kahden viikon kuluttua"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "Älä kysy enää koskaan"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "Arvostelutoiminnon arvoa ei asetettu"
 
@@ -645,6 +637,96 @@ msgstr "Kirjoita etunimesi"
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Tarkastushistoria"
+
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "Saavutettavuusongelmat"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "Sisältö tarkistettu saavutettavuuden osalta"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "Sisältötyypit määritetty saavutettavuustarkistuksia varten"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "Saavutettavuus"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "Näytä ongelmat"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "Näytä Accessibility Checker"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "Saavutettavuusongelmia havaittu"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checker on havainnut %1$s virhettä ja %2$s varoitusta."
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "Saavutettavuusongelmia ei havaittu"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checker ei ole löytänyt ongelmia skannatussa sisällössä."
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "Sisältöä ei ole tarkistettu"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "Yhtään artikkelia ei ole vielä skannattu. Suorita koko sivuston skannaus aloittaaksesi sisällön tarkistamisen saavutettavuusongelmien varalta."
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "Aloita koko sivuston skannaus"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "Sisältöä tarkistetaan saavutettavuuden osalta"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker on skannannut %s artikkelin saavutettavuusongelmien varalta."
+msgstr[1] "Accessibility Checker on skannannut %s artikkelia saavutettavuusongelmien varalta."
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "Saavutettavuustarkistuksiin ei ole valittu sisältötyyppejä"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "Accessibility Checker ei voi skannata sisältöä, koska sisältötyyppejä ei ole valittu. Ilman määritettyjä sisältötyyppejä saavutettavuusongelmia ei havaita."
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "Määritä sisältötyypit"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "Sisältötyypit on määritetty saavutettavuustarkistuksia varten"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker on määritetty skannaamaan %1$s sisältötyyppi: %2$s."
+msgstr[1] "Accessibility Checker on määritetty skannaamaan %1$s sisältötyyppiä: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4025,6 +4107,7 @@ msgstr "Poista kaikki tällä hetkellä löydetyt ongelmat"
 
 #: partials/custom-meta-box.php:52
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "Tyhjennä ongelmat"
 
@@ -4272,22 +4355,27 @@ msgid "Fix Settings"
 msgstr "Korjaa asetukset"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Tämä poistaa kaikki ongelmat tästä artikkelista. Tallennus vaaditaan käynnistämään uusi skannaus artikkelin sisällöstä. Haluatko jatkaa?"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "Tyhjennetään..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "Ongelmat tyhjennetty onnistuneesti."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Ongelmien tyhjennys epäonnistui."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "Virhe tapahtui ongelmia tyhjennettäessä."
 
@@ -4409,6 +4497,10 @@ msgstr "Saavutettavuusskannauksen virhe."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "Virhe skannaustulosten tallentamisessa."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "Virhe: Pakolliset parametrit puuttuvat."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
