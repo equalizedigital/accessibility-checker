@@ -796,3 +796,12 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 	// If we only have landmark text, return it formatted.
 	return $landmark;
 }
+
+/**
+ * Check if the Pro version of the plugin is active.
+ *
+ * @return bool True if Pro version is active, false otherwise.
+ */
+function edac_is_pro() {
+	return defined( 'EDACP_KEY_VALID' ) && EDAC_KEY_VALID;
+}
