@@ -86,7 +86,7 @@ class Enqueue_Admin {
 					'nonce'      => wp_create_nonce( 'ajax-nonce' ),
 					'edacApiUrl' => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
 					'restNonce'  => wp_create_nonce( 'wp_rest' ),
-					'proUrl'     => esc_url_raw( edac_generate_link_type( [ 'utm-content', '__name__' ] ) ),
+					'proUrl'     => esc_url_raw( edac_generate_link_type( [ 'utm-content' => '__name__' ] ) ),
 				]
 			);
 
