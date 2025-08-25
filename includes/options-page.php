@@ -122,6 +122,13 @@ function edac_register_setting() {
 		'edac_settings'
 	);
 
+	add_settings_section(
+		'edac_system',
+		__( 'System Settings', 'accessibility-checker' ),
+		'edac_system_cb',
+		'edac_settings'
+	);
+
 	// Add fields.
 	add_settings_field(
 		'edac_post_types',
@@ -137,7 +144,7 @@ function edac_register_setting() {
 		__( 'Delete Data', 'accessibility-checker' ),
 		'edac_delete_data_cb',
 		'edac_settings',
-		'edac_general',
+		'edac_system',
 		[ 'label_for' => 'edac_delete_data' ]
 	);
 
