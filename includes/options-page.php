@@ -149,7 +149,7 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
-		'edac_enable_archive_scanning',
+		'edacp_enable_archive_scanning',
 		__( 'Enable Archive Scanning', 'accessibility-checker' ),
 		'edac_enable_archive_scanning_cb',
 		'edac_settings',
@@ -158,7 +158,7 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
-		'edac_scan_all_taxonomy_terms',
+		'edacp_scan_all_taxonomy_terms',
 		__( 'Scan All Taxonomy Terms', 'accessibility-checker' ),
 		'edac_scan_all_taxonomy_terms_cb',
 		'edac_settings',
@@ -256,7 +256,6 @@ function edac_register_setting() {
 		[ 'label_for' => 'edac_frontend_highlighter_position' ]
 	);
 
-
 	// Register settings.
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
 
@@ -287,6 +286,8 @@ function edac_register_setting() {
 
 	// Upsell settings - these are using edacp prefix for backwards compatibility.
 	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', 'edac_sanitize_scan_speed' );
+	register_setting( 'edac_settings', 'edacp_enable_archive_scanning', 'edac_sanitize_checkbox' );
+	register_setting( 'edac_settings', 'edacp_scan_all_taxonomy_terms', 'edac_sanitize_checkbox' );
 	register_setting( 'edac_settings', 'edacp_ignore_user_roles', 'edac_sanitize_ignore_user_roles' );
 	register_setting( 'edac_settings', 'edacp_simplified_summary_heading', 'sanitize_text_field' );
 }
@@ -404,21 +405,23 @@ function edac_full_site_scan_speed_cb() {
 }
 
 /**
- * Render the checkbox for enable archives scanning
+ * Render the checkbox for enable archives scanning.
+ *
+ * Note: this setting is purposefully using edacp as prefix.
  *
  * @return void
  */
 function edac_enable_archive_scanning_cb() {
-	$enable_archives = get_option( 'edacp_enable_archives_scanning', false );
+	$enable_archives = get_option( 'edacp_enable_archive_scanning', false );
 	?>
 	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
 		<label>
 			<input
 				type="checkbox"
-				name="edacp_enable_archives_scanning"
-				id="edacp_enable_archives_scanning"
+				name="edacp_enable_archive_scanning"
+				id="edacp_enable_archive_scanning"
 				value="1"
-				<?php checked( $enable_archives, true ); ?>
+				<?php checked( $enable_archives, 1 ); ?>
 				<?php disabled( ! edac_is_pro() ); ?>
 			>
 			<?php esc_html_e( 'Enable scanning of archive pages', 'accessibility-checker' ); ?>
@@ -433,20 +436,22 @@ function edac_enable_archive_scanning_cb() {
 /**
  * Render the checkbox for scan all taxonomies
  *
+ * Note: this setting is purposefully using edacp as prefix.
+ *
  * @return void
  */
 function edac_scan_all_taxonomy_terms_cb() {
-	$scan_all_taxonomies = get_option( 'edacp_scan_all_taxonomies', false );
-	$enable_archives     = get_option( 'edacp_enable_archives_scanning', false );
+	$scan_all_taxonomies = get_option( 'edacp_scan_all_taxonomy_terms', false );
+	$enable_archives     = get_option( 'edacp_enable_archive_scanning', false );
 	?>
 	<fieldset <?php echo ( edac_is_pro() ? '' : 'class="edac-setting--upsell"' ); ?>>
 		<label>
 			<input
 				type="checkbox"
-				name="edacp_scan_all_taxonomies"
-				id="edacp_scan_all_taxonomies"
+				name="edacp_scan_all_taxonomy_terms"
+				id="edacp_scan_all_taxonomy_terms"
 				value="1"
-				<?php checked( $scan_all_taxonomies, true ); ?>
+				<?php checked( $scan_all_taxonomies, 1 ); ?>
 				<?php disabled( ! $enable_archives || ! edac_is_pro() ); ?>
 			>
 			<?php esc_html_e( 'Scan all taxonomy terms instead of just a sample', 'accessibility-checker' ); ?>
