@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-06T16:25:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "Vēlaties darīt vairāk ar Accessibility Checker? %1$sAtbloķējiet Pro
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Atbloķējiet Pro funkcijas (atveras jaunā logā)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "Mēs esam uzlabojuši statistikas aprēķinus versijā 1.21.0. Rezultātā daži skaitļi zemāk esošajos datos var būt mainījušies. Uzziniet vairāk mūsu %1$sizlaišanas paziņojuma ierakstā%2$s."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Melnās piektdienas īpašais piedāvājums! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Jauniniet uz maksas Accessibility Checker versiju no 25. Novembra līdz 3. decembrim un saņemiet 30% atlaidi! Pilnas vietnes skenēšana, vietnes mēroga atvērto problēmu ziņojums, ignorēšanas žurnāli un daudz kas cits."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "Uzdot pārdošanas jautājumu"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "Jaunināt tagad"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "Mēs esam uzlabojuši statistikas aprēķinus versijā 1.21.0. Rezultāt
 msgid "Permission Denied"
 msgstr "Atļauja liegta"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "Atjaunināšanas opcija nebija veiksmīga"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 Melnās piektdienas īpašais piedāvājums! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Jauniniet uz maksas Accessibility Checker versiju no 25. Novembra līdz 3. decembrim un saņemiet 30% atlaidi! Pilnas vietnes skenēšana, vietnes mēroga atvērto problēmu ziņojums, ignorēšanas žurnāli un daudz kas cits."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "Uzdot pārdošanas jautājumu"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "Jaunināt tagad"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Iegūstiet 25% atlaidi Accessibility Checker Pro par godu Globālajai pieejamības izpratnes dienai! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Izmantojiet kupona kodu GAAD25 no 13. Maija līdz 21. maijam, lai piekļūtu pilnas vietnes skenēšanai un citām pro funkcijām ar īpašu atlaidi. Neesat pārliecināts, vai jaunināšana ir jums piemērota?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Sveiki! Paldies, ka izmantojat Accessibility Checker kā daļu no jūsu pieejamības rīku komplekta. Tā kā jūs to jau kādu laiku izmantojat, vai jūs, lūdzu, varētu uzrakstīt 5 zvaigžņu atsauksmi par Accessibility Checker WordPress spraudņu direktorijā? Tas palīdzēs palielināt mūsu redzamību, lai vairāk cilvēku varētu uzzināt par tīmekļa pieejamības nozīmi. Liels paldies!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Uzrakstīt atsauksmi"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Atgādināt pēc divām nedēļām"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "Vairs nejautāt"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "Atsauksmes darbības vērtība netika iestatīta"
 
@@ -645,6 +637,96 @@ msgstr "Ievadiet savu vārdu"
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Audita vēsture"
+
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "Pieejamības problēmas"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "Saturs pārbaudīts pieejamībai"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "Ierakstu veidi konfigurēti pieejamības pārbaudēm"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "Pieejamība"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "Skatīt problēmas"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "Skatīt Accessibility Checker"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "Konstatētas pieejamības problēmas"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checker ir konstatējis %1$s kļūdas un %2$s brīdinājumus."
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "Nav konstatētas pieejamības problēmas"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checker nav atradis nekādas problēmas skenētajā saturā."
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "Saturs nav pārbaudīts"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "Neviens ieraksts vēl nav skenēts. Palaidiet pilnu vietnes skenēšanu, lai sāktu pārbaudīt satura pieejamības problēmas."
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "Sākt pilnu vietnes skenēšanu"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "Saturs tiek pārbaudīts pieejamībai"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker ir skenējis %s ierakstu, meklējot pieejamības problēmas."
+msgstr[1] "Accessibility Checker ir skenējis %s ierakstus, meklējot pieejamības problēmas."
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "Nav atlasīti ierakstu veidi pieejamības pārbaudei"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "Accessibility Checker nevar skenēt saturu, jo nav atlasīti ierakstu veidi. Bez konfigurētiem ierakstu veidiem netiks konstatētas pieejamības problēmas."
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "Konfigurēt ierakstu veidus"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "Ierakstu veidi ir konfigurēti pieejamības pārbaudei"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker ir konfigurēts skenēt %1$s ieraksta veidu: %2$s."
+msgstr[1] "Accessibility Checker ir konfigurēts skenēt %1$s ierakstu veidus: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4025,6 +4107,7 @@ msgstr "Dzēst visas pašlaik atrastās problēmas"
 
 #: partials/custom-meta-box.php:52
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "Notīrīt problēmas"
 
@@ -4272,22 +4355,27 @@ msgid "Fix Settings"
 msgstr "Labošanas iestatījumi"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Tas notīrīs visas problēmas šim ierakstam. Būs nepieciešama saglabāšana, lai veiktu jaunu ieraksta satura skenēšanu. Vai vēlaties turpināt?"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "Notīra..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "Problēmas veiksmīgi notīrītas."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Neizdevās notīrīt problēmas."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "Radās kļūda, tīrot problēmas."
 
@@ -4409,6 +4497,10 @@ msgstr "Pieejamības skenēšanas kļūda."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "Kļūda, saglabājot skenēšanas rezultātus."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "Kļūda: Trūkst nepieciešamo parametru."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
