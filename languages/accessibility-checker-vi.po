@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-06T16:25:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "Muốn làm được nhiều hơn với Accessibility Checker? %1$sMở 
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Mở khóa tính năng Pro (mở trong cửa sổ mới)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "Chúng tôi đã cải thiện các tính toán thống kê trong phiên bản 1.21.0. Do đó, một số con số trong dữ liệu dưới đây có thể đã thay đổi. Đọc thêm trong %1$sbài đăng thông báo phát hành%2$s của chúng tôi."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Ưu đãi đặc biệt Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Nâng cấp lên phiên bản trả phí của Accessibility Checker từ ngày 25 tháng 11 đến ngày 3 tháng 12 và được giảm giá 30%! Quét toàn bộ trang web, báo cáo vấn đề mở toàn trang, nhật ký bỏ qua và nhiều tính năng khác."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "Đặt câu hỏi trước khi mua"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "Nâng cấp ngay"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "Chúng tôi đã cải thiện các tính toán thống kê trong phiên
 msgid "Permission Denied"
 msgstr "Quyền truy cập bị từ chối"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "Cập nhật tùy chọn không thành công"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 Ưu đãi đặc biệt Black Friday! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Nâng cấp lên phiên bản trả phí của Accessibility Checker từ ngày 25 tháng 11 đến ngày 3 tháng 12 và được giảm giá 30%! Quét toàn bộ trang web, báo cáo vấn đề mở toàn trang, nhật ký bỏ qua và nhiều tính năng khác."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "Đặt câu hỏi trước khi mua"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "Nâng cấp ngay"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Giảm giá 25% cho Accessibility Checker Pro nhân Ngày Nhận thức Khả năng Tiếp cận Toàn cầu! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Sử dụng mã giảm giá GAAD25 từ ngày 13 tháng 5 đến ngày 21 tháng 5 để được truy cập vào tính năng quét toàn bộ trang web và các tính năng Pro khác với mức giảm giá đặc biệt. Không chắc liệu nâng cấp có phù hợp với bạn không?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Xin chào! Cảm ơn bạn đã sử dụng Accessibility Checker như một phần trong bộ công cụ kiểm tra khả năng tiếp cận của bạn. Vì bạn đã sử dụng nó một thời gian, bạn có thể viết đánh giá 5 sao cho Accessibility Checker trên thư mục plugin WordPress được không? Điều này sẽ giúp tăng khả năng hiển thị của chúng tôi để nhiều người có thể biết về tầm quan trọng của khả năng tiếp cận web. Cảm ơn bạn rất nhiều!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Viết đánh giá"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Nhắc tôi sau hai tuần"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "Không bao giờ hỏi lại"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "Giá trị hành động đánh giá không được thiết lập"
 
@@ -645,6 +637,96 @@ msgstr "Nhập tên của bạn"
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Lịch sử kiểm tra"
+
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "Vấn đề về khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "Nội dung đã được kiểm tra khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "Các loại bài viết đã được cấu hình cho việc kiểm tra khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "Khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "Xem vấn đề"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "Xem Accessibility Checker"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "Đã phát hiện vấn đề về khả năng tiếp cận"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checker đã phát hiện %1$s lỗi và %2$s cảnh báo."
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "Không phát hiện vấn đề về khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checker không tìm thấy vấn đề nào trong nội dung đã quét."
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "Nội dung chưa được kiểm tra"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "Chưa có bài viết nào được quét. Chạy quét toàn bộ trang web để bắt đầu kiểm tra nội dung của bạn về các vấn đề khả năng tiếp cận."
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "Bắt đầu quét toàn bộ trang web"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "Nội dung đang được kiểm tra khả năng tiếp cận"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker đã quét %s bài viết về vấn đề khả năng tiếp cận."
+msgstr[1] "Accessibility Checker đã quét %s bài viết về vấn đề khả năng tiếp cận."
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "Không có loại bài viết nào được chọn để kiểm tra khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "Accessibility Checker không thể quét bất kỳ nội dung nào vì không có loại bài viết nào được chọn. Nếu không cấu hình loại bài viết, sẽ không phát hiện được vấn đề về khả năng tiếp cận."
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "Cấu hình loại bài viết"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "Các loại bài viết đã được cấu hình để kiểm tra khả năng tiếp cận"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker được cấu hình để quét %1$s loại bài viết: %2$s."
+msgstr[1] "Accessibility Checker được cấu hình để quét %1$s loại bài viết: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4025,6 +4107,7 @@ msgstr "Xóa tất cả các vấn đề hiện đang được tìm thấy"
 
 #: partials/custom-meta-box.php:52
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "Xóa vấn đề"
 
@@ -4272,22 +4355,27 @@ msgid "Fix Settings"
 msgstr "Cài đặt sửa lỗi"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Điều này sẽ xóa tất cả các vấn đề cho bài viết này. Cần phải lưu để kích hoạt quét mới nội dung bài viết. Bạn có muốn tiếp tục không?"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "Đang xóa..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "Đã xóa vấn đề thành công."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Không thể xóa vấn đề."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "Đã xảy ra lỗi khi xóa các vấn đề."
 
@@ -4409,6 +4497,10 @@ msgstr "Lỗi quét khả năng truy cập."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "Lỗi khi lưu kết quả quét."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "Lỗi: Thiếu các tham số bắt buộc."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
