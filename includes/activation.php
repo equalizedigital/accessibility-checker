@@ -19,4 +19,7 @@ function edac_activation() {
 	update_option( 'edac_simplified_summary_position', 'after' );
 
 	Accessibility_Statement::add_page();
+
+	// This is an add_option on purpose to not overwrite user settings on update.
+	add_option( 'edacp_ignore_user_roles', [ 'administrator' ] );
 }
