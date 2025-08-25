@@ -928,3 +928,31 @@ const postData = async ( url = '', data = {} ) => {
 	return response.json();
 };
 
+/**
+ * Initialize the interdependency between archives scanning and taxonomy scanning settings
+ */
+const initArchivesScanningDependency = () => {
+	const archivesCheckbox = document.getElementById( 'edacp_enable_archive_scanning' );
+	const taxonomiesCheckbox = document.getElementById( 'edacp_scan_all_taxonomy_terms' );
+
+	if ( archivesCheckbox && taxonomiesCheckbox ) {
+		function updateTaxonomiesState() {
+			if ( archivesCheckbox.checked && archivesCheckbox.disabled === false ) {
+				taxonomiesCheckbox.disabled = false;
+			} else {
+				taxonomiesCheckbox.disabled = true;
+				taxonomiesCheckbox.checked = false;
+			}
+		}
+
+		// Initial state
+		updateTaxonomiesState();
+
+		// Listen for changes
+		archivesCheckbox.addEventListener( 'change', updateTaxonomiesState );
+	}
+};
+
+window.onload = function() {
+	initArchivesScanningDependency();
+};
