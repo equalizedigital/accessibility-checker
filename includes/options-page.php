@@ -167,6 +167,15 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
+		'edacp_ignore_user_roles',
+		__( 'Ignore Permissions', 'accessibility-checker' ),
+		'edac_ignore_user_roles_cb',
+		'edac_settings',
+		'edac_general',
+		[ 'label_for' => 'edac_ignore_user_roles' ]
+	);
+
+	add_settings_field(
 		'edac_delete_data',
 		__( 'Delete Data', 'accessibility-checker' ),
 		'edac_delete_data_cb',
@@ -191,6 +200,15 @@ function edac_register_setting() {
 		'edac_settings',
 		'edac_simplified_summary',
 		[ 'label_for' => 'edac_simplified_summary_position' ]
+	);
+
+	add_settings_field(
+		'edacp_simplified_summary_heading',
+		__( 'Simplified Summary Heading', 'accessibility-checker' ),
+		'edac_simplified_summary_heading_cb',
+		'edac_settings',
+		'edac_simplified_summary',
+		[ 'label_for' => 'edacp_simplified_summary_heading' ]
 	);
 
 	add_settings_field(
@@ -241,8 +259,7 @@ function edac_register_setting() {
 
 	// Register settings.
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
-	register_setting( 'edac_settings', 'edac_enable_archive_scanning', 'edac_sanitize_enable_archive_scanning' );
-	register_setting( 'edac_settings', 'edac_scan_all_taxonomy_terms', 'edac_sanitize_scan_all_taxonomy_terms' );
+
 	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_checkbox' );
 	register_setting(
 		'edac_settings',
@@ -267,7 +284,11 @@ function edac_register_setting() {
 	register_setting( 'edac_settings', 'edac_accessibility_policy_page', 'edac_sanitize_accessibility_policy_page' );
 
 	register_setting( 'edac_settings', 'edac_frontend_highlighter_position', 'edac_sanitize_frontend_highlighter_position' );
+
+	// Upsell settings - these are using edacp prefix for backwards compatibility.
 	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', 'edac_sanitize_scan_speed' );
+	register_setting( 'edac_settings', 'edacp_ignore_user_roles', 'edac_sanitize_ignore_user_roles' );
+	register_setting( 'edac_settings', 'edacp_simplified_summary_heading', 'sanitize_text_field' );
 }
 
 /**
@@ -792,4 +813,82 @@ function edac_delete_data_cb() {
  */
 function edac_sanitize_checkbox( $input ) {
 	return ( isset( $input ) && '1' === $input ) ? 1 : 0;
+}
+
+/**
+ * Render the input field for simplified summary heading.
+ *
+ * @return void
+ */
+function edac_simplified_summary_heading_cb() {
+	// phpcs:ignore Universal.Operators.DisallowShortTernary.Found -- ternary is more readable here.
+	$simplified_summary_heading = get_option( 'edacp_simplified_summary_heading' ) ?: __( 'Simplified Summary', 'accessibility-checker' );
+	?>
+	<input
+		<?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>
+		type="text"
+		name="edacp_simplified_summary_heading"
+		id="edacp_simplified_summary_heading"
+		value="<?php echo esc_attr( $simplified_summary_heading ); ?>"
+		<?php disabled( ! edac_is_pro() ); ?>
+	>
+	<?php
+}
+
+/**
+ * Render the field for ignore user roles.
+ *
+ * @return void
+ */
+function edac_ignore_user_roles_cb() {
+
+	global $wp_roles;
+	// phpcs:ignore Universal.Operators.DisallowShortTernary.Found -- ternary is more readable here.
+	$selected_roles = get_option( 'edacp_ignore_user_roles' ) ?: [];
+	$roles          = $wp_roles->roles;
+
+	?>
+	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
+		<?php if ( $roles ) : ?>
+			<?php foreach ( $roles as $key => $role ) : ?>
+				<label>
+					<input
+						type="checkbox"
+						name="edacp_ignore_user_roles[]"
+						value="<?php echo esc_attr( $key ); ?>"
+						<?php checked( in_array( $key, $selected_roles, true ), 1 ); ?>
+						<?php disabled( ! edac_is_pro() ); ?>
+					>
+					<?php echo esc_html( $role['name'] ); ?>
+				</label>
+				<br>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</fieldset>
+	<p class="edac-description">
+		<?php esc_html_e( 'Choose which user roles have permission to ignore issues.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Sanitize the ignore user roles value before being saved to database
+ *
+ * @param array $selected_roles user roles to sanitize.
+ * @return array
+ */
+function edac_sanitize_ignore_user_roles( $selected_roles ) {
+
+	global $wp_roles;
+	$roles = array_keys( $wp_roles->roles );
+
+	if ( $selected_roles ) {
+		foreach ( $selected_roles as $key => $selected_role ) {
+			if ( ! in_array( $selected_role, (array) $roles, true ) ) {
+				unset( $selected_roles[ $key ] );
+			}
+		}
+	}
+
+	return $selected_roles;
 }
