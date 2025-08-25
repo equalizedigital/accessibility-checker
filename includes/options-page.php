@@ -140,6 +140,33 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
+		'edac_scan_speed',
+		__( 'Scan Speed', 'accessibility-checker' ),
+		'edac_scan_speed_cb',
+		'edac_settings',
+		'edac_general',
+		[ 'label_for' => 'edac_scan_speed' ]
+	);
+
+	add_settings_field(
+		'edac_enable_archive_scanning',
+		__( 'Enable Archive Scanning', 'accessibility-checker' ),
+		'edac_enable_archive_scanning_cb',
+		'edac_settings',
+		'edac_general',
+		[ 'label_for' => 'edac_enable_archive_scanning' ]
+	);
+
+	add_settings_field(
+		'edac_scan_all_taxonomy_terms',
+		__( 'Scan All Taxonomy Terms', 'accessibility-checker' ),
+		'edac_scan_all_taxonomy_terms_cb',
+		'edac_settings',
+		'edac_general',
+		[ 'label_for' => 'edac_scan_all_taxonomy_terms' ]
+	);
+
+	add_settings_field(
 		'edac_delete_data',
 		__( 'Delete Data', 'accessibility-checker' ),
 		'edac_delete_data_cb',
@@ -214,6 +241,9 @@ function edac_register_setting() {
 
 	// Register settings.
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
+	register_setting( 'edac_settings', 'edac_scan_speed', 'edac_sanitize_scan_speed' );
+	register_setting( 'edac_settings', 'edac_enable_archive_scanning', 'edac_sanitize_enable_archive_scanning' );
+	register_setting( 'edac_settings', 'edac_scan_all_taxonomy_terms', 'edac_sanitize_scan_all_taxonomy_terms' );
 	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_checkbox' );
 	register_setting(
 		'edac_settings',
@@ -308,6 +338,134 @@ function edac_footer_accessibility_statement_cb() {
 	echo '<p>';
 	echo esc_html__( 'Are you thinking "Wow, this plugin is amazing" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you\'re using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website.', 'accessibility-checker' );
 	echo '</p>';
+}
+
+/**
+ * Render the text for the system settings section
+ */
+function edac_system_cb() {
+	echo '<p>';
+	esc_html_e( 'Configure system-level settings for the Accessibility Checker plugin.', 'accessibility-checker' );
+	echo '</p>';
+}
+
+/**
+ * Render the dropdown input field for scan speed option
+ */
+function edac_scan_speed_cb() {
+
+	$full_site_scan_speed = (int) get_option( 'edacp_full_site_scan_speed', 1000 );
+
+	$speed_values = [
+		'250'   => __( 'Fast', 'accessibility-checker' ),
+		'1000'  => __( 'Normal', 'accessibility-checker' ),
+		'5000'  => __( 'Slow', 'accessibility-checker' ),
+		'30000' => __( 'Slowest', 'accessibility-checker' ),
+	];
+
+	?>
+	<fieldset <?php echo ( edac_is_pro() ? '' : 'class="edac-setting--upsell"' ); ?>>
+		<select name="edacp_full_site_scan_speed" id="edacp_full_site_scan_speed" <?php echo ( edac_is_pro() ? '' : 'disabled' ); ?>>
+			<?php
+			foreach ( $speed_values as $value => $label ) {
+				$selected = $full_site_scan_speed === (int) $value ? 'selected' : '';
+				echo '<option value="' . esc_attr( $value ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $label ) . '</option>';
+			}
+			?>
+		</select>
+	</fieldset>
+	<p class="edac-description">
+		<?php esc_html_e( 'Faster scans are more resource intensive and may place a high load on your website.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Render the checkbox for enable archives scanning
+ *
+ * @return void
+ */
+function edac_enable_archive_scanning_cb() {
+	$enable_archives = get_option( 'edacp_enable_archives_scanning', false );
+	?>
+	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
+		<label>
+			<input
+				type="checkbox"
+				name="edacp_enable_archives_scanning"
+				id="edacp_enable_archives_scanning"
+				value="1"
+				<?php checked( $enable_archives, true ); ?>
+				<?php disabled( ! edac_is_pro() ); ?>
+			>
+			<?php esc_html_e( 'Enable scanning of archive pages', 'accessibility-checker' ); ?>
+		</label>
+	</fieldset>
+	<p class="edac-description">
+		<?php esc_html_e( 'Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Render the checkbox for scan all taxonomies
+ *
+ * @return void
+ */
+function edac_scan_all_taxonomy_terms_cb() {
+	$scan_all_taxonomies = get_option( 'edacp_scan_all_taxonomies', false );
+	$enable_archives     = get_option( 'edacp_enable_archives_scanning', false );
+	?>
+	<fieldset <?php echo ( edac_is_pro() ? '' : 'class="edac-setting--upsell"' ); ?>>
+		<label>
+			<input
+				type="checkbox"
+				name="edacp_scan_all_taxonomies"
+				id="edacp_scan_all_taxonomies"
+				value="1"
+				<?php checked( $scan_all_taxonomies, true ); ?>
+				<?php disabled( ! $enable_archives || ! edac_is_pro() ); ?>
+			>
+			<?php esc_html_e( 'Scan all taxonomy terms instead of just a sample', 'accessibility-checker' ); ?>
+		</label>
+	</fieldset>
+	<p class="edac-description">
+		<?php esc_html_e( 'Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Sanitize the scan speed value before being saved to database
+ *
+ * @param string $speed The scan speed value.
+ * @return string
+ */
+function edac_sanitize_scan_speed( $speed ) {
+	// This is a Pro-only feature, don't save any values.
+	return get_option( 'edac_scan_speed', $speed );
+}
+
+/**
+ * Sanitize the enable archive scanning value before being saved to database
+ *
+ * @param string $input The input value.
+ * @return int
+ */
+function edac_sanitize_enable_archive_scanning( $input ) {
+	// This is a Pro-only feature, don't save any values.
+	return get_option( 'edac_enable_archive_scanning', $input );
+}
+
+/**
+ * Sanitize the scan all taxonomy terms value before being saved to database
+ *
+ * @param string $input The input value.
+ * @return int
+ */
+function edac_sanitize_scan_all_taxonomy_terms( $input ) {
+	// This is a Pro-only feature, don't save any values.
+	return get_option( 'edac_scan_all_taxonomy_terms', $input );
 }
 
 /**
