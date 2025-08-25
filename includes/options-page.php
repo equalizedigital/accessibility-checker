@@ -140,12 +140,12 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
-		'edac_scan_speed',
+		'edacp_full_site_scan_speed',
 		__( 'Scan Speed', 'accessibility-checker' ),
-		'edac_scan_speed_cb',
+		'edac_full_site_scan_speed_cb',
 		'edac_settings',
 		'edac_general',
-		[ 'label_for' => 'edac_scan_speed' ]
+		[ 'label_for' => 'edac_full_site_scan_speed' ]
 	);
 
 	add_settings_field(
@@ -241,7 +241,6 @@ function edac_register_setting() {
 
 	// Register settings.
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
-	register_setting( 'edac_settings', 'edac_scan_speed', 'edac_sanitize_scan_speed' );
 	register_setting( 'edac_settings', 'edac_enable_archive_scanning', 'edac_sanitize_enable_archive_scanning' );
 	register_setting( 'edac_settings', 'edac_scan_all_taxonomy_terms', 'edac_sanitize_scan_all_taxonomy_terms' );
 	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_checkbox' );
@@ -268,6 +267,7 @@ function edac_register_setting() {
 	register_setting( 'edac_settings', 'edac_accessibility_policy_page', 'edac_sanitize_accessibility_policy_page' );
 
 	register_setting( 'edac_settings', 'edac_frontend_highlighter_position', 'edac_sanitize_frontend_highlighter_position' );
+	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', 'edac_sanitize_scan_speed' );
 }
 
 /**
@@ -350,9 +350,11 @@ function edac_system_cb() {
 }
 
 /**
- * Render the dropdown input field for scan speed option
+ * Render the dropdown input field for scan speed option.
+ *
+ * Note: this setting is purposefully using edacp as prefix for back compat reasons.
  */
-function edac_scan_speed_cb() {
+function edac_full_site_scan_speed_cb() {
 
 	$full_site_scan_speed = (int) get_option( 'edacp_full_site_scan_speed', 1000 );
 
@@ -442,8 +444,10 @@ function edac_scan_all_taxonomy_terms_cb() {
  * @return string
  */
 function edac_sanitize_scan_speed( $speed ) {
-	// This is a Pro-only feature, don't save any values.
-	return get_option( 'edac_scan_speed', $speed );
+	if ( in_array( $speed, [ '250', '1000', '5000', '30000' ], true ) ) {
+		return $speed;
+	}
+	return '1000';
 }
 
 /**
