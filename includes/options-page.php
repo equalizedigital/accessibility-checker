@@ -464,7 +464,9 @@ function edac_scan_all_taxonomy_terms_cb() {
 }
 
 /**
- * Sanitize the scan speed value before being saved to database
+ * Sanitize the scan speed value before being saved to database.
+ *
+ * Can only be one of a few different numbers, representing milliseconds between polls.
  *
  * @param string $speed The scan speed value.
  * @return string
@@ -474,28 +476,6 @@ function edac_sanitize_scan_speed( $speed ) {
 		return $speed;
 	}
 	return '1000';
-}
-
-/**
- * Sanitize the enable archive scanning value before being saved to database
- *
- * @param string $input The input value.
- * @return int
- */
-function edac_sanitize_enable_archive_scanning( $input ) {
-	// This is a Pro-only feature, don't save any values.
-	return get_option( 'edac_enable_archive_scanning', $input );
-}
-
-/**
- * Sanitize the scan all taxonomy terms value before being saved to database
- *
- * @param string $input The input value.
- * @return int
- */
-function edac_sanitize_scan_all_taxonomy_terms( $input ) {
-	// This is a Pro-only feature, don't save any values.
-	return get_option( 'edac_scan_all_taxonomy_terms', $input );
 }
 
 /**
