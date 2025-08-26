@@ -822,3 +822,12 @@ function edac_is_virtual_page( $post_id ) {
 
 	return false;
 }
+
+/**
+ * Check if the Pro version of the plugin is active.
+ *
+ * @return bool True if Pro version is active, false otherwise.
+ */
+function edac_is_pro() {
+	return defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID;
+}
