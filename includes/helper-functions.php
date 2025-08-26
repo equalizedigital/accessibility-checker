@@ -5,6 +5,8 @@
  * @package Accessibility_Checker
  */
 
+use EDAC\Admin\Settings;
+
 /**
  * Compare strings
  *
@@ -408,7 +410,7 @@ function edac_get_posts_count() {
 
 	$output = [];
 
-	$post_types = get_option( 'edac_post_types' );
+	$post_types = Settings::get_scannable_post_types();
 	if ( $post_types ) {
 		foreach ( $post_types as $post_type ) {
 
@@ -770,12 +772,17 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 
 	// If we have both landmark and selector, create a link.
 	if ( ! empty( $landmark_selector ) ) {
+		$link = apply_filters(
+			'edac_get_origin_url_for_virtual_page',
+			$post_id
+		);
+
 		$landmark_url = add_query_arg(
 			[
 				'edac_landmark' => base64_encode( $landmark_selector ),
 				'edac_nonce'    => wp_create_nonce( 'edac_highlight' ),
 			],
-			get_the_permalink( $post_id )
+			is_string( $link ) ? $link : get_the_permalink( $post_id )
 		);
 
 		// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
@@ -795,6 +802,25 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 
 	// If we only have landmark text, return it formatted.
 	return $landmark;
+}
+
+/**
+ * Check if a post is a virtual page.
+ *
+ * This function checks if a post is a virtual page using the pro plugin's
+ * VirtualPageType constant.
+ *
+ * @param int $post_id The post ID to check.
+ * @return bool True if the post is a virtual page, false otherwise.
+ */
+function edac_is_virtual_page( $post_id ) {
+	if ( class_exists( '\EqualizeDigital\AccessibilityCheckerPro\VirtualContent\PostType\VirtualItemType' ) ) {
+		$post_type     = get_post_type( $post_id );
+		$pro_post_type = \EqualizeDigital\AccessibilityCheckerPro\VirtualContent\PostType\VirtualItemType::POST_TYPE;
+		return $pro_post_type === $post_type;
+	}
+
+	return false;
 }
 
 /**

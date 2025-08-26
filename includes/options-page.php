@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Purge_Post_Data;
+use EDAC\Admin\Settings;
 use EDAC\Inc\Accessibility_Statement;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 
@@ -699,7 +700,7 @@ function edac_sanitize_post_types( $selected_post_types ) {
 	}
 
 	// clear cached stats if selected posts types change.
-	if ( get_option( 'edac_post_types' ) !== $selected_post_types ) {
+	if ( Settings::get_scannable_post_types() !== $selected_post_types ) {
 		$scan_stats = new \EDAC\Admin\Scans_Stats();
 		$scan_stats->clear_cache();
 
