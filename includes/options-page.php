@@ -113,6 +113,13 @@ function edac_register_setting() {
 	);
 
 	add_settings_section(
+		'edac_permissions',
+		__( 'Permissions', 'accessibility-checker' ),
+		'edac_permissions_section_cb',
+		'edac_settings'
+	);
+
+	add_settings_section(
 		'edac_simplified_summary',
 		__( 'Simplified Summary Settings', 'accessibility-checker' ),
 		'edac_simplified_summary_cb',
@@ -182,7 +189,7 @@ function edac_register_setting() {
 		__( 'Ignore Permissions', 'accessibility-checker' ),
 		'edac_ignore_user_roles_cb',
 		'edac_settings',
-		'edac_general',
+		'edac_permissions',
 		[ 'label_for' => 'edac_ignore_user_roles' ]
 	);
 
@@ -987,4 +994,15 @@ function edac_sanitize_ignore_user_roles( $selected_roles ) {
 	}
 
 	return $selected_roles;
+}
+
+/**
+ * Render the text for the permissions section
+ */
+function edac_permissions_section_cb() {
+	?>
+	<p>
+		<?php esc_html_e( 'Configure permission related settings.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
 }
