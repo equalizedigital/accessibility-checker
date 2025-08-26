@@ -87,12 +87,12 @@ class IsVirtualPageTest extends WP_UnitTestCase {
 	 * Helper method to create mock pro plugin class.
 	 */
 	private function create_mock_pro_class() {
-		if ( ! class_exists( '\EqualizeDigital\AccessibilityCheckerPro\VirtualContent\VirtualItemType' ) ) {
+		if ( ! class_exists( '\EqualizeDigital\AccessibilityCheckerPro\VirtualContent\PostType\VirtualItemType' ) ) {
             // phpcs:ignore Squiz.PHP.Eval.Discouraged
 			eval(
 				'
-				namespace EqualizeDigital\\AccessibilityCheckerPro\\VirtualContent;
-				class VirtualPageType {
+				namespace EqualizeDigital\\AccessibilityCheckerPro\\VirtualContent\\PostType;
+				class VirtualItemType {
 					const POST_TYPE = "edac_virtual_item";
 				}
 			'
