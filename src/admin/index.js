@@ -945,6 +945,10 @@ const initArchivesScanningDependency = () => {
 				taxonomiesCheckbox.disabled = true;
 				taxonomiesCheckbox.checked = false;
 			}
+			const containingFieldset = taxonomiesCheckbox.closest( 'fieldset' );
+			if ( containingFieldset ) {
+				containingFieldset.setAttribute( 'aria-disabled', String( taxonomiesCheckbox.disabled ) );
+			}
 		}
 
 		// Initial state
