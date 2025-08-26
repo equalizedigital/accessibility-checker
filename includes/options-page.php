@@ -164,7 +164,7 @@ function edac_register_setting() {
 		'edac_enable_archive_scanning_cb',
 		'edac_settings',
 		'edac_general',
-		[ 'label_for' => 'edac_enable_archive_scanning' ]
+		[ 'label_for' => 'edacp_enable_archive_scanning' ]
 	);
 
 	add_settings_field(
@@ -173,7 +173,7 @@ function edac_register_setting() {
 		'edac_scan_all_taxonomy_terms_cb',
 		'edac_settings',
 		'edac_general',
-		[ 'label_for' => 'edac_scan_all_taxonomy_terms' ]
+		[ 'label_for' => 'edacp_scan_all_taxonomy_terms' ]
 	);
 
 	add_settings_field(
