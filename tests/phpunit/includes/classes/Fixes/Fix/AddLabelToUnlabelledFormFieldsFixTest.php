@@ -37,7 +37,7 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		// Clean up options.
 		delete_option( 'edac_fix_add_label_to_unlabelled_form_fields' );
-		
+
 		parent::tearDown();
 	}
 
@@ -82,9 +82,9 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	public function test_register_adds_settings_sections() {
 		$sections = [];
 		$this->fix->register();
-		
+
 		$sections = apply_filters( 'edac_filter_fixes_settings_sections', $sections );
-		
+
 		$this->assertArrayHasKey( 'add_label_to_unlabelled_form_fields', $sections );
 		$this->assertEquals( 'Label Form Fields', $sections['add_label_to_unlabelled_form_fields']['title'] );
 		$this->assertEquals( [ $this->fix, 'add_label_to_unlabelled_form_fields_section_callback' ], $sections['add_label_to_unlabelled_form_fields']['callback'] );
@@ -95,7 +95,7 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	 */
 	public function test_register_adds_settings_fields_filter() {
 		$this->fix->register();
-		
+
 		$this->assertNotFalse( has_filter( 'edac_filter_fixes_settings_fields', [ $this->fix, 'get_fields_array' ] ) );
 	}
 
@@ -104,10 +104,10 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	 */
 	public function test_get_fields_array_free_version() {
 		$fields = $this->fix->get_fields_array();
-		
+
 		$this->assertArrayHasKey( 'edac_fix_add_label_to_unlabelled_form_fields', $fields );
 		$field = $fields['edac_fix_add_label_to_unlabelled_form_fields'];
-		
+
 		$this->assertEquals( 'Label Form Fields', $field['label'] );
 		$this->assertEquals( 'checkbox', $field['type'] );
 		$this->assertEquals( 'add_label_to_unlabelled_form_fields', $field['labelledby'] );
@@ -133,12 +133,12 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 			 */
 			public $is_pro = true;
 		};
-		
+
 		$fields = $pro_fix->get_fields_array();
-		
+
 		$this->assertArrayHasKey( 'edac_fix_add_label_to_unlabelled_form_fields', $fields );
 		$field = $fields['edac_fix_add_label_to_unlabelled_form_fields'];
-		
+
 		$this->assertFalse( $field['upsell'] ); // Should be false for pro version.
 	}
 
@@ -152,9 +152,9 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 				'label' => 'Existing Field',
 			],
 		];
-		
+
 		$fields = $this->fix->get_fields_array( $existing_fields );
-		
+
 		$this->assertArrayHasKey( 'existing_field', $fields );
 		$this->assertArrayHasKey( 'edac_fix_add_label_to_unlabelled_form_fields', $fields );
 		$this->assertEquals( 'text', $fields['existing_field']['type'] );
@@ -176,7 +176,7 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 		ob_start();
 		$this->fix->add_label_to_unlabelled_form_fields_section_callback();
 		$output = ob_get_clean();
-		
+
 		$this->assertStringContainsString( '<p>', $output );
 		$this->assertStringContainsString( 'Attempt to add labels to form fields that are missing them.', $output );
 		$this->assertStringContainsString( '<code>.edac-generated-label</code>', $output );
@@ -190,15 +190,15 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	public function test_field_structure_upsell_functionality() {
 		$fields = $this->fix->get_fields_array();
 		$field  = $fields['edac_fix_add_label_to_unlabelled_form_fields'];
-		
+
 		// Test required field properties for upsell.
 		$this->assertArrayHasKey( 'upsell', $field );
 		$this->assertArrayHasKey( 'group_name', $field );
 		$this->assertArrayHasKey( 'fancy_name', $field );
-		
+
 		// Test that upsell is boolean.
 		$this->assertIsBool( $field['upsell'] );
-		
+
 		// Test that group_name and fancy_name are strings.
 		$this->assertIsString( $field['group_name'] );
 		$this->assertIsString( $field['fancy_name'] );
@@ -208,10 +208,11 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	 * Test pro property handling
 	 */
 	public function test_pro_property_handling() {
-		// Test that the property doesn't exist by default (free version).
-		$this->assertFalse( isset( $this->fix->is_pro ) );
-		
-		// Test that upsell is true when is_pro property doesn't exist.
+		// Test that the property exists and defaults to false (free version).
+		$this->assertTrue( isset( $this->fix->is_pro ) );
+		$this->assertFalse( $this->fix->is_pro );
+
+		// Test that upsell is true when is_pro property is false.
 		$fields = $this->fix->get_fields_array();
 		$field  = $fields['edac_fix_add_label_to_unlabelled_form_fields'];
 		$this->assertTrue( $field['upsell'] );
@@ -223,10 +224,10 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	public function test_dynamic_property_assignment_pro_version() {
 		// Dynamically set is_pro property.
 		$this->fix->is_pro = true;
-		
+
 		$fields = $this->fix->get_fields_array();
 		$field  = $fields['edac_fix_add_label_to_unlabelled_form_fields'];
-		
+
 		$this->assertFalse( $field['upsell'] );
 	}
 
@@ -236,10 +237,10 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	public function test_dynamic_property_assignment_false_pro_value() {
 		// Set is_pro property to false explicitly.
 		$this->fix->is_pro = false;
-		
+
 		$fields = $this->fix->get_fields_array();
 		$field  = $fields['edac_fix_add_label_to_unlabelled_form_fields'];
-		
+
 		$this->assertTrue( $field['upsell'] );
 	}
 
@@ -249,25 +250,25 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	public function test_field_structure_matches_pattern() {
 		$fields = $this->fix->get_fields_array();
 		$field  = $fields['edac_fix_add_label_to_unlabelled_form_fields'];
-		
+
 		// Test required field properties.
-		$required_properties = [ 
+		$required_properties = [
 			'label',
 			'type',
 			'labelledby',
 			'description',
-			'section', 
+			'section',
 			'upsell',
 			'group_name',
 			'fancy_name',
 			'fix_slug',
-			'help_id', 
+			'help_id',
 		];
-		
+
 		foreach ( $required_properties as $property ) {
 			$this->assertArrayHasKey( $property, $field, "Field missing required property: {$property}" );
 		}
-		
+
 		// Test field values are appropriate types.
 		$this->assertIsString( $field['label'] );
 		$this->assertNotEmpty( $field['label'] );
@@ -285,7 +286,7 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 		ob_start();
 		$this->fix->add_label_to_unlabelled_form_fields_section_callback();
 		$output = ob_get_clean();
-		
+
 		$this->assertStringContainsString( '.edac-generated-label', $output );
 		$this->assertStringContainsString( '<code>', $output );
 		$this->assertStringContainsString( '</code>', $output );
@@ -298,7 +299,7 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 		// Verify the class implements the correct interface.
 		$interfaces = class_implements( $this->fix );
 		$this->assertContains( FixInterface::class, $interfaces );
-		
+
 		// Verify the class has required methods from interface.
 		$this->assertTrue( method_exists( $this->fix, 'get_slug' ) );
 		$this->assertTrue( method_exists( $this->fix, 'get_nicename' ) );
@@ -324,7 +325,7 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 		$start_line = $reflection->getStartLine();
 		$end_line   = $reflection->getEndLine();
 		$length     = $end_line - $start_line;
-		
+
 		// The method should be very short (just opening/closing braces and comment).
 		$this->assertLessThan( 5, $length );
 	}
@@ -335,10 +336,10 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	public function test_integration_with_wordpress_hooks() {
 		// Test that register method properly sets up hooks.
 		$this->fix->register();
-		
+
 		// Verify section filter is registered.
 		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_sections' ) );
-		
+
 		// Verify fields filter is registered.
 		$this->assertTrue( has_filter( 'edac_filter_fixes_settings_fields' ) );
 	}
@@ -349,9 +350,9 @@ class AddLabelToUnlabelledFormFieldsFixTest extends WP_UnitTestCase {
 	public function test_section_dynamic_method_name_construction() {
 		$sections = [];
 		$this->fix->register();
-		
+
 		$sections = apply_filters( 'edac_filter_fixes_settings_sections', $sections );
-		
+
 		// The callback should use the slug-based method name.
 		$expected_callback = [ $this->fix, 'add_label_to_unlabelled_form_fields_section_callback' ];
 		$this->assertEquals( $expected_callback, $sections['add_label_to_unlabelled_form_fields']['callback'] );

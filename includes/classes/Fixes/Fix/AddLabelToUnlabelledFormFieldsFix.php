@@ -17,6 +17,13 @@ use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 class AddLabelToUnlabelledFormFieldsFix implements FixInterface {
 
 	/**
+	 * Whether the pro version is active.
+	 *
+	 * @var bool
+	 */
+	public $is_pro = false;
+
+	/**
 	 * The slug of the fix.
 	 *
 	 * @return string
