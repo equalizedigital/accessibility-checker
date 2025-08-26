@@ -1,13 +1,21 @@
 parameters:
-    level: 2
+    level: 3
     paths:
         - .
     scanDirectories:
         - %currentWorkingDirectory%/vendor
+    bootstrapFiles:
+        - %currentWorkingDirectory%/phpstan-bootstrap.php
     excludePaths:
         analyse:
             - %currentWorkingDirectory%/vendor/*
             - %currentWorkingDirectory%/node_modules/*
             - %currentWorkingDirectory%/tests/*
+            - %currentWorkingDirectory%/includes/deprecated/*
     fileExtensions:
         - php
+    ignoreErrors:
+        # Other existing ignore patterns...
+        -
+            message: '#.*WP_CLI.*#'
+            path: '%currentWorkingDirectory%/includes/classes/WPCLI/*'

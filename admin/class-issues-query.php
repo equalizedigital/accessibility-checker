@@ -34,7 +34,7 @@ class Issues_Query {
 	/**
 	 * Holds the max number of records we'll query
 	 *
-	 * @var [integer]
+	 * @var integer
 	 */
 	private $record_limit;
 
@@ -58,7 +58,7 @@ class Issues_Query {
 	 *
 	 * @param array   $filter [post_types, rule_types, rule_slugs].
 	 * @param integer $record_limit Max number of records we'll query.
-	 * @param string  $flags Flag used to determine how ignored issues sould be handled.
+	 * @param integer $flags Flag used to determine how ignored issues sould be handled.
 	 */
 	public function __construct( $filter = [], $record_limit = 100000, $flags = self::FLAG_EXCLUDE_IGNORED ) {
 		$valid_filters = [
