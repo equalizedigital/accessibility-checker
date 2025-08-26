@@ -831,7 +831,7 @@ function edac_sanitize_pro_scan_speed( $input ) {
 	if ( edac_is_pro() ) {
 		return edac_sanitize_scan_speed( $input );
 	}
-	return get_option( 'edacp_full_site_scan_speed', $input );
+	return get_option( 'edacp_full_site_scan_speed', '1000' );
 }
 
 /**
@@ -845,7 +845,7 @@ function edac_sanitize_pro_checkbox( $input, $option_name ) {
 	if ( edac_is_pro() ) {
 		return edac_sanitize_checkbox( $input );
 	}
-	return get_option( $option_name, $input );
+	return get_option( $option_name, 0 );
 }
 
 /**
@@ -879,7 +879,7 @@ function edac_sanitize_pro_ignore_roles( $input ) {
 		return edac_sanitize_ignore_user_roles( $input );
 	}
 
-	return get_option( 'edacp_ignore_user_roles', $input );
+	return get_option( 'edacp_ignore_user_roles', [ 'administrator' ] );
 }
 
 /**
@@ -892,7 +892,7 @@ function edac_sanitize_pro_summary_heading( $input ) {
 	if ( edac_is_pro() ) {
 		return sanitize_text_field( $input );
 	}
-	return get_option( 'edacp_simplified_summary_heading', $input );
+	return get_option( 'edacp_simplified_summary_heading', esc_html__( 'Simplified Summary', 'accessibility-checker' ) );
 }
 
 /**
