@@ -155,7 +155,7 @@ function edac_register_setting() {
 		'edac_full_site_scan_speed_cb',
 		'edac_settings',
 		'edac_general',
-		[ 'label_for' => 'edac_full_site_scan_speed' ]
+		[ 'label_for' => 'edacp_full_site_scan_speed' ]
 	);
 
 	add_settings_field(
