@@ -660,6 +660,8 @@ window.addEventListener( 'load', function() {
 	}
 
 	edacTimestampToLocal();
+
+	initArchivesScanningDependency();
 } );
 
 // Fill the dashboard widget
@@ -951,8 +953,4 @@ const initArchivesScanningDependency = () => {
 		// Listen for changes
 		archivesCheckbox.addEventListener( 'change', updateTaxonomiesState );
 	}
-};
-
-window.onload = function() {
-	initArchivesScanningDependency();
 };
