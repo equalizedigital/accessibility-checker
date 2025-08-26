@@ -808,7 +808,7 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
  * Check if a post is a virtual page.
  *
  * This function checks if a post is a virtual page using the pro plugin's
- * VirtualPageType constant.
+ * VirtualItemType:POST_TYPE constant.
  *
  * @param int $post_id The post ID to check.
  * @return bool True if the post is a virtual page, false otherwise.
