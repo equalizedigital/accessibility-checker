@@ -9,11 +9,12 @@ export const inlineSettingsProUpsell = () => {
 		// create a link with the upsell url
 		const upsellLink = document.createElement( 'a' );
 		const urlTemplate = window.edac_script_vars?.proUrl || 'https://equalizedigital.com/accessibility-checker/pricing/';
-		const settingName =
+		const settingNameRaw =
 			element.querySelector( 'input, select, textarea' )?.getAttribute( 'name' ) ||
 			element.dataset?.setting ||
 			element.id ||
 			'setting';
+		const settingName = String( settingNameRaw ).replace( /\[\]$/, '' );
 		upsellLink.href = urlTemplate.includes( '__name__' )
 			? urlTemplate.replace( '__name__', encodeURIComponent( settingName ) )
 			: urlTemplate;
