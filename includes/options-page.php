@@ -1001,7 +1001,7 @@ function edac_sanitize_ignore_user_roles( $selected_roles ) {
 function edac_permissions_section_cb() {
 	?>
 	<p>
-		<?php esc_html_e( 'Configure permission related settings.', 'accessibility-checker' ); ?>
+		<?php esc_html_e( 'Configure which user roles have access to specific Accessibility Checker features.', 'accessibility-checker' ); ?>
 	</p>
 	<?php
 }
