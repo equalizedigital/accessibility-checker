@@ -165,4 +165,54 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
 		$this->assertStringContainsString( 'preview=true', $localized_data );
 	}
+
+	/**
+	 * Test that postStatus and nonScannablePostStatuses are included in localized script data.
+	 *
+	 * @return void
+	 */
+	public function testPostStatusAndNonScannableStatusesInLocalizedData() {
+		global $post, $pagenow, $wp_scripts;
+
+		// Create a post with draft status.
+		$post    = $this->factory()->post->create_and_get( [ 'post_status' => 'draft' ] );
+		$pagenow = 'post.php';
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		
+		// Check that postStatus is included.
+		$this->assertStringContainsString( '"postStatus":"draft"', $localized_data );
+		
+		// Check that nonScannablePostStatuses array is included.
+		$this->assertStringContainsString( 'nonScannablePostStatuses', $localized_data );
+		$this->assertStringContainsString( 'auto-draft', $localized_data );
+	}
+
+	/**
+	 * Test that auto-draft posts have correct status in localized data.
+	 *
+	 * @return void
+	 */
+	public function testAutoDraftPostStatusInLocalizedData() {
+		global $post, $pagenow, $wp_scripts;
+
+		// Create a post with auto-draft status (simulating new unsaved post).
+		$post    = $this->factory()->post->create_and_get( [ 'post_status' => 'auto-draft' ] );
+		$pagenow = 'post-new.php';
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		
+		// Check that postStatus is auto-draft.
+		$this->assertStringContainsString( '"postStatus":"auto-draft"', $localized_data );
+		
+		// Check that nonScannablePostStatuses array is included.
+		$this->assertStringContainsString( 'nonScannablePostStatuses', $localized_data );
+		
+		// Check that nonScannablePostStatuses contains auto-draft.
+		$this->assertStringContainsString( '["auto-draft"]', $localized_data );
+	}
 }
