@@ -703,8 +703,11 @@ function edac_sanitize_post_types( $selected_post_types ) {
 	}
 
 	// clear cached stats if selected posts types change.
-	$previous = Settings::get_scannable_post_types();
-	if ( sort( $previous ) !== sort( $selected_post_types ) ) {
+	$prev = array_values( array_unique( (array) Settings::get_scannable_post_types() ) );
+	$next = array_values( array_unique( (array) $selected_post_types ) );
+	sort( $prev );
+	sort( $next );
+	if ( $prev !== $next ) {
 		$scan_stats = new \EDAC\Admin\Scans_Stats();
 		$scan_stats->clear_cache();
 
