@@ -20,7 +20,7 @@ const edacScriptVars = edac_script_vars;
 			initRequiredSetup();
 		}
 
-		if ( document.querySelector( '.wrap.edac-settings' ) ) {
+		if ( document.querySelector( '.edac-fix--upsell, .edac-setting--upsell' ) ) {
 			inlineSettingsProUpsell();
 		}
 
