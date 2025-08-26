@@ -412,7 +412,7 @@ function edac_full_site_scan_speed_cb() {
 				>
 					<?php echo esc_html( $label ); ?>
 				</option>
-+           <?php endforeach; ?>
+			<?php endforeach; ?>
 		</select>
 	</fieldset>
 	<p id="edac_scan_speed_desc" class="edac-description">
