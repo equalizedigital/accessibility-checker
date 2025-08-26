@@ -803,5 +803,5 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
  * @return bool True if Pro version is active, false otherwise.
  */
 function edac_is_pro() {
-	return defined( 'EDACP_KEY_VALID' ) && EDAC_KEY_VALID;
+	return defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID;
 }
