@@ -399,16 +399,23 @@ function edac_full_site_scan_speed_cb() {
 
 	?>
 	<fieldset <?php echo ( edac_is_pro() ? '' : 'class="edac-setting--upsell"' ); ?>>
-		<select name="edacp_full_site_scan_speed" id="edacp_full_site_scan_speed" <?php echo ( edac_is_pro() ? '' : 'disabled' ); ?>>
-			<?php
-			foreach ( $speed_values as $value => $label ) {
-				$selected = $full_site_scan_speed === (int) $value ? 'selected' : '';
-				echo '<option value="' . esc_attr( $value ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $label ) . '</option>';
-			}
-			?>
+		<select
+			name="edacp_full_site_scan_speed"
+			id="edacp_full_site_scan_speed"
+			aria-describedby="edac_scan_speed_desc"
+			<?php disabled( ! edac_is_pro() ); ?>
+		>
+			<?php foreach ( $speed_values as $value => $label ) : ?>
+				<option
+					value="<?php echo esc_attr( $value ); ?>"
+					<?php selected( $full_site_scan_speed, (int) $value, false ); ?>
+				>
+					<?php echo esc_html( $label ); ?>
+				</option>
++           <?php endforeach; ?>
 		</select>
 	</fieldset>
-	<p class="edac-description">
+	<p id="edac_scan_speed_desc" class="edac-description">
 		<?php esc_html_e( 'Faster scans are more resource intensive and may place a high load on your website.', 'accessibility-checker' ); ?>
 	</p>
 	<?php
@@ -430,6 +437,7 @@ function edac_enable_archive_scanning_cb() {
 				type="checkbox"
 				name="edacp_enable_archive_scanning"
 				id="edacp_enable_archive_scanning"
+				aria-describedby="edac_enable_archives_desc"
 				value="1"
 				<?php checked( $enable_archives, 1 ); ?>
 				<?php disabled( ! edac_is_pro() ); ?>
@@ -437,7 +445,7 @@ function edac_enable_archive_scanning_cb() {
 			<?php esc_html_e( 'Enable scanning of archive pages', 'accessibility-checker' ); ?>
 		</label>
 	</fieldset>
-	<p class="edac-description">
+	<p id="edac_enable_archives_desc" class="edac-description">
 		<?php esc_html_e( 'Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan.', 'accessibility-checker' ); ?>
 	</p>
 	<?php
