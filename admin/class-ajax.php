@@ -493,6 +493,7 @@ class Ajax {
 
 							$post_view_link = apply_filters(
 								'edac_get_origin_url_for_virtual_page',
+								get_the_permalink( $postid ),
 								$postid
 							);
 
@@ -501,7 +502,7 @@ class Ajax {
 									'edac'       => $id,
 									'edac_nonce' => wp_create_nonce( 'edac_highlight' ),
 								],
-								is_string( $post_view_link ) ? $post_view_link : get_the_permalink( $postid )
+								$post_view_link
 							);
 
 							// Translators: %d is the issue ID.

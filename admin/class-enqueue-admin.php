@@ -114,6 +114,7 @@ class Enqueue_Admin {
 				} else {
 					$post_view_link = apply_filters(
 						'edac_get_origin_url_for_virtual_page',
+						get_preview_post_link( $post_id ),
 						$post_id
 					);
 
@@ -121,7 +122,7 @@ class Enqueue_Admin {
 						[
 							'edac_pageScanner' => 1,
 						],
-						is_string( $post_view_link ) ? $post_view_link : get_preview_post_link( $post_id )
+						$post_view_link
 					);
 				}
 
