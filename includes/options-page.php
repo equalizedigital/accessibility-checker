@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Purge_Post_Data;
+use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Inc\Accessibility_Statement;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
@@ -703,12 +704,12 @@ function edac_sanitize_post_types( $selected_post_types ) {
 	}
 
 	// clear cached stats if selected posts types change.
-	$prev = array_values( array_unique( (array) Settings::get_scannable_post_types() ) );
+	$prev = array_values( array_unique( Settings::get_scannable_post_types() ) );
 	$next = array_values( array_unique( (array) $selected_post_types ) );
 	sort( $prev );
 	sort( $next );
 	if ( $prev !== $next ) {
-		$scan_stats = new \EDAC\Admin\Scans_Stats();
+		$scan_stats = new Scans_Stats();
 		$scan_stats->clear_cache();
 
 		// EDACP\Scans is the old namespace, kept for back compat but should be removed after a few releases.
