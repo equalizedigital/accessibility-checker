@@ -12,6 +12,7 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Admin\Purge_Post_Data;
+use EqualizeDigital\AccessibilityChecker\Rest\Issues_API;
 
 /**
  * Class that initializes and handles the REST api
@@ -205,6 +206,15 @@ class REST_Api {
 				);
 			}
 		);
+		add_action( 'rest_api_init', [ $this, 'register_issues_api' ] );
+	}
+
+	/**
+	 * Register the issues API.
+	 */
+	public function register_issues_api() {
+		$issues = new Issues_API();
+		$issues->register_routes();
 	}
 
 	/**
@@ -685,5 +695,51 @@ class REST_Api {
 				500
 			);
 		}
+	}
+
+	/**
+	 * Verify the API token.
+	 *
+	 * @param string $token The token to verify.
+	 *
+	 * @return bool
+	 */
+	public static function api_token_verify( $token ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- This is unused temporarily only
+		// Note: replace with JWT or application password auth.
+		// return get_option( 'edac_api_token' ) === $token;
+		// For now disallow tokens and fallback to a nonce check.
+		return false;
+	}
+
+	/**
+	 * Check if a given request has authorization to access the issues.
+	 *
+	 * This does token check if one exists and nonce check if token is not passed.
+	 *
+	 * @param \WP_REST_Request $request Full data about the request.
+	 * @param string           $capability The capability to check.
+	 * @return \WP_Error|boolean
+	 */
+	public static function check_token_or_nonce_and_capability_permissions_check( $request, $capability = 'manage_options' ) {
+		$token = sanitize_text_field( $request->get_header( 'X-EDAD-Token' ) );
+		// If we have a token then it takes priority, check it, otherwise fallback to nonce.
+		if ( method_exists( 'EDAC\Inc\REST_Api', 'api_token_verify' ) && $token ) {
+			if ( ! self::api_token_verify( $token ) ) {
+				return new \WP_Error( 'rest_forbidden', __( 'Invalid token.', 'accessibility-checker' ), [ 'status' => 401 ] );
+			}
+		} elseif ( $request->get_header( 'X-WP-Nonce' ) ?? $request->get_param( 'nonce' ) ) {
+			$nonce = sanitize_text_field( $request->get_header( 'X-WP-Nonce' ) ?? sanitize_text_field( $request->get_param( 'nonce' ) ) );
+			if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+				return new \WP_Error( 'rest_forbidden', __( 'Invalid nonce.', 'accessibility-checker' ), [ 'status' => 401 ] );
+			}
+			// validated the nonce, check capabilities.
+			if ( ! current_user_can( $capability ) ) {
+				return new \WP_Error( 'rest_forbidden', __( 'You do not have permissions to access this data.', 'accessibility-checker' ), [ 'status' => 401 ] );
+			}
+		} else {
+			return new \WP_Error( 'rest_forbidden', __( 'No authorization provided.', 'accessibility-checker' ), [ 'status' => 401 ] );
+		}
+		// If we reach this point either token or nonce and permissions are valid.
+		return true;
 	}
 }
