@@ -851,6 +851,16 @@ function edac_sanitize_pro_scan_speed( $input ) {
  */
 function edac_sanitize_pro_checkbox( $input, $option_name ) {
 	if ( edac_is_pro() ) {
+		/**
+		 * Filter to run before saving a pro checkbox setting.
+		 *
+		 * @since 1.31.0
+		 *
+		 * @param string $option_name The option name being saved.
+		 * @param mixed  $input The input value.
+		 * @return void
+		 */
+		do_action( 'edac_pro_setting_saving_checkbox', $option_name, $input );
 		return edac_sanitize_checkbox( $input );
 	}
 	return get_option( $option_name, 0 );
