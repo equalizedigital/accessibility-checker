@@ -12,9 +12,16 @@ use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 /**
  * Allows the user to add a title to the page <title> tag if empty or missing.
  *
- * @since 1.9.0
+ * @since 1.16.0
  */
 class AddMissingOrEmptyPageTitleFix implements FixInterface {
+
+	/**
+	 * Whether the pro version is active.
+	 *
+	 * @var bool
+	 */
+	public $is_pro = false;
 
 	/**
 	 * The slug of the fix.
