@@ -319,7 +319,7 @@ function edac_general_cb() {
 
 	esc_html_e( 'Configure the types of content that should be checked for accessibility issues.', 'accessibility-checker' );
 
-	if ( EDAC_KEY_VALID === false ) {
+	if ( ! edac_is_pro() ) {
 		printf(
 			/* translators: %1$s: link to the "Accessibility Checker Pro" website. */
 			' ' . esc_html__( 'More features and email support is available with %1$s.', 'accessibility-checker' ),
