@@ -813,23 +813,6 @@ function edac_delete_data_cb() {
 }
 
 /**
- * Sanitize pro settings when running free version - just return existing value
- *
- * @param mixed  $input The input value.
- * @param string $option_name The option name being sanitized.
- * @return mixed The existing option value
- */
-function edac_sanitize_pro_setting( $input, $option_name ) {
-	// If pro is active, let the input through for processing by other sanitizers.
-	if ( edac_is_pro() ) {
-		return $input;
-	}
-
-	// If pro is not active, just return the existing value to prevent changes.
-	return get_option( $option_name, $input );
-}
-
-/**
  * Wrapper sanitizers for pro settings that preserve existing values when pro is disabled
  *
  * @param mixed $input The input value.
