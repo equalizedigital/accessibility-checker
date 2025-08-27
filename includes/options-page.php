@@ -76,7 +76,7 @@ function edac_add_options_page() {
 	$fixes_page->add_page();
 
 	// Deregister the pro setting registration - this is added for backwards compatibility for users
-	// that don't update pro. Added here in 1.31.0 and removed from pro in 1.16.0.
+	// that don't update pro. Added here in 1.31.0 and released with pro 1.16.0.
 	add_action(
 		'admin_init',
 		function () {
