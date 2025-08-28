@@ -46,6 +46,8 @@ This is a WordPress plugin called "Accessibility Checker" developed by Equalize 
 
 ## Development Workflow
 
+Commit lock files (`composer.lock`, `package-lock.json`) only when adding or updating packages. Run `composer install` and `npm install` to get dependencies matching the lock file.
+
 Code should always be linted by phpcs and eslint before committing. Tests should be added for new functionality. Tests should also be added for any bug fixes. Use the following commands to run tests and linting:
 
 ```bash
