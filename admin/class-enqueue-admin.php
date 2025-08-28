@@ -48,7 +48,7 @@ class Enqueue_Admin {
 	public static function maybe_enqueue_admin_and_editor_app_scripts() {
 
 		global $pagenow;
-		$post_types        = get_option( 'edac_post_types' );
+		$post_types        = Settings::get_scannable_post_types();
 		$current_post_type = get_post_type();
 		$page              = self::get_current_page_slug();
 		$enabled_pages     = apply_filters(
@@ -82,18 +82,18 @@ class Enqueue_Admin {
 				'edac',
 				'edac_script_vars',
 				[
-					'postID'      => $post_id,
-					'nonce'       => wp_create_nonce( 'ajax-nonce' ),
-					'edacApiUrl'  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-					'restNonce'   => wp_create_nonce( 'wp_rest' ),
-					'fixesProUrl' => esc_url_raw( edac_generate_link_type( [ 'utm-content', '__fix__' ] ) ),
+					'postID'     => $post_id,
+					'nonce'      => wp_create_nonce( 'ajax-nonce' ),
+					'edacApiUrl' => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+					'restNonce'  => wp_create_nonce( 'wp_rest' ),
+					'proUrl'     => esc_url_raw( edac_generate_link_type( [ 'utm-content' => '__name__' ] ) ),
 				]
 			);
 
 			if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 
 				// Is this posttype setup to be checked?
-				$post_types        = get_option( 'edac_post_types' );
+				$post_types        = Settings::get_scannable_post_types();
 				$current_post_type = get_post_type();
 				$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 
@@ -112,9 +112,17 @@ class Enqueue_Admin {
 				if ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
 					$scan_url = add_query_arg( 'edac_pageScanner', 1, get_permalink( $post_id ) );
 				} else {
-					$scan_url = get_preview_post_link(
-						$post_id,
-						[ 'edac_pageScanner' => 1 ]
+					$post_view_link = apply_filters(
+						'edac_get_origin_url_for_virtual_page',
+						get_preview_post_link( $post_id ),
+						$post_id
+					);
+
+					$scan_url = add_query_arg(
+						[
+							'edac_pageScanner' => 1,
+						],
+						$post_view_link
 					);
 				}
 

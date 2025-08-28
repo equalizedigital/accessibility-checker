@@ -143,7 +143,7 @@ class Scans_Stats {
 		$data['scannable_posts_count']      = (int) $scannable_posts_count;
 		$data['rule_count']                 = (int) $this->rule_count;
 		$data['tests_count']                = (int) $tests_count;
-		$data['scannable_post_types_count'] = (int) count( Settings::get_scannable_post_types() );
+		$data['scannable_post_types_count'] = (int) count( Settings::get_scannable_post_types( true ) );
 
 		$post_types = get_post_types(
 			[
