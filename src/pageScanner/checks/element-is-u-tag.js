@@ -7,7 +7,7 @@
 
 export default {
 	id: 'element_is_u_tag',
-	evaluate: ( node ) => {
-		return node.tagName.toLowerCase() === 'u';
+	evaluate( node ) {
+		return node.tagName && node.tagName.toLowerCase() === 'u';
 	},
 };
