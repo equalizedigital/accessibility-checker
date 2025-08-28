@@ -212,6 +212,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 == Changelog ==
 
 = 1.31.0 =
+* Improved: Don't flag YouTube scripts as video present mistakenly.
 * Improved: Underlined text rule now will find more instances of underlined text.
 * Improved: Added additional string label check for links that open new windows/tabs.
 * Updated: Reordered some settings for better grouping.
