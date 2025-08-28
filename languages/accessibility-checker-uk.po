@@ -2,24 +2,25 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.29.0\n"
+"Project-Id-Version: Accessibility Checker 1.30.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
+"Language: uk\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
 #: includes/classes/class-admin-toolbar.php:53
-#: includes/options-page.php:43
+#: includes/options-page.php:45
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
@@ -68,11 +69,12 @@ msgstr "Отримайте Pro, щоб розблокувати цю функц�
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
 #: admin/class-plugin-action-links.php:55
+#: build/admin.bundle.js:2
 msgid "Get Pro"
 msgstr "Отримати pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:347
+#: admin/class-ajax.php:350
 msgid "Opens in a new window."
 msgstr "Відкривається в новому вікні."
 
@@ -164,82 +166,74 @@ msgstr "Хочете отримати більше можливостей з Acc
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Розблокувати функції Pro (відкриється в новому вікні)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "Ми покращили розрахунки статистики у версії 1.21.0. В результаті деякі числа в наведених нижче даних могли змінитися. Дізнайтеся більше в нашому %1$sпості з оголошенням про випуск%2$s."
-
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
-#: admin/class-ajax.php:56
-#: admin/class-ajax.php:205
-#: admin/class-ajax.php:584
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:802
-#: admin/class-frontend-highlight.php:79
-msgid "Permission Denied"
-msgstr "У доступі відмовлено"
-
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
-msgid "Update option wasn't successful"
-msgstr "Оновлення опції не вдалося"
-
-#: admin/class-admin-notices.php:201
+#: admin/class-admin-notices.php:129
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Спеціальна пропозиція до Чорної п'ятниці! 🎉"
 
-#: admin/class-admin-notices.php:202
+#: admin/class-admin-notices.php:130
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Оновіть до платної версії Accessibility Checker з 25 листопада по 3 грудня та отримайте знижку 30%! Повне сканування сайту, звіт про відкриті проблеми на всьому сайті, журнали ігнорування та багато іншого."
 
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
 msgid "Ask a Pre-Sale Question"
 msgstr "Задати питання перед покупкою"
 
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
 msgid "Upgrade Now"
 msgstr "Оновити зараз"
 
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:208
+#: admin/class-ajax.php:593
+#: admin/class-ajax.php:731
+#: admin/class-ajax.php:811
+#: admin/class-frontend-highlight.php:78
+msgid "Permission Denied"
+msgstr "У доступі відмовлено"
+
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
+msgid "Update option wasn't successful"
+msgstr "Оновлення опції не вдалося"
+
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Отримайте знижку 25% на Accessibility Checker Pro на честь Всесвітнього дня поінформованості про доступність! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Використовуйте купон GAAD25 з 13 по 21 травня, щоб отримати доступ до повного сканування сайту та інших професійних функцій за спеціальною знижкою. Не впевнені, чи варто оновлюватися?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Вітаємо! Дякуємо, що використовуєте Accessibility Checker як частину вашого інструментарію для забезпечення доступності. Оскільки ви вже деякий час користуєтеся ним, чи не могли б ви написати 5-зірковий відгук про Accessibility Checker у каталозі плагінів WordPress? Це допоможе підвищити нашу видимість, щоб більше людей дізналися про важливість веб-доступності. Дуже дякуємо!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Написати відгук"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Нагадати через два тижні"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "Більше не питати"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "Значення дії відгуку не було встановлено"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:212
-#: admin/class-ajax.php:591
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:215
+#: admin/class-ajax.php:600
+#: admin/class-ajax.php:818
 msgid "The post ID was not set"
 msgstr "ID публікації не було встановлено"
 
@@ -260,116 +254,116 @@ msgid "A simplified summary has been included for this content."
 msgstr "Спрощений підсумок було включено для цього вмісту."
 
 #. translators: %s: Number of errors
-#: admin/class-ajax.php:126
+#: admin/class-ajax.php:129
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
-msgstr[0] "%s Помилка"
-msgstr[1] "%s Помилок"
+msgstr[0] "%s Errors"
+msgstr[1] "%s Errors"
 
 #. translators: %s: Number of contrast errors
-#: admin/class-ajax.php:132
+#: admin/class-ajax.php:135
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
-msgstr[0] "%s Помилка контрасту"
-msgstr[1] "%s Помилок контрасту"
+msgstr[0] "%s Contrast Errors"
+msgstr[1] "%s Contrast Errors"
 
 #. translators: %s: Number of warnings
-#: admin/class-ajax.php:138
+#: admin/class-ajax.php:141
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
-msgstr[0] "%s Попередження"
-msgstr[1] "%s Попереджень"
+msgstr[0] "%s Warnings"
+msgstr[1] "%s Warnings"
 
 #. translators: %s: Number of ignored items
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:147
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
-msgstr[0] "%s Ігнорований елемент"
-msgstr[1] "%s Ігнорованих елементів"
+msgstr[0] "%s Ignored Items"
+msgstr[1] "%s Ignored Items"
 
-#: admin/class-ajax.php:182
+#: admin/class-ajax.php:185
 msgid "No summary to return"
 msgstr "Немає підсумку для повернення"
 
-#: admin/class-ajax.php:226
+#: admin/class-ajax.php:229
 msgid "Invalid table name"
 msgstr "Недійсна назва таблиці"
 
-#: admin/class-ajax.php:372
+#: admin/class-ajax.php:375
 msgid "These settings enable global fixes across your entire site."
 msgstr "Ці налаштування вмикають глобальні виправлення на всьому вашому сайті."
 
-#: admin/class-ajax.php:373
+#: admin/class-ajax.php:376
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Можливо, знадобиться повторно зберегти сторінки або запустити повне сканування сайту, щоб побачити виправлення у звітах."
 
-#: admin/class-ajax.php:401
+#: admin/class-ajax.php:404
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "Зберегти"
 
-#: admin/class-ajax.php:423
+#: admin/class-ajax.php:426
 msgid "Affected Code"
 msgstr "Код, що зазнав впливу"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:500
+#: admin/class-ajax.php:509
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Переглянути проблему з ID %d на сайті, відкривається в новому вікні"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:510
 msgid "View on page"
 msgstr "Переглянути на сторінці"
 
-#: admin/class-ajax.php:520
+#: admin/class-ajax.php:529
 msgid "Fix: "
 msgstr "Виправлення: "
 
-#: admin/class-ajax.php:521
+#: admin/class-ajax.php:530
 msgid "Fix"
 msgstr "Виправити"
 
-#: admin/class-ajax.php:544
+#: admin/class-ajax.php:553
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Ваш обліковий запис користувача не має дозволу ігнорувати цю проблему."
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:571
 msgid "No details to return"
 msgstr "Немає деталей для повернення"
 
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:710
 msgid "No readability data to return"
 msgstr "Немає даних про читабельність для повернення"
 
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:767
+#: admin/class-ajax.php:790
 msgid "No ignore data to return"
 msgstr "Немає даних про ігнорування для повернення"
 
-#: admin/class-ajax.php:816
+#: admin/class-ajax.php:825
 msgid "The summary was not set"
 msgstr "Підсумок не було встановлено"
 
-#: admin/class-frontend-highlight.php:84
+#: admin/class-frontend-highlight.php:83
 msgid "The id value was not set"
 msgstr "Значення id не було встановлено"
 
-#: admin/class-frontend-highlight.php:92
+#: admin/class-frontend-highlight.php:91
 msgid "Issue query returned no results"
 msgstr "Запит проблеми не повернув результатів"
 
-#: admin/class-frontend-highlight.php:138
+#: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "Запит об'єкта не повернув результатів"
 
 #: admin/class-plugin-action-links.php:48
 #: includes/classes/class-admin-toolbar.php:94
-#: includes/options-page.php:66
+#: includes/options-page.php:68
 msgid "Settings"
 msgstr "Налаштування"
 
@@ -418,113 +412,113 @@ msgstr "Не вдалося перенаправити на сторінку о�
 msgid "Most Recent Test Summary"
 msgstr "Підсумок останнього тесту"
 
-#: admin/class-welcome-page.php:44
+#: admin/class-welcome-page.php:45
 msgid "Update Counts"
 msgstr "Оновити підрахунки"
 
-#: admin/class-welcome-page.php:48
+#: admin/class-welcome-page.php:50
 msgid "Start New Scan"
 msgstr "Почати нове сканування"
 
-#: admin/class-welcome-page.php:52
+#: admin/class-welcome-page.php:54
 msgid "View All Open Issues"
 msgstr "Переглянути всі відкриті проблеми"
 
-#: admin/class-welcome-page.php:57
+#: admin/class-welcome-page.php:59
 msgid "See History"
 msgstr "Переглянути історію"
 
-#: admin/class-welcome-page.php:70
+#: admin/class-welcome-page.php:72
 #: admin/class-widgets.php:98
 msgid "Passed Tests"
 msgstr "Пройдені тести"
 
-#: admin/class-welcome-page.php:86
+#: admin/class-welcome-page.php:88
 msgid "Unique Error"
 msgid_plural "Unique Errors"
-msgstr[0] "Унікальна помилка"
-msgstr[1] "Унікальні помилки"
+msgstr[0] "Unique Errors"
+msgstr[1] "Unique Errors"
 
-#: admin/class-welcome-page.php:111
+#: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
-msgstr[0] "Унікальна помилка контрасту кольорів"
-msgstr[1] "Унікальні помилки контрасту кольорів"
+msgstr[0] "Unique Color Contrast Errors"
+msgstr[1] "Unique Color Contrast Errors"
 
-#: admin/class-welcome-page.php:136
+#: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
-msgstr[0] "Унікальне попередження"
-msgstr[1] "Унікальні попередження"
+msgstr[0] "Unique Warnings"
+msgstr[1] "Unique Warnings"
 
-#: admin/class-welcome-page.php:161
+#: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
-msgstr[0] "Ігнорований елемент"
-msgstr[1] "Ігноровані елементи"
+msgstr[0] "Ignored Items"
+msgstr[1] "Ignored Items"
 
-#: admin/class-welcome-page.php:178
+#: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
 msgstr "Середня кількість проблем на сторінку"
 
-#: admin/class-welcome-page.php:191
+#: admin/class-welcome-page.php:193
 msgid "Average Issue Density"
 msgstr "Середня щільність проблем"
 
-#: admin/class-welcome-page.php:204
+#: admin/class-welcome-page.php:206
 #: admin/class-widgets.php:105
 msgid "Report Last Updated:"
 msgstr "Звіт оновлено:"
 
-#: admin/class-welcome-page.php:214
-#: includes/options-page.php:408
+#: admin/class-welcome-page.php:216
+#: includes/options-page.php:606
 msgid "Never"
 msgstr "Ніколи"
 
-#: admin/class-welcome-page.php:228
+#: admin/class-welcome-page.php:230
 msgid "URLs Scanned"
 msgstr "Просканованих URL"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
-#: admin/class-welcome-page.php:239
+#: admin/class-welcome-page.php:241
 #, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s з %2$s"
 
-#: admin/class-welcome-page.php:248
+#: admin/class-welcome-page.php:250
 msgid "Post Types Checked"
 msgstr "Перевірені типи публікацій"
 
-#: admin/class-welcome-page.php:261
+#: admin/class-welcome-page.php:263
 msgid "URLs with 100% score"
 msgstr "URL з оцінкою 100%"
 
-#: admin/class-welcome-page.php:269
+#: admin/class-welcome-page.php:271
 msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
 msgstr "Цей підсумок автоматично оновлюється кожні 24 години або кожного разу, коли завершується повне сканування сайту. Ви також можете вручну оновити ці результати, натиснувши кнопку «Оновити підрахунки»."
 
-#: admin/class-welcome-page.php:275
+#: admin/class-welcome-page.php:277
 msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
 msgstr "На вашому сайті є велика кількість проблем. З міркувань продуктивності не всі проблеми було включено до цього підсумку."
 
-#: admin/class-welcome-page.php:285
+#: admin/class-welcome-page.php:287
 msgid "Site-Wide Accessibility Reports"
 msgstr "Звіти з доступності для всього сайту"
 
-#: admin/class-welcome-page.php:290
+#: admin/class-welcome-page.php:292
 msgid "Hide banner"
 msgstr "Приховати банер"
 
-#: admin/class-welcome-page.php:299
+#: admin/class-welcome-page.php:301
 msgid "Unlock Detailed Accessibility Reports"
 msgstr "Розблокувати детальні звіти про доступність"
 
-#: admin/class-welcome-page.php:302
+#: admin/class-welcome-page.php:304
 #: admin/class-widgets.php:71
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Почніть сканування всього вашого сайту на предмет проблем з доступністю, отримуйте звіти для всього сайту та швидше досягайте відповідності рекомендаціям з доступності."
 
-#: admin/class-welcome-page.php:306
+#: admin/class-welcome-page.php:308
 #: admin/class-widgets.php:73
 msgid "Upgrade Accessibility Checker"
 msgstr "Оновити Accessibility Checker"
@@ -646,6 +640,96 @@ msgstr "Введіть ваше ім'я"
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Історія перевірок"
 
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "Проблеми доступності"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "Вміст перевірено на доступність"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "Типи публікацій налаштовані для перевірок доступності"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "Доступність"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "Переглянути проблеми"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "Переглянути Accessibility Checker"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "Виявлено проблеми доступності"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checker виявив %1$s помилок та %2$s попереджень."
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "Проблем доступності не виявлено"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checker не знайшов жодних проблем у сканованому вмісті."
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "Вміст не було перевірено"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "Жодних публікацій ще не скановано. Запусти повне сканування сайту, щоб почати перевірку вмісту на проблеми доступності."
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "Почати повне сканування сайту"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "Вміст перевіряється на доступність"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
+msgstr[0] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "Не вибрано типів публікацій для перевірки доступності"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "Accessibility Checker не може сканувати жодний вміст, оскільки не вибрано типів публікацій. Без налаштованих типів публікацій проблеми доступності не будуть виявлені."
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "Налаштувати типи публікацій"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "Типи публікацій налаштовані для перевірки доступності"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgstr[0] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
 msgstr "Accessibility Checker &mdash; Безкоштовна версія"
@@ -692,7 +776,7 @@ msgid "Disabled"
 msgstr "Вимкнено"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:137
+#: includes/options-page.php:199
 msgid "Delete Data"
 msgstr "Видалити дані"
 
@@ -749,6 +833,7 @@ msgid "Simplified Sum Heading"
 msgstr "Заголовок спрощеного підсумку"
 
 #: admin/site-health/class-pro.php:74
+#: includes/options-page.php:190
 msgid "Ignore Permissions"
 msgstr "Дозволи на ігнорування"
 
@@ -790,60 +875,66 @@ msgstr "Отримати Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Отримати Accessibility Checker Pro (відкривається у новому вікні)"
 
+#: includes/classes/class-rest-api.php:222
+msgid "A required parameter is missing."
+msgstr "Відсутній обов'язковий параметр."
+
 #: includes/classes/class-simplified-summary.php:73
+#: includes/options-page.php:897
+#: includes/options-page.php:921
 msgid "Simplified Summary"
 msgstr "Спрощений виклад"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:41
 msgid "Add Size & Type To File Links"
 msgstr "Додати розмір та тип до посилань на файли"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:50
 msgid "Add Context to Linked Files"
 msgstr "Додати контекст до пов'язаних файлів"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:83
 msgid "Add File Size & Type To Links"
 msgstr "Додати розмір та тип файлу до посилань"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:85
 msgid "Add the file size and type to linked files that may trigger a download."
 msgstr "Додати розмір та тип файлу до посилань на файли, які можуть викликати завантаження."
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:41
 msgid "Add Labels to Unlabelled Form Fields"
 msgstr "Додати мітки до полів форми без міток"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:50
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:73
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:96
 msgid "Label Form Fields"
 msgstr "Позначити поля форми"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:99
 msgid "Add labels to unlabelled form fields if field purpose can be determined."
 msgstr "Додати мітки до полів форми без позначень, якщо призначення поля можна визначити."
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:130
 #, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Спроба додати мітки до полів форми, яким вони відсутні. Примітка: Можливо, вам доведеться додати власні стилі, націлені на клас %1$s, якщо додавання міток впливає на макет ваших форм."
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:41
 msgid "Add Missing or Empty Page Titles"
 msgstr "Додати відсутні або порожні заголовки сторінок"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:50
 msgid "Set Page HTML Titles"
 msgstr "Встановити HTML-заголовки сторінок"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:84
 msgid "Add Missing Page Title"
 msgstr "Додати відсутній заголовок сторінки"
 
 #. translators: %1$s: a code tag with a title tag.
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:87
 #, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Додати тег %1$s на сторінку, якщо він відсутній або порожній."
@@ -862,13 +953,13 @@ msgstr "Додати мітку до посилань, які відкриваю
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Додати мітку та іконку до посилань із %1$s, повідомляючи користувачів, що вони відкриються у новій вкладці/вікні. %2$sПримітка: Цей параметр не матиме ефекту, якщо ввімкнено виправлення „Блокувати посилання, що відкривають нові вікна“.%3$s"
 
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:43
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:75
 msgid "Block PDF Uploads"
 msgstr "Блокувати завантаження PDF"
 
 #. translators: %1$s: a code tag with the capability name.
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 #, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Обмежити завантаження PDF для користувачів без можливості %1$s (за замовчуванням дозволено для адміністраторів)."
@@ -2598,202 +2689,264 @@ msgstr "Допис з ID %1$d не існує."
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Або допис ще не скановано, або всі тести пройдено для допису з ID %1$d."
 
-#: includes/helper-functions.php:25
+#: includes/helper-functions.php:27
 msgid "permalink of "
 msgstr "постійне посилання на "
 
-#: includes/helper-functions.php:26
+#: includes/helper-functions.php:28
 msgid "permalink to "
 msgstr "постійне посилання до "
 
-#: includes/helper-functions.php:27
+#: includes/helper-functions.php:29
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:339
+#: includes/helper-functions.php:341
 msgid "Attend Free"
 msgstr "Відвідати безкоштовно"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:782
+#: includes/helper-functions.php:790
 #, php-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Переглянути %s орієнтир на веб-сайті, відкриється нове вікно"
 
-#: includes/options-page.php:42
+#: includes/options-page.php:44
 msgid "Welcome to Accessibility Checker"
 msgstr "Ласкаво просимо до Accessibility Checker"
 
-#: includes/options-page.php:65
+#: includes/options-page.php:67
 msgid "Accessibility Checker Settings"
 msgstr "Налаштування Accessibility Checker"
 
-#: includes/options-page.php:99
-msgid "General Settings"
-msgstr "Загальні налаштування"
+#: includes/options-page.php:111
+msgid "Scan Settings"
+msgstr "Налаштування сканування"
 
-#: includes/options-page.php:106
+#: includes/options-page.php:118
+msgid "Permissions"
+msgstr "Дозволи"
+
+#: includes/options-page.php:125
 msgid "Simplified Summary Settings"
 msgstr "Налаштування спрощеного резюме"
 
-#: includes/options-page.php:113
+#: includes/options-page.php:132
 msgid "Footer Accessibility Statement"
 msgstr "Заява про доступність у нижньому колонтитулі"
 
-#: includes/options-page.php:120
+#: includes/options-page.php:139
 msgid "Frontend Accessibility Checker"
 msgstr "Accessibility Checker для фронтенду"
 
-#: includes/options-page.php:128
+#: includes/options-page.php:146
+msgid "System Settings"
+msgstr "Системні налаштування"
+
+#: includes/options-page.php:154
 msgid "Post Types To Be Checked"
 msgstr "Типи дописів для перевірки"
 
-#: includes/options-page.php:146
+#: includes/options-page.php:163
+msgid "Scan Speed"
+msgstr "Швидкість сканування"
+
+#: includes/options-page.php:172
+msgid "Enable Archive Scanning"
+msgstr "Увімкнути сканування архівів"
+
+#: includes/options-page.php:181
+msgid "Scan All Taxonomy Terms"
+msgstr "Сканувати всі терміни таксономії"
+
+#: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
 msgstr "Запит на спрощене резюме"
 
-#: includes/options-page.php:155
+#: includes/options-page.php:217
 msgid "Simplified Summary Position"
 msgstr "Позиція спрощеного резюме"
 
-#: includes/options-page.php:164
-#: includes/options-page.php:533
+#: includes/options-page.php:226
+msgid "Simplified Summary Heading"
+msgstr "Спрощений заголовок підсумку"
+
+#: includes/options-page.php:235
+#: includes/options-page.php:735
 msgid "Add Footer Accessibility Statement"
 msgstr "Додати заяву про доступність у нижній колонтитул"
 
-#: includes/options-page.php:173
-#: includes/options-page.php:556
+#: includes/options-page.php:244
+#: includes/options-page.php:758
 msgid "Include Link to Accessibility Policy"
 msgstr "Включити посилання на політику доступності"
 
-#: includes/options-page.php:182
+#: includes/options-page.php:253
 msgid "Accessibility Policy page"
 msgstr "Сторінка політики доступності"
 
-#: includes/options-page.php:191
+#: includes/options-page.php:262
 msgid "Accessibility Statement Preview"
 msgstr "Попередній перегляд заяви про доступність"
 
-#: includes/options-page.php:200
+#: includes/options-page.php:271
 msgid "Frontend Accessibility Checker Position"
 msgstr "Розташування Accessibility Checker на фронтенді"
 
-#. translators: %1$s: link to the plugin documentation website.
-#: includes/options-page.php:244
-#, php-format
-msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
-msgstr "Використовуйте налаштування нижче для конфігурації Accessibility Checker. Додаткову інформацію про кожне налаштування можна знайти в %1$s."
-
-#: includes/options-page.php:245
-msgid "plugin documentation (opens in a new window)"
-msgstr "документації плагіна (відкривається в новому вікні)"
-
-#: includes/options-page.php:245
-msgid "plugin documentation"
-msgstr "документації плагіна"
+#: includes/options-page.php:320
+msgid "Configure the types of content that should be checked for accessibility issues."
+msgstr "Налаштуй типи вмісту, які слід перевіряти на проблеми доступності."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:251
+#: includes/options-page.php:325
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Більше функцій та підтримка електронною поштою доступні з %1$s."
 
-#: includes/options-page.php:259
+#: includes/options-page.php:333
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (відкривається в новому вікні)"
 
-#: includes/options-page.php:259
+#: includes/options-page.php:333
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:273
+#: includes/options-page.php:347
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Використовуйте налаштування нижче для конфігурації перевірки доступності на фронтенді."
 
-#: includes/options-page.php:283
+#: includes/options-page.php:357
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Керівні принципи доступності веб-контенту (WCAG) на рівні AAA вимагають, щоб будь-який вміст з рівнем читабельності вище 9-го класу мав альтернативу, яку легше прочитати. Спрощений текст резюме додається на вкладці читабельності в метабоксі Accessibility Checker на екрані редагування кожного посту чи сторінки."
 
-#: includes/options-page.php:293
+#: includes/options-page.php:367
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Дізнайтеся більше про спрощені підсумки та вимоги до читабельності (відкривається в новому вікні)"
 
-#: includes/options-page.php:293
+#: includes/options-page.php:367
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Дізнайтеся більше про спрощені підсумки та вимоги до читабельності."
 
-#: includes/options-page.php:302
+#: includes/options-page.php:376
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Чи думаєте ви „Вау, цей плагін дивовижний“ і чи допомагає він вам зробити ваш веб-сайт більш доступним? Поділіться своїми зусиллями щодо підвищення доступності вашого веб-сайту з вашими клієнтами та повідомте їм, що ви використовуєте Accessibility Checker, щоб забезпечити можливість користування вашим веб-сайтом для всіх людей. Додайте невелике текстове посилання та заяву в нижній колонтитул вашого веб-сайту."
 
-#: includes/options-page.php:315
+#: includes/options-page.php:385
+msgid "Configure system-level settings for the Accessibility Checker plugin."
+msgstr "Налаштуй системні параметри для плагіна Accessibility Checker."
+
+#: includes/options-page.php:399
+msgid "Fast"
+msgstr "Швидко"
+
+#: includes/options-page.php:400
+msgid "Normal"
+msgstr "Нормально"
+
+#: includes/options-page.php:401
+msgid "Slow"
+msgstr "Повільно"
+
+#: includes/options-page.php:402
+msgid "Slowest"
+msgstr "Найповільніше"
+
+#: includes/options-page.php:424
+msgid "Faster scans are more resource intensive and may place a high load on your website."
+msgstr "Швидші сканування потребують більше ресурсів і можуть створювати високе навантаження на твій сайт."
+
+#: includes/options-page.php:450
+msgid "Enable scanning of archive pages"
+msgstr "Увімкнути сканування сторінок архіву"
+
+#: includes/options-page.php:454
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
+msgstr "Вибери, чи включати сторінки архіву в повне сканування сайту. За замовчуванням метод вибірки обирає терміни таксономії, сторінки архіву яких включаються в сканування."
+
+#: includes/options-page.php:480
+msgid "Scan all taxonomy terms instead of just a sample"
+msgstr "Сканувати всі терміни таксономії замість вибірки"
+
+#: includes/options-page.php:484
+msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
+msgstr "Перевіряти сторінки архіву для всіх термінів таксономії замість репрезентативної вибірки. Потребує сканування сторінок архіву і може значно збільшити час сканування та навантаження на сервер."
+
+#: includes/options-page.php:513
 msgid "Before the content"
 msgstr "Перед контентом"
 
-#: includes/options-page.php:320
+#: includes/options-page.php:518
 msgid "After the content"
 msgstr "Після контенту"
 
-#: includes/options-page.php:325
+#: includes/options-page.php:523
 msgid "Insert manually"
 msgstr "Вставити вручну"
 
-#: includes/options-page.php:329
+#: includes/options-page.php:527
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Використовуйте цю функцію для ручного додавання спрощеного підсумку до вашої теми в циклі."
 
-#: includes/options-page.php:331
+#: includes/options-page.php:529
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Функція опціонально приймає ID допису як параметр."
 
-#: includes/options-page.php:334
+#: includes/options-page.php:532
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Встановіть, де ви хочете, щоб з'являлися спрощені підсумки відносно вашого контенту, якщо вони заповнені."
 
-#: includes/options-page.php:349
+#: includes/options-page.php:547
 msgid "Bottom Right Corner (default)"
 msgstr "Нижній правий кут (за замовчуванням)"
 
-#: includes/options-page.php:354
+#: includes/options-page.php:552
 msgid "Bottom Left Corner"
 msgstr "Нижній лівий кут"
 
-#: includes/options-page.php:358
+#: includes/options-page.php:556
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Встановіть, де ви хочете, щоб з'являлася перевірка доступності на фронтенді на сторінці."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:596
 msgid "When Required"
 msgstr "Коли потрібно"
 
-#: includes/options-page.php:403
+#: includes/options-page.php:601
 msgid "Always"
 msgstr "Завжди"
 
-#: includes/options-page.php:411
+#: includes/options-page.php:609
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Чи повинен Accessibility Checker запитувати спрощене резюме лише тоді, коли рівень читабельності вашого посту чи сторінки вище 9-го класу, завжди запитувати його незалежно від рівня читабельності, або ніколи не запитувати його незалежно від рівня читабельності?"
 
-#: includes/options-page.php:462
+#: includes/options-page.php:660
 msgid "To check content other than posts and pages, please "
 msgstr "Щоб перевірити контент, відмінний від дописів і сторінок, будь ласка "
 
-#: includes/options-page.php:464
+#: includes/options-page.php:662
 msgid "upgrade to pro"
 msgstr "оновитися до Pro"
 
-#: includes/options-page.php:465
+#: includes/options-page.php:663
 msgid " (opens in a new window)"
 msgstr " (відкривається в новому вікні)"
 
-#: includes/options-page.php:470
+#: includes/options-page.php:668
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Виберіть, які типи дописів слід перевіряти під час сканування. Зверніть увагу, що видалення раніше вибраного типу допису призведе до видалення інформації про його сканування та будь-яких налаштованих ігнорованих попереджень."
 
-#: includes/options-page.php:608
+#: includes/options-page.php:810
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Видалити всі дані Accessibility Checker при видаленні плагіна."
+
+#: includes/options-page.php:965
+msgid "Choose which user roles have permission to ignore issues."
+msgstr "Вибери, які ролі користувачів мають дозвіл ігнорувати проблеми."
+
+#: includes/options-page.php:998
+msgid "Configure which user roles have access to specific Accessibility Checker features."
+msgstr "Налаштуй, які ролі користувачів мають доступ до певних функцій Accessibility Checker."
 
 #: includes/wcag.php:11
 msgid "Non-text Content"
@@ -4003,28 +4156,29 @@ msgstr "Налаштування збережено. Щоб підтвердит
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Встановлено плагін Accessibility New Window Warnings. Виправлення для посилань, що відкриваються в новому вікні, включене тут, замінить його функціональність. Ви можете безпечно видалити плагін і використовувати натомість ці виправлення."
 
-#: partials/custom-meta-box.php:10
+#: partials/custom-meta-box.php:13
 msgid "Accessibility Checker issues panels"
 msgstr "Панелі проблем Accessibility Checker"
 
-#: partials/custom-meta-box.php:21
+#: partials/custom-meta-box.php:24
 msgid "Summary"
 msgstr "Підсумок"
 
-#: partials/custom-meta-box.php:31
+#: partials/custom-meta-box.php:34
 msgid "Details"
 msgstr "Деталі"
 
-#: partials/custom-meta-box.php:41
+#: partials/custom-meta-box.php:44
 msgid "Readability"
 msgstr "Читабельність"
 
-#: partials/custom-meta-box.php:50
+#: partials/custom-meta-box.php:53
 msgid "Delete all currently found issues"
 msgstr "Видалити всі знайдені проблеми"
 
-#: partials/custom-meta-box.php:52
+#: partials/custom-meta-box.php:55
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "Очистити проблеми"
 
@@ -4272,22 +4426,27 @@ msgid "Fix Settings"
 msgstr "Налаштування виправлень"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Це очистить усі проблеми для цього запису. Потрібно буде зберегти, щоб запустити нове сканування вмісту запису. Ви хочете продовжити?"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "Очищення..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "Проблеми успішно очищено."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Не вдалося очистити проблеми."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "Під час очищення проблем сталася помилка."
 
@@ -4363,14 +4522,14 @@ msgstr "Проблем не виявлено."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] "помилка"
-msgstr[1] "помилок"
+msgstr[0] "errors"
+msgstr[1] "errors"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] "попередження"
-msgstr[1] "попереджень"
+msgstr[0] "warnings"
+msgstr[1] "warnings"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4379,8 +4538,8 @@ msgstr "та"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] "проігнорована проблема"
-msgstr[1] "проігнорованих проблем"
+msgstr[0] "ignored issues"
+msgstr[1] "ignored issues"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
@@ -4410,6 +4569,10 @@ msgstr "Помилка сканування доступності."
 msgid "Error saving scan results."
 msgstr "Помилка збереження результатів сканування."
 
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "Помилка: Відсутні обов'язкові параметри."
+
 #: build/pageScanner.bundle.js:2
 msgid "new window"
 msgstr "нове вікно"
@@ -4417,6 +4580,10 @@ msgstr "нове вікно"
 #: build/pageScanner.bundle.js:2
 msgid "new tab"
 msgstr "нова вкладка"
+
+#: build/pageScanner.bundle.js:2
+msgid "new document"
+msgstr "новий документ"
 
 #: build/pageScanner.bundle.js:2
 msgid "click"

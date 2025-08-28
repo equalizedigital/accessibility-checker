@@ -2,24 +2,25 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.29.0\n"
+"Project-Id-Version: Accessibility Checker 1.30.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-30T00:08:16+00:00\n"
+"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
+"Language: vi\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
 #: includes/classes/class-admin-toolbar.php:53
-#: includes/options-page.php:43
+#: includes/options-page.php:45
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
 msgstr "Trình kiểm tra khả năng tiếp cận"
@@ -68,11 +69,12 @@ msgstr "Nâng cấp lên bản Pro để mở khóa tính năng này, mở trong
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
 #: admin/class-plugin-action-links.php:55
+#: build/admin.bundle.js:2
 msgid "Get Pro"
 msgstr "Nâng cấp lên bản Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:347
+#: admin/class-ajax.php:350
 msgid "Opens in a new window."
 msgstr "Mở trong cửa sổ mới."
 
@@ -164,82 +166,74 @@ msgstr "Muốn làm được nhiều hơn với Accessibility Checker? %1$sMở 
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Mở khóa tính năng Pro (mở trong cửa sổ mới)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "Chúng tôi đã cải thiện các tính toán thống kê trong phiên bản 1.21.0. Do đó, một số con số trong dữ liệu dưới đây có thể đã thay đổi. Đọc thêm trong %1$sbài đăng thông báo phát hành%2$s của chúng tôi."
-
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
-#: admin/class-ajax.php:56
-#: admin/class-ajax.php:205
-#: admin/class-ajax.php:584
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:802
-#: admin/class-frontend-highlight.php:79
-msgid "Permission Denied"
-msgstr "Quyền truy cập bị từ chối"
-
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
-msgid "Update option wasn't successful"
-msgstr "Cập nhật tùy chọn không thành công"
-
-#: admin/class-admin-notices.php:201
+#: admin/class-admin-notices.php:129
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Ưu đãi đặc biệt Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:202
+#: admin/class-admin-notices.php:130
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Nâng cấp lên phiên bản trả phí của Accessibility Checker từ ngày 25 tháng 11 đến ngày 3 tháng 12 và được giảm giá 30%! Quét toàn bộ trang web, báo cáo vấn đề mở toàn trang, nhật ký bỏ qua và nhiều tính năng khác."
 
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
 msgid "Ask a Pre-Sale Question"
 msgstr "Đặt câu hỏi trước khi mua"
 
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
 msgid "Upgrade Now"
 msgstr "Nâng cấp ngay"
 
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:208
+#: admin/class-ajax.php:593
+#: admin/class-ajax.php:731
+#: admin/class-ajax.php:811
+#: admin/class-frontend-highlight.php:78
+msgid "Permission Denied"
+msgstr "Quyền truy cập bị từ chối"
+
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
+msgid "Update option wasn't successful"
+msgstr "Cập nhật tùy chọn không thành công"
+
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Giảm giá 25% cho Accessibility Checker Pro nhân Ngày Nhận thức Khả năng Tiếp cận Toàn cầu! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Sử dụng mã giảm giá GAAD25 từ ngày 13 tháng 5 đến ngày 21 tháng 5 để được truy cập vào tính năng quét toàn bộ trang web và các tính năng Pro khác với mức giảm giá đặc biệt. Không chắc liệu nâng cấp có phù hợp với bạn không?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Xin chào! Cảm ơn bạn đã sử dụng Accessibility Checker như một phần trong bộ công cụ kiểm tra khả năng tiếp cận của bạn. Vì bạn đã sử dụng nó một thời gian, bạn có thể viết đánh giá 5 sao cho Accessibility Checker trên thư mục plugin WordPress được không? Điều này sẽ giúp tăng khả năng hiển thị của chúng tôi để nhiều người có thể biết về tầm quan trọng của khả năng tiếp cận web. Cảm ơn bạn rất nhiều!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Viết đánh giá"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Nhắc tôi sau hai tuần"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "Không bao giờ hỏi lại"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "Giá trị hành động đánh giá không được thiết lập"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:212
-#: admin/class-ajax.php:591
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:215
+#: admin/class-ajax.php:600
+#: admin/class-ajax.php:818
 msgid "The post ID was not set"
 msgstr "ID bài viết chưa được thiết lập"
 
@@ -260,116 +254,116 @@ msgid "A simplified summary has been included for this content."
 msgstr "Bản tóm tắt đơn giản hóa đã được bao gồm cho nội dung này."
 
 #. translators: %s: Number of errors
-#: admin/class-ajax.php:126
+#: admin/class-ajax.php:129
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
-msgstr[0] "%s Lỗi"
-msgstr[1] "%s Lỗi"
+msgstr[0] ""
+msgstr[1] ""
 
 #. translators: %s: Number of contrast errors
-#: admin/class-ajax.php:132
+#: admin/class-ajax.php:135
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
-msgstr[0] "%s Lỗi tương phản"
-msgstr[1] "%s Lỗi tương phản"
+msgstr[0] ""
+msgstr[1] ""
 
 #. translators: %s: Number of warnings
-#: admin/class-ajax.php:138
+#: admin/class-ajax.php:141
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
-msgstr[0] "%s Cảnh báo"
-msgstr[1] "%s Cảnh báo"
+msgstr[0] ""
+msgstr[1] ""
 
 #. translators: %s: Number of ignored items
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:147
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
-msgstr[0] "%s Mục bị bỏ qua"
-msgstr[1] "%s Mục bị bỏ qua"
+msgstr[0] ""
+msgstr[1] ""
 
-#: admin/class-ajax.php:182
+#: admin/class-ajax.php:185
 msgid "No summary to return"
 msgstr "Không có bản tóm tắt để trả về"
 
-#: admin/class-ajax.php:226
+#: admin/class-ajax.php:229
 msgid "Invalid table name"
 msgstr "Tên bảng không hợp lệ"
 
-#: admin/class-ajax.php:372
+#: admin/class-ajax.php:375
 msgid "These settings enable global fixes across your entire site."
 msgstr "Những cài đặt này cho phép sửa lỗi toàn cục trên toàn bộ trang web của bạn."
 
-#: admin/class-ajax.php:373
+#: admin/class-ajax.php:376
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Các trang có thể cần được lưu lại hoặc quét toàn bộ trang web cần được thực hiện để thấy các sửa đổi được phản ánh trong báo cáo."
 
-#: admin/class-ajax.php:401
+#: admin/class-ajax.php:404
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "Lưu"
 
-#: admin/class-ajax.php:423
+#: admin/class-ajax.php:426
 msgid "Affected Code"
 msgstr "Mã bị ảnh hưởng"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:500
+#: admin/class-ajax.php:509
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Xem Vấn đề ID %d trên trang web, mở cửa sổ mới"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:510
 msgid "View on page"
 msgstr "Xem trên trang"
 
-#: admin/class-ajax.php:520
+#: admin/class-ajax.php:529
 msgid "Fix: "
 msgstr "Sửa: "
 
-#: admin/class-ajax.php:521
+#: admin/class-ajax.php:530
 msgid "Fix"
 msgstr "Sửa"
 
-#: admin/class-ajax.php:544
+#: admin/class-ajax.php:553
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Tài khoản người dùng của bạn không có quyền bỏ qua vấn đề này."
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:571
 msgid "No details to return"
 msgstr "Không có chi tiết để trả về"
 
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:710
 msgid "No readability data to return"
 msgstr "Không có dữ liệu khả năng đọc để trả về"
 
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:767
+#: admin/class-ajax.php:790
 msgid "No ignore data to return"
 msgstr "Không có dữ liệu bỏ qua để trả về"
 
-#: admin/class-ajax.php:816
+#: admin/class-ajax.php:825
 msgid "The summary was not set"
 msgstr "Bản tóm tắt chưa được thiết lập"
 
-#: admin/class-frontend-highlight.php:84
+#: admin/class-frontend-highlight.php:83
 msgid "The id value was not set"
 msgstr "Giá trị id chưa được thiết lập"
 
-#: admin/class-frontend-highlight.php:92
+#: admin/class-frontend-highlight.php:91
 msgid "Issue query returned no results"
 msgstr "Truy vấn vấn đề không trả về kết quả nào"
 
-#: admin/class-frontend-highlight.php:138
+#: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "Truy vấn đối tượng không trả về kết quả nào"
 
 #: admin/class-plugin-action-links.php:48
 #: includes/classes/class-admin-toolbar.php:94
-#: includes/options-page.php:66
+#: includes/options-page.php:68
 msgid "Settings"
 msgstr "Cài đặt"
 
@@ -418,113 +412,113 @@ msgstr "Không thể chuyển hướng đến trang nâng cấp."
 msgid "Most Recent Test Summary"
 msgstr "Tóm tắt kiểm tra gần đây nhất"
 
-#: admin/class-welcome-page.php:44
+#: admin/class-welcome-page.php:45
 msgid "Update Counts"
 msgstr "Cập nhật số lượng"
 
-#: admin/class-welcome-page.php:48
+#: admin/class-welcome-page.php:50
 msgid "Start New Scan"
 msgstr "Bắt đầu quét mới"
 
-#: admin/class-welcome-page.php:52
+#: admin/class-welcome-page.php:54
 msgid "View All Open Issues"
 msgstr "Xem tất cả vấn đề đang mở"
 
-#: admin/class-welcome-page.php:57
+#: admin/class-welcome-page.php:59
 msgid "See History"
 msgstr "Xem lịch sử"
 
-#: admin/class-welcome-page.php:70
+#: admin/class-welcome-page.php:72
 #: admin/class-widgets.php:98
 msgid "Passed Tests"
 msgstr "Các bài kiểm tra đã vượt qua"
 
-#: admin/class-welcome-page.php:86
+#: admin/class-welcome-page.php:88
 msgid "Unique Error"
 msgid_plural "Unique Errors"
-msgstr[0] "Lỗi độc nhất"
-msgstr[1] "Lỗi độc nhất"
+msgstr[0] ""
+msgstr[1] ""
 
-#: admin/class-welcome-page.php:111
+#: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
-msgstr[0] "Lỗi tương phản màu sắc độc nhất"
-msgstr[1] "Lỗi tương phản màu sắc độc nhất"
+msgstr[0] ""
+msgstr[1] ""
 
-#: admin/class-welcome-page.php:136
+#: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
-msgstr[0] "Cảnh báo độc nhất"
-msgstr[1] "Cảnh báo độc nhất"
+msgstr[0] ""
+msgstr[1] ""
 
-#: admin/class-welcome-page.php:161
+#: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
-msgstr[0] "Mục bị bỏ qua"
-msgstr[1] "Các mục bị bỏ qua"
+msgstr[0] ""
+msgstr[1] ""
 
-#: admin/class-welcome-page.php:178
+#: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
 msgstr "Số vấn đề trung bình mỗi trang"
 
-#: admin/class-welcome-page.php:191
+#: admin/class-welcome-page.php:193
 msgid "Average Issue Density"
 msgstr "Mật độ vấn đề trung bình"
 
-#: admin/class-welcome-page.php:204
+#: admin/class-welcome-page.php:206
 #: admin/class-widgets.php:105
 msgid "Report Last Updated:"
 msgstr "Báo cáo cập nhật lần cuối:"
 
-#: admin/class-welcome-page.php:214
-#: includes/options-page.php:408
+#: admin/class-welcome-page.php:216
+#: includes/options-page.php:606
 msgid "Never"
 msgstr "Chưa bao giờ"
 
-#: admin/class-welcome-page.php:228
+#: admin/class-welcome-page.php:230
 msgid "URLs Scanned"
 msgstr "URL đã quét"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
-#: admin/class-welcome-page.php:239
+#: admin/class-welcome-page.php:241
 #, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s trong số %2$s"
 
-#: admin/class-welcome-page.php:248
+#: admin/class-welcome-page.php:250
 msgid "Post Types Checked"
 msgstr "Loại bài viết đã kiểm tra"
 
-#: admin/class-welcome-page.php:261
+#: admin/class-welcome-page.php:263
 msgid "URLs with 100% score"
 msgstr "URL có điểm số 100%"
 
-#: admin/class-welcome-page.php:269
+#: admin/class-welcome-page.php:271
 msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
 msgstr "Bản tóm tắt này được tự động cập nhật mỗi 24 giờ, hoặc bất cứ khi nào một lần quét toàn bộ trang web hoàn tất. Bạn cũng có thể cập nhật thủ công các kết quả này bằng cách nhấp vào nút Cập nhật Số lượng."
 
-#: admin/class-welcome-page.php:275
+#: admin/class-welcome-page.php:277
 msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
 msgstr "Trang web của bạn có số lượng lớn vấn đề. Vì lý do hiệu suất, không phải tất cả các vấn đề đều được bao gồm trong bản tóm tắt này."
 
-#: admin/class-welcome-page.php:285
+#: admin/class-welcome-page.php:287
 msgid "Site-Wide Accessibility Reports"
 msgstr "Báo cáo Khả năng Tiếp cận Toàn trang web"
 
-#: admin/class-welcome-page.php:290
+#: admin/class-welcome-page.php:292
 msgid "Hide banner"
 msgstr "Ẩn banner"
 
-#: admin/class-welcome-page.php:299
+#: admin/class-welcome-page.php:301
 msgid "Unlock Detailed Accessibility Reports"
 msgstr "Mở khóa báo cáo khả năng tiếp cận chi tiết"
 
-#: admin/class-welcome-page.php:302
+#: admin/class-welcome-page.php:304
 #: admin/class-widgets.php:71
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Bắt đầu quét toàn bộ trang web của bạn để tìm các vấn đề về khả năng tiếp cận, nhận báo cáo toàn trang web, và tuân thủ nhanh hơn các hướng dẫn về khả năng tiếp cận."
 
-#: admin/class-welcome-page.php:306
+#: admin/class-welcome-page.php:308
 #: admin/class-widgets.php:73
 msgid "Upgrade Accessibility Checker"
 msgstr "Nâng cấp Accessibility Checker"
@@ -646,6 +640,96 @@ msgstr "Nhập tên của bạn"
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Lịch sử kiểm tra"
 
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "Vấn đề về khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "Nội dung đã được kiểm tra khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "Các loại bài viết đã được cấu hình cho việc kiểm tra khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "Khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "Xem vấn đề"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "Xem Accessibility Checker"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "Đã phát hiện vấn đề về khả năng tiếp cận"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checker đã phát hiện %1$s lỗi và %2$s cảnh báo."
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "Không phát hiện vấn đề về khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checker không tìm thấy vấn đề nào trong nội dung đã quét."
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "Nội dung chưa được kiểm tra"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "Chưa có bài viết nào được quét. Chạy quét toàn bộ trang web để bắt đầu kiểm tra nội dung của bạn về các vấn đề khả năng tiếp cận."
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "Bắt đầu quét toàn bộ trang web"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "Nội dung đang được kiểm tra khả năng tiếp cận"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "Không có loại bài viết nào được chọn để kiểm tra khả năng tiếp cận"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "Accessibility Checker không thể quét bất kỳ nội dung nào vì không có loại bài viết nào được chọn. Nếu không cấu hình loại bài viết, sẽ không phát hiện được vấn đề về khả năng tiếp cận."
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "Cấu hình loại bài viết"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "Các loại bài viết đã được cấu hình để kiểm tra khả năng tiếp cận"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
 msgstr "Accessibility Checker &mdash; Miễn phí"
@@ -692,7 +776,7 @@ msgid "Disabled"
 msgstr "Đã tắt"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:137
+#: includes/options-page.php:199
 msgid "Delete Data"
 msgstr "Xóa dữ liệu"
 
@@ -749,6 +833,7 @@ msgid "Simplified Sum Heading"
 msgstr "Tiêu đề tóm tắt đơn giản hóa"
 
 #: admin/site-health/class-pro.php:74
+#: includes/options-page.php:190
 msgid "Ignore Permissions"
 msgstr "Quyền bỏ qua"
 
@@ -790,60 +875,66 @@ msgstr "Nhận Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Nhận Accessibility Checker Pro (mở trong cửa sổ mới)"
 
+#: includes/classes/class-rest-api.php:222
+msgid "A required parameter is missing."
+msgstr "Thiếu một tham số bắt buộc."
+
 #: includes/classes/class-simplified-summary.php:73
+#: includes/options-page.php:897
+#: includes/options-page.php:921
 msgid "Simplified Summary"
 msgstr "Tóm tắt đơn giản"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:41
 msgid "Add Size & Type To File Links"
 msgstr "Thêm kích thước & loại vào liên kết tệp"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:50
 msgid "Add Context to Linked Files"
 msgstr "Thêm ngữ cảnh cho các tệp được liên kết"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:83
 msgid "Add File Size & Type To Links"
 msgstr "Thêm kích thước & loại tệp vào liên kết"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:85
 msgid "Add the file size and type to linked files that may trigger a download."
 msgstr "Thêm kích thước và loại tệp vào các liên kết tệp có thể kích hoạt tải xuống."
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:41
 msgid "Add Labels to Unlabelled Form Fields"
 msgstr "Thêm nhãn cho các trường biểu mẫu chưa có nhãn"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:50
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:73
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:96
 msgid "Label Form Fields"
 msgstr "Gắn nhãn cho các trường biểu mẫu"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:99
 msgid "Add labels to unlabelled form fields if field purpose can be determined."
 msgstr "Thêm nhãn cho các trường biểu mẫu chưa có nhãn nếu có thể xác định mục đích của trường."
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:130
 #, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Cố gắng thêm nhãn cho các trường biểu mẫu còn thiếu. Lưu ý: Bạn có thể cần thêm kiểu tùy chỉnh nhắm vào lớp %1$s nếu việc thêm nhãn ảnh hưởng đến bố cục biểu mẫu của bạn."
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:41
 msgid "Add Missing or Empty Page Titles"
 msgstr "Thêm tiêu đề trang bị thiếu hoặc trống"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:50
 msgid "Set Page HTML Titles"
 msgstr "Đặt tiêu đề HTML cho trang"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:84
 msgid "Add Missing Page Title"
 msgstr "Thêm tiêu đề trang bị thiếu"
 
 #. translators: %1$s: a code tag with a title tag.
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:87
 #, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Thêm thẻ %1$s vào trang nếu nó bị thiếu hoặc trống."
@@ -862,13 +953,13 @@ msgstr "Thêm nhãn cho các liên kết mở tab/cửa sổ mới"
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Thêm nhãn và biểu tượng cho các liên kết có %1$s thông báo cho người dùng rằng chúng sẽ mở một tab/cửa sổ mới. %2$sLưu ý: Cài đặt này sẽ không có tác dụng nếu tính năng \"Chặn Liên kết Mở Cửa sổ Mới\" được bật.%3$s"
 
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:43
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:75
 msgid "Block PDF Uploads"
 msgstr "Chặn Tải lên PDF"
 
 #. translators: %1$s: a code tag with the capability name.
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 #, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Hạn chế tải lên PDF đối với người dùng không có khả năng %1$s (mặc định cho phép đối với quản trị viên)."
@@ -2598,202 +2689,264 @@ msgstr "ID bài viết %1$d không tồn tại."
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Hoặc bài viết chưa được quét hoặc tất cả kiểm tra đã đạt với ID bài viết %1$d."
 
-#: includes/helper-functions.php:25
+#: includes/helper-functions.php:27
 msgid "permalink of "
 msgstr "đường dẫn tĩnh của "
 
-#: includes/helper-functions.php:26
+#: includes/helper-functions.php:28
 msgid "permalink to "
 msgstr "đường dẫn tĩnh đến "
 
-#: includes/helper-functions.php:27
+#: includes/helper-functions.php:29
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:339
+#: includes/helper-functions.php:341
 msgid "Attend Free"
 msgstr "Tham gia miễn phí"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:782
+#: includes/helper-functions.php:790
 #, php-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Xem %s điểm mốc trên trang web, mở cửa sổ mới"
 
-#: includes/options-page.php:42
+#: includes/options-page.php:44
 msgid "Welcome to Accessibility Checker"
 msgstr "Chào mừng đến với Accessibility Checker"
 
-#: includes/options-page.php:65
+#: includes/options-page.php:67
 msgid "Accessibility Checker Settings"
 msgstr "Cài đặt Accessibility Checker"
 
-#: includes/options-page.php:99
-msgid "General Settings"
-msgstr "Cài đặt chung"
+#: includes/options-page.php:111
+msgid "Scan Settings"
+msgstr "Cài đặt quét"
 
-#: includes/options-page.php:106
+#: includes/options-page.php:118
+msgid "Permissions"
+msgstr "Quyền hạn"
+
+#: includes/options-page.php:125
 msgid "Simplified Summary Settings"
 msgstr "Cài đặt tóm tắt đơn giản hóa"
 
-#: includes/options-page.php:113
+#: includes/options-page.php:132
 msgid "Footer Accessibility Statement"
 msgstr "Tuyên bố khả năng truy cập ở chân trang"
 
-#: includes/options-page.php:120
+#: includes/options-page.php:139
 msgid "Frontend Accessibility Checker"
 msgstr "Trình kiểm tra khả năng tiếp cận giao diện người dùng"
 
-#: includes/options-page.php:128
+#: includes/options-page.php:146
+msgid "System Settings"
+msgstr "Cài đặt hệ thống"
+
+#: includes/options-page.php:154
 msgid "Post Types To Be Checked"
 msgstr "Các loại bài viết cần kiểm tra"
 
-#: includes/options-page.php:146
+#: includes/options-page.php:163
+msgid "Scan Speed"
+msgstr "Tốc độ quét"
+
+#: includes/options-page.php:172
+msgid "Enable Archive Scanning"
+msgstr "Bật quét lưu trữ"
+
+#: includes/options-page.php:181
+msgid "Scan All Taxonomy Terms"
+msgstr "Quét tất cả các thuật ngữ phân loại"
+
+#: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
 msgstr "Nhắc nhở tóm tắt đơn giản hóa"
 
-#: includes/options-page.php:155
+#: includes/options-page.php:217
 msgid "Simplified Summary Position"
 msgstr "Vị trí tóm tắt đơn giản hóa"
 
-#: includes/options-page.php:164
-#: includes/options-page.php:533
+#: includes/options-page.php:226
+msgid "Simplified Summary Heading"
+msgstr "Tiêu đề tóm tắt đơn giản"
+
+#: includes/options-page.php:235
+#: includes/options-page.php:735
 msgid "Add Footer Accessibility Statement"
 msgstr "Thêm tuyên bố khả năng truy cập ở chân trang"
 
-#: includes/options-page.php:173
-#: includes/options-page.php:556
+#: includes/options-page.php:244
+#: includes/options-page.php:758
 msgid "Include Link to Accessibility Policy"
 msgstr "Bao gồm liên kết đến chính sách khả năng truy cập"
 
-#: includes/options-page.php:182
+#: includes/options-page.php:253
 msgid "Accessibility Policy page"
 msgstr "Trang chính sách khả năng truy cập"
 
-#: includes/options-page.php:191
+#: includes/options-page.php:262
 msgid "Accessibility Statement Preview"
 msgstr "Xem trước tuyên bố khả năng truy cập"
 
-#: includes/options-page.php:200
+#: includes/options-page.php:271
 msgid "Frontend Accessibility Checker Position"
 msgstr "Vị trí trình kiểm tra khả năng tiếp cận giao diện người dùng"
 
-#. translators: %1$s: link to the plugin documentation website.
-#: includes/options-page.php:244
-#, php-format
-msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
-msgstr "Sử dụng các cài đặt bên dưới để cấu hình Accessibility Checker. Thông tin bổ sung về từng cài đặt có thể được tìm thấy trong %1$s."
-
-#: includes/options-page.php:245
-msgid "plugin documentation (opens in a new window)"
-msgstr "tài liệu hướng dẫn plugin (mở trong cửa sổ mới)"
-
-#: includes/options-page.php:245
-msgid "plugin documentation"
-msgstr "tài liệu hướng dẫn plugin"
+#: includes/options-page.php:320
+msgid "Configure the types of content that should be checked for accessibility issues."
+msgstr "Cấu hình các loại nội dung cần được kiểm tra về vấn đề khả năng tiếp cận."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:251
+#: includes/options-page.php:325
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Nhiều tính năng hơn và hỗ trợ qua email có sẵn với %1$s."
 
-#: includes/options-page.php:259
+#: includes/options-page.php:333
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (mở trong cửa sổ mới)"
 
-#: includes/options-page.php:259
+#: includes/options-page.php:333
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:273
+#: includes/options-page.php:347
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Sử dụng các cài đặt dưới đây để cấu hình trình kiểm tra khả năng tiếp cận phía giao diện người dùng."
 
-#: includes/options-page.php:283
+#: includes/options-page.php:357
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Hướng dẫn Khả năng Tiếp cận Nội dung Web (WCAG) ở cấp độ AAA yêu cầu bất kỳ nội dung nào có trình độ đọc trên lớp 9 phải có một phiên bản thay thế dễ đọc hơn. Văn bản tóm tắt đơn giản hóa được thêm vào trong tab khả năng đọc trong hộp meta của Accessibility Checker trên màn hình chỉnh sửa của mỗi bài viết hoặc trang."
 
-#: includes/options-page.php:293
+#: includes/options-page.php:367
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Tìm hiểu thêm về các bản tóm tắt đơn giản hóa và yêu cầu về khả năng đọc hiểu (mở trong cửa sổ mới)"
 
-#: includes/options-page.php:293
+#: includes/options-page.php:367
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Tìm hiểu thêm về các bản tóm tắt đơn giản hóa và yêu cầu về khả năng đọc hiểu."
 
-#: includes/options-page.php:302
+#: includes/options-page.php:376
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Bạn có đang nghĩ \"Wow, plugin này thật tuyệt vời\" và nó có đang giúp bạn làm cho trang web của mình dễ tiếp cận hơn không? Chia sẻ nỗ lực của bạn để làm cho trang web dễ tiếp cận hơn với khách hàng và cho họ biết bạn đang sử dụng Accessibility Checker để đảm bảo rằng mọi người đều có thể sử dụng trang web của bạn. Thêm một liên kết và tuyên bố nhỏ chỉ bằng văn bản ở chân trang của trang web của bạn."
 
-#: includes/options-page.php:315
+#: includes/options-page.php:385
+msgid "Configure system-level settings for the Accessibility Checker plugin."
+msgstr "Cấu hình cài đặt cấp hệ thống cho plugin Accessibility Checker."
+
+#: includes/options-page.php:399
+msgid "Fast"
+msgstr "Nhanh"
+
+#: includes/options-page.php:400
+msgid "Normal"
+msgstr "Bình thường"
+
+#: includes/options-page.php:401
+msgid "Slow"
+msgstr "Chậm"
+
+#: includes/options-page.php:402
+msgid "Slowest"
+msgstr "Chậm nhất"
+
+#: includes/options-page.php:424
+msgid "Faster scans are more resource intensive and may place a high load on your website."
+msgstr "Quét nhanh hơn sẽ tiêu tốn nhiều tài nguyên hơn và có thể gây tải nặng cho trang web của bạn."
+
+#: includes/options-page.php:450
+msgid "Enable scanning of archive pages"
+msgstr "Bật quét các trang lưu trữ"
+
+#: includes/options-page.php:454
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
+msgstr "Chọn xem các trang lưu trữ có nên được bao gồm trong quét toàn bộ trang web không. Theo mặc định, phương pháp lấy mẫu sẽ chọn các thuật ngữ phân loại có trang lưu trữ được đưa vào quét."
+
+#: includes/options-page.php:480
+msgid "Scan all taxonomy terms instead of just a sample"
+msgstr "Quét tất cả các thuật ngữ phân loại thay vì chỉ một mẫu"
+
+#: includes/options-page.php:484
+msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
+msgstr "Kiểm tra các trang lưu trữ cho tất cả các thuật ngữ phân loại thay vì chỉ một mẫu đại diện. Yêu cầu quét trang lưu trữ và có thể làm tăng đáng kể thời gian quét và tải máy chủ."
+
+#: includes/options-page.php:513
 msgid "Before the content"
 msgstr "Trước nội dung"
 
-#: includes/options-page.php:320
+#: includes/options-page.php:518
 msgid "After the content"
 msgstr "Sau nội dung"
 
-#: includes/options-page.php:325
+#: includes/options-page.php:523
 msgid "Insert manually"
 msgstr "Chèn thủ công"
 
-#: includes/options-page.php:329
+#: includes/options-page.php:527
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Sử dụng chức năng này để thêm thủ công bản tóm tắt đơn giản hóa vào giao diện của bạn trong vòng lặp."
 
-#: includes/options-page.php:331
+#: includes/options-page.php:529
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Hàm này có thể nhận ID bài viết làm tham số tùy chọn."
 
-#: includes/options-page.php:334
+#: includes/options-page.php:532
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Đặt vị trí bạn muốn các bản tóm tắt đơn giản hóa xuất hiện liên quan đến nội dung của bạn nếu được điền."
 
-#: includes/options-page.php:349
+#: includes/options-page.php:547
 msgid "Bottom Right Corner (default)"
 msgstr "Góc dưới bên phải (mặc định)"
 
-#: includes/options-page.php:354
+#: includes/options-page.php:552
 msgid "Bottom Left Corner"
 msgstr "Góc dưới bên trái"
 
-#: includes/options-page.php:358
+#: includes/options-page.php:556
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Đặt vị trí bạn muốn trình kiểm tra khả năng tiếp cận phía giao diện người dùng xuất hiện trên trang."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:596
 msgid "When Required"
 msgstr "Khi cần thiết"
 
-#: includes/options-page.php:403
+#: includes/options-page.php:601
 msgid "Always"
 msgstr "Luôn luôn"
 
-#: includes/options-page.php:411
+#: includes/options-page.php:609
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checker chỉ nên yêu cầu tóm tắt đơn giản khi trình độ đọc của bài viết hoặc trang của bạn trên lớp 9, luôn yêu cầu nó bất kể trình độ đọc, hoặc không bao giờ yêu cầu nó bất kể trình độ đọc?"
 
-#: includes/options-page.php:462
+#: includes/options-page.php:660
 msgid "To check content other than posts and pages, please "
 msgstr "Để kiểm tra nội dung khác ngoài bài viết và trang, vui lòng "
 
-#: includes/options-page.php:464
+#: includes/options-page.php:662
 msgid "upgrade to pro"
 msgstr "nâng cấp lên pro"
 
-#: includes/options-page.php:465
+#: includes/options-page.php:663
 msgid " (opens in a new window)"
 msgstr " (mở trong cửa sổ mới)"
 
-#: includes/options-page.php:470
+#: includes/options-page.php:668
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Chọn loại bài viết nào cần được kiểm tra trong quá trình quét. Lưu ý, việc xóa một loại bài viết đã chọn trước đó sẽ xóa thông tin đã quét và mọi cảnh báo bị bỏ qua tùy chỉnh đã được thiết lập."
 
-#: includes/options-page.php:608
+#: includes/options-page.php:810
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Xóa tất cả dữ liệu Accessibility Checker khi gỡ cài đặt plugin."
+
+#: includes/options-page.php:965
+msgid "Choose which user roles have permission to ignore issues."
+msgstr "Chọn vai trò người dùng nào có quyền bỏ qua các vấn đề."
+
+#: includes/options-page.php:998
+msgid "Configure which user roles have access to specific Accessibility Checker features."
+msgstr "Cấu hình vai trò người dùng nào có quyền truy cập vào các tính năng cụ thể của Accessibility Checker."
 
 #: includes/wcag.php:11
 msgid "Non-text Content"
@@ -4003,28 +4156,29 @@ msgstr "Đã lưu cài đặt. Để xác nhận và phản ánh những cập n
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Plugin Cảnh báo Cửa sổ Mới về Khả năng Tiếp cận đã được cài đặt. Phần sửa lỗi cho các liên kết mở trong cửa sổ mới được bao gồm ở đây sẽ ghi đè chức năng của nó. Bạn có thể an toàn gỡ bỏ plugin và sử dụng các sửa đổi này thay thế."
 
-#: partials/custom-meta-box.php:10
+#: partials/custom-meta-box.php:13
 msgid "Accessibility Checker issues panels"
 msgstr "Bảng điều khiển vấn đề của Accessibility Checker"
 
-#: partials/custom-meta-box.php:21
+#: partials/custom-meta-box.php:24
 msgid "Summary"
 msgstr "Tóm tắt"
 
-#: partials/custom-meta-box.php:31
+#: partials/custom-meta-box.php:34
 msgid "Details"
 msgstr "Chi tiết"
 
-#: partials/custom-meta-box.php:41
+#: partials/custom-meta-box.php:44
 msgid "Readability"
 msgstr "Khả năng đọc"
 
-#: partials/custom-meta-box.php:50
+#: partials/custom-meta-box.php:53
 msgid "Delete all currently found issues"
 msgstr "Xóa tất cả các vấn đề hiện đang được tìm thấy"
 
-#: partials/custom-meta-box.php:52
+#: partials/custom-meta-box.php:55
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "Xóa vấn đề"
 
@@ -4272,22 +4426,27 @@ msgid "Fix Settings"
 msgstr "Cài đặt sửa lỗi"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Điều này sẽ xóa tất cả các vấn đề cho bài viết này. Cần phải lưu để kích hoạt quét mới nội dung bài viết. Bạn có muốn tiếp tục không?"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "Đang xóa..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "Đã xóa vấn đề thành công."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Không thể xóa vấn đề."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "Đã xảy ra lỗi khi xóa các vấn đề."
 
@@ -4363,14 +4522,14 @@ msgstr "Không phát hiện vấn đề nào."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] "lỗi"
-msgstr[1] "lỗi"
+msgstr[0] ""
+msgstr[1] ""
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] "cảnh báo"
-msgstr[1] "cảnh báo"
+msgstr[0] ""
+msgstr[1] ""
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4379,8 +4538,8 @@ msgstr "và"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] "vấn đề bị bỏ qua"
-msgstr[1] "vấn đề bị bỏ qua"
+msgstr[0] ""
+msgstr[1] ""
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
@@ -4410,6 +4569,10 @@ msgstr "Lỗi quét khả năng truy cập."
 msgid "Error saving scan results."
 msgstr "Lỗi khi lưu kết quả quét."
 
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "Lỗi: Thiếu các tham số bắt buộc."
+
 #: build/pageScanner.bundle.js:2
 msgid "new window"
 msgstr "cửa sổ mới"
@@ -4417,6 +4580,10 @@ msgstr "cửa sổ mới"
 #: build/pageScanner.bundle.js:2
 msgid "new tab"
 msgstr "tab mới"
+
+#: build/pageScanner.bundle.js:2
+msgid "new document"
+msgstr "tài liệu mới"
 
 #: build/pageScanner.bundle.js:2
 msgid "click"
