@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.28.0\n"
+"Project-Id-Version: Accessibility Checker 1.29.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-29T12:45:44+00:00\n"
+"POT-Creation-Date: 2025-08-06T16:25:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -164,16 +164,27 @@ msgstr "Chcesz więcej możliwości z Accessibility Checker? %1$sOdblokuj funkcj
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Odblokuj funkcje Pro (otwiera się w nowym oknie)"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "Ulepszyliśmy obliczenia statystyk w wersji 1.21.0. W rezultacie niektóre liczby w poniższych danych mogły ulec zmianie. Przeczytaj więcej w naszym %1$spoście ogłaszającym wydanie%2$s."
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 Oferta specjalna na Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Zaktualizuj do płatnej wersji Accessibility Checker od 25 listopada do 3 grudnia i otrzymaj 30% zniżki! Pełne skanowanie witryny, raport o otwartych problemach w całej witrynie, dzienniki ignorowania i wiele więcej."
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "Zadaj pytanie przed zakupem"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "Kup teraz"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:205
 #: admin/class-ajax.php:584
@@ -183,56 +194,37 @@ msgstr "Ulepszyliśmy obliczenia statystyk w wersji 1.21.0. W rezultacie niektó
 msgid "Permission Denied"
 msgstr "Odmowa dostępu"
 
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
 msgid "Update option wasn't successful"
 msgstr "Aktualizacja opcji nie powiodła się"
 
-#: admin/class-admin-notices.php:201
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 Oferta specjalna na Black Friday! 🎉"
-
-#: admin/class-admin-notices.php:202
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Zaktualizuj do płatnej wersji Accessibility Checker od 25 listopada do 3 grudnia i otrzymaj 30% zniżki! Pełne skanowanie witryny, raport o otwartych problemach w całej witrynie, dzienniki ignorowania i wiele więcej."
-
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
-msgid "Ask a Pre-Sale Question"
-msgstr "Zadaj pytanie przed zakupem"
-
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
-msgid "Upgrade Now"
-msgstr "Kup teraz"
-
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Skorzystaj z 25% zniżki na Accessibility Checker Pro z okazji Światowego Dnia Świadomości Dostępności! 🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Użyj kodu kuponu GAAD25 od 13 do 21 maja, aby uzyskać dostęp do pełnego skanowania witryny i innych funkcji pro ze specjalną zniżką. Nie jesteś pewien, czy aktualizacja jest dla Ciebie odpowiednia?"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Witaj! Dziękujemy za korzystanie z Accessibility Checker jako części Twojego zestawu narzędzi do dostępności. Skoro używasz go już od jakiegoś czasu, czy mógłbyś napisać 5-gwiazdkową recenzję Accessibility Checker w katalogu wtyczek WordPress? Pomoże to zwiększyć naszą widoczność, dzięki czemu więcej osób dowie się o znaczeniu dostępności stron internetowych. Bardzo dziękujemy!"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "Napisz recenzję"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "Przypomnij mi za dwa tygodnie"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "Nigdy więcej nie pytaj"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "Wartość akcji recenzji nie została ustawiona"
 
@@ -645,6 +637,96 @@ msgstr "Wpisz swoje imię"
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Historia audytów"
+
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "Problemy z dostępnością"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "Zawartość sprawdzona pod kątem dostępności"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "Typy wpisów skonfigurowane do sprawdzania dostępności"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "Dostępność"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "Zobacz problemy"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "Zobacz Accessibility Checker"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "Wykryto problemy z dostępnością"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checker wykrył %1$s błędów i %2$s ostrzeżeń."
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "Nie wykryto problemów z dostępnością"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checker nie znalazł żadnych problemów w przeskanowanej zawartości."
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "Zawartość nie została sprawdzona"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "Żadne wpisy nie zostały jeszcze przeskanowane. Uruchom pełne skanowanie witryny, aby rozpocząć sprawdzanie zawartości pod kątem problemów z dostępnością."
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "Rozpocznij pełne skanowanie witryny"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "Zawartość jest sprawdzana pod kątem dostępności"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker przeskanował %s wpis pod kątem problemów z dostępnością."
+msgstr[1] "Accessibility Checker przeskanował %s wpisów pod kątem problemów z dostępnością."
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "Nie wybrano typów wpisów do sprawdzania dostępności"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "Accessibility Checker nie może skanować żadnej zawartości, ponieważ nie wybrano typów wpisów. Bez skonfigurowanych typów wpisów żadne problemy z dostępnością nie zostaną wykryte."
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "Skonfiguruj typy wpisów"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "Typy wpisów są skonfigurowane do sprawdzania dostępności"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker jest skonfigurowany do skanowania %1$s typu wpisu: %2$s."
+msgstr[1] "Accessibility Checker jest skonfigurowany do skanowania %1$s typów wpisów: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4025,6 +4107,7 @@ msgstr "Usuń wszystkie aktualnie znalezione problemy"
 
 #: partials/custom-meta-box.php:52
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "Wyczyść problemy"
 
@@ -4272,22 +4355,27 @@ msgid "Fix Settings"
 msgstr "Ustawienia naprawy"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Spowoduje to wyczyszczenie wszystkich problemów dla tego wpisu. Konieczne będzie zapisanie, aby uruchomić nowe skanowanie treści wpisu. Czy chcesz kontynuować?"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "Czyszczenie..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "Problemy zostały pomyślnie wyczyszczone."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "Nie udało się wyczyścić problemów."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "Wystąpił błąd podczas czyszczenia problemów."
 
@@ -4409,6 +4497,10 @@ msgstr "Błąd skanowania dostępności."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "Błąd podczas zapisywania wyników skanowania."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "Błąd: Brak wymaganych parametrów."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"

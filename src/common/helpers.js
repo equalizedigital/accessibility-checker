@@ -118,3 +118,15 @@ export const isValidDateFormat = ( inputString ) => {
 	return regexPattern.test( inputString );
 };
 
+export const hashString = ( str ) => {
+	let hash = 0;
+	if ( str.length === 0 ) {
+		return hash;
+	}
+	for ( let i = 0; i < str.length; i++ ) {
+		const char = str.charCodeAt( i );
+		hash = ( ( hash * 32 ) - hash ) + char;
+		hash = Math.floor( hash );
+	}
+	return Math.abs( hash );
+};

@@ -8,6 +8,7 @@
 namespace EDAC\Admin;
 
 use EDAC\Admin\SiteHealth\Information;
+use EDAC\Admin\SiteHealth\Checks;
 use EDAC\Admin\Purge_Post_Data;
 use EDAC\Admin\Post_Save;
 use EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion;
@@ -62,12 +63,15 @@ class Admin {
 		$site_health_info = new Information();
 		$site_health_info->init_hooks();
 
+		$site_health_checks = new Checks();
+		$site_health_checks->init_hooks();
+
 		$upgrade_promotion = new Upgrade_Promotion();
 		$upgrade_promotion->init();
-		
+
 		$plugin_row_meta = new Plugin_Row_Meta();
 		$plugin_row_meta->init_hooks();
-		
+
 		$admin_footer_text = new Admin_Footer_Text();
 		$admin_footer_text->init();
 

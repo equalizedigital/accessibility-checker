@@ -7,7 +7,6 @@
 
 namespace EDAC\Inc;
 
-use EDAC\Admin\Helpers;
 use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
@@ -79,13 +78,15 @@ class REST_Api {
 						'callback'            => [ $this, 'set_post_scan_results' ],
 						'args'                => [
 							'id' => [
+								'required'          => true,
 								'validate_callback' => function ( $param ) {
 									return is_numeric( $param );
 								},
+								'sanitize_callback' => 'absint',
 							],
 						],
-						'permission_callback' => function () {
-							return current_user_can( 'edit_posts' );
+						'permission_callback' => function ( $request ) {
+							return $this->user_can_edit_passed_post_id( $request );
 						},
 					]
 				);
@@ -102,7 +103,7 @@ class REST_Api {
 						'methods'             => 'GET',
 						'callback'            => [ $this, 'get_scans_stats' ],
 						'permission_callback' => function () {
-							return current_user_can( 'read' ); // able to access the admin dashboard.
+							return current_user_can( 'edit_posts' );
 						},
 					]
 				);
@@ -119,7 +120,7 @@ class REST_Api {
 						'methods'             => 'POST',
 						'callback'            => [ $this, 'clear_cached_scans_stats' ],
 						'permission_callback' => function () {
-							return current_user_can( 'read' ); // able to access the admin dashboard.
+							return current_user_can( 'publish_posts' );
 						},
 					]
 				);
@@ -136,7 +137,7 @@ class REST_Api {
 						'methods'             => 'GET',
 						'callback'            => [ $this, 'get_scans_stats_by_post_type' ],
 						'permission_callback' => function () {
-							return current_user_can( 'read' ); // able to access the admin dashboard.
+							return current_user_can( 'edit_posts' );
 						},
 					]
 				);
@@ -153,7 +154,7 @@ class REST_Api {
 						'methods'             => 'GET',
 						'callback'            => [ $this, 'get_scans_stats_by_post_types' ],
 						'permission_callback' => function () {
-							return current_user_can( 'read' ); // able to access the admin dashboard.
+							return current_user_can( 'edit_posts' );
 						},
 					]
 				);
@@ -171,13 +172,15 @@ class REST_Api {
 						'callback'            => [ $this, 'clear_issues_for_post' ],
 						'args'                => [
 							'id' => [
+								'required'          => true,
 								'validate_callback' => function ( $param ) {
 									return is_numeric( $param );
 								},
+								'sanitize_callback' => 'absint',
 							],
 						],
-						'permission_callback' => function () {
-							return current_user_can( 'edit_posts' );
+						'permission_callback' => function ( $request ) {
+							return $this->user_can_edit_passed_post_id( $request );
 						},
 					]
 				);
@@ -204,9 +207,28 @@ class REST_Api {
 	}
 
 	/**
+	 * Check if the user can edit a post.
+	 *
+	 * This is a permission callback to replace several places where we check if the user can edit a post.
+	 *
+	 * @since 1.30.1
+	 *
+	 * @param \WP_REST_Request $request The request object passed from the REST call. This should contain the 'id' of the post to check permissions for.
+	 *
+	 * @return bool|\WP_Error
+	 */
+	public function user_can_edit_passed_post_id( $request ) {
+		if ( ! isset( $request['id'] ) ) {
+			return new \WP_Error( 'rest_post_invalid_id', __( 'A required parameter is missing.', 'accessibility-checker' ), [ 'status' => 400 ] );
+		}
+		$post_id = (int) $request['id'];
+		return current_user_can( 'edit_post', $post_id ); // able to edit the post.
+	}
+
+	/**
 	 * REST handler to clear issues results for a given post ID.
 	 *
-	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 * @param \WP_REST_Request $request  The request passed from the REST call.
 	 *
 	 * @return \WP_REST_Response
 	 */
@@ -225,7 +247,7 @@ class REST_Api {
 			}
 
 			$post_type  = get_post_type( $post );
-			$post_types = Helpers::get_option_as_array( 'edac_post_types' );
+			$post_types = Settings::get_scannable_post_types();
 			if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 				return new \WP_REST_Response( [ 'message' => 'The post type is not set to be scanned.' ], 400 );
 			}
@@ -297,7 +319,7 @@ class REST_Api {
 		}
 
 		$post_type  = get_post_type( $post );
-		$post_types = Helpers::get_option_as_array( 'edac_post_types' );
+		$post_types = Settings::get_scannable_post_types();
 		if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 
 			return new \WP_REST_Response( [ 'message' => 'The post type is not set to be scanned.' ], 400 );

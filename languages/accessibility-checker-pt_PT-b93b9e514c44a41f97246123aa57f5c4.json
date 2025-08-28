@@ -13,6 +13,9 @@
             "Save": [
                 "Guardar"
             ],
+            "Clear Issues": [
+                "Limpar problemas"
+            ],
             "Saving...": [
                 "A guardar..."
             ],
@@ -27,6 +30,21 @@
             ],
             "Fix Settings": [
                 "Corrigir defini\u00e7\u00f5es"
+            ],
+            "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?": [
+                "Isto ir\u00e1 limpar todos os problemas desta publica\u00e7\u00e3o. Ser\u00e1 necess\u00e1rio guardar para acionar uma nova an\u00e1lise do conte\u00fado da publica\u00e7\u00e3o. Deseja continuar?"
+            ],
+            "Clearing...": [
+                "A limpar..."
+            ],
+            "Issues cleared successfully.": [
+                "Problemas limpos com sucesso."
+            ],
+            "Failed to clear issues.": [
+                "Falha ao limpar problemas."
+            ],
+            "An error occurred while clearing issues.": [
+                "Ocorreu um erro ao limpar os problemas."
             ],
             "Close fixes modal": [
                 "Fechar modal de corre\u00e7\u00f5es"
@@ -96,6 +114,9 @@
             ],
             "Error saving scan results.": [
                 "Erro ao guardar os resultados da an\u00e1lise."
+            ],
+            "Error: Missing required parameters.": [
+                "Erro: Par\u00e2metros obrigat\u00f3rios em falta."
             ]
         }
     }

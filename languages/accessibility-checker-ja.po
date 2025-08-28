@@ -2,24 +2,25 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.28.0\n"
+"Project-Id-Version: Accessibility Checker 1.30.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-29T12:45:44+00:00\n"
+"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
+"Language: ja\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
 #: includes/classes/class-admin-toolbar.php:53
-#: includes/options-page.php:43
+#: includes/options-page.php:45
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
@@ -68,11 +69,12 @@ msgstr "この機能のロックを解除するにはProにアップグレード
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
 #: admin/class-plugin-action-links.php:55
+#: build/admin.bundle.js:2
 msgid "Get Pro"
 msgstr "Proを入手"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:347
+#: admin/class-ajax.php:350
 msgid "Opens in a new window."
 msgstr "新しいウィンドウで開きます。"
 
@@ -164,82 +166,74 @@ msgstr "Accessibility Checkerでもっと多くのことをしたいですか？
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "プロ機能をアンロック（新しいウィンドウで開きます）"
 
-#. translators: %1$s is the opening anchor tag, %2$s is the closing anchor tag.
-#: admin/class-admin-notices.php:92
-#, php-format
-msgid "We have improved the statistics calculations in version 1.21.0. As a result, some numbers in the data below may have changed. Read more in our %1$srelease announcement post%2$s."
-msgstr "バージョン1.21.0で統計計算を改善しました。その結果、以下のデータの一部の数値が変更されている可能性があります。詳細は%1$sリリースアナウンス記事%2$sをお読みください。"
-
-#: admin/class-admin-notices.php:112
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:310
-#: admin/class-admin-notices.php:399
-#: admin/class-ajax.php:56
-#: admin/class-ajax.php:205
-#: admin/class-ajax.php:584
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:802
-#: admin/class-frontend-highlight.php:79
-msgid "Permission Denied"
-msgstr "権限がありません"
-
-#: admin/class-admin-notices.php:121
-#: admin/class-admin-notices.php:232
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:419
-msgid "Update option wasn't successful"
-msgstr "オプションの更新が成功しませんでした"
-
-#: admin/class-admin-notices.php:201
+#: admin/class-admin-notices.php:129
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 ブラックフライデー特別オファー！ 🎉"
 
-#: admin/class-admin-notices.php:202
+#: admin/class-admin-notices.php:130
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "11月25日から12月3日までの間にAccessibility Checkerの有料版にアップグレードすると、30%割引になります！サイト全体のスキャン、サイト全体のオープン問題レポート、無視ログなどが利用可能になります。"
 
-#: admin/class-admin-notices.php:203
-#: admin/class-admin-notices.php:290
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
 msgid "Ask a Pre-Sale Question"
 msgstr "事前販売の質問をする"
 
-#: admin/class-admin-notices.php:204
-#: admin/class-admin-notices.php:291
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
 msgid "Upgrade Now"
 msgstr "今すぐアップグレード"
 
-#: admin/class-admin-notices.php:288
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:208
+#: admin/class-ajax.php:593
+#: admin/class-ajax.php:731
+#: admin/class-ajax.php:811
+#: admin/class-frontend-highlight.php:78
+msgid "Permission Denied"
+msgstr "権限がありません"
+
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
+msgid "Update option wasn't successful"
+msgstr "オプションの更新が成功しませんでした"
+
+#: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 世界アクセシビリティ啓発デーを記念して、Accessibility Checker Proが25%オフ！🎉"
 
-#: admin/class-admin-notices.php:289
+#: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "5月13日から5月21日まで、クーポンコードGAAD25を使用して、サイト全体のスキャンやその他のプロ機能に特別割引でアクセスできます。アップグレードが適切かどうか迷っていますか？"
 
-#: admin/class-admin-notices.php:374
+#: admin/class-admin-notices.php:302
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "こんにちは！Accessibility Checkerをアクセシビリティツールキットの一部としてご利用いただき、ありがとうございます。しばらくご利用いただいているようですが、WordPressプラグインディレクトリでAccessibility Checkerの5つ星レビューを書いていただけませんか？これにより、より多くの人々がウェブアクセシビリティの重要性を知ることができるよう、私たちの可視性を高めるのに役立ちます。どうもありがとうございます！"
 
-#: admin/class-admin-notices.php:377
+#: admin/class-admin-notices.php:305
 msgid "Write A Review"
 msgstr "レビューを書く"
 
-#: admin/class-admin-notices.php:378
+#: admin/class-admin-notices.php:306
 msgid "Remind Me In Two Weeks"
 msgstr "2週間後に再通知する"
 
-#: admin/class-admin-notices.php:379
+#: admin/class-admin-notices.php:307
 msgid "Never Ask Again"
 msgstr "二度と尋ねない"
 
-#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:334
 msgid "The review action value was not set"
 msgstr "レビューアクションの値が設定されていませんでした"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:212
-#: admin/class-ajax.php:591
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:215
+#: admin/class-ajax.php:600
+#: admin/class-ajax.php:818
 msgid "The post ID was not set"
 msgstr "投稿IDが設定されていません"
 
@@ -260,116 +254,116 @@ msgid "A simplified summary has been included for this content."
 msgstr "このコンテンツには簡略化された要約が含まれています。"
 
 #. translators: %s: Number of errors
-#: admin/class-ajax.php:126
+#: admin/class-ajax.php:129
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
-msgstr[0] "%s個のエラー"
-msgstr[1] "%s個のエラー"
+msgstr[0] ""
+msgstr[1] ""
 
 #. translators: %s: Number of contrast errors
-#: admin/class-ajax.php:132
+#: admin/class-ajax.php:135
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
-msgstr[0] "%s個のコントラストエラー"
-msgstr[1] "%s個のコントラストエラー"
+msgstr[0] ""
+msgstr[1] ""
 
 #. translators: %s: Number of warnings
-#: admin/class-ajax.php:138
+#: admin/class-ajax.php:141
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
-msgstr[0] "%s個の警告"
-msgstr[1] "%s個の警告"
+msgstr[0] ""
+msgstr[1] ""
 
 #. translators: %s: Number of ignored items
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:147
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
-msgstr[0] "%s個の無視された項目"
-msgstr[1] "%s個の無視された項目"
+msgstr[0] ""
+msgstr[1] ""
 
-#: admin/class-ajax.php:182
+#: admin/class-ajax.php:185
 msgid "No summary to return"
 msgstr "返す要約がありません"
 
-#: admin/class-ajax.php:226
+#: admin/class-ajax.php:229
 msgid "Invalid table name"
 msgstr "無効なテーブル名"
 
-#: admin/class-ajax.php:372
+#: admin/class-ajax.php:375
 msgid "These settings enable global fixes across your entire site."
 msgstr "これらの設定は、サイト全体にわたるグローバルな修正を有効にします。"
 
-#: admin/class-ajax.php:373
+#: admin/class-ajax.php:376
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "レポートに修正が反映されるには、ページの再保存またはサイト全体のスキャンの実行が必要な場合があります。"
 
-#: admin/class-ajax.php:401
+#: admin/class-ajax.php:404
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "保存"
 
-#: admin/class-ajax.php:423
+#: admin/class-ajax.php:426
 msgid "Affected Code"
 msgstr "影響を受けるコード"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:500
+#: admin/class-ajax.php:509
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "ウェブサイトで問題ID %dを表示する（新しいウィンドウで開きます）"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:510
 msgid "View on page"
 msgstr "ページで表示"
 
-#: admin/class-ajax.php:520
+#: admin/class-ajax.php:529
 msgid "Fix: "
 msgstr "修正: "
 
-#: admin/class-ajax.php:521
+#: admin/class-ajax.php:530
 msgid "Fix"
 msgstr "修正"
 
-#: admin/class-ajax.php:544
+#: admin/class-ajax.php:553
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "あなたのユーザーアカウントには、この問題を無視する権限がありません。"
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:571
 msgid "No details to return"
 msgstr "返す詳細がありません"
 
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:710
 msgid "No readability data to return"
 msgstr "返す読みやすさデータがありません"
 
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:767
+#: admin/class-ajax.php:790
 msgid "No ignore data to return"
 msgstr "返す無視データがありません"
 
-#: admin/class-ajax.php:816
+#: admin/class-ajax.php:825
 msgid "The summary was not set"
 msgstr "要約が設定されていません"
 
-#: admin/class-frontend-highlight.php:84
+#: admin/class-frontend-highlight.php:83
 msgid "The id value was not set"
 msgstr "ID値が設定されていません"
 
-#: admin/class-frontend-highlight.php:92
+#: admin/class-frontend-highlight.php:91
 msgid "Issue query returned no results"
 msgstr "問題のクエリで結果が返されませんでした"
 
-#: admin/class-frontend-highlight.php:138
+#: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "オブジェクトのクエリで結果が返されませんでした"
 
 #: admin/class-plugin-action-links.php:48
 #: includes/classes/class-admin-toolbar.php:94
-#: includes/options-page.php:66
+#: includes/options-page.php:68
 msgid "Settings"
 msgstr "設定"
 
@@ -418,113 +412,113 @@ msgstr "アップグレードページへのリダイレクトができません
 msgid "Most Recent Test Summary"
 msgstr "最新のテスト概要"
 
-#: admin/class-welcome-page.php:44
+#: admin/class-welcome-page.php:45
 msgid "Update Counts"
 msgstr "カウントを更新"
 
-#: admin/class-welcome-page.php:48
+#: admin/class-welcome-page.php:50
 msgid "Start New Scan"
 msgstr "新しいスキャンを開始"
 
-#: admin/class-welcome-page.php:52
+#: admin/class-welcome-page.php:54
 msgid "View All Open Issues"
 msgstr "すべての未解決の問題を表示"
 
-#: admin/class-welcome-page.php:57
+#: admin/class-welcome-page.php:59
 msgid "See History"
 msgstr "履歴を見る"
 
-#: admin/class-welcome-page.php:70
+#: admin/class-welcome-page.php:72
 #: admin/class-widgets.php:98
 msgid "Passed Tests"
 msgstr "合格したテスト"
 
-#: admin/class-welcome-page.php:86
+#: admin/class-welcome-page.php:88
 msgid "Unique Error"
 msgid_plural "Unique Errors"
-msgstr[0] "ユニークなエラー"
-msgstr[1] "ユニークなエラー"
+msgstr[0] ""
+msgstr[1] ""
 
-#: admin/class-welcome-page.php:111
+#: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
-msgstr[0] "ユニークな色のコントラストエラー"
-msgstr[1] "ユニークな色のコントラストエラー"
+msgstr[0] ""
+msgstr[1] ""
 
-#: admin/class-welcome-page.php:136
+#: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
-msgstr[0] "ユニークな警告"
-msgstr[1] "ユニークな警告"
+msgstr[0] ""
+msgstr[1] ""
 
-#: admin/class-welcome-page.php:161
+#: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
-msgstr[0] "無視された項目"
-msgstr[1] "無視された項目"
+msgstr[0] ""
+msgstr[1] ""
 
-#: admin/class-welcome-page.php:178
+#: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
 msgstr "ページあたりの平均問題数"
 
-#: admin/class-welcome-page.php:191
+#: admin/class-welcome-page.php:193
 msgid "Average Issue Density"
 msgstr "平均問題密度"
 
-#: admin/class-welcome-page.php:204
+#: admin/class-welcome-page.php:206
 #: admin/class-widgets.php:105
 msgid "Report Last Updated:"
 msgstr "レポート最終更新日:"
 
-#: admin/class-welcome-page.php:214
-#: includes/options-page.php:408
+#: admin/class-welcome-page.php:216
+#: includes/options-page.php:606
 msgid "Never"
 msgstr "なし"
 
-#: admin/class-welcome-page.php:228
+#: admin/class-welcome-page.php:230
 msgid "URLs Scanned"
 msgstr "スキャンされたURL"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
-#: admin/class-welcome-page.php:239
+#: admin/class-welcome-page.php:241
 #, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s / %2$s"
 
-#: admin/class-welcome-page.php:248
+#: admin/class-welcome-page.php:250
 msgid "Post Types Checked"
 msgstr "チェックされた投稿タイプ"
 
-#: admin/class-welcome-page.php:261
+#: admin/class-welcome-page.php:263
 msgid "URLs with 100% score"
 msgstr "100%スコアのURL"
 
-#: admin/class-welcome-page.php:269
+#: admin/class-welcome-page.php:271
 msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
 msgstr "この概要は24時間ごと、またはサイト全体のスキャンが完了するたびに自動的に更新されます。「カウントを更新」ボタンをクリックして、これらの結果を手動で更新することもできます。"
 
-#: admin/class-welcome-page.php:275
+#: admin/class-welcome-page.php:277
 msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
 msgstr "あなたのサイトには多数の問題があります。パフォーマンス上の理由から、この概要にはすべての問題が含まれているわけではありません。"
 
-#: admin/class-welcome-page.php:285
+#: admin/class-welcome-page.php:287
 msgid "Site-Wide Accessibility Reports"
 msgstr "サイト全体のアクセシビリティレポート"
 
-#: admin/class-welcome-page.php:290
+#: admin/class-welcome-page.php:292
 msgid "Hide banner"
 msgstr "バナーを非表示"
 
-#: admin/class-welcome-page.php:299
+#: admin/class-welcome-page.php:301
 msgid "Unlock Detailed Accessibility Reports"
 msgstr "詳細なアクセシビリティレポートをアンロック"
 
-#: admin/class-welcome-page.php:302
+#: admin/class-welcome-page.php:304
 #: admin/class-widgets.php:71
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "ウェブサイト全体のアクセシビリティ問題のスキャンを開始し、サイト全体のレポートを取得して、アクセシビリティガイドラインへの準拠をより迅速に達成します。"
 
-#: admin/class-welcome-page.php:306
+#: admin/class-welcome-page.php:308
 #: admin/class-widgets.php:73
 msgid "Upgrade Accessibility Checker"
 msgstr "Accessibility Checkerのアップグレード"
@@ -646,6 +640,96 @@ msgstr "名を入力"
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker&mdash;監査履歴"
 
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "アクセシビリティの問題"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "アクセシビリティについてチェックされたコンテンツ"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "アクセシビリティチェック用に設定された投稿タイプ"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "アクセシビリティ"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "問題を表示"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "Accessibility Checkerを表示"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "アクセシビリティの問題が検出されました"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checkerは%1$s個のエラーと%2$s個の警告を検出しました。"
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "アクセシビリティの問題は検出されませんでした"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checkerはスキャンされたコンテンツに問題を見つけませんでした。"
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "コンテンツはまだチェックされていません"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "まだ投稿がスキャンされていません。サイト全体のスキャンを実行して、コンテンツのアクセシビリティの問題のチェックを開始してください。"
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "サイト全体のスキャンを開始"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "コンテンツのアクセシビリティがチェックされています"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "アクセシビリティチェック用の投稿タイプが選択されていません"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "投稿タイプが選択されていないため、Accessibility Checkerはコンテンツをスキャンできません。投稿タイプが設定されていないと、アクセシビリティの問題は検出されません。"
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "投稿タイプを設定する"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "投稿タイプがアクセシビリティチェック用に設定されています"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
 msgstr "Accessibility Checker&mdash;無料版"
@@ -692,7 +776,7 @@ msgid "Disabled"
 msgstr "無効"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:137
+#: includes/options-page.php:199
 msgid "Delete Data"
 msgstr "データを削除"
 
@@ -749,6 +833,7 @@ msgid "Simplified Sum Heading"
 msgstr "簡略化された要約の見出し"
 
 #: admin/site-health/class-pro.php:74
+#: includes/options-page.php:190
 msgid "Ignore Permissions"
 msgstr "無視の権限"
 
@@ -790,60 +875,66 @@ msgstr "Accessibility Checker Proを入手"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro を入手する（新しいウィンドウで開きます）"
 
+#: includes/classes/class-rest-api.php:222
+msgid "A required parameter is missing."
+msgstr "必須パラメータが不足しています。"
+
 #: includes/classes/class-simplified-summary.php:73
+#: includes/options-page.php:897
+#: includes/options-page.php:921
 msgid "Simplified Summary"
 msgstr "簡略版概要"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:41
 msgid "Add Size & Type To File Links"
 msgstr "ファイルリンクにサイズと種類を追加"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:50
 msgid "Add Context to Linked Files"
 msgstr "リンクされたファイルにコンテキストを追加"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:83
 msgid "Add File Size & Type To Links"
 msgstr "リンクにファイルサイズと種類を追加"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:85
 msgid "Add the file size and type to linked files that may trigger a download."
 msgstr "ダウンロードを引き起こす可能性のあるリンクされたファイルにファイルサイズと種類を追加します。"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:41
 msgid "Add Labels to Unlabelled Form Fields"
 msgstr "ラベルのないフォームフィールドにラベルを追加"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:50
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:73
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:96
 msgid "Label Form Fields"
 msgstr "フォームフィールドにラベルを付ける"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:99
 msgid "Add labels to unlabelled form fields if field purpose can be determined."
 msgstr "フィールドの目的が判断できる場合、ラベルのないフォームフィールドにラベルを追加します。"
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:130
 #, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "ラベルが欠けているフォームフィールドにラベルを追加しようとします。注意：ラベルの追加がフォームのレイアウトに影響を与える場合、%1$sクラスをターゲットにしたカスタムスタイルを追加する必要があるかもしれません。"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:41
 msgid "Add Missing or Empty Page Titles"
 msgstr "欠落または空のページタイトルを追加"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:50
 msgid "Set Page HTML Titles"
 msgstr "ページHTMLタイトルを設定"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:84
 msgid "Add Missing Page Title"
 msgstr "欠落しているページタイトルを追加"
 
 #. translators: %1$s: a code tag with a title tag.
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:87
 #, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "ページに%1$sタグが欠落しているか空の場合、それを追加します。"
@@ -862,13 +953,13 @@ msgstr "新しいタブ/ウィンドウを開くリンクにラベルを追加"
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "%1$sを持つリンクに、新しいタブ/ウィンドウを開くことをユーザーに知らせるラベルとアイコンを追加します。%2$s注意：「新しいウィンドウを開くリンクをブロック」修正が有効になっている場合、この設定は効果がありません。%3$s"
 
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:43
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:75
 msgid "Block PDF Uploads"
 msgstr "PDFアップロードをブロック"
 
 #. translators: %1$s: a code tag with the capability name.
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 #, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "%1$s機能を持たないユーザーのPDFアップロードを制限します（デフォルトでは管理者に許可されています）。"
@@ -2598,202 +2689,264 @@ msgstr "投稿ID %1$d は存在しません。"
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "投稿ID %1$d はまだスキャンされていないか、すべてのテストに合格しています。"
 
-#: includes/helper-functions.php:25
+#: includes/helper-functions.php:27
 msgid "permalink of "
 msgstr "のパーマリンク "
 
-#: includes/helper-functions.php:26
+#: includes/helper-functions.php:28
 msgid "permalink to "
 msgstr "へのパーマリンク "
 
-#: includes/helper-functions.php:27
+#: includes/helper-functions.php:29
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:339
+#: includes/helper-functions.php:341
 msgid "Attend Free"
 msgstr "無料で参加"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:782
+#: includes/helper-functions.php:790
 #, php-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "%sランドマークをウェブサイトで表示（新しいウィンドウで開きます）"
 
-#: includes/options-page.php:42
+#: includes/options-page.php:44
 msgid "Welcome to Accessibility Checker"
 msgstr "Accessibility Checkerへようこそ"
 
-#: includes/options-page.php:65
+#: includes/options-page.php:67
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker設定"
 
-#: includes/options-page.php:99
-msgid "General Settings"
-msgstr "一般設定"
+#: includes/options-page.php:111
+msgid "Scan Settings"
+msgstr "スキャン設定"
 
-#: includes/options-page.php:106
+#: includes/options-page.php:118
+msgid "Permissions"
+msgstr "権限"
+
+#: includes/options-page.php:125
 msgid "Simplified Summary Settings"
 msgstr "簡易要約の設定"
 
-#: includes/options-page.php:113
+#: includes/options-page.php:132
 msgid "Footer Accessibility Statement"
 msgstr "フッターのアクセシビリティ声明"
 
-#: includes/options-page.php:120
+#: includes/options-page.php:139
 msgid "Frontend Accessibility Checker"
 msgstr "フロントエンドAccessibility Checker"
 
-#: includes/options-page.php:128
+#: includes/options-page.php:146
+msgid "System Settings"
+msgstr "システム設定"
+
+#: includes/options-page.php:154
 msgid "Post Types To Be Checked"
 msgstr "チェック対象の投稿タイプ"
 
-#: includes/options-page.php:146
+#: includes/options-page.php:163
+msgid "Scan Speed"
+msgstr "スキャン速度"
+
+#: includes/options-page.php:172
+msgid "Enable Archive Scanning"
+msgstr "アーカイブスキャンを有効にする"
+
+#: includes/options-page.php:181
+msgid "Scan All Taxonomy Terms"
+msgstr "すべてのタクソノミー用語をスキャン"
+
+#: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
 msgstr "簡易要約の入力を促す"
 
-#: includes/options-page.php:155
+#: includes/options-page.php:217
 msgid "Simplified Summary Position"
 msgstr "簡易要約の位置"
 
-#: includes/options-page.php:164
-#: includes/options-page.php:533
+#: includes/options-page.php:226
+msgid "Simplified Summary Heading"
+msgstr "簡略化された概要見出し"
+
+#: includes/options-page.php:235
+#: includes/options-page.php:735
 msgid "Add Footer Accessibility Statement"
 msgstr "フッターにアクセシビリティ声明を追加"
 
-#: includes/options-page.php:173
-#: includes/options-page.php:556
+#: includes/options-page.php:244
+#: includes/options-page.php:758
 msgid "Include Link to Accessibility Policy"
 msgstr "アクセシビリティポリシーへのリンクを含める"
 
-#: includes/options-page.php:182
+#: includes/options-page.php:253
 msgid "Accessibility Policy page"
 msgstr "アクセシビリティポリシーページ"
 
-#: includes/options-page.php:191
+#: includes/options-page.php:262
 msgid "Accessibility Statement Preview"
 msgstr "アクセシビリティ声明のプレビュー"
 
-#: includes/options-page.php:200
+#: includes/options-page.php:271
 msgid "Frontend Accessibility Checker Position"
 msgstr "フロントエンドAccessibility Checkerの位置"
 
-#. translators: %1$s: link to the plugin documentation website.
-#: includes/options-page.php:244
-#, php-format
-msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
-msgstr "以下の設定を使用してAccessibility Checkerを設定します。各設定に関する追加情報は%1$sで見つけることができます。"
-
-#: includes/options-page.php:245
-msgid "plugin documentation (opens in a new window)"
-msgstr "プラグインのドキュメント（新しいウィンドウで開きます）"
-
-#: includes/options-page.php:245
-msgid "plugin documentation"
-msgstr "プラグインのドキュメント"
+#: includes/options-page.php:320
+msgid "Configure the types of content that should be checked for accessibility issues."
+msgstr "アクセシビリティの問題をチェックするコンテンツの種類を設定します。"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:251
+#: includes/options-page.php:325
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "より多くの機能とemailサポートは%1$sで利用可能です。"
 
-#: includes/options-page.php:259
+#: includes/options-page.php:333
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro（新しいウィンドウで開きます）"
 
-#: includes/options-page.php:259
+#: includes/options-page.php:333
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:273
+#: includes/options-page.php:347
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "以下の設定を使用してフロントエンドのアクセシビリティチェッカーを構成してください。"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:357
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "ウェブコンテンツアクセシビリティガイドライン（WCAG）のAAAレベルでは、9年生以上の読解レベルを持つコンテンツには、より読みやすい代替版が必要です。簡略化された要約テキストは、各投稿またはページの編集画面のAccessibility Checkerメタボックスの読みやすさタブに追加されます。"
 
-#: includes/options-page.php:293
+#: includes/options-page.php:367
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "簡略化された要約と読みやすさの要件について詳しく学ぶ（新しいウィンドウで開きます）"
 
-#: includes/options-page.php:293
+#: includes/options-page.php:367
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "簡略化された要約と読みやすさの要件について詳しく学ぶ。"
 
-#: includes/options-page.php:302
+#: includes/options-page.php:376
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "「わあ、このプラグインはすごい」と思い、ウェブサイトをよりアクセシブルにするのに役立っていますか？ウェブサイトをよりアクセシブルにするための取り組みをお客様と共有し、すべての人がウェブサイトを利用できるようにするためにAccessibility Checkerを使用していることを知らせましょう。ウェブサイトのフッターに小さなテキストのみのリンクと声明を追加してください。"
 
-#: includes/options-page.php:315
+#: includes/options-page.php:385
+msgid "Configure system-level settings for the Accessibility Checker plugin."
+msgstr "Accessibility Checkerプラグインのシステムレベル設定を構成します。"
+
+#: includes/options-page.php:399
+msgid "Fast"
+msgstr "高速"
+
+#: includes/options-page.php:400
+msgid "Normal"
+msgstr "通常"
+
+#: includes/options-page.php:401
+msgid "Slow"
+msgstr "低速"
+
+#: includes/options-page.php:402
+msgid "Slowest"
+msgstr "最低速"
+
+#: includes/options-page.php:424
+msgid "Faster scans are more resource intensive and may place a high load on your website."
+msgstr "高速スキャンはリソースを多く消費し、ウェブサイトに高い負荷をかける可能性があります。"
+
+#: includes/options-page.php:450
+msgid "Enable scanning of archive pages"
+msgstr "アーカイブページのスキャンを有効にする"
+
+#: includes/options-page.php:454
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
+msgstr "サイト全体のスキャンにアーカイブページを含めるかどうかを選択します。デフォルトでは、サンプリング方法によってスキャンに含めるアーカイブページのタクソノミー用語が選択されます。"
+
+#: includes/options-page.php:480
+msgid "Scan all taxonomy terms instead of just a sample"
+msgstr "サンプルだけでなく、すべてのタクソノミー用語をスキャンする"
+
+#: includes/options-page.php:484
+msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
+msgstr "代表的なサンプルだけでなく、すべてのタクソノミー用語のアーカイブページをチェックします。アーカイブページのスキャンが必要で、スキャン時間とサーバー負荷が大幅に増加する可能性があります。"
+
+#: includes/options-page.php:513
 msgid "Before the content"
 msgstr "コンテンツの前"
 
-#: includes/options-page.php:320
+#: includes/options-page.php:518
 msgid "After the content"
 msgstr "コンテンツの後"
 
-#: includes/options-page.php:325
+#: includes/options-page.php:523
 msgid "Insert manually"
 msgstr "手動で挿入"
 
-#: includes/options-page.php:329
+#: includes/options-page.php:527
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "この機能を使用して、ループ内のテーマに簡略化された要約を手動で追加します。"
 
-#: includes/options-page.php:331
+#: includes/options-page.php:529
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "この関数はオプションとして投稿IDをパラメータとして受け入れます。"
 
-#: includes/options-page.php:334
+#: includes/options-page.php:532
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "簡略化された要約を、入力された場合にコンテンツとの関係でどこに表示させたいか設定します。"
 
-#: includes/options-page.php:349
+#: includes/options-page.php:547
 msgid "Bottom Right Corner (default)"
 msgstr "右下隅（デフォルト）"
 
-#: includes/options-page.php:354
+#: includes/options-page.php:552
 msgid "Bottom Left Corner"
 msgstr "左下隅"
 
-#: includes/options-page.php:358
+#: includes/options-page.php:556
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "フロントエンドのアクセシビリティチェッカーをページのどこに表示させたいか設定します。"
 
-#: includes/options-page.php:398
+#: includes/options-page.php:596
 msgid "When Required"
 msgstr "必要な時"
 
-#: includes/options-page.php:403
+#: includes/options-page.php:601
 msgid "Always"
 msgstr "常に"
 
-#: includes/options-page.php:411
+#: includes/options-page.php:609
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checkerは、投稿やページの読解レベルが9年生以上の場合にのみ簡略化された要約を求めるべきですか、読解レベルに関係なく常に求めるべきですか、それとも読解レベルに関係なく決して求めるべきではありませんか？"
 
-#: includes/options-page.php:462
+#: includes/options-page.php:660
 msgid "To check content other than posts and pages, please "
 msgstr "投稿とページ以外のコンテンツをチェックするには、 "
 
-#: includes/options-page.php:464
+#: includes/options-page.php:662
 msgid "upgrade to pro"
 msgstr "Proにアップグレード"
 
-#: includes/options-page.php:465
+#: includes/options-page.php:663
 msgid " (opens in a new window)"
 msgstr " （新しいウィンドウで開きます）"
 
-#: includes/options-page.php:470
+#: includes/options-page.php:668
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "スキャン中にチェックする投稿タイプを選択してください。以前に選択した投稿タイプを削除すると、そのスキャン情報と設定されたカスタム無視警告も削除されることにご注意ください。"
 
-#: includes/options-page.php:608
+#: includes/options-page.php:810
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "プラグインがアンインストールされたときに、すべてのAccessibility Checkerデータを削除します。"
+
+#: includes/options-page.php:965
+msgid "Choose which user roles have permission to ignore issues."
+msgstr "問題を無視する権限を持つユーザーロールを選択してください。"
+
+#: includes/options-page.php:998
+msgid "Configure which user roles have access to specific Accessibility Checker features."
+msgstr "特定のAccessibility Checker機能へのアクセス権を持つユーザーロールを設定します。"
 
 #: includes/wcag.php:11
 msgid "Non-text Content"
@@ -4003,28 +4156,29 @@ msgstr "設定が保存されました。これらの更新を確認し、サイ
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Accessibility New Window Warningsプラグインがインストールされています。ここに含まれる新しいウィンドウで開くリンクの修正は、その機能を上書きします。プラグインを安全に削除し、代わりにこれらの修正を使用できます。"
 
-#: partials/custom-meta-box.php:10
+#: partials/custom-meta-box.php:13
 msgid "Accessibility Checker issues panels"
 msgstr "Accessibility Checker問題パネル"
 
-#: partials/custom-meta-box.php:21
+#: partials/custom-meta-box.php:24
 msgid "Summary"
 msgstr "概要"
 
-#: partials/custom-meta-box.php:31
+#: partials/custom-meta-box.php:34
 msgid "Details"
 msgstr "詳細"
 
-#: partials/custom-meta-box.php:41
+#: partials/custom-meta-box.php:44
 msgid "Readability"
 msgstr "読みやすさ"
 
-#: partials/custom-meta-box.php:50
+#: partials/custom-meta-box.php:53
 msgid "Delete all currently found issues"
 msgstr "現在見つかっているすべての課題を削除"
 
-#: partials/custom-meta-box.php:52
+#: partials/custom-meta-box.php:55
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
 msgstr "課題をクリア"
 
@@ -4272,22 +4426,27 @@ msgid "Fix Settings"
 msgstr "修正設定"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "これにより、この投稿のすべての課題がクリアされます。投稿コンテンツの新しいスキャンをトリガーするには保存が必要です。続行しますか？"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Clearing..."
 msgstr "クリア中..."
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Issues cleared successfully."
 msgstr "課題が正常にクリアされました。"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Failed to clear issues."
 msgstr "課題のクリアに失敗しました。"
 
 #: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred while clearing issues."
 msgstr "問題をクリアする際にエラーが発生しました。"
 
@@ -4363,14 +4522,14 @@ msgstr "問題は検出されませんでした。"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] "エラー"
-msgstr[1] "エラー"
+msgstr[0] ""
+msgstr[1] ""
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] "警告"
-msgstr[1] "警告"
+msgstr[0] ""
+msgstr[1] ""
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4379,8 +4538,8 @@ msgstr "および"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] "無視された問題"
-msgstr[1] "無視された問題"
+msgstr[0] ""
+msgstr[1] ""
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
@@ -4410,6 +4569,10 @@ msgstr "アクセシビリティスキャンエラー。"
 msgid "Error saving scan results."
 msgstr "スキャン結果の保存中にエラーが発生しました。"
 
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "エラー：必須パラメータがありません。"
+
 #: build/pageScanner.bundle.js:2
 msgid "new window"
 msgstr "新しいウィンドウ"
@@ -4417,6 +4580,10 @@ msgstr "新しいウィンドウ"
 #: build/pageScanner.bundle.js:2
 msgid "new tab"
 msgstr "新しいタブ"
+
+#: build/pageScanner.bundle.js:2
+msgid "new document"
+msgstr "新しいドキュメント"
 
 #: build/pageScanner.bundle.js:2
 msgid "click"
