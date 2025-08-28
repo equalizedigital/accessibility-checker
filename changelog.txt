@@ -1,5 +1,21 @@
 Newer versions can be found in readme.txt.
 
+= 1.27.1 =
+* Fixed: Don't alter a UNIQUE index before swapping to PRIMARY key index.
+
+= 1.27.0 =
+* Added: Landmark Location feature.
+* Added: Plugin action links.
+* Fixed: Allow frontend highlighter to kickoff scan if there are no issues for the page.
+* Fixed: Average issues per post calculation to handle zero issues.
+* Added: Documentation, support, and rate plugin links to plugin row meta.
+* Added: Admin toolbar with quick links.
+* Updated: UNIQUE KEY to PRIMARY KEY for id column, bumped DB version to 1.0.4.
+* Updated: link_improper now lets links with role of tab pass.
+
+= 1.26.0 =
+* Enhanced: Better translation handling across the plugin.
+
 = 1.25.0 =
 * Added: Ability to scan the main posts archive (blog page).
 * Enhanced: Improved the Anchor Exists rule to handle more situations.
