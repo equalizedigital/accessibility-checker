@@ -169,7 +169,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edacp_enable_archive_scanning',
-		__( 'Enable Archive Scanning', 'accessibility-checker' ),
+		__( 'Archive Scanning', 'accessibility-checker' ),
 		'edac_enable_archive_scanning_cb',
 		'edac_settings',
 		'edac_general',
@@ -178,7 +178,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edacp_scan_all_taxonomy_terms',
-		__( 'Scan All Taxonomy Terms', 'accessibility-checker' ),
+		__( 'Taxonomy Scanning', 'accessibility-checker' ),
 		'edac_scan_all_taxonomy_terms_cb',
 		'edac_settings',
 		'edac_general',
@@ -451,7 +451,7 @@ function edac_enable_archive_scanning_cb() {
 		</label>
 	</fieldset>
 	<p id="edac_enable_archives_desc" class="edac-description">
-		<?php esc_html_e( 'Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan.', 'accessibility-checker' ); ?>
+		<?php esc_html_e( 'Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data.', 'accessibility-checker' ); ?>
 	</p>
 	<?php
 }
@@ -481,7 +481,7 @@ function edac_scan_all_taxonomy_terms_cb() {
 		</label>
 	</fieldset>
 	<p class="edac-description">
-		<?php esc_html_e( 'Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load.', 'accessibility-checker' ); ?>
+		<?php esc_html_e( 'Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list.', 'accessibility-checker' ); ?>
 	</p>
 	<?php
 }
