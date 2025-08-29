@@ -79,7 +79,7 @@ jobs:
           # But make it selective.
           composer-options: "yoast/wp-test-utils --with-dependencies"
           # Bust the cache at least once a month - output format: YYYY-MM-DD.
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-2)) days" "+%F")
+          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-3)) days" "+%F")
 
       # Some images won't have svn available. Install it if that's the case.
       - name: Install SVN
