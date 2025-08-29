@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2752,12 +2752,12 @@ msgid "Scan Speed"
 msgstr "ความเร็วในการสแกน"
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
-msgstr "เปิดใช้งานการสแกนไฟล์เก็บถาวร"
+msgid "Archive Scanning"
+msgstr "การสแกนอาร์ไคฟ์"
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
-msgstr "สแกนเทอมอนุกรมวิธานทั้งหมด"
+msgid "Taxonomy Scanning"
+msgstr "การสแกนอนุกรมวิธาน"
 
 #: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
@@ -2861,16 +2861,16 @@ msgid "Enable scanning of archive pages"
 msgstr "เปิดใช้งานการสแกนหน้าเก็บถาวร"
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
-msgstr "เลือกว่าควรรวมหน้าเก็บถาวรในการสแกนไซต์เต็มรูปแบบหรือไม่ โดยค่าเริ่มต้น วิธีการสุ่มตัวอย่างจะเลือกเทอมอนุกรมวิธานที่หน้าเก็บถาวรจะถูกรวมในการสแกน"
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "เลือกว่าควรรวมหน้าอาร์ไคฟ์ในการสแกนไซต์แบบเต็มหรือไม่ โดยค่าเริ่มต้น จะใช้วิธีการสุ่มตัวอย่างเพื่อเลือกคำศัพท์อนุกรมวิธานสำหรับข้อมูลอาร์ไคฟ์"
 
 #: includes/options-page.php:480
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "สแกนเทอมอนุกรมวิธานทั้งหมดแทนที่จะเป็นเพียงตัวอย่าง"
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
-msgstr "ตรวจสอบหน้าเก็บถาวรสำหรับเทอมอนุกรมวิธานทั้งหมดแทนที่จะเป็นตัวอย่างที่เป็นตัวแทน ต้องมีการสแกนหน้าเก็บถาวรและอาจเพิ่มเวลาสแกนและโหลดเซิร์ฟเวอร์อย่างมีนัยสำคัญ"
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "ตรวจสอบหน้าอาร์ไคฟ์คำศัพท์อนุกรมวิธานทั้งหมดแทนที่จะใช้ตัวอย่างที่เป็นตัวแทน นี่ต้องการให้เปิดใช้งานการสแกนหน้าอาร์ไคฟ์และอาจเพิ่ม URL จำนวนมากในรายการสแกน"
 
 #: includes/options-page.php:513
 msgid "Before the content"
