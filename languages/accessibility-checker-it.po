@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2742,12 +2742,12 @@ msgid "Scan Speed"
 msgstr "Velocità di scansione"
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
-msgstr "Abilita scansione degli archivi"
+msgid "Archive Scanning"
+msgstr "Scansione archivio"
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
-msgstr "Scansiona tutti i termini di tassonomia"
+msgid "Taxonomy Scanning"
+msgstr "Scansione tassonomia"
 
 #: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
@@ -2851,16 +2851,16 @@ msgid "Enable scanning of archive pages"
 msgstr "Abilita la scansione delle pagine di archivio"
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
-msgstr "Scegli se le pagine di archivio devono essere incluse nelle scansioni complete del sito. Per impostazione predefinita, un metodo di campionamento seleziona i termini di tassonomia le cui pagine di archivio sono incluse nella scansione."
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "Scegli se le pagine di archivio devono essere incluse nelle scansioni complete del sito. Per impostazione predefinita, viene utilizzato un metodo di campionamento per selezionare i termini di tassonomia per i dati di archivio."
 
 #: includes/options-page.php:480
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Scansiona tutti i termini di tassonomia invece di un semplice campione"
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
-msgstr "Controlla le pagine di archivio per tutti i termini di tassonomia invece di un campione rappresentativo. Richiede la scansione delle pagine di archivio e potrebbe aumentare significativamente il tempo di scansione e il carico del server."
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "Controlla tutte le pagine di archivio dei termini di tassonomia invece di un campione rappresentativo. Questo richiede che la scansione delle pagine di archivio sia abilitata e potrebbe aggiungere un gran numero di URL all'elenco di scansione."
 
 #: includes/options-page.php:513
 msgid "Before the content"
