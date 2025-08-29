@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2752,12 +2752,12 @@ msgid "Scan Speed"
 msgstr "Nuskaitymo greitis"
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
-msgstr "Įjungti archyvų nuskaitymą"
+msgid "Archive Scanning"
+msgstr "Archyvų nuskaitymas"
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
-msgstr "Nuskaityti visus taksonomijos terminus"
+msgid "Taxonomy Scanning"
+msgstr "Taksonomijos nuskaitymas"
 
 #: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
@@ -2861,16 +2861,16 @@ msgid "Enable scanning of archive pages"
 msgstr "Įjungti archyvo puslapių nuskaitymą"
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
-msgstr "Pasirink, ar archyvo puslapiai turėtų būti įtraukti į visos svetainės nuskaitymus. Pagal numatytąją nuostatą atrankos metodas parenka taksonomijos terminus, kurių archyvo puslapiai įtraukiami į nuskaitymą."
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "Pasirink, ar archyvo puslapiai turėtų būti įtraukti į viso tinklalapio nuskaitymus. Pagal numatytąją nuostatą taksonomijos terminams archyvo duomenims pasirinkti naudojamas atrankos metodas."
 
 #: includes/options-page.php:480
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Nuskaityti visus taksonomijos terminus, o ne tik pavyzdį"
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
-msgstr "Tikrinti visų taksonomijos terminų archyvo puslapius, o ne tik reprezentatyvų pavyzdį. Reikalauja archyvo puslapių nuskaitymo ir gali žymiai padidinti nuskaitymo laiką bei serverio apkrovą."
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "Tikrinti visus taksonomijos terminų archyvo puslapius, o ne reprezentatyvią imtį. Tam būtina įjungti archyvo puslapių nuskaitymą, ir tai gali pridėti daug URL adresų į nuskaitymo sąrašą."
 
 #: includes/options-page.php:513
 msgid "Before the content"
