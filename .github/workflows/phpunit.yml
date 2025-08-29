@@ -16,6 +16,8 @@ concurrency:
 jobs:
   integration:
     runs-on: ubuntu-latest
+    env:
+      COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.PUBLIC_REPO_ACCESS }}"}}'
 
     strategy:
       matrix:
