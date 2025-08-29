@@ -20,6 +20,7 @@ jobs:
       COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.PUBLIC_REPO_ACCESS }}"}}'
 
     strategy:
+      fail-fast: false
       matrix:
         include:
           - php_version: '8.1'
