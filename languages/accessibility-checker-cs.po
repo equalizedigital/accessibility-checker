@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2752,12 +2752,12 @@ msgid "Scan Speed"
 msgstr "Rychlost skenování"
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
-msgstr "Povolit skenování archivů"
+msgid "Archive Scanning"
+msgstr "Skenování archivů"
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
-msgstr "Skenovat všechny taxonomické termy"
+msgid "Taxonomy Scanning"
+msgstr "Skenování taxonomie"
 
 #: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
@@ -2861,16 +2861,16 @@ msgid "Enable scanning of archive pages"
 msgstr "Povolit skenování archivních stránek"
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
-msgstr "Zvol, zda mají být archivní stránky zahrnuty do kompletního skenování webu. Ve výchozím nastavení metoda vzorkování vybírá taxonomické termy, jejichž archivní stránky jsou zahrnuty do skenování."
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "Zvolte, zda mají být archivní stránky zahrnuty do kompletního skenování webu. Ve výchozím nastavení se pro archivní data používá metoda vzorkování k výběru taxonomických termínů."
 
 #: includes/options-page.php:480
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Skenovat všechny taxonomické termy místo pouhého vzorku"
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
-msgstr "Zkontroluj archivní stránky pro všechny taxonomické termy místo reprezentativního vzorku. Vyžaduje skenování archivních stránek a může výrazně prodloužit dobu skenování a zvýšit zatížení serveru."
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "Zkontrolovat všechny archivní stránky taxonomických termínů místo reprezentativního vzorku. To vyžaduje povolené skenování archivních stránek a může přidat velké množství URL adres do seznamu skenování."
 
 #: includes/options-page.php:513
 msgid "Before the content"
