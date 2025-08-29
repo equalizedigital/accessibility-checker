@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2752,12 +2752,12 @@ msgid "Scan Speed"
 msgstr "Скорость сканирования"
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
-msgstr "Включить сканирование архивов"
+msgid "Archive Scanning"
+msgstr "Сканирование архивов"
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
-msgstr "Сканировать все термины таксономии"
+msgid "Taxonomy Scanning"
+msgstr "Сканирование таксономии"
 
 #: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
@@ -2861,16 +2861,16 @@ msgid "Enable scanning of archive pages"
 msgstr "Включить сканирование страниц архива"
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
-msgstr "Выбери, следует ли включать страницы архива в полное сканирование сайта. По умолчанию метод выборки выбирает термины таксономии, страницы архива которых включаются в сканирование."
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "Выбери, должны ли страницы архивов быть включены в полное сканирование сайта. По умолчанию для выбора терминов таксономии для архивных данных используется метод выборки."
 
 #: includes/options-page.php:480
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Сканировать все термины таксономии вместо выборки"
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
-msgstr "Проверять страницы архива для всех терминов таксономии вместо репрезентативной выборки. Требует сканирования страниц архива и может значительно увеличить время сканирования и нагрузку на сервер."
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "Проверять все страницы архивов терминов таксономии вместо репрезентативной выборки. Для этого необходимо включить сканирование страниц архивов, что может добавить большое количество URL-адресов в список сканирования."
 
 #: includes/options-page.php:513
 msgid "Before the content"

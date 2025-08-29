@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2752,12 +2752,12 @@ msgid "Scan Speed"
 msgstr "Tốc độ quét"
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
-msgstr "Bật quét lưu trữ"
+msgid "Archive Scanning"
+msgstr "Quét lưu trữ"
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
-msgstr "Quét tất cả các thuật ngữ phân loại"
+msgid "Taxonomy Scanning"
+msgstr "Quét phân loại"
 
 #: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
@@ -2861,16 +2861,16 @@ msgid "Enable scanning of archive pages"
 msgstr "Bật quét các trang lưu trữ"
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
-msgstr "Chọn xem các trang lưu trữ có nên được bao gồm trong quét toàn bộ trang web không. Theo mặc định, phương pháp lấy mẫu sẽ chọn các thuật ngữ phân loại có trang lưu trữ được đưa vào quét."
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "Chọn xem các trang lưu trữ có nên được bao gồm trong quét toàn bộ trang web hay không. Theo mặc định, phương pháp lấy mẫu được sử dụng để chọn các thuật ngữ phân loại cho dữ liệu lưu trữ."
 
 #: includes/options-page.php:480
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Quét tất cả các thuật ngữ phân loại thay vì chỉ một mẫu"
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
-msgstr "Kiểm tra các trang lưu trữ cho tất cả các thuật ngữ phân loại thay vì chỉ một mẫu đại diện. Yêu cầu quét trang lưu trữ và có thể làm tăng đáng kể thời gian quét và tải máy chủ."
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "Kiểm tra tất cả các trang lưu trữ thuật ngữ phân loại thay vì một mẫu đại diện. Điều này yêu cầu quét trang lưu trữ phải được bật và có thể thêm một số lượng lớn URL vào danh sách quét."
 
 #: includes/options-page.php:513
 msgid "Before the content"

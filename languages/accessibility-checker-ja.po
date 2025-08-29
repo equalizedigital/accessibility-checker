@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2752,12 +2752,12 @@ msgid "Scan Speed"
 msgstr "スキャン速度"
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
-msgstr "アーカイブスキャンを有効にする"
+msgid "Archive Scanning"
+msgstr "アーカイブスキャン"
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
-msgstr "すべてのタクソノミー用語をスキャン"
+msgid "Taxonomy Scanning"
+msgstr "タクソノミースキャン"
 
 #: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
@@ -2861,16 +2861,16 @@ msgid "Enable scanning of archive pages"
 msgstr "アーカイブページのスキャンを有効にする"
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
-msgstr "サイト全体のスキャンにアーカイブページを含めるかどうかを選択します。デフォルトでは、サンプリング方法によってスキャンに含めるアーカイブページのタクソノミー用語が選択されます。"
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "サイト全体のスキャンにアーカイブページを含めるかどうかを選択してください。デフォルトでは、アーカイブデータのタクソノミー用語を選択するためにサンプリング方法が使用されます。"
 
 #: includes/options-page.php:480
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "サンプルだけでなく、すべてのタクソノミー用語をスキャンする"
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
-msgstr "代表的なサンプルだけでなく、すべてのタクソノミー用語のアーカイブページをチェックします。アーカイブページのスキャンが必要で、スキャン時間とサーバー負荷が大幅に増加する可能性があります。"
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "代表的なサンプルの代わりに、すべてのタクソノミー用語のアーカイブページをチェックします。これにはアーカイブページのスキャンを有効にする必要があり、スキャンリストに多数のURLが追加される可能性があります。"
 
 #: includes/options-page.php:513
 msgid "Before the content"
