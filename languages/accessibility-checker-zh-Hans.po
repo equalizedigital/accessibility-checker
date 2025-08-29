@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2752,12 +2752,12 @@ msgid "Scan Speed"
 msgstr "扫描速度"
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
-msgstr "启用归档扫描"
+msgid "Archive Scanning"
+msgstr "归档扫描"
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
-msgstr "扫描所有分类术语"
+msgid "Taxonomy Scanning"
+msgstr "分类法扫描"
 
 #: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
@@ -2861,16 +2861,16 @@ msgid "Enable scanning of archive pages"
 msgstr "启用归档页面扫描"
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
-msgstr "选择是否在完整网站扫描中包含归档页面。默认情况下，采样方法会选择在扫描中包含其归档页面的分类术语。"
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "选择是否在完整网站扫描中包含归档页面。默认情况下，会使用抽样方法选择分类法术语以获取归档数据。"
 
 #: includes/options-page.php:480
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "扫描所有分类术语而不仅仅是样本"
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
-msgstr "检查所有分类术语的归档页面，而不是代表性样本。需要归档页面扫描，可能会显著增加扫描时间和服务器负载。"
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "检查所有分类法术语归档页面，而不是代表性样本。这需要启用归档页面扫描，并可能会向扫描列表添加大量 URL。"
 
 #: includes/options-page.php:513
 msgid "Before the content"
