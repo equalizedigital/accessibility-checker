@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2751,11 +2751,11 @@ msgid "Scan Speed"
 msgstr ""
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
+msgid "Archive Scanning"
 msgstr ""
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
+msgid "Taxonomy Scanning"
 msgstr ""
 
 #: includes/options-page.php:208
@@ -2860,7 +2860,7 @@ msgid "Enable scanning of archive pages"
 msgstr ""
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr ""
 
 #: includes/options-page.php:480
@@ -2868,7 +2868,7 @@ msgid "Scan all taxonomy terms instead of just a sample"
 msgstr ""
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr ""
 
 #: includes/options-page.php:513

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2752,12 +2752,12 @@ msgid "Scan Speed"
 msgstr "Skannimise kiirus"
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
-msgstr "Luba arhiivi skannimine"
+msgid "Archive Scanning"
+msgstr "Arhiivi skannimine"
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
-msgstr "Skanni kõik taksonoomia terminid"
+msgid "Taxonomy Scanning"
+msgstr "Taksonoomia skannimine"
 
 #: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
@@ -2861,16 +2861,16 @@ msgid "Enable scanning of archive pages"
 msgstr "Luba arhiivilehekülgede skannimine"
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
-msgstr "Vali, kas arhiivilehekülgi tuleks kaasata täieliku saidi skannimistesse. Vaikimisi valib valimismeetod taksonoomia terminid, mille arhiivilehekülgi kaasatakse skannimisse."
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "Vali, kas arhiivilehti tuleks kaasata täieliku saidi skannimisse. Vaikimisi kasutatakse arhiiviandmete jaoks taksonoomia terminite valimiseks valimimeetodit."
 
 #: includes/options-page.php:480
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Skanni kõik taksonoomia terminid, mitte ainult valim"
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
-msgstr "Kontrolli arhiivilehekülgi kõigi taksonoomia terminite jaoks, mitte ainult esindusliku valimi jaoks. Nõuab arhiivilehekülgede skannimist ja võib oluliselt pikendada skannimise aega ning suurendada serveri koormust."
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "Kontrolli kõiki taksonoomia terminite arhiivilehti esindava valimi asemel. See nõuab, et arhiivilehe skannimine oleks lubatud ja võib lisada skannimisloendisse suure hulga URL-e."
 
 #: includes/options-page.php:513
 msgid "Before the content"
