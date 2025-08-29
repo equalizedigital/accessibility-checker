@@ -16,8 +16,11 @@ concurrency:
 jobs:
   integration:
     runs-on: ubuntu-latest
+    env:
+      COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.PUBLIC_REPO_ACCESS }}"}}'
 
     strategy:
+      fail-fast: false
       matrix:
         include:
           - php_version: '8.1'
@@ -64,6 +67,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS }}
 
+      - name: Configure Composer to use PAT
+        run: composer config --global --auth github-oauth.github.com ${{ secrets.PUBLIC_REPO_ACCESS }}
+
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: "Composer: remove the PHP platform requirement"
@@ -77,8 +83,10 @@ jobs:
           # But make it selective.
           composer-options: "yoast/wp-test-utils --with-dependencies"
           # Bust the cache at least once a month - output format: YYYY-MM-DD.
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
-
+          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-3)) days" "+%F")
+          github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS }}
       # Some images won't have svn available. Install it if that's the case.
       - name: Install SVN
         run: |

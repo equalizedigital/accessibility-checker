@@ -7,7 +7,6 @@
 
 namespace EDAC\Inc;
 
-use EDAC\Admin\Helpers;
 use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
@@ -248,7 +247,7 @@ class REST_Api {
 			}
 
 			$post_type  = get_post_type( $post );
-			$post_types = Helpers::get_option_as_array( 'edac_post_types' );
+			$post_types = Settings::get_scannable_post_types();
 			if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 				return new \WP_REST_Response( [ 'message' => 'The post type is not set to be scanned.' ], 400 );
 			}
@@ -320,7 +319,7 @@ class REST_Api {
 		}
 
 		$post_type  = get_post_type( $post );
-		$post_types = Helpers::get_option_as_array( 'edac_post_types' );
+		$post_types = Settings::get_scannable_post_types();
 		if ( empty( $post_types ) || ! in_array( $post_type, $post_types, true ) ) {
 
 			return new \WP_REST_Response( [ 'message' => 'The post type is not set to be scanned.' ], 400 );

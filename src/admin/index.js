@@ -6,7 +6,7 @@ import {
 } from './summary/summary-tab-input-event-handlers';
 import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
 import { initRequiredSetup } from './fixes-page/conditional-required-settings';
-import { inlineFixesProUpsell } from './fixes-page/pro-callout';
+import { inlineSettingsProUpsell } from '../common/settings-pro-callout';
 
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
@@ -18,7 +18,10 @@ const edacScriptVars = edac_script_vars;
 		if ( document.getElementById( 'edac-fixes-page' ) ) {
 			initFixesInputStateHandler();
 			initRequiredSetup();
-			inlineFixesProUpsell();
+		}
+
+		if ( document.querySelector( '.edac-fix--upsell, .edac-setting--upsell' ) ) {
+			inlineSettingsProUpsell();
 		}
 
 		// Accessibility Statement disable
@@ -657,6 +660,8 @@ window.addEventListener( 'load', function() {
 	}
 
 	edacTimestampToLocal();
+
+	initArchivesScanningDependency();
 } );
 
 // Fill the dashboard widget
@@ -925,3 +930,31 @@ const postData = async ( url = '', data = {} ) => {
 	return response.json();
 };
 
+/**
+ * Initialize the interdependency between archives scanning and taxonomy scanning settings
+ */
+const initArchivesScanningDependency = () => {
+	const archivesCheckbox = document.getElementById( 'edacp_enable_archive_scanning' );
+	const taxonomiesCheckbox = document.getElementById( 'edacp_scan_all_taxonomy_terms' );
+
+	if ( archivesCheckbox && taxonomiesCheckbox ) {
+		function updateTaxonomiesState() {
+			if ( archivesCheckbox.checked && archivesCheckbox.disabled === false ) {
+				taxonomiesCheckbox.disabled = false;
+			} else {
+				taxonomiesCheckbox.disabled = true;
+				taxonomiesCheckbox.checked = false;
+			}
+			const containingFieldset = taxonomiesCheckbox.closest( 'fieldset' );
+			if ( containingFieldset ) {
+				containingFieldset.setAttribute( 'aria-disabled', String( taxonomiesCheckbox.disabled ) );
+			}
+		}
+
+		// Initial state
+		updateTaxonomiesState();
+
+		// Listen for changes
+		archivesCheckbox.addEventListener( 'change', updateTaxonomiesState );
+	}
+};

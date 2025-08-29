@@ -5,6 +5,9 @@
  * @package Accessibility_Checker
  */
 
+// get the post type of the current editor page.
+$is_virtual_page = edac_is_virtual_page( get_the_ID() );
+
 ?>
 <div id="edac-tabs">
 	<p id="edac-tabs-label" class="screen-reader-text"><?php esc_html_e( 'Accessibility Checker issues panels', 'accessibility-checker' ); ?></p>
@@ -31,7 +34,7 @@
 					<?php esc_html_e( 'Details', 'accessibility-checker' ); ?>
 				</button>
 			</li>
-			<li class="edac-tab">
+			<li class="edac-tab" <?php echo $is_virtual_page ? 'style="display: none;"' : ''; ?>>
 				<button
 					role="tab"
 					aria-selected="false"

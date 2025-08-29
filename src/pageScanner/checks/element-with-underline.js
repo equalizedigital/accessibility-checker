@@ -6,9 +6,19 @@
  */
 
 export default {
-	id: 'element_has_computed_underline',
-	evaluate: ( node ) => {
-		const style = window.getComputedStyle( node );
-		return style.textDecorationLine.includes( 'underline' );
+	id: 'element_with_underline',
+	evaluate( node ) {
+		const computedStyle = window.getComputedStyle( node );
+		const textDecoration = computedStyle.getPropertyValue( 'text-decoration' );
+		const textDecorationLine = computedStyle.getPropertyValue( 'text-decoration-line' );
+
+		// Check if element has underline decoration
+		const hasUnderline = (
+			textDecoration.includes( 'underline' ) ||
+			textDecorationLine.includes( 'underline' )
+		);
+
+		// Return true if element has underline (this will trigger the rule failure)
+		return hasUnderline;
 	},
 };

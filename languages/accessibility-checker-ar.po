@@ -2,24 +2,25 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.29.0\n"
+"Project-Id-Version: Accessibility Checker 1.30.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-06T16:25:50+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
+"Language: ar\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:39
 #: includes/classes/class-accessibility-statement.php:51
 #: includes/classes/class-admin-toolbar.php:53
-#: includes/options-page.php:43
+#: includes/options-page.php:45
 #: partials/welcome-page.php:24
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
@@ -68,11 +69,12 @@ msgstr "احصل على النسخة الاحترافية لفتح هذه الم
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
 #: admin/class-plugin-action-links.php:55
+#: build/admin.bundle.js:2
 msgid "Get Pro"
 msgstr "احصل على النسخة الاحترافية"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:347
+#: admin/class-ajax.php:350
 msgid "Opens in a new window."
 msgstr "يفتح في نافذة جديدة."
 
@@ -186,11 +188,11 @@ msgstr "قم بالترقية الآن"
 #: admin/class-admin-notices.php:238
 #: admin/class-admin-notices.php:327
 #: admin/class-ajax.php:56
-#: admin/class-ajax.php:205
-#: admin/class-ajax.php:584
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:802
-#: admin/class-frontend-highlight.php:79
+#: admin/class-ajax.php:208
+#: admin/class-ajax.php:593
+#: admin/class-ajax.php:731
+#: admin/class-ajax.php:811
+#: admin/class-frontend-highlight.php:78
 msgid "Permission Denied"
 msgstr "تم رفض الإذن"
 
@@ -229,9 +231,9 @@ msgid "The review action value was not set"
 msgstr "لم يتم تعيين قيمة إجراء المراجعة"
 
 #: admin/class-ajax.php:63
-#: admin/class-ajax.php:212
-#: admin/class-ajax.php:591
-#: admin/class-ajax.php:809
+#: admin/class-ajax.php:215
+#: admin/class-ajax.php:600
+#: admin/class-ajax.php:818
 msgid "The post ID was not set"
 msgstr "لم يتم تعيين معرف المنشور"
 
@@ -252,116 +254,124 @@ msgid "A simplified summary has been included for this content."
 msgstr "تم إدراج ملخص مبسط لهذا المحتوى."
 
 #. translators: %s: Number of errors
-#: admin/class-ajax.php:126
+#: admin/class-ajax.php:129
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
-msgstr[0] "%s خطأ"
-msgstr[1] "%s أخطاء"
+msgstr[0] "%s Errors"
+msgstr[1] "%s Errors"
+msgstr[2] "%s Errors"
+msgstr[3] "%s Errors"
 
 #. translators: %s: Number of contrast errors
-#: admin/class-ajax.php:132
+#: admin/class-ajax.php:135
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
-msgstr[0] "%s خطأ في التباين"
-msgstr[1] "%s أخطاء في التباين"
+msgstr[0] "%s Contrast Errors"
+msgstr[1] "%s Contrast Errors"
+msgstr[2] "%s Contrast Errors"
+msgstr[3] "%s Contrast Errors"
 
 #. translators: %s: Number of warnings
-#: admin/class-ajax.php:138
+#: admin/class-ajax.php:141
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
-msgstr[0] "%s تحذير"
-msgstr[1] "%s تحذيرات"
+msgstr[0] "%s Warnings"
+msgstr[1] "%s Warnings"
+msgstr[2] "%s Warnings"
+msgstr[3] "%s Warnings"
 
 #. translators: %s: Number of ignored items
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:147
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
-msgstr[0] "%s عنصر متجاهل"
-msgstr[1] "%s عناصر متجاهلة"
+msgstr[0] "%s Ignored Items"
+msgstr[1] "%s Ignored Items"
+msgstr[2] "%s Ignored Items"
+msgstr[3] "%s Ignored Items"
 
-#: admin/class-ajax.php:182
+#: admin/class-ajax.php:185
 msgid "No summary to return"
 msgstr "لا يوجد ملخص للإرجاع"
 
-#: admin/class-ajax.php:226
+#: admin/class-ajax.php:229
 msgid "Invalid table name"
 msgstr "اسم الجدول غير صالح"
 
-#: admin/class-ajax.php:372
+#: admin/class-ajax.php:375
 msgid "These settings enable global fixes across your entire site."
 msgstr "تمكّن هذه الإعدادات الإصلاحات العامة في جميع أنحاء موقعك."
 
-#: admin/class-ajax.php:373
+#: admin/class-ajax.php:376
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "قد تحتاج الصفحات إلى إعادة حفظ أو إجراء فحص كامل للموقع لرؤية الإصلاحات المنعكسة في التقارير."
 
-#: admin/class-ajax.php:401
+#: admin/class-ajax.php:404
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Save"
 msgstr "حفظ"
 
-#: admin/class-ajax.php:423
+#: admin/class-ajax.php:426
 msgid "Affected Code"
 msgstr "الكود المتأثر"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:500
+#: admin/class-ajax.php:509
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "عرض المشكلة ذات المعرف %d على الموقع، يفتح في نافذة جديدة"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:510
 msgid "View on page"
 msgstr "عرض في الصفحة"
 
-#: admin/class-ajax.php:520
+#: admin/class-ajax.php:529
 msgid "Fix: "
 msgstr "إصلاح: "
 
-#: admin/class-ajax.php:521
+#: admin/class-ajax.php:530
 msgid "Fix"
 msgstr "إصلاح"
 
-#: admin/class-ajax.php:544
+#: admin/class-ajax.php:553
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "حساب المستخدم الخاص بك لا يملك صلاحية تجاهل هذه المشكلة."
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:571
 msgid "No details to return"
 msgstr "لا توجد تفاصيل للإرجاع"
 
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:710
 msgid "No readability data to return"
 msgstr "لا توجد بيانات قابلية القراءة للإرجاع"
 
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:767
+#: admin/class-ajax.php:790
 msgid "No ignore data to return"
 msgstr "لا توجد بيانات تجاهل للإرجاع"
 
-#: admin/class-ajax.php:816
+#: admin/class-ajax.php:825
 msgid "The summary was not set"
 msgstr "لم يتم تعيين الملخص"
 
-#: admin/class-frontend-highlight.php:84
+#: admin/class-frontend-highlight.php:83
 msgid "The id value was not set"
 msgstr "لم يتم تعيين قيمة المعرف"
 
-#: admin/class-frontend-highlight.php:92
+#: admin/class-frontend-highlight.php:91
 msgid "Issue query returned no results"
 msgstr "استعلام المشكلة لم يرجع أي نتائج"
 
-#: admin/class-frontend-highlight.php:138
+#: admin/class-frontend-highlight.php:137
 msgid "Object query returned no results"
 msgstr "استعلام الكائن لم يرجع أي نتائج"
 
 #: admin/class-plugin-action-links.php:48
 #: includes/classes/class-admin-toolbar.php:94
-#: includes/options-page.php:66
+#: includes/options-page.php:68
 msgid "Settings"
 msgstr "الإعدادات"
 
@@ -410,113 +420,121 @@ msgstr "تعذر إعادة التوجيه إلى صفحة الترقية."
 msgid "Most Recent Test Summary"
 msgstr "ملخص الاختبار الأخير"
 
-#: admin/class-welcome-page.php:44
+#: admin/class-welcome-page.php:45
 msgid "Update Counts"
 msgstr "تحديث العدادات"
 
-#: admin/class-welcome-page.php:48
+#: admin/class-welcome-page.php:50
 msgid "Start New Scan"
 msgstr "بدء فحص جديد"
 
-#: admin/class-welcome-page.php:52
+#: admin/class-welcome-page.php:54
 msgid "View All Open Issues"
 msgstr "عرض جميع المشاكل المفتوحة"
 
-#: admin/class-welcome-page.php:57
+#: admin/class-welcome-page.php:59
 msgid "See History"
 msgstr "عرض السجل"
 
-#: admin/class-welcome-page.php:70
+#: admin/class-welcome-page.php:72
 #: admin/class-widgets.php:98
 msgid "Passed Tests"
 msgstr "الاختبارات الناجحة"
 
-#: admin/class-welcome-page.php:86
+#: admin/class-welcome-page.php:88
 msgid "Unique Error"
 msgid_plural "Unique Errors"
-msgstr[0] "خطأ فريد"
-msgstr[1] "أخطاء فريدة"
+msgstr[0] "Unique Errors"
+msgstr[1] "Unique Errors"
+msgstr[2] "Unique Errors"
+msgstr[3] "Unique Errors"
 
-#: admin/class-welcome-page.php:111
+#: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
-msgstr[0] "خطأ تباين الألوان الفريد"
-msgstr[1] "أخطاء تباين الألوان الفريدة"
+msgstr[0] "Unique Color Contrast Errors"
+msgstr[1] "Unique Color Contrast Errors"
+msgstr[2] "Unique Color Contrast Errors"
+msgstr[3] "Unique Color Contrast Errors"
 
-#: admin/class-welcome-page.php:136
+#: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
-msgstr[0] "تحذير فريد"
-msgstr[1] "تحذيرات فريدة"
+msgstr[0] "Unique Warnings"
+msgstr[1] "Unique Warnings"
+msgstr[2] "Unique Warnings"
+msgstr[3] "Unique Warnings"
 
-#: admin/class-welcome-page.php:161
+#: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
-msgstr[0] "عنصر متجاهل"
-msgstr[1] "عناصر متجاهلة"
+msgstr[0] "Ignored Items"
+msgstr[1] "Ignored Items"
+msgstr[2] "Ignored Items"
+msgstr[3] "Ignored Items"
 
-#: admin/class-welcome-page.php:178
+#: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
 msgstr "متوسط المشاكل لكل صفحة"
 
-#: admin/class-welcome-page.php:191
+#: admin/class-welcome-page.php:193
 msgid "Average Issue Density"
 msgstr "متوسط كثافة المشاكل"
 
-#: admin/class-welcome-page.php:204
+#: admin/class-welcome-page.php:206
 #: admin/class-widgets.php:105
 msgid "Report Last Updated:"
 msgstr "آخر تحديث للتقرير:"
 
-#: admin/class-welcome-page.php:214
-#: includes/options-page.php:408
+#: admin/class-welcome-page.php:216
+#: includes/options-page.php:606
 msgid "Never"
 msgstr "أبدًا"
 
-#: admin/class-welcome-page.php:228
+#: admin/class-welcome-page.php:230
 msgid "URLs Scanned"
 msgstr "عناوين URL التي تم فحصها"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
-#: admin/class-welcome-page.php:239
+#: admin/class-welcome-page.php:241
 #, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s من %2$s"
 
-#: admin/class-welcome-page.php:248
+#: admin/class-welcome-page.php:250
 msgid "Post Types Checked"
 msgstr "أنواع المنشورات التي تم فحصها"
 
-#: admin/class-welcome-page.php:261
+#: admin/class-welcome-page.php:263
 msgid "URLs with 100% score"
 msgstr "عناوين URL بنتيجة 100%"
 
-#: admin/class-welcome-page.php:269
+#: admin/class-welcome-page.php:271
 msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
 msgstr "يتم تحديث هذا الملخص تلقائيًا كل 24 ساعة، أو في أي وقت يتم فيه إكمال فحص كامل للموقع. يمكنك أيضًا تحديث هذه النتائج يدويًا بالنقر على زر تحديث العدادات."
 
-#: admin/class-welcome-page.php:275
+#: admin/class-welcome-page.php:277
 msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
 msgstr "يحتوي موقعك على عدد كبير من المشاكل. لأسباب تتعلق بالأداء، لم يتم تضمين جميع المشاكل في هذا الملخص."
 
-#: admin/class-welcome-page.php:285
+#: admin/class-welcome-page.php:287
 msgid "Site-Wide Accessibility Reports"
 msgstr "تقارير إمكانية الوصول على مستوى الموقع"
 
-#: admin/class-welcome-page.php:290
+#: admin/class-welcome-page.php:292
 msgid "Hide banner"
 msgstr "إخفاء الشريط"
 
-#: admin/class-welcome-page.php:299
+#: admin/class-welcome-page.php:301
 msgid "Unlock Detailed Accessibility Reports"
 msgstr "فتح تقارير إمكانية الوصول المفصلة"
 
-#: admin/class-welcome-page.php:302
+#: admin/class-welcome-page.php:304
 #: admin/class-widgets.php:71
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "ابدأ في فحص موقعك بالكامل بحثًا عن مشاكل إمكانية الوصول، واحصل على تقارير كاملة للموقع، وكن متوافقًا مع إرشادات إمكانية الوصول بشكل أسرع."
 
-#: admin/class-welcome-page.php:306
+#: admin/class-welcome-page.php:308
 #: admin/class-widgets.php:73
 msgid "Upgrade Accessibility Checker"
 msgstr "ترقية Accessibility Checker"
@@ -700,9 +718,11 @@ msgstr "يتم فحص المحتوى لإمكانية الوصول"
 #: admin/site-health/class-checks.php:177
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
-msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "قام Accessibility Checker بفحص منشور %s للتحقق من مشاكل إمكانية الوصول."
-msgstr[1] "قام Accessibility Checker بفحص %s منشور للتحقق من مشاكل إمكانية الوصول."
+msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
+msgstr[0] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[3] "Accessibility Checker has scanned %s posts for accessibility issues."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -724,9 +744,11 @@ msgstr "تم تكوين أنواع المنشورات لفحص إمكانية ا
 #: admin/site-health/class-checks.php:216
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "تم تكوين Accessibility Checker لفحص نوع منشور واحد %1$s: %2$s."
-msgstr[1] "تم تكوين Accessibility Checker لفحص %1$s نوع منشور: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgstr[0] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[3] "Accessibility Checker is configured to scan %1$s post types: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -774,7 +796,7 @@ msgid "Disabled"
 msgstr "معطّل"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:137
+#: includes/options-page.php:199
 msgid "Delete Data"
 msgstr "حذف البيانات"
 
@@ -831,6 +853,7 @@ msgid "Simplified Sum Heading"
 msgstr "عنوان الملخص المبسط"
 
 #: admin/site-health/class-pro.php:74
+#: includes/options-page.php:190
 msgid "Ignore Permissions"
 msgstr "صلاحيات التجاهل"
 
@@ -872,60 +895,66 @@ msgstr "احصل على Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "احصل على Accessibility Checker Pro (يفتح في نافذة جديدة)"
 
+#: includes/classes/class-rest-api.php:222
+msgid "A required parameter is missing."
+msgstr "معلمة مطلوبة مفقودة."
+
 #: includes/classes/class-simplified-summary.php:73
+#: includes/options-page.php:897
+#: includes/options-page.php:921
 msgid "Simplified Summary"
 msgstr "ملخص مبسط"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:34
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:41
 msgid "Add Size & Type To File Links"
 msgstr "إضافة الحجم والنوع إلى روابط الملفات"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:43
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:50
 msgid "Add Context to Linked Files"
 msgstr "إضافة سياق للملفات المرتبطة"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:76
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:83
 msgid "Add File Size & Type To Links"
 msgstr "إضافة حجم ونوع الملف إلى الروابط"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:78
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:85
 msgid "Add the file size and type to linked files that may trigger a download."
 msgstr "إضافة حجم ونوع الملف إلى الملفات المرتبطة التي قد تؤدي إلى تنزيل."
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:34
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:41
 msgid "Add Labels to Unlabelled Form Fields"
 msgstr "إضافة تسميات إلى حقول النموذج غير المسماة"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:43
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:66
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:89
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:50
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:73
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:96
 msgid "Label Form Fields"
 msgstr "تسمية حقول النموذج"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:92
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:99
 msgid "Add labels to unlabelled form fields if field purpose can be determined."
 msgstr "إضافة تسميات إلى حقول النموذج غير المسماة إذا أمكن تحديد الغرض من الحقل."
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:123
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:130
 #, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "محاولة إضافة تسميات إلى حقول النموذج التي تفتقر إليها. ملاحظة: قد تحتاج إلى إضافة أنماط مخصصة تستهدف الفئة %1$s إذا كانت إضافة التسميات تؤثر على تخطيطات النموذج الخاص بك."
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:34
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:41
 msgid "Add Missing or Empty Page Titles"
 msgstr "إضافة عناوين الصفحات المفقودة أو الفارغة"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:43
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:50
 msgid "Set Page HTML Titles"
 msgstr "تعيين عناوين HTML للصفحة"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:77
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:84
 msgid "Add Missing Page Title"
 msgstr "إضافة عنوان الصفحة المفقود"
 
 #. translators: %1$s: a code tag with a title tag.
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:80
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:87
 #, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "إضافة وسم %1$s إلى الصفحة إذا كان مفقودًا أو فارغًا."
@@ -944,13 +973,13 @@ msgstr "إضافة تسمية للروابط التي تفتح نافذة/علا
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "إضافة تسمية وأيقونة إلى الروابط التي تحتوي على %1$s لإعلام المستخدمين بأنها ستفتح نافذة/علامة تبويب جديدة. %2$sملاحظة: لن يكون لهذا الإعداد أي تأثير إذا تم تمكين إصلاح ”حظر الروابط التي تفتح نوافذ جديدة“.%3$s"
 
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:36
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:68
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:43
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:75
 msgid "Block PDF Uploads"
 msgstr "حظر تحميلات ملفات PDF"
 
 #. translators: %1$s: a code tag with the capability name.
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:72
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 #, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "تقييد تحميلات ملفات PDF للمستخدمين الذين ليس لديهم القدرة %1$s (مسموح للمسؤولين بشكل افتراضي)."
@@ -2680,202 +2709,264 @@ msgstr "معرف المقال %1$d غير موجود."
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "إما أن المقال لم يتم فحصه بعد أو أن جميع الاختبارات قد نجحت لمعرف المقال %1$d."
 
-#: includes/helper-functions.php:25
+#: includes/helper-functions.php:27
 msgid "permalink of "
 msgstr "الرابط الدائم لـ "
 
-#: includes/helper-functions.php:26
+#: includes/helper-functions.php:28
 msgid "permalink to "
 msgstr "الرابط الدائم إلى "
 
-#: includes/helper-functions.php:27
+#: includes/helper-functions.php:29
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:339
+#: includes/helper-functions.php:341
 msgid "Attend Free"
 msgstr "حضور مجاني"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:782
+#: includes/helper-functions.php:790
 #, php-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "عرض %s علامة مميزة على الموقع، يفتح نافذة جديدة"
 
-#: includes/options-page.php:42
+#: includes/options-page.php:44
 msgid "Welcome to Accessibility Checker"
 msgstr "مرحبًا بك في Accessibility Checker"
 
-#: includes/options-page.php:65
+#: includes/options-page.php:67
 msgid "Accessibility Checker Settings"
 msgstr "إعدادات Accessibility Checker"
 
-#: includes/options-page.php:99
-msgid "General Settings"
-msgstr "الإعدادات العامة"
+#: includes/options-page.php:111
+msgid "Scan Settings"
+msgstr "إعدادات الفحص"
 
-#: includes/options-page.php:106
+#: includes/options-page.php:118
+msgid "Permissions"
+msgstr "الصلاحيات"
+
+#: includes/options-page.php:125
 msgid "Simplified Summary Settings"
 msgstr "إعدادات الملخص المبسط"
 
-#: includes/options-page.php:113
+#: includes/options-page.php:132
 msgid "Footer Accessibility Statement"
 msgstr "بيان إمكانية الوصول في التذييل"
 
-#: includes/options-page.php:120
+#: includes/options-page.php:139
 msgid "Frontend Accessibility Checker"
 msgstr "Accessibility Checker للواجهة الأمامية"
 
-#: includes/options-page.php:128
+#: includes/options-page.php:146
+msgid "System Settings"
+msgstr "إعدادات النظام"
+
+#: includes/options-page.php:154
 msgid "Post Types To Be Checked"
 msgstr "أنواع المقالات التي سيتم فحصها"
 
-#: includes/options-page.php:146
+#: includes/options-page.php:163
+msgid "Scan Speed"
+msgstr "سرعة الفحص"
+
+#: includes/options-page.php:172
+msgid "Archive Scanning"
+msgstr "فحص الأرشيف"
+
+#: includes/options-page.php:181
+msgid "Taxonomy Scanning"
+msgstr "فحص التصنيف"
+
+#: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
 msgstr "طلب ملخص مبسط"
 
-#: includes/options-page.php:155
+#: includes/options-page.php:217
 msgid "Simplified Summary Position"
 msgstr "موقع الملخص المبسط"
 
-#: includes/options-page.php:164
-#: includes/options-page.php:533
+#: includes/options-page.php:226
+msgid "Simplified Summary Heading"
+msgstr "عنوان الملخص المبسط"
+
+#: includes/options-page.php:235
+#: includes/options-page.php:735
 msgid "Add Footer Accessibility Statement"
 msgstr "إضافة بيان إمكانية الوصول في التذييل"
 
-#: includes/options-page.php:173
-#: includes/options-page.php:556
+#: includes/options-page.php:244
+#: includes/options-page.php:758
 msgid "Include Link to Accessibility Policy"
 msgstr "تضمين رابط لسياسة إمكانية الوصول"
 
-#: includes/options-page.php:182
+#: includes/options-page.php:253
 msgid "Accessibility Policy page"
 msgstr "صفحة سياسة إمكانية الوصول"
 
-#: includes/options-page.php:191
+#: includes/options-page.php:262
 msgid "Accessibility Statement Preview"
 msgstr "معاينة بيان إمكانية الوصول"
 
-#: includes/options-page.php:200
+#: includes/options-page.php:271
 msgid "Frontend Accessibility Checker Position"
 msgstr "موضع Accessibility Checker للواجهة الأمامية"
 
-#. translators: %1$s: link to the plugin documentation website.
-#: includes/options-page.php:244
-#, php-format
-msgid "Use the settings below to configure Accessibility Checker. Additional information about each setting can be found in the %1$s."
-msgstr "استخدم الإعدادات أدناه لتكوين Accessibility Checker. يمكن العثور على معلومات إضافية حول كل إعداد في %1$s."
-
-#: includes/options-page.php:245
-msgid "plugin documentation (opens in a new window)"
-msgstr "وثائق الإضافة (تفتح في نافذة جديدة)"
-
-#: includes/options-page.php:245
-msgid "plugin documentation"
-msgstr "وثائق الإضافة"
+#: includes/options-page.php:320
+msgid "Configure the types of content that should be checked for accessibility issues."
+msgstr "قم بتكوين أنواع المحتوى التي يجب فحصها بحثًا عن مشكلات إمكانية الوصول."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:251
+#: includes/options-page.php:325
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "تتوفر المزيد من الميزات والدعم عبر البريد الإلكتروني مع %1$s."
 
-#: includes/options-page.php:259
+#: includes/options-page.php:333
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (يفتح في نافذة جديدة)"
 
-#: includes/options-page.php:259
+#: includes/options-page.php:333
 #: partials/welcome-page.php:21
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:273
+#: includes/options-page.php:347
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "استخدم الإعدادات أدناه لتكوين مدقق الوصول في الواجهة الأمامية."
 
-#: includes/options-page.php:283
+#: includes/options-page.php:357
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "تتطلب إرشادات محتوى الويب لإمكانية الوصول (WCAG) على المستوى AAA أن يكون لأي محتوى بمستوى قراءة أعلى من الصف التاسع بديل أسهل للقراءة. يتم إضافة نص ملخص مبسط في علامة التبويب الخاصة بقابلية القراءة في مربع التحرير الخاص بـ Accessibility Checker في شاشة تحرير كل مقال أو صفحة."
 
-#: includes/options-page.php:293
+#: includes/options-page.php:367
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "تعرف على المزيد حول الملخصات المبسطة ومتطلبات سهولة القراءة (يفتح في نافذة جديدة)"
 
-#: includes/options-page.php:293
+#: includes/options-page.php:367
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "تعرف على المزيد حول الملخصات المبسطة ومتطلبات سهولة القراءة."
 
-#: includes/options-page.php:302
+#: includes/options-page.php:376
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "هل تفكر ”واو، هذه الإضافة مذهلة“ وهل تساعدك في جعل موقعك الإلكتروني أكثر سهولة في الوصول؟ شارك جهودك لجعل موقعك الإلكتروني أكثر سهولة في الوصول مع عملائك وأخبرهم أنك تستخدم Accessibility Checker لضمان قدرة جميع الأشخاص على استخدام موقعك. أضف رابطًا صغيرًا نصيًا وبيانًا في تذييل موقعك الإلكتروني."
 
-#: includes/options-page.php:315
+#: includes/options-page.php:385
+msgid "Configure system-level settings for the Accessibility Checker plugin."
+msgstr "قم بتكوين إعدادات على مستوى النظام لإضافة Accessibility Checker."
+
+#: includes/options-page.php:399
+msgid "Fast"
+msgstr "سريع"
+
+#: includes/options-page.php:400
+msgid "Normal"
+msgstr "عادي"
+
+#: includes/options-page.php:401
+msgid "Slow"
+msgstr "بطيء"
+
+#: includes/options-page.php:402
+msgid "Slowest"
+msgstr "الأبطأ"
+
+#: includes/options-page.php:424
+msgid "Faster scans are more resource intensive and may place a high load on your website."
+msgstr "عمليات الفحص الأسرع تستهلك موارد أكثر وقد تضع حملًا كبيرًا على موقعك."
+
+#: includes/options-page.php:450
+msgid "Enable scanning of archive pages"
+msgstr "تمكين فحص صفحات الأرشيف"
+
+#: includes/options-page.php:454
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "اختر ما إذا كان يجب تضمين صفحات الأرشيف في عمليات فحص الموقع بالكامل. بشكل افتراضي، يتم استخدام طريقة أخذ العينات لاختيار مصطلحات التصنيف لبيانات الأرشيف."
+
+#: includes/options-page.php:480
+msgid "Scan all taxonomy terms instead of just a sample"
+msgstr "فحص جميع مصطلحات التصنيف بدلاً من عينة فقط"
+
+#: includes/options-page.php:484
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "تحقق من جميع صفحات أرشيف مصطلحات التصنيف بدلاً من عينة تمثيلية. هذا يتطلب تمكين فحص صفحة الأرشيف وقد يضيف عددًا كبيرًا من عناوين URL إلى قائمة الفحص."
+
+#: includes/options-page.php:513
 msgid "Before the content"
 msgstr "قبل المحتوى"
 
-#: includes/options-page.php:320
+#: includes/options-page.php:518
 msgid "After the content"
 msgstr "بعد المحتوى"
 
-#: includes/options-page.php:325
+#: includes/options-page.php:523
 msgid "Insert manually"
 msgstr "إدراج يدويًا"
 
-#: includes/options-page.php:329
+#: includes/options-page.php:527
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "استخدم هذه الوظيفة لإضافة الملخص المبسط يدويًا إلى قالبك داخل الحلقة."
 
-#: includes/options-page.php:331
+#: includes/options-page.php:529
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "تقبل الوظيفة اختياريًا معرف المنشور كمعامل."
 
-#: includes/options-page.php:334
+#: includes/options-page.php:532
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "حدد المكان الذي تريد أن تظهر فيه الملخصات المبسطة بالنسبة للمحتوى الخاص بك إذا تم ملؤها."
 
-#: includes/options-page.php:349
+#: includes/options-page.php:547
 msgid "Bottom Right Corner (default)"
 msgstr "الزاوية السفلية اليمنى (الافتراضي)"
 
-#: includes/options-page.php:354
+#: includes/options-page.php:552
 msgid "Bottom Left Corner"
 msgstr "الزاوية السفلية اليسرى"
 
-#: includes/options-page.php:358
+#: includes/options-page.php:556
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "حدد المكان الذي تريد أن يظهر فيه مدقق الوصول في الواجهة الأمامية على الصفحة."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:596
 msgid "When Required"
 msgstr "عند الحاجة"
 
-#: includes/options-page.php:403
+#: includes/options-page.php:601
 msgid "Always"
 msgstr "دائمًا"
 
-#: includes/options-page.php:411
+#: includes/options-page.php:609
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "هل يجب على Accessibility Checker أن يطلب ملخصًا مبسطًا فقط عندما يكون مستوى القراءة لمقالك أو صفحتك أعلى من الصف التاسع، أم يطلبه دائمًا بغض النظر عن مستوى القراءة، أم لا يطلبه أبدًا بغض النظر عن مستوى القراءة؟?"
 
-#: includes/options-page.php:462
+#: includes/options-page.php:660
 msgid "To check content other than posts and pages, please "
 msgstr "للتحقق من محتوى آخر غير المنشورات والصفحات، يرجى "
 
-#: includes/options-page.php:464
+#: includes/options-page.php:662
 msgid "upgrade to pro"
 msgstr "الترقية إلى النسخة الاحترافية"
 
-#: includes/options-page.php:465
+#: includes/options-page.php:663
 msgid " (opens in a new window)"
 msgstr " (يفتح في نافذة جديدة)"
 
-#: includes/options-page.php:470
+#: includes/options-page.php:668
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "اختر أنواع المنشورات التي يجب فحصها أثناء المسح. يرجى ملاحظة أن إزالة نوع منشور تم تحديده مسبقًا سيؤدي إلى إزالة معلومات المسح الخاصة به وأي تحذيرات مخصصة تم تجاهلها."
 
-#: includes/options-page.php:608
+#: includes/options-page.php:810
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "حذف جميع بيانات Accessibility Checker عند إلغاء تثبيت الإضافة."
+
+#: includes/options-page.php:965
+msgid "Choose which user roles have permission to ignore issues."
+msgstr "اختر أي أدوار المستخدمين لديها إذن لتجاهل المشكلات."
+
+#: includes/options-page.php:998
+msgid "Configure which user roles have access to specific Accessibility Checker features."
+msgstr "قم بتكوين أدوار المستخدمين التي لديها حق الوصول إلى ميزات Accessibility Checker المحددة."
 
 #: includes/wcag.php:11
 msgid "Non-text Content"
@@ -4085,27 +4176,27 @@ msgstr "تم حفظ الإعدادات. للتأكيد وعكس هذه التح�
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "تم تثبيت إضافة تحذيرات النافذة الجديدة للوصول. سيتجاوز الإصلاح الخاص بالروابط التي تفتح في نافذة جديدة والمدرج هنا وظائفها. يمكنك إزالة الإضافة بأمان واستخدام هذه الإصلاحات بدلاً منها."
 
-#: partials/custom-meta-box.php:10
+#: partials/custom-meta-box.php:13
 msgid "Accessibility Checker issues panels"
 msgstr "لوحات مشكلات Accessibility Checker"
 
-#: partials/custom-meta-box.php:21
+#: partials/custom-meta-box.php:24
 msgid "Summary"
 msgstr "الملخص"
 
-#: partials/custom-meta-box.php:31
+#: partials/custom-meta-box.php:34
 msgid "Details"
 msgstr "التفاصيل"
 
-#: partials/custom-meta-box.php:41
+#: partials/custom-meta-box.php:44
 msgid "Readability"
 msgstr "سهولة القراءة"
 
-#: partials/custom-meta-box.php:50
+#: partials/custom-meta-box.php:53
 msgid "Delete all currently found issues"
 msgstr "حذف جميع المشكلات المكتشفة حاليًا"
 
-#: partials/custom-meta-box.php:52
+#: partials/custom-meta-box.php:55
 #: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Clear Issues"
@@ -4451,14 +4542,18 @@ msgstr "لم يتم اكتشاف أي مشاكل."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] "خطأ"
-msgstr[1] "أخطاء"
+msgstr[0] "errors"
+msgstr[1] "errors"
+msgstr[2] "errors"
+msgstr[3] "errors"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] "تحذير"
-msgstr[1] "تحذيرات"
+msgstr[0] "warnings"
+msgstr[1] "warnings"
+msgstr[2] "warnings"
+msgstr[3] "warnings"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4467,8 +4562,10 @@ msgstr "و"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] "مشكلة تم تجاهلها"
-msgstr[1] "مشاكل تم تجاهلها"
+msgstr[0] "ignored issues"
+msgstr[1] "ignored issues"
+msgstr[2] "ignored issues"
+msgstr[3] "ignored issues"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
@@ -4509,6 +4606,10 @@ msgstr "نافذة جديدة"
 #: build/pageScanner.bundle.js:2
 msgid "new tab"
 msgstr "تبويب جديد"
+
+#: build/pageScanner.bundle.js:2
+msgid "new document"
+msgstr "مستند جديد"
 
 #: build/pageScanner.bundle.js:2
 msgid "click"

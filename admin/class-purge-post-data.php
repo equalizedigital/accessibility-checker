@@ -82,6 +82,15 @@ class Purge_Post_Data {
 
 		global $wpdb;
 
+		/**
+		 * Fires before deleting posts of a specific post type.
+		 *
+		 * @since 1.31.0
+		 *
+		 * @param string $post_type Post Type.
+		 */
+		do_action( 'edac_before_delete_cpt_posts', $post_type );
+
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 		return $wpdb->query(
 			$wpdb->prepare(

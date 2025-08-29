@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.6
 Tested up to: 6.8
-Stable tag: 1.30.1
+Stable tag: 1.31.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -211,6 +211,12 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+= 1.31.0 =
+* Improved: Don't flag YouTube scripts as video present mistakenly.
+* Improved: Underlined text rule now will find more instances of underlined text.
+* Improved: Added additional string label check for links that open new windows/tabs.
+* Updated: Reordered some settings for better grouping.
+
 = 1.30.1 =
 * Improved: The rescan and clear buttons in the frontend highlighter are now only shown when they can be used.
 * Improved: Issue saving and clearing now has more robust capability checking.
@@ -233,21 +239,5 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 * Added: Better descriptions and help text for each of the rules.
 * Added: Improved landmark location feature to show the location of the landmark in the DOM.
 * Fixed: Avoid possible error with removal of an index on an ID column.
-
-= 1.27.1 =
-* Fixed: Don't alter a UNIQUE index before swapping to PRIMARY key index.
-
-= 1.27.0 =
-* Added: Landmark Location feature.
-* Added: Plugin action links.
-* Fixed: Allow frontend highlighter to kickoff scan if there are no issues for the page.
-* Fixed: Average issues per post calculation to handle zero issues.
-* Added: Documentation, support, and rate plugin links to plugin row meta.
-* Added: Admin toolbar with quick links.
-* Updated: UNIQUE KEY to PRIMARY KEY for id column, bumped DB version to 1.0.4.
-* Updated: link_improper now lets links with role of tab pass.
-
-= 1.26.0 =
-* Enhanced: Better translation handling across the plugin.
 
 Older versions can be found in the plugins `changelog.txt`.
