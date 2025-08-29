@@ -97,6 +97,7 @@ if ( class_exists( 'EDAC\Inc\Plugin' ) ) {
 require_once plugin_dir_path( __FILE__ ) . 'includes/deprecated/deprecated.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/activation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/deactivation.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/upgrade.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
 

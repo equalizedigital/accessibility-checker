@@ -17,6 +17,7 @@ function edac_activation() {
 	update_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s' ) );
 	update_option( 'edac_post_types', [ 'post', 'page' ] );
 	update_option( 'edac_simplified_summary_position', 'after' );
+	update_option( 'edac_version', EDAC_VERSION );
 
 	Accessibility_Statement::add_page();
 

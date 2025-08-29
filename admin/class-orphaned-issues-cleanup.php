@@ -8,7 +8,7 @@
 namespace EDAC\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+		exit; // Exit if accessed directly.
 }
 
 /**
@@ -18,64 +18,29 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Orphaned_Issues_Cleanup {
 
-	/**
-	 * Cron event name.
-	 *
-	 * @var string
-	 */
-	const EVENT = 'edac_cleanup_orphaned_issues';
+		/**
+		 * Max number of posts to cleanup per run.
+		 *
+		 * @var int
+		 */
+		const BATCH_LIMIT = 50;
 
-	/**
-	 * Max number of posts to cleanup per run.
-	 *
-	 * @var int
-	 */
-	const BATCH_LIMIT = 50;
-
-	/**
-	 * Batch size for cleanup (overrides BATCH_LIMIT if set).
-	 *
-	 * @var int|null
-	 */
+		/**
+		 * Batch size for cleanup (overrides BATCH_LIMIT if set).
+		 *
+		 * @var int|null
+		 */
 	private ?int $batch_size = null;
 
-	/**
-	 * Register hooks.
-	 *
-	 * @since 1.29.0
-	 *
-	 * @return void
-	 */
+		/**
+		 * Register hooks.
+		 *
+		 * @since 1.29.0
+		 *
+		 * @return void
+		 */
 	public function init_hooks() {
-		self::schedule_event();
-		add_action( self::EVENT, [ $this, 'run_cleanup' ] );
-	}
-
-	/**
-	 * Schedule the cleanup event.
-	 *
-	 * @since 1.29.0
-	 *
-	 * @return void
-	 */
-	public static function schedule_event() {
-		if ( ! wp_next_scheduled( self::EVENT ) ) {
-			wp_schedule_event( time(), 'daily', self::EVENT );
-		}
-	}
-
-	/**
-	 * Unschedule the cleanup event.
-	 *
-	 * @since 1.29.0
-	 *
-	 * @return void
-	 */
-	public static function unschedule_event() {
-		$timestamp = wp_next_scheduled( self::EVENT );
-		if ( $timestamp ) {
-			wp_unschedule_event( $timestamp, self::EVENT );
-		}
+			add_action( Scheduled_Tasks::EVENT, [ $this, 'run_cleanup' ] );
 	}
 
 	/**
