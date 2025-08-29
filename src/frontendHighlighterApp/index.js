@@ -373,8 +373,9 @@ class AccessibilityCheckerHighlight {
 				ancestorResize: true,
 				elementResize: true,
 				layoutShift: true,
-				animationFrame: true, 	// TODO: Disable styles sometimes causes the toolbar to disappear until a scroll or resize event. This may help - but is expensive.
-
+				// Note: animationFrame helps with toolbar visibility issues when styles are disabled,
+				// but comes with performance cost. Enabled to ensure consistent tooltip positioning.
+				animationFrame: true,
 			}
 		);
 
@@ -521,18 +522,27 @@ class AccessibilityCheckerHighlight {
 				//issueElement.focus();
 
 				if ( ! this.checkVisibility( tooltip ) || ! this.checkVisibility( element ) ) {
-					this.currentIssueStatus = 'The element is not visible. Try disabling styles.';
-					//TODO: console.log(`Element with id ${id} is not visible!`);
+					this.currentIssueStatus = __( 'The element is not visible. Try disabling styles.', 'accessibility-checker' );
+					if ( window.edacDebug ) {
+						// eslint-disable-next-line no-console
+						console.log( __( 'EDAC: Element with id %s is not visible!', 'accessibility-checker' ).replace( '%s', `${ id }` ) );
+					}
 				} else {
 					this.currentIssueStatus = null;
 				}
 			} else {
-				this.currentIssueStatus = 'The element is not focusable. Try disabling styles.';
-				//TODO: console.log(`Element with id ${id} is not focusable!`);
+				this.currentIssueStatus = __( 'The element is not focusable. Try disabling styles.', 'accessibility-checker' );
+				if ( window.edacDebug ) {
+					// eslint-disable-next-line no-console
+					console.log( __( 'EDAC: Element with id %s is not focusable!', 'accessibility-checker' ).replace( '%s', `${ id }` ) );
+				}
 			}
 		} else {
-			this.currentIssueStatus = 'The element was not found on the page.';
-			//TODO: console.log(`Element with id ${id} not found in the document!`);
+			this.currentIssueStatus = __( 'The element was not found on the page.', 'accessibility-checker' );
+			if ( window.edacDebug ) {
+				// eslint-disable-next-line no-console
+				console.log( __( 'EDAC: Element with id %s not found in the document!', 'accessibility-checker' ).replace( '%s', `${ id }` ) );
+			}
 		}
 
 		this.descriptionOpen( id );

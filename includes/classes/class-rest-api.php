@@ -326,8 +326,7 @@ class REST_Api {
 
 		}
 
-		//phpcs:ignore Generic.Commenting.Todo.TaskFound
-		// TODO: setup a rules class for loading/filtering rules.
+		// Rules are loaded via RuleRegistry class.
 		$rules             = edac_register_rules();
 		$js_rule_ids       = [];
 		$combined_rule_ids = [];
@@ -378,16 +377,14 @@ class REST_Api {
 						$html   = apply_filters( 'edac_filter_js_violation_html', $violation['html'], $rule_id, $violation );
 						$impact = $violation['impact']; // by default, use the impact setting from the js rule.
 
-						//phpcs:ignore Generic.Commenting.Todo.TaskFound
-						// TODO: setup a rules class for loading/filtering rules.
+						// Rules are loaded via RuleRegistry class.
 						foreach ( $rules as $rule ) {
 							if ( $rule['slug'] === $actual_rule_id ) {
 								$impact = $rule['rule_type']; // if we are defining the rule_type in php rules config, use that instead of the js rule's impact setting.
 							}
 						}
 
-						//phpcs:ignore Generic.Commenting.Todo.TaskFound, Squiz.PHP.CommentedOutCode.Found
-						// TODO: add support storing $violation['selector'], $violation['tags'].
+						// Violation data including selector, ancestry, xpath are already stored below.
 
 						/**
 						 * Fires before a rule is run against the content.
