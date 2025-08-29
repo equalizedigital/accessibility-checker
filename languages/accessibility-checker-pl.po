@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-28T14:35:23+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:10:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -2752,12 +2752,12 @@ msgid "Scan Speed"
 msgstr "Szybkość skanowania"
 
 #: includes/options-page.php:172
-msgid "Enable Archive Scanning"
-msgstr "Włącz skanowanie archiwów"
+msgid "Archive Scanning"
+msgstr "Skanowanie archiwów"
 
 #: includes/options-page.php:181
-msgid "Scan All Taxonomy Terms"
-msgstr "Skanuj wszystkie terminy taksonomii"
+msgid "Taxonomy Scanning"
+msgstr "Skanowanie taksonomii"
 
 #: includes/options-page.php:208
 msgid "Prompt for Simplified Summary"
@@ -2861,16 +2861,16 @@ msgid "Enable scanning of archive pages"
 msgstr "Włącz skanowanie stron archiwum"
 
 #: includes/options-page.php:454
-msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method selects taxonomy terms whose archive pages are included in the scan."
-msgstr "Wybierz, czy strony archiwum powinny być uwzględnione w pełnym skanowaniu witryny. Domyślnie metoda próbkowania wybiera terminy taksonomii, których strony archiwum są uwzględniane w skanowaniu."
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "Wybierz, czy strony archiwalne powinny być uwzględnione w pełnych skanach witryny. Domyślnie używana jest metoda próbkowania do wyboru terminów taksonomii dla danych archiwalnych."
 
 #: includes/options-page.php:480
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Skanuj wszystkie terminy taksonomii zamiast tylko próbki"
 
 #: includes/options-page.php:484
-msgid "Check archive pages for all taxonomy terms instead of a representative sample. Requires archive page scanning and may significantly increase scan time and server load."
-msgstr "Sprawdzaj strony archiwum dla wszystkich terminów taksonomii zamiast reprezentatywnej próbki. Wymaga skanowania stron archiwum i może znacznie wydłużyć czas skanowania oraz zwiększyć obciążenie serwera."
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "Sprawdź wszystkie strony archiwalne terminów taksonomii zamiast reprezentatywnej próbki. Wymaga to włączenia skanowania stron archiwalnych i może dodać dużą liczbę adresów URL do listy skanowania."
 
 #: includes/options-page.php:513
 msgid "Before the content"
