@@ -74,7 +74,7 @@ class Frontend_Highlight {
 	 */
 	public function ajax() {
 
-		if ( ! check_ajax_referer( 'ajax-nonce', 'nonce', false ) ) {
+		if ( ! check_ajax_referer( 'frontend-highlighter', 'nonce', false ) ) {
 			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 		}
