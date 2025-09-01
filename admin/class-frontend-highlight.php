@@ -85,6 +85,28 @@ class Frontend_Highlight {
 		}
 
 		$post_id = isset( $_REQUEST['post_id'] ) ? (int) $_REQUEST['post_id'] : 0;
+
+		$post = get_post( $post_id );
+		if ( ! $post ) {
+			wp_send_json_error( new \WP_Error( '-4', __( 'Post not found', 'accessibility-checker' ) ) );
+		}
+
+		// Check if the user has permission to view this post.
+		if ( is_user_logged_in() ) {
+			// For authenticated users, use read_post capability.
+			if ( ! current_user_can( 'read_post', $post_id ) ) {
+				wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
+			}
+		} elseif ( apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) ) {
+			// For unauthenticated users, only allow access to publicly viewable posts.
+			if ( ! is_post_publicly_viewable( $post ) ) {
+				wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
+			}
+		} else {
+			// Shouldn't ever reach this point but error just in case.
+			wp_send_json_error( __( 'Permission Denied', 'accessibility-checker' ) );
+		}
+
 		$results = $this->get_issues( $post_id );
 
 		if ( ! $results ) {
