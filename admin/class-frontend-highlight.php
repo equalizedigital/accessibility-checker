@@ -75,8 +75,7 @@ class Frontend_Highlight {
 	public function ajax() {
 
 		if ( ! check_ajax_referer( 'frontend-highlighter', 'nonce', false ) ) {
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
@@ -85,8 +84,7 @@ class Frontend_Highlight {
 		}
 
 		$post_id = isset( $_REQUEST['post_id'] ) ? (int) $_REQUEST['post_id'] : 0;
-
-		$post = get_post( $post_id );
+		$post    = get_post( $post_id );
 		if ( ! $post ) {
 			wp_send_json_error( new \WP_Error( '-4', __( 'Post not found', 'accessibility-checker' ) ) );
 		}
@@ -104,14 +102,13 @@ class Frontend_Highlight {
 			}
 		} else {
 			// Shouldn't ever reach this point but error just in case.
-			wp_send_json_error( __( 'Permission Denied', 'accessibility-checker' ) );
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		$results = $this->get_issues( $post_id );
 
 		if ( ! $results ) {
-			$error = new \WP_Error( '-3', __( 'Issue query returned no results', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
+			wp_send_json_error( new \WP_Error( '-3', __( 'Issue query returned no results', 'accessibility-checker' ) ) );
 		}
 
 		$rules = edac_register_rules();
@@ -155,10 +152,7 @@ class Frontend_Highlight {
 		}
 
 		if ( ! $issues ) {
-
-			$error = new \WP_Error( '-5', __( 'Object query returned no results', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-5', __( 'Object query returned no results', 'accessibility-checker' ) ) );
 		}
 
 		// if we have fixes then create fields for each of the groups.
