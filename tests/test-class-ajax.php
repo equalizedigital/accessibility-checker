@@ -90,14 +90,14 @@ namespace EDAC\Inc {
             // Provide deterministic default; tests override via globals when needed.
             global $edac__summary_fixture;
             return $edac__summary_fixture ?? [
-                'passed_tests' => 75,
-                'errors' => 1,
-                'contrast_errors' => 2,
-                'warnings' => 3,
-                'ignored' => 4,
-                'readability' => 'Grade 8',
-                'content_grade' => 8,
-                'simplified_summary' => true,
+                'passed_tests'      => 75,
+                'errors'            => 1,
+                'contrast_errors'   => 2,
+                'warnings'          => 3,
+                'ignored'           => 4,
+                'readability'       => 'Grade 8',
+                'content_grade'     => 8,
+                'simplified_summary'=> true,
             ];
         }
     }
@@ -123,12 +123,12 @@ namespace EDAC\Admin {
         class Ajax {
             public function __construct() {}
             public function init_hooks() {
-                \add_action( 'wp_ajax_edac_summary_ajax', [ $this, 'summary' ] );
-                \add_action( 'wp_ajax_edac_details_ajax', [ $this, 'details' ] );
-                \add_action( 'wp_ajax_edac_readability_ajax', [ $this, 'readability' ] );
-                \add_action( 'wp_ajax_edac_insert_ignore_data', [ $this, 'add_ignore' ] );
+                \add_action( 'wp_ajax_edac_summary_ajax',           [ $this, 'summary' ] );
+                \add_action( 'wp_ajax_edac_details_ajax',           [ $this, 'details' ] );
+                \add_action( 'wp_ajax_edac_readability_ajax',       [ $this, 'readability' ] );
+                \add_action( 'wp_ajax_edac_insert_ignore_data',     [ $this, 'add_ignore' ] );
                 \add_action( 'wp_ajax_edac_update_simplified_summary', [ $this, 'simplified_summary' ] );
-                \add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', [ $this, 'dismiss_welcome_cta' ] );
+                \add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax',  [ $this, 'dismiss_welcome_cta' ] );
                 \add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', [ $this, 'dismiss_dashboard_cta' ] );
                 ( new \EDAC\Admin\OptIn\Email_Opt_In() )->register_ajax_handlers();
             }
@@ -148,8 +148,10 @@ namespace EDAC\Admin {
                 $summary = ( new \EDAC\Inc\Summary_Generator($post_id) )->generate_summary();
 
                 $simplified_summary_prompt = \get_option('edac_simplified_summary_prompt');
-                $simplified_summary = \get_post_meta($post_id, '_edac_simplified_summary', true) ? \get_post_meta($post_id, '_edac_simplified_summary', true) : '';
-                $simplified_summary_grade = 0;
+                $simplified_summary        = \get_post_meta($post_id, '_edac_simplified_summary', true)
+                                             ? \get_post_meta($post_id, '_edac_simplified_summary', true)
+                                             : '';
+                $simplified_summary_grade  = 0;
                 if ( class_exists( 'DaveChild\\TextStatistics\\TextStatistics' ) ) {
                     $text_statistics = new \DaveChild\TextStatistics\TextStatistics();
                     $simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
@@ -403,14 +405,14 @@ namespace EDAC\Admin {
             // Case A: prompt === 'none' → default message shown (no "does not require" text)
             $edac__options['edac_simplified_summary_prompt'] = 'none';
             $edac__summary_fixture = [
-                'passed_tests' => 51,
-                'errors' => 0,
+                'passed_tests'    => 51,
+                'errors'          => 0,
                 'contrast_errors' => 0,
-                'warnings' => 0,
-                'ignored' => 0,
-                'readability' => 'Grade 10',
-                'content_grade' => 10,
-                'simplified_summary' => false,
+                'warnings'        => 0,
+                'ignored'         => 0,
+                'readability'     => 'Grade 10',
+                'content_grade'   => 10,
+                'simplified_summary'=> false,
             ];
             $_REQUEST = ['nonce'=>'good','post_id'=>1];
             $this->expectException(\RuntimeException::class);
@@ -435,18 +437,18 @@ namespace EDAC\Admin {
             // Case C: simplified_summary present but grade too high (>9)
             $edac__post_meta[3]['_edac_simplified_summary'] = 'Long complex text.';
             $edac__summary_fixture = [
-                'passed_tests' => 40,
-                'errors' => 0,
-                'contrast_errors' => 0,
-                'warnings' => 0,
-                'ignored' => 0,
-                'readability' => 'Grade 10',
-                'content_grade' => 12,
-                'simplified_summary' => true,
+                'passed_tests'      => 40,
+                'errors'            => 0,
+                'contrast_errors'   => 0,
+                'warnings'          => 0,
+                'ignored'           => 0,
+                'readability'       => 'Grade 10',
+                'content_grade'     => 12,
+                'simplified_summary'=> true,
             ];
             // Fake TextStatistics class to force grade > 9
             if (!class_exists('DaveChild\\TextStatistics\\TextStatistics')) {
-                class_alias(\\EDAC\\Admin\\Tests\\FakeTextStatistics::class, 'DaveChild\\TextStatistics\\TextStatistics');
+                class_alias(\EDAC\Admin\Tests\FakeTextStatistics::class, 'DaveChild\\TextStatistics\\TextStatistics');
             }
             $_REQUEST = ['nonce'=>'good','post_id'=>3];
             try {
@@ -457,7 +459,7 @@ namespace EDAC\Admin {
             }
 
             // Case D: simplified_summary present and grade <= 9
-            \\EDAC\\Admin\\Tests\\FakeTextStatistics::$grade = 8;
+            \EDAC\Admin\Tests\FakeTextStatistics::$grade = 8;
             $_REQUEST = ['nonce'=>'good','post_id'=>4];
             $edac__post_meta[4]['_edac_simplified_summary'] = 'Short simple text.';
             try {

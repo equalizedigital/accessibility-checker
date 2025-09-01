@@ -7,10 +7,11 @@
  * Framework: PHPUnit.
  *
  * If repository provides a tests/bootstrap.php, ensure it is loaded via phpunit.xml.
- * If using Brain Monkey or WP_Mock in this project, you can replace the simple stubs below
+ * If using Brain Monkey or WP_Mock in this project, you can replace these stubs
  * with those libraries' function mocks to integrate with the existing approach.
  */
 
+namespace {
 use PHPUnit\Framework\TestCase;
 
 if (!class_exists('\EDAC\Inc\Enqueue_Frontend')) {
@@ -20,7 +21,8 @@ if (!class_exists('\EDAC\Inc\Enqueue_Frontend')) {
 }
 
 // Minimal shims for WordPress functions/constants used by the class under test.
-// If your test suite already provides these (e.g., Brain Monkey), remove these shims.
+// If your test suite already provides these (e.g., Brain Monkey), remove these stubs.
+
 if (!defined('EDAC_VERSION')) {
     define('EDAC_VERSION', '9.9.9-tests');
 }
@@ -54,9 +56,7 @@ $edac_test_state = [
     'is_user_logged_in'      => true,
 ];
 
-//
 // WP shim functions
-//
 
 if (!function_exists('is_admin')) {
     function is_admin() {
@@ -172,10 +172,8 @@ if (!function_exists('apply_filters')) {
         return $value;
     }
 }
+}
 
-//
-// Stub for Settings::get_scannable_post_types()
-//
 namespace EDAC\Admin {
     class Settings {
         public static $types = ['post', 'page'];
@@ -186,7 +184,6 @@ namespace EDAC\Admin {
 }
 
 namespace EDAC\Inc {
-
     use PHPUnit\Framework\TestCase;
     use EDAC\Admin\Settings;
 
