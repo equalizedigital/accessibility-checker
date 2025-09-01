@@ -18,19 +18,41 @@ namespace Tests\EDAC\Admin;
 
 use PHPUnit\Framework\TestCase;
 
+// Define Brain Monkey compatibility shims if the library is not available
 if (!class_exists('\Brain\Monkey')) {
-	// Allow tests to run without Brain Monkey by defining minimal shims for Functions\expect/when.
-	// These shims no-op but keep tests syntactically valid when the repo doesn't include Brain Monkey.
-	namespace Brain\Monkey {
+	// Create minimal Brain Monkey functions to allow tests to run without the library
+	if (!function_exists('Brain\Monkey\setUp')) {
 		function setUp() {}
+	}
+	if (!function_exists('Brain\Monkey\tearDown')) {
 		function tearDown() {}
 	}
-	namespace Brain\Monkey\Functions {
-		function when($name) { return new class { public function justReturn($v){return $this;} public function returnArg(){return $this;} public function returnArgWhen($i){return $this;} public function alias($n){return $this;} public function echoArg(){return $this;} public function returnTrue(){return $this;} public function returnFalse(){return $this;} public function returnVoid(){return $this;} public function returnArgFunction(){return $this;} public function expect(){return $this;} public function andReturn($v){return $this;} public function andReturnUsing($cb){return $this;} public function andThrow($e){return $this;} public function with(){return $this;} public function justEcho($v){return $this;} }; }
-		function expect($name) { return when($name); }
+	if (!function_exists('Brain\Monkey\Functions\when')) {
+		function when($name) { 
+			return new class { 
+				public function justReturn($v){return $this;} 
+				public function returnArg(){return $this;} 
+				public function returnArgWhen($i){return $this;} 
+				public function alias($n){return $this;} 
+				public function echoArg(){return $this;} 
+				public function returnTrue(){return $this;} 
+				public function returnFalse(){return $this;} 
+				public function returnVoid(){return $this;} 
+				public function returnArgFunction(){return $this;} 
+				public function expect(){return $this;} 
+				public function andReturn($v){return $this;} 
+				public function andReturnUsing($cb){return $this;} 
+				public function andThrow($e){return $this;} 
+				public function with(){return $this;} 
+				public function justEcho($v){return $this;} 
+			}; 
+		}
 	}
-	// Restore Tests namespace for the rest of the file.
-	namespace Tests\EDAC\Admin;
+	if (!function_exists('Brain\Monkey\Functions\expect')) {
+		function expect($name) { 
+			return when($name); 
+		}
+	}
 }
 
 use Brain\Monkey;
