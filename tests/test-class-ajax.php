@@ -117,7 +117,10 @@ namespace EDAC\Admin {
     use PHPUnit\Framework\TestCase;
     use RuntimeException;
 
-    require_once __DIR__ . '/../../vendor/autoload.php'; // if available; ignored if missing.
+    // Try to include Composer autoload if available; ignored if missing.
+    if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
+        require_once __DIR__ . '/../../vendor/autoload.php';
+    }
 
     // Bring in the class under test by recreating minimal subset if not autoloaded.
     if (!class_exists('EDAC\\Admin\\Ajax')) {
