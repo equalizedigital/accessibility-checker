@@ -602,6 +602,11 @@ class Ajax {
 
 		}
 
+		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
+			$error = new \WP_Error( '-4', __( 'You do not have permission to view the readability information for this post.', 'accessibility-checker' ) );
+			wp_send_json_error( $error );
+		}
+
 		$post_id                     = (int) $_REQUEST['post_id'];
 		$html                        = '';
 		$simplified_summary          = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
