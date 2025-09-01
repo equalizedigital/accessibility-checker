@@ -1,0 +1,3 @@
+Assumed testing library/framework: PHPUnit for PHP.
+
+These tests are written to integrate with your existing PHPUnit setup. If your repository uses the WordPress Core test suite or Brain Monkey, ensure that tests/bootstrap.php loads those dependencies so that WordPress functions invoked by EDAC\Admin\Ajax are available. The test file includes minimal fallback stubs to avoid fatal exits and to assert JSON responses via exceptions.
