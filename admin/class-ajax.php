@@ -53,16 +53,15 @@ class Ajax {
 
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
+			wp_send_json_error( new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) ) );
+		}
 
 		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
-			wp_send_json_error( \WP_Error( '-5', __( 'You do not have permission to view this information for this post.', 'accessibility-checker' ) ) );
+			wp_send_json_error( new \WP_Error( '-5', __( 'You do not have permission to view this information for this post.', 'accessibility-checker' ) ) );
 		}
 
 		$html            = [];
@@ -122,29 +121,29 @@ class Ajax {
 
 			$html['content'] .= '
 				' . edac_generate_summary_stat(
-			'edac-summary-errors',
-			$summary['errors'],
-			/* translators: %s: Number of errors */
+				'edac-summary-errors',
+				$summary['errors'],
+				/* translators: %s: Number of errors */
 				sprintf( _n( '%s Error', '%s Errors', $summary['errors'], 'accessibility-checker' ), $summary['errors'] )
-		) . '
+			) . '
 				' . edac_generate_summary_stat(
-			'edac-summary-contrast',
-			$summary['contrast_errors'],
-			/* translators: %s: Number of contrast errors */
+				'edac-summary-contrast',
+				$summary['contrast_errors'],
+				/* translators: %s: Number of contrast errors */
 				sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $summary['contrast_errors'], 'accessibility-checker' ), $summary['contrast_errors'] )
-		) . '
+			) . '
 				' . edac_generate_summary_stat(
-			'edac-summary-warnings',
-			$summary['warnings'],
-			/* translators: %s: Number of warnings */
+				'edac-summary-warnings',
+				$summary['warnings'],
+				/* translators: %s: Number of warnings */
 				sprintf( _n( '%s Warning', '%s Warnings', $summary['warnings'], 'accessibility-checker' ), $summary['warnings'] )
-		) . '
+			) . '
 				' . edac_generate_summary_stat(
-			'edac-summary-ignored',
-			$summary['ignored'],
-			/* translators: %s: Number of ignored items */
+				'edac-summary-ignored',
+				$summary['ignored'],
+				/* translators: %s: Number of ignored items */
 				sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
-		) . '
+			) . '
 
 		</ul>
 		<div class="edac-summary-readability" ' . ( $is_virtual_page ? 'style="display: none;"' : '' ) . '>
@@ -180,10 +179,7 @@ class Ajax {
 		$html['content'] .= '</small></div>' . PHP_EOL;
 
 		if ( ! $html ) {
-
-			$error = new \WP_Error( '-3', __( 'No summary to return', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-3', __( 'No summary to return', 'accessibility-checker' ) ) );
 		}
 
 		wp_send_json_success( wp_json_encode( $html ) );
@@ -222,10 +218,7 @@ class Ajax {
 
 		// Send error if table name is not valid.
 		if ( ! $table_name ) {
-
-			$error = new \WP_Error( '-3', __( 'Invalid table name', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-3', __( 'Invalid table name', 'accessibility-checker' ) ) );
 		}
 
 		$rules = edac_register_rules();
@@ -564,10 +557,7 @@ class Ajax {
 		}
 
 		if ( ! $html ) {
-
-			$error = new \WP_Error( '-4', __( 'No details to return', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-4', __( 'No details to return', 'accessibility-checker' ) ) );
 		}
 
 		wp_send_json_success( wp_json_encode( $html ) );
@@ -701,10 +691,7 @@ class Ajax {
 		$html .= '<span class="dashicons dashicons-info"></span><a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
 
 		if ( ! $html ) {
-
-			$error = new \WP_Error( '-3', __( 'No readability data to return', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-3', __( 'No readability data to return', 'accessibility-checker' ) ) );
 		}
 
 		wp_send_json_success( wp_json_encode( $html ) );
@@ -722,10 +709,7 @@ class Ajax {
 
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		global $wpdb;
@@ -759,8 +743,7 @@ class Ajax {
 			$object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $first_id ) );
 
 			if ( ! $object ) {
-				$error = new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) );
-				wp_send_json_error( $error );
+				wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object ) );
@@ -781,10 +764,7 @@ class Ajax {
 		];
 
 		if ( ! $data ) {
-
-			$error = new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 		}
 		wp_send_json_success( wp_json_encode( $data ) );
 	}
@@ -803,36 +783,27 @@ class Ajax {
 
 			// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
-
-			$error = new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) ) );
 		}
 
 		if ( ! isset( $_REQUEST['summary'] ) ) {
-
-			$error = new \WP_Error( '-3', __( 'The summary was not set', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-3', __( 'The summary was not set', 'accessibility-checker' ) ) );
 		}
 
-			$post_id = (int) $_REQUEST['post_id'];
-			update_post_meta(
-				$post_id,
-				'_edac_simplified_summary',
-				sanitize_text_field( wp_unslash( $_REQUEST['summary'] ) )
-			);
 		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
 			wp_send_json_error( new \WP_Error( '-5', __( 'You do not have permission to edit this post.', 'accessibility-checker' ) ) );
 		}
 
+		$post_id = (int) $_REQUEST['post_id'];
+		update_post_meta(
+			$post_id,
+			'_edac_simplified_summary',
+			sanitize_text_field( wp_unslash( $_REQUEST['summary'] ) )
+		);
 
 		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
 		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
