@@ -207,7 +207,7 @@ class Ajax {
 		}
 
 		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
-			wp_send_json_error( \WP_Error( '-5', __( 'You do not have permission to view this information for this post.', 'accessibility-checker' ) ) );
+			wp_send_json_error( new \WP_Error( '-5', __( 'You do not have permission to view this information for this post.', 'accessibility-checker' ) ) );
 		}
 
 		$html = '';
@@ -584,7 +584,7 @@ class Ajax {
 		}
 
 		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
-			wp_send_json_error( \WP_Error( '-5', __( 'You do not have permission to view this information for this post.', 'accessibility-checker' ) ) );
+			wp_send_json_error( new \WP_Error( '-5', __( 'You do not have permission to view this information for this post.', 'accessibility-checker' ) ) );
 		}
 
 		$post_id                     = (int) $_REQUEST['post_id'];
