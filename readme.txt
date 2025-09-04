@@ -211,6 +211,10 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+= 1.31.1 =
+* Added: Privacy policy link added at newsletter signup.
+* Improved: Error messages returned from some ajax actions are more descriptive.
+
 = 1.31.0 =
 * Improved: Don't flag YouTube scripts as video present mistakenly.
 * Improved: Underlined text rule now will find more instances of underlined text.
