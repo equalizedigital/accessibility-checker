@@ -149,7 +149,7 @@ class Email_Opt_In {
 					<small>
 						<?php
 						printf(
-						/* translators: 1: Equalize Digital. */
+						/* translators: 1: link to privacy policy page. 2: link close tag. */
 							esc_html__( 'By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s.', 'accessibility-checker' ),
 							'<a href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'email_newsletter', 'privacy', false ) ) . '" target="_blank">',
 							'</a>'
