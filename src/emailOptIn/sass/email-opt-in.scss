@@ -4,6 +4,23 @@
 	input {
 		width: 100%;
 	}
+
+	._button-wrapper {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: start;
+		gap: 1rem;
+		align-items: center;
+		margin-top: 0;
+
+		.edac-welcome-aside & {
+			flex-direction: column;
+
+			button {
+				width: 100%;
+			}
+		}
+	}
 }
 
 
