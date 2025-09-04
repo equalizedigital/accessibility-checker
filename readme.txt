@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.6
 Tested up to: 6.8
-Stable tag: 1.31.0
+Stable tag: 1.31.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,6 +210,10 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
+
+= 1.31.1 =
+* Added: Privacy policy link added at newsletter signup.
+* Improved: Error messages returned from some ajax actions are more descriptive.
 
 = 1.31.0 =
 * Improved: Don't flag YouTube scripts as video present mistakenly.
