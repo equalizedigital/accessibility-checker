@@ -86,7 +86,8 @@ class REST_Api {
 							],
 						],
 						'permission_callback' => function ( $request ) {
-							return $this->user_can_edit_passed_post_id( $request );
+							$post_id = (int) $request['id'];
+							return current_user_can( 'edit_post', $post_id ); // able to edit the post.
 						},
 					]
 				);
@@ -180,7 +181,8 @@ class REST_Api {
 							],
 						],
 						'permission_callback' => function ( $request ) {
-							return $this->user_can_edit_passed_post_id( $request );
+							$post_id = (int) $request['id'];
+							return current_user_can( 'edit_post', $post_id ); // able to edit the post.
 						},
 					]
 				);
@@ -204,25 +206,6 @@ class REST_Api {
 				);
 			}
 		);
-	}
-
-	/**
-	 * Check if the user can edit a post.
-	 *
-	 * This is a permission callback to replace several places where we check if the user can edit a post.
-	 *
-	 * @since 1.30.1
-	 *
-	 * @param \WP_REST_Request $request The request object passed from the REST call. This should contain the 'id' of the post to check permissions for.
-	 *
-	 * @return bool|\WP_Error
-	 */
-	public function user_can_edit_passed_post_id( $request ) {
-		if ( ! isset( $request['id'] ) ) {
-			return new \WP_Error( 'rest_post_invalid_id', __( 'A required parameter is missing.', 'accessibility-checker' ), [ 'status' => 400 ] );
-		}
-		$post_id = (int) $request['id'];
-		return current_user_can( 'edit_post', $post_id ); // able to edit the post.
 	}
 
 	/**

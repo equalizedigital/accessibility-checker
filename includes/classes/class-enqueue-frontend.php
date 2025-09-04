@@ -100,8 +100,8 @@ class Enqueue_Frontend {
 				'edacFrontendHighlighterApp',
 				[
 					'postID'           => $post_id,
-					'nonce'            => wp_create_nonce( 'ajax-nonce' ),
-					'restNonce'        => wp_create_nonce( 'wp_rest' ),
+					'nonce'            => wp_create_nonce( 'frontend-highlighter' ),
+					'restNonce'        => is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : '',
 					'userCanFix'       => current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ),
 					'userCanEdit'      => current_user_can( 'edit_post', $post_id ),
 					'edacUrl'          => esc_url_raw( get_site_url() ),
