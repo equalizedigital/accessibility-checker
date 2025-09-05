@@ -37,8 +37,14 @@ jobs:
           API_KEY=${{ secrets.INSTAWP_API_KEY }}
           SITE_ID=${{ secrets.INSTAWP_SITE_ID }}
           PLUGIN_URL="${{ github.event.inputs.plugin_zip_path }}"
-          curl -X PUT "https://app.instawp.io/api/v2/sites/$SITE_ID/install-content" \
+          curl -X PUT "https://app.instawp.io/api/v2/sites/$SITE_ID/execute-command" \
             -H "Authorization: Bearer $API_KEY" \
             -H "Accept: application/json" \
             -H "Content-Type: application/json" \
-            -d "{\"plugin_urls\": \"$PLUGIN_URL\"}"
+            -d "{
+              \"command_id\": 2623,
+              \"commandArguments\": [
+                {\"PLUGIN_STRING\": \"$PLUGIN_URL\"}
+              ]
+            }"
+
