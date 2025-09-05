@@ -1,67 +1,49 @@
 name: Deploy to InstaWP
 on:
-  release:
-    types: [published]
   workflow_dispatch:
+    inputs:
+      plugin_zip_path:
+        description: 'Path to the plugin zip file to deploy. Must be a zip file.'
+        required: true
+        type: string
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          tools: composer
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Cache Composer dependencies
-        uses: actions/cache@v4
-        with:
-          path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
-      - name: Cache NPM dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
-
-      - name: Install Composer dependencies
-        run: composer install --no-dev
-
-      - name: Install NPM dependencies
-        run: npm install
-
-      - name: Build plugin zip
-        run: npm run dist
-
-      - name: List files before deploy
+      - name: Validate plugin zip file
+        id: validate_zip
         run: |
-          echo "Current working directory:"
-          pwd
-          echo "Listing all files recursively:"
-          find . -type f | sort
+          ZIP_PATH="${{ github.event.inputs.plugin_zip_path }}"
+          if [ ! -f "$ZIP_PATH" ]; then
+            echo "File does not exist: $ZIP_PATH"
+            exit 1
+          fi
+          if [[ "$ZIP_PATH" != *.zip ]]; then
+            echo "File does not have .zip extension: $ZIP_PATH"
+            exit 1
+          fi
+          MIME_TYPE=$(file --mime-type -b "$ZIP_PATH")
+          if [ "$MIME_TYPE" != "application/zip" ]; then
+            echo "File is not a valid zip archive: $ZIP_PATH (type: $MIME_TYPE)"
+            exit 1
+          fi
+          echo "ZIP_PATH=$ZIP_PATH" >> $GITHUB_ENV
+
+      - name: Upload plugin zip to transfer.sh
+        id: upload_zip
+        run: |
+          UPLOAD_URL=$(curl --silent --upload-file "$ZIP_PATH" "https://transfer.sh/$(basename $ZIP_PATH)")
+          echo "UPLOAD_URL=$UPLOAD_URL" >> $GITHUB_ENV
 
       - name: Deploy to InstaWP
         run: |
           API_KEY=${{ secrets.INSTAWP_API_KEY }}
-          PLUGIN_ZIP=$(ls dist/accessibility-checker-*.zip | head -n 1)
           SITE_ID=${{ secrets.INSTAWP_SITE_ID }}
-          curl -X POST "https://api.instawp.io/v2/sites/install-plugin" \
+          PLUGIN_URL="$UPLOAD_URL"
+          curl -X PUT "https://app.instawp.io/api/v2/sites/$SITE_ID/install-content" \
             -H "Authorization: Bearer $API_KEY" \
-            -H "Content-Type: multipart/form-data" \
-            -F "file=@$PLUGIN_ZIP" \
-            -F "site_id=$SITE_ID"
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -d "{\"plugin_urls\": \"$PLUGIN_URL\"}"
