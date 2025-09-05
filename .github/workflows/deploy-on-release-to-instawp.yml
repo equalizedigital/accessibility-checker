@@ -48,10 +48,17 @@ jobs:
       - name: Build plugin zip
         run: npm run dist
 
+      - name: List files before deploy
+        run: |
+          echo "Current working directory:"
+          pwd
+          echo "Listing all files recursively:"
+          find . -type f | sort
+
       - name: Deploy to InstaWP
         run: |
           API_KEY=${{ secrets.INSTAWP_API_KEY }}
-          PLUGIN_ZIP="dist/accessibility-checker.zip"
+          PLUGIN_ZIP=$(ls dist/accessibility-checker-*.zip | head -n 1)
           SITE_ID=${{ secrets.INSTAWP_SITE_ID }}
           curl -X POST "https://api.instawp.io/v2/sites/install-plugin" \
             -H "Authorization: Bearer $API_KEY" \
