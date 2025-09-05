@@ -12,36 +12,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Validate plugin zip file
+      - name: Download and validate plugin zip file
         id: validate_zip
         run: |
-          ZIP_PATH="${{ github.event.inputs.plugin_zip_path }}"
-          if [ ! -f "$ZIP_PATH" ]; then
-            echo "File does not exist: $ZIP_PATH"
+          ZIP_URL="${{ github.event.inputs.plugin_zip_path }}"
+          ZIP_NAME=$(basename "$ZIP_URL")
+          curl -L "$ZIP_URL" -o "$ZIP_NAME"
+          if [ ! -f "$ZIP_NAME" ]; then
+            echo "File does not exist: $ZIP_NAME"
             exit 1
           fi
-          if [[ "$ZIP_PATH" != *.zip ]]; then
-            echo "File does not have .zip extension: $ZIP_PATH"
+          if [[ "$ZIP_NAME" != *.zip ]]; then
+            echo "File does not have .zip extension: $ZIP_NAME"
             exit 1
           fi
-          MIME_TYPE=$(file --mime-type -b "$ZIP_PATH")
+          MIME_TYPE=$(file --mime-type -b "$ZIP_NAME")
           if [ "$MIME_TYPE" != "application/zip" ]; then
-            echo "File is not a valid zip archive: $ZIP_PATH (type: $MIME_TYPE)"
+            echo "File is not a valid zip archive: $ZIP_NAME (type: $MIME_TYPE)"
             exit 1
           fi
-          echo "ZIP_PATH=$ZIP_PATH" >> $GITHUB_ENV
-
-      - name: Upload plugin zip to transfer.sh
-        id: upload_zip
-        run: |
-          UPLOAD_URL=$(curl --silent --upload-file "$ZIP_PATH" "https://transfer.sh/$(basename $ZIP_PATH)")
-          echo "UPLOAD_URL=$UPLOAD_URL" >> $GITHUB_ENV
 
       - name: Deploy to InstaWP
         run: |
           API_KEY=${{ secrets.INSTAWP_API_KEY }}
           SITE_ID=${{ secrets.INSTAWP_SITE_ID }}
-          PLUGIN_URL="$UPLOAD_URL"
+          PLUGIN_URL="${{ github.event.inputs.plugin_zip_path }}"
           curl -X PUT "https://app.instawp.io/api/v2/sites/$SITE_ID/install-content" \
             -H "Authorization: Bearer $API_KEY" \
             -H "Accept: application/json" \
