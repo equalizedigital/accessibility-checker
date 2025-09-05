@@ -1,5 +1,7 @@
 name: Deploy to InstaWP
 on:
+  release:
+    types: [published]
   workflow_dispatch:
     inputs:
       plugin_zip_path:
@@ -12,10 +14,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get release assets
+        id: get_release_assets
+        if: github.event_name == 'release'
+        run: |
+          # Get the list of assets from the release
+          ASSETS_URL="${{ github.event.release.assets_url }}"
+          echo "Release assets URL: $ASSETS_URL"
+
+          # Get the list of assets
+          ASSETS=$(curl -s \
+            -H "Authorization: token ${{ github.token }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "$ASSETS_URL")
+
+          # Find the first zip file that starts with accessibility-checker in the assets
+          ZIP_URL=$(echo "$ASSETS" | jq -r '.[] | select(.name | test("^accessibility-checker.*\\.zip$")) | .browser_download_url' | head -n 1)
+
+          if [[ -z "$ZIP_URL" ]]; then
+            echo "No accessibility-checker zip file found in release assets"
+            exit 1
+          fi
+
+          echo "Found accessibility-checker zip file: $ZIP_URL"
+          echo "zip_url=$ZIP_URL" >> $GITHUB_OUTPUT
+
       - name: Download and validate plugin zip file
         id: validate_zip
         run: |
-          ZIP_URL="${{ github.event.inputs.plugin_zip_path }}"
+          # Determine the ZIP_URL based on the trigger
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            ZIP_URL="${{ steps.get_release_assets.outputs.zip_url }}"
+          else
+            ZIP_URL="${{ github.event.inputs.plugin_zip_path }}"
+          fi
+
+          echo "Using ZIP_URL: $ZIP_URL"
+
           ZIP_NAME=$(basename "$ZIP_URL")
           curl -L "$ZIP_URL" -o "$ZIP_NAME"
           if [ ! -f "$ZIP_NAME" ]; then
@@ -32,11 +67,23 @@ jobs:
             exit 1
           fi
 
+          # Save the ZIP_URL for the deploy step
+          echo "zip_url=$ZIP_URL" >> $GITHUB_OUTPUT
+
       - name: Deploy to InstaWP
         run: |
           API_KEY=${{ secrets.INSTAWP_API_KEY }}
           SITE_ID=${{ secrets.INSTAWP_SITE_ID }}
-          PLUGIN_URL="${{ github.event.inputs.plugin_zip_path }}"
+
+          # Determine the PLUGIN_URL based on the trigger
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            PLUGIN_URL="${{ steps.get_release_assets.outputs.zip_url }}"
+          else
+            PLUGIN_URL="${{ github.event.inputs.plugin_zip_path }}"
+          fi
+
+          echo "Deploying plugin from: $PLUGIN_URL"
+
           curl -X POST "https://app.instawp.io/api/v2/sites/$SITE_ID/execute-command" \
             -H "Authorization: Bearer $API_KEY" \
             -H "Accept: application/json" \
@@ -47,4 +94,3 @@ jobs:
                 {\"PLUGIN_STRING\": \"$PLUGIN_URL\"}
               ]
             }"
-
