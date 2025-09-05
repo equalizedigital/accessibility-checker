@@ -1,0 +1,60 @@
+name: Deploy to InstaWP
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev
+
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Build plugin zip
+        run: npm run dist
+
+      - name: Deploy to InstaWP
+        run: |
+          API_KEY=${{ secrets.INSTAWP_API_KEY }}
+          PLUGIN_ZIP="dist/accessibility-checker.zip"
+          SITE_ID=${{ secrets.INSTAWP_SITE_ID }}
+          curl -X POST "https://api.instawp.io/v2/sites/install-plugin" \
+            -H "Authorization: Bearer $API_KEY" \
+            -H "Content-Type: multipart/form-data" \
+            -F "file=@$PLUGIN_ZIP" \
+            -F "site_id=$SITE_ID"
