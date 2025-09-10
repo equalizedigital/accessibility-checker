@@ -59,14 +59,14 @@ class CleanupOrphanedIssues implements CLICommandInterface {
 					[
 						'type'        => 'assoc',
 						'name'        => 'batch',
-						'description' => 'Number of orphaned posts to process in one batch.',
+						'description' => __( 'Number of orphaned posts to process in one batch.', 'accessibility-checker' ),
 						'optional'    => true,
 						'default'     => null,
 					],
 					[
 						'type'        => 'assoc',
 						'name'        => 'sleep',
-						'description' => 'Seconds to sleep between deletions (default: 0).',
+						'description' => __( 'Seconds to sleep between deletions (default: 0).', 'accessibility-checker' ),
 						'optional'    => true,
 						'default'     => 0,
 					],
