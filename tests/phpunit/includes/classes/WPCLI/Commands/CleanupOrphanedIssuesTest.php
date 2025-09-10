@@ -59,16 +59,13 @@ class CleanupOrphanedIssuesTest extends WP_UnitTestCase {
 		$this->assertIsArray( $args['synopsis'] );
 
 		// Find batch and sleep arguments in the synopsis array.
-		$batch_arg = null;
-		$sleep_arg = null;
-		foreach ( $args['synopsis'] as $arg ) {
-			if ( isset( $arg['name'] ) && 'batch' === $arg['name'] ) {
-				$batch_arg = $arg;
-			}
-			if ( isset( $arg['name'] ) && 'sleep' === $arg['name'] ) {
-				$sleep_arg = $arg;
-			}
-		}
+		$synopsis_by_name = array_column( $args['synopsis'], null, 'name' );
+
+		$this->assertArrayHasKey( 'batch', $synopsis_by_name );
+		$this->assertArrayHasKey( 'sleep', $synopsis_by_name );
+
+		$batch_arg = $synopsis_by_name['batch'];
+		$sleep_arg = $synopsis_by_name['sleep'];
 
 		$this->assertNotNull( $batch_arg );
 		$this->assertNotNull( $sleep_arg );
