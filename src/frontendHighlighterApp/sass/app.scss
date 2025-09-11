@@ -38,6 +38,14 @@ body {
 		margin-left: 15px !important;
 		box-sizing: border-box !important;
 
+		// Prevent images from being enlarged by the highlighter styles
+		&.edac-highlight-element-selected img,
+		&img {
+			max-width: none !important;
+			margin-left: 0 !important;
+			box-sizing: content-box !important;
+		}
+
 		&-min-width {
 			min-width: 25px !important;
 			display: inline-block !important;
