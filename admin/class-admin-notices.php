@@ -338,6 +338,9 @@ class Admin_Notices {
 
 		$review_action = sanitize_text_field( wp_unslash( $_REQUEST['review_action'] ) );
 		$results       = update_option( 'edac_review_notice', $review_action );
+		if ( ! $results ) {
+			$results = get_option( 'edac_review_notice' ) === $review_action;
+		}
 
 		if ( 'pause' === $review_action ) {
 			set_transient( 'edac_review_notice_reminder', true, 14 * DAY_IN_SECONDS );
