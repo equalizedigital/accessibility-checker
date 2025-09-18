@@ -34,9 +34,6 @@ body {
 		outline: dashed 4px transparent !important;
 		outline-offset: 5px !important;
 		outline-color: magenta !important;
-		max-width: calc(100vw - 30px) !important;
-		margin-left: 15px !important;
-		box-sizing: border-box !important;
 
 		&-min-width {
 			min-width: 25px !important;
