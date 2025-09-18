@@ -55,17 +55,21 @@ class CleanupOrphanedIssues implements CLICommandInterface {
 	 */
 	public static function get_args(): array {
 			return [
-				'batch' => [
-					'type'        => 'assoc',
-					'description' => 'Number of orphaned posts to process in one batch.',
-					'optional'    => true,
-					'default'     => null,
-				],
-				'sleep' => [
-					'type'        => 'assoc',
-					'description' => 'Seconds to sleep between deletions (default: 0).',
-					'optional'    => true,
-					'default'     => 0,
+				'synopsis' => [
+					[
+						'type'        => 'assoc',
+						'name'        => 'batch',
+						'description' => __( 'Number of orphaned posts to process in one batch.', 'accessibility-checker' ),
+						'optional'    => true,
+						'default'     => null,
+					],
+					[
+						'type'        => 'assoc',
+						'name'        => 'sleep',
+						'description' => __( 'Seconds to sleep between deletions (default: 0).', 'accessibility-checker' ),
+						'optional'    => true,
+						'default'     => 0,
+					],
 				],
 			];
 	}

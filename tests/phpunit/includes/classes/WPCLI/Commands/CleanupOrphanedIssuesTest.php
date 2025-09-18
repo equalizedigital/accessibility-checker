@@ -55,25 +55,37 @@ class CleanupOrphanedIssuesTest extends WP_UnitTestCase {
 		$args = CleanupOrphanedIssues::get_args();
 
 		$this->assertIsArray( $args );
-		$this->assertArrayHasKey( 'batch', $args );
-		$this->assertArrayHasKey( 'sleep', $args );
+		$this->assertArrayHasKey( 'synopsis', $args );
+		$this->assertIsArray( $args['synopsis'] );
+
+		// Find batch and sleep arguments in the synopsis array.
+		$synopsis_by_name = array_column( $args['synopsis'], null, 'name' );
+
+		$this->assertArrayHasKey( 'batch', $synopsis_by_name );
+		$this->assertArrayHasKey( 'sleep', $synopsis_by_name );
+
+		$batch_arg = $synopsis_by_name['batch'];
+		$sleep_arg = $synopsis_by_name['sleep'];
+
+		$this->assertNotNull( $batch_arg );
+		$this->assertNotNull( $sleep_arg );
 
 		// Check batch argument structure.
-		$this->assertArrayHasKey( 'type', $args['batch'] );
-		$this->assertArrayHasKey( 'description', $args['batch'] );
-		$this->assertArrayHasKey( 'optional', $args['batch'] );
-		$this->assertArrayHasKey( 'default', $args['batch'] );
-		$this->assertEquals( 'assoc', $args['batch']['type'] );
-		$this->assertTrue( $args['batch']['optional'] );
+		$this->assertArrayHasKey( 'type', $batch_arg );
+		$this->assertArrayHasKey( 'description', $batch_arg );
+		$this->assertArrayHasKey( 'optional', $batch_arg );
+		$this->assertArrayHasKey( 'default', $batch_arg );
+		$this->assertEquals( 'assoc', $batch_arg['type'] );
+		$this->assertTrue( $batch_arg['optional'] );
 
 		// Check sleep argument structure.
-		$this->assertArrayHasKey( 'type', $args['sleep'] );
-		$this->assertArrayHasKey( 'description', $args['sleep'] );
-		$this->assertArrayHasKey( 'optional', $args['sleep'] );
-		$this->assertArrayHasKey( 'default', $args['sleep'] );
-		$this->assertEquals( 'assoc', $args['sleep']['type'] );
-		$this->assertTrue( $args['sleep']['optional'] );
-		$this->assertEquals( 0, $args['sleep']['default'] );
+		$this->assertArrayHasKey( 'type', $sleep_arg );
+		$this->assertArrayHasKey( 'description', $sleep_arg );
+		$this->assertArrayHasKey( 'optional', $sleep_arg );
+		$this->assertArrayHasKey( 'default', $sleep_arg );
+		$this->assertEquals( 'assoc', $sleep_arg['type'] );
+		$this->assertTrue( $sleep_arg['optional'] );
+		$this->assertEquals( 0, $sleep_arg['default'] );
 	}
 
 	/**
@@ -251,7 +263,7 @@ class CleanupOrphanedIssuesTest extends WP_UnitTestCase {
 				'post_content' => 'Test content',
 				'post_status'  => 'publish',
 				'post_type'    => 'post',
-			] 
+			]
 		);
 
 		// Create an issue for the real post (should NOT be deleted).
