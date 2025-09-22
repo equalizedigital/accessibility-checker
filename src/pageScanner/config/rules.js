@@ -161,6 +161,8 @@ export const standardRuleIdsArray = [
 	'html-has-lang',
 	'form-field-multiple-labels',
 	'heading-order',
+	'frame-title',
+	'area-alt',
 ];
 
 // Define custom rule IDs from the rules array.

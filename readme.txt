@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.6
 Tested up to: 6.8
-Stable tag: 1.31.1
+Stable tag: 1.32.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -211,6 +211,13 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+= 1.32.0 =
+* Fixed: Improved highlighter behavior to maintain original size and position of scanned elements.
+* Fixed: Identify out-of-sequence headings.
+* Fixed: Identify missing title attributes.
+* Fixed: Correctly assess alternative text requirements for image map areas.
+* Improved: Implemented additional security measures for input validation and data sanitization.
+
 = 1.31.1 =
 * Added: Privacy policy link added at newsletter signup.
 * Improved: Error messages returned from some ajax actions are more descriptive.
@@ -238,10 +245,5 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 * Enhanced: Updated the aria-hidden check to understand more sibling relationships.
 * Enhanced: Updated the redundant alt check to understand that repeated images with same source and alt is not redundant.
 * Fixed: Remove the password protected notice, and it's related features - scans can throw this error now.
-
-= 1.28.0 =
-* Added: Better descriptions and help text for each of the rules.
-* Added: Improved landmark location feature to show the location of the landmark in the DOM.
-* Fixed: Avoid possible error with removal of an index on an ID column.
 
 Older versions can be found in the plugins `changelog.txt`.
