@@ -54,7 +54,7 @@ class CleanupOrphanedIssues implements CLICommandInterface {
 	 * @return string
 	 */
 	public static function get_shortname(): string {
-			return 'edac cleanup-orphaned-issues';
+		return 'edac cleanup-orphaned-issues';
 	}
 
 	/**
