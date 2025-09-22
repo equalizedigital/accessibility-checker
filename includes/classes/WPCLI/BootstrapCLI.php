@@ -94,6 +94,14 @@ class BootstrapCLI {
 					$command,
 					$command::get_args()
 				);
+				// For ease of typing on cli there's a shortname too in some commands.
+				if ( method_exists( $command, 'get_shortname' ) ) {
+					$this->wp_cli::add_command(
+						$command::get_shortname(),
+						$command,
+						$command::get_args()
+					);
+				}
 			} catch ( Exception $e ) {
 				$this->wp_cli::warning(
 					sprintf(
