@@ -290,26 +290,33 @@ class Scans_Stats {
 			}
 		}
 
-		// Average issue density percentage is the sum of all post densities divided by the number of posts scanned.
-		$data['avg_issue_density_percentage'] =
-			$wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
-				$wpdb->prepare(
-					'SELECT AVG(meta_value)
-					FROM ' . $wpdb->postmeta . '
-					JOIN (
-						SELECT DISTINCT postid
-						FROM ' . $wpdb->prefix . 'accessibility_checker
-					) AS distinct_posts ON ' . $wpdb->postmeta . '.post_id = distinct_posts.postid
-					WHERE meta_key = %s',
-					[ '_edac_issue_density' ]
-				)
-			);
+                // Average issue density percentage should ignore posts whose issues have all been ignored.
+                $data['avg_issue_density_percentage'] =
+                        $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
+                                $wpdb->prepare(
+                                        'SELECT AVG(pm.meta_value)
+                                        FROM ' . $wpdb->postmeta . ' AS pm
+                                        INNER JOIN (
+                                                SELECT DISTINCT postid
+                                                FROM %i
+                                                WHERE siteid = %d
+                                                        AND COALESCE(ignre, 0) = 0
+                                                        AND COALESCE(ignre_global, 0) = 0
+                                        ) AS active_posts ON pm.post_id = active_posts.postid
+                                        WHERE pm.meta_key = %s',
+                                        [
+                                                $wpdb->prefix . 'accessibility_checker',
+                                                $siteid,
+                                                '_edac_issue_density',
+                                        ]
+                                )
+                        );
 
-		if ( null === $data['avg_issue_density_percentage'] ) {
-			$data['avg_issue_density_percentage'] = 'N/A';
-		} else {
-			$data['avg_issue_density_percentage'] = round( $data['avg_issue_density_percentage'], 2 );
-		}
+                if ( null === $data['avg_issue_density_percentage'] ) {
+                        $data['avg_issue_density_percentage'] = $data['posts_scanned'] > 0 ? 0 : 'N/A';
+                } else {
+                        $data['avg_issue_density_percentage'] = round( $data['avg_issue_density_percentage'], 2 );
+                }
 
 		$data['fullscan_running']      = false;
 		$data['fullscan_state']        = '';
