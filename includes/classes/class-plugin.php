@@ -45,8 +45,13 @@ class Plugin {
 
 		// When WP CLI is enabled, load the CLI commands.
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			$cli = new BootstrapCLI();
-			$cli->register();
+			add_action(
+				'init',
+				function () {
+					$cli = new BootstrapCLI();
+					$cli->register();
+				}
+			);
 		}
 	}
 
