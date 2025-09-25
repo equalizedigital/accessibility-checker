@@ -210,6 +210,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
+= 1.33.0 =
+* Added: WP-CLI commands can now be run with short names: `wp edac <command>` or using long name `wp accessibility-checker <command>`.
+* Improved: Made it easier to register custom commands through filter.
 
 = 1.32.0 =
 * Fixed: Improved highlighter behavior to maintain original size and position of scanned elements.
