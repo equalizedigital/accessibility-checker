@@ -14,6 +14,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 "Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
@@ -267,28 +268,36 @@ msgstr "Un résumé simplifié a été inclus pour ce contenu."
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
-msgstr[0] "%s Errors"
+msgstr[0] "%s Erreur"
+msgstr[1] "%s Errors"
+msgstr[2] "%s Erreurs"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
-msgstr[0] "%s Contrast Errors"
+msgstr[0] "%s Erreur de contraste"
+msgstr[1] "%s Contrast Errors"
+msgstr[2] "%s Erreurs de contraste"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
-msgstr[0] "%s Warnings"
+msgstr[0] "%s Avertissement"
+msgstr[1] "%s Warnings"
+msgstr[2] "%s Avertissements"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
-msgstr[0] "%s Ignored Items"
+msgstr[0] "%s Élément ignoré"
+msgstr[1] "%s Ignored Items"
+msgstr[2] "%s Éléments ignorés"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -449,22 +458,30 @@ msgstr "Tests réussis"
 #: admin/class-welcome-page.php:88
 msgid "Unique Error"
 msgid_plural "Unique Errors"
-msgstr[0] "Unique Errors"
+msgstr[0] "Erreur unique"
+msgstr[1] "Unique Errors"
+msgstr[2] "Erreurs uniques"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
-msgstr[0] "Unique Color Contrast Errors"
+msgstr[0] "Erreur de contraste de couleur unique"
+msgstr[1] "Unique Color Contrast Errors"
+msgstr[2] "Erreurs de contraste de couleur uniques"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
-msgstr[0] "Unique Warnings"
+msgstr[0] "Avertissement unique"
+msgstr[1] "Unique Warnings"
+msgstr[2] "Avertissements uniques"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
-msgstr[0] "Ignored Items"
+msgstr[0] "Élément ignoré"
+msgstr[1] "Ignored Items"
+msgstr[2] "Éléments ignorés"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -717,8 +734,10 @@ msgstr "Le contenu est en cours de vérification pour l'accessibilité"
 #: admin/site-health/class-checks.php:177
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
-msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
-msgstr[0] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker a analysé %s publication pour les problèmes d'accessibilité."
+msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[2] "Accessibility Checker a analysé %s publications pour les problèmes d'accessibilité."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -740,8 +759,10 @@ msgstr "Les types de publications sont configurés pour la vérification d'acces
 #: admin/site-health/class-checks.php:216
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgstr[0] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker est configuré pour analyser %1$s type de publication : %2$s."
+msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[2] "Accessibility Checker est configuré pour analyser %1$s types de publications : %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4167,7 +4188,7 @@ msgstr "Le plugin Accessibility New Window Warnings est installé. Le correctif 
 
 #: partials/custom-meta-box.php:13
 msgid "Accessibility Checker issues panels"
-msgstr "Panneaux des problèmes d'Accessibility Checker"
+msgstr "Panneaux d'affichage des problèmes d'Accessibility Checker"
 
 #: partials/custom-meta-box.php:24
 msgid "Summary"
@@ -4531,12 +4552,16 @@ msgstr "Aucun problème détecté."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] "errors"
+msgstr[0] "erreur"
+msgstr[1] "errors"
+msgstr[2] "erreurs"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] "warnings"
+msgstr[0] "avertissement"
+msgstr[1] "warnings"
+msgstr[2] "avertissements"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4545,7 +4570,9 @@ msgstr "et"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] "ignored issues"
+msgstr[0] "problème ignoré"
+msgstr[1] "ignored issues"
+msgstr[2] "problèmes ignorés"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
