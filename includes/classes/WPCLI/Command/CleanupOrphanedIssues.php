@@ -32,7 +32,7 @@ class CleanupOrphanedIssues implements CLICommandInterface {
 	 * @param mixed|WP_CLI $wp_cli The WP-CLI instance.
 	 */
 	public function __construct( $wp_cli = null ) {
-			$this->wp_cli = $wp_cli ?? new WP_CLI();
+		$this->wp_cli = $wp_cli ?? new WP_CLI();
 	}
 
 	/**
@@ -43,7 +43,18 @@ class CleanupOrphanedIssues implements CLICommandInterface {
 	 * @return string
 	 */
 	public static function get_name(): string {
-			return 'accessibility-checker cleanup-orphaned-issues';
+		return 'accessibility-checker cleanup-orphaned-issues';
+	}
+
+	/**
+	 * Get the short name of the command.
+	 *
+	 * @since 1.33.0
+	 *
+	 * @return string
+	 */
+	public static function get_shortname(): string {
+		return 'edac cleanup-orphaned-issues';
 	}
 
 	/**
@@ -54,24 +65,24 @@ class CleanupOrphanedIssues implements CLICommandInterface {
 	 * @return array
 	 */
 	public static function get_args(): array {
-			return [
-				'synopsis' => [
-					[
-						'type'        => 'assoc',
-						'name'        => 'batch',
-						'description' => __( 'Number of orphaned posts to process in one batch.', 'accessibility-checker' ),
-						'optional'    => true,
-						'default'     => null,
-					],
-					[
-						'type'        => 'assoc',
-						'name'        => 'sleep',
-						'description' => __( 'Seconds to sleep between deletions (default: 0).', 'accessibility-checker' ),
-						'optional'    => true,
-						'default'     => 0,
-					],
+		return [
+			'synopsis' => [
+				[
+					'type'        => 'assoc',
+					'name'        => 'batch',
+					'description' => __( 'Number of orphaned posts to process in one batch.', 'accessibility-checker' ),
+					'optional'    => true,
+					'default'     => null,
 				],
-			];
+				[
+					'type'        => 'assoc',
+					'name'        => 'sleep',
+					'description' => __( 'Seconds to sleep between deletions (default: 0).', 'accessibility-checker' ),
+					'optional'    => true,
+					'default'     => 0,
+				],
+			],
+		];
 	}
 
 	/**

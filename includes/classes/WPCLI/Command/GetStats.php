@@ -70,6 +70,17 @@ class GetStats implements CLICommandInterface {
 	}
 
 	/**
+	 * Get the short name of the command.
+	 *
+	 * @since 1.33.0
+	 *
+	 * @return string
+	 */
+	public static function get_shortname(): string {
+		return 'edac get-stats';
+	}
+
+	/**
 	 * Get the arguments for the command
 	 *
 	 * @since 1.15.0
