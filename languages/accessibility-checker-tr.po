@@ -14,6 +14,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 "Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
@@ -172,7 +173,7 @@ msgstr "🎉 Muhteşem Cuma özel indirimi! 🎉"
 
 #: admin/class-admin-notices.php:130
 msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "25 Kasım - 3 Aralık tarihleri arasında Accessibility Checker'ın ücretli sürümüne geçin ve %30 indirim kazanın! Tam site taraması, site genelinde açık sorunlar raporu, yok sayma günlükleri ve daha fazlası."
 
 #: admin/class-admin-notices.php:131
 #: admin/class-admin-notices.php:218
@@ -207,7 +208,7 @@ msgstr "Güncelleme seçeneği başarılı olmadı"
 
 #: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 Küresel Erişilebilirlik Farkındalık Günü onuruna Accessibility Checker Pro'da %25 indirim! 🎉"
 
 #: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
@@ -267,32 +268,32 @@ msgstr "Bu içerik için basitleştirilmiş bir özet eklenmiştir."
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Hata"
+msgstr[1] "%s Hata"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Kontrast hatası"
+msgstr[1] "%s Kontrast hatası"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Uyarı"
+msgstr[1] "%s Uyarı"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Göz ardı edilen öğe"
+msgstr[1] "%s Göz ardı edilen öğe"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -453,26 +454,26 @@ msgstr "Geçen testler"
 #: admin/class-welcome-page.php:88
 msgid "Unique Error"
 msgid_plural "Unique Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Benzersiz hata"
+msgstr[1] "Benzersiz hatalar"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Benzersiz renk kontrast hatası"
+msgstr[1] "Benzersiz renk kontrast hataları"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Benzersiz uyarı"
+msgstr[1] "Benzersiz uyarılar"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Göz ardı edilen öğe"
+msgstr[1] "Göz ardı edilen öğeler"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -725,9 +726,9 @@ msgstr "İçerik erişilebilirlik açısından kontrol ediliyor"
 #: admin/site-health/class-checks.php:177
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
-msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker erişilebilirlik sorunları için %s yazıyı taradı."
+msgstr[1] "Accessibility Checker erişilebilirlik sorunları için %s yazıyı taradı."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -749,9 +750,9 @@ msgstr "İçerik türleri erişilebilirlik kontrolü için yapılandırıldı"
 #: admin/site-health/class-checks.php:216
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker %1$s içerik türünü taramak için yapılandırıldı: %2$s."
+msgstr[1] "Accessibility Checker %1$s içerik türünü taramak için yapılandırıldı: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -3454,7 +3455,7 @@ msgstr "Metni yeniden boyutlandır"
 
 #: includes/wcag.php:667
 msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
-msgstr "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
+msgstr "Metin, içerik veya işlevsellik kaybı olmadan %200'e kadar yeniden boyutlandırılabilir, böylece az görenler daha kolay okuyabilir."
 
 #: includes/wcag.php:698
 msgid "Images of Text"
@@ -4308,7 +4309,7 @@ msgstr "Bir sorun yanlış pozitifse ve öğe erişilebilir durumdaysa, “Yoksa
 
 #: partials/welcome-page.php:70
 msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
-msgstr "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "Her sorunu düzelttikten sonra, erişilebilirlik raporundaki değişiklikleri görmek için gönderiyi güncelleyin. Hedefiniz, her sayfanın %100 Geçen Testler göstermesidir."
 
 #: partials/welcome-page.php:74
 msgid "Watch a video of Accessibility Checker in use."
@@ -4320,7 +4321,7 @@ msgstr "Belgeler ve SSS"
 
 #: partials/welcome-page.php:84
 msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
-msgstr "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "Neden %100 Erişilebilir Değil, %100 Geçen Testler Diyoruz?"
 
 #: partials/welcome-page.php:84
 #: partials/welcome-page.php:89
@@ -4541,14 +4542,14 @@ msgstr "Hiçbir sorun tespit edilmedi."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "hata"
+msgstr[1] "hata"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "uyarı"
+msgstr[1] "uyarı"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4557,8 +4558,8 @@ msgstr "ve"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "göz ardı edilen sorun"
+msgstr[1] "göz ardı edilen sorun"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
