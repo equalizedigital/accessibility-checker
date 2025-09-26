@@ -72,7 +72,7 @@ class GetStats implements CLICommandInterface {
 	/**
 	 * Get the short name of the command.
 	 *
-	 * @since 1.32.0
+	 * @since 1.33.0
 	 *
 	 * @return string
 	 */
