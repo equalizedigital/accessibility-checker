@@ -14,6 +14,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 "Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
@@ -267,32 +268,28 @@ msgstr "มีการรวมบทสรุปแบบย่อสำหร
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s ข้อผิดพลาด"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s ข้อผิดพลาดด้านความคมชัด"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s คำเตือน"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s รายการที่ถูกละเว้น"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -453,26 +450,22 @@ msgstr "การทดสอบที่ผ่าน"
 #: admin/class-welcome-page.php:88
 msgid "Unique Error"
 msgid_plural "Unique Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ข้อผิดพลาดที่ไม่ซ้ำกัน"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ข้อผิดพลาดด้านความคมชัดของสีที่ไม่ซ้ำกัน"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "คำเตือนที่ไม่ซ้ำกัน"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "รายการที่ถูกละเว้น"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -725,9 +718,8 @@ msgstr "กำลังตรวจสอบเนื้อหาสำหรั
 #: admin/site-health/class-checks.php:177
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
-msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker ได้สแกนโพสต์ %s รายการเพื่อตรวจหาปัญหาด้านการเข้าถึง"
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -749,9 +741,8 @@ msgstr "ประเภทโพสต์ได้รับการกำหน
 #: admin/site-health/class-checks.php:216
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker ถูกกำหนดค่าให้สแกนประเภทโพสต์ %1$s ประเภท: %2$s"
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4312,7 +4303,7 @@ msgstr "หลังจากแก้ไขแต่ละปัญหาแล
 
 #: partials/welcome-page.php:74
 msgid "Watch a video of Accessibility Checker in use."
-msgstr "ดูวิดีโอการใช้งาน Accessibility Checker."
+msgstr "ดูวิดีโอการใช้งาน Accessibility Checker"
 
 #: partials/welcome-page.php:80
 msgid "Documentation and FAQs"
@@ -4541,14 +4532,12 @@ msgstr "ไม่พบปัญหา."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ข้อผิดพลาด"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "คำเตือน"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4557,8 +4546,7 @@ msgstr "และ"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ปัญหาที่ถูกละเว้น"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
