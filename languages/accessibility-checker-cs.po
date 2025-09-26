@@ -14,6 +14,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 "Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
@@ -267,32 +268,40 @@ msgstr "Pro tento obsah bylo zahrnuto zjednodušené shrnutí."
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
-msgstr[0] "%s Errors"
+msgstr[0] "%s Chyba"
 msgstr[1] "%s Errors"
+msgstr[2] "%s Errors"
+msgstr[3] "%s Chyb"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
-msgstr[0] "%s Contrast Errors"
+msgstr[0] "%s Chyba kontrastu"
 msgstr[1] "%s Contrast Errors"
+msgstr[2] "%s Contrast Errors"
+msgstr[3] "%s Chyb kontrastu"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
-msgstr[0] "%s Warnings"
+msgstr[0] "%s Varování"
 msgstr[1] "%s Warnings"
+msgstr[2] "%s Warnings"
+msgstr[3] "%s Varování"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
-msgstr[0] "%s Ignored Items"
+msgstr[0] "%s Ignorovaná položka"
 msgstr[1] "%s Ignored Items"
+msgstr[2] "%s Ignored Items"
+msgstr[3] "%s Ignorovaných položek"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -453,26 +462,34 @@ msgstr "Úspěšné testy"
 #: admin/class-welcome-page.php:88
 msgid "Unique Error"
 msgid_plural "Unique Errors"
-msgstr[0] "Unique Errors"
+msgstr[0] "Unikátní chyba"
 msgstr[1] "Unique Errors"
+msgstr[2] "Unique Errors"
+msgstr[3] "Unikátní chyby"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
-msgstr[0] "Unique Color Contrast Errors"
+msgstr[0] "Unikátní chyba barevného kontrastu"
 msgstr[1] "Unique Color Contrast Errors"
+msgstr[2] "Unique Color Contrast Errors"
+msgstr[3] "Unikátní chyby barevného kontrastu"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
-msgstr[0] "Unique Warnings"
+msgstr[0] "Unikátní varování"
 msgstr[1] "Unique Warnings"
+msgstr[2] "Unique Warnings"
+msgstr[3] "Unikátní varování"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
-msgstr[0] "Ignored Items"
+msgstr[0] "Ignorovaná položka"
 msgstr[1] "Ignored Items"
+msgstr[2] "Ignored Items"
+msgstr[3] "Ignorované položky"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -725,9 +742,11 @@ msgstr "Obsah je kontrolován na přístupnost"
 #: admin/site-health/class-checks.php:177
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
-msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
-msgstr[0] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker naskenoval %s příspěvek na problémy s přístupností."
 msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[3] "Accessibility Checker naskenoval %s příspěvků na problémy s přístupností."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -749,9 +768,11 @@ msgstr "Typy příspěvků jsou nakonfigurovány pro kontrolu přístupnosti"
 #: admin/site-health/class-checks.php:216
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgstr[0] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker je nakonfigurován pro skenování %1$s typu příspěvku: %2$s."
 msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[3] "Accessibility Checker je nakonfigurován pro skenování %1$s typů příspěvků: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4541,14 +4562,18 @@ msgstr "Nebyly zjištěny žádné problémy."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] "errors"
+msgstr[0] "chyba"
 msgstr[1] "errors"
+msgstr[2] "errors"
+msgstr[3] "chyb"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] "warnings"
+msgstr[0] "varování"
 msgstr[1] "warnings"
+msgstr[2] "warnings"
+msgstr[3] "varování"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4557,8 +4582,10 @@ msgstr "a"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] "ignored issues"
+msgstr[0] "ignorovaný problém"
 msgstr[1] "ignored issues"
+msgstr[2] "ignored issues"
+msgstr[3] "ignorovaných problémů"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
