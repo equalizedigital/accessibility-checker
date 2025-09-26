@@ -14,6 +14,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 "Language: lv\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
@@ -268,6 +269,8 @@ msgstr "Šim saturam ir pievienots vienkāršots kopsavilkums."
 msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s Errors"
+msgstr[1] "%s Kļūda"
+msgstr[2] "%s Kļūdas"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
@@ -275,6 +278,8 @@ msgstr[0] "%s Errors"
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Contrast Errors"
+msgstr[1] "%s Kontrasta kļūda"
+msgstr[2] "%s Kontrasta kļūdas"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
@@ -282,6 +287,8 @@ msgstr[0] "%s Contrast Errors"
 msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s Warnings"
+msgstr[1] "%s Brīdinājums"
+msgstr[2] "%s Brīdinājumi"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
@@ -289,6 +296,8 @@ msgstr[0] "%s Warnings"
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s Ignored Items"
+msgstr[1] "%s Ignorētais vienums"
+msgstr[2] "%s Ignorētie vienumi"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -450,21 +459,29 @@ msgstr "Izturētie testi"
 msgid "Unique Error"
 msgid_plural "Unique Errors"
 msgstr[0] "Unique Errors"
+msgstr[1] "Unikālā kļūda"
+msgstr[2] "Unikālās kļūdas"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
 msgstr[0] "Unique Color Contrast Errors"
+msgstr[1] "Unikālā krāsu kontrasta kļūda"
+msgstr[2] "Unikālās krāsu kontrasta kļūdas"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
 msgstr[0] "Unique Warnings"
+msgstr[1] "Unikālais brīdinājums"
+msgstr[2] "Unikālie brīdinājumi"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
 msgstr[0] "Ignored Items"
+msgstr[1] "Ignorētais vienums"
+msgstr[2] "Ignorētie vienumi"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -530,7 +547,7 @@ msgstr "Sāciet pārbaudīt visu savu vietni pieejamības problēmām, iegūstie
 #: admin/class-welcome-page.php:308
 #: admin/class-widgets.php:73
 msgid "Upgrade Accessibility Checker"
-msgstr "Jaunināt Accessibility Checker"
+msgstr "Uzlabot Accessibility Checker"
 
 #: admin/class-widgets.php:69
 msgid "close ad"
@@ -717,8 +734,10 @@ msgstr "Saturs tiek pārbaudīts pieejamībai"
 #: admin/site-health/class-checks.php:177
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
-msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker ir skenējis %s ierakstu, meklējot pieejamības problēmas."
+msgstr[2] "Accessibility Checker ir skenējis %s ierakstus, meklējot pieejamības problēmas."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -740,8 +759,10 @@ msgstr "Ierakstu veidi ir konfigurēti pieejamības pārbaudei"
 #: admin/site-health/class-checks.php:216
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "Accessibility Checker ir konfigurēts skenēt %1$s ieraksta veidu: %2$s."
+msgstr[2] "Accessibility Checker ir konfigurēts skenēt %1$s ierakstu veidus: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4532,11 +4553,15 @@ msgstr "Nav konstatētas problēmas."
 msgid "error"
 msgid_plural "errors"
 msgstr[0] "errors"
+msgstr[1] "kļūda"
+msgstr[2] "kļūdas"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
 msgstr[0] "warnings"
+msgstr[1] "brīdinājums"
+msgstr[2] "brīdinājumi"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4546,6 +4571,8 @@ msgstr "un"
 msgid "ignored issue"
 msgid_plural "ignored issues"
 msgstr[0] "ignored issues"
+msgstr[1] "ignorētā problēma"
+msgstr[2] "ignorētās problēmas"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
