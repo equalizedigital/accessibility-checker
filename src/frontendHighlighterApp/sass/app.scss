@@ -289,24 +289,156 @@ body {
 
 			&-summary {
 				display: block;
-			}
+                }
 
-			&-how-to-fix {
-				display: inline-block;
-				margin-bottom: 0 !important;
+                &-how-to-fix {
+                        display: inline-block;
+                        margin-bottom: 0 !important;
 
 				&-title {
 					display: block;
 					font-weight: bold !important;
 					margin-top: 10px !important;
 					margin-bottom: 5px !important;
-				}
-			}
-		}
+                                }
+                        }
+                }
 
-		&-controls {
-			color: variables.$color-white !important;
-			display: block;
+                &-heading-map {
+                        max-height: calc(100vh - 230px) !important;
+                        display: none;
+                        border: solid 1px variables.$color-gray-light !important;
+                        background-color: variables.$color-blue-dark !important;
+                        margin-bottom: 15px !important;
+                        padding: 15px !important;
+                        color: variables.$color-white !important;
+                        font-size: 14px !important;
+                        line-height: 22px !important;
+                        font-family: sans-serif !important;
+                        text-align: left !important;
+                        overflow-y: auto !important;
+                        box-shadow: 0px 0px 5px rgba(variables.$color-black, .25) !important;
+                        position: relative !important;
+                        -webkit-font-smoothing: antialiased !important;
+                        -moz-osx-font-smoothing: grayscale !important;
+
+                        &-title {
+                                font-size: 16px !important;
+                                display: block !important;
+                                font-weight: bold !important;
+                                margin-bottom: 5px !important;
+                        }
+
+                        &-summary {
+                                font-size: 13px !important;
+                                margin-bottom: 10px !important;
+                                display: block !important;
+                        }
+
+                        &-content {
+                                display: block !important;
+                        }
+
+                        &-list {
+                                list-style: none !important;
+                                margin: 0 !important;
+                                padding: 0 !important;
+                        }
+
+                        &-item {
+                                --edac-heading-map-level: 1;
+                                margin-bottom: 10px !important;
+                                padding-left: calc((var(--edac-heading-map-level) - 1) * 20px) !important;
+
+                                &-button {
+                                        all: unset;
+                                        display: flex !important;
+                                        align-items: center !important;
+                                        gap: 8px !important;
+                                        width: 100% !important;
+                                        color: variables.$color-white !important;
+                                        cursor: pointer !important;
+                                        border-radius: 4px !important;
+                                        padding: 6px 8px !important;
+                                        text-align: left !important;
+
+                                        &:hover,
+                                        &:focus,
+                                        &.is-active {
+                                                background-color: rgba(variables.$color-white, .15) !important;
+                                                outline: solid 2px rgba(0, 208, 255, .75) !important;
+                                                outline-offset: 2px !important;
+                                        }
+
+                                        &:focus {
+                                                outline: solid 2px rgba(0, 208, 255, .75) !important;
+                                        }
+                                }
+
+                                &-order {
+                                        font-weight: bold !important;
+                                        min-width: 34px !important;
+                                        text-align: right !important;
+                                }
+
+                                &-level {
+                                        font-size: 12px !important;
+                                        padding: 2px 6px !important;
+                                        border-radius: 4px !important;
+                                        background-color: rgba(variables.$color-white, .2) !important;
+                                        text-transform: uppercase !important;
+                                        letter-spacing: 1px !important;
+                                }
+
+                                &-text {
+                                        flex: 1 !important;
+                                        text-align: left !important;
+                                }
+
+                                &-issues {
+                                        list-style: none !important;
+                                        margin: 6px 0 0 !important;
+                                        padding: 0 !important;
+
+                                        li {
+                                                font-size: 12px !important;
+                                                margin: 4px 0 0 !important;
+                                        }
+                                }
+
+                                &-issue-warning {
+                                        color: variables.$color-yellow !important;
+                                }
+
+                                &-issue-error {
+                                        color: variables.$color-red !important;
+                                }
+                        }
+
+                        &-close {
+                                width: 25px !important;
+                                height: 25px !important;
+                                color: variables.$color-blue-dark !important;
+                                background-color: variables.$color-yellow !important;
+                                font-size: 18px !important;
+                                line-height: 25px !important;
+                                position: absolute !important;
+                                top: 0px !important;
+                                right: 0px !important;
+                                text-align: center !important;
+
+                                &:hover,
+                                &:focus {
+                                        cursor: pointer !important;
+                                        color: variables.$color-blue-dark !important;
+                                        background-color: variables.$color-white !important;
+                                }
+                        }
+                }
+
+                &-controls {
+                        color: variables.$color-white !important;
+                        display: block;
 			background-color: variables.$color-blue !important;
 			border: solid 1px variables.$color-gray-light !important;
 			display: none;
@@ -388,12 +520,17 @@ body {
 				margin-right: 0 !important;
 			}
 		}
-	}
+        }
+}
+
+.edac-heading-map-target {
+        outline: solid 3px rgba(0, 208, 255, .75) !important;
+        outline-offset: 4px !important;
 }
 
 
 .notyf {
-	z-index: 2147483647 !important;
+        z-index: 2147483647 !important;
 }
 
 .notyf__toast {

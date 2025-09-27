@@ -4,7 +4,7 @@
 import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
-import { __, _n } from '@wordpress/i18n';
+import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { hashString } from '../common/helpers';
@@ -31,6 +31,11 @@ class AccessibilityCheckerHighlight {
 		this.panelDescription = document.querySelector( '#edac-highlight-panel-description' );
 		this.panelControls = document.querySelector( '#edac-highlight-panel-controls' );
 		this.descriptionCloseButton = document.querySelector( '.edac-highlight-panel-description-close' );
+		this.headingMapPanel = document.querySelector( '#edac-highlight-panel-heading-map' );
+		this.headingMapToggle = document.querySelector( '#edac-highlight-panel-heading-map-toggle' );
+		this.headingMapCloseButton = document.querySelector( '#edac-highlight-panel-heading-map-close' );
+		this.headingMapSummary = document.querySelector( '.edac-highlight-panel-heading-map-summary' );
+		this.headingMapContent = document.querySelector( '.edac-highlight-panel-heading-map-content' );
 		this.issues = null;
 		this.fixes = null;
 		this.currentButtonIndex = null;
@@ -38,6 +43,8 @@ class AccessibilityCheckerHighlight {
 		this.landmarkParameter = this.get_url_parameter( 'edac_landmark' );
 		this.currentIssueStatus = null;
 		this.tooltips = [];
+		this.headingMapItems = [];
+		this.activeHeadingMapIndex = null;
 		this.panelControlsFocusTrap = createFocusTrap( '#' + this.panelControls.id, {
 			clickOutsideDeactivates: true,
 			escapeDeactivates: () => {
@@ -51,6 +58,16 @@ class AccessibilityCheckerHighlight {
 			},
 
 		} );
+		if ( this.headingMapPanel ) {
+			this.headingMapFocusTrap = createFocusTrap( '#' + this.headingMapPanel.id, {
+				clickOutsideDeactivates: true,
+				escapeDeactivates: () => {
+					this.closeHeadingMap();
+				},
+			} );
+		} else {
+			this.headingMapFocusTrap = null;
+		}
 
 		this.disableStylesButton = document.querySelector( '#edac-highlight-disable-styles' );
 		this.rescanButton = document.querySelector( '#edac-highlight-rescan' );
@@ -90,6 +107,24 @@ class AccessibilityCheckerHighlight {
 
 		// Close description when close button is clicked
 		this.descriptionCloseButton.addEventListener( 'click', () => this.descriptionClose() );
+
+		if ( this.headingMapToggle && this.headingMapPanel ) {
+			this.headingMapToggle.addEventListener( 'click', () => {
+				if ( this.headingMapPanel.classList.contains( 'edac-highlight-panel-heading-map-open' ) ) {
+					this.closeHeadingMap();
+				} else {
+					this.openHeadingMap();
+				}
+			} );
+		}
+
+		if ( this.headingMapCloseButton ) {
+			this.headingMapCloseButton.addEventListener( 'click', () => this.closeHeadingMap() );
+		}
+
+		if ( this.headingMapPanel ) {
+			this.headingMapPanel.addEventListener( 'click', this.handleHeadingMapInteraction );
+		}
 
 		// Handle disable/enable styles
 		this.disableStylesButton.addEventListener( 'click', () => {
@@ -412,6 +447,12 @@ class AccessibilityCheckerHighlight {
                                         <div class="edac-highlight-panel-description-content"></div>
                                         <div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
                                 </div>
+                                <div id="edac-highlight-panel-heading-map" class="edac-highlight-panel-heading-map" role="dialog" aria-labelledby="edac-highlight-panel-heading-map-title" aria-modal="true" aria-hidden="true" tabindex="0">
+                                <button id="edac-highlight-panel-heading-map-close" class="edac-highlight-panel-heading-map-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
+                                        <div id="edac-highlight-panel-heading-map-title" class="edac-highlight-panel-heading-map-title">${ __( 'Headings Map', 'accessibility-checker' ) }</div>
+                                        <div class="edac-highlight-panel-heading-map-summary" aria-live="polite"></div>
+                                        <div class="edac-highlight-panel-heading-map-content"></div>
+                                </div>
                                 <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
                                 <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
                                 <div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
@@ -422,6 +463,7 @@ class AccessibilityCheckerHighlight {
                                                 <button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
                                         </div>
                                         <div>
+                                                <button id="edac-highlight-panel-heading-map-toggle" class="edac-highlight-panel-heading-map-toggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="edac-highlight-panel-heading-map">${ __( 'Headings Map', 'accessibility-checker' ) }</button>
                                                 ${ rescanButton }
                                                 ${ clearButtonMarkup }
                                                 <button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
@@ -609,6 +651,9 @@ class AccessibilityCheckerHighlight {
 		this.highlightPanel.classList.remove( 'edac-highlight-panel-visible' );
 		this.panelControls.style.display = 'none';
 		this.panelDescription.style.display = 'none';
+		if ( this.headingMapPanel ) {
+			this.closeHeadingMap( { restoreFocus: false } );
+		}
 		this.panelToggle.style.display = 'block';
 		this.removeSelectedClasses();
 		this.removeHighlightButtons();
@@ -643,7 +688,423 @@ class AccessibilityCheckerHighlight {
 
 		// Clean up any landmark labels when highlights are removed
 		this.removeLandmarkLabels();
+
+		this.clearHeadingMapHighlights();
 	};
+
+	/**
+	 * Open the headings map dialog.
+	 */
+	openHeadingMap = () => {
+		if ( ! this.headingMapPanel || ! this.headingMapToggle ) {
+			return;
+		}
+
+		this.panelControlsFocusTrap.deactivate();
+		this.panelDescriptionFocusTrap.deactivate();
+
+		if ( this.panelDescription ) {
+			this.panelDescription.style.display = 'none';
+		}
+
+		this.buildHeadingMap();
+
+		this.headingMapPanel.style.display = 'block';
+		this.headingMapPanel.setAttribute( 'aria-hidden', 'false' );
+		this.headingMapPanel.classList.add( 'edac-highlight-panel-heading-map-open' );
+		this.headingMapToggle.setAttribute( 'aria-expanded', 'true' );
+		this.headingMapPanel.scrollTop = 0;
+
+		if ( this.headingMapFocusTrap ) {
+			this.headingMapFocusTrap.activate();
+		}
+
+		setTimeout( () => {
+			this.headingMapPanel.focus();
+		}, 100 );
+	};
+
+	/**
+	 * Close the headings map dialog.
+	 *
+	 * @param {Object}  [options]
+	 * @param {boolean} [options.restoreFocus=true] Should focus return to the toggle button?
+	 */
+	closeHeadingMap = ( { restoreFocus = true } = {} ) => {
+		if ( ! this.headingMapPanel || ! this.headingMapToggle ) {
+			return;
+		}
+
+		this.headingMapPanel.style.display = 'none';
+		this.headingMapPanel.setAttribute( 'aria-hidden', 'true' );
+		this.headingMapPanel.classList.remove( 'edac-highlight-panel-heading-map-open' );
+		this.headingMapToggle.setAttribute( 'aria-expanded', 'false' );
+
+		if ( this.headingMapFocusTrap ) {
+			this.headingMapFocusTrap.deactivate();
+		}
+
+		if ( this.highlightPanel && this.highlightPanel.classList.contains( 'edac-highlight-panel-visible' ) ) {
+			this.panelControlsFocusTrap.activate();
+		}
+
+		if ( restoreFocus ) {
+			this.headingMapToggle.focus();
+		}
+
+		this.clearHeadingMapHighlights();
+	};
+
+	/**
+	 * Populate the headings map dialog with the headings found on the page.
+	 */
+	buildHeadingMap = () => {
+		if ( ! this.headingMapContent || ! this.headingMapSummary ) {
+			return;
+		}
+
+		this.clearHeadingMapHighlights();
+
+		this.headingMapContent.innerHTML = '';
+		this.headingMapSummary.textContent = '';
+
+		const seenNodes = new Set();
+		const headingNodes = [];
+		const selector = 'h1, h2, h3, h4, h5, h6, [role="heading"]';
+		const nodes = document.querySelectorAll( selector );
+
+		nodes.forEach( ( node ) => {
+			if ( seenNodes.has( node ) ) {
+				return;
+			}
+
+			if ( node.closest( '#edac-highlight-panel' ) ) {
+				return;
+			}
+
+			seenNodes.add( node );
+			headingNodes.push( node );
+		} );
+
+		if ( headingNodes.length === 0 ) {
+			const message = __( 'No headings were found on this page.', 'accessibility-checker' );
+			this.headingMapItems = [];
+			this.activeHeadingMapIndex = null;
+			this.headingMapSummary.textContent = message;
+			this.headingMapContent.textContent = message;
+			return;
+		}
+
+		const counters = Array( 7 ).fill( 0 );
+		let previousLevel = 0;
+		let hasH1 = false;
+		let h1Count = 0;
+		const mapItems = [];
+
+		headingNodes.forEach( ( node, index ) => {
+			const level = this.getHeadingLevel( node );
+			const text = this.getHeadingText( node );
+			const numbering = this.getHeadingNumber( level, counters );
+			const issues = [];
+
+			if ( ! text ) {
+				issues.push( {
+					type: 'error',
+					message: __( 'Heading is empty.', 'accessibility-checker' ),
+				} );
+			}
+
+			if ( index === 0 && level !== 1 ) {
+				issues.push( {
+					type: 'warning',
+					message: sprintf( __( 'Document starts with an H%1$d heading.', 'accessibility-checker' ), level ),
+				} );
+			}
+
+			if ( previousLevel && level > previousLevel + 1 ) {
+				issues.push( {
+					type: 'warning',
+					message: sprintf(
+						__( 'Skipped from heading level %1$d to %2$d.', 'accessibility-checker' ),
+						previousLevel,
+						level
+					),
+				} );
+			}
+
+			if ( level === 1 ) {
+				h1Count++;
+				if ( hasH1 ) {
+					issues.push( {
+						type: 'warning',
+						message: __( 'Multiple H1 headings found.', 'accessibility-checker' ),
+					} );
+				}
+				hasH1 = true;
+			}
+
+			previousLevel = level;
+
+			mapItems.push( {
+				element: node,
+				level,
+				text: text || __( '(empty heading)', 'accessibility-checker' ),
+				numbering,
+				issues,
+			} );
+		} );
+
+		this.headingMapItems = mapItems;
+		this.activeHeadingMapIndex = null;
+
+		const totalIssues = mapItems.reduce( ( total, item ) => total + item.issues.length, 0 );
+		const summaryParts = [];
+
+		summaryParts.push(
+			sprintf(
+				_n( '%d heading found.', '%d headings found.', mapItems.length, 'accessibility-checker' ),
+				mapItems.length
+			)
+		);
+
+		if ( totalIssues > 0 ) {
+			summaryParts.push(
+				sprintf(
+					_n( '%d heading issue detected.', '%d heading issues detected.', totalIssues, 'accessibility-checker' ),
+					totalIssues
+				)
+			);
+		} else {
+			summaryParts.push( __( 'No heading issues detected.', 'accessibility-checker' ) );
+		}
+
+		if ( hasH1 ) {
+			summaryParts.push(
+				sprintf( _n( '%d H1 heading found.', '%d H1 headings found.', h1Count, 'accessibility-checker' ), h1Count )
+			);
+		} else {
+			summaryParts.push( __( 'No H1 heading found.', 'accessibility-checker' ) );
+		}
+
+		if ( mapItems[ 0 ] && mapItems[ 0 ].level !== 1 ) {
+			summaryParts.push(
+				sprintf( __( 'First heading level is H%1$d.', 'accessibility-checker' ), mapItems[ 0 ].level )
+			);
+		}
+
+		this.headingMapSummary.textContent = summaryParts.join( ' ' );
+
+		const list = document.createElement( 'ol' );
+		list.className = 'edac-highlight-panel-heading-map-list';
+
+		mapItems.forEach( ( item, index ) => {
+			const listItem = document.createElement( 'li' );
+			listItem.className = 'edac-highlight-panel-heading-map-item';
+			listItem.style.setProperty( '--edac-heading-map-level', item.level );
+
+			const button = document.createElement( 'button' );
+			button.type = 'button';
+			button.className = 'edac-highlight-panel-heading-map-item-button';
+			button.dataset.headingIndex = String( index );
+
+			const orderSpan = document.createElement( 'span' );
+			orderSpan.className = 'edac-highlight-panel-heading-map-item-order';
+			orderSpan.textContent = item.numbering || String( index + 1 );
+
+			const levelSpan = document.createElement( 'span' );
+			levelSpan.className = 'edac-highlight-panel-heading-map-item-level';
+			levelSpan.textContent = `H${ item.level }`;
+
+			const textSpan = document.createElement( 'span' );
+			textSpan.className = 'edac-highlight-panel-heading-map-item-text';
+			textSpan.textContent = item.text;
+
+			button.append( orderSpan, levelSpan, textSpan );
+			listItem.appendChild( button );
+
+			if ( item.issues.length ) {
+				const issuesList = document.createElement( 'ul' );
+				issuesList.className = 'edac-highlight-panel-heading-map-item-issues';
+
+				item.issues.forEach( ( issue ) => {
+					const issueItem = document.createElement( 'li' );
+					issueItem.className = `edac-highlight-panel-heading-map-item-issue edac-highlight-panel-heading-map-item-issue-${ issue.type }`;
+					issueItem.textContent = issue.message;
+					issuesList.appendChild( issueItem );
+				} );
+
+				listItem.appendChild( issuesList );
+				listItem.classList.add( 'edac-highlight-panel-heading-map-item-has-issues' );
+			}
+
+			list.appendChild( listItem );
+		} );
+
+		this.headingMapContent.appendChild( list );
+	};
+
+	/**
+	 * Remove any heading map highlights from the page.
+	 */
+	clearHeadingMapHighlights = () => {
+		document.querySelectorAll( '.edac-heading-map-target' ).forEach( ( node ) => {
+			node.classList.remove( 'edac-heading-map-target' );
+		} );
+
+		if ( this.headingMapPanel ) {
+			const activeButton = this.headingMapPanel.querySelector( '.edac-highlight-panel-heading-map-item-button.is-active' );
+			if ( activeButton ) {
+				activeButton.classList.remove( 'is-active' );
+			}
+		}
+
+		this.activeHeadingMapIndex = null;
+	};
+
+	/**
+	 * Highlight the heading associated with the given index.
+	 *
+	 * @param {number} index The index of the heading item in the map.
+	 */
+	highlightHeadingMapItem = ( index ) => {
+		if ( ! this.headingMapItems || ! this.headingMapItems.length ) {
+			return;
+		}
+
+		const item = this.headingMapItems[ index ];
+
+		if ( ! item ) {
+			return;
+		}
+
+		if ( this.activeHeadingMapIndex !== null && this.headingMapItems[ this.activeHeadingMapIndex ] ) {
+			const previousItem = this.headingMapItems[ this.activeHeadingMapIndex ];
+			if ( previousItem.element ) {
+				previousItem.element.classList.remove( 'edac-heading-map-target' );
+			}
+
+			if ( this.headingMapPanel ) {
+				const previousButton = this.headingMapPanel.querySelector( `[data-heading-index="${ this.activeHeadingMapIndex }"]` );
+				if ( previousButton ) {
+					previousButton.classList.remove( 'is-active' );
+				}
+			}
+		}
+
+		if ( item.element ) {
+			item.element.classList.add( 'edac-heading-map-target' );
+			item.element.scrollIntoView( { behavior: 'smooth', block: 'center' } );
+		}
+
+		if ( this.headingMapPanel ) {
+			const button = this.headingMapPanel.querySelector( `[data-heading-index="${ index }"]` );
+			if ( button ) {
+				button.classList.add( 'is-active' );
+			}
+		}
+
+		this.activeHeadingMapIndex = index;
+	};
+
+	/**
+	 * Handle click events inside the headings map.
+	 *
+	 * @param {MouseEvent} event The DOM event.
+	 */
+	handleHeadingMapInteraction = ( event ) => {
+		const button = event.target.closest( '.edac-highlight-panel-heading-map-item-button' );
+
+		if ( ! button ) {
+			return;
+		}
+
+		event.preventDefault();
+
+		const index = parseInt( button.dataset.headingIndex, 10 );
+
+		if ( Number.isNaN( index ) ) {
+			return;
+		}
+
+		this.highlightHeadingMapItem( index );
+	};
+
+	/**
+	 * Determine the heading level for a given element.
+	 *
+	 * @param {Element} element Heading element from the DOM.
+	 * @return {number} Normalized heading level between 1 and 6.
+	 */
+	getHeadingLevel( element ) {
+		if ( ! element || ! element.tagName ) {
+			return 6;
+		}
+
+		const tagName = element.tagName.toLowerCase();
+
+		if ( /^h[1-6]$/.test( tagName ) ) {
+			return parseInt( tagName.replace( 'h', '' ), 10 );
+		}
+
+		const role = element.getAttribute( 'role' );
+
+		if ( role && role.toLowerCase() === 'heading' ) {
+			const ariaLevel = parseInt( element.getAttribute( 'aria-level' ), 10 );
+
+			if ( ! Number.isNaN( ariaLevel ) ) {
+				return Math.min( 6, Math.max( 1, ariaLevel ) );
+			}
+
+			return 2;
+		}
+
+		return 6;
+	}
+
+	/**
+	 * Extract trimmed text from a heading element.
+	 *
+	 * @param {Element} element Heading element from the DOM.
+	 * @return {string} Trimmed heading text.
+	 */
+	getHeadingText( element ) {
+		if ( ! element ) {
+			return '';
+		}
+
+		const text = element.textContent || '';
+
+		return text.replace( /\s+/g, ' ' ).trim();
+	}
+
+	/**
+	 * Build a hierarchical number for a heading.
+	 *
+	 * @param {number} level    Heading level.
+	 * @param {Array}  counters Counters for each heading depth.
+	 * @return {string} The hierarchical number.
+	 */
+	getHeadingNumber( level, counters ) {
+		if ( ! Array.isArray( counters ) ) {
+			return '';
+		}
+
+		counters[ level ] = ( counters[ level ] || 0 ) + 1;
+
+		for ( let i = level + 1; i < counters.length; i++ ) {
+			counters[ i ] = 0;
+		}
+
+		const parts = [];
+
+		for ( let i = 1; i <= level; i++ ) {
+			if ( counters[ i ] && counters[ i ] > 0 ) {
+				parts.push( counters[ i ] );
+			}
+		}
+
+		return parts.join( '.' );
+	}
 
 	/**
 	 * This function displays the description of the issue.
