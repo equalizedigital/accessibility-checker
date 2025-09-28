@@ -329,13 +329,57 @@ body {
                                 margin-bottom: 5px !important;
                         }
 
-                        &-summary {
+                        &-tabs {
+                                display: flex !important;
+                                gap: 6px !important;
+                                margin-bottom: 12px !important;
+                                border-bottom: 1px solid rgba(variables.$color-white, .2) !important;
+                                padding-bottom: 8px !important;
+                        }
+
+                        &-tab {
+                                all: unset;
+                                cursor: pointer !important;
+                                padding: 6px 12px !important;
+                                border-radius: 4px !important;
+                                font-weight: 600 !important;
+                                background: transparent !important;
+                                color: variables.$color-white !important;
+
+                                &[aria-selected="true"],
+                                &.is-active {
+                                        background: rgba(variables.$color-white, .2) !important;
+                                        outline: solid 2px rgba(0, 208, 255, .75) !important;
+                                        outline-offset: 0 !important;
+                                }
+
+                                &:focus {
+                                        outline: solid 2px rgba(0, 208, 255, .75) !important;
+                                        outline-offset: 2px !important;
+                                }
+                        }
+
+                        &-tabpanel {
+                                display: none !important;
+
+                                &.is-active {
+                                        display: block !important;
+                                }
+
+                                &[hidden] {
+                                        display: none !important;
+                                }
+                        }
+
+                        .edac-highlight-panel-headings-summary,
+                        .edac-highlight-panel-landmarks-summary {
                                 font-size: 13px !important;
                                 margin-bottom: 10px !important;
                                 display: block !important;
                         }
 
-                        &-content {
+                        .edac-highlight-panel-headings-content,
+                        .edac-highlight-panel-landmarks-content {
                                 display: block !important;
                         }
 
@@ -413,6 +457,84 @@ body {
                                 &-issue-error {
                                         color: variables.$color-red !important;
                                 }
+                        }
+
+                        .edac-highlight-panel-landmark-list {
+                                list-style: none !important;
+                                margin: 0 !important;
+                                padding: 0 !important;
+                        }
+
+                        .edac-highlight-panel-landmark-item {
+                                margin-bottom: 10px !important;
+
+                                &-button {
+                                        all: unset;
+                                        display: flex !important;
+                                        align-items: center !important;
+                                        gap: 10px !important;
+                                        width: 100% !important;
+                                        color: variables.$color-white !important;
+                                        cursor: pointer !important;
+                                        border-radius: 4px !important;
+                                        padding: 6px 8px !important;
+                                        text-align: left !important;
+
+                                        &:hover,
+                                        &:focus,
+                                        &.is-active {
+                                                background-color: rgba(variables.$color-white, .15) !important;
+                                                outline: solid 2px rgba(0, 208, 255, .75) !important;
+                                                outline-offset: 2px !important;
+                                        }
+
+                                        &:focus {
+                                                outline: solid 2px rgba(0, 208, 255, .75) !important;
+                                        }
+                                }
+
+                                &-order {
+                                        font-weight: bold !important;
+                                        min-width: 34px !important;
+                                        text-align: right !important;
+                                }
+
+                                &-name {
+                                        flex: 1 !important;
+                                        text-align: left !important;
+                                }
+
+                                &-role {
+                                        font-size: 12px !important;
+                                        padding: 2px 6px !important;
+                                        border-radius: 4px !important;
+                                        background-color: rgba(variables.$color-white, .2) !important;
+                                        text-transform: lowercase !important;
+                                        letter-spacing: 1px !important;
+                                }
+
+                                &-issues {
+                                        list-style: none !important;
+                                        margin: 6px 0 0 !important;
+                                        padding: 0 !important;
+
+                                        li {
+                                                font-size: 12px !important;
+                                                margin: 4px 0 0 !important;
+                                        }
+                                }
+
+                                &-issue-warning {
+                                        color: variables.$color-yellow !important;
+                                }
+
+                                &-issue-error {
+                                        color: variables.$color-red !important;
+                                }
+                        }
+
+                        .edac-highlight-panel-landmark-item-has-issues {
+                                margin-bottom: 15px !important;
                         }
 
                         &-close {
@@ -526,6 +648,21 @@ body {
 .edac-heading-map-target {
         outline: solid 3px rgba(0, 208, 255, .75) !important;
         outline-offset: 4px !important;
+}
+
+.edac-landmark-label {
+        position: absolute !important;
+        background: #072446 !important;
+        color: variables.$color-white !important;
+        padding: 4px 8px !important;
+        font-size: 12px !important;
+        font-weight: bold !important;
+        border-radius: 3px !important;
+        z-index: 2147483645 !important;
+        pointer-events: none !important;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        line-height: 1 !important;
+        box-shadow: 0 2px 4px rgba(variables.$color-black, .2) !important;
 }
 
 

@@ -34,8 +34,13 @@ class AccessibilityCheckerHighlight {
 		this.headingMapPanel = document.querySelector( '#edac-highlight-panel-heading-map' );
 		this.headingMapToggle = document.querySelector( '#edac-highlight-panel-heading-map-toggle' );
 		this.headingMapCloseButton = document.querySelector( '#edac-highlight-panel-heading-map-close' );
-		this.headingMapSummary = document.querySelector( '.edac-highlight-panel-heading-map-summary' );
-		this.headingMapContent = document.querySelector( '.edac-highlight-panel-heading-map-content' );
+		this.headingMapSummary = document.querySelector( '.edac-highlight-panel-headings-summary' );
+		this.headingMapContent = document.querySelector( '.edac-highlight-panel-headings-content' );
+		this.landmarkMapSummary = document.querySelector( '.edac-highlight-panel-landmarks-summary' );
+		this.landmarkMapContent = document.querySelector( '.edac-highlight-panel-landmarks-content' );
+		this.headingMapTabList = document.querySelector( '.edac-highlight-panel-heading-map-tabs' );
+		this.headingMapTabs = this.headingMapTabList ? Array.from( this.headingMapTabList.querySelectorAll( '.edac-highlight-panel-heading-map-tab' ) ) : [];
+		this.headingMapTabPanels = this.headingMapPanel ? Array.from( this.headingMapPanel.querySelectorAll( '.edac-highlight-panel-heading-map-tabpanel' ) ) : [];
 		this.issues = null;
 		this.fixes = null;
 		this.currentButtonIndex = null;
@@ -45,6 +50,11 @@ class AccessibilityCheckerHighlight {
 		this.tooltips = [];
 		this.headingMapItems = [];
 		this.activeHeadingMapIndex = null;
+		this.landmarkMapItems = [];
+		this.activeLandmarkMapIndex = null;
+		this.activeHeadingMapTab = 'headings';
+		this.activeLandmarkElement = null;
+		this.activeLandmarkLabel = null;
 		this.panelControlsFocusTrap = createFocusTrap( '#' + this.panelControls.id, {
 			clickOutsideDeactivates: true,
 			escapeDeactivates: () => {
@@ -124,6 +134,18 @@ class AccessibilityCheckerHighlight {
 
 		if ( this.headingMapPanel ) {
 			this.headingMapPanel.addEventListener( 'click', this.handleHeadingMapInteraction );
+		}
+
+		if ( this.headingMapTabs.length ) {
+			this.headingMapTabs.forEach( ( tab ) => {
+				tab.addEventListener( 'click', ( event ) => {
+					event.preventDefault();
+					const tabName = tab.dataset.tab || 'headings';
+					this.switchHeadingMapTab( tabName );
+					tab.focus();
+				} );
+				tab.addEventListener( 'keydown', this.handleHeadingMapTabKeydown );
+			} );
 		}
 
 		// Handle disable/enable styles
@@ -449,9 +471,19 @@ class AccessibilityCheckerHighlight {
                                 </div>
                                 <div id="edac-highlight-panel-heading-map" class="edac-highlight-panel-heading-map" role="dialog" aria-labelledby="edac-highlight-panel-heading-map-title" aria-modal="true" aria-hidden="true" tabindex="0">
                                 <button id="edac-highlight-panel-heading-map-close" class="edac-highlight-panel-heading-map-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
-                                        <div id="edac-highlight-panel-heading-map-title" class="edac-highlight-panel-heading-map-title">${ __( 'Headings Map', 'accessibility-checker' ) }</div>
-                                        <div class="edac-highlight-panel-heading-map-summary" aria-live="polite"></div>
-                                        <div class="edac-highlight-panel-heading-map-content"></div>
+                                        <div id="edac-highlight-panel-heading-map-title" class="edac-highlight-panel-heading-map-title">${ __( 'Headings & Landmarks', 'accessibility-checker' ) }</div>
+                                        <div class="edac-highlight-panel-heading-map-tabs" role="tablist" aria-label="${ __( 'Document structure views', 'accessibility-checker' ) }">
+                                                <button type="button" id="edac-highlight-panel-heading-map-tab-headings" class="edac-highlight-panel-heading-map-tab is-active" role="tab" aria-selected="true" aria-controls="edac-highlight-panel-heading-map-panel-headings" data-tab="headings">${ __( 'Headings', 'accessibility-checker' ) }</button>
+                                                <button type="button" id="edac-highlight-panel-heading-map-tab-landmarks" class="edac-highlight-panel-heading-map-tab" role="tab" aria-selected="false" aria-controls="edac-highlight-panel-heading-map-panel-landmarks" tabindex="-1" data-tab="landmarks">${ __( 'Landmarks', 'accessibility-checker' ) }</button>
+                                        </div>
+                                        <div id="edac-highlight-panel-heading-map-panel-headings" class="edac-highlight-panel-heading-map-tabpanel is-active" role="tabpanel" aria-labelledby="edac-highlight-panel-heading-map-tab-headings" data-tab="headings">
+                                                <div class="edac-highlight-panel-headings-summary" aria-live="polite"></div>
+                                                <div class="edac-highlight-panel-headings-content"></div>
+                                        </div>
+                                        <div id="edac-highlight-panel-heading-map-panel-landmarks" class="edac-highlight-panel-heading-map-tabpanel" role="tabpanel" aria-labelledby="edac-highlight-panel-heading-map-tab-landmarks" data-tab="landmarks" hidden>
+                                                <div class="edac-highlight-panel-landmarks-summary" aria-live="polite"></div>
+                                                <div class="edac-highlight-panel-landmarks-content"></div>
+                                        </div>
                                 </div>
                                 <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
                                 <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
@@ -463,7 +495,7 @@ class AccessibilityCheckerHighlight {
                                                 <button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
                                         </div>
                                         <div>
-                                                <button id="edac-highlight-panel-heading-map-toggle" class="edac-highlight-panel-heading-map-toggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="edac-highlight-panel-heading-map">${ __( 'Headings Map', 'accessibility-checker' ) }</button>
+                                                <button id="edac-highlight-panel-heading-map-toggle" class="edac-highlight-panel-heading-map-toggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="edac-highlight-panel-heading-map">${ __( 'Headings & Landmarks', 'accessibility-checker' ) }</button>
                                                 ${ rescanButton }
                                                 ${ clearButtonMarkup }
                                                 <button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
@@ -708,6 +740,8 @@ class AccessibilityCheckerHighlight {
 		}
 
 		this.buildHeadingMap();
+		this.buildLandmarkMap();
+		this.switchHeadingMapTab( this.activeHeadingMapTab || 'headings' );
 
 		this.headingMapPanel.style.display = 'block';
 		this.headingMapPanel.setAttribute( 'aria-hidden', 'false' );
@@ -720,7 +754,13 @@ class AccessibilityCheckerHighlight {
 		}
 
 		setTimeout( () => {
-			this.headingMapPanel.focus();
+			const activeTab = this.headingMapPanel.querySelector( '.edac-highlight-panel-heading-map-tab[aria-selected="true"]' );
+
+			if ( activeTab ) {
+				activeTab.focus();
+			} else {
+				this.headingMapPanel.focus();
+			}
 		}, 100 );
 	};
 
@@ -753,6 +793,7 @@ class AccessibilityCheckerHighlight {
 		}
 
 		this.clearHeadingMapHighlights();
+		this.clearLandmarkMapHighlights();
 	};
 
 	/**
@@ -962,6 +1003,539 @@ class AccessibilityCheckerHighlight {
 	};
 
 	/**
+	 * Switch between the headings and landmarks tabs in the structure dialog.
+	 *
+	 * @param {string} tabName Identifier for the tab to activate.
+	 */
+	switchHeadingMapTab = ( tabName ) => {
+		if ( ! this.headingMapTabs || ! this.headingMapTabs.length ) {
+			return;
+		}
+
+		const normalizedTab = tabName === 'landmarks' ? 'landmarks' : 'headings';
+		this.activeHeadingMapTab = normalizedTab;
+
+		this.headingMapTabs.forEach( ( tab ) => {
+			const isActive = ( tab.dataset.tab || 'headings' ) === normalizedTab;
+			tab.setAttribute( 'aria-selected', isActive ? 'true' : 'false' );
+			tab.classList.toggle( 'is-active', isActive );
+			tab.tabIndex = isActive ? 0 : -1;
+		} );
+
+		if ( this.headingMapTabPanels && this.headingMapTabPanels.length ) {
+			this.headingMapTabPanels.forEach( ( panel ) => {
+				const isActive = ( panel.dataset.tab || 'headings' ) === normalizedTab;
+
+				if ( isActive ) {
+					panel.classList.add( 'is-active' );
+					panel.removeAttribute( 'hidden' );
+				} else {
+					panel.classList.remove( 'is-active' );
+					panel.setAttribute( 'hidden', '' );
+				}
+			} );
+		}
+	};
+
+	/**
+	 * Handle keyboard navigation for the headings/landmarks tablist.
+	 *
+	 * @param {KeyboardEvent} event Keyboard event object.
+	 */
+	handleHeadingMapTabKeydown = ( event ) => {
+		if ( ! this.headingMapTabs || ! this.headingMapTabs.length ) {
+			return;
+		}
+
+		const supportedKeys = [ 'ArrowLeft', 'ArrowRight', 'Left', 'Right', 'Home', 'End' ];
+
+		if ( ! supportedKeys.includes( event.key ) ) {
+			return;
+		}
+
+		const currentIndex = this.headingMapTabs.indexOf( event.target );
+
+		if ( currentIndex === -1 ) {
+			return;
+		}
+
+		event.preventDefault();
+
+		let newIndex = currentIndex;
+
+		if ( event.key === 'ArrowRight' || event.key === 'Right' ) {
+			newIndex = ( currentIndex + 1 ) % this.headingMapTabs.length;
+		} else if ( event.key === 'ArrowLeft' || event.key === 'Left' ) {
+			newIndex = ( currentIndex - 1 + this.headingMapTabs.length ) % this.headingMapTabs.length;
+		} else if ( event.key === 'Home' ) {
+			newIndex = 0;
+		} else if ( event.key === 'End' ) {
+			newIndex = this.headingMapTabs.length - 1;
+		}
+
+		const nextTab = this.headingMapTabs[ newIndex ];
+
+		if ( nextTab ) {
+			this.switchHeadingMapTab( nextTab.dataset.tab || 'headings' );
+			nextTab.focus();
+		}
+	};
+
+	/**
+	 * Build the landmarks list for the structure dialog.
+	 */
+	buildLandmarkMap = () => {
+		if ( ! this.landmarkMapContent || ! this.landmarkMapSummary ) {
+			return;
+		}
+
+		this.clearLandmarkMapHighlights();
+
+		this.landmarkMapContent.innerHTML = '';
+		this.landmarkMapSummary.textContent = '';
+
+		const nodes = this.getLandmarkNodes();
+
+		if ( nodes.length === 0 ) {
+			const message = __( 'No landmarks were found on this page.', 'accessibility-checker' );
+			this.landmarkMapItems = [];
+			this.activeLandmarkMapIndex = null;
+			this.landmarkMapSummary.textContent = message;
+			this.landmarkMapContent.textContent = message;
+			return;
+		}
+
+		const mapItems = [];
+		let missingRequiredNames = 0;
+
+		nodes.forEach( ( node, index ) => {
+			const role = this.getLandmarkRole( node );
+			const type = this.getLandmarkType( node );
+			const accessibleName = this.getAccessibleName( node );
+			const hasAccessibleName = accessibleName.length > 0;
+			const issues = [];
+
+			if ( this.landmarkRequiresName( role, node ) && ! hasAccessibleName ) {
+				issues.push( {
+					type: 'warning',
+					message: __( 'Landmark is missing an accessible name.', 'accessibility-checker' ),
+				} );
+				missingRequiredNames++;
+			}
+
+			mapItems.push( {
+				element: node,
+				role,
+				type,
+				name: accessibleName,
+				displayName: accessibleName || type,
+				issues,
+			} );
+		} );
+
+		this.landmarkMapItems = mapItems;
+		this.activeLandmarkMapIndex = null;
+
+		const summaryParts = [];
+
+		summaryParts.push(
+			sprintf(
+				_n( '%d landmark found.', '%d landmarks found.', mapItems.length, 'accessibility-checker' ),
+				mapItems.length
+			)
+		);
+
+		if ( missingRequiredNames > 0 ) {
+			summaryParts.push(
+				sprintf(
+					_n(
+						'%d landmark is missing an accessible name.',
+						'%d landmarks are missing accessible names.',
+						missingRequiredNames,
+						'accessibility-checker'
+					),
+					missingRequiredNames
+				)
+			);
+		} else {
+			summaryParts.push( __( 'No landmark naming issues detected.', 'accessibility-checker' ) );
+		}
+
+		this.landmarkMapSummary.textContent = summaryParts.join( ' ' );
+
+		const list = document.createElement( 'ol' );
+		list.className = 'edac-highlight-panel-landmark-list';
+
+		mapItems.forEach( ( item, index ) => {
+			const listItem = document.createElement( 'li' );
+			listItem.className = 'edac-highlight-panel-landmark-item';
+
+			const button = document.createElement( 'button' );
+			button.type = 'button';
+			button.className = 'edac-highlight-panel-landmark-item-button';
+			button.dataset.landmarkIndex = String( index );
+
+			const orderSpan = document.createElement( 'span' );
+			orderSpan.className = 'edac-highlight-panel-landmark-item-order';
+			orderSpan.textContent = String( index + 1 );
+
+			const nameSpan = document.createElement( 'span' );
+			nameSpan.className = 'edac-highlight-panel-landmark-item-name';
+			nameSpan.textContent = item.displayName;
+
+			const roleSpan = document.createElement( 'span' );
+			roleSpan.className = 'edac-highlight-panel-landmark-item-role';
+			roleSpan.textContent = item.role ? `[${ item.role }]` : '';
+
+			button.append( orderSpan, nameSpan, roleSpan );
+			listItem.appendChild( button );
+
+			if ( item.issues.length ) {
+				const issuesList = document.createElement( 'ul' );
+				issuesList.className = 'edac-highlight-panel-landmark-item-issues';
+
+				item.issues.forEach( ( issue ) => {
+					const issueItem = document.createElement( 'li' );
+					issueItem.className = `edac-highlight-panel-landmark-item-issue edac-highlight-panel-landmark-item-issue-${ issue.type }`;
+					issueItem.textContent = issue.message;
+					issuesList.appendChild( issueItem );
+				} );
+
+				listItem.appendChild( issuesList );
+				listItem.classList.add( 'edac-highlight-panel-landmark-item-has-issues' );
+			}
+
+			list.appendChild( listItem );
+		} );
+
+		this.landmarkMapContent.appendChild( list );
+	};
+
+	/**
+	 * Remove highlights created by the landmark map.
+	 */
+	clearLandmarkMapHighlights = () => {
+		this.removeLandmarkLabels();
+
+		if ( this.headingMapPanel ) {
+			const activeButton = this.headingMapPanel.querySelector( '.edac-highlight-panel-landmark-item-button.is-active' );
+			if ( activeButton ) {
+				activeButton.classList.remove( 'is-active' );
+			}
+		}
+
+		this.activeLandmarkMapIndex = null;
+	};
+
+	/**
+	 * Highlight a landmark entry from the landmarks tab.
+	 *
+	 * @param {number} index Position of the landmark in the map array.
+	 */
+	highlightLandmarkMapItem = ( index ) => {
+		if ( ! this.landmarkMapItems || ! this.landmarkMapItems.length ) {
+			return;
+		}
+
+		const item = this.landmarkMapItems[ index ];
+
+		if ( ! item ) {
+			return;
+		}
+
+		if ( this.activeLandmarkMapIndex !== null ) {
+			const previousButton = this.headingMapPanel?.querySelector( `[data-landmark-index="${ this.activeLandmarkMapIndex }"]` );
+			if ( previousButton ) {
+				previousButton.classList.remove( 'is-active' );
+			}
+		}
+
+		if ( item.element ) {
+			this.applyLandmarkHighlight( item.element, item.displayName );
+		}
+
+		const button = this.headingMapPanel?.querySelector( `[data-landmark-index="${ index }"]` );
+		if ( button ) {
+			button.classList.add( 'is-active' );
+		}
+
+		this.activeLandmarkMapIndex = index;
+	};
+
+	/**
+	 * Collect landmark nodes from the document in DOM order.
+	 *
+	 * @return {HTMLElement[]} Array of landmark elements.
+	 */
+	getLandmarkNodes() {
+		if ( ! document.body ) {
+			return [];
+		}
+
+		const nodes = [];
+		const walker = document.createTreeWalker( document.body, NodeFilter.SHOW_ELEMENT, {
+			acceptNode: ( node ) => {
+				if ( ! node || node.closest( '#edac-highlight-panel' ) ) {
+					return NodeFilter.FILTER_SKIP;
+				}
+
+				if ( this.isLandmarkElement( node ) ) {
+					return NodeFilter.FILTER_ACCEPT;
+				}
+
+				return NodeFilter.FILTER_SKIP;
+			},
+		} );
+
+		while ( walker.nextNode() ) {
+			const currentNode = walker.currentNode;
+			if ( currentNode && ! nodes.includes( currentNode ) ) {
+				nodes.push( currentNode );
+			}
+		}
+
+		return nodes;
+	}
+
+	/**
+	 * Determine if an element qualifies as a landmark for the map.
+	 *
+	 * @param {HTMLElement} element Node to evaluate.
+	 * @return {boolean} Whether the element should be treated as a landmark.
+	 */
+	isLandmarkElement( element ) {
+		if ( ! element || ! element.tagName ) {
+			return false;
+		}
+
+		const explicitRole = ( element.getAttribute( 'role' ) || '' ).trim().toLowerCase().split( ' ' )[ 0 ] || '';
+		const landmarkRoles = new Set( [ 'banner', 'navigation', 'main', 'complementary', 'contentinfo', 'search', 'form', 'region' ] );
+
+		if ( explicitRole && landmarkRoles.has( explicitRole ) ) {
+			return true;
+		}
+
+		const tagName = element.tagName.toLowerCase();
+
+		switch ( tagName ) {
+			case 'main':
+			case 'nav':
+			case 'aside':
+				return true;
+			case 'header':
+				return ! this.isWithinSectioningContext( element );
+			case 'footer':
+				return ! this.isWithinSectioningContext( element );
+			case 'section':
+				return this.elementHasAccessibleName( element );
+			case 'form':
+				return explicitRole === 'search' || this.elementHasAccessibleName( element );
+			default:
+				return false;
+		}
+	}
+
+	/**
+	 * Determine if an element is inside a sectioning context where header/footer shouldn't be landmarks.
+	 *
+	 * @param {HTMLElement} element Node to evaluate.
+	 * @return {boolean} Whether the element is within a sectioning context.
+	 */
+	isWithinSectioningContext( element ) {
+		if ( ! element ) {
+			return false;
+		}
+
+		return Boolean( element.closest( 'article, aside, main, nav, section' ) );
+	}
+
+	/**
+	 * Determine if a landmark role requires an accessible name.
+	 *
+	 * @param {string}  role    Landmark role name.
+	 * @param {Element} element Associated element.
+	 * @return {boolean} Whether the landmark must expose an accessible name.
+	 */
+	landmarkRequiresName( role, element ) {
+		const normalizedRole = ( role || this.getLandmarkRole( element ) || '' ).toLowerCase();
+		const rolesRequiringNames = new Set( [ 'navigation', 'complementary', 'search', 'form', 'region' ] );
+
+		return rolesRequiringNames.has( normalizedRole );
+	}
+
+	/**
+	 * Check whether an element has an accessible name.
+	 *
+	 * @param {HTMLElement} element Node to evaluate.
+	 * @return {boolean} Whether an accessible name is present.
+	 */
+	elementHasAccessibleName( element ) {
+		return this.getAccessibleName( element ).length > 0;
+	}
+
+	/**
+	 * Get an accessible name for the supplied element, if one exists.
+	 *
+	 * @param {HTMLElement} element Node to evaluate.
+	 * @return {string} Accessible name text.
+	 */
+	getAccessibleName( element ) {
+		if ( ! element ) {
+			return '';
+		}
+
+		const ariaLabel = element.getAttribute( 'aria-label' );
+		if ( ariaLabel ) {
+			return ariaLabel.trim();
+		}
+
+		const ariaLabelledby = element.getAttribute( 'aria-labelledby' );
+		if ( ariaLabelledby ) {
+			const ids = ariaLabelledby.split( /\s+/ ).filter( Boolean );
+			const labelText = ids
+				.map( ( id ) => {
+					const labelElement = document.getElementById( id );
+					if ( labelElement ) {
+						return labelElement.textContent.replace( /\s+/g, ' ' ).trim();
+					}
+					return '';
+				} )
+				.filter( Boolean )
+				.join( ' ' );
+
+			if ( labelText ) {
+				return labelText;
+			}
+		}
+
+		const title = element.getAttribute( 'title' );
+		if ( title ) {
+			const trimmedTitle = title.trim();
+			if ( trimmedTitle ) {
+				return trimmedTitle;
+			}
+		}
+
+		const labelledHeading = element.querySelector( 'h1, h2, h3, h4, h5, h6' );
+		if ( labelledHeading ) {
+			const headingText = this.getHeadingText( labelledHeading );
+			if ( headingText ) {
+				return headingText;
+			}
+		}
+
+		if ( element.tagName && element.tagName.toLowerCase() === 'form' ) {
+			const legend = element.querySelector( 'legend' );
+			if ( legend ) {
+				const legendText = legend.textContent.replace( /\s+/g, ' ' ).trim();
+				if ( legendText ) {
+					return legendText;
+				}
+			}
+		}
+
+		return '';
+	}
+
+	/**
+	 * Resolve the landmark role for a given element, considering implicit semantics.
+	 *
+	 * @param {HTMLElement} element Node to evaluate.
+	 * @return {string} Landmark role, if one applies.
+	 */
+	getLandmarkRole( element ) {
+		if ( ! element || ! element.tagName ) {
+			return '';
+		}
+
+		const explicitRole = ( element.getAttribute( 'role' ) || '' ).trim().toLowerCase().split( ' ' )[ 0 ] || '';
+		if ( explicitRole ) {
+			return explicitRole;
+		}
+
+		const tagName = element.tagName.toLowerCase();
+
+		switch ( tagName ) {
+			case 'header':
+				return this.isWithinSectioningContext( element ) ? '' : 'banner';
+			case 'nav':
+				return 'navigation';
+			case 'main':
+				return 'main';
+			case 'aside':
+				return 'complementary';
+			case 'footer':
+				return this.isWithinSectioningContext( element ) ? '' : 'contentinfo';
+			case 'section':
+				return this.elementHasAccessibleName( element ) ? 'region' : '';
+			case 'form':
+				return this.elementHasAccessibleName( element ) ? 'form' : '';
+			default:
+				return '';
+		}
+	}
+
+	/**
+	 * Apply highlight styling and labelling to a landmark element.
+	 *
+	 * @param {HTMLElement} element   Landmark element to highlight.
+	 * @param {string}      labelText Accessible name or type to show in the badge.
+	 */
+	applyLandmarkHighlight( element, labelText ) {
+		if ( ! element ) {
+			return;
+		}
+
+		const label = labelText || this.getLandmarkType( element );
+
+		this.removeLandmarkLabels();
+
+		element.classList.add( 'edac-highlight-element-selected', 'edac-landmark-highlight' );
+
+		if ( element.offsetWidth < 20 ) {
+			element.classList.add( 'edac-highlight-element-selected-min-width' );
+		}
+
+		if ( element.offsetHeight < 5 ) {
+			element.classList.add( 'edac-highlight-element-selected-min-height' );
+		}
+
+		const landmarkLabel = document.createElement( 'div' );
+		landmarkLabel.className = 'edac-landmark-label';
+		landmarkLabel.textContent = sprintf( __( 'Landmark: %s', 'accessibility-checker' ), label );
+		landmarkLabel.setAttribute( 'aria-hidden', 'true' );
+
+		document.body.appendChild( landmarkLabel );
+		this.positionLandmarkLabel( element, landmarkLabel );
+
+		this.activeLandmarkElement = element;
+		this.activeLandmarkLabel = landmarkLabel;
+
+		const elementRect = element.getBoundingClientRect();
+		const elementTop = Math.max( elementRect.top + window.scrollY - 75, 0 );
+		window.scrollTo( {
+			top: elementTop,
+			behavior: 'smooth',
+		} );
+	}
+
+	/**
+	 * Position the floating landmark label relative to the highlighted element.
+	 *
+	 * @param {HTMLElement} element Landmark element.
+	 * @param {HTMLElement} label   Label element to position.
+	 */
+	positionLandmarkLabel( element, label ) {
+		if ( ! element || ! label ) {
+			return;
+		}
+
+		const rect = element.getBoundingClientRect();
+		label.style.left = `${ Math.max( rect.left + window.scrollX, 0 ) }px`;
+		label.style.top = `${ Math.max( rect.top + window.scrollY, 0 ) }px`;
+	}
+
+	/**
 	 * Highlight the heading associated with the given index.
 	 *
 	 * @param {number} index The index of the heading item in the map.
@@ -1012,21 +1586,35 @@ class AccessibilityCheckerHighlight {
 	 * @param {MouseEvent} event The DOM event.
 	 */
 	handleHeadingMapInteraction = ( event ) => {
-		const button = event.target.closest( '.edac-highlight-panel-heading-map-item-button' );
+		const headingButton = event.target.closest( '.edac-highlight-panel-heading-map-item-button' );
+		if ( headingButton ) {
+			event.preventDefault();
 
-		if ( ! button ) {
+			const index = parseInt( headingButton.dataset.headingIndex, 10 );
+
+			if ( Number.isNaN( index ) ) {
+				return;
+			}
+
+			this.highlightHeadingMapItem( index );
+			return;
+		}
+
+		const landmarkButton = event.target.closest( '.edac-highlight-panel-landmark-item-button' );
+
+		if ( ! landmarkButton ) {
 			return;
 		}
 
 		event.preventDefault();
 
-		const index = parseInt( button.dataset.headingIndex, 10 );
+		const landmarkIndex = parseInt( landmarkButton.dataset.landmarkIndex, 10 );
 
-		if ( Number.isNaN( index ) ) {
+		if ( Number.isNaN( landmarkIndex ) ) {
 			return;
 		}
 
-		this.highlightHeadingMapItem( index );
+		this.highlightLandmarkMapItem( landmarkIndex );
 	};
 
 	/**
@@ -1473,63 +2061,8 @@ class AccessibilityCheckerHighlight {
 			}
 
 			if ( landmarkElement ) {
-				// Clean up any existing landmark labels first
-				this.removeLandmarkLabels();
-
-				// Add highlighting styles
-				landmarkElement.classList.add( 'edac-highlight-element-selected' );
-				landmarkElement.classList.add( 'edac-landmark-highlight' );
-
-				// Create and add landmark type label
-				const landmarkType = this.getLandmarkType( landmarkElement );
-				const landmarkLabel = document.createElement( 'div' );
-				landmarkLabel.classList.add( 'edac-landmark-label' );
-				landmarkLabel.textContent = `Landmark: ${ landmarkType }`;
-				landmarkLabel.setAttribute( 'aria-hidden', 'true' );
-				landmarkLabel.style.cssText = `
-					position: absolute;
-					background: #072446;
-					color: white;
-					padding: 4px 8px;
-					font-size: 12px;
-					font-weight: bold;
-					border-radius: 3px;
-					z-index: 99998;
-					pointer-events: none;
-					font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-					line-height: 1;
-					box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-				`;
-
-				// Position the label inside the top-left corner of the landmark
-				const rect = landmarkElement.getBoundingClientRect();
-				landmarkLabel.style.left = ( rect.left + window.scrollX - 0 ) + 'px'; // 15px inside from left edge
-				landmarkLabel.style.top = ( rect.top + window.scrollY - 0 ) + 'px'; // 15px inside from top edge
-
-				// Add label to the page
-				document.body.appendChild( landmarkLabel );
-
-				// Store reference for cleanup
-				landmarkElement.setAttribute( 'data-edac-landmark-label-id', Date.now() );
-				landmarkLabel.setAttribute( 'data-edac-landmark-for', landmarkElement.getAttribute( 'data-edac-landmark-label-id' ) );
-
-				// Adjust for small elements
-				if ( landmarkElement.offsetWidth < 20 ) {
-					landmarkElement.classList.add( 'edac-highlight-element-selected-min-width' );
-				}
-
-				if ( landmarkElement.offsetHeight < 5 ) {
-					landmarkElement.classList.add( 'edac-highlight-element-selected-min-height' );
-				}
-
-				// Scroll to the landmark with 20px offset from start
-				const elementRect = landmarkElement.getBoundingClientRect();
-				const elementTop = elementRect.top + window.scrollY - 75;
-				window.scrollTo( {
-					top: elementTop,
-					behavior: 'smooth',
-				} );
-
+				const label = this.getAccessibleName( landmarkElement ) || this.getLandmarkType( landmarkElement );
+				this.applyLandmarkHighlight( landmarkElement, label );
 			} else {
 				// Landmark element not found - silently fail
 			}
@@ -1604,16 +2137,32 @@ class AccessibilityCheckerHighlight {
 	 * Remove all landmark labels from the page
 	 */
 	removeLandmarkLabels() {
-		const landmarkLabels = document.querySelectorAll( '.edac-landmark-label' );
-		landmarkLabels.forEach( ( label ) => {
+		if ( this.activeLandmarkLabel ) {
+			this.activeLandmarkLabel.remove();
+			this.activeLandmarkLabel = null;
+		}
+
+		if ( this.activeLandmarkElement ) {
+			this.activeLandmarkElement.classList.remove(
+				'edac-landmark-highlight',
+				'edac-highlight-element-selected',
+				'edac-highlight-element-selected-min-width',
+				'edac-highlight-element-selected-min-height'
+			);
+			this.activeLandmarkElement = null;
+		}
+
+		document.querySelectorAll( '.edac-landmark-label' ).forEach( ( label ) => {
 			label.remove();
 		} );
 
-		// Remove landmark highlight classes
-		const landmarkHighlights = document.querySelectorAll( '.edac-landmark-highlight' );
-		landmarkHighlights.forEach( ( element ) => {
-			element.classList.remove( 'edac-landmark-highlight' );
-			element.removeAttribute( 'data-edac-landmark-label-id' );
+		document.querySelectorAll( '.edac-landmark-highlight' ).forEach( ( element ) => {
+			element.classList.remove(
+				'edac-landmark-highlight',
+				'edac-highlight-element-selected',
+				'edac-highlight-element-selected-min-width',
+				'edac-highlight-element-selected-min-height'
+			);
 		} );
 	}
 
