@@ -14,6 +14,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 "Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
@@ -267,32 +268,40 @@ msgstr "Za to vsebino je bil vključen poenostavljen povzetek."
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
-msgstr[0] "%s Errors"
+msgstr[0] "%s Napaka"
 msgstr[1] "%s Errors"
+msgstr[2] "%s Errors"
+msgstr[3] "%s Napak"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
-msgstr[0] "%s Contrast Errors"
+msgstr[0] "%s Napaka kontrasta"
 msgstr[1] "%s Contrast Errors"
+msgstr[2] "%s Contrast Errors"
+msgstr[3] "%s Napak kontrasta"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
-msgstr[0] "%s Warnings"
+msgstr[0] "%s Opozorilo"
 msgstr[1] "%s Warnings"
+msgstr[2] "%s Warnings"
+msgstr[3] "%s Opozoril"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
-msgstr[0] "%s Ignored Items"
+msgstr[0] "%s Prezrt element"
 msgstr[1] "%s Ignored Items"
+msgstr[2] "%s Ignored Items"
+msgstr[3] "%s Prezrtih elementov"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -453,26 +462,34 @@ msgstr "Opravljeni testi"
 #: admin/class-welcome-page.php:88
 msgid "Unique Error"
 msgid_plural "Unique Errors"
-msgstr[0] "Unique Errors"
+msgstr[0] "Edinstvena napaka"
 msgstr[1] "Unique Errors"
+msgstr[2] "Unique Errors"
+msgstr[3] "Edinstvene napake"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
-msgstr[0] "Unique Color Contrast Errors"
+msgstr[0] "Edinstvena napaka barvnega kontrasta"
 msgstr[1] "Unique Color Contrast Errors"
+msgstr[2] "Unique Color Contrast Errors"
+msgstr[3] "Edinstvene napake barvnega kontrasta"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
-msgstr[0] "Unique Warnings"
+msgstr[0] "Edinstveno opozorilo"
 msgstr[1] "Unique Warnings"
+msgstr[2] "Unique Warnings"
+msgstr[3] "Edinstvena opozorila"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
-msgstr[0] "Ignored Items"
+msgstr[0] "Prezrt element"
 msgstr[1] "Ignored Items"
+msgstr[2] "Ignored Items"
+msgstr[3] "Prezrti elementi"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -725,9 +742,11 @@ msgstr "Vsebina se preverja za dostopnost"
 #: admin/site-health/class-checks.php:177
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
-msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
-msgstr[0] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker je pregledal %s objavo za težave z dostopnostjo."
 msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[3] "Accessibility Checker je pregledal %s objav za težave z dostopnostjo."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -749,9 +768,11 @@ msgstr "Vrste objav so konfigurirane za preverjanje dostopnosti"
 #: admin/site-health/class-checks.php:216
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgstr[0] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker je konfiguriran za pregled %1$s vrste objave: %2$s."
 msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[3] "Accessibility Checker je konfiguriran za pregled %1$s vrst objav: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4541,14 +4562,18 @@ msgstr "Ni zaznanih težav."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] "errors"
+msgstr[0] "napaka"
 msgstr[1] "errors"
+msgstr[2] "errors"
+msgstr[3] "napake"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] "warnings"
+msgstr[0] "opozorilo"
 msgstr[1] "warnings"
+msgstr[2] "warnings"
+msgstr[3] "opozorila"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4557,8 +4582,10 @@ msgstr "in"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] "ignored issues"
+msgstr[0] "prezrta težava"
 msgstr[1] "ignored issues"
+msgstr[2] "ignored issues"
+msgstr[3] "prezrti težavi"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
