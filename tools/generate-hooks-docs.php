@@ -30,7 +30,7 @@ $rii = new RecursiveIteratorIterator(
  * @param int    $max_lines Maximum number of lines allowed between docblock end and pos.
  * @return array ['summary' => string, 'since' => string]
  */
-function find_nearest_docblock( $contents, $pos, $max_lines = 10 ) {
+function edac_find_nearest_docblock( $contents, $pos, $max_lines = 10 ) {
 	$leading = substr( $contents, 0, $pos );
 
 	// Find all docblocks before the position.
@@ -177,8 +177,7 @@ foreach ( $rii as $file ) {
 				$relpath = substr( $filepath, strlen( $root ) + 1 );
 
 				// Try to capture the nearest PHPDoc block (within 10 lines) for summary and @since.
-				$doc_info = find_nearest_docblock( $contents, $pos, 10 );
-
+				$doc_info                   = edac_find_nearest_docblock( $contents, $pos, 10 );
 				$candidates[ $hook_name ][] = [
 					'hook'    => $hook_name,
 					'type'    => ( 'do_action' === $fn ) ? 'action' : 'filter',
@@ -207,7 +206,7 @@ foreach ( $rii as $file ) {
 				$relpath = substr( $filepath, strlen( $root ) + 1 );
 
 				// For listeners, also try to find a nearby docblock (within 6 lines).
-				$doc_info = find_nearest_docblock( $contents, $pos, 6 );
+				$doc_info = edac_find_nearest_docblock( $contents, $pos, 6 );
 
 				$candidates[ $hook_name ][] = [
 					'hook'    => $hook_name,
