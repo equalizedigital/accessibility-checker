@@ -14,9 +14,9 @@
 $root = dirname( __DIR__ );
 
 // Configuration: allow overriding via environment variables for CI or local runs.
-$github_owner  = getenv( 'GH_OWNER' ) ?: 'equalizedigital';
-$github_repo   = getenv( 'GH_REPO' ) ?: 'accessibility-checker';
-$github_branch = getenv( 'GH_BRANCH' ) ?: 'develop';
+$github_owner  = getenv( 'GH_OWNER' ) ? getenv( 'GH_OWNER' ) : 'equalizedigital';
+$github_repo   = getenv( 'GH_REPO' ) ? getenv( 'GH_REPO' ) : 'accessibility-checker';
+$github_branch = getenv( 'GH_BRANCH' ) ? getenv( 'GH_BRANCH' ) : 'develop';
 
 $rii = new RecursiveIteratorIterator(
 	new RecursiveDirectoryIterator( $root )
@@ -27,10 +27,10 @@ $rii = new RecursiveIteratorIterator(
  *
  * @param string $contents Full file contents.
  * @param int    $pos      Byte offset where the hook call begins.
- * @param int    $maxLines Maximum number of lines allowed between docblock end and pos.
+ * @param int    $max_lines Maximum number of lines allowed between docblock end and pos.
  * @return array ['summary' => string, 'since' => string]
  */
-function find_nearest_docblock( $contents, $pos, $maxLines = 10 ) {
+function find_nearest_docblock( $contents, $pos, $max_lines = 10 ) {
 	$leading = substr( $contents, 0, $pos );
 
 	// Find all docblocks before the position.
@@ -43,7 +43,7 @@ function find_nearest_docblock( $contents, $pos, $maxLines = 10 ) {
 		// Lines between doc end and the hook position.
 		$between  = substr( $contents, $doc_end, max( 0, $pos - $doc_end ) );
 		$line_gap = substr_count( $between, "\n" );
-		if ( $line_gap <= $maxLines ) {
+		if ( $line_gap <= $max_lines ) {
 			// Clean comment markers and collect lines.
 			$lines = preg_split( '/\r?\n/', $doc_text );
 			$clean = [];
