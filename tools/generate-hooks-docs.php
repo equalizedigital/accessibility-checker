@@ -160,7 +160,7 @@ foreach ( $rii as $file ) {
 		continue;
 	}
 
-	$contents = file_get_contents( $filepath );
+	$contents = file_get_contents( $filepath ); // phpcs:ignore WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown
 
 	// 1) Find hook definitions: do_action (action) and apply_filters (filter).
 	if ( preg_match_all( '/\b(do_action|apply_filters)\s*\(\s*([\'\"])([^\2]+?)\2/s', $contents, $def_matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE ) ) {
@@ -313,6 +313,6 @@ foreach ( $hooks as $entry ) {
 }
 
 $docs_path = realpath( __DIR__ . '/..' ) . '/docs/hooks.md';
-file_put_contents( $docs_path, $out );
+file_put_contents( $docs_path, $out ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents
 
 printf( "Generated docs/hooks.md with %d hooks.\n", count( $hooks ) );
