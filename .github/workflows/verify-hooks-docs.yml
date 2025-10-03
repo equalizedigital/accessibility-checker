@@ -4,14 +4,9 @@ on:
   pull_request:
     paths:
       - '**.php'
-      - 'tools/**'
-      - 'docs/hooks.md'
   push:
     branches:
       - develop
-    paths:
-      - 'tools/**'
-      - 'docs/hooks.md'
 
 jobs:
   verify-docs:
@@ -33,7 +28,7 @@ jobs:
         run: php tools/generate-hooks-docs.php
 
       - name: Create a pull request if docs/hooks.md changed
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "docs: regenerate hooks docs"
