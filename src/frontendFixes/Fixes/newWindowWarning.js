@@ -31,8 +31,6 @@ const initializeTooltip = () => {
 		display: 'none',
 		pointerEvents: 'auto',
 		boxShadow: '0px 4px 6px rgba(0,0,0,0.1)',
-		maxWidth: '200px',
-		whiteSpace: 'nowrap',
 	} );
 	document.body.appendChild( anwwLinkTooltip );
 
