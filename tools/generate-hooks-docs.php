@@ -228,6 +228,35 @@ $github_base = sprintf( 'https://github.com/%s/%s/blob/%s/', $github_owner, $git
 // outside of tests/, dist/, build/, vendor/ etc.
 $hooks = [];
 foreach ( $candidates as $hook_name => $list ) {
+	// First, filter out entries from non-authoritative directories.
+	$filtered_list = array_filter(
+		$list,
+		static function ( $entry ) {
+			// Skip entries from test/build/vendor directories.
+			$excluded_paths = [
+				'/tests/',
+				'/dist/',
+				'/build/',
+				'/docs/',
+				'/.github/',
+				'/node_modules/',
+				'/vendor/',
+			];
+			
+			foreach ( $excluded_paths as $excluded_path ) {
+				if ( false !== strpos( $entry['file'], $excluded_path ) ) {
+					return false;
+				}
+			}
+			return true;
+		}
+	);
+	
+	// If we filtered out everything, fall back to the original list.
+	if ( ! empty( $filtered_list ) ) {
+		$list = array_values( $filtered_list );
+	}
+	
 	// If any definition candidates exist, narrow to them. Otherwise keep listeners.
 	$defs = array_filter(
 		$list,
