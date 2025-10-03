@@ -104,3 +104,14 @@ There are various ways you can contribute:
 
 * [Raise an issue](https://github.com/equalizedigital/accessibility-checker/issues) on GitHub.
 * Send us a Pull Request with your bug fixes and/or new features.
+
+## Developer docs
+
+This repository includes generated developer documentation to make it easier to work with the plugin:
+
+- `docs/hooks.md` — A generated inventory of all actions and filters in the plugin. Regenerate with:
+
+```bash
+composer run generate-hooks-docs
+```
+

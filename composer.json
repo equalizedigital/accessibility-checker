@@ -79,5 +79,9 @@
         "test": [
             "@php ./vendor/phpunit/phpunit/phpunit --testdox"
         ]
+        ,
+        "generate-hooks-docs": [
+            "@php tools/generate-hooks-docs.php"
+        ]
     }
 }
