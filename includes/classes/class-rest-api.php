@@ -338,6 +338,15 @@ class REST_Api {
 			 *
 			 * @param int    $post_id The post ID.
 			 * @param string $type    The type of validation which is always 'js' in this path.
+			 *
+			 * @example
+			 * // Log the start of validation for debugging purposes
+			 * add_action( 'edac_before_validate', function( $post_id, $type ) {
+			 *     error_log( sprintf( 'Starting accessibility validation for post ID %d with type %s', $post_id, $type ) );
+			 *     
+			 *     // You could also update post meta
+			 *     update_post_meta( $post_id, 'edac_validation_started', current_time( 'mysql' ) );
+			 * }, 10, 2 );
 			 */
 			do_action( 'edac_before_validate', $post_id, 'js' );
 

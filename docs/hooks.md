@@ -14,6 +14,21 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 
 **Since:** N/A
 
+**Example Usage:**
+
+```php
+/**
+ * Handle the action_enqueue_frontend_fixes action.
+ *
+ */
+add_action( 'edac_action_enqueue_frontend_fixes', 'my_custom_action_enqueue_frontend_fixes_handler' );
+
+function my_custom_action_enqueue_frontend_fixes_handler(  ) {
+    // Implement your custom logic for the edac_action_enqueue_frontend_fixes action
+    // Your custom code here
+}
+```
+
 ---
 
 ### `edac_after_meta_box`
@@ -24,13 +39,28 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 
 **Since:** 1.10.0
 
+**Example Usage:**
+
+```php
+/**
+ * Handle the after_meta_box action.
+ *
+ */
+add_action( 'edac_after_meta_box', 'my_custom_after_meta_box_handler' );
+
+function my_custom_after_meta_box_handler(  ) {
+    // Implement your custom logic for the edac_after_meta_box action
+    // Your custom code here
+}
+```
+
 ---
 
 ### `edac_after_rule`
 
 *Fires after a rule is run against the content.*
 
-**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L409) (line 409)
+**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L418) (line 418)
 
 **Since:** 1.5.0
 
@@ -40,13 +70,44 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 - `$rule_id` (string) - The rule ID.
 - `$type` (string) - The type of validation which is always 'js' in this path.
 
+**Example Usage:**
+
+```php
+/**
+ * Handle the after_rule action.
+ *
+ * @param int $post_id The post ID.
+ * @param string $rule_id The rule ID.
+ * @param string $type The type of validation which is always 'js' in this path.
+ */
+add_action( 'edac_after_rule', 'my_custom_after_rule_handler', 10, 3 );
+
+function my_custom_after_rule_handler( $post_id, $rule_id, $type ) {
+    // Example: Get the post object from $post_id
+    $post = get_post( $post_id );
+    if ( $post ) {
+        // Do something with the post
+    }
+
+    // Example: Get the post object from $rule_id
+    $post = get_post( $rule_id );
+    if ( $post ) {
+        // Do something with the post
+    }
+
+    // Example: Use $type in your custom logic
+
+    // Your custom code here
+}
+```
+
 ---
 
 ### `edac_after_validate`
 
 *Fires after the validation process is complete.*
 
-**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L425) (line 425)
+**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L434) (line 434)
 
 **Since:** 1.5.0
 
@@ -54,6 +115,30 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 
 - `$post_id` (int) - The post ID.
 - `$type` (string) - The type of validation which is always 'js' in this path.
+
+**Example Usage:**
+
+```php
+/**
+ * Handle the after_validate action.
+ *
+ * @param int $post_id The post ID.
+ * @param string $type The type of validation which is always 'js' in this path.
+ */
+add_action( 'edac_after_validate', 'my_custom_after_validate_handler', 10, 2 );
+
+function my_custom_after_validate_handler( $post_id, $type ) {
+    // Example: Get the post object from $post_id
+    $post = get_post( $post_id );
+    if ( $post ) {
+        // Do something with the post
+    }
+
+    // Example: Use $type in your custom logic
+
+    // Your custom code here
+}
+```
 
 ---
 
@@ -69,6 +154,23 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 
 - `$post_type` (string) - Post Type.
 
+**Example Usage:**
+
+```php
+/**
+ * Handle the before_delete_cpt_posts action.
+ *
+ * @param string $post_type Post Type.
+ */
+add_action( 'edac_before_delete_cpt_posts', 'my_custom_before_delete_cpt_posts_handler', 10, 1 );
+
+function my_custom_before_delete_cpt_posts_handler( $post_type ) {
+    // Example: Use $post_type in your custom logic
+
+    // Your custom code here
+}
+```
+
 ---
 
 ### `edac_before_meta_box`
@@ -79,13 +181,28 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 
 **Since:** 1.10.0
 
+**Example Usage:**
+
+```php
+/**
+ * Handle the before_meta_box action.
+ *
+ */
+add_action( 'edac_before_meta_box', 'my_custom_before_meta_box_handler' );
+
+function my_custom_before_meta_box_handler(  ) {
+    // Implement your custom logic for the edac_before_meta_box action
+    // Your custom code here
+}
+```
+
 ---
 
 ### `edac_before_rule`
 
 *Fires before a rule is run against the content.*
 
-**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L386) (line 386)
+**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L395) (line 395)
 
 **Since:** 1.5.0
 
@@ -95,13 +212,44 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 - `$rule_id` (string) - The rule ID.
 - `$type` (string) - The type of validation which is always 'js' in this path.
 
+**Example Usage:**
+
+```php
+/**
+ * Handle the before_rule action.
+ *
+ * @param int $post_id The post ID.
+ * @param string $rule_id The rule ID.
+ * @param string $type The type of validation which is always 'js' in this path.
+ */
+add_action( 'edac_before_rule', 'my_custom_before_rule_handler', 10, 3 );
+
+function my_custom_before_rule_handler( $post_id, $rule_id, $type ) {
+    // Example: Get the post object from $post_id
+    $post = get_post( $post_id );
+    if ( $post ) {
+        // Do something with the post
+    }
+
+    // Example: Get the post object from $rule_id
+    $post = get_post( $rule_id );
+    if ( $post ) {
+        // Do something with the post
+    }
+
+    // Example: Use $type in your custom logic
+
+    // Your custom code here
+}
+```
+
 ---
 
 ### `edac_before_validate`
 
 *Fires before the validation process starts.*
 
-**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L342) (line 342)
+**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L351) (line 351)
 
 **Since:** 1.5.0
 
@@ -109,6 +257,30 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 
 - `$post_id` (int) - The post ID.
 - `$type` (string) - The type of validation which is always 'js' in this path.
+
+**Example Usage:**
+
+```php
+/**
+ * Handle the before_validate action.
+ *
+ * @param int $post_id The post ID.
+ * @param string $type The type of validation which is always 'js' in this path.
+ */
+add_action( 'edac_before_validate', 'my_custom_before_validate_handler', 10, 2 );
+
+function my_custom_before_validate_handler( $post_id, $type ) {
+    // Example: Get the post object from $post_id
+    $post = get_post( $post_id );
+    if ( $post ) {
+        // Do something with the post
+    }
+
+    // Example: Use $type in your custom logic
+
+    // Your custom code here
+}
+```
 
 ---
 
@@ -125,6 +297,26 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 - `$option_name` (string) - The option name being saved.
 - `$input` (mixed) - The input value.
 
+**Example Usage:**
+
+```php
+/**
+ * Handle the pro_setting_saving_checkbox action.
+ *
+ * @param string $option_name The option name being saved.
+ * @param mixed $input The input value.
+ */
+add_action( 'edac_pro_setting_saving_checkbox', 'my_custom_pro_setting_saving_checkbox_handler', 10, 2 );
+
+function my_custom_pro_setting_saving_checkbox_handler( $option_name, $input ) {
+    // Example: Use $option_name in your custom logic
+
+    // Example: Use $input in your custom logic
+
+    // Your custom code here
+}
+```
+
 ---
 
 ### `edac_settings_tab_content`
@@ -139,13 +331,30 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 
 - `$settings_tab` (string) - The current settings tab.
 
+**Example Usage:**
+
+```php
+/**
+ * Handle the settings_tab_content action.
+ *
+ * @param string $settings_tab The current settings tab.
+ */
+add_action( 'edac_settings_tab_content', 'my_custom_settings_tab_content_handler', 10, 1 );
+
+function my_custom_settings_tab_content_handler( $settings_tab ) {
+    // Example: Use $settings_tab in your custom logic
+
+    // Your custom code here
+}
+```
+
 ---
 
 ### `edac_validate_before_sending_rest_response`
 
 *Fires before sending the REST response ending the validation process.*
 
-**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L458) (line 458)
+**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L467) (line 467)
 
 **Since:** 1.14.0
 
@@ -154,6 +363,33 @@ These are the actions provided by the Accessibility Checker plugin that you can 
 - `$post_id` (int) - The post ID.
 - `$type` (string) - The type of validation which is always 'js' in this path.
 - `$request` (WP_REST_Request) - The request passed from the REST call.
+
+**Example Usage:**
+
+```php
+/**
+ * Handle the validate_before_sending_rest_response action.
+ *
+ * @param int $post_id The post ID.
+ * @param string $type The type of validation which is always 'js' in this path.
+ * @param WP_REST_Request $request The request passed from the REST call.
+ */
+add_action( 'edac_validate_before_sending_rest_response', 'my_custom_validate_before_sending_rest_response_handler', 10, 3 );
+
+function my_custom_validate_before_sending_rest_response_handler( $post_id, $type, $request ) {
+    // Example: Get the post object from $post_id
+    $post = get_post( $post_id );
+    if ( $post ) {
+        // Do something with the post
+    }
+
+    // Example: Use $type in your custom logic
+
+    // Example: Use $request in your custom logic
+
+    // Your custom code here
+}
+```
 
 ---
 
@@ -173,6 +409,25 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 - `$menu_items` (array) - Array of menu item configurations. Each item should be
 
+**Example Usage:**
+
+```php
+/**
+ * Customize admin_toolbar_menu_items.
+ *
+ * @param array $menu_items Array of menu item configurations. Each item should be
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_admin_toolbar_menu_items', 'my_custom_admin_toolbar_menu_items', 10, 1 );
+
+function my_custom_admin_toolbar_menu_items( $menu_items ) {
+    // Add or modify entries in the admin_toolbar_menu_items array
+    $menu_items['custom_key'] = 'custom_value';
+
+    return $menu_items;
+}
+```
+
 ---
 
 ### `edac_debug_information`
@@ -187,6 +442,29 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 - `$information` (array) - The debug information.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize debug_information.
+ *
+ * @param array $information The debug information.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_debug_information', 'my_custom_debug_information', 10, 1 );
+
+function my_custom_debug_information( $information ) {
+    // Add custom debugging information
+    $information['my_plugin'] = [
+        'label'   => 'My Plugin',
+        'value'   => 'Version 1.0.0',
+        'private' => false,
+    ];
+
+    return $information;
+}
+```
+
 ---
 
 ### `edac_filter_admin_scripts_slugs`
@@ -198,6 +476,23 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Since:** N/A
 
 **Returns:** (void) 
+
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_admin_scripts_slugs.
+ *
+ * @param mixed $ Default value.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_admin_scripts_slugs', 'my_custom_filter_admin_scripts_slugs' );
+
+function my_custom_filter_admin_scripts_slugs(  ) {
+    // Implement your custom logic here
+    return true;
+}
+```
 
 ---
 
@@ -213,6 +508,25 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 - `$commands` (CLICommandInterface[]) - array of classes to register as commands.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_command_classes.
+ *
+ * @param CLICommandInterface[] $commands array of classes to register as commands.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_command_classes', 'my_custom_filter_command_classes', 10, 1 );
+
+function my_custom_filter_command_classes( $commands ) {
+    // Add a custom WP-CLI command class
+    $commands[] = '\\MyPlugin\\CLI\\MyCustomCommand';
+
+    return $commands;
+}
+```
+
 ---
 
 ### `edac_filter_dashboard_widget_capability`
@@ -227,6 +541,25 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 - `$capability` (string) - The capability required to view the dashboard widget.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_dashboard_widget_capability.
+ *
+ * @param string $capability The capability required to view the dashboard widget.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_dashboard_widget_capability', 'my_custom_filter_dashboard_widget_capability', 10, 1 );
+
+function my_custom_filter_dashboard_widget_capability( $capability ) {
+    // Modify the filter_dashboard_widget_capability string
+    $capability .= ' (Modified by my plugin)';
+
+    return $capability;
+}
+```
+
 ---
 
 ### `edac_filter_fixes`
@@ -236,6 +569,23 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Defined in:** [includes/classes/Fixes/FixesManager.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/Fixes/FixesManager.php#L125) (line 125)
 
 **Since:** N/A
+
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_fixes.
+ *
+ * @param mixed $ Default value.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_fixes', 'my_custom_filter_fixes' );
+
+function my_custom_filter_fixes(  ) {
+    // Implement your custom logic here
+    return true;
+}
+```
 
 ---
 
@@ -251,6 +601,25 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 - `$fields` (array) - The fields that are to be registered for the fixes settings page.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_fixes_settings_fields.
+ *
+ * @param array $fields The fields that are to be registered for the fixes settings page.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_fixes_settings_fields', 'my_custom_filter_fixes_settings_fields', 10, 1 );
+
+function my_custom_filter_fixes_settings_fields( $fields ) {
+    // Add or modify entries in the filter_fixes_settings_fields array
+    $fields['custom_key'] = 'custom_value';
+
+    return $fields;
+}
+```
+
 ---
 
 ### `edac_filter_fixes_settings_sections`
@@ -262,6 +631,23 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Since:** N/A
 
 **Returns:** (void) 
+
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_fixes_settings_sections.
+ *
+ * @param mixed $ Default value.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_fixes_settings_sections', 'my_custom_filter_fixes_settings_sections' );
+
+function my_custom_filter_fixes_settings_sections(  ) {
+    // Implement your custom logic here
+    return true;
+}
+```
 
 ---
 
@@ -275,6 +661,23 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 **Returns:** (void) 
 
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_frontend_fixes_data.
+ *
+ * @param mixed $ Default value.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_frontend_fixes_data', 'my_custom_filter_frontend_fixes_data' );
+
+function my_custom_filter_frontend_fixes_data(  ) {
+    // Implement your custom logic here
+    return true;
+}
+```
+
 ---
 
 ### `edac_filter_frontend_highlight_post_id`
@@ -286,6 +689,23 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Since:** N/A
 
 **Returns:** (void) 
+
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_frontend_highlight_post_id.
+ *
+ * @param mixed $ Default value.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_frontend_highlight_post_id', 'my_custom_filter_frontend_highlight_post_id' );
+
+function my_custom_filter_frontend_highlight_post_id(  ) {
+    // Implement your custom logic here
+    return true;
+}
+```
 
 ---
 
@@ -300,6 +720,24 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Parameters:**
 
 - `$visibility` (bool) - The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
+
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_frontend_highlighter_visibility.
+ *
+ * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_frontend_highlighter_visibility', 'my_custom_filter_frontend_highlighter_visibility', 10, 1 );
+
+function my_custom_filter_frontend_highlighter_visibility( $visibility ) {
+    // Change the filter_frontend_highlighter_visibility behavior
+    return true; // Enable the feature
+    // return false; // Or disable it
+}
+```
 
 ---
 
@@ -319,6 +757,27 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 **Returns:** (string) 
 
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_generate_link_type_ref.
+ *
+ * @param array $query_args A list of key value pairs to add as query vars to the link.
+ * @param string $type The type of link to generate. Default is 'pro'.
+ * @param array $args Additional arguments to pass on the link.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_generate_link_type_ref', 'my_custom_filter_generate_link_type_ref', 10, 3 );
+
+function my_custom_filter_generate_link_type_ref( $query_args, $type, $args ) {
+    // Add or modify entries in the filter_generate_link_type_ref array
+    $query_args['custom_key'] = 'custom_value';
+
+    return $query_args;
+}
+```
+
 ---
 
 ### `edac_filter_insert_rule_data`
@@ -333,13 +792,32 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 - `$rule_data` (array) - The rule data.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_insert_rule_data.
+ *
+ * @param array $rule_data The rule data.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_insert_rule_data', 'my_custom_filter_insert_rule_data', 10, 1 );
+
+function my_custom_filter_insert_rule_data( $rule_data ) {
+    // Add or modify entries in the filter_insert_rule_data array
+    $rule_data['custom_key'] = 'custom_value';
+
+    return $rule_data;
+}
+```
+
 ---
 
 ### `edac_filter_js_violation_html`
 
 *REST handler that saves to the DB a list of js rule violations for a post.*
 
-**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L361) (line 361)
+**Defined in:** [includes/classes/class-rest-api.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/includes/classes/class-rest-api.php#L370) (line 370)
 
 **Since:** N/A
 
@@ -348,6 +826,24 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 - `$request` (WP_REST_Request) - The request passed from the REST call.
 
 **Returns:** (\WP_REST_Response) 
+
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_js_violation_html.
+ *
+ * @param WP_REST_Request $request The request passed from the REST call.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_js_violation_html', 'my_custom_filter_js_violation_html', 10, 1 );
+
+function my_custom_filter_js_violation_html( $request ) {
+    // Make your custom modifications to $request
+    
+    return $request;
+}
+```
 
 ---
 
@@ -362,6 +858,25 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Parameters:**
 
 - `$post_types` (array) - post types.
+
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_post_types.
+ *
+ * @param array $post_types post types.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_post_types', 'my_custom_filter_post_types', 10, 1 );
+
+function my_custom_filter_post_types( $post_types ) {
+    // Add or modify entries in the filter_post_types array
+    $post_types['custom_key'] = 'custom_value';
+
+    return $post_types;
+}
+```
 
 ---
 
@@ -378,6 +893,26 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 - `$content` (string) - The content to be filtered.
 - `$post_id` (int) - The post ID.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_readability_content.
+ *
+ * @param string $content The content to be filtered.
+ * @param int $post_id The post ID.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_readability_content', 'my_custom_filter_readability_content', 10, 2 );
+
+function my_custom_filter_readability_content( $content, $post_id ) {
+    // Modify the filter_readability_content string
+    $content .= ' (Modified by my plugin)';
+
+    return $content;
+}
+```
+
 ---
 
 ### `edac_filter_register_rules`
@@ -391,6 +926,25 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Parameters:**
 
 - `$default_rules` (array) - The default rules.
+
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_register_rules.
+ *
+ * @param array $default_rules The default rules.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_register_rules', 'my_custom_filter_register_rules', 10, 1 );
+
+function my_custom_filter_register_rules( $default_rules ) {
+    // Add or modify entries in the filter_register_rules array
+    $default_rules['custom_key'] = 'custom_value';
+
+    return $default_rules;
+}
+```
 
 ---
 
@@ -406,6 +960,25 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 - `$screens` (array) - The screens where admin notices should be removed.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_remove_admin_notices_screens.
+ *
+ * @param array $screens The screens where admin notices should be removed.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_remove_admin_notices_screens', 'my_custom_filter_remove_admin_notices_screens', 10, 1 );
+
+function my_custom_filter_remove_admin_notices_screens( $screens ) {
+    // Add or modify entries in the filter_remove_admin_notices_screens array
+    $screens['custom_key'] = 'custom_value';
+
+    return $screens;
+}
+```
+
 ---
 
 ### `edac_filter_settings_capability`
@@ -417,6 +990,23 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Since:** 1.27.0
 
 **Returns:** (void) 
+
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_settings_capability.
+ *
+ * @param mixed $ Default value.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_settings_capability', 'my_custom_filter_settings_capability' );
+
+function my_custom_filter_settings_capability(  ) {
+    // Implement your custom logic here
+    return true;
+}
+```
 
 ---
 
@@ -432,6 +1022,25 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 - `$settings_tab_items` (array) - The settings tab items as an array of arrays. Needs a 'slug', 'label', and 'order'.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_settings_tab_items.
+ *
+ * @param array $settings_tab_items The settings tab items as an array of arrays. Needs a 'slug', 'label', and 'order'.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_settings_tab_items', 'my_custom_filter_settings_tab_items', 10, 1 );
+
+function my_custom_filter_settings_tab_items( $settings_tab_items ) {
+    // Add or modify entries in the filter_settings_tab_items array
+    $settings_tab_items['custom_key'] = 'custom_value';
+
+    return $settings_tab_items;
+}
+```
+
 ---
 
 ### `edac_filter_simplified_summary_heading`
@@ -445,6 +1054,25 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Parameters:**
 
 - `$simplified_summary_heading` (string) - The simplified summary heading.
+
+**Example Usage:**
+
+```php
+/**
+ * Customize filter_simplified_summary_heading.
+ *
+ * @param string $simplified_summary_heading The simplified summary heading.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_filter_simplified_summary_heading', 'my_custom_filter_simplified_summary_heading', 10, 1 );
+
+function my_custom_filter_simplified_summary_heading( $simplified_summary_heading ) {
+    // Modify the filter_simplified_summary_heading string
+    $simplified_summary_heading .= ' (Modified by my plugin)';
+
+    return $simplified_summary_heading;
+}
+```
 
 ---
 
@@ -462,6 +1090,25 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 **Returns:** (string) Modified target element selector.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize fix_underline_target.
+ *
+ * @param string $el The target element selector. Default is 'a'.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_fix_underline_target', 'my_custom_fix_underline_target', 10, 1 );
+
+function my_custom_fix_underline_target( $el ) {
+    // Modify the fix_underline_target string
+    $el .= ' (Modified by my plugin)';
+
+    return $el;
+}
+```
+
 ---
 
 ### `edac_get_origin_url_for_virtual_page`
@@ -474,6 +1121,23 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 **Returns:** (void) 
 
+**Example Usage:**
+
+```php
+/**
+ * Customize get_origin_url_for_virtual_page.
+ *
+ * @param mixed $ Default value.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_get_origin_url_for_virtual_page', 'my_custom_get_origin_url_for_virtual_page' );
+
+function my_custom_get_origin_url_for_virtual_page(  ) {
+    // Implement your custom logic here
+    return true;
+}
+```
+
 ---
 
 ### `edac_ignore_permission`
@@ -483,6 +1147,23 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Defined in:** [admin/class-ajax.php](https://github.com/equalizedigital/accessibility-checker/blob/develop/admin/class-ajax.php#L306) (line 306)
 
 **Since:** 1.4.0
+
+**Example Usage:**
+
+```php
+/**
+ * Customize ignore_permission.
+ *
+ * @param mixed $ Default value.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_ignore_permission', 'my_custom_ignore_permission' );
+
+function my_custom_ignore_permission(  ) {
+    // Implement your custom logic here
+    return true;
+}
+```
 
 ---
 
@@ -497,6 +1178,24 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Parameters:**
 
 - `$is_sale_time` (bool) - Whether it's currently sale time. Default false.
+
+**Example Usage:**
+
+```php
+/**
+ * Customize is_sale_time.
+ *
+ * @param bool $is_sale_time Whether it's currently sale time. Default false.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_is_sale_time', 'my_custom_is_sale_time', 10, 1 );
+
+function my_custom_is_sale_time( $is_sale_time ) {
+    // Change the is_sale_time behavior
+    return true; // Enable the feature
+    // return false; // Or disable it
+}
+```
 
 ---
 
@@ -516,6 +1215,27 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 **Returns:** (string) The wrapped URL.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize link_wrapper_mock.
+ *
+ * @param string $base_url The base URL to wrap.
+ * @param string $campaign The campaign parameter.
+ * @param string $content The content parameter (unused in mock).
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_link_wrapper_mock', 'my_custom_link_wrapper_mock', 10, 3 );
+
+function my_custom_link_wrapper_mock( $base_url, $campaign, $content ) {
+    // Modify the link_wrapper_mock string
+    $base_url .= ' (Modified by my plugin)';
+
+    return $base_url;
+}
+```
+
 ---
 
 ### `edac_link_wrapper_test_mode`
@@ -534,6 +1254,27 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 
 **Returns:** (string) The wrapped URL.
 
+**Example Usage:**
+
+```php
+/**
+ * Customize link_wrapper_test_mode.
+ *
+ * @param string $base_url The base URL to wrap.
+ * @param string $campaign The campaign parameter.
+ * @param string $content The content parameter (unused in mock).
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_link_wrapper_test_mode', 'my_custom_link_wrapper_test_mode', 10, 3 );
+
+function my_custom_link_wrapper_test_mode( $base_url, $campaign, $content ) {
+    // Modify the link_wrapper_test_mode string
+    $base_url .= ' (Modified by my plugin)';
+
+    return $base_url;
+}
+```
+
 ---
 
 ### `edac_max_alt_length`
@@ -545,6 +1286,23 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Since:** N/A
 
 **Returns:** (void) 
+
+**Example Usage:**
+
+```php
+/**
+ * Customize max_alt_length.
+ *
+ * @param mixed $ Default value.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_max_alt_length', 'my_custom_max_alt_length' );
+
+function my_custom_max_alt_length(  ) {
+    // Implement your custom logic here
+    return true;
+}
+```
 
 ---
 
@@ -559,6 +1317,31 @@ These are the filters provided by the Accessibility Checker plugin that you can 
 **Parameters:**
 
 - `$scannable_post_statuses` (array) - List of scannable post statuses.
+
+**Example Usage:**
+
+```php
+/**
+ * Customize scannable_post_statuses.
+ *
+ * @param array $scannable_post_statuses List of scannable post statuses.
+ * @return mixed Modified value.
+ */
+add_filter( 'edac_scannable_post_statuses', 'my_custom_scannable_post_statuses', 10, 1 );
+
+function my_custom_scannable_post_statuses( $scannable_post_statuses ) {
+    // Add a custom post status to the list
+    $scannable_post_statuses[] = 'pending';
+
+    // Or remove a status if needed
+    $key = array_search( 'draft', $scannable_post_statuses, true );
+    if ( false !== $key ) {
+        unset( $scannable_post_statuses[$key] );
+    }
+
+    return $scannable_post_statuses;
+}
+```
 
 ---
 

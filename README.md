@@ -115,3 +115,5 @@ This repository includes generated developer documentation to make it easier to 
 composer run generate-hooks-docs
 ```
 
+- `docs/hooks-generator.md` — Documentation on how to use and maintain the hooks documentation generator.
+
