@@ -23,12 +23,12 @@ $rii = new RecursiveIteratorIterator(
 );
 
 /**
- * Find the nearest PHPDoc block before $pos within $contents and return summary and @since.
+ * Find the nearest PHPDoc block before $pos within $contents and return comprehensive information.
  *
  * @param string $contents Full file contents.
  * @param int    $pos      Byte offset where the hook call begins.
  * @param int    $max_lines Maximum number of lines allowed between docblock end and pos.
- * @return array ['summary' => string, 'since' => string]
+ * @return array Information extracted from the docblock including summary, since, params and return.
  */
 function edac_find_nearest_docblock( $contents, $pos, $max_lines = 10 ) {
 	$leading = substr( $contents, 0, $pos );
@@ -57,8 +57,14 @@ function edac_find_nearest_docblock( $contents, $pos, $max_lines = 10 ) {
 				}
 			}
 
-			$summary = '';
-			$since   = '';
+			$summary     = '';
+			$since       = '';
+			$params      = [];
+			$return_info = [
+				'type'        => '',
+				'description' => '',
+			];
+			
 			if ( ! empty( $clean ) ) {
 				// Find first line that is not an @tag (e.g., not starting with @).
 				foreach ( $clean as $c ) {
@@ -69,19 +75,39 @@ function edac_find_nearest_docblock( $contents, $pos, $max_lines = 10 ) {
 					break;
 				}
 
-				// Find @since tag if present.
+				// Extract all docblock tags.
 				foreach ( $clean as $c ) {
+					// Extract @since tag.
 					if ( 0 === strpos( $c, '@since' ) ) {
 						$parts = preg_split( '/\s+/', $c, 2 );
 						$since = isset( $parts[1] ) ? $parts[1] : '';
-						break;
+					}
+					
+					// Extract @param information.
+					if ( 0 === strpos( $c, '@param' ) && preg_match( '/@param\s+(\S+)\s+\$(\S+)(?:\s+(.+))?/', $c, $param_matches ) ) {
+						$param_type = $param_matches[1];
+						$param_name = $param_matches[2];
+						$param_desc = isset( $param_matches[3] ) ? $param_matches[3] : '';
+						
+						$params[ $param_name ] = [
+							'type'        => $param_type,
+							'description' => $param_desc,
+						];
+					}
+					
+					// Extract @return information.
+					if ( 0 === strpos( $c, '@return' ) && preg_match( '/@return\s+(\S+)(?:\s+(.+))?/', $c, $return_matches ) ) {
+						$return_info['type']        = $return_matches[1];
+						$return_info['description'] = isset( $return_matches[2] ) ? $return_matches[2] : '';
 					}
 				}
 			}
 
 			return [
-				'summary' => $summary,
-				'since'   => $since,
+				'summary'     => $summary,
+				'since'       => $since,
+				'params'      => $params,
+				'return_info' => $return_info,
 			];
 		}
 	}
@@ -109,9 +135,16 @@ function edac_find_nearest_docblock( $contents, $pos, $max_lines = 10 ) {
 				}
 			}
 
-			$summary = '';
-			$since   = '';
+			$summary     = '';
+			$since       = '';
+			$params      = [];
+			$return_info = [
+				'type'        => '',
+				'description' => '',
+			];
+			
 			if ( ! empty( $clean ) ) {
+				// Find first non-tag line for summary.
 				foreach ( $clean as $c ) {
 					if ( 0 === strpos( $c, '@' ) ) {
 						continue;
@@ -119,25 +152,52 @@ function edac_find_nearest_docblock( $contents, $pos, $max_lines = 10 ) {
 					$summary = $c;
 					break;
 				}
+				
+				// Extract all tags.
 				foreach ( $clean as $c ) {
+					// Extract @since tag.
 					if ( 0 === strpos( $c, '@since' ) ) {
 						$parts = preg_split( '/\s+/', $c, 2 );
 						$since = isset( $parts[1] ) ? $parts[1] : '';
-						break;
+					}
+					
+					// Extract @param information.
+					if ( 0 === strpos( $c, '@param' ) && preg_match( '/@param\s+(\S+)\s+\$(\S+)(?:\s+(.+))?/', $c, $param_matches ) ) {
+						$param_type = $param_matches[1];
+						$param_name = $param_matches[2];
+						$param_desc = isset( $param_matches[3] ) ? $param_matches[3] : '';
+						
+						$params[ $param_name ] = [
+							'type'        => $param_type,
+							'description' => $param_desc,
+						];
+					}
+					
+					// Extract @return information.
+					if ( 0 === strpos( $c, '@return' ) && preg_match( '/@return\s+(\S+)(?:\s+(.+))?/', $c, $return_matches ) ) {
+						$return_info['type']        = $return_matches[1];
+						$return_info['description'] = isset( $return_matches[2] ) ? $return_matches[2] : '';
 					}
 				}
 			}
 
 			return [
-				'summary' => $summary,
-				'since'   => $since,
+				'summary'     => $summary,
+				'since'       => $since,
+				'params'      => $params,
+				'return_info' => $return_info,
 			];
 		}
 	}
 
 	return [
-		'summary' => '',
-		'since'   => '',
+		'summary'     => '',
+		'since'       => '',
+		'params'      => [],
+		'return_info' => [
+			'type'        => '',
+			'description' => '',
+		],
 	];
 }
 
@@ -179,13 +239,15 @@ foreach ( $rii as $file ) {
 				// Try to capture the nearest PHPDoc block (within 10 lines) for summary and @since.
 				$doc_info                   = edac_find_nearest_docblock( $contents, $pos, 10 );
 				$candidates[ $hook_name ][] = [
-					'hook'    => $hook_name,
-					'type'    => ( 'do_action' === $fn ) ? 'action' : 'filter',
-					'file'    => $relpath,
-					'line'    => $line,
-					'source'  => 'definition',
-					'summary' => $doc_info['summary'],
-					'since'   => $doc_info['since'],
+					'hook'        => $hook_name,
+					'type'        => ( 'do_action' === $fn ) ? 'action' : 'filter',
+					'file'        => $relpath,
+					'line'        => $line,
+					'source'      => 'definition',
+					'summary'     => $doc_info['summary'],
+					'since'       => $doc_info['since'],
+					'params'      => $doc_info['params'],
+					'return_info' => $doc_info['return_info'],
 				];
 			}
 		}
@@ -209,13 +271,15 @@ foreach ( $rii as $file ) {
 				$doc_info = edac_find_nearest_docblock( $contents, $pos, 6 );
 
 				$candidates[ $hook_name ][] = [
-					'hook'    => $hook_name,
-					'type'    => $hook_type,
-					'file'    => $relpath,
-					'line'    => $line,
-					'source'  => 'listener',
-					'summary' => $doc_info['summary'],
-					'since'   => $doc_info['since'],
+					'hook'        => $hook_name,
+					'type'        => $hook_type,
+					'file'        => $relpath,
+					'line'        => $line,
+					'source'      => 'listener',
+					'summary'     => $doc_info['summary'],
+					'since'       => $doc_info['since'],
+					'params'      => $doc_info['params'],
+					'return_info' => $doc_info['return_info'],
 				];
 			}
 		}
@@ -305,12 +369,17 @@ foreach ( $candidates as $hook_name => $list ) {
 
 	if ( $best ) {
 		$hooks[] = [
-			'hook'    => $best['hook'],
-			'type'    => $best['type'],
-			'file'    => $best['file'],
-			'line'    => $best['line'],
-			'summary' => isset( $best['summary'] ) ? $best['summary'] : '',
-			'since'   => isset( $best['since'] ) ? $best['since'] : '',
+			'hook'        => $best['hook'],
+			'type'        => $best['type'],
+			'file'        => $best['file'],
+			'line'        => $best['line'],
+			'summary'     => isset( $best['summary'] ) ? $best['summary'] : '',
+			'since'       => isset( $best['since'] ) ? $best['since'] : '',
+			'params'      => isset( $best['params'] ) ? $best['params'] : [],
+			'return_info' => isset( $best['return_info'] ) ? $best['return_info'] : [
+				'type'        => '',
+				'description' => '',
+			],
 		];
 	}
 }
@@ -324,9 +393,39 @@ usort(
 
 $out  = "# EDAC Hooks Reference\n\n";
 $out .= "This document is auto-generated by `tools/generate-hooks-docs.php`. It lists only plugin-specific hooks (prefixed with `edac_` or `edacp_`) and links files to the plugin's GitHub branch.\n\n";
-$out .= "| Hook | Type | File | Line | Description | Since |\n";
-$out .= "| ---- | ---- | ---- | ---- | ----------- | ----- |\n";
-foreach ( $hooks as $entry ) {
+
+// Group hooks by type (actions/filters).
+$actions = array_filter(
+	$hooks,
+	static function ( $h ) {
+		return 'action' === $h['type'];
+	}
+);
+$filters = array_filter(
+	$hooks,
+	static function ( $h ) {
+		return 'filter' === $h['type'];
+	}
+);
+
+usort(
+	$actions,
+	static function ( $a, $b ) {
+		return strcmp( $a['hook'], $b['hook'] );
+	}
+);
+usort(
+	$filters,
+	static function ( $a, $b ) {
+		return strcmp( $a['hook'], $b['hook'] );
+	}
+);
+
+// Actions Table.
+$out .= "## Actions\n\n";
+$out .= "These are the actions provided by the Accessibility Checker plugin that you can hook into.\n\n";
+
+foreach ( $actions as $entry ) {
 	// Create a GitHub link for the file and line.
 	$parts     = explode( DIRECTORY_SEPARATOR, $entry['file'] );
 	$enc_parts = array_map( 'rawurlencode', $parts );
@@ -335,9 +434,77 @@ foreach ( $hooks as $entry ) {
 
 	// Clean summary for table cell (escape pipes and newlines).
 	$summary = str_replace( [ "\n", "\r", '|' ], [ ' ', ' ', '\|' ], $entry['summary'] );
-	$since   = $entry['since'];
+	$since   = isset( $entry['since'] ) && ! empty( $entry['since'] ) ? $entry['since'] : 'N/A';
 
-	$out .= sprintf( "| `%s` | %s | [%s](%s) | %d | %s | %s |\n", $entry['hook'], $entry['type'], $entry['file'], $url, $entry['line'], $summary, $since );
+	// Action header.
+	$out .= "### `{$entry['hook']}`\n\n";
+	$out .= "*{$summary}*\n\n";
+	
+	// File location and version.
+	$out .= "**Defined in:** [{$entry['file']}]({$url}) (line {$entry['line']})\n\n";
+	$out .= "**Since:** {$since}\n\n";
+	
+	// Parameters section if available.
+	if ( ! empty( $entry['params'] ) ) {
+		$out .= "**Parameters:**\n\n";
+		
+		foreach ( $entry['params'] as $param_name => $param_data ) {
+			$param_type = $param_data['type'];
+			$param_desc = $param_data['description'];
+			
+			$out .= "- `\${$param_name}` ({$param_type}) - {$param_desc}\n";
+		}
+		$out .= "\n";
+	}
+	
+	$out .= "---\n\n";
+}
+
+// Filters Table.
+$out .= "## Filters\n\n";
+$out .= "These are the filters provided by the Accessibility Checker plugin that you can modify.\n\n";
+
+foreach ( $filters as $entry ) {
+	// Create a GitHub link for the file and line.
+	$parts     = explode( DIRECTORY_SEPARATOR, $entry['file'] );
+	$enc_parts = array_map( 'rawurlencode', $parts );
+	$rel       = implode( '/', $enc_parts );
+	$url       = $github_base . $rel . '#L' . $entry['line'];
+
+	// Clean summary for table cell (escape pipes and newlines).
+	$summary = str_replace( [ "\n", "\r", '|' ], [ ' ', ' ', '\|' ], $entry['summary'] );
+	$since   = isset( $entry['since'] ) && ! empty( $entry['since'] ) ? $entry['since'] : 'N/A';
+
+	// Filter header.
+	$out .= "### `{$entry['hook']}`\n\n";
+	$out .= "*{$summary}*\n\n";
+	
+	// File location and version.
+	$out .= "**Defined in:** [{$entry['file']}]({$url}) (line {$entry['line']})\n\n";
+	$out .= "**Since:** {$since}\n\n";
+	
+	// Parameters section if available.
+	if ( ! empty( $entry['params'] ) ) {
+		$out .= "**Parameters:**\n\n";
+		
+		foreach ( $entry['params'] as $param_name => $param_data ) {
+			$param_type = $param_data['type'];
+			$param_desc = $param_data['description'];
+			
+			$out .= "- `\${$param_name}` ({$param_type}) - {$param_desc}\n";
+		}
+		$out .= "\n";
+	}
+	
+	// Return value if available.
+	if ( ! empty( $entry['return_info']['type'] ) ) {
+		$return_type = $entry['return_info']['type'];
+		$return_desc = $entry['return_info']['description'];
+		
+		$out .= "**Returns:** ({$return_type}) {$return_desc}\n\n";
+	}
+	
+	$out .= "---\n\n";
 }
 
 $docs_path = realpath( __DIR__ . '/..' ) . '/docs/hooks.md';
