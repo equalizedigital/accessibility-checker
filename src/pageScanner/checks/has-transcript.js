@@ -86,6 +86,17 @@ function getSurroundingText( node, radius = 250 ) {
 		text += node.nextElementSibling.textContent.trim() + ' ';
 	}
 
+	// If node has no siblings, check parent's siblings
+	if ( ! node.previousElementSibling && ! node.nextElementSibling && node.parentElement ) {
+		const parent = node.parentElement;
+		if ( parent.previousElementSibling && parent.previousElementSibling.nodeName.toLowerCase() !== 'noscript' ) {
+			text += parent.previousElementSibling.textContent.trim() + ' ';
+		}
+		if ( parent.nextElementSibling && parent.nextElementSibling.nodeName.toLowerCase() !== 'noscript' ) {
+			text += parent.nextElementSibling.textContent.trim() + ' ';
+		}
+	}
+
 	// Include figcaption if inside figure
 	const figure = node.closest( 'figure' );
 	if ( figure ) {
