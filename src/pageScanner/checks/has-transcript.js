@@ -110,7 +110,23 @@ function getSurroundingText( node, radius = 250 ) {
 	}
 
 	// Walk limited DOM subtree (media-wrapper, section, article, etc.)
-	const parent = node.closest( '.media-wrapper, figure, section, article' );
+	let parent = node.closest( '.media-wrapper, figure, section, article' );
+
+	// Fallback: if no specific container found, use a reasonable ancestor (up to 3 levels)
+	if ( ! parent ) {
+		let ancestor = node.parentElement;
+		let level = 0;
+		while ( ancestor && level < 3 ) {
+			// Use the first parent that has multiple children or siblings
+			if ( ancestor.children.length > 1 || ancestor.nextElementSibling || ancestor.previousElementSibling ) {
+				parent = ancestor;
+				break;
+			}
+			ancestor = ancestor.parentElement;
+			level++;
+		}
+	}
+
 	if ( parent ) {
 		// Also check parent's siblings for transcript text
 		text += collectSiblingText( parent.nextElementSibling, PARENT_SIBLING_LIMIT );
