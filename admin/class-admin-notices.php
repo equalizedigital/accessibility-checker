@@ -154,6 +154,9 @@ class Admin_Notices {
 		}
 
 		$results = update_option( 'edac_black_friday_2025_notice_dismiss', true );
+		// Delete old meta keys if they exist.
+		delete_option( 'edac_black_friday_2024_notice_dismiss' );
+		delete_option( 'edac_black_friday_2023_notice_dismiss' );
 
 		if ( ! $results ) {
 
