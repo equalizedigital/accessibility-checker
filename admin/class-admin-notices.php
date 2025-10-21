@@ -127,7 +127,7 @@ class Admin_Notices {
 		// Construct the promotional message.
 		$message  = '<div class="edac_black_friday_notice notice notice-info is-dismissible">';
 		$message .= '<p><strong>' . esc_html__( '🎉 Black Friday special! 🎉', 'accessibility-checker' ) . '</strong><br />';
-		$message .= esc_html__( 'Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Use coupon code BlackFriday25. Full site scanning, site-wide open issues report, ignore logs, and more.', 'accessibility-checker' ) . '<br />';
+		$message .= esc_html__( 'Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more.', 'accessibility-checker' ) . '<br />';
 		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/support/pre-sale-questions/', 'admin-notice', 'BlackFriday25-presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
 		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'BlackFriday25-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		$message .= '</div>';
@@ -154,7 +154,7 @@ class Admin_Notices {
 		}
 
 		$results = update_option( 'edac_black_friday_2025_notice_dismiss', true );
-		// Delete old meta keys if they exist.
+		// Delete old options if they exist.
 		delete_option( 'edac_black_friday_2024_notice_dismiss' );
 		delete_option( 'edac_black_friday_2023_notice_dismiss' );
 
