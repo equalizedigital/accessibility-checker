@@ -637,7 +637,8 @@ function edac_post_types_cb() {
 			<?php
 			if ( $all_post_types ) {
 				foreach ( $all_post_types as $post_type ) {
-					$disabled = in_array( $post_type, $post_types, true ) ? '' : 'disabled';
+					$disabled        = in_array( $post_type, $post_types, true ) ? '' : 'disabled';
+					$post_type_label = edac_get_post_type_label( $post_type );
 					?>
 					<label>
 						<input type="checkbox" name="<?php echo 'edac_post_types[]'; ?>" value="<?php echo esc_attr( $post_type ); ?>"
@@ -646,7 +647,7 @@ function edac_post_types_cb() {
 																echo esc_attr( $disabled );
 																?>
 						>
-						<?php echo esc_html( $post_type ); ?>
+						<?php echo esc_html( $post_type_label ); ?>
 					</label>
 					<br>
 					<?php
