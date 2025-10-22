@@ -4,7 +4,7 @@
 import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
-import { __, _n } from '@wordpress/i18n';
+import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { hashString } from '../common/helpers';
@@ -418,8 +418,8 @@ class AccessibilityCheckerHighlight {
                                 <div class="edac-highlight-panel-controls-summary">Loading...</div>
                                 <div class="edac-highlight-panel-controls-buttons ${ ! userCanEdit ? ' single_button' : '' }">
                                         <div>
-                                                <button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>Previous</button>
-                                                <button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
+                                                <button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>${ __( 'Previous', 'accessibility-checker' ) }</button>
+                                                <button id="edac-highlight-next" disabled="true">${ __( 'Next', 'accessibility-checker' ) }<span aria-hidden="true"> »</span></button><br />
                                         </div>
                                         <div>
                                                 ${ rescanButton }
@@ -713,7 +713,7 @@ class AccessibilityCheckerHighlight {
 			}
 
 			// Get the link to the documentation
-			content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }">Full Documentation</a>`;
+			content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }">${ __( 'Full Documentation', 'accessibility-checker' ) }</a>`;
 
 			// Get the code button
 			content += `<button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Code', 'accessibility-checker' ) }</button>`;
@@ -949,19 +949,25 @@ class AccessibilityCheckerHighlight {
 			this.nextButton.disabled = false;
 			this.previousButton.disabled = false;
 
-			if ( errorCount >= 0 ) {
-				textContent += errorCount + ' ' + _n( 'error', 'errors', errorCount, 'accessibility-checker' ) + ', ';
-			}
-			if ( warningCount >= 0 ) {
-				textContent += warningCount + ' ' + _n( 'warning', 'warnings', warningCount, 'accessibility-checker' ) + ', ';
-			}
-			if ( ignoredCount >= 0 ) {
-				textContent += __( 'and', 'accessibility-checker' ) + ' ' + ignoredCount + ' ' + _n( 'ignored issue', 'ignored issues', ignoredCount, 'accessibility-checker' ) + ' ' + __( 'detected.', 'accessibility-checker' );
-			} else {
-				// Remove the trailing comma and add "detected."
-				textContent = textContent.slice( 0, -2 ) + ' ' + __( 'detected.', 'accessibility-checker' );
+			const summaryParts = [
+				sprintf( _n( '%1$s error', '%1$s errors', errorCount, 'accessibility-checker' ), errorCount ),
+				sprintf( _n( '%1$s warning', '%1$s warnings', warningCount, 'accessibility-checker' ), warningCount ),
+				sprintf( _n( '%1$s ignored issue', '%1$s ignored issues', ignoredCount, 'accessibility-checker' ), ignoredCount ),
+			];
+
+			switch ( summaryParts.length ) {
+				case 1:
+					textContent = sprintf( __( '%1$s detected.', 'accessibility-checker' ), summaryParts[ 0 ] );
+					break;
+				case 2:
+					textContent = sprintf( __( '%1$s and %2$s detected.', 'accessibility-checker' ), summaryParts[ 0 ], summaryParts[ 1 ] );
+					break;
+				default:
+					textContent = sprintf( __( '%1$s, %2$s, and %3$s detected.', 'accessibility-checker' ), summaryParts[ 0 ], summaryParts[ 1 ], summaryParts[ 2 ] );
+					break;
 			}
 		}
+
 
 		div.textContent = textContent;
 	}
