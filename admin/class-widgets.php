@@ -194,6 +194,14 @@ class Widgets {
 		foreach ( $post_types as $post_type ) {
 
 			$post_types_to_check = array_merge( [ 'post', 'page' ], $scannable_post_types );
+			$post_type_object = get_post_type_object( $post_type );
+			$post_type_label  = '';
+
+			if ( $post_type_object instanceof \WP_Post_Type && ! empty( $post_type_object->labels->name ) ) {
+				$post_type_label = $post_type_object->labels->name;
+			} else {
+				$post_type_label = ucfirst( $post_type );
+			}
 
 			if ( in_array( $post_type, $post_types_to_check, true ) ) {
 
@@ -201,7 +209,7 @@ class Widgets {
 
 					$html .= '
 							<tr>
-								<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
+								<th scope="col">' . esc_html( $post_type_label ) . '</th>
 								<td id="' . esc_attr( $post_type ) . '-errors">-</td>
 								<td id="' . esc_attr( $post_type ) . '-contrast-errors">-</td>
 								<td id="' . esc_attr( $post_type ) . '-warnings">-</td>
@@ -209,7 +217,7 @@ class Widgets {
 				} else {
 					$html .= '
 							<tr>
-								<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
+								<th scope="col">' . esc_html( $post_type_label ) . '</th>
 								<td>-</td>
 								<td>-</td>
 								<td>-</td>
@@ -220,7 +228,7 @@ class Widgets {
 
 				$html .= '
 						<tr >
-							<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
+							<th scope="col">' . esc_html( $post_type_label ) . '</th>
 							<td>-</td>
 							<td>-</td>
 							<td>-</td>
@@ -240,7 +248,7 @@ class Widgets {
 				);
 				$html                            .= '
 						<tr >
-							<th scope="col">' . esc_html( ucwords( $post_type ) ) . '</th>
+							<th scope="col">' . esc_html( $post_type_label ) . '</th>
 							<td colspan="3">
 								<div class="edac-issues-summary-notice-upgrade-to-edacp">
 									<a href="' . esc_url( $non_scannable_post_type_pro_link ) . '">
