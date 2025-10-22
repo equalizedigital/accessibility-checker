@@ -97,14 +97,14 @@ class Admin_Notices {
 		}
 
 		// Check if the notice has been dismissed.
-		if ( absint( get_option( 'edac_black_friday_2024_notice_dismiss', 0 ) ) ) {
+		if ( absint( get_option( 'edac_black_friday_2025_notice_dismiss', 0 ) ) ) {
 			return;
 		}
 
-		// Show from November 25 to December 03.
+		// Show from November 24 to December 03.
 		$current_date = date_i18n( 'Ymd' ); // Use date_i18n for localization.
-		$start_date   = '20241125';
-		$end_date     = '20241203';
+		$start_date   = '20251124';
+		$end_date     = '20251203';
 
 		if ( $current_date >= $start_date && $current_date <= $end_date ) {
 
@@ -127,9 +127,9 @@ class Admin_Notices {
 		// Construct the promotional message.
 		$message  = '<div class="edac_black_friday_notice notice notice-info is-dismissible">';
 		$message .= '<p><strong>' . esc_html__( '🎉 Black Friday special! 🎉', 'accessibility-checker' ) . '</strong><br />';
-		$message .= esc_html__( 'Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more.', 'accessibility-checker' ) . '<br />';
-		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/support/pre-sale-questions/', 'admin-notice', 'BF2025-presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
-		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'BF2025-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
+		$message .= esc_html__( 'Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more.', 'accessibility-checker' ) . '<br />';
+		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/support/pre-sale-questions/', 'admin-notice', 'BlackFriday25-presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
+		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'BlackFriday25-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		$message .= '</div>';
 
 		return $message;
@@ -153,7 +153,10 @@ class Admin_Notices {
 
 		}
 
-		$results = update_option( 'edac_black_friday_2024_notice_dismiss', true );
+		$results = update_option( 'edac_black_friday_2025_notice_dismiss', true );
+		// Delete old options if they exist.
+		delete_option( 'edac_black_friday_2024_notice_dismiss' );
+		delete_option( 'edac_black_friday_2023_notice_dismiss' );
 
 		if ( ! $results ) {
 
