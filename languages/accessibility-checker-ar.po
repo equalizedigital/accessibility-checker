@@ -14,6 +14,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 "Language: ar\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
@@ -268,9 +269,11 @@ msgstr "تم إدراج ملخص مبسط لهذا المحتوى."
 msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s Errors"
-msgstr[1] "%s Errors"
+msgstr[1] "%s خطأ"
 msgstr[2] "%s Errors"
 msgstr[3] "%s Errors"
+msgstr[4] "%s Errors"
+msgstr[5] "%s أخطاء"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
@@ -278,9 +281,11 @@ msgstr[3] "%s Errors"
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Contrast Errors"
-msgstr[1] "%s Contrast Errors"
+msgstr[1] "%s خطأ في التباين"
 msgstr[2] "%s Contrast Errors"
 msgstr[3] "%s Contrast Errors"
+msgstr[4] "%s Contrast Errors"
+msgstr[5] "%s أخطاء في التباين"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
@@ -288,9 +293,11 @@ msgstr[3] "%s Contrast Errors"
 msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s Warnings"
-msgstr[1] "%s Warnings"
+msgstr[1] "%s تحذير"
 msgstr[2] "%s Warnings"
 msgstr[3] "%s Warnings"
+msgstr[4] "%s Warnings"
+msgstr[5] "%s تحذيرات"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
@@ -298,9 +305,11 @@ msgstr[3] "%s Warnings"
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s Ignored Items"
-msgstr[1] "%s Ignored Items"
+msgstr[1] "%s عنصر متجاهل"
 msgstr[2] "%s Ignored Items"
 msgstr[3] "%s Ignored Items"
+msgstr[4] "%s Ignored Items"
+msgstr[5] "%s عناصر متجاهلة"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -462,33 +471,41 @@ msgstr "الاختبارات الناجحة"
 msgid "Unique Error"
 msgid_plural "Unique Errors"
 msgstr[0] "Unique Errors"
-msgstr[1] "Unique Errors"
+msgstr[1] "خطأ فريد"
 msgstr[2] "Unique Errors"
 msgstr[3] "Unique Errors"
+msgstr[4] "Unique Errors"
+msgstr[5] "أخطاء فريدة"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
 msgstr[0] "Unique Color Contrast Errors"
-msgstr[1] "Unique Color Contrast Errors"
+msgstr[1] "خطأ تباين الألوان الفريد"
 msgstr[2] "Unique Color Contrast Errors"
 msgstr[3] "Unique Color Contrast Errors"
+msgstr[4] "Unique Color Contrast Errors"
+msgstr[5] "أخطاء تباين الألوان الفريدة"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
 msgstr[0] "Unique Warnings"
-msgstr[1] "Unique Warnings"
+msgstr[1] "تحذير فريد"
 msgstr[2] "Unique Warnings"
 msgstr[3] "Unique Warnings"
+msgstr[4] "Unique Warnings"
+msgstr[5] "تحذيرات فريدة"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
 msgstr[0] "Ignored Items"
-msgstr[1] "Ignored Items"
+msgstr[1] "عنصر متجاهل"
 msgstr[2] "Ignored Items"
 msgstr[3] "Ignored Items"
+msgstr[4] "Ignored Items"
+msgstr[5] "عناصر متجاهلة"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -741,11 +758,13 @@ msgstr "يتم فحص المحتوى لإمكانية الوصول"
 #: admin/site-health/class-checks.php:177
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
-msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "قام Accessibility Checker بفحص منشور %s للتحقق من مشاكل إمكانية الوصول."
 msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[3] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[4] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[5] "قام Accessibility Checker بفحص %s منشور للتحقق من مشاكل إمكانية الوصول."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -767,11 +786,13 @@ msgstr "تم تكوين أنواع المنشورات لفحص إمكانية ا
 #: admin/site-health/class-checks.php:216
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "تم تكوين Accessibility Checker لفحص نوع منشور واحد %1$s: %2$s."
 msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[3] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[4] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[5] "تم تكوين Accessibility Checker لفحص %1$s نوع منشور: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4562,17 +4583,21 @@ msgstr "لم يتم اكتشاف أي مشاكل."
 msgid "error"
 msgid_plural "errors"
 msgstr[0] "errors"
-msgstr[1] "errors"
+msgstr[1] "خطأ"
 msgstr[2] "errors"
 msgstr[3] "errors"
+msgstr[4] "errors"
+msgstr[5] "أخطاء"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
 msgstr[0] "warnings"
-msgstr[1] "warnings"
+msgstr[1] "تحذير"
 msgstr[2] "warnings"
 msgstr[3] "warnings"
+msgstr[4] "warnings"
+msgstr[5] "تحذيرات"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4582,9 +4607,11 @@ msgstr "و"
 msgid "ignored issue"
 msgid_plural "ignored issues"
 msgstr[0] "ignored issues"
-msgstr[1] "ignored issues"
+msgstr[1] "مشكلة تم تجاهلها"
 msgstr[2] "ignored issues"
 msgstr[3] "ignored issues"
+msgstr[4] "ignored issues"
+msgstr[5] "مشاكل تم تجاهلها"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."

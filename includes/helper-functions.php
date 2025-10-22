@@ -196,6 +196,28 @@ function edac_post_types() {
 }
 
 /**
+ * Retrieve a human readable post type label.
+ *
+ * @param string $post_type Post type slug.
+ * @return string
+ */
+function edac_get_post_type_label( string $post_type ): string {
+	$post_type = sanitize_key( (string) $post_type );
+
+	if ( '' === $post_type ) {
+		return '';
+	}
+
+	$post_type_object = get_post_type_object( $post_type );
+
+	if ( $post_type_object instanceof \WP_Post_Type && ! empty( $post_type_object->labels->name ) ) {
+		return $post_type_object->labels->name;
+	}
+
+	return ucfirst( $post_type );
+}
+
+/**
  * This function validates a table name against WordPress naming conventions and checks its existence in the database.
  *
  * The function first checks if the provided table name only contains alphanumeric characters, underscores, or hyphens.

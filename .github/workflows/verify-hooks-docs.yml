@@ -1,0 +1,43 @@
+name: Verify hooks docs
+
+on:
+  pull_request:
+    paths:
+      - '**.php'
+  push:
+    branches:
+      - develop
+
+jobs:
+  verify-docs:
+    name: Regenerate and verify docs/hooks.md
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Show PHP version
+        run: php -v
+
+      - name: Regenerate hooks docs
+        run: php tools/generate-hooks-docs.php
+
+      - name: Create a pull request if docs/hooks.md changed
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: regenerate hooks docs"
+          title: "chore: regenerate hooks docs"
+          body: |
+            Automated regeneration of `docs/hooks.md` by CI.
+
+            This PR was created by the verify-hooks-docs workflow because the generated
+            hooks documentation changed when the code in this PR was inspected.
+          branch: automation/regenerate-hooks-docs-${{ github.run_id }}
+          base: develop
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>

@@ -100,6 +100,18 @@ describe( 'Missing Transcript Rule', () => {
 			`,
 			shouldPass: true,
 		},
+		{
+			name: 'passes Vimeo iframe with transcript link nearby',
+			html: `
+			<div>
+				<div>
+					<iframe src="https://player.vimeo.com/video/123456789123456789"></iframe>
+				</div>
+				<a href="https://www.example.com/123456789123456789-transcript">Transcript</a>
+			</div>
+			`,
+			shouldPass: true,
+		},
 
 		// ✅ Negative (non-relevant) elements — no violation
 		{

@@ -50,6 +50,9 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$message = $this->admin_notices->edac_get_black_friday_message();
 		$this->assertStringContainsString( 'Black Friday special!', $message );
 		$this->assertStringContainsString( 'Upgrade to a paid version of Accessibility Checker', $message );
+		$this->assertStringContainsString( 'November 24th to December 3rd', $message );
+		$this->assertStringContainsString( 'BlackFriday25', $message );
+		$this->assertStringContainsString( '30% off', $message );
 	}
 
 	/**

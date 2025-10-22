@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.6
 Tested up to: 6.8
-Stable tag: 1.33.0
+Stable tag: 1.34.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,6 +210,11 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
+= 1.34.0 =
+* Improved: Missing transcript can now detect transcripts for videos when they are not just direct siblings.
+* Improved: Use post type labels rather than slugs in views where applicable.
+* Updated: Prepare for sale event during Black Friday.
+
 = 1.33.0 =
 * Added: WP-CLI commands can now be run with short names: `wp edac <command>` or using long name `wp accessibility-checker <command>`.
 * Improved: Made it easier to register custom commands through filter.

@@ -14,6 +14,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
 "Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
@@ -207,7 +208,7 @@ msgstr "Opdatering af indstilling lykkedes ikke"
 
 #: admin/class-admin-notices.php:216
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 Få 25% rabat på Accessibility Checker Pro i anledning af Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 Få 25 % rabat på Accessibility Checker Pro i anledning af Global Accessibility Awareness Day! 🎉"
 
 #: admin/class-admin-notices.php:217
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
@@ -267,32 +268,32 @@ msgstr "Der er inkluderet et forenklet resumé for dette indhold."
 #, php-format
 msgid "%s Error"
 msgid_plural "%s Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Fejl"
+msgstr[1] "%s Fejl"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
 #, php-format
 msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Kontrastfejl"
+msgstr[1] "%s Kontrastfejl"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
 #, php-format
 msgid "%s Warning"
 msgid_plural "%s Warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Advarsel"
+msgstr[1] "%s Advarsler"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
 #, php-format
 msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Ignoreret element"
+msgstr[1] "%s Ignorerede elementer"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -453,26 +454,26 @@ msgstr "Beståede tests"
 #: admin/class-welcome-page.php:88
 msgid "Unique Error"
 msgid_plural "Unique Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unik fejl"
+msgstr[1] "Unikke fejl"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unik farvekontrastfejl"
+msgstr[1] "Unikke farvekontrastfejl"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unik advarsel"
+msgstr[1] "Unikke advarsler"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ignoreret element"
+msgstr[1] "Ignorerede elementer"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -725,9 +726,9 @@ msgstr "Indholdet bliver kontrolleret for tilgængelighed"
 #: admin/site-health/class-checks.php:177
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
-msgid_plural "Accessibility Checker has scanned %s post for accessibility issues."
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker har scannet %s indlæg for tilgængelighedsproblemer."
+msgstr[1] "Accessibility Checker har scannet %s indlæg for tilgængelighedsproblemer."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -749,9 +750,9 @@ msgstr "Indholdstyper er konfigureret til tilgængelighedskontrol"
 #: admin/site-health/class-checks.php:216
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgid_plural "Accessibility Checker is configured to scan %1$s post type: %2$s."
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker er konfigureret til at scanne %1$s indholdstype: %2$s."
+msgstr[1] "Accessibility Checker er konfigureret til at scanne %1$s indholdstyper: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4204,7 +4205,7 @@ msgstr "Ryd problemer"
 #: partials/pro-callout.php:13
 #: partials/welcome-page.php:199
 msgid "Equalize Digital Logo"
-msgstr "Equalize Digital-logo"
+msgstr "Equalize Digital Logo"
 
 #: partials/pro-callout.php:16
 #: partials/welcome-page.php:200
@@ -4541,14 +4542,14 @@ msgstr "Ingen problemer registreret."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "fejl"
+msgstr[1] "fejl"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "advarsel"
+msgstr[1] "advarsler"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4557,8 +4558,8 @@ msgstr "og"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ignoreret problem"
+msgstr[1] "ignorerede problemer"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
