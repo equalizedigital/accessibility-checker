@@ -201,7 +201,13 @@ function edac_post_types() {
  * @param string $post_type Post type slug.
  * @return string
  */
-function edac_get_post_type_label( $post_type ) {
+function edac_get_post_type_label( string $post_type ): string {
+	$post_type = sanitize_key( (string) $post_type );
+
+	if ( '' === $post_type ) {
+		return '';
+	}
+
 	$post_type_object = get_post_type_object( $post_type );
 
 	if ( $post_type_object instanceof \WP_Post_Type && ! empty( $post_type_object->labels->name ) ) {
