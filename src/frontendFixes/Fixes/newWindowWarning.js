@@ -125,11 +125,30 @@ const updateAriaLabel = ( link ) => {
 
 	if ( link.hasAttribute( 'aria-label' ) ) {
 		anwwLabel = link.getAttribute( 'aria-label' );
-	} else if ( link.querySelector( 'img' ) ) {
-		const img = link.querySelector( 'img' );
-		anwwLabel = img.getAttribute( 'alt' ) || '';
-	} else if ( link.textContent ) {
-		anwwLabel = link.textContent.trim();
+	} else {
+		// Collect all accessible text sources
+		const textParts = [];
+
+		// Get alt text from images
+		const images = link.querySelectorAll( 'img' );
+		images.forEach( ( img ) => {
+			const alt = img.getAttribute( 'alt' );
+			if ( alt && alt.trim() ) {
+				textParts.push( alt.trim() );
+			}
+		} );
+
+		// Get text content (excluding the new window icon if present)
+		const linkClone = link.cloneNode( true );
+		const icons = linkClone.querySelectorAll( '.edac-nww-external-link-icon' );
+		icons.forEach( ( icon ) => icon.remove() );
+
+		const textContent = linkClone.textContent.trim();
+		if ( textContent ) {
+			textParts.push( textContent );
+		}
+
+		anwwLabel = textParts.join( ' ' );
 	}
 
 	anwwLabel = anwwLabel ? `${ anwwLabel }, ${ localizedNewWindowWarning }` : localizedNewWindowWarning;
