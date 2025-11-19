@@ -1,40 +1,40 @@
-= 1.34.0 - YYYY-MM-DD =
+= 1.34.0 - 2025-10-22 =
 * Tweak - Missing transcript can now detect transcripts for videos when they are not just direct siblings.
 * Tweak - Use post type labels rather than slugs in views where applicable.
 * Tweak - Prepare for sale event during Black Friday.
 
-= 1.33.0 - YYYY-MM-DD =
+= 1.33.0 - 2025-09-26 =
 * Add - WP-CLI commands can now be run with short names: `wp edac <command>` or using long name `wp accessibility-checker <command>`.
 * Tweak - Made it easier to register custom commands through filter.
 
-= 1.32.0 - YYYY-MM-DD =
+= 1.32.0 - 2025-09-18 =
 * Fix - Improved highlighter behavior to maintain original size and position of scanned elements.
 * Fix - Identify out-of-sequence headings.
 * Fix - Identify missing title attributes.
 * Fix - Correctly assess alternative text requirements for image map areas.
 * Tweak - Implemented additional security measures for input validation and data sanitization.
 
-= 1.31.1 - YYYY-MM-DD =
+= 1.31.1 - 2025-09-04 =
 * Add - Privacy policy link added at newsletter signup.
 * Tweak - Error messages returned from some ajax actions are more descriptive.
 
-= 1.31.0 - YYYY-MM-DD =
+= 1.31.0 - 2025-08-29 =
 * Tweak - Don't flag YouTube scripts as video present mistakenly.
 * Tweak - Underlined text rule now will find more instances of underlined text.
 * Tweak - Added additional string label check for links that open new windows/tabs.
 * Tweak - Reordered some settings for better grouping.
 
-= 1.30.1 - YYYY-MM-DD =
+= 1.30.1 - 2025-08-19 =
 * Tweak - The rescan and clear buttons in the frontend highlighter are now only shown when they can be used.
 * Tweak - Issue saving and clearing now has more robust capability checking.
 
-= 1.30.0 - YYYY-MM-DD =
+= 1.30.0 - 2025-08-06 =
 * Add - Ability to clear issues on a post or page from the frontend highlighter.
 * Add - More accessibility checker details in the site health check.
 * Fix - Icons stack in frontend highlighter when there multiple issues on the same element.
 * Tweak - Missing Transcript can better detect transcripts for videos in the content.
 
-= 1.29.0 - YYYY-MM-DD =
+= 1.29.0 - 2025-07-29 =
 * Add - Rescan button in the frontend highlighter to rescan the current page.
 * Add - Cleanup routine to clear out orphaned issues from the database.
 * Add - Filter to allow tweaking the post statuses which get scanned.
@@ -42,15 +42,15 @@
 * Tweak - Updated the redundant alt check to understand that repeated images with same source and alt is not redundant.
 * Fix - Remove the password protected notice, and it's related features - scans can throw this error now.
 
-= 1.28.0 - YYYY-MM-DD =
+= 1.28.0 - 2025-07-22 =
 * Add - Better descriptions and help text for each of the rules.
 * Add - Improved landmark location feature to show the location of the landmark in the DOM.
 * Fix - Avoid possible error with removal of an index on an ID column.
 
-= 1.27.1 - YYYY-MM-DD =
+= 1.27.1 - 2025-07-10 =
 * Fix - Don't alter a UNIQUE index before swapping to PRIMARY key index.
 
-= 1.27.0 - YYYY-MM-DD =
+= 1.27.0 - 2025-07-10 =
 * Add - Landmark Location feature.
 * Add - Plugin action links.
 * Add - Documentation, support, and rate plugin links to plugin row meta.
