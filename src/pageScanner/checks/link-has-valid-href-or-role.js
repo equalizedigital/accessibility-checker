@@ -15,8 +15,13 @@ export default {
 		const href = node.getAttribute( 'href' );
 		const role = node.getAttribute( 'role' ) || '';
 
-		// Allow if it's a button role
-		if ( role.toLowerCase().split( /\s+/ ).includes( 'button' ) ) {
+		// Allow roles of button or tab
+		if (
+			role
+				.toLowerCase()
+				.split( /\s+/ )
+				.some( ( r ) => [ 'button', 'tab' ].includes( r ) )
+		) {
 			return true;
 		}
 

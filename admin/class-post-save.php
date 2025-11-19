@@ -35,12 +35,13 @@ class Post_Save {
 	 */
 	public static function delete_issue_data_on_post_trashing( $post_ID, $post, $update ) {
 		// check post type.
-		$post_types = get_option( 'edac_post_types' );
+		$post_types = Settings::get_scannable_post_types();
 		if ( is_array( $post_types ) && ! in_array( $post->post_type, $post_types, true ) ) {
 			return;
 		}
 
 		// prevents first past of save_post due to meta boxes on post editor in gutenberg.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- This is used to detect automated saves vs user-initiated saves, not processing form data
 		if ( empty( $_POST ) ) {
 			return;
 		}
@@ -58,14 +59,6 @@ class Post_Save {
 		// check if update.
 		if ( ! $update ) {
 			return;
-		}
-
-		// handle the case when the custom post is quick edited.
-		if ( isset( $_POST['_inline_edit'] ) ) {
-			$inline_edit = sanitize_text_field( $_POST['_inline_edit'] );
-			if ( wp_verify_nonce( $inline_edit, 'inlineeditnonce' ) ) {
-				return;
-			}
 		}
 
 		// Post in, or going to, trash.

@@ -1,9 +1,11 @@
 <?php
 /**
- * Accessibility Checker pluign file.
+ * Accessibility Checker plugin file.
  *
  * @package Accessibility_Checker
  */
+
+use EDAC\Admin\Settings;
 
 /**
  * Compare strings
@@ -32,7 +34,7 @@ function edac_compare_strings( $string1, $string2 ) {
 		$content = wp_strip_all_tags( $content );
 		$content = trim( $content, " \t\n\r\0\x0B\xC2\xA0" );
 
-		return html_entity_decode( $content );
+		return html_entity_decode( $content, ENT_QUOTES | ENT_HTML5 );
 	};
 
 	return $prepare_strings( $string1 ) === $prepare_strings( $string2 );
@@ -149,38 +151,6 @@ function edac_days_active() {
 }
 
 /**
- * Documentation Link.
- *
- * @param array $rule to get link from.
- * @return string markup for link.
- */
-function edac_documentation_link( $rule ) {
-	global $wp_version;
-	$days_active = edac_days_active();
-
-	if ( ! $rule['info_url'] || ! isset( $rule['slug'] ) ) {
-		return '';
-	}
-
-	return add_query_arg(
-		[
-			'utm_source'       => 'accessibility-checker',
-			'utm_medium'       => 'software',
-			'utm_term'         => esc_attr( $rule['slug'] ),
-			'utm_content'      => 'content-analysis',
-			'utm_campaign'     => 'wordpress-general',
-			'php_version'      => PHP_VERSION,
-			'platform'         => 'wordpress',
-			'platform_version' => $wp_version,
-			'software'         => 'free',
-			'software_version' => EDAC_VERSION,
-			'days_active'      => $days_active,
-		],
-		$rule['info_url']
-	);
-}
-
-/**
  * Custom Post Types
  *
  * @return array
@@ -223,6 +193,28 @@ function edac_post_types() {
 	}
 
 	return $post_types;
+}
+
+/**
+ * Retrieve a human readable post type label.
+ *
+ * @param string $post_type Post type slug.
+ * @return string
+ */
+function edac_get_post_type_label( string $post_type ): string {
+	$post_type = sanitize_key( (string) $post_type );
+
+	if ( '' === $post_type ) {
+		return '';
+	}
+
+	$post_type_object = get_post_type_object( $post_type );
+
+	if ( $post_type_object instanceof \WP_Post_Type && ! empty( $post_type_object->labels->name ) ) {
+		return $post_type_object->labels->name;
+	}
+
+	return ucfirst( $post_type );
 }
 
 /**
@@ -440,7 +432,7 @@ function edac_get_posts_count() {
 
 	$output = [];
 
-	$post_types = get_option( 'edac_post_types' );
+	$post_types = Settings::get_scannable_post_types();
 	if ( $post_types ) {
 		foreach ( $post_types as $post_type ) {
 
@@ -587,6 +579,14 @@ function edac_generate_summary_stat( string $item_class, int $count, string $lab
  */
 function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ): string {
 
+	if ( ! is_array( $query_args ) ) {
+		$query_args = [];
+	}
+
+	if ( ! is_array( $args ) ) {
+		$args = [];
+	}
+
 	$date_now        = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
 	$activation_date = new DateTime( get_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s' ) ) );
 	$interval        = $date_now->diff( $activation_date );
@@ -602,6 +602,12 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 		'software_version' => defined( 'EDACP_VERSION' ) ? EDACP_VERSION : EDAC_VERSION,
 		'days_active'      => $days_active,
 	];
+
+	// Add the ref parameter if one is set via filter.
+	$ref = apply_filters( 'edac_filter_generate_link_type_ref', '' );
+	if ( ! empty( $ref ) && is_string( $ref ) ) {
+		$query_args['ref'] = $ref;
+	}
 
 	$query_args = array_merge( $query_defaults, $query_args );
 
@@ -620,6 +626,45 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 			break;
 	}
 	return add_query_arg( $query_args, $base_link );
+}
+
+/**
+ * Echo or return a link with some utms.
+ *
+ * This is just a simplified wrapper around `edac_generate_link_type` to generate a link with UTM parameters.
+ *
+ * @param string $base_url the base URL to which UTM parameters will be added.
+ * @param string $campaign the UTM campaign name, optional.
+ * @param string $content the UTM content name, optional.
+ * @param bool   $directly_echo whether to echo the link or return it. Default is true.
+ *
+ * @return void|string
+ */
+function edac_link_wrapper( $base_url, $campaign = '', $content = '', $directly_echo = true ) {
+	if ( empty( $base_url ) || ! is_string( $base_url ) ) {
+		return;
+	}
+
+	$params = [];
+	if ( ! empty( $campaign ) ) {
+		$params['utm_campaign'] = $campaign;
+	}
+
+	if ( ! empty( $content ) ) {
+		$params['utm_content'] = $content;
+	}
+
+	$link = edac_generate_link_type(
+		$params,
+		'custom',
+		[ 'base_link' => $base_url ]
+	);
+
+	if ( ! $directly_echo ) {
+		return $link;
+	}
+
+	echo esc_url( $link );
 }
 
 /**
@@ -649,7 +694,7 @@ function edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) {
 
 /**
  * Parse HTML content to extract image or SVG elements
- * 
+ *
  * @param string $html The HTML content to parse.
  * @return array Array containing 'img' (string) and 'svg' (string) keys.
  */
@@ -727,4 +772,85 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 			$type
 		)
 	);
+}
+
+/**
+ * Generate a landmark link with proper URL and ARIA label
+ *
+ * @param string $landmark The landmark type (e.g., "header", "navigation", "main").
+ * @param string $landmark_selector The CSS selector for the landmark.
+ * @param int    $post_id The post ID to link to.
+ * @param string $css_class Optional CSS class for the link. Default 'edac-details-rule-records-record-landmark-link'.
+ * @param bool   $target_blank Whether to open link in new window. Default true.
+ *
+ * @return string The HTML for the landmark link or just the landmark text if no selector.
+ */
+function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $css_class = 'edac-details-rule-records-record-landmark-link', $target_blank = true ) {
+	if ( empty( $landmark ) ) {
+		return '';
+	}
+	$landmark = ucwords( $landmark );
+	$landmark = esc_html( $landmark );
+
+	// If we have both landmark and selector, create a link.
+	if ( ! empty( $landmark_selector ) ) {
+		$link = apply_filters(
+			'edac_get_origin_url_for_virtual_page',
+			get_the_permalink( $post_id ),
+			$post_id
+		);
+
+		$landmark_url = add_query_arg(
+			[
+				'edac_landmark' => base64_encode( $landmark_selector ),
+				'edac_nonce'    => wp_create_nonce( 'edac_highlight' ),
+			],
+			$link
+		);
+
+		// translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+		$landmark_aria_label = sprintf( __( 'View %s landmark on website, opens a new window', 'accessibility-checker' ), $landmark );
+
+		$target_attr = $target_blank ? ' target="_blank"' : '';
+
+		return sprintf(
+			'<a href="%s" class="%s"%s aria-label="%s">%s</a>',
+			esc_url( $landmark_url ),
+			esc_attr( $css_class ),
+			$target_attr,
+			esc_attr( $landmark_aria_label ),
+			$landmark
+		);
+	}
+
+	// If we only have landmark text, return it formatted.
+	return $landmark;
+}
+
+/**
+ * Check if a post is a virtual page.
+ *
+ * This function checks if a post is a virtual page using the pro plugin's
+ * VirtualItemType:POST_TYPE constant.
+ *
+ * @param int $post_id The post ID to check.
+ * @return bool True if the post is a virtual page, false otherwise.
+ */
+function edac_is_virtual_page( $post_id ) {
+	if ( class_exists( '\EqualizeDigital\AccessibilityCheckerPro\VirtualContent\PostType\VirtualItemType' ) ) {
+		$post_type     = get_post_type( $post_id );
+		$pro_post_type = \EqualizeDigital\AccessibilityCheckerPro\VirtualContent\PostType\VirtualItemType::POST_TYPE;
+		return $pro_post_type === $post_type;
+	}
+
+	return false;
+}
+
+/**
+ * Check if the Pro version of the plugin is active.
+ *
+ * @return bool True if Pro version is active, false otherwise.
+ */
+function edac_is_pro() {
+	return defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID;
 }

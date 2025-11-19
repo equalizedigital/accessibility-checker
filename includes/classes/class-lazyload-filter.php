@@ -31,7 +31,7 @@ class Lazyload_Filter {
 	public function perfmatters( $lazyload ) {
 		if (
 			! isset( $_GET['edac_nonce'] ) 
-			|| ! wp_verify_nonce( sanitize_text_field( $_GET['edac_nonce'] ), 'edac_highlight' ) 
+			|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['edac_nonce'] ) ), 'edac_highlight' )
 		) {
 			return $lazyload;
 		}

@@ -245,7 +245,8 @@ body.edac-fixes-modal--open {
 	}
 }
 
-.edac-fix--upsell-link {
+.edac-fix--upsell-link,
+.edac-setting--upsell-link {
 	font-weight: 600;
 	background: #f3cd1e;
 	border-radius: 18px;

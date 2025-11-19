@@ -47,34 +47,25 @@ class Ajax {
 	 *  - '-1' means that nonce could not be varified
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that there isn't any summary data to return
+	 *  - '-5' means that the user does not have permission to view this information for this post
 	 */
 	public function summary() {
 
 		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
+			wp_send_json_error( new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) ) );
+		}
 
-			$error = new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
+			wp_send_json_error( new \WP_Error( '-5', __( 'You do not have permission to view this information for this post.', 'accessibility-checker' ) ) );
 		}
 
 		$html            = [];
 		$html['content'] = '';
-
-		// password check.
-		if ( (bool) get_option( 'edac_password_protected' ) === true ) {
-			$admin_notices              = new \EDAC\Admin\Admin_Notices();
-			$notice_text                = $admin_notices->edac_password_protected_notice_text();
-			$html['password_protected'] = $notice_text;
-			$html['content']           .= '<div class="edac-summary-notice">' . $notice_text . '</div>';
-		}
 
 		$post_id                   = (int) $_REQUEST['post_id'];
 		$summary                   = ( new Summary_Generator( $post_id ) )->generate_summary();
@@ -125,34 +116,37 @@ class Ajax {
 
 			$html['content'] .= '</li>';
 
+			// if this is a virtual page, we don't show the readability section.
+			$is_virtual_page = edac_is_virtual_page( $post_id );
+
 			$html['content'] .= '
 				' . edac_generate_summary_stat(
 				'edac-summary-errors',
 				$summary['errors'],
 				/* translators: %s: Number of errors */
-					sprintf( _n( '%s Error', '%s Errors', $summary['errors'], 'accessibility-checker' ), $summary['errors'] )
+				sprintf( _n( '%s Error', '%s Errors', $summary['errors'], 'accessibility-checker' ), $summary['errors'] )
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-contrast',
 				$summary['contrast_errors'],
 				/* translators: %s: Number of contrast errors */
-					sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $summary['contrast_errors'], 'accessibility-checker' ), $summary['contrast_errors'] )
+				sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $summary['contrast_errors'], 'accessibility-checker' ), $summary['contrast_errors'] )
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-warnings',
 				$summary['warnings'],
 				/* translators: %s: Number of warnings */
-					sprintf( _n( '%s Warning', '%s Warnings', $summary['warnings'], 'accessibility-checker' ), $summary['warnings'] )
+				sprintf( _n( '%s Warning', '%s Warnings', $summary['warnings'], 'accessibility-checker' ), $summary['warnings'] )
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-ignored',
 				$summary['ignored'],
 				/* translators: %s: Number of ignored items */
-					sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
+				sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
 			) . '
 
 		</ul>
-		<div class="edac-summary-readability">
+		<div class="edac-summary-readability" ' . ( $is_virtual_page ? 'style="display: none;"' : '' ) . '>
 			<div class="edac-summary-readability-level">
 				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability-icon-navy.png" alt="" width="54"></div>
 				<div class="edac-panel-number' . ( ( (int) $summary['content_grade'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
@@ -165,14 +159,27 @@ class Ajax {
 				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>
-		<div id="edac-summary-disclaimer" class="edac-summary-disclaimer"><small>* True accessibility requires manual testing in addition to automated scans. <a href="https://a11ychecker.com/help4280">Learn how to manually test for accessibility</a>.</small></div>
 		';
 
+		$html['content'] .= '<div class="edac-summary-disclaimer" id="edac-summary-disclaimer"><small>' . PHP_EOL;
+		$html['content'] .= sprintf(
+			'* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s.',
+			'<a href="' . esc_url(
+				edac_generate_link_type(
+					[
+						'utm_campaign' => 'dashboard-widget',
+						'utm_content'  => 'how-to-manually-check',
+					],
+					'help',
+					[ 'help_id' => 4280 ]
+				)
+			) . '">',
+			'</a>'
+		) . PHP_EOL;
+		$html['content'] .= '</small></div>' . PHP_EOL;
+
 		if ( ! $html ) {
-
-			$error = new \WP_Error( '-3', __( 'No summary to return', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-3', __( 'No summary to return', 'accessibility-checker' ) ) );
 		}
 
 		wp_send_json_success( wp_json_encode( $html ) );
@@ -187,22 +194,20 @@ class Ajax {
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that the table name is not valid
 	 *  - '-4' means that there isn't any details to return
+	 *  - '-5' means that the user does not have permission to view this information for this post
 	 */
 	public function details() {
 
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
+			wp_send_json_error( new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) ) );
+		}
 
-			$error = new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
+			wp_send_json_error( new \WP_Error( '-5', __( 'You do not have permission to view this information for this post.', 'accessibility-checker' ) ) );
 		}
 
 		$html = '';
@@ -213,10 +218,7 @@ class Ajax {
 
 		// Send error if table name is not valid.
 		if ( ! $table_name ) {
-
-			$error = new \WP_Error( '-3', __( 'Invalid table name', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-3', __( 'Invalid table name', 'accessibility-checker' ) ) );
 		}
 
 		$rules = edac_register_rules();
@@ -305,7 +307,7 @@ class Ajax {
 
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
+				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
 				$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
 				$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
 
@@ -322,7 +324,7 @@ class Ajax {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 				$expand_rule = count( $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A ) );
 
-				$tool_tip_link = edac_documentation_link( $rule );
+				$tool_tip_link = edac_link_wrapper( $rule['info_url'], 'frontend-highlighter', $rule['slug'], false );
 
 				$html .= '<div class="edac-details-rule">';
 
@@ -406,6 +408,8 @@ class Ajax {
 						$html .= ob_get_clean();
 					}
 
+
+
 					$html .=
 						'<div class="edac-details-rule-records-labels">
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
@@ -413,6 +417,9 @@ class Ajax {
 							</div>
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
 								Image
+							</div>
+							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
+								Landmark
 							</div>
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
 								Actions
@@ -461,16 +468,31 @@ class Ajax {
 
 						$html .= '</div>';
 
+						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-landmark">';
+
+						$landmark          = isset( $row['landmark'] ) ? $row['landmark'] : '';
+						$landmark_selector = isset( $row['landmark_selector'] ) ? $row['landmark_selector'] : '';
+
+						$html .= edac_generate_landmark_link( $landmark, $landmark_selector, $postid );
+
+						$html .= '</div>';
+
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
 
 						if ( ! isset( $rule['viewable'] ) || $rule['viewable'] ) {
+
+							$post_view_link = apply_filters(
+								'edac_get_origin_url_for_virtual_page',
+								get_the_permalink( $postid ),
+								$postid
+							);
 
 							$url = add_query_arg(
 								[
 									'edac'       => $id,
 									'edac_nonce' => wp_create_nonce( 'edac_highlight' ),
 								],
-								get_the_permalink( $postid )
+								$post_view_link
 							);
 
 							// Translators: %d is the issue ID.
@@ -535,10 +557,7 @@ class Ajax {
 		}
 
 		if ( ! $html ) {
-
-			$error = new \WP_Error( '-4', __( 'No details to return', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-4', __( 'No details to return', 'accessibility-checker' ) ) );
 		}
 
 		wp_send_json_success( wp_json_encode( $html ) );
@@ -552,22 +571,20 @@ class Ajax {
 	 *  - '-1' means that nonce could not be varified
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that there isn't any readability data to return
+	 *  - '-5' means that the user does not have permission to view this information for this post
 	 */
 	public function readability() {
 
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
+			wp_send_json_error( new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) ) );
+		}
 
-			$error = new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
+			wp_send_json_error( new \WP_Error( '-5', __( 'You do not have permission to view this information for this post.', 'accessibility-checker' ) ) );
 		}
 
 		$post_id                     = (int) $_REQUEST['post_id'];
@@ -671,14 +688,10 @@ class Ajax {
 			</form>';
 		}
 
-		global $wp_version;
-		$html .= '<span class="dashicons dashicons-info"></span><a href="https://a11ychecker.com/help3265?utm_source=accessibility-checker&utm_medium=software&utm_term=readability&utm_content=content-analysis&utm_campaign=wordpress-general&php_version=' . PHP_VERSION . '&platform=wordpress&platform_version=' . $wp_version . '&software=free&software_version=' . EDAC_VERSION . '&days_active=' . edac_days_active() . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
+		$html .= '<span class="dashicons dashicons-info"></span><a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
 
 		if ( ! $html ) {
-
-			$error = new \WP_Error( '-3', __( 'No readability data to return', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-3', __( 'No readability data to return', 'accessibility-checker' ) ) );
 		}
 
 		wp_send_json_success( wp_json_encode( $html ) );
@@ -695,24 +708,21 @@ class Ajax {
 	public function add_ignore() {
 
 		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		global $wpdb;
 		$table_name           = $wpdb->prefix . 'accessibility_checker';
-		$raw_ids              = isset( $_REQUEST['ids'] ) ? $_REQUEST['ids'] : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
+		$raw_ids              = isset( $_REQUEST['ids'] ) ? (array) wp_unslash( $_REQUEST['ids'] ) : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
 		$ids                  = array_map(
 			function ( $value ) {
 				return (int) $value;
 			},
 			$raw_ids
 		); // Sanitizing array elements to integers.
-		$action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( $_REQUEST['ignore_action'] ) : '';
-		$type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( $_REQUEST['ignore_type'] ) : '';
+		$action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_action'] ) ) : '';
+		$type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_type'] ) ) : '';
 		$siteid               = get_current_blog_id();
 		$ignre                = ( 'enable' === $action ) ? 1 : 0;
 		$ignre_user           = ( 'enable' === $action ) ? get_current_user_id() : null;
@@ -720,8 +730,8 @@ class Ajax {
 		$ignre_username       = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
 		$ignre_date           = ( 'enable' === $action ) ? gmdate( 'Y-m-d H:i:s' ) : null;
 		$ignre_date_formatted = ( 'enable' === $action ) ? gmdate( 'F j, Y g:i a', strtotime( $ignre_date ) ) : '';
-		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( $_REQUEST['comment'] ) : null;
-		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( $_REQUEST['ignore_global'] ) : 0;
+		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['comment'] ) ) : null;
+		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['ignore_global'] ) ) : 0;
 
 		// If largeBatch is set and 'true', we need to perform an update using the 'object'
 		// instead of IDs. It is a much less efficient query than by IDs - but many IDs run
@@ -733,8 +743,7 @@ class Ajax {
 			$object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $first_id ) );
 
 			if ( ! $object ) {
-				$error = new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) );
-				wp_send_json_error( $error );
+				wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object ) );
@@ -755,10 +764,7 @@ class Ajax {
 		];
 
 		if ( ! $data ) {
-
-			$error = new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 		}
 		wp_send_json_success( wp_json_encode( $data ) );
 	}
@@ -771,36 +777,32 @@ class Ajax {
 	 *  - '-1' means that nonce could not be varified
 	 *  - '-2' means that the post ID was not specified
 	 *  - '-3' means that the summary was not specified
+	 *  - '-5' means that the user does not have permission to view this information for this post
 	 */
 	public function simplified_summary() {
 
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			// nonce security.
+		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		if ( ! isset( $_REQUEST['post_id'] ) ) {
-
-			$error = new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+			wp_send_json_error( new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) ) );
 		}
 
 		if ( ! isset( $_REQUEST['summary'] ) ) {
+			wp_send_json_error( new \WP_Error( '-3', __( 'The summary was not set', 'accessibility-checker' ) ) );
+		}
 
-			$error = new \WP_Error( '-3', __( 'The summary was not set', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
+		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
+			wp_send_json_error( new \WP_Error( '-5', __( 'You do not have permission to edit this post.', 'accessibility-checker' ) ) );
 		}
 
 		$post_id = (int) $_REQUEST['post_id'];
 		update_post_meta(
 			$post_id,
 			'_edac_simplified_summary',
-			sanitize_text_field( $_REQUEST['summary'] )
+			sanitize_text_field( wp_unslash( $_REQUEST['summary'] ) )
 		);
 
 		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );

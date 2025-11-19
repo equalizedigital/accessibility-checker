@@ -41,8 +41,8 @@ trait Text {
 			if ( isset( $args['help_id'] ) && ! empty( $args['help_id'] ) && $args['label'] ) :
 				$link  = \edac_generate_link_type(
 					[
-						'utm-content' => 'fix-description',
-						'utm-term'    => $args['name'],
+						'utm-campaign' => 'fix-description',
+						'utm-content'  => $args['name'],
 					],
 					'help',
 					[

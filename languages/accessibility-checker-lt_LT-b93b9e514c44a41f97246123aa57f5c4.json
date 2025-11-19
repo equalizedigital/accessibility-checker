@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/frontendHighlighterApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -17,7 +17,7 @@
                 "\u012era\u0161oma..."
             ],
             "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports.": [
-                "Nustatymai s\u0117kmingai i\u0161saugoti. Turite %sapsilankyti redaktoriuje%s ir i\u0161saugoti \u012fra\u0161\u0105, kad i\u0161 naujo nuskenuotum\u0117te ir pa\u0161alintum\u0117te i\u0161taisytas problemas i\u0161 Accessibility Checker ataskait\u0173."
+                "Nustatymai s\u0117kmingai i\u0161saugoti. Jums reikia %sapsilankyti redaktoriuje%s ir i\u0161saugoti \u012fra\u0161\u0105, kad b\u016bt\u0173 atliktas pakartotinis nuskaitymas ir pa\u0161alinti i\u0161taisyti klausimai i\u0161 Accessibility Checker ataskait\u0173."
             ],
             "Settings saved successfully.": [
                 "Nustatymai s\u0117kmingai i\u0161saugoti."
@@ -31,8 +31,17 @@
             "Close fixes modal": [
                 "U\u017edaryti taisym\u0173 modalin\u012f lang\u0105"
             ],
+            "Rescan This Page": [
+                "I\u0161 naujo nuskenuoti \u0161\u012f puslap\u012f"
+            ],
             "Disable Page Styles": [
                 "I\u0161jungti puslapio stilius"
+            ],
+            "Disable Styles": [
+                "I\u0161jungti stilius"
+            ],
+            "An error occurred when loading the issues.": [
+                "\u012evyko klaida \u012fkeliant problemas."
             ],
             "Show Code": [
                 "Rodyti kod\u0105"
@@ -42,9 +51,6 @@
             ],
             "Enable Styles": [
                 "\u012ejungti stilius"
-            ],
-            "Disable Styles": [
-                "I\u0161jungti stilius"
             ],
             "There are no settings to display.": [
                 "N\u0117ra rodom\u0173 nustatym\u0173."
@@ -72,6 +78,24 @@
             ],
             "detected.": [
                 "aptikta."
+            ],
+            "Scanner function not found.": [
+                "Skanavimo funkcija nerasta."
+            ],
+            "Scanning...": [
+                "Skenuojama..."
+            ],
+            "No violations found, skipping save.": [
+                "Pa\u017eeidim\u0173 nerasta, i\u0161saugojimas praleid\u017eiamas."
+            ],
+            "Missing postId or nonce.": [
+                "Tr\u016bksta postId arba nonce."
+            ],
+            "Accessibility scan error.": [
+                "Prieinamumo skenavimo klaida."
+            ],
+            "Error saving scan results.": [
+                "Klaida i\u0161saugant skenavimo rezultatus."
             ]
         }
     }

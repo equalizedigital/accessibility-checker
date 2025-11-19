@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "build\/editorApp.bundle.js",
     "domain": "messages",
     "locale_data": {
@@ -24,6 +24,9 @@
             ],
             "Failed to clear issues.": [
                 "Ongelmien tyhjennys ep\u00e4onnistui."
+            ],
+            "An error occurred while clearing issues.": [
+                "Virhe tapahtui ongelmia tyhjennett\u00e4ess\u00e4."
             ]
         }
     }

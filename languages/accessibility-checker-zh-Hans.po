@@ -1,0 +1,4669 @@
+# Copyright (C) 2025 Equalize Digital
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessibility Checker 1.31.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-09-04T18:22:49+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: accessibility-checker\n"
+"Language: zh@Hans\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Plugin Name of the plugin
+#: accessibility-checker.php
+#: admin/class-meta-boxes.php:39
+#: includes/classes/class-accessibility-statement.php:51
+#: includes/classes/class-admin-toolbar.php:53
+#: includes/options-page.php:45
+#: partials/welcome-page.php:24
+msgid "Accessibility Checker"
+msgstr "Accessibility Checker"
+
+#. Plugin URI of the plugin
+#: accessibility-checker.php
+msgid "https://a11ychecker.com"
+msgstr "https://a11ychecker.com"
+
+#. Description of the plugin
+#: accessibility-checker.php
+msgid "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance."
+msgstr "在发布之前审核并检查您网站的无障碍性。文章内无障碍扫描器和指导。"
+
+#. Author of the plugin
+#: accessibility-checker.php
+msgid "Equalize Digital"
+msgstr "Equalize Digital"
+
+#. Author URI of the plugin
+#: accessibility-checker.php
+msgid "https://equalizedigital.com"
+msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/FixesPage.php:71
+#: admin/site-health/class-free.php:105
+#: admin/site-health/class-pro.php:82
+#: includes/classes/class-admin-toolbar.php:102
+msgid "Fixes"
+msgstr "修复"
+
+#: admin/AdminPage/FixesPage.php:138
+msgid "General Fixes"
+msgstr "常规修复"
+
+#: admin/AdminPage/FixesPage.php:212
+msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
+msgstr "这些修复通过修改您网站上的HTML元素和行为来帮助改善无障碍性。"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:46
+#: admin/AdminPage/FixesSettingType/Text.php:37
+#: build/admin.bundle.js:2
+msgid "Get Pro to unlock this feature, opens in a new window."
+msgstr "升级到专业版以解锁此功能，将在新窗口中打开。"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:47
+#: admin/AdminPage/FixesSettingType/Text.php:38
+#: admin/class-plugin-action-links.php:55
+#: build/admin.bundle.js:2
+msgid "Get Pro"
+msgstr "获取专业版"
+
+#: admin/AdminPage/FixesSettingType/Checkbox.php:67
+#: admin/class-ajax.php:340
+msgid "Opens in a new window."
+msgstr "在新窗口中打开。"
+
+#. translators: %s: the label of the fix
+#: admin/AdminPage/FixesSettingType/Text.php:54
+#, php-format
+msgid "Read documentation for %s. Opens in a new window."
+msgstr "阅读%s的文档。在新窗口中打开。"
+
+#: admin/class-accessibility-statement.php:33
+msgid "Our Commitment to Web Accessibility"
+msgstr "我们对网络无障碍的承诺"
+
+#: admin/class-accessibility-statement.php:53
+msgid "[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web."
+msgstr "[YOUR COMPANY NAME]致力于为所有用户提供完全无障碍的网站体验，包括那些依赖辅助技术（如屏幕阅读器、屏幕放大软件和替代键盘输入设备）来浏览网络的用户。"
+
+#: admin/class-accessibility-statement.php:54
+msgid "Ongoing Efforts to Ensure Accessibility"
+msgstr "确保无障碍的持续努力"
+
+#: admin/class-accessibility-statement.php:55
+msgid "We follow the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards."
+msgstr "我们遵循<a href=\"https://www.w3.org/TR/WCAG21/\">网页内容无障碍指南(WCAG)2.1版</a>作为确定无障碍性的指导原则。这些是国际公认的标准，涵盖了使内容可用的广泛建议和最佳实践。在我们向网站添加新页面和功能时，所有设计、代码和内容输入实践都会根据这些标准进行检查。"
+
+#. translators: 1 - A link opening tag, 2 - link closing tag
+#: admin/class-accessibility-statement.php:58
+#, php-format
+msgid "Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the %1$sAccessibility Checker WordPress Plugin%2$s, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests."
+msgstr "网站可访问性是一个持续进行的过程。我们不断测试内容和功能以确保符合 WCAG 2.1 AA 级标准，并修复任何问题以确保我们达到或超过这些标准。我们的团队成员使用行业标准工具对网站进行测试，如 %1$sAccessibility Checker WordPress 插件%2$s、颜色对比度分析器、仅键盘导航技术和 Flesch-Kincaid 可读性测试。"
+
+#: admin/class-accessibility-statement.php:62
+msgid "Accessibility Features On Our Website"
+msgstr "我们网站的无障碍功能"
+
+#: admin/class-accessibility-statement.php:63
+msgid "The following is a list of items we have included in our website to improve its accessibility:"
+msgstr "以下是我们在网站中包含的项目，以提高其无障碍性："
+
+#: admin/class-accessibility-statement.php:64
+msgid "[LIST ACCESSIBILITY FEATURES HERE]"
+msgstr "[在此列出无障碍功能]"
+
+#: admin/class-accessibility-statement.php:65
+msgid "Where We're Improving"
+msgstr "我们正在改进的地方"
+
+#: admin/class-accessibility-statement.php:66
+msgid "In our efforts to bring our website up to standard, we are targeting the following areas:"
+msgstr "在我们努力使我们的网站达到标准的过程中，我们正在针对以下领域："
+
+#: admin/class-accessibility-statement.php:67
+msgid "[LIST ITEMS YOU'RE WORKING TO FIX HERE]"
+msgstr "[在此列出您正在努力修复的项目]"
+
+#: admin/class-accessibility-statement.php:68
+msgid "[IT MAY HELP TO REVIEW THE OPEN ISSUES TAB TO SEE THE MOST COMMON PROBLEMS]"
+msgstr "[查看开放问题选项卡以了解最常见的问题可能会有帮助]"
+
+#: admin/class-accessibility-statement.php:69
+msgid "This is part of our broader effort to make everyone's experience at [COMPANY NAME] a welcoming and enjoyable one. Please note that while we make every effort to provide information accessible for all users, we cannot guarantee the accessibility of third party websites to which we may link."
+msgstr "这是我们更广泛努力的一部分，旨在使每个人在[COMPANY NAME]的体验都是受欢迎和愉快的。请注意，虽然我们尽力为所有用户提供可访问的信息，但我们无法保证我们可能链接到的第三方网站的无障碍性。"
+
+#: admin/class-accessibility-statement.php:70
+msgid "Accessibility Support Contact"
+msgstr "无障碍支持联系"
+
+#: admin/class-accessibility-statement.php:71
+msgid "We welcome comments, questions, and feedback on our website. If you are using assistive technologies and are having difficulty using our website, please email [YOUR ACCESSIBILITY EMAIL ADDRESS] or give us a call at [YOUR PHONE NUMBER]. We will do our best to assist you and resolve issues."
+msgstr "我们欢迎对我们的网站提出意见、问题和反馈。如果您正在使用辅助技术并在使用我们的网站时遇到困难，请发送电子邮件至[YOUR ACCESSIBILITY EMAIL ADDRESS]或致电[YOUR PHONE NUMBER]。我们将尽最大努力为您提供帮助并解决问题。"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:46
+#, php-format
+msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
+msgstr "喜欢使用 Accessibility Checker 吗？%1$s请给我们一个 ★★★★★ 评分。%2$s我们非常感谢您的支持！"
+
+#: admin/class-admin-footer-text.php:47
+msgid "Please leave us a five star rating (opens in new window)"
+msgstr "请给我们一个五星评分（在新窗口中打开）"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: admin/class-admin-footer-text.php:55
+#, php-format
+msgid "Want to do more with Accessibility Checker? %1$sUnlock Pro Features%2$s"
+msgstr "想要使用 Accessibility Checker 做更多事情吗？%1$s解锁专业版功能%2$s"
+
+#: admin/class-admin-footer-text.php:56
+msgid "Unlock Pro Features (opens in new window)"
+msgstr "解锁专业版功能（在新窗口中打开）"
+
+#: admin/class-admin-notices.php:129
+msgid "🎉 Black Friday special! 🎉"
+msgstr "🎉 黑色星期五特惠！🎉"
+
+#: admin/class-admin-notices.php:130
+msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "从 11 月 25 日至 12 月 3 日升级到 Accessibility Checker 付费版，即可享受 7 折优惠！全站扫描、全站开放问题报告、忽略日志等更多功能。"
+
+#: admin/class-admin-notices.php:131
+#: admin/class-admin-notices.php:218
+msgid "Ask a Pre-Sale Question"
+msgstr "提出售前问题"
+
+#: admin/class-admin-notices.php:132
+#: admin/class-admin-notices.php:219
+msgid "Upgrade Now"
+msgstr "立即升级"
+
+#: admin/class-admin-notices.php:151
+#: admin/class-admin-notices.php:238
+#: admin/class-admin-notices.php:327
+#: admin/class-ajax.php:56
+#: admin/class-ajax.php:202
+#: admin/class-ajax.php:579
+#: admin/class-ajax.php:712
+#: admin/class-ajax.php:786
+#: admin/class-frontend-highlight.php:78
+#: admin/class-frontend-highlight.php:96
+#: admin/class-frontend-highlight.php:101
+#: admin/class-frontend-highlight.php:105
+msgid "Permission Denied"
+msgstr "权限被拒绝"
+
+#: admin/class-admin-notices.php:160
+#: admin/class-admin-notices.php:250
+#: admin/class-admin-notices.php:347
+msgid "Update option wasn't successful"
+msgstr "更新选项未成功"
+
+#: admin/class-admin-notices.php:216
+msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
+msgstr "🎉 为庆祝全球无障碍意识日，Accessibility Checker Pro 现在 7.5 折优惠！🎉"
+
+#: admin/class-admin-notices.php:217
+msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
+msgstr "从5月13日至5月21日，使用优惠码GAAD25，以特别折扣价格获得全站扫描和其他专业功能。不确定升级是否适合您？"
+
+#: admin/class-admin-notices.php:302
+msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
+msgstr "您好！感谢您使用 Accessibility Checker 作为您的无障碍工具包的一部分。既然您已经使用它一段时间了，能否请您在 WordPress 插件目录中为 Accessibility Checker 写一个 5 星评价？这将有助于提高我们的知名度，让更多人了解网络无障碍的重要性。非常感谢！"
+
+#: admin/class-admin-notices.php:305
+msgid "Write A Review"
+msgstr "写评价"
+
+#: admin/class-admin-notices.php:306
+msgid "Remind Me In Two Weeks"
+msgstr "两周后提醒我"
+
+#: admin/class-admin-notices.php:307
+msgid "Never Ask Again"
+msgstr "不再询问"
+
+#: admin/class-admin-notices.php:334
+msgid "The review action value was not set"
+msgstr "评价操作值未设置"
+
+#: admin/class-ajax.php:60
+#: admin/class-ajax.php:206
+#: admin/class-ajax.php:583
+#: admin/class-ajax.php:790
+msgid "The post ID was not set"
+msgstr "未设置帖子 ID"
+
+#: admin/class-ajax.php:64
+#: admin/class-ajax.php:210
+#: admin/class-ajax.php:587
+msgid "You do not have permission to view this information for this post."
+msgstr "您没有权限查看此帖子的此信息。"
+
+#: admin/class-ajax.php:83
+msgid "A Simplified summary has not been included for this content."
+msgstr "本内容未包含简化摘要。"
+
+#: admin/class-ajax.php:86
+msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
+msgstr "您的内容的阅读水平为九年级或以下，不需要简化摘要。"
+
+#: admin/class-ajax.php:89
+msgid "The reading level of the simplified summary is too high."
+msgstr "简化摘要的阅读水平过高。"
+
+#: admin/class-ajax.php:91
+msgid "A simplified summary has been included for this content."
+msgstr "本内容包含一个简化摘要。"
+
+#. translators: %s: Number of errors
+#: admin/class-ajax.php:127
+#, php-format
+msgid "%s Error"
+msgid_plural "%s Errors"
+msgstr[0] "%s 错误"
+
+#. translators: %s: Number of contrast errors
+#: admin/class-ajax.php:133
+#, php-format
+msgid "%s Contrast Error"
+msgid_plural "%s Contrast Errors"
+msgstr[0] "%s 对比度错误"
+
+#. translators: %s: Number of warnings
+#: admin/class-ajax.php:139
+#, php-format
+msgid "%s Warning"
+msgid_plural "%s Warnings"
+msgstr[0] "%s 警告"
+
+#. translators: %s: Number of ignored items
+#: admin/class-ajax.php:145
+#, php-format
+msgid "%s Ignored Item"
+msgid_plural "%s Ignored Items"
+msgstr[0] "%s 被忽略的项目"
+
+#: admin/class-ajax.php:182
+msgid "No summary to return"
+msgstr "无返回摘要"
+
+#: admin/class-ajax.php:221
+msgid "Invalid table name"
+msgstr "表格名称无效"
+
+#: admin/class-ajax.php:365
+msgid "These settings enable global fixes across your entire site."
+msgstr "这些设置可对整个网站进行全局修复。"
+
+#: admin/class-ajax.php:366
+msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "可能需要重新保存页面或进行全站扫描，才能在报告中看到修复结果。"
+
+#: admin/class-ajax.php:394
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Save"
+msgstr "节省"
+
+#: admin/class-ajax.php:416
+msgid "Affected Code"
+msgstr "受影响的代码"
+
+#. Translators: %d is the issue ID.
+#: admin/class-ajax.php:499
+#, php-format
+msgid "View Issue ID %d on website, opens a new window"
+msgstr "在网站上查看问题 ID %d，打开一个新窗口"
+
+#: admin/class-ajax.php:500
+msgid "View on page"
+msgstr "在页面上查看"
+
+#: admin/class-ajax.php:519
+msgid "Fix: "
+msgstr "修复： "
+
+#: admin/class-ajax.php:520
+msgid "Fix"
+msgstr "修复"
+
+#: admin/class-ajax.php:543
+msgid "Your user account doesn't have permission to ignore this issue."
+msgstr "您的用户账户没有权限忽略此问题。"
+
+#: admin/class-ajax.php:560
+msgid "No details to return"
+msgstr "没有返回的详细信息"
+
+#: admin/class-ajax.php:694
+msgid "No readability data to return"
+msgstr "无可读性数据返回"
+
+#: admin/class-ajax.php:746
+#: admin/class-ajax.php:767
+msgid "No ignore data to return"
+msgstr "没有要返回的忽略数据"
+
+#: admin/class-ajax.php:794
+msgid "The summary was not set"
+msgstr "未设置摘要"
+
+#: admin/class-ajax.php:798
+msgid "You do not have permission to edit this post."
+msgstr "您没有权限编辑此帖子。"
+
+#: admin/class-frontend-highlight.php:82
+msgid "The id value was not set"
+msgstr "未设置 id 值"
+
+#: admin/class-frontend-highlight.php:89
+msgid "Post not found"
+msgstr "未找到帖子"
+
+#: admin/class-frontend-highlight.php:111
+msgid "Issue query returned no results"
+msgstr "问题查询未返回结果"
+
+#: admin/class-frontend-highlight.php:155
+msgid "Object query returned no results"
+msgstr "对象查询未返回结果"
+
+#: admin/class-plugin-action-links.php:48
+#: includes/classes/class-admin-toolbar.php:94
+#: includes/options-page.php:68
+msgid "Settings"
+msgstr "设置"
+
+#: admin/class-plugin-action-links.php:60
+msgid "Get Accessibility Checker Pro, opens in new window"
+msgstr "获取 Accessibility Checker Pro，在新窗口中打开"
+
+#: admin/class-plugin-row-meta.php:53
+msgid "View Accessibility Checker Documentation (opens in new window)"
+msgstr "查看 Accessibility Checker 文档（在新窗口中打开）"
+
+#: admin/class-plugin-row-meta.php:54
+#: admin/class-widgets.php:309
+msgid "Documentation"
+msgstr "文档"
+
+#: admin/class-plugin-row-meta.php:59
+msgid "Get support for Accessibility Checker (opens in new window)"
+msgstr "获取 Accessibility Checker 支持（在新窗口中打开）"
+
+#: admin/class-plugin-row-meta.php:60
+msgid "Support"
+msgstr "支持"
+
+#: admin/class-plugin-row-meta.php:65
+msgid "Rate Accessibility Checker plugin (opens in new window)"
+msgstr "为 Accessibility Checker 插件评分（在新窗口中打开）"
+
+#: admin/class-plugin-row-meta.php:66
+msgid "Rate plugin"
+msgstr "评价插件"
+
+#: admin/class-upgrade-promotion.php:58
+msgid "Upgrade to Pro"
+msgstr "升级到专业版"
+
+#: admin/class-upgrade-promotion.php:60
+msgid "Upgrade Sale Now"
+msgstr "升级特惠进行中"
+
+#: admin/class-upgrade-promotion.php:82
+msgid "Unable to redirect to upgrade page."
+msgstr "无法重定向到升级页面。"
+
+#: admin/class-welcome-page.php:38
+msgid "Most Recent Test Summary"
+msgstr "最新测试摘要"
+
+#: admin/class-welcome-page.php:45
+msgid "Update Counts"
+msgstr "更新计数"
+
+#: admin/class-welcome-page.php:50
+msgid "Start New Scan"
+msgstr "开始新扫描"
+
+#: admin/class-welcome-page.php:54
+msgid "View All Open Issues"
+msgstr "查看所有未解决的问题"
+
+#: admin/class-welcome-page.php:59
+msgid "See History"
+msgstr "查看历史"
+
+#: admin/class-welcome-page.php:72
+#: admin/class-widgets.php:98
+msgid "Passed Tests"
+msgstr "通过的测试"
+
+#: admin/class-welcome-page.php:88
+msgid "Unique Error"
+msgid_plural "Unique Errors"
+msgstr[0] "独特错误"
+
+#: admin/class-welcome-page.php:113
+msgid "Unique Color Contrast Error"
+msgid_plural "Unique Color Contrast Errors"
+msgstr[0] "独特的颜色对比度错误"
+
+#: admin/class-welcome-page.php:138
+msgid "Unique Warning"
+msgid_plural "Unique Warnings"
+msgstr[0] "独特警告"
+
+#: admin/class-welcome-page.php:163
+msgid "Ignored Item"
+msgid_plural "Ignored Items"
+msgstr[0] "忽略的项目"
+
+#: admin/class-welcome-page.php:180
+msgid "Average Issues Per Page"
+msgstr "每页平均问题数"
+
+#: admin/class-welcome-page.php:193
+msgid "Average Issue Density"
+msgstr "平均问题密度"
+
+#: admin/class-welcome-page.php:206
+#: admin/class-widgets.php:105
+msgid "Report Last Updated:"
+msgstr "报告最后更新："
+
+#: admin/class-welcome-page.php:216
+#: includes/options-page.php:606
+msgid "Never"
+msgstr "从未"
+
+#: admin/class-welcome-page.php:230
+msgid "URLs Scanned"
+msgstr "已扫描的 URL"
+
+#. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
+#: admin/class-welcome-page.php:241
+#, php-format
+msgid "%1$s of %2$s"
+msgstr "%2$s 中的 %1$s"
+
+#: admin/class-welcome-page.php:250
+msgid "Post Types Checked"
+msgstr "已检查的文章类型"
+
+#: admin/class-welcome-page.php:263
+msgid "URLs with 100% score"
+msgstr "100% 得分的 URL"
+
+#: admin/class-welcome-page.php:271
+msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
+msgstr "此摘要每24小时自动更新一次，或在完成全站扫描时更新。您也可以点击更新计数按钮手动更新这些结果。"
+
+#: admin/class-welcome-page.php:277
+msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
+msgstr "您的网站存在大量问题。出于性能考虑，并非所有问题都包含在此摘要中。"
+
+#: admin/class-welcome-page.php:287
+msgid "Site-Wide Accessibility Reports"
+msgstr "全站无障碍报告"
+
+#: admin/class-welcome-page.php:292
+msgid "Hide banner"
+msgstr "隐藏横幅"
+
+#: admin/class-welcome-page.php:301
+msgid "Unlock Detailed Accessibility Reports"
+msgstr "解锁详细的无障碍报告"
+
+#: admin/class-welcome-page.php:304
+#: admin/class-widgets.php:71
+msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
+msgstr "开始扫描整个网站的无障碍问题，获取全站报告，并更快地符合无障碍指南。"
+
+#: admin/class-welcome-page.php:308
+#: admin/class-widgets.php:73
+msgid "Upgrade Accessibility Checker"
+msgstr "升级 Accessibility Checker"
+
+#: admin/class-widgets.php:69
+msgid "close ad"
+msgstr "关闭广告"
+
+#: admin/class-widgets.php:70
+msgid "Get Detailed Accessibility Reports"
+msgstr "获取详细的无障碍报告"
+
+#: admin/class-widgets.php:88
+msgid "Full Site Accessibility Status"
+msgstr "全站无障碍状态"
+
+#: admin/class-widgets.php:113
+msgid "URLs Scanned:"
+msgstr "已扫描的 URL："
+
+#: admin/class-widgets.php:121
+msgid "Errors:"
+msgstr "错误："
+
+#: admin/class-widgets.php:125
+msgid "Color Contrast Errors:"
+msgstr "颜色对比度错误："
+
+#: admin/class-widgets.php:129
+msgid "Warnings:"
+msgstr "警告："
+
+#: admin/class-widgets.php:144
+msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
+msgstr "您的网站存在应尽快解决的无障碍问题，以确保符合无障碍指南。"
+
+#: admin/class-widgets.php:147
+msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
+msgstr "太棒了！Accessibility Checker 在测试的内容中没有发现任何无障碍问题。自动化工具无法发现所有问题，所以别忘了"
+
+#: admin/class-widgets.php:147
+msgid "manually test your site"
+msgstr "手动测试您的网站"
+
+#: admin/class-widgets.php:162
+msgid "Issues By Post Type"
+msgstr "按文章类型划分的问题"
+
+#: admin/class-widgets.php:169
+msgid "Post Type"
+msgstr "文章类型"
+
+#: admin/class-widgets.php:172
+msgid "Errors"
+msgstr "错误"
+
+#: admin/class-widgets.php:175
+msgid "Contrast"
+msgstr "对比度"
+
+#: admin/class-widgets.php:178
+msgid "Warnings"
+msgstr "警告"
+
+#: admin/class-widgets.php:247
+msgid "Upgrade to Scan"
+msgstr "升级以扫描"
+
+#: admin/class-widgets.php:276
+msgid "See More Reports"
+msgstr "查看更多报告"
+
+#: admin/class-widgets.php:286
+#: partials/welcome-page.php:235
+msgid "Learn Accessibility"
+msgstr "学习无障碍"
+
+#: admin/class-widgets.php:307
+msgid "Additional Resources"
+msgstr "更多资源"
+
+#: admin/class-widgets.php:308
+msgid "Blog (opens in a new window)"
+msgstr "博客（在新窗口中打开）"
+
+#: admin/class-widgets.php:308
+msgid "Blog"
+msgstr "博客"
+
+#: admin/class-widgets.php:309
+msgid "Documentation (opens in a new window)"
+msgstr "文档（在新窗口中打开）"
+
+#: admin/opt-in/class-email-opt-in.php:115
+msgid "Accessibility Events &amp; News in Your Inbox"
+msgstr "在您的收件箱中接收无障碍活动和新闻"
+
+#: admin/opt-in/class-email-opt-in.php:121
+msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
+msgstr "订阅 Equalize Digital 的邮件列表，获取免费的无障碍网络研讨会和培训资源。"
+
+#: admin/opt-in/class-email-opt-in.php:127
+msgid "Email*"
+msgstr "电子邮件*"
+
+#: admin/opt-in/class-email-opt-in.php:131
+msgid "Type your email"
+msgstr "输入您的电子邮件"
+
+#: admin/opt-in/class-email-opt-in.php:139
+msgid "First Name"
+msgstr "名字"
+
+#: admin/opt-in/class-email-opt-in.php:143
+msgid "Type your first name"
+msgstr "输入您的名字"
+
+#. translators: 1: link to privacy policy page. 2: link close tag.
+#: admin/opt-in/class-email-opt-in.php:153
+#, php-format
+msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
+msgstr "通过订阅，您同意根据我们的 %1$s隐私政策%2$s 接收电子邮件。"
+
+#: admin/site-health/class-audit-history.php:32
+msgid "Accessibility Checker &mdash; Audit History"
+msgstr "Accessibility Checker &mdash; 审核历史"
+
+#: admin/site-health/class-checks.php:44
+msgid "Accessibility issues"
+msgstr "无障碍问题"
+
+#: admin/site-health/class-checks.php:49
+msgid "Content checked for accessibility"
+msgstr "已检查内容的无障碍性"
+
+#: admin/site-health/class-checks.php:54
+msgid "Post types configured for accessibility checks"
+msgstr "已配置用于无障碍检查的文章类型"
+
+#: admin/site-health/class-checks.php:69
+msgid "Accessibility"
+msgstr "无障碍"
+
+#: admin/site-health/class-checks.php:96
+msgid "View Issues"
+msgstr "查看问题"
+
+#: admin/site-health/class-checks.php:103
+msgid "View Accessibility Checker"
+msgstr "查看 Accessibility Checker"
+
+#: admin/site-health/class-checks.php:122
+msgid "Accessibility issues detected"
+msgstr "检测到无障碍问题"
+
+#. translators: 1: error count, 2: warning count.
+#: admin/site-health/class-checks.php:125
+#, php-format
+msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
+msgstr "Accessibility Checker 已检测到 %1$s 个错误和 %2$s 个警告。"
+
+#: admin/site-health/class-checks.php:141
+msgid "No accessibility issues detected"
+msgstr "未检测到无障碍问题"
+
+#: admin/site-health/class-checks.php:142
+msgid "Accessibility Checker has not found any issues in scanned content."
+msgstr "Accessibility Checker 在扫描的内容中未发现任何问题。"
+
+#: admin/site-health/class-checks.php:160
+msgid "Content has not been checked"
+msgstr "内容尚未检查"
+
+#: admin/site-health/class-checks.php:161
+msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
+msgstr "尚未扫描任何文章。运行完整网站扫描以开始检查您的内容是否存在无障碍问题。"
+
+#: admin/site-health/class-checks.php:165
+msgid "Start full site scan"
+msgstr "开始完整网站扫描"
+
+#: admin/site-health/class-checks.php:174
+msgid "Content is being checked for accessibility"
+msgstr "正在检查内容的无障碍性"
+
+#. translators: %s is the number of posts scanned.
+#: admin/site-health/class-checks.php:177
+#, php-format
+msgid "Accessibility Checker has scanned %s post for accessibility issues."
+msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker 已扫描 %s 篇文章的无障碍问题。"
+
+#: admin/site-health/class-checks.php:196
+msgid "No post types selected for accessibility checking"
+msgstr "未选择用于无障碍检查的文章类型"
+
+#: admin/site-health/class-checks.php:197
+msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
+msgstr "Accessibility Checker 无法扫描任何内容，因为尚未选择文章类型。如果没有配置文章类型，将无法检测到无障碍问题。"
+
+#: admin/site-health/class-checks.php:201
+msgid "Configure post types"
+msgstr "配置文章类型"
+
+#: admin/site-health/class-checks.php:213
+msgid "Post types are configured for accessibility checking"
+msgstr "已配置用于无障碍检查的文章类型"
+
+#. translators: 1: number of post types, 2: comma-separated list of post type names.
+#: admin/site-health/class-checks.php:216
+#, php-format
+msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
+msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker 已配置为扫描 %1$s 种文章类型：%2$s。"
+
+#: admin/site-health/class-free.php:46
+msgid "Accessibility Checker &mdash; Free"
+msgstr "Accessibility Checker &mdash; 免费版"
+
+#: admin/site-health/class-free.php:49
+#: admin/site-health/class-pro.php:50
+msgid "Version"
+msgstr "版本"
+
+#: admin/site-health/class-free.php:53
+#: admin/site-health/class-pro.php:54
+msgid "Database Version"
+msgstr "数据库版本"
+
+#: admin/site-health/class-free.php:57
+msgid "Policy Page"
+msgstr "政策页面"
+
+#: admin/site-health/class-free.php:58
+#: admin/site-health/class-free.php:78
+#: admin/site-health/class-pro.php:51
+#: admin/site-health/class-pro.php:55
+msgid "Unset"
+msgstr "未设置"
+
+#: admin/site-health/class-free.php:61
+msgid "Activation Date"
+msgstr "激活日期"
+
+#: admin/site-health/class-free.php:65
+msgid "Footer Statement"
+msgstr "页脚声明"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Enabled"
+msgstr "已启用"
+
+#: admin/site-health/class-free.php:66
+#: admin/site-health/class-free.php:70
+#: admin/site-health/class-free.php:74
+msgid "Disabled"
+msgstr "已禁用"
+
+#: admin/site-health/class-free.php:69
+#: includes/options-page.php:199
+msgid "Delete Data"
+msgstr "删除数据"
+
+#: admin/site-health/class-free.php:73
+msgid "Include Statement Link"
+msgstr "包含声明链接"
+
+#: admin/site-health/class-free.php:77
+msgid "Post Types"
+msgstr "文章类型"
+
+#: admin/site-health/class-free.php:81
+msgid "Simplified Sum Position"
+msgstr "简化总结位置"
+
+#: admin/site-health/class-free.php:85
+msgid "Simplified Sum Prompt"
+msgstr "简化总结提示"
+
+#: admin/site-health/class-free.php:89
+msgid "Post Count"
+msgstr "文章数"
+
+#: admin/site-health/class-free.php:93
+msgid "Error Count"
+msgstr "错误数"
+
+#: admin/site-health/class-free.php:97
+msgid "Warning Count"
+msgstr "警告数"
+
+#: admin/site-health/class-free.php:101
+msgid "DB Table Count"
+msgstr "数据库表数量"
+
+#: admin/site-health/class-pro.php:47
+msgid "Accessibility Checker &mdash; Pro"
+msgstr "Accessibility Checker &mdash; 专业版"
+
+#: admin/site-health/class-pro.php:58
+msgid "License Status"
+msgstr "许可状态"
+
+#: admin/site-health/class-pro.php:62
+msgid "Scan ID"
+msgstr "扫描 ID"
+
+#: admin/site-health/class-pro.php:66
+msgid "Scan Total"
+msgstr "扫描总数"
+
+#: admin/site-health/class-pro.php:70
+msgid "Simplified Sum Heading"
+msgstr "简化总结标题"
+
+#: admin/site-health/class-pro.php:74
+#: includes/options-page.php:190
+msgid "Ignore Permissions"
+msgstr "忽略权限"
+
+#: admin/site-health/class-pro.php:75
+msgid "None"
+msgstr "无"
+
+#: admin/site-health/class-pro.php:78
+msgid "Ignores DB Table Count"
+msgstr "忽略数据库表数量"
+
+#. translators: %1$s is the site name, %2$s is a link with the plugin name.
+#: includes/classes/class-accessibility-statement.php:45
+#, php-format
+msgid "%1$s uses %2$s to monitor our website's accessibility."
+msgstr "%1$s使用%2$s监控我们网站的无障碍性。"
+
+#: includes/classes/class-accessibility-statement.php:50
+msgid "Accessibility Checker (opens in a new window)"
+msgstr "Accessibility Checker（在新窗口中打开）"
+
+#. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
+#: includes/classes/class-accessibility-statement.php:59
+#, php-format
+msgid "Read our %s"
+msgstr "阅读我们的%s"
+
+#: includes/classes/class-accessibility-statement.php:60
+msgid "Accessibility Policy"
+msgstr "无障碍政策"
+
+#: includes/classes/class-admin-toolbar.php:115
+#: partials/pro-callout.php:47
+#: partials/welcome-page.php:215
+msgid "Get Accessibility Checker Pro"
+msgstr "获取 Accessibility Checker Pro"
+
+#: includes/classes/class-admin-toolbar.php:120
+msgid "Get Accessibility Checker Pro (opens in new window)"
+msgstr "获取 Accessibility Checker Pro（在新窗口中打开）"
+
+#: includes/classes/class-simplified-summary.php:73
+#: includes/options-page.php:897
+#: includes/options-page.php:921
+msgid "Simplified Summary"
+msgstr "简化摘要"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:41
+msgid "Add Size & Type To File Links"
+msgstr "为文件链接添加大小和类型"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:50
+msgid "Add Context to Linked Files"
+msgstr "为链接文件添加上下文"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:83
+msgid "Add File Size & Type To Links"
+msgstr "为链接添加文件大小和类型"
+
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:85
+msgid "Add the file size and type to linked files that may trigger a download."
+msgstr "为可能触发下载的链接文件添加文件大小和类型。"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:41
+msgid "Add Labels to Unlabelled Form Fields"
+msgstr "为未标记的表单字段添加标签"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:50
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:73
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:96
+msgid "Label Form Fields"
+msgstr "标记表单字段"
+
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:99
+msgid "Add labels to unlabelled form fields if field purpose can be determined."
+msgstr "如果可以确定字段用途，为未标记的表单字段添加标签。"
+
+#. translators: %1$s: a CSS class name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:130
+#, php-format
+msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
+msgstr "尝试为缺少标签的表单字段添加标签。注意：如果添加标签影响了表单布局，您可能需要添加针对%1$s类的自定义样式。"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:41
+msgid "Add Missing or Empty Page Titles"
+msgstr "添加缺失或空白的页面标题"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:50
+msgid "Set Page HTML Titles"
+msgstr "设置页面HTML标题"
+
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:84
+msgid "Add Missing Page Title"
+msgstr "添加缺失的页面标题"
+
+#. translators: %1$s: a code tag with a title tag.
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:87
+#, php-format
+msgid "Add a %1$s tag to the page if it's missing or empty."
+msgstr "如果页面缺少或为空，添加%1$s标签。"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+msgid "Add warning when link opens new tab/window"
+msgstr "添加新标签页/窗口打开警告"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+msgid "Add Label To Links That Open A New Tab/Window"
+msgstr "为打开新标签页/窗口的链接添加标签"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#, php-format
+msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
+msgstr "为带有%1$s的链接添加标签和图标，以告知用户它们将打开新标签页/窗口。%2$s注意：如果启用了 “阻止链接打开新窗口” 修复，此设置将不会生效。%3$s"
+
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:43
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:75
+msgid "Block PDF Uploads"
+msgstr "阻止PDF上传"
+
+#. translators: %1$s: a code tag with the capability name.
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
+#, php-format
+msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
+msgstr "限制没有%1$s权限的用户上传PDF（默认允许管理员上传）。"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+msgid "Add Labels to Comment and Search Forms"
+msgstr "为评论和搜索表单添加标签"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+msgid "Label Comment/Search Fields"
+msgstr "标记评论/搜索字段"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+msgid "Comment and Search Form Labels"
+msgstr "评论和搜索表单标签"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+msgid "Add missing labels to WordPress comment and search forms."
+msgstr "为WordPress评论和搜索表单添加缺失的标签。"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+msgid "Label Comment Form"
+msgstr "标记评论表单"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+msgid "Add missing labels to the WordPress comment form."
+msgstr "为WordPress评论表单添加缺失的标签。"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+msgid "Label Search Form"
+msgstr "标记搜索表单"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+msgid "Add a missing label to the WordPress search form."
+msgstr "为WordPress搜索表单添加缺失的标签。"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
+msgid "Comment"
+msgstr "评论"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+msgid "Name"
+msgstr "名称"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+msgid "Email"
+msgstr "电子邮件"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+msgid "Website"
+msgstr "网站"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+msgid "Search …"
+msgstr "搜索…"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+msgid "Search for:"
+msgstr "搜索："
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+msgid "Search"
+msgstr "搜索"
+
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+msgid "Settings to add missing labels to WordPress comment and search forms."
+msgstr "为WordPress评论和搜索表单添加缺失标签的设置。"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+msgid "Add Focus Outlines"
+msgstr "添加焦点轮廓"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+msgid "Focus Outline"
+msgstr "焦点轮廓"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+msgid "Add an outline to elements when they receive keyboard focus."
+msgstr "当元素获得键盘焦点时为其添加轮廓。"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+msgid "Add Focus Outline"
+msgstr "添加焦点轮廓"
+
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
+msgstr "与增强焦点轮廓以改善键盘可访问性相关的设置。"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+msgid "Add lang & dir Attributes"
+msgstr "添加lang和dir属性"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+msgid "Set Page Language"
+msgstr "设置页面语言"
+
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+msgid "Add \"lang\" & \"dir\" Attributes"
+msgstr "添加 “lang” 和 “dir” 属性"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#, php-format
+msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
+msgstr "向%3$s元素添加网站语言（%1$s）和文本方向（%2$s）属性。"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+msgid "Add Underlines to all non-nav Links"
+msgstr "为所有非导航链接添加下划线"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+msgid "Underline Links"
+msgstr "为链接添加下划线"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+msgid "Force Link Underline"
+msgstr "强制链接下划线"
+
+#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+msgid "Ensure that non-navigation links are underlined."
+msgstr "确保非导航链接带有下划线。"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+msgid "Make Meta Viewport Tag Scalable"
+msgstr "使meta viewport标签可缩放"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
+msgid "Ensure scalable viewport"
+msgstr "确保视口可缩放"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
+msgid "Make sure that the viewport tag on the page allows scaling."
+msgstr "确保页面上的viewport标签允许缩放。"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+msgid "Make Viewport Scalable"
+msgstr "使视口可缩放"
+
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
+msgstr "确保viewport标签允许缩放，提高移动设备上的可访问性。"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+msgid "Prevent Links Opening New Windows"
+msgstr "阻止链接在新窗口中打开"
+
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+msgid "Block Links Opening New Windows"
+msgstr "阻止链接在新窗口中打开"
+
+#. translators: %1%s: A <code> tag containing target="_blank".
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#, php-format
+msgid "Prevent links from opening in a new window or tab by removing %1$s."
+msgstr "通过移除%1$s来阻止链接在新窗口或标签页中打开。"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
+msgid "Add \"Read\" Link with Post Title"
+msgstr "为文章标题添加 “阅读” 链接"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
+msgid "Add Title to Read More Link"
+msgstr "为阅读更多链接添加标题"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
+msgid "Read More links"
+msgstr "阅读更多链接"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
+msgid "Add the post title and links "
+msgstr "添加文章标题和链接 "
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
+msgid "Add Post Title To \"Read More\""
+msgstr "为 “阅读更多” 添加文章标题"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
+msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
+msgstr "当您的主题输出这些链接时，在文章列表中为 “阅读更多” 链接添加文章标题。"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
+msgid "For Screen Readers Only"
+msgstr "仅供屏幕阅读器使用"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
+msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
+msgstr "使添加到 “阅读更多” 链接的文章标题仅对屏幕阅读器可见。"
+
+#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
+msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
+msgstr "此修复在 “更多” 模块和摘要中的文章列表的 “阅读更多” 链接中添加文章标题。"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+msgid "Prefer Accessible Label Attribute"
+msgstr "优先使用可访问的label属性"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+msgid "Remove Unnecessary Title Attributes"
+msgstr "移除不必要的title属性"
+
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+msgid "Remove Title Attributes"
+msgstr "移除title属性"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#, php-format
+msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
+msgstr "从已有首选可访问名称的元素中移除%1$s属性。"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+msgid "Add Skip Links"
+msgstr "添加跳转链接"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+msgid "Skip Link"
+msgstr "跳转链接"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+msgid "Enable Skip Link"
+msgstr "启用跳转链接"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
+msgstr "为所有网站页面添加跳转链接，允许用户直接跳转到主要内容。"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+msgid "Main Content Target (required)"
+msgstr "主要内容目标（必填）"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
+msgstr "定义跳转链接要定位的主要内容区域的ID。输入多个ID时用逗号分隔；系统将遍历列表以找到每个页面的适当ID。"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+msgid "Navigation Target"
+msgstr "导航目标"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
+msgstr "设置导航元素的ID属性。如果您的主导航包含大多数网站访问者想要执行的操作（如登录或搜索功能），这会很有用。"
+
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#, php-format
+msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
+msgstr "如果您的主题还没有添加允许键盘用户绕过导航并快速跳转到主要内容的跳转链接，请在此处启用跳转链接。%1$s了解更多关于跳转链接的信息。%2$s"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+msgid "Skip to content"
+msgstr "跳转到内容"
+
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+msgid "Skip to navigation"
+msgstr "跳转到导航"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:33
+msgid "Remove Tabindex from Focusable Elements"
+msgstr "从可聚焦元素中移除tabindex"
+
+#: includes/classes/Fixes/Fix/TabindexFix.php:67
+msgid "Remove Tab Index"
+msgstr "移除tab索引"
+
+#. translators: %1$s: a attribute name wrapped in a <code> tag.
+#: includes/classes/Fixes/Fix/TabindexFix.php:70
+#, php-format
+msgid "Remove the %1$s attribute from focusable elements."
+msgstr "从可聚焦元素中移除%1$s属性。"
+
+#: includes/classes/Fixes/FixesManager.php:241
+msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
+msgstr "注意：不建议对已经支持无障碍的主题使用此设置。"
+
+#: includes/classes/Fixes/FixesManager.php:294
+msgid "Fix not found"
+msgstr "未找到修复"
+
+#: includes/classes/Rules/AffectedDisabilities.php:50
+msgid "Blind"
+msgstr "盲人"
+
+#: includes/classes/Rules/AffectedDisabilities.php:52
+msgid "Low-vision"
+msgstr "视力低下"
+
+#: includes/classes/Rules/AffectedDisabilities.php:54
+msgid "Deafblind"
+msgstr "盲聋人"
+
+#: includes/classes/Rules/AffectedDisabilities.php:56
+msgid "Mobility"
+msgstr "行动能力"
+
+#: includes/classes/Rules/AffectedDisabilities.php:58
+msgid "Colorblind"
+msgstr "色盲"
+
+#: includes/classes/Rules/AffectedDisabilities.php:60
+msgid "Cognitive"
+msgstr "认知"
+
+#: includes/classes/Rules/AffectedDisabilities.php:62
+msgid "Seizure disorders"
+msgstr "癫痫障碍"
+
+#: includes/classes/Rules/AffectedDisabilities.php:64
+msgid "Vestibular disorders"
+msgstr "前庭障碍"
+
+#: includes/classes/Rules/AffectedDisabilities.php:66
+msgid "Deaf"
+msgstr "聋人"
+
+#: includes/classes/Rules/AffectedDisabilities.php:68
+msgid "Hard of hearing"
+msgstr "听力障碍者"
+
+#: includes/classes/Rules/AffectedDisabilities.php:70
+#: includes/wcag.php:52
+#: includes/wcag.php:85
+#: includes/wcag.php:118
+#: includes/wcag.php:151
+#: includes/wcag.php:251
+#: includes/wcag.php:269
+#: includes/wcag.php:1661
+#: includes/wcag.php:1695
+#: includes/wcag.php:1728
+#: includes/wcag.php:1748
+#: includes/wcag.php:1767
+#: includes/wcag.php:1786
+msgid "Language learners"
+msgstr "语言学习者"
+
+#: includes/classes/Rules/AffectedDisabilities.php:72
+msgid "ADHD"
+msgstr "注意力缺陷多动障碍（ADHD）"
+
+#: includes/classes/Rules/AffectedDisabilities.php:74
+msgid "Dyslexia"
+msgstr "阅读障碍"
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:24
+msgid "ARIA Hidden"
+msgstr "ARIA隐藏"
+
+#. translators: %s is <code>aria-hidden="true"</code.
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:30
+#, php-format
+msgid "This element uses %s, which hides it from screen readers."
+msgstr "此元素使用了 %s，这会将其对屏幕阅读器隐藏。"
+
+#. translators: %s is <code>aria-hidden="true"</code.
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:35
+#, php-format
+msgid "These elements use %s, which hides them from screen readers."
+msgstr "这些元素使用了 %s，这会将它们对屏幕阅读器隐藏。"
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:38
+msgid "The aria-hidden attribute is used to hide content from assistive technologies. While this is useful for decorative or redundant elements, it can cause accessibility issues if applied to important content that screen reader users need to access."
+msgstr "aria-hidden 属性用于向辅助技术隐藏内容。虽然这对装饰性或冗余元素很有用，但如果应用于屏幕阅读器用户需要访问的重要内容，可能会导致可访问性问题。"
+
+#. translators: %s is <code>aria-hidden="true"</code.
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:41
+#, php-format
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
+msgstr "检查该元素是否真的应该对屏幕阅读器用户隐藏。如果它包含重要内容或功能，请移除 %s。如果它是装饰性或冗余的，保持元素不变，并使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:46
+msgid "W3C: ARIA Authoring Practices - aria-hidden"
+msgstr "W3C：ARIA 创作实践 - aria-hidden"
+
+#: includes/classes/Rules/Rule/AriaHiddenRule.php:50
+msgid "MDN Web Docs: aria-hidden - Accessibility Attribute"
+msgstr "MDN Web 文档：aria-hidden - 可访问性属性"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:24
+msgid "Broken ARIA Reference"
+msgstr "ARIA 引用失效"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:28
+msgid "This element uses an ARIA attribute that references another element which does not exist or is not properly labeled."
+msgstr "此元素使用了引用另一个不存在或未正确标记的元素的 ARIA 属性。"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:29
+msgid "These elements use ARIA attributes that reference other elements which do not exist or are not properly labeled."
+msgstr "这些元素使用了引用其他不存在或未正确标记的元素的 ARIA 属性。"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:30
+msgid "ARIA attributes like aria-labelledby and aria-describedby are used to improve accessibility by connecting elements to their labels or descriptions. If the reference target does not exist, users of assistive technology will miss important context or instructions."
+msgstr "像 aria-labelledby 和 aria-describedby 这样的 ARIA 属性用于通过将元素连接到其标签或描述来改善可访问性。如果引用目标不存在，辅助技术的用户将错过重要的上下文或说明。"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:31
+msgid "Inspect the ARIA attributes (such as aria-labelledby or aria-describedby) on the flagged elements and ensure that each one points to a valid, correctly labeled ID that exists in the document."
+msgstr "检查标记元素上的 ARIA 属性（如 aria-labelledby 或 aria-describedby），确保每个属性都指向文档中存在的有效、正确标记的 ID。"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:34
+msgid "MDN Web Docs: ARIA: aria-labelledby attribute"
+msgstr "MDN Web 文档：ARIA：aria-labelledby 属性"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:38
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:54
+msgid "MDN Web Docs: ARIA: aria-describedby attribute"
+msgstr "MDN Web 文档：ARIA：aria-describedby 属性"
+
+#: includes/classes/Rules/Rule/BrokenAriaReferenceRule.php:42
+msgid "ARIA for Beginners (Webinar)"
+msgstr "ARIA 入门（网络研讨会）"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:24
+msgid "Broken Skip or Anchor Link"
+msgstr "损坏的跳过链接或锚点链接"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:28
+msgid "This link points to an anchor target on the same page, but no element with the referenced ID exists."
+msgstr "此链接指向同一页面上的锚点目标，但没有具有引用 ID 的元素存在。"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:29
+msgid "These links point to anchor targets on the same page, but no elements with the referenced IDs exist."
+msgstr "这些链接指向同一页面上的锚点目标，但没有具有引用 ID 的元素存在。"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:30
+msgid "Skip and anchor links are important for efficient keyboard and screen reader navigation. When these links are broken, users may be confused or lose their place on the page, leading to a frustrating experience—especially for people who rely on keyboard shortcuts or assistive technology."
+msgstr "跳过链接和锚点链接对于高效的键盘和屏幕阅读器导航很重要。当这些链接损坏时，用户可能会感到困惑或在页面上迷失方向，导致令人沮丧的体验——特别是对于依赖键盘快捷键或辅助技术的人来说。"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:31
+msgid "Confirm that the link is pointing to a valid ID on the page. If the target element exists, make sure it has a matching id attribute. To automatically fix broken skip links throughout your site, enable the 'Enable Skip Link' fix in Accessibility Checker settings."
+msgstr "确认链接指向页面上的有效 ID。如果目标元素存在，确保它有匹配的 id 属性。要自动修复整个网站的损坏跳过链接，请在 Accessibility Checker 设置中启用 “启用跳过链接” 修复。"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:34
+msgid "How to Make Your WordPress Site More Accessible With Skip Links"
+msgstr "如何使用跳过链接让你的 WordPress 网站更易访问"
+
+#: includes/classes/Rules/Rule/BrokenSkipAnchorLinkRule.php:38
+msgid "How to Fix Broken Skip Links in Elementor"
+msgstr "如何修复 Elementor 中的损坏跳过链接"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:24
+msgid "Insufficient Color Contrast"
+msgstr "颜色对比度不足"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:28
+msgid "This element has foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance."
+msgstr "此元素的前景色和背景色不符合 AA 级一致性的最低对比度比率。"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:29
+msgid "These elements have foreground and background colors that do not meet the minimum contrast ratio for Level AA conformance."
+msgstr "这些元素的前景色和背景色不符合 AA 级一致性的最低对比度比率。"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:30
+msgid "Insufficient color contrast makes text and interactive elements difficult or impossible to read for users with low vision or color blindness. Ensuring adequate contrast helps all users access your content clearly."
+msgstr "不足的颜色对比度使得视力低下或色盲用户难以或无法阅读文本和交互元素。确保足够的对比度有助于所有用户清晰地访问你的内容。"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:31
+msgid "Adjust the foreground and background colors of the flagged elements to ensure a contrast ratio of at least 4.5:1 for normal text. Use a contrast checker to confirm that your color combinations meet this requirement."
+msgstr "调整标记元素的前景色和背景色，以确保正常文本的对比度比率至少为 4.5:1。使用对比度检查器确认你的颜色组合满足这一要求。"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:34
+msgid "Brand Color Contrast Grid"
+msgstr "品牌颜色对比度网格"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:38
+msgid "WebAIM Contrast Checker"
+msgstr "WebAIM 对比度检查器"
+
+#: includes/classes/Rules/Rule/ColorContrastFailureRule.php:42
+msgid "TPGI Colour Contrast Analyser"
+msgstr "TPGI 颜色对比度分析器"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:24
+msgid "Duplicate Form Label"
+msgstr "重复表格标签"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:28
+msgid "This form field has more than one label associated with it."
+msgstr "此表单字段有多个与之关联的标签。"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:29
+msgid "These form fields have more than one label associated with them."
+msgstr "这些表单字段有多个与之关联的标签。"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:30
+msgid "Assistive technologies rely on a one-to-one relationship between form fields and labels to provide accurate guidance to users. When multiple labels are associated with the same field, it can confuse screen reader users and make form completion difficult as the screen reader may read the incorrect label for a field."
+msgstr "辅助技术依赖表单字段和标签之间的一对一关系来为用户提供准确的指导。当多个标签与同一字段关联时，可能会使屏幕阅读器用户感到困惑，并使表单填写变得困难，因为屏幕阅读器可能会为一个字段读取错误的标签。"
+
+#. translators: %1$s is <code>&lt;label&gt;</code>, %2$s is <code>for=""</code>.
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:33
+#, php-format
+msgid "Ensure each form field has only one %1$s element associated with it. If multiple labels are present, remove extras or consolidate them into a single %1$s with a clear description. Make sure each %1$s element correctly references its form field using the %2$s attribute and that all elements on the page have unique IDs. This error happens when you have the same form embedded on a page twice and can be resolved by creating unique forms for different parts of a page rather than repeating the same form throughout."
+msgstr "确保每个表单字段只有一个 %1$s 元素与之关联。如果存在多个标签，请删除多余的或将它们合并为一个清晰描述的 %1$s。确保每个 %1$s 元素使用 %2$s 属性正确引用其表单字段，并且页面上的所有元素都有唯一的 ID。当你在一个页面上嵌入了相同的表单两次时会出现这个错误，可以通过为页面的不同部分创建唯一的表单而不是在整个页面重复相同的表单来解决。"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:39
+msgid "MDN: <label> – The HTML Label element"
+msgstr "MDN：<label> – HTML 标签元素"
+
+#: includes/classes/Rules/Rule/DuplicateFormLabelRule.php:43
+msgid "W3C: H44 – Using label elements to associate text labels with form controls"
+msgstr "W3C：H44 – 使用标签元素将文本标签与表单控件关联"
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:24
+msgid "Empty Button"
+msgstr "空按钮"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:30
+#, php-format
+msgid "This element is a %1$s or %2$s with no accessible label or text."
+msgstr "这个元素是一个没有可访问标签或文本的 %1$s 或 %2$s。"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>&lt;input&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:36
+#, php-format
+msgid "These elements are %1$s or %2$s with no accessible label or text."
+msgstr "这些元素是没有可访问标签或文本的 %1$s 或 %2$s。"
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:40
+msgid "Buttons must clearly describe the action they perform. An empty button provides no information to screen readers or keyboard users, making it impossible to understand what clicking the button will do. This creates a barrier for people relying on assistive technologies."
+msgstr "按钮必须清楚地描述它们执行的操作。空按钮不会向屏幕阅读器或键盘用户提供任何信息，使他们无法理解点击按钮会做什么。这为依赖辅助技术的人创造了障碍。"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>value</code>, %3$s is <code>alt</code>, %4$s is <code>aria-hidden="true"</code>, %5$s is <code>aria-label</code>.
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:43
+#, php-format
+msgid "Add visible text inside the %1$s element, set a %2$s attribute on an input button, or include an %3$s attribute on a button image. If the button uses only an icon (e.g., SVG or webfont), hide the icon with %4$s and add a descriptive %5$s to the button or include screen reader-only text.  Each button must have a label that clearly describes its purpose or action."
+msgstr "在 %1$s 元素内添加可见文本，在输入按钮上设置 %2$s 属性，或在按钮图像上包含 %3$s 属性。如果按钮只使用图标（例如 SVG 或网络字体），请使用 %4$s 隐藏图标，并为按钮添加描述性的 %5$s 或包含仅供屏幕阅读器使用的文本。每个按钮必须有一个清楚描述其目的或动作的标签。"
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:52
+msgid "MDN Web Docs: <button>"
+msgstr "MDN Web Docs：<button>"
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:56
+msgid "W3C Technique H44: Using the button element"
+msgstr "W3C 技术 H44：使用按钮元素"
+
+#: includes/classes/Rules/Rule/EmptyButtonRule.php:60
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:48
+msgid "WordPress: The CSS class screen-reader-text"
+msgstr "WordPress：CSS 类 screen-reader-text"
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:24
+msgid "Empty Heading Tag"
+msgstr "空标题标签"
+
+#. translators: %s represents any heading element like <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;h2&gt;&lt;/h2&gt;</code>, etc.
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:30
+#, php-format
+msgid "This is an empty %s heading that doesn't contain any content."
+msgstr "这是一个不包含任何内容的空 %s 标题。"
+
+#. translators: %s represents any heading element like <code>&lt;h1&gt;&lt;/h1&gt;</code>, <code>&lt;h2&gt;&lt;/h2&gt;</code>, etc.
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:35
+#, php-format
+msgid "These are empty %s headings that don't contain any content."
+msgstr "这些是不包含任何内容的空 %s 标题。"
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:38
+msgid "Headings help structure content and provide important navigation points for screen reader users. An empty heading communicates no useful information and may cause confusion or disorientation when navigating by headings."
+msgstr "标题有助于结构化内容，并为屏幕阅读器用户提供重要的导航点。空标题不传达任何有用信息，可能在按标题导航时造成混淆或迷失方向。"
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:39
+msgid "Add meaningful content inside the heading tag to describe the section that follows. If the heading is not needed, remove it entirely to avoid misleading assistive technologies."
+msgstr "在标题标签内添加有意义的内容，以描述随后的部分。如果不需要标题，请完全删除它，以避免误导辅助技术。"
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:42
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:43
+msgid "MDN: HTML heading elements"
+msgstr "MDN：HTML 标题元素"
+
+#: includes/classes/Rules/Rule/EmptyHeadingTagRule.php:46
+msgid "W3C: Techniques for WCAG 2.1 – H42: Using h1–h6 to identify headings"
+msgstr "W3C：WCAG 2.1 技术 – H42：使用 h1–h6 识别标题"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:24
+msgid "Empty Link"
+msgstr "空链接"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:28
+msgid "This is an empty link that does not contain any meaningful content for assistive technologies."
+msgstr "这是一个不包含任何对辅助技术有意义内容的空链接。"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:29
+msgid "These are empty links that do not contain any meaningful content for assistive technologies."
+msgstr "这些是不包含任何对辅助技术有意义内容的空链接。"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:30
+msgid "Screen reader users rely on link text to understand the purpose or destination of a link. An empty link provides no information, making it difficult or impossible for users to decide whether or not to follow it."
+msgstr "屏幕阅读器用户依赖链接文本来理解链接的目的或目标。空链接不提供任何信息，使用户难以或无法决定是否跟随它。"
+
+#. translators: %1$s is <code>&lt;a&gt;</code>, %2$s is <code>aria-hidden="true"</code>, %3$s is <code>aria-label</code.
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:33
+#, php-format
+msgid "Add descriptive text inside the %1$s element. If the link uses only an icon (e.g., SVG or webfont), hide the icon with %2$s and add a descriptive %3$s to the link or include screen reader-only text to explain where the link goes."
+msgstr "在 %1$s 元素内添加描述性文本。如果链接只使用图标（例如 SVG 或网络字体），请使用 %2$s 隐藏图标，并为链接添加描述性的 %3$s 或包含仅供屏幕阅读器使用的文本来解释链接的目的地。"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:40
+msgid "W3C Technique H30: Providing link text that describes the purpose of a link"
+msgstr "W3C 技术 H30：提供描述链接目的的链接文本"
+
+#: includes/classes/Rules/Rule/EmptyLinkRule.php:44
+msgid "WebAIM: Links and Hypertext"
+msgstr "WebAIM：链接和超文本"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:24
+msgid "Empty Paragraph Tag"
+msgstr "空段落标签"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:28
+msgid "This page contains a <p> tag with no content inside."
+msgstr "此页面包含一个内部没有内容的 <p> 标签。"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:29
+msgid "These pages contain <p> tags with no content inside."
+msgstr "这些页面包含内部没有内容的 <p> 标签。"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:30
+msgid "Empty paragraph tags can be announced by screen readers as blank lines or pauses, which may confuse users or disrupt reading flow. They can also interfere with visual layout or spacing, especially in assistive technology or mobile contexts."
+msgstr "空段落标签可能被屏幕阅读器宣布为空行或停顿，这可能会使用户感到困惑或打断阅读流程。它们还可能干扰视觉布局或间距，特别是在辅助技术或移动设备环境中。"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:31
+msgid "Remove the empty <p> tags from your content. If spacing is needed between sections, use margin, padding, or a visual spacer block instead of inserting blank paragraphs."
+msgstr "从你的内容中删除空的 <p> 标签。如果需要在部分之间添加间距，请使用 margin、padding 或视觉间隔块，而不是插入空段落。"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:34
+msgid "MDN Web Docs: The Paragraph Element - Accessibility"
+msgstr "MDN Web 文档：段落元素 - 可访问性"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:38
+msgid "WordPress Spacer Block"
+msgstr "WordPress 间隔块"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:42
+msgid "MDN Web Docs: CSS Padding"
+msgstr "MDN Web 文档：CSS Padding"
+
+#: includes/classes/Rules/Rule/EmptyParagraphTagRule.php:46
+msgid "MDN Web Docs: CSS Margin"
+msgstr "MDN Web 文档：CSS Margin"
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:24
+msgid "Empty Table Header"
+msgstr "空表头"
+
+#. translators: %s is <code>&lt;th&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:30
+#, php-format
+msgid "This element is a table header cell (%s) with no text content."
+msgstr "这个元素是一个没有文本内容的表格标题单元格 (%s)。"
+
+#. translators: %s is <code>&lt;th&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:35
+#, php-format
+msgid "These elements are table header cells (%s) with no text content."
+msgstr "这些元素是没有文本内容的表格标题单元格 (%s)。"
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:38
+msgid "Table headers provide context for the data in rows and columns. When a table header is empty, screen readers and other assistive technologies cannot convey the meaning of the associated data, making the table difficult or impossible to interpret."
+msgstr "表头提供了行和列中数据的上下文。如果表头是空的，屏幕阅读器和其他辅助技术就无法传达相关数据的含义，从而使表格难以或无法解读。"
+
+#. translators: %s is <code>&lt;th&gt;</code>.
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:41
+#, php-format
+msgid "Add descriptive text inside each %s element that explains the purpose of the row or column. Avoid using empty header cells or placeholder text that lacks meaning. If necessary, you can visually hide text in a table header cell with a screen-reader-text class."
+msgstr "在每个 %s 元素内添加描述性文本，说明行或列的用途。避免使用空标题单元格或缺乏意义的占位符文本。如有必要，可以使用屏幕阅读器文本类直观地隐藏表头单元格中的文本。"
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:46
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:43
+msgid "W3C: Tables Tutorial"
+msgstr "W3C：表格教程"
+
+#: includes/classes/Rules/Rule/EmptyTableHeaderRule.php:50
+msgid "MDN Web Docs: <th>"
+msgstr "MDN 网络文档：<th>"
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:24
+msgid "iframe Missing Title"
+msgstr "iframe缺少标题"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code.
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:30
+#, php-format
+msgid "This %1$s does not have a descriptive title attribute."
+msgstr "此 %1$s 没有描述性标题属性。"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code.
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:35
+#, php-format
+msgid "These %1$s do not have descriptive title attributes."
+msgstr "这些 %1$s 没有描述性标题属性。"
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:38
+msgid "Screen readers rely on the title attribute of an iframe to describe its purpose or content. Without a title, users may not understand what the embedded content is, making the page harder to navigate and use."
+msgstr "屏幕阅读器依靠 iframe 的标题属性来描述其目的或内容。如果没有标题，用户可能无法理解嵌入的内容是什么，从而使页面更难浏览和使用。"
+
+#. translators: %1$s is <code>&lt;iframe&gt;</code.
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:41
+#, php-format
+msgid "Add a title attribute to the %1$s tag that accurately describes the content or function of the embedded frame. If the iframe is added by a plugin and the title cannot be edited directly, check the plugin settings for an accessibility option, or contact the developer for support. Consider switching to a WordPress core embed instead."
+msgstr "为 %1$s 标签添加一个准确描述嵌入框架内容或功能的 title 属性。如果 iframe 是由插件添加的，且无法直接编辑标题，请检查插件设置中是否有无障碍选项，或联系开发者寻求支持。考虑改用 WordPress 核心嵌入功能。"
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:46
+msgid "W3C: Techniques for WCAG 2.1 - H64: Using the title attribute of the iframe element"
+msgstr "W3C：WCAG 2.1 技术 - H64：使用 iframe 元素的 title 属性"
+
+#: includes/classes/Rules/Rule/IframeMissingTitleRule.php:50
+msgid "MDN Web Docs: <iframe>"
+msgstr "MDN Web 文档：<iframe>"
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:24
+msgid "Image Map Missing Alternative Text"
+msgstr "图像地图缺少备选文本"
+
+#. translators: %1$s is <code>&lt;area&gt;</code.
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:30
+#, php-format
+msgid "One or more %1$s elements in an image map are missing alternative text."
+msgstr "图像地图中的一个或多个 %1$s 元素缺少替代文本。"
+
+#. translators: %1$s is <code>&lt;area&gt;</code.
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:35
+#, php-format
+msgid "One or more %1$s elements in image maps are missing alternative text."
+msgstr "图像地图中的一个或多个 %1$s 元素缺少替代文本。"
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:38
+msgid "Image maps use area elements to define interactive regions. Without alternative text, screen reader users won't know what each clickable area does, making it impossible to understand or interact with the map."
+msgstr "图像地图使用 area 元素来定义交互区域。没有替代文本，屏幕阅读器用户将无法知道每个可点击区域的作用，这使得理解或与地图交互变得不可能。"
+
+#. translators: %1$s is <code>&lt;area&gt;</code>, %2$s is <code>alt=""</code.
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:41
+#, php-format
+msgid "Add a descriptive %2$s attribute to each %1$s element in your image map. The text should explain the function or destination of the link, not what the area looks like."
+msgstr "为图像地图中的每个 %1$s 元素添加描述性的 %2$s 属性。文本应解释链接的功能或目的地，而不是描述区域的外观。"
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:47
+msgid "W3C: HTML Image Maps"
+msgstr "W3C：HTML 图像地图"
+
+#: includes/classes/Rules/Rule/ImageMapMissingAltTextRule.php:51
+msgid "MDN Web Docs: <area>"
+msgstr "MDN Web 文档：<area>"
+
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:24
+msgid "Image Empty Alternative Text"
+msgstr "图像替代文本为空"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:30
+#, php-format
+msgid "This image has an empty alt attribute (%s)."
+msgstr "这个图像的 alt 属性为空 (%s)。"
+
+#. translators: %s is <code>alt=""</code>.
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:35
+#, php-format
+msgid "These images have empty alt attributes (%s)."
+msgstr "这些图像的 alt 属性为空 (%s)。"
+
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:38
+msgid "Screen readers rely on alternative text to describe images to users who cannot see them. If the alt attribute is empty, it signals that the image is decorative and should be skipped. However, if a meaningful image has an empty alt attribute, users with visual impairments will miss important information. Proper use of alternative text improves accessibility and ensures all users can understand the content."
+msgstr "屏幕阅读器依赖替代文本来为无法看到图像的用户描述图像。如果 alt 属性为空，它表示该图像是装饰性的，应该被跳过。然而，如果一个有意义的图像的 alt 属性为空，视觉障碍用户将会错过重要信息。正确使用替代文本可以提高无障碍性，确保所有用户都能理解内容。"
+
+#. translators: %1$s is <code>alt=""</code> and %2$s is <code>role="presentation"</code>.
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
+#, php-format
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "检查图像以确定它是否是装饰性的。如果是装饰性的，使用空的 %1$s 属性是正确的，你可以通过使用 Accessibility Checker 中的 “忽略” 功能或为图像添加 %2$s 并重新扫描页面来忽略此警告。如果图像传达了信息，添加描述性的 alt 文本来传达图像的目的或含义。"
+
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:47
+msgid "W3C Tutorial on Images: Decorative Images"
+msgstr "W3C 图像教程：装饰性图像"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:24
+msgid "Low-quality Alternative Text"
+msgstr "低质量替代文本"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:28
+msgid "This image has alternative text that may be vague, redundant, or include unnecessary words or file names."
+msgstr "这个图像的替代文本可能含糊、重复或包含不必要的词语或文件名。"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:29
+msgid "These images have alternative text that may be vague, redundant, or include unnecessary words or file names."
+msgstr "这些图像的替代文本可能含糊、重复或包含不必要的词语或文件名。"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:30
+msgid "Alternative text helps people using screen readers understand the purpose of an image. When alt text includes words like “image,” “graphic,” or a file extension, it adds no useful information and can create confusion or distraction. Clear and relevant alt text improves comprehension and user experience."
+msgstr "替代文本帮助使用屏幕阅读器的人理解图像的目的。当 alt 文本包含 “图像”、“图形” 或文件扩展名等词语时，它不会添加任何有用的信息，反而可能造成混淆或分心。清晰和相关的 alt 文本可以提高理解和用户体验。"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:31
+msgid "Rewrite the alternative text to accurately and concisely describe the purpose of the image in context. Avoid including words like “image,” “graphic,” file names or extensions (e.g., .jpg, .png), or placeholder terms like “spacer” or “arrow.” If the image is decorative, leave the alt attribute empty."
+msgstr "重写替代文本，准确简洁地描述图像在上下文中的用途。避免使用 “图像”、“图形” 等词，文件名或扩展名（如.jpg、.png），或 “占位符”、“箭头” 等占位词。如果图像仅用于装饰，请将alt属性留空。"
+
+#: includes/classes/Rules/Rule/ImgAltInvalidRule.php:34
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:34
+msgid "W3C Tutorial on Images: Informative Images"
+msgstr "W3C教程：信息性图像"
+
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:24
+msgid "Image Long Alternative Text"
+msgstr "图片长替代文本"
+
+#. translators: %s is the maximum character count for alt text.
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:30
+#, php-format
+msgid "This image has alternative text longer than %s characters."
+msgstr "此图像的替代文本长度超过 %s 个字符。"
+
+#. translators: %s is the maximum character count for alt text.
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:35
+#, php-format
+msgid "These images have alternative text longer than %s characters."
+msgstr "这些图像的替代文本长度超过 %s 个字符。"
+
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:38
+msgid "Alternative text should be concise and focused on describing the purpose or meaning of the image. Overly long alt text may overwhelm screen reader users, reduce readability, and distract from other content on the page."
+msgstr "替代文本应简洁明了，重点描述图像的用途或含义。过长的alt文本可能会让屏幕阅读器用户感到困扰，降低可读性，并分散对页面其他内容的注意力。"
+
+#. translators: %s is the maximum character count for alt text.
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:41
+#, php-format
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
+msgstr "将alt文本缩短至少于 %s 个字符，同时仍能描述图像的功能或用途。保持描述简单，避免重复周围的内容。如果图像的alt文本不需要更改，请使用Accessibility Checker中的 “忽略” 功能来忽略此警告。"
+
+#: includes/classes/Rules/Rule/ImgAltLongRule.php:46
+msgid "W3C Tutorial: Informative Images"
+msgstr "W3C教程：信息性图像"
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:24
+msgid "Image Missing Alternative Text"
+msgstr "图像缺少替代文本"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;img&gt;</code> tag.
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:30
+#, php-format
+msgid "This image does not have an alt attribute (%1$s) contained in the image tag (%2$s)."
+msgstr "此图像的图像标签中没有alt属性（%1$s）（%2$s）。"
+
+#. translators: %1$s is <code>alt=""</code>, %2$s is the <code>&lt;img&gt;</code> tag.
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:36
+#, php-format
+msgid "These images do not have an alt attribute (%1$s) contained in their image tags (%2$s)."
+msgstr "这些图像的图像标签中没有alt属性（%1$s）（%2$s）。"
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:40
+msgid "Alternative text is used by screen readers to describe images to people who cannot see them. If the alt attribute is missing, the screen reader will only say 'Image' or may read out the file URL. Alternative text is also used by search engines to understand the content of the image. If an image does not have alternative text, it can create a poor user experience for people with visual impairments and can negatively impact your site's SEO."
+msgstr "替代文本被屏幕阅读器用来为无法看到图像的人描述图像。如果缺少alt属性，屏幕阅读器只会说 “图像” 或可能读出文件URL。搜索引擎也使用替代文本来理解图像内容。如果图像没有替代文本，会给视障人士带来糟糕的用户体验，并可能对你网站的SEO产生负面影响。"
+
+#. translators: %1$s is <code>alt=""</code.
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:43
+#, php-format
+msgid "Add an alt attribute to the image with appropriate text describing the purpose of the image in the page. If the image is decorative, the alt attribute can be empty, but the HTML %1$s attribute still needs to be present."
+msgstr "为图像添加alt属性，并使用适当的文本描述图像在页面中的用途。如果图像仅用于装饰，alt属性可以为空，但HTML %1$s 属性仍需存在。"
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:48
+msgid "HTML Standard: The img element"
+msgstr "HTML标准：img元素"
+
+#: includes/classes/Rules/Rule/ImgAltMissingRule.php:52
+msgid "Alt Decision Tree"
+msgstr "Alt决策树"
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:24
+msgid "Duplicate Alternative Text"
+msgstr "重复的替代文本"
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:28
+msgid "This image has alternative text that is identical to nearby content or to another image on the page."
+msgstr "此图像的替代文本与附近内容或页面上的另一个图像相同。"
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:29
+msgid "These images have alternative text that is identical to nearby content or to other images on the page."
+msgstr "这些图像的替代文本与附近内容或页面上的其他图像相同。"
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:30
+msgid "When alternative text repeats nearby text or appears identically across multiple images, it creates confusion for screen reader users. Repetition provides no additional context and makes it difficult to distinguish between different elements or understand their purpose."
+msgstr "当替代文本重复附近文本或在多个图像中完全相同时，会给屏幕阅读器用户造成困扰。重复不会提供额外的上下文，反而会使区分不同元素或理解它们的用途变得困难。"
+
+#: includes/classes/Rules/Rule/ImgAltRedundantRule.php:31
+msgid "If the alt text duplicates a nearby caption, heading, or visible text, remove the redundancy by shortening or omitting the alt text—especially if the surrounding text already provides the same information. If multiple images have the same alt text, revise each one to be unique and describe the purpose of that specific image in its context."
+msgstr "如果alt文本重复了附近的标题、标题或可见文本，请通过缩短或省略alt文本来消除冗余——特别是当周围文本已经提供相同信息时。如果多个图像有相同的alt文本，请修改每个图像的alt文本，使其独特并描述该特定图像在其上下文中的用途。"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:24
+msgid "Image Animated GIF"
+msgstr "动画GIF图像"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:28
+msgid "This element is an animated image file (e.g., GIF or animated WebP)."
+msgstr "此元素是动画图像文件（如GIF或动画WebP）。"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:29
+msgid "These elements are animated image files (e.g., GIFs or animated WebPs)."
+msgstr "这些元素是动画图像文件（如GIF或动画WebP）。"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:30
+msgid "Animated images can be distracting, induce seizures in some individuals, or create cognitive load. WCAG guidelines require that animations that flash or loop continuously provide a mechanism to pause, stop, or hide them."
+msgstr "动画图像可能会分散注意力，引起某些人的癫痫发作，或增加认知负担。WCAG指南要求闪烁或持续循环的动画提供暂停、停止或隐藏的机制。"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
+msgstr "将动画图像替换为静态图像或带有控制功能的视频。如果必须使用动画图像，确保它每秒闪烁不超过三次，并且如果播放时间超过5秒，提供暂停或停止控制。如果你已确认图像是可访问的且可暂停的，可以使用Accessibility Checker中的 “忽略” 功能来忽略此警告。"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
+msgid "Should you use animated GIFs?"
+msgstr "你应该使用动画GIF吗？"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:38
+msgid "W3C: G152: Setting animated gif images to stop blinking after n cycles (within 5 seconds)"
+msgstr "W3C：G152：设置动画gif图像在n个循环后停止闪烁（在5秒内）"
+
+#: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:42
+msgid "Pause Animated GIFs Plugin"
+msgstr "暂停动画GIF插件"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:24
+msgid "Linked Image Empty Alternative Text"
+msgstr "链接图像空白替代文本"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:28
+msgid "This image is inside a link and has an empty alt attribute and there is no other text within the link."
+msgstr "此图像位于链接内，有一个空的alt属性，且链接内没有其他文本。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:29
+msgid "These images are inside links and have empty alt attributes and there is no other text within the links."
+msgstr "这些图片位于链接内，有空的 alt 属性，且链接内没有其他文本。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:30
+msgid "An empty alt attribute on a linked image causes screen reader users to hear just \"link\" with no context. This makes navigation confusing and may cause them to skip important content."
+msgstr "链接图片的空 alt 属性会导致屏幕阅读器用户只听到 “链接” 而没有上下文。这会使导航变得混乱，可能导致他们跳过重要内容。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:31
+msgid "Replace the empty alt attribute with meaningful alternative text that clearly describes the link’s destination or purpose."
+msgstr "用清晰描述链接目的地或用途的有意义的替代文本替换空的 alt 属性。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltEmptyRule.php:34
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:38
+msgid "W3C Tutorial on Images: Functional Images"
+msgstr "W3C 图像教程：功能性图像"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:24
+msgid "Linked Image Missing Alternative Text"
+msgstr "链接图像缺少替代文本"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:28
+msgid "This image is inside a link but does not have an alt attribute and there is no other text within the link."
+msgstr "这个图片位于链接内，但没有 alt 属性，且链接内没有其他文本。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:29
+msgid "These images are inside links but do not have alt attributes and there is no other text within the links."
+msgstr "这些图片位于链接内，但没有 alt 属性，且链接内没有其他文本。"
+
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:30
+msgid "Screen reader users rely on alternative text to understand the purpose of linked images. Without it, they cannot determine where the link leads, making navigation difficult or impossible."
+msgstr "屏幕阅读器用户依赖替代文本来理解链接图片的用途。没有它，他们无法确定链接指向何处，使导航变得困难或不可能。"
+
+#. translators: %s is <code>aria-label</code>.
+#: includes/classes/Rules/Rule/ImgLinkedAltMissingRule.php:33
+#, php-format
+msgid "Add an alt attribute that describes the purpose of the link. Focus on where the link goes, not what the image looks like. Alternatively, add an %s to the link."
+msgstr "添加描述链接用途的 alt 属性。重点关注链接指向何处，而不是图片的外观。或者，给链接添加一个 %s。"
+
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:24
+msgid "Incorrect Heading Order"
+msgstr "标题顺序不正确"
+
+#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
+#, php-format
+msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
+msgstr "此页面使用了顺序错误的标题。这是一个 %1$s 后跟 %2$s，跳过了一个或多个标题级别。"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#, php-format
+msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
+msgstr "这些页面使用了顺序错误的标题，跳过了一个或多个标题级别，例如从 %1$s 直接到 %2$s，中间没有 %3$s。"
+
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
+msgstr "标题帮助所有用户——尤其是使用屏幕阅读器或键盘导航的用户——理解页面结构。跳过标题级别可能造成混淆，使内容层次更难理解或导航效率降低。"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#, php-format
+msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
+msgstr "修改你的标题，使其遵循逻辑顺序，不跳过级别。例如，如果 %1$s 后面跟着 %2$s，将 %2$s 改为 %3$s 或添加一个中间的 %3$s 部分以保持正确的结构。如果需要，使用 CSS 或块/页面构建器设置来设置标题样式，而不是设置错误的级别。"
+
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+msgid "W3C Page Structure Tutorial: Headings"
+msgstr "W3C 页面结构教程：标题"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:24
+msgid "Ambiguous Anchor Text"
+msgstr "模糊的锚文本"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:28
+msgid "This link uses generic or vague anchor text that does not describe its purpose."
+msgstr "这个链接使用了通用或模糊的锚文本，没有描述其用途。"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:29
+msgid "These links use generic or vague anchor text that does not describe their purpose."
+msgstr "这些链接使用了通用或模糊的锚文本，没有描述其用途。"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:30
+msgid "Screen reader users often browse a list of links out of context. If links use ambiguous phrases like \"click here\" or \"learn more,\" users will not understand where the link goes or what it does. This can lead to confusion and reduce the usability of your website."
+msgstr "屏幕阅读器用户经常浏览脱离上下文的链接列表。如果链接使用模糊的短语如 “点击这里” 或 “了解更多”，用户将不理解链接指向何处或做什么。这可能导致混淆并降低你网站的可用性。"
+
+#. translators: %1$s is <code>aria-label</code>.
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:33
+#, php-format
+msgid "Revise the anchor text to clearly describe the destination or purpose of the link. For example, instead of \"click here,\" use \"download the annual report\" or \"learn more about us.\" Additional context can be added to links with an %1$s attribute or a screen-reader-text class."
+msgstr "修改锚文本以清晰描述链接的目的地或用途。例如，不要用 “点击这里”，而是用 “下载年度报告” 或 “了解更多关于我们的信息”。可以使用 %1$s 属性或 screen-reader-text 类为链接添加额外上下文。"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:38
+msgid "MDN Web Docs: a element – Accessible names"
+msgstr "MDN Web 文档：a 元素 – 可访问名称"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:42
+msgid "MDN Web Docs: ARIA: aria-label attribute"
+msgstr "MDN Web 文档：ARIA：aria-label 属性"
+
+#: includes/classes/Rules/Rule/LinkAmbiguousTextRule.php:46
+msgid "Screen Reader Text Format Plugin (for the block editor)"
+msgstr "屏幕阅读器文本格式插件（用于块编辑器）"
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:28
+msgid "Link Opens New Window or Tab"
+msgstr "链接打开新窗口或选项卡"
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:32
+msgid "This link is set to open in a new browser tab or window."
+msgstr "这个链接设置为在新的浏览器标签或窗口中打开。"
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:33
+msgid "These links are set to open in new browser tabs or windows."
+msgstr "这些链接设置为在新的浏览器标签或窗口中打开。"
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:34
+msgid "When a link opens in a new tab or window without warning, it can be disorienting, especially for users with cognitive disabilities, screen reader users, or anyone relying on keyboard navigation. They may not realize a new context has opened or understand how to return."
+msgstr "当链接在没有警告的情况下在新标签或窗口中打开时，可能会让人感到迷失方向，尤其是对认知障碍用户、屏幕阅读器用户或依赖键盘导航的任何人。他们可能没有意识到新的上下文已经打开，或不知道如何返回。"
+
+#. translators: %1$s is <code>target="_blank"</code>.
+#: includes/classes/Rules/Rule/LinkBlankRule.php:37
+#, php-format
+msgid "Avoid using %1$s unless absolutely necessary. If a link must open in a new tab or window, add a visible icon and screen reader text such as \"opens in a new window\" or \"opens in a new tab\" to inform users. To automate this and dismiss the warning sitewide, you can activate the 'Add Label To Links That Open A New Tab/Window' fix in Accessibility Checker settings."
+msgstr "除非绝对必要，否则避免使用 %1$s。如果链接必须在新标签或窗口中打开，添加一个可见图标和屏幕阅读器文本，如 “在新窗口中打开” 或 “在新标签中打开” 来通知用户。要自动化这个过程并在整个网站范围内消除警告，你可以在 Accessibility Checker 设置中激活 “为在新标签/窗口中打开的链接添加标签” 修复。"
+
+#: includes/classes/Rules/Rule/LinkBlankRule.php:42
+msgid "W3C Technique H83: Using the target attribute to open a new window on user request and indicating this in link text"
+msgstr "W3C 技术 H83：根据用户请求使用 target 属性打开新窗口，并在链接文本中指明这一点"
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:24
+msgid "Improper Use of Link"
+msgstr "链接使用不当"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>.
+#: includes/classes/Rules/Rule/LinkImproperRule.php:30
+#, php-format
+msgid "This element is an anchor tag missing a valid %1$s attribute or is linked to %2$s without having %3$s."
+msgstr "这个元素是一个缺少有效 %1$s 属性的锚标签，或者链接到 %2$s 但没有 %3$s。"
+
+#. translators: %1$s is <code>href</code>, %2$s is <code>#</code>, %3$s is <code>role="button"</code>.
+#: includes/classes/Rules/Rule/LinkImproperRule.php:37
+#, php-format
+msgid "These elements are anchor tags missing valid %1$s attributes or are linked to %2$s without having %3$s."
+msgstr "这些元素是缺少有效 %1$s 属性的锚标签，或者链接到 %2$s 但没有 %3$s。"
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:42
+msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
+msgstr "锚标签（又称链接）旨在导航到新页面或同一页面的不同位置。当它们被用来触发操作（如展开手风琴或打开模态框）而没有正确的角色或行为时，会让用户感到困惑，特别是那些使用屏幕阅读器或键盘的用户，他们期望链接是用于导航而不是执行操作。它们也可能无法通过空格键触发，而这是按钮的预期功能。"
+
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+#: includes/classes/Rules/Rule/LinkImproperRule.php:45
+#, php-format
+msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
+msgstr "如果该元素用于触发操作，请将锚标签替换为 %1$s。如果无法替换，请确保添加 %2$s 到链接中，并添加 JavaScript 以支持使用空格键触发，同时使用适当的 ARIA 属性来表示切换状态或其他功能。"
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:51
+msgid "MDN Web Docs: ARIA button role"
+msgstr "MDN Web 文档：ARIA 按钮角色"
+
+#: includes/classes/Rules/Rule/LinkImproperRule.php:55
+msgid "W3 Schools: Accessibility Buttons & Links"
+msgstr "W3 schools：按钮和链接的可访问性"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:24
+msgid "Link to MS Office File"
+msgstr "链接到MS Office文件"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:28
+msgid "This is a link to a Microsoft Office file, such as a Word, Excel, or PowerPoint document. All linked documents must be manually tested for accessibility."
+msgstr "这是一个链接到 Microsoft Office 文件的链接，如 Word、Excel 或 PowerPoint 文档。所有链接的文档必须手动测试其可访问性。"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:29
+msgid "These are links to Microsoft Office files, such as Word, Excel, or PowerPoint documents. All linked documents must be manually tested for accessibility."
+msgstr "这些是链接到 Microsoft Office 文件的链接，如 Word、Excel 或 PowerPoint 文档。所有链接的文档必须手动测试其可访问性。"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:30
+msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to all users, especially if they are not tagged correctly or do not follow accessibility best practices. Accessibility laws require that documents posted on web pages also conform to WCAG. Additionally, users should be warned when a link opens a downloadable file instead of a webpage."
+msgstr "Word、Excel 或 PowerPoint 格式的文档可能并非对所有用户都是可访问的，特别是如果它们没有正确标记或不遵循可访问性最佳实践。可访问性法律要求网页上发布的文档也要符合 WCAG 标准。此外，当链接打开可下载文件而不是网页时，应该警告用户。"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "确保链接的文件经过测试并已改进可访问性。当你确定它是可访问的时，使用 Accessibility Checker 中的 “忽略” 功能来消除此警告。在链接文本中包含文件扩展名和大小以通知用户（在 Accessibility Checker 设置中启用 “向链接添加文件大小和类型” 修复功能可在整个网站范围内实现）。如果文档是使用插件嵌入的，还要提供直接下载链接。如果使文档可访问很困难，考虑将内容放在网页上。"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
+msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
+msgstr "Microsoft：Excel 电子表格的可访问性最佳实践"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:38
+msgid "Microsoft: Make your PowerPoint presentations accessible to people with disabilities"
+msgstr "Microsoft：使你的 PowerPoint 演示文稿对残障人士可访问"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:42
+msgid "Microsoft: Make your Word documents accessible to people with disabilities"
+msgstr "Microsoft：使你的 Word 文档对残障人士可访问"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:46
+msgid "Google: Make your document, presentation, sheets & videos more accessible"
+msgstr "Google：使你的文档、演示文稿、电子表格和视频更易访问"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:50
+msgid "WebAIM: Creating Accessible Word Documents"
+msgstr "WebAIM：创建可访问的 Word 文档"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:54
+msgid "WebAIM: Creating Accessible PowerPoint Presentations"
+msgstr "WebAIM：创建可访问的 PowerPoint 演示文稿"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:58
+msgid "WebAIM: Creating Accessible Excel Spreadsheets"
+msgstr "WebAIM：创建可访问的 Excel 电子表格"
+
+#: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:62
+msgid "Section 508.gov: Create Accessible Documents (Webinar)"
+msgstr "Section 508.gov：创建可访问文档（网络研讨会）"
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:24
+msgid "Link to Non-HTML File"
+msgstr "链接至非HTML文件"
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:28
+msgid "This element is a link to a non-HTML document format with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key"
+msgstr "此元素是一个链接到非 HTML 文档格式的链接，文件扩展名为以下之一：.rtf、.wpd、.ods、.odt、.odp、.sxw、.sxc、.sxd、.sxi、.pages 或 .key"
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:29
+msgid "These elements are links to non-HTML document formats with one of the following file extensions: .rtf, .wpd, .ods, .odt, .odp, .sxw, .sxc, .sxd, .sxi, .pages, or .key"
+msgstr "这些元素是链接到非 HTML 文档格式的链接，文件扩展名为以下之一：.rtf、.wpd、.ods、.odt、.odp、.sxw、.sxc、.sxd、.sxi、.pages 或 .key"
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:30
+msgid "Non-HTML document formats may not be fully accessible to assistive technologies unless tested and remediated. Users should be warned when a link opens a downloadable file rather than a standard web page."
+msgstr "非 HTML 文档格式可能对辅助技术不完全可访问，除非经过测试和改进。当链接打开可下载文件而不是标准网页时，应该警告用户。"
+
+#: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "确保链接的文档是可访问的。当你确定它是可访问的，使用 Accessibility Checker 中的 “忽略” 功能来消除此警告。在可见的链接文本中包含文件扩展名（例如，“会议记录 (ODT)”），以便用户知道期待什么（在 Accessibility Checker 设置中启用 “向链接添加文件大小和类型” 修复功能可在整个网站范围内实现）。如果文档是嵌入的，还要提供直接下载链接。如果使文档可访问很困难，考虑将内容放在网页上。"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:24
+msgid "Link to PDF"
+msgstr "链接至PDF文件"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:28
+msgid "This is a link to a PDF document. All linked documents must be manually tested for accessibility."
+msgstr "这是一个链接到 PDF 文档的链接。所有链接的文档必须手动测试其可访问性。"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:29
+msgid "These are links to PDF documents. All linked documents must be manually tested for accessibility."
+msgstr "这些是 PDF 文档的链接。所有链接的文档必须手动测试其可访问性。"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:30
+msgid "PDFs may not be accessible to all users, especially if they are not tagged correctly or fail to meet WCAG requirements. Accessibility laws require that documents posted on websites meet the same accessibility standards as HTML content. Additionally, users should be warned when a link opens a downloadable file instead of a web page."
+msgstr "PDF 可能并非对所有用户都可访问，特别是如果它们没有正确标记或不符合 WCAG 要求。可访问性法律要求网站上发布的文档必须满足与 HTML 内容相同的可访问性标准。此外，当链接打开可下载文件而不是网页时，应该提醒用户。"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:31
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "确保链接的 PDF 经过测试并修复了可访问性问题。当你确定它是可访问的，使用 Accessibility Checker 中的 “忽略” 功能来消除此警告。在链接文本中包含文件扩展名和大小以告知用户（在 Accessibility Checker 设置中启用 “向链接添加文件大小和类型” 修复功能可在整个网站范围内实现）。如果文档是使用插件嵌入的，还要提供直接下载链接。如果使 PDF 可访问很困难，考虑将内容放在网页上。"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:34
+msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
+msgstr "Adobe：创建和验证 PDF 可访问性（Acrobat Pro）"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:38
+msgid "WebAIM: PDF Accessibility"
+msgstr "WebAIM：PDF 可访问性"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:42
+msgid "PDF Accessibility on the Web: Tricks and Traps (Webinar)"
+msgstr "网络上的 PDF 可访问性：技巧和陷阱（网络研讨会）"
+
+#: includes/classes/Rules/Rule/LinkPdfRule.php:46
+msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
+msgstr "InDesign 和 PDF 可访问性错误及其修复方法（网络研讨会）"
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
+msgid "Long Description Invalid"
+msgstr "长描述无效"
+
+#. translators: %s is <code>longdesc=""</code.
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:30
+#, php-format
+msgid "This element uses the %s attribute with an invalid or unsupported value."
+msgstr "此元素使用了 %s 属性，其值无效或不受支持。"
+
+#. translators: %s is <code>longdesc=""</code.
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:35
+#, php-format
+msgid "These elements use the %s attribute with invalid or unsupported values."
+msgstr "这些元素使用了 %s 属性，其值无效或不受支持。"
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:38
+msgid "The longdesc attribute is intended to provide a URL to a long description of an image for screen reader users. However, it is no longer supported in HTML5 and is not reliably recognized by browsers or assistive technologies. Invalid values or blank longdesc attributes may confuse users or fail to convey important information."
+msgstr "longdesc 属性旨在为屏幕阅读器用户提供图像长描述的 URL。然而，它在 HTML5 中不再受支持，浏览器或辅助技术也不能可靠地识别它。无效的值或空白的 longdesc 属性可能会使用户感到困惑或无法传达重要信息。"
+
+#. translators: %s is <code>longdesc</code.
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:41
+#, php-format
+msgid "Remove the %s attribute from the image element. If a long description is needed, include it in nearby visible text like a caption, use a link to a separate description page, or use ARIA techniques such as aria-describedby."
+msgstr "从图像元素中移除 %s 属性。如果需要长描述，请将其包含在附近的可见文本中，如标题，使用链接到单独的描述页面，或使用 ARIA 技术，如 aria-describedby。"
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:46
+msgid "W3C: Techniques for WCAG 2.1 – H45: Using longdesc"
+msgstr "W3C：WCAG 2.1 技术 – H45：使用 longdesc"
+
+#: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:50
+msgid "MDN Web Docs: longdesc – HTML attribute"
+msgstr "MDN Web 文档：longdesc – HTML 属性"
+
+#: includes/classes/Rules/Rule/MetaViewportRule.php:25
+msgid "Zooming and Scaling Disabled"
+msgstr "缩放和缩放功能已禁用"
+
+#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>.
+#: includes/classes/Rules/Rule/MetaViewportRule.php:31
+#, php-format
+msgid "This page disables zooming by using a viewport meta tag with either %1$s or a %2$s value of less than 2. This prevents users from enlarging content to improve readability."
+msgstr "此页面通过使用带有 %1$s 或 %2$s 值小于 2 的视口元标签禁用了缩放。这阻止了用户放大内容以提高可读性。"
+
+#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>.
+#: includes/classes/Rules/Rule/MetaViewportRule.php:37
+#, php-format
+msgid "These pages disable zooming by using viewport meta tags with either %1$s or a %2$s value of less than 2. This prevents users from enlarging content to improve readability."
+msgstr "这些页面通过使用带有 %1$s 或 %2$s 值小于 2 的视口元标签禁用了缩放。这阻止了用户放大内容以提高可读性。"
+
+#: includes/classes/Rules/Rule/MetaViewportRule.php:41
+msgid "Restricting a user's ability to zoom creates barriers for individuals with low vision or other visual impairments. These users may rely on browser zoom features, pinch-zooming on mobile, or magnifiers to access content comfortably."
+msgstr "限制用户缩放能力会为视力低下或其他视觉障碍的人创造障碍。这些用户可能依赖浏览器缩放功能、移动设备上的捏合缩放或放大镜来舒适地访问内容。"
+
+#. translators: %1$s is <code>user-scalable=no</code>, %2$s is <code>maximum-scale</code>, %3$s is <head>.
+#: includes/classes/Rules/Rule/MetaViewportRule.php:44
+#, php-format
+msgid "Edit the viewport meta tag in your theme's %3$s section and remove %1$s and any %2$s value less than 2. To fix this site-wide, enable the 'Make Viewport Scalable' fix in Accessibility Checker Settings."
+msgstr "编辑主题的 %3$s 部分中的视口元标签，移除 %1$s 和任何小于 2 的 %2$s 值。要在整个网站范围内修复此问题，请在 Accessibility Checker 设置中启用 “使视口可缩放” 修复功能。"
+
+#: includes/classes/Rules/Rule/MetaViewportRule.php:51
+msgid "MDN Web Docs: <meta name=\"viewport\">"
+msgstr "MDN Web 文档：<meta name=\"viewport\">"
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:28
+msgid "Missing Form Label"
+msgstr "表单标签缺失"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;textarea&gt;</code>, %3$s is <code>&lt;select&gt;</code.
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:34
+#, php-format
+msgid "This element is an %1$s, %2$s, or %3$s form field without an associated label."
+msgstr "此元素是一个没有关联标签的 %1$s、%2$s 或 %3$s 表单字段。"
+
+#. translators: %1$s is <code>&lt;input&gt;</code>, %2$s is <code>&lt;textarea&gt;</code>, %3$s is <code>&lt;select&gt;</code.
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:41
+#, php-format
+msgid "These elements are %1$s, %2$s, or %3$s form fields without associated labels."
+msgstr "这些元素是没有关联标签的 %1$s、%2$s 或 %3$s 表单字段。"
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:46
+msgid "Form fields must be clearly labeled so that users of screen readers and voice input technologies can understand their purpose. Without labels, users may not know what information to enter or how the form will behave."
+msgstr "表单字段必须清晰标记，以便屏幕阅读器和语音输入技术的用户能理解其用途。没有标签，用户可能不知道要输入什么信息或表单将如何行为。"
+
+#. translators: %1$s is <code>&lt;label&gt;</code>, %2$s is <code>for=""</code.
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:49
+#, php-format
+msgid "Add a visible %1$s element that describes the field. Connect it to the corresponding form element using the %2$s attribute, or use aria-label or aria-labelledby if needed. To fix all unlabelled fields automatically, enable the 'Label Form Fields' fix in Accessibility Checker settings."
+msgstr "添加一个描述字段的可见 %1$s 元素。使用 %2$s 属性将其与相应的表单元素连接，或在需要时使用 aria-label 或 aria-labelledby。要自动修复所有未标记的字段，请在 Accessibility Checker 设置中启用 “标记表单字段” 修复功能。"
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:55
+msgid "W3C: Labeling Controls"
+msgstr "W3C：标记控件"
+
+#: includes/classes/Rules/Rule/MissingFormLabelRule.php:59
+msgid "MDN: label element"
+msgstr "MDN：label 元素"
+
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:24
+msgid "Missing Subheadings"
+msgstr "缺少子标题"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>, %3$s is the word count threshold.
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:30
+#, php-format
+msgid "This page does not contain any heading elements between %1$s and %2$s in the main content area and has more than %3$s words."
+msgstr "此页面在主要内容区域的 %1$s 和 %2$s 之间没有任何标题元素，且包含超过 %3$s 个单词。"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code>, %3$s is '400' or the number defined in the setting.
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:37
+#, php-format
+msgid "These pages do not contain any heading elements between %1$s and %2$s in the main content area and have more than %3$s words."
+msgstr "这些页面在主要内容区域的 %1$s 和 %2$s 之间没有任何标题元素，且包含超过 %3$s 个单词。"
+
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:42
+msgid "Headings provide structure and make content easier for users of all abilities to scan. They also help screen reader users and keyboard-only users navigate the page. Without headings, users must read through content linearly without an easy way to jump between sections."
+msgstr "标题提供结构，使所有能力的用户都能更容易地浏览内容。它们还帮助屏幕阅读器用户和仅使用键盘的用户导航页面。没有标题，用户必须线性地阅读内容，而没有简便的方法在各个部分之间跳转。"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code.
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:45
+#, php-format
+msgid "Add meaningful heading elements throughout your content to organize it into sections. At a minimum, include one %1$s tag as the main page title, and add subheadings where appropriate to break up content into logical parts."
+msgstr "在你的内容中添加有意义的标题元素，将其组织成不同的部分。至少包含一个 %1$s 标签作为主页面标题，并在适当的地方添加子标题，将内容分成逻辑部分。"
+
+#: includes/classes/Rules/Rule/MissingHeadingsRule.php:50
+msgid "W3C Tutorial: Headings"
+msgstr "W3C 教程：标题"
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:25
+msgid "Missing Language Declaration"
+msgstr "缺少语言声明"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang</code>, %3$s is <code>xml:lang</code>.
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:31
+#, php-format
+msgid "This element is a top-level %1$s tag that is missing a language attribute such as %2$s or %3$s, or has an empty language attribute."
+msgstr "这个元素是一个顶级 %1$s 标签，缺少语言属性，如 %2$s 或 %3$s，或者语言属性为空。"
+
+#. translators: %1$s is <code>&lt;html&gt;</code>, %2$s is <code>lang</code>, %3$s is <code>xml:lang</code>.
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:38
+#, php-format
+msgid "These elements are top-level %1$s tags that are missing a language attribute such as %2$s or %3$s, or have an empty language attribute."
+msgstr "这些元素是顶级 %1$s 标签，缺少语言属性，如 %2$s 或 %3$s，或者语言属性为空。"
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:43
+msgid "Screen readers and other assistive technologies use the language attribute to determine how to pronounce and interpret the content. Without it, the content may be read incorrectly, which can be confusing or misleading for users."
+msgstr "屏幕阅读器和其他辅助技术使用语言属性来确定如何发音和解释内容。没有它，内容可能会被错误读取，这可能会让用户感到困惑或误导。"
+
+#. translators: %s is an example of a valid lang attribute.
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:46
+#, php-format
+msgid "Edit your theme's header file to ensure the <html> tag includes a valid lang attribute (e.g., %s). If your theme receives updates, make this change in a child theme to prevent it from being overwritten. To fix this automatically site-wide, enable the 'Add \"lang\" & \"dir\" Attributes' fix in Accessibility Checker settings."
+msgstr "编辑你的主题的头文件，确保 <html> 标签包含有效的 lang 属性（例如，%s）。如果你的主题会收到更新，请在子主题中进行此更改，以防止被覆盖。要在整个网站范围内自动修复此问题，请在 Accessibility Checker 设置中启用 \"添加 ‘lang’ 和 ‘dir’ 属性\" 修复。"
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:51
+msgid "W3C: Language of Page"
+msgstr "W3C：页面语言"
+
+#: includes/classes/Rules/Rule/MissingLangAttrRule.php:55
+msgid "MDN: The HTML lang attribute"
+msgstr "MDN：HTML lang 属性"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:24
+msgid "Missing Table Header"
+msgstr "缺少表头"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:28
+msgid "This table contains data cells but does not have the required table header cells."
+msgstr "这个表格包含数据单元格，但缺少必需的表头单元格。"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:29
+msgid "These tables contain data cells but do not have the required table header cells."
+msgstr "这些表格包含数据单元格，但缺少必需的表头单元格。"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:30
+msgid "Table headers are used by assistive technologies to help users understand the relationships between cells and navigate the data. Without table headers, screen reader users may not be able to determine what the data represents."
+msgstr "表头被辅助技术用来帮助用户理解单元格之间的关系并浏览数据。没有表头，屏幕阅读器用户可能无法确定数据代表什么。"
+
+#. translators: %1$s is <code>&lt;th&gt;</code>, %2$s is <code>&lt;td&gt;</code>.
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:33
+#, php-format
+msgid "Add one or more %1$s elements that describe the columns or rows of data in your table. Each %2$s cell should be associated with a descriptive header to provide proper context for screen reader users."
+msgstr "添加一个或多个 %1$s 元素，描述表格中的列或行数据。每个 %2$s 单元格应与描述性的表头相关联，为屏幕阅读器用户提供适当的上下文。"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:39
+msgid "W3C: H51 - Using table markup to present tabular information"
+msgstr "W3C：H51 - 使用表格标记呈现表格信息"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:47
+msgid "MDN Web Docs: <table> - Headers and accessibility"
+msgstr "MDN Web 文档：<table> - 表头和可访问性"
+
+#: includes/classes/Rules/Rule/MissingTableHeaderRule.php:51
+msgid "WordPress: Table block documentation"
+msgstr "WordPress：表格区块文档"
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:25
+msgid "Missing Title"
+msgstr "缺少标题"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/classes/Rules/Rule/MissingTitleRule.php:31
+#, php-format
+msgid "This element is missing a title tag (%1$s or %2$s). This may happen if the post or page title field is empty or if the theme fails to output a title tag in the document head."
+msgstr "这个元素缺少标题标签（%1$s 或 %2$s）。如果文章或页面标题字段为空，或者主题未能在文档头部输出标题标签，可能会发生这种情况。"
+
+#. translators: %1$s is <code>&lt;title&gt;</code>, %2$s is <code>og:title</code>.
+#: includes/classes/Rules/Rule/MissingTitleRule.php:37
+#, php-format
+msgid "These elements are missing title tags (%1$s or %2$s). This may happen if post or page title fields are empty or if the theme fails to output title tags in the document head."
+msgstr "这些元素缺少标题标签（%1$s 或 %2$s）。如果文章或页面标题字段为空，或者主题未能在文档头部输出标题标签，可能会发生这种情况。"
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:41
+msgid "The title element is used by screen readers, search engines, and browser tabs to identify the page. Without a title, users may have difficulty determining the purpose of the page."
+msgstr "标题元素被屏幕阅读器、搜索引擎和浏览器标签用来识别页面。没有标题，用户可能难以确定页面的用途。"
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:42
+msgid "Ensure the post or page title field is filled in on the backend. If the title field is not empty and the error persists, check your theme's code to make sure it outputs a valid <title> tag and/or og:title meta tag in the document head. To fix this issue site-wide, enable the 'Add Missing Page Title' fix in Accessibility Checker settings."
+msgstr "确保后台的文章或页面标题字段已填写。如果标题字段不为空但错误仍然存在，请检查你的主题代码，确保它在文档头部输出有效的 <title> 标签和/或 og:title 元标签。要在整个网站范围内修复此问题，请在 Accessibility Checker 设置中启用 “添加缺失的页面标题” 修复。"
+
+#: includes/classes/Rules/Rule/MissingTitleRule.php:45
+msgid "MDN: <title> element"
+msgstr "MDN：<title> 元素"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:24
+msgid "Missing Transcript"
+msgstr "缺少文字稿"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:28
+msgid "This element contains or links to audio or video content that does not have a properly labeled or positioned transcript, or may not have a transcript at all."
+msgstr "这个元素包含或链接到没有正确标记或定位的文字记录的音频或视频内容，或者可能根本没有文字记录。"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:29
+msgid "These elements contain or link to audio or video content that do not have properly labeled or positioned transcripts, or may not have a transcript at all."
+msgstr "这些元素包含或链接到没有正确标记或定位的文字记录的音频或视频内容，或者可能根本没有文字记录。"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:30
+msgid "Transcripts provide access to audio and video content for individuals who are deaf, hard of hearing, or prefer to read rather than listen. Without a transcript, important information may be missed."
+msgstr "文字记录为聋人、听力障碍者或喜欢阅读而不是听的人提供了获取音频和视频内容的途径。没有文字记录，重要信息可能会被遗漏。"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:31
+msgid "Create a transcript for each flagged audio or video clip. Include the transcript on the same page or link to a file that contains it. The word “transcript” should appear in a heading before the transcript or in the link text, and must be within 25 characters of the audio or video element."
+msgstr "为每个标记的音频或视频剪辑创建文字记录。在同一页面上包含文字记录，或链接到包含它的文件。“文字记录” 这个词应该出现在文字记录前的标题中，或者出现在链接文本中，并且必须在音频或视频元素的 25 个字符以内。"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:34
+msgid "W3C: Transcripts Documentation"
+msgstr "W3C：文字记录文档"
+
+#: includes/classes/Rules/Rule/MissingTranscriptRule.php:38
+msgid "Practical Advice for Meeting Caption, Transcript, and Sign Language Requirements (Webinar)"
+msgstr "满足字幕、文字记录和手语要求的实用建议（网络研讨会）"
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:24
+msgid "Possible Heading"
+msgstr "可能的标题"
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:28
+msgid "This text appears visually styled like a heading but is not marked up with a heading tag."
+msgstr "这段文本在视觉上看起来像标题，但没有使用标题标签标记。"
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:29
+msgid "These text elements appear visually styled like headings but are not marked up with heading tags."
+msgstr "这些文本元素在视觉上看起来像标题，但并没有使用标题标签标记。"
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:30
+msgid "Screen reader users and other assistive technologies rely on heading tags to understand page structure and navigate efficiently. Text that looks like a heading but is not coded as one can make it difficult for screen reader users to navigate the page."
+msgstr "屏幕阅读器用户和其他辅助技术依赖标题标签来理解页面结构并高效导航。看起来像标题但未被编码为标题的文本可能会使屏幕阅读器用户难以浏览页面。"
+
+#. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
+#, php-format
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
+msgstr "检查标记的文本，确定它是否应该是标题。如果是，请将元素更改为适当的 %1$s–%2$s 标签。如果不是标题，你可以使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+
+#: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
+msgid "W3C: Using HTML headings to identify headings"
+msgstr "W3C：使用 HTML 标题来标识标题"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:24
+msgid "A Slider is Present"
+msgstr "有一个滑块"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:28
+msgid "This element is a slider or carousel. Because many accessibility issues with sliders require manual review, this warning appears any time a slider is detected on a post or page."
+msgstr "此元素是一个滑块或轮播。由于滑块的许多可访问性问题需要手动审查，因此每当在文章或页面上检测到滑块时，都会出现此警告。"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:29
+msgid "These elements are sliders or carousels. Because many accessibility issues with sliders require manual review, this warning appears any time one or more sliders are detected on a post or page."
+msgstr "这些元素是滑块或轮播。由于滑块的许多可访问性问题需要手动审查，因此每当在文章或页面上检测到一个或多个滑块时，都会出现此警告。"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:30
+msgid "Sliders are often difficult to use with screen readers and keyboards. Inaccessible sliders can interfere with navigation, trap focus, or move too quickly for users to engage with the content."
+msgstr "滑块通常难以用屏幕阅读器和键盘操作。不可访问的滑块可能会干扰导航，陷入焦点，或移动得太快以至于用户无法与内容互动。"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:31
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
+msgstr "在你网站的前端审查滑块。确保它可以通过键盘访问，可暂停，具有适当的 ARIA 角色和标签，并且与屏幕阅读器配合良好。确认滑块可访问或修复问题后，你可以使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:34
+msgid "W3C: Carousels Tutorial"
+msgstr "W3C：轮播教程"
+
+#: includes/classes/Rules/Rule/SliderPresentRule.php:38
+msgid "W3C ARIA Authoring Practices Guide: Carousel (Slide Show or Image Rotator) Pattern"
+msgstr "W3C ARIA 创作实践指南：轮播（幻灯片或图像轮播器）模式"
+
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:25
+msgid "Tab Order Modified"
+msgstr "修改选项卡顺序"
+
+#. translators: %1$s is <code>tabindex="1"</code> and %2$s is <code>tabindex</code>.
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:31
+#, php-format
+msgid "This page contains an element with %1$s or another positive %2$s, which modifies the natural tab order."
+msgstr "此页面包含一个具有 %1$s 或其他正值 %2$s 的元素，这会修改自然的 tab 顺序。"
+
+#. translators: %1$s is <code>tabindex="1"</code> and %2$s is <code>tabindex</code>.
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:37
+#, php-format
+msgid "These pages contain elements with %1$s or other positive %2$s, which modify the natural tab order."
+msgstr "这些页面包含具有 %1$s 或其他正值 %2$s 的元素，这会修改自然的 tab 顺序。"
+
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:41
+msgid "The natural tab order of a page follows the structure of the HTML. Changing this order using positive tabindex values can cause confusion for keyboard-only users and screen reader users, especially if the focus moves in an unexpected way or skips important content."
+msgstr "页面的自然 tab 顺序遵循 HTML 的结构。使用正值 tabindex 更改此顺序可能会给仅使用键盘的用户和屏幕阅读器用户造成困惑，特别是当焦点以意外方式移动或跳过重要内容时。"
+
+#. translators: %s is <code>tabindex</code>.
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:44
+#, php-format
+msgid "Remove positive %s values (greater than 0) from elements unless there is a very specific, user-tested reason to change the focus order. If needed, use tabindex=\"0\" to include custom elements in the natural tab flow without disrupting order. To fix this and other elements site-wide, enable the 'Remove Tab Index' fix in Accessibility Checker settings."
+msgstr "除非有非常具体的、经过用户测试的理由来更改焦点顺序，否则请从元素中删除正值 %s（大于 0）。如果需要，使用 tabindex=“0” 将自定义元素包含在自然 tab 流中，而不会破坏顺序。要修复此问题和网站范围内的其他元素，请在 Accessibility Checker 设置中启用 “删除 Tab 索引” 修复。"
+
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:49
+msgid "ARIA Authoring Practices Guide: Developing a Keyboard Interface"
+msgstr "ARIA 创作实践指南：开发键盘界面"
+
+#: includes/classes/Rules/Rule/TabOrderModifiedRule.php:53
+msgid "W3C: Focus Order and Keyboard Navigation"
+msgstr "W3C：焦点顺序和键盘导航"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:24
+msgid "Blinking or Scrolling Content"
+msgstr "闪烁或滚动内容"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:28
+msgid "This element uses blinking or scrolling effects that may be disruptive for users or cause seizures."
+msgstr "此元素使用可能对用户造成干扰或引起癫痫发作的闪烁或滚动效果。"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:29
+msgid "These elements use blinking or scrolling effects that may be disruptive for users or cause seizures."
+msgstr "这些元素使用可能对用户造成干扰或引起癫痫发作的闪烁或滚动效果。"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:30
+msgid "Blinking or scrolling content can be distracting or trigger seizures in some users, especially those with photosensitive epilepsy or cognitive disabilities. These effects are deprecated and can negatively impact readability and focus."
+msgstr "闪烁或滚动的内容可能会分散某些用户的注意力或引发癫痫发作，特别是那些患有光敏性癫痫或认知障碍的用户。这些效果已被弃用，可能会对可读性和注意力产生负面影响。"
+
+#. translators: %1$s is <code>&lt;blink&gt;</code>, %2$s is <code>&lt;marquee&gt;</code>, %3$s is <code>text-decoration: blink</code>.
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:33
+#, php-format
+msgid "Remove any HTML or CSS that causes blinking or scrolling effects, such as %1$s, %2$s, or %3$s."
+msgstr "删除任何导致闪烁或滚动效果的 HTML 或 CSS，如 %1$s、%2$s 或 %3$s。"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:40
+msgid "W3C: Techniques for WCAG 2.1 - Avoiding the use of the blink element"
+msgstr "W3C：WCAG 2.1 技术 - 避免使用 blink 元素"
+
+#: includes/classes/Rules/Rule/TextBlinkingScrollingRule.php:44
+msgid "MDN: <marquee> element (obsolete)"
+msgstr "MDN：<marquee> 元素（已过时）"
+
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:24
+msgid "Text Justified"
+msgstr "文本对齐"
+
+#. translators: %s is <code>text-align: justify</code.
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:30
+#, php-format
+msgid "This page contains long blocks of text that are styled with %s."
+msgstr "此页面包含使用 %s 样式的长文本块。"
+
+#. translators: %s is <code>text-align: justify</code.
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:35
+#, php-format
+msgid "These pages contain long blocks of text that are styled with %s."
+msgstr "这些页面包含使用 %s 样式的长文本块。"
+
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:38
+msgid "Justified text can create uneven spacing between words, forming distracting \"rivers\" of white space that make reading difficult—especially for people with dyslexia, low vision, or cognitive disabilities. Left-aligned text is more predictable and easier to read."
+msgstr "两端对齐的文本可能会在单词之间产生不均匀的间距，形成令人分心的白色空间 “河流”，使阅读变得困难——特别是对于患有阅读障碍、视力低下或认知障碍的人。左对齐文本更可预测，更易于阅读。"
+
+#. translators: %s is <code>text-align: justify</code.
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:41
+#, php-format
+msgid "Remove the %s CSS rule from long blocks of text, especially paragraphs longer than 200 characters. Use left-aligned text instead for better readability and accessibility."
+msgstr "从长文本块中删除 %s CSS 规则，特别是超过 200 个字符的段落。使用左对齐文本以提高可读性和可访问性。"
+
+#: includes/classes/Rules/Rule/TextJustifiedRule.php:46
+msgid "W3C: Making Content Usable for People with Cognitive and Learning Disabilities"
+msgstr "W3C：让内容对认知和学习障碍者可用"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:24
+msgid "Text Too Small"
+msgstr "文字太小"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:28
+msgid "This text is smaller than 10 pixels and may be difficult to read."
+msgstr "这段文字小于10像素，可能难以阅读。"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:29
+msgid "These text elements are smaller than 10 pixels and may be difficult to read."
+msgstr "这些文本元素小于10像素，可能难以阅读。"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:30
+msgid "Text that is too small can be hard to read, especially for people with low vision. Ensuring a minimum readable size improves overall accessibility and usability, reducing the need for users to zoom."
+msgstr "过小的文字可能难以阅读，尤其是对于视力较弱的人。确保最小可读大小可以提高整体可访问性和可用性，减少用户需要放大的情况。"
+
+#. translators: %s is <code>10px</code>.
+#: includes/classes/Rules/Rule/TextSmallRule.php:33
+#, php-format
+msgid "Update your styles so that all text is at least %s in size. Use relative units like em or rem when possible to support user preferences and browser scaling."
+msgstr "更新你的样式，使所有文字至少达到 %s 的大小。尽可能使用相对单位如 em 或 rem，以支持用户偏好和浏览器缩放。"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:38
+msgid "MDN: font-size CSS property"
+msgstr "MDN：font-size CSS 属性"
+
+#: includes/classes/Rules/Rule/TextSmallRule.php:42
+msgid "How to Add Custom CSS in WordPress"
+msgstr "如何在 WordPress 中添加自定义 CSS"
+
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:24
+msgid "Underlined Text"
+msgstr "带下划线的文本"
+
+#. translators: %1$s is <code>&lt;u&gt;</code>, %2$s is <code>text-decoration: underline;</code.
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:30
+#, php-format
+msgid "This element contains underlined text using the %1$s tag or %2$s CSS styles and does not appear to be a link."
+msgstr "这个元素包含使用 %1$s 标签或 %2$s CSS 样式的下划线文本，但似乎不是链接。"
+
+#. translators: %1$s is <code>&lt;u&gt;</code>, %2$s is <code>text-decoration: underline;</code.
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:36
+#, php-format
+msgid "These elements contain underlined text using the %1$s tag or %2$s CSS styles and do not appear to be links."
+msgstr "这些元素包含使用 %1$s 标签或 %2$s CSS 样式的下划线文本，但似乎不是链接。"
+
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:40
+msgid "Underlined text is commonly associated with links. When non-link text is underlined, it can be confusing for users, especially those with cognitive disabilities or those relying on visual cues to identify links."
+msgstr "下划线文本通常与链接相关联。当非链接文本带有下划线时，可能会让用户感到困惑，尤其是认知障碍者或依赖视觉提示来识别链接的用户。"
+
+#: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
+msgstr "移除文本的下划线标签或 CSS 下划线样式。如果你想强调文本，可以考虑使用粗体、斜体或颜色样式。如果这段文本是链接或按钮等功能元素的一部分，保留下划线样式，并使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:24
+msgid "A Video is Present"
+msgstr "存在视频"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:28
+msgid "This element is a video. Because many accessibility issues with video content require manual review, this warning appears any time a video is detected on a post or page."
+msgstr "这个元素是一个视频。由于视频内容的许多可访问性问题需要手动审查，因此每当在文章或页面上检测到视频时，都会出现此警告。"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:29
+msgid "These elements are videos. Because many accessibility issues with video content require manual review, this warning appears any time one or more videos are detected on a post or page."
+msgstr "这些元素是视频。由于视频内容的许多可访问性问题需要手动审查，因此每当在文章或页面上检测到一个或多个视频时，都会出现此警告。"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:30
+msgid "Videos must include accurate captions, transcripts, and audio descriptions (or enhanced transcripts) to be fully accessible to users who are deaf, hard of hearing, blind, or have cognitive disabilities."
+msgstr "视频必须包含准确的字幕、文字稿和音频描述（或增强型文字稿），才能完全适用于聋人、听力障碍者、盲人或认知障碍者。"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:31
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
+msgstr "在你网站的前端查看视频。确保它包含准确的（非自动生成的）同步字幕、文字稿，以及必要的音频描述。在验证可访问性或进行必要的更新后，你可以使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:34
+msgid "W3C: Media Alternatives"
+msgstr "W3C：媒体替代方案"
+
+#: includes/classes/Rules/Rule/VideoPresentRule.php:38
+msgid "W3C: Understanding Guideline 1.2"
+msgstr "W3C：理解指南 1.2"
+
+#. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
+#: includes/classes/WPCLI/BootstrapCLI.php:101
+#, php-format
+msgid "Failed to register command %1$s because %2$s"
+msgstr "注册命令%1$s失败，因为%2$s"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:61
+msgid "The ID of the post to delete stats for."
+msgstr "要删除统计数据的文章ID。"
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:83
+msgid "No Post ID provided."
+msgstr "未提供文章ID。"
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:92
+#, php-format
+msgid "Post ID %1$s does not exist."
+msgstr "文章ID %1$s不存在。"
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
+#, php-format
+msgid "Stats of %1$s deleted."
+msgstr "已删除%1$s的统计数据。"
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+msgid "Keys to show in the results. Defaults to all keys."
+msgstr "要在结果中显示的键。默认为所有键。"
+
+#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+msgid "Clear the cache before retrieving the stats (can be intensive)."
+msgstr "在检索统计数据之前清除缓存（可能会很耗资源）。"
+
+#. translators: 1: a stat key that was requested but not found.
+#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#, php-format
+msgid "Stat key: %1$s not found in stats."
+msgstr "统计键：%1$s在统计数据中未找到。"
+
+#: includes/classes/WPCLI/Command/GetStats.php:85
+msgid "The ID of the post to get stats for."
+msgstr "要获取统计数据的文章ID。"
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:126
+#, php-format
+msgid "Post ID %1$d does not exist."
+msgstr "文章ID %1$d不存在。"
+
+#. translators: 1: a post ID.
+#: includes/classes/WPCLI/Command/GetStats.php:142
+#, php-format
+msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
+msgstr "文章ID %1$d或尚未扫描，或所有测试均已通过。"
+
+#: includes/helper-functions.php:27
+msgid "permalink of "
+msgstr "的固定链接 "
+
+#: includes/helper-functions.php:28
+msgid "permalink to "
+msgstr "固定链接到 "
+
+#: includes/helper-functions.php:29
+msgid "&nbsp;"
+msgstr "&nbsp;"
+
+#: includes/helper-functions.php:341
+msgid "Attend Free"
+msgstr "免费参加"
+
+#. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
+#: includes/helper-functions.php:790
+#, php-format
+msgid "View %s landmark on website, opens a new window"
+msgstr "在网站上查看 %s 地标，将在新窗口中打开"
+
+#: includes/options-page.php:44
+msgid "Welcome to Accessibility Checker"
+msgstr "欢迎使用 Accessibility Checker"
+
+#: includes/options-page.php:67
+msgid "Accessibility Checker Settings"
+msgstr "Accessibility Checker 设置"
+
+#: includes/options-page.php:111
+msgid "Scan Settings"
+msgstr "扫描设置"
+
+#: includes/options-page.php:118
+msgid "Permissions"
+msgstr "权限"
+
+#: includes/options-page.php:125
+msgid "Simplified Summary Settings"
+msgstr "简化摘要设置"
+
+#: includes/options-page.php:132
+msgid "Footer Accessibility Statement"
+msgstr "页脚无障碍声明"
+
+#: includes/options-page.php:139
+msgid "Frontend Accessibility Checker"
+msgstr "前端 Accessibility Checker"
+
+#: includes/options-page.php:146
+msgid "System Settings"
+msgstr "系统设置"
+
+#: includes/options-page.php:154
+msgid "Post Types To Be Checked"
+msgstr "要检查的文章类型"
+
+#: includes/options-page.php:163
+msgid "Scan Speed"
+msgstr "扫描速度"
+
+#: includes/options-page.php:172
+msgid "Archive Scanning"
+msgstr "归档扫描"
+
+#: includes/options-page.php:181
+msgid "Taxonomy Scanning"
+msgstr "分类法扫描"
+
+#: includes/options-page.php:208
+msgid "Prompt for Simplified Summary"
+msgstr "提示输入简化摘要"
+
+#: includes/options-page.php:217
+msgid "Simplified Summary Position"
+msgstr "简化摘要位置"
+
+#: includes/options-page.php:226
+msgid "Simplified Summary Heading"
+msgstr "简化摘要标题"
+
+#: includes/options-page.php:235
+#: includes/options-page.php:735
+msgid "Add Footer Accessibility Statement"
+msgstr "添加页脚无障碍声明"
+
+#: includes/options-page.php:244
+#: includes/options-page.php:758
+msgid "Include Link to Accessibility Policy"
+msgstr "包含无障碍政策链接"
+
+#: includes/options-page.php:253
+msgid "Accessibility Policy page"
+msgstr "无障碍政策页面"
+
+#: includes/options-page.php:262
+msgid "Accessibility Statement Preview"
+msgstr "无障碍声明预览"
+
+#: includes/options-page.php:271
+msgid "Frontend Accessibility Checker Position"
+msgstr "前端 Accessibility Checker 位置"
+
+#: includes/options-page.php:320
+msgid "Configure the types of content that should be checked for accessibility issues."
+msgstr "配置应检查可访问性问题的内容类型。"
+
+#. translators: %1$s: link to the "Accessibility Checker Pro" website.
+#: includes/options-page.php:325
+#, php-format
+msgid "More features and email support is available with %1$s."
+msgstr "更多功能和电子邮件支持可通过%1$s获得。"
+
+#: includes/options-page.php:333
+msgid "Accessibility Checker Pro (opens in a new window)"
+msgstr "Accessibility Checker Pro（在新窗口中打开）"
+
+#: includes/options-page.php:333
+#: partials/welcome-page.php:21
+msgid "Accessibility Checker Pro"
+msgstr "Accessibility Checker Pro"
+
+#: includes/options-page.php:347
+msgid "Use the settings below to configure the frontend accessibility checker."
+msgstr "使用以下设置来配置前端无障碍检查器。"
+
+#: includes/options-page.php:357
+msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
+msgstr "Web 内容无障碍指南（WCAG）AAA 级要求任何阅读水平高于 9 年级的内容都应有一个更易读的替代版本。简化摘要文本可以在每个文章或页面编辑屏幕的 Accessibility Checker 元框中的可读性选项卡上添加。"
+
+#: includes/options-page.php:367
+msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
+msgstr "了解更多关于简化摘要和可读性要求（在新窗口中打开）"
+
+#: includes/options-page.php:367
+msgid "Learn more about simplified summaries and readability requirements."
+msgstr "了解更多关于简化摘要和可读性要求。"
+
+#: includes/options-page.php:376
+msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
+msgstr "您是否在想 “哇，这个插件太棒了”，它是否正在帮助您使您的网站更易访问？与您的客户分享您为使网站更易访问所做的努力，让他们知道您正在使用 Accessibility Checker 来确保所有人都能使用您的网站。在您网站的页脚添加一个小型纯文本链接和声明。"
+
+#: includes/options-page.php:385
+msgid "Configure system-level settings for the Accessibility Checker plugin."
+msgstr "为 Accessibility Checker 插件配置系统级设置。"
+
+#: includes/options-page.php:399
+msgid "Fast"
+msgstr "快速"
+
+#: includes/options-page.php:400
+msgid "Normal"
+msgstr "正常"
+
+#: includes/options-page.php:401
+msgid "Slow"
+msgstr "慢速"
+
+#: includes/options-page.php:402
+msgid "Slowest"
+msgstr "最慢"
+
+#: includes/options-page.php:424
+msgid "Faster scans are more resource intensive and may place a high load on your website."
+msgstr "更快的扫描会消耗更多资源，可能会给你的网站带来高负载。"
+
+#: includes/options-page.php:450
+msgid "Enable scanning of archive pages"
+msgstr "启用归档页面扫描"
+
+#: includes/options-page.php:454
+msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
+msgstr "选择是否在完整网站扫描中包含归档页面。默认情况下，会使用抽样方法选择分类法术语以获取归档数据。"
+
+#: includes/options-page.php:480
+msgid "Scan all taxonomy terms instead of just a sample"
+msgstr "扫描所有分类术语而不仅仅是样本"
+
+#: includes/options-page.php:484
+msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
+msgstr "检查所有分类法术语归档页面，而不是代表性样本。这需要启用归档页面扫描，并可能会向扫描列表添加大量 URL。"
+
+#: includes/options-page.php:513
+msgid "Before the content"
+msgstr "在内容之前"
+
+#: includes/options-page.php:518
+msgid "After the content"
+msgstr "在内容之后"
+
+#: includes/options-page.php:523
+msgid "Insert manually"
+msgstr "手动插入"
+
+#: includes/options-page.php:527
+msgid "Use this function to manually add the simplified summary to your theme within the loop."
+msgstr "使用此功能在循环内手动将简化摘要添加到你的主题中。"
+
+#: includes/options-page.php:529
+msgid "The function optionally accepts the post ID as a parameter."
+msgstr "该函数可选择接受文章ID作为参数。"
+
+#: includes/options-page.php:532
+msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
+msgstr "设置你希望简化摘要在填写时相对于内容的显示位置。"
+
+#: includes/options-page.php:547
+msgid "Bottom Right Corner (default)"
+msgstr "右下角（默认）"
+
+#: includes/options-page.php:552
+msgid "Bottom Left Corner"
+msgstr "左下角"
+
+#: includes/options-page.php:556
+msgid "Set where you would like the frontend accessibility checker to appear on the page."
+msgstr "设置你希望前端无障碍检查器在页面上出现的位置。"
+
+#: includes/options-page.php:596
+msgid "When Required"
+msgstr "在需要时"
+
+#: includes/options-page.php:601
+msgid "Always"
+msgstr "始终"
+
+#: includes/options-page.php:609
+msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
+msgstr "Accessibility Checker 是否应该只在您的文章或页面的阅读水平高于 9 年级时要求简化摘要，还是无论阅读水平如何都始终要求，或者无论阅读水平如何都从不要求？"
+
+#: includes/options-page.php:660
+msgid "To check content other than posts and pages, please "
+msgstr "要检查文章和页面以外的内容，请 "
+
+#: includes/options-page.php:662
+msgid "upgrade to pro"
+msgstr "升级为专业版"
+
+#: includes/options-page.php:663
+msgid " (opens in a new window)"
+msgstr " （在新窗口中打开）"
+
+#: includes/options-page.php:668
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
+msgstr "选择在扫描期间应检查哪些文章类型。请注意，移除先前选择的文章类型将删除其扫描信息和任何已设置的自定义忽略警告。"
+
+#: includes/options-page.php:810
+msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
+msgstr "卸载插件时删除所有 Accessibility Checker 数据。"
+
+#: includes/options-page.php:965
+msgid "Choose which user roles have permission to ignore issues."
+msgstr "选择哪些用户角色有权忽略问题。"
+
+#: includes/options-page.php:998
+msgid "Configure which user roles have access to specific Accessibility Checker features."
+msgstr "配置哪些用户角色可以访问特定的 Accessibility Checker 功能。"
+
+#: includes/wcag.php:11
+msgid "Non-text Content"
+msgstr "非文本内容"
+
+#: includes/wcag.php:12
+msgid "All non-text content must have a text alternative that serves the same purpose, unless it falls into specific exceptions like controls, media, tests, sensory content, CAPTCHA, or decorative elements. Each type must follow specific guidance to ensure accessibility without interfering with the user experience."
+msgstr "所有非文本内容必须有一个服务于相同目的的文本替代品，除非它属于特定的例外情况，如控件、媒体、测试、感官内容、验证码或装饰元素。每种类型都必须遵循特定的指导，以确保可访问性，同时不影响用户体验。"
+
+#: includes/wcag.php:15
+msgid "1.1 Text Alternatives"
+msgstr "1.1 文本替代品"
+
+#: includes/wcag.php:16
+#: includes/wcag.php:49
+#: includes/wcag.php:82
+#: includes/wcag.php:115
+#: includes/wcag.php:148
+#: includes/wcag.php:181
+#: includes/wcag.php:213
+#: includes/wcag.php:230
+#: includes/wcag.php:247
+#: includes/wcag.php:266
+#: includes/wcag.php:284
+#: includes/wcag.php:319
+#: includes/wcag.php:353
+#: includes/wcag.php:386
+#: includes/wcag.php:413
+#: includes/wcag.php:441
+#: includes/wcag.php:459
+#: includes/wcag.php:492
+#: includes/wcag.php:520
+#: includes/wcag.php:547
+#: includes/wcag.php:575
+#: includes/wcag.php:604
+#: includes/wcag.php:638
+#: includes/wcag.php:671
+#: includes/wcag.php:703
+#: includes/wcag.php:735
+#: includes/wcag.php:753
+#: includes/wcag.php:770
+#: includes/wcag.php:788
+msgid "Perceivable"
+msgstr "可感知"
+
+#: includes/wcag.php:18
+#: includes/wcag.php:288
+#: includes/wcag.php:1533
+#: includes/wcag.php:2200
+#: includes/wcag.php:2234
+msgid "People with dexterity impairments using voice control"
+msgstr "使用语音控制的灵活性障碍者"
+
+#: includes/wcag.php:19
+#: includes/wcag.php:289
+#: includes/wcag.php:323
+#: includes/wcag.php:444
+#: includes/wcag.php:894
+#: includes/wcag.php:923
+#: includes/wcag.php:957
+#: includes/wcag.php:991
+#: includes/wcag.php:1011
+#: includes/wcag.php:1030
+#: includes/wcag.php:1049
+#: includes/wcag.php:1133
+#: includes/wcag.php:1167
+#: includes/wcag.php:1237
+#: includes/wcag.php:1304
+#: includes/wcag.php:1338
+#: includes/wcag.php:1372
+#: includes/wcag.php:1457
+#: includes/wcag.php:1476
+#: includes/wcag.php:1506
+#: includes/wcag.php:1662
+#: includes/wcag.php:1696
+#: includes/wcag.php:1806
+#: includes/wcag.php:1842
+#: includes/wcag.php:1877
+#: includes/wcag.php:1908
+#: includes/wcag.php:1940
+#: includes/wcag.php:1976
+#: includes/wcag.php:2010
+#: includes/wcag.php:2044
+#: includes/wcag.php:2078
+#: includes/wcag.php:2112
+#: includes/wcag.php:2131
+#: includes/wcag.php:2202
+#: includes/wcag.php:2236
+#: includes/wcag.php:2267
+msgid "Screen reader users (blind/low vision and neurodivergent people)"
+msgstr "屏幕阅读器用户（盲人/低视力和神经多样性人群）"
+
+#: includes/wcag.php:44
+msgid "Prerecorded Audio-only and Video-only"
+msgstr "预录的纯音频和纯视频"
+
+#: includes/wcag.php:45
+msgid "For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text."
+msgstr "对于预录的纯音频和纯视频内容，必须提供呈现等效信息的文本替代品。这确保了无法听到或看到媒体的用户仍然可以通过文本访问其内容。"
+
+#: includes/wcag.php:48
+#: includes/wcag.php:81
+#: includes/wcag.php:114
+#: includes/wcag.php:147
+#: includes/wcag.php:180
+#: includes/wcag.php:212
+#: includes/wcag.php:229
+#: includes/wcag.php:246
+#: includes/wcag.php:265
+msgid "1.2 Time-based Media"
+msgstr "1.2 基于时间的媒体"
+
+#: includes/wcag.php:51
+#: includes/wcag.php:84
+#: includes/wcag.php:117
+#: includes/wcag.php:150
+#: includes/wcag.php:215
+#: includes/wcag.php:249
+#: includes/wcag.php:268
+#: includes/wcag.php:356
+#: includes/wcag.php:607
+#: includes/wcag.php:755
+msgid "Deaf and hard of hearing people"
+msgstr "聋人和听力障碍者"
+
+#: includes/wcag.php:77
+msgid "Captions (Prerecorded)"
+msgstr "字幕（预录）"
+
+#: includes/wcag.php:78
+msgid "Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds."
+msgstr "必须为所有预录的同步媒体中的音频内容提供字幕——例如音频和视觉同时播放的视频——以便聋人或听力障碍用户可以获取口头信息和重要声音。"
+
+#: includes/wcag.php:110
+msgid "Audio Description or Media Alternative (Prerecorded)"
+msgstr "音频描述或媒体替代品（预录）"
+
+#: includes/wcag.php:111
+msgid "For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn't spoken."
+msgstr "对于包含音频的预录视频内容（同步媒体），必须提供音频描述——或包含视觉细节的书面文字稿——以确保盲人或低视力用户能够理解未被口述的重要视觉信息。"
+
+#: includes/wcag.php:143
+msgid "Captions (Live)"
+msgstr "字幕（实时）"
+
+#: includes/wcag.php:144
+msgid "For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens."
+msgstr "对于所有包含音频的实时视频内容，必须实时提供字幕，以便聋人或听力障碍用户能够实时获取口头信息。"
+
+#: includes/wcag.php:176
+msgid "Audio Description (Prerecorded)"
+msgstr "音频描述（预录制）"
+
+#: includes/wcag.php:177
+msgid "For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio."
+msgstr "对于预录制的带音频的视频，必须提供重要视觉内容的音频描述，使盲人或视力低下的用户能够理解主要音频中未描述的视觉信息。"
+
+#: includes/wcag.php:183
+#: includes/wcag.php:232
+#: includes/wcag.php:355
+#: includes/wcag.php:461
+#: includes/wcag.php:577
+#: includes/wcag.php:606
+#: includes/wcag.php:705
+#: includes/wcag.php:790
+#: includes/wcag.php:807
+#: includes/wcag.php:841
+#: includes/wcag.php:875
+msgid "Blind and low vision people"
+msgstr "盲人和视力低下的人"
+
+#: includes/wcag.php:208
+msgid "Sign Language (Prerecorded)"
+msgstr "手语（预录制）"
+
+#: includes/wcag.php:209
+msgid "A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content."
+msgstr "必须为所有预录制的同步媒体中的音频内容提供手语翻译，确保使用手语的聋人用户能够完全理解口头内容。"
+
+#: includes/wcag.php:225
+msgid "Extended Audio Description (Prerecorded)"
+msgstr "扩展音频描述（预录制）"
+
+#: includes/wcag.php:226
+msgid "For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can't be described during the natural pauses in the audio."
+msgstr "对于所有预录制的多媒体内容，必须在必要时提供扩展音频描述——即暂停视频以插入额外描述——以便盲人或视力低下的用户能够理解在音频自然暂停期间无法描述的重要视觉细节。"
+
+#: includes/wcag.php:242
+msgid "Media Alternative (Prerecorded)"
+msgstr "媒体替代（预录制）"
+
+#: includes/wcag.php:243
+msgid "For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it."
+msgstr "对于预录制的同步媒体，提供完整的文本替代（如文字记录），包含视频和音频轨道中的所有信息，使无法看到或听到内容的用户仍能访问。"
+
+#: includes/wcag.php:250
+msgid "Deaf-blind people"
+msgstr "聋盲人"
+
+#: includes/wcag.php:261
+msgid "Audio-only (Live)"
+msgstr "纯音频（实时）"
+
+#: includes/wcag.php:262
+msgid "For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information."
+msgstr "对于实时纯音频内容，实时提供文本替代，使无法听到音频的人仍能获取信息。"
+
+#: includes/wcag.php:279
+msgid "Info and Relationships"
+msgstr "信息和关系"
+
+#: includes/wcag.php:280
+msgid "Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users."
+msgstr "内容中的信息、结构和关系可以通过程序确定或以文本形式提供，以便辅助技术可以向用户呈现。"
+
+#: includes/wcag.php:283
+#: includes/wcag.php:318
+#: includes/wcag.php:352
+#: includes/wcag.php:385
+#: includes/wcag.php:412
+#: includes/wcag.php:440
+msgid "1.3 Adaptable"
+msgstr "1.3 可适应"
+
+#: includes/wcag.php:286
+#: includes/wcag.php:321
+#: includes/wcag.php:808
+#: includes/wcag.php:842
+#: includes/wcag.php:876
+#: includes/wcag.php:1184
+#: includes/wcag.php:1201
+#: includes/wcag.php:1218
+#: includes/wcag.php:1269
+#: includes/wcag.php:1404
+#: includes/wcag.php:1474
+#: includes/wcag.php:1504
+#: includes/wcag.php:1624
+#: includes/wcag.php:1804
+#: includes/wcag.php:1839
+#: includes/wcag.php:1937
+msgid "People who rely on keyboard control"
+msgstr "依赖键盘控制的人"
+
+#: includes/wcag.php:287
+#: includes/wcag.php:322
+msgid "People with cognitive differences who view interfaces using an adapted layout"
+msgstr "使用调整布局查看界面的认知差异人群"
+
+#: includes/wcag.php:314
+msgid "Meaningful Sequence"
+msgstr "有意义的顺序"
+
+#: includes/wcag.php:315
+msgid "Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology."
+msgstr "内容以有意义的顺序呈现，以便在使用辅助技术时阅读或导航顺序不会使用户感到困惑。"
+
+#: includes/wcag.php:348
+msgid "Sensory Characteristics"
+msgstr "感官特征"
+
+#: includes/wcag.php:349
+msgid "Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them."
+msgstr "说明不仅依赖于形状、颜色、大小或声音等感官特征，以便每个人都能理解。"
+
+#: includes/wcag.php:381
+msgid "Orientation"
+msgstr "方向"
+
+#: includes/wcag.php:382
+msgid "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential."
+msgstr "内容不限制其视图和操作仅限于单一显示方向（如纵向或横向），除非特定方向是必要的。"
+
+#: includes/wcag.php:388
+#: includes/wcag.php:1165
+#: includes/wcag.php:1303
+#: includes/wcag.php:1336
+#: includes/wcag.php:1370
+#: includes/wcag.php:1438
+#: includes/wcag.php:1456
+#: includes/wcag.php:1503
+#: includes/wcag.php:1607
+#: includes/wcag.php:1727
+#: includes/wcag.php:1747
+#: includes/wcag.php:1766
+#: includes/wcag.php:1785
+#: includes/wcag.php:1875
+#: includes/wcag.php:1906
+#: includes/wcag.php:1957
+#: includes/wcag.php:1974
+#: includes/wcag.php:2008
+#: includes/wcag.php:2042
+#: includes/wcag.php:2076
+#: includes/wcag.php:2110
+#: includes/wcag.php:2129
+#: includes/wcag.php:2148
+msgid "All people including those who do not identify as disabled"
+msgstr "所有人，包括那些不认为自己有残疾的人"
+
+#: includes/wcag.php:408
+msgid "Identify Input Purpose"
+msgstr "识别输入目的"
+
+#: includes/wcag.php:409
+msgid "The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in."
+msgstr "收集用户信息的输入字段的目的可以通过程序确定，以便浏览器和辅助技术可以帮助用户填写。"
+
+#: includes/wcag.php:415
+#: includes/wcag.php:443
+#: includes/wcag.php:1166
+#: includes/wcag.php:1235
+#: includes/wcag.php:1371
+#: includes/wcag.php:1439
+#: includes/wcag.php:2166
+#: includes/wcag.php:2183
+msgid "People with cognitive disabilities or limited short-term memory or reading disabilities"
+msgstr "认知障碍或短期记忆有限或阅读障碍的人"
+
+#: includes/wcag.php:416
+#: includes/wcag.php:809
+#: includes/wcag.php:843
+#: includes/wcag.php:877
+#: includes/wcag.php:922
+#: includes/wcag.php:990
+#: includes/wcag.php:1010
+#: includes/wcag.php:1029
+#: includes/wcag.php:1048
+#: includes/wcag.php:1132
+#: includes/wcag.php:1270
+#: includes/wcag.php:1405
+#: includes/wcag.php:1475
+#: includes/wcag.php:1505
+#: includes/wcag.php:1560
+#: includes/wcag.php:1805
+#: includes/wcag.php:1841
+#: includes/wcag.php:1939
+msgid "People with dexterity and mobility impairments"
+msgstr "灵巧性和行动障碍的人"
+
+#: includes/wcag.php:436
+msgid "Identify Purpose"
+msgstr "识别目的"
+
+#: includes/wcag.php:437
+msgid "The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users."
+msgstr "用户界面组件、图标和区域的目的可以通过程序确定，以便辅助技术可以为用户调整体验。"
+
+#: includes/wcag.php:454
+msgid "Use of Color"
+msgstr "颜色的使用"
+
+#: includes/wcag.php:455
+msgid "Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element."
+msgstr "颜色不作为传达信息、指示操作、提示响应或区分视觉元素的唯一方式。"
+
+#: includes/wcag.php:458
+#: includes/wcag.php:491
+#: includes/wcag.php:519
+#: includes/wcag.php:546
+#: includes/wcag.php:574
+#: includes/wcag.php:603
+#: includes/wcag.php:637
+#: includes/wcag.php:670
+#: includes/wcag.php:702
+#: includes/wcag.php:734
+#: includes/wcag.php:752
+#: includes/wcag.php:769
+#: includes/wcag.php:787
+msgid "1.4 Distinguishable"
+msgstr "1.4 可区分"
+
+#: includes/wcag.php:462
+msgid "Color blind people"
+msgstr "色盲人群"
+
+#: includes/wcag.php:487
+msgid "Reflow"
+msgstr "重排"
+
+#: includes/wcag.php:488
+msgid "Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in."
+msgstr "内容可以在不需要在多个方向滚动的情况下查看，以便用户可以在小屏幕上或放大时轻松阅读和交互。"
+
+#: includes/wcag.php:494
+#: includes/wcag.php:1641
+msgid "People on mobile devices"
+msgstr "使用移动设备的人"
+
+#: includes/wcag.php:495
+#: includes/wcag.php:522
+#: includes/wcag.php:550
+#: includes/wcag.php:641
+#: includes/wcag.php:673
+#: includes/wcag.php:738
+#: includes/wcag.php:773
+#: includes/wcag.php:1271
+#: includes/wcag.php:1406
+#: includes/wcag.php:1589
+#: includes/wcag.php:1643
+msgid "People with low vision"
+msgstr "视力低下的人"
+
+#: includes/wcag.php:515
+msgid "Non-text Contrast"
+msgstr "非文本对比度"
+
+#: includes/wcag.php:516
+msgid "Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors."
+msgstr "识别用户界面组件和图形对象所需的视觉信息与相邻颜色的对比度至少为3:1。"
+
+#: includes/wcag.php:542
+msgid "Text Spacing"
+msgstr "文本间距"
+
+#: includes/wcag.php:543
+msgid "Users can override text spacing to improve readability without losing content or functionality."
+msgstr "用户可以覆盖文本间距以提高可读性，而不会丢失内容或功能。"
+
+#: includes/wcag.php:549
+#: includes/wcag.php:772
+#: includes/wcag.php:1729
+#: includes/wcag.php:1749
+#: includes/wcag.php:1768
+#: includes/wcag.php:1787
+#: includes/wcag.php:1840
+#: includes/wcag.php:1876
+#: includes/wcag.php:1907
+#: includes/wcag.php:1938
+#: includes/wcag.php:1975
+#: includes/wcag.php:2009
+#: includes/wcag.php:2043
+#: includes/wcag.php:2077
+#: includes/wcag.php:2111
+#: includes/wcag.php:2130
+msgid "People with cognitive disabilities and reading disabilities"
+msgstr "认知障碍和阅读障碍的人"
+
+#: includes/wcag.php:570
+msgid "Content on Hover or Focus"
+msgstr "悬停或聚焦时的内容"
+
+#: includes/wcag.php:571
+msgid "If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved."
+msgstr "如果额外内容在悬停或聚焦时出现，用户可以关闭它，将指针移动到其上方，并且它保持可见直到被关闭或焦点移开。"
+
+#: includes/wcag.php:578
+#: includes/wcag.php:956
+#: includes/wcag.php:1337
+msgid "People with cognitive disabilities"
+msgstr "认知障碍的人"
+
+#: includes/wcag.php:579
+#: includes/wcag.php:1642
+msgid "People with dexterity impairments"
+msgstr "灵巧性障碍的人"
+
+#: includes/wcag.php:599
+msgid "Audio Control"
+msgstr "音频控制"
+
+#: includes/wcag.php:600
+msgid "If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume."
+msgstr "如果音频自动播放超过3秒，用户必须能够独立于系统音量暂停、停止或控制音量。"
+
+#: includes/wcag.php:608
+#: includes/wcag.php:955
+#: includes/wcag.php:1009
+msgid "People with ADD or difficulty focusing on content without distraction"
+msgstr "注意力缺陷或难以在没有干扰的情况下专注于内容的人"
+
+#: includes/wcag.php:633
+msgid "Contrast (Minimum)"
+msgstr "对比度（最小）"
+
+#: includes/wcag.php:634
+msgid "Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes."
+msgstr "文本和文本图像的对比度必须至少为4.5:1，大文本、附带文本或标识除外。"
+
+#: includes/wcag.php:640
+#: includes/wcag.php:737
+msgid "People on mobile devices in a sunny environment"
+msgstr "在阳光明媚的环境中使用移动设备的人们"
+
+#: includes/wcag.php:666
+msgid "Resize text"
+msgstr "调整文字大小"
+
+#: includes/wcag.php:667
+msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
+msgstr "文字可以放大到200%而不会丢失内容或功能，这样视力较弱的人可以更容易阅读。"
+
+#: includes/wcag.php:698
+msgid "Images of Text"
+msgstr "文字图像"
+
+#: includes/wcag.php:699
+msgid "If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes."
+msgstr "如果仅使用文字就能实现相同的视觉呈现效果，除了装饰或必要用途外，不要使用文字图像。"
+
+#: includes/wcag.php:730
+msgid "Contrast (Enhanced)"
+msgstr "对比度（增强）"
+
+#: includes/wcag.php:731
+msgid "Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes."
+msgstr "文字和文字图像的对比度必须至少为7:1，大号文字、附带文字或标识除外。"
+
+#: includes/wcag.php:748
+msgid "Low or No Background Audio"
+msgstr "低音量或无背景音频"
+
+#: includes/wcag.php:749
+msgid "For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand."
+msgstr "对于预录的纯音频内容，背景声音要么很低，要么可以关闭，要么不存在，这样可以更容易理解语音。"
+
+#: includes/wcag.php:765
+msgid "Visual Presentation"
+msgstr "视觉呈现"
+
+#: includes/wcag.php:766
+msgid "Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier."
+msgstr "用户可以选择文本块的呈现方式，如前景和背景颜色、宽度和行间距，以便更容易阅读。"
+
+#: includes/wcag.php:783
+msgid "Images of Text (No Exception)"
+msgstr "文字图像（无例外）"
+
+#: includes/wcag.php:784
+msgid "Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions."
+msgstr "文字图像仅用于纯装饰或文字的特定呈现是必要的情况，没有例外。"
+
+#: includes/wcag.php:800
+msgid "Keyboard"
+msgstr "键盘"
+
+#: includes/wcag.php:801
+msgid "All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content."
+msgstr "所有功能都可以使用键盘操作，这样无法使用鼠标的用户仍然可以操作内容。"
+
+#: includes/wcag.php:804
+#: includes/wcag.php:838
+#: includes/wcag.php:872
+#: includes/wcag.php:891
+msgid "2.1 Keyboard Accessible"
+msgstr "2.1 键盘可访问"
+
+#: includes/wcag.php:805
+#: includes/wcag.php:839
+#: includes/wcag.php:873
+#: includes/wcag.php:892
+#: includes/wcag.php:919
+#: includes/wcag.php:953
+#: includes/wcag.php:987
+#: includes/wcag.php:1006
+#: includes/wcag.php:1026
+#: includes/wcag.php:1045
+#: includes/wcag.php:1064
+#: includes/wcag.php:1096
+#: includes/wcag.php:1113
+#: includes/wcag.php:1130
+#: includes/wcag.php:1163
+#: includes/wcag.php:1182
+#: includes/wcag.php:1199
+#: includes/wcag.php:1216
+#: includes/wcag.php:1233
+#: includes/wcag.php:1267
+#: includes/wcag.php:1301
+#: includes/wcag.php:1334
+#: includes/wcag.php:1368
+#: includes/wcag.php:1402
+#: includes/wcag.php:1436
+#: includes/wcag.php:1454
+#: includes/wcag.php:1472
+#: includes/wcag.php:1501
+#: includes/wcag.php:1531
+#: includes/wcag.php:1558
+#: includes/wcag.php:1585
+#: includes/wcag.php:1605
+#: includes/wcag.php:1622
+#: includes/wcag.php:1639
+msgid "Operable"
+msgstr "可操作"
+
+#: includes/wcag.php:834
+msgid "No Keyboard Trap"
+msgstr "无键盘陷阱"
+
+#: includes/wcag.php:835
+msgid "Keyboard users can move to and away from all parts of the content without getting stuck."
+msgstr "键盘用户可以在内容的所有部分之间移动，而不会被卡住。"
+
+#: includes/wcag.php:868
+msgid "Keyboard (No Exception)"
+msgstr "键盘（无例外）"
+
+#: includes/wcag.php:869
+msgid "All functionality is available from a keyboard interface, with no exceptions."
+msgstr "所有功能都可以通过键盘界面使用，没有例外。"
+
+#: includes/wcag.php:887
+msgid "Character Key Shortcuts"
+msgstr "字符键快捷方式"
+
+#: includes/wcag.php:888
+msgid "If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus."
+msgstr "如果键盘快捷方式只使用字母、数字或标点符号，用户可以关闭它、更改它，或者只有当元素获得焦点时才起作用。"
+
+#: includes/wcag.php:914
+msgid "Timing Adjustable"
+msgstr "可调整时间"
+
+#: includes/wcag.php:915
+msgid "If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential."
+msgstr "如果设置了时间限制，用户可以关闭、调整或延长它，除非时间限制是必要的。"
+
+#: includes/wcag.php:918
+#: includes/wcag.php:952
+#: includes/wcag.php:986
+#: includes/wcag.php:1005
+#: includes/wcag.php:1025
+#: includes/wcag.php:1044
+msgid "2.2 Enough Time"
+msgstr "2.2 足够的时间"
+
+#: includes/wcag.php:921
+#: includes/wcag.php:989
+#: includes/wcag.php:1008
+#: includes/wcag.php:1028
+#: includes/wcag.php:1047
+msgid "People who need more time to react"
+msgstr "需要更多时间来反应的人"
+
+#: includes/wcag.php:948
+msgid "Pause, Stop, Hide"
+msgstr "暂停、停止、隐藏"
+
+#: includes/wcag.php:949
+msgid "Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds."
+msgstr "用户可以暂停、停止或隐藏自动开始且持续超过五秒的移动、闪烁、滚动或自动更新的信息。"
+
+#: includes/wcag.php:982
+msgid "No Timing"
+msgstr "无时间限制"
+
+#: includes/wcag.php:983
+msgid "If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential."
+msgstr "如果一个元素需要在特定时间内响应，用户可以关闭计时器、调整时间限制，或者时间限制不是必要的。"
+
+#: includes/wcag.php:1001
+msgid "Interruptions"
+msgstr "中断"
+
+#: includes/wcag.php:1002
+msgid "Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content."
+msgstr "用户不会被内容的意外变化所中断，并且可以控制中断，如自动更新的内容。"
+
+#: includes/wcag.php:1021
+msgid "Re-authenticating"
+msgstr "重新认证"
+
+#: includes/wcag.php:1022
+msgid "If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data."
+msgstr "如果用户由于不活动而被登出，在会话过期前会收到通知，并且可以继续会话而不会丢失数据。"
+
+#: includes/wcag.php:1040
+msgid "Timeouts"
+msgstr "超时"
+
+#: includes/wcag.php:1041
+msgid "Users are warned of impending timeouts and can request more time or save their work before timing out."
+msgstr "用户会在即将超时前收到警告，并可以请求更多时间或在超时前保存他们的工作。"
+
+#: includes/wcag.php:1059
+msgid "Three Flashes or Below Threshold"
+msgstr "三次闪烁或低于阈值"
+
+#: includes/wcag.php:1060
+msgid "Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy."
+msgstr "内容在任何一秒内不会闪烁超过三次，减少了患有光敏性癫痫的人发作的风险。"
+
+#: includes/wcag.php:1063
+#: includes/wcag.php:1095
+#: includes/wcag.php:1112
+msgid "2.3 Seizures and Physical Reactions"
+msgstr "2.3 癫痫发作和身体反应"
+
+#: includes/wcag.php:1066
+#: includes/wcag.php:1098
+msgid "People with photosensitive epilepsy and other photosensitive seizure disorders"
+msgstr "患有光敏性癫痫和其他光敏性发作障碍的人"
+
+#: includes/wcag.php:1091
+msgid "Three Flashes"
+msgstr "三次闪烁"
+
+#: includes/wcag.php:1092
+msgid "No part of the content flashes more than three times per second, with no exceptions."
+msgstr "内容的任何部分都不会每秒闪烁超过三次，没有例外。"
+
+#: includes/wcag.php:1108
+msgid "Animation from Interactions"
+msgstr "交互触发的动画"
+
+#: includes/wcag.php:1109
+msgid "Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion."
+msgstr "用户可以关闭由交互触发的非必要动画，这有助于那些对动作敏感的人。"
+
+#: includes/wcag.php:1115
+msgid "People with vestibular (inner ear) disorders where movement can cause dizziness/headaches and nausea"
+msgstr "患有前庭（内耳）疾病的人，其中运动可能导致头晕/头痛和恶心"
+
+#: includes/wcag.php:1125
+msgid "Bypass Blocks"
+msgstr "跳过重复内容"
+
+#: includes/wcag.php:1126
+msgid "A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content."
+msgstr "提供一种方法来跳过重复的内容块，如导航菜单，这样用户可以快速到达主要内容。"
+
+#: includes/wcag.php:1129
+#: includes/wcag.php:1162
+#: includes/wcag.php:1181
+#: includes/wcag.php:1198
+#: includes/wcag.php:1215
+#: includes/wcag.php:1232
+#: includes/wcag.php:1266
+#: includes/wcag.php:1300
+#: includes/wcag.php:1333
+#: includes/wcag.php:1367
+#: includes/wcag.php:1401
+#: includes/wcag.php:1435
+#: includes/wcag.php:1453
+msgid "2.4 Navigable"
+msgstr "2.4 可导航"
+
+#: includes/wcag.php:1158
+msgid "Section Headings"
+msgstr "章节标题"
+
+#: includes/wcag.php:1159
+msgid "Section headings are used to organize content, making it easier to understand and navigate."
+msgstr "使用章节标题来组织内容，使其更容易理解和导航。"
+
+#: includes/wcag.php:1177
+msgid "Focus Not Obscured (Minimum)"
+msgstr "焦点不被遮挡（最低要求）"
+
+#: includes/wcag.php:1178
+msgid "When an element receives keyboard focus, it is at least partially visible and not hidden by other content."
+msgstr "当一个元素获得键盘焦点时，它至少部分可见，不会被其他内容完全遮挡。"
+
+#: includes/wcag.php:1194
+msgid "Focus Not Obscured (Enhanced)"
+msgstr "焦点不被遮挡（增强）"
+
+#: includes/wcag.php:1195
+msgid "When an element receives keyboard focus, it is fully visible and not hidden by other content."
+msgstr "当一个元素获得键盘焦点时，它完全可见，不会被其他内容遮挡。"
+
+#: includes/wcag.php:1211
+msgid "Focus Appearance"
+msgstr "焦点外观"
+
+#: includes/wcag.php:1212
+msgid "The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements."
+msgstr "交互元素的可见焦点指示器清晰可见，并满足最小尺寸和对比度要求。"
+
+#: includes/wcag.php:1228
+msgid "Page Titled"
+msgstr "页面标题"
+
+#: includes/wcag.php:1229
+msgid "Web pages have descriptive titles that help users understand the topic or purpose of the page."
+msgstr "网页有描述性的标题，帮助用户理解页面的主题或目的。"
+
+#: includes/wcag.php:1236
+#: includes/wcag.php:2149
+msgid "People with severe mobility impairments relying on audio to navigate the web"
+msgstr "依赖音频导航网页的严重行动障碍人士"
+
+#: includes/wcag.php:1262
+msgid "Focus Order"
+msgstr "焦点顺序"
+
+#: includes/wcag.php:1263
+msgid "When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability."
+msgstr "使用键盘导航时，焦点以保持意义和可操作性的逻辑顺序移动。"
+
+#: includes/wcag.php:1296
+msgid "Link Purpose (In Context)"
+msgstr "链接目的（上下文中）"
+
+#: includes/wcag.php:1297
+msgid "The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them."
+msgstr "每个链接的目的从链接文本和其出现的上下文中清晰可见，使用户知道链接会将他们带到哪里。"
+
+#: includes/wcag.php:1329
+msgid "Multiple Ways"
+msgstr "多种方式"
+
+#: includes/wcag.php:1330
+msgid "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query."
+msgstr "除非网页是查询结果，否则有多种方式可以在一组网页中定位特定网页。"
+
+#: includes/wcag.php:1363
+msgid "Headings and Labels"
+msgstr "标题和标签"
+
+#: includes/wcag.php:1364
+msgid "Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading."
+msgstr "标题和标签描述内容的主题或目的，且不含糊或误导。"
+
+#: includes/wcag.php:1397
+msgid "Focus Visible"
+msgstr "焦点可见"
+
+#: includes/wcag.php:1398
+msgid "It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active."
+msgstr "当一个元素获得键盘焦点时，它是可见的，这样使用键盘导航的用户可以看到哪个元素处于活动状态。"
+
+#: includes/wcag.php:1431
+msgid "Location"
+msgstr "位置"
+
+#: includes/wcag.php:1432
+msgid "Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title."
+msgstr "用户被告知他们在一组网页中的位置，例如通过面包屑导航或清晰的页面标题。"
+
+#: includes/wcag.php:1449
+msgid "Link Purpose (Link Only)"
+msgstr "链接目的（仅链接）"
+
+#: includes/wcag.php:1450
+msgid "The purpose of each link can be determined by the link text alone, without needing additional context."
+msgstr "每个链接的目的可以仅通过链接文本确定，无需额外上下文。"
+
+#: includes/wcag.php:1467
+msgid "Pointer Gestures"
+msgstr "指针手势"
+
+#: includes/wcag.php:1468
+msgid "For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command."
+msgstr "对于可以通过指针手势操作的功能，至少满足以下一项：手势可以通过简单点击完成，手势可以用单指完成，或手势可以通过语音命令完成。"
+
+#: includes/wcag.php:1471
+#: includes/wcag.php:1500
+#: includes/wcag.php:1530
+#: includes/wcag.php:1557
+#: includes/wcag.php:1584
+#: includes/wcag.php:1604
+#: includes/wcag.php:1621
+#: includes/wcag.php:1638
+msgid "2.5 Input Modalities"
+msgstr "2.5 输入模式"
+
+#: includes/wcag.php:1496
+msgid "Pointer Cancellation"
+msgstr "指针取消"
+
+#: includes/wcag.php:1497
+msgid "For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed."
+msgstr "对于需要指针手势的操作，用户可以在操作完成前通过移开指针来取消该操作。"
+
+#: includes/wcag.php:1526
+msgid "Label in Name"
+msgstr "名称中的标签"
+
+#: includes/wcag.php:1527
+msgid "The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users."
+msgstr "用户界面组件的名称包含描述其目的的文本标签，这样辅助技术可以向用户传达这些信息。"
+
+#: includes/wcag.php:1553
+msgid "Motion Actuation"
+msgstr "动作激活"
+
+#: includes/wcag.php:1554
+msgid "Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality."
+msgstr "可以通过动作手势操作的功能也可以通过简单的触摸或点击来操作，这样无法执行动作手势的用户仍然可以使用该功能。"
+
+#: includes/wcag.php:1580
+msgid "Target Size"
+msgstr "目标大小"
+
+#: includes/wcag.php:1581
+msgid "The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity."
+msgstr "指针手势的目标大小足够大，易于激活，即使是对于灵活性有限的用户也是如此。"
+
+#: includes/wcag.php:1587
+msgid "People using a mobile device in environments where they are exposed to shaking (such as public transportation)"
+msgstr "在容易受到震动影响的环境（如公共交通）中使用移动设备的人"
+
+#: includes/wcag.php:1588
+msgid "People with dexterity and mobility impairments including hand tremors"
+msgstr "具有灵活性和行动障碍（包括手部颤抖）的人"
+
+#: includes/wcag.php:1590
+#: includes/wcag.php:1644
+msgid "People with with large fingers or who are operating the device with only a part of their finger or knuckle"
+msgstr "手指较大或只能用部分手指或指关节操作设备的人"
+
+#: includes/wcag.php:1600
+msgid "Concurrent Input Mechanisms"
+msgstr "并发输入机制"
+
+#: includes/wcag.php:1601
+msgid "If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement."
+msgstr "如果一种输入机制需要特定姿势或动作，则提供一种不需要相同要求的替代输入机制。"
+
+#: includes/wcag.php:1617
+msgid "Dragging Movements"
+msgstr "拖动动作"
+
+#: includes/wcag.php:1618
+msgid "For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality."
+msgstr "对于需要拖动动作的功能，也可以通过更简单的动作完成，这样灵活性有限的用户仍然可以使用该功能。"
+
+#: includes/wcag.php:1634
+msgid "Target Size (Minimum)"
+msgstr "目标大小（最小）"
+
+#: includes/wcag.php:1635
+msgid "The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities."
+msgstr "任何交互元素的目标大小至少为44x44像素，这样各种能力的用户都可以轻松激活。"
+
+#: includes/wcag.php:1654
+msgid "Language of Page"
+msgstr "页面语言"
+
+#: includes/wcag.php:1655
+msgid "The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings."
+msgstr "每个网页的默认语言可以通过程序确定，这样辅助技术可以使用正确的语言设置。"
+
+#: includes/wcag.php:1658
+#: includes/wcag.php:1692
+#: includes/wcag.php:1724
+#: includes/wcag.php:1744
+#: includes/wcag.php:1763
+#: includes/wcag.php:1782
+msgid "3.1 Readable"
+msgstr "3.1 可读性"
+
+#: includes/wcag.php:1659
+#: includes/wcag.php:1693
+#: includes/wcag.php:1725
+#: includes/wcag.php:1745
+#: includes/wcag.php:1764
+#: includes/wcag.php:1783
+#: includes/wcag.php:1802
+#: includes/wcag.php:1837
+#: includes/wcag.php:1873
+#: includes/wcag.php:1904
+#: includes/wcag.php:1935
+#: includes/wcag.php:1955
+#: includes/wcag.php:1972
+#: includes/wcag.php:2006
+#: includes/wcag.php:2040
+#: includes/wcag.php:2074
+#: includes/wcag.php:2108
+#: includes/wcag.php:2127
+#: includes/wcag.php:2146
+#: includes/wcag.php:2164
+#: includes/wcag.php:2181
+msgid "Understandable"
+msgstr "可理解"
+
+#: includes/wcag.php:1688
+msgid "Language of Parts"
+msgstr "部分语言"
+
+#: includes/wcag.php:1689
+msgid "The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support."
+msgstr "内容的每个部分的语言可以通过程序确定，这样辅助技术可以提供适当的语言支持。"
+
+#: includes/wcag.php:1720
+msgid "Unusual Words"
+msgstr "不常用词"
+
+#: includes/wcag.php:1721
+msgid "Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them."
+msgstr "不常用或罕见的词语被定义或解释，这样认知障碍或不熟悉该语言的用户可以理解它们。"
+
+#: includes/wcag.php:1740
+msgid "Abbreviations"
+msgstr "缩写"
+
+#: includes/wcag.php:1741
+msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
+msgstr "缩写和首字母缩略词在首次使用时被定义，这样用户可以理解它们的含义。"
+
+#: includes/wcag.php:1759
+msgid "Reading Level"
+msgstr "阅读水平"
+
+#: includes/wcag.php:1760
+msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
+msgstr "内容以清晰简单的语言编写，不需要专门知识就能理解。"
+
+#: includes/wcag.php:1778
+msgid "Pronunciation"
+msgstr "发音"
+
+#: includes/wcag.php:1779
+msgid "A pronunciation guide is available for unusual or difficult words, so users can understand how to say them."
+msgstr "为不常见或难读的词提供发音指南，这样用户可以知道如何读出它们。"
+
+#: includes/wcag.php:1797
+msgid "On Focus"
+msgstr "获得焦点时"
+
+#: includes/wcag.php:1798
+msgid "When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element."
+msgstr "当一个元素获得焦点时，它不会引起可能使用户困惑的意外变化，并且清楚如何与该元素交互。"
+
+#: includes/wcag.php:1801
+#: includes/wcag.php:1836
+#: includes/wcag.php:1872
+#: includes/wcag.php:1903
+#: includes/wcag.php:1934
+#: includes/wcag.php:1954
+msgid "3.2 Predictable"
+msgstr "3.2 可预测性"
+
+#: includes/wcag.php:1832
+msgid "On Input"
+msgstr "输入时"
+
+#: includes/wcag.php:1833
+msgid "When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used."
+msgstr "当输入字段接收数据时，不会引起可能使用户困惑的意外变化，并且数据的使用方式是明确的。"
+
+#: includes/wcag.php:1868
+msgid "Consistent Navigation"
+msgstr "一致的导航"
+
+#: includes/wcag.php:1869
+msgid "Navigation mechanisms are consistent across the website, so users can predictably move through the site."
+msgstr "网站的导航机制保持一致，使用户可以预测地浏览网站。"
+
+#: includes/wcag.php:1899
+msgid "Consistent Identification"
+msgstr "一致的标识"
+
+#: includes/wcag.php:1900
+msgid "Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily."
+msgstr "在一组网页中具有相同功能的组件被一致地标识，使用户能够轻松识别它们。"
+
+#: includes/wcag.php:1930
+msgid "Change on Request"
+msgstr "按需更改"
+
+#: includes/wcag.php:1931
+msgid "Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes."
+msgstr "由用户输入引起的内容或上下文变化不会意外发生，并且用户会被通知任何变化。"
+
+#: includes/wcag.php:1950
+msgid "Consistent Help"
+msgstr "一致的帮助"
+
+#: includes/wcag.php:1951
+#: includes/wcag.php:2104
+msgid "Help and documentation are available and are easy to find, so users can get assistance when needed."
+msgstr "帮助和文档是可用的，并且易于找到，以便用户在需要时获得帮助。"
+
+#: includes/wcag.php:1967
+msgid "Error Identification"
+msgstr "错误识别"
+
+#: includes/wcag.php:1968
+#: includes/wcag.php:2036
+msgid "If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user."
+msgstr "如果检测到输入错误并且已知纠正建议，则会向用户提供这些建议。"
+
+#: includes/wcag.php:1971
+#: includes/wcag.php:2005
+#: includes/wcag.php:2039
+#: includes/wcag.php:2073
+#: includes/wcag.php:2107
+#: includes/wcag.php:2126
+#: includes/wcag.php:2145
+#: includes/wcag.php:2163
+#: includes/wcag.php:2180
+msgid "3.3 Input Assistance"
+msgstr "3.3 输入辅助"
+
+#: includes/wcag.php:2001
+msgid "Labels or Instructions"
+msgstr "标签或说明"
+
+#: includes/wcag.php:2002
+msgid "Labels or instructions are provided when an input field requires user input, so users know what information is needed."
+msgstr "当输入字段需要用户输入时，提供标签或说明，以便用户知道需要什么信息。"
+
+#: includes/wcag.php:2035
+msgid "Error Suggestion"
+msgstr "错误建议"
+
+#: includes/wcag.php:2069
+msgid "Error Prevention (Legal, Financial, Data)"
+msgstr "错误预防（法律、财务、数据）"
+
+#: includes/wcag.php:2070
+#: includes/wcag.php:2123
+msgid "For web pages that require user input, users are warned of errors and can correct them before finalizing the submission."
+msgstr "对于需要用户输入的网页，在最终提交之前，用户会收到错误警告并可以纠正错误。"
+
+#: includes/wcag.php:2103
+msgid "Help"
+msgstr "帮助"
+
+#: includes/wcag.php:2122
+msgid "Error Prevention (All)"
+msgstr "错误预防（所有）"
+
+#: includes/wcag.php:2141
+msgid "Redundant Entry"
+msgstr "重复输入"
+
+#: includes/wcag.php:2142
+msgid "Users are not required to enter the same information multiple times, reducing the risk of errors and saving time."
+msgstr "不要求用户多次输入相同的信息，减少错误风险并节省时间。"
+
+#: includes/wcag.php:2159
+msgid "Accessible Authentication (Minimum)"
+msgstr "无障碍身份验证（最低要求）"
+
+#: includes/wcag.php:2160
+msgid "Authentication processes do not rely on cognitive function tests like remembering a password or solving a puzzle, unless an alternative is provided."
+msgstr "身份验证过程不依赖于认知功能测试，如记住密码或解决谜题，除非提供替代方案。"
+
+#: includes/wcag.php:2176
+msgid "Accessible Authentication (Enhanced)"
+msgstr "无障碍身份验证（增强）"
+
+#: includes/wcag.php:2177
+msgid "Enhanced authentication methods are provided that do not rely on cognitive function tests, such as remembering passwords, and do not require a test of cognitive function."
+msgstr "提供增强的身份验证方法，不依赖于认知功能测试，如记住密码，也不需要进行认知功能测试。"
+
+#: includes/wcag.php:2193
+msgid "Parsing"
+msgstr "解析"
+
+#: includes/wcag.php:2194
+msgid "Content is coded so that assistive technologies can accurately interpret and present it to users."
+msgstr "内容编码方式使辅助技术能够准确解释并呈现给用户。"
+
+#: includes/wcag.php:2197
+#: includes/wcag.php:2231
+#: includes/wcag.php:2264
+msgid "4.1 Compatible"
+msgstr "4.1 兼容"
+
+#: includes/wcag.php:2198
+#: includes/wcag.php:2232
+#: includes/wcag.php:2265
+msgid "Robust"
+msgstr "健壮性"
+
+#: includes/wcag.php:2201
+#: includes/wcag.php:2235
+msgid "People with low vision using screen magnifiers"
+msgstr "使用屏幕放大器的低视力人群"
+
+#: includes/wcag.php:2227
+msgid "Name, Role, Value"
+msgstr "名称、角色、值"
+
+#: includes/wcag.php:2228
+msgid "User interface components have names, roles, and values that can be programmatically determined, so assistive technologies can communicate them to users."
+msgstr "用户界面组件具有可以通过程序确定的名称、角色和值，以便辅助技术可以将它们传达给用户。"
+
+#: includes/wcag.php:2260
+msgid "Status Messages"
+msgstr "状态消息"
+
+#: includes/wcag.php:2261
+msgid "Status messages are programmatically determined so that assistive technologies can notify users of important changes, such as form errors or updates."
+msgstr "状态消息可以通过程序确定，以便辅助技术可以通知用户重要变化，如表单错误或更新。"
+
+#: includes/wcag.php:2286
+msgid "Best Practice"
+msgstr "最佳实践"
+
+#: includes/wcag.php:2287
+msgid "A usability improvement or convention that enhances accessibility but is not required for WCAG compliance."
+msgstr "提高可用性或增强无障碍性的惯例，但不是 WCAG 合规所必需的。"
+
+#: includes/wcag.php:2301
+msgid "Non-WCAG Accessibility Issue"
+msgstr "非 WCAG 无障碍问题"
+
+#: includes/wcag.php:2302
+msgid "A problem that affects users with disabilities but doesn't map directly to a current WCAG success criterion."
+msgstr "影响残障用户但不直接对应当前 WCAG 成功标准的问题。"
+
+#: includes/wcag.php:2316
+msgid "Manual Testing Needed (Multiple Success Criteria)"
+msgstr "需要手动测试（多个成功标准）"
+
+#: includes/wcag.php:2317
+msgid "Used for documents, media, and other non-scannable content that require manual testing and are likely to fail multiple WCAG success criteria."
+msgstr "用于需要手动测试且可能不符合多个 WCAG 成功标准的文档、媒体和其他无法扫描的内容。"
+
+#: partials/admin-page/fixes-page.php:14
+msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
+msgstr "设置已保存。要确认并在您网站的统计数据中反映这些更新，请重新扫描您的网站。如果您正在使用缓存插件，请确保清除缓存以确保正确应用更新的修复。"
+
+#: partials/admin-page/fixes-page.php:22
+msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
+msgstr "已安装 Accessibility New Window Warnings 插件。此处包含的新窗口打开链接的修复将覆盖其功能。您可以安全地移除该插件，改用这些修复。"
+
+#: partials/custom-meta-box.php:13
+msgid "Accessibility Checker issues panels"
+msgstr "Accessibility Checker 问题面板"
+
+#: partials/custom-meta-box.php:24
+msgid "Summary"
+msgstr "摘要"
+
+#: partials/custom-meta-box.php:34
+msgid "Details"
+msgstr "详情"
+
+#: partials/custom-meta-box.php:44
+msgid "Readability"
+msgstr "可读性"
+
+#: partials/custom-meta-box.php:53
+msgid "Delete all currently found issues"
+msgstr "删除当前发现的所有问题"
+
+#: partials/custom-meta-box.php:55
+#: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Clear Issues"
+msgstr "清除问题"
+
+#: partials/pro-callout.php:13
+#: partials/welcome-page.php:199
+msgid "Equalize Digital Logo"
+msgstr "Equalize Digital 标志"
+
+#: partials/pro-callout.php:16
+#: partials/welcome-page.php:200
+msgid "Upgrade to Accessibility Checker Pro"
+msgstr "升级到 Accessibility Checker Pro"
+
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:203
+msgid "Scan all post types"
+msgstr "扫描所有文章类型"
+
+#: partials/pro-callout.php:21
+#: partials/welcome-page.php:204
+msgid "Admin columns to see accessibility status at a glance"
+msgstr "管理列以一目了然地查看无障碍状态"
+
+#: partials/pro-callout.php:22
+#: partials/welcome-page.php:205
+msgid "Centralized list of all open issues"
+msgstr "所有未解决问题的集中列表"
+
+#: partials/pro-callout.php:23
+#: partials/welcome-page.php:206
+msgid "Ignore log"
+msgstr "忽略日志"
+
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:207
+msgid "Rename simplified summary"
+msgstr "重命名简化摘要"
+
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:208
+msgid "User restrictions on ignoring issues"
+msgstr "用户忽略问题的限制"
+
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:209
+msgid "Email support"
+msgstr "电子邮件支持"
+
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:210
+msgid "...and more"
+msgstr "...以及更多"
+
+#: partials/pro-callout.php:57
+#: partials/welcome-page.php:223
+msgid "Or activate your license key here."
+msgstr "或在此激活您的许可证密钥。"
+
+#: partials/settings-page.php:20
+msgid "General"
+msgstr "常规"
+
+#: partials/welcome-page.php:31
+msgid "version"
+msgstr "版本"
+
+#: partials/welcome-page.php:40
+msgid "Link to Equalize Digital Website"
+msgstr "Equalize Digital 网站链接"
+
+#: partials/welcome-page.php:49
+msgid "Quick Start Guide"
+msgstr "快速入门指南"
+
+#: partials/welcome-page.php:50
+msgid "Follow these steps to get started checking your content:"
+msgstr "按照以下步骤开始检查您的内容："
+
+#. translators: %s: path to settings page.
+#: partials/welcome-page.php:57
+#, php-format
+msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
+msgstr "在<a href=\"%s\">设置页面</a>上，选择您想要扫描的文章类型。"
+
+#: partials/welcome-page.php:64
+msgid "Go to the edit screen for the post you want to check."
+msgstr "转到您想要检查的文章的编辑界面。"
+
+#: partials/welcome-page.php:65
+msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
+msgstr "在您的内容下方找到 Accessibility Checker 元框。如果使用前端页面构建器，您必须访问后端编辑界面才能查看 Accessibility Checker 结果。"
+
+#: partials/welcome-page.php:66
+msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
+msgstr "如果您的文章中存在错误或警告，请打开 Accessibility Checker 中的详细信息选项卡以获取更多信息。"
+
+#: partials/welcome-page.php:67
+msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
+msgstr "展开每个问题以查看代码，或点击 “在页面上查看” 如果您需要帮助找到需要修复的元素。"
+
+#: partials/welcome-page.php:68
+msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
+msgstr "如果您不知道错误或警告的含义，点击 “i” 图标阅读文档和如何修复它。"
+
+#: partials/welcome-page.php:69
+msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
+msgstr "如果某个问题是误报且该元素是无障碍的，您可以使用 “忽略” 功能从报告中删除问题。"
+
+#: partials/welcome-page.php:70
+msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
+msgstr "修复每个问题后，更新文章以查看无障碍报告的变化。您的目标是让每个页面显示100%通过测试。"
+
+#: partials/welcome-page.php:74
+msgid "Watch a video of Accessibility Checker in use."
+msgstr "观看 Accessibility Checker 使用视频。"
+
+#: partials/welcome-page.php:80
+msgid "Documentation and FAQs"
+msgstr "文档和常见问题"
+
+#: partials/welcome-page.php:84
+msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
+msgstr "为什么我们说100%通过测试，而不是100%无障碍？"
+
+#: partials/welcome-page.php:84
+#: partials/welcome-page.php:89
+#: partials/welcome-page.php:94
+#: partials/welcome-page.php:99
+#: partials/welcome-page.php:104
+#: partials/welcome-page.php:109
+#: partials/welcome-page.php:114
+#: partials/welcome-page.php:120
+#: partials/welcome-page.php:216
+msgid "(opens in a new window)"
+msgstr "（在新窗口中打开）"
+
+#: partials/welcome-page.php:89
+msgid "How to Manually Check Your Website for Accessibility"
+msgstr "如何手动检查您的网站的无障碍性"
+
+#: partials/welcome-page.php:94
+msgid "When to Ignore Accessibility Errors"
+msgstr "何时忽略无障碍错误"
+
+#: partials/welcome-page.php:99
+msgid "What to do if a Plugin You’re Using has Accessibility Errors"
+msgstr "如果您使用的插件存在无障碍错误该怎么办"
+
+#: partials/welcome-page.php:104
+msgid "What to do if there are Accessibility Errors in Your Theme"
+msgstr "如果您的主题存在无障碍错误该怎么办"
+
+#: partials/welcome-page.php:109
+msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
+msgstr "我可以聘请 Equalize Digital 来修复我网站上的无障碍问题吗？"
+
+#: partials/welcome-page.php:114
+msgid "Additional Resources for Learning About Accessibility"
+msgstr "学习无障碍的其他资源"
+
+#: partials/welcome-page.php:120
+msgid "Read Full Documentation"
+msgstr "阅读完整文档"
+
+#: partials/welcome-page.php:127
+msgid "Support Information"
+msgstr "支持信息"
+
+#: partials/welcome-page.php:133
+msgid "Plugin Support"
+msgstr "插件支持"
+
+#: partials/welcome-page.php:135
+msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
+msgstr "付费 Accessibility Checker 计划的有效许可证持有者可获得无限制的插件使用和故障排除电子邮件支持。"
+
+#: partials/welcome-page.php:138
+msgid "Open Support Ticket"
+msgstr "开启支持工单"
+
+#: partials/welcome-page.php:145
+msgid "Free Plugin Support"
+msgstr "免费插件支持"
+
+#: partials/welcome-page.php:147
+msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
+msgstr "免费插件支持可通过 WordPress.org 论坛获得。您需要创建一个账户，然后可以开启一个新的支持主题。"
+
+#: partials/welcome-page.php:150
+msgid "Go to Support Forum"
+msgstr "前往支持论坛"
+
+#: partials/welcome-page.php:157
+msgid "Office Hours"
+msgstr "办公时间"
+
+#: partials/welcome-page.php:159
+msgid "Open Q&A on Zoom every other week to help you remediate your website."
+msgstr "每两周一次的 Zoom 公开问答，帮助您修复您的网站。"
+
+#: partials/welcome-page.php:161
+msgid "Included in Small Business and Agency plans"
+msgstr "包含在小型企业和代理商计划中"
+
+#: partials/welcome-page.php:166
+msgid "Register for Office Hours"
+msgstr "注册办公时间"
+
+#: partials/welcome-page.php:172
+msgid "Auditing and Remediation"
+msgstr "审核和修复"
+
+#: partials/welcome-page.php:174
+msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
+msgstr "获取帮助使您的网站无障碍。专家审核、用户测试和开发支持。可提供合规信。"
+
+#: partials/welcome-page.php:178
+msgid "Get Remediation Help"
+msgstr "获取修复帮助"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving..."
+msgstr "正在保存..."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
+msgstr "设置已成功保存。您必须%s访问编辑器%s并保存文章，以重新扫描并从 Accessibility Checker 报告中移除已修复的问题。"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Settings saved successfully."
+msgstr "设置保存成功。"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed."
+msgstr "保存失败。"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Settings"
+msgstr "修复设置"
+
+#: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
+msgstr "这将清除此文章的所有问题。需要保存以触发对文章内容的新扫描。您要继续吗？"
+
+#: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Clearing..."
+msgstr "正在清除..."
+
+#: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issues cleared successfully."
+msgstr "问题清除成功。"
+
+#: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Failed to clear issues."
+msgstr "清除问题失败。"
+
+#: build/editorApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "An error occurred while clearing issues."
+msgstr "清除问题时发生错误。"
+
+#: build/emailOptIn.bundle.js:2
+msgid "There was a problem. Please try again."
+msgstr "出现问题。请重试。"
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please shorten your responses and try again."
+msgstr "抱歉，您的提交失败。请缩短您的回复并重试。"
+
+#: build/emailOptIn.bundle.js:2
+msgid "Sorry, your submission failed. Please try again."
+msgstr "抱歉，您的提交失败。请重试。"
+
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "打开新窗口"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Did not find a matching target ID on the page for the skip link."
+msgstr "EDAC：在页面上未找到与跳转链接匹配的目标ID。"
+
+#: build/frontendFixes.bundle.js:1
+msgid "EDAC: Error updating history for skip link."
+msgstr "EDAC：更新跳转链接的历史记录时出错。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close fixes modal"
+msgstr "关闭修复模态框"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan This Page"
+msgstr "重新扫描此页面"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "禁用页面样式"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "禁用样式"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "An error occurred when loading the issues."
+msgstr "加载问题时发生错误。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Code"
+msgstr "显示代码"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "问题类型："
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Styles"
+msgstr "启用样式"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "There are no settings to display."
+msgstr "没有可显示的设置。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
+msgstr "这些设置可在整个网站范围内启用全局修复。可能需要重新保存页面或运行完整的网站扫描才能在报告中看到修复效果。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues detected."
+msgstr "未检测到问题。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "错误"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "warning"
+msgid_plural "warnings"
+msgstr[0] "警告"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "and"
+msgstr "和"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "ignored issue"
+msgid_plural "ignored issues"
+msgstr[0] "已忽略的问题"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "detected."
+msgstr "已检测到。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanner function not found."
+msgstr "未找到扫描功能。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Scanning..."
+msgstr "正在扫描..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "未发现违规，跳过保存。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Missing postId or nonce."
+msgstr "缺少 postId 或 nonce。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility scan error."
+msgstr "无障碍扫描错误。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error saving scan results."
+msgstr "保存扫描结果时出错。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Error: Missing required parameters."
+msgstr "错误：缺少必需参数。"
+
+#: build/pageScanner.bundle.js:2
+msgid "new window"
+msgstr "新窗口"
+
+#: build/pageScanner.bundle.js:2
+msgid "new tab"
+msgstr "新标签页"
+
+#: build/pageScanner.bundle.js:2
+msgid "new document"
+msgstr "新文档"
+
+#: build/pageScanner.bundle.js:2
+msgid "click"
+msgstr "点击"
+
+#: build/pageScanner.bundle.js:2
+msgid "click here"
+msgstr "点击这里"
+
+#: build/pageScanner.bundle.js:2
+msgid "here"
+msgstr "这里"
+
+#: build/pageScanner.bundle.js:2
+msgid "go here"
+msgstr "前往此处"
+
+#: build/pageScanner.bundle.js:2
+msgid "more"
+msgstr "更多"
+
+#: build/pageScanner.bundle.js:2
+msgid "more..."
+msgstr "更多..."
+
+#: build/pageScanner.bundle.js:2
+msgid "more…"
+msgstr "更多…"
+
+#: build/pageScanner.bundle.js:2
+msgid "details"
+msgstr "详情"
+
+#: build/pageScanner.bundle.js:2
+msgid "more details"
+msgstr "更多详情"
+
+#: build/pageScanner.bundle.js:2
+msgid "link"
+msgstr "链接"
+
+#: build/pageScanner.bundle.js:2
+msgid "this page"
+msgstr "此页面"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue"
+msgstr "继续"
+
+#: build/pageScanner.bundle.js:2
+msgid "continue reading"
+msgstr "继续阅读"
+
+#: build/pageScanner.bundle.js:2
+msgid "read more"
+msgstr "阅读更多"
+
+#: build/pageScanner.bundle.js:2
+msgid "open"
+msgstr "打开"
+
+#: build/pageScanner.bundle.js:2
+msgid "download"
+msgstr "下载"
+
+#: build/pageScanner.bundle.js:2
+msgid "button"
+msgstr "按钮"
+
+#: build/pageScanner.bundle.js:2
+msgid "keep reading"
+msgstr "继续阅读"
+
+#: build/pageScanner.bundle.js:2
+msgid "learn more"
+msgstr "了解更多"

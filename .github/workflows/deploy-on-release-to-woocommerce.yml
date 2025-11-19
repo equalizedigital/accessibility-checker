@@ -1,0 +1,109 @@
+name: Deploy to WooCommerce
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      plugin_zip_path:
+        description: 'URL to the plugin zip file to deploy. Must be a zip file.'
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get release assets
+        id: get_release_assets
+        if: github.event_name == 'release'
+        run: |
+          # Get the list of assets from the release
+          ASSETS_URL="${{ github.event.release.assets_url }}"
+          echo "Release assets URL: $ASSETS_URL"
+
+          # Get the list of assets
+          ASSETS=$(curl -s \
+            -H "Authorization: token ${{ github.token }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "$ASSETS_URL")
+
+          # Find the first zip file that starts with accessibility-checker in the assets
+          ZIP_URL=$(echo "$ASSETS" | jq -r '.[] | select(.name | test("^accessibility-checker.*\\.zip$")) | .browser_download_url' | head -n 1)
+
+          if [[ -z "$ZIP_URL" ]]; then
+            echo "No accessibility-checker zip file found in release assets"
+            exit 1
+          fi
+
+          echo "Found accessibility-checker zip file: $ZIP_URL"
+          echo "zip_url=$ZIP_URL" >> $GITHUB_OUTPUT
+
+      - name: Download and validate plugin zip file
+        id: validate_zip
+        run: |
+          # Determine the ZIP_URL based on the trigger
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            ZIP_URL="${{ steps.get_release_assets.outputs.zip_url }}"
+          else
+            ZIP_URL="${{ github.event.inputs.plugin_zip_path }}"
+          fi
+
+          echo "Using ZIP_URL: $ZIP_URL"
+
+          ZIP_NAME=$(basename "$ZIP_URL")
+          curl -L "$ZIP_URL" -o "$ZIP_NAME"
+          if [ ! -f "$ZIP_NAME" ]; then
+            echo "File does not exist: $ZIP_NAME"
+            exit 1
+          fi
+          if [[ "$ZIP_NAME" != *.zip ]]; then
+            echo "File does not have .zip extension: $ZIP_NAME"
+            exit 1
+          fi
+          MIME_TYPE=$(file --mime-type -b "$ZIP_NAME")
+          if [ "$MIME_TYPE" != "application/zip" ]; then
+            echo "File is not a valid zip archive: $ZIP_NAME (type: $MIME_TYPE)"
+            exit 1
+          fi
+
+          # Save the ZIP_URL and ZIP_PATH for the deploy step
+          echo "zip_url=$ZIP_URL" >> $GITHUB_OUTPUT
+          echo "zip_path=$ZIP_NAME" >> $GITHUB_OUTPUT
+
+      - name: Deploy to WooCommerce
+        env:
+          WC_API_KEY: ${{ secrets.WC_API_KEY }}
+          WC_API_SECRET: ${{ secrets.WC_API_SECRET }}
+          WC_STORE_URL: ${{ secrets.WC_STORE_URL }}
+        run: |
+          # Determine the ZIP_PATH based on the validate step
+          ZIP_PATH="${{ steps.validate_zip.outputs.zip_path }}"
+
+          echo "Deploying plugin from local file: $ZIP_PATH"
+
+          # Upload to WooCommerce using their REST API
+          # Note: This assumes you have proper API credentials set up in secrets
+
+          # WooCommerce REST API requires authentication
+          # Using Basic Auth here but could be adapted for OAuth if needed
+          AUTH_STRING=$(echo -n "$WC_API_KEY:$WC_API_SECRET" | base64)
+
+          # Upload the plugin zip file
+          RESPONSE=$(curl -X POST \
+            "$WC_STORE_URL/wp-json/wc/v3/plugins/upload" \
+            -H "Authorization: Basic $AUTH_STRING" \
+            -H "Content-Type: multipart/form-data" \
+            -F "plugin=@$ZIP_PATH" \
+            -v)
+
+          echo "Response from WooCommerce:"
+          echo "$RESPONSE"
+
+          # Check for success in the response
+          if [[ "$RESPONSE" == *"\"success\":true"* ]]; then
+            echo "Plugin successfully deployed to WooCommerce!"
+            exit 0
+          else
+            echo "Failed to deploy plugin to WooCommerce."
+            exit 1
+          fi

@@ -135,6 +135,11 @@ describe( 'video_present rule', () => {
 			html: '<audio controls><source src="sound.mp3" type="audio/mpeg"></audio>',
 			shouldPass: true,
 		},
+		{
+			name: 'does not detect YouTube API script tag',
+			html: '<script type="text/javascript" src="https://www.youtube.com/iframe_api?ver=1.2.6" id="youtube-scripts-js"></script>',
+			shouldPass: true,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {

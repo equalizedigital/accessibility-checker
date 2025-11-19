@@ -36,11 +36,14 @@ class Update_Database {
 	public function edac_update_database() {
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$table_name   = $wpdb->prefix . 'accessibility_checker';
+		$table_exists = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
+			$wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) )
+		) === $table_name;
+		$db_version   = get_option( 'edac_db_version' );
 
-		$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Prepare above, Safe variable used for table name, caching not required for one time operation.
-		if ( get_option( 'edac_db_version' ) !== EDAC_DB_VERSION || $wpdb->get_var( $query ) !== $table_name ) {
+		if ( EDAC_DB_VERSION !== $db_version || ! $table_exists ) {
 
 			$charset_collate = $wpdb->get_charset_collate();
 			$sql             = "CREATE TABLE $table_name (
@@ -48,6 +51,11 @@ class Update_Database {
 				postid bigint(20) NOT NULL,
 				siteid text NOT NULL,
 				type text NOT NULL,
+				landmark varchar(20) NULL,
+				landmark_selector text NULL,
+				selector text NULL,
+				ancestry text NULL,
+				xpath text NULL,
 				rule text NOT NULL,
 				ruletype text NOT NULL,
 				object mediumtext NOT NULL,
@@ -59,7 +67,7 @@ class Update_Database {
 				ignre_user bigint(20) NULL,
 				ignre_date timestamp NULL,
 				ignre_comment mediumtext NULL,
-				UNIQUE KEY id (id),
+				PRIMARY KEY (id),
 				KEY postid_index (postid)
 			) $charset_collate;";
 

@@ -8,12 +8,9 @@ window.addEventListener( 'DOMContentLoaded', () => {
 	const SCANNABLE_POST_TYPE = edac_editor_app.active;
 
 	if ( SCANNABLE_POST_TYPE ) {
-		// eslint-disable-next-line camelcase
-		if ( edac_editor_app.authOk === '1' ) {
-			setTimeout( function() {
-				initCheckPage();
-			}, 250 ); // Allow page load to fire before init, otherwise we'll have to wait for iframe to load.
-		}
+		setTimeout( function() {
+			initCheckPage();
+		}, 250 ); // Allow page load to fire before init, otherwise we'll have to wait for iframe to load.
 	}
 
 	document.addEventListener( 'edac-fix-settings-saved', function( event ) {

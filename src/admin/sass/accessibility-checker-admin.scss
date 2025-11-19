@@ -621,7 +621,7 @@
             color: variables.$color-white;
             background-color: variables.$color-dark-gray;
             display: grid;
-            grid-template-columns: auto 125px 125px;
+            grid-template-columns: auto 125px 125px 125px;
 
             &-label {
               padding: 3px;
@@ -631,7 +631,7 @@
 
           &-record {
             display: grid;
-            grid-template-columns: auto 125px 125px;
+            grid-template-columns: auto 125px 125px 125px;
 
             &-cell {
               padding: 10px;
@@ -1016,7 +1016,7 @@
   &-list {
     display: inline-block;
     margin-left: 35px;
-    margin-bottom: 60px;
+    margin-bottom: 25px;
     text-align: left;
 
     li {
@@ -1054,6 +1054,7 @@
     border: 3px solid #072446;
     border-radius: 0;
     position: relative;
+    display: inline-block;
     @include helpers.transition(background .3s, color .3s);
 
     // firefox sizing fix to prevent wrapping due to differences in
@@ -1088,7 +1089,7 @@
   }
 
   &-activate {
-    margin-top: 30px;
+    margin-top: 10px;
     display: block;
   }
 }
@@ -2001,4 +2002,16 @@
 .edac-dashicon-muted {
 	color: variables.$color-gray;
 	text-decoration: none;
+}
+
+.edac-plugin-action-links {
+  &__go-pro {
+    color: variables.$color-red;
+    font-weight: bold;
+    &:hover,
+    &:focus {
+      color: variables.$color-red;
+      text-decoration: underline;
+    }
+  }
 }

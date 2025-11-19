@@ -1,0 +1,35 @@
+name: Run Jest on JS File Changes
+
+on:
+  pull_request:
+    paths:
+      - 'src/**/*.js'
+      - 'tests/**/*.js'
+
+jobs:
+  jest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies (skipping postinstall)
+        run: |
+          npm config set ignore-scripts true
+          npm install
+
+      - name: Run Jest tests
+        run: npm run test:jest
