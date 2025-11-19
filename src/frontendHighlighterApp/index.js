@@ -949,11 +949,19 @@ class AccessibilityCheckerHighlight {
 			this.nextButton.disabled = false;
 			this.previousButton.disabled = false;
 
-			const summaryParts = [
-				sprintf( _n( '%1$s error', '%1$s errors', errorCount, 'accessibility-checker' ), errorCount ),
-				sprintf( _n( '%1$s warning', '%1$s warnings', warningCount, 'accessibility-checker' ), warningCount ),
-				sprintf( _n( '%1$s ignored issue', '%1$s ignored issues', ignoredCount, 'accessibility-checker' ), ignoredCount ),
-			];
+			const summaryParts = [];
+
+			if ( errorCount > 0 ) {
+				summaryParts.push( sprintf( _n( '%1$s error', '%1$s errors', errorCount, 'accessibility-checker' ), errorCount ) );
+			}
+
+			if ( warningCount > 0 ) {
+				summaryParts.push( sprintf( _n( '%1$s warning', '%1$s warnings', warningCount, 'accessibility-checker' ), warningCount ) );
+			}
+
+			if ( ignoredCount > 0 ) {
+				summaryParts.push( sprintf( _n( '%1$s ignored issue', '%1$s ignored issues', ignoredCount, 'accessibility-checker' ), ignoredCount ) );
+			}
 
 			switch ( summaryParts.length ) {
 				case 1:
