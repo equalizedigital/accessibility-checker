@@ -949,33 +949,19 @@ class AccessibilityCheckerHighlight {
 			this.nextButton.disabled = false;
 			this.previousButton.disabled = false;
 
-			const summaryParts = [];
-
-			if ( errorCount > 0 ) {
-				summaryParts.push( sprintf( _n( '%1$s error', '%1$s errors', errorCount, 'accessibility-checker' ), errorCount ) );
+			if ( errorCount >= 0 ) {
+				textContent += errorCount + ' ' + _n( 'error', 'errors', errorCount, 'accessibility-checker' ) + ', ';
 			}
-
-			if ( warningCount > 0 ) {
-				summaryParts.push( sprintf( _n( '%1$s warning', '%1$s warnings', warningCount, 'accessibility-checker' ), warningCount ) );
+			if ( warningCount >= 0 ) {
+				textContent += warningCount + ' ' + _n( 'warning', 'warnings', warningCount, 'accessibility-checker' ) + ', ';
 			}
-
-			if ( ignoredCount > 0 ) {
-				summaryParts.push( sprintf( _n( '%1$s ignored issue', '%1$s ignored issues', ignoredCount, 'accessibility-checker' ), ignoredCount ) );
-			}
-
-			switch ( summaryParts.length ) {
-				case 1:
-					textContent = sprintf( __( '%1$s detected.', 'accessibility-checker' ), summaryParts[ 0 ] );
-					break;
-				case 2:
-					textContent = sprintf( __( '%1$s and %2$s detected.', 'accessibility-checker' ), summaryParts[ 0 ], summaryParts[ 1 ] );
-					break;
-				default:
-					textContent = sprintf( __( '%1$s, %2$s, and %3$s detected.', 'accessibility-checker' ), summaryParts[ 0 ], summaryParts[ 1 ], summaryParts[ 2 ] );
-					break;
+			if ( ignoredCount >= 0 ) {
+				textContent += __( 'and', 'accessibility-checker' ) + ' ' + ignoredCount + ' ' + _n( 'ignored issue', 'ignored issues', ignoredCount, 'accessibility-checker' ) + ' ' + __( 'detected.', 'accessibility-checker' );
+			} else {
+				// Remove the trailing comma and add "detected."
+				textContent = textContent.slice( 0, -2 ) + ' ' + __( 'detected.', 'accessibility-checker' );
 			}
 		}
-
 
 		div.textContent = textContent;
 	}
