@@ -1,5 +1,9 @@
 /**
- * Tests for the New Window Warning fix functionality
+ * Tests for New Window Warning functionality
+ *
+ * This file includes tests for:
+ * - updateAriaLabel function logic (aria-label generation for links with images and text)
+ * - Tooltip initialization, positioning, and behavior
  */
 
 describe( 'New Window Warning - updateAriaLabel', () => {
