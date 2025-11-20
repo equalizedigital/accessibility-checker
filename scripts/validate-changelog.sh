@@ -102,12 +102,28 @@ get_proper_capitalization() {
     echo "$keyword"
 }
 
+# Detect OS for date command compatibility
+if date --version >/dev/null 2>&1; then
+    # GNU date
+    DATE_CMD="date"
+    DATE_PARSE_FLAG="-d"
+else
+    # BSD/macOS date
+    DATE_CMD="date"
+    DATE_PARSE_FLAG="-j -f %Y-%m-%d"
+fi
+
 # Validate that a date is a real calendar date
 is_valid_date() {
     local date_str="$1"
 
-    # Try to parse the date using date command
-    if date -d "$date_str" >/dev/null 2>&1; then
+    if [[ "$DATE_PARSE_FLAG" == "-d" ]]; then
+        date -d "$date_str" >/dev/null 2>&1
+    else
+        date -j -f "%Y-%m-%d" "$date_str" >/dev/null 2>&1
+    fi
+    
+    if [[ $? -eq 0 ]]; then
         return 0
     else
         return 1
@@ -117,7 +133,11 @@ is_valid_date() {
 # Convert date string to timestamp for comparison
 date_to_timestamp() {
     local date_str="$1"
-    date -d "$date_str" +%s 2>/dev/null || echo "0"
+    if [[ "$DATE_PARSE_FLAG" == "-d" ]]; then
+        date -d "$date_str" +%s 2>/dev/null || echo "0"
+    else
+        date -j -f "%Y-%m-%d" "$date_str" +%s 2>/dev/null || echo "0"
+    fi
 }
 
 ################################################################################
