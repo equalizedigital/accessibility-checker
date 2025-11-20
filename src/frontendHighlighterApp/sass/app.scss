@@ -87,9 +87,9 @@ body {
 			max-width: calc(100% - 30px) !important;
 		}
 
-		@media screen and (max-width: variables.$extra-small-screen-width) {
+                @media screen and (max-width: variables.$extra-small-screen-width) {
 
-			.edac-highlight-panel-controls-buttons {
+                        .edac-highlight-panel-controls-buttons {
 				//   display: flex !important;
 				justify-content: space-around;
 
@@ -115,9 +115,24 @@ body {
 
 		}
 
-		* {
-			all: unset;
-			letter-spacing: normal !important;
+                * {
+                        all: unset;
+                        letter-spacing: normal !important;
+                }
+
+		// Increase specificity to override global button styles (e.g., Elementor kit rules).
+		body & {
+
+			.edac-highlight-panel-description--button,
+			.edac-highlight-panel-description-reference,
+			.edac-highlight-panel-description-code-button,
+			.edac-highlight-panel-description-close,
+			.edac-highlight-panel-controls-close,
+			.edac-highlight-panel-controls-buttons button,
+			.edac-highlight-panel-toggle {
+				all: unset !important;
+				letter-spacing: normal !important;
+			}
 		}
 
 		a:not(.edac-highlight-panel-description-reference) {
