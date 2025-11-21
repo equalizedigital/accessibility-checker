@@ -271,7 +271,6 @@ msgid_plural "%s Errors"
 msgstr[0] "%s Помилка"
 msgstr[1] "%s Errors"
 msgstr[2] "%s Errors"
-msgstr[3] "%s Помилок"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
@@ -281,7 +280,6 @@ msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Помилка контрасту"
 msgstr[1] "%s Contrast Errors"
 msgstr[2] "%s Contrast Errors"
-msgstr[3] "%s Помилок контрасту"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
@@ -291,7 +289,6 @@ msgid_plural "%s Warnings"
 msgstr[0] "%s Попередження"
 msgstr[1] "%s Warnings"
 msgstr[2] "%s Warnings"
-msgstr[3] "%s Попереджень"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
@@ -301,7 +298,6 @@ msgid_plural "%s Ignored Items"
 msgstr[0] "%s Ігнорований елемент"
 msgstr[1] "%s Ignored Items"
 msgstr[2] "%s Ignored Items"
-msgstr[3] "%s Ігнорованих елементів"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -465,7 +461,6 @@ msgid_plural "Unique Errors"
 msgstr[0] "Унікальна помилка"
 msgstr[1] "Unique Errors"
 msgstr[2] "Unique Errors"
-msgstr[3] "Унікальні помилки"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
@@ -473,7 +468,6 @@ msgid_plural "Unique Color Contrast Errors"
 msgstr[0] "Унікальна помилка контрасту кольорів"
 msgstr[1] "Unique Color Contrast Errors"
 msgstr[2] "Unique Color Contrast Errors"
-msgstr[3] "Унікальні помилки контрасту кольорів"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
@@ -481,7 +475,6 @@ msgid_plural "Unique Warnings"
 msgstr[0] "Унікальне попередження"
 msgstr[1] "Unique Warnings"
 msgstr[2] "Unique Warnings"
-msgstr[3] "Унікальні попередження"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
@@ -489,7 +482,6 @@ msgid_plural "Ignored Items"
 msgstr[0] "Ігнорований елемент"
 msgstr[1] "Ignored Items"
 msgstr[2] "Ignored Items"
-msgstr[3] "Ігноровані елементи"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -746,7 +738,6 @@ msgid_plural "Accessibility Checker has scanned %s posts for accessibility issue
 msgstr[0] "Accessibility Checker просканував %s публікацію на наявність проблем доступності."
 msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[3] "Accessibility Checker просканував %s публікацій на наявність проблем доступності."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -772,7 +763,6 @@ msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s.
 msgstr[0] "Accessibility Checker налаштований на сканування %1$s типу публікацій: %2$s."
 msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[3] "Accessibility Checker налаштований на сканування %1$s типів публікацій: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4565,7 +4555,6 @@ msgid_plural "errors"
 msgstr[0] "помилка"
 msgstr[1] "errors"
 msgstr[2] "errors"
-msgstr[3] "помилок"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
@@ -4573,7 +4562,6 @@ msgid_plural "warnings"
 msgstr[0] "попередження"
 msgstr[1] "warnings"
 msgstr[2] "warnings"
-msgstr[3] "попереджень"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4585,7 +4573,6 @@ msgid_plural "ignored issues"
 msgstr[0] "проігнорована проблема"
 msgstr[1] "ignored issues"
 msgstr[2] "ignored issues"
-msgstr[3] "проігнорованих проблем"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
