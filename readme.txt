@@ -210,48 +210,20 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
-= 1.34.0 =
-* Improved: Missing transcript can now detect transcripts for videos when they are not just direct siblings.
-* Improved: Use post type labels rather than slugs in views where applicable.
-* Updated: Prepare for sale event during Black Friday.
+2025-10-22 - version 1.34.0
+* Tweak - Missing transcript can now detect transcripts for videos when they are not just direct siblings.
+* Tweak - Use post type labels rather than slugs in views where applicable.
+* Tweak - Prepare for sale event during Black Friday.
 
-= 1.33.0 =
-* Added: WP-CLI commands can now be run with short names: `wp edac <command>` or using long name `wp accessibility-checker <command>`.
-* Improved: Made it easier to register custom commands through filter.
+2025-09-26 - version 1.33.0
+* Add - WP-CLI commands can now be run with short names: `wp edac <command>` or using long name `wp accessibility-checker <command>`.
+* Tweak - Made it easier to register custom commands through filter.
 
-= 1.32.0 =
-* Fixed: Improved highlighter behavior to maintain original size and position of scanned elements.
-* Fixed: Identify out-of-sequence headings.
-* Fixed: Identify missing title attributes.
-* Fixed: Correctly assess alternative text requirements for image map areas.
-* Improved: Implemented additional security measures for input validation and data sanitization.
-
-= 1.31.1 =
-* Added: Privacy policy link added at newsletter signup.
-* Improved: Error messages returned from some ajax actions are more descriptive.
-
-= 1.31.0 =
-* Improved: Don't flag YouTube scripts as video present mistakenly.
-* Improved: Underlined text rule now will find more instances of underlined text.
-* Improved: Added additional string label check for links that open new windows/tabs.
-* Updated: Reordered some settings for better grouping.
-
-= 1.30.1 =
-* Improved: The rescan and clear buttons in the frontend highlighter are now only shown when they can be used.
-* Improved: Issue saving and clearing now has more robust capability checking.
-
-= 1.30.0 =
-* Added: Ability to clear issues on a post or page from the frontend highlighter.
-* Added: More accessibility checker details in the site health check.
-* Fixed: Icons stack in frontend highlighter when there multiple issues on the same element.
-* Improved: Missing Transcript can better detect transcripts for videos in the content.
-
-= 1.29.0 =
-* Added: Rescan button in the frontend highlighter to rescan the current page.
-* Added: Cleanup routine to clear out orphaned issues from the database.
-* Added: Filter to allow tweaking the post statuses which get scanned.
-* Enhanced: Updated the aria-hidden check to understand more sibling relationships.
-* Enhanced: Updated the redundant alt check to understand that repeated images with same source and alt is not redundant.
-* Fixed: Remove the password protected notice, and it's related features - scans can throw this error now.
+2025-09-18 - version 1.32.0
+* Fix - Improved highlighter behavior to maintain original size and position of scanned elements.
+* Fix - Identify out-of-sequence headings.
+* Fix - Identify missing title attributes.
+* Fix - Correctly assess alternative text requirements for image map areas.
+* Tweak - Implemented additional security measures for input validation and data sanitization.
 
 Older versions can be found in the plugins `changelog.txt`.
