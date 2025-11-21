@@ -13,7 +13,7 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
-"Language: pl\n"
+"Language: pl_PL\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. Plugin Name of the plugin
@@ -271,7 +271,6 @@ msgid_plural "%s Errors"
 msgstr[0] "%s Błąd"
 msgstr[1] "%s Errors"
 msgstr[2] "%s Errors"
-msgstr[3] "%s Błędów"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
@@ -281,7 +280,6 @@ msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Błąd kontrastu"
 msgstr[1] "%s Contrast Errors"
 msgstr[2] "%s Contrast Errors"
-msgstr[3] "%s Błędów kontrastu"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
@@ -291,7 +289,6 @@ msgid_plural "%s Warnings"
 msgstr[0] "%s Ostrzeżenie"
 msgstr[1] "%s Warnings"
 msgstr[2] "%s Warnings"
-msgstr[3] "%s Ostrzeżeń"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
@@ -301,7 +298,6 @@ msgid_plural "%s Ignored Items"
 msgstr[0] "%s Zignorowany element"
 msgstr[1] "%s Ignored Items"
 msgstr[2] "%s Ignored Items"
-msgstr[3] "%s Zignorowanych elementów"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -465,7 +461,6 @@ msgid_plural "Unique Errors"
 msgstr[0] "Unikalny błąd"
 msgstr[1] "Unique Errors"
 msgstr[2] "Unique Errors"
-msgstr[3] "Unikalne błędy"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
@@ -473,7 +468,6 @@ msgid_plural "Unique Color Contrast Errors"
 msgstr[0] "Unikalny błąd kontrastu kolorów"
 msgstr[1] "Unique Color Contrast Errors"
 msgstr[2] "Unique Color Contrast Errors"
-msgstr[3] "Unikalne błędy kontrastu kolorów"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
@@ -481,7 +475,6 @@ msgid_plural "Unique Warnings"
 msgstr[0] "Unikalne ostrzeżenie"
 msgstr[1] "Unique Warnings"
 msgstr[2] "Unique Warnings"
-msgstr[3] "Unikalne ostrzeżenia"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
@@ -489,7 +482,6 @@ msgid_plural "Ignored Items"
 msgstr[0] "Zignorowany element"
 msgstr[1] "Ignored Items"
 msgstr[2] "Ignored Items"
-msgstr[3] "Zignorowane elementy"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -746,7 +738,6 @@ msgid_plural "Accessibility Checker has scanned %s posts for accessibility issue
 msgstr[0] "Accessibility Checker przeskanował %s wpis pod kątem problemów z dostępnością."
 msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[3] "Accessibility Checker przeskanował %s wpisów pod kątem problemów z dostępnością."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -772,7 +763,6 @@ msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s.
 msgstr[0] "Accessibility Checker jest skonfigurowany do skanowania %1$s typu wpisu: %2$s."
 msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[3] "Accessibility Checker jest skonfigurowany do skanowania %1$s typów wpisów: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4565,7 +4555,6 @@ msgid_plural "errors"
 msgstr[0] "błąd"
 msgstr[1] "errors"
 msgstr[2] "errors"
-msgstr[3] "błędów"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
@@ -4573,7 +4562,6 @@ msgid_plural "warnings"
 msgstr[0] "ostrzeżenie"
 msgstr[1] "warnings"
 msgstr[2] "warnings"
-msgstr[3] "ostrzeżeń"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4585,7 +4573,6 @@ msgid_plural "ignored issues"
 msgstr[0] "ignorowany problem"
 msgstr[1] "ignored issues"
 msgstr[2] "ignored issues"
-msgstr[3] "ignorowanych problemów"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
