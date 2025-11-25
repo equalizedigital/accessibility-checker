@@ -160,7 +160,17 @@ export const init = () => {
 		debug( 'Gutenberg is not enabled.' );
 	}
 
-	// eslint-disable-next-line camelcase
-	injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
+	// Only run initial scan if post has been saved (not auto-draft)
+	if ( wp.data && wp.data.select && wp.data.select( 'core/editor' ) ) {
+		const postStatus = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'status' );
+		if ( postStatus && postStatus !== 'auto-draft' ) {
+			// eslint-disable-next-line camelcase
+			injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
+		}
+	} else {
+		// Fallback for classic editor - assume post is saved if we're on post.php
+		// eslint-disable-next-line camelcase
+		injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
+	}
 };
 
