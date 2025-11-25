@@ -861,8 +861,8 @@ function edac_is_pro() {
  * @since 1.35.0
  * @return string MySQL datetime string in UTC.
  */
-function edac_get_current_utc_datetime() {
-	return gmdate( 'Y-m-d H:i:s', time() );
+function edac_get_current_utc_datetime(): string {
+	return gmdate( 'Y-m-d H:i:s' );
 }
 
 /**
@@ -874,7 +874,7 @@ function edac_get_current_utc_datetime() {
  * @param string $utc_datetime MySQL datetime string in UTC format.
  * @return string Formatted datetime string in WordPress timezone, or empty string if invalid.
  */
-function edac_format_datetime_from_utc( $utc_datetime ) {
+function edac_format_datetime_from_utc( string $utc_datetime ): string {
 	if ( ! $utc_datetime || '0000-00-00 00:00:00' === $utc_datetime ) {
 		return '';
 	}
