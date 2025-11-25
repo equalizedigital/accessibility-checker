@@ -435,7 +435,7 @@ class Ajax {
 						$ignore_user             = (int) $row['ignre_user'];
 						$ignore_user_info        = get_userdata( $ignore_user );
 						$ignore_username         = is_object( $ignore_user_info ) ? '<strong>Username:</strong> ' . $ignore_user_info->user_login : '';
-						$ignore_date             = ( $row['ignre_date'] && '0000-00-00 00:00:00' !== $row['ignre_date'] ) ? '<strong>Date:</strong> ' . gmdate( 'F j, Y g:i a', strtotime( esc_html( $row['ignre_date'] ) ) ) : '';
+						$ignore_date             = ( $row['ignre_date'] && '0000-00-00 00:00:00' !== $row['ignre_date'] ) ? '<strong>Date:</strong> ' . wp_date( 'F j, Y g:i a', strtotime( $row['ignre_date'] ) ) : '';
 						$ignore_comment          = esc_html( $row['ignre_comment'] );
 						$ignore_action           = $ignore ? 'disable' : 'enable';
 						$ignore_type             = $rule['rule_type'];
@@ -729,7 +729,7 @@ class Ajax {
 		$ignre_user_info      = ( 'enable' === $action ) ? get_userdata( $ignre_user ) : '';
 		$ignre_username       = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
 		$ignre_date           = ( 'enable' === $action ) ? gmdate( 'Y-m-d H:i:s' ) : null;
-		$ignre_date_formatted = ( 'enable' === $action ) ? gmdate( 'F j, Y g:i a', strtotime( $ignre_date ) ) : '';
+		$ignre_date_formatted = ( 'enable' === $action ) ? wp_date( 'F j, Y g:i a', strtotime( $ignre_date ) ) : '';
 		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['comment'] ) ) : null;
 		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['ignore_global'] ) ) : 0;
 
