@@ -1,12 +1,9 @@
 name: Verify hooks docs
 
 on:
-  pull_request:
-    paths:
-      - '**.php'
   push:
     branches:
-      - develop
+      - 'release/**'
 
 jobs:
   verify-docs:
