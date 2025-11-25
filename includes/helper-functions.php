@@ -854,3 +854,39 @@ function edac_is_virtual_page( $post_id ) {
 function edac_is_pro() {
 	return defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID;
 }
+
+/**
+ * Get current timestamp in UTC for database storage.
+ *
+ * @since 1.35.0
+ * @return string MySQL datetime string in UTC.
+ */
+function edac_get_current_utc_datetime() {
+	return gmdate( 'Y-m-d H:i:s', time() );
+}
+
+/**
+ * Format a UTC datetime string for display in WordPress timezone.
+ *
+ * Uses the WordPress configured date and time format settings.
+ *
+ * @since 1.35.0
+ * @param string $utc_datetime MySQL datetime string in UTC format.
+ * @return string Formatted datetime string in WordPress timezone, or empty string if invalid.
+ */
+function edac_format_datetime_from_utc( $utc_datetime ) {
+	if ( ! $utc_datetime || '0000-00-00 00:00:00' === $utc_datetime ) {
+		return '';
+	}
+
+	$timestamp = strtotime( $utc_datetime . ' UTC' );
+	if ( false === $timestamp ) {
+		return '';
+	}
+
+	$date_format = get_option( 'date_format' );
+	$time_format = get_option( 'time_format' );
+	$format      = $date_format . ' ' . $time_format;
+
+	return wp_date( $format, $timestamp );
+}

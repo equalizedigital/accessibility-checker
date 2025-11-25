@@ -428,14 +428,20 @@ class Ajax {
 
 					foreach ( $results as $row ) {
 
-						$id                      = (int) $row['id'];
-						$ignore                  = (int) $row['ignre'];
-						$ignore_class            = $ignore ? ' active' : '';
-						$ignore_label            = $ignore ? 'Ignored' : 'Ignore';
-						$ignore_user             = (int) $row['ignre_user'];
-						$ignore_user_info        = get_userdata( $ignore_user );
-						$ignore_username         = is_object( $ignore_user_info ) ? '<strong>Username:</strong> ' . $ignore_user_info->user_login : '';
-						$ignore_date             = ( $row['ignre_date'] && '0000-00-00 00:00:00' !== $row['ignre_date'] ) ? '<strong>Date:</strong> ' . wp_date( 'F j, Y g:i a', strtotime( $row['ignre_date'] ) ) : '';
+						$id               = (int) $row['id'];
+						$ignore           = (int) $row['ignre'];
+						$ignore_class     = $ignore ? ' active' : '';
+						$ignore_label     = $ignore ? 'Ignored' : 'Ignore';
+						$ignore_user      = (int) $row['ignre_user'];
+						$ignore_user_info = get_userdata( $ignore_user );
+						$ignore_username  = is_object( $ignore_user_info )
+							? '<strong>' . esc_html__( 'Username:', 'accessibility-checker' ) . '</strong> ' . esc_html( $ignore_user_info->user_login )
+							: '';
+
+						$ignore_date_text        = edac_format_datetime_from_utc( $row['ignre_date'] );
+						$ignore_date             = $ignore_date_text
+						? '<strong>' . esc_html__( 'Date:', 'accessibility-checker' ) . '</strong> ' . esc_html( $ignore_date_text )
+						: '';
 						$ignore_comment          = esc_html( $row['ignre_comment'] );
 						$ignore_action           = $ignore ? 'disable' : 'enable';
 						$ignore_type             = $rule['rule_type'];
@@ -728,8 +734,9 @@ class Ajax {
 		$ignre_user           = ( 'enable' === $action ) ? get_current_user_id() : null;
 		$ignre_user_info      = ( 'enable' === $action ) ? get_userdata( $ignre_user ) : '';
 		$ignre_username       = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
-		$ignre_date           = ( 'enable' === $action ) ? gmdate( 'Y-m-d H:i:s' ) : null;
-		$ignre_date_formatted = ( 'enable' === $action ) ? wp_date( 'F j, Y g:i a', strtotime( $ignre_date ) ) : '';
+		$timestamp            = time();
+		$ignre_date           = ( 'enable' === $action ) ? edac_get_current_utc_datetime() : null;
+		$ignre_date_formatted = ( 'enable' === $action ) ? wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $timestamp ) : '';
 		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['comment'] ) ) : null;
 		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['ignore_global'] ) ) : 0;
 
