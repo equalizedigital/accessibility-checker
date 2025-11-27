@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Orphaned_Issues_Cleanup;
+use EDAC\Admin\Summary_Update_Scheduler;
 
 /**
  * Deactivation
@@ -17,4 +18,7 @@ function edac_deactivation() {
 
 	// Unschedule cleanup of orphaned issues.
 	Orphaned_Issues_Cleanup::unschedule_event();
+
+	// Unschedule summary updates.
+	Summary_Update_Scheduler::unschedule_event();
 }
