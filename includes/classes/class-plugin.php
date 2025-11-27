@@ -10,6 +10,7 @@ namespace EDAC\Inc;
 use EDAC\Admin\Admin;
 use EDAC\Admin\Meta_Boxes;
 use EDAC\Admin\Orphaned_Issues_Cleanup;
+use EDAC\Admin\Summary_Update_Scheduler;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
@@ -40,6 +41,9 @@ class Plugin {
 
 		$cleanup = new Orphaned_Issues_Cleanup();
 		$cleanup->init_hooks();
+
+		$summary_scheduler = new Summary_Update_Scheduler();
+		$summary_scheduler->init_hooks();
 
 		$this->register_fixes_manager();
 
