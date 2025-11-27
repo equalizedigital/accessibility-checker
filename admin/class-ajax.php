@@ -764,18 +764,16 @@ class Ajax {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object ) );
 		} else {
-			// Track the ids in an option. They should be unique in the option so we might want a little helper.
-			$last_ignored_ids = get_option( 'edac_last_ignored_ids', [] );
-			$last_ignored_ids = is_array( $last_ignored_ids ) ? $last_ignored_ids : [];
-			$ignored_ids      = array_unique( array_merge( $last_ignored_ids, $ids ) );
-			update_option( 'edac_last_ignored_ids', $ignored_ids );
-
 			// For small batches of IDs, we can just loop through.
 			foreach ( $ids as $id ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
+				// update the summary after ignoring.
+				$summary_generator = new Summary_Generator( $id );
+				$summary_generator->generate_summary();
 			}
 		}
+
 
 		$data = [
 			'ids'    => $ids,
