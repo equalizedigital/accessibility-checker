@@ -117,9 +117,9 @@ class Summary_Update_Scheduler {
 	 * @return bool Whether the update was successful.
 	 */
 	protected function update_post_summary( int $post_id ): bool {
-		// Verify the post exists.
+		// If the post no longer exists then mark it as successfully processed so it is removed from the list.
 		if ( ! get_post( $post_id ) ) {
-			return false;
+			return true;
 		}
 
 		try {
