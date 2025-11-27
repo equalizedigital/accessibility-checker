@@ -751,9 +751,25 @@ class Ajax {
 			if ( ! $object ) {
 				wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 			}
+
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
+			$affected_post_ids = $wpdb->get_col( $wpdb->prepare( 'SELECT DISTINCT postid FROM %i WHERE siteid = %d and object = %s', $table_name, $siteid, $object ) );
+			if ( $affected_post_ids ) {
+				$last_ignored_ids = get_option( 'edac_last_ignored_ids', [] );
+				$last_ignored_ids = is_array( $last_ignored_ids ) ? $last_ignored_ids : [];
+				$ignored_ids      = array_unique( array_merge( $last_ignored_ids, $affected_post_ids ) );
+				update_option( 'edac_last_ignored_ids', $ignored_ids );
+			}
+
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object ) );
 		} else {
+			// Track the ids in an option. They should be unique in the option so we might want a little helper.
+			$last_ignored_ids = get_option( 'edac_last_ignored_ids', [] );
+			$last_ignored_ids = is_array( $last_ignored_ids ) ? $last_ignored_ids : [];
+			$ignored_ids      = array_unique( array_merge( $last_ignored_ids, $ids ) );
+			update_option( 'edac_last_ignored_ids', $ignored_ids );
+
 			// For small batches of IDs, we can just loop through.
 			foreach ( $ids as $id ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
