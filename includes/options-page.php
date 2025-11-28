@@ -905,7 +905,7 @@ function edac_sanitize_pro_summary_heading( $input ) {
  *
  * @since 1.11.0
  *
- * @param string $input Input to sanitize.
+ * @param string|int $input Input to sanitize.
  * @return int either 1 for checked or 0 for unchecked
  */
 function edac_sanitize_checkbox( $input ) {
