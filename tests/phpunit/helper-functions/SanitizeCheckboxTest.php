@@ -158,7 +158,7 @@ class SanitizeCheckboxTest extends WP_UnitTestCase {
 	 * Test sanitize checkbox with array.
 	 */
 	public function test_sanitize_checkbox_with_array() {
-		$result = edac_sanitize_checkbox( array( 1 ) );
+		$result = edac_sanitize_checkbox( [ 1 ] );
 		$this->assertSame( 0, $result );
 		$this->assertIsInt( $result );
 	}
@@ -173,4 +173,3 @@ class SanitizeCheckboxTest extends WP_UnitTestCase {
 		$this->assertIsInt( $result );
 	}
 }
-
