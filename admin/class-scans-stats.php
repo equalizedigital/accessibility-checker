@@ -291,6 +291,7 @@ class Scans_Stats {
 		}
 
 		// Average issue density percentage is the sum of all post densities divided by the number of posts scanned.
+		// Only include posts that have at least one non-ignored issue (ignre=0 AND ignre_global=0).
 		$data['avg_issue_density_percentage'] =
 			$wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 				$wpdb->prepare(
@@ -299,9 +300,12 @@ class Scans_Stats {
 					JOIN (
 						SELECT DISTINCT postid
 						FROM ' . $wpdb->prefix . 'accessibility_checker
+						WHERE siteid = %d
+						AND ignre = 0
+						AND ignre_global = 0
 					) AS distinct_posts ON ' . $wpdb->postmeta . '.post_id = distinct_posts.postid
 					WHERE meta_key = %s',
-					[ '_edac_issue_density' ]
+					[ $siteid, '_edac_issue_density' ]
 				)
 			);
 
