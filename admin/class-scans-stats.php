@@ -299,9 +299,10 @@ class Scans_Stats {
 					JOIN (
 						SELECT DISTINCT postid
 						FROM ' . $wpdb->prefix . 'accessibility_checker
+						WHERE ignre=%d AND ignre_global=%d
 					) AS distinct_posts ON ' . $wpdb->postmeta . '.post_id = distinct_posts.postid
 					WHERE meta_key = %s',
-					[ '_edac_issue_density' ]
+					[ 0, 0, '_edac_issue_density' ]
 				)
 			);
 
