@@ -31,6 +31,25 @@ class Settings {
 		);
 	}
 
+	/**
+	 * Gets a list of post statuses that are not scannable.
+	 *
+	 * @return array
+	 */
+	public static function get_non_scannable_post_statuses() {
+		/**
+		 * Filters the list of post statuses that are not scannable.
+		 *
+		 * @since 1.29.0
+		 *
+		 * @param array $non_scannable_post_statuses List of non-scannable post statuses.
+		 */
+		return apply_filters(
+			'edac_non_scannable_post_statuses',
+			[ 'auto-draft' ]
+		);
+	}
+
 
 	/**
 	 * Gets a list of post types that are scannable.
