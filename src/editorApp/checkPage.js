@@ -170,7 +170,6 @@ export const init = () => {
 		}
 	}
 
-	// Fallback for classic editor or for saved posts in the block editor.
 	// eslint-disable-next-line camelcase
 	injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
 };
