@@ -161,13 +161,10 @@ export const init = () => {
 	}
 
 	const editor = wp?.data?.select?.( 'core/editor' );
+	const postStatus = editor?.getEditedPostAttribute( 'status' ) ?? window?.edac_editor_app?.postStatus;
 
-	// In the block editor, don't run the initial scan on auto-drafts.
-	if ( editor ) {
-		const postStatus = editor.getEditedPostAttribute( 'status' );
-		if ( ! postStatus || postStatus === 'auto-draft' ) {
-			return;
-		}
+	if ( ! postStatus || postStatus === 'auto-draft' ) {
+		return;
 	}
 
 	// eslint-disable-next-line camelcase
