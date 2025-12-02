@@ -281,13 +281,16 @@ class Widgets {
 		<a href="/wp-admin/admin.php?page=accessibility_checker_settings">Edit Accessibility Checker Settings</a>
 		</div>';
 
-		$html .= '
+		$meetup_html = edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2, 4 );
+		if ( ! empty( $meetup_html ) ) {
+			$html .= '
 		<hr class="edac-hr" />
 		<h3 class="edac-summary-header">
 			' . __( 'Learn Accessibility', 'accessibility-checker' ) . '
 		</h3>';
 
-		$html .= edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2, 4 );
+			$html .= $meetup_html;
+		}
 
 		$html .= '
 		<hr class="edac-hr" />
