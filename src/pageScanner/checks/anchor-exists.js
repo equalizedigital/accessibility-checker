@@ -13,6 +13,12 @@ export default {
 		// Extract the fragment identifier (remove the # prefix)
 		const fragment = href.slice( 1 );
 
+		// If the fragment is empty, we can't check for existence, this shouldn't be possible
+		// due to the selectors passed here - but adding for type safety
+		if ( fragment === '' ) {
+			return true;
+		}
+
 		// Use CSS.escape() to safely handle special characters in selectors
 		const idSelector = `#${ CSS.escape( fragment ) }`;
 
@@ -28,3 +34,4 @@ export default {
 		return namedAnchor !== null;
 	},
 };
+

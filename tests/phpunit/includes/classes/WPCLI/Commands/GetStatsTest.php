@@ -17,6 +17,13 @@ use EqualizeDigital\AccessibilityChecker\WPCLI\Command\GetStats;
 class GetStatsTest extends WP_UnitTestCase {
 
 	/**
+	 * The class under test.
+	 *
+	 * @var GetStats
+	 */
+	protected $get_stats;
+
+	/**
 	 * Sets up the mock and injects it into the class under test.
 	 *
 	 * @return void

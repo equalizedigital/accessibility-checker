@@ -21,15 +21,18 @@ class Insert_Rule_Data {
 	 *
 	 * @since 1.10.0
 	 *
-	 * @param object $post     The post object. Must have a valid ID.
-	 * @param string $rule     The rule.
-	 * @param string $ruletype The rule type.
-	 * @param string $rule_obj The object.
+	 * @param object      $post              The post object. Must have a valid ID.
+	 * @param string      $rule              The rule.
+	 * @param string      $ruletype          The rule type.
+	 * @param string      $rule_obj          The object.
+	 * @param string|null $landmark          The landmark type (main, header, footer, nav), optional.
+	 * @param string|null $landmark_selector The landmark selector, optional.
+	 * @param array       $selectors         An array of selectors that point to the object, optional.
 	 *
 	 * @return void|int|\WP_Error The ID of the inserted record, void if no
 	 * record was inserted or a WP_Error if the insert failed.
 	 */
-	public function insert( object $post, string $rule, string $ruletype, string $rule_obj ) {
+	public function insert( object $post, string $rule, string $ruletype, string $rule_obj, ?string $landmark = null, ?string $landmark_selector = null, array $selectors = [] ) {
 
 		if ( ! isset( $post->ID, $post->post_type )
 			|| empty( $rule )
@@ -44,19 +47,24 @@ class Insert_Rule_Data {
 
 		// set up rule data array.
 		$rule_data = [
-			'postid'        => $post->ID,
-			'siteid'        => get_current_blog_id(),
-			'type'          => $post->post_type,
-			'rule'          => $rule,
-			'ruletype'      => $ruletype,
-			'object'        => esc_attr( $rule_obj ),
-			'recordcheck'   => 1,
-			'user'          => get_current_user_id(),
-			'ignre'         => 0,
-			'ignre_user'    => null,
-			'ignre_date'    => null,
-			'ignre_comment' => null,
-			'ignre_global'  => 0,
+			'postid'            => $post->ID,
+			'siteid'            => get_current_blog_id(),
+			'type'              => $post->post_type,
+			'landmark'          => $landmark,
+			'landmark_selector' => $landmark_selector,
+			'selector'          => $selectors['selector'][0] ?? null,
+			'ancestry'          => $selectors['ancestry'][0] ?? null,
+			'xpath'             => $selectors['xpath'][0] ?? null,
+			'rule'              => $rule,
+			'ruletype'          => $ruletype,
+			'object'            => esc_attr( $rule_obj ),
+			'recordcheck'       => 1,
+			'user'              => get_current_user_id(),
+			'ignre'             => 0,
+			'ignre_user'        => null,
+			'ignre_date'        => null,
+			'ignre_comment'     => null,
+			'ignre_global'      => 0,
 		];
 
 		// return if revision.
@@ -92,9 +100,14 @@ class Insert_Rule_Data {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 				$wpdb->query(
 					$wpdb->prepare(
-						'UPDATE %i SET recordcheck = %d, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s',
+						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, selector = %s, ancestry = %s, xpath = %s, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s',
 						$table_name,
 						1,
+						$rule_data['landmark'],
+						$rule_data['landmark_selector'],
+						$rule_data['selector'],
+						$rule_data['ancestry'],
+						$rule_data['xpath'],
 						$rule_data['ignre'],
 						$rule_data['siteid'],
 						$rule_data['postid'],
@@ -125,19 +138,24 @@ class Insert_Rule_Data {
 			// the data is still as valid as it was when it was first set.
 			// Sanitize the filtered data.
 			$rule_data_sanitized = [
-				'postid'        => absint( $rule_data['postid'] ),
-				'siteid'        => absint( $rule_data['siteid'] ),
-				'type'          => sanitize_text_field( $rule_data['type'] ),
-				'rule'          => sanitize_text_field( $rule_data['rule'] ),
-				'ruletype'      => sanitize_text_field( $rule_data['ruletype'] ),
-				'object'        => esc_attr( $rule_data['object'] ),
-				'recordcheck'   => absint( $rule_data['recordcheck'] ),
-				'user'          => absint( $rule_data['user'] ),
-				'ignre'         => absint( $rule_data['ignre'] ),
-				'ignre_user'    => isset( $rule_data['ignre_user'] ) ? absint( $rule_data['ignre_user'] ) : null,
-				'ignre_date'    => isset( $rule_data['ignre_date'] ) ? sanitize_text_field( $rule_data['ignre_date'] ) : null,
-				'ignre_comment' => isset( $rule_data['ignre_comment'] ) ? sanitize_text_field( $rule_data['ignre_comment'] ) : null,
-				'ignre_global'  => absint( $rule_data['ignre_global'] ),
+				'postid'            => absint( $rule_data['postid'] ),
+				'siteid'            => absint( $rule_data['siteid'] ),
+				'type'              => sanitize_text_field( $rule_data['type'] ),
+				'landmark'          => isset( $rule_data['landmark'] ) ? sanitize_text_field( $rule_data['landmark'] ) : null,
+				'landmark_selector' => isset( $rule_data['landmark_selector'] ) ? sanitize_text_field( $rule_data['landmark_selector'] ) : null,
+				'selector'          => sanitize_text_field( $rule_data['selector'] ?? '' ),
+				'ancestry'          => sanitize_text_field( $rule_data['ancestry'] ?? '' ),
+				'xpath'             => sanitize_text_field( $rule_data['xpath'] ?? '' ),
+				'rule'              => sanitize_text_field( $rule_data['rule'] ),
+				'ruletype'          => sanitize_text_field( $rule_data['ruletype'] ),
+				'object'            => esc_attr( $rule_data['object'] ),
+				'recordcheck'       => absint( $rule_data['recordcheck'] ),
+				'user'              => absint( $rule_data['user'] ),
+				'ignre'             => absint( $rule_data['ignre'] ),
+				'ignre_user'        => isset( $rule_data['ignre_user'] ) ? absint( $rule_data['ignre_user'] ) : null,
+				'ignre_date'        => isset( $rule_data['ignre_date'] ) ? sanitize_text_field( $rule_data['ignre_date'] ) : null,
+				'ignre_comment'     => isset( $rule_data['ignre_comment'] ) ? sanitize_text_field( $rule_data['ignre_comment'] ) : null,
+				'ignre_global'      => absint( $rule_data['ignre_global'] ),
 			];
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Using direct query for adding data to database.

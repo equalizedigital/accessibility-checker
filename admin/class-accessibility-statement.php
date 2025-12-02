@@ -53,7 +53,12 @@ class Accessibility_Statement {
 				sprintf( __( '[YOUR COMPANY NAME] is committed to providing a fully accessible website experience for all users of all abilities, including those who rely on assistive technologies like screen readers, screen enlargement software, and alternative keyboard input devices to navigate the web.', 'accessibility-checker' ) ),
 				__( 'Ongoing Efforts to Ensure Accessibility', 'accessibility-checker' ),
 				sprintf( __( 'We follow the <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG) version 2.1</a> as our guiding principle for determining accessibility. These are internationally agreed-upon standards that cover a wide range of recommendations and best practices for making content useable. As we add new pages and functionality to our website, all designs, code, and content entry practices are checked against these standards.', 'accessibility-checker' ) ),
-				sprintf( __( 'Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the <a href="https://a11ychecker.com/">Accessibility Checker WordPress Plugin</a>, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests.', 'accessibility-checker' ) ),
+				sprintf(
+					/* translators: 1 - A link opening tag, 2 - link closing tag */
+					__( 'Website accessibility is an ongoing process. We continually test content and features for WCAG 2.1 Level AA compliance and remediate any issues to ensure we meet or exceed the standards. Testing of our website is performed by our team members using industry-standard tools such as the %1$sAccessibility Checker WordPress Plugin%2$s, color contrast analyzers, keyboard-only navigation techniques, and Flesch-Kincaid readability tests.', 'accessibility-checker' ),
+					'<a href="' . esc_url( 'https://a11ychecker.com/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=wordpress-general' ) . '">',
+					'</a>'
+				),
 				__( 'Accessibility Features On Our Website', 'accessibility-checker' ),
 				__( 'The following is a list of items we have included in our website to improve its accessibility:', 'accessibility-checker' ),
 				__( '[LIST ACCESSIBILITY FEATURES HERE]', 'accessibility-checker' ),

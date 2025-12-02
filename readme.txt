@@ -1,9 +1,9 @@
 === Equalize Digital Accessibility Checker - Audit Your Website for WCAG, ADA, and Section 508 Accessibility Errors ===
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
-Requires at least: 6.2
-Tested up to: 6.8.0
-Stable tag: 1.24.0
+Requires at least: 6.6
+Tested up to: 6.8
+Stable tag: 1.34.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,10 @@ Accessibility Checker was built with performance in mind and should not slow dow
 
 No, Accessibility Checker runs completely on your server and does not require you to connect to any external APIs or services for scans. This can save you thousands of dollars per year in accessibility scanning fees and is privacy-focused, ensuring that your website data stays completely under your control.
 
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team helps validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/9e5fb76c-bea8-430c-8bec-89d6f38ad57a)
+
 == Screenshots ==
 
 1. Accessibility Checker Summary tab on a page with numerous errors and warnings.
@@ -206,66 +210,20 @@ No, Accessibility Checker runs completely on your server and does not require yo
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
+2025-10-22 - version 1.34.0
+* Tweak - Missing transcript can now detect transcripts for videos when they are not just direct siblings.
+* Tweak - Use post type labels rather than slugs in views where applicable.
+* Tweak - Prepare for sale event during Black Friday.
 
-= 1.24.0 =
-* Added: Translations for 33 languages.
-* Enhanced: Handle Elementor buttons better in the new warnings fix.
-* Fixed: Several typo and grammar issues corrected in the plugin.
-* Fixed: Signup modal now works in Firefox under more conditions.
-* Fixed: Make sure that translations in JS files can be detected.
+2025-09-26 - version 1.33.0
+* Add - WP-CLI commands can now be run with short names: `wp edac <command>` or using long name `wp accessibility-checker <command>`.
+* Tweak - Made it easier to register custom commands through filter.
 
-= 1.23.1 =
-* Changed: Remove the str_get_html fallback shim.
-
-= 1.23.0 =
-* Added: Jest testing framework for accessibility rules with test case generation.
-* Changed: Added fallback for str_get_html() with deprecation notice.
-* Changed: Added density calculation capability in JS scanner.
-* Removed: Legacy PHP scan code.
-* Removed: PHP Simple HTML DOM Parser.
-* Converted: video_present rule to JS.
-* Converted: slider_present rule to JS.
-* Converted: missing_transcript rule to JS.
-* Converted: missing_subheadings rule to JS.
-* Converted: link_improper rule to JS.
-* Converted: link_non_html_file rule to JS.
-* Converted: longdesc_invalid rule to JS.
-* Converted: missing_table_header rule to JS.
-* Converted: incorrect_heading_order rule to JS.
-* Converted: img_alt_empty rule to JS.
-* Converted: img_alt_long rule to JS.
-* Converted: img_map_missing_alt rule to JS.
-* Converted: link_empty rule to JS.
-* Converted: linked_image_missing_alt rule to JS.
-* Converted: linked_image_empty rules to JS.
-* Converted: aria_hidden rule to JS.
-* Converted: empty_button rule to JS.
-* Converted: duplicate_form_label rule to axe-core compatible JS rule with conditional support for incomplete items.
-* Converted: empty_heading_tag rule to JS.
-* Converted: empty_table_header rule to JS.
-* Converted: iframe_missing_title rule to JS.
-* Converted: img_alt_redundant rule to JS.
-* Converted: img_alt_invalid rule to JS.
-* Converted: img_alt_missing rule to JS.
-* Converted: animated_gif rule to JS.
-* Converted: broken_aria_reference rule to JS.
-
-= 1.22.2 =
-* Enhancement: Announce Global Accessibility Awareness Day in the admin during that week.
-
-= 1.22.1 =
-* Enhancement: Make the skip-link fix handle sites with forced smooth scroll.
-* Enhancement: Make the zooming and scaling handle additional ways the tag can block scaling.
-* Fix: Swap to graphql for getting meetup data for display in the admin.
-
-= 1.22.0 =
-* Enhancement: Improve the new window warning migration to handle more edge cases.
-* Fix: Avoid checking theme Tags when theme sandbox recovery is in play.
-* Fix: When parsing block content for scanning avoid stomping on post_content of a global.
-
-= 1.21.0 =
-* Enhancement: Improve how density statistics are counted. You will see a notice about this change on the welcome page.
-* Fix: Ensure that the scanned posts counts are accurate to all posts scanned, not just ones that have issues.
-* Fix: Properly count posts that are scanned but have no issues to remediate.
+2025-09-18 - version 1.32.0
+* Fix - Improved highlighter behavior to maintain original size and position of scanned elements.
+* Fix - Identify out-of-sequence headings.
+* Fix - Identify missing title attributes.
+* Fix - Correctly assess alternative text requirements for image map areas.
+* Tweak - Implemented additional security measures for input validation and data sanitization.
 
 Older versions can be found in the plugins `changelog.txt`.

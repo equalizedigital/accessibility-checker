@@ -49,6 +49,9 @@ VERSION=$(grep " * Version:" ./dist/accessibility-checker/accessibility-checker.
 cd ./dist
 zip -r accessibility-checker-$VERSION.zip accessibility-checker
 
+# Remove the po files from the zip file
+zip -d accessibility-checker-$VERSION.zip ./accessibility-checker/languages/*.po
+
 # Drop back into the original dir
 cd ..
 

@@ -38,9 +38,8 @@ class OrdinalTest extends WP_UnitTestCase {
 			? $ordinal_value_no_php_intl
 			: $ordinal_value;
 
-		// The actual test.
-		$this->assertSame( $value_to_test, edac_ordinal( $numeric_value ) );
-
+		// Some php-intl locales return ordinals with a period at the end, so we need to account for that.
+		$this->assertMatchesRegularExpression( '/^' . preg_quote( $value_to_test, '/' ) . '\.?$/u', edac_ordinal( $numeric_value ) );
 		// Remove the filter if it was added.
 		if ( 'en_US' !== $locale ) {
 			remove_filter( 'locale', $filter_locale );

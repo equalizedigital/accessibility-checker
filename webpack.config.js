@@ -99,4 +99,8 @@ module.exports = {
 			filename: './css/[name].css',
 		} ),
 	],
+	externals: {
+		// Exclude WordPress core scripts and styles from the build.
+		'@wordpress/i18n': [ 'wp', 'i18n' ],
+	},
 };

@@ -40,9 +40,11 @@ class Welcome_Page {
 						</div>
 
 						<p class="edac-cols-right">
-							<button class="button" id="edac_clear_cached_stats">
-								<?php esc_html_e( 'Update Counts', 'accessibility-checker' ); ?>
-							</button>
+							<?php if ( current_user_can( 'publish_posts' ) ) : ?>
+								<button class="button" id="edac_clear_cached_stats">
+									<?php esc_html_e( 'Update Counts', 'accessibility-checker' ); ?>
+								</button>
+							<?php endif; ?>
 
 							<a class="edac-ml-1 button" href="<?php echo esc_url( admin_url( 'admin.php?page=accessibility_checker_full_site_scan' ) ); ?>">
 								<?php esc_html_e( 'Start New Scan', 'accessibility-checker' ); ?>
@@ -302,7 +304,7 @@ class Welcome_Page {
 									<?php esc_html_e( 'Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster.', 'accessibility-checker' ); ?>
 								</p>
 								<p class="edac-align-center">
-									<a class="button button-primary" href="https://equalizedigital.com/accessibility-checker/pricing/?utm_source=accessibility-checker&utm_medium=software&utm_campaign=welcome-page">
+									<a class="button button-primary" href="<?php edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'welcome-page', 'upgrade' ); ?>" target="_blank" rel="noopener noreferrer">
 										<?php esc_html_e( 'Upgrade Accessibility Checker', 'accessibility-checker' ); ?>
 									</a>
 								</p>

@@ -13,6 +13,7 @@ use EqualizeDigital\AccessibilityChecker\WPCLI\Command\CLICommandInterface;
 use EqualizeDigital\AccessibilityChecker\WPCLI\Command\DeleteStats;
 use EqualizeDigital\AccessibilityChecker\WPCLI\Command\GetSiteStats;
 use EqualizeDigital\AccessibilityChecker\WPCLI\Command\GetStats;
+use EqualizeDigital\AccessibilityChecker\WPCLI\Command\CleanupOrphanedIssues;
 use Exception;
 use WP_CLI;
 
@@ -45,6 +46,7 @@ class BootstrapCLI {
 		DeleteStats::class,
 		GetSiteStats::class,
 		GetStats::class,
+		CleanupOrphanedIssues::class,
 	];
 
 	/**
@@ -92,6 +94,14 @@ class BootstrapCLI {
 					$command,
 					$command::get_args()
 				);
+				// For ease of typing on cli there's a shortname too in some commands.
+				if ( method_exists( $command, 'get_shortname' ) ) {
+					$this->wp_cli::add_command(
+						$command::get_shortname(),
+						$command,
+						$command::get_args()
+					);
+				}
 			} catch ( Exception $e ) {
 				$this->wp_cli::warning(
 					sprintf(

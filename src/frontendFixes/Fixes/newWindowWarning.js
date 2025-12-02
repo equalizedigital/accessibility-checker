@@ -32,7 +32,7 @@ const initializeTooltip = () => {
 		pointerEvents: 'auto',
 		boxShadow: '0px 4px 6px rgba(0,0,0,0.1)',
 		maxWidth: '200px',
-		whiteSpace: 'nowrap',
+		whiteSpace: 'normal',
 	} );
 	document.body.appendChild( anwwLinkTooltip );
 

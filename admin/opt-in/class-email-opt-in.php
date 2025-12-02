@@ -55,6 +55,7 @@ class Email_Opt_In {
 
 		wp_enqueue_style( 'email-opt-in-form', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/emailOptIn.css', false, EDAC_VERSION, 'all' );
 		wp_enqueue_script( 'email-opt-in-form', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/emailOptIn.bundle.js', false, EDAC_VERSION, true );
+		wp_set_script_translations( 'email-opt-in-form', 'accessibility-checker', plugins_url( 'languages', EDAC_PLUGIN_FILE ) );
 
 		wp_localize_script(
 			'email-opt-in-form',
@@ -145,6 +146,16 @@ class Email_Opt_In {
 					</div>
 				</div>
 				<div class="_button-wrapper _full_width edac-mt-3 edac-mb-3">
+					<small>
+						<?php
+						printf(
+						/* translators: 1: link to privacy policy page. 2: link close tag. */
+							esc_html__( 'By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s.', 'accessibility-checker' ),
+							'<a href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'email_newsletter', 'privacy', false ) ) . '" target="_blank">',
+							'</a>'
+						);
+						?>
+					</small>
 					<button id="_form_1_submit" class="_submit button button-primary" type="submit">
 						Subscribe
 					</button>

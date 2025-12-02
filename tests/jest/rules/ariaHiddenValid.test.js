@@ -40,6 +40,11 @@ describe( 'Aria Hidden Validation', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'should pass for button with visible text in span',
+			html: '<button type="button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect></svg><span>Menu</span></button>',
+			shouldPass: true,
+		},
+		{
 			name: 'should pass for link with aria-label',
 			html: '<a href="/about" aria-label="About Us"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect></svg></a>',
 			shouldPass: true,
@@ -52,6 +57,11 @@ describe( 'Aria Hidden Validation', () => {
 		{
 			name: 'should pass for link with visible text',
 			html: '<a href="/about"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect></svg>About Us</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for link with visible text in span',
+			html: '<a href="/about"><span>About Us</span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect></svg></a>',
 			shouldPass: true,
 		},
 		{
