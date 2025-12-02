@@ -104,7 +104,7 @@ class Admin {
 	 * @param string $ref Ref param.
 	 * @return string
 	 */
-	private function add_ref_param_to_links( string $ref ): string {
+	public function add_ref_param_to_links( string $ref ): string {
 		if ( defined( 'EDAC_REF_PARAM' ) && ! empty( EDAC_REF_PARAM ) ) {
 			return EDAC_REF_PARAM;
 		} else {
