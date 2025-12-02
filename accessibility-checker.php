@@ -72,6 +72,11 @@ if ( ! defined( 'EDAC_DEBUG' ) ) {
 	define( 'EDAC_DEBUG', false );
 }
 
+// Default ref is empty - we don't ref links, but it can be filtered by providers.
+if ( ! defined( 'EDAC_REF_PARAM' ) ) {
+	define( 'EDAC_REF_PARAM', '' );
+}
+
 // SVG Icons.
 define( 'EDAC_SVG_IGNORE_ICON', file_get_contents( __DIR__ . '/assets/images/ignore-icon.svg' ) );
 
