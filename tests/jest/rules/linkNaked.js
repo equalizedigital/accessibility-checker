@@ -81,12 +81,12 @@ describe( 'Naked Link Validation', () => {
 		{
 			name: 'should pass for link with mailto: and email address as text',
 			html: '<a href="mailto:test@example.com">test@example.com</a>',
-			shouldPass: true, // Typically, mailto links are an exception for this kind of rule
+			shouldPass: false,
 		},
 		{
 			name: 'should pass for link with tel: and phone number as text',
 			html: '<a href="tel:+1234567890">+1234567890</a>',
-			shouldPass: true, // Similar to mailto, tel links are often exceptions
+			shouldPass: false,
 		},
 	];
 
