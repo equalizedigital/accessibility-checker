@@ -9,13 +9,13 @@ on:
         type: string
   pull_request:
     types: [opened, synchronize, reopened]
-    branches:
-      - '*pro-413*'
 
 jobs:
   build-plugin:
     name: Build plugin zip with ref param
     runs-on: ubuntu-latest
+    # Only run for PRs whose head branch contains 'pro-413' OR any manual run
+    if: github.event_name == 'workflow_dispatch' || contains(github.head_ref, 'pro-413')
 
     steps:
       - name: Checkout repository
@@ -38,6 +38,7 @@ jobs:
         run: |
           echo "Triggered on: $GITHUB_EVENT_NAME"
           echo "Git ref: $GITHUB_REF"
+          echo "Head ref: ${{ github.head_ref }}"
           echo "PR number: ${{ github.event.pull_request.number }}"
           echo "Ref param: ${{ steps.setref.outputs.ref_param }}"
 
@@ -46,8 +47,7 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: |
-            wp-content/plugins/accessibility-checker/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -57,27 +57,23 @@ jobs:
           coverage: none
 
       - name: Update EDAC_REF_PARAM
-        working-directory: wp-content/plugins/accessibility-checker
         run: |
           chmod +x ./scripts/update-ref-param.sh
           ./scripts/update-ref-param.sh "${{ steps.setref.outputs.ref_param }}"
 
       - name: Verify EDAC_REF_PARAM change
         run: |
-          grep -n "EDAC_REF_PARAM" wp-content/plugins/accessibility-checker/accessibility-checker.php || { echo "EDAC_REF_PARAM not found"; exit 1; }
+          grep -n "EDAC_REF_PARAM" accessibility-checker.php || { echo "EDAC_REF_PARAM not found"; exit 1; }
 
       - name: Install Composer dependencies
-        working-directory: wp-content/plugins/accessibility-checker
         run: |
           if [ -f composer.json ]; then composer install --no-dev --prefer-dist --no-progress --no-interaction; else echo "No composer.json"; fi
 
       - name: Install npm dependencies
-        working-directory: wp-content/plugins/accessibility-checker
         run: |
           if [ -f package.json ]; then npm ci || npm install; else echo "No package.json"; fi
 
       - name: Build dist zip via npm
-        working-directory: wp-content/plugins/accessibility-checker
         run: |
           if npm run | grep -q "dist"; then npm run dist; else echo "No npm dist script defined" && exit 1; fi
           ZIP_PATH=$(ls -1 dist/*.zip build/*.zip 2>/dev/null | head -n 1 || true)
@@ -95,7 +91,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: accessibility-checker-dist-${{ github.event.pull_request.number || 'manual' }}
-          path: wp-content/plugins/accessibility-checker/${{ env.ZIP_PATH }}
+          path: ${{ env.ZIP_PATH }}
           if-no-files-found: error
 
       - name: Summary
