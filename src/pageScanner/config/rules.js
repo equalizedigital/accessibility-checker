@@ -66,7 +66,7 @@ import missingHeadings from '../rules/missing-headings';
 import hasSubheadingsIfLongContent from '../checks/has-subheadings-if-long-content';
 import imageAnimated from '../rules/img-animated';
 import imageAnimatedCheck from '../checks/img-animated-check';
-import nakedLink from '../rules/naked-link';
+import linkNaked from '../rules/link-naked';
 import linkIsNaked from '../checks/link-is-naked';
 import alwaysFail from '../checks/always-fail';
 
@@ -106,7 +106,7 @@ export const rulesArray = [
 	imageAnimated,
 	ariaHiddenValidation,
 	ariaBrokenReference,
-	nakedLink,
+	linkNaked,
 ];
 
 // Define all the custom checks to be used.
