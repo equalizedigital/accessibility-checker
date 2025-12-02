@@ -6,8 +6,8 @@ let linkIsNakedCheck;
 
 beforeAll( async () => {
 	// Dynamically import the custom rule and check
-	const nakedLinkRuleModule = await import( '../../../src/pageScanner/rules/nakedLink.js' );
-	const linkIsNakedCheckModule = await import( '../../../src/pageScanner/checks/linkIsNaked.js' );
+	const nakedLinkRuleModule = await import( '../../../src/pageScanner/rules/link-naked.js' );
+	const linkIsNakedCheckModule = await import( '../../../src/pageScanner/checks/link-is-naked.js' );
 
 	nakedLinkRule = nakedLinkRuleModule.default;
 	linkIsNakedCheck = linkIsNakedCheckModule.default;
@@ -59,22 +59,22 @@ describe( 'Naked Link Validation', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for link where href is a partial match to the text',
+			name: 'should pass for link where href is a partial match to the text ',
 			html: '<a href="https://example.com">See example.com for details</a>',
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for link where text is a partial match to the href',
+			name: 'should pass for link where text is a partial match to the href - this is too complicated to check and match for, the text differs so it is a pass even though it is not ideal',
 			html: '<a href="https://example.com/more-info">example.com</a>',
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for link with different protocol (http vs https)',
+			name: 'should pass for link with different protocol (http vs https) - this is too complicated to check and match for, the text differs so it is a pass even though it is not ideal',
 			html: '<a href="https://example.com">http://example.com</a>',
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for link with different subdomain',
+			name: 'should pass for link with different subdomain - this is too complicated to check and match for, the text differs so it is a pass even though it is not ideal',
 			html: '<a href="https://www.example.com">https://example.com</a>',
 			shouldPass: true,
 		},
