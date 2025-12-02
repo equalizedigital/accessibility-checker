@@ -314,20 +314,22 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 		if ( ! is_wp_error( $request ) && 200 === (int) wp_remote_retrieve_response_code( $request ) ) {
 			$response_body = json_decode( wp_remote_retrieve_body( $request ) );
 
-			if ( isset( $response_body->data->groupByUrlname->events->edges ) && is_array( $response_body->data->groupByUrlname->events->edges ) ) {
-				foreach ( $response_body->data->groupByUrlname->events->edges as $edge ) {
+			$edges = $response_body->data->groupByUrlname->events->edges ?? null;
+
+			if ( is_array( $edges ) ) {
+				foreach ( $edges as $edge ) {
 					if ( ! isset( $edge->node ) ) {
 						continue;
 					}
 
-						$event = $edge->node;
+					$event = $edge->node;
 
-						// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- GraphQL response uses camelCase.
+					// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- GraphQL response uses camelCase.
 					if ( empty( $event->title ) || empty( $event->dateTime ) || empty( $event->eventUrl ) || empty( $event->id ) ) {
 						continue;
 					}
 
-						$timestamp = strtotime( (string) $event->dateTime );
+					$timestamp = strtotime( (string) $event->dateTime );
 					if ( false === $timestamp ) {
 						continue;
 					}
