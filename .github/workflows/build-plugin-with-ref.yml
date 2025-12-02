@@ -1,0 +1,104 @@
+name: Build Accessibility Checker Plugin with Ref Param
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref_param:
+        description: "Ref param string to set in EDAC_REF_PARAM"
+        required: true
+        type: string
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - '*pro-413*'
+
+jobs:
+  build-plugin:
+    name: Build plugin zip with ref param
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine ref param for this run
+        id: setref
+        run: |
+          # Use input if provided (workflow_dispatch), else default to 'will' for PR runs
+          REF_INPUT="${{ github.event.inputs.ref_param }}"
+          if [ -n "$REF_INPUT" ]; then
+            echo "ref_param=$REF_INPUT" >> $GITHUB_OUTPUT
+          else
+            echo "ref_param=will" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Show selected ref
+        run: |
+          echo "Triggered on: $GITHUB_EVENT_NAME"
+          echo "Git ref: $GITHUB_REF"
+          echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "Ref param: ${{ steps.setref.outputs.ref_param }}"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: |
+            wp-content/plugins/accessibility-checker/package-lock.json
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+          coverage: none
+
+      - name: Update EDAC_REF_PARAM
+        working-directory: wp-content/plugins/accessibility-checker
+        run: |
+          chmod +x ./scripts/update-ref-param.sh
+          ./scripts/update-ref-param.sh "${{ steps.setref.outputs.ref_param }}"
+
+      - name: Verify EDAC_REF_PARAM change
+        run: |
+          grep -n "EDAC_REF_PARAM" wp-content/plugins/accessibility-checker/accessibility-checker.php || { echo "EDAC_REF_PARAM not found"; exit 1; }
+
+      - name: Install Composer dependencies
+        working-directory: wp-content/plugins/accessibility-checker
+        run: |
+          if [ -f composer.json ]; then composer install --no-dev --prefer-dist --no-progress --no-interaction; else echo "No composer.json"; fi
+
+      - name: Install npm dependencies
+        working-directory: wp-content/plugins/accessibility-checker
+        run: |
+          if [ -f package.json ]; then npm ci || npm install; else echo "No package.json"; fi
+
+      - name: Build dist zip via npm
+        working-directory: wp-content/plugins/accessibility-checker
+        run: |
+          if npm run | grep -q "dist"; then npm run dist; else echo "No npm dist script defined" && exit 1; fi
+          ZIP_PATH=$(ls -1 dist/*.zip build/*.zip 2>/dev/null | head -n 1 || true)
+          if [ -z "$ZIP_PATH" ]; then
+            ZIP_PATH=$(ls -1 *.zip 2>/dev/null | head -n 1 || true)
+          fi
+          if [ -z "$ZIP_PATH" ]; then
+            echo "Error: Could not locate produced zip after npm run dist" >&2
+            exit 1
+          fi
+          echo "ZIP_PATH=$ZIP_PATH" >> $GITHUB_ENV
+          echo "Produced zip: $ZIP_PATH"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-checker-dist-${{ github.event.pull_request.number || 'manual' }}
+          path: wp-content/plugins/accessibility-checker/${{ env.ZIP_PATH }}
+          if-no-files-found: error
+
+      - name: Summary
+        run: |
+          echo "Built artifact: ${{ env.ZIP_PATH }}"
+          echo "Ref param set to: ${{ steps.setref.outputs.ref_param }}"
