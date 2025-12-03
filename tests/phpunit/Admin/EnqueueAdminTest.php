@@ -116,9 +116,9 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
-		// In wp 6.9 there were changes to the flags passed to wp_json_encode() that made slashes no longer get escaped by default.
-		// we should check for both possibilities here to ensure compatibility across versions.
-		// see: https://github.com/WordPress/wordpress-develop/pull/9557 for more details.
+		// In WP 6.9 there were changes to the flags passed to wp_json_encode() that made slashes no longer get escaped by default.
+		// We should check for both possibilities here to ensure compatibility across versions.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557 for more details.
 		if ( version_compare( get_bloginfo( 'version' ), '6.9', '>=' ) ) {
 			$this->assertStringContainsString( esc_url_raw( get_permalink( $post->ID ) ), $localized_data );
 		} else {
@@ -136,7 +136,6 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function testScanUrlUsesPermalinkForPostsPage() {
-
 		global $post, $pagenow, $wp_scripts;
 
 		// Create a post and set it as the posts page.
@@ -148,9 +147,9 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
-		// In wp 6.9 there were changes to the flags passed to wp_json_encode() that made slashes no longer get escaped by default.
-		// we should check for both possibilities here to ensure compatibility across versions.
-		// see: https://github.com/WordPress/wordpress-develop/pull/9557 for more details.
+		// In WP 6.9 there were changes to the flags passed to wp_json_encode() that made slashes no longer get escaped by default.
+		// We should check for both possibilities here to ensure compatibility across versions.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557 for more details.
 		if ( version_compare( get_bloginfo( 'version' ), '6.9', '>=' ) ) {
 			$this->assertStringContainsString( esc_url_raw( get_permalink( $post->ID ) ), $localized_data );
 		} else {
