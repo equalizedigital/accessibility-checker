@@ -277,72 +277,70 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
 	$output = [];
 
-	if ( function_exists( 'wp_remote_post' ) ) {
-		$request_uri = 'https://api.meetup.com/gql-ext';
-		$query       = '
-		query Group {
-			groupByUrlname(urlname: "' . (string) $meetup . '") {
-				events(first: ' . (int) $count . ') {
-					totalCount
-					edges {
-						node {
-							dateTime
-							eventUrl
-							id
-							title
-						}
+	$request_uri = 'https://api.meetup.com/gql-ext';
+	$query       = '
+	query Group {
+		groupByUrlname(urlname: "' . (string) $meetup . '") {
+			events(first: ' . (int) $count . ') {
+				totalCount
+				edges {
+					node {
+						dateTime
+						eventUrl
+						id
+						title
 					}
 				}
 			}
-		}';
+		}
+	}';
 
-		$request = wp_remote_post(
-			$request_uri,
-			[
-				'headers' => [
-					'Content-Type' => 'application/json',
-				],
-				'timeout' => 10, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- Timeout set for external request.
-				'body'    => wp_json_encode(
-					[
-						'query' => $query,
-					]
-				),
-			]
-		);
+	$request = wp_remote_post(
+		$request_uri,
+		[
+			'headers' => [
+				'Content-Type' => 'application/json',
+			],
+			'timeout' => 10, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- Timeout set for external request.
+			'body'    => wp_json_encode(
+				[
+					'query' => $query,
+				]
+			),
+		]
+	);
 
-		if ( ! is_wp_error( $request ) && 200 === (int) wp_remote_retrieve_response_code( $request ) ) {
-			$response_body = json_decode( wp_remote_retrieve_body( $request ) );
+	if ( ! is_wp_error( $request ) && 200 === (int) wp_remote_retrieve_response_code( $request ) ) {
+		$response_body = json_decode( wp_remote_retrieve_body( $request ) );
 
-			$edges = $response_body->data->groupByUrlname->events->edges ?? null;
+		$edges = $response_body->data->groupByUrlname->events->edges ?? null;
 
-			if ( is_array( $edges ) ) {
-				foreach ( $edges as $edge ) {
-					if ( ! isset( $edge->node ) ) {
-						continue;
-					}
-
-					$event = $edge->node;
-
-					// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- GraphQL response uses camelCase.
-					if ( empty( $event->title ) || empty( $event->dateTime ) || empty( $event->eventUrl ) || empty( $event->id ) ) {
-						continue;
-					}
-
-					$timestamp = strtotime( (string) $event->dateTime );
-					if ( false === $timestamp ) {
-						continue;
-					}
-
-					$event_data       = new stdClass();
-					$event_data->name = (string) $event->title;
-					$event_data->time = $timestamp * 1000; // Convert to milliseconds to match old format.
-					$event_data->link = (string) $event->eventUrl;
-					$event_data->id   = (string) $event->id;
-					// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase.
-
-					$output[] = $event_data;
+		if ( is_array( $edges ) ) {
+			foreach ( $edges as $edge ) {
+				if ( ! isset( $edge->node ) ) {
+					continue;
 				}
+
+				$event = $edge->node;
+
+				// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- GraphQL response uses camelCase.
+				if ( empty( $event->title ) || empty( $event->dateTime ) || empty( $event->eventUrl ) || empty( $event->id ) ) {
+					continue;
+				}
+
+				$timestamp = strtotime( (string) $event->dateTime );
+				if ( false === $timestamp ) {
+					continue;
+				}
+
+				$event_data       = new stdClass();
+				$event_data->name = (string) $event->title;
+				$event_data->time = $timestamp * 1000; // Convert to milliseconds to match old format.
+				$event_data->link = (string) $event->eventUrl;
+				$event_data->id   = (string) $event->id;
+				// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase.
+
+				$output[] = $event_data;
 			}
 		}
 	}
