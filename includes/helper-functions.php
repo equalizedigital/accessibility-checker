@@ -267,7 +267,10 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 	// Min of 1 and max of 25.
 	$count = absint( max( 1, min( 25, $count ) ) );
 
-	$key          = '_upcoming_meetups__' . sanitize_title( $meetup ) . '__' . (int) $count;
+	// Sanitize meetup name for both cache key and GraphQL query to prevent injection.
+	$sanitized_meetup = sanitize_title( $meetup );
+
+	$key          = '_upcoming_meetups__' . $sanitized_meetup . '__' . (int) $count;
 	$stale_key    = $key . '__stale';
 	$cached_value = get_transient( $key );
 
@@ -280,7 +283,7 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 	$request_uri = 'https://api.meetup.com/gql-ext';
 	$query       = '
 	query Group {
-		groupByUrlname(urlname: "' . (string) $meetup . '") {
+		groupByUrlname(urlname: "' . $sanitized_meetup . '") {
 			events(first: ' . (int) $count . ') {
 				totalCount
 				edges {
