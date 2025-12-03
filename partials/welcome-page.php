@@ -230,15 +230,20 @@ use EDAC\Admin\Welcome_Page;
 	}
 	?>
 
-		<div class="edac-panel">
-			<h2 class="edac-summary-header">
-				<?php esc_html_e( 'Learn Accessibility', 'accessibility-checker' ); ?>
-			</h2>
-			<?php
-			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );
+		<?php
+		$meetup_html = edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );
+		if ( ! empty( $meetup_html ) ) :
 			?>
-		</div>
+			<div class="edac-panel">
+				<h2 class="edac-summary-header">
+					<?php esc_html_e( 'Learn Accessibility', 'accessibility-checker' ); ?>
+				</h2>
+				<?php
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- content is being escaped as it is being produced, late escaping would be more complicated and unreadable
+				echo $meetup_html;
+				?>
+			</div>
+		<?php endif; ?>
 
 		<?php Welcome_Page::maybe_render_email_opt_in(); ?>
 

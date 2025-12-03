@@ -160,6 +160,13 @@ export const init = () => {
 		debug( 'Gutenberg is not enabled.' );
 	}
 
+	const editor = wp?.data?.select?.( 'core/editor' );
+	const postStatus = editor?.getEditedPostAttribute( 'status' ) ?? window?.edac_editor_app?.postStatus;
+
+	if ( ! postStatus || postStatus === 'auto-draft' ) {
+		return;
+	}
+
 	// eslint-disable-next-line camelcase
 	injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
 };

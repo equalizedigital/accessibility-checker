@@ -140,6 +140,7 @@ class Enqueue_Admin {
 						'scanUrl'      => $scan_url,
 						'maxAltLength' => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),
 						'version'      => EDAC_VERSION,
+						'postStatus'   => get_post_status( $post_id ),
 						'restNonce'    => wp_create_nonce( 'wp_rest' ),
 					]
 				);
