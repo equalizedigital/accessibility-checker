@@ -9,13 +9,15 @@ on:
         type: string
   pull_request:
     types: [opened, synchronize, reopened]
+  release:
+    types: [created, published]
 
 jobs:
   build-plugin:
     name: Build plugin zip with ref param
     runs-on: ubuntu-latest
-    # Only run for PRs whose head branch contains 'pro-413' OR any manual run
-    if: github.event_name == 'workflow_dispatch' || contains(github.head_ref, 'pro-413')
+    # Only run for PRs whose head branch contains 'pro-413' OR any manual run OR releases
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'release' || contains(github.head_ref, 'pro-413')
 
     steps:
       - name: Checkout repository
@@ -26,10 +28,15 @@ jobs:
       - name: Determine ref param for this run
         id: setref
         run: |
-          # Use input if provided (workflow_dispatch), else default to 'will' for PR runs
+          # Use input if provided (workflow_dispatch)
           REF_INPUT="${{ github.event.inputs.ref_param }}"
           if [ -n "$REF_INPUT" ]; then
             echo "ref_param=$REF_INPUT" >> $GITHUB_OUTPUT
+          # Use release tag name if triggered by release
+          elif [ "${{ github.event_name }}" = "release" ]; then
+            RELEASE_TAG="${{ github.event.release.tag_name }}"
+            echo "ref_param=$RELEASE_TAG" >> $GITHUB_OUTPUT
+          # Default to 'will' for PR runs
           else
             echo "ref_param=will" >> $GITHUB_OUTPUT
           fi
@@ -40,6 +47,7 @@ jobs:
           echo "Git ref: $GITHUB_REF"
           echo "Head ref: ${{ github.head_ref }}"
           echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "Release tag: ${{ github.event.release.tag_name }}"
           echo "Ref param: ${{ steps.setref.outputs.ref_param }}"
 
       - name: Set up Node.js
