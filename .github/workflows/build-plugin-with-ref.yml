@@ -64,15 +64,6 @@ jobs:
           tools: composer
           coverage: none
 
-      - name: Update EDAC_REF_PARAM
-        run: |
-          chmod +x ./scripts/update-ref-param.sh
-          ./scripts/update-ref-param.sh "${{ steps.setref.outputs.ref_param }}"
-
-      - name: Verify EDAC_REF_PARAM change
-        run: |
-          grep -n "EDAC_REF_PARAM" accessibility-checker.php || { echo "EDAC_REF_PARAM not found"; exit 1; }
-
       - name: Install Composer dependencies
         run: |
           if [ -f composer.json ]; then composer install --no-dev --prefer-dist --no-progress --no-interaction; else echo "No composer.json"; fi
@@ -81,8 +72,13 @@ jobs:
         run: |
           if [ -f package.json ]; then npm ci || npm install; else echo "No package.json"; fi
 
-      - name: Build dist zip via npm
+      - name: Verify EDAC_REF_PARAM is empty before first build
         run: |
+          grep -n "define( 'EDAC_REF_PARAM', '' )" accessibility-checker.php || { echo "EDAC_REF_PARAM should be empty for first build"; exit 1; }
+
+      - name: Build primary dist zip (with empty ref)
+        run: |
+          echo "Building primary zip with empty ref..."
           if npm run | grep -q "dist"; then npm run dist; else echo "No npm dist script defined" && exit 1; fi
           ZIP_PATH=$(ls -1 dist/*.zip build/*.zip 2>/dev/null | head -n 1 || true)
           if [ -z "$ZIP_PATH" ]; then
@@ -92,17 +88,95 @@ jobs:
             echo "Error: Could not locate produced zip after npm run dist" >&2
             exit 1
           fi
-          echo "ZIP_PATH=$ZIP_PATH" >> $GITHUB_ENV
-          echo "Produced zip: $ZIP_PATH"
+          # Create builds directory and move primary zip there (preserve original filename)
+          mkdir -p builds
+          PRIMARY_ZIP_NAME=$(basename "$ZIP_PATH")
+          mv "$ZIP_PATH" "builds/$PRIMARY_ZIP_NAME"
+          echo "PRIMARY_ZIP_PATH=builds/$PRIMARY_ZIP_NAME" >> $GITHUB_ENV
+          echo "PRIMARY_ZIP_NAME=$PRIMARY_ZIP_NAME" >> $GITHUB_ENV
+          echo "Produced primary zip: builds/$PRIMARY_ZIP_NAME"
 
-      - name: Upload build artifact
+      - name: Upload primary build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: accessibility-checker-dist-${{ github.event.pull_request.number || 'manual' }}
-          path: ${{ env.ZIP_PATH }}
+          name: accessibility-checker-primary-${{ github.event.pull_request.number || github.event.release.tag_name || 'manual' }}
+          path: ${{ env.PRIMARY_ZIP_PATH }}
           if-no-files-found: error
+
+      - name: Check if ref build is needed
+        id: check_ref
+        run: |
+          REF_VALUE="${{ steps.setref.outputs.ref_param }}"
+          if [ -n "$REF_VALUE" ] && [ "$REF_VALUE" != "" ]; then
+            echo "need_ref_build=true" >> $GITHUB_OUTPUT
+            echo "Ref build needed with value: $REF_VALUE"
+          else
+            echo "need_ref_build=false" >> $GITHUB_OUTPUT
+            echo "No ref build needed (empty ref)"
+          fi
+
+      - name: Update EDAC_REF_PARAM for second build
+        if: steps.check_ref.outputs.need_ref_build == 'true'
+        run: |
+          chmod +x ./scripts/update-ref-param.sh
+          ./scripts/update-ref-param.sh "${{ steps.setref.outputs.ref_param }}"
+
+      - name: Verify EDAC_REF_PARAM change
+        if: steps.check_ref.outputs.need_ref_build == 'true'
+        run: |
+          grep -n "EDAC_REF_PARAM" accessibility-checker.php || { echo "EDAC_REF_PARAM not found"; exit 1; }
+          echo "Updated EDAC_REF_PARAM contents:"
+          grep "EDAC_REF_PARAM" accessibility-checker.php
+
+      - name: Build ref dist zip (with custom ref)
+        if: steps.check_ref.outputs.need_ref_build == 'true'
+        run: |
+          echo "Building ref zip with custom ref value..."
+          npm run dist
+          ZIP_PATH=$(ls -1 dist/*.zip build/*.zip 2>/dev/null | head -n 1 || true)
+          if [ -z "$ZIP_PATH" ]; then
+            ZIP_PATH=$(ls -1 *.zip 2>/dev/null | head -n 1 || true)
+          fi
+          if [ -z "$ZIP_PATH" ]; then
+            echo "Error: Could not locate produced zip after npm run dist" >&2
+            exit 1
+          fi
+          # Move to builds folder with ref suffix added to filename (before .zip)
+          ZIP_BASENAME=$(basename "$ZIP_PATH" .zip)
+          REF_ZIP_NAME="${ZIP_BASENAME}-ref-${{ steps.setref.outputs.ref_param }}.zip"
+          mv "$ZIP_PATH" "builds/$REF_ZIP_NAME"
+          echo "REF_ZIP_PATH=builds/$REF_ZIP_NAME" >> $GITHUB_ENV
+          echo "REF_ZIP_NAME=$REF_ZIP_NAME" >> $GITHUB_ENV
+          echo "Produced ref zip: builds/$REF_ZIP_NAME"
+
+      - name: Upload ref build artifact
+        if: steps.check_ref.outputs.need_ref_build == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-checker-ref-${{ github.event.pull_request.number || github.event.release.tag_name || 'manual' }}
+          path: ${{ env.REF_ZIP_PATH }}
+          if-no-files-found: error
+
+      - name: Upload to release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ env.PRIMARY_ZIP_PATH }}
+            ${{ steps.check_ref.outputs.need_ref_build == 'true' && env.REF_ZIP_PATH || '' }}
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Summary
         run: |
-          echo "Built artifact: ${{ env.ZIP_PATH }}"
-          echo "Ref param set to: ${{ steps.setref.outputs.ref_param }}"
+          echo "=== Build Summary ==="
+          echo "Primary zip (empty ref): ${{ env.PRIMARY_ZIP_PATH }}"
+          if [ "${{ steps.check_ref.outputs.need_ref_build }}" = "true" ]; then
+            echo "Ref zip (ref=${{ steps.setref.outputs.ref_param }}): ${{ env.REF_ZIP_PATH }}"
+          else
+            echo "Ref zip: Not built (empty ref value)"
+          fi
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "Uploaded to release: ${{ github.event.release.html_url }}"
+          fi
