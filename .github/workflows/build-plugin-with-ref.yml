@@ -4,20 +4,27 @@ on:
   workflow_dispatch:
     inputs:
       ref_param:
-        description: "Ref param string to set in EDAC_REF_PARAM"
-        required: true
+        description: "Ref param string to set in EDAC_REF_PARAM (optional)"
+        required: false
         type: string
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [labeled]
   release:
     types: [created, published]
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build-plugin:
-    name: Build plugin zip with ref param
+    name: Build plugin zip
     runs-on: ubuntu-latest
-    # Only run for PRs whose head branch contains 'pro-413' OR any manual run OR releases
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'release' || contains(github.head_ref, 'pro-413')
+    # Run on release, manual, or PR when a specific label is added
+    if: |
+      github.event_name == 'release' ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'gha-build'))
 
     steps:
       - name: Checkout repository
@@ -25,26 +32,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Determine ref param for this run
+      - name: Determine mode and ref param for this run
         id: setref
         run: |
-          # Use input if provided (workflow_dispatch)
-          REF_INPUT="${{ github.event.inputs.ref_param }}"
-          if [ -n "$REF_INPUT" ]; then
-            echo "ref_param=$REF_INPUT" >> $GITHUB_OUTPUT
-          # Use release tag name if triggered by release
-          elif [ "${{ github.event_name }}" = "release" ]; then
-            RELEASE_TAG="${{ github.event.release.tag_name }}"
-            echo "ref_param=$RELEASE_TAG" >> $GITHUB_OUTPUT
-          # Default to 'will' for PR runs
+          MODE="${{ github.event_name }}"
+          echo "mode=$MODE" >> $GITHUB_OUTPUT
+          # Manual run: take input if provided; else empty
+          if [ "$MODE" = "workflow_dispatch" ]; then
+            REF_INPUT="${{ github.event.inputs.ref_param }}"
+            echo "ref_param=${REF_INPUT}" >> $GITHUB_OUTPUT
+          # Release: use fixed ref 'woocommerce'
+          elif [ "$MODE" = "release" ]; then
+            echo "ref_param=woocommerce" >> $GITHUB_OUTPUT
+          # PR labeled: build primary only; set empty ref
           else
-            echo "ref_param=will" >> $GITHUB_OUTPUT
+            echo "ref_param=" >> $GITHUB_OUTPUT
           fi
 
-      - name: Show selected ref
+      - name: Show selected mode/ref
         run: |
           echo "Triggered on: $GITHUB_EVENT_NAME"
-          echo "Git ref: $GITHUB_REF"
+          echo "Mode: ${{ steps.setref.outputs.mode }}"
           echo "Head ref: ${{ github.head_ref }}"
           echo "PR number: ${{ github.event.pull_request.number }}"
           echo "Release tag: ${{ github.event.release.tag_name }}"
@@ -76,10 +84,10 @@ jobs:
         run: |
           grep -n "define( 'EDAC_REF_PARAM', '' )" accessibility-checker.php || { echo "EDAC_REF_PARAM should be empty for first build"; exit 1; }
 
-      - name: Build primary dist zip (with empty ref)
+      - name: Build primary dist zip (empty ref)
         run: |
           echo "Building primary zip with empty ref..."
-          if npm run | grep -q "dist"; then npm run dist; else echo "No npm dist script defined" && exit 1; fi
+          npm run dist
           ZIP_PATH=$(ls -1 dist/*.zip build/*.zip 2>/dev/null | head -n 1 || true)
           if [ -z "$ZIP_PATH" ]; then
             ZIP_PATH=$(ls -1 *.zip 2>/dev/null | head -n 1 || true)
@@ -88,7 +96,6 @@ jobs:
             echo "Error: Could not locate produced zip after npm run dist" >&2
             exit 1
           fi
-          # Create builds directory and move primary zip there (preserve original filename)
           mkdir -p builds
           PRIMARY_ZIP_NAME=$(basename "$ZIP_PATH")
           mv "$ZIP_PATH" "builds/$PRIMARY_ZIP_NAME"
@@ -103,16 +110,17 @@ jobs:
           path: ${{ env.PRIMARY_ZIP_PATH }}
           if-no-files-found: error
 
-      - name: Check if ref build is needed
+      - name: Check if ref build is needed (manual or release only)
         id: check_ref
         run: |
+          MODE="${{ steps.setref.outputs.mode }}"
           REF_VALUE="${{ steps.setref.outputs.ref_param }}"
-          if [ -n "$REF_VALUE" ] && [ "$REF_VALUE" != "" ]; then
+          if { [ "$MODE" = "workflow_dispatch" ] || [ "$MODE" = "release" ]; } && [ -n "$REF_VALUE" ]; then
             echo "need_ref_build=true" >> $GITHUB_OUTPUT
             echo "Ref build needed with value: $REF_VALUE"
           else
             echo "need_ref_build=false" >> $GITHUB_OUTPUT
-            echo "No ref build needed (empty ref)"
+            echo "No ref build needed (mode=$MODE, ref='$REF_VALUE')"
           fi
 
       - name: Update EDAC_REF_PARAM for second build
@@ -128,7 +136,7 @@ jobs:
           echo "Updated EDAC_REF_PARAM contents:"
           grep "EDAC_REF_PARAM" accessibility-checker.php
 
-      - name: Build ref dist zip (with custom ref)
+      - name: Build ref dist zip (custom ref)
         if: steps.check_ref.outputs.need_ref_build == 'true'
         run: |
           echo "Building ref zip with custom ref value..."
@@ -141,8 +149,8 @@ jobs:
             echo "Error: Could not locate produced zip after npm run dist" >&2
             exit 1
           fi
-          # Move to builds folder with ref suffix added to filename (before .zip)
           ZIP_BASENAME=$(basename "$ZIP_PATH" .zip)
+          mkdir -p builds
           REF_ZIP_NAME="${ZIP_BASENAME}-ref-${{ steps.setref.outputs.ref_param }}.zip"
           mv "$ZIP_PATH" "builds/$REF_ZIP_NAME"
           echo "REF_ZIP_PATH=builds/$REF_ZIP_NAME" >> $GITHUB_ENV
@@ -157,7 +165,7 @@ jobs:
           path: ${{ env.REF_ZIP_PATH }}
           if-no-files-found: error
 
-      - name: Upload to release
+      - name: Upload to release (both zips)
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
@@ -168,14 +176,33 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Comment on PR with primary build details
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const primaryName = process.env.PRIMARY_ZIP_NAME;
+            const primaryPath = process.env.PRIMARY_ZIP_PATH;
+            const body = `✅ Accessibility Checker build (primary only)\n\n- Artifact: **${primaryName}**\n- Path: \
+\`${primaryPath}\`\n- Workflow run: [View logs](${runUrl})`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body,
+            });
+
       - name: Summary
         run: |
           echo "=== Build Summary ==="
+          echo "Mode: ${{ steps.setref.outputs.mode }}"
           echo "Primary zip (empty ref): ${{ env.PRIMARY_ZIP_PATH }}"
           if [ "${{ steps.check_ref.outputs.need_ref_build }}" = "true" ]; then
             echo "Ref zip (ref=${{ steps.setref.outputs.ref_param }}): ${{ env.REF_ZIP_PATH }}"
           else
-            echo "Ref zip: Not built (empty ref value)"
+            echo "Ref zip: Not built"
           fi
           if [ "${{ github.event_name }}" = "release" ]; then
             echo "Uploaded to release: ${{ github.event.release.html_url }}"
