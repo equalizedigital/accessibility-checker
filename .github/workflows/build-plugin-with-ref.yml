@@ -41,12 +41,20 @@ jobs:
           if [ "$MODE" = "workflow_dispatch" ]; then
             REF_INPUT="${{ github.event.inputs.ref_param }}"
             echo "ref_param=${REF_INPUT}" >> $GITHUB_OUTPUT
+            # For manual mode: if ref is provided, skip primary build
+            if [ -n "$REF_INPUT" ]; then
+              echo "skip_primary=true" >> $GITHUB_OUTPUT
+            else
+              echo "skip_primary=false" >> $GITHUB_OUTPUT
+            fi
           # Release: use fixed ref 'woocommerce'
           elif [ "$MODE" = "release" ]; then
             echo "ref_param=woocommerce" >> $GITHUB_OUTPUT
+            echo "skip_primary=false" >> $GITHUB_OUTPUT
           # PR labeled: build primary only; set empty ref
           else
             echo "ref_param=" >> $GITHUB_OUTPUT
+            echo "skip_primary=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Show selected mode/ref
@@ -81,10 +89,12 @@ jobs:
           if [ -f package.json ]; then npm ci || npm install; else echo "No package.json"; fi
 
       - name: Verify EDAC_REF_PARAM is empty before first build
+        if: steps.setref.outputs.skip_primary != 'true'
         run: |
           grep -n "define( 'EDAC_REF_PARAM', '' )" accessibility-checker.php || { echo "EDAC_REF_PARAM should be empty for first build"; exit 1; }
 
       - name: Build primary dist zip (empty ref)
+        if: steps.setref.outputs.skip_primary != 'true'
         run: |
           echo "Building primary zip with empty ref..."
           npm run dist
@@ -104,18 +114,25 @@ jobs:
           echo "Produced primary zip: builds/$PRIMARY_ZIP_NAME"
 
       - name: Upload primary build artifact
+        if: steps.setref.outputs.skip_primary != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: accessibility-checker-primary-${{ github.event.pull_request.number || github.event.release.tag_name || 'manual' }}
           path: ${{ env.PRIMARY_ZIP_PATH }}
           if-no-files-found: error
 
-      - name: Check if ref build is needed (manual or release only)
+      - name: Check if ref build is needed
         id: check_ref
         run: |
           MODE="${{ steps.setref.outputs.mode }}"
           REF_VALUE="${{ steps.setref.outputs.ref_param }}"
-          if { [ "$MODE" = "workflow_dispatch" ] || [ "$MODE" = "release" ]; } && [ -n "$REF_VALUE" ]; then
+          # For manual: build ref if ref is provided
+          # For release: always build ref (woocommerce)
+          # For PR: never build ref
+          if [ "$MODE" = "workflow_dispatch" ] && [ -n "$REF_VALUE" ]; then
+            echo "need_ref_build=true" >> $GITHUB_OUTPUT
+            echo "Ref build needed with value: $REF_VALUE"
+          elif [ "$MODE" = "release" ] && [ -n "$REF_VALUE" ]; then
             echo "need_ref_build=true" >> $GITHUB_OUTPUT
             echo "Ref build needed with value: $REF_VALUE"
           else
