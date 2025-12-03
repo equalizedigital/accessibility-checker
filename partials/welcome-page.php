@@ -239,7 +239,7 @@ use EDAC\Admin\Welcome_Page;
 					<?php esc_html_e( 'Learn Accessibility', 'accessibility-checker' ); ?>
 				</h2>
 				<?php
-				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- content is being escaped as it is being produced, late escaping would be more complicated and unreadable
 				echo $meetup_html;
 				?>
 			</div>

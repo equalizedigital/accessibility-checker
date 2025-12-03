@@ -312,7 +312,7 @@ class Widgets {
 		$html     .= '<a target="_blank" aria-label="' . __( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="' . esc_url( $blog_link ) . '">' . __( 'Blog', 'accessibility-checker' ) . '</a>';
 		$html     .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" aria-label="' . __( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="' . esc_url( $docs_link ) . '">' . __( 'Documentation', 'accessibility-checker' ) . '</a></div></div>';
 
-		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- content is being escaped as it is being produced, late escaping would be more complicated and unreadable
 		echo $html;
 	}
 }
