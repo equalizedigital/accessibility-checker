@@ -926,7 +926,7 @@ class AccessibilityCheckerHighlight {
 	countIgnored() {
 		let count = 0;
 		for ( const issue of this.issues ) {
-			if ( issue.ignored === 1 ) {
+			if ( issue.ignored === '1' ) {
 				count++;
 			}
 		}
@@ -955,7 +955,7 @@ class AccessibilityCheckerHighlight {
 			if ( warningCount >= 0 ) {
 				textContent += warningCount + ' ' + _n( 'warning', 'warnings', warningCount, 'accessibility-checker' ) + ', ';
 			}
-			if ( ignoredCount >= 0 ) {
+			if ( ignoredCount > 0 ) {
 				textContent += __( 'and', 'accessibility-checker' ) + ' ' + ignoredCount + ' ' + _n( 'ignored issue', 'ignored issues', ignoredCount, 'accessibility-checker' ) + ' ' + __( 'detected.', 'accessibility-checker' );
 			} else {
 				// Remove the trailing comma and add "detected."
