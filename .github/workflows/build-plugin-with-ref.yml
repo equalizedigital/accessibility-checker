@@ -185,14 +185,32 @@ jobs:
             const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const primaryName = process.env.PRIMARY_ZIP_NAME;
             const primaryPath = process.env.PRIMARY_ZIP_PATH;
-            const body = `✅ Accessibility Checker build (primary only)\n\n- Artifact: **${primaryName}**\n- Path: \
-\`${primaryPath}\`\n- Workflow run: [View logs](${runUrl})`;
+            const body = `✅ Accessibility Checker build (primary only)\n\n- Artifact: **${primaryName}**\n- Path: \`${primaryPath}\`\n- Workflow run: [View logs](${runUrl})`;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
               body,
             });
+
+      - name: Remove triggering label from PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const labelName = 'gha-build';
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                name: labelName,
+              });
+              console.log(`Removed label '${labelName}' from PR #${prNumber}`);
+            } catch (e) {
+              console.log(`Could not remove label '${labelName}' from PR #${prNumber}: ${e.message}`);
+            }
 
       - name: Summary
         run: |
