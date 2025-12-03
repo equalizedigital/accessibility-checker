@@ -88,6 +88,14 @@ jobs:
         run: |
           if [ -f package.json ]; then npm ci || npm install; else echo "No package.json"; fi
 
+      - name: Get short commit hash for PR builds
+        if: github.event_name == 'pull_request'
+        id: commit
+        run: |
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          echo "short_sha=$SHORT_SHA" >> $GITHUB_OUTPUT
+          echo "Short commit hash: $SHORT_SHA"
+
       - name: Verify EDAC_REF_PARAM is empty before first build
         if: steps.setref.outputs.skip_primary != 'true'
         run: |
@@ -108,6 +116,13 @@ jobs:
           fi
           mkdir -p builds
           PRIMARY_ZIP_NAME=$(basename "$ZIP_PATH")
+
+          # For PR builds, add commit hash to filename before .zip
+          if [ "${{ github.event_name }}" = "pull_request" ] && [ -n "${{ steps.commit.outputs.short_sha }}" ]; then
+            ZIP_BASENAME="${PRIMARY_ZIP_NAME%.zip}"
+            PRIMARY_ZIP_NAME="${ZIP_BASENAME}-${{ steps.commit.outputs.short_sha }}.zip"
+          fi
+
           mv "$ZIP_PATH" "builds/$PRIMARY_ZIP_NAME"
           echo "PRIMARY_ZIP_PATH=builds/$PRIMARY_ZIP_NAME" >> $GITHUB_ENV
           echo "PRIMARY_ZIP_NAME=$PRIMARY_ZIP_NAME" >> $GITHUB_ENV
