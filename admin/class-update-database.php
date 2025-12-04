@@ -36,8 +36,10 @@ class Update_Database {
 	public function edac_update_database() {
 
 		global $wpdb;
-		$table_name   = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
-		$table_exists = ! empty( $table_name ) && ! is_wp_error( $table_name );
+		$table_name   = $wpdb->prefix . 'accessibility_checker';
+		$table_exists = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
+			$wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) )
+		) === $table_name;
 		$db_version   = get_option( 'edac_db_version' );
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Prepare above, Safe variable used for table name, caching not required for one time operation.
