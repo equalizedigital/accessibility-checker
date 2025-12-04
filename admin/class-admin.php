@@ -50,7 +50,7 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', [ 'EDAC\Admin\Enqueue_Admin', 'enqueue' ] );
 		add_action( 'wp_trash_post', [ Purge_Post_Data::class, 'delete_post' ] );
 		add_action( 'save_post', [ Post_Save::class, 'delete_issue_data_on_post_trashing' ], 10, 3 );
-		add_action( 'edac_filter_generate_link_type_ref', [ $this, 'add_ref_param_to_links' ], 5, 1 );
+		add_filter( 'edac_filter_generate_link_type_ref', [ $this, 'add_ref_param_to_links' ], 5, 1 );
 
 		$plugin_action_links = new Plugin_Action_Links();
 		$plugin_action_links->init_hooks();
