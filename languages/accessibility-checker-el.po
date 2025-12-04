@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.31.0\n"
+"Project-Id-Version: Accessibility Checker 1.35.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-04T18:22:49+00:00\n"
+"POT-Creation-Date: 2025-12-04T22:32:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -23,6 +23,7 @@ msgstr ""
 #: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:45
 #: partials/welcome-page.php:24
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
@@ -172,27 +173,27 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Ειδική προσφορά Black Friday! 🎉"
 
 #: admin/class-admin-notices.php:130
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Αναβαθμίστε σε μια επί πληρωμή έκδοση του Accessibility Checker από τις 25 Νοεμβρίου έως τις 3 Δεκεμβρίου και λάβετε έκπτωση 30%! Πλήρης σάρωση ιστοσελίδας, αναφορά ανοιχτών ζητημάτων σε όλο τον ιστότοπο, αρχεία καταγραφής αγνόησης και πολλά άλλα."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Αναβαθμίστε σε μια επί πληρωμή έκδοση του Accessibility Checker από τις 24 Νοεμβρίου έως τις 3 Δεκεμβρίου και κερδίστε έκπτωση 30%! Πλήρης σάρωση ιστότοπου, αναφορά ανοιχτών ζητημάτων σε όλο τον ιστότοπο, αρχεία καταγραφής παράβλεψης και πολλά άλλα."
 
 #: admin/class-admin-notices.php:131
-#: admin/class-admin-notices.php:218
+#: admin/class-admin-notices.php:221
 msgid "Ask a Pre-Sale Question"
 msgstr "Κάντε μια ερώτηση πριν την αγορά"
 
 #: admin/class-admin-notices.php:132
-#: admin/class-admin-notices.php:219
+#: admin/class-admin-notices.php:222
 msgid "Upgrade Now"
 msgstr "Αναβαθμίστε τώρα"
 
 #: admin/class-admin-notices.php:151
-#: admin/class-admin-notices.php:238
-#: admin/class-admin-notices.php:327
+#: admin/class-admin-notices.php:241
+#: admin/class-admin-notices.php:330
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:202
-#: admin/class-ajax.php:579
-#: admin/class-ajax.php:712
-#: admin/class-ajax.php:786
+#: admin/class-ajax.php:585
+#: admin/class-ajax.php:718
+#: admin/class-ajax.php:792
 #: admin/class-frontend-highlight.php:78
 #: admin/class-frontend-highlight.php:96
 #: admin/class-frontend-highlight.php:101
@@ -200,50 +201,50 @@ msgstr "Αναβαθμίστε τώρα"
 msgid "Permission Denied"
 msgstr "Άρνηση πρόσβασης"
 
-#: admin/class-admin-notices.php:160
-#: admin/class-admin-notices.php:250
-#: admin/class-admin-notices.php:347
+#: admin/class-admin-notices.php:163
+#: admin/class-admin-notices.php:253
+#: admin/class-admin-notices.php:354
 msgid "Update option wasn't successful"
 msgstr "Η ενημέρωση της επιλογής δεν ήταν επιτυχής"
 
-#: admin/class-admin-notices.php:216
+#: admin/class-admin-notices.php:219
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Αποκτήστε 25% έκπτωση στο Accessibility Checker Pro για την Παγκόσμια Ημέρα Ευαισθητοποίησης για την Προσβασιμότητα! 🎉"
 
-#: admin/class-admin-notices.php:217
+#: admin/class-admin-notices.php:220
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Χρησιμοποιήστε τον κωδικό κουπονιού GAAD25 από τις 13 έως τις 21 Μαΐου για να αποκτήσετε πρόσβαση σε πλήρη σάρωση ιστοτόπου και άλλες λειτουργίες pro με ειδική έκπτωση. Δεν είστε σίγουροι αν η αναβάθμιση είναι κατάλληλη για εσάς;?"
 
-#: admin/class-admin-notices.php:302
+#: admin/class-admin-notices.php:305
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Γεια σας! Σας ευχαριστούμε που χρησιμοποιείτε το Accessibility Checker ως μέρος των εργαλείων προσβασιμότητάς σας. Εφόσον το χρησιμοποιείτε για κάποιο διάστημα, θα μπορούσατε να γράψετε μια αξιολόγηση 5 αστέρων για το Accessibility Checker στον κατάλογο πρόσθετων του WordPress; Αυτό θα βοηθήσει στην αύξηση της προβολής μας ώστε περισσότεροι άνθρωποι να μάθουν για τη σημασία της προσβασιμότητας στο διαδίκτυο. Σας ευχαριστούμε πολύ!"
 
-#: admin/class-admin-notices.php:305
+#: admin/class-admin-notices.php:308
 msgid "Write A Review"
 msgstr "Γράψτε μια κριτική"
 
-#: admin/class-admin-notices.php:306
+#: admin/class-admin-notices.php:309
 msgid "Remind Me In Two Weeks"
 msgstr "Υπενθύμιση σε δύο εβδομάδες"
 
-#: admin/class-admin-notices.php:307
+#: admin/class-admin-notices.php:310
 msgid "Never Ask Again"
 msgstr "Μην ξαναρωτήσετε"
 
-#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:337
 msgid "The review action value was not set"
 msgstr "Η τιμή της ενέργειας κριτικής δεν ορίστηκε"
 
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:206
-#: admin/class-ajax.php:583
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:589
+#: admin/class-ajax.php:796
 msgid "The post ID was not set"
 msgstr "Το αναγνωριστικό της δημοσίευσης δεν ορίστηκε"
 
 #: admin/class-ajax.php:64
 #: admin/class-ajax.php:210
-#: admin/class-ajax.php:587
+#: admin/class-ajax.php:593
 msgid "You do not have permission to view this information for this post."
 msgstr "Δεν έχετε άδεια να δείτε αυτές τις πληροφορίες για αυτή την ανάρτηση."
 
@@ -320,46 +321,54 @@ msgstr "Αποθήκευση"
 msgid "Affected Code"
 msgstr "Επηρεαζόμενος κώδικας"
 
+#: admin/class-ajax.php:438
+msgid "Username:"
+msgstr "Όνομα χρήστη:"
+
+#: admin/class-ajax.php:443
+msgid "Date:"
+msgstr "Ημερομηνία:"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:499
+#: admin/class-ajax.php:505
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Προβολή ζητήματος με ID %d στον ιστότοπο, ανοίγει νέο παράθυρο"
 
-#: admin/class-ajax.php:500
+#: admin/class-ajax.php:506
 msgid "View on page"
 msgstr "Προβολή στη σελίδα"
 
-#: admin/class-ajax.php:519
+#: admin/class-ajax.php:525
 msgid "Fix: "
 msgstr "Διόρθωση: "
 
-#: admin/class-ajax.php:520
+#: admin/class-ajax.php:526
 msgid "Fix"
 msgstr "Διόρθωση"
 
-#: admin/class-ajax.php:543
+#: admin/class-ajax.php:549
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Ο λογαριασμός χρήστη σας δεν έχει δικαίωμα να αγνοήσει αυτό το ζήτημα."
 
-#: admin/class-ajax.php:560
+#: admin/class-ajax.php:566
 msgid "No details to return"
 msgstr "Δεν υπάρχουν λεπτομέρειες για επιστροφή"
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:700
 msgid "No readability data to return"
 msgstr "Δεν υπάρχουν δεδομένα αναγνωσιμότητας για επιστροφή"
 
-#: admin/class-ajax.php:746
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:752
+#: admin/class-ajax.php:773
 msgid "No ignore data to return"
 msgstr "Δεν υπάρχουν δεδομένα αγνόησης για επιστροφή"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:800
 msgid "The summary was not set"
 msgstr "Η περίληψη δεν ορίστηκε"
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:804
 msgid "You do not have permission to edit this post."
 msgstr "Δεν έχετε άδεια να επεξεργαστείτε αυτή την ανάρτηση."
 
@@ -394,7 +403,7 @@ msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Προβολή Τεκμηρίωσης του Accessibility Checker (ανοίγει σε νέο παράθυρο)"
 
 #: admin/class-plugin-row-meta.php:54
-#: admin/class-widgets.php:309
+#: admin/class-widgets.php:313
 msgid "Documentation"
 msgstr "Τεκμηρίωση"
 
@@ -601,32 +610,32 @@ msgstr "Αντίθεση"
 msgid "Warnings"
 msgstr "Προειδοποιήσεις"
 
-#: admin/class-widgets.php:247
+#: admin/class-widgets.php:248
 msgid "Upgrade to Scan"
 msgstr "Αναβάθμιση για σάρωση"
 
-#: admin/class-widgets.php:276
+#: admin/class-widgets.php:277
 msgid "See More Reports"
 msgstr "Δείτε περισσότερες αναφορές"
 
-#: admin/class-widgets.php:286
-#: partials/welcome-page.php:235
+#: admin/class-widgets.php:289
+#: partials/welcome-page.php:239
 msgid "Learn Accessibility"
 msgstr "Μάθετε για την προσβασιμότητα"
 
-#: admin/class-widgets.php:307
+#: admin/class-widgets.php:311
 msgid "Additional Resources"
 msgstr "Πρόσθετοι πόροι"
 
-#: admin/class-widgets.php:308
+#: admin/class-widgets.php:312
 msgid "Blog (opens in a new window)"
 msgstr "Ιστολόγιο (ανοίγει σε νέο παράθυρο)"
 
-#: admin/class-widgets.php:308
+#: admin/class-widgets.php:312
 msgid "Blog"
 msgstr "Ιστολόγιο"
 
-#: admin/class-widgets.php:309
+#: admin/class-widgets.php:313
 msgid "Documentation (opens in a new window)"
 msgstr "Τεκμηρίωση (ανοίγει σε νέο παράθυρο)"
 
@@ -900,8 +909,8 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Αποκτήστε το Accessibility Checker Pro (ανοίγει σε νέο παράθυρο)"
 
 #: includes/classes/class-simplified-summary.php:73
-#: includes/options-page.php:897
-#: includes/options-page.php:921
+#: includes/options-page.php:898
+#: includes/options-page.php:922
 msgid "Simplified Summary"
 msgstr "Απλοποιημένη περίληψη"
 
@@ -2654,57 +2663,65 @@ msgid "W3C: Understanding Guideline 1.2"
 msgstr "W3C: Κατανόηση της Οδηγίας 1.2"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
-#: includes/classes/WPCLI/BootstrapCLI.php:101
+#: includes/classes/WPCLI/BootstrapCLI.php:109
 #, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Αποτυχία εγγραφής της εντολής %1$s επειδή %2$s"
 
-#: includes/classes/WPCLI/Command/DeleteStats.php:61
+#: includes/classes/WPCLI/Command/CleanupOrphanedIssues.php:73
+msgid "Number of orphaned posts to process in one batch."
+msgstr "Αριθμός ορφανών αναρτήσεων προς επεξεργασία σε μία δέσμη."
+
+#: includes/classes/WPCLI/Command/CleanupOrphanedIssues.php:80
+msgid "Seconds to sleep between deletions (default: 0)."
+msgstr "Δευτερόλεπτα αναμονής μεταξύ διαγραφών (προεπιλογή: 0)."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:72
 msgid "The ID of the post to delete stats for."
 msgstr "Το ID του άρθρου για το οποίο θα διαγραφούν τα στατιστικά."
 
-#: includes/classes/WPCLI/Command/DeleteStats.php:83
+#: includes/classes/WPCLI/Command/DeleteStats.php:94
 msgid "No Post ID provided."
 msgstr "Δεν δόθηκε ID άρθρου."
 
 #. translators: 1: a post ID.
-#: includes/classes/WPCLI/Command/DeleteStats.php:92
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
 #, php-format
 msgid "Post ID %1$s does not exist."
 msgstr "Το ID άρθρου %1$s δεν υπάρχει."
 
 #. translators: 1: a post ID.
-#: includes/classes/WPCLI/Command/DeleteStats.php:103
+#: includes/classes/WPCLI/Command/DeleteStats.php:114
 #, php-format
 msgid "Stats of %1$s deleted."
 msgstr "Τα στατιστικά του %1$s διαγράφηκαν."
 
-#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+#: includes/classes/WPCLI/Command/GetSiteStats.php:78
 msgid "Keys to show in the results. Defaults to all keys."
 msgstr "Κλειδιά που θα εμφανιστούν στα αποτελέσματα. Προεπιλογή σε όλα τα κλειδιά."
 
-#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+#: includes/classes/WPCLI/Command/GetSiteStats.php:86
 msgid "Clear the cache before retrieving the stats (can be intensive)."
 msgstr "Εκκαθάριση της προσωρινής μνήμης πριν την ανάκτηση των στατιστικών (μπορεί να είναι εντατική)."
 
 #. translators: 1: a stat key that was requested but not found.
-#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#: includes/classes/WPCLI/Command/GetSiteStats.php:122
 #, php-format
 msgid "Stat key: %1$s not found in stats."
 msgstr "Το κλειδί στατιστικών: %1$s δεν βρέθηκε στα στατιστικά."
 
-#: includes/classes/WPCLI/Command/GetStats.php:85
+#: includes/classes/WPCLI/Command/GetStats.php:96
 msgid "The ID of the post to get stats for."
 msgstr "Το ID του άρθρου για το οποίο θα ληφθούν τα στατιστικά."
 
 #. translators: 1: a post ID.
-#: includes/classes/WPCLI/Command/GetStats.php:126
+#: includes/classes/WPCLI/Command/GetStats.php:137
 #, php-format
 msgid "Post ID %1$d does not exist."
 msgstr "Το ID άρθρου %1$d δεν υπάρχει."
 
 #. translators: 1: a post ID.
-#: includes/classes/WPCLI/Command/GetStats.php:142
+#: includes/classes/WPCLI/Command/GetStats.php:153
 #, php-format
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Είτε το άρθρο δεν έχει σαρωθεί ακόμα είτε όλοι οι έλεγχοι πέρασαν για το ID άρθρου %1$d."
@@ -2721,12 +2738,12 @@ msgstr "μόνιμος σύνδεσμος προς "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:341
+#: includes/helper-functions.php:392
 msgid "Attend Free"
 msgstr "Παρακολουθήστε δωρεάν"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:790
+#: includes/helper-functions.php:841
 #, php-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Προβολή %s ορόσημου στον ιστότοπο, ανοίγει νέο παράθυρο"
@@ -2792,12 +2809,12 @@ msgid "Simplified Summary Heading"
 msgstr "Απλοποιημένη επικεφαλίδα περίληψης"
 
 #: includes/options-page.php:235
-#: includes/options-page.php:735
+#: includes/options-page.php:736
 msgid "Add Footer Accessibility Statement"
 msgstr "Προσθήκη δήλωσης προσβασιμότητας στο υποσέλιδο"
 
 #: includes/options-page.php:244
-#: includes/options-page.php:758
+#: includes/options-page.php:759
 msgid "Include Link to Accessibility Policy"
 msgstr "Συμπερίληψη συνδέσμου προς την πολιτική προσβασιμότητας"
 
@@ -2940,31 +2957,31 @@ msgstr "Πάντα"
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Θα πρέπει το Accessibility Checker να ζητά απλοποιημένη περίληψη μόνο όταν το επίπεδο ανάγνωσης του άρθρου ή της σελίδας σας είναι πάνω από την 9η τάξη, να τη ζητά πάντα ανεξάρτητα από το επίπεδο ανάγνωσης, ή να μην τη ζητά ποτέ ανεξάρτητα από το επίπεδο ανάγνωσης;?"
 
-#: includes/options-page.php:660
+#: includes/options-page.php:661
 msgid "To check content other than posts and pages, please "
 msgstr "Για να ελέγξετε περιεχόμενο εκτός από άρθρα και σελίδες, παρακαλούμε "
 
-#: includes/options-page.php:662
+#: includes/options-page.php:663
 msgid "upgrade to pro"
 msgstr "αναβάθμιση σε pro"
 
-#: includes/options-page.php:663
+#: includes/options-page.php:664
 msgid " (opens in a new window)"
 msgstr " (ανοίγει σε νέο παράθυρο)"
 
-#: includes/options-page.php:668
+#: includes/options-page.php:669
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Επιλέξτε ποιοι τύποι άρθρων πρέπει να ελέγχονται κατά τη διάρκεια μιας σάρωσης. Παρακαλούμε σημειώστε ότι η αφαίρεση ενός προηγουμένως επιλεγμένου τύπου άρθρου θα αφαιρέσει τις σαρωμένες πληροφορίες του και τυχόν προσαρμοσμένες αγνοημένες προειδοποιήσεις που έχουν ρυθμιστεί."
 
-#: includes/options-page.php:810
+#: includes/options-page.php:811
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Διαγραφή όλων των δεδομένων του Accessibility Checker κατά την απεγκατάσταση του πρόσθετου."
 
-#: includes/options-page.php:965
+#: includes/options-page.php:966
 msgid "Choose which user roles have permission to ignore issues."
 msgstr "Επίλεξε ποιοι ρόλοι χρηστών έχουν δικαίωμα να αγνοούν προβλήματα."
 
-#: includes/options-page.php:998
+#: includes/options-page.php:999
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Διαμόρφωσε ποιοι ρόλοι χρηστών έχουν πρόσβαση σε συγκεκριμένες λειτουργίες του Accessibility Checker."
 
@@ -4500,8 +4517,33 @@ msgid "Close fixes modal"
 msgstr "Κλείσιμο του παραθύρου διορθώσεων"
 
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Open details for %1$s, %2$s of %3$s"
+msgstr "Άνοιγμα λεπτομερειών για %1$s, %2$s από %3$s"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Rescan This Page"
 msgstr "Σάρωσε ξανά αυτή τη σελίδα"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility Checker Tools"
+msgstr "Εργαλεία Accessibility Checker"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Loading..."
+msgstr "Φόρτωση..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Previous"
+msgstr "Προηγούμενο"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Next"
+msgstr "Επόμενο"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Disable Page Styles"
@@ -4512,8 +4554,33 @@ msgid "Disable Styles"
 msgstr "Απενεργοποίηση στυλ"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not visible. Try disabling styles."
+msgstr "Το στοιχείο δεν είναι ορατό. Δοκιμάστε να απενεργοποιήσετε τα στυλ."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not focusable. Try disabling styles."
+msgstr "Το στοιχείο δεν είναι εστιάσιμο. Δοκιμάστε να απενεργοποιήσετε τα στυλ."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element was not found on the page."
+msgstr "Το στοιχείο δεν βρέθηκε στη σελίδα."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred when loading the issues."
 msgstr "Παρουσιάστηκε σφάλμα κατά τη φόρτωση των ζητημάτων."
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Fix issue: %s"
+msgstr "Διόρθωση ζητήματος: %s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Issue"
+msgstr "Διόρθωση ζητήματος"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Full Documentation"
+msgstr "Πλήρης τεκμηρίωση"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Show Code"
@@ -4564,6 +4631,11 @@ msgstr[1] "αγνοημένα ζητήματα"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
 msgstr "εντοπίστηκαν."
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Landmark: %s"
+msgstr "Ορόσημο: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Scanner function not found."
