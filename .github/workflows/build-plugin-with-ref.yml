@@ -163,8 +163,10 @@ jobs:
           PRIMARY_ZIP_BASENAME="${PRIMARY_ZIP_NAME%.zip}"
           unzip -q "builds/$PRIMARY_ZIP_NAME" -d "builds/$PRIMARY_ZIP_BASENAME"
           PRIMARY_ZIP_FOLDER="builds/$PRIMARY_ZIP_BASENAME"
+          PRIMARY_ZIP_NAME_NO_EXT="${PRIMARY_ZIP_NAME%.zip}"
           echo "PRIMARY_ZIP_PATH=builds/$PRIMARY_ZIP_NAME" >> $GITHUB_ENV
           echo "PRIMARY_ZIP_NAME=$PRIMARY_ZIP_NAME" >> $GITHUB_ENV
+          echo "PRIMARY_ZIP_NAME_NO_EXT=$PRIMARY_ZIP_NAME_NO_EXT" >> $GITHUB_ENV
           echo "PRIMARY_ZIP_FOLDER=$PRIMARY_ZIP_FOLDER" >> $GITHUB_ENV
           echo "Produced primary zip: builds/$PRIMARY_ZIP_NAME"
           echo "Produced primary folder: $PRIMARY_ZIP_FOLDER"
@@ -173,7 +175,7 @@ jobs:
         if: steps.setref.outputs.skip_primary != 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.PRIMARY_ZIP_NAME }}
+          name: ${{ env.PRIMARY_ZIP_NAME_NO_EXT }}
           path: ${{ env.PRIMARY_ZIP_FOLDER }}
           if-no-files-found: error
 
@@ -235,8 +237,10 @@ jobs:
           REF_ZIP_BASENAME="${REF_ZIP_NAME%.zip}"
           unzip -q "builds/$REF_ZIP_NAME" -d "builds/$REF_ZIP_BASENAME"
           REF_ZIP_FOLDER="builds/$REF_ZIP_BASENAME"
+          REF_ZIP_NAME_NO_EXT="${REF_ZIP_NAME%.zip}"
           echo "REF_ZIP_PATH=builds/$REF_ZIP_NAME" >> $GITHUB_ENV
           echo "REF_ZIP_NAME=$REF_ZIP_NAME" >> $GITHUB_ENV
+          echo "REF_ZIP_NAME_NO_EXT=$REF_ZIP_NAME_NO_EXT" >> $GITHUB_ENV
           echo "REF_ZIP_FOLDER=$REF_ZIP_FOLDER" >> $GITHUB_ENV
           echo "Produced ref zip: builds/$REF_ZIP_NAME"
           echo "Produced ref folder: $REF_ZIP_FOLDER"
@@ -245,7 +249,7 @@ jobs:
         if: steps.check_ref.outputs.need_ref_build == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.REF_ZIP_NAME }}
+          name: ${{ env.REF_ZIP_NAME_NO_EXT }}
           path: ${{ env.REF_ZIP_FOLDER }}
           if-no-files-found: error
 
