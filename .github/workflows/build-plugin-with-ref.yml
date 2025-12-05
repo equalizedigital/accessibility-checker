@@ -24,7 +24,7 @@ jobs:
     if: |
       github.event_name == 'release' ||
       github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'gha-build'))
+      (github.event_name == 'pull_request' && (contains(github.event.pull_request.labels.*.name, 'gha-build') || contains(github.event.pull_request.labels.*.name, 'gha-build-all')))
 
     steps:
       - name: Checkout repository
@@ -51,10 +51,17 @@ jobs:
           elif [ "$MODE" = "release" ]; then
             echo "ref_param=woocommerce" >> $GITHUB_OUTPUT
             echo "skip_primary=false" >> $GITHUB_OUTPUT
-          # PR labeled: build primary only; set empty ref
+          # PR labeled: check which label
           else
-            echo "ref_param=" >> $GITHUB_OUTPUT
-            echo "skip_primary=false" >> $GITHUB_OUTPUT
+            # Check if gha-build-all label is present (build both)
+            if echo "${{ github.event.pull_request.labels.*.name }}" | grep -q "gha-build-all"; then
+              echo "ref_param=woocommerce" >> $GITHUB_OUTPUT
+              echo "skip_primary=false" >> $GITHUB_OUTPUT
+            else
+              # gha-build label (build primary only)
+              echo "ref_param=" >> $GITHUB_OUTPUT
+              echo "skip_primary=false" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Show selected mode/ref
@@ -104,12 +111,14 @@ jobs:
             echo "No package.json"
           fi
 
-      - name: Get short commit hash for PR builds
-        if: github.event_name == 'pull_request'
-        id: commit
+      - name: Extract plugin version and commit hash
+        id: version
         run: |
+          VERSION=$(grep "^ \* Version:" accessibility-checker.php | sed 's/.*Version: \([^ ]*\).*/\1/')
           SHORT_SHA=$(git rev-parse --short HEAD)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "short_sha=$SHORT_SHA" >> $GITHUB_OUTPUT
+          echo "Plugin version: $VERSION"
           echo "Short commit hash: $SHORT_SHA"
 
       - name: Verify EDAC_REF_PARAM is empty before first build
@@ -131,12 +140,23 @@ jobs:
             exit 1
           fi
           mkdir -p builds
-          PRIMARY_ZIP_NAME=$(basename "$ZIP_PATH")
 
-          # For PR builds, add commit hash to filename before .zip
-          if [ "${{ github.event_name }}" = "pull_request" ] && [ -n "${{ steps.commit.outputs.short_sha }}" ]; then
-            ZIP_BASENAME="${PRIMARY_ZIP_NAME%.zip}"
-            PRIMARY_ZIP_NAME="${ZIP_BASENAME}-${{ steps.commit.outputs.short_sha }}.zip"
+          # Construct the new filename based on trigger mode
+          VERSION="${{ steps.version.outputs.version }}"
+          SHORT_SHA="${{ steps.version.outputs.short_sha }}"
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # PR: accessibility-checker-{version}-{prnumber}-{hash}.zip
+            PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}-${{ github.event.pull_request.number }}-${SHORT_SHA}.zip"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # Manual: accessibility-checker-{version}-{hash}.zip
+            PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}-${SHORT_SHA}.zip"
+          elif [ "${{ github.event_name }}" = "release" ]; then
+            # Release: accessibility-checker-{version}.zip
+            PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}.zip"
+          else
+            # Fallback
+            PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}-${SHORT_SHA}.zip"
           fi
 
           mv "$ZIP_PATH" "builds/$PRIMARY_ZIP_NAME"
@@ -202,9 +222,15 @@ jobs:
             echo "Error: Could not locate produced zip after npm run dist" >&2
             exit 1
           fi
-          ZIP_BASENAME=$(basename "$ZIP_PATH" .zip)
           mkdir -p builds
-          REF_ZIP_NAME="${ZIP_BASENAME}-ref-${{ steps.setref.outputs.ref_param }}.zip"
+
+          VERSION="${{ steps.version.outputs.version }}"
+          SHORT_SHA="${{ steps.version.outputs.short_sha }}"
+          REF_VALUE="${{ steps.setref.outputs.ref_param }}"
+
+          # Ref build naming: accessibility-checker-{version}-ref-{refvalue}-{hash}.zip
+          REF_ZIP_NAME="accessibility-checker-${VERSION}-ref-${REF_VALUE}-${SHORT_SHA}.zip"
+
           mv "$ZIP_PATH" "builds/$REF_ZIP_NAME"
           REF_ZIP_BASENAME="${REF_ZIP_NAME%.zip}"
           unzip -q "builds/$REF_ZIP_NAME" -d "builds/$REF_ZIP_BASENAME"
@@ -257,17 +283,18 @@ jobs:
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
-            const labelName = 'gha-build';
+            const labels = context.payload.pull_request.labels.map(l => l.name);
+            const labelToRemove = labels.includes('gha-build-all') ? 'gha-build-all' : 'gha-build';
             try {
               await github.rest.issues.removeLabel({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: prNumber,
-                name: labelName,
+                name: labelToRemove,
               });
-              console.log(`Removed label '${labelName}' from PR #${prNumber}`);
+              console.log(`Removed label '${labelToRemove}' from PR #${prNumber}`);
             } catch (e) {
-              console.log(`Could not remove label '${labelName}' from PR #${prNumber}: ${e.message}`);
+              console.log(`Could not remove label '${labelToRemove}' from PR #${prNumber}: ${e.message}`);
             }
 
       - name: Summary
